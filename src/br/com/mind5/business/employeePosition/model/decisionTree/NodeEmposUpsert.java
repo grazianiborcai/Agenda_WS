@@ -12,7 +12,7 @@ import br.com.mind5.business.employeePosition.model.action.LazyEmposDaoUpdate;
 import br.com.mind5.business.employeePosition.model.action.StdEmposEnforceLChanged;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckSoftDelete;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -44,10 +44,10 @@ public final class NodeEmposUpsert extends DeciTreeTemplateWriteV2<EmposInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
-		List<ActionStdV1<EmposInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
+		List<ActionStdV2<EmposInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmposInfo> enforceLChanged = new StdEmposEnforceLChanged(option);
+		ActionStdV2<EmposInfo> enforceLChanged = new StdEmposEnforceLChanged(option);
 		ActionLazy<EmposInfo> enforceLChangedBy = new LazyEmposMergeUsername(option.conn, option.schemaName);
 		ActionLazy<EmposInfo> enforceCreatedBy = new LazyEmposEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<EmposInfo> enforceCreatedOn = new LazyEmposEnforceCreatedOn(option.conn, option.schemaName);
@@ -64,10 +64,10 @@ public final class NodeEmposUpsert extends DeciTreeTemplateWriteV2<EmposInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<EmposInfo>> buildActionsOnFailedHook(DeciTreeOption<EmposInfo> option) {
-		List<ActionStdV1<EmposInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmposInfo>> buildActionsOnFailedHook(DeciTreeOption<EmposInfo> option) {
+		List<ActionStdV2<EmposInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmposInfo> enforceLChanged = new StdEmposEnforceLChanged(option);
+		ActionStdV2<EmposInfo> enforceLChanged = new StdEmposEnforceLChanged(option);
 		ActionLazy<EmposInfo> enforceLChangedBy = new LazyEmposMergeUsername(option.conn, option.schemaName);
 		ActionLazy<EmposInfo> enforceCreatedBy = new LazyEmposEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<EmposInfo> enforceCreatedOn = new LazyEmposEnforceCreatedOn(option.conn, option.schemaName);

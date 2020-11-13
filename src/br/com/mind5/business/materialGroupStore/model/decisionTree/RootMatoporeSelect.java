@@ -9,7 +9,7 @@ import br.com.mind5.business.materialGroupStore.model.checker.MatoporeCheckLangu
 import br.com.mind5.business.materialGroupStore.model.checker.MatoporeCheckOwner;
 import br.com.mind5.business.materialGroupStore.model.checker.MatoporeCheckRead;
 import br.com.mind5.business.materialGroupStore.model.checker.MatoporeCheckStore;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -62,10 +62,10 @@ public final class RootMatoporeSelect extends DeciTreeTemplateReadV2<MatoporeInf
 	
 	
 	
-	@Override protected List<ActionStdV1<MatoporeInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoporeInfo> option) {
-		List<ActionStdV1<MatoporeInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatoporeInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoporeInfo> option) {
+		List<ActionStdV2<MatoporeInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatoporeInfo> mergeMatore = new StdMatoporeMergeMatore(option);
+		ActionStdV2<MatoporeInfo> mergeMatore = new StdMatoporeMergeMatore(option);
 		
 		actions.add(mergeMatore);		
 		return actions;

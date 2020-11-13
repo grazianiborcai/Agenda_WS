@@ -19,7 +19,7 @@ import br.com.mind5.business.employee.model.checker.EmpCheckDelete;
 import br.com.mind5.business.employee.model.checker.EmpCheckExist;
 import br.com.mind5.business.employee.model.checker.EmpCheckLangu;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -65,10 +65,10 @@ public final class RootEmpDeleteCascade extends DeciTreeTemplateWriteV2<EmpInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStdV2<EmpInfo>> actions = new ArrayList<>();
 		//TODO: eliminar do carrinho de compras
-		ActionStdV1<EmpInfo> mergeToDelete = new StdEmpMergeToDelete(option);
+		ActionStdV2<EmpInfo> mergeToDelete = new StdEmpMergeToDelete(option);
 		ActionLazy<EmpInfo> enforceLChanged = new LazyEmpEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> update = new LazyEmpDaoUpdate(option.conn, option.schemaName);		

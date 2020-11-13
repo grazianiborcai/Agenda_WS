@@ -8,7 +8,7 @@ import br.com.mind5.business.materialMovementSearch.model.action.StdMatmarchMerg
 import br.com.mind5.business.materialMovementSearch.model.checker.MatmarchCheckLangu;
 import br.com.mind5.business.materialMovementSearch.model.checker.MatmarchCheckOwner;
 import br.com.mind5.business.materialMovementSearch.model.checker.MatmarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -55,10 +55,10 @@ public final class RootMatmarchSelect extends DeciTreeTemplateReadV2<MatmarchInf
 	
 	
 	
-	@Override protected List<ActionStdV1<MatmarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatmarchInfo> option) {
-		List<ActionStdV1<MatmarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatmarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatmarchInfo> option) {
+		List<ActionStdV2<MatmarchInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<MatmarchInfo> select = new StdMatmarchMergeToSelect(option);
+		ActionStdV2<MatmarchInfo> select = new StdMatmarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

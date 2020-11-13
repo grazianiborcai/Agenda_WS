@@ -12,7 +12,7 @@ import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckOwner;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckRead;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckStore;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -79,10 +79,10 @@ public class RootEmplateSelect extends DeciTreeTemplateReadV2<EmplateInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<EmplateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplateInfo> option) {
-		List<ActionStdV1<EmplateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmplateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplateInfo> option) {
+		List<ActionStdV2<EmplateInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmplateInfo> select = new StdEmplateMergeToSelect(option);
+		ActionStdV2<EmplateInfo> select = new StdEmplateMergeToSelect(option);
 		ActionLazy<EmplateInfo> mergeTimezone = new LazyEmplateMergeTimezone(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeTimezone);

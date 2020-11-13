@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.monthSearch.info.MontharchInfo;
 import br.com.mind5.masterData.monthSearch.model.action.StdMontharchDaoSelect;
 import br.com.mind5.masterData.monthSearch.model.checker.MontharchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootMontharchSelect extends DeciTreeTemplateReadV2<MontharchI
 	
 	
 	
-	@Override protected List<ActionStdV1<MontharchInfo>> buildActionsOnPassedHook(DeciTreeOption<MontharchInfo> option) {
-		List<ActionStdV1<MontharchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MontharchInfo>> buildActionsOnPassedHook(DeciTreeOption<MontharchInfo> option) {
+		List<ActionStdV2<MontharchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MontharchInfo> select = new StdMontharchDaoSelect(option);
+		ActionStdV2<MontharchInfo> select = new StdMontharchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

@@ -9,7 +9,7 @@ import br.com.mind5.business.bookService.model.action.LazyBookiceMergeSymsg;
 import br.com.mind5.business.bookService.model.action.StdBookiceEnforceSymsgL12;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckCarterco;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -41,10 +41,10 @@ public final class NodeBookiceAgedL12 extends DeciTreeTemplateWriteV2<BookiceInf
 	
 	
 	
-	@Override protected List<ActionStdV1<BookiceInfo>> buildActionsOnPassedHook(DeciTreeOption<BookiceInfo> option) {
-		List<ActionStdV1<BookiceInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<BookiceInfo>> buildActionsOnPassedHook(DeciTreeOption<BookiceInfo> option) {
+		List<ActionStdV2<BookiceInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<BookiceInfo> nodeL13 = new NodeBookiceAgedL13(option).toAction();	
+		ActionStdV2<BookiceInfo> nodeL13 = new NodeBookiceAgedL13(option).toAction();	
 		
 		actions.add(nodeL13);		
 		return actions;
@@ -52,10 +52,10 @@ public final class NodeBookiceAgedL12 extends DeciTreeTemplateWriteV2<BookiceInf
 	
 	
 	
-	@Override protected List<ActionStdV1<BookiceInfo>> buildActionsOnFailedHook(DeciTreeOption<BookiceInfo> option) {
-		List<ActionStdV1<BookiceInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<BookiceInfo>> buildActionsOnFailedHook(DeciTreeOption<BookiceInfo> option) {
+		List<ActionStdV2<BookiceInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<BookiceInfo> enforceSymsg = new StdBookiceEnforceSymsgL12(option);	
+		ActionStdV2<BookiceInfo> enforceSymsg = new StdBookiceEnforceSymsgL12(option);	
 		ActionLazy<BookiceInfo> mergeSymsg = new LazyBookiceMergeSymsg(option.conn, option.schemaName);
 		ActionLazy<BookiceInfo> enforceAged = new LazyBookiceEnforceAged(option.conn, option.schemaName);
 		

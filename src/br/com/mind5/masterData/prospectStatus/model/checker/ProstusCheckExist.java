@@ -3,7 +3,7 @@ package br.com.mind5.masterData.prospectStatus.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.prospectStatus.info.ProstusInfo;
 import br.com.mind5.masterData.prospectStatus.model.action.StdProstusDaoSelect;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class ProstusCheckExist extends ModelCheckerTemplateActionV2<Prostu
 	
 	
 	
-	@Override protected ActionStdV1<ProstusInfo> buildActionHook(DeciTreeOption<ProstusInfo> option) {
-		ActionStdV1<ProstusInfo> select = new StdProstusDaoSelect(option);
+	@Override protected ActionStdV2<ProstusInfo> buildActionHook(DeciTreeOption<ProstusInfo> option) {
+		ActionStdV2<ProstusInfo> select = new StdProstusDaoSelect(option);
 		return select;
 	}
 	

@@ -5,12 +5,12 @@ import java.util.List;
 import br.com.mind5.business.order.info.OrderCopier;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.decisionTree.RootOrderRefresh;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-final class VisiPayordOrderRefresh extends ActionVisitorTemplateActionV2<PayordInfo, OrderInfo> {
+final class VisiPayordOrderRefresh extends ActionVisitorTemplateAction<PayordInfo, OrderInfo> {
 	
 	public VisiPayordOrderRefresh(DeciTreeOption<PayordInfo> option) {
 		super(option, PayordInfo.class, OrderInfo.class);

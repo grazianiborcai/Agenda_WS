@@ -6,11 +6,11 @@ import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineCopier;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.decisionTree.RootSchedineRefresh;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderemSchedineRefresh extends ActionVisitorTemplateActionV2<OrderemInfo, SchedineInfo> {
+final class VisiOrderemSchedineRefresh extends ActionVisitorTemplateAction<OrderemInfo, SchedineInfo> {
 	
 	public VisiOrderemSchedineRefresh(DeciTreeOption<OrderemInfo> option) {
 		super(option, OrderemInfo.class, SchedineInfo.class);

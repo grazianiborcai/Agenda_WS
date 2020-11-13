@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -56,10 +56,10 @@ public final class RootOtporeInsert extends DeciTreeTemplateWriteV2<OtporeInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<OtporeInfo>> buildActionsOnPassedHook(DeciTreeOption<OtporeInfo> option) {
-		List<ActionStdV1<OtporeInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OtporeInfo>> buildActionsOnPassedHook(DeciTreeOption<OtporeInfo> option) {
+		List<ActionStdV2<OtporeInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OtporeInfo> upsert = new NodeOtporeUpsertL1(option).toAction();
+		ActionStdV2<OtporeInfo> upsert = new NodeOtporeUpsertL1(option).toAction();
 		ActionLazy<OtporeInfo> sendEmail = new LazyOtporeSendEmail(option.conn, option.schemaName);
 		ActionLazy<OtporeInfo> success = new LazyOtporeSuccess(option.conn, option.schemaName);
 		

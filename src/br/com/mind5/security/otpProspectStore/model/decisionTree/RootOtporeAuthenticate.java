@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -49,12 +49,12 @@ public final class RootOtporeAuthenticate extends DeciTreeTemplateWriteV2<Otpore
 	
 	
 	
-	@Override protected List<ActionStdV1<OtporeInfo>> buildActionsOnPassedHook(DeciTreeOption<OtporeInfo> option) {
-		List<ActionStdV1<OtporeInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OtporeInfo>> buildActionsOnPassedHook(DeciTreeOption<OtporeInfo> option) {
+		List<ActionStdV2<OtporeInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<OtporeInfo> mergeToAuthenticate = new StdOtporeMergeToAuthenticate(option);
+		ActionStdV2<OtporeInfo> mergeToAuthenticate = new StdOtporeMergeToAuthenticate(option);
 		ActionLazy<OtporeInfo> optValidate = new LazyOtporeOptValidate(option.conn, option.schemaName);
-		ActionStdV1<OtporeInfo> delete = new StdOtporeDaoDelete(option);
+		ActionStdV2<OtporeInfo> delete = new StdOtporeDaoDelete(option);
 		
 		mergeToAuthenticate.addPostAction(optValidate);
 		

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.authorizationGroup.info.AuthgroupInfo;
 import br.com.mind5.masterData.authorizationGroup.model.action.StdAuthgroupDaoSelect;
 import br.com.mind5.masterData.authorizationGroup.model.checker.AuthgroupCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -38,10 +38,10 @@ public final class RootAuthgroupSelect extends DeciTreeTemplateReadV1<AuthgroupI
 	
 	
 	
-	@Override protected List<ActionStdV1<AuthgroupInfo>> buildActionsOnPassedHook(DeciTreeOption<AuthgroupInfo> option) {
-		List<ActionStdV1<AuthgroupInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<AuthgroupInfo>> buildActionsOnPassedHook(DeciTreeOption<AuthgroupInfo> option) {
+		List<ActionStdV2<AuthgroupInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<AuthgroupInfo> select = new StdAuthgroupDaoSelect(option);
+		ActionStdV2<AuthgroupInfo> select = new StdAuthgroupDaoSelect(option);
 		
 		actions.add(select);		
 		return actions;

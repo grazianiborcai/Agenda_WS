@@ -5,11 +5,11 @@ import java.util.List;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.business.materialTextSnapshot.model.decisionTree.RootMatextsnapInsert;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatsnapMatextsnapInsert extends ActionVisitorTemplateActionV2<MatsnapInfo, MatextsnapInfo> {
+final class VisiMatsnapMatextsnapInsert extends ActionVisitorTemplateAction<MatsnapInfo, MatextsnapInfo> {
 
 	public VisiMatsnapMatextsnapInsert(DeciTreeOption<MatsnapInfo> option) {
 		super(option, MatsnapInfo.class, MatextsnapInfo.class);

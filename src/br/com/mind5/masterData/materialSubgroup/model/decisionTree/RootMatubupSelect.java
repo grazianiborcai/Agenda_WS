@@ -8,7 +8,7 @@ import br.com.mind5.masterData.materialSubgroup.model.action.LazyMatubupMergeMat
 import br.com.mind5.masterData.materialSubgroup.model.action.StdMatubupDaoSelect;
 import br.com.mind5.masterData.materialSubgroup.model.checker.MatubupCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -40,10 +40,10 @@ public final class RootMatubupSelect extends DeciTreeTemplateReadV1<MatubupInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<MatubupInfo>> buildActionsOnPassedHook(DeciTreeOption<MatubupInfo> option) {
-		List<ActionStdV1<MatubupInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatubupInfo>> buildActionsOnPassedHook(DeciTreeOption<MatubupInfo> option) {
+		List<ActionStdV2<MatubupInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatubupInfo> select = new StdMatubupDaoSelect(option);
+		ActionStdV2<MatubupInfo> select = new StdMatubupDaoSelect(option);
 		ActionLazy<MatubupInfo> mergeMatoup = new LazyMatubupMergeMatoup(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMatoup);

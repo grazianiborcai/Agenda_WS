@@ -3,10 +3,10 @@ package br.com.mind5.business.personSearch.model.action;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.business.personSearch.info.PerarchSetterNameSearch;
 import br.com.mind5.info.InfoSetter;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPerarchEnforceNameSearch extends ActionVisitorTemplateEnforceV2<PerarchInfo> {
+final class VisiPerarchEnforceNameSearch extends ActionVisitorTemplateEnforce<PerarchInfo> {
 	
 	public VisiPerarchEnforceNameSearch(DeciTreeOption<PerarchInfo> option) {
 		super(option);

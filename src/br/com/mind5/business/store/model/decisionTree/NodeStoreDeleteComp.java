@@ -7,7 +7,7 @@ import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.StdStoreCompDelete;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
 import br.com.mind5.business.store.model.checker.StoreCheckComp;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,10 +39,10 @@ public final class NodeStoreDeleteComp extends DeciTreeTemplateWriteV2<StoreInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV2<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StoreInfo> deleteCompany = new StdStoreCompDelete(option);
+		ActionStdV2<StoreInfo> deleteCompany = new StdStoreCompDelete(option);
 		
 		actions.add(deleteCompany);		
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeStoreDeleteComp extends DeciTreeTemplateWriteV2<StoreInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnFailedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StoreInfo>> buildActionsOnFailedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV2<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StoreInfo> success = new StdStoreSuccess(option);
+		ActionStdV2<StoreInfo> success = new StdStoreSuccess(option);
 		
 		actions.add(success);		
 		return actions;

@@ -7,7 +7,7 @@ import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.model.action.LazyCartDaoUpdate;
 import br.com.mind5.business.cart.model.action.StdCartMergeToUpdate;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class NodeCartUpdate extends DeciTreeTemplateWriteV2<CartInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
-		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
+		List<ActionStdV2<CartInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<CartInfo> mergeToUpdate = new StdCartMergeToUpdate(option);
+		ActionStdV2<CartInfo> mergeToUpdate = new StdCartMergeToUpdate(option);
 		ActionLazy<CartInfo> update = new LazyCartDaoUpdate(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(update);

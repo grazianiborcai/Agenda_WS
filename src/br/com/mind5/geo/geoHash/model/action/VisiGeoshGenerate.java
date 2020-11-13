@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.geo.geoHash.info.GeoshInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.action.ActionVisitorTemplateSimple;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import ch.hsr.geohash.GeoHash;
 
-final class VisiGeoshGenerate extends ActionVisitorTemplateSimpleV2<GeoshInfo> {
+final class VisiGeoshGenerate extends ActionVisitorTemplateSimple<GeoshInfo> {
 	
 	public VisiGeoshGenerate(DeciTreeOption<GeoshInfo> option) {
 		super(option);

@@ -3,7 +3,7 @@ package br.com.mind5.security.userPassword.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -46,10 +46,10 @@ public final class RootUpswdDelete extends DeciTreeTemplateWriteV2<UpswdInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
-		List<ActionStdV1<UpswdInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
+		List<ActionStdV2<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<UpswdInfo> delete = new StdUpswdDaoDelete(option);		
+		ActionStdV2<UpswdInfo> delete = new StdUpswdDaoDelete(option);		
 		actions.add(delete);
 		
 		return actions;

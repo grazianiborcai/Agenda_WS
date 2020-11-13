@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.action.ActionVisitorTemplateSimple;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.moip.Moip;
 
-final class VisiCusmoipCreate extends ActionVisitorTemplateSimpleV2<CusmoipInfo> {
+final class VisiCusmoipCreate extends ActionVisitorTemplateSimple<CusmoipInfo> {
 	
 	public VisiCusmoipCreate(DeciTreeOption<CusmoipInfo> option) {
 		super(option);

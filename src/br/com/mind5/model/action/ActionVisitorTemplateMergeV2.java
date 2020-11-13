@@ -23,7 +23,7 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	protected boolean DONT_MERGE_WHEN_EMPTY = false;
 	
 	private List<T> bases;
-	private ActionStdV1<S> actionSelect;
+	private ActionStdV2<S> actionSelect;
 	
 
 	public ActionVisitorTemplateMergeV2(DeciTreeOption<T> option, Class<S> clazz) {
@@ -43,7 +43,7 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	
-	private ActionStdV1<S> buildActionToSelect(DeciTreeOption<T> option, Class<S> sClazz) {
+	private ActionStdV2<S> buildActionToSelect(DeciTreeOption<T> option, Class<S> sClazz) {
 		DeciTreeOption<S> actionOption = translateOption(option, sClazz);
 		return buildAction(actionOption);
 	}
@@ -76,7 +76,7 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	
-	private ActionStdV1<S> buildAction(DeciTreeOption<S> option) {
+	private ActionStdV2<S> buildAction(DeciTreeOption<S> option) {
 		if (option == null)
 			return null;
 		
@@ -92,11 +92,11 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	
-	private ActionStdV1<S> buildActionTree(DeciTreeOption<S> option) {
+	private ActionStdV2<S> buildActionTree(DeciTreeOption<S> option) {
 		try {
 			Class<? extends DeciTree<S>> actionClass = getTreeClassHook();
 			Constructor<? extends DeciTree<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
-			return (ActionStdV1<S>) actionConstru.newInstance(option).toAction();
+			return (ActionStdV2<S>) actionConstru.newInstance(option).toAction();
 				
 			} catch (Exception e) {
 				logException(e);
@@ -106,11 +106,11 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	
-	private ActionStdV1<S> buildActionStd(DeciTreeOption<S> option) {
+	private ActionStdV2<S> buildActionStd(DeciTreeOption<S> option) {
 		try {
 			Class<? extends ActionStdV2<S>> actionClass = getActionClassHook();
 			Constructor<? extends ActionStdV2<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
-			return (ActionStdV1<S>) actionConstru.newInstance(option);
+			return (ActionStdV2<S>) actionConstru.newInstance(option);
 				
 			} catch (Exception e) {
 				logException(e);
@@ -138,7 +138,7 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	
-	private DeciResult<S> executeAction(ActionStdV1<S> action) {
+	private DeciResult<S> executeAction(ActionStdV2<S> action) {
 		if (checkAction(action) == false)
 			return makeNotFoundResult();
 		
@@ -228,7 +228,7 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	
-	private boolean checkAction(ActionStdV1<S> action) {
+	private boolean checkAction(ActionStdV2<S> action) {
 		if (action == null)
 			return false;
 		
@@ -387,7 +387,7 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	@SuppressWarnings("unchecked")
-	private void closeAction(ActionStdV1<S> action) {
+	private void closeAction(ActionStdV2<S> action) {
 		if (action == null)
 			return;
 		

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.action.StdAddressDaoInsert;
 import br.com.mind5.business.address.model.checker.AddressCheckWriteA00;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,10 +39,10 @@ public final class NodeAddressInsertA00 extends DeciTreeTemplateWriteV2<AddressI
 	
 	
 	
-	@Override protected List<ActionStdV1<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
-		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
+		List<ActionStdV2<AddressInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<AddressInfo> insert = new StdAddressDaoInsert(option);
+		ActionStdV2<AddressInfo> insert = new StdAddressDaoInsert(option);
 		
 		actions.add(insert);		
 		return actions;

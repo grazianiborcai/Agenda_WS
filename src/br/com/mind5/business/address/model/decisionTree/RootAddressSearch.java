@@ -7,7 +7,7 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.action.LazyAddressRootSelect;
 import br.com.mind5.business.address.model.action.StdAddressMergeAddarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class RootAddressSearch extends DeciTreeTemplateWriteV2<AddressInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
-		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
+		List<ActionStdV2<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<AddressInfo> mergeAddarch = new StdAddressMergeAddarch(option);		
+		ActionStdV2<AddressInfo> mergeAddarch = new StdAddressMergeAddarch(option);		
 		ActionLazy<AddressInfo> select = new LazyAddressRootSelect(option.conn, option.schemaName);
 		
 		mergeAddarch.addPostAction(select);

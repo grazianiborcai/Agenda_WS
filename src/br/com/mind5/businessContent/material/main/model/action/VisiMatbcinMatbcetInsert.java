@@ -5,11 +5,11 @@ import java.util.List;
 import br.com.mind5.businessContent.material.main.info.MatbcinInfo;
 import br.com.mind5.businessContent.material.petShop.info.MatbcetInfo;
 import br.com.mind5.businessContent.material.petShop.model.decisionTree.RootMatbcetInsert;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatbcinMatbcetInsert extends ActionVisitorTemplateActionV2<MatbcinInfo, MatbcetInfo> {
+final class VisiMatbcinMatbcetInsert extends ActionVisitorTemplateAction<MatbcinInfo, MatbcetInfo> {
 
 	public VisiMatbcinMatbcetInsert(DeciTreeOption<MatbcinInfo> option) {
 		super(option, MatbcinInfo.class, MatbcetInfo.class);

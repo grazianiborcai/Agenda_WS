@@ -10,7 +10,7 @@ import br.com.mind5.businessContent.material.main.model.action.StdMatbcinSuccess
 import br.com.mind5.businessContent.material.main.model.checker.MatbcinCheckSytorbc;
 import br.com.mind5.businessContent.material.main.model.checker.MatbcinCheckSytotin;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -49,10 +49,10 @@ public final class NodeMatbcinInsertL1 extends DeciTreeTemplateWriteV2<MatbcinIn
 	
 	
 	
-	@Override protected List<ActionStdV1<MatbcinInfo>> buildActionsOnPassedHook(DeciTreeOption<MatbcinInfo> option) {
-		List<ActionStdV1<MatbcinInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<MatbcinInfo>> buildActionsOnPassedHook(DeciTreeOption<MatbcinInfo> option) {
+		List<ActionStdV2<MatbcinInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<MatbcinInfo> mergeOwnelis = new StdMatbcinMergeOwnelis(option);
+		ActionStdV2<MatbcinInfo> mergeOwnelis = new StdMatbcinMergeOwnelis(option);
 		ActionLazy<MatbcinInfo> nodeL2 = new LazyMatbcinNodeInsertL2(option.conn, option.schemaName);
 		
 		mergeOwnelis.addPostAction(nodeL2);
@@ -63,10 +63,10 @@ public final class NodeMatbcinInsertL1 extends DeciTreeTemplateWriteV2<MatbcinIn
 	
 	
 	
-	@Override protected List<ActionStdV1<MatbcinInfo>> buildActionsOnFailedHook(DeciTreeOption<MatbcinInfo> option) {
-		List<ActionStdV1<MatbcinInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<MatbcinInfo>> buildActionsOnFailedHook(DeciTreeOption<MatbcinInfo> option) {
+		List<ActionStdV2<MatbcinInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<MatbcinInfo> success = new StdMatbcinSuccess(option);	
+		ActionStdV2<MatbcinInfo> success = new StdMatbcinSuccess(option);	
 		
 		actions.add(success);		
 		return actions;

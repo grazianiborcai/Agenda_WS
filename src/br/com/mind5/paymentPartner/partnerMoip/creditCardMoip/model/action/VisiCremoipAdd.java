@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.action.ActionVisitorTemplateSimple;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.moip.Moip;
 
-final class VisiCremoipAdd extends ActionVisitorTemplateSimpleV2<CremoipInfo> {
+final class VisiCremoipAdd extends ActionVisitorTemplateSimple<CremoipInfo> {
 	
 	public VisiCremoipAdd(DeciTreeOption<CremoipInfo> option) {
 		super(option);

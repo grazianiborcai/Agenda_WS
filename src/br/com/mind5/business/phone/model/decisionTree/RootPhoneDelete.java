@@ -12,7 +12,7 @@ import br.com.mind5.business.phone.model.action.StdPhoneMergeToDelete;
 import br.com.mind5.business.phone.model.checker.PhoneCheckDelete;
 import br.com.mind5.business.phone.model.checker.PhoneCheckExist;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -51,10 +51,10 @@ public final class RootPhoneDelete extends DeciTreeTemplateWriteV2<PhoneInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
-		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
+		List<ActionStdV2<PhoneInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<PhoneInfo> mergeToDelete = new StdPhoneMergeToDelete(option);	
+		ActionStdV2<PhoneInfo> mergeToDelete = new StdPhoneMergeToDelete(option);	
 		ActionLazy<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<PhoneInfo> mergeUsername = new LazyPhoneMergeUsername(option.conn, option.schemaName);
 		ActionLazy<PhoneInfo> update = new LazyPhoneDaoUpdate(option.conn, option.schemaName);

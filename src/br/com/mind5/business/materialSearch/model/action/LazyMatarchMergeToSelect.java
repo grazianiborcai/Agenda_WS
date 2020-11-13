@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyMatarchMergeToSelect extends ActionLazyTemplate<MatarchIn
 	
 	
 	
-	@Override protected ActionStdV1<MatarchInfo> getInstanceOfActionHook(DeciTreeOption<MatarchInfo> option) {
+	@Override protected ActionStdV2<MatarchInfo> getInstanceOfActionHook(DeciTreeOption<MatarchInfo> option) {
 		return new StdMatarchMergeToSelect(option);
 	}
 	

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -35,10 +35,10 @@ public final class NodeCusmoipSetuparL1 extends DeciTreeTemplateWriteV2<CusmoipI
 	
 	
 	
-	@Override protected List<ActionStdV1<CusmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CusmoipInfo> option) {
-		List<ActionStdV1<CusmoipInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CusmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CusmoipInfo> option) {
+		List<ActionStdV2<CusmoipInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CusmoipInfo> enforcePaypar = new StdCusmoipEnforcePaypar(option);
+		ActionStdV2<CusmoipInfo> enforcePaypar = new StdCusmoipEnforcePaypar(option);
 		ActionLazy<CusmoipInfo> mergeSetupar = new LazyCusmoipMergeSetupar(option.conn, option.schemaName);
 		ActionLazy<CusmoipInfo> enforceSetup = new LazyCusmoipEnforceSetup(option.conn, option.schemaName);
 		

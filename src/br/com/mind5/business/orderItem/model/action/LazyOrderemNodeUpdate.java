@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.decisionTree.NodeOrderemUpdate;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyOrderemNodeUpdate extends ActionLazyTemplate<OrderemInfo,
 	
 	
 	
-	@Override protected ActionStdV1<OrderemInfo> getInstanceOfActionHook(DeciTreeOption<OrderemInfo> option) {
+	@Override protected ActionStdV2<OrderemInfo> getInstanceOfActionHook(DeciTreeOption<OrderemInfo> option) {
 		return new NodeOrderemUpdate(option).toAction();
 	}
 	

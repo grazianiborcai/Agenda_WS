@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -40,10 +40,10 @@ public final class NodePaymoipCrecardL1 extends DeciTreeTemplateWriteV2<PaymoipI
 	
 	
 	
-	@Override protected List<ActionStdV1<PaymoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PaymoipInfo> option) {
-		List<ActionStdV1<PaymoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV2<PaymoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PaymoipInfo> option) {
+		List<ActionStdV2<PaymoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<PaymoipInfo> mergeCrecard = new StdPaymoipMergeCrecard(option);
+		ActionStdV2<PaymoipInfo> mergeCrecard = new StdPaymoipMergeCrecard(option);
 		ActionLazy<PaymoipInfo> nodeL2 = new LazyPaymoipNodeCrecardL2(option.conn, option.schemaName);
 		
 		mergeCrecard.addPostAction(nodeL2);

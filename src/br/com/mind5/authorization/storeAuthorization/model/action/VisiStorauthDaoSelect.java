@@ -6,10 +6,10 @@ import br.com.mind5.authorization.storeAuthorization.dao.DaoStorauthSelect;
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorauthDaoSelect extends ActionVisitorTemplateStmtV2<StorauthInfo> {
+final class VisiStorauthDaoSelect extends ActionVisitorTemplateStmt<StorauthInfo> {
 
 	public VisiStorauthDaoSelect(DeciTreeOption<StorauthInfo> option) {
 		super(option);

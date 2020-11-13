@@ -6,10 +6,10 @@ import br.com.mind5.business.material.dao.DaoMatUpdate;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatDaoUpdate extends ActionVisitorTemplateStmtV2<MatInfo> {
+final class VisiMatDaoUpdate extends ActionVisitorTemplateStmt<MatInfo> {
 
 	public VisiMatDaoUpdate(DeciTreeOption<MatInfo> option) {
 		super(option);

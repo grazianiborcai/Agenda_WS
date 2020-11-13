@@ -12,7 +12,7 @@ import br.com.mind5.business.scheduleMonth.model.action.StdSchedmonMergeCalate;
 import br.com.mind5.business.scheduleMonth.model.action.StdSchedmonMergeSchedonthat;
 import br.com.mind5.business.scheduleMonth.model.checker.SchedmonCheckSchedonthat;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -44,10 +44,10 @@ public final class NodeSchedmonSelect extends DeciTreeTemplateWriteV2<SchedmonIn
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedmonInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedmonInfo> option) {
-		List<ActionStdV1<SchedmonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedmonInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedmonInfo> option) {
+		List<ActionStdV2<SchedmonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedmonInfo> mergeSchedonthat = new StdSchedmonMergeSchedonthat(option);
+		ActionStdV2<SchedmonInfo> mergeSchedonthat = new StdSchedmonMergeSchedonthat(option);
 		ActionLazy<SchedmonInfo> mergeStolis = new LazySchedmonMergeStolis(option.conn, option.schemaName);
 		ActionLazy<SchedmonInfo> mergeMatlis = new LazySchedmonMergeMatlis(option.conn, option.schemaName);
 		ActionLazy<SchedmonInfo> mergeEmplis = new LazySchedmonMergeEmplis(option.conn, option.schemaName);
@@ -64,10 +64,10 @@ public final class NodeSchedmonSelect extends DeciTreeTemplateWriteV2<SchedmonIn
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedmonInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedmonInfo> option) {
-		List<ActionStdV1<SchedmonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedmonInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedmonInfo> option) {
+		List<ActionStdV2<SchedmonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedmonInfo> mergeCalate = new StdSchedmonMergeCalate(option);
+		ActionStdV2<SchedmonInfo> mergeCalate = new StdSchedmonMergeCalate(option);
 		
 		actions.add(mergeCalate);
 		return actions;

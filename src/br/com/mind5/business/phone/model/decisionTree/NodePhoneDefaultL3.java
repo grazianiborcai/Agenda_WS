@@ -7,7 +7,7 @@ import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.action.StdPhoneEnforceDefaultOn;
 import br.com.mind5.business.phone.model.action.StdPhoneSuccess;
 import br.com.mind5.business.phone.model.checker.PhoneCheckPhonault;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,10 +39,10 @@ public final class NodePhoneDefaultL3 extends DeciTreeTemplateWriteV2<PhoneInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
-		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
+		List<ActionStdV2<PhoneInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PhoneInfo> enforceDefaultOn = new StdPhoneEnforceDefaultOn(option);
+		ActionStdV2<PhoneInfo> enforceDefaultOn = new StdPhoneEnforceDefaultOn(option);
 		
 		actions.add(enforceDefaultOn);
 		return actions;
@@ -50,10 +50,10 @@ public final class NodePhoneDefaultL3 extends DeciTreeTemplateWriteV2<PhoneInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<PhoneInfo>> buildActionsOnFailedHook(DeciTreeOption<PhoneInfo> option) {
-		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PhoneInfo>> buildActionsOnFailedHook(DeciTreeOption<PhoneInfo> option) {
+		List<ActionStdV2<PhoneInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<PhoneInfo> success = new StdPhoneSuccess(option);	
+		ActionStdV2<PhoneInfo> success = new StdPhoneSuccess(option);	
 		
 		actions.add(success);		
 		return actions;

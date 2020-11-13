@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.countryPhoneSearch.info.CountronarchInfo;
 import br.com.mind5.masterData.countryPhoneSearch.model.action.StdCountronarchDaoSelect;
 import br.com.mind5.masterData.countryPhoneSearch.model.checker.CountronarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootCountronarchSelect extends DeciTreeTemplateReadV2<Countro
 	
 	
 	
-	@Override protected List<ActionStdV1<CountronarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CountronarchInfo> option) {
-		List<ActionStdV1<CountronarchInfo>> actions = new ArrayList<>(); 
+	@Override protected List<ActionStdV2<CountronarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CountronarchInfo> option) {
+		List<ActionStdV2<CountronarchInfo>> actions = new ArrayList<>(); 
 		
-		ActionStdV1<CountronarchInfo> select = new StdCountronarchDaoSelect(option);
+		ActionStdV2<CountronarchInfo> select = new StdCountronarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

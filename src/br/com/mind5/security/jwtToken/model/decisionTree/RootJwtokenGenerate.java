@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -43,10 +43,10 @@ public final class RootJwtokenGenerate extends DeciTreeTemplateWriteV2<JwtokenIn
 	
 	
 	
-	@Override protected List<ActionStdV1<JwtokenInfo>> buildActionsOnPassedHook(DeciTreeOption<JwtokenInfo> option) {
-		List<ActionStdV1<JwtokenInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<JwtokenInfo>> buildActionsOnPassedHook(DeciTreeOption<JwtokenInfo> option) {
+		List<ActionStdV2<JwtokenInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<JwtokenInfo> nodePlatform = new  NodeJwtokenPlatform(option).toAction();
+		ActionStdV2<JwtokenInfo> nodePlatform = new  NodeJwtokenPlatform(option).toAction();
 		ActionLazy<JwtokenInfo> enforceCreatedOn = new LazyJwtokenEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<JwtokenInfo> enforceSecret = new LazyJwtokenEnforceSecret(option.conn, option.schemaName);
 		ActionLazy<JwtokenInfo> enforceExpiration = new LazyJwtokenEnforceExpiration(option.conn, option.schemaName);

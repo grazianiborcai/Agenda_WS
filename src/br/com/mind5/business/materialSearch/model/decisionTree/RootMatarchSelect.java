@@ -8,7 +8,7 @@ import br.com.mind5.business.materialSearch.model.action.LazyMatarchMergeToSelec
 import br.com.mind5.business.materialSearch.model.action.StdMatarchEnforceTxtSearch;
 import br.com.mind5.business.materialSearch.model.checker.MatarchCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -40,10 +40,10 @@ public final class RootMatarchSelect extends DeciTreeTemplateReadV2<MatarchInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<MatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatarchInfo> option) {
-		List<ActionStdV1<MatarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatarchInfo> option) {
+		List<ActionStdV2<MatarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatarchInfo> enforceTxtSearch = new StdMatarchEnforceTxtSearch(option);
+		ActionStdV2<MatarchInfo> enforceTxtSearch = new StdMatarchEnforceTxtSearch(option);
 		ActionLazy<MatarchInfo> select = new LazyMatarchMergeToSelect(option.conn, option.schemaName);
 		
 		enforceTxtSearch.addPostAction(select);

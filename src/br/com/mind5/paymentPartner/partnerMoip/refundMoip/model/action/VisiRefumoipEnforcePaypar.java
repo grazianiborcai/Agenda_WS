@@ -1,12 +1,12 @@
 package br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action;
 
 import br.com.mind5.info.InfoSetter;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipSetterPaypar;
 
-final class VisiRefumoipEnforcePaypar extends ActionVisitorTemplateEnforceV2<RefumoipInfo> {
+final class VisiRefumoipEnforcePaypar extends ActionVisitorTemplateEnforce<RefumoipInfo> {
 	
 	public VisiRefumoipEnforcePaypar(DeciTreeOption<RefumoipInfo> option) {
 		super(option);

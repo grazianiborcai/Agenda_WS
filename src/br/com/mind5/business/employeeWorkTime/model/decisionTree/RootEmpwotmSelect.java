@@ -11,7 +11,7 @@ import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckLangu;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckOwner;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -57,10 +57,10 @@ public final class RootEmpwotmSelect extends DeciTreeTemplateReadV2<EmpwotmInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
-		List<ActionStdV1<EmpwotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
+		List<ActionStdV2<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmpwotmInfo> select = new StdEmpwotmMergeToSelect(option);
+		ActionStdV2<EmpwotmInfo> select = new StdEmpwotmMergeToSelect(option);
 		ActionLazy<EmpwotmInfo> mergeWeekday = new LazyEmpwotmMergeWeekday(option.conn, option.schemaName);
 		ActionLazy<EmpwotmInfo> mergeStolis = new LazyEmpwotmMergeStolis(option.conn, option.schemaName);
 		

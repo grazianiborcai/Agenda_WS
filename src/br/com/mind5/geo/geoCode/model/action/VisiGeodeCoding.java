@@ -14,10 +14,10 @@ import java.util.Map;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.geo.geoCode.info.GeodeInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.action.ActionVisitorTemplateSimple;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiGeodeCoding extends ActionVisitorTemplateSimpleV2<GeodeInfo> {
+final class VisiGeodeCoding extends ActionVisitorTemplateSimple<GeodeInfo> {
 	private String REGEX_SPLIT = ",+(?=\")";
 	
 	public VisiGeodeCoding(DeciTreeOption<GeodeInfo> option) {

@@ -14,7 +14,7 @@ import br.com.mind5.business.order.model.action.LazyOrderMergeRefupown;
 import br.com.mind5.business.order.model.action.LazyOrderNodeCusL1;
 import br.com.mind5.business.order.model.action.StdOrderMergeUsername;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -41,10 +41,10 @@ public final class NodeOrderInsert extends DeciTreeTemplateWriteV2<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV2<OrderInfo>> actions = new ArrayList<>();
 		//TODO: zerar Address e Phone - Somente aceitar no Place
-		ActionStdV1<OrderInfo> mergeUsername = new StdOrderMergeUsername(option);	
+		ActionStdV2<OrderInfo> mergeUsername = new StdOrderMergeUsername(option);	
 		ActionLazy<OrderInfo> nodeCus = new LazyOrderNodeCusL1(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceCreatedOn = new LazyOrderEnforceCreatedOn(option.conn, option.schemaName);			
 		ActionLazy<OrderInfo> enforceCreatedBy = new LazyOrderEnforceCreatedBy(option.conn, option.schemaName);	

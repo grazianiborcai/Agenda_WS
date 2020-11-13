@@ -4,14 +4,14 @@ import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataPruner;
-import br.com.mind5.model.action.ActionVisitorTemplatePruneV2;
+import br.com.mind5.model.action.ActionVisitorTemplatePrune;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerList.info.StoplisCopier;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
 import br.com.mind5.payment.storePartnerList.model.decisionTree.RootStoplisSearch;
 
-final class VisiPlanataPruneStoplis extends ActionVisitorTemplatePruneV2<PlanataInfo, StoplisInfo> {
+final class VisiPlanataPruneStoplis extends ActionVisitorTemplatePrune<PlanataInfo, StoplisInfo> {
 	
 	public VisiPlanataPruneStoplis(DeciTreeOption<PlanataInfo> option) {
 		super(option, StoplisInfo.class);

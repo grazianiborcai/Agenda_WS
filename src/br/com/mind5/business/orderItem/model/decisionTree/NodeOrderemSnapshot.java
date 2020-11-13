@@ -7,7 +7,7 @@ import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemDaoUpdate;
 import br.com.mind5.business.orderItem.model.action.StdOrderemInsertOrdemrap;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class NodeOrderemSnapshot extends DeciTreeTemplateWriteV2<OrderemIn
 	
 	
 	
-	@Override protected List<ActionStdV1<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
-		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
+		List<ActionStdV2<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OrderemInfo> insertOrdemrap = new StdOrderemInsertOrdemrap(option);
+		ActionStdV2<OrderemInfo> insertOrdemrap = new StdOrderemInsertOrdemrap(option);
 		ActionLazy<OrderemInfo> update = new LazyOrderemDaoUpdate(option.conn, option.schemaName);
 		
 		insertOrdemrap.addPostAction(update);

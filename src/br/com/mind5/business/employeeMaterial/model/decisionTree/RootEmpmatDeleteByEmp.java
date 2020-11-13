@@ -10,7 +10,7 @@ import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatEnforceEmpKe
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckDeleteByEmp;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckEmpmarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -49,10 +49,10 @@ public final class RootEmpmatDeleteByEmp extends DeciTreeTemplateWriteV2<EmpmatI
 	
 	
 	
-	@Override protected List<ActionStdV1<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
-		List<ActionStdV1<EmpmatInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
+		List<ActionStdV2<EmpmatInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmpmatInfo> enforceEmpKey = new StdEmpmatEnforceEmpKey(option);
+		ActionStdV2<EmpmatInfo> enforceEmpKey = new StdEmpmatEnforceEmpKey(option);
 		ActionLazy<EmpmatInfo> mergeEmpmarch = new LazyEmpmatMergeEmpmarch(option.conn, option.schemaName);
 		ActionLazy<EmpmatInfo> rootDelete = new LazyEmpmatRootDelete(option.conn, option.schemaName);
 		

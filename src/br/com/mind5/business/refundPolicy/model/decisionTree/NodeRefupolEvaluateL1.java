@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.refundPolicy.info.RefupolInfo;
 import br.com.mind5.business.refundPolicy.model.action.StdRefupolSuccess;
 import br.com.mind5.business.refundPolicy.model.checker.RefupolCheckHasMat;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class NodeRefupolEvaluateL1 extends DeciTreeTemplateWriteV2<Refupol
 	
 	
 	
-	@Override protected List<ActionStdV1<RefupolInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupolInfo> option) {
-		List<ActionStdV1<RefupolInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<RefupolInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupolInfo> option) {
+		List<ActionStdV2<RefupolInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<RefupolInfo> nodeL2 = new NodeRefupolEvaluateL2(option).toAction();
+		ActionStdV2<RefupolInfo> nodeL2 = new NodeRefupolEvaluateL2(option).toAction();
 		
 		actions.add(nodeL2);
 		return actions;
@@ -49,10 +49,10 @@ public final class NodeRefupolEvaluateL1 extends DeciTreeTemplateWriteV2<Refupol
 	
 	
 	
-	@Override protected List<ActionStdV1<RefupolInfo>> buildActionsOnFailedHook(DeciTreeOption<RefupolInfo> option) {
-		List<ActionStdV1<RefupolInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<RefupolInfo>> buildActionsOnFailedHook(DeciTreeOption<RefupolInfo> option) {
+		List<ActionStdV2<RefupolInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<RefupolInfo> success = new StdRefupolSuccess(option);
+		ActionStdV2<RefupolInfo> success = new StdRefupolSuccess(option);
 		
 		actions.add(success);
 		return actions;

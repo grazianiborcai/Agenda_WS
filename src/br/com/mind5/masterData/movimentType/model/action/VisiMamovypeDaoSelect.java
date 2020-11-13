@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.movimentType.dao.DaoMamovypeSelect;
 import br.com.mind5.masterData.movimentType.info.MamovypeInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMamovypeDaoSelect extends ActionVisitorTemplateStmtV2<MamovypeInfo> {
+final class VisiMamovypeDaoSelect extends ActionVisitorTemplateStmt<MamovypeInfo> {
 
 	public VisiMamovypeDaoSelect(DeciTreeOption<MamovypeInfo> option) {
 		super(option);

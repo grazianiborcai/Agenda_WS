@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.action.StdFimgMergeToSelect;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -38,10 +38,10 @@ public final class RootFimgSelect extends DeciTreeTemplateReadV2<FimgInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStdV2<FimgInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<FimgInfo> select = new StdFimgMergeToSelect(option);
+		ActionStdV2<FimgInfo> select = new StdFimgMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

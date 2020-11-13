@@ -6,7 +6,6 @@ import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateMerger;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 import br.com.mind5.masterData.timezone.model.decisionTree.RootTimezoneSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -32,6 +31,6 @@ final class VisiEmplateMergeTimezone extends ActionVisitorTemplateMergeV2<Emplat
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

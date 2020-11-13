@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.countryLegalSearch.dao.DaoCountrarchSelect;
 import br.com.mind5.masterData.countryLegalSearch.info.CountrarchInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCountrarchDaoSelect extends ActionVisitorTemplateStmtV2<CountrarchInfo> {
+final class VisiCountrarchDaoSelect extends ActionVisitorTemplateStmt<CountrarchInfo> {
 
 	public VisiCountrarchDaoSelect(DeciTreeOption<CountrarchInfo> option) {
 		super(option);

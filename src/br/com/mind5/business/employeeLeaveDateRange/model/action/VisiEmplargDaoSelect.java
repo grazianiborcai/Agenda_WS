@@ -6,10 +6,10 @@ import br.com.mind5.business.employeeLeaveDateRange.dao.DaoEmplargSelect;
 import br.com.mind5.business.employeeLeaveDateRange.info.EmplargInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmplargDaoSelect extends ActionVisitorTemplateStmtV2<EmplargInfo> {
+final class VisiEmplargDaoSelect extends ActionVisitorTemplateStmt<EmplargInfo> {
 
 	public VisiEmplargDaoSelect(DeciTreeOption<EmplargInfo> option) {
 		super(option);

@@ -6,10 +6,10 @@ import br.com.mind5.business.calendarWeekYear.dao.DaoCaleekySelect;
 import br.com.mind5.business.calendarWeekYear.info.CaleekyInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCaleekyDaoSelect extends ActionVisitorTemplateStmtV2<CaleekyInfo> {
+final class VisiCaleekyDaoSelect extends ActionVisitorTemplateStmt<CaleekyInfo> {
 
 	public VisiCaleekyDaoSelect(DeciTreeOption<CaleekyInfo> option) {
 		super(option);

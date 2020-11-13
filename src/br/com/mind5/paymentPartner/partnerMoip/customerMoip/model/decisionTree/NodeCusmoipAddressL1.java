@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class NodeCusmoipAddressL1 extends DeciTreeTemplateWriteV2<CusmoipI
 	
 	
 	
-	@Override protected List<ActionStdV1<CusmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CusmoipInfo> option) {
-		List<ActionStdV1<CusmoipInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CusmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CusmoipInfo> option) {
+		List<ActionStdV2<CusmoipInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CusmoipInfo> mergeAddresnap = new StdCusmoipMergeAddresnap(option);
+		ActionStdV2<CusmoipInfo> mergeAddresnap = new StdCusmoipMergeAddresnap(option);
 		ActionLazy<CusmoipInfo> nodeL2 = new LazyCusmoipNodeAddressL2(option.conn, option.schemaName);
 		
 		mergeAddresnap.addPostAction(nodeL2);

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.businessArea.info.BusareaInfo;
 import br.com.mind5.masterData.businessArea.model.action.StdBusareaDaoSelect;
 import br.com.mind5.masterData.businessArea.model.checker.BusareaCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootBusareaSelect extends DeciTreeTemplateReadV2<BusareaInfo>
 
 		
 	
-	@Override protected List<ActionStdV1<BusareaInfo>> buildActionsOnPassedHook(DeciTreeOption<BusareaInfo> option) {
-		List<ActionStdV1<BusareaInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<BusareaInfo>> buildActionsOnPassedHook(DeciTreeOption<BusareaInfo> option) {
+		List<ActionStdV2<BusareaInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<BusareaInfo> select = new StdBusareaDaoSelect(option);
+		ActionStdV2<BusareaInfo> select = new StdBusareaDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

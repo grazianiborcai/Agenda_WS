@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -53,10 +53,10 @@ public final class RootUserSelect extends DeciTreeTemplateWriteV2<UserInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
-		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
+		List<ActionStdV2<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<UserInfo> mergeToSelect = new StdUserMergeToSelect(option);
+		ActionStdV2<UserInfo> mergeToSelect = new StdUserMergeToSelect(option);
 		ActionLazy<UserInfo> mergePerson = new LazyUserNodePerson(option.conn, option.schemaName);
 		ActionLazy<UserInfo> mergeAddress = new LazyUserMergeAddress(option.conn, option.schemaName);
 		ActionLazy<UserInfo> mergePhone = new LazyUserMergePhone(option.conn, option.schemaName);

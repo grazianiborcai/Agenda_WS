@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.notes.info.NotesInfo;
 import br.com.mind5.business.notes.model.decisionTree.RootNotesUpdate;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyNotesRootUpdate extends ActionLazyTemplate<NotesInfo, Not
 	
 	
 	
-	@Override protected ActionStdV1<NotesInfo> getInstanceOfActionHook(DeciTreeOption<NotesInfo> option) {
+	@Override protected ActionStdV2<NotesInfo> getInstanceOfActionHook(DeciTreeOption<NotesInfo> option) {
 		return new RootNotesUpdate(option).toAction();
 	}
 	

@@ -3,7 +3,7 @@ package br.com.mind5.masterData.materialSubgroup.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
 import br.com.mind5.masterData.materialSubgroup.model.action.StdMatubupDaoSelect;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class MatubupCheckExist extends ModelCheckerTemplateActionV2<Matubu
 	
 	
 	
-	@Override protected ActionStdV1<MatubupInfo> buildActionHook(DeciTreeOption<MatubupInfo> option) {
-		ActionStdV1<MatubupInfo> select = new StdMatubupDaoSelect(option);
+	@Override protected ActionStdV2<MatubupInfo> buildActionHook(DeciTreeOption<MatubupInfo> option) {
+		ActionStdV2<MatubupInfo> select = new StdMatubupDaoSelect(option);
 		return select;
 	}
 	

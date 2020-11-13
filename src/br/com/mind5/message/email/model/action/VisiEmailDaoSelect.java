@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.message.email.dao.DaoEmailSelect;
 import br.com.mind5.message.email.info.EmailInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmailDaoSelect extends ActionVisitorTemplateStmtV2<EmailInfo> {
+final class VisiEmailDaoSelect extends ActionVisitorTemplateStmt<EmailInfo> {
 
 	public VisiEmailDaoSelect(DeciTreeOption<EmailInfo> option) {
 		super(option);

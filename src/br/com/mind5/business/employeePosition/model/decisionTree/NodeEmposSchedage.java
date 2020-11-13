@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.action.StdEmposSuccess;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckSchedage;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -38,10 +38,10 @@ public final class NodeEmposSchedage extends DeciTreeTemplateWriteV2<EmposInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
-		List<ActionStdV1<EmposInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
+		List<ActionStdV2<EmposInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmposInfo> success = new StdEmposSuccess(option);
+		ActionStdV2<EmposInfo> success = new StdEmposSuccess(option);
 		
 		actions.add(success);
 		return actions;		

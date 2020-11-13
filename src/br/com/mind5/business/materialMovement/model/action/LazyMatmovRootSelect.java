@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.model.decisionTree.RootMatmovSelect;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyMatmovRootSelect extends ActionLazyTemplate<MatmovInfo, M
 	
 	
 	
-	@Override protected ActionStdV1<MatmovInfo> getInstanceOfActionHook(DeciTreeOption<MatmovInfo> option) {
+	@Override protected ActionStdV2<MatmovInfo> getInstanceOfActionHook(DeciTreeOption<MatmovInfo> option) {
 		return new RootMatmovSelect(option).toAction();
 	}
 	

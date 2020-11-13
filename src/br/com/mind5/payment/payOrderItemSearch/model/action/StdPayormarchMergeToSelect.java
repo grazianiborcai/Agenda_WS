@@ -1,35 +1,19 @@
 package br.com.mind5.payment.payOrderItemSearch.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 
-public final class StdPayormarchMergeToSelect implements ActionStdV1<PayormarchInfo> {
-	private ActionStdV1<PayormarchInfo> actionHelper;	
-	
-	
-	public StdPayormarchMergeToSelect(DeciTreeOption<PayormarchInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPayormarchMergeToSelect(option.conn, option.schemaName));
+public final class StdPayormarchMergeToSelect extends ActionStdTemplateV2<PayormarchInfo> {
+
+	public StdPayormarchMergeToSelect(DeciTreeOption<PayormarchInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<PayormarchInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<PayormarchInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<PayormarchInfo> buildVisitorHook(DeciTreeOption<PayormarchInfo> option) {
+		return new VisiPayormarchMergeToSelect(option);
 	}
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyOwnerapDaoInsert extends ActionLazyTemplate<OwnerapInfo, 
 	
 	
 	
-	@Override protected ActionStdV1<OwnerapInfo> getInstanceOfActionHook(DeciTreeOption<OwnerapInfo> option) {
+	@Override protected ActionStdV2<OwnerapInfo> getInstanceOfActionHook(DeciTreeOption<OwnerapInfo> option) {
 		return new StdOwnerapDaoInsert(option);
 	}
 	

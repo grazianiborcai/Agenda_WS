@@ -13,7 +13,7 @@ import br.com.mind5.business.materialStore.model.checker.MatoreCheckExist;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckStorauth;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -60,10 +60,10 @@ public final class RootMatoreDelete extends DeciTreeTemplateWriteV2<MatoreInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
-		List<ActionStdV1<MatoreInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
+		List<ActionStdV2<MatoreInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<MatoreInfo> mergeToDelete = new StdMatoreMergeToDelete(option);
+		ActionStdV2<MatoreInfo> mergeToDelete = new StdMatoreMergeToDelete(option);
 		ActionLazy<MatoreInfo> enforceLChanged = new LazyMatoreEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<MatoreInfo> enforceLChangedBy = new LazyMatoreMergeUsername(option.conn, option.schemaName);
 		ActionLazy<MatoreInfo> mergeMatock = new LazyMatoreMergeMatock(option.conn, option.schemaName);

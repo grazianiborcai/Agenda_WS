@@ -9,7 +9,7 @@ import br.com.mind5.masterData.countryLegal.model.action.StdCountralMergeToSelec
 import br.com.mind5.masterData.countryLegal.model.checker.CountralCheckLangu;
 import br.com.mind5.masterData.countryLegal.model.checker.CountralCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -48,10 +48,10 @@ public final class RootCountralSelect extends DeciTreeTemplateReadV2<CountralInf
 	
 	
 	
-	@Override protected List<ActionStdV1<CountralInfo>> buildActionsOnPassedHook(DeciTreeOption<CountralInfo> option) {
-		List<ActionStdV1<CountralInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CountralInfo>> buildActionsOnPassedHook(DeciTreeOption<CountralInfo> option) {
+		List<ActionStdV2<CountralInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CountralInfo> select = new StdCountralMergeToSelect(option);
+		ActionStdV2<CountralInfo> select = new StdCountralMergeToSelect(option);
 		ActionLazy<CountralInfo> mergeCountry = new LazyCountralMergeCountry(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCountry);

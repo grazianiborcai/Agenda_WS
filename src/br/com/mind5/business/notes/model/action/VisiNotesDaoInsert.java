@@ -6,10 +6,10 @@ import br.com.mind5.business.notes.dao.DaoNotesInsert;
 import br.com.mind5.business.notes.info.NotesInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiNotesDaoInsert extends ActionVisitorTemplateStmtV2<NotesInfo> {
+final class VisiNotesDaoInsert extends ActionVisitorTemplateStmt<NotesInfo> {
 
 	public VisiNotesDaoInsert(DeciTreeOption<NotesInfo> option) {
 		super(option);

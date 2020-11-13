@@ -7,11 +7,11 @@ import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.decisionTree.RootCompUpdate;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreCompUpdate extends ActionVisitorTemplateActionV2<StoreInfo, CompInfo> {
+final class VisiStoreCompUpdate extends ActionVisitorTemplateAction<StoreInfo, CompInfo> {
 	
 	public VisiStoreCompUpdate(DeciTreeOption<StoreInfo> option) {
 		super(option, StoreInfo.class, CompInfo.class);

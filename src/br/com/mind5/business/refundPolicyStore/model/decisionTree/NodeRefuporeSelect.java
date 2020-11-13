@@ -7,7 +7,7 @@ import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
 import br.com.mind5.business.refundPolicyStore.model.action.LazyRefuporeMergeRefugroup;
 import br.com.mind5.business.refundPolicyStore.model.action.StdRefuporeMergeToSelect;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class NodeRefuporeSelect extends DeciTreeTemplateReadV2<RefuporeInf
 	
 	
 	
-	@Override protected List<ActionStdV1<RefuporeInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuporeInfo> option) {
-		List<ActionStdV1<RefuporeInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<RefuporeInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuporeInfo> option) {
+		List<ActionStdV2<RefuporeInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<RefuporeInfo> select = new StdRefuporeMergeToSelect(option);
+		ActionStdV2<RefuporeInfo> select = new StdRefuporeMergeToSelect(option);
 		ActionLazy<RefuporeInfo> mergeRefugroup = new LazyRefuporeMergeRefugroup(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeRefugroup);

@@ -3,7 +3,7 @@ package br.com.mind5.payment.storePartnerSearch.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -46,10 +46,10 @@ public final class RootStoparchSelect extends DeciTreeTemplateReadV2<StoparchInf
 	
 	
 	
-	@Override protected List<ActionStdV1<StoparchInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparchInfo> option) {
-		List<ActionStdV1<StoparchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StoparchInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparchInfo> option) {
+		List<ActionStdV2<StoparchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StoparchInfo> select = new StdStoparchMergeToSelect(option);
+		ActionStdV2<StoparchInfo> select = new StdStoparchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

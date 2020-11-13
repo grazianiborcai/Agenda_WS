@@ -3,10 +3,10 @@ package br.com.mind5.business.storeNearby.model.action;
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.business.storeNearby.info.StorbySetterNameSearch;
 import br.com.mind5.info.InfoSetter;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorbyEnforceNameSearch extends ActionVisitorTemplateEnforceV2<StorbyInfo> {
+final class VisiStorbyEnforceNameSearch extends ActionVisitorTemplateEnforce<StorbyInfo> {
 	
 	public VisiStorbyEnforceNameSearch(DeciTreeOption<StorbyInfo> option) {
 		super(option);

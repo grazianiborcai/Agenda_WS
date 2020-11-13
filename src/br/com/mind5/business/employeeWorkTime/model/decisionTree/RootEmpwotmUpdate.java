@@ -21,7 +21,7 @@ import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStoworg;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckWeekday;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -137,13 +137,13 @@ public final class RootEmpwotmUpdate extends DeciTreeTemplateWriteV2<EmpwotmInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
-		List<ActionStdV1<EmpwotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
+		List<ActionStdV2<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmpwotmInfo> enforceLChanged = new StdEmpwotmEnforceLChanged(option);
+		ActionStdV2<EmpwotmInfo> enforceLChanged = new StdEmpwotmEnforceLChanged(option);
 		ActionLazy<EmpwotmInfo> enforceLChangedBy = new LazyEmpwotmMergeUsername(option.conn, option.schemaName);
 		ActionLazy<EmpwotmInfo> update = new LazyEmpwotmDaoUpdate(option.conn, option.schemaName);
-		ActionStdV1<EmpwotmInfo> select = new RootEmpwotmSelect(option).toAction();
+		ActionStdV2<EmpwotmInfo> select = new RootEmpwotmSelect(option).toAction();
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);

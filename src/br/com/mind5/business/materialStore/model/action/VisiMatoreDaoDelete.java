@@ -6,10 +6,10 @@ import br.com.mind5.business.materialStore.dao.DaoMatoreDelete;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatoreDaoDelete extends ActionVisitorTemplateStmtV2<MatoreInfo> {
+final class VisiMatoreDaoDelete extends ActionVisitorTemplateStmt<MatoreInfo> {
 
 	public VisiMatoreDaoDelete(DeciTreeOption<MatoreInfo> option) {
 		super(option);

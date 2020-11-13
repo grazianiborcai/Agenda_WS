@@ -1,7 +1,7 @@
 package br.com.mind5.payment.payOrderSearch.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class PayordarchCheckExistAuth extends ModelCheckerTemplateActionV2
 	
 
 	
-	@Override protected ActionStdV1<PayordarchInfo> buildActionHook(DeciTreeOption<PayordarchInfo> option) {
-		ActionStdV1<PayordarchInfo> select = new RootPayordarchSelect(option).toAction();
+	@Override protected ActionStdV2<PayordarchInfo> buildActionHook(DeciTreeOption<PayordarchInfo> option) {
+		ActionStdV2<PayordarchInfo> select = new RootPayordarchSelect(option).toAction();
 		return select;
 	}
 	

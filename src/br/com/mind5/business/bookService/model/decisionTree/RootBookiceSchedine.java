@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.bookService.info.BookiceInfo;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -31,10 +31,10 @@ public final class RootBookiceSchedine extends DeciTreeTemplateWriteV2<BookiceIn
 	
 	
 	
-	@Override protected List<ActionStdV1<BookiceInfo>> buildActionsOnPassedHook(DeciTreeOption<BookiceInfo> option) {
-		List<ActionStdV1<BookiceInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<BookiceInfo>> buildActionsOnPassedHook(DeciTreeOption<BookiceInfo> option) {
+		List<ActionStdV2<BookiceInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<BookiceInfo> nodeL1 = new NodeBookiceSchedineL1(option).toAction();
+		ActionStdV2<BookiceInfo> nodeL1 = new NodeBookiceSchedineL1(option).toAction();
 		
 		actions.add(nodeL1);
 		return actions;

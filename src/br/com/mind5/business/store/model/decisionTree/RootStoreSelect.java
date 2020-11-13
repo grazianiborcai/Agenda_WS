@@ -18,7 +18,7 @@ import br.com.mind5.business.store.model.checker.StoreCheckLangu;
 import br.com.mind5.business.store.model.checker.StoreCheckRead;
 import br.com.mind5.business.store.model.checker.StoreCheckStorauth;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -72,10 +72,10 @@ public final class RootStoreSelect extends DeciTreeTemplateReadV2<StoreInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV2<StoreInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<StoreInfo> select = new StdStoreMergeToSelect(option);
+		ActionStdV2<StoreInfo> select = new StdStoreMergeToSelect(option);
 		ActionLazy<StoreInfo> mergeCurrency = new LazyStoreMergeCurrency(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> mergeTimezone = new LazyStoreMergeTimezone(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> mergePerson = new LazyStoreMergePerson(option.conn, option.schemaName);

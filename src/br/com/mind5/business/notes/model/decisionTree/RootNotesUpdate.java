@@ -14,7 +14,7 @@ import br.com.mind5.business.notes.model.checker.NotesCheckLangu;
 import br.com.mind5.business.notes.model.checker.NotesCheckOwner;
 import br.com.mind5.business.notes.model.checker.NotesCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -67,10 +67,10 @@ public final class RootNotesUpdate extends DeciTreeTemplateWriteV2<NotesInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<NotesInfo>> buildActionsOnPassedHook(DeciTreeOption<NotesInfo> option) {
-		List<ActionStdV1<NotesInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<NotesInfo>> buildActionsOnPassedHook(DeciTreeOption<NotesInfo> option) {
+		List<ActionStdV2<NotesInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<NotesInfo> mergeToUpdate = new StdNotesMergeToUpdate(option);
+		ActionStdV2<NotesInfo> mergeToUpdate = new StdNotesMergeToUpdate(option);
 		ActionLazy<NotesInfo> enforceLChanged = new LazyNotesEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<NotesInfo> enforceLChangedBy = new LazyNotesMergeUsername(option.conn, option.schemaName);
 		ActionLazy<NotesInfo> update = new LazyNotesDaoUpdate(option.conn, option.schemaName);

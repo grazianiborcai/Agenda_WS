@@ -4,10 +4,10 @@ import java.util.List;
 
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.planningTime.info.PlanimePruner;
-import br.com.mind5.model.action.ActionVisitorTemplatePruneSelfV2;
+import br.com.mind5.model.action.ActionVisitorTemplatePruneSelf;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanimePruneDaypart extends ActionVisitorTemplatePruneSelfV2<PlanimeInfo> {
+final class VisiPlanimePruneDaypart extends ActionVisitorTemplatePruneSelf<PlanimeInfo> {
 	
 	public VisiPlanimePruneDaypart(DeciTreeOption<PlanimeInfo> option) {
 		super(option);

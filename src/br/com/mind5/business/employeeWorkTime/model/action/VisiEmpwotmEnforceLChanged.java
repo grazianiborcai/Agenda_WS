@@ -3,10 +3,10 @@ package br.com.mind5.business.employeeWorkTime.model.action;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmSetterLChanged;
 import br.com.mind5.info.InfoSetter;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpwotmEnforceLChanged extends ActionVisitorTemplateEnforceV2<EmpwotmInfo> {
+final class VisiEmpwotmEnforceLChanged extends ActionVisitorTemplateEnforce<EmpwotmInfo> {
 	
 	public VisiEmpwotmEnforceLChanged(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);

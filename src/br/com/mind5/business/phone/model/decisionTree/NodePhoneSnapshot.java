@@ -7,7 +7,7 @@ import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.action.LazyPhoneDaoUpdate;
 import br.com.mind5.business.phone.model.action.StdPhoneInsertPhonap;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class NodePhoneSnapshot extends DeciTreeTemplateWriteV2<PhoneInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
-		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
+		List<ActionStdV2<PhoneInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<PhoneInfo> insertPhonap = new StdPhoneInsertPhonap(option);
+		ActionStdV2<PhoneInfo> insertPhonap = new StdPhoneInsertPhonap(option);
 		ActionLazy<PhoneInfo> update = new LazyPhoneDaoUpdate(option.conn, option.schemaName);
 		
 		insertPhonap.addPostAction(update);

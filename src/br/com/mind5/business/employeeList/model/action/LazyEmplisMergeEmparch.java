@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyEmplisMergeEmparch extends ActionLazyTemplate<EmplisInfo,
 	
 	
 	
-	@Override protected ActionStdV1<EmplisInfo> getInstanceOfActionHook(DeciTreeOption<EmplisInfo> option) {
+	@Override protected ActionStdV2<EmplisInfo> getInstanceOfActionHook(DeciTreeOption<EmplisInfo> option) {
 		return new StdEmplisMergeEmparch(option);
 	}
 	

@@ -6,10 +6,10 @@ import br.com.mind5.business.orderList.dao.DaoOrdistSelect;
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdistDaoSelect extends ActionVisitorTemplateStmtV2<OrdistInfo> {
+final class VisiOrdistDaoSelect extends ActionVisitorTemplateStmt<OrdistInfo> {
 
 	public VisiOrdistDaoSelect(DeciTreeOption<OrdistInfo> option) {
 		super(option);

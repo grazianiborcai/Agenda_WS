@@ -6,10 +6,10 @@ import br.com.mind5.business.materialStock.dao.DaoMatockLock;
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatockDaoLock extends ActionVisitorTemplateStmtV2<MatockInfo> {
+final class VisiMatockDaoLock extends ActionVisitorTemplateStmt<MatockInfo> {
 
 	public VisiMatockDaoLock(DeciTreeOption<MatockInfo> option) {
 		super(option);

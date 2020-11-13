@@ -10,7 +10,7 @@ import br.com.mind5.business.orderItem.model.action.StdOrderemMergeOrdugeCancel;
 import br.com.mind5.business.orderItem.model.action.StdOrderemSuccess;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckIsCancelled;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -42,10 +42,10 @@ public final class NodeOrderemCancel extends DeciTreeTemplateWriteV2<OrderemInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
-		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
+		List<ActionStdV2<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OrderemInfo> success = new StdOrderemSuccess(option);
+		ActionStdV2<OrderemInfo> success = new StdOrderemSuccess(option);
 		
 		actions.add(success);
 		return actions;
@@ -53,10 +53,10 @@ public final class NodeOrderemCancel extends DeciTreeTemplateWriteV2<OrderemInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<OrderemInfo>> buildActionsOnFailedHook(DeciTreeOption<OrderemInfo> option) {
-		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OrderemInfo>> buildActionsOnFailedHook(DeciTreeOption<OrderemInfo> option) {
+		List<ActionStdV2<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OrderemInfo> statusChange = new StdOrderemMergeOrdugeCancel(option);
+		ActionStdV2<OrderemInfo> statusChange = new StdOrderemMergeOrdugeCancel(option);
 		ActionLazy<OrderemInfo> update = new LazyOrderemNodeUpdate(option.conn, option.schemaName);	
 		ActionLazy<OrderemInfo> refreshSchedine = new LazyOrderemSchedineRefresh(option.conn, option.schemaName);			
 		

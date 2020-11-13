@@ -8,7 +8,7 @@ import br.com.mind5.business.owner.model.action.LazyOwnerDaoUpdate;
 import br.com.mind5.business.owner.model.action.LazyOwnerCompInsert;
 import br.com.mind5.business.owner.model.action.StdOwnerEnforceCompKey;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -35,10 +35,10 @@ public final class NodeOwnerInsertComp extends DeciTreeTemplateWriteV2<OwnerInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStdV2<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OwnerInfo> enforceCompKey = new StdOwnerEnforceCompKey(option);
+		ActionStdV2<OwnerInfo> enforceCompKey = new StdOwnerEnforceCompKey(option);
 		ActionLazy<OwnerInfo> insertComp = new LazyOwnerCompInsert(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> updateOwner = new LazyOwnerDaoUpdate(option.conn, option.schemaName);
 		

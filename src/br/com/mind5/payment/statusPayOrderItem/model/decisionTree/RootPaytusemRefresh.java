@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -47,10 +47,10 @@ public final class RootPaytusemRefresh extends DeciTreeTemplateWriteV2<PaytusemI
 	
 	
 	
-	@Override protected List<ActionStdV1<PaytusemInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusemInfo> option) {
-		List<ActionStdV1<PaytusemInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<PaytusemInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusemInfo> option) {
+		List<ActionStdV2<PaytusemInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<PaytusemInfo> select = new RootPaytusemSelect(option).toAction();	
+		ActionStdV2<PaytusemInfo> select = new RootPaytusemSelect(option).toAction();	
 		ActionLazy<PaytusemInfo> nodeRefresh = new LazyPaytusemNodeRefresh(option.conn, option.schemaName);
 		
 		select.addPostAction(nodeRefresh);

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -35,10 +35,10 @@ public final class NodeUserInsertPerson extends DeciTreeTemplateWriteV2<UserInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
-		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
+		List<ActionStdV2<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<UserInfo> enforcePersonKey = new StdUserEnforcePersonKey(option);	
+		ActionStdV2<UserInfo> enforcePersonKey = new StdUserEnforcePersonKey(option);	
 		ActionLazy<UserInfo> insertPerson = new LazyUserPersonInsert(option.conn, option.schemaName);
 		ActionLazy<UserInfo> updateUser = new LazyUserDaoUpdate(option.conn, option.schemaName);
 		

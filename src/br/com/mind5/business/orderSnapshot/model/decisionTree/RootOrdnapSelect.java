@@ -8,7 +8,7 @@ import br.com.mind5.business.orderSnapshot.model.action.StdOrdnapMergeToSelect;
 import br.com.mind5.business.orderSnapshot.model.checker.OrdnapCheckLangu;
 import br.com.mind5.business.orderSnapshot.model.checker.OrdnapCheckOwner;
 import br.com.mind5.business.orderSnapshot.model.checker.OrdnapCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -54,10 +54,10 @@ public final class RootOrdnapSelect extends DeciTreeTemplateReadV2<OrdnapInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<OrdnapInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdnapInfo> option) {
-		List<ActionStdV1<OrdnapInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<OrdnapInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdnapInfo> option) {
+		List<ActionStdV2<OrdnapInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<OrdnapInfo> select = new StdOrdnapMergeToSelect(option);
+		ActionStdV2<OrdnapInfo> select = new StdOrdnapMergeToSelect(option);
 		
 		actions.add(select);			
 		return actions;

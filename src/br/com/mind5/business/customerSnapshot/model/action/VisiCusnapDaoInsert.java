@@ -6,10 +6,10 @@ import br.com.mind5.business.customerSnapshot.dao.DaoCusnapInsert;
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusnapDaoInsert extends ActionVisitorTemplateStmtV2<CusnapInfo> {
+final class VisiCusnapDaoInsert extends ActionVisitorTemplateStmt<CusnapInfo> {
 
 	public VisiCusnapDaoInsert(DeciTreeOption<CusnapInfo> option) {
 		super(option);

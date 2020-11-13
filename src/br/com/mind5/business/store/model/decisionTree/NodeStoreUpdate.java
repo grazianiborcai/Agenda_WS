@@ -10,7 +10,7 @@ import br.com.mind5.business.store.model.action.LazyStoreNodeSnapshot;
 import br.com.mind5.business.store.model.action.LazyStoreNodeUpsertStorext;
 import br.com.mind5.business.store.model.action.StdStoreMergeToUpdate;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -37,10 +37,10 @@ public final class NodeStoreUpdate extends DeciTreeTemplateWriteV2<StoreInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV2<StoreInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<StoreInfo> mergeToUpdate = new StdStoreMergeToUpdate(option);
+		ActionStdV2<StoreInfo> mergeToUpdate = new StdStoreMergeToUpdate(option);
 		ActionLazy<StoreInfo> enforceLChanged = new LazyStoreEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> upsertStorext = new LazyStoreNodeUpsertStorext(option.conn, option.schemaName);

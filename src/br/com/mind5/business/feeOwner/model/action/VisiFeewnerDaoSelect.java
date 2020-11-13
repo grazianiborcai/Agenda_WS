@@ -6,10 +6,10 @@ import br.com.mind5.business.feeOwner.dao.DaoFeewnerSelect;
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFeewnerDaoSelect extends ActionVisitorTemplateStmtV2<FeewnerInfo> {
+final class VisiFeewnerDaoSelect extends ActionVisitorTemplateStmt<FeewnerInfo> {
 
 	public VisiFeewnerDaoSelect(DeciTreeOption<FeewnerInfo> option) {
 		super(option);

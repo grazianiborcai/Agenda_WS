@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.currencySearch.info.CurrarshInfo;
 import br.com.mind5.masterData.currencySearch.model.action.StdCurrarshDaoSelect;
 import br.com.mind5.masterData.currencySearch.model.checker.CurrarshCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootCurrarshSelect extends DeciTreeTemplateReadV2<CurrarshInf
 	
 	
 	
-	@Override protected List<ActionStdV1<CurrarshInfo>> buildActionsOnPassedHook(DeciTreeOption<CurrarshInfo> option) {
-		List<ActionStdV1<CurrarshInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CurrarshInfo>> buildActionsOnPassedHook(DeciTreeOption<CurrarshInfo> option) {
+		List<ActionStdV2<CurrarshInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CurrarshInfo> select = new StdCurrarshDaoSelect(option);
+		ActionStdV2<CurrarshInfo> select = new StdCurrarshDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

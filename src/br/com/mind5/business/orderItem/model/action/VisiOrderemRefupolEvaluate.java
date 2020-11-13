@@ -5,11 +5,11 @@ import java.util.List;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.refundPolicy.info.RefupolInfo;
 import br.com.mind5.business.refundPolicy.model.decisionTree.RootRefupolEvaluate;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderemRefupolEvaluate extends ActionVisitorTemplateActionV2<OrderemInfo, RefupolInfo> {
+final class VisiOrderemRefupolEvaluate extends ActionVisitorTemplateAction<OrderemInfo, RefupolInfo> {
 	
 	public VisiOrderemRefupolEvaluate(DeciTreeOption<OrderemInfo> option) {
 		super(option, OrderemInfo.class, RefupolInfo.class);

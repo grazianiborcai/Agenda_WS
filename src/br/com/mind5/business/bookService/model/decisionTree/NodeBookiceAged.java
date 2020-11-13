@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.bookService.info.BookiceInfo;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckMatarchService;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -37,10 +37,10 @@ public final class NodeBookiceAged extends DeciTreeTemplateWriteV2<BookiceInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<BookiceInfo>> buildActionsOnPassedHook(DeciTreeOption<BookiceInfo> option) {
-		List<ActionStdV1<BookiceInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<BookiceInfo>> buildActionsOnPassedHook(DeciTreeOption<BookiceInfo> option) {
+		List<ActionStdV2<BookiceInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<BookiceInfo> service = new NodeBookiceAgedL01(option).toAction();
+		ActionStdV2<BookiceInfo> service = new NodeBookiceAgedL01(option).toAction();
 		
 		actions.add(service);
 		return actions;

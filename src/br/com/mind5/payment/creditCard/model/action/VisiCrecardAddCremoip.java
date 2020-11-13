@@ -2,7 +2,7 @@ package br.com.mind5.payment.creditCard.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
@@ -12,7 +12,7 @@ import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.decisionTree.RootCremoipAdd;
 
 
-final class VisiCrecardAddCremoip extends ActionVisitorTemplateActionV2<CrecardInfo, CremoipInfo> {
+final class VisiCrecardAddCremoip extends ActionVisitorTemplateAction<CrecardInfo, CremoipInfo> {
 	
 	public VisiCrecardAddCremoip(DeciTreeOption<CrecardInfo> option) {
 		super(option, CrecardInfo.class, CremoipInfo.class);

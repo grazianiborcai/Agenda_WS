@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyMatockDaoSelect extends ActionLazyTemplate<MatockInfo, Ma
 	
 	
 	
-	@Override protected ActionStdV1<MatockInfo> getInstanceOfActionHook(DeciTreeOption<MatockInfo> option) {
+	@Override protected ActionStdV2<MatockInfo> getInstanceOfActionHook(DeciTreeOption<MatockInfo> option) {
 		return new StdMatockDaoSelect(option);
 	}
 	

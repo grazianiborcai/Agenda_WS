@@ -11,7 +11,7 @@ import br.com.mind5.business.materialMovement.model.action.LazyMatmovEnforcePost
 import br.com.mind5.business.materialMovement.model.action.LazyMatmovMergeUsername;
 import br.com.mind5.business.materialMovement.model.action.StdMatmovEnforceLChanged;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -38,10 +38,10 @@ public final class NodeMatmovInsert extends DeciTreeTemplateWriteV2<MatmovInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<MatmovInfo>> buildActionsOnPassedHook(DeciTreeOption<MatmovInfo> option) {
-		List<ActionStdV1<MatmovInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatmovInfo>> buildActionsOnPassedHook(DeciTreeOption<MatmovInfo> option) {
+		List<ActionStdV2<MatmovInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<MatmovInfo> enforceLChanged = new StdMatmovEnforceLChanged(option);
+		ActionStdV2<MatmovInfo> enforceLChanged = new StdMatmovEnforceLChanged(option);
 		ActionLazy<MatmovInfo> enforceLChangedBy = new LazyMatmovMergeUsername(option.conn, option.schemaName);
 		ActionLazy<MatmovInfo> enforceCreatedOn = new LazyMatmovEnforceCreatedOn(option.conn, option.schemaName);	
 		ActionLazy<MatmovInfo> enforceCreatedBy = new LazyMatmovEnforceCreatedBy(option.conn, option.schemaName);

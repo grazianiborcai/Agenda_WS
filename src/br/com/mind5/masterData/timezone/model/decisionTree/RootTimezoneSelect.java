@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 import br.com.mind5.masterData.timezone.model.action.StdTimezoneDaoSelect;
 import br.com.mind5.masterData.timezone.model.checker.TimezoneCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootTimezoneSelect extends DeciTreeTemplateReadV2<TimezoneInf
 
 		
 	
-	@Override protected List<ActionStdV1<TimezoneInfo>> buildActionsOnPassedHook(DeciTreeOption<TimezoneInfo> option) {
-		List<ActionStdV1<TimezoneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<TimezoneInfo>> buildActionsOnPassedHook(DeciTreeOption<TimezoneInfo> option) {
+		List<ActionStdV2<TimezoneInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<TimezoneInfo> select = new StdTimezoneDaoSelect(option);
+		ActionStdV2<TimezoneInfo> select = new StdTimezoneDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

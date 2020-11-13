@@ -82,7 +82,7 @@ public abstract class ActionVisitorTemplateMergeV1<T extends InfoRecord, S exten
 	
 	
 	private List<S> selectToMerge() {
-		ActionStdV1<S> mainAction = buildAction();
+		ActionStdV2<S> mainAction = buildAction();
 		mainAction.executeAction();
 		
 		return buildResult(mainAction.getDecisionResult());
@@ -90,7 +90,7 @@ public abstract class ActionVisitorTemplateMergeV1<T extends InfoRecord, S exten
 	
 	
 	
-	private ActionStdV1<S> buildAction() {
+	private ActionStdV2<S> buildAction() {
 		if (hasTreeClass())
 			return buildActionTree();		
 		
@@ -103,11 +103,11 @@ public abstract class ActionVisitorTemplateMergeV1<T extends InfoRecord, S exten
 	
 	
 	
-	private ActionStdV1<S> buildActionTree() {
+	private ActionStdV2<S> buildActionTree() {
 		try {
 			Class<? extends DeciTree<S>> actionClass = getTreeClassHook();
 			Constructor<? extends DeciTree<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
-			return (ActionStdV1<S>) actionConstru.newInstance(selOption).toAction();
+			return (ActionStdV2<S>) actionConstru.newInstance(selOption).toAction();
 				
 			} catch (Exception e) {
 				logException(e);
@@ -117,11 +117,11 @@ public abstract class ActionVisitorTemplateMergeV1<T extends InfoRecord, S exten
 	
 	
 	
-	private ActionStdV1<S> buildActionStd() {
+	private ActionStdV2<S> buildActionStd() {
 		try {
-			Class<? extends ActionStdV1<S>> actionClass = getActionClassHook();
-			Constructor<? extends ActionStdV1<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
-			return (ActionStdV1<S>) actionConstru.newInstance(selOption);
+			Class<? extends ActionStdV2<S>> actionClass = getActionClassHook();
+			Constructor<? extends ActionStdV2<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
+			return (ActionStdV2<S>) actionConstru.newInstance(selOption);
 				
 			} catch (Exception e) {
 				logException(e);
@@ -156,7 +156,7 @@ public abstract class ActionVisitorTemplateMergeV1<T extends InfoRecord, S exten
 	
 	
 	
-	protected Class<? extends ActionStdV1<S>> getActionClassHook() {
+	protected Class<? extends ActionStdV2<S>> getActionClassHook() {
 		//Template method: default behavior
 		return null;
 	}

@@ -15,7 +15,7 @@ import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckMat;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckOwner;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -61,10 +61,10 @@ public final class RootMatsnapSelect extends DeciTreeTemplateReadV2<MatsnapInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<MatsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatsnapInfo> option) {
-		List<ActionStdV1<MatsnapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatsnapInfo> option) {
+		List<ActionStdV2<MatsnapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatsnapInfo> select = new StdMatsnapMergeToSelect(option);
+		ActionStdV2<MatsnapInfo> select = new StdMatsnapMergeToSelect(option);
 		ActionLazy<MatsnapInfo> mergeMatextsnap = new LazyMatsnapMergeMatextsnap(option.conn, option.schemaName);
 		ActionLazy<MatsnapInfo> mergeMatype = new LazyMatsnapMergeMatype(option.conn, option.schemaName);
 		ActionLazy<MatsnapInfo> mergeMateg = new LazyMatsnapMergeMateg(option.conn, option.schemaName);

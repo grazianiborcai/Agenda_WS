@@ -7,7 +7,7 @@ import br.com.mind5.config.sysStoreBusinessContent.info.SytorbcInfo;
 import br.com.mind5.config.sysStoreBusinessContent.model.action.LazySytorbcRootSelect;
 import br.com.mind5.config.sysStoreBusinessContent.model.action.StdSytorbcEnforceEnabled;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class RootSytorbcSelectEnabled extends DeciTreeTemplateReadV2<Sytor
 	
 	
 	
-	@Override protected List<ActionStdV1<SytorbcInfo>> buildActionsOnPassedHook(DeciTreeOption<SytorbcInfo> option) {
-		List<ActionStdV1<SytorbcInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SytorbcInfo>> buildActionsOnPassedHook(DeciTreeOption<SytorbcInfo> option) {
+		List<ActionStdV2<SytorbcInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SytorbcInfo> enforceEnabled = new StdSytorbcEnforceEnabled(option);
+		ActionStdV2<SytorbcInfo> enforceEnabled = new StdSytorbcEnforceEnabled(option);
 		ActionLazy<SytorbcInfo> select = new LazySytorbcRootSelect(option.conn, option.schemaName);
 		
 		enforceEnabled.addPostAction(select);

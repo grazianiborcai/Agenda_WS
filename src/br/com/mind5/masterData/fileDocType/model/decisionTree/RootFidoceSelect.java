@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.fileDocType.info.FidoceInfo;
 import br.com.mind5.masterData.fileDocType.model.action.StdFidoceDaoSelect;
 import br.com.mind5.masterData.fileDocType.model.checker.FidoceCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootFidoceSelect extends DeciTreeTemplateReadV2<FidoceInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<FidoceInfo>> buildActionsOnPassedHook(DeciTreeOption<FidoceInfo> option) {
-		List<ActionStdV1<FidoceInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<FidoceInfo>> buildActionsOnPassedHook(DeciTreeOption<FidoceInfo> option) {
+		List<ActionStdV2<FidoceInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<FidoceInfo> select = new StdFidoceDaoSelect(option);
+		ActionStdV2<FidoceInfo> select = new StdFidoceDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

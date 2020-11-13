@@ -7,7 +7,7 @@ import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.model.action.LazyCuslisRootSelect;
 import br.com.mind5.business.customerList.model.action.StdCuslisMergeCusarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class RootCuslisSearch extends DeciTreeTemplateReadV2<CuslisInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<CuslisInfo>> buildActionsOnPassedHook(DeciTreeOption<CuslisInfo> option) {
-		List<ActionStdV1<CuslisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CuslisInfo>> buildActionsOnPassedHook(DeciTreeOption<CuslisInfo> option) {
+		List<ActionStdV2<CuslisInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CuslisInfo> mergeCusarch = new StdCuslisMergeCusarch(option);
+		ActionStdV2<CuslisInfo> mergeCusarch = new StdCuslisMergeCusarch(option);
 		ActionLazy<CuslisInfo> select = new LazyCuslisRootSelect(option.conn, option.schemaName);
 		
 		mergeCusarch.addPostAction(select);

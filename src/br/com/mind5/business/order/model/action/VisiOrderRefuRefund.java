@@ -3,13 +3,13 @@ package br.com.mind5.business.order.model.action;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 import br.com.mind5.payment.refundOrder.model.decisionTree.RootRefuRefund;
 
-final class VisiOrderRefuRefund extends ActionVisitorTemplateActionV2<OrderInfo, RefuInfo> {
+final class VisiOrderRefuRefund extends ActionVisitorTemplateAction<OrderInfo, RefuInfo> {
 	
 	public VisiOrderRefuRefund(DeciTreeOption<OrderInfo> option) {
 		super(option, OrderInfo.class, RefuInfo.class);

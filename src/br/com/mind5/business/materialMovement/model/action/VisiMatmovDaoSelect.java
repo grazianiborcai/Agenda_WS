@@ -6,10 +6,10 @@ import br.com.mind5.business.materialMovement.dao.DaoMatmovSelect;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatmovDaoSelect extends ActionVisitorTemplateStmtV2<MatmovInfo> {
+final class VisiMatmovDaoSelect extends ActionVisitorTemplateStmt<MatmovInfo> {
 
 	public VisiMatmovDaoSelect(DeciTreeOption<MatmovInfo> option) {
 		super(option);

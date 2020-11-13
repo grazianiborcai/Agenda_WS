@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.business.addressSearch.model.decisionTree.RootAddarchSelect;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyAddarchRootSelect extends ActionLazyTemplate<AddarchInfo,
 	
 	
 	
-	@Override protected ActionStdV1<AddarchInfo> getInstanceOfActionHook(DeciTreeOption<AddarchInfo> option) {
+	@Override protected ActionStdV2<AddarchInfo> getInstanceOfActionHook(DeciTreeOption<AddarchInfo> option) {
 		return new RootAddarchSelect(option).toAction();
 	}
 	

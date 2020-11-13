@@ -11,7 +11,7 @@ import br.com.mind5.business.storeText.model.action.StdStorextMergeStorextarch;
 import br.com.mind5.business.storeText.model.action.StdStorextSuccess;
 import br.com.mind5.business.storeText.model.checker.StorextCheckStorextarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -43,10 +43,10 @@ public final class NodeStorextDeleteL3 extends DeciTreeTemplateWriteV2<StorextIn
 	
 	
 	
-	@Override protected List<ActionStdV1<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
-		List<ActionStdV1<StorextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
+		List<ActionStdV2<StorextInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StorextInfo> mergeStorextarch = new StdStorextMergeStorextarch(option);
+		ActionStdV2<StorextInfo> mergeStorextarch = new StdStorextMergeStorextarch(option);
 		ActionLazy<StorextInfo> mergeToSelect = new LazyStorextMergeToSelect(option.conn, option.schemaName);
 		ActionLazy<StorextInfo> enforceDefaultOn = new LazyStorextEnforceDefaultOn(option.conn, option.schemaName); 
 		ActionLazy<StorextInfo> update = new LazyStorextRootUpdate(option.conn, option.schemaName); 
@@ -61,10 +61,10 @@ public final class NodeStorextDeleteL3 extends DeciTreeTemplateWriteV2<StorextIn
 	
 	
 	
-	@Override protected List<ActionStdV1<StorextInfo>> buildActionsOnFailedHook(DeciTreeOption<StorextInfo> option) {
-		List<ActionStdV1<StorextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StorextInfo>> buildActionsOnFailedHook(DeciTreeOption<StorextInfo> option) {
+		List<ActionStdV2<StorextInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StorextInfo> success = new StdStorextSuccess(option);
+		ActionStdV2<StorextInfo> success = new StdStorextSuccess(option);
 		
 		actions.add(success);
 		return actions;

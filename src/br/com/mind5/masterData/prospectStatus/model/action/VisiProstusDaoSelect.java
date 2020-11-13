@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.prospectStatus.dao.DaoProstusSelect;
 import br.com.mind5.masterData.prospectStatus.info.ProstusInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiProstusDaoSelect extends ActionVisitorTemplateStmtV2<ProstusInfo> {
+final class VisiProstusDaoSelect extends ActionVisitorTemplateStmt<ProstusInfo> {
 
 	public VisiProstusDaoSelect(DeciTreeOption<ProstusInfo> option) {
 		super(option);

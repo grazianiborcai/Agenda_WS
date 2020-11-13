@@ -9,7 +9,7 @@ import br.com.mind5.business.materialText.model.action.StdMatextEnforceDefaultOn
 import br.com.mind5.business.materialText.model.action.StdMatextSuccess;
 import br.com.mind5.business.materialText.model.checker.MatextCheckMatextault;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -41,10 +41,10 @@ public final class NodeMatextPostUpdate extends DeciTreeTemplateWriteV2<MatextIn
 	
 	
 	
-	@Override protected List<ActionStdV1<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
-		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
+		List<ActionStdV2<MatextInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<MatextInfo> success = new StdMatextSuccess(option);
+		ActionStdV2<MatextInfo> success = new StdMatextSuccess(option);
 		
 		actions.add(success);
 		return actions;
@@ -52,10 +52,10 @@ public final class NodeMatextPostUpdate extends DeciTreeTemplateWriteV2<MatextIn
 	
 	
 	
-	@Override protected List<ActionStdV1<MatextInfo>> buildActionsOnFailedHook(DeciTreeOption<MatextInfo> option) {
-		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatextInfo>> buildActionsOnFailedHook(DeciTreeOption<MatextInfo> option) {
+		List<ActionStdV2<MatextInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<MatextInfo> enforceDefaultOn = new StdMatextEnforceDefaultOn(option);
+		ActionStdV2<MatextInfo> enforceDefaultOn = new StdMatextEnforceDefaultOn(option);
 		ActionLazy<MatextInfo> update = new LazyMatextDaoUpdate(option.conn, option.schemaName);
 		
 		enforceDefaultOn.addPostAction(update);

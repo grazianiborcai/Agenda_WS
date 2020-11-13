@@ -14,7 +14,7 @@ import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -60,10 +60,10 @@ public final class RootSchedineSelect extends DeciTreeTemplateWriteV2<SchedineIn
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
-		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
+		List<ActionStdV2<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedineInfo> select = new StdSchedineMergeToSelect(option);
+		ActionStdV2<SchedineInfo> select = new StdSchedineMergeToSelect(option);
 		ActionLazy<SchedineInfo> mergeMatlis = new LazySchedineMergeMatlis(option.conn, option.schemaName);	
 		ActionLazy<SchedineInfo> mergeStolis = new LazySchedineMergeStolis(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> mergeEmplis = new LazySchedineMergeEmplis(option.conn, option.schemaName);

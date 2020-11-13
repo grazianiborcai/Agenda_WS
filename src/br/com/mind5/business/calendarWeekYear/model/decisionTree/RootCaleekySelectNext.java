@@ -7,7 +7,7 @@ import br.com.mind5.business.calendarWeekYear.info.CaleekyInfo;
 import br.com.mind5.business.calendarWeekYear.model.action.LazyCaleekyMergeNext;
 import br.com.mind5.business.calendarWeekYear.model.action.LazyCaleekyRootSelect;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class RootCaleekySelectNext extends DeciTreeTemplateReadV2<CaleekyI
 
 		
 	
-	@Override protected List<ActionStdV1<CaleekyInfo>> buildActionsOnPassedHook(DeciTreeOption<CaleekyInfo> option) {
-		List<ActionStdV1<CaleekyInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CaleekyInfo>> buildActionsOnPassedHook(DeciTreeOption<CaleekyInfo> option) {
+		List<ActionStdV2<CaleekyInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CaleekyInfo> selectBase = new RootCaleekySelect(option).toAction();
+		ActionStdV2<CaleekyInfo> selectBase = new RootCaleekySelect(option).toAction();
 		ActionLazy<CaleekyInfo> mergeNext = new LazyCaleekyMergeNext(option.conn, option.schemaName);
 		ActionLazy<CaleekyInfo> selectResult = new LazyCaleekyRootSelect(option.conn, option.schemaName);
 		

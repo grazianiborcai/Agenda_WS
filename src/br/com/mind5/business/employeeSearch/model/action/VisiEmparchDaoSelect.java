@@ -6,10 +6,10 @@ import br.com.mind5.business.employeeSearch.dao.DaoEmparchSelect;
 import br.com.mind5.business.employeeSearch.info.EmparchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmparchDaoSelect extends ActionVisitorTemplateStmtV2<EmparchInfo> {
+final class VisiEmparchDaoSelect extends ActionVisitorTemplateStmt<EmparchInfo> {
 
 	public VisiEmparchDaoSelect(DeciTreeOption<EmparchInfo> option) {
 		super(option);

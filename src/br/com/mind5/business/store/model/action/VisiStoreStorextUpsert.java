@@ -6,11 +6,11 @@ import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.storeText.info.StorextCopier;
 import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.business.storeText.model.decisionTree.RootStorextUpsertdel;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreStorextUpsert extends ActionVisitorTemplateActionV2<StoreInfo, StorextInfo> {
+final class VisiStoreStorextUpsert extends ActionVisitorTemplateAction<StoreInfo, StorextInfo> {
 	
 	public VisiStoreStorextUpsert(DeciTreeOption<StoreInfo> option) {
 		super(option, StoreInfo.class, StorextInfo.class);

@@ -6,10 +6,10 @@ import br.com.mind5.business.companyConflict.dao.DaoCompcoSelect;
 import br.com.mind5.business.companyConflict.info.CompcoInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCompcoDaoSelect extends ActionVisitorTemplateStmtV2<CompcoInfo> {
+final class VisiCompcoDaoSelect extends ActionVisitorTemplateStmt<CompcoInfo> {
 
 	public VisiCompcoDaoSelect(DeciTreeOption<CompcoInfo> option) {
 		super(option);

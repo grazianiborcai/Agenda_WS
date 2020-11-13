@@ -9,7 +9,7 @@ import br.com.mind5.business.order.model.action.LazyOrderMergeUsername;
 import br.com.mind5.business.order.model.action.LazyOrderNodeAuthL2;
 import br.com.mind5.business.order.model.action.StdOrderEnforceKey;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -36,10 +36,10 @@ public final class NodeOrderAuthL1 extends DeciTreeTemplateWriteV2<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV2<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OrderInfo> enforceKey = new StdOrderEnforceKey(option);
+		ActionStdV2<OrderInfo> enforceKey = new StdOrderEnforceKey(option);
 		ActionLazy<OrderInfo> mergeUsername = new LazyOrderMergeUsername(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceUser = new LazyOrderEnforceUser(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> nodeL2 = new LazyOrderNodeAuthL2(option.conn, option.schemaName);

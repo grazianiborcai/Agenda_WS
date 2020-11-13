@@ -23,7 +23,7 @@ import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckStore;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckTimeRange;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -118,10 +118,10 @@ public final class RootEmplateInsert extends DeciTreeTemplateWriteV2<EmplateInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<EmplateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplateInfo> option) {
-		List<ActionStdV1<EmplateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmplateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplateInfo> option) {
+		List<ActionStdV2<EmplateInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmplateInfo> enforceLChanged = new StdEmplateEnforceLChanged(option);
+		ActionStdV2<EmplateInfo> enforceLChanged = new StdEmplateEnforceLChanged(option);
 		ActionLazy<EmplateInfo> enforceLChangedBy = new LazyEmplateMergeUsername(option.conn, option.schemaName);
 		ActionLazy<EmplateInfo> enforceCreatedBy = new LazyEmplateEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<EmplateInfo> enforceCreatedOn = new LazyEmplateEnforceCreatedOn(option.conn, option.schemaName);

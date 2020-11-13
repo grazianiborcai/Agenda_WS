@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -48,10 +48,10 @@ public final class RootPaytusSelect extends DeciTreeTemplateReadV2<PaytusInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
-		List<ActionStdV1<PaytusInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
+		List<ActionStdV2<PaytusInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<PaytusInfo> mergePayord = new StdPaytusMergePayord(option);	
+		ActionStdV2<PaytusInfo> mergePayord = new StdPaytusMergePayord(option);	
 		ActionLazy<PaytusInfo> mergePaytusem = new LazyPaytusMergePaytusem(option.conn, option.schemaName);	
 		
 		mergePayord.addPostAction(mergePaytusem);

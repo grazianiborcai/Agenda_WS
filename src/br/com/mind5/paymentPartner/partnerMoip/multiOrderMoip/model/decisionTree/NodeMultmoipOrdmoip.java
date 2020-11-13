@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class NodeMultmoipOrdmoip extends DeciTreeTemplateReadV2<MultmoipIn
 	
 	
 	
-	@Override protected List<ActionStdV1<MultmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<MultmoipInfo> option) {
-		List<ActionStdV1<MultmoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV2<MultmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<MultmoipInfo> option) {
+		List<ActionStdV2<MultmoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<MultmoipInfo> mergePayordemist = new StdMultmoipMergePayordemist(option);
+		ActionStdV2<MultmoipInfo> mergePayordemist = new StdMultmoipMergePayordemist(option);
 		ActionLazy<MultmoipInfo> placeOrdmoip = new LazyMultmoipOrdmoipPlace(option.conn, option.schemaName);
 		
 		mergePayordemist.addPostAction(placeOrdmoip);

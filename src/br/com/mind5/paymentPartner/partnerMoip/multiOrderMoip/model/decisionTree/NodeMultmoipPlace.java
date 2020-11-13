@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -41,10 +41,10 @@ public final class NodeMultmoipPlace extends DeciTreeTemplateReadV2<MultmoipInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<MultmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<MultmoipInfo> option) {
-		List<ActionStdV1<MultmoipInfo>> actions = new ArrayList<>();			
+	@Override protected List<ActionStdV2<MultmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<MultmoipInfo> option) {
+		List<ActionStdV2<MultmoipInfo>> actions = new ArrayList<>();			
 		
-		ActionStdV1<MultmoipInfo> enforceMultiorder = new StdMultmoipEnforceMultiorder(option);		
+		ActionStdV2<MultmoipInfo> enforceMultiorder = new StdMultmoipEnforceMultiorder(option);		
 		ActionLazy<MultmoipInfo> enforcePaypar = new LazyMultmoipEnforcePaypar(option.conn, option.schemaName);
 		ActionLazy<MultmoipInfo> mergeSetupar = new LazyMultmoipMergeSetupar(option.conn, option.schemaName);
 		ActionLazy<MultmoipInfo> mergeSysenv = new LazyMultmoipMergeSysenv(option.conn, option.schemaName);	

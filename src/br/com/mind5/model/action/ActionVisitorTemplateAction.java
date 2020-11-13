@@ -17,13 +17,13 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.common.DeciResultError;
 import br.com.mind5.model.decisionTree.common.DeciResultNotFound;
 
-public abstract class ActionVisitorTemplateActionV2<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorV2<T> {	
-	private ActionStdV1<S> action;
+public abstract class ActionVisitorTemplateAction<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorV2<T> {	
+	private ActionStdV2<S> action;
 	private Class<T> tClazz;
 	private List<T> bases;
 	
 
-	public ActionVisitorTemplateActionV2(DeciTreeOption<T> option, Class<T> baseClazz, Class<S> actionClazz) {
+	public ActionVisitorTemplateAction(DeciTreeOption<T> option, Class<T> baseClazz, Class<S> actionClazz) {
 		checkArgument(option, baseClazz, actionClazz);	
 		clear();
 		
@@ -40,7 +40,7 @@ public abstract class ActionVisitorTemplateActionV2<T extends InfoRecord, S exte
 	
 	
 	
-	private ActionStdV1<S> buildAction(DeciTreeOption<T> option, Class<S> actionClazz) {
+	private ActionStdV2<S> buildAction(DeciTreeOption<T> option, Class<S> actionClazz) {
 		DeciTreeOption<S> treeOption = translateOption(option, actionClazz);
 		return buildAction(treeOption);
 	}
@@ -60,7 +60,7 @@ public abstract class ActionVisitorTemplateActionV2<T extends InfoRecord, S exte
 	
 	
 	
-	private ActionStdV1<S> buildAction(DeciTreeOption<S> option) {
+	private ActionStdV2<S> buildAction(DeciTreeOption<S> option) {
 		if (hasTreeClass())
 			return buildActionTree(option);		
 		
@@ -73,11 +73,11 @@ public abstract class ActionVisitorTemplateActionV2<T extends InfoRecord, S exte
 	
 	
 	
-	private ActionStdV1<S> buildActionTree(DeciTreeOption<S> option) {
+	private ActionStdV2<S> buildActionTree(DeciTreeOption<S> option) {
 		try {
 			Class<? extends DeciTree<S>> actionClass = getTreeClassHook();
 			Constructor<? extends DeciTree<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
-			return (ActionStdV1<S>) actionConstru.newInstance(option).toAction();
+			return (ActionStdV2<S>) actionConstru.newInstance(option).toAction();
 				
 			} catch (Exception e) {
 				logException(e);
@@ -87,11 +87,11 @@ public abstract class ActionVisitorTemplateActionV2<T extends InfoRecord, S exte
 	
 	
 	
-	private ActionStdV1<S> buildActionStd(DeciTreeOption<S> option) {
+	private ActionStdV2<S> buildActionStd(DeciTreeOption<S> option) {
 		try {
 			Class<? extends ActionStdV2<S>> actionClass = getActionClassHook();
 			Constructor<? extends ActionStdV2<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
-			return (ActionStdV1<S>) actionConstru.newInstance(option);
+			return (ActionStdV2<S>) actionConstru.newInstance(option);
 				
 			} catch (Exception e) {
 				logException(e);
@@ -116,7 +116,7 @@ public abstract class ActionVisitorTemplateActionV2<T extends InfoRecord, S exte
 	
 	
 	
-	private DeciResult<S> executeAction(ActionStdV1<S> action) {
+	private DeciResult<S> executeAction(ActionStdV2<S> action) {
 		if (checkAction(action) == false)
 			return makeErrorResult();
 		
@@ -181,7 +181,7 @@ public abstract class ActionVisitorTemplateActionV2<T extends InfoRecord, S exte
 	
 	
 	
-	private boolean checkAction(ActionStdV1<S> action) {
+	private boolean checkAction(ActionStdV2<S> action) {
 		if (action == null)
 			return false;
 		
@@ -337,7 +337,7 @@ public abstract class ActionVisitorTemplateActionV2<T extends InfoRecord, S exte
 	
 	
 	@SuppressWarnings("unchecked")
-	private void closeAction(ActionStdV1<S> action) {
+	private void closeAction(ActionStdV2<S> action) {
 		if (action == null)
 			return;
 		

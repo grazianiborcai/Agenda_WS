@@ -4,10 +4,10 @@ import java.util.List;
 
 import br.com.mind5.common.EmailSender;
 import br.com.mind5.message.email.info.EmailInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.action.ActionVisitorTemplateSimple;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmailSendMessage extends ActionVisitorTemplateSimpleV2<EmailInfo> {
+final class VisiEmailSendMessage extends ActionVisitorTemplateSimple<EmailInfo> {
 	private final boolean SUCCESS = true;
 	private final boolean FAILED = false;
 	

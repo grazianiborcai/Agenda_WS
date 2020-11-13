@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.countrySearch.info.CountarchInfo;
 import br.com.mind5.masterData.countrySearch.model.action.StdCountarchDaoSelect;
 import br.com.mind5.masterData.countrySearch.model.checker.CountarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootCountarchSelect extends DeciTreeTemplateReadV2<CountarchI
 	
 	
 	
-	@Override protected List<ActionStdV1<CountarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CountarchInfo> option) {
-		List<ActionStdV1<CountarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CountarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CountarchInfo> option) {
+		List<ActionStdV2<CountarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CountarchInfo> select = new StdCountarchDaoSelect(option);
+		ActionStdV2<CountarchInfo> select = new StdCountarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

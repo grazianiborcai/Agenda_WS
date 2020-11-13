@@ -12,7 +12,7 @@ import br.com.mind5.business.notes.model.checker.NotesCheckExist;
 import br.com.mind5.business.notes.model.checker.NotesCheckLangu;
 import br.com.mind5.business.notes.model.checker.NotesCheckOwner;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -65,10 +65,10 @@ public final class RootNotesDelete extends DeciTreeTemplateWriteV2<NotesInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<NotesInfo>> buildActionsOnPassedHook(DeciTreeOption<NotesInfo> option) {
-		List<ActionStdV1<NotesInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<NotesInfo>> buildActionsOnPassedHook(DeciTreeOption<NotesInfo> option) {
+		List<ActionStdV2<NotesInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<NotesInfo> select = new StdNotesMergeToSelect(option);
+		ActionStdV2<NotesInfo> select = new StdNotesMergeToSelect(option);
 		ActionLazy<NotesInfo> update = new LazyNotesRootUpdate(option.conn, option.schemaName);
 		ActionLazy<NotesInfo> delete = new LazyNotesDaoDelete(option.conn, option.schemaName);
 		

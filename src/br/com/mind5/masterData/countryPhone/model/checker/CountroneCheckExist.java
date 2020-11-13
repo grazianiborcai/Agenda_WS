@@ -3,7 +3,7 @@ package br.com.mind5.masterData.countryPhone.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.countryPhone.info.CountroneInfo;
 import br.com.mind5.masterData.countryPhone.model.action.StdCountroneDaoSelect;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class CountroneCheckExist extends ModelCheckerTemplateActionV2<Coun
 	
 	
 	
-	@Override protected ActionStdV1<CountroneInfo> buildActionHook(DeciTreeOption<CountroneInfo> option) {
-		ActionStdV1<CountroneInfo> select = new StdCountroneDaoSelect(option);
+	@Override protected ActionStdV2<CountroneInfo> buildActionHook(DeciTreeOption<CountroneInfo> option) {
+		ActionStdV2<CountroneInfo> select = new StdCountroneDaoSelect(option);
 		return select;
 	}
 	

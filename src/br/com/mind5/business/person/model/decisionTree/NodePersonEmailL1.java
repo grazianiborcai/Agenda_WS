@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.checker.PersonCheckHasEmail;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -37,10 +37,10 @@ public final class NodePersonEmailL1 extends DeciTreeTemplateWriteV2<PersonInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
-		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
+		List<ActionStdV2<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PersonInfo> nodeL2 = new NodePersonEmailL2(option).toAction();		
+		ActionStdV2<PersonInfo> nodeL2 = new NodePersonEmailL2(option).toAction();		
 		
 		actions.add(nodeL2);	
 		return actions;

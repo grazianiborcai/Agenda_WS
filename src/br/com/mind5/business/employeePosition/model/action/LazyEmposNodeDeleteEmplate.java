@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.decisionTree.NodeEmposDeleteEmplate;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyEmposNodeDeleteEmplate extends ActionLazyTemplate<EmposIn
 	
 	
 	
-	@Override protected ActionStdV1<EmposInfo> getInstanceOfActionHook(DeciTreeOption<EmposInfo> option) {
+	@Override protected ActionStdV2<EmposInfo> getInstanceOfActionHook(DeciTreeOption<EmposInfo> option) {
 		return new NodeEmposDeleteEmplate(option).toAction();
 	}
 	

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.form.formPhone.info.FormoneInfo;
 import br.com.mind5.form.formPhone.model.checker.FormoneCheckCountry;
 import br.com.mind5.form.formPhone.model.checker.FormoneCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -46,10 +46,10 @@ public final class RootFormoneSelect extends DeciTreeTemplateReadV2<FormoneInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<FormoneInfo>> buildActionsOnPassedHook(DeciTreeOption<FormoneInfo> option) {
-		List<ActionStdV1<FormoneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<FormoneInfo>> buildActionsOnPassedHook(DeciTreeOption<FormoneInfo> option) {
+		List<ActionStdV2<FormoneInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<FormoneInfo> nodeSelect = new NodeFormoneSelect(option).toAction();
+		ActionStdV2<FormoneInfo> nodeSelect = new NodeFormoneSelect(option).toAction();
 		
 		actions.add(nodeSelect);
 		return actions;

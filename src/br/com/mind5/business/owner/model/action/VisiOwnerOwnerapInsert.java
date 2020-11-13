@@ -6,11 +6,11 @@ import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.business.ownerSnapshot.model.decisionTree.RootOwnerapInsert;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerOwnerapInsert extends ActionVisitorTemplateActionV2<OwnerInfo, OwnerapInfo> {
+final class VisiOwnerOwnerapInsert extends ActionVisitorTemplateAction<OwnerInfo, OwnerapInfo> {
 
 	public VisiOwnerOwnerapInsert(DeciTreeOption<OwnerInfo> option) {
 		super(option, OwnerInfo.class, OwnerapInfo.class);

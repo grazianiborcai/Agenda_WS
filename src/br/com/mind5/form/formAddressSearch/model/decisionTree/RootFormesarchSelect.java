@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.form.formAddressSearch.info.FormesarchInfo;
 import br.com.mind5.form.formAddressSearch.model.action.StdFormesarchMergeToSelect;
 import br.com.mind5.form.formAddressSearch.model.checker.FormesarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,10 +39,10 @@ public final class RootFormesarchSelect extends DeciTreeTemplateReadV2<Formesarc
 	
 	
 	
-	@Override protected List<ActionStdV1<FormesarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FormesarchInfo> option) {
-		List<ActionStdV1<FormesarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<FormesarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FormesarchInfo> option) {
+		List<ActionStdV2<FormesarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<FormesarchInfo> mergeToSelect = new StdFormesarchMergeToSelect(option);
+		ActionStdV2<FormesarchInfo> mergeToSelect = new StdFormesarchMergeToSelect(option);
 		
 		actions.add(mergeToSelect);
 		return actions;

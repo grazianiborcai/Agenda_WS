@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.orderStatusChange.info.OrdugeInfo;
 import br.com.mind5.business.orderStatusChange.model.action.StdOrdugeEnforceCreated;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -32,10 +32,10 @@ public final class RootOrdugeCreate extends DeciTreeTemplateReadV2<OrdugeInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<OrdugeInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdugeInfo> option) {
-		List<ActionStdV1<OrdugeInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<OrdugeInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdugeInfo> option) {
+		List<ActionStdV2<OrdugeInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<OrdugeInfo> enforceStatus = new StdOrdugeEnforceCreated(option);
+		ActionStdV2<OrdugeInfo> enforceStatus = new StdOrdugeEnforceCreated(option);
 		
 		actions.add(enforceStatus);			
 		return actions;

@@ -19,7 +19,7 @@ import br.com.mind5.business.materialText.model.checker.MatextCheckMat;
 import br.com.mind5.business.materialText.model.checker.MatextCheckOwner;
 import br.com.mind5.business.materialText.model.checker.MatextCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -86,10 +86,10 @@ public final class RootMatextUpdate extends DeciTreeTemplateWriteV2<MatextInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
-		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
+		List<ActionStdV2<MatextInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<MatextInfo> mergeToUpdate = new StdMatextMergeToUpdate(option);
+		ActionStdV2<MatextInfo> mergeToUpdate = new StdMatextMergeToUpdate(option);
 		ActionLazy<MatextInfo> nodeDefault = new LazyMatextNodeDefaultL1(option.conn, option.schemaName);
 		ActionLazy<MatextInfo> enforceLChanged = new LazyMatextEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);

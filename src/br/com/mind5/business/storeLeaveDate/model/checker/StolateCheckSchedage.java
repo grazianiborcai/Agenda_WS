@@ -7,7 +7,7 @@ import br.com.mind5.business.scheduleRange.info.SchedageInfo;
 import br.com.mind5.business.scheduleRange.model.decisionTree.RootSchedageSelect;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,8 +20,8 @@ public final class StolateCheckSchedage extends ModelCheckerTemplateActionV2<Sto
 	
 	
 	
-	@Override protected ActionStdV1<SchedageInfo> buildActionHook(DeciTreeOption<SchedageInfo> option) {
-		ActionStdV1<SchedageInfo> select = new RootSchedageSelect(option).toAction();
+	@Override protected ActionStdV2<SchedageInfo> buildActionHook(DeciTreeOption<SchedageInfo> option) {
+		ActionStdV2<SchedageInfo> select = new RootSchedageSelect(option).toAction();
 		return select;
 	}
 	

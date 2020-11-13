@@ -15,7 +15,7 @@ import br.com.mind5.business.storeProspect.model.checker.StoprosCheckInsert;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckLangu;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckOwner;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -68,10 +68,10 @@ public final class RootStoprosInsert extends DeciTreeTemplateWriteV2<StoprosInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<StoprosInfo>> buildActionsOnPassedHook(DeciTreeOption<StoprosInfo> option) {
-		List<ActionStdV1<StoprosInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StoprosInfo>> buildActionsOnPassedHook(DeciTreeOption<StoprosInfo> option) {
+		List<ActionStdV2<StoprosInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StoprosInfo> otporeAuthenticate = new StdStoprosOtporeAuthenticate(option);
+		ActionStdV2<StoprosInfo> otporeAuthenticate = new StdStoprosOtporeAuthenticate(option);
 		ActionLazy<StoprosInfo> enforceCreated = new LazyStoprosEnforceCreated(option.conn, option.schemaName);
 		ActionLazy<StoprosInfo> enforceCreatedOn = new LazyStoprosEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<StoprosInfo> enforceLChanged = new LazyStoprosEnforceLChanged(option.conn, option.schemaName);

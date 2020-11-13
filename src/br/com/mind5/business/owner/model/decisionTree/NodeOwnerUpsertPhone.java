@@ -9,7 +9,7 @@ import br.com.mind5.business.owner.model.action.StdOwnerEnforcePhoneKey;
 import br.com.mind5.business.owner.model.action.StdOwnerSuccess;
 import br.com.mind5.business.owner.model.checker.OwnerCheckHasPhone;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -41,10 +41,10 @@ public final class NodeOwnerUpsertPhone extends DeciTreeTemplateWriteV2<OwnerInf
 	
 	
 	
-	@Override protected List<ActionStdV1<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStdV2<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OwnerInfo> enforcePhoneKey = new StdOwnerEnforcePhoneKey(option);
+		ActionStdV2<OwnerInfo> enforcePhoneKey = new StdOwnerEnforcePhoneKey(option);
 		ActionLazy<OwnerInfo> upsertPhone = new LazyOwnerPhoneUpsert(option.conn, option.schemaName);	
 		
 		enforcePhoneKey.addPostAction(upsertPhone);
@@ -55,8 +55,8 @@ public final class NodeOwnerUpsertPhone extends DeciTreeTemplateWriteV2<OwnerInf
 	
 	
 	
-	@Override protected List<ActionStdV1<OwnerInfo>> buildActionsOnFailedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OwnerInfo>> buildActionsOnFailedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStdV2<OwnerInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdOwnerSuccess(option));		
 		return actions;

@@ -18,7 +18,7 @@ import br.com.mind5.business.bookService.model.checker.BookiceCheckSchedarch;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckStolarg;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckStore;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckStoworg;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -134,10 +134,10 @@ public final class NodeBookiceSchedineL2 extends DeciTreeTemplateWriteV2<Bookice
 	
 	
 	
-	@Override protected List<ActionStdV1<BookiceInfo>> buildActionsOnPassedHook(DeciTreeOption<BookiceInfo> option) {
-		List<ActionStdV1<BookiceInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<BookiceInfo>> buildActionsOnPassedHook(DeciTreeOption<BookiceInfo> option) {
+		List<ActionStdV2<BookiceInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<BookiceInfo> success = new StdBookiceSuccess(option);			
+		ActionStdV2<BookiceInfo> success = new StdBookiceSuccess(option);			
 		actions.add(success);
 		
 		return actions;

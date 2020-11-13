@@ -9,7 +9,7 @@ import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckDelete
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckExist;
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckOwner;
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckStorauth;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -62,10 +62,10 @@ public final class RootRefuporeDelete extends DeciTreeTemplateWriteV2<RefuporeIn
 	
 	
 	
-	@Override protected List<ActionStdV1<RefuporeInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuporeInfo> option) {
-		List<ActionStdV1<RefuporeInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<RefuporeInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuporeInfo> option) {
+		List<ActionStdV2<RefuporeInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<RefuporeInfo> delete = new StdRefuporeDaoDelete(option);
+		ActionStdV2<RefuporeInfo> delete = new StdRefuporeDaoDelete(option);
 		
 		actions.add(delete);
 		return actions;

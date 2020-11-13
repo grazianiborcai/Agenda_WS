@@ -8,7 +8,7 @@ import br.com.mind5.business.order.model.checker.OrderCheckExist;
 import br.com.mind5.business.order.model.checker.OrderCheckLangu;
 import br.com.mind5.business.order.model.checker.OrderCheckOwner;
 import br.com.mind5.business.order.model.checker.OrderCheckWrite;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -61,11 +61,11 @@ public final class RootOrderPlaceAuth extends DeciTreeTemplateReadV2<OrderInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV2<OrderInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<OrderInfo> auth = new NodeOrderAuthL1(option).toAction();
-		ActionStdV1<OrderInfo> place = new RootOrderPlace(option).toAction();
+		ActionStdV2<OrderInfo> auth = new NodeOrderAuthL1(option).toAction();
+		ActionStdV2<OrderInfo> place = new RootOrderPlace(option).toAction();
 		
 		actions.add(auth);		
 		actions.add(place);

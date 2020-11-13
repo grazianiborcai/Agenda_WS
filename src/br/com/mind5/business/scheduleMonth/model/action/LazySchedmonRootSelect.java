@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
 import br.com.mind5.business.scheduleMonth.model.decisionTree.RootSchedmonSelect;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazySchedmonRootSelect extends ActionLazyTemplate<SchedmonInf
 	
 	
 	
-	@Override protected ActionStdV1<SchedmonInfo> getInstanceOfActionHook(DeciTreeOption<SchedmonInfo> option) {
+	@Override protected ActionStdV2<SchedmonInfo> getInstanceOfActionHook(DeciTreeOption<SchedmonInfo> option) {
 		return new RootSchedmonSelect(option).toAction();
 	}
 	

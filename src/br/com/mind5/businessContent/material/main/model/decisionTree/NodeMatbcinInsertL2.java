@@ -7,7 +7,7 @@ import br.com.mind5.businessContent.material.main.info.MatbcinInfo;
 import br.com.mind5.businessContent.material.main.model.action.StdMatbcinMatbcetInsert;
 import br.com.mind5.businessContent.material.main.model.action.StdMatbcinSuccess;
 import br.com.mind5.businessContent.material.main.model.checker.MatbcinCheckIsPetshop;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,10 +39,10 @@ public final class NodeMatbcinInsertL2 extends DeciTreeTemplateWriteV2<MatbcinIn
 	
 	
 	
-	@Override protected List<ActionStdV1<MatbcinInfo>> buildActionsOnPassedHook(DeciTreeOption<MatbcinInfo> option) {
-		List<ActionStdV1<MatbcinInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<MatbcinInfo>> buildActionsOnPassedHook(DeciTreeOption<MatbcinInfo> option) {
+		List<ActionStdV2<MatbcinInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<MatbcinInfo> insertMatbcet = new StdMatbcinMatbcetInsert(option);
+		ActionStdV2<MatbcinInfo> insertMatbcet = new StdMatbcinMatbcetInsert(option);
 		
 		actions.add(insertMatbcet);		
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeMatbcinInsertL2 extends DeciTreeTemplateWriteV2<MatbcinIn
 	
 	
 	
-	@Override protected List<ActionStdV1<MatbcinInfo>> buildActionsOnFailedHook(DeciTreeOption<MatbcinInfo> option) {
-		List<ActionStdV1<MatbcinInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<MatbcinInfo>> buildActionsOnFailedHook(DeciTreeOption<MatbcinInfo> option) {
+		List<ActionStdV2<MatbcinInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<MatbcinInfo> success = new StdMatbcinSuccess(option);	
+		ActionStdV2<MatbcinInfo> success = new StdMatbcinSuccess(option);	
 		
 		actions.add(success);		
 		return actions;

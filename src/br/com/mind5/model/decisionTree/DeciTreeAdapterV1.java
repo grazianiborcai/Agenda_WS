@@ -154,4 +154,12 @@ public final class DeciTreeAdapterV1<T extends InfoRecord> extends ActionStdTemp
 	private void logException(Exception e) {		
 		SystemLog.logError(this.getClass(), e);
 	}
+
+
+
+	@Override
+	public void close() {
+		// TODO Auto-generated method stub
+		
+	}
 }

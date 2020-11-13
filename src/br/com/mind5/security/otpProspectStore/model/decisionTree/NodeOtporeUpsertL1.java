@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -36,10 +36,10 @@ public final class NodeOtporeUpsertL1 extends DeciTreeTemplateWriteV2<OtporeInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<OtporeInfo>> buildActionsOnPassedHook(DeciTreeOption<OtporeInfo> option) {
-		List<ActionStdV1<OtporeInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OtporeInfo>> buildActionsOnPassedHook(DeciTreeOption<OtporeInfo> option) {
+		List<ActionStdV2<OtporeInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OtporeInfo> otpGenerate = new StdOtporeOtpGenerate(option);
+		ActionStdV2<OtporeInfo> otpGenerate = new StdOtporeOtpGenerate(option);
 		ActionLazy<OtporeInfo> enforceLChanged = new LazyOtporeEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<OtporeInfo> enforceValidUntil = new LazyOtporeEnforceValidUntil(option.conn, option.schemaName);
 		ActionLazy<OtporeInfo> nodeL2 = new LazyOtporeNodeUpsertL2(option.conn, option.schemaName);

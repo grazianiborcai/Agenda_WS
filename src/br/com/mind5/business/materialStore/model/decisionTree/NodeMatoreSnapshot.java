@@ -7,7 +7,7 @@ import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreDaoUpdate;
 import br.com.mind5.business.materialStore.model.action.StdMatoreInsertMatorap;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class NodeMatoreSnapshot extends DeciTreeTemplateWriteV2<MatoreInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
-		List<ActionStdV1<MatoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
+		List<ActionStdV2<MatoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatoreInfo> insertMatorap = new StdMatoreInsertMatorap(option);
+		ActionStdV2<MatoreInfo> insertMatorap = new StdMatoreInsertMatorap(option);
 		ActionLazy<MatoreInfo> update = new LazyMatoreDaoUpdate(option.conn, option.schemaName);
 		
 		insertMatorap.addPostAction(update);

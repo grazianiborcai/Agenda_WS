@@ -8,7 +8,7 @@ import br.com.mind5.file.fileImageSearch.model.action.StdFimarchMergeToSelect;
 import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckLangu;
 import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckOwner;
 import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -54,10 +54,10 @@ public final class RootFimarchSelect extends DeciTreeTemplateReadV2<FimarchInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<FimarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FimarchInfo> option) {
-		List<ActionStdV1<FimarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<FimarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FimarchInfo> option) {
+		List<ActionStdV2<FimarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<FimarchInfo> select = new StdFimarchMergeToSelect(option);
+		ActionStdV2<FimarchInfo> select = new StdFimarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

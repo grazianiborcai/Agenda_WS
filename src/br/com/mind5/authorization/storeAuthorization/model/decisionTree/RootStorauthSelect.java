@@ -9,7 +9,7 @@ import br.com.mind5.authorization.storeAuthorization.model.action.StdStorauthMer
 import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckOwner;
 import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckReadSelect;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -48,10 +48,10 @@ public final class RootStorauthSelect extends DeciTreeTemplateWriteV2<StorauthIn
 	
 	
 	
-	@Override protected List<ActionStdV1<StorauthInfo>> buildActionsOnPassedHook(DeciTreeOption<StorauthInfo> option) {
-		List<ActionStdV1<StorauthInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StorauthInfo>> buildActionsOnPassedHook(DeciTreeOption<StorauthInfo> option) {
+		List<ActionStdV2<StorauthInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StorauthInfo> mergeUsername = new StdStorauthMergeUsername(option);	
+		ActionStdV2<StorauthInfo> mergeUsername = new StdStorauthMergeUsername(option);	
 		ActionLazy<StorauthInfo> nodeL1 = new LazyStorauthNodeSelectL1(option.conn, option.schemaName);	
 		
 		mergeUsername.addPostAction(nodeL1);

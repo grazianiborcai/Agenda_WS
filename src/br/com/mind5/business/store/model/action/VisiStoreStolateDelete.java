@@ -5,11 +5,11 @@ import java.util.List;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.business.storeLeaveDate.model.decisionTree.RootStolateDeleteByStore;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreStolateDelete extends ActionVisitorTemplateActionV2<StoreInfo, StolateInfo> {
+final class VisiStoreStolateDelete extends ActionVisitorTemplateAction<StoreInfo, StolateInfo> {
 	
 	public VisiStoreStolateDelete(DeciTreeOption<StoreInfo> option) {
 		super(option, StoreInfo.class, StolateInfo.class);

@@ -5,11 +5,11 @@ import java.util.List;
 import br.com.mind5.message.email.info.EmailInfo;
 import br.com.mind5.message.email.model.decisionTree.RootEmailScheduleConfirmation;
 import br.com.mind5.message.emailScheduleConfirmation.info.EmulonInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmulonSendEmail extends ActionVisitorTemplateActionV2<EmulonInfo, EmailInfo> {
+final class VisiEmulonSendEmail extends ActionVisitorTemplateAction<EmulonInfo, EmailInfo> {
 	
 	public VisiEmulonSendEmail(DeciTreeOption<EmulonInfo> option) {
 		super(option, EmulonInfo.class, EmailInfo.class);

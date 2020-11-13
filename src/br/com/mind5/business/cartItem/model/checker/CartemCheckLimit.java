@@ -7,7 +7,7 @@ import br.com.mind5.business.cartItemSearch.info.CartemarchCopier;
 import br.com.mind5.business.cartItemSearch.info.CartemarchInfo;
 import br.com.mind5.business.cartItemSearch.model.decisionTree.RootCartemarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -22,8 +22,8 @@ public final class CartemCheckLimit extends ModelCheckerTemplateActionV2<CartemI
 	
 	
 	
-	@Override protected ActionStdV1<CartemarchInfo> buildActionHook(DeciTreeOption<CartemarchInfo> option) {
-		ActionStdV1<CartemarchInfo> select = new RootCartemarchSelect(option).toAction();
+	@Override protected ActionStdV2<CartemarchInfo> buildActionHook(DeciTreeOption<CartemarchInfo> option) {
+		ActionStdV2<CartemarchInfo> select = new RootCartemarchSelect(option).toAction();
 		return select;
 	}
 	

@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -37,10 +37,10 @@ public final class NodeRefumoipRefundL1 extends DeciTreeTemplateWriteV2<Refumoip
 	
 	
 
-	@Override protected List<ActionStdV1<RefumoipInfo>> buildActionsOnPassedHook(DeciTreeOption<RefumoipInfo> option) {
-		List<ActionStdV1<RefumoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV2<RefumoipInfo>> buildActionsOnPassedHook(DeciTreeOption<RefumoipInfo> option) {
+		List<ActionStdV2<RefumoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<RefumoipInfo> nodeL2 = new NodeRefumoipRefundL2(option).toAction();
+		ActionStdV2<RefumoipInfo> nodeL2 = new NodeRefumoipRefundL2(option).toAction();
 		
 		actions.add(nodeL2);		
 		return actions;

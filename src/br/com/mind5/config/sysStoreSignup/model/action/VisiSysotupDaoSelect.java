@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.config.sysStoreSignup.dao.DaoSysotupSelect;
 import br.com.mind5.config.sysStoreSignup.info.SysotupInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSysotupDaoSelect extends ActionVisitorTemplateStmtV2<SysotupInfo> {
+final class VisiSysotupDaoSelect extends ActionVisitorTemplateStmt<SysotupInfo> {
 
 	public VisiSysotupDaoSelect(DeciTreeOption<SysotupInfo> option) {
 		super(option);

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.checker.MatextCheckIsDefault;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -37,10 +37,10 @@ public final class NodeMatextDefaultL1 extends DeciTreeTemplateWriteV2<MatextInf
 	
 	
 	
-	@Override protected List<ActionStdV1<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
-		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
+		List<ActionStdV2<MatextInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<MatextInfo> nodeL2 = new NodeMatextDefaultL2(option).toAction();
+		ActionStdV2<MatextInfo> nodeL2 = new NodeMatextDefaultL2(option).toAction();
 		
 		actions.add(nodeL2);
 		return actions;
@@ -48,10 +48,10 @@ public final class NodeMatextDefaultL1 extends DeciTreeTemplateWriteV2<MatextInf
 	
 	
 	
-	@Override protected List<ActionStdV1<MatextInfo>> buildActionsOnFailedHook(DeciTreeOption<MatextInfo> option) {
-		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatextInfo>> buildActionsOnFailedHook(DeciTreeOption<MatextInfo> option) {
+		List<ActionStdV2<MatextInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<MatextInfo> nodeL3 = new NodeMatextDefaultL3(option).toAction();	
+		ActionStdV2<MatextInfo> nodeL3 = new NodeMatextDefaultL3(option).toAction();	
 		
 		actions.add(nodeL3);		
 		return actions;

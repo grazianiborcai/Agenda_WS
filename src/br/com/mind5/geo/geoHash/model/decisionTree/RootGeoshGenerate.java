@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.geo.geoHash.info.GeoshInfo;
 import br.com.mind5.geo.geoHash.model.action.StdGeoshGenerate;
 import br.com.mind5.geo.geoHash.model.checker.GeoshCheckGenerate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootGeoshGenerate extends DeciTreeTemplateWriteV2<GeoshInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<GeoshInfo>> buildActionsOnPassedHook(DeciTreeOption<GeoshInfo> option) {
-		List<ActionStdV1<GeoshInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV2<GeoshInfo>> buildActionsOnPassedHook(DeciTreeOption<GeoshInfo> option) {
+		List<ActionStdV2<GeoshInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<GeoshInfo> generate = new StdGeoshGenerate(option);
+		ActionStdV2<GeoshInfo> generate = new StdGeoshGenerate(option);
 		
 		actions.add(generate);		
 		return actions;

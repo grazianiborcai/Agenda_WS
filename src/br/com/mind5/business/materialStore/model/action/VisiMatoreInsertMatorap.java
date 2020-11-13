@@ -6,11 +6,11 @@ import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.info.MatoreMerger;
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
 import br.com.mind5.business.materialStoreSnapshot.model.decisionTree.RootMatorapInsert;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatoreInsertMatorap extends ActionVisitorTemplateActionV2<MatoreInfo, MatorapInfo> {
+final class VisiMatoreInsertMatorap extends ActionVisitorTemplateAction<MatoreInfo, MatorapInfo> {
 
 	public VisiMatoreInsertMatorap(DeciTreeOption<MatoreInfo> option) {
 		super(option, MatoreInfo.class, MatorapInfo.class);

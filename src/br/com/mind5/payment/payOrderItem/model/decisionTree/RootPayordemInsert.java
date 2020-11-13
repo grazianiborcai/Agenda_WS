@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -65,10 +65,10 @@ public final class RootPayordemInsert extends DeciTreeTemplateWriteV2<PayordemIn
 	
 	
 	
-	@Override protected List<ActionStdV1<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
-		List<ActionStdV1<PayordemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
+		List<ActionStdV2<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PayordemInfo> enforceLChanged = new StdPayordemEnforceLChanged(option);
+		ActionStdV2<PayordemInfo> enforceLChanged = new StdPayordemEnforceLChanged(option);
 		ActionLazy<PayordemInfo> insert = new LazyPayordemDaoInsert(option.conn, option.schemaName);
 		ActionLazy<PayordemInfo> nodePay = new LazyPayordemNodePay(option.conn, option.schemaName);
 		

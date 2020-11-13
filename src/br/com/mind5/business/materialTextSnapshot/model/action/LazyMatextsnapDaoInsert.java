@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyMatextsnapDaoInsert extends ActionLazyTemplate<Matextsnap
 	
 	
 	
-	@Override protected ActionStdV1<MatextsnapInfo> getInstanceOfActionHook(DeciTreeOption<MatextsnapInfo> option) {
+	@Override protected ActionStdV2<MatextsnapInfo> getInstanceOfActionHook(DeciTreeOption<MatextsnapInfo> option) {
 		return new StdMatextsnapDaoInsert(option);
 	}
 	

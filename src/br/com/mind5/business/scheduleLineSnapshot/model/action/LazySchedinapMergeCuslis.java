@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazySchedinapMergeCuslis extends ActionLazyTemplate<Schedinap
 	
 	
 	
-	@Override protected ActionStdV1<SchedinapInfo> getInstanceOfActionHook(DeciTreeOption<SchedinapInfo> option) {
+	@Override protected ActionStdV2<SchedinapInfo> getInstanceOfActionHook(DeciTreeOption<SchedinapInfo> option) {
 		return new StdSchedinapMergeCuslis(option);
 	}
 	

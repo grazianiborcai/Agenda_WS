@@ -15,7 +15,7 @@ import br.com.mind5.business.employee.model.checker.EmpCheckLangu;
 import br.com.mind5.business.employee.model.checker.EmpCheckOwner;
 import br.com.mind5.business.employee.model.checker.EmpCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -61,10 +61,10 @@ public final class RootEmpSelect extends DeciTreeTemplateReadV2<EmpInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStdV2<EmpInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<EmpInfo> select = new StdEmpMergeToSelect(option);
+		ActionStdV2<EmpInfo> select = new StdEmpMergeToSelect(option);
 		ActionLazy<EmpInfo> nodeSytotauh = new LazyEmpNodeSytotauh(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> mergePerson = new LazyEmpMergePerson(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> mergeAddress = new LazyEmpMergeAddress(option.conn, option.schemaName);

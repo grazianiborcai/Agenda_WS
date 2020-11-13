@@ -17,7 +17,7 @@ import br.com.mind5.business.material.model.checker.MatCheckMatype;
 import br.com.mind5.business.material.model.checker.MatCheckOwner;
 import br.com.mind5.business.material.model.checker.MatCheckUpdate;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -105,10 +105,10 @@ public final class RootMatUpdate extends DeciTreeTemplateWriteV2<MatInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
-		List<ActionStdV1<MatInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
+		List<ActionStdV2<MatInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<MatInfo> updateMat = new NodeMatUpdate(option).toAction();	
+		ActionStdV2<MatInfo> updateMat = new NodeMatUpdate(option).toAction();	
 		ActionLazy<MatInfo> upsertMatext = new LazyMatNodeUpsertMatext(option.conn, option.schemaName);
 		ActionLazy<MatInfo> snapshot = new LazyMatNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<MatInfo> select = new LazyMatRootSelect(option.conn, option.schemaName);

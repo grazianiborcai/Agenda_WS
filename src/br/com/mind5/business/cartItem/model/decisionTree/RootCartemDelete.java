@@ -8,7 +8,7 @@ import br.com.mind5.business.cartItem.model.checker.CartemCheckDelete;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckExist;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckLangu;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckOwner;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -61,10 +61,10 @@ public final class RootCartemDelete extends DeciTreeTemplateWriteV2<CartemInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStdV2<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CartemInfo> delete = new NodeCartemDelete(option).toAction();
+		ActionStdV2<CartemInfo> delete = new NodeCartemDelete(option).toAction();
 		
 		actions.add(delete);		
 		return actions;

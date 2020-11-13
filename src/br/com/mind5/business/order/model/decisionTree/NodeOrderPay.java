@@ -8,7 +8,7 @@ import br.com.mind5.business.order.model.action.LazyOrderMergeOrderem;
 import br.com.mind5.business.order.model.action.LazyOrderNodeUpdate;
 import br.com.mind5.business.order.model.action.StdOrderMergeOrdugePay;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -35,10 +35,10 @@ public final class NodeOrderPay extends DeciTreeTemplateWriteV2<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV2<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OrderInfo> statusChange = new StdOrderMergeOrdugePay(option);
+		ActionStdV2<OrderInfo> statusChange = new StdOrderMergeOrdugePay(option);
 		ActionLazy<OrderInfo> update = new LazyOrderNodeUpdate(option.conn, option.schemaName);	
 		ActionLazy<OrderInfo> mergeOrderem = new LazyOrderMergeOrderem(option.conn, option.schemaName);
 		

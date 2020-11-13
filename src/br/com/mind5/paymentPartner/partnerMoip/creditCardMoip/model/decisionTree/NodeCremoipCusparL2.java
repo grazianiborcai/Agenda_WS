@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -46,10 +46,10 @@ public final class NodeCremoipCusparL2 extends DeciTreeTemplateWriteV2<CremoipIn
 	
 	
 	
-	@Override protected List<ActionStdV1<CremoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CremoipInfo> option) {
-		List<ActionStdV1<CremoipInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CremoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CremoipInfo> option) {
+		List<ActionStdV2<CremoipInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CremoipInfo> success = new StdCremoipSuccess(option);
+		ActionStdV2<CremoipInfo> success = new StdCremoipSuccess(option);
 		
 		actions.add(success);
 		return actions;

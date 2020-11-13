@@ -7,7 +7,7 @@ import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.business.addressSearch.model.action.StdAddarchMergeToSelect;
 import br.com.mind5.business.addressSearch.model.checker.AddarchCheckLangu;
 import br.com.mind5.business.addressSearch.model.checker.AddarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -46,10 +46,10 @@ public final class RootAddarchSelect extends DeciTreeTemplateWriteV2<AddarchInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<AddarchInfo>> buildActionsOnPassedHook(DeciTreeOption<AddarchInfo> option) {
-		List<ActionStdV1<AddarchInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<AddarchInfo>> buildActionsOnPassedHook(DeciTreeOption<AddarchInfo> option) {
+		List<ActionStdV2<AddarchInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<AddarchInfo> select = new StdAddarchMergeToSelect(option);
+		ActionStdV2<AddarchInfo> select = new StdAddarchMergeToSelect(option);
 		
 		actions.add(select);			
 		return actions;

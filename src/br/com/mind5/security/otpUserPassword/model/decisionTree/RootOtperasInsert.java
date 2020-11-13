@@ -3,7 +3,7 @@ package br.com.mind5.security.otpUserPassword.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -45,10 +45,10 @@ public final class RootOtperasInsert extends DeciTreeTemplateWriteV2<OtperasInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<OtperasInfo>> buildActionsOnPassedHook(DeciTreeOption<OtperasInfo> option) {
-		List<ActionStdV1<OtperasInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OtperasInfo>> buildActionsOnPassedHook(DeciTreeOption<OtperasInfo> option) {
+		List<ActionStdV2<OtperasInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OtperasInfo> insert = new NodeOtperasInsert(option).toAction();
+		ActionStdV2<OtperasInfo> insert = new NodeOtperasInsert(option).toAction();
 		
 		actions.add(insert);	
 		return actions;

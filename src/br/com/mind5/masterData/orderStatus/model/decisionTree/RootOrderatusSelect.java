@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.orderStatus.info.OrderatusInfo;
 import br.com.mind5.masterData.orderStatus.model.action.StdOrderatusDaoSelect;
 import br.com.mind5.masterData.orderStatus.model.checker.OrderatusCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootOrderatusSelect extends DeciTreeTemplateReadV2<OrderatusI
 
 		
 	
-	@Override protected List<ActionStdV1<OrderatusInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderatusInfo> option) {
-		List<ActionStdV1<OrderatusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OrderatusInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderatusInfo> option) {
+		List<ActionStdV2<OrderatusInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OrderatusInfo> select = new StdOrderatusDaoSelect(option);
+		ActionStdV2<OrderatusInfo> select = new StdOrderatusDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

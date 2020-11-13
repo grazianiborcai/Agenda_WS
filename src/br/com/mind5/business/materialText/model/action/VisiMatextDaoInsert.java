@@ -6,10 +6,10 @@ import br.com.mind5.business.materialText.dao.DaoMatextInsert;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatextDaoInsert extends ActionVisitorTemplateStmtV2<MatextInfo> {
+final class VisiMatextDaoInsert extends ActionVisitorTemplateStmt<MatextInfo> {
 
 	public VisiMatextDaoInsert(DeciTreeOption<MatextInfo> option) {
 		super(option);

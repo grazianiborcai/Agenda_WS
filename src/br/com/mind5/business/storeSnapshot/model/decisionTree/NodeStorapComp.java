@@ -7,7 +7,7 @@ import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.model.action.StdStorapMergeComplis;
 import br.com.mind5.business.storeSnapshot.model.action.StdStorapSuccess;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckHasComp;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -39,10 +39,10 @@ public final class NodeStorapComp extends DeciTreeTemplateWriteV2<StorapInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<StorapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorapInfo> option) {
-		List<ActionStdV1<StorapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StorapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorapInfo> option) {
+		List<ActionStdV2<StorapInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<StorapInfo> mergeComplis = new StdStorapMergeComplis(option);
+		ActionStdV2<StorapInfo> mergeComplis = new StdStorapMergeComplis(option);
 		
 		actions.add(mergeComplis);	
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeStorapComp extends DeciTreeTemplateWriteV2<StorapInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<StorapInfo>> buildActionsOnFailedHook(DeciTreeOption<StorapInfo> option) {
-		List<ActionStdV1<StorapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StorapInfo>> buildActionsOnFailedHook(DeciTreeOption<StorapInfo> option) {
+		List<ActionStdV2<StorapInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<StorapInfo> success = new StdStorapSuccess(option);
+		ActionStdV2<StorapInfo> success = new StdStorapSuccess(option);
 		
 		actions.add(success);	
 		return actions;

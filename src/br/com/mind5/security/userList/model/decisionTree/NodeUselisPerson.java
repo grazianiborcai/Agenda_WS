@@ -3,7 +3,7 @@ package br.com.mind5.security.userList.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,10 +39,10 @@ public final class NodeUselisPerson extends DeciTreeTemplateReadV2<UselisInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<UselisInfo>> buildActionsOnPassedHook(DeciTreeOption<UselisInfo> option) {
-		List<ActionStdV1<UselisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<UselisInfo>> buildActionsOnPassedHook(DeciTreeOption<UselisInfo> option) {
+		List<ActionStdV2<UselisInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<UselisInfo> mergePersolis = new StdUselisMergePersolis(option);
+		ActionStdV2<UselisInfo> mergePersolis = new StdUselisMergePersolis(option);
 		
 		actions.add(mergePersolis);
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeUselisPerson extends DeciTreeTemplateReadV2<UselisInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<UselisInfo>> buildActionsOnFailedHook(DeciTreeOption<UselisInfo> option) {
-		List<ActionStdV1<UselisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<UselisInfo>> buildActionsOnFailedHook(DeciTreeOption<UselisInfo> option) {
+		List<ActionStdV2<UselisInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<UselisInfo> success = new StdUselisSuccess(option);
+		ActionStdV2<UselisInfo> success = new StdUselisSuccess(option);
 		
 		actions.add(success);
 		return actions;

@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.gender.dao.DaoGenderSelect;
 import br.com.mind5.masterData.gender.info.GenderInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiGenderDaoSelect extends ActionVisitorTemplateStmtV2<GenderInfo> {
+final class VisiGenderDaoSelect extends ActionVisitorTemplateStmt<GenderInfo> {
 
 	public VisiGenderDaoSelect(DeciTreeOption<GenderInfo> option) {
 		super(option);

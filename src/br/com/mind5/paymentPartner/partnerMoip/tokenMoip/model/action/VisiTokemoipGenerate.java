@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.action.ActionVisitorTemplateSimple;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.moip.Moip;
 import br.com.moip.models.Setup;
 
-final class VisiTokemoipGenerate extends ActionVisitorTemplateSimpleV2<TokemoipInfo> {
+final class VisiTokemoipGenerate extends ActionVisitorTemplateSimple<TokemoipInfo> {
 	
 	public VisiTokemoipGenerate(DeciTreeOption<TokemoipInfo> option) {
 		super(option);

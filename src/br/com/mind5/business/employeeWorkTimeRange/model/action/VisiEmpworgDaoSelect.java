@@ -6,10 +6,10 @@ import br.com.mind5.business.employeeWorkTimeRange.dao.DaoEmpworgSelect;
 import br.com.mind5.business.employeeWorkTimeRange.info.EmpworgInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpworgDaoSelect extends ActionVisitorTemplateStmtV2<EmpworgInfo> {
+final class VisiEmpworgDaoSelect extends ActionVisitorTemplateStmt<EmpworgInfo> {
 
 	public VisiEmpworgDaoSelect(DeciTreeOption<EmpworgInfo> option) {
 		super(option);

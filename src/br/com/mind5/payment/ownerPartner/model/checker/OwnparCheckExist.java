@@ -1,7 +1,7 @@
 package br.com.mind5.payment.ownerPartner.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class OwnparCheckExist extends ModelCheckerTemplateActionV2<OwnparI
 	
 
 	
-	@Override protected ActionStdV1<OwnparInfo> buildActionHook(DeciTreeOption<OwnparInfo> option) {
-		ActionStdV1<OwnparInfo> select = new StdOwnparDaoSelect(option);
+	@Override protected ActionStdV2<OwnparInfo> buildActionHook(DeciTreeOption<OwnparInfo> option) {
+		ActionStdV2<OwnparInfo> select = new StdOwnparDaoSelect(option);
 		return select;
 	}
 	

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -48,10 +48,10 @@ public final class RootPayordUpdate extends DeciTreeTemplateWriteV2<PayordInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
-		List<ActionStdV1<PayordInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
+		List<ActionStdV2<PayordInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PayordInfo> select = new StdPayordMergeToUpdate(option);
+		ActionStdV2<PayordInfo> select = new StdPayordMergeToUpdate(option);
 		ActionLazy<PayordInfo> updatePayord = new LazyPayordDaoUpdate(option.conn, option.schemaName);
 		
 		select.addPostAction(updatePayord);

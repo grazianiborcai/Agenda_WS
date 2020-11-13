@@ -7,7 +7,7 @@ import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
 import br.com.mind5.config.sysStorePartitioning.model.action.LazySytotinRootSelect;
 import br.com.mind5.config.sysStorePartitioning.model.action.StdSytotinEnforceEnabled;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class RootSytotinSelectEnabled extends DeciTreeTemplateReadV2<Sytot
 	
 	
 	
-	@Override protected List<ActionStdV1<SytotinInfo>> buildActionsOnPassedHook(DeciTreeOption<SytotinInfo> option) {
-		List<ActionStdV1<SytotinInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SytotinInfo>> buildActionsOnPassedHook(DeciTreeOption<SytotinInfo> option) {
+		List<ActionStdV2<SytotinInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SytotinInfo> enforceEnabled = new StdSytotinEnforceEnabled(option);
+		ActionStdV2<SytotinInfo> enforceEnabled = new StdSytotinEnforceEnabled(option);
 		ActionLazy<SytotinInfo> select = new LazySytotinRootSelect(option.conn, option.schemaName);
 		
 		enforceEnabled.addPostAction(select);

@@ -3,7 +3,7 @@ package br.com.mind5.business.scheduleMonthData.model.checker;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
 import br.com.mind5.business.scheduleMonthData.model.action.StdSchedonthatDaoSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class SchedonthatCheckExist extends ModelCheckerTemplateActionV2<Sc
 	
 	
 	
-	@Override protected ActionStdV1<SchedonthatInfo> buildActionHook(DeciTreeOption<SchedonthatInfo> option) {
-		ActionStdV1<SchedonthatInfo> select = new StdSchedonthatDaoSelect(option);
+	@Override protected ActionStdV2<SchedonthatInfo> buildActionHook(DeciTreeOption<SchedonthatInfo> option) {
+		ActionStdV2<SchedonthatInfo> select = new StdSchedonthatDaoSelect(option);
 		return select;
 	}
 	

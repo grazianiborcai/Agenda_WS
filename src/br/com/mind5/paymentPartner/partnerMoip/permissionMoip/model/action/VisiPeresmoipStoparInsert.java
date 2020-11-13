@@ -2,7 +2,7 @@ package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartner.info.StoparCopier;
@@ -10,7 +10,7 @@ import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.storePartner.model.decisionTree.RootStoparInsert;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 
-final class VisiPeresmoipStoparInsert extends ActionVisitorTemplateActionV2<PeresmoipInfo, StoparInfo> {
+final class VisiPeresmoipStoparInsert extends ActionVisitorTemplateAction<PeresmoipInfo, StoparInfo> {
 	
 	public VisiPeresmoipStoparInsert(DeciTreeOption<PeresmoipInfo> option) {
 		super(option, PeresmoipInfo.class, StoparInfo.class);

@@ -14,7 +14,7 @@ import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckLangu;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckOwner;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -61,10 +61,10 @@ public final class RootStorapSelect extends DeciTreeTemplateReadV2<StorapInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<StorapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorapInfo> option) {
-		List<ActionStdV1<StorapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StorapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorapInfo> option) {
+		List<ActionStdV2<StorapInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<StorapInfo> select = new StdStorapMergeToSelect(option);
+		ActionStdV2<StorapInfo> select = new StdStorapMergeToSelect(option);
 		ActionLazy<StorapInfo> mergeCurrency = new LazyStorapMergeCurrency(option.conn, option.schemaName);
 		ActionLazy<StorapInfo> mergeTimezone = new LazyStorapMergeTimezone(option.conn, option.schemaName); 
 		ActionLazy<StorapInfo> mergePhonap = new LazyStorapMergePhonap(option.conn, option.schemaName);

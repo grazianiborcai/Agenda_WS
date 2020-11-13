@@ -8,7 +8,7 @@ import br.com.mind5.business.materialStore.model.action.LazyMatoreDelete;
 import br.com.mind5.business.materialStore.model.action.StdMatoreDaoUpdate;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckHasMatock;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -40,10 +40,10 @@ public final class NodeMatoreDelete extends DeciTreeTemplateWriteV2<MatoreInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
-		List<ActionStdV1<MatoreInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
+		List<ActionStdV2<MatoreInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<MatoreInfo> update = new StdMatoreDaoUpdate(option);
+		ActionStdV2<MatoreInfo> update = new StdMatoreDaoUpdate(option);
 		ActionLazy<MatoreInfo> delete = new LazyMatoreDelete(option.conn, option.schemaName);
 		
 		update.addPostAction(delete);

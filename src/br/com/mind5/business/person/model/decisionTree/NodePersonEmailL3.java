@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.action.StdPersonSuccess;
 import br.com.mind5.business.person.model.checker.PersonCheckEmailTaken;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class NodePersonEmailL3 extends DeciTreeTemplateWriteV2<PersonInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
-		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
+		List<ActionStdV2<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PersonInfo> success = new StdPersonSuccess(option);
+		ActionStdV2<PersonInfo> success = new StdPersonSuccess(option);
 		
 		actions.add(success);			
 		return actions;
@@ -49,10 +49,10 @@ public final class NodePersonEmailL3 extends DeciTreeTemplateWriteV2<PersonInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<PersonInfo>> buildActionsOnFailedHook(DeciTreeOption<PersonInfo> option) {
-		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PersonInfo>> buildActionsOnFailedHook(DeciTreeOption<PersonInfo> option) {
+		List<ActionStdV2<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PersonInfo> nodeL5 = new NodePersonEmailL5(option).toAction();
+		ActionStdV2<PersonInfo> nodeL5 = new NodePersonEmailL5(option).toAction();
 		
 		actions.add(nodeL5);			
 		return actions;

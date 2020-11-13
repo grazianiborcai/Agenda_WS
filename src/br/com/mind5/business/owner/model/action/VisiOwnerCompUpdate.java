@@ -8,11 +8,11 @@ import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.decisionTree.RootCompUpdate;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerCompUpdate extends ActionVisitorTemplateActionV2<OwnerInfo, CompInfo> {
+final class VisiOwnerCompUpdate extends ActionVisitorTemplateAction<OwnerInfo, CompInfo> {
 	
 	public VisiOwnerCompUpdate(DeciTreeOption<OwnerInfo> option) {
 		super(option, OwnerInfo.class, CompInfo.class);

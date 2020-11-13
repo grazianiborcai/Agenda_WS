@@ -2,7 +2,7 @@ package br.com.mind5.payment.payOrder.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
@@ -10,7 +10,7 @@ import br.com.mind5.payment.payOrderItem.info.PayordemCopier;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.decisionTree.RootPayordemUpdate;
 
-final class VisiPayordUpdatePayordem extends ActionVisitorTemplateActionV2<PayordInfo, PayordemInfo> {
+final class VisiPayordUpdatePayordem extends ActionVisitorTemplateAction<PayordInfo, PayordemInfo> {
 	
 	public VisiPayordUpdatePayordem(DeciTreeOption<PayordInfo> option) {
 		super(option, PayordInfo.class, PayordemInfo.class);

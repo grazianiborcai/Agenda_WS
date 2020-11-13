@@ -9,7 +9,7 @@ import br.com.mind5.business.cartItem.model.action.LazyCartemMergeSymsg;
 import br.com.mind5.business.cartItem.model.action.StdCartemEnforceSymsgL06;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckEmposarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -41,10 +41,10 @@ public final class NodeCartemAgedServiceL06 extends DeciTreeTemplateWriteV2<Cart
 	
 	
 	
-	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStdV2<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CartemInfo> nodeL07 = new NodeCartemAgedServiceL07(option).toAction();	
+		ActionStdV2<CartemInfo> nodeL07 = new NodeCartemAgedServiceL07(option).toAction();	
 		
 		actions.add(nodeL07);		
 		return actions;
@@ -52,10 +52,10 @@ public final class NodeCartemAgedServiceL06 extends DeciTreeTemplateWriteV2<Cart
 	
 	
 	
-	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStdV2<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CartemInfo> enforceSymsg = new StdCartemEnforceSymsgL06(option);	
+		ActionStdV2<CartemInfo> enforceSymsg = new StdCartemEnforceSymsgL06(option);	
 		ActionLazy<CartemInfo> mergeSymsg = new LazyCartemMergeSymsg(option.conn, option.schemaName);
 		ActionLazy<CartemInfo> enforceAged = new LazyCartemEnforceAged(option.conn, option.schemaName);
 		

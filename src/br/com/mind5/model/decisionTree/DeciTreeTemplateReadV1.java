@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 
 public abstract class DeciTreeTemplateReadV1<T extends InfoRecord> implements DeciTree<T> {
@@ -44,7 +44,7 @@ public abstract class DeciTreeTemplateReadV1<T extends InfoRecord> implements De
 	
 	
 	
-	protected List<ActionStdV1<T>> buildActionsOnPassedHook(DeciTreeOption<T> option) {
+	protected List<ActionStdV2<T>> buildActionsOnPassedHook(DeciTreeOption<T> option) {
 		//Template method: to be overwritten by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);		
@@ -52,7 +52,7 @@ public abstract class DeciTreeTemplateReadV1<T extends InfoRecord> implements De
 	
 	
 	
-	protected List<ActionStdV1<T>> buildActionsOnFailedHook(DeciTreeOption<T> option) {
+	protected List<ActionStdV2<T>> buildActionsOnFailedHook(DeciTreeOption<T> option) {
 		//Template method: to be overwritten by subclasses
 		return null;	
 	}
@@ -73,7 +73,7 @@ public abstract class DeciTreeTemplateReadV1<T extends InfoRecord> implements De
 	
 	
 	
-	@Override public ActionStdV1<T> toAction() {
+	@Override public ActionStdV2<T> toAction() {
 		checkState();	
 		return tree.toAction();
 	}

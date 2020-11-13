@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.refundPolicyGroupSearch.info.RefugrarchInfo;
 import br.com.mind5.masterData.refundPolicyGroupSearch.model.action.StdRefugrarchDaoSelect;
 import br.com.mind5.masterData.refundPolicyGroupSearch.model.checker.RefugrarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootRefugrarchSelect extends DeciTreeTemplateReadV2<Refugrarc
 	
 	
 	
-	@Override protected List<ActionStdV1<RefugrarchInfo>> buildActionsOnPassedHook(DeciTreeOption<RefugrarchInfo> option) {
-		List<ActionStdV1<RefugrarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<RefugrarchInfo>> buildActionsOnPassedHook(DeciTreeOption<RefugrarchInfo> option) {
+		List<ActionStdV2<RefugrarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<RefugrarchInfo> select = new StdRefugrarchDaoSelect(option);
+		ActionStdV2<RefugrarchInfo> select = new StdRefugrarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

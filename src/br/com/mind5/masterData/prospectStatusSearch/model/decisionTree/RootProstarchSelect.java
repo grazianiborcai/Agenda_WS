@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.prospectStatusSearch.info.ProstarchInfo;
 import br.com.mind5.masterData.prospectStatusSearch.model.action.StdProstarchDaoSelect;
 import br.com.mind5.masterData.prospectStatusSearch.model.checker.ProstarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootProstarchSelect extends DeciTreeTemplateWriteV2<Prostarch
 	
 	
 	
-	@Override protected List<ActionStdV1<ProstarchInfo>> buildActionsOnPassedHook(DeciTreeOption<ProstarchInfo> option) {
-		List<ActionStdV1<ProstarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<ProstarchInfo>> buildActionsOnPassedHook(DeciTreeOption<ProstarchInfo> option) {
+		List<ActionStdV2<ProstarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<ProstarchInfo> select = new StdProstarchDaoSelect(option);
+		ActionStdV2<ProstarchInfo> select = new StdProstarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.timezoneSearch.dao.DaoTimezonarchSelect;
 import br.com.mind5.masterData.timezoneSearch.info.TimezonarchInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiTimezonarchDaoSelect extends ActionVisitorTemplateStmtV2<TimezonarchInfo> {
+final class VisiTimezonarchDaoSelect extends ActionVisitorTemplateStmt<TimezonarchInfo> {
 
 	public VisiTimezonarchDaoSelect(DeciTreeOption<TimezonarchInfo> option) {
 		super(option);

@@ -6,10 +6,10 @@ import br.com.mind5.business.storeLeaveDate.dao.DaoStolateUpdate;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStolateDaoUpdate extends ActionVisitorTemplateStmtV2<StolateInfo> {
+final class VisiStolateDaoUpdate extends ActionVisitorTemplateStmt<StolateInfo> {
 
 	public VisiStolateDaoUpdate(DeciTreeOption<StolateInfo> option) {
 		super(option);

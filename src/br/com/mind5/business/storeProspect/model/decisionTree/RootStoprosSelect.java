@@ -11,7 +11,7 @@ import br.com.mind5.business.storeProspect.model.checker.StoprosCheckExist;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckLangu;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -65,10 +65,10 @@ public final class RootStoprosSelect extends DeciTreeTemplateReadV2<StoprosInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<StoprosInfo>> buildActionsOnPassedHook(DeciTreeOption<StoprosInfo> option) {
-		List<ActionStdV1<StoprosInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StoprosInfo>> buildActionsOnPassedHook(DeciTreeOption<StoprosInfo> option) {
+		List<ActionStdV2<StoprosInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<StoprosInfo> select = new StdStoprosMergeToSelect(option);
+		ActionStdV2<StoprosInfo> select = new StdStoprosMergeToSelect(option);
 		ActionLazy<StoprosInfo> mergeProstus = new LazyStoprosMergeProstus(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeProstus);

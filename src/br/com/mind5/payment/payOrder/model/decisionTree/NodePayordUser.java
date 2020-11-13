@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -35,10 +35,10 @@ public final class NodePayordUser extends DeciTreeTemplateWriteV2<PayordInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
-		List<ActionStdV1<PayordInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
+		List<ActionStdV2<PayordInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<PayordInfo> enforceCreatedOn = new StdPayordEnforceCreatedOn(option);	
+		ActionStdV2<PayordInfo> enforceCreatedOn = new StdPayordEnforceCreatedOn(option);	
 		ActionLazy<PayordInfo> enforceLChanged = new LazyPayordEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> mergeUsername = new LazyPayordMergeUsername(option.conn, option.schemaName);
 		

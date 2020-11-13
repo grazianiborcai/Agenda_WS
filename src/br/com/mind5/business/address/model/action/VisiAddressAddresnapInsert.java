@@ -6,11 +6,11 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.decisionTree.RootAddresnapInsert;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddressAddresnapInsert extends ActionVisitorTemplateActionV2<AddressInfo, AddresnapInfo> {
+final class VisiAddressAddresnapInsert extends ActionVisitorTemplateAction<AddressInfo, AddresnapInfo> {
 
 	public VisiAddressAddresnapInsert(DeciTreeOption<AddressInfo> option) {
 		super(option, AddressInfo.class, AddresnapInfo.class);

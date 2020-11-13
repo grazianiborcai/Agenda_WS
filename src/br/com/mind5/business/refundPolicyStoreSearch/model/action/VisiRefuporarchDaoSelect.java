@@ -6,10 +6,10 @@ import br.com.mind5.business.refundPolicyStoreSearch.dao.DaoRefuporarchSelect;
 import br.com.mind5.business.refundPolicyStoreSearch.info.RefuporarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefuporarchDaoSelect extends ActionVisitorTemplateStmtV2<RefuporarchInfo> {
+final class VisiRefuporarchDaoSelect extends ActionVisitorTemplateStmt<RefuporarchInfo> {
 
 	public VisiRefuporarchDaoSelect(DeciTreeOption<RefuporarchInfo> option) {
 		super(option);

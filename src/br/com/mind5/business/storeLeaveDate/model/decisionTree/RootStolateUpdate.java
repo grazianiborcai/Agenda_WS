@@ -20,7 +20,7 @@ import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckStore;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckTimeRange;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -101,10 +101,10 @@ public final class RootStolateUpdate extends DeciTreeTemplateWriteV2<StolateInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
-		List<ActionStdV1<StolateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
+		List<ActionStdV2<StolateInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StolateInfo> mergeToUpdate = new StdStolateMergeToUpdate(option);
+		ActionStdV2<StolateInfo> mergeToUpdate = new StdStolateMergeToUpdate(option);
 		ActionLazy<StolateInfo> enforceLChanged = new LazyStolateEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<StolateInfo> enforceLChangedBy = new LazyStolateMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StolateInfo> enforceValidFrom = new LazyStolateEnforceValidFrom(option.conn, option.schemaName);

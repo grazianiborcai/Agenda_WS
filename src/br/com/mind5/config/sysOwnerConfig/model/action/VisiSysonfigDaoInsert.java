@@ -6,10 +6,10 @@ import br.com.mind5.config.sysOwnerConfig.dao.DaoSysonfigInsert;
 import br.com.mind5.config.sysOwnerConfig.info.SysonfigInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSysonfigDaoInsert extends ActionVisitorTemplateStmtV2<SysonfigInfo> {
+final class VisiSysonfigDaoInsert extends ActionVisitorTemplateStmt<SysonfigInfo> {
 
 	public VisiSysonfigDaoInsert(DeciTreeOption<SysonfigInfo> option) {
 		super(option);

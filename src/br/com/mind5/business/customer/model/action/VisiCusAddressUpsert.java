@@ -7,11 +7,11 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.RootAddressUpsertdel;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.info.CusMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusAddressUpsert extends ActionVisitorTemplateActionV2<CusInfo, AddressInfo> {
+final class VisiCusAddressUpsert extends ActionVisitorTemplateAction<CusInfo, AddressInfo> {
 	
 	public VisiCusAddressUpsert(DeciTreeOption<CusInfo> option) {
 		super(option, CusInfo.class, AddressInfo.class);

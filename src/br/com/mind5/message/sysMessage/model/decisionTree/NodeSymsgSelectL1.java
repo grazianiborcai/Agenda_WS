@@ -7,7 +7,7 @@ import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.message.sysMessage.model.action.LazySymsgNodeSelectL2;
 import br.com.mind5.message.sysMessage.model.action.StdSymsgMergeToSelect;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class NodeSymsgSelectL1 extends DeciTreeTemplateWriteV2<SymsgInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<SymsgInfo>> buildActionsOnPassedHook(DeciTreeOption<SymsgInfo> option) {
-		List<ActionStdV1<SymsgInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV2<SymsgInfo>> buildActionsOnPassedHook(DeciTreeOption<SymsgInfo> option) {
+		List<ActionStdV2<SymsgInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<SymsgInfo> mergeToSelect = new StdSymsgMergeToSelect(option);
+		ActionStdV2<SymsgInfo> mergeToSelect = new StdSymsgMergeToSelect(option);
 		ActionLazy<SymsgInfo> nodeL2 = new LazySymsgNodeSelectL2(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(nodeL2);

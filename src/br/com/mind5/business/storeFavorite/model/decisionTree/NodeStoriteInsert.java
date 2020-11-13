@@ -10,7 +10,7 @@ import br.com.mind5.business.storeFavorite.model.action.StdStoriteEnforceCreated
 import br.com.mind5.business.storeFavorite.model.action.StdStoriteSuccess;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckExist;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -42,10 +42,10 @@ public final class NodeStoriteInsert extends DeciTreeTemplateWriteV2<StoriteInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<StoriteInfo>> buildActionsOnPassedHook(DeciTreeOption<StoriteInfo> option) {
-		List<ActionStdV1<StoriteInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StoriteInfo>> buildActionsOnPassedHook(DeciTreeOption<StoriteInfo> option) {
+		List<ActionStdV2<StoriteInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StoriteInfo> success = new StdStoriteSuccess(option);
+		ActionStdV2<StoriteInfo> success = new StdStoriteSuccess(option);
 		
 		actions.add(success);	
 		return actions;
@@ -53,10 +53,10 @@ public final class NodeStoriteInsert extends DeciTreeTemplateWriteV2<StoriteInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<StoriteInfo>> buildActionsOnFailedHook(DeciTreeOption<StoriteInfo> option) {
-		List<ActionStdV1<StoriteInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StoriteInfo>> buildActionsOnFailedHook(DeciTreeOption<StoriteInfo> option) {
+		List<ActionStdV2<StoriteInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StoriteInfo> enforceCreatedOn = new StdStoriteEnforceCreatedOn(option);
+		ActionStdV2<StoriteInfo> enforceCreatedOn = new StdStoriteEnforceCreatedOn(option);
 		ActionLazy<StoriteInfo> enforceLChanged = new LazyStoriteEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<StoriteInfo> insert = new LazyStoriteDaoInsert(option.conn, option.schemaName);
 		

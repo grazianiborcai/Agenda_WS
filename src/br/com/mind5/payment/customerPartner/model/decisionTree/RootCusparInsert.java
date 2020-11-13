@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -116,10 +116,10 @@ public final class RootCusparInsert extends DeciTreeTemplateWriteV2<CusparInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
-		List<ActionStdV1<CusparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
+		List<ActionStdV2<CusparInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CusparInfo> mergeUselis = new StdCusparMergeUselis(option);
+		ActionStdV2<CusparInfo> mergeUselis = new StdCusparMergeUselis(option);
 		ActionLazy<CusparInfo> mergeAddress = new LazyCusparMergeAddress(option.conn, option.schemaName);
 		ActionLazy<CusparInfo> mergePhone = new LazyCusparMergePhone(option.conn, option.schemaName);
 		ActionLazy<CusparInfo> enforceLChanged = new LazyCusparEnforceLChanged(option.conn, option.schemaName);			

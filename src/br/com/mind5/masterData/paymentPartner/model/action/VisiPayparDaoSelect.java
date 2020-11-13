@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.paymentPartner.dao.DaoPayparSelect;
 import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPayparDaoSelect extends ActionVisitorTemplateStmtV2<PayparInfo> {
+final class VisiPayparDaoSelect extends ActionVisitorTemplateStmt<PayparInfo> {
 
 	public VisiPayparDaoSelect(DeciTreeOption<PayparInfo> option) {
 		super(option);

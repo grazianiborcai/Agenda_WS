@@ -6,10 +6,10 @@ import br.com.mind5.business.calendarDateSearch.dao.DaoCalatarchSelect;
 import br.com.mind5.business.calendarDateSearch.info.CalatarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalatarchDaoSelect extends ActionVisitorTemplateStmtV2<CalatarchInfo> {
+final class VisiCalatarchDaoSelect extends ActionVisitorTemplateStmt<CalatarchInfo> {
 
 	public VisiCalatarchDaoSelect(DeciTreeOption<CalatarchInfo> option) {
 		super(option);

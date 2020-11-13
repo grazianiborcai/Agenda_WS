@@ -8,7 +8,7 @@ import br.com.mind5.business.materialTextSnapshot.model.action.StdMatextsnapMerg
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckMat;
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckOwner;
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -54,10 +54,10 @@ public final class RootMatextsnapSelect extends DeciTreeTemplateReadV2<Matextsna
 	
 	
 	
-	@Override protected List<ActionStdV1<MatextsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextsnapInfo> option) {
-		List<ActionStdV1<MatextsnapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatextsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextsnapInfo> option) {
+		List<ActionStdV2<MatextsnapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatextsnapInfo> select = new StdMatextsnapMergeToSelect(option);
+		ActionStdV2<MatextsnapInfo> select = new StdMatextsnapMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

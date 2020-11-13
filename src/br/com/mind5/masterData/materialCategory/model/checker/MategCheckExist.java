@@ -3,7 +3,7 @@ package br.com.mind5.masterData.materialCategory.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.materialCategory.info.MategInfo;
 import br.com.mind5.masterData.materialCategory.model.action.StdMategDaoSelect;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class MategCheckExist extends ModelCheckerTemplateActionV2<MategInf
 	
 	
 	
-	@Override protected ActionStdV1<MategInfo> buildActionHook(DeciTreeOption<MategInfo> option) {
-		ActionStdV1<MategInfo> select = new StdMategDaoSelect(option);
+	@Override protected ActionStdV2<MategInfo> buildActionHook(DeciTreeOption<MategInfo> option) {
+		ActionStdV2<MategInfo> select = new StdMategDaoSelect(option);
 		return select;
 	}
 	

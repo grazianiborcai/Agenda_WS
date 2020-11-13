@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -91,10 +91,10 @@ public final class RootCrecardInsert extends DeciTreeTemplateWriteV2<CrecardInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
-		List<ActionStdV1<CrecardInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
+		List<ActionStdV2<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<CrecardInfo> nodeUser = new NodeCrecardUser(option).toAction();
+		ActionStdV2<CrecardInfo> nodeUser = new NodeCrecardUser(option).toAction();
 		ActionLazy<CrecardInfo> nodeAddress = new LazyCrecardNodeAddress(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> nodePhone = new LazyCrecardNodePhone(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> nodeCuspar = new LazyCrecardNodeCuspar(option.conn, option.schemaName);

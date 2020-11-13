@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.file.fileImage.dao.DaoFimgUpdate;
 import br.com.mind5.file.fileImage.info.FimgInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFimgDaoUpdate extends ActionVisitorTemplateStmtV2<FimgInfo> {
+final class VisiFimgDaoUpdate extends ActionVisitorTemplateStmt<FimgInfo> {
 
 	public VisiFimgDaoUpdate(DeciTreeOption<FimgInfo> option) {
 		super(option);

@@ -8,10 +8,10 @@ import java.util.List;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.file.fileWrite.info.FriteInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.action.ActionVisitorTemplateSimple;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFriteWriteOnDisk extends ActionVisitorTemplateSimpleV2<FriteInfo> {
+final class VisiFriteWriteOnDisk extends ActionVisitorTemplateSimple<FriteInfo> {
 	
 	public VisiFriteWriteOnDisk(DeciTreeOption<FriteInfo> option) {
 		super(option);

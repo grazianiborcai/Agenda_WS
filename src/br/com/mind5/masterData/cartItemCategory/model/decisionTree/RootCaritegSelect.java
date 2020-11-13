@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.cartItemCategory.info.CaritegInfo;
 import br.com.mind5.masterData.cartItemCategory.model.action.StdCaritegDaoSelect;
 import br.com.mind5.masterData.cartItemCategory.model.checker.CaritegCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootCaritegSelect extends DeciTreeTemplateReadV2<CaritegInfo>
 
 		
 	
-	@Override protected List<ActionStdV1<CaritegInfo>> buildActionsOnPassedHook(DeciTreeOption<CaritegInfo> option) {
-		List<ActionStdV1<CaritegInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CaritegInfo>> buildActionsOnPassedHook(DeciTreeOption<CaritegInfo> option) {
+		List<ActionStdV2<CaritegInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CaritegInfo> select = new StdCaritegDaoSelect(option);
+		ActionStdV2<CaritegInfo> select = new StdCaritegDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

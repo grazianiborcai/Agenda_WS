@@ -8,7 +8,7 @@ import br.com.mind5.business.storeFavoriteSearch.model.action.StdStoritarchMerge
 import br.com.mind5.business.storeFavoriteSearch.model.checker.StoritarchCheckLangu;
 import br.com.mind5.business.storeFavoriteSearch.model.checker.StoritarchCheckOwner;
 import br.com.mind5.business.storeFavoriteSearch.model.checker.StoritarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -54,10 +54,10 @@ public final class RootStoritarchSelect extends DeciTreeTemplateWriteV2<Storitar
 	
 	
 	
-	@Override protected List<ActionStdV1<StoritarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StoritarchInfo> option) {
-		List<ActionStdV1<StoritarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StoritarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StoritarchInfo> option) {
+		List<ActionStdV2<StoritarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StoritarchInfo> select = new StdStoritarchMergeToSelect(option);
+		ActionStdV2<StoritarchInfo> select = new StdStoritarchMergeToSelect(option);
 		
 		actions.add(select);	
 		return actions;

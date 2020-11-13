@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.bookService.info.BookiceInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyBookiceMergeSymsg extends ActionLazyTemplate<BookiceInfo,
 	
 	
 	
-	@Override protected ActionStdV1<BookiceInfo> getInstanceOfActionHook(DeciTreeOption<BookiceInfo> option) {
+	@Override protected ActionStdV2<BookiceInfo> getInstanceOfActionHook(DeciTreeOption<BookiceInfo> option) {
 		return new StdBookiceMergeSymsg(option);
 	}
 	

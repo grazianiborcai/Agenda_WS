@@ -1,7 +1,7 @@
 package br.com.mind5.payment.payOrderItemList.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class PayordemistCheckExist extends ModelCheckerTemplateActionV2<Pa
 	
 
 	
-	@Override protected ActionStdV1<PayordemistInfo> buildActionHook(DeciTreeOption<PayordemistInfo> option) {
-		ActionStdV1<PayordemistInfo> select = new RootPayordemistSelect(option).toAction();
+	@Override protected ActionStdV2<PayordemistInfo> buildActionHook(DeciTreeOption<PayordemistInfo> option) {
+		ActionStdV2<PayordemistInfo> select = new RootPayordemistSelect(option).toAction();
 		return select;
 	}
 	

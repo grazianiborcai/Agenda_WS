@@ -6,11 +6,11 @@ import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.info.PersonMerger;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.business.personSnapshot.model.decisionTree.RootPersonapInsert;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPersonInsertPersonap extends ActionVisitorTemplateActionV2<PersonInfo, PersonapInfo> {
+final class VisiPersonInsertPersonap extends ActionVisitorTemplateAction<PersonInfo, PersonapInfo> {
 
 	public VisiPersonInsertPersonap(DeciTreeOption<PersonInfo> option) {
 		super(option, PersonInfo.class, PersonapInfo.class);

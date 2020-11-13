@@ -3,7 +3,7 @@ package br.com.mind5.authorization.storePartitionAuthorization.model.checker;
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.authorization.storePartitionAuthorization.model.decisionTree.RootSytotauhAuth;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class SytotauhCheckExist extends ModelCheckerTemplateActionV2<Sytot
 	
 	
 	
-	@Override protected ActionStdV1<SytotauhInfo> buildActionHook(DeciTreeOption<SytotauhInfo> option) {
-		ActionStdV1<SytotauhInfo> select = new RootSytotauhAuth(option).toAction();
+	@Override protected ActionStdV2<SytotauhInfo> buildActionHook(DeciTreeOption<SytotauhInfo> option) {
+		ActionStdV2<SytotauhInfo> select = new RootSytotauhAuth(option).toAction();
 		return select;
 	}
 	

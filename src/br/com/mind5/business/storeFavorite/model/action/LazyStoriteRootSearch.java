@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
 import br.com.mind5.business.storeFavorite.model.decisionTree.RootStoriteSearch;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyStoriteRootSearch extends ActionLazyTemplate<StoriteInfo,
 	
 	
 	
-	@Override protected ActionStdV1<StoriteInfo> getInstanceOfActionHook(DeciTreeOption<StoriteInfo> option) {
+	@Override protected ActionStdV2<StoriteInfo> getInstanceOfActionHook(DeciTreeOption<StoriteInfo> option) {
 		return new RootStoriteSearch(option).toAction();
 	}
 	

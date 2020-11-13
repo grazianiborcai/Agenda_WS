@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrder.model.checker;
 import java.util.List;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,8 +20,8 @@ public final class PayordCheckCrecarch extends ModelCheckerTemplateActionV2<Payo
 	
 
 	
-	@Override protected ActionStdV1<CrecarchInfo> buildActionHook(DeciTreeOption<CrecarchInfo> option) {
-		ActionStdV1<CrecarchInfo> select = new RootCrecarchSelect(option).toAction();
+	@Override protected ActionStdV2<CrecarchInfo> buildActionHook(DeciTreeOption<CrecarchInfo> option) {
+		ActionStdV2<CrecarchInfo> select = new RootCrecarchSelect(option).toAction();
 		return select;
 	}
 	

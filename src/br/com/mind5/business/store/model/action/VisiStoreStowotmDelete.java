@@ -5,11 +5,11 @@ import java.util.List;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.model.decisionTree.RootStowotmDeleteByStore;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreStowotmDelete extends ActionVisitorTemplateActionV2<StoreInfo, StowotmInfo> {
+final class VisiStoreStowotmDelete extends ActionVisitorTemplateAction<StoreInfo, StowotmInfo> {
 	
 	public VisiStoreStowotmDelete(DeciTreeOption<StoreInfo> option) {
 		super(option, StoreInfo.class, StowotmInfo.class);

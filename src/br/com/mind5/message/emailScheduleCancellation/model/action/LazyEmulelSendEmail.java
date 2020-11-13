@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.message.emailScheduleCancellation.info.EmulelInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyEmulelSendEmail extends ActionLazyTemplate<EmulelInfo, Em
 	
 	
 	
-	@Override protected ActionStdV1<EmulelInfo> getInstanceOfActionHook(DeciTreeOption<EmulelInfo> option) {
+	@Override protected ActionStdV2<EmulelInfo> getInstanceOfActionHook(DeciTreeOption<EmulelInfo> option) {
 		return new StdEmulelSendEmail(option);
 	}
 	

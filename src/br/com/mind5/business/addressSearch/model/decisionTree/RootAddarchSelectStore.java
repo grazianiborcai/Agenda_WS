@@ -9,7 +9,7 @@ import br.com.mind5.business.addressSearch.model.action.StdAddarchEnforceStore;
 import br.com.mind5.business.addressSearch.model.checker.AddarchCheckLangu;
 import br.com.mind5.business.addressSearch.model.checker.AddarchCheckReadStore;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -48,10 +48,10 @@ public final class RootAddarchSelectStore extends DeciTreeTemplateWriteV2<Addarc
 	
 	
 	
-	@Override protected List<ActionStdV1<AddarchInfo>> buildActionsOnPassedHook(DeciTreeOption<AddarchInfo> option) {
-		List<ActionStdV1<AddarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<AddarchInfo>> buildActionsOnPassedHook(DeciTreeOption<AddarchInfo> option) {
+		List<ActionStdV2<AddarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<AddarchInfo> enforceStore = new StdAddarchEnforceStore(option);
+		ActionStdV2<AddarchInfo> enforceStore = new StdAddarchEnforceStore(option);
 		ActionLazy<AddarchInfo> select = new LazyAddarchRootSelect(option.conn, option.schemaName);
 		
 		enforceStore.addPostAction(select);

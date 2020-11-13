@@ -3,7 +3,7 @@ package br.com.mind5.business.employeeLeaveDateSearch.model.checker;
 import br.com.mind5.business.employeeLeaveDateSearch.info.EmplarchInfo;
 import br.com.mind5.business.employeeLeaveDateSearch.model.decisionTree.RootEmplarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class EmplarchCheckExist extends ModelCheckerTemplateActionV2<Empla
 	
 	
 	
-	@Override protected ActionStdV1<EmplarchInfo> buildActionHook(DeciTreeOption<EmplarchInfo> option) {
-		ActionStdV1<EmplarchInfo> select = new RootEmplarchSelect(option).toAction();
+	@Override protected ActionStdV2<EmplarchInfo> buildActionHook(DeciTreeOption<EmplarchInfo> option) {
+		ActionStdV2<EmplarchInfo> select = new RootEmplarchSelect(option).toAction();
 		return select;
 	}
 	

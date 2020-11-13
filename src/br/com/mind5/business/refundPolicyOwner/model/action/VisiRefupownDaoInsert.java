@@ -6,10 +6,10 @@ import br.com.mind5.business.refundPolicyOwner.dao.DaoRefupownInsert;
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefupownDaoInsert extends ActionVisitorTemplateStmtV2<RefupownInfo> {
+final class VisiRefupownDaoInsert extends ActionVisitorTemplateStmt<RefupownInfo> {
 
 	public VisiRefupownDaoInsert(DeciTreeOption<RefupownInfo> option) {
 		super(option);

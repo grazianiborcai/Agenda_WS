@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.materialUnit.dao.DaoMatunitSelect;
 import br.com.mind5.masterData.materialUnit.info.MatunitInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatunitDaoSelect extends ActionVisitorTemplateStmtV2<MatunitInfo> {
+final class VisiMatunitDaoSelect extends ActionVisitorTemplateStmt<MatunitInfo> {
 
 	public VisiMatunitDaoSelect(DeciTreeOption<MatunitInfo> option) {
 		super(option);

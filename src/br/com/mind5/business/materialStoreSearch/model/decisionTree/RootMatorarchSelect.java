@@ -8,7 +8,7 @@ import br.com.mind5.business.materialStoreSearch.model.action.StdMatorarchMergeT
 import br.com.mind5.business.materialStoreSearch.model.checker.MatorarchCheckLangu;
 import br.com.mind5.business.materialStoreSearch.model.checker.MatorarchCheckOwner;
 import br.com.mind5.business.materialStoreSearch.model.checker.MatorarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -54,10 +54,10 @@ public final class RootMatorarchSelect extends DeciTreeTemplateReadV2<MatorarchI
 	
 	
 	
-	@Override protected List<ActionStdV1<MatorarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatorarchInfo> option) {
-		List<ActionStdV1<MatorarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatorarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatorarchInfo> option) {
+		List<ActionStdV2<MatorarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatorarchInfo> select = new StdMatorarchMergeToSelect(option);
+		ActionStdV2<MatorarchInfo> select = new StdMatorarchMergeToSelect(option);
 		actions.add(select);
 		
 		return actions;

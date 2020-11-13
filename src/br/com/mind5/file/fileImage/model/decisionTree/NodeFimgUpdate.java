@@ -9,7 +9,7 @@ import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceLChanged;
 import br.com.mind5.file.fileImage.model.action.LazyFimgMergeUsername;
 import br.com.mind5.file.fileImage.model.action.StdFimgMergeToUpdate;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -36,10 +36,10 @@ public final class NodeFimgUpdate extends DeciTreeTemplateWriteV2<FimgInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStdV2<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<FimgInfo> mergeToUpdate = new StdFimgMergeToUpdate(option);	
+		ActionStdV2<FimgInfo> mergeToUpdate = new StdFimgMergeToUpdate(option);	
 		ActionLazy<FimgInfo> enforceLChanged = new LazyFimgEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<FimgInfo> enforceLChangedBy = new LazyFimgMergeUsername(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> update = new LazyFimgDaoUpdate(option.conn, option.schemaName);

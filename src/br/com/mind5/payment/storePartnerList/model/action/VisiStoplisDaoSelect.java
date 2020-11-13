@@ -4,12 +4,12 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerList.dao.DaoStoplisSelect;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
 
-final class VisiStoplisDaoSelect extends ActionVisitorTemplateStmtV2<StoplisInfo> {
+final class VisiStoplisDaoSelect extends ActionVisitorTemplateStmt<StoplisInfo> {
 
 	public VisiStoplisDaoSelect(DeciTreeOption<StoplisInfo> option) {
 		super(option);

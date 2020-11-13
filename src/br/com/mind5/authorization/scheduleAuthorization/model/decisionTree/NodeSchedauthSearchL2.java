@@ -9,7 +9,7 @@ import br.com.mind5.authorization.scheduleAuthorization.model.action.LazySchedau
 import br.com.mind5.authorization.scheduleAuthorization.model.action.StdSchedauthMergeUsername;
 import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckAuthManager;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -41,10 +41,10 @@ public final class NodeSchedauthSearchL2 extends DeciTreeTemplateWriteV2<Schedau
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedauthInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedauthInfo> option) {
-		List<ActionStdV1<SchedauthInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<SchedauthInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedauthInfo> option) {
+		List<ActionStdV2<SchedauthInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<SchedauthInfo> mergeUsername = new StdSchedauthMergeUsername(option);
+		ActionStdV2<SchedauthInfo> mergeUsername = new StdSchedauthMergeUsername(option);
 		ActionLazy<SchedauthInfo> mergeSotarch = new LazySchedauthMergeSotarch(option.conn, option.schemaName);
 		ActionLazy<SchedauthInfo> obfuscateUser = new LazySchedauthObfuscateUser(option.conn, option.schemaName);
 		
@@ -57,10 +57,10 @@ public final class NodeSchedauthSearchL2 extends DeciTreeTemplateWriteV2<Schedau
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedauthInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedauthInfo> option) {
-		List<ActionStdV1<SchedauthInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<SchedauthInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedauthInfo> option) {
+		List<ActionStdV2<SchedauthInfo>> actions = new ArrayList<>();		
 	
-		ActionStdV1<SchedauthInfo> nodeL3 = new NodeSchedauthSearchL3(option).toAction();	
+		ActionStdV2<SchedauthInfo> nodeL3 = new NodeSchedauthSearchL3(option).toAction();	
 		
 		actions.add(nodeL3);		
 		return actions;

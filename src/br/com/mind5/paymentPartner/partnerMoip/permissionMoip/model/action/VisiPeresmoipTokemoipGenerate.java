@@ -2,7 +2,7 @@ package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
@@ -10,7 +10,7 @@ import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipMerg
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.decisionTree.RootTokemoipGenerate;
 
-final class VisiPeresmoipTokemoipGenerate extends ActionVisitorTemplateActionV2<PeresmoipInfo, TokemoipInfo> {
+final class VisiPeresmoipTokemoipGenerate extends ActionVisitorTemplateAction<PeresmoipInfo, TokemoipInfo> {
 	
 	public VisiPeresmoipTokemoipGenerate(DeciTreeOption<PeresmoipInfo> option) {
 		super(option, PeresmoipInfo.class, TokemoipInfo.class);

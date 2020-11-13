@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrderItemSearch.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootPayormarchSelect extends DeciTreeTemplateWriteV2<Payormar
 	
 	
 	
-	@Override protected List<ActionStdV1<PayormarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PayormarchInfo> option) {
-		List<ActionStdV1<PayormarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PayormarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PayormarchInfo> option) {
+		List<ActionStdV2<PayormarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PayormarchInfo> select = new StdPayormarchMergeToSelect(option);
+		ActionStdV2<PayormarchInfo> select = new StdPayormarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

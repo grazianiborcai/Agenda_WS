@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyOwnerDaoUpdate extends ActionLazyTemplate<OwnerInfo, Owne
 	
 	
 	
-	@Override protected ActionStdV1<OwnerInfo> getInstanceOfActionHook(DeciTreeOption<OwnerInfo> option) {
+	@Override protected ActionStdV2<OwnerInfo> getInstanceOfActionHook(DeciTreeOption<OwnerInfo> option) {
 		return new StdOwnerDaoUpdate(option);
 	}
 	

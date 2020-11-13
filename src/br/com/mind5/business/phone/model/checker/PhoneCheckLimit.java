@@ -7,7 +7,7 @@ import br.com.mind5.business.phoneSearch.info.PhonarchCopier;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.business.phoneSearch.model.decisionTree.RootPhonarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -22,8 +22,8 @@ public final class PhoneCheckLimit extends ModelCheckerTemplateActionV2<PhoneInf
 	
 	
 	
-	@Override protected ActionStdV1<PhonarchInfo> buildActionHook(DeciTreeOption<PhonarchInfo> option) {
-		ActionStdV1<PhonarchInfo> select = new RootPhonarchSelect(option).toAction();
+	@Override protected ActionStdV2<PhonarchInfo> buildActionHook(DeciTreeOption<PhonarchInfo> option) {
+		ActionStdV2<PhonarchInfo> select = new RootPhonarchSelect(option).toAction();
 		return select;
 	}
 	

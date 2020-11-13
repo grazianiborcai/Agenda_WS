@@ -7,7 +7,7 @@ import br.com.mind5.business.scheduleYear.info.SchedyearInfo;
 import br.com.mind5.business.scheduleYear.model.action.LazySchedyearRootSelect;
 import br.com.mind5.business.scheduleYear.model.action.StdSchedyearEnforceNow;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class RootSchedyearSelectNow extends DeciTreeTemplateWriteV2<Schedy
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedyearInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedyearInfo> option) {
-		List<ActionStdV1<SchedyearInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedyearInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedyearInfo> option) {
+		List<ActionStdV2<SchedyearInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedyearInfo> enforceNow = new StdSchedyearEnforceNow(option);
+		ActionStdV2<SchedyearInfo> enforceNow = new StdSchedyearEnforceNow(option);
 		ActionLazy<SchedyearInfo> select = new LazySchedyearRootSelect(option.conn, option.schemaName);
 
 		enforceNow.addPostAction(select);

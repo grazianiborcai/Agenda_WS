@@ -10,7 +10,7 @@ import br.com.mind5.business.employee.model.action.StdEmpMergeUserarch;
 import br.com.mind5.business.employee.model.action.StdEmpUserInsert;
 import br.com.mind5.business.employee.model.checker.EmpCheckUserarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -42,10 +42,10 @@ public final class NodeEmpInsertUser extends DeciTreeTemplateWriteV2<EmpInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStdV2<EmpInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmpInfo> mergeUserarch = new StdEmpMergeUserarch(option);
+		ActionStdV2<EmpInfo> mergeUserarch = new StdEmpMergeUserarch(option);
 		ActionLazy<EmpInfo> promoteUser = new LazyEmpUserPromote(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> updateEmployee = new LazyEmpDaoUpdate(option.conn, option.schemaName);
 		
@@ -58,10 +58,10 @@ public final class NodeEmpInsertUser extends DeciTreeTemplateWriteV2<EmpInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmpInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStdV2<EmpInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmpInfo> insertUser = new StdEmpUserInsert(option);
+		ActionStdV2<EmpInfo> insertUser = new StdEmpUserInsert(option);
 		ActionLazy<EmpInfo> updateEmployee = new LazyEmpDaoUpdate(option.conn, option.schemaName);
 		
 		insertUser.addPostAction(updateEmployee);

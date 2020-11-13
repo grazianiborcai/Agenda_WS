@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleMoviment.info.SchedovmInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazySchedovmEnforceCancel extends ActionLazyTemplate<Schedovm
 	
 	
 	
-	@Override protected ActionStdV1<SchedovmInfo> getInstanceOfActionHook(DeciTreeOption<SchedovmInfo> option) {
+	@Override protected ActionStdV2<SchedovmInfo> getInstanceOfActionHook(DeciTreeOption<SchedovmInfo> option) {
 		return new StdSchedovmEnforceCancel(option);
 	}
 	

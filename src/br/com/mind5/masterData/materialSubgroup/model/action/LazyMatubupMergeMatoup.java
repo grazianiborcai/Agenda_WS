@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyMatubupMergeMatoup extends ActionLazyTemplate<MatubupInfo
 	
 	
 	
-	@Override protected ActionStdV1<MatubupInfo> getInstanceOfActionHook(DeciTreeOption<MatubupInfo> option) {
+	@Override protected ActionStdV2<MatubupInfo> getInstanceOfActionHook(DeciTreeOption<MatubupInfo> option) {
 		return new StdMatubupMergeMatoup(option);
 	}
 	

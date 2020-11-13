@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -59,10 +59,10 @@ public final class RootCusmoipCreate extends DeciTreeTemplateWriteV2<CusmoipInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<CusmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CusmoipInfo> option) {
-		List<ActionStdV1<CusmoipInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CusmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CusmoipInfo> option) {
+		List<ActionStdV2<CusmoipInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CusmoipInfo> nodeSetupar = new NodeCusmoipSetuparL1(option).toAction();
+		ActionStdV2<CusmoipInfo> nodeSetupar = new NodeCusmoipSetuparL1(option).toAction();
 		ActionLazy<CusmoipInfo> nodeAddress = new LazyCusmoipNodeAddressL1(option.conn, option.schemaName);
 		ActionLazy<CusmoipInfo> nodePhone = new LazyCusmoipNodePhoneL1(option.conn, option.schemaName);
 		ActionLazy<CusmoipInfo> nodeUser = new LazyCusmoipNodeUserL1(option.conn, option.schemaName);		

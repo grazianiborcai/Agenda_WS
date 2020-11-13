@@ -7,7 +7,7 @@ import br.com.mind5.businessContent.material.main.info.MatbcinInfo;
 import br.com.mind5.businessContent.material.main.model.checker.MatbcinCheckOwner;
 import br.com.mind5.businessContent.material.main.model.checker.MatbcinCheckStore;
 import br.com.mind5.businessContent.material.main.model.checker.MatbcinCheckWrite;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -53,10 +53,10 @@ public final class RootMatbcinInsert extends DeciTreeTemplateWriteV2<MatbcinInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<MatbcinInfo>> buildActionsOnPassedHook(DeciTreeOption<MatbcinInfo> option) {
-		List<ActionStdV1<MatbcinInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<MatbcinInfo>> buildActionsOnPassedHook(DeciTreeOption<MatbcinInfo> option) {
+		List<ActionStdV2<MatbcinInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<MatbcinInfo> nodeL1 = new NodeMatbcinInsertL1(option).toAction();
+		ActionStdV2<MatbcinInfo> nodeL1 = new NodeMatbcinInsertL1(option).toAction();
 		
 		actions.add(nodeL1);		
 		return actions;

@@ -10,7 +10,7 @@ import br.com.mind5.business.employee.model.action.LazyEmpMergeUsername;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeSytotauh;
 import br.com.mind5.business.employee.model.action.StdEmpMergeToUpdate;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -37,10 +37,10 @@ public final class NodeEmpUpdate extends DeciTreeTemplateWriteV2<EmpInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStdV2<EmpInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<EmpInfo> mergeToUpdate = new StdEmpMergeToUpdate(option);
+		ActionStdV2<EmpInfo> mergeToUpdate = new StdEmpMergeToUpdate(option);
 		ActionLazy<EmpInfo> nodeSytotauh = new LazyEmpNodeSytotauh(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> enforceLChanged = new LazyEmpEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);

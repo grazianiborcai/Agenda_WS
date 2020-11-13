@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.calendarDateAvailability.info.CalatityInfo;
 import br.com.mind5.business.calendarDateAvailability.model.action.StdCalatityMergeCalate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -32,10 +32,10 @@ public final class RootCalatitySearch extends DeciTreeTemplateReadV2<CalatityInf
 
 		
 	
-	@Override protected List<ActionStdV1<CalatityInfo>> buildActionsOnPassedHook(DeciTreeOption<CalatityInfo> option) {
-		List<ActionStdV1<CalatityInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CalatityInfo>> buildActionsOnPassedHook(DeciTreeOption<CalatityInfo> option) {
+		List<ActionStdV2<CalatityInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CalatityInfo> mergeCalate = new StdCalatityMergeCalate(option);
+		ActionStdV2<CalatityInfo> mergeCalate = new StdCalatityMergeCalate(option);
 		
 		actions.add(mergeCalate);
 		return actions;

@@ -3,7 +3,7 @@ package br.com.mind5.security.otp.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class NodeOtpMatch extends DeciTreeTemplateWriteV2<OtpInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<OtpInfo>> buildActionsOnPassedHook(DeciTreeOption<OtpInfo> option) {
-		List<ActionStdV1<OtpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OtpInfo>> buildActionsOnPassedHook(DeciTreeOption<OtpInfo> option) {
+		List<ActionStdV2<OtpInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OtpInfo> success = new StdOtpSuccess(option);
+		ActionStdV2<OtpInfo> success = new StdOtpSuccess(option);
 		actions.add(success);
 		
 		return actions;

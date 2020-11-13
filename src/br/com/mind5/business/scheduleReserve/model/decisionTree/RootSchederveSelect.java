@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleReserve.info.SchederveInfo;
 import br.com.mind5.business.scheduleReserve.model.action.StdSchederveMergeToSelect;
 import br.com.mind5.business.scheduleReserve.model.checker.SchederveCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootSchederveSelect extends DeciTreeTemplateReadV2<SchederveI
 	
 	
 	
-	@Override protected List<ActionStdV1<SchederveInfo>> buildActionsOnPassedHook(DeciTreeOption<SchederveInfo> option) {
-		List<ActionStdV1<SchederveInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV2<SchederveInfo>> buildActionsOnPassedHook(DeciTreeOption<SchederveInfo> option) {
+		List<ActionStdV2<SchederveInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<SchederveInfo> select = new StdSchederveMergeToSelect(option);
+		ActionStdV2<SchederveInfo> select = new StdSchederveMergeToSelect(option);
 
 		actions.add(select);			
 		return actions;

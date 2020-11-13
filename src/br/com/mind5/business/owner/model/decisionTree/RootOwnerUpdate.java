@@ -16,7 +16,7 @@ import br.com.mind5.business.owner.model.action.StdOwnerMergeToUpdate;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
 import br.com.mind5.business.owner.model.checker.OwnerCheckUpdate;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -55,10 +55,10 @@ public final class RootOwnerUpdate extends DeciTreeTemplateWriteV2<OwnerInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStdV2<OwnerInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<OwnerInfo> mergeToUpdate = new StdOwnerMergeToUpdate(option);
+		ActionStdV2<OwnerInfo> mergeToUpdate = new StdOwnerMergeToUpdate(option);
 		ActionLazy<OwnerInfo> enforceLChanged = new LazyOwnerEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> mergeUsername = new LazyOwnerMergeUsername(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> updatePerson = new LazyOwnerNodeUpdatePerson(option.conn, option.schemaName);

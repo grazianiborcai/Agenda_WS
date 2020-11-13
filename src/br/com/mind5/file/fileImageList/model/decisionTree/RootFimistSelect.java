@@ -8,7 +8,7 @@ import br.com.mind5.file.fileImageList.model.action.StdFimistMergeToSelect;
 import br.com.mind5.file.fileImageList.model.checker.FimistCheckLangu;
 import br.com.mind5.file.fileImageList.model.checker.FimistCheckOwner;
 import br.com.mind5.file.fileImageList.model.checker.FimistCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -54,10 +54,10 @@ public final class RootFimistSelect extends DeciTreeTemplateReadV2<FimistInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<FimistInfo>> buildActionsOnPassedHook(DeciTreeOption<FimistInfo> option) {
-		List<ActionStdV1<FimistInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<FimistInfo>> buildActionsOnPassedHook(DeciTreeOption<FimistInfo> option) {
+		List<ActionStdV2<FimistInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<FimistInfo> select = new StdFimistMergeToSelect(option);
+		ActionStdV2<FimistInfo> select = new StdFimistMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

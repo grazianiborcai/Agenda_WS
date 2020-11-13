@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -82,10 +82,10 @@ public final class RootRefemRefundAuth extends DeciTreeTemplateWriteV2<RefemInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
-		List<ActionStdV1<RefemInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
+		List<ActionStdV2<RefemInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<RefemInfo> mergePayormarch = new StdRefemMergePayormarch(option);	
+		ActionStdV2<RefemInfo> mergePayormarch = new StdRefemMergePayormarch(option);	
 		ActionLazy<RefemInfo> mergeUsername = new LazyRefemMergeUsername(option.conn, option.schemaName);
 		ActionLazy<RefemInfo> nodeAuth = new LazyRefemNodeAuthL1(option.conn, option.schemaName);
 		ActionLazy<RefemInfo> refund = new LazyRefemRootRefund(option.conn, option.schemaName);

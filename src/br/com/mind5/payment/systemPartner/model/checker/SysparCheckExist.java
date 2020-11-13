@@ -1,7 +1,7 @@
 package br.com.mind5.payment.systemPartner.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class SysparCheckExist extends ModelCheckerTemplateActionV2<SysparI
 	
 
 	
-	@Override protected ActionStdV1<SysparInfo> buildActionHook(DeciTreeOption<SysparInfo> option) {
-		ActionStdV1<SysparInfo> select = new StdSysparDaoSelect(option);
+	@Override protected ActionStdV2<SysparInfo> buildActionHook(DeciTreeOption<SysparInfo> option) {
+		ActionStdV2<SysparInfo> select = new StdSysparDaoSelect(option);
 		return select;
 	}
 	

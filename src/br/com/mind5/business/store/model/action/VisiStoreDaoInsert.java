@@ -6,10 +6,10 @@ import br.com.mind5.business.store.dao.DaoStoreInsert;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreDaoInsert extends ActionVisitorTemplateStmtV2<StoreInfo> {
+final class VisiStoreDaoInsert extends ActionVisitorTemplateStmt<StoreInfo> {
 
 	public VisiStoreDaoInsert(DeciTreeOption<StoreInfo> option) {
 		super(option);

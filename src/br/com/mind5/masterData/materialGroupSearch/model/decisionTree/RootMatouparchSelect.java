@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.materialGroupSearch.info.MatouparchInfo;
 import br.com.mind5.masterData.materialGroupSearch.model.action.StdMatouparchDaoSelect;
 import br.com.mind5.masterData.materialGroupSearch.model.checker.MatouparchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -38,10 +38,10 @@ public final class RootMatouparchSelect extends DeciTreeTemplateReadV1<Matouparc
 	
 	
 	
-	@Override protected List<ActionStdV1<MatouparchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatouparchInfo> option) {
-		List<ActionStdV1<MatouparchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatouparchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatouparchInfo> option) {
+		List<ActionStdV2<MatouparchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatouparchInfo> select = new StdMatouparchDaoSelect(option);
+		ActionStdV2<MatouparchInfo> select = new StdMatouparchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

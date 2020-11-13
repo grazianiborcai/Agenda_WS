@@ -8,7 +8,7 @@ import br.com.mind5.file.fileImage.model.action.LazyFimgRootReplace;
 import br.com.mind5.file.fileImage.model.action.StdFimgMergeFimarch;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckExistUser;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -40,10 +40,10 @@ public final class NodeFimgUpsertUser extends DeciTreeTemplateWriteV2<FimgInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStdV2<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<FimgInfo> insert = new RootFimgInsert(option).toAction();
+		ActionStdV2<FimgInfo> insert = new RootFimgInsert(option).toAction();
 		
 		actions.add(insert);		
 		return actions;
@@ -51,10 +51,10 @@ public final class NodeFimgUpsertUser extends DeciTreeTemplateWriteV2<FimgInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<FimgInfo>> buildActionsOnFailedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<FimgInfo>> buildActionsOnFailedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStdV2<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<FimgInfo> mergeFimarch = new StdFimgMergeFimarch(option);
+		ActionStdV2<FimgInfo> mergeFimarch = new StdFimgMergeFimarch(option);
 		ActionLazy<FimgInfo> replace = new LazyFimgRootReplace(option.conn, option.schemaName);
 		
 		mergeFimarch.addPostAction(replace);

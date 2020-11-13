@@ -9,7 +9,7 @@ import br.com.mind5.business.customer.model.action.StdCusEnforcePhoneCod;
 import br.com.mind5.business.customer.model.action.StdCusSuccess;
 import br.com.mind5.business.customer.model.checker.CusCheckHasPhone;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -41,10 +41,10 @@ public final class NodeCusInsertPhone extends DeciTreeTemplateWriteV2<CusInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
-		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
+		List<ActionStdV2<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CusInfo> enforcePhoneCod = new StdCusEnforcePhoneCod(option);
+		ActionStdV2<CusInfo> enforcePhoneCod = new StdCusEnforcePhoneCod(option);
 		ActionLazy<CusInfo> upsertPhone = new LazyCusNodeUpsertPhone(option.conn, option.schemaName);	
 		
 		enforcePhoneCod.addPostAction(upsertPhone);
@@ -55,10 +55,10 @@ public final class NodeCusInsertPhone extends DeciTreeTemplateWriteV2<CusInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<CusInfo>> buildActionsOnFailedHook(DeciTreeOption<CusInfo> option) {
-		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CusInfo>> buildActionsOnFailedHook(DeciTreeOption<CusInfo> option) {
+		List<ActionStdV2<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CusInfo> success = new StdCusSuccess(option);
+		ActionStdV2<CusInfo> success = new StdCusSuccess(option);
 		
 		actions.add(success);	
 		return actions;

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.file.fileWrite.info.FriteInfo;
 import br.com.mind5.file.fileWrite.model.action.StdFriteWriteOnDisk;
 import br.com.mind5.file.fileWrite.model.checker.FriteCheckWrite;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootFriteWriteOnDisk extends DeciTreeTemplateWriteV2<FriteInf
 	
 	
 	
-	@Override protected List<ActionStdV1<FriteInfo>> buildActionsOnPassedHook(DeciTreeOption<FriteInfo> option) {
-		List<ActionStdV1<FriteInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<FriteInfo>> buildActionsOnPassedHook(DeciTreeOption<FriteInfo> option) {
+		List<ActionStdV2<FriteInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<FriteInfo> writeOnDisk = new StdFriteWriteOnDisk(option);	
+		ActionStdV2<FriteInfo> writeOnDisk = new StdFriteWriteOnDisk(option);	
 		
 		actions.add(writeOnDisk);		
 		return actions;

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.decisionTree.NodeCusDeletePhone;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyCusNodeDeletePhone extends ActionLazyTemplate<CusInfo, Cu
 	
 	
 	
-	@Override protected ActionStdV1<CusInfo> getInstanceOfActionHook(DeciTreeOption<CusInfo> option) {
+	@Override protected ActionStdV2<CusInfo> getInstanceOfActionHook(DeciTreeOption<CusInfo> option) {
 		return new NodeCusDeletePhone(option).toAction();
 	}
 	

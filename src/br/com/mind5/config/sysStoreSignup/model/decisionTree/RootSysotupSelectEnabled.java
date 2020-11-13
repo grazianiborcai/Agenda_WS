@@ -7,7 +7,7 @@ import br.com.mind5.config.sysStoreSignup.info.SysotupInfo;
 import br.com.mind5.config.sysStoreSignup.model.action.LazySysotupRootSelect;
 import br.com.mind5.config.sysStoreSignup.model.action.StdSysotupEnforceEnabled;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class RootSysotupSelectEnabled extends DeciTreeTemplateReadV2<Sysot
 	
 	
 	
-	@Override protected List<ActionStdV1<SysotupInfo>> buildActionsOnPassedHook(DeciTreeOption<SysotupInfo> option) {
-		List<ActionStdV1<SysotupInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SysotupInfo>> buildActionsOnPassedHook(DeciTreeOption<SysotupInfo> option) {
+		List<ActionStdV2<SysotupInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SysotupInfo> enforceEnabled = new StdSysotupEnforceEnabled(option);
+		ActionStdV2<SysotupInfo> enforceEnabled = new StdSysotupEnforceEnabled(option);
 		ActionLazy<SysotupInfo> select = new LazySysotupRootSelect(option.conn, option.schemaName);
 		
 		enforceEnabled.addPostAction(select);

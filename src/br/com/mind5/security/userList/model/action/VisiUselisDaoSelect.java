@@ -4,12 +4,12 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userList.dao.DaoUselisSelect;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class VisiUselisDaoSelect extends ActionVisitorTemplateStmtV2<UselisInfo> {
+final class VisiUselisDaoSelect extends ActionVisitorTemplateStmt<UselisInfo> {
 
 	public VisiUselisDaoSelect(DeciTreeOption<UselisInfo> option) {
 		super(option);

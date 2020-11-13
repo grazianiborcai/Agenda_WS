@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.refundPolicyGroup.dao.DaoRefugroupSelect;
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefugroupDaoSelect extends ActionVisitorTemplateStmtV2<RefugroupInfo> {
+final class VisiRefugroupDaoSelect extends ActionVisitorTemplateStmt<RefugroupInfo> {
 
 	public VisiRefugroupDaoSelect(DeciTreeOption<RefugroupInfo> option) {
 		super(option);

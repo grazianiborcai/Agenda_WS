@@ -7,7 +7,7 @@ import br.com.mind5.business.materialTextSearch.info.MatextarchInfo;
 import br.com.mind5.business.materialTextSearch.model.action.StdMatextarchMergeToSelect;
 import br.com.mind5.business.materialTextSearch.model.checker.MatextarchCheckOwner;
 import br.com.mind5.business.materialTextSearch.model.checker.MatextarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -46,10 +46,10 @@ public final class RootMatextarchSelect extends DeciTreeTemplateReadV2<Matextarc
 	
 	
 	
-	@Override protected List<ActionStdV1<MatextarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextarchInfo> option) {
-		List<ActionStdV1<MatextarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatextarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextarchInfo> option) {
+		List<ActionStdV2<MatextarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatextarchInfo> select = new StdMatextarchMergeToSelect(option);
+		ActionStdV2<MatextarchInfo> select = new StdMatextarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

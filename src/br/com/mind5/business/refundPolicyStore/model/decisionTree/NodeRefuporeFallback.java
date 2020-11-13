@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
 import br.com.mind5.business.refundPolicyStore.model.action.StdRefuporeMergeRefupown;
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckExist;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class NodeRefuporeFallback extends DeciTreeTemplateReadV2<RefuporeI
 	
 	
 	
-	@Override protected List<ActionStdV1<RefuporeInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuporeInfo> option) {
-		List<ActionStdV1<RefuporeInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<RefuporeInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuporeInfo> option) {
+		List<ActionStdV2<RefuporeInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<RefuporeInfo> select = new NodeRefuporeSelect(option).toAction();
+		ActionStdV2<RefuporeInfo> select = new NodeRefuporeSelect(option).toAction();
 		
 		actions.add(select);
 		return actions;
@@ -49,10 +49,10 @@ public final class NodeRefuporeFallback extends DeciTreeTemplateReadV2<RefuporeI
 	
 	
 	
-	@Override protected List<ActionStdV1<RefuporeInfo>> buildActionsOnFailedHook(DeciTreeOption<RefuporeInfo> option) {
-		List<ActionStdV1<RefuporeInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<RefuporeInfo>> buildActionsOnFailedHook(DeciTreeOption<RefuporeInfo> option) {
+		List<ActionStdV2<RefuporeInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<RefuporeInfo> mergeRefupown = new StdRefuporeMergeRefupown(option);
+		ActionStdV2<RefuporeInfo> mergeRefupown = new StdRefuporeMergeRefupown(option);
 		
 		actions.add(mergeRefupown);
 		return actions;

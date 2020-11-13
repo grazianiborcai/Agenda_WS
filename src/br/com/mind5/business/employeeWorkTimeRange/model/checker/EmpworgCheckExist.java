@@ -3,7 +3,7 @@ package br.com.mind5.business.employeeWorkTimeRange.model.checker;
 import br.com.mind5.business.employeeWorkTimeRange.info.EmpworgInfo;
 import br.com.mind5.business.employeeWorkTimeRange.model.decisionTree.RootStoworgSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class EmpworgCheckExist extends ModelCheckerTemplateActionV2<Empwor
 	
 	
 	
-	@Override protected ActionStdV1<EmpworgInfo> buildActionHook(DeciTreeOption<EmpworgInfo> option) {
-		ActionStdV1<EmpworgInfo> select = new RootStoworgSelect(option).toAction();
+	@Override protected ActionStdV2<EmpworgInfo> buildActionHook(DeciTreeOption<EmpworgInfo> option) {
+		ActionStdV2<EmpworgInfo> select = new RootStoworgSelect(option).toAction();
 		return select;
 	}
 	

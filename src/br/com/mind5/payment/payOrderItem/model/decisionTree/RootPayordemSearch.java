@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class RootPayordemSearch extends DeciTreeTemplateWriteV2<PayordemIn
 	
 	
 	
-	@Override protected List<ActionStdV1<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
-		List<ActionStdV1<PayordemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
+		List<ActionStdV2<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PayordemInfo> mergePayormarch = new StdPayordemMergePayormarch(option);
+		ActionStdV2<PayordemInfo> mergePayormarch = new StdPayordemMergePayormarch(option);
 		ActionLazy<PayordemInfo> select = new LazyPayordemRootSelect(option.conn, option.schemaName);
 		
 		mergePayormarch.addPostAction(select);

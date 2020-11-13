@@ -14,7 +14,7 @@ import br.com.mind5.business.planningTime.model.action.LazyPlanimePruneDaypart;
 import br.com.mind5.business.planningTime.model.action.StdPlanimeMergePlanata;
 import br.com.mind5.business.planningTime.model.checker.PlanimeCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -46,10 +46,10 @@ public class RootPlanimeSelect extends DeciTreeTemplateWriteV2<PlanimeInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<PlanimeInfo>> buildActionsOnPassedHook(DeciTreeOption<PlanimeInfo> option) {
-		List<ActionStdV1<PlanimeInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<PlanimeInfo>> buildActionsOnPassedHook(DeciTreeOption<PlanimeInfo> option) {
+		List<ActionStdV2<PlanimeInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<PlanimeInfo> mergePlanata = new StdPlanimeMergePlanata(option);	
+		ActionStdV2<PlanimeInfo> mergePlanata = new StdPlanimeMergePlanata(option);	
 		ActionLazy<PlanimeInfo> pruneDaypart = new LazyPlanimePruneDaypart(option.conn, option.schemaName);
 		ActionLazy<PlanimeInfo> mergeStolis = new LazyPlanimeMergeStolis(option.conn, option.schemaName);	
 		ActionLazy<PlanimeInfo> mergeEmplis = new LazyPlanimeMergeEmplis(option.conn, option.schemaName);

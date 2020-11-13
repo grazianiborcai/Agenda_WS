@@ -13,7 +13,7 @@ import br.com.mind5.business.owner.model.action.LazyOwnerUserInsertDaemon;
 import br.com.mind5.business.owner.model.action.LazyOwnerSysonfigInsert;
 import br.com.mind5.business.owner.model.action.StdOwnerEnforceLChanged;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -40,10 +40,10 @@ public final class NodeOwnerInsert extends DeciTreeTemplateWriteV2<OwnerInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStdV2<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OwnerInfo> enforceLChanged = new StdOwnerEnforceLChanged(option);
+		ActionStdV2<OwnerInfo> enforceLChanged = new StdOwnerEnforceLChanged(option);
 		ActionLazy<OwnerInfo> enforceCreatedOn = new LazyOwnerEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> insertOwner = new LazyOwnerDaoInsert(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> insertDaemon = new LazyOwnerUserInsertDaemon(option.conn, option.schemaName);	

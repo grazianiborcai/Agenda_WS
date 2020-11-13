@@ -6,11 +6,11 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
 import br.com.mind5.geo.geoHash.info.GeoshInfo;
 import br.com.mind5.geo.geoHash.model.decisionTree.RootGeoshGenerate;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddressGeoshGenerate extends ActionVisitorTemplateActionV2<AddressInfo, GeoshInfo> {
+final class VisiAddressGeoshGenerate extends ActionVisitorTemplateAction<AddressInfo, GeoshInfo> {
 
 	public VisiAddressGeoshGenerate(DeciTreeOption<AddressInfo> option) {
 		super(option, AddressInfo.class, GeoshInfo.class);

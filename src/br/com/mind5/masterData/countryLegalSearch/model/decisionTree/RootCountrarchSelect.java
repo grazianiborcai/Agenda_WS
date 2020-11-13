@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.countryLegalSearch.info.CountrarchInfo;
 import br.com.mind5.masterData.countryLegalSearch.model.action.StdCountrarchMergeToSelect;
 import br.com.mind5.masterData.countryLegalSearch.model.checker.CountrarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootCountrarchSelect extends DeciTreeTemplateReadV2<Countrarc
 	
 	
 	
-	@Override protected List<ActionStdV1<CountrarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CountrarchInfo> option) {
-		List<ActionStdV1<CountrarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CountrarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CountrarchInfo> option) {
+		List<ActionStdV2<CountrarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CountrarchInfo> select = new StdCountrarchMergeToSelect(option);
+		ActionStdV2<CountrarchInfo> select = new StdCountrarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

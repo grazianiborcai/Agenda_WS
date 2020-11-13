@@ -20,7 +20,7 @@ import br.com.mind5.business.store.model.checker.StoreCheckOwner;
 import br.com.mind5.business.store.model.checker.StoreCheckTimezone;
 import br.com.mind5.business.store.model.checker.StoreCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -87,11 +87,11 @@ public final class RootStoreInsert extends DeciTreeTemplateWriteV2<StoreInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV2<StoreInfo>> actions = new ArrayList<>();
 		//TODO: permitir que outro usuario seja associado ou inves de sempre criar um novo ?
 		//TODO: O que fazer se o CPF/e-mail ja tiver associado a um customer/owner/store manager ?
-		ActionStdV1<StoreInfo> insertStore = new NodeStoreInsert(option).toAction();
+		ActionStdV2<StoreInfo> insertStore = new NodeStoreInsert(option).toAction();
 		ActionLazy<StoreInfo> insertPerson = new LazyStoreNodeInsertPerson(option.conn, option.schemaName);	
 		ActionLazy<StoreInfo> insertComp = new LazyStoreNodeInsertComp(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> insertUser = new LazyStoreUserInsert(option.conn, option.schemaName);

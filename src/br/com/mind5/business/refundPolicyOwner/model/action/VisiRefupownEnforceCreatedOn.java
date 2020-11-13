@@ -3,10 +3,10 @@ package br.com.mind5.business.refundPolicyOwner.model.action;
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
 import br.com.mind5.business.refundPolicyOwner.info.RefupownSetterCreatedOn;
 import br.com.mind5.info.InfoSetter;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefupownEnforceCreatedOn extends ActionVisitorTemplateEnforceV2<RefupownInfo> {
+final class VisiRefupownEnforceCreatedOn extends ActionVisitorTemplateEnforce<RefupownInfo> {
 	
 	public VisiRefupownEnforceCreatedOn(DeciTreeOption<RefupownInfo> option) {
 		super(option);

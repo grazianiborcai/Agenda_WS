@@ -7,7 +7,6 @@ import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerV2;
@@ -21,8 +20,8 @@ public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 	private List<T> recordInfos;
 	private ModelCheckerV1<T> checker;
 	private DeciResult<T> deciResult;
-	private List<ActionStdV1<T>> actionsOnPassed;
-	private List<ActionStdV1<T>> actionsOnFailed;
+	private List<ActionStdV2<T>> actionsOnPassed;
+	private List<ActionStdV2<T>> actionsOnFailed;
 	
 
 	public DeciTreeHelper(DeciTreeHelperOption<T> option) {
@@ -59,7 +58,7 @@ public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 	
 	
 		
-	private DeciResult<T> onPassed(List<ActionStdV1<T>> actions) {
+	private DeciResult<T> onPassed(List<ActionStdV2<T>> actions) {
 		if (hasAction(actions) == FAILED)
 			return makeErrorResult();
 		
@@ -68,7 +67,7 @@ public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 	
 	
 	
-	private DeciResult<T> onFailed(List<ActionStdV1<T>> actions, ModelCheckerV1<T> modelChecker) {
+	private DeciResult<T> onFailed(List<ActionStdV2<T>> actions, ModelCheckerV1<T> modelChecker) {
 		if (hasAction(actions) == FAILED)		
 			return makeCheckerResult(modelChecker);
 		
@@ -77,7 +76,7 @@ public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 	
 	
 	
-	private boolean hasAction(List<ActionStdV1<T>> decisionActions) {
+	private boolean hasAction(List<ActionStdV2<T>> decisionActions) {
 		if (decisionActions == null)
 			return FAILED;
 		
@@ -89,14 +88,14 @@ public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 	
 	
 	
-	private DeciResult<T> executeActions(List<ActionStdV1<T>> actions) {	
+	private DeciResult<T> executeActions(List<ActionStdV2<T>> actions) {	
 		DeciResult<T> lastResult = makeErrorResult();		
 		
 		if (hasAction(actions) == FAILED)
 			return lastResult;		
 		
 		
-		for (ActionStdV1<T> eachAction : actions) {
+		for (ActionStdV2<T> eachAction : actions) {
 			eachAction.executeAction();
 			lastResult = eachAction.getDecisionResult();		
 			
@@ -116,7 +115,7 @@ public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 	
 	
 	
-	@Override public ActionStdV1<T> toAction() {
+	@Override public ActionStdV2<T> toAction() {
 		return new DeciTreeAdapterV1<>(this);
 	}
 	
@@ -131,14 +130,14 @@ public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 	
 	
 	
-	private void closeActions(List<ActionStdV1<T>> actions) {
+	private void closeActions(List<ActionStdV2<T>> actions) {
 		if (actions == null)
 			return;
 		
 		if (actions.isEmpty())
 			return;
 		
-		for(ActionStdV1<T> eachAction: actions) {
+		for(ActionStdV2<T> eachAction: actions) {
 			if (eachAction instanceof ActionStdV2) {
 				((ActionStdV2<T>) eachAction).close();
 			}

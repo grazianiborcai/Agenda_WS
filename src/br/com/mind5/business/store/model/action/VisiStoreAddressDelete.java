@@ -5,11 +5,11 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.RootAddressDelete;
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreAddressDelete extends ActionVisitorTemplateActionV2<StoreInfo, AddressInfo> {
+final class VisiStoreAddressDelete extends ActionVisitorTemplateAction<StoreInfo, AddressInfo> {
 	
 	public VisiStoreAddressDelete(DeciTreeOption<StoreInfo> option) {
 		super(option, StoreInfo.class, AddressInfo.class);

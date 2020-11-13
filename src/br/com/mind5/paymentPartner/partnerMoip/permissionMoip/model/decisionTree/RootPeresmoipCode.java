@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -72,10 +72,10 @@ public final class RootPeresmoipCode extends DeciTreeTemplateWriteV2<PeresmoipIn
 	
 	
 	
-	@Override protected List<ActionStdV1<PeresmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PeresmoipInfo> option) {
-		List<ActionStdV1<PeresmoipInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<PeresmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PeresmoipInfo> option) {
+		List<ActionStdV2<PeresmoipInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<PeresmoipInfo> mergeToSelect = new StdPeresmoipMergeToSelect(option);	
+		ActionStdV2<PeresmoipInfo> mergeToSelect = new StdPeresmoipMergeToSelect(option);	
 		ActionLazy<PeresmoipInfo> nodeCode = new LazyPeresmoipNodeCode(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(nodeCode);

@@ -8,7 +8,7 @@ import br.com.mind5.business.personList.model.action.StdPersolisMergeToSelect;
 import br.com.mind5.business.personList.model.checker.PersolisCheckLangu;
 import br.com.mind5.business.personList.model.checker.PersolisCheckOwner;
 import br.com.mind5.business.personList.model.checker.PersolisCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -54,10 +54,10 @@ public final class RootPersolisSelect extends DeciTreeTemplateReadV2<PersolisInf
 	
 	
 	
-	@Override protected List<ActionStdV1<PersolisInfo>> buildActionsOnPassedHook(DeciTreeOption<PersolisInfo> option) {
-		List<ActionStdV1<PersolisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PersolisInfo>> buildActionsOnPassedHook(DeciTreeOption<PersolisInfo> option) {
+		List<ActionStdV2<PersolisInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PersolisInfo> select = new StdPersolisMergeToSelect(option);	
+		ActionStdV2<PersolisInfo> select = new StdPersolisMergeToSelect(option);	
 		
 		actions.add(select);		
 		return actions;

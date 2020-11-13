@@ -9,7 +9,7 @@ import br.com.mind5.business.calendarTimeStore.model.action.StdCalimoreEnforceFa
 import br.com.mind5.business.calendarTimeStore.model.action.StdCalimoreMergeStowotarch;
 import br.com.mind5.business.calendarTimeStore.model.checker.CalimoreCheckStowotarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -41,10 +41,10 @@ public final class NodeCalimoreSelect extends DeciTreeTemplateWriteV2<CalimoreIn
 	
 	
 	
-	@Override protected List<ActionStdV1<CalimoreInfo>> buildActionsOnPassedHook(DeciTreeOption<CalimoreInfo> option) {
-		List<ActionStdV1<CalimoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CalimoreInfo>> buildActionsOnPassedHook(DeciTreeOption<CalimoreInfo> option) {
+		List<ActionStdV2<CalimoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CalimoreInfo> mergeStowotarch = new StdCalimoreMergeStowotarch(option);
+		ActionStdV2<CalimoreInfo> mergeStowotarch = new StdCalimoreMergeStowotarch(option);
 		ActionLazy<CalimoreInfo> mergeStolarg = new LazyCalimoreMergeStolarg(option.conn, option.schemaName);
 		
 		mergeStowotarch.addPostAction(mergeStolarg);
@@ -55,10 +55,10 @@ public final class NodeCalimoreSelect extends DeciTreeTemplateWriteV2<CalimoreIn
 	
 	
 	
-	@Override protected List<ActionStdV1<CalimoreInfo>> buildActionsOnFailedHook(DeciTreeOption<CalimoreInfo> option) {
-		List<ActionStdV1<CalimoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CalimoreInfo>> buildActionsOnFailedHook(DeciTreeOption<CalimoreInfo> option) {
+		List<ActionStdV2<CalimoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CalimoreInfo> enforceFallback = new StdCalimoreEnforceFallback(option);
+		ActionStdV2<CalimoreInfo> enforceFallback = new StdCalimoreEnforceFallback(option);
 		
 		actions.add(enforceFallback);
 		return actions;

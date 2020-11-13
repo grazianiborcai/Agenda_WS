@@ -7,7 +7,7 @@ import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.business.storeText.model.action.StdStorextDaoInsert;
 import br.com.mind5.business.storeText.model.action.StdStorextDaoUpdate;
 import br.com.mind5.business.storeText.model.checker.StorextCheckSoftDelete;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -39,10 +39,10 @@ public final class NodeStorextInsert extends DeciTreeTemplateWriteV2<StorextInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
-		List<ActionStdV1<StorextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
+		List<ActionStdV2<StorextInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StorextInfo> insert = new StdStorextDaoInsert(option);
+		ActionStdV2<StorextInfo> insert = new StdStorextDaoInsert(option);
 		actions.add(insert);
 		
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeStorextInsert extends DeciTreeTemplateWriteV2<StorextInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<StorextInfo>> buildActionsOnFailedHook(DeciTreeOption<StorextInfo> option) {
-		List<ActionStdV1<StorextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StorextInfo>> buildActionsOnFailedHook(DeciTreeOption<StorextInfo> option) {
+		List<ActionStdV2<StorextInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StorextInfo> update = new StdStorextDaoUpdate(option);
+		ActionStdV2<StorextInfo> update = new StdStorextDaoUpdate(option);
 		actions.add(update);
 		
 		return actions;

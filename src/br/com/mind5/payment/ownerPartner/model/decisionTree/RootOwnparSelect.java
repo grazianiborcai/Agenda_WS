@@ -3,7 +3,7 @@ package br.com.mind5.payment.ownerPartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -45,10 +45,10 @@ public final class RootOwnparSelect extends DeciTreeTemplateReadV2<OwnparInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<OwnparInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnparInfo> option) {
-		List<ActionStdV1<OwnparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OwnparInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnparInfo> option) {
+		List<ActionStdV2<OwnparInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OwnparInfo> nodeSelect = new NodeOwnparSelect(option).toAction();
+		ActionStdV2<OwnparInfo> nodeSelect = new NodeOwnparSelect(option).toAction();
 		
 		actions.add(nodeSelect);
 		return actions;

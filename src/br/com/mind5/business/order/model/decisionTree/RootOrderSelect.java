@@ -16,7 +16,7 @@ import br.com.mind5.business.order.model.action.StdOrderMergeToSelect;
 import br.com.mind5.business.order.model.checker.OrderCheckLangu;
 import br.com.mind5.business.order.model.checker.OrderCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -55,10 +55,10 @@ public final class RootOrderSelect extends DeciTreeTemplateReadV2<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV2<OrderInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<OrderInfo> select = new StdOrderMergeToSelect(option);
+		ActionStdV2<OrderInfo> select = new StdOrderMergeToSelect(option);
 		ActionLazy<OrderInfo> mergeItem = new LazyOrderMergeOrderem(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceCurrency = new LazyOrderEnforceCurrency(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> mergeCurrency = new LazyOrderMergeCurrency(option.conn, option.schemaName);

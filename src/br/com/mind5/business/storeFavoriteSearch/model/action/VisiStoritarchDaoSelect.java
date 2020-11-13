@@ -4,12 +4,12 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.business.storeFavoriteSearch.dao.DaoStoritarchSelect;
 import br.com.mind5.business.storeFavoriteSearch.info.StoritarchInfo;
 
-final class VisiStoritarchDaoSelect extends ActionVisitorTemplateStmtV2<StoritarchInfo> {
+final class VisiStoritarchDaoSelect extends ActionVisitorTemplateStmt<StoritarchInfo> {
 
 	public VisiStoritarchDaoSelect(DeciTreeOption<StoritarchInfo> option) {
 		super(option);

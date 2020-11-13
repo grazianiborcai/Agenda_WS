@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.masterData.currency.model.action.StdCurrencyDaoSelect;
 import br.com.mind5.masterData.currency.model.checker.CurrencyCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootCurrencySelect extends DeciTreeTemplateReadV2<CurrencyInf
 	
 	
 	
-	@Override protected List<ActionStdV1<CurrencyInfo>> buildActionsOnPassedHook(DeciTreeOption<CurrencyInfo> option) {
-		List<ActionStdV1<CurrencyInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CurrencyInfo>> buildActionsOnPassedHook(DeciTreeOption<CurrencyInfo> option) {
+		List<ActionStdV2<CurrencyInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CurrencyInfo> select = new StdCurrencyDaoSelect(option);
+		ActionStdV2<CurrencyInfo> select = new StdCurrencyDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.decisionTree.NodeCartemMatService;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyCartemNodeMatService extends ActionLazyTemplate<CartemInf
 	
 	
 	
-	@Override protected ActionStdV1<CartemInfo> getInstanceOfActionHook(DeciTreeOption<CartemInfo> option) {
+	@Override protected ActionStdV2<CartemInfo> getInstanceOfActionHook(DeciTreeOption<CartemInfo> option) {
 		return new NodeCartemMatService(option).toAction();
 	}
 	

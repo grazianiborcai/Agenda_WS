@@ -8,7 +8,7 @@ import br.com.mind5.file.fileImageSearch.model.action.LazyFimarchRootSelect;
 import br.com.mind5.file.fileImageSearch.model.action.StdFimarchEnforceEmp;
 import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckReadEmp;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -40,10 +40,10 @@ public final class RootFimarchSelectEmp extends DeciTreeTemplateReadV2<FimarchIn
 	
 	
 	
-	@Override protected List<ActionStdV1<FimarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FimarchInfo> option) {
-		List<ActionStdV1<FimarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<FimarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FimarchInfo> option) {
+		List<ActionStdV2<FimarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<FimarchInfo> enforceEmp = new StdFimarchEnforceEmp(option);
+		ActionStdV2<FimarchInfo> enforceEmp = new StdFimarchEnforceEmp(option);
 		ActionLazy<FimarchInfo> select = new LazyFimarchRootSelect(option.conn, option.schemaName);
 		
 		enforceEmp.addPostAction(select);

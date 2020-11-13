@@ -3,7 +3,7 @@ package br.com.mind5.business.cartReserve.model.checker;
 import br.com.mind5.business.cartReserve.info.CarterveInfo;
 import br.com.mind5.business.cartReserve.model.decisionTree.RootCarterveSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class CarterveCheckExist extends ModelCheckerTemplateActionV2<Carte
 	
 
 	
-	@Override protected ActionStdV1<CarterveInfo> buildActionHook(DeciTreeOption<CarterveInfo> option) {
-		ActionStdV1<CarterveInfo> select = new RootCarterveSelect(option).toAction();
+	@Override protected ActionStdV2<CarterveInfo> buildActionHook(DeciTreeOption<CarterveInfo> option) {
+		ActionStdV2<CarterveInfo> select = new RootCarterveSelect(option).toAction();
 		return select;
 	}
 	

@@ -9,7 +9,7 @@ import br.com.mind5.business.planingData.model.action.LazyPlanataPruneSchederve;
 import br.com.mind5.business.planingData.model.action.StdPlanataPruneCarterve;
 import br.com.mind5.business.planingData.model.checker.PlanataCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -41,10 +41,10 @@ public class NodePlanataReserve extends DeciTreeTemplateReadV2<PlanataInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<PlanataInfo>> buildActionsOnPassedHook(DeciTreeOption<PlanataInfo> option) {
-		List<ActionStdV1<PlanataInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<PlanataInfo>> buildActionsOnPassedHook(DeciTreeOption<PlanataInfo> option) {
+		List<ActionStdV2<PlanataInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<PlanataInfo> pruneCarteve = new StdPlanataPruneCarterve(option);
+		ActionStdV2<PlanataInfo> pruneCarteve = new StdPlanataPruneCarterve(option);
 		ActionLazy<PlanataInfo> pruneOrderve = new LazyPlanataPruneOrderve(option.conn, option.schemaName);
 		ActionLazy<PlanataInfo> pruneSchederve = new LazyPlanataPruneSchederve(option.conn, option.schemaName);
 		

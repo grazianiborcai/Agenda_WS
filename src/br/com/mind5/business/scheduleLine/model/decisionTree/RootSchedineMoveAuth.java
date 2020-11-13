@@ -9,7 +9,7 @@ import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckInsert;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -69,11 +69,11 @@ public final class RootSchedineMoveAuth extends DeciTreeTemplateWriteV2<Schedine
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
-		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
+		List<ActionStdV2<SchedineInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<SchedineInfo> auth = new NodeSchedineAuthMove(option).toAction();
-		ActionStdV1<SchedineInfo> move = new RootSchedineMove(option).toAction();
+		ActionStdV2<SchedineInfo> auth = new NodeSchedineAuthMove(option).toAction();
+		ActionStdV2<SchedineInfo> move = new RootSchedineMove(option).toAction();
 		
 		actions.add(auth);	
 		actions.add(move);

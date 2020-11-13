@@ -10,7 +10,7 @@ import br.com.mind5.business.calendarTimeStore.model.checker.CalimoreCheckOwner;
 import br.com.mind5.business.calendarTimeStore.model.checker.CalimoreCheckRead;
 import br.com.mind5.business.calendarTimeStore.model.checker.CalimoreCheckStore;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -56,10 +56,10 @@ public final class RootCalimoreSelect extends DeciTreeTemplateWriteV2<CalimoreIn
 	
 	
 	
-	@Override protected List<ActionStdV1<CalimoreInfo>> buildActionsOnPassedHook(DeciTreeOption<CalimoreInfo> option) {
-		List<ActionStdV1<CalimoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CalimoreInfo>> buildActionsOnPassedHook(DeciTreeOption<CalimoreInfo> option) {
+		List<ActionStdV2<CalimoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CalimoreInfo> mergeCalate = new StdCalimoreMergeCalate(option);
+		ActionStdV2<CalimoreInfo> mergeCalate = new StdCalimoreMergeCalate(option);
 		ActionLazy<CalimoreInfo> select = new LazyCalimoreNodeSelect(option.conn, option.schemaName);
 		
 		mergeCalate.addPostAction(select);

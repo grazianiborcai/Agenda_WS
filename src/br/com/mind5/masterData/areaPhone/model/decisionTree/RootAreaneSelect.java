@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.areaPhone.info.AreaneInfo;
 import br.com.mind5.masterData.areaPhone.model.action.StdAreaneDaoSelect;
 import br.com.mind5.masterData.areaPhone.model.checker.AreaneCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootAreaneSelect extends DeciTreeTemplateReadV2<AreaneInfo> {
 
 		
 	
-	@Override protected List<ActionStdV1<AreaneInfo>> buildActionsOnPassedHook(DeciTreeOption<AreaneInfo> option) {
-		List<ActionStdV1<AreaneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<AreaneInfo>> buildActionsOnPassedHook(DeciTreeOption<AreaneInfo> option) {
+		List<ActionStdV2<AreaneInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<AreaneInfo> select = new StdAreaneDaoSelect(option);
+		ActionStdV2<AreaneInfo> select = new StdAreaneDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

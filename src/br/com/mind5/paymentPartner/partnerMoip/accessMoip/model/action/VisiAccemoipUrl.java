@@ -8,12 +8,12 @@ import java.util.Collections;
 import java.util.List;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.action.ActionVisitorTemplateSimple;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.moip.Moip;
 
-final class VisiAccemoipUrl extends ActionVisitorTemplateSimpleV2<AccemoipInfo> {
+final class VisiAccemoipUrl extends ActionVisitorTemplateSimple<AccemoipInfo> {
 	
 	public VisiAccemoipUrl(DeciTreeOption<AccemoipInfo> option) {
 		super(option);

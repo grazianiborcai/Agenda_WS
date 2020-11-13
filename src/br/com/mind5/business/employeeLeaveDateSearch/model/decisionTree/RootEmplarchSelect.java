@@ -8,7 +8,7 @@ import br.com.mind5.business.employeeLeaveDateSearch.model.action.StdEmplarchMer
 import br.com.mind5.business.employeeLeaveDateSearch.model.checker.EmplarchCheckLangu;
 import br.com.mind5.business.employeeLeaveDateSearch.model.checker.EmplarchCheckOwner;
 import br.com.mind5.business.employeeLeaveDateSearch.model.checker.EmplarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -54,10 +54,10 @@ public class RootEmplarchSelect extends DeciTreeTemplateReadV2<EmplarchInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<EmplarchInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplarchInfo> option) {
-		List<ActionStdV1<EmplarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmplarchInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplarchInfo> option) {
+		List<ActionStdV2<EmplarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmplarchInfo> select = new StdEmplarchMergeToSelect(option);
+		ActionStdV2<EmplarchInfo> select = new StdEmplarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

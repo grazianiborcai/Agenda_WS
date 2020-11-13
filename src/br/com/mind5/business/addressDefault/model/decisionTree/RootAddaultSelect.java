@@ -7,7 +7,7 @@ import br.com.mind5.business.addressDefault.info.AddaultInfo;
 import br.com.mind5.business.addressDefault.model.action.StdAddaultMergeToSelect;
 import br.com.mind5.business.addressDefault.model.checker.AddaultCheckLangu;
 import br.com.mind5.business.addressDefault.model.checker.AddaultCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -46,10 +46,10 @@ public final class RootAddaultSelect extends DeciTreeTemplateWriteV2<AddaultInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<AddaultInfo>> buildActionsOnPassedHook(DeciTreeOption<AddaultInfo> option) {
-		List<ActionStdV1<AddaultInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<AddaultInfo>> buildActionsOnPassedHook(DeciTreeOption<AddaultInfo> option) {
+		List<ActionStdV2<AddaultInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<AddaultInfo> select = new StdAddaultMergeToSelect(option);
+		ActionStdV2<AddaultInfo> select = new StdAddaultMergeToSelect(option);
 		
 		actions.add(select);			
 		return actions;

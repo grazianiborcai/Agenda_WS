@@ -7,11 +7,11 @@ import br.com.mind5.business.materialMovement.info.MatmovMerger;
 import br.com.mind5.business.materialStock.info.MatockCopier;
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.model.decisionTree.RootMatockUpsert;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatmovMatockUpsert extends ActionVisitorTemplateActionV2<MatmovInfo, MatockInfo> {
+final class VisiMatmovMatockUpsert extends ActionVisitorTemplateAction<MatmovInfo, MatockInfo> {
 	
 	public VisiMatmovMatockUpsert(DeciTreeOption<MatmovInfo> option) {
 		super(option, MatmovInfo.class, MatockInfo.class);

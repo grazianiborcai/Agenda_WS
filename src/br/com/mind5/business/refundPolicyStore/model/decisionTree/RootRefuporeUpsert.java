@@ -16,7 +16,7 @@ import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckStorau
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckStore;
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -76,10 +76,10 @@ public final class RootRefuporeUpsert extends DeciTreeTemplateWriteV2<RefuporeIn
 	
 	
 	
-	@Override protected List<ActionStdV1<RefuporeInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuporeInfo> option) {
-		List<ActionStdV1<RefuporeInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<RefuporeInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuporeInfo> option) {
+		List<ActionStdV2<RefuporeInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<RefuporeInfo> enforceLChanged = new StdRefuporeEnforceLChanged(option);	
+		ActionStdV2<RefuporeInfo> enforceLChanged = new StdRefuporeEnforceLChanged(option);	
 		ActionLazy<RefuporeInfo> enforceLChangedBy = new LazyRefuporeMergeUsername(option.conn, option.schemaName);		
 		ActionLazy<RefuporeInfo> enforceCreatedBy = new LazyRefuporeEnforceCreatedBy(option.conn, option.schemaName);	
 		ActionLazy<RefuporeInfo> enforceCreatedOn = new LazyRefuporeEnforceCreatedOn(option.conn, option.schemaName);

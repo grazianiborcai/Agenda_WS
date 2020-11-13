@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
@@ -23,7 +23,7 @@ public final class LazyStoparnapMergePaypar extends ActionLazyTemplate<Stoparnap
 	
 	
 	
-	@Override protected ActionStdV1<StoparnapInfo> getInstanceOfActionHook(DeciTreeOption<StoparnapInfo> option) {
+	@Override protected ActionStdV2<StoparnapInfo> getInstanceOfActionHook(DeciTreeOption<StoparnapInfo> option) {
 		return new StdStoparnapMergePaypar(option);
 	}
 	

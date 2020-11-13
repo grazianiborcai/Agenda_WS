@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -55,10 +55,10 @@ public final class RootUserapInsert extends DeciTreeTemplateWriteV2<UserapInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<UserapInfo>> buildActionsOnPassedHook(DeciTreeOption<UserapInfo> option) {
-		List<ActionStdV1<UserapInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV2<UserapInfo>> buildActionsOnPassedHook(DeciTreeOption<UserapInfo> option) {
+		List<ActionStdV2<UserapInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<UserapInfo> nodePerson = new NodeUserapPerson(option).toAction();
+		ActionStdV2<UserapInfo> nodePerson = new NodeUserapPerson(option).toAction();
 		ActionLazy<UserapInfo> insert = new LazyUserapDaoInsert(option.conn, option.schemaName);
 		
 		nodePerson.addPostAction(insert);

@@ -3,7 +3,7 @@ package br.com.mind5.payment.statusPayOrderItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -46,10 +46,10 @@ public final class RootPaytusemSelect extends DeciTreeTemplateReadV2<PaytusemInf
 	
 	
 	
-	@Override protected List<ActionStdV1<PaytusemInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusemInfo> option) {
-		List<ActionStdV1<PaytusemInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<PaytusemInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusemInfo> option) {
+		List<ActionStdV2<PaytusemInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<PaytusemInfo> mergePayordem = new StdPaytusemMergePayordem(option);	
+		ActionStdV2<PaytusemInfo> mergePayordem = new StdPaytusemMergePayordem(option);	
 		
 		actions.add(mergePayordem);		
 		return actions;

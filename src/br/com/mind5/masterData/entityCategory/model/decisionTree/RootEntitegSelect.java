@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.entityCategory.info.EntitegInfo;
 import br.com.mind5.masterData.entityCategory.model.action.StdEntitegDaoSelect;
 import br.com.mind5.masterData.entityCategory.model.checker.EntitegCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootEntitegSelect extends DeciTreeTemplateReadV2<EntitegInfo>
 
 		
 	
-	@Override protected List<ActionStdV1<EntitegInfo>> buildActionsOnPassedHook(DeciTreeOption<EntitegInfo> option) {
-		List<ActionStdV1<EntitegInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EntitegInfo>> buildActionsOnPassedHook(DeciTreeOption<EntitegInfo> option) {
+		List<ActionStdV2<EntitegInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EntitegInfo> select = new StdEntitegDaoSelect(option);
+		ActionStdV2<EntitegInfo> select = new StdEntitegDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

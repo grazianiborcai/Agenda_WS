@@ -2,12 +2,13 @@ package br.com.mind5.model.action;
 
 import java.util.List;
 
+import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.decisionTree.DeciResult;
 
-final class ActionLazyAdapter<T extends InfoRecord> implements ActionStdV1<T> {
+final class ActionLazyAdapter<T extends InfoRecord> implements ActionStdV2<T> {
 	private ActionLazy<T> handler;
 	private List<T> recordInfos;
 	
@@ -59,6 +60,29 @@ final class ActionLazyAdapter<T extends InfoRecord> implements ActionStdV1<T> {
 		//TODO: implementar esse método
 		logException(new IllegalStateException(SystemMessage.NO_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_IMPLEMENTATION);
+	}
+	
+	
+	
+	@Override public void close() {
+		closeHandler(handler);
+		clear();
+	}
+	
+	
+	
+	private void closeHandler(ActionLazy<T> actionHandler) {
+		if (actionHandler == null)
+			return;
+		
+		actionHandler.close();
+	}
+	
+	
+	
+	private void clear() {
+		handler = DefaultValue.object();
+		recordInfos = DefaultValue.object();
 	}
 	
 	

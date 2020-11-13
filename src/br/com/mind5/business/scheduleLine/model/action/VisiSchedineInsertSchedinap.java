@@ -6,11 +6,11 @@ import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineMerger;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.scheduleLineSnapshot.model.decisionTree.RootSchedinapInsert;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedineInsertSchedinap extends ActionVisitorTemplateActionV2<SchedineInfo, SchedinapInfo> {
+final class VisiSchedineInsertSchedinap extends ActionVisitorTemplateAction<SchedineInfo, SchedinapInfo> {
 
 	public VisiSchedineInsertSchedinap(DeciTreeOption<SchedineInfo> option) {
 		super(option, SchedineInfo.class, SchedinapInfo.class);

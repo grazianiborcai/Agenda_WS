@@ -7,7 +7,7 @@ import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleDay.model.action.LazySchedayRootSelect;
 import br.com.mind5.business.scheduleDay.model.action.StdSchedayMergeNow;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class RootSchedaySelectNow extends DeciTreeTemplateWriteV2<SchedayI
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedayInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedayInfo> option) {
-		List<ActionStdV1<SchedayInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedayInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedayInfo> option) {
+		List<ActionStdV2<SchedayInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedayInfo> mergeNow = new StdSchedayMergeNow(option);
+		ActionStdV2<SchedayInfo> mergeNow = new StdSchedayMergeNow(option);
 		ActionLazy<SchedayInfo> select = new LazySchedayRootSelect(option.conn, option.schemaName);
 		
 		mergeNow.addPostAction(select);

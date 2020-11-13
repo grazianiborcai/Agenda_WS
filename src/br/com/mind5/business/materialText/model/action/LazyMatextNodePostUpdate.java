@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.decisionTree.NodeMatextPostUpdate;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyMatextNodePostUpdate extends ActionLazyTemplate<MatextInf
 	
 	
 	
-	@Override protected ActionStdV1<MatextInfo> getInstanceOfActionHook(DeciTreeOption<MatextInfo> option) {
+	@Override protected ActionStdV2<MatextInfo> getInstanceOfActionHook(DeciTreeOption<MatextInfo> option) {
 		return new NodeMatextPostUpdate(option).toAction();
 	}
 	

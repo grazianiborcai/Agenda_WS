@@ -3,7 +3,7 @@ package br.com.mind5.business.calendarDateSearch.model.checker;
 import br.com.mind5.business.calendarDateSearch.info.CalatarchInfo;
 import br.com.mind5.business.calendarDateSearch.model.decisionTree.RootCalatarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class CalatarchCheckExist extends ModelCheckerTemplateActionV2<Cala
 	
 	
 	
-	@Override protected ActionStdV1<CalatarchInfo> buildActionHook(DeciTreeOption<CalatarchInfo> option) {
-		ActionStdV1<CalatarchInfo> select = new RootCalatarchSelect(option).toAction();
+	@Override protected ActionStdV2<CalatarchInfo> buildActionHook(DeciTreeOption<CalatarchInfo> option) {
+		ActionStdV2<CalatarchInfo> select = new RootCalatarchSelect(option).toAction();
 		return select;
 	}
 	

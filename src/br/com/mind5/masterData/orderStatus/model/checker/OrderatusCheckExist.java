@@ -3,7 +3,7 @@ package br.com.mind5.masterData.orderStatus.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.orderStatus.info.OrderatusInfo;
 import br.com.mind5.masterData.orderStatus.model.action.StdOrderatusDaoSelect;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class OrderatusCheckExist extends ModelCheckerTemplateActionV2<Orde
 	
 	
 	
-	@Override protected ActionStdV1<OrderatusInfo> buildActionHook(DeciTreeOption<OrderatusInfo> option) {
-		ActionStdV1<OrderatusInfo> select = new StdOrderatusDaoSelect(option);
+	@Override protected ActionStdV2<OrderatusInfo> buildActionHook(DeciTreeOption<OrderatusInfo> option) {
+		ActionStdV2<OrderatusInfo> select = new StdOrderatusDaoSelect(option);
 		return select;
 	}
 	

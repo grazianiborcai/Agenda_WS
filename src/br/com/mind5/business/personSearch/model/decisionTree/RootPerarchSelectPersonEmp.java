@@ -9,7 +9,7 @@ import br.com.mind5.business.personSearch.model.action.LazyPerarchRootSelect;
 import br.com.mind5.business.personSearch.model.action.StdPerarchEnforceCategEmp;
 import br.com.mind5.business.personSearch.model.checker.PerarchCheckReadPerson;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -41,10 +41,10 @@ public final class RootPerarchSelectPersonEmp extends DeciTreeTemplateReadV2<Per
 	
 	
 	
-	@Override protected List<ActionStdV1<PerarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PerarchInfo> option) {
-		List<ActionStdV1<PerarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PerarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PerarchInfo> option) {
+		List<ActionStdV2<PerarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PerarchInfo> enforceCateg = new StdPerarchEnforceCategEmp(option);	
+		ActionStdV2<PerarchInfo> enforceCateg = new StdPerarchEnforceCategEmp(option);	
 		ActionLazy<PerarchInfo> enforcePerson = new LazyPerarchEnforcePerson(option.conn, option.schemaName);
 		ActionLazy<PerarchInfo> select = new LazyPerarchRootSelect(option.conn, option.schemaName);
 		

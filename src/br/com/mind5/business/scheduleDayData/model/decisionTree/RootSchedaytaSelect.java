@@ -9,7 +9,7 @@ import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckLangu;
 import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckOwner;
 import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckRead;
 import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckStore;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -62,10 +62,10 @@ public final class RootSchedaytaSelect extends DeciTreeTemplateWriteV2<Schedayta
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedaytaInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedaytaInfo> option) {
-		List<ActionStdV1<SchedaytaInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedaytaInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedaytaInfo> option) {
+		List<ActionStdV2<SchedaytaInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedaytaInfo> select = new StdSchedaytaMergeToSelect(option);
+		ActionStdV2<SchedaytaInfo> select = new StdSchedaytaMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

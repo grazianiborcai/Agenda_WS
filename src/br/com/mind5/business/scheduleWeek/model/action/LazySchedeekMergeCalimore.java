@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazySchedeekMergeCalimore extends ActionLazyTemplate<Schedeek
 	
 	
 	
-	@Override protected ActionStdV1<SchedeekInfo> getInstanceOfActionHook(DeciTreeOption<SchedeekInfo> option) {
+	@Override protected ActionStdV2<SchedeekInfo> getInstanceOfActionHook(DeciTreeOption<SchedeekInfo> option) {
 		return new StdSchedeekMergeCalimore(option);
 	}
 	

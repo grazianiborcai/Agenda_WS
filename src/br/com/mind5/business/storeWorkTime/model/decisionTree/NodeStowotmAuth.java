@@ -7,7 +7,7 @@ import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.model.action.StdStowotmMergeSytotauh;
 import br.com.mind5.business.storeWorkTime.model.action.StdStowotmSuccess;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckAuthCustomer;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,10 +39,10 @@ public final class NodeStowotmAuth extends DeciTreeTemplateReadV2<StowotmInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
-		List<ActionStdV1<StowotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
+		List<ActionStdV2<StowotmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StowotmInfo> success = new StdStowotmSuccess(option);
+		ActionStdV2<StowotmInfo> success = new StdStowotmSuccess(option);
 
 		actions.add(success);
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeStowotmAuth extends DeciTreeTemplateReadV2<StowotmInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<StowotmInfo>> buildActionsOnFailedHook(DeciTreeOption<StowotmInfo> option) {
-		List<ActionStdV1<StowotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StowotmInfo>> buildActionsOnFailedHook(DeciTreeOption<StowotmInfo> option) {
+		List<ActionStdV2<StowotmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StowotmInfo> mergeSytotauh = new StdStowotmMergeSytotauh(option);
+		ActionStdV2<StowotmInfo> mergeSytotauh = new StdStowotmMergeSytotauh(option);
 		
 		actions.add(mergeSytotauh);
 		return actions;

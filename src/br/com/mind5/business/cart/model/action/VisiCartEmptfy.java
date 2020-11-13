@@ -5,11 +5,11 @@ import java.util.List;
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.info.CartMerger;
 import br.com.mind5.business.cart.model.decisionTree.RootCartDelete;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartEmptfy extends ActionVisitorTemplateActionV2<CartInfo, CartInfo> {
+final class VisiCartEmptfy extends ActionVisitorTemplateAction<CartInfo, CartInfo> {
 	
 	public VisiCartEmptfy(DeciTreeOption<CartInfo> option) {
 		super(option, CartInfo.class, CartInfo.class);

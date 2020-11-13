@@ -7,7 +7,7 @@ import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.action.StdCompMergeToSelect;
 import br.com.mind5.business.company.model.checker.CompCheckLangu;
 import br.com.mind5.business.company.model.checker.CompCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -46,10 +46,10 @@ public final class RootCompSelect extends DeciTreeTemplateReadV2<CompInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
-		List<ActionStdV1<CompInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
+		List<ActionStdV2<CompInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CompInfo> select = new StdCompMergeToSelect(option);	
+		ActionStdV2<CompInfo> select = new StdCompMergeToSelect(option);	
 		actions.add(select);
 		
 		return actions;

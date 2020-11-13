@@ -4,7 +4,7 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.file.fileImageSearch.model.decisionTree.RootFimarchSelectStore;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,8 +17,8 @@ public final class FimgCheckExistStore extends ModelCheckerTemplateActionV2<Fimg
 	
 	
 	
-	@Override protected ActionStdV1<FimarchInfo> buildActionHook(DeciTreeOption<FimarchInfo> option) {
-		ActionStdV1<FimarchInfo> select = new RootFimarchSelectStore(option).toAction();
+	@Override protected ActionStdV2<FimarchInfo> buildActionHook(DeciTreeOption<FimarchInfo> option) {
+		ActionStdV2<FimarchInfo> select = new RootFimarchSelectStore(option).toAction();
 		return select;
 	}
 	

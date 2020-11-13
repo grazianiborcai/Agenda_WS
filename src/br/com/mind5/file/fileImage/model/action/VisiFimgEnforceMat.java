@@ -3,10 +3,10 @@ package br.com.mind5.file.fileImage.model.action;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.info.FimgSetterMat;
 import br.com.mind5.info.InfoSetter;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFimgEnforceMat extends ActionVisitorTemplateEnforceV2<FimgInfo> {
+final class VisiFimgEnforceMat extends ActionVisitorTemplateEnforce<FimgInfo> {
 	
 	public VisiFimgEnforceMat(DeciTreeOption<FimgInfo> option) {
 		super(option);	

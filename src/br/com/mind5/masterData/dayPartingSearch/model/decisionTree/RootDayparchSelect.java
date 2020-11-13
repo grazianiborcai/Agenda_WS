@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.dayPartingSearch.info.DayparchInfo;
 import br.com.mind5.masterData.dayPartingSearch.model.action.StdDayparchDaoSelect;
 import br.com.mind5.masterData.dayPartingSearch.model.checker.DayparchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootDayparchSelect extends DeciTreeTemplateReadV2<DayparchInf
 
 		
 	
-	@Override protected List<ActionStdV1<DayparchInfo>> buildActionsOnPassedHook(DeciTreeOption<DayparchInfo> option) {
-		List<ActionStdV1<DayparchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<DayparchInfo>> buildActionsOnPassedHook(DeciTreeOption<DayparchInfo> option) {
+		List<ActionStdV2<DayparchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<DayparchInfo> select = new StdDayparchDaoSelect(option);
+		ActionStdV2<DayparchInfo> select = new StdDayparchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

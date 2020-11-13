@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.config.sysStoreBusinessContent.info.SytorbcInfo;
 import br.com.mind5.config.sysStoreBusinessContent.model.action.StdSytorbcEnforceEnabled;
 import br.com.mind5.config.sysStoreBusinessContent.model.checker.SytorbcCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootSytorbcSelectDefault extends DeciTreeTemplateReadV2<Sytor
 	
 	
 	
-	@Override protected List<ActionStdV1<SytorbcInfo>> buildActionsOnPassedHook(DeciTreeOption<SytorbcInfo> option) {
-		List<ActionStdV1<SytorbcInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SytorbcInfo>> buildActionsOnPassedHook(DeciTreeOption<SytorbcInfo> option) {
+		List<ActionStdV2<SytorbcInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SytorbcInfo> enforceEnabled = new StdSytorbcEnforceEnabled(option);
+		ActionStdV2<SytorbcInfo> enforceEnabled = new StdSytorbcEnforceEnabled(option);
 		
 		actions.add(enforceEnabled);
 		return actions;

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.month.info.MonthInfo;
 import br.com.mind5.masterData.month.model.action.StdMonthDaoSelect;
 import br.com.mind5.masterData.month.model.checker.MonthCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootMonthSelect extends DeciTreeTemplateReadV2<MonthInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<MonthInfo>> buildActionsOnPassedHook(DeciTreeOption<MonthInfo> option) {
-		List<ActionStdV1<MonthInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MonthInfo>> buildActionsOnPassedHook(DeciTreeOption<MonthInfo> option) {
+		List<ActionStdV2<MonthInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MonthInfo> select = new StdMonthDaoSelect(option);
+		ActionStdV2<MonthInfo> select = new StdMonthDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

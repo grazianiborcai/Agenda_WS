@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.position.info.PositionInfo;
 import br.com.mind5.masterData.position.model.action.StdPositionDaoSelect;
 import br.com.mind5.masterData.position.model.checker.PositionCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootPositionSelect extends DeciTreeTemplateReadV2<PositionInf
 	
 	
 	
-	@Override protected List<ActionStdV1<PositionInfo>> buildActionsOnPassedHook(DeciTreeOption<PositionInfo> option) {
-		List<ActionStdV1<PositionInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PositionInfo>> buildActionsOnPassedHook(DeciTreeOption<PositionInfo> option) {
+		List<ActionStdV2<PositionInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PositionInfo> select = new StdPositionDaoSelect(option);
+		ActionStdV2<PositionInfo> select = new StdPositionDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

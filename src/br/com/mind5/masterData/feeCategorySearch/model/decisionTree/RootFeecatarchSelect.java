@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.feeCategorySearch.info.FeecatarchInfo;
 import br.com.mind5.masterData.feeCategorySearch.model.action.StdFeecatarchDaoSelect;
 import br.com.mind5.masterData.feeCategorySearch.model.checker.FeecatarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootFeecatarchSelect extends DeciTreeTemplateReadV2<Feecatarc
 
 		
 	
-	@Override protected List<ActionStdV1<FeecatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FeecatarchInfo> option) {
-		List<ActionStdV1<FeecatarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<FeecatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FeecatarchInfo> option) {
+		List<ActionStdV2<FeecatarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<FeecatarchInfo> select = new StdFeecatarchDaoSelect(option);
+		ActionStdV2<FeecatarchInfo> select = new StdFeecatarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

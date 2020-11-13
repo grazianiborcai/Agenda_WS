@@ -4,12 +4,12 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.dao.DaoCusparInsert;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-final class VisiCusparDaoInsert extends ActionVisitorTemplateStmtV2<CusparInfo> {
+final class VisiCusparDaoInsert extends ActionVisitorTemplateStmt<CusparInfo> {
 
 	public VisiCusparDaoInsert(DeciTreeOption<CusparInfo> option) {
 		super(option);

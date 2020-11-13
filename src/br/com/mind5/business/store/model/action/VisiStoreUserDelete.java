@@ -3,14 +3,14 @@ package br.com.mind5.business.store.model.action;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.decisionTree.RootUserDelete;
 
-final class VisiStoreUserDelete extends ActionVisitorTemplateActionV2<StoreInfo, UserInfo> {
+final class VisiStoreUserDelete extends ActionVisitorTemplateAction<StoreInfo, UserInfo> {
 	
 	public VisiStoreUserDelete(DeciTreeOption<StoreInfo> option) {
 		super(option, StoreInfo.class, UserInfo.class);

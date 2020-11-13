@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.action.StdCompSuccess;
 import br.com.mind5.business.company.model.checker.CompCheckHasCnpj;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class NodeCompCnpjL1 extends DeciTreeTemplateWriteV2<CompInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
-		List<ActionStdV1<CompInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
+		List<ActionStdV2<CompInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CompInfo> nodeL2 = new NodeCompCnpjL2(option).toAction();	
+		ActionStdV2<CompInfo> nodeL2 = new NodeCompCnpjL2(option).toAction();	
 		
 		actions.add(nodeL2);	
 		return actions;
@@ -49,10 +49,10 @@ public final class NodeCompCnpjL1 extends DeciTreeTemplateWriteV2<CompInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<CompInfo>> buildActionsOnFailedHook(DeciTreeOption<CompInfo> option) {
-		List<ActionStdV1<CompInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CompInfo>> buildActionsOnFailedHook(DeciTreeOption<CompInfo> option) {
+		List<ActionStdV2<CompInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CompInfo> success = new StdCompSuccess(option);
+		ActionStdV2<CompInfo> success = new StdCompSuccess(option);
 		
 		actions.add(success);	
 		return actions;

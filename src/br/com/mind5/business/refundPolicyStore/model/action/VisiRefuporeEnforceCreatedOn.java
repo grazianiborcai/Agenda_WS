@@ -3,10 +3,10 @@ package br.com.mind5.business.refundPolicyStore.model.action;
 import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
 import br.com.mind5.business.refundPolicyStore.info.RefuporeSetterCreatedOn;
 import br.com.mind5.info.InfoSetter;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefuporeEnforceCreatedOn extends ActionVisitorTemplateEnforceV2<RefuporeInfo> {
+final class VisiRefuporeEnforceCreatedOn extends ActionVisitorTemplateEnforce<RefuporeInfo> {
 	
 	public VisiRefuporeEnforceCreatedOn(DeciTreeOption<RefuporeInfo> option) {
 		super(option);

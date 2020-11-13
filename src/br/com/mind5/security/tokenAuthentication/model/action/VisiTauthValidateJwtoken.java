@@ -2,7 +2,7 @@ package br.com.mind5.security.tokenAuthentication.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.jwtToken.info.JwtokenCopier;
@@ -11,7 +11,7 @@ import br.com.mind5.security.jwtToken.model.decisionTree.RootJwtokenValidate;
 import br.com.mind5.security.tokenAuthentication.info.TauthInfo;
 import br.com.mind5.security.tokenAuthentication.info.TauthMerger;
 
-final class VisiTauthValidateJwtoken extends ActionVisitorTemplateActionV2<TauthInfo, JwtokenInfo> {
+final class VisiTauthValidateJwtoken extends ActionVisitorTemplateAction<TauthInfo, JwtokenInfo> {
 	
 	public VisiTauthValidateJwtoken(DeciTreeOption<TauthInfo> option) {
 		super(option, TauthInfo.class, JwtokenInfo.class);

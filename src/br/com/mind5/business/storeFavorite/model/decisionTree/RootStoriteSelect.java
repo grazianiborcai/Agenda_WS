@@ -11,7 +11,7 @@ import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckOwner;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckRead;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckUser;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -64,10 +64,10 @@ public final class RootStoriteSelect extends DeciTreeTemplateWriteV2<StoriteInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<StoriteInfo>> buildActionsOnPassedHook(DeciTreeOption<StoriteInfo> option) {
-		List<ActionStdV1<StoriteInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StoriteInfo>> buildActionsOnPassedHook(DeciTreeOption<StoriteInfo> option) {
+		List<ActionStdV2<StoriteInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StoriteInfo> select = new StdStoriteMergeToSelect(option);
+		ActionStdV2<StoriteInfo> select = new StdStoriteMergeToSelect(option);
 		ActionLazy<StoriteInfo> mergeStolis = new LazyStoriteMergeStolis(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeStolis);

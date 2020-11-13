@@ -15,7 +15,7 @@ import br.com.mind5.business.owner.model.checker.OwnerCheckBusarea;
 import br.com.mind5.business.owner.model.checker.OwnerCheckInsert;
 import br.com.mind5.business.owner.model.checker.OwnerCheckLangu;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -61,10 +61,10 @@ public final class RootOwnerInsert extends DeciTreeTemplateWriteV2<OwnerInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStdV2<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OwnerInfo> insertOwner = new NodeOwnerInsert(option).toAction();
+		ActionStdV2<OwnerInfo> insertOwner = new NodeOwnerInsert(option).toAction();
 		ActionLazy<OwnerInfo> insertPerson = new LazyOwnerNodeInsertPerson(option.conn, option.schemaName);			
 		ActionLazy<OwnerInfo> insertComp = new LazyOwnerNodeInsertComp(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> insertUser = new LazyOwnerUserInsert(option.conn, option.schemaName);	

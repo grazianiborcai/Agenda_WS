@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.country.dao.DaoCountrySelect;
 import br.com.mind5.masterData.country.info.CountryInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCountryDaoSelect extends ActionVisitorTemplateStmtV2<CountryInfo> {
+final class VisiCountryDaoSelect extends ActionVisitorTemplateStmt<CountryInfo> {
 
 	public VisiCountryDaoSelect(DeciTreeOption<CountryInfo> option) {
 		super(option);

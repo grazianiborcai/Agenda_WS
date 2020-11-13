@@ -14,7 +14,7 @@ import br.com.mind5.geo.geoCode.model.checker.GeodeCheckLangu;
 import br.com.mind5.geo.geoCode.model.checker.GeodeCheckOwner;
 import br.com.mind5.geo.geoCode.model.checker.GeodeCheckState;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -74,10 +74,10 @@ public final class RootGeodeCoding extends DeciTreeTemplateWriteV2<GeodeInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<GeodeInfo>> buildActionsOnPassedHook(DeciTreeOption<GeodeInfo> option) {
-		List<ActionStdV1<GeodeInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV2<GeodeInfo>> buildActionsOnPassedHook(DeciTreeOption<GeodeInfo> option) {
+		List<ActionStdV2<GeodeInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<GeodeInfo> mergeState = new StdGeodeMergeState(option);		
+		ActionStdV2<GeodeInfo> mergeState = new StdGeodeMergeState(option);		
 		ActionLazy<GeodeInfo> mergeCountry = new LazyGeodeMergeCountry(option.conn, option.schemaName);
 		ActionLazy<GeodeInfo> enforceLocation = new LazyGeodeEnforceLocation(option.conn, option.schemaName);
 		ActionLazy<GeodeInfo> coding = new LazyGeodeCoding(option.conn, option.schemaName);	

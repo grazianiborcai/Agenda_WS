@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -56,10 +56,10 @@ public final class RootUpswdarchChangedBefore extends DeciTreeTemplateWriteV2<Up
 	
 	
 	
-	@Override protected List<ActionStdV1<UpswdarchInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdarchInfo> option) {
-		List<ActionStdV1<UpswdarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<UpswdarchInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdarchInfo> option) {
+		List<ActionStdV2<UpswdarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<UpswdarchInfo> mergeUsername = new StdUpswdarchMergeUsername(option);	
+		ActionStdV2<UpswdarchInfo> mergeUsername = new StdUpswdarchMergeUsername(option);	
 		ActionLazy<UpswdarchInfo> select = new LazyUpswdarchMergeToSelect(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(select);

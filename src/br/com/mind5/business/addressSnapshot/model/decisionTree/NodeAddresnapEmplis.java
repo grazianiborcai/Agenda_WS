@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.action.StdAddresnapMergeEmplis;
 import br.com.mind5.business.addressSnapshot.model.checker.AddresnapCheckHasEmployee;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class NodeAddresnapEmplis extends DeciTreeTemplateWriteV2<Addresnap
 	
 	
 	
-	@Override protected List<ActionStdV1<AddresnapInfo>> buildActionsOnPassedHook(DeciTreeOption<AddresnapInfo> option) {
-		List<ActionStdV1<AddresnapInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<AddresnapInfo>> buildActionsOnPassedHook(DeciTreeOption<AddresnapInfo> option) {
+		List<ActionStdV2<AddresnapInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<AddresnapInfo> mergeEmplis = new StdAddresnapMergeEmplis(option);	
+		ActionStdV2<AddresnapInfo> mergeEmplis = new StdAddresnapMergeEmplis(option);	
 		
 		actions.add(mergeEmplis);			
 		return actions;
@@ -49,10 +49,10 @@ public final class NodeAddresnapEmplis extends DeciTreeTemplateWriteV2<Addresnap
 	
 	
 	
-	@Override protected List<ActionStdV1<AddresnapInfo>> buildActionsOnFailedHook(DeciTreeOption<AddresnapInfo> option) {
-		List<ActionStdV1<AddresnapInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<AddresnapInfo>> buildActionsOnFailedHook(DeciTreeOption<AddresnapInfo> option) {
+		List<ActionStdV2<AddresnapInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<AddresnapInfo> nodeCuslis = new NodeAddresnapCuslis(option).toAction();	
+		ActionStdV2<AddresnapInfo> nodeCuslis = new NodeAddresnapCuslis(option).toAction();	
 		
 		actions.add(nodeCuslis);			
 		return actions;

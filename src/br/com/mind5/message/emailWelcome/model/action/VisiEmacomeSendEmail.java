@@ -6,11 +6,11 @@ import br.com.mind5.message.email.info.EmailCopier;
 import br.com.mind5.message.email.info.EmailInfo;
 import br.com.mind5.message.email.model.decisionTree.RootEmailWelcome;
 import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmacomeSendEmail extends ActionVisitorTemplateActionV2<EmacomeInfo, EmailInfo> {
+final class VisiEmacomeSendEmail extends ActionVisitorTemplateAction<EmacomeInfo, EmailInfo> {
 	
 	public VisiEmacomeSendEmail(DeciTreeOption<EmacomeInfo> option) {
 		super(option, EmacomeInfo.class, EmailInfo.class);

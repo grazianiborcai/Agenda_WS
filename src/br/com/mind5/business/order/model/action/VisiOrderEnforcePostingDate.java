@@ -3,10 +3,10 @@ package br.com.mind5.business.order.model.action;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderSetterPostingDate;
 import br.com.mind5.info.InfoSetter;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderEnforcePostingDate extends ActionVisitorTemplateEnforceV2<OrderInfo> {
+final class VisiOrderEnforcePostingDate extends ActionVisitorTemplateEnforce<OrderInfo> {
 	
 	public VisiOrderEnforcePostingDate(DeciTreeOption<OrderInfo> option) {
 		super(option);

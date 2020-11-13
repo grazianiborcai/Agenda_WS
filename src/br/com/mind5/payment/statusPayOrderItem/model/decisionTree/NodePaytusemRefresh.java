@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -41,10 +41,10 @@ public final class NodePaytusemRefresh extends DeciTreeTemplateWriteV2<PaytusemI
 	
 	
 	
-	@Override protected List<ActionStdV1<PaytusemInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusemInfo> option) {
-		List<ActionStdV1<PaytusemInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<PaytusemInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusemInfo> option) {
+		List<ActionStdV2<PaytusemInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<PaytusemInfo> success = new StdPaytusemSuccess(option);	
+		ActionStdV2<PaytusemInfo> success = new StdPaytusemSuccess(option);	
 		
 		actions.add(success);		
 		return actions;
@@ -52,10 +52,10 @@ public final class NodePaytusemRefresh extends DeciTreeTemplateWriteV2<PaytusemI
 	
 	
 	
-	@Override protected List<ActionStdV1<PaytusemInfo>> buildActionsOnFailedHook(DeciTreeOption<PaytusemInfo> option) {
-		List<ActionStdV1<PaytusemInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<PaytusemInfo>> buildActionsOnFailedHook(DeciTreeOption<PaytusemInfo> option) {
+		List<ActionStdV2<PaytusemInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<PaytusemInfo> mergeOrdmoip = new StdPaytusemMergeOrdmoip(option);	
+		ActionStdV2<PaytusemInfo> mergeOrdmoip = new StdPaytusemMergeOrdmoip(option);	
 		ActionLazy<PaytusemInfo> payordemUpdate = new LazyPaytusemPayordemUpdate(option.conn, option.schemaName);
 		
 		mergeOrdmoip.addPostAction(payordemUpdate);

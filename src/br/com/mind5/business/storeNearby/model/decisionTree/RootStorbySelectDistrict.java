@@ -12,7 +12,7 @@ import br.com.mind5.business.storeNearby.model.checker.StorbyCheckLangu;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckOwner;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckReadDistrict;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -58,10 +58,10 @@ public final class RootStorbySelectDistrict extends DeciTreeTemplateReadV2<Storb
 	
 	
 	
-	@Override protected List<ActionStdV1<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
-		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
+		List<ActionStdV2<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<StorbyInfo> enforceDistrictKey = new StdStorbyEnforceDistrictKey(option);
+		ActionStdV2<StorbyInfo> enforceDistrictKey = new StdStorbyEnforceDistrictKey(option);
 		ActionLazy<StorbyInfo> enforceDistrictSearch = new LazyStorbyEnforceDistrictSearch(option.conn, option.schemaName);
 		ActionLazy<StorbyInfo> select = new LazyStorbyMergeToSelect(option.conn, option.schemaName);
 		ActionLazy<StorbyInfo> nodeMerge = new LazyStorbyNodeMerge(option.conn, option.schemaName);

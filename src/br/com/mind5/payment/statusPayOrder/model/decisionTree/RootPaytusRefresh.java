@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -56,13 +56,13 @@ public final class RootPaytusRefresh extends DeciTreeTemplateWriteV2<PaytusInfo>
 	
 	
 	//TODO: por padrao, um pagamento com mais de 180 dias nao pode ser alterado. Nao refrescar pagamentos antigos ?
-	@Override protected List<ActionStdV1<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
-		List<ActionStdV1<PaytusInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
+		List<ActionStdV2<PaytusInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<PaytusInfo> selectToRefresh = new RootPaytusSelect(option).toAction();
+		ActionStdV2<PaytusInfo> selectToRefresh = new RootPaytusSelect(option).toAction();
 		ActionLazy<PaytusInfo> nodeRefresh = new LazyPaytusNodeRefresh(option.conn, option.schemaName);	
 		ActionLazy<PaytusInfo> paytusemRefresh = new LazyPaytusPaytusemRefresh(option.conn, option.schemaName);		
-		ActionStdV1<PaytusInfo> selectOutput = new RootPaytusSelect(option).toAction();	
+		ActionStdV2<PaytusInfo> selectOutput = new RootPaytusSelect(option).toAction();	
 		
 		selectToRefresh.addPostAction(nodeRefresh);
 		nodeRefresh.addPostAction(paytusemRefresh);

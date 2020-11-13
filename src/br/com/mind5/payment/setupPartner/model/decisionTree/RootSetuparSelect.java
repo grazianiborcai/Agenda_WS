@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -40,10 +40,10 @@ public final class RootSetuparSelect extends DeciTreeTemplateReadV2<SetuparInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<SetuparInfo>> buildActionsOnPassedHook(DeciTreeOption<SetuparInfo> option) {
-		List<ActionStdV1<SetuparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SetuparInfo>> buildActionsOnPassedHook(DeciTreeOption<SetuparInfo> option) {
+		List<ActionStdV2<SetuparInfo>> actions = new ArrayList<>();
 		//TODO: esses dados devem ser movidos para outro lugar mais seguro
-		ActionStdV1<SetuparInfo> select = new StdSetuparDaoSelect(option);
+		ActionStdV2<SetuparInfo> select = new StdSetuparDaoSelect(option);
 		ActionLazy<SetuparInfo> mergePayPartner = new LazySetuparMergePaypar(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePayPartner);

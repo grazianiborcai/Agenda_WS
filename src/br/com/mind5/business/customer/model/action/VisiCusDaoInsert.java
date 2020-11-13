@@ -6,10 +6,10 @@ import br.com.mind5.business.customer.dao.DaoCusInsert;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusDaoInsert extends ActionVisitorTemplateStmtV2<CusInfo> {
+final class VisiCusDaoInsert extends ActionVisitorTemplateStmt<CusInfo> {
 
 	public VisiCusDaoInsert(DeciTreeOption<CusInfo> option) {
 		super(option);

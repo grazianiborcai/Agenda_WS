@@ -7,7 +7,7 @@ import br.com.mind5.business.phoneDefault.info.PhonaultInfo;
 import br.com.mind5.business.phoneDefault.model.action.StdPhonaultMergeToSelect;
 import br.com.mind5.business.phoneDefault.model.checker.PhonaultCheckLangu;
 import br.com.mind5.business.phoneDefault.model.checker.PhonaultCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -46,10 +46,10 @@ public final class RootPhonaultSelect extends DeciTreeTemplateWriteV2<PhonaultIn
 	
 	
 	
-	@Override protected List<ActionStdV1<PhonaultInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonaultInfo> option) {
-		List<ActionStdV1<PhonaultInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<PhonaultInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonaultInfo> option) {
+		List<ActionStdV2<PhonaultInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<PhonaultInfo> select = new StdPhonaultMergeToSelect(option);
+		ActionStdV2<PhonaultInfo> select = new StdPhonaultMergeToSelect(option);
 		
 		actions.add(select);			
 		return actions;

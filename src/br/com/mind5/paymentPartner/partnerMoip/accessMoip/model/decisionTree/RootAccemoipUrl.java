@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -80,10 +80,10 @@ public final class RootAccemoipUrl extends DeciTreeTemplateWriteV2<AccemoipInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<AccemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<AccemoipInfo> option) {
-		List<ActionStdV1<AccemoipInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<AccemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<AccemoipInfo> option) {
+		List<ActionStdV2<AccemoipInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<AccemoipInfo> enforcePayPartner = new StdAccemoipEnforcePayPartner(option);	
+		ActionStdV2<AccemoipInfo> enforcePayPartner = new StdAccemoipEnforcePayPartner(option);	
 		ActionLazy<AccemoipInfo> nodeUrl = new LazyAccemoipNodeUrl(option.conn, option.schemaName);
 		
 		enforcePayPartner.addPostAction(nodeUrl);

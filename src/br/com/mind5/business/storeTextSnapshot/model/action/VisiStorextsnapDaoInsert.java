@@ -6,10 +6,10 @@ import br.com.mind5.business.storeTextSnapshot.dao.DaoStorextsnapInsert;
 import br.com.mind5.business.storeTextSnapshot.info.StorextsnapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorextsnapDaoInsert extends ActionVisitorTemplateStmtV2<StorextsnapInfo> {
+final class VisiStorextsnapDaoInsert extends ActionVisitorTemplateStmt<StorextsnapInfo> {
 
 	public VisiStorextsnapDaoInsert(DeciTreeOption<StorextsnapInfo> option) {
 		super(option);

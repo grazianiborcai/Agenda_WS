@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.RootAddressUpsertdel;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class VisiUserAddressUpsert extends ActionVisitorTemplateActionV2<UserInfo, AddressInfo> {
+final class VisiUserAddressUpsert extends ActionVisitorTemplateAction<UserInfo, AddressInfo> {
 	
 	public VisiUserAddressUpsert(DeciTreeOption<UserInfo> option) {
 		super(option, UserInfo.class, AddressInfo.class);

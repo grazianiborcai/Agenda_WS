@@ -3,7 +3,7 @@ package br.com.mind5.business.storeFavorite.model.checker;
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
 import br.com.mind5.business.storeFavorite.model.action.StdStoriteDaoSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class StoriteCheckExist extends ModelCheckerTemplateActionV2<Storit
 	
 	
 	
-	@Override protected ActionStdV1<StoriteInfo> buildActionHook(DeciTreeOption<StoriteInfo> option) {
-		ActionStdV1<StoriteInfo> select = new StdStoriteDaoSelect(option);
+	@Override protected ActionStdV2<StoriteInfo> buildActionHook(DeciTreeOption<StoriteInfo> option) {
+		ActionStdV2<StoriteInfo> select = new StdStoriteDaoSelect(option);
 		return select;
 	}
 	

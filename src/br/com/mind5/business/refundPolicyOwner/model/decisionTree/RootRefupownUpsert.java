@@ -14,7 +14,7 @@ import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckOwner;
 import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckRefugroup;
 import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -60,10 +60,10 @@ public final class RootRefupownUpsert extends DeciTreeTemplateWriteV2<RefupownIn
 	
 	
 	
-	@Override protected List<ActionStdV1<RefupownInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupownInfo> option) {
-		List<ActionStdV1<RefupownInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<RefupownInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupownInfo> option) {
+		List<ActionStdV2<RefupownInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<RefupownInfo> enforceLChanged = new StdRefupownEnforceLChanged(option);	
+		ActionStdV2<RefupownInfo> enforceLChanged = new StdRefupownEnforceLChanged(option);	
 		ActionLazy<RefupownInfo> enforceLChangedBy = new LazyRefupownMergeUsername(option.conn, option.schemaName);		
 		ActionLazy<RefupownInfo> enforceCreatedBy = new LazyRefupownEnforceCreatedBy(option.conn, option.schemaName);	
 		ActionLazy<RefupownInfo> enforceCreatedOn = new LazyRefupownEnforceCreatedOn(option.conn, option.schemaName);

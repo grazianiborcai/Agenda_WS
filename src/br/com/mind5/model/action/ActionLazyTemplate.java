@@ -20,7 +20,7 @@ public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRec
 	
 	private Connection conn; 
 	private String schemaName;
-	private ActionStdV1<S> mainAction;
+	private ActionStdV2<S> mainAction;
 	private DeciResult<T> actionResult;
 	private List<ActionLazy<T>> postActions;
 	
@@ -59,14 +59,14 @@ public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRec
 	
 	
 	
-	private ActionStdV1<S> getMainAction(List<T> infoRecords) {
+	private ActionStdV2<S> getMainAction(List<T> infoRecords) {
 		DeciTreeOption<S> option = buildOption(infoRecords);		
 		return getInstanceOfActionHook(option);
 	}
 	
 	
 	
-	private DeciResult<T> executeMainAction(ActionStdV1<S> action) {
+	private DeciResult<T> executeMainAction(ActionStdV2<S> action) {
 		action.executeAction();
 		return translateResultHook(action.getDecisionResult());
 	}
@@ -126,7 +126,7 @@ public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRec
 	
 	
 	
-	@Override public ActionStdV1<T> toAction(List<T> recordInfos) {
+	@Override public ActionStdV2<T> toAction(List<T> recordInfos) {
 		checkStateClosed();
 		return new ActionLazyAdapter<>(this, recordInfos);
 	}
@@ -150,7 +150,7 @@ public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRec
 	
 	
 	
-	private void closeAction(ActionStdV1<S> action) {
+	private void closeAction(ActionStdV2<S> action) {
 		if (action == null)
 			return;
 		
@@ -178,8 +178,7 @@ public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRec
 		if (lazyAction == null)
 			return;
 		
-		if (lazyAction instanceof ActionLazy)
-			((ActionLazy<T>) lazyAction).close();
+		lazyAction.close();
 	}
 	
 	
@@ -202,7 +201,7 @@ public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRec
 	
 	
 	
-	protected  ActionStdV1<S> getInstanceOfActionHook(DeciTreeOption<S> option) {
+	protected  ActionStdV2<S> getInstanceOfActionHook(DeciTreeOption<S> option) {
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);

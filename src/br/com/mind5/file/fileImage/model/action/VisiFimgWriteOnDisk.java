@@ -6,11 +6,11 @@ import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileWrite.info.FriteCopier;
 import br.com.mind5.file.fileWrite.info.FriteInfo;
 import br.com.mind5.file.fileWrite.model.decisionTree.RootFriteWriteOnDisk;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFimgWriteOnDisk extends ActionVisitorTemplateActionV2<FimgInfo, FriteInfo> {
+final class VisiFimgWriteOnDisk extends ActionVisitorTemplateAction<FimgInfo, FriteInfo> {
 	
 	public VisiFimgWriteOnDisk(DeciTreeOption<FimgInfo> option) {
 		super(option, FimgInfo.class, FriteInfo.class);

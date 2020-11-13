@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.calendarDateSearch.info.CalatarchInfo;
 import br.com.mind5.business.calendarDateSearch.model.action.StdCalatarchMergeToSelect;
 import br.com.mind5.business.calendarDateSearch.model.checker.CalatarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootCalatarchSelect extends DeciTreeTemplateReadV2<CalatarchI
 
 		
 	
-	@Override protected List<ActionStdV1<CalatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CalatarchInfo> option) {
-		List<ActionStdV1<CalatarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CalatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CalatarchInfo> option) {
+		List<ActionStdV2<CalatarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CalatarchInfo> mergeToSelect = new StdCalatarchMergeToSelect(option);
+		ActionStdV2<CalatarchInfo> mergeToSelect = new StdCalatarchMergeToSelect(option);
 		
 		actions.add(mergeToSelect);
 		return actions;

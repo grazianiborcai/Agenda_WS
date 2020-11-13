@@ -13,7 +13,7 @@ import br.com.mind5.business.employeePosition.model.checker.EmposCheckOwner;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckRead;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckStore;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -73,10 +73,10 @@ public final class RootEmposSelect extends DeciTreeTemplateReadV2<EmposInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
-		List<ActionStdV1<EmposInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
+		List<ActionStdV2<EmposInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmposInfo> select	= new StdEmposMergeToSelect(option);
+		ActionStdV2<EmposInfo> select	= new StdEmposMergeToSelect(option);
 		ActionLazy<EmposInfo> mergePosition = new LazyEmposMergePosition(option.conn, option.schemaName);
 		ActionLazy<EmposInfo> mergeEmplis = new LazyEmposMergeEmplis(option.conn, option.schemaName);
 		

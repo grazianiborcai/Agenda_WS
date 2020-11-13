@@ -1,8 +1,6 @@
 package br.com.mind5.model.action;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
@@ -14,54 +12,26 @@ import br.com.mind5.model.decisionTree.DeciResultHelper;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.common.DeciResultNotFound;
 
-public abstract class ActionVisitorTemplateEnforceV2<T extends InfoRecord> implements ActionVisitorV2<T> {
-	protected final boolean UNIQUIFY_RESULTS = true;
-	protected final boolean DONT_UNIQUIFY_RESULTS = false;
-	
+public abstract class ActionVisitorTemplatePruneSelf<T extends InfoRecord> implements ActionVisitorV2<T> {	
 	private List<T> bases;
 	
-
-	public ActionVisitorTemplateEnforceV2(DeciTreeOption<T> option) {
-		checkArgument(option);	
-		clear();
-		
-		bases = getBaseInfos(option);	
+	public ActionVisitorTemplatePruneSelf(DeciTreeOption<T> option) {
+		checkArgument(option);		
+		bases = makeClone(option.recordInfos);
 	}
-	
-	
-	
-	private List<T> getBaseInfos(DeciTreeOption<T> option) {
-		return makeClone(option.recordInfos);
-	}
-	
-	
 		
+	
+	
 	@Override public DeciResult<T> executeTransformation() {
-		List<T> enforcedInfos = enforce(bases);
-		
-		if (checkEnforceds(enforcedInfos) == false)
-			return makeNotFoundResult();
-		
-		enforcedInfos = uniquify(enforcedInfos);
-		return makeSuccessResult(enforcedInfos);
+		checkState();
+			
+		List<T> results = pruneHook(bases);		
+		return makeResult(results);
 	}
 	
 	
 	
-	private List<T> enforce(List<T> baseInfos) {
-		List<T> results = new ArrayList<>();		
-		
-		for (T eachBase : baseInfos) {
-			T eachResult = enforceHook(eachBase);			
-			results.add(eachResult);
-		}
-		
-		return results;
-	}
-	
-	
-	
-	protected T enforceHook(T baseInfo) {
+	protected List<T> pruneHook(List<T> recordInfos) {	
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
@@ -69,53 +39,32 @@ public abstract class ActionVisitorTemplateEnforceV2<T extends InfoRecord> imple
 	
 	
 	
-	private boolean checkEnforceds(List<T> resultInfos) {
-		if (resultInfos == null)
-			return false;
+	private DeciResult<T> makeResult(List<T> results) {
+		if (results == null)
+			return makeResultNotFound();		
 		
-		if (resultInfos.isEmpty())
-			return false;
+		if (results.isEmpty())
+			return makeResultNotFound();
 		
-		for (T eachResult : resultInfos) {
-			if (eachResult == null)
-				return false;
-		}
-		
-		return true;
+		return makeResultSuccess(results);
 	}
 	
 	
 	
-	private List<T> uniquify(List<T> resultInfos) {
-		if(shouldUniquifyResult() == false)
-			return resultInfos;
-		
-		return resultInfos.stream().distinct().collect(Collectors.toList());
+	private DeciResult<T> makeResultNotFound() {
+		return new DeciResultNotFound<>();
 	}
 	
 	
 	
-	protected boolean shouldUniquifyResult() {
-		//Template method: default behavior
-		return DONT_UNIQUIFY_RESULTS;
-	}
-	
-	
-	
-	private DeciResult<T> makeSuccessResult(List<T> enforcedInfos) {
-		DeciResultHelper<T> helper = new DeciResultHelper<>();
+	private DeciResult<T> makeResultSuccess(List<T> results) {
+		DeciResultHelper<T> result = new DeciResultHelper<>();
 		
-		helper.resultset = enforcedInfos;
-		helper.isSuccess = true;
-		helper.hasResultset = true;
+		result.isSuccess = true;
+		result.hasResultset = true;
+		result.resultset = results;
 		
-		return helper;
-	}
-	
-	
-	
-	private <K extends InfoRecord> DeciResult<K> makeNotFoundResult() {
-		return new DeciResultNotFound<K>();
+		return result;
 	}
 	
 	
@@ -134,6 +83,15 @@ public abstract class ActionVisitorTemplateEnforceV2<T extends InfoRecord> imple
 	
 	private List<T> makeClone(List<T> recordInfos) {
 		return CloneUtil.cloneRecords(recordInfos, this.getClass());
+	}
+	
+	
+	
+	private void checkState() {
+		if (bases == null) {
+			logException(new IllegalStateException(SystemMessage.OBJECT_IS_CLOSED));
+			throw new IllegalStateException(SystemMessage.OBJECT_IS_CLOSED);
+		}
 	}
 	
 	
@@ -162,6 +120,7 @@ public abstract class ActionVisitorTemplateEnforceV2<T extends InfoRecord> imple
 			throw new NullPointerException("option.recordInfos" + SystemMessage.NULL_ARGUMENT);
 		}
 		
+		
 		if (option.recordInfos.isEmpty()) {
 			logException(new NullPointerException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT));
 			throw new NullPointerException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT);
@@ -169,7 +128,7 @@ public abstract class ActionVisitorTemplateEnforceV2<T extends InfoRecord> imple
 	}
 
 	
-	
+		
 	private void logException(Exception e) {		
 		SystemLog.logError(this.getClass(), e);
 	}

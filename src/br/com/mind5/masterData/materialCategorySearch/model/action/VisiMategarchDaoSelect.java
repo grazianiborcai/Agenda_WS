@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.materialCategorySearch.dao.DaoMategarchSelect;
 import br.com.mind5.masterData.materialCategorySearch.info.MategarchInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMategarchDaoSelect extends ActionVisitorTemplateStmtV2<MategarchInfo> {
+final class VisiMategarchDaoSelect extends ActionVisitorTemplateStmt<MategarchInfo> {
 
 	public VisiMategarchDaoSelect(DeciTreeOption<MategarchInfo> option) {
 		super(option);

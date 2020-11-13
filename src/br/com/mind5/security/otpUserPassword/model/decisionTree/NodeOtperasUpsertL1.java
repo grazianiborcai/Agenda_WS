@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -37,10 +37,10 @@ public final class NodeOtperasUpsertL1 extends DeciTreeTemplateWriteV2<OtperasIn
 	
 	
 	
-	@Override protected List<ActionStdV1<OtperasInfo>> buildActionsOnPassedHook(DeciTreeOption<OtperasInfo> option) {
-		List<ActionStdV1<OtperasInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OtperasInfo>> buildActionsOnPassedHook(DeciTreeOption<OtperasInfo> option) {
+		List<ActionStdV2<OtperasInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OtperasInfo> otpGenerate = new StdOtperasOtpGenerate(option);
+		ActionStdV2<OtperasInfo> otpGenerate = new StdOtperasOtpGenerate(option);
 		ActionLazy<OtperasInfo> enforceLChanged = new LazyOtperasEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<OtperasInfo> enforceValidUntil = new LazyOtperasEnforceValidUntil(option.conn, option.schemaName);
 		ActionLazy<OtperasInfo> mergeUsername = new LazyOtperasMergeUsername(option.conn, option.schemaName);

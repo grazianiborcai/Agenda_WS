@@ -9,7 +9,7 @@ import br.com.mind5.business.order.model.action.StdOrderMergePayord;
 import br.com.mind5.business.order.model.action.StdOrderSuccess;
 import br.com.mind5.business.order.model.checker.OrderCheckHasPayord;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -41,10 +41,10 @@ public final class NodeOrderPayord extends DeciTreeTemplateWriteV2<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV2<OrderInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<OrderInfo> mergePayord = new StdOrderMergePayord(option);
+		ActionStdV2<OrderInfo> mergePayord = new StdOrderMergePayord(option);
 		ActionLazy<OrderInfo> statusChange = new LazyOrderMergeOrdugePartner(option.conn, option.schemaName);
 		
 		mergePayord.addPostAction(statusChange);
@@ -55,10 +55,10 @@ public final class NodeOrderPayord extends DeciTreeTemplateWriteV2<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnFailedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<OrderInfo>> buildActionsOnFailedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV2<OrderInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<OrderInfo> success = new StdOrderSuccess(option);
+		ActionStdV2<OrderInfo> success = new StdOrderSuccess(option);
 		
 		actions.add(success);
 		return actions;

@@ -7,7 +7,7 @@ import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.business.ownerSnapshot.model.action.StdOwnerapMergeToSelect;
 import br.com.mind5.business.ownerSnapshot.model.checker.OwnerapCheckLangu;
 import br.com.mind5.business.ownerSnapshot.model.checker.OwnerapCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -46,10 +46,10 @@ public final class RootOwnerapSelect extends DeciTreeTemplateReadV2<OwnerapInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<OwnerapInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerapInfo> option) {
-		List<ActionStdV1<OwnerapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OwnerapInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerapInfo> option) {
+		List<ActionStdV2<OwnerapInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<OwnerapInfo> select = new StdOwnerapMergeToSelect(option);
+		ActionStdV2<OwnerapInfo> select = new StdOwnerapMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

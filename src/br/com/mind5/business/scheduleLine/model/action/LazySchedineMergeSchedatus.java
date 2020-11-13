@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazySchedineMergeSchedatus extends ActionLazyTemplate<Schedin
 	
 	
 	
-	@Override protected ActionStdV1<SchedineInfo> getInstanceOfActionHook(DeciTreeOption<SchedineInfo> option) {
+	@Override protected ActionStdV2<SchedineInfo> getInstanceOfActionHook(DeciTreeOption<SchedineInfo> option) {
 		return new StdSchedineMergeSchedatus(option);
 	}
 	

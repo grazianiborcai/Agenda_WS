@@ -12,7 +12,7 @@ import br.com.mind5.file.fileImage.model.checker.FimgCheckExistStore;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckIsCover;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckIsStore;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -58,10 +58,10 @@ public final class NodeFimgCoverOffL2 extends DeciTreeTemplateWriteV2<FimgInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStdV2<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<FimgInfo> mergeFimarch = new StdFimgMergeFimarchStore(option);	
+		ActionStdV2<FimgInfo> mergeFimarch = new StdFimgMergeFimarchStore(option);	
 		ActionLazy<FimgInfo> select = new LazyFimgMergeToSelect(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> coverOff = new LazyFimgNodeCoverOffL4(option.conn, option.schemaName);
 		
@@ -74,10 +74,10 @@ public final class NodeFimgCoverOffL2 extends DeciTreeTemplateWriteV2<FimgInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<FimgInfo>> buildActionsOnFailedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<FimgInfo>> buildActionsOnFailedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStdV2<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<FimgInfo> success = new StdFimgSuccess(option);	
+		ActionStdV2<FimgInfo> success = new StdFimgSuccess(option);	
 		
 		actions.add(success);		
 		return actions;

@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.authorizationGroup.dao.DaoAuthgroupSelect;
 import br.com.mind5.masterData.authorizationGroup.info.AuthgroupInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAuthgroupDaoSelect extends ActionVisitorTemplateStmtV2<AuthgroupInfo> {
+final class VisiAuthgroupDaoSelect extends ActionVisitorTemplateStmt<AuthgroupInfo> {
 
 	public VisiAuthgroupDaoSelect(DeciTreeOption<AuthgroupInfo> option) {
 		super(option);

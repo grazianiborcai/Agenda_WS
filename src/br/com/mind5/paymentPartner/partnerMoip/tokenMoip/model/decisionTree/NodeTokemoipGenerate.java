@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -51,10 +51,10 @@ public final class NodeTokemoipGenerate extends DeciTreeTemplateWriteV2<Tokemoip
 	
 	
 	
-	@Override protected List<ActionStdV1<TokemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<TokemoipInfo> option) {
-		List<ActionStdV1<TokemoipInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<TokemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<TokemoipInfo> option) {
+		List<ActionStdV2<TokemoipInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<TokemoipInfo> mergeSyspar = new StdTokemoipMergeSyspar(option);	
+		ActionStdV2<TokemoipInfo> mergeSyspar = new StdTokemoipMergeSyspar(option);	
 		ActionLazy<TokemoipInfo> mergeSetupar = new LazyTokemoipMergeSetupar(option.conn, option.schemaName);
 		ActionLazy<TokemoipInfo> mergeSysenv = new LazyTokemoipMergeSysenv(option.conn, option.schemaName);
 		ActionLazy<TokemoipInfo> enforceSetup = new LazyTokemoipEnforceSetup(option.conn, option.schemaName);

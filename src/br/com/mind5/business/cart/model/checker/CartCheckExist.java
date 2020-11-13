@@ -3,7 +3,7 @@ package br.com.mind5.business.cart.model.checker;
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.model.action.StdCartDaoSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class CartCheckExist extends ModelCheckerTemplateActionV2<CartInfo,
 	
 
 	
-	@Override protected ActionStdV1<CartInfo> buildActionHook(DeciTreeOption<CartInfo> option) {
-		ActionStdV1<CartInfo> select = new StdCartDaoSelect(option);
+	@Override protected ActionStdV2<CartInfo> buildActionHook(DeciTreeOption<CartInfo> option) {
+		ActionStdV2<CartInfo> select = new StdCartDaoSelect(option);
 		return select;
 	}
 	

@@ -6,10 +6,10 @@ import br.com.mind5.business.ownerSnapshot.dao.DaoOwnerapInsert;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerapDaoInsert extends ActionVisitorTemplateStmtV2<OwnerapInfo> {
+final class VisiOwnerapDaoInsert extends ActionVisitorTemplateStmt<OwnerapInfo> {
 
 	public VisiOwnerapDaoInsert(DeciTreeOption<OwnerapInfo> option) {
 		super(option);

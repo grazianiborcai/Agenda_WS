@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -74,10 +74,10 @@ public final class RootCremoipAdd extends DeciTreeTemplateWriteV2<CremoipInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<CremoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CremoipInfo> option) {
-		List<ActionStdV1<CremoipInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CremoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CremoipInfo> option) {
+		List<ActionStdV2<CremoipInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CremoipInfo> mergeSetupar = new NodeCremoipSetuparL1(option).toAction();
+		ActionStdV2<CremoipInfo> mergeSetupar = new NodeCremoipSetuparL1(option).toAction();
 		ActionLazy<CremoipInfo> nodeAddress = new LazyCremoipNodeAddressL1(option.conn, option.schemaName);
 		ActionLazy<CremoipInfo> nodePhone = new LazyCremoipNodePhoneL1(option.conn, option.schemaName);
 		ActionLazy<CremoipInfo> nodeCuspar = new LazyCremoipNodeCusparL1(option.conn, option.schemaName);		

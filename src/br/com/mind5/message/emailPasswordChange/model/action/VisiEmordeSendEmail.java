@@ -5,11 +5,11 @@ import java.util.List;
 import br.com.mind5.message.email.info.EmailInfo;
 import br.com.mind5.message.email.model.decisionTree.RootEmailPasswordChange;
 import br.com.mind5.message.emailPasswordChange.info.EmordeInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmordeSendEmail extends ActionVisitorTemplateActionV2<EmordeInfo, EmailInfo> {
+final class VisiEmordeSendEmail extends ActionVisitorTemplateAction<EmordeInfo, EmailInfo> {
 	
 	public VisiEmordeSendEmail(DeciTreeOption<EmordeInfo> option) {
 		super(option, EmordeInfo.class, EmailInfo.class);

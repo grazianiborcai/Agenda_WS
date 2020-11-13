@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.decisionTree.NodeEmpUpsertPhone;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyEmpNodeUpsertPhone extends ActionLazyTemplate<EmpInfo, Em
 	
 	
 	
-	@Override protected ActionStdV1<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
+	@Override protected ActionStdV2<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
 		return new NodeEmpUpsertPhone(option).toAction();
 	}
 	

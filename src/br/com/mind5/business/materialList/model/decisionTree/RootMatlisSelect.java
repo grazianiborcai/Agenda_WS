@@ -16,7 +16,7 @@ import br.com.mind5.business.materialList.model.checker.MatlisCheckLangu;
 import br.com.mind5.business.materialList.model.checker.MatlisCheckOwner;
 import br.com.mind5.business.materialList.model.checker.MatlisCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -62,10 +62,10 @@ public final class RootMatlisSelect extends DeciTreeTemplateReadV2<MatlisInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<MatlisInfo>> buildActionsOnPassedHook(DeciTreeOption<MatlisInfo> option) {
-		List<ActionStdV1<MatlisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatlisInfo>> buildActionsOnPassedHook(DeciTreeOption<MatlisInfo> option) {
+		List<ActionStdV2<MatlisInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatlisInfo> select = new StdMatlisMergeToSelect(option);
+		ActionStdV2<MatlisInfo> select = new StdMatlisMergeToSelect(option);
 		ActionLazy<MatlisInfo> mergeMatype = new LazyMatlisMergeMatype(option.conn, option.schemaName);
 		ActionLazy<MatlisInfo> mergeMateg = new LazyMatlisMergeMateg(option.conn, option.schemaName);
 		ActionLazy<MatlisInfo> mergeMatoup = new LazyMatlisMergeMatoup(option.conn, option.schemaName);

@@ -15,7 +15,7 @@ import br.com.mind5.business.scheduleLineSnapshot.model.checker.SchedinapCheckOw
 import br.com.mind5.business.scheduleLineSnapshot.model.checker.SchedinapCheckSchedine;
 import br.com.mind5.business.scheduleLineSnapshot.model.checker.SchedinapCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -68,10 +68,10 @@ public final class RootSchedinapInsert extends DeciTreeTemplateWriteV2<Schedinap
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedinapInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedinapInfo> option) {
-		List<ActionStdV1<SchedinapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedinapInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedinapInfo> option) {
+		List<ActionStdV2<SchedinapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedinapInfo> nodeOrder = new NodeSchedinapOrder(option).toAction();
+		ActionStdV2<SchedinapInfo> nodeOrder = new NodeSchedinapOrder(option).toAction();
 		ActionLazy<SchedinapInfo> mergeMatlis = new LazySchedinapMergeMatlis(option.conn, option.schemaName);
 		ActionLazy<SchedinapInfo> mergeStolis = new LazySchedinapMergapStolis(option.conn, option.schemaName);
 		ActionLazy<SchedinapInfo> mergCuslis = new LazySchedinapMergeCuslis(option.conn, option.schemaName);

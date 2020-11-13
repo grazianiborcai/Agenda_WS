@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.calendarCatalogue.info.CalgueInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyCalgueMergeMatlis extends ActionLazyTemplate<CalgueInfo, 
 	
 	
 	
-	@Override protected ActionStdV1<CalgueInfo> getInstanceOfActionHook(DeciTreeOption<CalgueInfo> option) {
+	@Override protected ActionStdV2<CalgueInfo> getInstanceOfActionHook(DeciTreeOption<CalgueInfo> option) {
 		return new StdCalgueMergeMatlis(option);
 	}
 	

@@ -8,7 +8,7 @@ import br.com.mind5.message.email.model.action.LazyEmailSendMessage;
 import br.com.mind5.message.email.model.action.StdEmailMergeToSelect;
 import br.com.mind5.message.email.model.checker.EmailCheckSend;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -40,10 +40,10 @@ public final class NodeEmailSend extends DeciTreeTemplateWriteV2<EmailInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<EmailInfo>> buildActionsOnPassedHook(DeciTreeOption<EmailInfo> option) {
-		List<ActionStdV1<EmailInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV2<EmailInfo>> buildActionsOnPassedHook(DeciTreeOption<EmailInfo> option) {
+		List<ActionStdV2<EmailInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<EmailInfo> select = new StdEmailMergeToSelect(option);
+		ActionStdV2<EmailInfo> select = new StdEmailMergeToSelect(option);
 		ActionLazy<EmailInfo> sendMessage = new LazyEmailSendMessage(option.conn, option.schemaName);
 		
 		select.addPostAction(sendMessage);

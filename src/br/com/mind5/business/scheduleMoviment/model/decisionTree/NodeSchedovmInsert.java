@@ -7,7 +7,7 @@ import br.com.mind5.business.scheduleMoviment.info.SchedovmInfo;
 import br.com.mind5.business.scheduleMoviment.model.action.StdSchedovmDaoInsert;
 import br.com.mind5.business.scheduleMoviment.model.action.StdSchedovmSuccess;
 import br.com.mind5.business.scheduleMoviment.model.checker.SchedovmCheckHasCounter;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,10 +39,10 @@ public final class NodeSchedovmInsert extends DeciTreeTemplateWriteV2<SchedovmIn
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedovmInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedovmInfo> option) {
-		List<ActionStdV1<SchedovmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedovmInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedovmInfo> option) {
+		List<ActionStdV2<SchedovmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedovmInfo> insert = new StdSchedovmDaoInsert(option);
+		ActionStdV2<SchedovmInfo> insert = new StdSchedovmDaoInsert(option);
 		
 		actions.add(insert);
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeSchedovmInsert extends DeciTreeTemplateWriteV2<SchedovmIn
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedovmInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedovmInfo> option) {
-		List<ActionStdV1<SchedovmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedovmInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedovmInfo> option) {
+		List<ActionStdV2<SchedovmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedovmInfo> success = new StdSchedovmSuccess(option);
+		ActionStdV2<SchedovmInfo> success = new StdSchedovmSuccess(option);
 		
 		actions.add(success);
 		return actions;

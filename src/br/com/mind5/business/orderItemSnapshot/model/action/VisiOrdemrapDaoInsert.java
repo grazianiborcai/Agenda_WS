@@ -6,10 +6,10 @@ import br.com.mind5.business.orderItemSnapshot.dao.DaoOrdemrapInsert;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdemrapDaoInsert extends ActionVisitorTemplateStmtV2<OrdemrapInfo> {
+final class VisiOrdemrapDaoInsert extends ActionVisitorTemplateStmt<OrdemrapInfo> {
 
 	public VisiOrdemrapDaoInsert(DeciTreeOption<OrdemrapInfo> option) {
 		super(option);

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.RootAddressUpdate;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyAddressRootUpdate extends ActionLazyTemplate<AddressInfo,
 	
 	
 	
-	@Override protected ActionStdV1<AddressInfo> getInstanceOfActionHook(DeciTreeOption<AddressInfo> option) {
+	@Override protected ActionStdV2<AddressInfo> getInstanceOfActionHook(DeciTreeOption<AddressInfo> option) {
 		return new RootAddressUpdate(option).toAction();
 	}
 	

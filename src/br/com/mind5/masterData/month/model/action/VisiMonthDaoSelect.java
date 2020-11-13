@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.month.dao.DaoMonthSelect;
 import br.com.mind5.masterData.month.info.MonthInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMonthDaoSelect extends ActionVisitorTemplateStmtV2<MonthInfo> {
+final class VisiMonthDaoSelect extends ActionVisitorTemplateStmt<MonthInfo> {
 
 	public VisiMonthDaoSelect(DeciTreeOption<MonthInfo> option) {
 		super(option);

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyPhonapMergeFormone extends ActionLazyTemplate<PhonapInfo,
 	
 	
 	
-	@Override protected ActionStdV1<PhonapInfo> getInstanceOfActionHook(DeciTreeOption<PhonapInfo> option) {
+	@Override protected ActionStdV2<PhonapInfo> getInstanceOfActionHook(DeciTreeOption<PhonapInfo> option) {
 		return new StdPhonapMergeFormone(option);
 	}
 	

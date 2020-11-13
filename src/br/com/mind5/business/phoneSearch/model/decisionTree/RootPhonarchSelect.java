@@ -8,7 +8,7 @@ import br.com.mind5.business.phoneSearch.model.action.StdPhonarchMergeToSelect;
 import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckLangu;
 import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckOwner;
 import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -54,10 +54,10 @@ public final class RootPhonarchSelect extends DeciTreeTemplateWriteV2<PhonarchIn
 	
 	
 	
-	@Override protected List<ActionStdV1<PhonarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonarchInfo> option) {
-		List<ActionStdV1<PhonarchInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<PhonarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonarchInfo> option) {
+		List<ActionStdV2<PhonarchInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<PhonarchInfo> select = new StdPhonarchMergeToSelect(option);	
+		ActionStdV2<PhonarchInfo> select = new StdPhonarchMergeToSelect(option);	
 		
 		actions.add(select);		
 		return actions;

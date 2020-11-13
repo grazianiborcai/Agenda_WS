@@ -1,7 +1,7 @@
 package br.com.mind5.payment.countryPartner.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class CounparCheckExist extends ModelCheckerTemplateActionV2<Counpa
 	
 
 	
-	@Override protected ActionStdV1<CounparInfo> buildActionHook(DeciTreeOption<CounparInfo> option) {
-		ActionStdV1<CounparInfo> select = new StdCounparDaoSelect(option);
+	@Override protected ActionStdV2<CounparInfo> buildActionHook(DeciTreeOption<CounparInfo> option) {
+		ActionStdV2<CounparInfo> select = new StdCounparDaoSelect(option);
 		return select;
 	}
 	

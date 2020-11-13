@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class RootUserarchSelectEmployee extends DeciTreeTemplateReadV2<Use
 	
 	
 	
-	@Override protected List<ActionStdV1<UserarchInfo>> buildActionsOnPassedHook(DeciTreeOption<UserarchInfo> option) {
-		List<ActionStdV1<UserarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<UserarchInfo>> buildActionsOnPassedHook(DeciTreeOption<UserarchInfo> option) {
+		List<ActionStdV2<UserarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<UserarchInfo> enforceEmployee = new StdUserarchEnforceEmployee(option);
+		ActionStdV2<UserarchInfo> enforceEmployee = new StdUserarchEnforceEmployee(option);
 		ActionLazy<UserarchInfo> select = new LazyUserarchRootSelectAuth(option.conn, option.schemaName);
 		
 		enforceEmployee.addPostAction(select);

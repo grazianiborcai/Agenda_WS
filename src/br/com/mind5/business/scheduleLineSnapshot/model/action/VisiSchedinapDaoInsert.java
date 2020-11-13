@@ -6,10 +6,10 @@ import br.com.mind5.business.scheduleLineSnapshot.dao.DaoSchedinapInsert;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedinapDaoInsert extends ActionVisitorTemplateStmtV2<SchedinapInfo> {
+final class VisiSchedinapDaoInsert extends ActionVisitorTemplateStmt<SchedinapInfo> {
 
 	public VisiSchedinapDaoInsert(DeciTreeOption<SchedinapInfo> option) {
 		super(option);

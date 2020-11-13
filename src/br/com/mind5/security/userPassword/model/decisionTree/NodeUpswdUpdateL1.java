@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -45,10 +45,10 @@ public final class NodeUpswdUpdateL1 extends DeciTreeTemplateWriteV2<UpswdInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
-		List<ActionStdV1<UpswdInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
+		List<ActionStdV2<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<UpswdInfo> mergeUsername = new StdUpswdMergeUsername(option);
+		ActionStdV2<UpswdInfo> mergeUsername = new StdUpswdMergeUsername(option);
 		ActionLazy<UpswdInfo> otperasAuthenticate = new LazyUpswdOtperasAuthenticate(option.conn, option.schemaName);
 		ActionLazy<UpswdInfo> nodeL2 = new LazyUpswdNodeUpdateL2(option.conn, option.schemaName);
 		ActionLazy<UpswdInfo> sendEmail = new LazyUpswdEmordeSend(option.conn, option.schemaName);
@@ -67,10 +67,10 @@ public final class NodeUpswdUpdateL1 extends DeciTreeTemplateWriteV2<UpswdInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<UpswdInfo>> buildActionsOnFailedHook(DeciTreeOption<UpswdInfo> option) {
-		List<ActionStdV1<UpswdInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<UpswdInfo>> buildActionsOnFailedHook(DeciTreeOption<UpswdInfo> option) {
+		List<ActionStdV2<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<UpswdInfo> success = new StdUpswdSuccess(option);
+		ActionStdV2<UpswdInfo> success = new StdUpswdSuccess(option);
 
 		actions.add(success);	
 		return actions;

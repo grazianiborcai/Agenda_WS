@@ -19,7 +19,7 @@ import br.com.mind5.business.person.model.checker.PersonCheckLangu;
 import br.com.mind5.business.person.model.checker.PersonCheckOwner;
 import br.com.mind5.business.person.model.checker.PersonCheckUpdate;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -86,10 +86,10 @@ public final class RootPersonUpdate extends DeciTreeTemplateWriteV2<PersonInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
-		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
+		List<ActionStdV2<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PersonInfo> mergeToUpdate = new StdPersonMergeToUpdate(option);	
+		ActionStdV2<PersonInfo> mergeToUpdate = new StdPersonMergeToUpdate(option);	
 		ActionLazy<PersonInfo> cpf = new LazyPersonNodeCpfL1(option.conn, option.schemaName);	
 		ActionLazy<PersonInfo> email = new LazyPersonNodeEmailL1(option.conn, option.schemaName);	
 		ActionLazy<PersonInfo> enforceLChanged = new LazyPersonEnforceLChanged(option.conn, option.schemaName);

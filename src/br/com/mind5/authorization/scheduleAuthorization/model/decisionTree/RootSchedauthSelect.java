@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -31,10 +31,10 @@ public final class RootSchedauthSelect extends DeciTreeTemplateWriteV2<Schedauth
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedauthInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedauthInfo> option) {
-		List<ActionStdV1<SchedauthInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedauthInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedauthInfo> option) {
+		List<ActionStdV2<SchedauthInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedauthInfo> forward = new RootSchedauthMove(option).toAction();
+		ActionStdV2<SchedauthInfo> forward = new RootSchedauthMove(option).toAction();
 		
 		actions.add(forward);
 		return actions;

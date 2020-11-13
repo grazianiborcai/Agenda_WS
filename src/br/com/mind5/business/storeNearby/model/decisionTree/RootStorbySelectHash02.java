@@ -11,7 +11,7 @@ import br.com.mind5.business.storeNearby.model.checker.StorbyCheckLangu;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckOwner;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckReadHash02;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -57,10 +57,10 @@ public final class RootStorbySelectHash02 extends DeciTreeTemplateReadV2<StorbyI
 	
 	
 	
-	@Override protected List<ActionStdV1<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
-		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
+		List<ActionStdV2<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<StorbyInfo> enforceHash02Key = new StdStorbyEnforceHash02Key(option);
+		ActionStdV2<StorbyInfo> enforceHash02Key = new StdStorbyEnforceHash02Key(option);
 		ActionLazy<StorbyInfo> select = new LazyStorbyMergeToSelect(option.conn, option.schemaName);
 		ActionLazy<StorbyInfo> nodeMerge = new LazyStorbyNodeMerge(option.conn, option.schemaName);
 		

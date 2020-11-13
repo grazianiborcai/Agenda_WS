@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.StdStoreDaoDelete;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -32,18 +32,18 @@ public final class NodeStoreDeleteCascade extends DeciTreeTemplateWriteV2<StoreI
 	
 	
 	
-	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV2<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StoreInfo> deleteStowotm = new NodeStoreDeleteStowotm(option).toAction();
-		ActionStdV1<StoreInfo> deleteStolate = new NodeStoreDeleteStolate(option).toAction();
-		ActionStdV1<StoreInfo> deleteMatore = new NodeStoreDeleteMatore(option).toAction();
-		ActionStdV1<StoreInfo> deleteAddress = new NodeStoreDeleteAddress(option).toAction();
-		ActionStdV1<StoreInfo> deletePhone = new NodeStoreDeletePhone(option).toAction();
-		ActionStdV1<StoreInfo> deletePerson = new NodeStoreDeletePerson(option).toAction();
-		ActionStdV1<StoreInfo> deleteCompany = new NodeStoreDeleteComp(option).toAction();
-		ActionStdV1<StoreInfo> deleteUser = new NodeStoreDeleteUser(option).toAction();
-		ActionStdV1<StoreInfo> deleteStore = new StdStoreDaoDelete(option);
+		ActionStdV2<StoreInfo> deleteStowotm = new NodeStoreDeleteStowotm(option).toAction();
+		ActionStdV2<StoreInfo> deleteStolate = new NodeStoreDeleteStolate(option).toAction();
+		ActionStdV2<StoreInfo> deleteMatore = new NodeStoreDeleteMatore(option).toAction();
+		ActionStdV2<StoreInfo> deleteAddress = new NodeStoreDeleteAddress(option).toAction();
+		ActionStdV2<StoreInfo> deletePhone = new NodeStoreDeletePhone(option).toAction();
+		ActionStdV2<StoreInfo> deletePerson = new NodeStoreDeletePerson(option).toAction();
+		ActionStdV2<StoreInfo> deleteCompany = new NodeStoreDeleteComp(option).toAction();
+		ActionStdV2<StoreInfo> deleteUser = new NodeStoreDeleteUser(option).toAction();
+		ActionStdV2<StoreInfo> deleteStore = new StdStoreDaoDelete(option);
 
 		actions.add(deleteStowotm);		
 		actions.add(deleteStolate);			

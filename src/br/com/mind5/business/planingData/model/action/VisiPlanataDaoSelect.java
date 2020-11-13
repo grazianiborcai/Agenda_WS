@@ -6,10 +6,10 @@ import br.com.mind5.business.planingData.dao.DaoPlanataSelect;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanataDaoSelect extends ActionVisitorTemplateStmtV2<PlanataInfo> {
+final class VisiPlanataDaoSelect extends ActionVisitorTemplateStmt<PlanataInfo> {
 
 	public VisiPlanataDaoSelect(DeciTreeOption<PlanataInfo> option) {
 		super(option);

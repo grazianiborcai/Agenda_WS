@@ -6,7 +6,7 @@ import br.com.mind5.business.addressSearch.info.AddarchCopier;
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.business.addressSearch.model.decisionTree.RootAddarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,8 +20,8 @@ public final class CrecardCheckAddarch extends ModelCheckerTemplateActionV2<Crec
 	
 	
 	
-	@Override protected ActionStdV1<AddarchInfo> buildActionHook(DeciTreeOption<AddarchInfo> option) {
-		ActionStdV1<AddarchInfo> select = new RootAddarchSelect(option).toAction();
+	@Override protected ActionStdV2<AddarchInfo> buildActionHook(DeciTreeOption<AddarchInfo> option) {
+		ActionStdV2<AddarchInfo> select = new RootAddarchSelect(option).toAction();
 		return select;
 	}
 	

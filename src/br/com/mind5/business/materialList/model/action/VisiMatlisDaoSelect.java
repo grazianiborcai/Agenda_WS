@@ -6,10 +6,10 @@ import br.com.mind5.business.materialList.dao.DaoMatlisSelect;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatlisDaoSelect extends ActionVisitorTemplateStmtV2<MatlisInfo> {
+final class VisiMatlisDaoSelect extends ActionVisitorTemplateStmt<MatlisInfo> {
 
 	public VisiMatlisDaoSelect(DeciTreeOption<MatlisInfo> option) {
 		super(option);

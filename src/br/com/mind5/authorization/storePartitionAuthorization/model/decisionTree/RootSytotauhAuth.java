@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -37,10 +37,10 @@ public final class RootSytotauhAuth extends DeciTreeTemplateWriteV2<SytotauhInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<SytotauhInfo>> buildActionsOnPassedHook(DeciTreeOption<SytotauhInfo> option) {
-		List<ActionStdV1<SytotauhInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SytotauhInfo>> buildActionsOnPassedHook(DeciTreeOption<SytotauhInfo> option) {
+		List<ActionStdV2<SytotauhInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SytotauhInfo> nodeL1 = new NodeSytotauhAuthL1(option).toAction();
+		ActionStdV2<SytotauhInfo> nodeL1 = new NodeSytotauhAuthL1(option).toAction();
 		
 		actions.add(nodeL1);
 		return actions;

@@ -8,7 +8,7 @@ import br.com.mind5.business.refundPolicyOwner.model.action.StdRefupownDaoDelete
 import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckDelete;
 import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckExist;
 import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckOwner;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -54,10 +54,10 @@ public final class RootRefupownDelete extends DeciTreeTemplateWriteV2<RefupownIn
 	
 	
 	
-	@Override protected List<ActionStdV1<RefupownInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupownInfo> option) {
-		List<ActionStdV1<RefupownInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<RefupownInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupownInfo> option) {
+		List<ActionStdV2<RefupownInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<RefupownInfo> delete = new StdRefupownDaoDelete(option);
+		ActionStdV2<RefupownInfo> delete = new StdRefupownDaoDelete(option);
 		
 		actions.add(delete);
 		return actions;

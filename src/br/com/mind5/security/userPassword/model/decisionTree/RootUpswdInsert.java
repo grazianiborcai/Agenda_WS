@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class RootUpswdInsert extends DeciTreeTemplateWriteV2<UpswdInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
-		List<ActionStdV1<UpswdInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
+		List<ActionStdV2<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<UpswdInfo> insertUpswd = new RootUpswdInsertSilent(option).toAction();
+		ActionStdV2<UpswdInfo> insertUpswd = new RootUpswdInsertSilent(option).toAction();
 		ActionLazy<UpswdInfo> sendEmail = new LazyUpswdEmacomeSend(option.conn, option.schemaName);
 		ActionLazy<UpswdInfo> success = new LazyUpswdSuccess(option.conn, option.schemaName);
 		

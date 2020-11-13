@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -55,10 +55,10 @@ public final class RootUserInsertAnonymous extends DeciTreeTemplateWriteV2<UserI
 	
 	
 	
-	@Override protected List<ActionStdV1<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
-		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
+		List<ActionStdV2<UserInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<UserInfo> enforceDaemon = new StdUserEnforceUsernameDaemon(option);
+		ActionStdV2<UserInfo> enforceDaemon = new StdUserEnforceUsernameDaemon(option);
 		ActionLazy<UserInfo> enforceLChangedBy = new LazyUserMergeUsername(option.conn, option.schemaName);
 		ActionLazy<UserInfo> enforceUsername = new LazyUserEnforceUsernameAnonymous(option.conn, option.schemaName);
 		ActionLazy<UserInfo> enforceCateg = new LazyUserEnforceCategAnonymous(option.conn, option.schemaName);

@@ -2,14 +2,14 @@ package br.com.mind5.webhook.moipRefund.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.model.decisionTree.RootPaytusRefresh;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipInfo;
 
-final class VisiWokefumoipPaytusRefresh extends ActionVisitorTemplateActionV2<WokefumoipInfo, PaytusInfo> {
+final class VisiWokefumoipPaytusRefresh extends ActionVisitorTemplateAction<WokefumoipInfo, PaytusInfo> {
 	
 	public VisiWokefumoipPaytusRefresh(DeciTreeOption<WokefumoipInfo> option) {
 		super(option, WokefumoipInfo.class, PaytusInfo.class);

@@ -13,7 +13,7 @@ import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmDaoUpdate;
 import br.com.mind5.business.storeWorkTime.model.action.StdStowotmEnforceLChanged;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckSoftDelete;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -45,10 +45,10 @@ final class NodeStowotmInsert extends DeciTreeTemplateWriteV2<StowotmInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
-		List<ActionStdV1<StowotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
+		List<ActionStdV2<StowotmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StowotmInfo> enforceLChanged = new StdStowotmEnforceLChanged(option);
+		ActionStdV2<StowotmInfo> enforceLChanged = new StdStowotmEnforceLChanged(option);
 		ActionLazy<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StowotmInfo> enforceCreatedOn = new LazyStowotmEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<StowotmInfo> enforceCreatedBy = new LazyStowotmEnforceCreatedBy(option.conn, option.schemaName);
@@ -67,10 +67,10 @@ final class NodeStowotmInsert extends DeciTreeTemplateWriteV2<StowotmInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<StowotmInfo>> buildActionsOnFailedHook(DeciTreeOption<StowotmInfo> option) {
-		List<ActionStdV1<StowotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StowotmInfo>> buildActionsOnFailedHook(DeciTreeOption<StowotmInfo> option) {
+		List<ActionStdV2<StowotmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StowotmInfo> enforceLChanged = new StdStowotmEnforceLChanged(option);
+		ActionStdV2<StowotmInfo> enforceLChanged = new StdStowotmEnforceLChanged(option);
 		ActionLazy<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StowotmInfo> enforceCreatedOn = new LazyStowotmEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<StowotmInfo> enforceCreatedBy = new LazyStowotmEnforceCreatedBy(option.conn, option.schemaName);

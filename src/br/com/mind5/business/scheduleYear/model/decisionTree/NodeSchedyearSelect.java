@@ -10,7 +10,7 @@ import br.com.mind5.business.scheduleYear.model.action.StdSchedyearMergeMontharc
 import br.com.mind5.business.scheduleYear.model.action.StdSchedyearMergeSchedyerat;
 import br.com.mind5.business.scheduleYear.model.checker.SchedyearCheckSchedyerat;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -42,10 +42,10 @@ public final class NodeSchedyearSelect extends DeciTreeTemplateWriteV2<Schedyear
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedyearInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedyearInfo> option) {
-		List<ActionStdV1<SchedyearInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedyearInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedyearInfo> option) {
+		List<ActionStdV2<SchedyearInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedyearInfo> mergeSchedyerat = new StdSchedyearMergeSchedyerat(option);
+		ActionStdV2<SchedyearInfo> mergeSchedyerat = new StdSchedyearMergeSchedyerat(option);
 		ActionLazy<SchedyearInfo> mergeStolis = new LazySchedyearMergeStolis(option.conn, option.schemaName);
 		ActionLazy<SchedyearInfo> mergeMontharch = new LazySchedyearMergeMontharch(option.conn, option.schemaName);
 		
@@ -58,10 +58,10 @@ public final class NodeSchedyearSelect extends DeciTreeTemplateWriteV2<Schedyear
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedyearInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedyearInfo> option) {
-		List<ActionStdV1<SchedyearInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedyearInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedyearInfo> option) {
+		List<ActionStdV2<SchedyearInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedyearInfo> mergeMontharch = new StdSchedyearMergeMontharch(option);
+		ActionStdV2<SchedyearInfo> mergeMontharch = new StdSchedyearMergeMontharch(option);
 		
 		actions.add(mergeMontharch);
 		return actions;

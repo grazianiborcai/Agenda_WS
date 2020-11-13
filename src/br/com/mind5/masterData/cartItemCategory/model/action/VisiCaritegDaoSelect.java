@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.cartItemCategory.dao.DaoCaritegSelect;
 import br.com.mind5.masterData.cartItemCategory.info.CaritegInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCaritegDaoSelect extends ActionVisitorTemplateStmtV2<CaritegInfo> {
+final class VisiCaritegDaoSelect extends ActionVisitorTemplateStmt<CaritegInfo> {
 
 	public VisiCaritegDaoSelect(DeciTreeOption<CaritegInfo> option) {
 		super(option);

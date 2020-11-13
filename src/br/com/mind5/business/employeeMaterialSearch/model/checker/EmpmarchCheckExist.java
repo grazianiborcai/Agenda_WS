@@ -3,7 +3,7 @@ package br.com.mind5.business.employeeMaterialSearch.model.checker;
 import br.com.mind5.business.employeeMaterialSearch.info.EmpmarchInfo;
 import br.com.mind5.business.employeeMaterialSearch.model.decisionTree.RootEmpmarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class EmpmarchCheckExist extends ModelCheckerTemplateActionV2<Empma
 	
 	
 	
-	@Override protected ActionStdV1<EmpmarchInfo> buildActionHook(DeciTreeOption<EmpmarchInfo> option) {
-		ActionStdV1<EmpmarchInfo> select = new RootEmpmarchSelect(option).toAction();
+	@Override protected ActionStdV2<EmpmarchInfo> buildActionHook(DeciTreeOption<EmpmarchInfo> option) {
+		ActionStdV2<EmpmarchInfo> select = new RootEmpmarchSelect(option).toAction();
 		return select;
 	}
 	

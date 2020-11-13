@@ -6,10 +6,10 @@ import br.com.mind5.business.storeTextSearch.dao.DaoStorextarchSelect;
 import br.com.mind5.business.storeTextSearch.info.StorextarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorextarchDaoSelect extends ActionVisitorTemplateStmtV2<StorextarchInfo> {
+final class VisiStorextarchDaoSelect extends ActionVisitorTemplateStmt<StorextarchInfo> {
 
 	public VisiStorextarchDaoSelect(DeciTreeOption<StorextarchInfo> option) {
 		super(option);

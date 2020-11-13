@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.materialCategory.info.MategInfo;
 import br.com.mind5.masterData.materialCategory.model.action.StdMategDaoSelect;
 import br.com.mind5.masterData.materialCategory.model.checker.MategCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -38,10 +38,10 @@ public final class RootMategSelect extends DeciTreeTemplateReadV2<MategInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<MategInfo>> buildActionsOnPassedHook(DeciTreeOption<MategInfo> option) {
-		List<ActionStdV1<MategInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MategInfo>> buildActionsOnPassedHook(DeciTreeOption<MategInfo> option) {
+		List<ActionStdV2<MategInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MategInfo> select = new StdMategDaoSelect(option);
+		ActionStdV2<MategInfo> select = new StdMategDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

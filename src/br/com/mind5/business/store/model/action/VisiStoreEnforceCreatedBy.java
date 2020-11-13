@@ -3,10 +3,10 @@ package br.com.mind5.business.store.model.action;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreSetterCreatedBy;
 import br.com.mind5.info.InfoSetter;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreEnforceCreatedBy extends ActionVisitorTemplateEnforceV2<StoreInfo> {
+final class VisiStoreEnforceCreatedBy extends ActionVisitorTemplateEnforce<StoreInfo> {
 	
 	public VisiStoreEnforceCreatedBy(DeciTreeOption<StoreInfo> option) {
 		super(option);

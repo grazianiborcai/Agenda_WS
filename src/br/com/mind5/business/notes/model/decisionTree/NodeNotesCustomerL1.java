@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.notes.info.NotesInfo;
 import br.com.mind5.business.notes.model.action.StdNotesSuccess;
 import br.com.mind5.business.notes.model.checker.NotesCheckHasCustomer;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,10 +39,10 @@ public final class NodeNotesCustomerL1 extends DeciTreeTemplateWriteV2<NotesInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<NotesInfo>> buildActionsOnPassedHook(DeciTreeOption<NotesInfo> option) {
-		List<ActionStdV1<NotesInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<NotesInfo>> buildActionsOnPassedHook(DeciTreeOption<NotesInfo> option) {
+		List<ActionStdV2<NotesInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<NotesInfo> nodeL2 = new NodeNotesCustomerL2(option).toAction();
+		ActionStdV2<NotesInfo> nodeL2 = new NodeNotesCustomerL2(option).toAction();
 		
 		actions.add(nodeL2);
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeNotesCustomerL1 extends DeciTreeTemplateWriteV2<NotesInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<NotesInfo>> buildActionsOnFailedHook(DeciTreeOption<NotesInfo> option) {
-		List<ActionStdV1<NotesInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<NotesInfo>> buildActionsOnFailedHook(DeciTreeOption<NotesInfo> option) {
+		List<ActionStdV2<NotesInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<NotesInfo> success = new StdNotesSuccess(option);
+		ActionStdV2<NotesInfo> success = new StdNotesSuccess(option);
 		
 		actions.add(success);
 		return actions;

@@ -15,7 +15,7 @@ import br.com.mind5.business.owner.model.action.StdOwnerMergeToSelect;
 import br.com.mind5.business.owner.model.checker.OwnerCheckLangu;
 import br.com.mind5.business.owner.model.checker.OwnerCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -54,10 +54,10 @@ public final class RootOwnerSelect extends DeciTreeTemplateReadV2<OwnerInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStdV2<OwnerInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<OwnerInfo> select = new StdOwnerMergeToSelect(option);
+		ActionStdV2<OwnerInfo> select = new StdOwnerMergeToSelect(option);
 		ActionLazy<OwnerInfo> mergeBusarea = new LazyOwnerMergeBusarea(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> mergePerson = new LazyOwnerMergePerson(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> mergeComp = new LazyOwnerMergeComp(option.conn, option.schemaName);

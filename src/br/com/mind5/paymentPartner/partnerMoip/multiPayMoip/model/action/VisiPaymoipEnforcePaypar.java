@@ -1,12 +1,12 @@
 package br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action;
 
 import br.com.mind5.info.InfoSetter;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipSetterPaypar;
 
-final class VisiPaymoipEnforcePaypar extends ActionVisitorTemplateEnforceV2<PaymoipInfo> {
+final class VisiPaymoipEnforcePaypar extends ActionVisitorTemplateEnforce<PaymoipInfo> {
 	
 	public VisiPaymoipEnforcePaypar(DeciTreeOption<PaymoipInfo> option) {
 		super(option);

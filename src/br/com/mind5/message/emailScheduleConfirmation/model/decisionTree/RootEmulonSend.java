@@ -12,7 +12,7 @@ import br.com.mind5.message.emailScheduleConfirmation.model.action.LazyEmulonSen
 import br.com.mind5.message.emailScheduleConfirmation.model.action.StdEmulonMergeStolis;
 import br.com.mind5.message.emailScheduleConfirmation.model.checker.EmulonCheckSend;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -44,10 +44,10 @@ public final class RootEmulonSend extends DeciTreeTemplateWriteV2<EmulonInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<EmulonInfo>> buildActionsOnPassedHook(DeciTreeOption<EmulonInfo> option) {
-		List<ActionStdV1<EmulonInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV2<EmulonInfo>> buildActionsOnPassedHook(DeciTreeOption<EmulonInfo> option) {
+		List<ActionStdV2<EmulonInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<EmulonInfo> mergeStolis = new StdEmulonMergeStolis(option);
+		ActionStdV2<EmulonInfo> mergeStolis = new StdEmulonMergeStolis(option);
 		ActionLazy<EmulonInfo> mergeCuslis = new LazyEmulonMergeCuslis(option.conn, option.schemaName);	
 		ActionLazy<EmulonInfo> mergeMatlis = new LazyEmulonMergeMatlis(option.conn, option.schemaName);	
 		ActionLazy<EmulonInfo> mergeEmplis = new LazyEmulonMergeEmplis(option.conn, option.schemaName);	

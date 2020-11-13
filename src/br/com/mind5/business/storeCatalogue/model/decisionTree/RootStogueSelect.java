@@ -8,7 +8,7 @@ import br.com.mind5.business.storeCatalogue.model.action.LazyStogueMergeMatoup;
 import br.com.mind5.business.storeCatalogue.model.action.LazyStogueMergeOwnelis;
 import br.com.mind5.business.storeCatalogue.model.action.StdStogueMergeStorby;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -35,10 +35,10 @@ public final class RootStogueSelect extends DeciTreeTemplateReadV2<StogueInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<StogueInfo>> buildActionsOnPassedHook(DeciTreeOption<StogueInfo> option) {
-		List<ActionStdV1<StogueInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<StogueInfo>> buildActionsOnPassedHook(DeciTreeOption<StogueInfo> option) {
+		List<ActionStdV2<StogueInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<StogueInfo> mergeStorby = new StdStogueMergeStorby(option);
+		ActionStdV2<StogueInfo> mergeStorby = new StdStogueMergeStorby(option);
 		ActionLazy<StogueInfo> mergeOwnelis = new LazyStogueMergeOwnelis(option.conn, option.schemaName);
 		ActionLazy<StogueInfo> mergeMatoup = new LazyStogueMergeMatoup(option.conn, option.schemaName);
 		

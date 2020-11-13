@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.decsionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -37,10 +37,10 @@ public final class NodeOrdmoipPlaceL1 extends DeciTreeTemplateWriteV2<OrdmoipInf
 	
 	
 	
-	@Override protected List<ActionStdV1<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {
-		List<ActionStdV1<OrdmoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV2<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {
+		List<ActionStdV2<OrdmoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<OrdmoipInfo> placeFee = new NodeOrdmoipPlaceFee(option).toAction();
+		ActionStdV2<OrdmoipInfo> placeFee = new NodeOrdmoipPlaceFee(option).toAction();
 		
 		actions.add(placeFee);		
 		return actions;
@@ -48,10 +48,10 @@ public final class NodeOrdmoipPlaceL1 extends DeciTreeTemplateWriteV2<OrdmoipInf
 	
 	
 	
-	@Override protected List<ActionStdV1<OrdmoipInfo>> buildActionsOnFailedHook(DeciTreeOption<OrdmoipInfo> option) {
-		List<ActionStdV1<OrdmoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV2<OrdmoipInfo>> buildActionsOnFailedHook(DeciTreeOption<OrdmoipInfo> option) {
+		List<ActionStdV2<OrdmoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<OrdmoipInfo> placeMat = new NodeOrdmoipPlaceMat(option).toAction();
+		ActionStdV2<OrdmoipInfo> placeMat = new NodeOrdmoipPlaceMat(option).toAction();
 		
 		actions.add(placeMat);		
 		return actions;

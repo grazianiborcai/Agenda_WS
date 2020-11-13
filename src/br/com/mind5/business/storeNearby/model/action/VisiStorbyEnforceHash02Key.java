@@ -3,10 +3,10 @@ package br.com.mind5.business.storeNearby.model.action;
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.business.storeNearby.info.StorbySetterHash02Key;
 import br.com.mind5.info.InfoSetter;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorbyEnforceHash02Key extends ActionVisitorTemplateEnforceV2<StorbyInfo> {
+final class VisiStorbyEnforceHash02Key extends ActionVisitorTemplateEnforce<StorbyInfo> {
 	
 	public VisiStorbyEnforceHash02Key(DeciTreeOption<StorbyInfo> option) {
 		super(option);

@@ -18,7 +18,7 @@ import br.com.mind5.business.employeePosition.model.checker.EmposCheckOwner;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckStorauth;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckStore;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -85,10 +85,10 @@ public final class RootEmposDelete extends DeciTreeTemplateWriteV2<EmposInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
-		List<ActionStdV1<EmposInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
+		List<ActionStdV2<EmposInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmposInfo> mergeToDelete = new StdEmposMergeToDelete(option);
+		ActionStdV2<EmposInfo> mergeToDelete = new StdEmposMergeToDelete(option);
 		ActionLazy<EmposInfo> enforceLChanged = new LazyEmposEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<EmposInfo> enforceLChangedBy = new LazyEmposMergeUsername(option.conn, option.schemaName);
 		ActionLazy<EmposInfo> update = new LazyEmposDaoUpdate(option.conn, option.schemaName);

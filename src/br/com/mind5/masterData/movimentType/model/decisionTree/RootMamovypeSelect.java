@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.movimentType.info.MamovypeInfo;
 import br.com.mind5.masterData.movimentType.model.action.StdMamovypeDaoSelect;
 import br.com.mind5.masterData.movimentType.model.checker.MamovypeCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -38,10 +38,10 @@ public final class RootMamovypeSelect extends DeciTreeTemplateReadV1<MamovypeInf
 
 		
 	
-	@Override protected List<ActionStdV1<MamovypeInfo>> buildActionsOnPassedHook(DeciTreeOption<MamovypeInfo> option) {
-		List<ActionStdV1<MamovypeInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MamovypeInfo>> buildActionsOnPassedHook(DeciTreeOption<MamovypeInfo> option) {
+		List<ActionStdV2<MamovypeInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MamovypeInfo> select = new StdMamovypeDaoSelect(option);
+		ActionStdV2<MamovypeInfo> select = new StdMamovypeDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

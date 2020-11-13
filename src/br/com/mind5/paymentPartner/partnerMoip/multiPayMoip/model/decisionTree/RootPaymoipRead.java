@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -44,10 +44,10 @@ public final class RootPaymoipRead extends DeciTreeTemplateWriteV2<PaymoipInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<PaymoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PaymoipInfo> option) {
-		List<ActionStdV1<PaymoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV2<PaymoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PaymoipInfo> option) {
+		List<ActionStdV2<PaymoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<PaymoipInfo> enforcePaypar = new StdPaymoipEnforcePaypar(option);
+		ActionStdV2<PaymoipInfo> enforcePaypar = new StdPaymoipEnforcePaypar(option);
 		ActionLazy<PaymoipInfo> mergeSysenv = new LazyPaymoipMergeSysenv(option.conn, option.schemaName);
 		ActionLazy<PaymoipInfo> mergeSetupar = new LazyPaymoipMergeSetupar(option.conn, option.schemaName);
 		ActionLazy<PaymoipInfo> enforceSetup = new LazyPaymoipEnforceSetup(option.conn, option.schemaName);

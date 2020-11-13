@@ -6,16 +6,16 @@ import java.util.List;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
 
-public abstract class ActionStdObfuscateTemplate<T extends InfoRecord> implements ActionStdV1<T> {
-	private ActionStdV1<T> helper;
+public abstract class ActionStdObfuscateTemplate_<T extends InfoRecord> implements ActionStdV2<T> {
+	private ActionStdV2<T> helper;
 	
 	
 	
-	public ActionStdObfuscateTemplate(Class<T> clazz) {
+	public ActionStdObfuscateTemplate_(Class<T> clazz) {
 		helper = new ActionStdDummy<>(buildDeciResult(clazz));
 	}	
 	

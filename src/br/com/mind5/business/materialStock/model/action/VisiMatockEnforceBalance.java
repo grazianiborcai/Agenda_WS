@@ -3,10 +3,10 @@ package br.com.mind5.business.materialStock.model.action;
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.info.MatockSetterBalance;
 import br.com.mind5.info.InfoSetter;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatockEnforceBalance extends ActionVisitorTemplateEnforceV2<MatockInfo> {
+final class VisiMatockEnforceBalance extends ActionVisitorTemplateEnforce<MatockInfo> {
 	
 	public VisiMatockEnforceBalance(DeciTreeOption<MatockInfo> option) {
 		super(option);

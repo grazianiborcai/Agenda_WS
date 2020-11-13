@@ -6,10 +6,10 @@ import br.com.mind5.business.phoneSnapshot.dao.DaoPhonapSelect;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPhonapDaoSelect extends ActionVisitorTemplateStmtV2<PhonapInfo> {
+final class VisiPhonapDaoSelect extends ActionVisitorTemplateStmt<PhonapInfo> {
 
 	public VisiPhonapDaoSelect(DeciTreeOption<PhonapInfo> option) {
 		super(option);

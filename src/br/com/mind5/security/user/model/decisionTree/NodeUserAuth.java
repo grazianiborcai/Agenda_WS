@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -40,10 +40,10 @@ public final class NodeUserAuth extends DeciTreeTemplateReadV2<UserInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
-		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
+		List<ActionStdV2<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<UserInfo> mergeUsername = new StdUserMergeUsername(option);
+		ActionStdV2<UserInfo> mergeUsername = new StdUserMergeUsername(option);
 		ActionLazy<UserInfo> enforceCodUser = new LazyUserEnforceCodUser(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(enforceCodUser);

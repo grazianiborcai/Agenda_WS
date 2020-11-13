@@ -6,10 +6,10 @@ import br.com.mind5.business.refundPolicyOwner.dao.DaoRefupownDelete;
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefupownDaoDelete extends ActionVisitorTemplateStmtV2<RefupownInfo> {
+final class VisiRefupownDaoDelete extends ActionVisitorTemplateStmt<RefupownInfo> {
 
 	public VisiRefupownDaoDelete(DeciTreeOption<RefupownInfo> option) {
 		super(option);

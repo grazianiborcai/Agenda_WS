@@ -6,10 +6,10 @@ import br.com.mind5.business.scheduleMonthData.dao.DaoSchedonthatSelect;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedonthatDaoSelect extends ActionVisitorTemplateStmtV2<SchedonthatInfo> {
+final class VisiSchedonthatDaoSelect extends ActionVisitorTemplateStmt<SchedonthatInfo> {
 
 	public VisiSchedonthatDaoSelect(DeciTreeOption<SchedonthatInfo> option) {
 		super(option);

@@ -8,7 +8,7 @@ import br.com.mind5.business.companySearch.model.action.StdComparchMergeToSelect
 import br.com.mind5.business.companySearch.model.checker.ComparchCheckLangu;
 import br.com.mind5.business.companySearch.model.checker.ComparchCheckOwner;
 import br.com.mind5.business.companySearch.model.checker.ComparchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -54,10 +54,10 @@ public final class RootComparchSelect extends DeciTreeTemplateReadV2<ComparchInf
 	
 	
 	
-	@Override protected List<ActionStdV1<ComparchInfo>> buildActionsOnPassedHook(DeciTreeOption<ComparchInfo> option) {
-		List<ActionStdV1<ComparchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<ComparchInfo>> buildActionsOnPassedHook(DeciTreeOption<ComparchInfo> option) {
+		List<ActionStdV2<ComparchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<ComparchInfo> select = new StdComparchMergeToSelect(option);	
+		ActionStdV2<ComparchInfo> select = new StdComparchMergeToSelect(option);	
 		actions.add(select);
 		
 		return actions;

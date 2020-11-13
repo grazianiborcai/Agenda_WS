@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -36,10 +36,10 @@ public final class NodePayordPay extends DeciTreeTemplateWriteV2<PayordInfo> {
 	
 	
 	//TODO: Ciclo de pagamento dever ser: 1) pre-autorizacao; 2) pagamento
-	@Override protected List<ActionStdV1<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
-		List<ActionStdV1<PayordInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
+		List<ActionStdV2<PayordInfo>> actions = new ArrayList<>();		
 	
-		ActionStdV1<PayordInfo> multmoipPay = new StdPayordMultmoipPay(option);
+		ActionStdV2<PayordInfo> multmoipPay = new StdPayordMultmoipPay(option);
 		ActionLazy<PayordInfo> updatePayord = new LazyPayordDaoUpdate(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> updatePayordem = new LazyPayordUpdatePayordem(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> orderRefresh = new LazyPayordOrderRefresh(option.conn, option.schemaName);

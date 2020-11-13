@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class RootCusparSearch extends DeciTreeTemplateReadV2<CusparInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
-		List<ActionStdV1<CusparInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
+		List<ActionStdV2<CusparInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<CusparInfo> mergeCusparch = new StdCusparMergeCusparch(option);
+		ActionStdV2<CusparInfo> mergeCusparch = new StdCusparMergeCusparch(option);
 		ActionLazy<CusparInfo> select = new LazyCusparRootSelect(option.conn, option.schemaName);
 		
 		mergeCusparch.addPostAction(select);

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.businessAreaSearch.info.BusarearchInfo;
 import br.com.mind5.masterData.businessAreaSearch.model.action.StdBusarearchDaoSelect;
 import br.com.mind5.masterData.businessAreaSearch.model.checker.BusarearchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootBusarearchSelect extends DeciTreeTemplateReadV2<Busarearc
 
 		
 	
-	@Override protected List<ActionStdV1<BusarearchInfo>> buildActionsOnPassedHook(DeciTreeOption<BusarearchInfo> option) {
-		List<ActionStdV1<BusarearchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<BusarearchInfo>> buildActionsOnPassedHook(DeciTreeOption<BusarearchInfo> option) {
+		List<ActionStdV2<BusarearchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<BusarearchInfo> select = new StdBusarearchDaoSelect(option);
+		ActionStdV2<BusarearchInfo> select = new StdBusarearchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

@@ -9,7 +9,7 @@ import br.com.mind5.business.store.model.action.StdStoreEnforceAddressKey;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
 import br.com.mind5.business.store.model.checker.StoreCheckHasAddress;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -41,10 +41,10 @@ public final class NodeStoreUpsertAddress extends DeciTreeTemplateWriteV2<StoreI
 	
 	
 	
-	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV2<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StoreInfo> enforceAddressKey = new StdStoreEnforceAddressKey(option);
+		ActionStdV2<StoreInfo> enforceAddressKey = new StdStoreEnforceAddressKey(option);
 		ActionLazy<StoreInfo> upsertAddress = new LazyStoreAddressUpsert(option.conn, option.schemaName);
 		
 		enforceAddressKey.addPostAction(upsertAddress);
@@ -55,10 +55,10 @@ public final class NodeStoreUpsertAddress extends DeciTreeTemplateWriteV2<StoreI
 	
 	
 	
-	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnFailedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StoreInfo>> buildActionsOnFailedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV2<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StoreInfo> success = new StdStoreSuccess(option);
+		ActionStdV2<StoreInfo> success = new StdStoreSuccess(option);
 		
 		actions.add(success);
 		return actions;

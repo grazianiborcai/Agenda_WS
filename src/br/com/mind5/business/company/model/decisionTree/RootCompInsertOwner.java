@@ -7,7 +7,7 @@ import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.action.LazyCompRootInsert;
 import br.com.mind5.business.company.model.action.StdCompEnforceCategOwner;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class RootCompInsertOwner extends DeciTreeTemplateWriteV2<CompInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
-		List<ActionStdV1<CompInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
+		List<ActionStdV2<CompInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CompInfo> enforceCategOwner = new StdCompEnforceCategOwner(option);
+		ActionStdV2<CompInfo> enforceCategOwner = new StdCompEnforceCategOwner(option);
 		ActionLazy<CompInfo> insert = new LazyCompRootInsert(option.conn, option.schemaName);
 		
 		enforceCategOwner.addPostAction(insert);

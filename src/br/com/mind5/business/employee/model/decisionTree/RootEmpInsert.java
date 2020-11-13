@@ -14,7 +14,7 @@ import br.com.mind5.business.employee.model.checker.EmpCheckInsert;
 import br.com.mind5.business.employee.model.checker.EmpCheckLangu;
 import br.com.mind5.business.employee.model.checker.EmpCheckOwner;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -60,10 +60,10 @@ public final class RootEmpInsert extends DeciTreeTemplateWriteV2<EmpInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStdV2<EmpInfo>> actions = new ArrayList<>();
 		//TODO: O que fazer se o CPF/e-mail ja tiver associado a um customer/owner/store manager ?
-		ActionStdV1<EmpInfo> insertEmployee = new NodeEmpInsertL1(option).toAction();	
+		ActionStdV2<EmpInfo> insertEmployee = new NodeEmpInsertL1(option).toAction();	
 		ActionLazy<EmpInfo> insertPerson = new LazyEmpNodeInsertPerson(option.conn, option.schemaName);	
 		ActionLazy<EmpInfo> insertUser = new LazyEmpNodeInsertUser(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> snapshot = new LazyEmpNodeSnapshot(option.conn, option.schemaName);	

@@ -8,7 +8,7 @@ import br.com.mind5.business.employeeWorkTimeSearch.model.action.StdEmpwotarchMe
 import br.com.mind5.business.employeeWorkTimeSearch.model.checker.EmpwotarchCheckLangu;
 import br.com.mind5.business.employeeWorkTimeSearch.model.checker.EmpwotarchCheckOwner;
 import br.com.mind5.business.employeeWorkTimeSearch.model.checker.EmpwotarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -54,10 +54,10 @@ public final class RootEmpwotarchSelect extends DeciTreeTemplateReadV2<Empwotarc
 	
 	
 	
-	@Override protected List<ActionStdV1<EmpwotarchInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotarchInfo> option) {
-		List<ActionStdV1<EmpwotarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmpwotarchInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotarchInfo> option) {
+		List<ActionStdV2<EmpwotarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmpwotarchInfo> select = new StdEmpwotarchMergeToSelect(option);
+		ActionStdV2<EmpwotarchInfo> select = new StdEmpwotarchMergeToSelect(option);
 
 		actions.add(select);
 		return actions;

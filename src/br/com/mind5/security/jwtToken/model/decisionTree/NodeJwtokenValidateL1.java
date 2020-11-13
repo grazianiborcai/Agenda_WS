@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,10 +39,10 @@ public final class NodeJwtokenValidateL1 extends DeciTreeTemplateWriteV2<Jwtoken
 	
 	
 	
-	@Override protected List<ActionStdV1<JwtokenInfo>> buildActionsOnPassedHook(DeciTreeOption<JwtokenInfo> option) {
-		List<ActionStdV1<JwtokenInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<JwtokenInfo>> buildActionsOnPassedHook(DeciTreeOption<JwtokenInfo> option) {
+		List<ActionStdV2<JwtokenInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<JwtokenInfo> parse = new RootJwtokenParse(option).toAction();
+		ActionStdV2<JwtokenInfo> parse = new RootJwtokenParse(option).toAction();
 		ActionLazy<JwtokenInfo> nodeL2 = new LazyJwtokenNodeValidateL2(option.conn, option.schemaName);
 		
 		parse.addPostAction(nodeL2);

@@ -16,7 +16,7 @@ import br.com.mind5.business.planingData.model.action.StdPlanataEnforceWeekday;
 import br.com.mind5.business.planingData.model.checker.PlanataCheckDate;
 import br.com.mind5.business.planingData.model.checker.PlanataCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -55,10 +55,10 @@ public class RootPlanataSelectNoReserve extends DeciTreeTemplateReadV1<PlanataIn
 	
 	
 	
-	@Override protected List<ActionStdV1<PlanataInfo>> buildActionsOnPassedHook(DeciTreeOption<PlanataInfo> option) {
-		List<ActionStdV1<PlanataInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<PlanataInfo>> buildActionsOnPassedHook(DeciTreeOption<PlanataInfo> option) {
+		List<ActionStdV2<PlanataInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<PlanataInfo> enforceWeekday = new StdPlanataEnforceWeekday(option);		
+		ActionStdV2<PlanataInfo> enforceWeekday = new StdPlanataEnforceWeekday(option);		
 		ActionLazy<PlanataInfo> select = new LazyPlanataMergeToSelect(option.conn, option.schemaName);	
 		ActionLazy<PlanataInfo> mergeMooncal = new LazyPlanataMergeMooncal(option.conn, option.schemaName);	
 		ActionLazy<PlanataInfo> mergeMatlis = new LazyPlanataMergeMatlis(option.conn, option.schemaName);	

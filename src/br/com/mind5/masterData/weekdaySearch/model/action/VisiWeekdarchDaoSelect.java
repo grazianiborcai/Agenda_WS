@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.weekdaySearch.dao.DaoWeekdarchSelect;
 import br.com.mind5.masterData.weekdaySearch.info.WeekdarchInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiWeekdarchDaoSelect extends ActionVisitorTemplateStmtV2<WeekdarchInfo> {
+final class VisiWeekdarchDaoSelect extends ActionVisitorTemplateStmt<WeekdarchInfo> {
 
 	public VisiWeekdarchDaoSelect(DeciTreeOption<WeekdarchInfo> option) {
 		super(option);

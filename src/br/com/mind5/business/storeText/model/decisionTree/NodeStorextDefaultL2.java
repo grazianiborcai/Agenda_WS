@@ -13,7 +13,7 @@ import br.com.mind5.business.storeText.model.action.StdStorextMergeStorextault;
 import br.com.mind5.business.storeText.model.action.StdStorextSuccess;
 import br.com.mind5.business.storeText.model.checker.StorextCheckStorextault;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -45,16 +45,16 @@ public final class NodeStorextDefaultL2 extends DeciTreeTemplateWriteV2<StorextI
 	
 	
 	
-	@Override protected List<ActionStdV1<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
-		List<ActionStdV1<StorextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
+		List<ActionStdV2<StorextInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StorextInfo> mergeStorextault = new StdStorextMergeStorextault(option);
+		ActionStdV2<StorextInfo> mergeStorextault = new StdStorextMergeStorextault(option);
 		ActionLazy<StorextInfo> mergeToSelect = new LazyStorextMergeToSelect(option.conn, option.schemaName);
 		ActionLazy<StorextInfo> enforceLChanged = new LazyStorextEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<StorextInfo> enforceLChangedBy = new LazyStorextMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StorextInfo> enforceDefaultOff = new LazyStorextEnforceDefaultOff(option.conn, option.schemaName);
 		ActionLazy<StorextInfo> update = new LazyStorextDaoUpdate(option.conn, option.schemaName);
-		ActionStdV1<StorextInfo> success = new StdStorextSuccess(option);	
+		ActionStdV2<StorextInfo> success = new StdStorextSuccess(option);	
 		
 		mergeStorextault.addPostAction(mergeToSelect);
 		mergeToSelect.addPostAction(enforceLChanged);
@@ -69,10 +69,10 @@ public final class NodeStorextDefaultL2 extends DeciTreeTemplateWriteV2<StorextI
 	
 	
 	
-	@Override protected List<ActionStdV1<StorextInfo>> buildActionsOnFailedHook(DeciTreeOption<StorextInfo> option) {
-		List<ActionStdV1<StorextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StorextInfo>> buildActionsOnFailedHook(DeciTreeOption<StorextInfo> option) {
+		List<ActionStdV2<StorextInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<StorextInfo> success = new StdStorextSuccess(option);		
+		ActionStdV2<StorextInfo> success = new StdStorextSuccess(option);		
 		actions.add(success);
 		
 		return actions;

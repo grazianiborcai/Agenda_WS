@@ -12,7 +12,7 @@ import br.com.mind5.business.employee.model.action.LazyEmpMergeUsername;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeInsertL2;
 import br.com.mind5.business.employee.model.action.StdEmpEnforceLChanged;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -39,10 +39,10 @@ public final class NodeEmpInsertL1 extends DeciTreeTemplateWriteV2<EmpInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStdV2<EmpInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<EmpInfo> enforceLChanged = new StdEmpEnforceLChanged(option);
+		ActionStdV2<EmpInfo> enforceLChanged = new StdEmpEnforceLChanged(option);
 		ActionLazy<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> enforceCreatedBy = new LazyEmpEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> enforceCreatedOn = new LazyEmpEnforceCreatedOn(option.conn, option.schemaName);

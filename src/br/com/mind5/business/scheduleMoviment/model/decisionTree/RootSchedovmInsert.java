@@ -11,7 +11,7 @@ import br.com.mind5.business.scheduleMoviment.model.action.LazySchedovmNodeInser
 import br.com.mind5.business.scheduleMoviment.model.action.StdSchedovmEnforceCounter;
 import br.com.mind5.business.scheduleMoviment.model.checker.SchedovmCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -43,10 +43,10 @@ public final class RootSchedovmInsert extends DeciTreeTemplateWriteV2<SchedovmIn
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedovmInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedovmInfo> option) {
-		List<ActionStdV1<SchedovmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedovmInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedovmInfo> option) {
+		List<ActionStdV2<SchedovmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedovmInfo> enforceCounter = new StdSchedovmEnforceCounter(option);
+		ActionStdV2<SchedovmInfo> enforceCounter = new StdSchedovmEnforceCounter(option);
 		ActionLazy<SchedovmInfo> enforceZero = new LazySchedovmEnforceZero(option.conn, option.schemaName);
 		ActionLazy<SchedovmInfo> enforceCancel = new LazySchedovmEnforceCancel(option.conn, option.schemaName);
 		ActionLazy<SchedovmInfo> enforceReverse = new LazySchedovmEnforceReverse(option.conn, option.schemaName);

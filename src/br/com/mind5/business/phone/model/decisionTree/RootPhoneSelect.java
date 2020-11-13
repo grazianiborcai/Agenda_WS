@@ -11,7 +11,7 @@ import br.com.mind5.business.phone.model.checker.PhoneCheckLangu;
 import br.com.mind5.business.phone.model.checker.PhoneCheckOwner;
 import br.com.mind5.business.phone.model.checker.PhoneCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -57,10 +57,10 @@ public final class RootPhoneSelect extends DeciTreeTemplateWriteV2<PhoneInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
-		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
+		List<ActionStdV2<PhoneInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<PhoneInfo> select = new StdPhoneMergeToSelect(option);	
+		ActionStdV2<PhoneInfo> select = new StdPhoneMergeToSelect(option);	
 		ActionLazy<PhoneInfo> mergeCountrone = new LazyPhoneMergeCountrone(option.conn, option.schemaName);
 		ActionLazy<PhoneInfo> mergeFormone = new LazyPhoneMergeFormone(option.conn, option.schemaName);
 

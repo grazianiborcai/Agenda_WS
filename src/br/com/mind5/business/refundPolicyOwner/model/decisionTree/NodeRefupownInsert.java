@@ -7,7 +7,7 @@ import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
 import br.com.mind5.business.refundPolicyOwner.model.action.StdRefupownDaoInsert;
 import br.com.mind5.business.refundPolicyOwner.model.action.StdRefupownDaoUpdate;
 import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckSoftDelete;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,10 +39,10 @@ public final class NodeRefupownInsert extends DeciTreeTemplateWriteV2<RefupownIn
 	
 	
 	
-	@Override protected List<ActionStdV1<RefupownInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupownInfo> option) {
-		List<ActionStdV1<RefupownInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<RefupownInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupownInfo> option) {
+		List<ActionStdV2<RefupownInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<RefupownInfo> update = new StdRefupownDaoUpdate(option);	
+		ActionStdV2<RefupownInfo> update = new StdRefupownDaoUpdate(option);	
 		
 		actions.add(update);
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeRefupownInsert extends DeciTreeTemplateWriteV2<RefupownIn
 	
 	
 	
-	@Override protected List<ActionStdV1<RefupownInfo>> buildActionsOnFailedHook(DeciTreeOption<RefupownInfo> option) {
-		List<ActionStdV1<RefupownInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<RefupownInfo>> buildActionsOnFailedHook(DeciTreeOption<RefupownInfo> option) {
+		List<ActionStdV2<RefupownInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<RefupownInfo> insert = new StdRefupownDaoInsert(option);	
+		ActionStdV2<RefupownInfo> insert = new StdRefupownDaoInsert(option);	
 		
 		actions.add(insert);
 		return actions;

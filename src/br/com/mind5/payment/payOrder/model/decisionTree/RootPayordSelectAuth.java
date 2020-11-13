@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrder.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -53,11 +53,11 @@ public final class RootPayordSelectAuth extends DeciTreeTemplateReadV2<PayordInf
 	
 	
 	
-	@Override protected List<ActionStdV1<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
-		List<ActionStdV1<PayordInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
+		List<ActionStdV2<PayordInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<PayordInfo> nodeAuth = new NodePayordAuthL1(option).toAction();
-		ActionStdV1<PayordInfo> nodeSelect = new RootPayordSelect(option).toAction();
+		ActionStdV2<PayordInfo> nodeAuth = new NodePayordAuthL1(option).toAction();
+		ActionStdV2<PayordInfo> nodeSelect = new RootPayordSelect(option).toAction();
 		
 		actions.add(nodeAuth);		
 		actions.add(nodeSelect);

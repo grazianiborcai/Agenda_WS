@@ -8,7 +8,7 @@ import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeToSelect;
 import br.com.mind5.business.storeNearby.model.action.LazyStorbyPruneEmpty;
 import br.com.mind5.business.storeNearby.model.action.StdStorbyEnforceDistrictKey;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -35,10 +35,10 @@ public final class NodeStorbyDistrict extends DeciTreeTemplateReadV2<StorbyInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
-		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
+		List<ActionStdV2<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<StorbyInfo> enforceDistrictKey = new StdStorbyEnforceDistrictKey(option);
+		ActionStdV2<StorbyInfo> enforceDistrictKey = new StdStorbyEnforceDistrictKey(option);
 		ActionLazy<StorbyInfo> select = new LazyStorbyMergeToSelect(option.conn, option.schemaName);
 		ActionLazy<StorbyInfo> pruneEmpty = new LazyStorbyPruneEmpty(option.conn, option.schemaName);
 		

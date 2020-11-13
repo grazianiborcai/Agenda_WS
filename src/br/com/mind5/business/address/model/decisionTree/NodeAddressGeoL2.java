@@ -7,7 +7,7 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.action.StdAddressGeoshGenerate;
 import br.com.mind5.business.address.model.action.StdAddressSuccess;
 import br.com.mind5.business.address.model.checker.AddressCheckHasGeo;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,10 +39,10 @@ public final class NodeAddressGeoL2 extends DeciTreeTemplateWriteV2<AddressInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
-		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
+		List<ActionStdV2<AddressInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<AddressInfo> geoshGenerate = new StdAddressGeoshGenerate(option);	
+		ActionStdV2<AddressInfo> geoshGenerate = new StdAddressGeoshGenerate(option);	
 
 		actions.add(geoshGenerate);		
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeAddressGeoL2 extends DeciTreeTemplateWriteV2<AddressInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<AddressInfo>> buildActionsOnFailedHook(DeciTreeOption<AddressInfo> option) {
-		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<AddressInfo>> buildActionsOnFailedHook(DeciTreeOption<AddressInfo> option) {
+		List<ActionStdV2<AddressInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<AddressInfo> success = new StdAddressSuccess(option);	
+		ActionStdV2<AddressInfo> success = new StdAddressSuccess(option);	
 
 		actions.add(success);		
 		return actions;

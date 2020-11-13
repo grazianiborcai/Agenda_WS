@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.feeCategory.dao.DaoFeecatSelect;
 import br.com.mind5.masterData.feeCategory.info.FeecatInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFeecatDaoSelect extends ActionVisitorTemplateStmtV2<FeecatInfo> {
+final class VisiFeecatDaoSelect extends ActionVisitorTemplateStmt<FeecatInfo> {
 
 	public VisiFeecatDaoSelect(DeciTreeOption<FeecatInfo> option) {
 		super(option);

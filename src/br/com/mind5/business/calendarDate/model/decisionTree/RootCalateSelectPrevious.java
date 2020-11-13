@@ -8,7 +8,7 @@ import br.com.mind5.business.calendarDate.model.action.LazyCalateRootSelect;
 import br.com.mind5.business.calendarDate.model.action.StdCalateEnforcePrevious;
 import br.com.mind5.business.calendarDate.model.checker.CalateCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -40,10 +40,10 @@ public final class RootCalateSelectPrevious extends DeciTreeTemplateReadV2<Calat
 
 		
 	
-	@Override protected List<ActionStdV1<CalateInfo>> buildActionsOnPassedHook(DeciTreeOption<CalateInfo> option) {
-		List<ActionStdV1<CalateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CalateInfo>> buildActionsOnPassedHook(DeciTreeOption<CalateInfo> option) {
+		List<ActionStdV2<CalateInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CalateInfo> enforcePrevious = new StdCalateEnforcePrevious(option);
+		ActionStdV2<CalateInfo> enforcePrevious = new StdCalateEnforcePrevious(option);
 		ActionLazy<CalateInfo> select = new LazyCalateRootSelect(option.conn, option.schemaName);
 		
 		enforcePrevious.addPostAction(select);

@@ -9,7 +9,7 @@ import br.com.mind5.business.materialText.model.action.LazyMatextDaoUpdate;
 import br.com.mind5.business.materialText.model.action.LazyMatextMergeUsername;
 import br.com.mind5.business.materialText.model.action.StdMatextEnforceLChanged;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -36,10 +36,10 @@ public final class NodeMatextDeleteL1 extends DeciTreeTemplateWriteV2<MatextInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
-		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
+		List<ActionStdV2<MatextInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatextInfo> enforceLChanged = new StdMatextEnforceLChanged(option);
+		ActionStdV2<MatextInfo> enforceLChanged = new StdMatextEnforceLChanged(option);
 		ActionLazy<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);
 		ActionLazy<MatextInfo> update = new LazyMatextDaoUpdate(option.conn, option.schemaName);
 		ActionLazy<MatextInfo> delete = new LazyMatextDaoDelete(option.conn, option.schemaName);

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.form.formAddress.info.FormessInfo;
 import br.com.mind5.form.formAddress.model.checker.FormessCheckCountry;
 import br.com.mind5.form.formAddress.model.checker.FormessCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -45,10 +45,10 @@ public final class RootFormessSelect extends DeciTreeTemplateWriteV2<FormessInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<FormessInfo>> buildActionsOnPassedHook(DeciTreeOption<FormessInfo> option) {
-		List<ActionStdV1<FormessInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<FormessInfo>> buildActionsOnPassedHook(DeciTreeOption<FormessInfo> option) {
+		List<ActionStdV2<FormessInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<FormessInfo> nodeSelect = new NodeFormessSelect(option).toAction();
+		ActionStdV2<FormessInfo> nodeSelect = new NodeFormessSelect(option).toAction();
 		
 		actions.add(nodeSelect);
 		return actions;

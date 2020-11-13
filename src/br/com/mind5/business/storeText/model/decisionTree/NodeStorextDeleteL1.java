@@ -9,7 +9,7 @@ import br.com.mind5.business.storeText.model.action.LazyStorextDaoUpdate;
 import br.com.mind5.business.storeText.model.action.LazyStorextMergeUsername;
 import br.com.mind5.business.storeText.model.action.StdStorextEnforceLChanged;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -36,10 +36,10 @@ public final class NodeStorextDeleteL1 extends DeciTreeTemplateWriteV2<StorextIn
 	
 	
 	
-	@Override protected List<ActionStdV1<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
-		List<ActionStdV1<StorextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
+		List<ActionStdV2<StorextInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StorextInfo> enforceLChanged = new StdStorextEnforceLChanged(option);
+		ActionStdV2<StorextInfo> enforceLChanged = new StdStorextEnforceLChanged(option);
 		ActionLazy<StorextInfo> enforceLChangedBy = new LazyStorextMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StorextInfo> update = new LazyStorextDaoUpdate(option.conn, option.schemaName);
 		ActionLazy<StorextInfo> delete = new LazyStorextDaoDelete(option.conn, option.schemaName);

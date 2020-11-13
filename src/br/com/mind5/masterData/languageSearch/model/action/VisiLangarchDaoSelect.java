@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.languageSearch.dao.DaoLangarchSelect;
 import br.com.mind5.masterData.languageSearch.info.LangarchInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiLangarchDaoSelect extends ActionVisitorTemplateStmtV2<LangarchInfo> {
+final class VisiLangarchDaoSelect extends ActionVisitorTemplateStmt<LangarchInfo> {
 
 	public VisiLangarchDaoSelect(DeciTreeOption<LangarchInfo> option) {
 		super(option);

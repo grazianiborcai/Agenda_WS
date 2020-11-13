@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.calendarWeekYear.info.CaleekyInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyCaleekyMergeNext extends ActionLazyTemplate<CaleekyInfo, 
 	
 	
 	
-	@Override protected ActionStdV1<CaleekyInfo> getInstanceOfActionHook(DeciTreeOption<CaleekyInfo> option) {
+	@Override protected ActionStdV2<CaleekyInfo> getInstanceOfActionHook(DeciTreeOption<CaleekyInfo> option) {
 		return new StdCaleekyMergeNext(option);
 	}
 	

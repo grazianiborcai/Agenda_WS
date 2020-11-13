@@ -7,7 +7,7 @@ import br.com.mind5.business.storeTextSearch.info.StorextarchInfo;
 import br.com.mind5.business.storeTextSearch.model.action.LazyStorextarchRootSelect;
 import br.com.mind5.business.storeTextSearch.model.action.StdStorextarchEnforceStoreKey;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class RootStorextarchSelectByStore extends DeciTreeTemplateReadV2<S
 	
 	
 	
-	@Override protected List<ActionStdV1<StorextarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextarchInfo> option) {
-		List<ActionStdV1<StorextarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StorextarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextarchInfo> option) {
+		List<ActionStdV2<StorextarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StorextarchInfo> enforceStoreKey = new StdStorextarchEnforceStoreKey(option);
+		ActionStdV2<StorextarchInfo> enforceStoreKey = new StdStorextarchEnforceStoreKey(option);
 		ActionLazy<StorextarchInfo> select = new LazyStorextarchRootSelect(option.conn, option.schemaName);
 		
 		enforceStoreKey.addPostAction(select);

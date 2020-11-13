@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -41,10 +41,10 @@ public final class NodeRefemRefundL2 extends DeciTreeTemplateWriteV2<RefemInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
-		List<ActionStdV1<RefemInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
+		List<ActionStdV2<RefemInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<RefemInfo> orderemRefunding = new StdRefemOrderemRefunding(option);
+		ActionStdV2<RefemInfo> orderemRefunding = new StdRefemOrderemRefunding(option);
 		ActionLazy<RefemInfo> refund = new LazyRefemRefumoipRefund(option.conn, option.schemaName);
 		
 		orderemRefunding.addPostAction(refund);
@@ -55,10 +55,10 @@ public final class NodeRefemRefundL2 extends DeciTreeTemplateWriteV2<RefemInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<RefemInfo>> buildActionsOnFailedHook(DeciTreeOption<RefemInfo> option) {
-		List<ActionStdV1<RefemInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<RefemInfo>> buildActionsOnFailedHook(DeciTreeOption<RefemInfo> option) {
+		List<ActionStdV2<RefemInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<RefemInfo> refund = new StdRefemRefumoipRefund(option);
+		ActionStdV2<RefemInfo> refund = new StdRefemRefumoipRefund(option);
 		
 		actions.add(refund);		
 		return actions;

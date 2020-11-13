@@ -9,7 +9,7 @@ import br.com.mind5.business.cartItem.model.action.LazyCartemMergeSymsg;
 import br.com.mind5.business.cartItem.model.action.StdCartemEnforceSymsgL04;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckMatore;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -41,10 +41,10 @@ public final class NodeCartemAgedServiceL04 extends DeciTreeTemplateWriteV2<Cart
 	
 	
 	
-	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStdV2<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CartemInfo> nodeL05 = new NodeCartemAgedServiceL05(option).toAction();	
+		ActionStdV2<CartemInfo> nodeL05 = new NodeCartemAgedServiceL05(option).toAction();	
 		
 		actions.add(nodeL05);		
 		return actions;
@@ -52,10 +52,10 @@ public final class NodeCartemAgedServiceL04 extends DeciTreeTemplateWriteV2<Cart
 	
 	
 	
-	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStdV2<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CartemInfo> enforceSymsg = new StdCartemEnforceSymsgL04(option);	
+		ActionStdV2<CartemInfo> enforceSymsg = new StdCartemEnforceSymsgL04(option);	
 		ActionLazy<CartemInfo> mergeSymsg = new LazyCartemMergeSymsg(option.conn, option.schemaName);
 		ActionLazy<CartemInfo> enforceAged = new LazyCartemEnforceAged(option.conn, option.schemaName);
 		

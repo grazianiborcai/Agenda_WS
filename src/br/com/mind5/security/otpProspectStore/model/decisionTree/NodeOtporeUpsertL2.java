@@ -3,7 +3,7 @@ package br.com.mind5.security.otpProspectStore.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,10 +39,10 @@ public final class NodeOtporeUpsertL2 extends DeciTreeTemplateWriteV2<OtporeInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<OtporeInfo>> buildActionsOnPassedHook(DeciTreeOption<OtporeInfo> option) {
-		List<ActionStdV1<OtporeInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OtporeInfo>> buildActionsOnPassedHook(DeciTreeOption<OtporeInfo> option) {
+		List<ActionStdV2<OtporeInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OtporeInfo> insert = new StdOtporeDaoInsert(option);
+		ActionStdV2<OtporeInfo> insert = new StdOtporeDaoInsert(option);
 		
 		actions.add(insert);	
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeOtporeUpsertL2 extends DeciTreeTemplateWriteV2<OtporeInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<OtporeInfo>> buildActionsOnFailedHook(DeciTreeOption<OtporeInfo> option) {
-		List<ActionStdV1<OtporeInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OtporeInfo>> buildActionsOnFailedHook(DeciTreeOption<OtporeInfo> option) {
+		List<ActionStdV2<OtporeInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OtporeInfo> update = new StdOtporeDaoUpdate(option);
+		ActionStdV2<OtporeInfo> update = new StdOtporeDaoUpdate(option);
 		
 		actions.add(update);	
 		return actions;

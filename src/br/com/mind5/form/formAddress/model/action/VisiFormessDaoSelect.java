@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.form.formAddress.dao.DaoFormessSelect;
 import br.com.mind5.form.formAddress.info.FormessInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFormessDaoSelect extends ActionVisitorTemplateStmtV2<FormessInfo> {
+final class VisiFormessDaoSelect extends ActionVisitorTemplateStmt<FormessInfo> {
 
 	public VisiFormessDaoSelect(DeciTreeOption<FormessInfo> option) {
 		super(option);

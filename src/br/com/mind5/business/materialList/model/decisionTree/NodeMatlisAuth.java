@@ -7,7 +7,7 @@ import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.model.action.StdMatlisMergeSytotauh;
 import br.com.mind5.business.materialList.model.action.StdMatlisSuccess;
 import br.com.mind5.business.materialList.model.checker.MatlisCheckAuthCustomer;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,10 +39,10 @@ public final class NodeMatlisAuth extends DeciTreeTemplateReadV2<MatlisInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<MatlisInfo>> buildActionsOnPassedHook(DeciTreeOption<MatlisInfo> option) {
-		List<ActionStdV1<MatlisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatlisInfo>> buildActionsOnPassedHook(DeciTreeOption<MatlisInfo> option) {
+		List<ActionStdV2<MatlisInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatlisInfo> success = new StdMatlisSuccess(option);
+		ActionStdV2<MatlisInfo> success = new StdMatlisSuccess(option);
 
 		actions.add(success);
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeMatlisAuth extends DeciTreeTemplateReadV2<MatlisInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<MatlisInfo>> buildActionsOnFailedHook(DeciTreeOption<MatlisInfo> option) {
-		List<ActionStdV1<MatlisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatlisInfo>> buildActionsOnFailedHook(DeciTreeOption<MatlisInfo> option) {
+		List<ActionStdV2<MatlisInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatlisInfo> mergeSytotauh = new StdMatlisMergeSytotauh(option);
+		ActionStdV2<MatlisInfo> mergeSytotauh = new StdMatlisMergeSytotauh(option);
 		
 		actions.add(mergeSytotauh);
 		return actions;

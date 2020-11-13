@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 import br.com.mind5.masterData.refundPolicyGroup.model.decisionTree.RootRefugroupSelect;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyRefugroupRootSelect extends ActionLazyTemplate<RefugroupI
 	
 	
 	
-	@Override protected ActionStdV1<RefugroupInfo> getInstanceOfActionHook(DeciTreeOption<RefugroupInfo> option) {
+	@Override protected ActionStdV2<RefugroupInfo> getInstanceOfActionHook(DeciTreeOption<RefugroupInfo> option) {
 		return new RootRefugroupSelect(option).toAction();
 	}
 	

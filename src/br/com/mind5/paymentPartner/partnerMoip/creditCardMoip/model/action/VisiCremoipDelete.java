@@ -3,12 +3,12 @@ package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action;
 import java.util.List;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.action.ActionVisitorTemplateSimple;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.moip.Moip;
 
-final class VisiCremoipDelete extends ActionVisitorTemplateSimpleV2<CremoipInfo> {
+final class VisiCremoipDelete extends ActionVisitorTemplateSimple<CremoipInfo> {
 	
 	public VisiCremoipDelete(DeciTreeOption<CremoipInfo> option) {
 		super(option);

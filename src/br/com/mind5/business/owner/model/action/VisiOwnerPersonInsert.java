@@ -7,11 +7,11 @@ import br.com.mind5.business.owner.info.OwnerMerger;
 import br.com.mind5.business.person.info.PersonCopier;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.decisionTree.RootPersonInsertOwner;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerPersonInsert extends ActionVisitorTemplateActionV2<OwnerInfo, PersonInfo> {
+final class VisiOwnerPersonInsert extends ActionVisitorTemplateAction<OwnerInfo, PersonInfo> {
 	
 	public VisiOwnerPersonInsert(DeciTreeOption<OwnerInfo> option) {
 		super(option, OwnerInfo.class, PersonInfo.class);

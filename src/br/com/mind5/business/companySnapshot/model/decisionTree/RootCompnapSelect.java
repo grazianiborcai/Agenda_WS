@@ -7,7 +7,7 @@ import br.com.mind5.business.companySnapshot.info.CompnapInfo;
 import br.com.mind5.business.companySnapshot.model.action.StdCompnapMergeToSelect;
 import br.com.mind5.business.companySnapshot.model.checker.CompnapCheckOwner;
 import br.com.mind5.business.companySnapshot.model.checker.CompnapCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -46,10 +46,10 @@ public final class RootCompnapSelect extends DeciTreeTemplateReadV2<CompnapInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<CompnapInfo>> buildActionsOnPassedHook(DeciTreeOption<CompnapInfo> option) {
-		List<ActionStdV1<CompnapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CompnapInfo>> buildActionsOnPassedHook(DeciTreeOption<CompnapInfo> option) {
+		List<ActionStdV2<CompnapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CompnapInfo> select = new StdCompnapMergeToSelect(option);	
+		ActionStdV2<CompnapInfo> select = new StdCompnapMergeToSelect(option);	
 		actions.add(select);
 		
 		return actions;

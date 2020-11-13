@@ -15,7 +15,7 @@ import br.com.mind5.business.scheduleWeek.model.action.StdSchedeekMergeCalate;
 import br.com.mind5.business.scheduleWeek.model.action.StdSchedeekMergeSchedeekdat;
 import br.com.mind5.business.scheduleWeek.model.checker.SchedeekCheckSchedeekdat;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -47,10 +47,10 @@ public final class NodeSchedeekSelect extends DeciTreeTemplateWriteV2<SchedeekIn
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedeekInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedeekInfo> option) {
-		List<ActionStdV1<SchedeekInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedeekInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedeekInfo> option) {
+		List<ActionStdV2<SchedeekInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedeekInfo> mergeSchedeekdat = new StdSchedeekMergeSchedeekdat(option);
+		ActionStdV2<SchedeekInfo> mergeSchedeekdat = new StdSchedeekMergeSchedeekdat(option);
 		ActionLazy<SchedeekInfo> mergeStolis = new LazySchedeekMergeStolis(option.conn, option.schemaName);
 		ActionLazy<SchedeekInfo> mergeMatlis = new LazySchedeekMergeMatlis(option.conn, option.schemaName);
 		ActionLazy<SchedeekInfo> mergeEmplis = new LazySchedeekMergeEmplis(option.conn, option.schemaName);
@@ -73,10 +73,10 @@ public final class NodeSchedeekSelect extends DeciTreeTemplateWriteV2<SchedeekIn
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedeekInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedeekInfo> option) {
-		List<ActionStdV1<SchedeekInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedeekInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedeekInfo> option) {
+		List<ActionStdV2<SchedeekInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedeekInfo> mergeCalate = new StdSchedeekMergeCalate(option);
+		ActionStdV2<SchedeekInfo> mergeCalate = new StdSchedeekMergeCalate(option);
 		ActionLazy<SchedeekInfo> mergeCalimore = new LazySchedeekMergeCalimore(option.conn, option.schemaName);
 		ActionLazy<SchedeekInfo> mergeCalimemp = new LazySchedeekMergeCalimemp(option.conn, option.schemaName);
 		

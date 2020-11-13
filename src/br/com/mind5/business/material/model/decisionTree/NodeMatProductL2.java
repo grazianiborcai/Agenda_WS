@@ -7,7 +7,7 @@ import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.action.StdMatSuccess;
 import br.com.mind5.business.material.model.checker.MatCheckProductPriceUnit;
 import br.com.mind5.business.material.model.checker.MatCheckProductUnit;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -46,10 +46,10 @@ public final class NodeMatProductL2 extends DeciTreeTemplateWriteV2<MatInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
-		List<ActionStdV1<MatInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
+		List<ActionStdV2<MatInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<MatInfo> success = new StdMatSuccess(option);	
+		ActionStdV2<MatInfo> success = new StdMatSuccess(option);	
 		
 		actions.add(success);		
 		return actions;

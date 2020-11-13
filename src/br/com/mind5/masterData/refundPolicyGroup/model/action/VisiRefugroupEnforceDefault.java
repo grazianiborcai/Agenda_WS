@@ -3,10 +3,10 @@ package br.com.mind5.masterData.refundPolicyGroup.model.action;
 import br.com.mind5.info.InfoSetter;
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupSetterDefault;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefugroupEnforceDefault extends ActionVisitorTemplateEnforceV2<RefugroupInfo> {
+final class VisiRefugroupEnforceDefault extends ActionVisitorTemplateEnforce<RefugroupInfo> {
 	
 	public VisiRefugroupEnforceDefault(DeciTreeOption<RefugroupInfo> option) {
 		super(option);

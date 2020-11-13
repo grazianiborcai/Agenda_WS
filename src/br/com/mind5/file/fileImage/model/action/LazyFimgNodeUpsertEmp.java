@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.decisionTree.NodeFimgUpsertEmp;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyFimgNodeUpsertEmp extends ActionLazyTemplate<FimgInfo, Fi
 	
 	
 	
-	@Override protected ActionStdV1<FimgInfo> getInstanceOfActionHook(DeciTreeOption<FimgInfo> option) {
+	@Override protected ActionStdV2<FimgInfo> getInstanceOfActionHook(DeciTreeOption<FimgInfo> option) {
 		return new NodeFimgUpsertEmp(option).toAction();
 	}
 	

@@ -12,7 +12,7 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
 import br.com.mind5.model.decisionTree.common.DeciResultError;
 
-public abstract class ActionStdTemplateV1<T extends InfoRecord> implements ActionStdV1<T> {
+public abstract class ActionStdTemplateV1<T extends InfoRecord> implements ActionStdV2<T> {
 	protected final boolean SUCCESS = true;
 	protected final boolean FAILED = false;	
 	

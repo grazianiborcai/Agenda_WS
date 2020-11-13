@@ -8,7 +8,7 @@ import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmRootDelete
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmMergeEmpwotarch;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckDeleteByEmpos;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -40,10 +40,10 @@ public final class RootEmpwotmDeleteByEmpos extends DeciTreeTemplateWriteV2<Empw
 	
 	
 	
-	@Override protected List<ActionStdV1<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
-		List<ActionStdV1<EmpwotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
+		List<ActionStdV2<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmpwotmInfo> mergeEmpwotarch = new StdEmpwotmMergeEmpwotarch(option);
+		ActionStdV2<EmpwotmInfo> mergeEmpwotarch = new StdEmpwotmMergeEmpwotarch(option);
 		ActionLazy<EmpwotmInfo> delete = new LazyEmpwotmRootDelete(option.conn, option.schemaName);
 		
 		mergeEmpwotarch.addPostAction(delete);

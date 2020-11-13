@@ -3,7 +3,7 @@ package br.com.mind5.masterData.movimentType.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.movimentType.info.MamovypeInfo;
 import br.com.mind5.masterData.movimentType.model.action.StdMamovypeDaoSelect;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class MamovypeCheckExist extends ModelCheckerTemplateActionV2<Mamov
 	
 	
 	
-	@Override protected ActionStdV1<MamovypeInfo> buildActionHook(DeciTreeOption<MamovypeInfo> option) {
-		ActionStdV1<MamovypeInfo> select = new StdMamovypeDaoSelect(option);
+	@Override protected ActionStdV2<MamovypeInfo> buildActionHook(DeciTreeOption<MamovypeInfo> option) {
+		ActionStdV2<MamovypeInfo> select = new StdMamovypeDaoSelect(option);
 		return select;
 	}
 	

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
 import br.com.mind5.masterData.areaPhoneSearch.model.action.StdAreanarchDaoSelect;
 import br.com.mind5.masterData.areaPhoneSearch.model.checker.AreanarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootAreanarchSelect extends DeciTreeTemplateReadV2<AreanarchI
 
 		
 	
-	@Override protected List<ActionStdV1<AreanarchInfo>> buildActionsOnPassedHook(DeciTreeOption<AreanarchInfo> option) {
-		List<ActionStdV1<AreanarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<AreanarchInfo>> buildActionsOnPassedHook(DeciTreeOption<AreanarchInfo> option) {
+		List<ActionStdV2<AreanarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<AreanarchInfo> select = new StdAreanarchDaoSelect(option);
+		ActionStdV2<AreanarchInfo> select = new StdAreanarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

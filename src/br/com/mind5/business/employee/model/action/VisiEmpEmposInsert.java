@@ -5,11 +5,11 @@ import java.util.List;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.decisionTree.RootEmposInsertProfessional;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpEmposInsert extends ActionVisitorTemplateActionV2<EmpInfo, EmposInfo> {
+final class VisiEmpEmposInsert extends ActionVisitorTemplateAction<EmpInfo, EmposInfo> {
 	
 	public VisiEmpEmposInsert(DeciTreeOption<EmpInfo> option) {
 		super(option, EmpInfo.class, EmposInfo.class);

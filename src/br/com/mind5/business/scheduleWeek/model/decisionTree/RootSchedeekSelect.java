@@ -7,7 +7,7 @@ import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.business.scheduleWeek.model.checker.SchedeekCheckOwner;
 import br.com.mind5.business.scheduleWeek.model.checker.SchedeekCheckRead;
 import br.com.mind5.business.scheduleWeek.model.checker.SchedeekCheckStore;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -53,10 +53,10 @@ public final class RootSchedeekSelect extends DeciTreeTemplateWriteV2<SchedeekIn
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedeekInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedeekInfo> option) {
-		List<ActionStdV1<SchedeekInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedeekInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedeekInfo> option) {
+		List<ActionStdV2<SchedeekInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedeekInfo> select = new NodeSchedeekSelect(option).toAction();
+		ActionStdV2<SchedeekInfo> select = new NodeSchedeekSelect(option).toAction();
 		
 		actions.add(select);
 		return actions;

@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.file.filePath.dao.DaoFathSelect;
 import br.com.mind5.file.filePath.info.FathInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFathDaoSelect extends ActionVisitorTemplateStmtV2<FathInfo> {
+final class VisiFathDaoSelect extends ActionVisitorTemplateStmt<FathInfo> {
 
 	public VisiFathDaoSelect(DeciTreeOption<FathInfo> option) {
 		super(option);

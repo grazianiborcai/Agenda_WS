@@ -12,7 +12,7 @@ import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckLangu;
 import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckOwner;
 import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -65,10 +65,10 @@ public final class RootEmpnapInsert extends DeciTreeTemplateWriteV2<EmpnapInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<EmpnapInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpnapInfo> option) {
-		List<ActionStdV1<EmpnapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmpnapInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpnapInfo> option) {
+		List<ActionStdV2<EmpnapInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<EmpnapInfo> mergePersolis = new StdEmpnapMergePersolis(option);
+		ActionStdV2<EmpnapInfo> mergePersolis = new StdEmpnapMergePersolis(option);
 		ActionLazy<EmpnapInfo> mergeUselis = new LazyEmpnapMergeUselis(option.conn, option.schemaName);
 		ActionLazy<EmpnapInfo> insert = new LazyEmpnapDaoInsert(option.conn, option.schemaName);
 		

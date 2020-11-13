@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.action.StdMatMatoreDelete;
 import br.com.mind5.business.material.model.checker.MatCheckMatore;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -38,10 +38,10 @@ public final class NodeMatDeleteL1 extends DeciTreeTemplateWriteV2<MatInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
-		List<ActionStdV1<MatInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
+		List<ActionStdV2<MatInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatInfo> nodeL2 = new NodeMatDeleteL2(option).toAction();
+		ActionStdV2<MatInfo> nodeL2 = new NodeMatDeleteL2(option).toAction();
 		
 		actions.add(nodeL2);
 		return actions;
@@ -49,11 +49,11 @@ public final class NodeMatDeleteL1 extends DeciTreeTemplateWriteV2<MatInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<MatInfo>> buildActionsOnFailedHook(DeciTreeOption<MatInfo> option) {
-		List<ActionStdV1<MatInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatInfo>> buildActionsOnFailedHook(DeciTreeOption<MatInfo> option) {
+		List<ActionStdV2<MatInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatInfo> deleteMatore = new StdMatMatoreDelete(option);
-		ActionStdV1<MatInfo> nodeL2 = new NodeMatDeleteL2(option).toAction();
+		ActionStdV2<MatInfo> deleteMatore = new StdMatMatoreDelete(option);
+		ActionStdV2<MatInfo> nodeL2 = new NodeMatDeleteL2(option).toAction();
 		
 		actions.add(deleteMatore);
 		actions.add(nodeL2);

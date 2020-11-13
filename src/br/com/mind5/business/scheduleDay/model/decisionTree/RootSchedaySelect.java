@@ -8,7 +8,7 @@ import br.com.mind5.business.scheduleDay.model.checker.SchedayCheckCalate;
 import br.com.mind5.business.scheduleDay.model.checker.SchedayCheckOwner;
 import br.com.mind5.business.scheduleDay.model.checker.SchedayCheckRead;
 import br.com.mind5.business.scheduleDay.model.checker.SchedayCheckStore;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -61,10 +61,10 @@ public final class RootSchedaySelect extends DeciTreeTemplateWriteV2<SchedayInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedayInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedayInfo> option) {
-		List<ActionStdV1<SchedayInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedayInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedayInfo> option) {
+		List<ActionStdV2<SchedayInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedayInfo> nodeSelect = new NodeSchedaySelect(option).toAction();
+		ActionStdV2<SchedayInfo> nodeSelect = new NodeSchedaySelect(option).toAction();
 		
 		actions.add(nodeSelect);
 		return actions;

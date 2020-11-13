@@ -7,7 +7,7 @@ import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceCodUser;
 import br.com.mind5.file.fileImage.model.action.StdFimgMergeUsername;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class NodeFimgUser extends DeciTreeTemplateWriteV2<FimgInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStdV2<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<FimgInfo> enforceLChangedBy = new StdFimgMergeUsername(option);	
+		ActionStdV2<FimgInfo> enforceLChangedBy = new StdFimgMergeUsername(option);	
 		ActionLazy<FimgInfo> enforceCodUser = new LazyFimgEnforceCodUser(option.conn, option.schemaName);
 		
 		enforceLChangedBy.addPostAction(enforceCodUser);

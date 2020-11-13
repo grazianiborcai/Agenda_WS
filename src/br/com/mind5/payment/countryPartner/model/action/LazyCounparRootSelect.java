@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
@@ -24,7 +24,7 @@ public final class LazyCounparRootSelect extends ActionLazyTemplate<CounparInfo,
 	
 	
 	
-	@Override protected ActionStdV1<CounparInfo> getInstanceOfActionHook(DeciTreeOption<CounparInfo> option) {
+	@Override protected ActionStdV2<CounparInfo> getInstanceOfActionHook(DeciTreeOption<CounparInfo> option) {
 		return new RootCounparSelect(option).toAction();
 	}
 	

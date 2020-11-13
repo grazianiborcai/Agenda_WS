@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckIsDeleted;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -37,10 +37,10 @@ public final class NodeCartemUpsertdel extends DeciTreeTemplateWriteV2<CartemInf
 	
 	
 	
-	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStdV2<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CartemInfo> delete = new RootCartemDelete(option).toAction();			
+		ActionStdV2<CartemInfo> delete = new RootCartemDelete(option).toAction();			
 		actions.add(delete);
 		
 		return actions;
@@ -48,10 +48,10 @@ public final class NodeCartemUpsertdel extends DeciTreeTemplateWriteV2<CartemInf
 	
 	
 	
-	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStdV2<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CartemInfo> upsert = new NodeCartemUpsertL1(option).toAction();			
+		ActionStdV2<CartemInfo> upsert = new NodeCartemUpsertL1(option).toAction();			
 		actions.add(upsert);
 		
 		return actions;

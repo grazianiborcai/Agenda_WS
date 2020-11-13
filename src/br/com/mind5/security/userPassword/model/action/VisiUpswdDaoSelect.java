@@ -4,12 +4,12 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.dao.DaoUpswdSelect;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-final class VisiUpswdDaoSelect extends ActionVisitorTemplateStmtV2<UpswdInfo> {
+final class VisiUpswdDaoSelect extends ActionVisitorTemplateStmt<UpswdInfo> {
 
 	public VisiUpswdDaoSelect(DeciTreeOption<UpswdInfo> option) {
 		super(option);

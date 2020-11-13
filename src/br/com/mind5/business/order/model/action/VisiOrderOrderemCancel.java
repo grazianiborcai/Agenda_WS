@@ -7,11 +7,11 @@ import br.com.mind5.business.order.info.OrderMerger;
 import br.com.mind5.business.orderItem.info.OrderemCopier;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.decisionTree.RootOrderemCancel;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderOrderemCancel extends ActionVisitorTemplateActionV2<OrderInfo, OrderemInfo> {
+final class VisiOrderOrderemCancel extends ActionVisitorTemplateAction<OrderInfo, OrderemInfo> {
 	
 	public VisiOrderOrderemCancel(DeciTreeOption<OrderInfo> option) {
 		super(option, OrderInfo.class, OrderemInfo.class);

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
 import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -37,10 +37,10 @@ public final class RootRefupownSelect extends DeciTreeTemplateReadV2<RefupownInf
 	
 	
 	
-	@Override protected List<ActionStdV1<RefupownInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupownInfo> option) {
-		List<ActionStdV1<RefupownInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<RefupownInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupownInfo> option) {
+		List<ActionStdV2<RefupownInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<RefupownInfo> select = new NodeRefupownSelect(option).toAction();
+		ActionStdV2<RefupownInfo> select = new NodeRefupownSelect(option).toAction();
 		
 		actions.add(select);
 		return actions;

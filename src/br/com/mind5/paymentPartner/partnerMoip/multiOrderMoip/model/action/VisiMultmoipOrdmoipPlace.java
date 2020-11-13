@@ -2,7 +2,7 @@ package br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
@@ -11,7 +11,7 @@ import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipCopier;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.decsionTree.RootOrdmoipPlace;
 
-final class VisiMultmoipOrdmoipPlace extends ActionVisitorTemplateActionV2<MultmoipInfo, OrdmoipInfo> {
+final class VisiMultmoipOrdmoipPlace extends ActionVisitorTemplateAction<MultmoipInfo, OrdmoipInfo> {
 	
 	public VisiMultmoipOrdmoipPlace(DeciTreeOption<MultmoipInfo> option) {
 		super(option, MultmoipInfo.class, OrdmoipInfo.class);

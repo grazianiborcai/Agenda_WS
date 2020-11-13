@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -50,10 +50,10 @@ public final class NodeUpswdAuth extends DeciTreeTemplateWriteV2<UpswdInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
-		List<ActionStdV1<UpswdInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
+		List<ActionStdV2<UpswdInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<UpswdInfo> mergeToAuth = new StdUpswdMergeToAuth(option);
+		ActionStdV2<UpswdInfo> mergeToAuth = new StdUpswdMergeToAuth(option);
 		ActionLazy<UpswdInfo> enforceLength = new LazyUpswdEnforceLength(option.conn, option.schemaName);
 		ActionLazy<UpswdInfo> enforceHashToMatch = new LazyUpswdEnforceHashToMatch(option.conn, option.schemaName);		
 		ActionLazy<UpswdInfo> nodeMatch = new LazyUpswdNodeMatch(option.conn, option.schemaName);

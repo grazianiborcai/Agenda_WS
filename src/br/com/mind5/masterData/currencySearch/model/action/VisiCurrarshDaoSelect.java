@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.currencySearch.dao.DaoCurrarshSelect;
 import br.com.mind5.masterData.currencySearch.info.CurrarshInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCurrarshDaoSelect extends ActionVisitorTemplateStmtV2<CurrarshInfo> {
+final class VisiCurrarshDaoSelect extends ActionVisitorTemplateStmt<CurrarshInfo> {
 
 	public VisiCurrarshDaoSelect(DeciTreeOption<CurrarshInfo> option) {
 		super(option);

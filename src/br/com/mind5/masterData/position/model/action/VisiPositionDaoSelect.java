@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.position.dao.DaoPositionSelect;
 import br.com.mind5.masterData.position.info.PositionInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPositionDaoSelect extends ActionVisitorTemplateStmtV2<PositionInfo> {
+final class VisiPositionDaoSelect extends ActionVisitorTemplateStmt<PositionInfo> {
 
 	public VisiPositionDaoSelect(DeciTreeOption<PositionInfo> option) {
 		super(option);

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyMatoreEnforceLChanged extends ActionLazyTemplate<MatoreIn
 	
 	
 	
-	@Override protected ActionStdV1<MatoreInfo> getInstanceOfActionHook(DeciTreeOption<MatoreInfo> option) {
+	@Override protected ActionStdV2<MatoreInfo> getInstanceOfActionHook(DeciTreeOption<MatoreInfo> option) {
 		return new StdMatoreEnforceLChanged(option);
 	}
 	

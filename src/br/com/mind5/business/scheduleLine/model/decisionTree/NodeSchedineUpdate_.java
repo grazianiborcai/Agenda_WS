@@ -11,7 +11,7 @@ import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeCuslis;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeUsername;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineMergeToUpdate_;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -38,10 +38,10 @@ public final class NodeSchedineUpdate_ extends DeciTreeTemplateWriteV2<SchedineI
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
-		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
+		List<ActionStdV2<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedineInfo> mergeToUpdate = new StdSchedineMergeToUpdate_(option);
+		ActionStdV2<SchedineInfo> mergeToUpdate = new StdSchedineMergeToUpdate_(option);
 		ActionLazy<SchedineInfo> enforceLChanged = new LazySchedineEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> mergeCuslis = new LazySchedineMergeCuslis(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> mergeUsername = new LazySchedineMergeUsername(option.conn, option.schemaName);

@@ -14,7 +14,7 @@ import br.com.mind5.business.materialStore.model.action.LazyMatoreDaoUpdate;
 import br.com.mind5.business.materialStore.model.action.StdMatoreEnforceLChanged;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckSoftDelete;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -46,10 +46,10 @@ public final class NodeMatoreUpsertL8 extends DeciTreeTemplateWriteV2<MatoreInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
-		List<ActionStdV1<MatoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
+		List<ActionStdV2<MatoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatoreInfo> enforceLChanged = new StdMatoreEnforceLChanged(option);
+		ActionStdV2<MatoreInfo> enforceLChanged = new StdMatoreEnforceLChanged(option);
 		ActionLazy<MatoreInfo> enforceLChangedBy = new LazyMatoreMergeUsername(option.conn, option.schemaName);
 		ActionLazy<MatoreInfo> enforceCreatedOn = new LazyMatoreEnforceCreatedOn(option.conn, option.schemaName);	
 		ActionLazy<MatoreInfo> enforceCreatedBy = new LazyMatoreEnforceCreatedBy(option.conn, option.schemaName);
@@ -70,10 +70,10 @@ public final class NodeMatoreUpsertL8 extends DeciTreeTemplateWriteV2<MatoreInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<MatoreInfo>> buildActionsOnFailedHook(DeciTreeOption<MatoreInfo> option) {
-		List<ActionStdV1<MatoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatoreInfo>> buildActionsOnFailedHook(DeciTreeOption<MatoreInfo> option) {
+		List<ActionStdV2<MatoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatoreInfo> enforceLChanged = new StdMatoreEnforceLChanged(option);
+		ActionStdV2<MatoreInfo> enforceLChanged = new StdMatoreEnforceLChanged(option);
 		ActionLazy<MatoreInfo> enforceLChangedBy = new LazyMatoreMergeUsername(option.conn, option.schemaName);
 		ActionLazy<MatoreInfo> enforceCreatedOn = new LazyMatoreEnforceCreatedOn(option.conn, option.schemaName);	
 		ActionLazy<MatoreInfo> enforceCreatedBy = new LazyMatoreEnforceCreatedBy(option.conn, option.schemaName);

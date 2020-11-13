@@ -10,7 +10,7 @@ import br.com.mind5.business.cartItem.model.action.LazyCartemRootDelete;
 import br.com.mind5.business.cartItem.model.action.StdCartemEnforceUserKey;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckDeleteByUser;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -42,10 +42,10 @@ public final class RootCartemDeleteByUser extends DeciTreeTemplateWriteV2<Cartem
 	
 	
 	
-	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStdV2<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CartemInfo> enforceUserKey = new StdCartemEnforceUserKey(option);
+		ActionStdV2<CartemInfo> enforceUserKey = new StdCartemEnforceUserKey(option);
 		ActionLazy<CartemInfo> mergeCartemarch = new LazyCartemMergeCartemarch(option.conn, option.schemaName);
 		ActionLazy<CartemInfo> select = new LazyCartemMergeToSelect(option.conn, option.schemaName);
 		ActionLazy<CartemInfo> delete = new LazyCartemRootDelete(option.conn, option.schemaName);

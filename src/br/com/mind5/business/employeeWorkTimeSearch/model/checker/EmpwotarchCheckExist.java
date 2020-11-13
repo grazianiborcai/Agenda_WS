@@ -3,7 +3,7 @@ package br.com.mind5.business.employeeWorkTimeSearch.model.checker;
 import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchInfo;
 import br.com.mind5.business.employeeWorkTimeSearch.model.decisionTree.RootEmpwotarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class EmpwotarchCheckExist extends ModelCheckerTemplateActionV2<Emp
 	
 	
 	
-	@Override protected ActionStdV1<EmpwotarchInfo> buildActionHook(DeciTreeOption<EmpwotarchInfo> option) {
-		ActionStdV1<EmpwotarchInfo> select = new RootEmpwotarchSelect(option).toAction();
+	@Override protected ActionStdV2<EmpwotarchInfo> buildActionHook(DeciTreeOption<EmpwotarchInfo> option) {
+		ActionStdV2<EmpwotarchInfo> select = new RootEmpwotarchSelect(option).toAction();
 		return select;
 	}
 	

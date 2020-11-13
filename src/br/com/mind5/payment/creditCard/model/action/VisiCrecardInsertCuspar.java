@@ -2,7 +2,7 @@ package br.com.mind5.payment.creditCard.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
@@ -11,7 +11,7 @@ import br.com.mind5.payment.customerPartner.info.CusparCopier;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.decisionTree.RootCusparInsertAuth;
 
-final class VisiCrecardInsertCuspar extends ActionVisitorTemplateActionV2<CrecardInfo, CusparInfo> {
+final class VisiCrecardInsertCuspar extends ActionVisitorTemplateAction<CrecardInfo, CusparInfo> {
 	
 	public VisiCrecardInsertCuspar(DeciTreeOption<CrecardInfo> option) {
 		super(option, CrecardInfo.class, CusparInfo.class);

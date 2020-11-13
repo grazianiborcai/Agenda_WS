@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
 import br.com.mind5.masterData.scheduleStatus.model.action.StdSchedatusDaoSelect;
 import br.com.mind5.masterData.scheduleStatus.model.checker.SchedatusCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -38,10 +38,10 @@ public final class RootSchedatusSelect extends DeciTreeTemplateReadV1<SchedatusI
 
 		
 	
-	@Override protected List<ActionStdV1<SchedatusInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedatusInfo> option) {
-		List<ActionStdV1<SchedatusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedatusInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedatusInfo> option) {
+		List<ActionStdV2<SchedatusInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedatusInfo> select = new StdSchedatusDaoSelect(option);
+		ActionStdV2<SchedatusInfo> select = new StdSchedatusDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

@@ -6,10 +6,10 @@ import br.com.mind5.business.scheduleMoviment.dao.DaoSchedovmInsert;
 import br.com.mind5.business.scheduleMoviment.info.SchedovmInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedovmDaoInsert extends ActionVisitorTemplateStmtV2<SchedovmInfo> {
+final class VisiSchedovmDaoInsert extends ActionVisitorTemplateStmt<SchedovmInfo> {
 
 	public VisiSchedovmDaoInsert(DeciTreeOption<SchedovmInfo> option) {
 		super(option);

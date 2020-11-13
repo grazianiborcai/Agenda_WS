@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.RootAddressDelete;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class VisiUserAddressDelete extends ActionVisitorTemplateActionV2<UserInfo, AddressInfo> {
+final class VisiUserAddressDelete extends ActionVisitorTemplateAction<UserInfo, AddressInfo> {
 	
 	public VisiUserAddressDelete(DeciTreeOption<UserInfo> option) {
 		super(option, UserInfo.class, AddressInfo.class);

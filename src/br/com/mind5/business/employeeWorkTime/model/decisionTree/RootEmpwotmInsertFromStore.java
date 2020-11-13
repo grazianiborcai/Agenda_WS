@@ -15,7 +15,7 @@ import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStorauth
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStore;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStowotarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -97,10 +97,10 @@ public final class RootEmpwotmInsertFromStore extends DeciTreeTemplateWriteV2<Em
 	
 	
 	
-	@Override protected List<ActionStdV1<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
-		List<ActionStdV1<EmpwotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
+		List<ActionStdV2<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmpwotmInfo> mergeStowotarch = new StdEmpwotmMergeStowotarch(option);
+		ActionStdV2<EmpwotmInfo> mergeStowotarch = new StdEmpwotmMergeStowotarch(option);
 		ActionLazy<EmpwotmInfo> insertDefault = new LazyEmpwotmNodeInsertDefault(option.conn, option.schemaName);
 		
 		mergeStowotarch.addPostAction(insertDefault);

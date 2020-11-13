@@ -6,10 +6,10 @@ import br.com.mind5.business.scheduleSearch.dao.DaoSchedarchSelect;
 import br.com.mind5.business.scheduleSearch.info.SchedarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedarchDaoSelect extends ActionVisitorTemplateStmtV2<SchedarchInfo> {
+final class VisiSchedarchDaoSelect extends ActionVisitorTemplateStmt<SchedarchInfo> {
 
 	public VisiSchedarchDaoSelect(DeciTreeOption<SchedarchInfo> option) {
 		super(option);

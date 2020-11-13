@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.refundPolicy.info.RefupolInfo;
 import br.com.mind5.business.refundPolicy.model.decisionTree.NodeRefupolEvaluateL5;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyRefupolNodeEvaluateL5 extends ActionLazyTemplate<RefupolI
 	
 	
 	
-	@Override protected ActionStdV1<RefupolInfo> getInstanceOfActionHook(DeciTreeOption<RefupolInfo> option) {
+	@Override protected ActionStdV2<RefupolInfo> getInstanceOfActionHook(DeciTreeOption<RefupolInfo> option) {
 		return new NodeRefupolEvaluateL5(option).toAction();
 	}
 	

@@ -6,10 +6,10 @@ import br.com.mind5.business.employee.dao.DaoEmpSelect;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpDaoSelect extends ActionVisitorTemplateStmtV2<EmpInfo> {
+final class VisiEmpDaoSelect extends ActionVisitorTemplateStmt<EmpInfo> {
 
 	public VisiEmpDaoSelect(DeciTreeOption<EmpInfo> option) {
 		super(option);

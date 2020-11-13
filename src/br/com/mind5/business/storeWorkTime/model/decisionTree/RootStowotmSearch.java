@@ -7,7 +7,7 @@ import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmRootSelect;
 import br.com.mind5.business.storeWorkTime.model.action.StdStowotmMergeStowotarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class RootStowotmSearch extends DeciTreeTemplateReadV2<StowotmInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
-		List<ActionStdV1<StowotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
+		List<ActionStdV2<StowotmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StowotmInfo> mergeStowotarch = new StdStowotmMergeStowotarch(option);
+		ActionStdV2<StowotmInfo> mergeStowotarch = new StdStowotmMergeStowotarch(option);
 		ActionLazy<StowotmInfo> select = new LazyStowotmRootSelect(option.conn, option.schemaName);
 		
 		mergeStowotarch.addPostAction(select);

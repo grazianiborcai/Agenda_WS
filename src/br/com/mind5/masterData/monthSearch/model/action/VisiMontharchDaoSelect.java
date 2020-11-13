@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.monthSearch.dao.DaoMontharchSelect;
 import br.com.mind5.masterData.monthSearch.info.MontharchInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMontharchDaoSelect extends ActionVisitorTemplateStmtV2<MontharchInfo> {
+final class VisiMontharchDaoSelect extends ActionVisitorTemplateStmt<MontharchInfo> {
 
 	public VisiMontharchDaoSelect(DeciTreeOption<MontharchInfo> option) {
 		super(option);

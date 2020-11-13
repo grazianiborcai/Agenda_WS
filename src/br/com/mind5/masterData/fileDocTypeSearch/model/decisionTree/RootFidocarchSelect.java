@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.fileDocTypeSearch.info.FidocarchInfo;
 import br.com.mind5.masterData.fileDocTypeSearch.model.action.StdFidocarchDaoSelect;
 import br.com.mind5.masterData.fileDocTypeSearch.model.checker.FidocarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootFidocarchSelect extends DeciTreeTemplateReadV2<FidocarchI
 	
 	
 	
-	@Override protected List<ActionStdV1<FidocarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FidocarchInfo> option) {
-		List<ActionStdV1<FidocarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<FidocarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FidocarchInfo> option) {
+		List<ActionStdV2<FidocarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<FidocarchInfo> select = new StdFidocarchDaoSelect(option);
+		ActionStdV2<FidocarchInfo> select = new StdFidocarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

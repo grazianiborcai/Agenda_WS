@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.config.sysStoreSignup.info.SysotupInfo;
 import br.com.mind5.config.sysStoreSignup.model.action.StdSysotupDaoSelect;
 import br.com.mind5.config.sysStoreSignup.model.checker.SysotupCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootSysotupSelect extends DeciTreeTemplateReadV2<SysotupInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<SysotupInfo>> buildActionsOnPassedHook(DeciTreeOption<SysotupInfo> option) {
-		List<ActionStdV1<SysotupInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SysotupInfo>> buildActionsOnPassedHook(DeciTreeOption<SysotupInfo> option) {
+		List<ActionStdV2<SysotupInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SysotupInfo> select = new StdSysotupDaoSelect(option);
+		ActionStdV2<SysotupInfo> select = new StdSysotupDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

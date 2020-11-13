@@ -6,10 +6,10 @@ import br.com.mind5.business.cart.dao.DaoCartInsert;
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartDaoInsert extends ActionVisitorTemplateStmtV2<CartInfo> {
+final class VisiCartDaoInsert extends ActionVisitorTemplateStmt<CartInfo> {
 
 	public VisiCartDaoInsert(DeciTreeOption<CartInfo> option) {
 		super(option);

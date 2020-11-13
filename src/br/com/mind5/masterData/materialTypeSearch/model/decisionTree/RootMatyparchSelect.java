@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.materialTypeSearch.info.MatyparchInfo;
 import br.com.mind5.masterData.materialTypeSearch.model.action.StdMatyparchDaoSelect;
 import br.com.mind5.masterData.materialTypeSearch.model.checker.MatyparchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -38,10 +38,10 @@ public final class RootMatyparchSelect extends DeciTreeTemplateReadV2<MatyparchI
 	
 	
 	
-	@Override protected List<ActionStdV1<MatyparchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatyparchInfo> option) {
-		List<ActionStdV1<MatyparchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatyparchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatyparchInfo> option) {
+		List<ActionStdV2<MatyparchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatyparchInfo> select = new StdMatyparchDaoSelect(option);
+		ActionStdV2<MatyparchInfo> select = new StdMatyparchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

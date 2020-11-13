@@ -3,10 +3,10 @@ package br.com.mind5.business.storeProspect.model.action;
 import br.com.mind5.business.storeProspect.info.StoprosInfo;
 import br.com.mind5.business.storeProspect.info.StoprosSetterLChanged;
 import br.com.mind5.info.InfoSetter;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoprosEnforceLChanged extends ActionVisitorTemplateEnforceV2<StoprosInfo> {
+final class VisiStoprosEnforceLChanged extends ActionVisitorTemplateEnforce<StoprosInfo> {
 	
 	public VisiStoprosEnforceLChanged(DeciTreeOption<StoprosInfo> option) {
 		super(option);

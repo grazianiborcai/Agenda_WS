@@ -16,7 +16,7 @@ import br.com.mind5.business.orderItem.model.checker.OrderemCheckMat;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckOrder;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckOwner;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -83,10 +83,10 @@ public final class RootOrderemInsert extends DeciTreeTemplateWriteV2<OrderemInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
-		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
+		List<ActionStdV2<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OrderemInfo> enforceLChanged = new StdOrderemEnforceLChanged(option);
+		ActionStdV2<OrderemInfo> enforceLChanged = new StdOrderemEnforceLChanged(option);
 		ActionLazy<OrderemInfo> mergeUsername = new LazyOrderemMergeUsername(option.conn, option.schemaName);
 		ActionLazy<OrderemInfo> statusChange = new LazyOrderemMergeOrdugeCreate(option.conn, option.schemaName);
 		ActionLazy<OrderemInfo> nodeInsert = new LazyOrderemNodeInsert(option.conn, option.schemaName);

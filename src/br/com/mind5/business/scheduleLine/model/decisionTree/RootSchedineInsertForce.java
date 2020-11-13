@@ -16,7 +16,7 @@ import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckMatore;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckStore;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -111,10 +111,10 @@ public final class RootSchedineInsertForce extends DeciTreeTemplateWriteV2<Sched
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
-		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
+		List<ActionStdV2<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedineInfo> insert = new RootSchedineInsertSilent(option).toAction();
+		ActionStdV2<SchedineInfo> insert = new RootSchedineInsertSilent(option).toAction();
 		ActionLazy<SchedineInfo> sendEmail = new LazySchedineEmulonSend(option.conn, option.schemaName);
 		
 		insert.addPostAction(sendEmail);

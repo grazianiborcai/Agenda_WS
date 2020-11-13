@@ -7,7 +7,7 @@ import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmRootSelect;
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmMergeEmpwoco;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class RootEmpwotmConflict extends DeciTreeTemplateReadV2<EmpwotmInf
 	
 	
 	
-	@Override protected List<ActionStdV1<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
-		List<ActionStdV1<EmpwotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
+		List<ActionStdV2<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmpwotmInfo> mergeEmpwoco = new StdEmpwotmMergeEmpwoco(option);
+		ActionStdV2<EmpwotmInfo> mergeEmpwoco = new StdEmpwotmMergeEmpwoco(option);
 		ActionLazy<EmpwotmInfo> select = new LazyEmpwotmRootSelect(option.conn, option.schemaName);
 		
 		mergeEmpwoco.addPostAction(select);

@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.genderSearch.dao.DaoGendarchSelect;
 import br.com.mind5.masterData.genderSearch.info.GendarchInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiGendarchDaoSelect extends ActionVisitorTemplateStmtV2<GendarchInfo> {
+final class VisiGendarchDaoSelect extends ActionVisitorTemplateStmt<GendarchInfo> {
 
 	public VisiGendarchDaoSelect(DeciTreeOption<GendarchInfo> option) {
 		super(option);

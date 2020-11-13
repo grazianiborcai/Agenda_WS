@@ -10,7 +10,7 @@ import br.com.mind5.business.addressSnapshot.model.action.LazyAddresnapNodeState
 import br.com.mind5.business.addressSnapshot.model.action.StdAddresnapMergeToSelect;
 import br.com.mind5.business.addressSnapshot.model.checker.AddresnapCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -42,10 +42,10 @@ public final class RootAddresnapSelect extends DeciTreeTemplateWriteV2<Addresnap
 	
 	
 	
-	@Override protected List<ActionStdV1<AddresnapInfo>> buildActionsOnPassedHook(DeciTreeOption<AddresnapInfo> option) {
-		List<ActionStdV1<AddresnapInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<AddresnapInfo>> buildActionsOnPassedHook(DeciTreeOption<AddresnapInfo> option) {
+		List<ActionStdV2<AddresnapInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<AddresnapInfo> select = new StdAddresnapMergeToSelect(option);		
+		ActionStdV2<AddresnapInfo> select = new StdAddresnapMergeToSelect(option);		
 		ActionLazy<AddresnapInfo> mergeFormess = new LazyAddresnapMergeFormess(option.conn, option.schemaName);
 		ActionLazy<AddresnapInfo> mergeCountry = new LazyAddresnapMergeCountry(option.conn, option.schemaName);
 		ActionLazy<AddresnapInfo> mergeState = new LazyAddresnapNodeState(option.conn, option.schemaName);

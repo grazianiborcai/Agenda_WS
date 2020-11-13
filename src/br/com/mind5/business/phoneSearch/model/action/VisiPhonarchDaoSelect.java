@@ -6,10 +6,10 @@ import br.com.mind5.business.phoneSearch.dao.DaoPhonarchSelect;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPhonarchDaoSelect extends ActionVisitorTemplateStmtV2<PhonarchInfo> {
+final class VisiPhonarchDaoSelect extends ActionVisitorTemplateStmt<PhonarchInfo> {
 
 	public VisiPhonarchDaoSelect(DeciTreeOption<PhonarchInfo> option) {
 		super(option);

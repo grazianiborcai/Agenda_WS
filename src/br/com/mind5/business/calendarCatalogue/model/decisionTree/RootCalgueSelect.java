@@ -17,7 +17,7 @@ import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckRead;
 import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckStore;
 import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckYearMonth;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -91,10 +91,10 @@ public final class RootCalgueSelect extends DeciTreeTemplateWriteV2<CalgueInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<CalgueInfo>> buildActionsOnPassedHook(DeciTreeOption<CalgueInfo> option) {
-		List<ActionStdV1<CalgueInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<CalgueInfo>> buildActionsOnPassedHook(DeciTreeOption<CalgueInfo> option) {
+		List<ActionStdV2<CalgueInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<CalgueInfo> mergeCalguata = new StdCalgueMergeCalguata(option);
+		ActionStdV2<CalgueInfo> mergeCalguata = new StdCalgueMergeCalguata(option);
 		ActionLazy<CalgueInfo> mergeCalatity = new LazyCalgueMergeCalatity(option.conn, option.schemaName);		
 		ActionLazy<CalgueInfo> mergeMatlis = new LazyCalgueMergeMatlis(option.conn, option.schemaName);
 		ActionLazy<CalgueInfo> mergeStolis = new LazyCalgueMergeStolis(option.conn, option.schemaName);

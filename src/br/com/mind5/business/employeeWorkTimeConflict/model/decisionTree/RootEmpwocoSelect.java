@@ -10,7 +10,7 @@ import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheck
 import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckOwner;
 import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckRead;
 import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckStore;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -70,10 +70,10 @@ public final class RootEmpwocoSelect extends DeciTreeTemplateReadV2<EmpwocoInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<EmpwocoInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwocoInfo> option) {
-		List<ActionStdV1<EmpwocoInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmpwocoInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwocoInfo> option) {
+		List<ActionStdV2<EmpwocoInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmpwocoInfo> select = new StdEmpwocoMergeToSelect(option);
+		ActionStdV2<EmpwocoInfo> select = new StdEmpwocoMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

@@ -6,10 +6,10 @@ import br.com.mind5.business.personSnapshot.dao.DaoPersonapInsert;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPersonapDaoInsert extends ActionVisitorTemplateStmtV2<PersonapInfo> {
+final class VisiPersonapDaoInsert extends ActionVisitorTemplateStmt<PersonapInfo> {
 
 	public VisiPersonapDaoInsert(DeciTreeOption<PersonapInfo> option) {
 		super(option);

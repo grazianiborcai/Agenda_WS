@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -43,10 +43,10 @@ public final class RootWokefumoipInsert extends DeciTreeTemplateWriteV2<Wokefumo
 	
 	
 	
-	@Override protected List<ActionStdV1<WokefumoipInfo>> buildActionsOnPassedHook(DeciTreeOption<WokefumoipInfo> option) {
-		List<ActionStdV1<WokefumoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV2<WokefumoipInfo>> buildActionsOnPassedHook(DeciTreeOption<WokefumoipInfo> option) {
+		List<ActionStdV2<WokefumoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<WokefumoipInfo> enforceIdPayment = new StdWokefumoipEnforceIdPayment(option);
+		ActionStdV2<WokefumoipInfo> enforceIdPayment = new StdWokefumoipEnforceIdPayment(option);
 		ActionLazy<WokefumoipInfo> select = new LazyWokefumoipDaoSelect(option.conn, option.schemaName);
 		ActionLazy<WokefumoipInfo> mergeDaemon = new LazyWokefumoipMergeDaemon(option.conn, option.schemaName);
 		ActionLazy<WokefumoipInfo> paytusRefresh = new LazyWokefumoipPaytusRefresh(option.conn, option.schemaName);

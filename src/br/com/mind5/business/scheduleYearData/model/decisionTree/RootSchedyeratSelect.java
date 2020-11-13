@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.mind5.business.scheduleYearData.model.action.StdSchedyeratMergeToSelect;
 import br.com.mind5.business.scheduleYearData.model.checker.SchedyeratCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootSchedyeratSelect extends DeciTreeTemplateWriteV2<Schedyer
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedyeratInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedyeratInfo> option) {
-		List<ActionStdV1<SchedyeratInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedyeratInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedyeratInfo> option) {
+		List<ActionStdV2<SchedyeratInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedyeratInfo> mergeToSelect = new StdSchedyeratMergeToSelect(option);
+		ActionStdV2<SchedyeratInfo> mergeToSelect = new StdSchedyeratMergeToSelect(option);
 		
 		actions.add(mergeToSelect);
 		return actions;

@@ -17,11 +17,11 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.common.DeciResultError;
 import br.com.mind5.model.decisionTree.common.DeciResultNotFound;
 
-public abstract class ActionVisitorTemplateStmtV2<T extends InfoRecord> implements ActionVisitorV2<T> {	
+public abstract class ActionVisitorTemplateStmt<T extends InfoRecord> implements ActionVisitorV2<T> {	
 	private DaoStmtExecV2<T> stmtExec;
 	
 
-	public ActionVisitorTemplateStmtV2(DeciTreeOption<T> option) {
+	public ActionVisitorTemplateStmt(DeciTreeOption<T> option) {
 		checkArgument(option);
 		
 		List<DaoStmtExecOption<T>> stmtOptions = buildStmtOptions(option);

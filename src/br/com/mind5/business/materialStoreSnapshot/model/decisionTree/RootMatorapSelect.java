@@ -9,7 +9,7 @@ import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckLan
 import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckMatore;
 import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckOwner;
 import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -62,10 +62,10 @@ public final class RootMatorapSelect extends DeciTreeTemplateReadV2<MatorapInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<MatorapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatorapInfo> option) {
-		List<ActionStdV1<MatorapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MatorapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatorapInfo> option) {
+		List<ActionStdV2<MatorapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatorapInfo> select = new StdMatorapMergeToSelect(option);
+		ActionStdV2<MatorapInfo> select = new StdMatorapMergeToSelect(option);
 		
 		actions.add(select);		
 		return actions;

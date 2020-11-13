@@ -8,7 +8,7 @@ import br.com.mind5.business.customer.model.action.LazyCusDaoUpdate;
 import br.com.mind5.business.customer.model.action.LazyCusPersonInsert;
 import br.com.mind5.business.customer.model.action.StdCusEnforcePersonKey;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -35,10 +35,10 @@ public final class NodeCusInsertPerson extends DeciTreeTemplateWriteV2<CusInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
-		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
+		List<ActionStdV2<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CusInfo> enforcePersonKey = new StdCusEnforcePersonKey(option);
+		ActionStdV2<CusInfo> enforcePersonKey = new StdCusEnforcePersonKey(option);
 		ActionLazy<CusInfo> insertPerson = new LazyCusPersonInsert(option.conn, option.schemaName);		
 		ActionLazy<CusInfo> update = new LazyCusDaoUpdate(option.conn, option.schemaName);
 		

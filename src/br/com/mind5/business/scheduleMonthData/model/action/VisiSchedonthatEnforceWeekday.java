@@ -3,10 +3,10 @@ package br.com.mind5.business.scheduleMonthData.model.action;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatSetterWeekday;
 import br.com.mind5.info.InfoSetter;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedonthatEnforceWeekday extends ActionVisitorTemplateEnforceV2<SchedonthatInfo> {
+final class VisiSchedonthatEnforceWeekday extends ActionVisitorTemplateEnforce<SchedonthatInfo> {
 	
 	public VisiSchedonthatEnforceWeekday(DeciTreeOption<SchedonthatInfo> option) {
 		super(option);

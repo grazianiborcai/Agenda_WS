@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.userCategory.info.UseregInfo;
 import br.com.mind5.masterData.userCategory.model.action.StdUseregDaoSelect;
 import br.com.mind5.masterData.userCategory.model.checker.UseregCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -38,10 +38,10 @@ public final class UseregCategSelect extends DeciTreeTemplateReadV1<UseregInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<UseregInfo>> buildActionsOnPassedHook(DeciTreeOption<UseregInfo> option) {
-		List<ActionStdV1<UseregInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<UseregInfo>> buildActionsOnPassedHook(DeciTreeOption<UseregInfo> option) {
+		List<ActionStdV2<UseregInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<UseregInfo> select = new StdUseregDaoSelect(option);
+		ActionStdV2<UseregInfo> select = new StdUseregDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

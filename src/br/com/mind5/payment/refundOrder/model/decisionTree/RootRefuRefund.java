@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -71,10 +71,10 @@ public final class RootRefuRefund extends DeciTreeTemplateWriteV2<RefuInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<RefuInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuInfo> option) {
-		List<ActionStdV1<RefuInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<RefuInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuInfo> option) {
+		List<ActionStdV2<RefuInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<RefuInfo> nodeOrder = new NodeRefuOrder(option).toAction();
+		ActionStdV2<RefuInfo> nodeOrder = new NodeRefuOrder(option).toAction();
 		ActionLazy<RefuInfo> nodeRefund = new LazyRefuNodeRefund(option.conn, option.schemaName);
 		
 		nodeOrder.addPostAction(nodeRefund);

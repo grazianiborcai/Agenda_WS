@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
 import br.com.mind5.authorization.scheduleAuthorization.model.action.StdSchedauthSuccess;
 import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckStorauth;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class NodeSchedauthMoveL4 extends DeciTreeTemplateWriteV2<Schedauth
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedauthInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedauthInfo> option) {
-		List<ActionStdV1<SchedauthInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<SchedauthInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedauthInfo> option) {
+		List<ActionStdV2<SchedauthInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<SchedauthInfo> success = new StdSchedauthSuccess(option);	
+		ActionStdV2<SchedauthInfo> success = new StdSchedauthSuccess(option);	
 		
 		actions.add(success);		
 		return actions;

@@ -11,7 +11,7 @@ import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckLangu;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckOwner;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -57,10 +57,10 @@ public final class RootEmpmatSelect extends DeciTreeTemplateReadV2<EmpmatInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
-		List<ActionStdV1<EmpmatInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
+		List<ActionStdV2<EmpmatInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmpmatInfo> select = new StdEmpmatMergeToSelect(option);
+		ActionStdV2<EmpmatInfo> select = new StdEmpmatMergeToSelect(option);
 		ActionLazy<EmpmatInfo> mergeMatlis = new LazyEmpmatMergeMatlis(option.conn, option.schemaName);
 		ActionLazy<EmpmatInfo> mergeEmplis = new LazyEmpmatMergeEmplis(option.conn, option.schemaName);
 		

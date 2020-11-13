@@ -16,14 +16,14 @@ import br.com.mind5.model.decisionTree.DeciResultHelper;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public abstract class ActionVisitorTemplateSimpleV2<T extends InfoRecord> implements ActionVisitorV2<T> {
+public abstract class ActionVisitorTemplateSimple<T extends InfoRecord> implements ActionVisitorV2<T> {
 	private List<T> bases;
 	private String codLanguage;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public ActionVisitorTemplateSimpleV2(DeciTreeOption<T> option) {
+	public ActionVisitorTemplateSimple(DeciTreeOption<T> option) {
 		checkArgument(option);	
 		clear();
 		

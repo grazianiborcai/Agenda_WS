@@ -6,11 +6,11 @@ import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataPruner;
 import br.com.mind5.business.scheduleReserve.info.SchederveInfo;
 import br.com.mind5.business.scheduleReserve.model.decisionTree.RootSchederveSelect;
-import br.com.mind5.model.action.ActionVisitorTemplatePruneV2;
+import br.com.mind5.model.action.ActionVisitorTemplatePrune;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanataPruneSchederve extends ActionVisitorTemplatePruneV2<PlanataInfo, SchederveInfo> {
+final class VisiPlanataPruneSchederve extends ActionVisitorTemplatePrune<PlanataInfo, SchederveInfo> {
 	
 	public VisiPlanataPruneSchederve(DeciTreeOption<PlanataInfo> option) {
 		super(option, SchederveInfo.class);

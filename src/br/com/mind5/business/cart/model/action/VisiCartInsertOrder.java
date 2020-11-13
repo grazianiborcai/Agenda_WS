@@ -7,11 +7,11 @@ import br.com.mind5.business.cart.info.CartMerger;
 import br.com.mind5.business.order.info.OrderCopier;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.decisionTree.RootOrderInsert;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartInsertOrder extends ActionVisitorTemplateActionV2<CartInfo, OrderInfo> {
+final class VisiCartInsertOrder extends ActionVisitorTemplateAction<CartInfo, OrderInfo> {
 	
 	public VisiCartInsertOrder(DeciTreeOption<CartInfo> option) {
 		super(option, CartInfo.class, OrderInfo.class);

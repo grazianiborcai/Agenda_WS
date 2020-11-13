@@ -6,11 +6,11 @@ import br.com.mind5.business.materialStore.info.MatoreCopier;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.decisionTree.RootMatoreDeleteByStore;
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreMatoreDelete extends ActionVisitorTemplateActionV2<StoreInfo, MatoreInfo> {
+final class VisiStoreMatoreDelete extends ActionVisitorTemplateAction<StoreInfo, MatoreInfo> {
 	
 	public VisiStoreMatoreDelete(DeciTreeOption<StoreInfo> option) {
 		super(option, StoreInfo.class, MatoreInfo.class);

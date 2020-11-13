@@ -7,7 +7,7 @@ import br.com.mind5.form.formAddress.info.FormessInfo;
 import br.com.mind5.form.formAddress.model.action.StdFormessEnforceDefault;
 import br.com.mind5.form.formAddress.model.action.StdFormessMergeToSelect;
 import br.com.mind5.form.formAddress.model.checker.FormessCheckExist;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,10 +39,10 @@ public final class NodeFormessSelect extends DeciTreeTemplateWriteV2<FormessInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<FormessInfo>> buildActionsOnPassedHook(DeciTreeOption<FormessInfo> option) {
-		List<ActionStdV1<FormessInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<FormessInfo>> buildActionsOnPassedHook(DeciTreeOption<FormessInfo> option) {
+		List<ActionStdV2<FormessInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<FormessInfo> select = new StdFormessMergeToSelect(option);
+		ActionStdV2<FormessInfo> select = new StdFormessMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeFormessSelect extends DeciTreeTemplateWriteV2<FormessInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<FormessInfo>> buildActionsOnFailedHook(DeciTreeOption<FormessInfo> option) {
-		List<ActionStdV1<FormessInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<FormessInfo>> buildActionsOnFailedHook(DeciTreeOption<FormessInfo> option) {
+		List<ActionStdV2<FormessInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<FormessInfo> enforceDefault = new StdFormessEnforceDefault(option);
+		ActionStdV2<FormessInfo> enforceDefault = new StdFormessEnforceDefault(option);
 		
 		actions.add(enforceDefault);
 		return actions;

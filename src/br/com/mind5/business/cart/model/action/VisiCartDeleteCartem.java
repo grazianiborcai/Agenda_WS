@@ -6,11 +6,11 @@ import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cartItem.info.CartemCopier;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.decisionTree.RootCartemDeleteByUser;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartDeleteCartem extends ActionVisitorTemplateActionV2<CartInfo, CartemInfo> {
+final class VisiCartDeleteCartem extends ActionVisitorTemplateAction<CartInfo, CartemInfo> {
 	
 	public VisiCartDeleteCartem(DeciTreeOption<CartInfo> option) {
 		super(option, CartInfo.class, CartemInfo.class);

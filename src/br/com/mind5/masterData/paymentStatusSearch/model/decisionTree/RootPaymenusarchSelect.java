@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.paymentStatusSearch.info.PaymenusarchInfo;
 import br.com.mind5.masterData.paymentStatusSearch.model.action.StdPaymenusarchDaoSelect;
 import br.com.mind5.masterData.paymentStatusSearch.model.checker.PaymenusarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -38,10 +38,10 @@ public final class RootPaymenusarchSelect extends DeciTreeTemplateReadV1<Paymenu
 
 		
 	
-	@Override protected List<ActionStdV1<PaymenusarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PaymenusarchInfo> option) {
-		List<ActionStdV1<PaymenusarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PaymenusarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PaymenusarchInfo> option) {
+		List<ActionStdV2<PaymenusarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PaymenusarchInfo> select = new StdPaymenusarchDaoSelect(option);
+		ActionStdV2<PaymenusarchInfo> select = new StdPaymenusarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

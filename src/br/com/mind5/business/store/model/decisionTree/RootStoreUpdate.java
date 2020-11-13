@@ -16,7 +16,7 @@ import br.com.mind5.business.store.model.checker.StoreCheckStorauth;
 import br.com.mind5.business.store.model.checker.StoreCheckTimezone;
 import br.com.mind5.business.store.model.checker.StoreCheckUpdate;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -90,15 +90,15 @@ public final class RootStoreUpdate extends DeciTreeTemplateWriteV2<StoreInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV2<StoreInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<StoreInfo> updateStore = new NodeStoreUpdate(option).toAction();
+		ActionStdV2<StoreInfo> updateStore = new NodeStoreUpdate(option).toAction();
 		ActionLazy<StoreInfo> updatePerson = new LazyStoreNodeUpdatePerson(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> updateCompany = new LazyStoreNodeUpdateComp(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> upsertAddress = new LazyStoreNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> upsertPhone = new LazyStoreNodeUpsertPhone(option.conn, option.schemaName);		
-		ActionStdV1<StoreInfo> select = new RootStoreSelect(option).toAction();	
+		ActionStdV2<StoreInfo> select = new RootStoreSelect(option).toAction();	
 			
 		updateStore.addPostAction(updatePerson);
 		updateStore.addPostAction(updateCompany);		

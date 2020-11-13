@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.materialCategorySearch.info.MategarchInfo;
 import br.com.mind5.masterData.materialCategorySearch.model.action.StdMategarchDaoSelect;
 import br.com.mind5.masterData.materialCategorySearch.model.checker.MategarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -38,10 +38,10 @@ public final class RootMategarchSelect extends DeciTreeTemplateReadV2<MategarchI
 	
 	
 	
-	@Override protected List<ActionStdV1<MategarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MategarchInfo> option) {
-		List<ActionStdV1<MategarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<MategarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MategarchInfo> option) {
+		List<ActionStdV2<MategarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MategarchInfo> select = new StdMategarchDaoSelect(option);
+		ActionStdV2<MategarchInfo> select = new StdMategarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

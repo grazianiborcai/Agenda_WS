@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.action.StdOrderSuccess;
 import br.com.mind5.business.order.model.checker.OrderCheckOrdarch;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -38,10 +38,10 @@ public final class NodeOrderAuthL2 extends DeciTreeTemplateWriteV2<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV2<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OrderInfo> success = new StdOrderSuccess(option);
+		ActionStdV2<OrderInfo> success = new StdOrderSuccess(option);
 		
 		actions.add(success);
 		return actions;

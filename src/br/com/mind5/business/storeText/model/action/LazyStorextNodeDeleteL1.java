@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.business.storeText.model.decisionTree.NodeStorextDeleteL1;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyStorextNodeDeleteL1 extends ActionLazyTemplate<StorextInf
 	
 	
 	
-	@Override protected ActionStdV1<StorextInfo> getInstanceOfActionHook(DeciTreeOption<StorextInfo> option) {
+	@Override protected ActionStdV2<StorextInfo> getInstanceOfActionHook(DeciTreeOption<StorextInfo> option) {
 		return new NodeStorextDeleteL1(option).toAction();
 	}
 	

@@ -7,7 +7,7 @@ import br.com.mind5.form.formPhone.info.FormoneInfo;
 import br.com.mind5.form.formPhone.model.action.StdFormoneDaoSelect;
 import br.com.mind5.form.formPhone.model.action.StdFormoneEnforceDefault;
 import br.com.mind5.form.formPhone.model.checker.FormoneCheckExist;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,10 +39,10 @@ public final class NodeFormoneSelect extends DeciTreeTemplateReadV2<FormoneInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<FormoneInfo>> buildActionsOnPassedHook(DeciTreeOption<FormoneInfo> option) {
-		List<ActionStdV1<FormoneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<FormoneInfo>> buildActionsOnPassedHook(DeciTreeOption<FormoneInfo> option) {
+		List<ActionStdV2<FormoneInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<FormoneInfo> select = new StdFormoneDaoSelect(option);
+		ActionStdV2<FormoneInfo> select = new StdFormoneDaoSelect(option);
 		
 		actions.add(select);
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeFormoneSelect extends DeciTreeTemplateReadV2<FormoneInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<FormoneInfo>> buildActionsOnFailedHook(DeciTreeOption<FormoneInfo> option) {
-		List<ActionStdV1<FormoneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<FormoneInfo>> buildActionsOnFailedHook(DeciTreeOption<FormoneInfo> option) {
+		List<ActionStdV2<FormoneInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<FormoneInfo> enforceDefault = new StdFormoneEnforceDefault(option);
+		ActionStdV2<FormoneInfo> enforceDefault = new StdFormoneEnforceDefault(option);
 		
 		actions.add(enforceDefault);
 		return actions;

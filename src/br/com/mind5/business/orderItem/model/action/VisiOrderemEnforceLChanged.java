@@ -3,10 +3,10 @@ package br.com.mind5.business.orderItem.model.action;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.info.OrderemSetterLChanged;
 import br.com.mind5.info.InfoSetter;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderemEnforceLChanged extends ActionVisitorTemplateEnforceV2<OrderemInfo> {
+final class VisiOrderemEnforceLChanged extends ActionVisitorTemplateEnforce<OrderemInfo> {
 	
 	public VisiOrderemEnforceLChanged(DeciTreeOption<OrderemInfo> option) {
 		super(option);

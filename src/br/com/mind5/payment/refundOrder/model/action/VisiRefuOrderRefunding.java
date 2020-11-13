@@ -5,12 +5,12 @@ import java.util.List;
 import br.com.mind5.business.order.info.OrderCopier;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.decisionTree.RootOrderRefunding;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 
-final class VisiRefuOrderRefunding extends ActionVisitorTemplateActionV2<RefuInfo, OrderInfo> {
+final class VisiRefuOrderRefunding extends ActionVisitorTemplateAction<RefuInfo, OrderInfo> {
 	
 	public VisiRefuOrderRefunding(DeciTreeOption<RefuInfo> option) {
 		super(option, RefuInfo.class, OrderInfo.class);

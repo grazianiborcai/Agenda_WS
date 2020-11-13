@@ -10,7 +10,7 @@ import br.com.mind5.message.sysMessage.model.action.StdSymsgEnforceEnglish;
 import br.com.mind5.message.sysMessage.model.action.StdSymsgRestoreBase;
 import br.com.mind5.message.sysMessage.model.checker.SymsgCheckNotEnglish;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -42,10 +42,10 @@ public final class NodeSymsgFallback extends DeciTreeTemplateWriteV2<SymsgInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<SymsgInfo>> buildActionsOnPassedHook(DeciTreeOption<SymsgInfo> option) {
-		List<ActionStdV1<SymsgInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV2<SymsgInfo>> buildActionsOnPassedHook(DeciTreeOption<SymsgInfo> option) {
+		List<ActionStdV2<SymsgInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<SymsgInfo> enforceEnglish = new StdSymsgEnforceEnglish(option);
+		ActionStdV2<SymsgInfo> enforceEnglish = new StdSymsgEnforceEnglish(option);
 		ActionLazy<SymsgInfo> nodeSelect = new LazySymsgNodeSelectL1(option.conn, option.schemaName);
 		
 		enforceEnglish.addPostAction(nodeSelect);
@@ -56,10 +56,10 @@ public final class NodeSymsgFallback extends DeciTreeTemplateWriteV2<SymsgInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<SymsgInfo>> buildActionsOnFailedHook(DeciTreeOption<SymsgInfo> option) {
-		List<ActionStdV1<SymsgInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV2<SymsgInfo>> buildActionsOnFailedHook(DeciTreeOption<SymsgInfo> option) {
+		List<ActionStdV2<SymsgInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<SymsgInfo> restoreBase = new StdSymsgRestoreBase(option);
+		ActionStdV2<SymsgInfo> restoreBase = new StdSymsgRestoreBase(option);
 		ActionLazy<SymsgInfo> enforceError = new LazySymsgEnforceError(option.conn, option.schemaName);
 		ActionLazy<SymsgInfo> nodeSelect = new LazySymsgNodeSelectL1(option.conn, option.schemaName);
 		

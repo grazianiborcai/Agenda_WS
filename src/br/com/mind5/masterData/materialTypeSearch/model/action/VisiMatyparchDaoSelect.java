@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.materialTypeSearch.dao.DaoMatyparchSelect;
 import br.com.mind5.masterData.materialTypeSearch.info.MatyparchInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatyparchDaoSelect extends ActionVisitorTemplateStmtV2<MatyparchInfo> {
+final class VisiMatyparchDaoSelect extends ActionVisitorTemplateStmt<MatyparchInfo> {
 
 	public VisiMatyparchDaoSelect(DeciTreeOption<MatyparchInfo> option) {
 		super(option);

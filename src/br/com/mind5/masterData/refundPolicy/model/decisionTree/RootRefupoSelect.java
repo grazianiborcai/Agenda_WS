@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.refundPolicy.info.RefupoInfo;
 import br.com.mind5.masterData.refundPolicy.model.action.StdRefupoDaoSelect;
 import br.com.mind5.masterData.refundPolicy.model.checker.RefupoCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootRefupoSelect extends DeciTreeTemplateReadV2<RefupoInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<RefupoInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupoInfo> option) {
-		List<ActionStdV1<RefupoInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<RefupoInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupoInfo> option) {
+		List<ActionStdV2<RefupoInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<RefupoInfo> select = new StdRefupoDaoSelect(option);
+		ActionStdV2<RefupoInfo> select = new StdRefupoDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

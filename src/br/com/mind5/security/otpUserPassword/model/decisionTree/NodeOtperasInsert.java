@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -42,10 +42,10 @@ public final class NodeOtperasInsert extends DeciTreeTemplateWriteV2<OtperasInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<OtperasInfo>> buildActionsOnPassedHook(DeciTreeOption<OtperasInfo> option) {
-		List<ActionStdV1<OtperasInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OtperasInfo>> buildActionsOnPassedHook(DeciTreeOption<OtperasInfo> option) {
+		List<ActionStdV2<OtperasInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OtperasInfo> upsert = new NodeOtperasUpsertL1(option).toAction();
+		ActionStdV2<OtperasInfo> upsert = new NodeOtperasUpsertL1(option).toAction();
 		ActionLazy<OtperasInfo> mergeUselis = new LazyOtperasMergeUselis(option.conn, option.schemaName);
 		ActionLazy<OtperasInfo> sendEmail = new LazyOtperasSendEmail(option.conn, option.schemaName);
 		ActionLazy<OtperasInfo> success = new LazyOtperasSuccess(option.conn, option.schemaName);
@@ -60,10 +60,10 @@ public final class NodeOtperasInsert extends DeciTreeTemplateWriteV2<OtperasInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<OtperasInfo>> buildActionsOnFailedHook(DeciTreeOption<OtperasInfo> option) {
-		List<ActionStdV1<OtperasInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OtperasInfo>> buildActionsOnFailedHook(DeciTreeOption<OtperasInfo> option) {
+		List<ActionStdV2<OtperasInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OtperasInfo> success = new StdOtperasSuccess(option);
+		ActionStdV2<OtperasInfo> success = new StdOtperasSuccess(option);
 		
 		actions.add(success);	
 		return actions;

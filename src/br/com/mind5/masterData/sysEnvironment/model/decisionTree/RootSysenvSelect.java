@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 import br.com.mind5.masterData.sysEnvironment.model.action.StdSysenvDaoSelect;
 import br.com.mind5.masterData.sysEnvironment.model.checker.SysenvCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -32,10 +32,10 @@ public final class RootSysenvSelect extends DeciTreeTemplateReadV2<SysenvInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<SysenvInfo>> buildActionsOnPassedHook(DeciTreeOption<SysenvInfo> option) {
-		List<ActionStdV1<SysenvInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SysenvInfo>> buildActionsOnPassedHook(DeciTreeOption<SysenvInfo> option) {
+		List<ActionStdV2<SysenvInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SysenvInfo> select = new StdSysenvDaoSelect(option);
+		ActionStdV2<SysenvInfo> select = new StdSysenvDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

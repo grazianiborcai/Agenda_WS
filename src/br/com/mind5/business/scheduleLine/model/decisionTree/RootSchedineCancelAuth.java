@@ -8,7 +8,7 @@ import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckCancel;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckExist;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -61,11 +61,11 @@ public final class RootSchedineCancelAuth extends DeciTreeTemplateWriteV2<Schedi
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
-		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
+		List<ActionStdV2<SchedineInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<SchedineInfo> auth = new NodeSchedineAuthCancel(option).toAction();
-		ActionStdV1<SchedineInfo> cancel = new RootSchedineCancel(option).toAction();
+		ActionStdV2<SchedineInfo> auth = new NodeSchedineAuthCancel(option).toAction();
+		ActionStdV2<SchedineInfo> cancel = new RootSchedineCancel(option).toAction();
 		
 		actions.add(auth);	
 		actions.add(cancel);

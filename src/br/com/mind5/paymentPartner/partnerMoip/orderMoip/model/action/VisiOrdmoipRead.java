@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.action.ActionVisitorTemplateSimple;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.moip.Moip;
 
-final class VisiOrdmoipRead extends ActionVisitorTemplateSimpleV2<OrdmoipInfo> {
+final class VisiOrdmoipRead extends ActionVisitorTemplateSimple<OrdmoipInfo> {
 	
 	public VisiOrdmoipRead(DeciTreeOption<OrdmoipInfo> option) {
 		super(option);

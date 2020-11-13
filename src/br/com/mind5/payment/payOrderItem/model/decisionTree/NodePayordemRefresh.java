@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrderItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,10 +39,10 @@ public final class NodePayordemRefresh extends DeciTreeTemplateWriteV2<PayordemI
 	
 	
 	
-	@Override protected List<ActionStdV1<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
-		List<ActionStdV1<PayordemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
+		List<ActionStdV2<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PayordemInfo> orderemRefresh = new StdPayordemOrderemRefresh(option);
+		ActionStdV2<PayordemInfo> orderemRefresh = new StdPayordemOrderemRefresh(option);
 		
 		actions.add(orderemRefresh);
 		return actions;
@@ -50,10 +50,10 @@ public final class NodePayordemRefresh extends DeciTreeTemplateWriteV2<PayordemI
 	
 	
 	
-	@Override protected List<ActionStdV1<PayordemInfo>> buildActionsOnFailedHook(DeciTreeOption<PayordemInfo> option) {
-		List<ActionStdV1<PayordemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PayordemInfo>> buildActionsOnFailedHook(DeciTreeOption<PayordemInfo> option) {
+		List<ActionStdV2<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PayordemInfo> success = new StdPayordemSuccess(option);
+		ActionStdV2<PayordemInfo> success = new StdPayordemSuccess(option);
 		
 		actions.add(success);
 		return actions;

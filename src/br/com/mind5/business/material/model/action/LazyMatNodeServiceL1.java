@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.decisionTree.NodeMatServiceL1;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyMatNodeServiceL1 extends ActionLazyTemplate<MatInfo, MatI
 	
 	
 	
-	@Override protected ActionStdV1<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
+	@Override protected ActionStdV2<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
 		return new NodeMatServiceL1(option).toAction();
 	}
 	

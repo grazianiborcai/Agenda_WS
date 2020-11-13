@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.moonPhase.model.decisionTree.RootMoonaseSelect;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyMoonaseRootSelect extends ActionLazyTemplate<MoonaseInfo,
 	
 	
 	
-	@Override protected ActionStdV1<MoonaseInfo> getInstanceOfActionHook(DeciTreeOption<MoonaseInfo> option) {
+	@Override protected ActionStdV2<MoonaseInfo> getInstanceOfActionHook(DeciTreeOption<MoonaseInfo> option) {
 		return new RootMoonaseSelect(option).toAction();
 	}
 	

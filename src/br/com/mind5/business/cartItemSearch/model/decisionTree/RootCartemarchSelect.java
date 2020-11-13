@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.cartItemSearch.info.CartemarchInfo;
 import br.com.mind5.business.cartItemSearch.model.action.StdCartemarchMergeToSelect;
 import br.com.mind5.business.cartItemSearch.model.checker.CartemarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootCartemarchSelect extends DeciTreeTemplateWriteV2<Cartemar
 	
 	
 	
-	@Override protected List<ActionStdV1<CartemarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemarchInfo> option) {
-		List<ActionStdV1<CartemarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CartemarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemarchInfo> option) {
+		List<ActionStdV2<CartemarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CartemarchInfo> select = new StdCartemarchMergeToSelect(option);
+		ActionStdV2<CartemarchInfo> select = new StdCartemarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

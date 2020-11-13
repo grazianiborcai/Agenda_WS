@@ -3,7 +3,7 @@ package br.com.mind5.business.scheduleWeekData.model.checker;
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
 import br.com.mind5.business.scheduleWeekData.model.action.StdSchedeekdatDaoSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class SchedeekdatCheckExist extends ModelCheckerTemplateActionV2<Sc
 	
 	
 	
-	@Override protected ActionStdV1<SchedeekdatInfo> buildActionHook(DeciTreeOption<SchedeekdatInfo> option) {
-		ActionStdV1<SchedeekdatInfo> select = new StdSchedeekdatDaoSelect(option);
+	@Override protected ActionStdV2<SchedeekdatInfo> buildActionHook(DeciTreeOption<SchedeekdatInfo> option) {
+		ActionStdV2<SchedeekdatInfo> select = new StdSchedeekdatDaoSelect(option);
 		return select;
 	}
 	

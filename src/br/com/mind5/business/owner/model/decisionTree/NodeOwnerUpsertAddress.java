@@ -9,7 +9,7 @@ import br.com.mind5.business.owner.model.action.StdOwnerEnforceAddressKey;
 import br.com.mind5.business.owner.model.action.StdOwnerSuccess;
 import br.com.mind5.business.owner.model.checker.OwnerCheckHasAddress;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -41,10 +41,10 @@ public final class NodeOwnerUpsertAddress extends DeciTreeTemplateWriteV2<OwnerI
 	
 	
 	
-	@Override protected List<ActionStdV1<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStdV2<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OwnerInfo> enforceAddressKey = new StdOwnerEnforceAddressKey(option);
+		ActionStdV2<OwnerInfo> enforceAddressKey = new StdOwnerEnforceAddressKey(option);
 		ActionLazy<OwnerInfo> upsertAddress = new LazyOwnerAddressUpsert(option.conn, option.schemaName);
 		
 		enforceAddressKey.addPostAction(upsertAddress);
@@ -55,8 +55,8 @@ public final class NodeOwnerUpsertAddress extends DeciTreeTemplateWriteV2<OwnerI
 	
 	
 	
-	@Override protected List<ActionStdV1<OwnerInfo>> buildActionsOnFailedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OwnerInfo>> buildActionsOnFailedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStdV2<OwnerInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdOwnerSuccess(option));		
 		return actions;

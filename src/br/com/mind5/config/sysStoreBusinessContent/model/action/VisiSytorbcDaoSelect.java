@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.config.sysStoreBusinessContent.dao.DaoSytorbcSelect;
 import br.com.mind5.config.sysStoreBusinessContent.info.SytorbcInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSytorbcDaoSelect extends ActionVisitorTemplateStmtV2<SytorbcInfo> {
+final class VisiSytorbcDaoSelect extends ActionVisitorTemplateStmt<SytorbcInfo> {
 
 	public VisiSytorbcDaoSelect(DeciTreeOption<SytorbcInfo> option) {
 		super(option);

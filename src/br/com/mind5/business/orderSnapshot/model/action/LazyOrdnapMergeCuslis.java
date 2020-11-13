@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyOrdnapMergeCuslis extends ActionLazyTemplate<OrdnapInfo, 
 	
 	
 	
-	@Override protected ActionStdV1<OrdnapInfo> getInstanceOfActionHook(DeciTreeOption<OrdnapInfo> option) {
+	@Override protected ActionStdV2<OrdnapInfo> getInstanceOfActionHook(DeciTreeOption<OrdnapInfo> option) {
 		return new StdOrdnapMergeCuslis(option);
 	}
 	

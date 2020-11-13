@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -43,10 +43,10 @@ public final class RootRefumoipRefund extends DeciTreeTemplateWriteV2<RefumoipIn
 	
 	
 	//TODO: verificar refund duas vezes
-	@Override protected List<ActionStdV1<RefumoipInfo>> buildActionsOnPassedHook(DeciTreeOption<RefumoipInfo> option) {
-		List<ActionStdV1<RefumoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV2<RefumoipInfo>> buildActionsOnPassedHook(DeciTreeOption<RefumoipInfo> option) {
+		List<ActionStdV2<RefumoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<RefumoipInfo> enforcePaypar = new StdRefumoipEnforcePaypar(option);	
+		ActionStdV2<RefumoipInfo> enforcePaypar = new StdRefumoipEnforcePaypar(option);	
 		ActionLazy<RefumoipInfo> mergePayordemist = new LazyRefumoipMergePayordemist(option.conn, option.schemaName);	
 		ActionLazy<RefumoipInfo> nodeRefund = new LazyRefumoipNodeRefundL1(option.conn, option.schemaName);		
 		ActionLazy<RefumoipInfo> refund = new LazyRefumoipRefund(option.conn, option.schemaName);

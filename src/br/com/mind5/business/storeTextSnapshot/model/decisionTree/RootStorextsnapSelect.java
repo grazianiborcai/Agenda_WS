@@ -8,7 +8,7 @@ import br.com.mind5.business.storeTextSnapshot.model.action.StdStorextsnapMergeT
 import br.com.mind5.business.storeTextSnapshot.model.checker.StorextsnapCheckStorext;
 import br.com.mind5.business.storeTextSnapshot.model.checker.StorextsnapCheckOwner;
 import br.com.mind5.business.storeTextSnapshot.model.checker.StorextsnapCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -54,10 +54,10 @@ public final class RootStorextsnapSelect extends DeciTreeTemplateReadV2<Storexts
 	
 	
 	
-	@Override protected List<ActionStdV1<StorextsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextsnapInfo> option) {
-		List<ActionStdV1<StorextsnapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StorextsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextsnapInfo> option) {
+		List<ActionStdV2<StorextsnapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StorextsnapInfo> select = new StdStorextsnapMergeToSelect(option);
+		ActionStdV2<StorextsnapInfo> select = new StdStorextsnapMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

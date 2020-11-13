@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.countryPhone.info.CountroneInfo;
 import br.com.mind5.masterData.countryPhone.model.action.StdCountroneDaoSelect;
 import br.com.mind5.masterData.countryPhone.model.checker.CountroneCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootCountroneSelect extends DeciTreeTemplateReadV2<CountroneI
 	
 	
 	
-	@Override protected List<ActionStdV1<CountroneInfo>> buildActionsOnPassedHook(DeciTreeOption<CountroneInfo> option) {
-		List<ActionStdV1<CountroneInfo>> actions = new ArrayList<>(); 
+	@Override protected List<ActionStdV2<CountroneInfo>> buildActionsOnPassedHook(DeciTreeOption<CountroneInfo> option) {
+		List<ActionStdV2<CountroneInfo>> actions = new ArrayList<>(); 
 		
-		ActionStdV1<CountroneInfo> select = new StdCountroneDaoSelect(option);
+		ActionStdV2<CountroneInfo> select = new StdCountroneDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

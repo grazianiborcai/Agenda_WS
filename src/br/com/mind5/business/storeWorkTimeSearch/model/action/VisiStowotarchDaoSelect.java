@@ -6,10 +6,10 @@ import br.com.mind5.business.storeWorkTimeSearch.dao.DaoStowotarchSelect;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStowotarchDaoSelect extends ActionVisitorTemplateStmtV2<StowotarchInfo> {
+final class VisiStowotarchDaoSelect extends ActionVisitorTemplateStmt<StowotarchInfo> {
 
 	public VisiStowotarchDaoSelect(DeciTreeOption<StowotarchInfo> option) {
 		super(option);

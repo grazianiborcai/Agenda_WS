@@ -8,7 +8,7 @@ import br.com.mind5.business.notes.model.action.StdNotesMergeToSelect;
 import br.com.mind5.business.notes.model.checker.NotesCheckLangu;
 import br.com.mind5.business.notes.model.checker.NotesCheckOwner;
 import br.com.mind5.business.notes.model.checker.NotesCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -54,10 +54,10 @@ public final class RootNotesSelect extends DeciTreeTemplateWriteV2<NotesInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<NotesInfo>> buildActionsOnPassedHook(DeciTreeOption<NotesInfo> option) {
-		List<ActionStdV1<NotesInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<NotesInfo>> buildActionsOnPassedHook(DeciTreeOption<NotesInfo> option) {
+		List<ActionStdV2<NotesInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<NotesInfo> select = new StdNotesMergeToSelect(option);
+		ActionStdV2<NotesInfo> select = new StdNotesMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

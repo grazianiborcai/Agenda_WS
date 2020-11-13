@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.masterData.moonPhaseSearch.dao.DaoMoonasarchSelect;
 import br.com.mind5.masterData.moonPhaseSearch.info.MoonasarchInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMoonasarchDaoSelect extends ActionVisitorTemplateStmtV2<MoonasarchInfo> {
+final class VisiMoonasarchDaoSelect extends ActionVisitorTemplateStmt<MoonasarchInfo> {
 
 	public VisiMoonasarchDaoSelect(DeciTreeOption<MoonasarchInfo> option) {
 		super(option);

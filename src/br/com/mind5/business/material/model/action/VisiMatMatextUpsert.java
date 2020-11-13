@@ -7,11 +7,11 @@ import br.com.mind5.business.material.info.MatMerger;
 import br.com.mind5.business.materialText.info.MatextCopier;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.decisionTree.RootMatextUpsertdel;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatMatextUpsert extends ActionVisitorTemplateActionV2<MatInfo, MatextInfo> {
+final class VisiMatMatextUpsert extends ActionVisitorTemplateAction<MatInfo, MatextInfo> {
 	
 	public VisiMatMatextUpsert(DeciTreeOption<MatInfo> option) {
 		super(option, MatInfo.class, MatextInfo.class);

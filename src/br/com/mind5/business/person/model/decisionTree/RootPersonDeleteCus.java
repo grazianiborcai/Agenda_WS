@@ -9,7 +9,7 @@ import br.com.mind5.business.person.model.checker.PersonCheckExist;
 import br.com.mind5.business.person.model.checker.PersonCheckLangu;
 import br.com.mind5.business.person.model.checker.PersonCheckPersonCus;
 import br.com.mind5.business.person.model.checker.PersonCheckSytotauh;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -69,10 +69,10 @@ public final class RootPersonDeleteCus extends DeciTreeTemplateWriteV2<PersonInf
 	
 	
 	
-	@Override protected List<ActionStdV1<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
-		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
+		List<ActionStdV2<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PersonInfo> delete = new RootPersonDelete(option).toAction();
+		ActionStdV2<PersonInfo> delete = new RootPersonDelete(option).toAction();
 		
 		actions.add(delete);		
 		return actions;

@@ -3,7 +3,7 @@ package br.com.mind5.payment.creditCardSearch.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class RootCrecarchSelect extends DeciTreeTemplateReadV2<CrecarchInf
 	
 	
 	
-	@Override protected List<ActionStdV1<CrecarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecarchInfo> option) {
-		List<ActionStdV1<CrecarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CrecarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecarchInfo> option) {
+		List<ActionStdV2<CrecarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CrecarchInfo> mergeToSelect = new StdCrecarchMergeToSelect(option);
+		ActionStdV2<CrecarchInfo> mergeToSelect = new StdCrecarchMergeToSelect(option);
 		
 		actions.add(mergeToSelect);
 		return actions;

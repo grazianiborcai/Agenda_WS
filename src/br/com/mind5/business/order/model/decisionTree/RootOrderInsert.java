@@ -11,7 +11,7 @@ import br.com.mind5.business.order.model.checker.OrderCheckInsert;
 import br.com.mind5.business.order.model.checker.OrderCheckLangu;
 import br.com.mind5.business.order.model.checker.OrderCheckOwner;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -64,10 +64,10 @@ public final class RootOrderInsert extends DeciTreeTemplateWriteV2<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV2<OrderInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<OrderInfo> insertOrder = new NodeOrderInsert(option).toAction();
+		ActionStdV2<OrderInfo> insertOrder = new NodeOrderInsert(option).toAction();
 		ActionLazy<OrderInfo> insertOrderem = new LazyOrderNodeOrderem(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> snapshot = new LazyOrderNodeSnapshot(option.conn, option.schemaName);
 		

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.authorization.storePartitionAuthorization.model.action.StdSytotauhEnforceStore;
 import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckSytotin;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,10 +38,10 @@ public final class NodeSytotauhSelectL1 extends DeciTreeTemplateWriteV2<Sytotauh
 	
 	
 	
-	@Override protected List<ActionStdV1<SytotauhInfo>> buildActionsOnPassedHook(DeciTreeOption<SytotauhInfo> option) {
-		List<ActionStdV1<SytotauhInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SytotauhInfo>> buildActionsOnPassedHook(DeciTreeOption<SytotauhInfo> option) {
+		List<ActionStdV2<SytotauhInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SytotauhInfo> nodeL2 = new NodeSytotauhSelectL2(option).toAction();
+		ActionStdV2<SytotauhInfo> nodeL2 = new NodeSytotauhSelectL2(option).toAction();
 		
 		actions.add(nodeL2);
 		return actions;
@@ -49,10 +49,10 @@ public final class NodeSytotauhSelectL1 extends DeciTreeTemplateWriteV2<Sytotauh
 	
 	
 	
-	@Override protected List<ActionStdV1<SytotauhInfo>> buildActionsOnFailedHook(DeciTreeOption<SytotauhInfo> option) {
-		List<ActionStdV1<SytotauhInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SytotauhInfo>> buildActionsOnFailedHook(DeciTreeOption<SytotauhInfo> option) {
+		List<ActionStdV2<SytotauhInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SytotauhInfo> obfuscateStore = new StdSytotauhEnforceStore(option);
+		ActionStdV2<SytotauhInfo> obfuscateStore = new StdSytotauhEnforceStore(option);
 		
 		actions.add(obfuscateStore);
 		return actions;

@@ -3,10 +3,10 @@ package br.com.mind5.authorization.storePartitionAuthorization.model.action;
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhSetterStore;
 import br.com.mind5.info.InfoSetter;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSytotauhEnforceStore extends ActionVisitorTemplateEnforceV2<SytotauhInfo> {
+final class VisiSytotauhEnforceStore extends ActionVisitorTemplateEnforce<SytotauhInfo> {
 	
 	public VisiSytotauhEnforceStore(DeciTreeOption<SytotauhInfo> option) {
 		super(option);	

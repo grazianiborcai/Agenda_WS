@@ -6,10 +6,10 @@ import br.com.mind5.business.storeList.dao.DaoStolisSelect;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStolisDaoSelect extends ActionVisitorTemplateStmtV2<StolisInfo> {
+final class VisiStolisDaoSelect extends ActionVisitorTemplateStmt<StolisInfo> {
 
 	public VisiStolisDaoSelect(DeciTreeOption<StolisInfo> option) {
 		super(option);

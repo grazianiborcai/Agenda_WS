@@ -2,7 +2,7 @@ package br.com.mind5.security.user.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
@@ -10,7 +10,7 @@ import br.com.mind5.security.user.info.UserMerger;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.userSnapshot.model.decisionTree.RootUserapInsert;
 
-final class VisiUserUserapInsert extends ActionVisitorTemplateActionV2<UserInfo, UserapInfo> {
+final class VisiUserUserapInsert extends ActionVisitorTemplateAction<UserInfo, UserapInfo> {
 	
 	public VisiUserUserapInsert(DeciTreeOption<UserInfo> option) {
 		super(option, UserInfo.class, UserapInfo.class);

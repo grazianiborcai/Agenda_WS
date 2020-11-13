@@ -3,7 +3,7 @@ package br.com.mind5.masterData.feeCategory.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.feeCategory.info.FeecatInfo;
 import br.com.mind5.masterData.feeCategory.model.action.StdFeecatDaoSelect;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class FeecatCheckExist extends ModelCheckerTemplateActionV2<FeecatI
 	
 	
 	
-	@Override protected ActionStdV1<FeecatInfo> buildActionHook(DeciTreeOption<FeecatInfo> option) {
-		ActionStdV1<FeecatInfo> select = new StdFeecatDaoSelect(option);
+	@Override protected ActionStdV2<FeecatInfo> buildActionHook(DeciTreeOption<FeecatInfo> option) {
+		ActionStdV2<FeecatInfo> select = new StdFeecatDaoSelect(option);
 		return select;
 	}
 	

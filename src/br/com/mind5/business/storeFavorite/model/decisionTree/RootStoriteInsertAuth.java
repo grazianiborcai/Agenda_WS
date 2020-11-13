@@ -12,7 +12,7 @@ import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckStore;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckUsername;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckWriteAuth;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -72,10 +72,10 @@ public final class RootStoriteInsertAuth extends DeciTreeTemplateWriteV2<Storite
 	
 	
 	
-	@Override protected List<ActionStdV1<StoriteInfo>> buildActionsOnPassedHook(DeciTreeOption<StoriteInfo> option) {
-		List<ActionStdV1<StoriteInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StoriteInfo>> buildActionsOnPassedHook(DeciTreeOption<StoriteInfo> option) {
+		List<ActionStdV2<StoriteInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StoriteInfo> mergeUsername = new StdStoriteMergeUsername(option);
+		ActionStdV2<StoriteInfo> mergeUsername = new StdStoriteMergeUsername(option);
 		ActionLazy<StoriteInfo> insert = new LazyStoriteRootInsert(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(insert);

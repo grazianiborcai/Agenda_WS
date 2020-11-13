@@ -6,10 +6,10 @@ import br.com.mind5.business.addressSnapshot.dao.DaoAddresnapInsert;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddresnapDaoInsert extends ActionVisitorTemplateStmtV2<AddresnapInfo> {
+final class VisiAddresnapDaoInsert extends ActionVisitorTemplateStmt<AddresnapInfo> {
 
 	public VisiAddresnapDaoInsert(DeciTreeOption<AddresnapInfo> option) {
 		super(option);

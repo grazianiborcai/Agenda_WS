@@ -6,11 +6,11 @@ import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.decisionTree.RootCusInsertFromUser;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderCusInsert extends ActionVisitorTemplateActionV2<OrderInfo, CusInfo> {
+final class VisiOrderCusInsert extends ActionVisitorTemplateAction<OrderInfo, CusInfo> {
 
 	public VisiOrderCusInsert(DeciTreeOption<OrderInfo> option) {
 		super(option, OrderInfo.class, CusInfo.class);

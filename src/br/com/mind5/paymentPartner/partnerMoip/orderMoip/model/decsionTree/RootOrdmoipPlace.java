@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -58,10 +58,10 @@ public final class RootOrdmoipPlace extends DeciTreeTemplateWriteV2<OrdmoipInfo>
 	
 	
 	
-	@Override protected List<ActionStdV1<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {
-		List<ActionStdV1<OrdmoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV2<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {
+		List<ActionStdV2<OrdmoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<OrdmoipInfo> nodePayordist = new NodeOrdmoipPayordistL1(option).toAction();	
+		ActionStdV2<OrdmoipInfo> nodePayordist = new NodeOrdmoipPayordistL1(option).toAction();	
 		ActionLazy<OrdmoipInfo> nodePayordem = new LazyOrdmoipNodePayordemL1(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> nodeCuspar = new LazyOrdmoipNodeCusparL1(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> nodeSetupar = new LazyOrdmoipNodeSetuparL1(option.conn, option.schemaName);		

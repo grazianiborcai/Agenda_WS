@@ -5,12 +5,12 @@ import java.util.List;
 import br.com.mind5.message.emailWelcome.info.EmacomeCopier;
 import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
 import br.com.mind5.message.emailWelcome.model.decisionTree.RootEmacomeSend;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-final class VisiUpswdEmacomeSend extends ActionVisitorTemplateActionV2<UpswdInfo, EmacomeInfo> {
+final class VisiUpswdEmacomeSend extends ActionVisitorTemplateAction<UpswdInfo, EmacomeInfo> {
 	
 	public VisiUpswdEmacomeSend(DeciTreeOption<UpswdInfo> option) {
 		super(option, UpswdInfo.class, EmacomeInfo.class);

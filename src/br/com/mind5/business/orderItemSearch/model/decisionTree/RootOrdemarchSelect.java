@@ -7,7 +7,7 @@ import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
 import br.com.mind5.business.orderItemSearch.model.action.StdOrdemarchMergeToSelect;
 import br.com.mind5.business.orderItemSearch.model.checker.OrdemarchCheckOwner;
 import br.com.mind5.business.orderItemSearch.model.checker.OrdemarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -46,10 +46,10 @@ public final class RootOrdemarchSelect extends DeciTreeTemplateWriteV1<Ordemarch
 	
 	
 	
-	@Override protected List<ActionStdV1<OrdemarchInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdemarchInfo> option) {
-		List<ActionStdV1<OrdemarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<OrdemarchInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdemarchInfo> option) {
+		List<ActionStdV2<OrdemarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OrdemarchInfo> select = new StdOrdemarchMergeToSelect(option);
+		ActionStdV2<OrdemarchInfo> select = new StdOrdemarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

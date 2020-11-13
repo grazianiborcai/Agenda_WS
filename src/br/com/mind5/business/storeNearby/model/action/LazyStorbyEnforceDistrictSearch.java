@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyStorbyEnforceDistrictSearch extends ActionLazyTemplate<St
 	
 	
 	
-	@Override protected ActionStdV1<StorbyInfo> getInstanceOfActionHook(DeciTreeOption<StorbyInfo> option) {
+	@Override protected ActionStdV2<StorbyInfo> getInstanceOfActionHook(DeciTreeOption<StorbyInfo> option) {
 		return new StdStorbyEnforceDistrictSearch(option);
 	}
 	

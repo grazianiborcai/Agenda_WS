@@ -7,7 +7,7 @@ import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineSchedauthSelect;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineMergeToSelect;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class NodeSchedineAuthSelect extends DeciTreeTemplateWriteV2<Schedi
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
-		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
+		List<ActionStdV2<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedineInfo> select = new StdSchedineMergeToSelect(option);
+		ActionStdV2<SchedineInfo> select = new StdSchedineMergeToSelect(option);
 		ActionLazy<SchedineInfo> auth = new LazySchedineSchedauthSelect(option.conn, option.schemaName);
 		
 		select.addPostAction(auth);

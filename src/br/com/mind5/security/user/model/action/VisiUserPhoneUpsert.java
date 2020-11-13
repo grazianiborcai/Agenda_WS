@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.decisionTree.RootPhoneUpsertdel;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class VisiUserPhoneUpsert extends ActionVisitorTemplateActionV2<UserInfo, PhoneInfo> {
+final class VisiUserPhoneUpsert extends ActionVisitorTemplateAction<UserInfo, PhoneInfo> {
 	
 	public VisiUserPhoneUpsert(DeciTreeOption<UserInfo> option) {
 		super(option, UserInfo.class, PhoneInfo.class);

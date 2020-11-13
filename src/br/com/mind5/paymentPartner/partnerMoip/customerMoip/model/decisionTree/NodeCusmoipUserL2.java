@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -38,10 +38,10 @@ public final class NodeCusmoipUserL2 extends DeciTreeTemplateWriteV2<CusmoipInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<CusmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CusmoipInfo> option) {
-		List<ActionStdV1<CusmoipInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<CusmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CusmoipInfo> option) {
+		List<ActionStdV2<CusmoipInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CusmoipInfo> enforceDocument = new StdCusmoipEnforceDocument(option);
+		ActionStdV2<CusmoipInfo> enforceDocument = new StdCusmoipEnforceDocument(option);
 		
 		actions.add(enforceDocument);
 		return actions;

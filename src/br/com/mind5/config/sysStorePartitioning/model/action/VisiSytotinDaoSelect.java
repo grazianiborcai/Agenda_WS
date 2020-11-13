@@ -6,10 +6,10 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.config.sysStorePartitioning.dao.DaoSytotinSelect;
 import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
+import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSytotinDaoSelect extends ActionVisitorTemplateStmtV2<SytotinInfo> {
+final class VisiSytotinDaoSelect extends ActionVisitorTemplateStmt<SytotinInfo> {
 
 	public VisiSytotinDaoSelect(DeciTreeOption<SytotinInfo> option) {
 		super(option);

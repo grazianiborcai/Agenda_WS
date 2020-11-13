@@ -3,16 +3,17 @@ package br.com.mind5.model.action.commom;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public abstract class ActionStdSuccessTemplate<T extends InfoRecord> implements ActionStdV1<T> {
-	private ActionStdV1<T> helper;
+public abstract class ActionStdSuccessTemplate<T extends InfoRecord> implements ActionStdV2<T> {
+	private ActionStdV2<T> helper;
 	
 	
 	public ActionStdSuccessTemplate(DeciTreeOption<T> option) {
@@ -87,6 +88,28 @@ public abstract class ActionStdSuccessTemplate<T extends InfoRecord> implements 
 	
 	@Override public DeciResult<T> getDecisionResult() {
 		return helper.getDecisionResult();
+	}
+	
+	
+	
+	@Override public void close() {
+		closeHelper(helper);
+		clear();
+	}
+	
+	
+	
+	private void closeHelper(ActionStdV2<T> actionHelper) {
+		if (actionHelper == null)
+			return;
+		
+		actionHelper.close();
+	}
+	
+	
+	
+	private void clear() {
+		helper = DefaultValue.object();
 	}
 	
 	

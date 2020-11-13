@@ -12,7 +12,7 @@ import br.com.mind5.business.person.model.action.LazyPersonMergeUsername;
 import br.com.mind5.business.person.model.action.LazyPersonNodeName;
 import br.com.mind5.business.person.model.action.StdPersonEnforceLChanged;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -39,10 +39,10 @@ public final class NodePersonInsert extends DeciTreeTemplateWriteV2<PersonInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV1<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
-		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
+		List<ActionStdV2<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PersonInfo> enforceLChanged = new StdPersonEnforceLChanged(option);
+		ActionStdV2<PersonInfo> enforceLChanged = new StdPersonEnforceLChanged(option);
 		ActionLazy<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
 		ActionLazy<PersonInfo> enforceCreatedOn = new LazyPersonEnforceCreatedOn(option.conn, option.schemaName);	
 		ActionLazy<PersonInfo> enforceCreatedBy = new LazyPersonEnforceCreatedBy(option.conn, option.schemaName);

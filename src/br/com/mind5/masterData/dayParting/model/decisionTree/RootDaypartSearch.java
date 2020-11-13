@@ -7,7 +7,7 @@ import br.com.mind5.masterData.dayParting.info.DaypartInfo;
 import br.com.mind5.masterData.dayParting.model.action.LazyDaypartRootSelect;
 import br.com.mind5.masterData.dayParting.model.action.StdDaypartMergeDayparch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -34,10 +34,10 @@ public final class RootDaypartSearch extends DeciTreeTemplateWriteV2<DaypartInfo
 	
 	
 	
-	@Override protected List<ActionStdV1<DaypartInfo>> buildActionsOnPassedHook(DeciTreeOption<DaypartInfo> option) {
-		List<ActionStdV1<DaypartInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV2<DaypartInfo>> buildActionsOnPassedHook(DeciTreeOption<DaypartInfo> option) {
+		List<ActionStdV2<DaypartInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<DaypartInfo> mergeDayparch = new StdDaypartMergeDayparch(option);		
+		ActionStdV2<DaypartInfo> mergeDayparch = new StdDaypartMergeDayparch(option);		
 		ActionLazy<DaypartInfo> select = new LazyDaypartRootSelect(option.conn, option.schemaName);
 		
 		mergeDayparch.addPostAction(select);

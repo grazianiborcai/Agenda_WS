@@ -7,7 +7,7 @@ import br.com.mind5.business.storeTextSearch.info.StorextarchInfo;
 import br.com.mind5.business.storeTextSearch.model.action.StdStorextarchMergeToSelect;
 import br.com.mind5.business.storeTextSearch.model.checker.StorextarchCheckOwner;
 import br.com.mind5.business.storeTextSearch.model.checker.StorextarchCheckRead;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -46,10 +46,10 @@ public final class RootStorextarchSelect extends DeciTreeTemplateReadV2<Storexta
 	
 	
 	
-	@Override protected List<ActionStdV1<StorextarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextarchInfo> option) {
-		List<ActionStdV1<StorextarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<StorextarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextarchInfo> option) {
+		List<ActionStdV2<StorextarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StorextarchInfo> select = new StdStorextarchMergeToSelect(option);
+		ActionStdV2<StorextarchInfo> select = new StdStorextarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

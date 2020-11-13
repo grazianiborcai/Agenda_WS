@@ -9,7 +9,7 @@ import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthC
 import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckOwner;
 import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckStore;
 import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckUsername;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -69,10 +69,10 @@ public final class RootSchedauthInsert extends DeciTreeTemplateWriteV2<Schedauth
 	
 	
 	
-	@Override protected List<ActionStdV1<SchedauthInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedauthInfo> option) {
-		List<ActionStdV1<SchedauthInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV2<SchedauthInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedauthInfo> option) {
+		List<ActionStdV2<SchedauthInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedauthInfo> nodeL1 = new NodeSchedauthInsertL1(option).toAction();
+		ActionStdV2<SchedauthInfo> nodeL1 = new NodeSchedauthInsertL1(option).toAction();
 		
 		actions.add(nodeL1);
 		return actions;
