@@ -8,7 +8,7 @@ import br.com.mind5.file.fileImage.model.action.LazyFimgNodeDeleteUser;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckDelete;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckExist;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckUsername;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -59,7 +59,7 @@ public final class RootFimgDeleteUser extends DeciTreeTemplateWriteV2<FimgInfo> 
 		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<FimgInfo> nodeUser = new NodeFimgUser(option).toAction();
-		ActionLazyV1<FimgInfo> delete = new LazyFimgNodeDeleteUser(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> delete = new LazyFimgNodeDeleteUser(option.conn, option.schemaName);
 		
 		nodeUser.addPostAction(delete);
 		

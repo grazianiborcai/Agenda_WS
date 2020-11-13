@@ -15,7 +15,7 @@ import br.com.mind5.business.storeList.model.action.StdStolisMergeToSelect;
 import br.com.mind5.business.storeList.model.checker.StolisCheckLangu;
 import br.com.mind5.business.storeList.model.checker.StolisCheckOwner;
 import br.com.mind5.business.storeList.model.checker.StolisCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -67,13 +67,13 @@ public final class RootStolisSelect extends DeciTreeTemplateWriteV2<StolisInfo> 
 		List<ActionStdV1<StolisInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<StolisInfo> select = new StdStolisMergeToSelect(option);
-		ActionLazyV1<StolisInfo> mergeCurrency = new LazyStolisMergeCurrency(option.conn, option.schemaName);
-		ActionLazyV1<StolisInfo> mergeTimezone = new LazyStolisMergeTimezone(option.conn, option.schemaName);
-		ActionLazyV1<StolisInfo> mergeComplis = new LazyStolisMergeComplis(option.conn, option.schemaName);
-		ActionLazyV1<StolisInfo> mergeAddress = new LazyStolisMergeAddress(option.conn, option.schemaName);
-		ActionLazyV1<StolisInfo> mergePhone = new LazyStolisMergePhone(option.conn, option.schemaName);
-		ActionLazyV1<StolisInfo> mergeFimist = new LazyStolisMergeFimist(option.conn, option.schemaName);
-		ActionLazyV1<StolisInfo> mergeStorext = new LazyStolisMergeStorext(option.conn, option.schemaName);
+		ActionLazy<StolisInfo> mergeCurrency = new LazyStolisMergeCurrency(option.conn, option.schemaName);
+		ActionLazy<StolisInfo> mergeTimezone = new LazyStolisMergeTimezone(option.conn, option.schemaName);
+		ActionLazy<StolisInfo> mergeComplis = new LazyStolisMergeComplis(option.conn, option.schemaName);
+		ActionLazy<StolisInfo> mergeAddress = new LazyStolisMergeAddress(option.conn, option.schemaName);
+		ActionLazy<StolisInfo> mergePhone = new LazyStolisMergePhone(option.conn, option.schemaName);
+		ActionLazy<StolisInfo> mergeFimist = new LazyStolisMergeFimist(option.conn, option.schemaName);
+		ActionLazy<StolisInfo> mergeStorext = new LazyStolisMergeStorext(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCurrency);
 		mergeCurrency.addPostAction(mergeTimezone);

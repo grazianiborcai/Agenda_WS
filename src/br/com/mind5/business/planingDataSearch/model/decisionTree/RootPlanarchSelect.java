@@ -7,7 +7,7 @@ import br.com.mind5.business.planingDataSearch.info.PlanarchInfo;
 import br.com.mind5.business.planingDataSearch.model.action.LazyPlanarchPruneSel;
 import br.com.mind5.business.planingDataSearch.model.action.StdPlanarchMergePlanata;
 import br.com.mind5.business.planingDataSearch.model.checker.PlanarchCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public class RootPlanarchSelect extends DeciTreeTemplateReadV2<PlanarchInfo> {
 		List<ActionStdV1<PlanarchInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<PlanarchInfo> mergePlanata = new StdPlanarchMergePlanata(option);	
-		ActionLazyV1<PlanarchInfo> pruneSel = new LazyPlanarchPruneSel(option.conn, option.schemaName);
+		ActionLazy<PlanarchInfo> pruneSel = new LazyPlanarchPruneSel(option.conn, option.schemaName);
 		
 		mergePlanata.addPostAction(pruneSel);
 		

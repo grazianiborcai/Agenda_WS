@@ -7,7 +7,7 @@ import br.com.mind5.business.cartReserveConflict.info.CartercoInfo;
 import br.com.mind5.business.cartReserveConflict.model.action.LazyCartercoPruneUsername;
 import br.com.mind5.business.cartReserveConflict.model.action.StdCartercoMergeCarterve;
 import br.com.mind5.business.cartReserveConflict.model.checker.CartercoCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class RootCartercoSelect extends DeciTreeTemplateReadV2<CartercoInf
 		List<ActionStdV1<CartercoInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<CartercoInfo> mergeCarterve = new StdCartercoMergeCarterve(option);
-		ActionLazyV1<CartercoInfo> pruneUsername = new LazyCartercoPruneUsername(option.conn, option.schemaName);
+		ActionLazy<CartercoInfo> pruneUsername = new LazyCartercoPruneUsername(option.conn, option.schemaName);
 		
 		mergeCarterve.addPostAction(pruneUsername);
 		

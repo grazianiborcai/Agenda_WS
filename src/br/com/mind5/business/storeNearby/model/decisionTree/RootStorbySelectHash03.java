@@ -10,7 +10,7 @@ import br.com.mind5.business.storeNearby.model.action.StdStorbyEnforceHash03Key;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckLangu;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckOwner;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckReadHash03;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -61,8 +61,8 @@ public final class RootStorbySelectHash03 extends DeciTreeTemplateReadV2<StorbyI
 		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<StorbyInfo> enforceHash03Key = new StdStorbyEnforceHash03Key(option);
-		ActionLazyV1<StorbyInfo> select = new LazyStorbyMergeToSelect(option.conn, option.schemaName);
-		ActionLazyV1<StorbyInfo> nodeMerge = new LazyStorbyNodeMerge(option.conn, option.schemaName);
+		ActionLazy<StorbyInfo> select = new LazyStorbyMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<StorbyInfo> nodeMerge = new LazyStorbyNodeMerge(option.conn, option.schemaName);
 		
 		enforceHash03Key.addPostAction(select);
 		select.addPostAction(nodeMerge);

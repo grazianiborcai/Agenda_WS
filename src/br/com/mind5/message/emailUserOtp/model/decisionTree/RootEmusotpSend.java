@@ -7,7 +7,7 @@ import br.com.mind5.message.emailUserOtp.info.EmusotpInfo;
 import br.com.mind5.message.emailUserOtp.model.action.LazyEmusotpSendEmail;
 import br.com.mind5.message.emailUserOtp.model.action.StdEmusotpEnforceEmabody;
 import br.com.mind5.message.emailUserOtp.model.checker.EmusotpCheckSend;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class RootEmusotpSend extends DeciTreeTemplateWriteV2<EmusotpInfo> 
 		List<ActionStdV1<EmusotpInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<EmusotpInfo> enforceEmabody = new StdEmusotpEnforceEmabody(option);
-		ActionLazyV1<EmusotpInfo> send = new LazyEmusotpSendEmail(option.conn, option.schemaName);
+		ActionLazy<EmusotpInfo> send = new LazyEmusotpSendEmail(option.conn, option.schemaName);
 		
 		enforceEmabody.addPostAction(send);
 		

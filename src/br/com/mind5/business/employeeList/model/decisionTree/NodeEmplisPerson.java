@@ -8,7 +8,7 @@ import br.com.mind5.business.employeeList.model.action.LazyEmplisMergePerarch;
 import br.com.mind5.business.employeeList.model.action.StdEmplisEnforcePersonKey;
 import br.com.mind5.business.employeeList.model.action.StdEmplisSuccess;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckHasPerson;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,7 +45,7 @@ public final class NodeEmplisPerson extends DeciTreeTemplateWriteV2<EmplisInfo> 
 		List<ActionStdV1<EmplisInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<EmplisInfo> enforcePersonKey = new StdEmplisEnforcePersonKey(option);
-		ActionLazyV1<EmplisInfo> mergePerarch = new LazyEmplisMergePerarch(option.conn, option.schemaName);
+		ActionLazy<EmplisInfo> mergePerarch = new LazyEmplisMergePerarch(option.conn, option.schemaName);
 		
 		enforcePersonKey.addPostAction(mergePerarch);
 		

@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.business.personSnapshot.model.decisionTree.RootPersonapSelect;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPersonapRootSelect extends ActionLazyTemplateV2<PersonapInfo, PersonapInfo> {
+public final class LazyPersonapRootSelect extends ActionLazyTemplate<PersonapInfo, PersonapInfo> {
 	
 	public LazyPersonapRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

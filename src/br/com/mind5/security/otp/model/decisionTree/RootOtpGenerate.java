@@ -3,7 +3,7 @@ package br.com.mind5.security.otp.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -40,9 +40,9 @@ public final class RootOtpGenerate extends DeciTreeTemplateWriteV2<OtpInfo> {
 		List<ActionStdV1<OtpInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OtpInfo> enforceRandom = new StdOtpEnforceRandom(option);
-		ActionLazyV1<OtpInfo> enforceLength = new LazyOtpEnforceLength(option.conn, option.schemaName);
-		ActionLazyV1<OtpInfo> enforceSalt = new LazyOtpEnforceSalt(option.conn, option.schemaName);
-		ActionLazyV1<OtpInfo> enforceHash = new LazyOtpEnforceHash(option.conn, option.schemaName);
+		ActionLazy<OtpInfo> enforceLength = new LazyOtpEnforceLength(option.conn, option.schemaName);
+		ActionLazy<OtpInfo> enforceSalt = new LazyOtpEnforceSalt(option.conn, option.schemaName);
+		ActionLazy<OtpInfo> enforceHash = new LazyOtpEnforceHash(option.conn, option.schemaName);
 		
 		enforceRandom.addPostAction(enforceLength);
 		enforceLength.addPostAction(enforceSalt);

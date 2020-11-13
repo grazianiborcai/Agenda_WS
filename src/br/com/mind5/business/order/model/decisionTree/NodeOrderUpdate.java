@@ -8,7 +8,7 @@ import br.com.mind5.business.order.model.action.LazyOrderEnforceLChanged;
 import br.com.mind5.business.order.model.action.LazyOrderNodeSnapshot;
 import br.com.mind5.business.order.model.action.StdOrderMergeUsername;
 import br.com.mind5.business.order.model.checker.OrderCheckUpdate;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,8 +45,8 @@ public final class NodeOrderUpdate extends DeciTreeTemplateWriteV2<OrderInfo> {
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<OrderInfo> mergeUsername = new StdOrderMergeUsername(option);
-		ActionLazyV1<OrderInfo> enforceLChanged = new LazyOrderEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> snapshot = new LazyOrderNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> enforceLChanged = new LazyOrderEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> snapshot = new LazyOrderNodeSnapshot(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(snapshot);

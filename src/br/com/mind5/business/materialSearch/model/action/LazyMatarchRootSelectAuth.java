@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialSearch.model.decisionTree.RootMatarchSelectAuth;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatarchRootSelectAuth extends ActionLazyTemplateV2<MatarchInfo, MatarchInfo> {
+public final class LazyMatarchRootSelectAuth extends ActionLazyTemplate<MatarchInfo, MatarchInfo> {
 	
 	public LazyMatarchRootSelectAuth(Connection conn, String schemaName) {
 		super(conn, schemaName);

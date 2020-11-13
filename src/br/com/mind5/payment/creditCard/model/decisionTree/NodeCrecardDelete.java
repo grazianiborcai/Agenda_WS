@@ -3,7 +3,7 @@ package br.com.mind5.payment.creditCard.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,7 +39,7 @@ public final class NodeCrecardDelete extends DeciTreeTemplateWriteV2<CrecardInfo
 		
 		ActionStdV1<CrecardInfo> deleteMoip = new NodeCrecardDeleteMoip(option).toAction();
 		ActionStdV1<CrecardInfo> update = new StdCrecardDaoUpdate(option);
-		ActionLazyV1<CrecardInfo> delete = new LazyCrecardDaoDelete(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> delete = new LazyCrecardDaoDelete(option.conn, option.schemaName);
 		
 		update.addPostAction(delete);
 		

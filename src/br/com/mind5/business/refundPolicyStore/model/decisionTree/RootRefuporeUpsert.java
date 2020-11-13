@@ -15,7 +15,7 @@ import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckRefugr
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckStorauth;
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckStore;
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -80,11 +80,11 @@ public final class RootRefuporeUpsert extends DeciTreeTemplateWriteV2<RefuporeIn
 		List<ActionStdV1<RefuporeInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<RefuporeInfo> enforceLChanged = new StdRefuporeEnforceLChanged(option);	
-		ActionLazyV1<RefuporeInfo> enforceLChangedBy = new LazyRefuporeMergeUsername(option.conn, option.schemaName);		
-		ActionLazyV1<RefuporeInfo> enforceCreatedBy = new LazyRefuporeEnforceCreatedBy(option.conn, option.schemaName);	
-		ActionLazyV1<RefuporeInfo> enforceCreatedOn = new LazyRefuporeEnforceCreatedOn(option.conn, option.schemaName);
-		ActionLazyV1<RefuporeInfo> upsert = new LazyRefuporeNodeUpsert(option.conn, option.schemaName);
-		ActionLazyV1<RefuporeInfo> select = new LazyRefuporeRootSelect(option.conn, option.schemaName);		
+		ActionLazy<RefuporeInfo> enforceLChangedBy = new LazyRefuporeMergeUsername(option.conn, option.schemaName);		
+		ActionLazy<RefuporeInfo> enforceCreatedBy = new LazyRefuporeEnforceCreatedBy(option.conn, option.schemaName);	
+		ActionLazy<RefuporeInfo> enforceCreatedOn = new LazyRefuporeEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazy<RefuporeInfo> upsert = new LazyRefuporeNodeUpsert(option.conn, option.schemaName);
+		ActionLazy<RefuporeInfo> select = new LazyRefuporeRootSelect(option.conn, option.schemaName);		
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);

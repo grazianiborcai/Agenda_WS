@@ -19,7 +19,7 @@ import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckStorauth;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckStore;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckTimeRange;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -105,12 +105,12 @@ public final class RootStolateUpdate extends DeciTreeTemplateWriteV2<StolateInfo
 		List<ActionStdV1<StolateInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StolateInfo> mergeToUpdate = new StdStolateMergeToUpdate(option);
-		ActionLazyV1<StolateInfo> enforceLChanged = new LazyStolateEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<StolateInfo> enforceLChangedBy = new LazyStolateMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<StolateInfo> enforceValidFrom = new LazyStolateEnforceValidFrom(option.conn, option.schemaName);
-		ActionLazyV1<StolateInfo> enforceValidTo = new LazyStolateEnforceValidTo(option.conn, option.schemaName);	
-		ActionLazyV1<StolateInfo> update = new LazyStolateDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<StolateInfo> select = new LazyStolateRootSelect(option.conn, option.schemaName);
+		ActionLazy<StolateInfo> enforceLChanged = new LazyStolateEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<StolateInfo> enforceLChangedBy = new LazyStolateMergeUsername(option.conn, option.schemaName);
+		ActionLazy<StolateInfo> enforceValidFrom = new LazyStolateEnforceValidFrom(option.conn, option.schemaName);
+		ActionLazy<StolateInfo> enforceValidTo = new LazyStolateEnforceValidTo(option.conn, option.schemaName);	
+		ActionLazy<StolateInfo> update = new LazyStolateDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<StolateInfo> select = new LazyStolateRootSelect(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

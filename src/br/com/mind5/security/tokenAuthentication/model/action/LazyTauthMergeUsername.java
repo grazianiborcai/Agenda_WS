@@ -3,13 +3,13 @@ package br.com.mind5.security.tokenAuthentication.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.tokenAuthentication.info.TauthInfo;
 
-public final class LazyTauthMergeUsername extends ActionLazyTemplateV2<TauthInfo, TauthInfo> {
+public final class LazyTauthMergeUsername extends ActionLazyTemplate<TauthInfo, TauthInfo> {
 	
 	public LazyTauthMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName);

@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeCusmoipAddressL1 extends DeciTreeTemplateWriteV2<CusmoipI
 		List<ActionStdV1<CusmoipInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CusmoipInfo> mergeAddresnap = new StdCusmoipMergeAddresnap(option);
-		ActionLazyV1<CusmoipInfo> nodeL2 = new LazyCusmoipNodeAddressL2(option.conn, option.schemaName);
+		ActionLazy<CusmoipInfo> nodeL2 = new LazyCusmoipNodeAddressL2(option.conn, option.schemaName);
 		
 		mergeAddresnap.addPostAction(nodeL2);
 		

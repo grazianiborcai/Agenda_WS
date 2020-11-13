@@ -8,7 +8,7 @@ import br.com.mind5.business.materialText.model.action.LazyMatextDaoUpdate;
 import br.com.mind5.business.materialText.model.action.StdMatextEnforceDefaultOn;
 import br.com.mind5.business.materialText.model.action.StdMatextSuccess;
 import br.com.mind5.business.materialText.model.checker.MatextCheckMatextault;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -56,7 +56,7 @@ public final class NodeMatextPostUpdate extends DeciTreeTemplateWriteV2<MatextIn
 		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<MatextInfo> enforceDefaultOn = new StdMatextEnforceDefaultOn(option);
-		ActionLazyV1<MatextInfo> update = new LazyMatextDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> update = new LazyMatextDaoUpdate(option.conn, option.schemaName);
 		
 		enforceDefaultOn.addPostAction(update);
 		

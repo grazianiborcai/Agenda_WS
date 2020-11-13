@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.business.storeText.model.action.LazyStorextMergeToSelect;
 import br.com.mind5.business.storeText.model.action.StdStorextMergeStorextault;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeStorextSelectL2 extends DeciTreeTemplateWriteV2<StorextIn
 		List<ActionStdV1<StorextInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StorextInfo> mergeStorextault = new StdStorextMergeStorextault(option);
-		ActionLazyV1<StorextInfo> mergeToSelect = new LazyStorextMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<StorextInfo> mergeToSelect = new LazyStorextMergeToSelect(option.conn, option.schemaName);
 		
 		mergeStorextault.addPostAction(mergeToSelect);
 		

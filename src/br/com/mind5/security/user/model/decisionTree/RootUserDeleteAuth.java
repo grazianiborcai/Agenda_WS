@@ -3,7 +3,7 @@ package br.com.mind5.security.user.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -59,7 +59,7 @@ public final class RootUserDeleteAuth extends DeciTreeTemplateWriteV2<UserInfo> 
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UserInfo> nodeAuth = new NodeUserAuth(option).toAction();
-		ActionLazyV1<UserInfo> deleteUser = new LazyUserRootDelete(option.conn, option.schemaName);
+		ActionLazy<UserInfo> deleteUser = new LazyUserRootDelete(option.conn, option.schemaName);
 		
 		nodeAuth.addPostAction(deleteUser);
 

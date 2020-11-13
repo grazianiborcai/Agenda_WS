@@ -3,7 +3,7 @@ package br.com.mind5.payment.statusPayOrder.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -52,7 +52,7 @@ public final class RootPaytusSelect extends DeciTreeTemplateReadV2<PaytusInfo> {
 		List<ActionStdV1<PaytusInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<PaytusInfo> mergePayord = new StdPaytusMergePayord(option);	
-		ActionLazyV1<PaytusInfo> mergePaytusem = new LazyPaytusMergePaytusem(option.conn, option.schemaName);	
+		ActionLazy<PaytusInfo> mergePaytusem = new LazyPaytusMergePaytusem(option.conn, option.schemaName);	
 		
 		mergePayord.addPostAction(mergePaytusem);
 		

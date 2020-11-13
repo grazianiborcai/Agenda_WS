@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.businessContent.material.main.info.MatbcinInfo;
 import br.com.mind5.businessContent.material.main.model.decisionTree.NodeMatbcinInsertL2;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatbcinNodeInsertL2 extends ActionLazyTemplateV2<MatbcinInfo, MatbcinInfo> {
+public final class LazyMatbcinNodeInsertL2 extends ActionLazyTemplate<MatbcinInfo, MatbcinInfo> {
 
 	public LazyMatbcinNodeInsertL2(Connection conn, String schemaName) {
 		super(conn, schemaName);

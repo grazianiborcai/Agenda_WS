@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
@@ -51,7 +51,7 @@ public abstract class ActionStdObfuscateTemplate<T extends InfoRecord> implement
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<T> actionHandler) {
+	@Override public void addPostAction(ActionLazy<T> actionHandler) {
 		helper.addPostAction(actionHandler);
 	}
 	

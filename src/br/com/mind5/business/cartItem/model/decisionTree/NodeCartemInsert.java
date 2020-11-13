@@ -7,7 +7,7 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.action.LazyCartemDaoInsert;
 import br.com.mind5.business.cartItem.model.action.StdCartemEnforceCreatedOn;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckLimit;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class NodeCartemInsert extends DeciTreeTemplateWriteV2<CartemInfo> 
 		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CartemInfo> enforceCreatedOn = new StdCartemEnforceCreatedOn(option);	
-		ActionLazyV1<CartemInfo> insert = new LazyCartemDaoInsert(option.conn, option.schemaName);	
+		ActionLazy<CartemInfo> insert = new LazyCartemDaoInsert(option.conn, option.schemaName);	
 		
 		enforceCreatedOn.addPostAction(insert);
 		

@@ -3,7 +3,7 @@ package br.com.mind5.security.otpUserPassword.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -53,7 +53,7 @@ public final class RootOtperasAuthenticate extends DeciTreeTemplateWriteV2<Otper
 		List<ActionStdV1<OtperasInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<OtperasInfo> mergeToAuthenticate = new StdOtperasMergeToAuthenticate(option);
-		ActionLazyV1<OtperasInfo> optValidate = new LazyOtperasOptValidate(option.conn, option.schemaName);
+		ActionLazy<OtperasInfo> optValidate = new LazyOtperasOptValidate(option.conn, option.schemaName);
 		ActionStdV1<OtperasInfo> delete = new StdOtperasDaoDelete(option);
 		
 		mergeToAuthenticate.addPostAction(optValidate);

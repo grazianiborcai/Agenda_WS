@@ -9,7 +9,7 @@ import br.com.mind5.business.storeText.model.action.StdStorextMergeStorextarch;
 import br.com.mind5.business.storeText.model.checker.StorextCheckOwner;
 import br.com.mind5.business.storeText.model.checker.StorextCheckSearch;
 import br.com.mind5.business.storeText.model.checker.StorextCheckStore;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -60,7 +60,7 @@ public final class RootStorextSearch extends DeciTreeTemplateReadV2<StorextInfo>
 		List<ActionStdV1<StorextInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StorextInfo> mergeStorextarch = new StdStorextMergeStorextarch(option);
-		ActionLazyV1<StorextInfo> select = new LazyStorextRootSelect(option.conn, option.schemaName);
+		ActionLazy<StorextInfo> select = new LazyStorextRootSelect(option.conn, option.schemaName);
 		
 		mergeStorextarch.addPostAction(select);
 		

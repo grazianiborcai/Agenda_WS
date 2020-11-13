@@ -12,7 +12,7 @@ import br.com.mind5.business.order.model.checker.OrderCheckLangu;
 import br.com.mind5.business.order.model.checker.OrderCheckOwner;
 import br.com.mind5.business.order.model.checker.OrderCheckPayord;
 import br.com.mind5.business.order.model.checker.OrderCheckRefresh;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -77,8 +77,8 @@ public final class RootOrderRefresh extends DeciTreeTemplateWriteV2<OrderInfo> {
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<OrderInfo> mergeToUpdate = new StdOrderMergeToUpdate(option);
-		ActionLazyV1<OrderInfo> nodeRefresh = new LazyOrderNodeRefresh(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> select = new LazyOrderRootSelect(option.conn, option.schemaName);	
+		ActionLazy<OrderInfo> nodeRefresh = new LazyOrderNodeRefresh(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> select = new LazyOrderRootSelect(option.conn, option.schemaName);	
 		
 		mergeToUpdate.addPostAction(nodeRefresh);
 		nodeRefresh.addPostAction(select);

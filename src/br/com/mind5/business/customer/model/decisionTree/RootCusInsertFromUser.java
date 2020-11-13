@@ -12,7 +12,7 @@ import br.com.mind5.business.customer.model.checker.CusCheckInsertFromUser;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
 import br.com.mind5.business.customer.model.checker.CusCheckOwner;
 import br.com.mind5.business.customer.model.checker.CusCheckUser;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -70,9 +70,9 @@ public final class RootCusInsertFromUser extends DeciTreeTemplateWriteV2<CusInfo
 		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<CusInfo> mergeUser = new StdCusMergeUser(option);
-		ActionLazyV1<CusInfo> copyUserData = new LazyCusEnforceUserData(option.conn, option.schemaName);		
-		ActionLazyV1<CusInfo> insert = new LazyCusRootInsertSilent(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> select = new LazyCusRootSelect(option.conn, option.schemaName);	
+		ActionLazy<CusInfo> copyUserData = new LazyCusEnforceUserData(option.conn, option.schemaName);		
+		ActionLazy<CusInfo> insert = new LazyCusRootInsertSilent(option.conn, option.schemaName);
+		ActionLazy<CusInfo> select = new LazyCusRootSelect(option.conn, option.schemaName);	
 		
 		mergeUser.addPostAction(copyUserData);
 		copyUserData.addPostAction(insert);

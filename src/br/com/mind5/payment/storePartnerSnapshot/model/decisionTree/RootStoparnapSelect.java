@@ -3,7 +3,7 @@ package br.com.mind5.payment.storePartnerSnapshot.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -52,7 +52,7 @@ public final class RootStoparnapSelect extends DeciTreeTemplateReadV2<StoparnapI
 		List<ActionStdV1<StoparnapInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StoparnapInfo> select = new StdStoparnapMergeToSelect(option);
-		ActionLazyV1<StoparnapInfo> mergePayPartner = new LazyStoparnapMergePaypar(option.conn, option.schemaName);
+		ActionLazy<StoparnapInfo> mergePayPartner = new LazyStoparnapMergePaypar(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePayPartner);
 		

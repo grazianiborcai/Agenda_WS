@@ -10,7 +10,7 @@ import br.com.mind5.business.employeeList.model.action.StdEmplisMergeToSelect;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckLangu;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckOwner;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -61,8 +61,8 @@ public final class RootEmplisSelect extends DeciTreeTemplateReadV2<EmplisInfo> {
 		List<ActionStdV1<EmplisInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<EmplisInfo> select = new StdEmplisMergeToSelect(option);
-		ActionLazyV1<EmplisInfo> mergePersolis = new LazyEmplisMergePersolis(option.conn, option.schemaName);
-		ActionLazyV1<EmplisInfo> mergeFimist = new LazyEmplisMergeFimist(option.conn, option.schemaName);
+		ActionLazy<EmplisInfo> mergePersolis = new LazyEmplisMergePersolis(option.conn, option.schemaName);
+		ActionLazy<EmplisInfo> mergeFimist = new LazyEmplisMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePersolis);
 		mergePersolis.addPostAction(mergeFimist);

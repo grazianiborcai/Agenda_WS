@@ -13,7 +13,7 @@ import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeWeekday;
 import br.com.mind5.business.planningTime.model.action.LazyPlanimePruneDaypart;
 import br.com.mind5.business.planningTime.model.action.StdPlanimeMergePlanata;
 import br.com.mind5.business.planningTime.model.checker.PlanimeCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -50,13 +50,13 @@ public class RootPlanimeSelect extends DeciTreeTemplateWriteV2<PlanimeInfo> {
 		List<ActionStdV1<PlanimeInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<PlanimeInfo> mergePlanata = new StdPlanimeMergePlanata(option);	
-		ActionLazyV1<PlanimeInfo> pruneDaypart = new LazyPlanimePruneDaypart(option.conn, option.schemaName);
-		ActionLazyV1<PlanimeInfo> mergeStolis = new LazyPlanimeMergeStolis(option.conn, option.schemaName);	
-		ActionLazyV1<PlanimeInfo> mergeEmplis = new LazyPlanimeMergeEmplis(option.conn, option.schemaName);
-		ActionLazyV1<PlanimeInfo> mergeMatlis = new LazyPlanimeMergeMatlis(option.conn, option.schemaName);			
-		ActionLazyV1<PlanimeInfo> mergeWeekday = new LazyPlanimeMergeWeekday(option.conn, option.schemaName);
-		ActionLazyV1<PlanimeInfo> mergeDaypart = new LazyPlanimeMergeDaypart(option.conn, option.schemaName);
-		ActionLazyV1<PlanimeInfo> mergeMoonase = new LazyPlanimeMergeMoonase(option.conn, option.schemaName);
+		ActionLazy<PlanimeInfo> pruneDaypart = new LazyPlanimePruneDaypart(option.conn, option.schemaName);
+		ActionLazy<PlanimeInfo> mergeStolis = new LazyPlanimeMergeStolis(option.conn, option.schemaName);	
+		ActionLazy<PlanimeInfo> mergeEmplis = new LazyPlanimeMergeEmplis(option.conn, option.schemaName);
+		ActionLazy<PlanimeInfo> mergeMatlis = new LazyPlanimeMergeMatlis(option.conn, option.schemaName);			
+		ActionLazy<PlanimeInfo> mergeWeekday = new LazyPlanimeMergeWeekday(option.conn, option.schemaName);
+		ActionLazy<PlanimeInfo> mergeDaypart = new LazyPlanimeMergeDaypart(option.conn, option.schemaName);
+		ActionLazy<PlanimeInfo> mergeMoonase = new LazyPlanimeMergeMoonase(option.conn, option.schemaName);
 		
 		mergePlanata.addPostAction(pruneDaypart);
 		pruneDaypart.addPostAction(mergeStolis);

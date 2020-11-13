@@ -1,6 +1,6 @@
 package br.com.mind5.payment.payOrderItemSearch.model.action;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
@@ -17,7 +17,7 @@ public final class StdPayormarchMergeToSelect implements ActionStdV1<PayormarchI
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<PayormarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<PayormarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

@@ -13,7 +13,7 @@ import br.com.mind5.business.materialStore.model.checker.MatoreCheckMat;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckOwner;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckRead;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckStore;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -78,9 +78,9 @@ public final class RootMatoreSelect extends DeciTreeTemplateReadV2<MatoreInfo> {
 		List<ActionStdV1<MatoreInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatoreInfo> select = new StdMatoreMergeToSelect(option);
-		ActionLazyV1<MatoreInfo> enforceRange = new LazyMatoreEnforceRange(option.conn, option.schemaName);	
-		ActionLazyV1<MatoreInfo> mergeMatlis = new LazyMatoreMergeMatlis(option.conn, option.schemaName);		
-		ActionLazyV1<MatoreInfo> mergeStolis = new LazyMatoreMergeStolis(option.conn, option.schemaName);	
+		ActionLazy<MatoreInfo> enforceRange = new LazyMatoreEnforceRange(option.conn, option.schemaName);	
+		ActionLazy<MatoreInfo> mergeMatlis = new LazyMatoreMergeMatlis(option.conn, option.schemaName);		
+		ActionLazy<MatoreInfo> mergeStolis = new LazyMatoreMergeStolis(option.conn, option.schemaName);	
 		
 		select.addPostAction(enforceRange);
 		enforceRange.addPostAction(mergeMatlis);

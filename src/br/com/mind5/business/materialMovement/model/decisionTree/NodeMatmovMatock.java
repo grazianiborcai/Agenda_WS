@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.model.action.LazyMatmovDaoUpdate;
 import br.com.mind5.business.materialMovement.model.action.StdMatmovMatockUpsert;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeMatmovMatock extends DeciTreeTemplateWriteV2<MatmovInfo> 
 		List<ActionStdV1<MatmovInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<MatmovInfo> upsertStock = new StdMatmovMatockUpsert(option);
-		ActionLazyV1<MatmovInfo> update = new LazyMatmovDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<MatmovInfo> update = new LazyMatmovDaoUpdate(option.conn, option.schemaName);
 		
 		upsertStock.addPostAction(update);
 		

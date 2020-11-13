@@ -12,7 +12,7 @@ import br.com.mind5.business.company.model.checker.CompCheckInsert;
 import br.com.mind5.business.company.model.checker.CompCheckLangu;
 import br.com.mind5.business.company.model.checker.CompCheckNameLength;
 import br.com.mind5.business.company.model.checker.CompCheckOwner;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -84,8 +84,8 @@ public final class RootCompInsert extends DeciTreeTemplateWriteV2<CompInfo> {
 		List<ActionStdV1<CompInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CompInfo> cnpj = new NodeCompCnpjL1(option).toAction();
-		ActionLazyV1<CompInfo> insert = new LazyCompNodeInsert(option.conn, option.schemaName);
-		ActionLazyV1<CompInfo> snapshot = new LazyCompNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<CompInfo> insert = new LazyCompNodeInsert(option.conn, option.schemaName);
+		ActionLazy<CompInfo> snapshot = new LazyCompNodeSnapshot(option.conn, option.schemaName);
 		
 		cnpj.addPostAction(insert);
 		insert.addPostAction(snapshot);

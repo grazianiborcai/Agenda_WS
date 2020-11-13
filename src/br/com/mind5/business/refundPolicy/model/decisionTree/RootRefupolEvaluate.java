@@ -8,7 +8,7 @@ import br.com.mind5.business.refundPolicy.model.action.LazyRefupolNodeEvaluateL1
 import br.com.mind5.business.refundPolicy.model.action.StdRefupolMergeOrderem;
 import br.com.mind5.business.refundPolicy.model.checker.RefupolCheckEvaluate;
 import br.com.mind5.business.refundPolicy.model.checker.RefupolCheckOrderem;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -52,7 +52,7 @@ public final class RootRefupolEvaluate extends DeciTreeTemplateWriteV2<RefupolIn
 		List<ActionStdV1<RefupolInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<RefupolInfo> select = new StdRefupolMergeOrderem(option);
-		ActionLazyV1<RefupolInfo> nodeL1 = new LazyRefupolNodeEvaluateL1(option.conn, option.schemaName);
+		ActionLazy<RefupolInfo> nodeL1 = new LazyRefupolNodeEvaluateL1(option.conn, option.schemaName);
 		
 		select.addPostAction(nodeL1);
 		

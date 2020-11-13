@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekRootSelect;
 import br.com.mind5.business.scheduleWeek.model.action.StdSchedeekMergePrevious;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootSchedeekSelectPrevious extends DeciTreeTemplateWriteV2<Sc
 		List<ActionStdV1<SchedeekInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedeekInfo> mergePrevious = new StdSchedeekMergePrevious(option);
-		ActionLazyV1<SchedeekInfo> select = new LazySchedeekRootSelect(option.conn, option.schemaName);
+		ActionLazy<SchedeekInfo> select = new LazySchedeekRootSelect(option.conn, option.schemaName);
 		
 		mergePrevious.addPostAction(select);
 		

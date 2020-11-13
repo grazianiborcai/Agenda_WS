@@ -13,7 +13,7 @@ import br.com.mind5.business.employee.model.action.LazyEmpRootSelect;
 import br.com.mind5.business.employee.model.checker.EmpCheckInsert;
 import br.com.mind5.business.employee.model.checker.EmpCheckLangu;
 import br.com.mind5.business.employee.model.checker.EmpCheckOwner;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -64,12 +64,12 @@ public final class RootEmpInsert extends DeciTreeTemplateWriteV2<EmpInfo> {
 		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		//TODO: O que fazer se o CPF/e-mail ja tiver associado a um customer/owner/store manager ?
 		ActionStdV1<EmpInfo> insertEmployee = new NodeEmpInsertL1(option).toAction();	
-		ActionLazyV1<EmpInfo> insertPerson = new LazyEmpNodeInsertPerson(option.conn, option.schemaName);	
-		ActionLazyV1<EmpInfo> insertUser = new LazyEmpNodeInsertUser(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> snapshot = new LazyEmpNodeSnapshot(option.conn, option.schemaName);	
-		ActionLazyV1<EmpInfo> insertAddress = new LazyEmpNodeInsertAddress(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> insertPhone = new LazyEmpNodeInsertPhone(option.conn, option.schemaName);		
-		ActionLazyV1<EmpInfo> select = new LazyEmpRootSelect(option.conn, option.schemaName);	
+		ActionLazy<EmpInfo> insertPerson = new LazyEmpNodeInsertPerson(option.conn, option.schemaName);	
+		ActionLazy<EmpInfo> insertUser = new LazyEmpNodeInsertUser(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> snapshot = new LazyEmpNodeSnapshot(option.conn, option.schemaName);	
+		ActionLazy<EmpInfo> insertAddress = new LazyEmpNodeInsertAddress(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> insertPhone = new LazyEmpNodeInsertPhone(option.conn, option.schemaName);		
+		ActionLazy<EmpInfo> select = new LazyEmpRootSelect(option.conn, option.schemaName);	
 		
 		insertEmployee.addPostAction(insertPerson);		
 		insertPerson.addPostAction(insertUser);		

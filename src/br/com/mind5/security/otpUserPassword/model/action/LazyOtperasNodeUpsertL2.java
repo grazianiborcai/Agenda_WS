@@ -3,14 +3,14 @@ package br.com.mind5.security.otpUserPassword.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.otpUserPassword.info.OtperasInfo;
 import br.com.mind5.security.otpUserPassword.model.decisionTree.NodeOtperasUpsertL2;
 
-public final class LazyOtperasNodeUpsertL2 extends ActionLazyTemplateV2<OtperasInfo, OtperasInfo> {
+public final class LazyOtperasNodeUpsertL2 extends ActionLazyTemplate<OtperasInfo, OtperasInfo> {
 	
 	public LazyOtperasNodeUpsertL2(Connection conn, String schemaName) {
 		super(conn, schemaName);

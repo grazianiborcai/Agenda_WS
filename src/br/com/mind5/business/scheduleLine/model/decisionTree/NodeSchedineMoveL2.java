@@ -7,7 +7,7 @@ import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineBookiceValidate;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineRootInsertForce;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineEnforceRef;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,8 +39,8 @@ public final class NodeSchedineMoveL2 extends DeciTreeTemplateWriteV2<SchedineIn
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedineInfo> enforceRef = new StdSchedineEnforceRef(option);
-		ActionLazyV1<SchedineInfo> bookiceValidate = new LazySchedineBookiceValidate(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> insert = new LazySchedineRootInsertForce(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> bookiceValidate = new LazySchedineBookiceValidate(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> insert = new LazySchedineRootInsertForce(option.conn, option.schemaName);
 		
 		enforceRef.addPostAction(bookiceValidate);
 		bookiceValidate.addPostAction(insert);

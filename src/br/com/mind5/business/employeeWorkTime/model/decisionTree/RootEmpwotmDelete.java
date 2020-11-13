@@ -14,7 +14,7 @@ import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckExist;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckLangu;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckOwner;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStorauth;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -79,10 +79,10 @@ public final class RootEmpwotmDelete extends DeciTreeTemplateWriteV2<EmpwotmInfo
 		List<ActionStdV1<EmpwotmInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmpwotmInfo> mergeToDelete = new StdEmpwotmMergeToDelete(option);
-		ActionLazyV1<EmpwotmInfo> enforceLChanged = new LazyEmpwotmEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<EmpwotmInfo> enforceLChangedBy = new LazyEmpwotmMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<EmpwotmInfo> update = new LazyEmpwotmDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<EmpwotmInfo> delete = new LazyEmpwotmDaoDelete(option.conn, option.schemaName);
+		ActionLazy<EmpwotmInfo> enforceLChanged = new LazyEmpwotmEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<EmpwotmInfo> enforceLChangedBy = new LazyEmpwotmMergeUsername(option.conn, option.schemaName);
+		ActionLazy<EmpwotmInfo> update = new LazyEmpwotmDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<EmpwotmInfo> delete = new LazyEmpwotmDaoDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

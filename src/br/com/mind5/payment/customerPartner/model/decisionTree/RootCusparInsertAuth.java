@@ -3,7 +3,7 @@ package br.com.mind5.payment.customerPartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -68,7 +68,7 @@ public final class RootCusparInsertAuth extends DeciTreeTemplateWriteV2<CusparIn
 		List<ActionStdV1<CusparInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CusparInfo> mergeUsername = new StdCusparMergeUsername(option);
-		ActionLazyV1<CusparInfo> insert = new LazyCusparRootInsert(option.conn, option.schemaName);
+		ActionLazy<CusparInfo> insert = new LazyCusparRootInsert(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(insert);
 		

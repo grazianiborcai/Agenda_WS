@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.model.action.LazyMatmovRootSelect;
 import br.com.mind5.business.materialMovement.model.action.StdMatmovMergeMatmarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,7 +39,7 @@ public final class RootMatmovSearch extends DeciTreeTemplateReadV2<MatmovInfo> {
 		List<ActionStdV1<MatmovInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<MatmovInfo> mergeMatmarch = new StdMatmovMergeMatmarch(option);
-		ActionLazyV1<MatmovInfo> select = new LazyMatmovRootSelect(option.conn, option.schemaName);
+		ActionLazy<MatmovInfo> select = new LazyMatmovRootSelect(option.conn, option.schemaName);
 		
 		mergeMatmarch.addPostAction(select);
 		

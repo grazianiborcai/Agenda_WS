@@ -8,7 +8,7 @@ import br.com.mind5.business.calendarTimeStore.model.action.LazyCalimoreMergeSto
 import br.com.mind5.business.calendarTimeStore.model.action.StdCalimoreEnforceFallback;
 import br.com.mind5.business.calendarTimeStore.model.action.StdCalimoreMergeStowotarch;
 import br.com.mind5.business.calendarTimeStore.model.checker.CalimoreCheckStowotarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,7 +45,7 @@ public final class NodeCalimoreSelect extends DeciTreeTemplateWriteV2<CalimoreIn
 		List<ActionStdV1<CalimoreInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CalimoreInfo> mergeStowotarch = new StdCalimoreMergeStowotarch(option);
-		ActionLazyV1<CalimoreInfo> mergeStolarg = new LazyCalimoreMergeStolarg(option.conn, option.schemaName);
+		ActionLazy<CalimoreInfo> mergeStolarg = new LazyCalimoreMergeStolarg(option.conn, option.schemaName);
 		
 		mergeStowotarch.addPostAction(mergeStolarg);
 		

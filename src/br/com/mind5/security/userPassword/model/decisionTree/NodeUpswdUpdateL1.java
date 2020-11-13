@@ -3,7 +3,7 @@ package br.com.mind5.security.userPassword.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -49,11 +49,11 @@ public final class NodeUpswdUpdateL1 extends DeciTreeTemplateWriteV2<UpswdInfo> 
 		List<ActionStdV1<UpswdInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UpswdInfo> mergeUsername = new StdUpswdMergeUsername(option);
-		ActionLazyV1<UpswdInfo> otperasAuthenticate = new LazyUpswdOtperasAuthenticate(option.conn, option.schemaName);
-		ActionLazyV1<UpswdInfo> nodeL2 = new LazyUpswdNodeUpdateL2(option.conn, option.schemaName);
-		ActionLazyV1<UpswdInfo> sendEmail = new LazyUpswdEmordeSend(option.conn, option.schemaName);
-		ActionLazyV1<UpswdInfo> obfuscate = new LazyUpswdObfuscate(option.conn, option.schemaName);
-		ActionLazyV1<UpswdInfo> jwtokenGenerate = new LazyUpswdJwtokenGenerate(option.conn, option.schemaName);
+		ActionLazy<UpswdInfo> otperasAuthenticate = new LazyUpswdOtperasAuthenticate(option.conn, option.schemaName);
+		ActionLazy<UpswdInfo> nodeL2 = new LazyUpswdNodeUpdateL2(option.conn, option.schemaName);
+		ActionLazy<UpswdInfo> sendEmail = new LazyUpswdEmordeSend(option.conn, option.schemaName);
+		ActionLazy<UpswdInfo> obfuscate = new LazyUpswdObfuscate(option.conn, option.schemaName);
+		ActionLazy<UpswdInfo> jwtokenGenerate = new LazyUpswdJwtokenGenerate(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(otperasAuthenticate);
 		otperasAuthenticate.addPostAction(nodeL2);

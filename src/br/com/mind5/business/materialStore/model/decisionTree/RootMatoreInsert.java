@@ -13,7 +13,7 @@ import br.com.mind5.business.materialStore.model.checker.MatoreCheckOwner;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckStorauth;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckStore;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -91,7 +91,7 @@ public final class RootMatoreInsert extends DeciTreeTemplateWriteV2<MatoreInfo> 
 		List<ActionStdV1<MatoreInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatoreInfo> mergeMatlis = new StdMatoreMergeMatlis(option);
-		ActionLazyV1<MatoreInfo> upsert = new LazyMatoreNodeUpsertL1(option.conn, option.schemaName);
+		ActionLazy<MatoreInfo> upsert = new LazyMatoreNodeUpsertL1(option.conn, option.schemaName);
 		
 		mergeMatlis.addPostAction(upsert);
 		

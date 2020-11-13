@@ -7,7 +7,7 @@ import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateRootDelete;
 import br.com.mind5.business.employeeLeaveDate.model.action.StdEmplateMergeEmplarch;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckDeleteByEmpos;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class RootEmplateDeleteByEmpos extends DeciTreeTemplateWriteV2<Empl
 		List<ActionStdV1<EmplateInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmplateInfo> mergeEmplarch = new StdEmplateMergeEmplarch(option);
-		ActionLazyV1<EmplateInfo> delete = new LazyEmplateRootDelete(option.conn, option.schemaName);
+		ActionLazy<EmplateInfo> delete = new LazyEmplateRootDelete(option.conn, option.schemaName);
 		
 		mergeEmplarch.addPostAction(delete);
 		

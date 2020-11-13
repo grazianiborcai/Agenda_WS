@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrder.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -62,9 +62,9 @@ public final class RootPayordSelect extends DeciTreeTemplateReadV2<PayordInfo> {
 		List<ActionStdV1<PayordInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<PayordInfo> mergeToSelect = new StdPayordMergeToSelect(option);
-		ActionLazyV1<PayordInfo> mergeCrecard = new LazyPayordMergeCrecard(option.conn, option.schemaName);
-		ActionLazyV1<PayordInfo> mergePaypar = new LazyPayordMergePaypar(option.conn, option.schemaName);
-		ActionLazyV1<PayordInfo> mergePayordem = new LazyPayordMergePayordem(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> mergeCrecard = new LazyPayordMergeCrecard(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> mergePaypar = new LazyPayordMergePaypar(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> mergePayordem = new LazyPayordMergePayordem(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(mergeCrecard);
 		mergeCrecard.addPostAction(mergePaypar);

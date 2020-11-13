@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.decisionTree.RootFimgReplace;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyFimgRootReplace extends ActionLazyTemplateV2<FimgInfo, FimgInfo> {
+public final class LazyFimgRootReplace extends ActionLazyTemplate<FimgInfo, FimgInfo> {
 
 	public LazyFimgRootReplace(Connection conn, String schemaName) {
 		super(conn, schemaName);

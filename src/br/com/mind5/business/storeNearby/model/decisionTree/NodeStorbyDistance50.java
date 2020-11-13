@@ -8,7 +8,7 @@ import br.com.mind5.business.storeNearby.model.action.LazyStorbyEnforceDistance;
 import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeAddress;
 import br.com.mind5.business.storeNearby.model.action.LazyStorbyPruneDistance50;
 import br.com.mind5.business.storeNearby.model.action.StdStorbyMergeComplis;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -40,9 +40,9 @@ public final class NodeStorbyDistance50 extends DeciTreeTemplateReadV2<StorbyInf
 		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<StorbyInfo> mergeComplis = new StdStorbyMergeComplis(option);
-		ActionLazyV1<StorbyInfo> mergeAddress = new LazyStorbyMergeAddress(option.conn, option.schemaName);
-		ActionLazyV1<StorbyInfo> enforceDistance = new LazyStorbyEnforceDistance(option.conn, option.schemaName);
-		ActionLazyV1<StorbyInfo> pruneDistance50 = new LazyStorbyPruneDistance50(option.conn, option.schemaName);
+		ActionLazy<StorbyInfo> mergeAddress = new LazyStorbyMergeAddress(option.conn, option.schemaName);
+		ActionLazy<StorbyInfo> enforceDistance = new LazyStorbyEnforceDistance(option.conn, option.schemaName);
+		ActionLazy<StorbyInfo> pruneDistance50 = new LazyStorbyPruneDistance50(option.conn, option.schemaName);
 		
 		mergeComplis.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(enforceDistance);

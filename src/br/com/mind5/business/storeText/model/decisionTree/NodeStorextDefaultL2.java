@@ -12,7 +12,7 @@ import br.com.mind5.business.storeText.model.action.LazyStorextMergeUsername;
 import br.com.mind5.business.storeText.model.action.StdStorextMergeStorextault;
 import br.com.mind5.business.storeText.model.action.StdStorextSuccess;
 import br.com.mind5.business.storeText.model.checker.StorextCheckStorextault;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -49,11 +49,11 @@ public final class NodeStorextDefaultL2 extends DeciTreeTemplateWriteV2<StorextI
 		List<ActionStdV1<StorextInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StorextInfo> mergeStorextault = new StdStorextMergeStorextault(option);
-		ActionLazyV1<StorextInfo> mergeToSelect = new LazyStorextMergeToSelect(option.conn, option.schemaName);
-		ActionLazyV1<StorextInfo> enforceLChanged = new LazyStorextEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazyV1<StorextInfo> enforceLChangedBy = new LazyStorextMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<StorextInfo> enforceDefaultOff = new LazyStorextEnforceDefaultOff(option.conn, option.schemaName);
-		ActionLazyV1<StorextInfo> update = new LazyStorextDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<StorextInfo> mergeToSelect = new LazyStorextMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<StorextInfo> enforceLChanged = new LazyStorextEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazy<StorextInfo> enforceLChangedBy = new LazyStorextMergeUsername(option.conn, option.schemaName);
+		ActionLazy<StorextInfo> enforceDefaultOff = new LazyStorextEnforceDefaultOff(option.conn, option.schemaName);
+		ActionLazy<StorextInfo> update = new LazyStorextDaoUpdate(option.conn, option.schemaName);
 		ActionStdV1<StorextInfo> success = new StdStorextSuccess(option);	
 		
 		mergeStorextault.addPostAction(mergeToSelect);

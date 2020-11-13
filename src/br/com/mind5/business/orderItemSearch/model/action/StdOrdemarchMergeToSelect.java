@@ -1,7 +1,7 @@
 package br.com.mind5.business.orderItemSearch.model.action;
 
 import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
@@ -17,7 +17,7 @@ public final class StdOrdemarchMergeToSelect implements ActionStdV1<OrdemarchInf
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<OrdemarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<OrdemarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

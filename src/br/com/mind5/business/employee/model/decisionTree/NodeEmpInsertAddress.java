@@ -8,7 +8,7 @@ import br.com.mind5.business.employee.model.action.LazyEmpNodeUpsertAddress;
 import br.com.mind5.business.employee.model.action.StdEmpEnforceAddressCod;
 import br.com.mind5.business.employee.model.action.StdEmpSuccess;
 import br.com.mind5.business.employee.model.checker.EmpCheckHasAddress;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,7 +45,7 @@ public final class NodeEmpInsertAddress extends DeciTreeTemplateWriteV2<EmpInfo>
 		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmpInfo> enforceAddressCod = new StdEmpEnforceAddressCod(option);
-		ActionLazyV1<EmpInfo> upsertAddress = new LazyEmpNodeUpsertAddress(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> upsertAddress = new LazyEmpNodeUpsertAddress(option.conn, option.schemaName);
 		
 		enforceAddressCod.addPostAction(upsertAddress);
 		

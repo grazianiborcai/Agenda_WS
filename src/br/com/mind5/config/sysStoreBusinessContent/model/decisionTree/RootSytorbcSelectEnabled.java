@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.config.sysStoreBusinessContent.info.SytorbcInfo;
 import br.com.mind5.config.sysStoreBusinessContent.model.action.LazySytorbcRootSelect;
 import br.com.mind5.config.sysStoreBusinessContent.model.action.StdSytorbcEnforceEnabled;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootSytorbcSelectEnabled extends DeciTreeTemplateReadV2<Sytor
 		List<ActionStdV1<SytorbcInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SytorbcInfo> enforceEnabled = new StdSytorbcEnforceEnabled(option);
-		ActionLazyV1<SytorbcInfo> select = new LazySytorbcRootSelect(option.conn, option.schemaName);
+		ActionLazy<SytorbcInfo> select = new LazySytorbcRootSelect(option.conn, option.schemaName);
 		
 		enforceEnabled.addPostAction(select);
 		

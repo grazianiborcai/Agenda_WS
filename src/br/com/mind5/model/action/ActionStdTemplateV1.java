@@ -18,7 +18,7 @@ public abstract class ActionStdTemplateV1<T extends InfoRecord> implements Actio
 	
 	private DeciResultHelper<T> actionResult;
 	private DeciResultHelper<T> finalResult;
-	private List<ActionLazyV1<T>> postActions;
+	private List<ActionLazy<T>> postActions;
 	private boolean hasExecuted;
 	
 	
@@ -37,7 +37,7 @@ public abstract class ActionStdTemplateV1<T extends InfoRecord> implements Actio
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<T> actionLazy) {
+	@Override public void addPostAction(ActionLazy<T> actionLazy) {
 		checkArgument(actionLazy);
 		postActions.add(actionLazy);	//TODO: defensive copy
 	}
@@ -156,7 +156,7 @@ public abstract class ActionStdTemplateV1<T extends InfoRecord> implements Actio
 	
 	
 	private boolean executePostActions() {	
-		for (ActionLazyV1<T> eachAction : postActions) {
+		for (ActionLazy<T> eachAction : postActions) {
 			DeciResult<T> postResult = tryToExecutePostActions(eachAction);
 			copyToFinalResult(postResult);
 			
@@ -169,7 +169,7 @@ public abstract class ActionStdTemplateV1<T extends InfoRecord> implements Actio
 	
 	
 	
-	private DeciResult<T> tryToExecutePostActions(ActionLazyV1<T> postAction) {				
+	private DeciResult<T> tryToExecutePostActions(ActionLazy<T> postAction) {				
 		try {
 			postAction.executeAction(actionResult.getResultset());
 			return postAction.getDecisionResult();
@@ -249,7 +249,7 @@ public abstract class ActionStdTemplateV1<T extends InfoRecord> implements Actio
 	
 	
 	
-	private void checkArgument(ActionLazyV1<T> actionHandler) {
+	private void checkArgument(ActionLazy<T> actionHandler) {
 		if (actionHandler == null) {
 			logException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT);

@@ -8,7 +8,7 @@ import br.com.mind5.business.addressSearch.model.action.LazyAddarchRootSelect;
 import br.com.mind5.business.addressSearch.model.action.StdAddarchEnforceStore;
 import br.com.mind5.business.addressSearch.model.checker.AddarchCheckLangu;
 import br.com.mind5.business.addressSearch.model.checker.AddarchCheckReadStore;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -52,7 +52,7 @@ public final class RootAddarchSelectStore extends DeciTreeTemplateWriteV2<Addarc
 		List<ActionStdV1<AddarchInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<AddarchInfo> enforceStore = new StdAddarchEnforceStore(option);
-		ActionLazyV1<AddarchInfo> select = new LazyAddarchRootSelect(option.conn, option.schemaName);
+		ActionLazy<AddarchInfo> select = new LazyAddarchRootSelect(option.conn, option.schemaName);
 		
 		enforceStore.addPostAction(select);
 		

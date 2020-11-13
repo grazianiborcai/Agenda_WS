@@ -8,7 +8,7 @@ import br.com.mind5.message.emailWelcome.model.action.LazyEmacomeSendEmail;
 import br.com.mind5.message.emailWelcome.model.action.StdEmacomeEnforceEmabody;
 import br.com.mind5.message.emailWelcome.model.checker.EmacomeCheckHasOwnelis;
 import br.com.mind5.message.emailWelcome.model.checker.EmacomeCheckHasPersolis;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -52,7 +52,7 @@ public final class NodeEmacomeSend extends DeciTreeTemplateWriteV2<EmacomeInfo> 
 		List<ActionStdV1<EmacomeInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<EmacomeInfo> enforceEmabody = new StdEmacomeEnforceEmabody(option);	
-		ActionLazyV1<EmacomeInfo> send = new LazyEmacomeSendEmail(option.conn, option.schemaName);
+		ActionLazy<EmacomeInfo> send = new LazyEmacomeSendEmail(option.conn, option.schemaName);
 		
 		enforceEmabody.addPostAction(send);
 		

@@ -14,7 +14,7 @@ import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckCancel;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckExist;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -72,11 +72,11 @@ public final class RootSchedineCancelSilent extends DeciTreeTemplateWriteV2<Sche
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<SchedineInfo> enforceLChanged = new StdSchedineEnforceLChanged(option);
-		ActionLazyV1<SchedineInfo> mergeUsername = new LazySchedineMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> enforceStatus = new LazySchedineEnforceCancelled(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> nodeSnapshot = new LazySchedineNodeSnapshot(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> insertSchedovm = new LazySchedineInsertSchedovm(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> delete = new LazySchedineDaoDelete(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> mergeUsername = new LazySchedineMergeUsername(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> enforceStatus = new LazySchedineEnforceCancelled(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> nodeSnapshot = new LazySchedineNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> insertSchedovm = new LazySchedineInsertSchedovm(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> delete = new LazySchedineDaoDelete(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(mergeUsername);
 		mergeUsername.addPostAction(enforceStatus);

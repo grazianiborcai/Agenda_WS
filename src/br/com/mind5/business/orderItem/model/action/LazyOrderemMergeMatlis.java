@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrderemMergeMatlis extends ActionLazyTemplateV2<OrderemInfo, OrderemInfo> {
+public final class LazyOrderemMergeMatlis extends ActionLazyTemplate<OrderemInfo, OrderemInfo> {
 	
 	public LazyOrderemMergeMatlis(Connection conn, String schemaName) {
 		super(conn, schemaName);

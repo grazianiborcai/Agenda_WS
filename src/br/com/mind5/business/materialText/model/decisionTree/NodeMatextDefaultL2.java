@@ -12,7 +12,7 @@ import br.com.mind5.business.materialText.model.action.LazyMatextDaoUpdate;
 import br.com.mind5.business.materialText.model.action.StdMatextMergeMatextault;
 import br.com.mind5.business.materialText.model.action.StdMatextSuccess;
 import br.com.mind5.business.materialText.model.checker.MatextCheckMatextault;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -49,11 +49,11 @@ public final class NodeMatextDefaultL2 extends DeciTreeTemplateWriteV2<MatextInf
 		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatextInfo> mergeMatextault = new StdMatextMergeMatextault(option);
-		ActionLazyV1<MatextInfo> mergeToSelect = new LazyMatextMergeToSelect(option.conn, option.schemaName);
-		ActionLazyV1<MatextInfo> enforceLChanged = new LazyMatextEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazyV1<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<MatextInfo> enforceDefaultOff = new LazyMatextEnforceDefaultOff(option.conn, option.schemaName);
-		ActionLazyV1<MatextInfo> update = new LazyMatextDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> mergeToSelect = new LazyMatextMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> enforceLChanged = new LazyMatextEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazy<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> enforceDefaultOff = new LazyMatextEnforceDefaultOff(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> update = new LazyMatextDaoUpdate(option.conn, option.schemaName);
 		ActionStdV1<MatextInfo> success = new StdMatextSuccess(option);	
 		
 		mergeMatextault.addPostAction(mergeToSelect);

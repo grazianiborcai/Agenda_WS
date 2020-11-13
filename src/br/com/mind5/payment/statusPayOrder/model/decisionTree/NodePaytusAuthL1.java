@@ -3,7 +3,7 @@ package br.com.mind5.payment.statusPayOrder.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodePaytusAuthL1 extends DeciTreeTemplateWriteV2<PaytusInfo> 
 		List<ActionStdV1<PaytusInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<PaytusInfo> mergeUsername = new StdPaytusMergeUsername(option);
-		ActionLazyV1<PaytusInfo> nodeL2 = new LazyPaytusNodeAuthL2(option.conn, option.schemaName);
+		ActionLazy<PaytusInfo> nodeL2 = new LazyPaytusNodeAuthL2(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(nodeL2);
 		

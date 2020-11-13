@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineDaoUpdate;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineInsertSchedinap;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeSchedineSnapshot extends DeciTreeTemplateWriteV2<Schedine
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedineInfo> insertSchedinap = new StdSchedineInsertSchedinap(option);
-		ActionLazyV1<SchedineInfo> update = new LazySchedineDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> update = new LazySchedineDaoUpdate(option.conn, option.schemaName);
 		
 		insertSchedinap.addPostAction(update);
 		

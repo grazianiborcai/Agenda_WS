@@ -15,7 +15,7 @@ import br.com.mind5.business.order.model.action.LazyOrderNodeRefugroupL1;
 import br.com.mind5.business.order.model.action.StdOrderMergeToSelect;
 import br.com.mind5.business.order.model.checker.OrderCheckLangu;
 import br.com.mind5.business.order.model.checker.OrderCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -59,14 +59,14 @@ public final class RootOrderSelect extends DeciTreeTemplateReadV2<OrderInfo> {
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<OrderInfo> select = new StdOrderMergeToSelect(option);
-		ActionLazyV1<OrderInfo> mergeItem = new LazyOrderMergeOrderem(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> enforceCurrency = new LazyOrderEnforceCurrency(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> mergeCurrency = new LazyOrderMergeCurrency(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> mergeOrderatus = new LazyOrderMergeOrderatus(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> enforceFeecat = new LazyOrderEnforceFeecat(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> mergeFeecat = new LazyOrderMergeFeecat(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> nodePayord = new LazyOrderNodePayord(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> nodeRefugroup = new LazyOrderNodeRefugroupL1(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeItem = new LazyOrderMergeOrderem(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> enforceCurrency = new LazyOrderEnforceCurrency(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeCurrency = new LazyOrderMergeCurrency(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeOrderatus = new LazyOrderMergeOrderatus(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> enforceFeecat = new LazyOrderEnforceFeecat(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeFeecat = new LazyOrderMergeFeecat(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> nodePayord = new LazyOrderNodePayord(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> nodeRefugroup = new LazyOrderNodeRefugroupL1(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeItem);
 		mergeItem.addPostAction(enforceCurrency);

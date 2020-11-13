@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.decsionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -48,11 +48,11 @@ public final class RootOrdmoipRead extends DeciTreeTemplateWriteV2<OrdmoipInfo> 
 		List<ActionStdV1<OrdmoipInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<OrdmoipInfo> enforcePaypar = new StdOrdmoipEnforcePaypar(option);	
-		ActionLazyV1<OrdmoipInfo> mergeSetupar = new LazyOrdmoipMergeSetupar(option.conn, option.schemaName);	
-		ActionLazyV1<OrdmoipInfo> mergeSysenv = new LazyOrdmoipMergeSysenv(option.conn, option.schemaName);	
-		ActionLazyV1<OrdmoipInfo> enforceSetup = new LazyOrdmoipEnforceSetup(option.conn, option.schemaName);		
-		ActionLazyV1<OrdmoipInfo> read = new LazyOrdmoipRead(option.conn, option.schemaName);
-		ActionLazyV1<OrdmoipInfo> enforceResponseAttr = new LazyOrdmoipEnforceResponseAttr(option.conn, option.schemaName);
+		ActionLazy<OrdmoipInfo> mergeSetupar = new LazyOrdmoipMergeSetupar(option.conn, option.schemaName);	
+		ActionLazy<OrdmoipInfo> mergeSysenv = new LazyOrdmoipMergeSysenv(option.conn, option.schemaName);	
+		ActionLazy<OrdmoipInfo> enforceSetup = new LazyOrdmoipEnforceSetup(option.conn, option.schemaName);		
+		ActionLazy<OrdmoipInfo> read = new LazyOrdmoipRead(option.conn, option.schemaName);
+		ActionLazy<OrdmoipInfo> enforceResponseAttr = new LazyOrdmoipEnforceResponseAttr(option.conn, option.schemaName);
 		
 		enforcePaypar.addPostAction(mergeSetupar);
 		mergeSetupar.addPostAction(mergeSysenv);

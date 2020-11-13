@@ -13,7 +13,7 @@ import br.com.mind5.business.employee.model.action.StdEmpMergeToDelete;
 import br.com.mind5.business.employee.model.checker.EmpCheckDelete;
 import br.com.mind5.business.employee.model.checker.EmpCheckExist;
 import br.com.mind5.business.employee.model.checker.EmpCheckLangu;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -65,11 +65,11 @@ public final class RootEmpDelete extends DeciTreeTemplateWriteV2<EmpInfo> {
 		//TODO: eliminar do carrinho de compras
 		//TODO: verificar schedule
 		ActionStdV1<EmpInfo> mergeToDelete = new StdEmpMergeToDelete(option);
-		ActionLazyV1<EmpInfo> nodeSytotauh = new LazyEmpNodeSytotauh(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> enforceLChanged = new LazyEmpEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> update = new LazyEmpDaoUpdate(option.conn, option.schemaName);	
-		ActionLazyV1<EmpInfo> deleteEmployee = new LazyEmpDaoDelete(option.conn, option.schemaName);	
+		ActionLazy<EmpInfo> nodeSytotauh = new LazyEmpNodeSytotauh(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> enforceLChanged = new LazyEmpEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> update = new LazyEmpDaoUpdate(option.conn, option.schemaName);	
+		ActionLazy<EmpInfo> deleteEmployee = new LazyEmpDaoDelete(option.conn, option.schemaName);	
 
 		mergeToDelete.addPostAction(nodeSytotauh);
 		nodeSytotauh.addPostAction(enforceLChanged);

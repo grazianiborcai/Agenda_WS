@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrder.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -40,9 +40,9 @@ public final class NodePayordPay extends DeciTreeTemplateWriteV2<PayordInfo> {
 		List<ActionStdV1<PayordInfo>> actions = new ArrayList<>();		
 	
 		ActionStdV1<PayordInfo> multmoipPay = new StdPayordMultmoipPay(option);
-		ActionLazyV1<PayordInfo> updatePayord = new LazyPayordDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<PayordInfo> updatePayordem = new LazyPayordUpdatePayordem(option.conn, option.schemaName);
-		ActionLazyV1<PayordInfo> orderRefresh = new LazyPayordOrderRefresh(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> updatePayord = new LazyPayordDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> updatePayordem = new LazyPayordUpdatePayordem(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> orderRefresh = new LazyPayordOrderRefresh(option.conn, option.schemaName);
 		
 		multmoipPay.addPostAction(updatePayord);
 		updatePayord.addPostAction(updatePayordem);

@@ -4,7 +4,7 @@ import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
 import br.com.mind5.authorization.scheduleAuthorization.model.action.LazySchedauthDaoSelect;
 import br.com.mind5.authorization.scheduleAuthorization.model.action.StdSchedauthMergeUsername;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
@@ -20,7 +20,7 @@ public final class SchedauthCheckExist extends ModelCheckerTemplateActionV2<Sche
 	
 	@Override protected ActionStdV1<SchedauthInfo> buildActionHook(DeciTreeOption<SchedauthInfo> option) {
 		ActionStdV1<SchedauthInfo> mergeUsername = new StdSchedauthMergeUsername(option);
-		ActionLazyV1<SchedauthInfo> select = new LazySchedauthDaoSelect(option.conn, option.schemaName);
+		ActionLazy<SchedauthInfo> select = new LazySchedauthDaoSelect(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(select);
 		return mergeUsername;

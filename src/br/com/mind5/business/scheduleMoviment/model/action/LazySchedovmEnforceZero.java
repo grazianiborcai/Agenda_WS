@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.scheduleMoviment.info.SchedovmInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedovmEnforceZero extends ActionLazyTemplateV2<SchedovmInfo, SchedovmInfo> {
+public final class LazySchedovmEnforceZero extends ActionLazyTemplate<SchedovmInfo, SchedovmInfo> {
 	
 	public LazySchedovmEnforceZero(Connection conn, String schemaName) {
 		super(conn, schemaName);

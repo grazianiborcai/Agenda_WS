@@ -7,7 +7,7 @@ import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialSearch.model.action.LazyMatarchRootSelectAuth;
 import br.com.mind5.business.materialSearch.model.action.StdMatarchEnforceMatCategService;
 import br.com.mind5.business.materialSearch.model.checker.MatarchCheckReadMat;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class RootMatarchSelectService extends DeciTreeTemplateReadV2<Matar
 		List<ActionStdV1<MatarchInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatarchInfo> enforceMatCategService = new StdMatarchEnforceMatCategService(option);
-		ActionLazyV1<MatarchInfo> select = new LazyMatarchRootSelectAuth(option.conn, option.schemaName);
+		ActionLazy<MatarchInfo> select = new LazyMatarchRootSelectAuth(option.conn, option.schemaName);
 		
 		enforceMatCategService.addPostAction(select);
 		

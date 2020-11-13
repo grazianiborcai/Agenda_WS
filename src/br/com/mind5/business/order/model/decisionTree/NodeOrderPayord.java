@@ -8,7 +8,7 @@ import br.com.mind5.business.order.model.action.LazyOrderMergeOrdugePartner;
 import br.com.mind5.business.order.model.action.StdOrderMergePayord;
 import br.com.mind5.business.order.model.action.StdOrderSuccess;
 import br.com.mind5.business.order.model.checker.OrderCheckHasPayord;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,7 +45,7 @@ public final class NodeOrderPayord extends DeciTreeTemplateWriteV2<OrderInfo> {
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<OrderInfo> mergePayord = new StdOrderMergePayord(option);
-		ActionLazyV1<OrderInfo> statusChange = new LazyOrderMergeOrdugePartner(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> statusChange = new LazyOrderMergeOrdugePartner(option.conn, option.schemaName);
 		
 		mergePayord.addPostAction(statusChange);
 		

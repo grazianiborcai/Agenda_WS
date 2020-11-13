@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.model.action.LazyOrdistRootSelect;
 import br.com.mind5.business.orderList.model.action.StdOrdistMergeOrdarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootOrdistSearch extends DeciTreeTemplateReadV2<OrdistInfo> {
 		List<ActionStdV1<OrdistInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<OrdistInfo> mergeOrdarch = new StdOrdistMergeOrdarch(option);
-		ActionLazyV1<OrdistInfo> select = new LazyOrdistRootSelect(option.conn, option.schemaName);
+		ActionLazy<OrdistInfo> select = new LazyOrdistRootSelect(option.conn, option.schemaName);
 		
 		mergeOrdarch.addPostAction(select);
 		

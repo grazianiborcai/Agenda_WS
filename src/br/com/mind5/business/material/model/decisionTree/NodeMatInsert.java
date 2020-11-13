@@ -10,7 +10,7 @@ import br.com.mind5.business.material.model.action.LazyMatEnforceCreatedOn;
 import br.com.mind5.business.material.model.action.LazyMatEnforceLChanged;
 import br.com.mind5.business.material.model.action.LazyMatMergeSytotauh;
 import br.com.mind5.business.material.model.action.LazyMatMergeUsername;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -42,12 +42,12 @@ public final class NodeMatInsert extends DeciTreeTemplateWriteV2<MatInfo> {
 		List<ActionStdV1<MatInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<MatInfo> nodeService = new NodeMatServiceL1(option).toAction();	
-		ActionLazyV1<MatInfo> enforceLChanged = new LazyMatEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazyV1<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<MatInfo> enforceCreatedOn = new LazyMatEnforceCreatedOn(option.conn, option.schemaName);	
-		ActionLazyV1<MatInfo> enforceCreatedBy = new LazyMatEnforceCreatedBy(option.conn, option.schemaName);
-		ActionLazyV1<MatInfo> mergeSytotauh = new LazyMatMergeSytotauh(option.conn, option.schemaName);
-		ActionLazyV1<MatInfo> insertMat = new LazyMatDaoInsert(option.conn, option.schemaName);	
+		ActionLazy<MatInfo> enforceLChanged = new LazyMatEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazy<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
+		ActionLazy<MatInfo> enforceCreatedOn = new LazyMatEnforceCreatedOn(option.conn, option.schemaName);	
+		ActionLazy<MatInfo> enforceCreatedBy = new LazyMatEnforceCreatedBy(option.conn, option.schemaName);
+		ActionLazy<MatInfo> mergeSytotauh = new LazyMatMergeSytotauh(option.conn, option.schemaName);
+		ActionLazy<MatInfo> insertMat = new LazyMatDaoInsert(option.conn, option.schemaName);	
 		
 		nodeService.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

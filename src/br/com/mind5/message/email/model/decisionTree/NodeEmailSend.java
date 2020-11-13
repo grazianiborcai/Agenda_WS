@@ -7,7 +7,7 @@ import br.com.mind5.message.email.info.EmailInfo;
 import br.com.mind5.message.email.model.action.LazyEmailSendMessage;
 import br.com.mind5.message.email.model.action.StdEmailMergeToSelect;
 import br.com.mind5.message.email.model.checker.EmailCheckSend;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class NodeEmailSend extends DeciTreeTemplateWriteV2<EmailInfo> {
 		List<ActionStdV1<EmailInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<EmailInfo> select = new StdEmailMergeToSelect(option);
-		ActionLazyV1<EmailInfo> sendMessage = new LazyEmailSendMessage(option.conn, option.schemaName);
+		ActionLazy<EmailInfo> sendMessage = new LazyEmailSendMessage(option.conn, option.schemaName);
 		
 		select.addPostAction(sendMessage);
 		//TODO: gravar em log os envios de e-mails

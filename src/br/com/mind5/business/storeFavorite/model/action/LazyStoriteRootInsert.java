@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
 import br.com.mind5.business.storeFavorite.model.decisionTree.RootStoriteInsert;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStoriteRootInsert extends ActionLazyTemplateV2<StoriteInfo, StoriteInfo> {
+public final class LazyStoriteRootInsert extends ActionLazyTemplate<StoriteInfo, StoriteInfo> {
 	
 	public LazyStoriteRootInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);

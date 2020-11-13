@@ -8,7 +8,7 @@ import br.com.mind5.business.store.model.action.LazyStorePhoneUpsert;
 import br.com.mind5.business.store.model.action.StdStoreEnforcePhoneKey;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
 import br.com.mind5.business.store.model.checker.StoreCheckHasPhone;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,7 +45,7 @@ public final class NodeStoreUpsertPhone extends DeciTreeTemplateWriteV2<StoreInf
 		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StoreInfo> enforcePhoneKey = new StdStoreEnforcePhoneKey(option);
-		ActionLazyV1<StoreInfo> upsertPhone = new LazyStorePhoneUpsert(option.conn, option.schemaName);	
+		ActionLazy<StoreInfo> upsertPhone = new LazyStorePhoneUpsert(option.conn, option.schemaName);	
 		
 		enforcePhoneKey.addPostAction(upsertPhone);
 		

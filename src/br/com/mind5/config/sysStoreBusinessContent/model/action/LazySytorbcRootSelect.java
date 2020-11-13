@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.config.sysStoreBusinessContent.info.SytorbcInfo;
 import br.com.mind5.config.sysStoreBusinessContent.model.decisionTree.RootSytorbcSelect;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySytorbcRootSelect extends ActionLazyTemplateV2<SytorbcInfo, SytorbcInfo> {
+public final class LazySytorbcRootSelect extends ActionLazyTemplate<SytorbcInfo, SytorbcInfo> {
 
 	public LazySytorbcRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

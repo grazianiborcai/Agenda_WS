@@ -11,7 +11,7 @@ import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckCancel;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckExist;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -69,8 +69,8 @@ public final class RootSchedineCancel extends DeciTreeTemplateWriteV2<SchedineIn
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<SchedineInfo> mergeToSelect = new StdSchedineMergeToSelect(option);
-		ActionLazyV1<SchedineInfo> cancel = new LazySchedineNodeCancel(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> obfuscate = new LazySchedineObfuscate(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> cancel = new LazySchedineNodeCancel(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> obfuscate = new LazySchedineObfuscate(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(cancel);
 		mergeToSelect.addPostAction(obfuscate);

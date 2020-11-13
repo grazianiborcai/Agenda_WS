@@ -12,7 +12,7 @@ import br.com.mind5.business.phone.model.action.LazyPhoneMergeUsername;
 import br.com.mind5.business.phone.model.action.StdPhoneMergePhonault;
 import br.com.mind5.business.phone.model.action.StdPhoneSuccess;
 import br.com.mind5.business.phone.model.checker.PhoneCheckPhonault;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -49,11 +49,11 @@ public final class NodePhoneDefaultL2 extends DeciTreeTemplateWriteV2<PhoneInfo>
 		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<PhoneInfo> mergePhonault = new StdPhoneMergePhonault(option);
-		ActionLazyV1<PhoneInfo> mergeToSelect = new LazyPhoneMergeToSelect(option.conn, option.schemaName);
-		ActionLazyV1<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazyV1<PhoneInfo> enforceLChangedBy = new LazyPhoneMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<PhoneInfo> enforceDefaultOff = new LazyPhoneEnforceDefaultOff(option.conn, option.schemaName);
-		ActionLazyV1<PhoneInfo> update = new LazyPhoneDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<PhoneInfo> mergeToSelect = new LazyPhoneMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazy<PhoneInfo> enforceLChangedBy = new LazyPhoneMergeUsername(option.conn, option.schemaName);
+		ActionLazy<PhoneInfo> enforceDefaultOff = new LazyPhoneEnforceDefaultOff(option.conn, option.schemaName);
+		ActionLazy<PhoneInfo> update = new LazyPhoneDaoUpdate(option.conn, option.schemaName);
 		ActionStdV1<PhoneInfo> success = new StdPhoneSuccess(option);	
 		
 		mergePhonault.addPostAction(mergeToSelect);

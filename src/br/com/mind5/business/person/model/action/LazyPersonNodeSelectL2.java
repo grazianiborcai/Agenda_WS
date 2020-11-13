@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.decisionTree.NodePersonSelectL2;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPersonNodeSelectL2 extends ActionLazyTemplateV2<PersonInfo, PersonInfo> {
+public final class LazyPersonNodeSelectL2 extends ActionLazyTemplate<PersonInfo, PersonInfo> {
 
 	public LazyPersonNodeSelectL2(Connection conn, String schemaName) {
 		super(conn, schemaName);

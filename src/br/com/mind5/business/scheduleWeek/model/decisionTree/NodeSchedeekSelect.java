@@ -14,7 +14,7 @@ import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeStolis;
 import br.com.mind5.business.scheduleWeek.model.action.StdSchedeekMergeCalate;
 import br.com.mind5.business.scheduleWeek.model.action.StdSchedeekMergeSchedeekdat;
 import br.com.mind5.business.scheduleWeek.model.checker.SchedeekCheckSchedeekdat;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -51,13 +51,13 @@ public final class NodeSchedeekSelect extends DeciTreeTemplateWriteV2<SchedeekIn
 		List<ActionStdV1<SchedeekInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedeekInfo> mergeSchedeekdat = new StdSchedeekMergeSchedeekdat(option);
-		ActionLazyV1<SchedeekInfo> mergeStolis = new LazySchedeekMergeStolis(option.conn, option.schemaName);
-		ActionLazyV1<SchedeekInfo> mergeMatlis = new LazySchedeekMergeMatlis(option.conn, option.schemaName);
-		ActionLazyV1<SchedeekInfo> mergeEmplis = new LazySchedeekMergeEmplis(option.conn, option.schemaName);
-		ActionLazyV1<SchedeekInfo> mergeCuslis = new LazySchedeekMergeCuslis(option.conn, option.schemaName);
-		ActionLazyV1<SchedeekInfo> mergeCalate = new LazySchedeekMergeCalate(option.conn, option.schemaName);
-		ActionLazyV1<SchedeekInfo> mergeCalimore = new LazySchedeekMergeCalimore(option.conn, option.schemaName);
-		ActionLazyV1<SchedeekInfo> mergeCalimemp = new LazySchedeekMergeCalimemp(option.conn, option.schemaName);
+		ActionLazy<SchedeekInfo> mergeStolis = new LazySchedeekMergeStolis(option.conn, option.schemaName);
+		ActionLazy<SchedeekInfo> mergeMatlis = new LazySchedeekMergeMatlis(option.conn, option.schemaName);
+		ActionLazy<SchedeekInfo> mergeEmplis = new LazySchedeekMergeEmplis(option.conn, option.schemaName);
+		ActionLazy<SchedeekInfo> mergeCuslis = new LazySchedeekMergeCuslis(option.conn, option.schemaName);
+		ActionLazy<SchedeekInfo> mergeCalate = new LazySchedeekMergeCalate(option.conn, option.schemaName);
+		ActionLazy<SchedeekInfo> mergeCalimore = new LazySchedeekMergeCalimore(option.conn, option.schemaName);
+		ActionLazy<SchedeekInfo> mergeCalimemp = new LazySchedeekMergeCalimemp(option.conn, option.schemaName);
 		
 		mergeSchedeekdat.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeMatlis);
@@ -77,8 +77,8 @@ public final class NodeSchedeekSelect extends DeciTreeTemplateWriteV2<SchedeekIn
 		List<ActionStdV1<SchedeekInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedeekInfo> mergeCalate = new StdSchedeekMergeCalate(option);
-		ActionLazyV1<SchedeekInfo> mergeCalimore = new LazySchedeekMergeCalimore(option.conn, option.schemaName);
-		ActionLazyV1<SchedeekInfo> mergeCalimemp = new LazySchedeekMergeCalimemp(option.conn, option.schemaName);
+		ActionLazy<SchedeekInfo> mergeCalimore = new LazySchedeekMergeCalimore(option.conn, option.schemaName);
+		ActionLazy<SchedeekInfo> mergeCalimemp = new LazySchedeekMergeCalimemp(option.conn, option.schemaName);
 		
 		mergeCalate.addPostAction(mergeCalimore);
 		mergeCalimore.addPostAction(mergeCalimemp);

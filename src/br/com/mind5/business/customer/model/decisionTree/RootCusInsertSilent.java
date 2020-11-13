@@ -12,7 +12,7 @@ import br.com.mind5.business.customer.model.action.LazyCusRootSelect;
 import br.com.mind5.business.customer.model.checker.CusCheckInsert;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
 import br.com.mind5.business.customer.model.checker.CusCheckOwner;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -63,11 +63,11 @@ public final class RootCusInsertSilent extends DeciTreeTemplateWriteV2<CusInfo> 
 		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<CusInfo> insertCustomer = new NodeCusInsert(option).toAction();		
-		ActionLazyV1<CusInfo> insertPerson = new LazyCusNodeInsertPerson(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> snapshot = new LazyCusNodeSnapshot(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> insertAddress = new LazyCusNodeInsertAddress(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> insertPhone = new LazyCusNodeInsertPhone(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> select = new LazyCusRootSelect(option.conn, option.schemaName);	
+		ActionLazy<CusInfo> insertPerson = new LazyCusNodeInsertPerson(option.conn, option.schemaName);
+		ActionLazy<CusInfo> snapshot = new LazyCusNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<CusInfo> insertAddress = new LazyCusNodeInsertAddress(option.conn, option.schemaName);
+		ActionLazy<CusInfo> insertPhone = new LazyCusNodeInsertPhone(option.conn, option.schemaName);
+		ActionLazy<CusInfo> select = new LazyCusRootSelect(option.conn, option.schemaName);	
 		
 		insertCustomer.addPostAction(insertPerson);
 		insertPerson.addPostAction(snapshot);

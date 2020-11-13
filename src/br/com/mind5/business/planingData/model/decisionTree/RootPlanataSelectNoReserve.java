@@ -15,7 +15,7 @@ import br.com.mind5.business.planingData.model.action.LazyPlanataPruneStoplis;
 import br.com.mind5.business.planingData.model.action.StdPlanataEnforceWeekday;
 import br.com.mind5.business.planingData.model.checker.PlanataCheckDate;
 import br.com.mind5.business.planingData.model.checker.PlanataCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -59,14 +59,14 @@ public class RootPlanataSelectNoReserve extends DeciTreeTemplateReadV1<PlanataIn
 		List<ActionStdV1<PlanataInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<PlanataInfo> enforceWeekday = new StdPlanataEnforceWeekday(option);		
-		ActionLazyV1<PlanataInfo> select = new LazyPlanataMergeToSelect(option.conn, option.schemaName);	
-		ActionLazyV1<PlanataInfo> mergeMooncal = new LazyPlanataMergeMooncal(option.conn, option.schemaName);	
-		ActionLazyV1<PlanataInfo> mergeMatlis = new LazyPlanataMergeMatlis(option.conn, option.schemaName);	
-		ActionLazyV1<PlanataInfo> pruneEmplate = new LazyPlanataPruneEmplate(option.conn, option.schemaName);
-		ActionLazyV1<PlanataInfo> pruneStolate = new LazyPlanataPruneStolate(option.conn, option.schemaName);
-		ActionLazyV1<PlanataInfo> pruneAged = new LazyPlanataPruneAged(option.conn, option.schemaName);
-		ActionLazyV1<PlanataInfo> pruneStoplis = new LazyPlanataPruneStoplis(option.conn, option.schemaName);
-		ActionLazyV1<PlanataInfo> enforceDaypart = new LazyPlanataEnforceDaypart(option.conn, option.schemaName);
+		ActionLazy<PlanataInfo> select = new LazyPlanataMergeToSelect(option.conn, option.schemaName);	
+		ActionLazy<PlanataInfo> mergeMooncal = new LazyPlanataMergeMooncal(option.conn, option.schemaName);	
+		ActionLazy<PlanataInfo> mergeMatlis = new LazyPlanataMergeMatlis(option.conn, option.schemaName);	
+		ActionLazy<PlanataInfo> pruneEmplate = new LazyPlanataPruneEmplate(option.conn, option.schemaName);
+		ActionLazy<PlanataInfo> pruneStolate = new LazyPlanataPruneStolate(option.conn, option.schemaName);
+		ActionLazy<PlanataInfo> pruneAged = new LazyPlanataPruneAged(option.conn, option.schemaName);
+		ActionLazy<PlanataInfo> pruneStoplis = new LazyPlanataPruneStoplis(option.conn, option.schemaName);
+		ActionLazy<PlanataInfo> enforceDaypart = new LazyPlanataEnforceDaypart(option.conn, option.schemaName);
 		
 		enforceWeekday.addPostAction(select);
 		select.addPostAction(mergeMooncal);

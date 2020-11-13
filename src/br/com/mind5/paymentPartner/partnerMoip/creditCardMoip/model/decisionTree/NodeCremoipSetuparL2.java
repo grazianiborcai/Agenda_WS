@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,8 +45,8 @@ public final class NodeCremoipSetuparL2 extends DeciTreeTemplateWriteV2<CremoipI
 		List<ActionStdV1<CremoipInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CremoipInfo> mergeSetupar = new StdCremoipMergeSetupar(option);
-		ActionLazyV1<CremoipInfo> mergeSysenv = new LazyCremoipMergeSysenv(option.conn, option.schemaName);
-		ActionLazyV1<CremoipInfo> enforceSetup = new LazyCremoipEnforceSetup(option.conn, option.schemaName);
+		ActionLazy<CremoipInfo> mergeSysenv = new LazyCremoipMergeSysenv(option.conn, option.schemaName);
+		ActionLazy<CremoipInfo> enforceSetup = new LazyCremoipEnforceSetup(option.conn, option.schemaName);
 		
 		mergeSetupar.addPostAction(mergeSysenv);
 		mergeSysenv.addPostAction(enforceSetup);

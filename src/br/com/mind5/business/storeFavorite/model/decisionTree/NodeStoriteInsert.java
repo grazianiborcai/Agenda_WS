@@ -9,7 +9,7 @@ import br.com.mind5.business.storeFavorite.model.action.LazyStoriteEnforceLChang
 import br.com.mind5.business.storeFavorite.model.action.StdStoriteEnforceCreatedOn;
 import br.com.mind5.business.storeFavorite.model.action.StdStoriteSuccess;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckExist;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -57,8 +57,8 @@ public final class NodeStoriteInsert extends DeciTreeTemplateWriteV2<StoriteInfo
 		List<ActionStdV1<StoriteInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StoriteInfo> enforceCreatedOn = new StdStoriteEnforceCreatedOn(option);
-		ActionLazyV1<StoriteInfo> enforceLChanged = new LazyStoriteEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<StoriteInfo> insert = new LazyStoriteDaoInsert(option.conn, option.schemaName);
+		ActionLazy<StoriteInfo> enforceLChanged = new LazyStoriteEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<StoriteInfo> insert = new LazyStoriteDaoInsert(option.conn, option.schemaName);
 		
 		enforceCreatedOn.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(insert);

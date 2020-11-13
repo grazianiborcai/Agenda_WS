@@ -3,7 +3,7 @@ package br.com.mind5.payment.countryPartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class RootCounparSelect extends DeciTreeTemplateReadV2<CounparInfo>
 		List<ActionStdV1<CounparInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CounparInfo> select = new StdCounparDaoSelect(option);
-		ActionLazyV1<CounparInfo> mergePayPartner = new LazyCounparMergePaypar(option.conn, option.schemaName);
+		ActionLazy<CounparInfo> mergePayPartner = new LazyCounparMergePaypar(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePayPartner);
 		

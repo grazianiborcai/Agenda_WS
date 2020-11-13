@@ -9,7 +9,7 @@ import br.com.mind5.business.materialText.model.action.StdMatextMergeMatextarch;
 import br.com.mind5.business.materialText.model.checker.MatextCheckMat;
 import br.com.mind5.business.materialText.model.checker.MatextCheckOwner;
 import br.com.mind5.business.materialText.model.checker.MatextCheckSearch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -60,7 +60,7 @@ public final class RootMatextSearch extends DeciTreeTemplateWriteV2<MatextInfo> 
 		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatextInfo> mergeMatextarch = new StdMatextMergeMatextarch(option);
-		ActionLazyV1<MatextInfo> select = new LazyMatextRootSelect(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> select = new LazyMatextRootSelect(option.conn, option.schemaName);
 		
 		mergeMatextarch.addPostAction(select);
 		

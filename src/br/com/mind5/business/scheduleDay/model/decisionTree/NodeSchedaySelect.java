@@ -14,7 +14,7 @@ import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeStolis;
 import br.com.mind5.business.scheduleDay.model.action.StdSchedayMergeCalate;
 import br.com.mind5.business.scheduleDay.model.action.StdSchedayMergeSchedayta;
 import br.com.mind5.business.scheduleDay.model.checker.SchedayCheckSchedayta;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -51,13 +51,13 @@ public final class NodeSchedaySelect extends DeciTreeTemplateWriteV2<SchedayInfo
 		List<ActionStdV1<SchedayInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedayInfo> mergeSchedayta = new StdSchedayMergeSchedayta(option);
-		ActionLazyV1<SchedayInfo> mergeStolis = new LazySchedayMergeStolis(option.conn, option.schemaName);
-		ActionLazyV1<SchedayInfo> mergeMatlis = new LazySchedayMergeMatlis(option.conn, option.schemaName);
-		ActionLazyV1<SchedayInfo> mergeEmplis = new LazySchedayMergeEmplis(option.conn, option.schemaName);
-		ActionLazyV1<SchedayInfo> mergeCuslis = new LazySchedayMergeCuslis(option.conn, option.schemaName);
-		ActionLazyV1<SchedayInfo> mergeSchedatus = new LazySchedayMergeSchedatus(option.conn, option.schemaName);
-		ActionLazyV1<SchedayInfo> mergeCalate = new LazySchedayMergeCalate(option.conn, option.schemaName);
-		ActionLazyV1<SchedayInfo> mergeCalimore = new LazySchedayMergeCalimore(option.conn, option.schemaName);
+		ActionLazy<SchedayInfo> mergeStolis = new LazySchedayMergeStolis(option.conn, option.schemaName);
+		ActionLazy<SchedayInfo> mergeMatlis = new LazySchedayMergeMatlis(option.conn, option.schemaName);
+		ActionLazy<SchedayInfo> mergeEmplis = new LazySchedayMergeEmplis(option.conn, option.schemaName);
+		ActionLazy<SchedayInfo> mergeCuslis = new LazySchedayMergeCuslis(option.conn, option.schemaName);
+		ActionLazy<SchedayInfo> mergeSchedatus = new LazySchedayMergeSchedatus(option.conn, option.schemaName);
+		ActionLazy<SchedayInfo> mergeCalate = new LazySchedayMergeCalate(option.conn, option.schemaName);
+		ActionLazy<SchedayInfo> mergeCalimore = new LazySchedayMergeCalimore(option.conn, option.schemaName);
 		
 		mergeSchedayta.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeMatlis);
@@ -77,7 +77,7 @@ public final class NodeSchedaySelect extends DeciTreeTemplateWriteV2<SchedayInfo
 		List<ActionStdV1<SchedayInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedayInfo> mergeCalate = new StdSchedayMergeCalate(option);
-		ActionLazyV1<SchedayInfo> mergeCalimore = new LazySchedayMergeCalimore(option.conn, option.schemaName);
+		ActionLazy<SchedayInfo> mergeCalimore = new LazySchedayMergeCalimore(option.conn, option.schemaName);
 		
 		mergeCalate.addPostAction(mergeCalimore);
 		

@@ -10,7 +10,7 @@ import br.com.mind5.business.materialText.model.action.LazyMatextRootUpdate;
 import br.com.mind5.business.materialText.model.action.StdMatextMergeMatextarch;
 import br.com.mind5.business.materialText.model.action.StdMatextSuccess;
 import br.com.mind5.business.materialText.model.checker.MatextCheckMatextarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -47,9 +47,9 @@ public final class NodeMatextDeleteL3 extends DeciTreeTemplateWriteV2<MatextInfo
 		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatextInfo> mergeMatextarch = new StdMatextMergeMatextarch(option);
-		ActionLazyV1<MatextInfo> mergeToSelect = new LazyMatextMergeToSelect(option.conn, option.schemaName);
-		ActionLazyV1<MatextInfo> enforceDefaultOn = new LazyMatextEnforceDefaultOn(option.conn, option.schemaName); 
-		ActionLazyV1<MatextInfo> update = new LazyMatextRootUpdate(option.conn, option.schemaName); 
+		ActionLazy<MatextInfo> mergeToSelect = new LazyMatextMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> enforceDefaultOn = new LazyMatextEnforceDefaultOn(option.conn, option.schemaName); 
+		ActionLazy<MatextInfo> update = new LazyMatextRootUpdate(option.conn, option.schemaName); 
 		
 		mergeMatextarch.addPostAction(mergeToSelect);
 		mergeToSelect.addPostAction(enforceDefaultOn);

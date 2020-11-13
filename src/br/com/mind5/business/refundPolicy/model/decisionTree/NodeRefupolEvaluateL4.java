@@ -9,7 +9,7 @@ import br.com.mind5.business.refundPolicy.model.action.LazyRefupolEnforceRHour;
 import br.com.mind5.business.refundPolicy.model.action.LazyRefupolNodeEvaluateL5;
 import br.com.mind5.business.refundPolicy.model.action.StdRefupolMergeRefupore;
 import br.com.mind5.business.refundPolicy.model.checker.RefupolCheckEvaluateService;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -46,9 +46,9 @@ public final class NodeRefupolEvaluateL4 extends DeciTreeTemplateWriteV2<Refupol
 		List<ActionStdV1<RefupolInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<RefupolInfo> mergeRefupore = new StdRefupolMergeRefupore(option);
-		ActionLazyV1<RefupolInfo> enforceRHour = new LazyRefupolEnforceRHour(option.conn, option.schemaName);
-		ActionLazyV1<RefupolInfo> enfoerceHasPassed = new LazyRefupolEnforceHasPassed(option.conn, option.schemaName);
-		ActionLazyV1<RefupolInfo> nodeL5 = new LazyRefupolNodeEvaluateL5(option.conn, option.schemaName);
+		ActionLazy<RefupolInfo> enforceRHour = new LazyRefupolEnforceRHour(option.conn, option.schemaName);
+		ActionLazy<RefupolInfo> enfoerceHasPassed = new LazyRefupolEnforceHasPassed(option.conn, option.schemaName);
+		ActionLazy<RefupolInfo> nodeL5 = new LazyRefupolNodeEvaluateL5(option.conn, option.schemaName);
 		
 		mergeRefupore.addPostAction(enforceRHour);
 		enforceRHour.addPostAction(enfoerceHasPassed);

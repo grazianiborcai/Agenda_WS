@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceCodUser;
 import br.com.mind5.file.fileImage.model.action.StdFimgMergeUsername;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeFimgUser extends DeciTreeTemplateWriteV2<FimgInfo> {
 		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<FimgInfo> enforceLChangedBy = new StdFimgMergeUsername(option);	
-		ActionLazyV1<FimgInfo> enforceCodUser = new LazyFimgEnforceCodUser(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> enforceCodUser = new LazyFimgEnforceCodUser(option.conn, option.schemaName);
 		
 		enforceLChangedBy.addPostAction(enforceCodUser);
 		

@@ -14,7 +14,7 @@ import br.com.mind5.business.employee.model.action.StdEmpMergeToSelect;
 import br.com.mind5.business.employee.model.checker.EmpCheckLangu;
 import br.com.mind5.business.employee.model.checker.EmpCheckOwner;
 import br.com.mind5.business.employee.model.checker.EmpCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -65,12 +65,12 @@ public final class RootEmpSelect extends DeciTreeTemplateReadV2<EmpInfo> {
 		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<EmpInfo> select = new StdEmpMergeToSelect(option);
-		ActionLazyV1<EmpInfo> nodeSytotauh = new LazyEmpNodeSytotauh(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> mergePerson = new LazyEmpMergePerson(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> mergeAddress = new LazyEmpMergeAddress(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> mergePhone = new LazyEmpMergePhone(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> mergeUser = new LazyEmpMergeUser(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> mergeFimist = new LazyEmpMergeFimist(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> nodeSytotauh = new LazyEmpNodeSytotauh(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> mergePerson = new LazyEmpMergePerson(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> mergeAddress = new LazyEmpMergeAddress(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> mergePhone = new LazyEmpMergePhone(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> mergeUser = new LazyEmpMergeUser(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> mergeFimist = new LazyEmpMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(nodeSytotauh);
 		nodeSytotauh.addPostAction(mergePerson);

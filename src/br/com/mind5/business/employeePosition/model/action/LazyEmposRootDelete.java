@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.decisionTree.RootEmposDelete;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmposRootDelete extends ActionLazyTemplateV2<EmposInfo, EmposInfo> {
+public final class LazyEmposRootDelete extends ActionLazyTemplate<EmposInfo, EmposInfo> {
 	
 	public LazyEmposRootDelete(Connection conn, String schemaName) {
 		super(conn, schemaName);

@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.decisionTree.RootEmposInsert;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmposRootInsert extends ActionLazyTemplateV2<EmposInfo, EmposInfo> {
+public final class LazyEmposRootInsert extends ActionLazyTemplate<EmposInfo, EmposInfo> {
 	
 	public LazyEmposRootInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);

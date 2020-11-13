@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
 import br.com.mind5.business.refundPolicyStore.model.action.LazyRefuporeRootSelect;
 import br.com.mind5.business.refundPolicyStore.model.action.StdRefuporeMergeRefuporarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootRefuporeSearch extends DeciTreeTemplateReadV2<RefuporeInf
 		List<ActionStdV1<RefuporeInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<RefuporeInfo> mergeRefuporarch = new StdRefuporeMergeRefuporarch(option);
-		ActionLazyV1<RefuporeInfo> select = new LazyRefuporeRootSelect(option.conn, option.schemaName);
+		ActionLazy<RefuporeInfo> select = new LazyRefuporeRootSelect(option.conn, option.schemaName);
 		
 		mergeRefuporarch.addPostAction(select);
 		

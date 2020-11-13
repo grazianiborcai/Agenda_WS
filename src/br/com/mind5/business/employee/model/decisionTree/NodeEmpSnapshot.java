@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.action.LazyEmpDaoUpdate;
 import br.com.mind5.business.employee.model.action.StdEmpEmpnapInsert;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeEmpSnapshot extends DeciTreeTemplateWriteV2<EmpInfo> {
 		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmpInfo> insertEmpnap = new StdEmpEmpnapInsert(option);	
-		ActionLazyV1<EmpInfo> updateEmployee = new LazyEmpDaoUpdate(option.conn, option.schemaName);	
+		ActionLazy<EmpInfo> updateEmployee = new LazyEmpDaoUpdate(option.conn, option.schemaName);	
 		
 		insertEmpnap.addPostAction(updateEmployee);
 		

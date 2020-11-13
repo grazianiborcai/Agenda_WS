@@ -3,7 +3,7 @@ package br.com.mind5.payment.ownerPartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class NodeOwnparSelectCounparL1 extends DeciTreeTemplateReadV2<Ownp
 		List<ActionStdV1<OwnparInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OwnparInfo> mergeOwner = new StdOwnparMergeOwner(option);
-		ActionLazyV1<OwnparInfo> nodeSelectL1 = new LazyOwnparNodeSelectCounparL2(option.conn, option.schemaName);
+		ActionLazy<OwnparInfo> nodeSelectL1 = new LazyOwnparNodeSelectCounparL2(option.conn, option.schemaName);
 		
 		mergeOwner.addPostAction(nodeSelectL1);
 		

@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -48,11 +48,11 @@ public final class RootMultmoipRead extends DeciTreeTemplateWriteV2<MultmoipInfo
 		List<ActionStdV1<MultmoipInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<MultmoipInfo> enforcePaypar = new StdMultmoipEnforcePaypar(option);
-		ActionLazyV1<MultmoipInfo> mergeSetupar = new LazyMultmoipMergeSetupar(option.conn, option.schemaName);	
-		ActionLazyV1<MultmoipInfo> mergeSysenv = new LazyMultmoipMergeSysenv(option.conn, option.schemaName);	
-		ActionLazyV1<MultmoipInfo> enforceSetup = new LazyMultmoipEnforceSetup(option.conn, option.schemaName);		
-		ActionLazyV1<MultmoipInfo> read = new LazyMultmoipRead(option.conn, option.schemaName);
-		ActionLazyV1<MultmoipInfo> enforceResponseAttr = new LazyMultmoipEnforceResponseAttr(option.conn, option.schemaName);
+		ActionLazy<MultmoipInfo> mergeSetupar = new LazyMultmoipMergeSetupar(option.conn, option.schemaName);	
+		ActionLazy<MultmoipInfo> mergeSysenv = new LazyMultmoipMergeSysenv(option.conn, option.schemaName);	
+		ActionLazy<MultmoipInfo> enforceSetup = new LazyMultmoipEnforceSetup(option.conn, option.schemaName);		
+		ActionLazy<MultmoipInfo> read = new LazyMultmoipRead(option.conn, option.schemaName);
+		ActionLazy<MultmoipInfo> enforceResponseAttr = new LazyMultmoipEnforceResponseAttr(option.conn, option.schemaName);
 		
 		enforcePaypar.addPostAction(mergeSetupar);
 		mergeSetupar.addPostAction(mergeSysenv);

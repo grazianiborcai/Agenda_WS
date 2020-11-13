@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -47,10 +47,10 @@ public final class RootRefumoipRefund extends DeciTreeTemplateWriteV2<RefumoipIn
 		List<ActionStdV1<RefumoipInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<RefumoipInfo> enforcePaypar = new StdRefumoipEnforcePaypar(option);	
-		ActionLazyV1<RefumoipInfo> mergePayordemist = new LazyRefumoipMergePayordemist(option.conn, option.schemaName);	
-		ActionLazyV1<RefumoipInfo> nodeRefund = new LazyRefumoipNodeRefundL1(option.conn, option.schemaName);		
-		ActionLazyV1<RefumoipInfo> refund = new LazyRefumoipRefund(option.conn, option.schemaName);
-		ActionLazyV1<RefumoipInfo> enforceResponseAttr = new LazyRefumoipEnforceResponseAttr(option.conn, option.schemaName);
+		ActionLazy<RefumoipInfo> mergePayordemist = new LazyRefumoipMergePayordemist(option.conn, option.schemaName);	
+		ActionLazy<RefumoipInfo> nodeRefund = new LazyRefumoipNodeRefundL1(option.conn, option.schemaName);		
+		ActionLazy<RefumoipInfo> refund = new LazyRefumoipRefund(option.conn, option.schemaName);
+		ActionLazy<RefumoipInfo> enforceResponseAttr = new LazyRefumoipEnforceResponseAttr(option.conn, option.schemaName);
 		
 		enforcePaypar.addPostAction(mergePayordemist);
 		mergePayordemist.addPostAction(nodeRefund);

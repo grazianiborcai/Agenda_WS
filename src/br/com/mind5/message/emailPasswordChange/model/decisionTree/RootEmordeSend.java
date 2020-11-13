@@ -9,7 +9,7 @@ import br.com.mind5.message.emailPasswordChange.model.action.LazyEmordeSendEmail
 import br.com.mind5.message.emailPasswordChange.model.action.StdEmordeMergeUselis;
 import br.com.mind5.message.emailPasswordChange.model.checker.EmordeCheckSend;
 import br.com.mind5.message.emailPasswordChange.model.checker.EmordeCheckUser;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -53,8 +53,8 @@ public final class RootEmordeSend extends DeciTreeTemplateWriteV2<EmordeInfo> {
 		List<ActionStdV1<EmordeInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<EmordeInfo> mergeUselis = new StdEmordeMergeUselis(option);
-		ActionLazyV1<EmordeInfo> enforceEmabody = new LazyEmordeEnforceEmabody(option.conn, option.schemaName);
-		ActionLazyV1<EmordeInfo> send = new LazyEmordeSendEmail(option.conn, option.schemaName);
+		ActionLazy<EmordeInfo> enforceEmabody = new LazyEmordeEnforceEmabody(option.conn, option.schemaName);
+		ActionLazy<EmordeInfo> send = new LazyEmordeSendEmail(option.conn, option.schemaName);
 		
 		mergeUselis.addPostAction(enforceEmabody);
 		enforceEmabody.addPostAction(send);

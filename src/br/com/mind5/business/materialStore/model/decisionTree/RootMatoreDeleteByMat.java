@@ -8,7 +8,7 @@ import br.com.mind5.business.materialStore.model.action.LazyMatoreMergeMatorarch
 import br.com.mind5.business.materialStore.model.action.LazyMatoreRootDelete;
 import br.com.mind5.business.materialStore.model.action.StdMatoreEnforceMatKey;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckDeleteByMat;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,8 +45,8 @@ public final class RootMatoreDeleteByMat extends DeciTreeTemplateWriteV2<MatoreI
 		List<ActionStdV1<MatoreInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<MatoreInfo> enforceMatKey = new StdMatoreEnforceMatKey(option);
-		ActionLazyV1<MatoreInfo> mergeMatorarch = new LazyMatoreMergeMatorarch(option.conn, option.schemaName);
-		ActionLazyV1<MatoreInfo> delete = new LazyMatoreRootDelete(option.conn, option.schemaName);
+		ActionLazy<MatoreInfo> mergeMatorarch = new LazyMatoreMergeMatorarch(option.conn, option.schemaName);
+		ActionLazy<MatoreInfo> delete = new LazyMatoreRootDelete(option.conn, option.schemaName);
 		
 		enforceMatKey.addPostAction(mergeMatorarch);
 		mergeMatorarch.addPostAction(delete);

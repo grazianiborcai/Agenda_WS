@@ -9,7 +9,7 @@ import br.com.mind5.business.personSearch.model.action.StdPerarchEnforceNameSear
 import br.com.mind5.business.personSearch.model.checker.PerarchCheckLangu;
 import br.com.mind5.business.personSearch.model.checker.PerarchCheckOwner;
 import br.com.mind5.business.personSearch.model.checker.PerarchCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -60,7 +60,7 @@ public final class RootPerarchSelect extends DeciTreeTemplateReadV2<PerarchInfo>
 		List<ActionStdV1<PerarchInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<PerarchInfo> enforceNameSearch = new StdPerarchEnforceNameSearch(option);
-		ActionLazyV1<PerarchInfo> select = new LazyPerarchMergeToSelect(option.conn, option.schemaName);		
+		ActionLazy<PerarchInfo> select = new LazyPerarchMergeToSelect(option.conn, option.schemaName);		
 		
 		enforceNameSearch.addPostAction(select);
 

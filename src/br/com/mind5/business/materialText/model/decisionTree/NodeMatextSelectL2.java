@@ -7,7 +7,7 @@ import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.action.LazyMatextMergeToSelect;
 import br.com.mind5.business.materialText.model.action.StdMatextMergeMatextault;
 import br.com.mind5.business.materialText.model.checker.MatextCheckMatextault;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class NodeMatextSelectL2 extends DeciTreeTemplateWriteV2<MatextInfo
 		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatextInfo> mergeMatextault = new StdMatextMergeMatextault(option);
-		ActionLazyV1<MatextInfo> mergeToSelect = new LazyMatextMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> mergeToSelect = new LazyMatextMergeToSelect(option.conn, option.schemaName);
 		
 		mergeMatextault.addPostAction(mergeToSelect);
 		

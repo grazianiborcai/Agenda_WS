@@ -15,7 +15,7 @@ import br.com.mind5.business.storeText.model.checker.StorextCheckLangu;
 import br.com.mind5.business.storeText.model.checker.StorextCheckOwner;
 import br.com.mind5.business.storeText.model.checker.StorextCheckStore;
 import br.com.mind5.business.storeText.model.checker.StorextCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -80,12 +80,12 @@ public final class RootStorextInsert extends DeciTreeTemplateWriteV2<StorextInfo
 		List<ActionStdV1<StorextInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<StorextInfo> nodeDefault = new NodeStorextDefaultL1(option).toAction();	
-		ActionLazyV1<StorextInfo> enforceLChanged = new LazyStorextEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazyV1<StorextInfo> enforceLChangedBy = new LazyStorextMergeUsername(option.conn, option.schemaName);		
-		ActionLazyV1<StorextInfo> enforceCreatedBy = new LazyStorextEnforceCreatedBy(option.conn, option.schemaName);	
-		ActionLazyV1<StorextInfo> enforceCreatedOn = new LazyStorextEnforceCreatedOn(option.conn, option.schemaName);
-		ActionLazyV1<StorextInfo> insert = new LazyStorextNodeInsert(option.conn, option.schemaName);
-		ActionLazyV1<StorextInfo> select = new LazyStorextRootSelect(option.conn, option.schemaName);		
+		ActionLazy<StorextInfo> enforceLChanged = new LazyStorextEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazy<StorextInfo> enforceLChangedBy = new LazyStorextMergeUsername(option.conn, option.schemaName);		
+		ActionLazy<StorextInfo> enforceCreatedBy = new LazyStorextEnforceCreatedBy(option.conn, option.schemaName);	
+		ActionLazy<StorextInfo> enforceCreatedOn = new LazyStorextEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazy<StorextInfo> insert = new LazyStorextNodeInsert(option.conn, option.schemaName);
+		ActionLazy<StorextInfo> select = new LazyStorextRootSelect(option.conn, option.schemaName);		
 		
 		nodeDefault.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

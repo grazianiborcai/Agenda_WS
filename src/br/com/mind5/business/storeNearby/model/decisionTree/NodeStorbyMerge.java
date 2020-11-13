@@ -11,7 +11,7 @@ import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeMatopore;
 import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeStorext;
 import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeStorite;
 import br.com.mind5.business.storeNearby.model.action.StdStorbyMergeComplis;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -43,12 +43,12 @@ public final class NodeStorbyMerge extends DeciTreeTemplateReadV2<StorbyInfo> {
 		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<StorbyInfo> mergeComplis = new StdStorbyMergeComplis(option);
-		ActionLazyV1<StorbyInfo> mergeAddress = new LazyStorbyMergeAddress(option.conn, option.schemaName);
-		ActionLazyV1<StorbyInfo> enforceDistance = new LazyStorbyEnforceDistance(option.conn, option.schemaName);
-		ActionLazyV1<StorbyInfo> mergeFimist = new LazyStorbyMergeFimist(option.conn, option.schemaName);
-		ActionLazyV1<StorbyInfo> mergeMatopore = new LazyStorbyMergeMatopore(option.conn, option.schemaName);
-		ActionLazyV1<StorbyInfo> mergeStorite = new LazyStorbyMergeStorite(option.conn, option.schemaName);
-		ActionLazyV1<StorbyInfo> mergeStorext = new LazyStorbyMergeStorext(option.conn, option.schemaName);
+		ActionLazy<StorbyInfo> mergeAddress = new LazyStorbyMergeAddress(option.conn, option.schemaName);
+		ActionLazy<StorbyInfo> enforceDistance = new LazyStorbyEnforceDistance(option.conn, option.schemaName);
+		ActionLazy<StorbyInfo> mergeFimist = new LazyStorbyMergeFimist(option.conn, option.schemaName);
+		ActionLazy<StorbyInfo> mergeMatopore = new LazyStorbyMergeMatopore(option.conn, option.schemaName);
+		ActionLazy<StorbyInfo> mergeStorite = new LazyStorbyMergeStorite(option.conn, option.schemaName);
+		ActionLazy<StorbyInfo> mergeStorext = new LazyStorbyMergeStorext(option.conn, option.schemaName);
 		
 		mergeComplis.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(enforceDistance);

@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.business.scheduleWeek.model.decisionTree.RootSchedeekSelect;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedeekRootSelect extends ActionLazyTemplateV2<SchedeekInfo, SchedeekInfo> {
+public final class LazySchedeekRootSelect extends ActionLazyTemplate<SchedeekInfo, SchedeekInfo> {
 	
 	public LazySchedeekRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

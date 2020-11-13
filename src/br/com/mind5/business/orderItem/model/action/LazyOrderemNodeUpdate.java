@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.decisionTree.NodeOrderemUpdate;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrderemNodeUpdate extends ActionLazyTemplateV2<OrderemInfo, OrderemInfo> {
+public final class LazyOrderemNodeUpdate extends ActionLazyTemplate<OrderemInfo, OrderemInfo> {
 	
 	public LazyOrderemNodeUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName);

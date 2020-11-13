@@ -3,7 +3,7 @@ package br.com.mind5.security.userPassword.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -41,10 +41,10 @@ public final class NodeUpswdUpdateL2 extends DeciTreeTemplateWriteV2<UpswdInfo> 
 		List<ActionStdV1<UpswdInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UpswdInfo> enforceLChanged = new StdUpswdEnforceLChanged(option);
-		ActionLazyV1<UpswdInfo> enforceLength = new LazyUpswdEnforceLength(option.conn, option.schemaName);
-		ActionLazyV1<UpswdInfo> enforceSalt = new LazyUpswdEnforceSalt(option.conn, option.schemaName);
-		ActionLazyV1<UpswdInfo> enforceHash = new LazyUpswdEnforceHash(option.conn, option.schemaName);
-		ActionLazyV1<UpswdInfo> update = new LazyUpswdDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<UpswdInfo> enforceLength = new LazyUpswdEnforceLength(option.conn, option.schemaName);
+		ActionLazy<UpswdInfo> enforceSalt = new LazyUpswdEnforceSalt(option.conn, option.schemaName);
+		ActionLazy<UpswdInfo> enforceHash = new LazyUpswdEnforceHash(option.conn, option.schemaName);
+		ActionLazy<UpswdInfo> update = new LazyUpswdDaoUpdate(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLength);
 		enforceLength.addPostAction(enforceSalt);

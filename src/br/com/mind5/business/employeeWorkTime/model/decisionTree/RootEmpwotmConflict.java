@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmRootSelect;
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmMergeEmpwoco;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootEmpwotmConflict extends DeciTreeTemplateReadV2<EmpwotmInf
 		List<ActionStdV1<EmpwotmInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmpwotmInfo> mergeEmpwoco = new StdEmpwotmMergeEmpwoco(option);
-		ActionLazyV1<EmpwotmInfo> select = new LazyEmpwotmRootSelect(option.conn, option.schemaName);
+		ActionLazy<EmpwotmInfo> select = new LazyEmpwotmRootSelect(option.conn, option.schemaName);
 		
 		mergeEmpwoco.addPostAction(select);
 		

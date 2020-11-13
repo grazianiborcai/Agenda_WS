@@ -11,7 +11,7 @@ import br.com.mind5.business.employeeSnapshot.model.action.StdEmpnapMergeToSelec
 import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckLangu;
 import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckOwner;
 import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -62,9 +62,9 @@ public final class RootEmpnapSelect extends DeciTreeTemplateReadV2<EmpnapInfo> {
 		List<ActionStdV1<EmpnapInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<EmpnapInfo> select = new StdEmpnapMergeToSelect(option);
-		ActionLazyV1<EmpnapInfo> mergePerson = new LazyEmpnapMergePersonap(option.conn, option.schemaName);
-		ActionLazyV1<EmpnapInfo> mergeAddress = new LazyEmpnapMergeAddresnap(option.conn, option.schemaName);
-		ActionLazyV1<EmpnapInfo> mergePhone = new LazyEmpnapMergePhonap(option.conn, option.schemaName);
+		ActionLazy<EmpnapInfo> mergePerson = new LazyEmpnapMergePersonap(option.conn, option.schemaName);
+		ActionLazy<EmpnapInfo> mergeAddress = new LazyEmpnapMergeAddresnap(option.conn, option.schemaName);
+		ActionLazy<EmpnapInfo> mergePhone = new LazyEmpnapMergePhonap(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePerson);
 		mergePerson.addPostAction(mergeAddress);

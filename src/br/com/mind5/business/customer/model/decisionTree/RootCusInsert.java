@@ -8,7 +8,7 @@ import br.com.mind5.business.customer.model.action.LazyCusNodeInsertUserL1;
 import br.com.mind5.business.customer.model.action.LazyCusRootInsertSilent;
 import br.com.mind5.business.customer.model.action.LazyCusRootSelect;
 import br.com.mind5.business.customer.model.action.StdCusEnforceUserCod;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -40,9 +40,9 @@ public final class RootCusInsert extends DeciTreeTemplateWriteV2<CusInfo> {
 		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CusInfo> obfuscateUser = new StdCusEnforceUserCod(option);
-		ActionLazyV1<CusInfo> insert = new LazyCusRootInsertSilent(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> insertUser = new LazyCusNodeInsertUserL1(option.conn, option.schemaName);				
-		ActionLazyV1<CusInfo> select = new LazyCusRootSelect(option.conn, option.schemaName);	
+		ActionLazy<CusInfo> insert = new LazyCusRootInsertSilent(option.conn, option.schemaName);
+		ActionLazy<CusInfo> insertUser = new LazyCusNodeInsertUserL1(option.conn, option.schemaName);				
+		ActionLazy<CusInfo> select = new LazyCusRootSelect(option.conn, option.schemaName);	
 		
 		obfuscateUser.addPostAction(insert);
 		insert.addPostAction(insertUser);

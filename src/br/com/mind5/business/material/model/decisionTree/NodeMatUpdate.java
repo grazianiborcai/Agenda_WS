@@ -10,7 +10,7 @@ import br.com.mind5.business.material.model.action.LazyMatMergeUsername;
 import br.com.mind5.business.material.model.action.LazyMatNodeServiceL1;
 import br.com.mind5.business.material.model.action.LazyMatNodeSytotauh;
 import br.com.mind5.business.material.model.action.StdMatMergeToUpdate;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -42,11 +42,11 @@ public final class NodeMatUpdate extends DeciTreeTemplateWriteV2<MatInfo> {
 		List<ActionStdV1<MatInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<MatInfo> mergeToUpdate = new StdMatMergeToUpdate(option);
-		ActionLazyV1<MatInfo> nodeSytotauh = new LazyMatNodeSytotauh(option.conn, option.schemaName);
-		ActionLazyV1<MatInfo> nodeService = new LazyMatNodeServiceL1(option.conn, option.schemaName);	
-		ActionLazyV1<MatInfo> enforceLChanged = new LazyMatEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazyV1<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<MatInfo> updateMat = new LazyMatDaoUpdate(option.conn, option.schemaName);	
+		ActionLazy<MatInfo> nodeSytotauh = new LazyMatNodeSytotauh(option.conn, option.schemaName);
+		ActionLazy<MatInfo> nodeService = new LazyMatNodeServiceL1(option.conn, option.schemaName);	
+		ActionLazy<MatInfo> enforceLChanged = new LazyMatEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazy<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
+		ActionLazy<MatInfo> updateMat = new LazyMatDaoUpdate(option.conn, option.schemaName);	
 		
 		mergeToUpdate.addPostAction(nodeSytotauh);
 		nodeSytotauh.addPostAction(nodeService);

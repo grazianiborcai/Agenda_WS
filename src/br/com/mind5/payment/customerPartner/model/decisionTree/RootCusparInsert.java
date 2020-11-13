@@ -3,7 +3,7 @@ package br.com.mind5.payment.customerPartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -120,11 +120,11 @@ public final class RootCusparInsert extends DeciTreeTemplateWriteV2<CusparInfo> 
 		List<ActionStdV1<CusparInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CusparInfo> mergeUselis = new StdCusparMergeUselis(option);
-		ActionLazyV1<CusparInfo> mergeAddress = new LazyCusparMergeAddress(option.conn, option.schemaName);
-		ActionLazyV1<CusparInfo> mergePhone = new LazyCusparMergePhone(option.conn, option.schemaName);
-		ActionLazyV1<CusparInfo> enforceLChanged = new LazyCusparEnforceLChanged(option.conn, option.schemaName);			
-		ActionLazyV1<CusparInfo> insert = new LazyCusparNodeInsert(option.conn, option.schemaName);
-		ActionLazyV1<CusparInfo> select = new LazyCusparRootSelect(option.conn, option.schemaName);
+		ActionLazy<CusparInfo> mergeAddress = new LazyCusparMergeAddress(option.conn, option.schemaName);
+		ActionLazy<CusparInfo> mergePhone = new LazyCusparMergePhone(option.conn, option.schemaName);
+		ActionLazy<CusparInfo> enforceLChanged = new LazyCusparEnforceLChanged(option.conn, option.schemaName);			
+		ActionLazy<CusparInfo> insert = new LazyCusparNodeInsert(option.conn, option.schemaName);
+		ActionLazy<CusparInfo> select = new LazyCusparRootSelect(option.conn, option.schemaName);
 		
 		mergeUselis.addPostAction(mergeAddress);		
 		mergeAddress.addPostAction(mergePhone);	

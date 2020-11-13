@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.refundPolicy.info.RefupolInfo;
 import br.com.mind5.business.refundPolicy.model.decisionTree.NodeRefupolEvaluateL5;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyRefupolNodeEvaluateL5 extends ActionLazyTemplateV2<RefupolInfo, RefupolInfo> {
+public final class LazyRefupolNodeEvaluateL5 extends ActionLazyTemplate<RefupolInfo, RefupolInfo> {
 	
 	public LazyRefupolNodeEvaluateL5(Connection conn, String schemaName) {
 		super(conn, schemaName);

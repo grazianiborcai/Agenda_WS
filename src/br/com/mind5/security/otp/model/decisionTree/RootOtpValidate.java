@@ -3,7 +3,7 @@ package br.com.mind5.security.otp.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -53,8 +53,8 @@ public final class RootOtpValidate extends DeciTreeTemplateWriteV2<OtpInfo> {
 		List<ActionStdV1<OtpInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<OtpInfo> enforceLength = new StdOtpEnforceLength(option);
-		ActionLazyV1<OtpInfo> enforceHashToMatch = new LazyOtpEnforceHashToMatch(option.conn, option.schemaName);		
-		ActionLazyV1<OtpInfo> nodeMatch = new LazyOtpNodeMatch(option.conn, option.schemaName);
+		ActionLazy<OtpInfo> enforceHashToMatch = new LazyOtpEnforceHashToMatch(option.conn, option.schemaName);		
+		ActionLazy<OtpInfo> nodeMatch = new LazyOtpNodeMatch(option.conn, option.schemaName);
 			
 		enforceLength.addPostAction(enforceHashToMatch);
 		enforceHashToMatch.addPostAction(nodeMatch);

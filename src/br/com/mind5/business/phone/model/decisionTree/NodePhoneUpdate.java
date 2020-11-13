@@ -10,7 +10,7 @@ import br.com.mind5.business.phone.model.action.LazyPhoneNodeUpdateT01;
 import br.com.mind5.business.phone.model.action.StdPhoneEnforceNumberT00;
 import br.com.mind5.business.phone.model.action.StdPhoneEnforceNumberT01;
 import br.com.mind5.business.phone.model.checker.PhoneCheckFormT01;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -47,8 +47,8 @@ public final class NodePhoneUpdate extends DeciTreeTemplateWriteV2<PhoneInfo> {
 		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<PhoneInfo> enforceNumberT01 = new StdPhoneEnforceNumberT01(option);
-		ActionLazyV1<PhoneInfo> enforceAreaT01 = new LazyPhoneEnforceAreaT01(option.conn, option.schemaName);
-		ActionLazyV1<PhoneInfo> nodeUpdateT01 = new LazyPhoneNodeUpdateT01(option.conn, option.schemaName);
+		ActionLazy<PhoneInfo> enforceAreaT01 = new LazyPhoneEnforceAreaT01(option.conn, option.schemaName);
+		ActionLazy<PhoneInfo> nodeUpdateT01 = new LazyPhoneNodeUpdateT01(option.conn, option.schemaName);
 		
 		enforceNumberT01.addPostAction(enforceAreaT01);
 		enforceAreaT01.addPostAction(nodeUpdateT01);
@@ -63,7 +63,7 @@ public final class NodePhoneUpdate extends DeciTreeTemplateWriteV2<PhoneInfo> {
 		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<PhoneInfo> enforceNumberT00 = new StdPhoneEnforceNumberT00(option);
-		ActionLazyV1<PhoneInfo> nodeUpdateT00 = new LazyPhoneNodeUpdateT00(option.conn, option.schemaName);
+		ActionLazy<PhoneInfo> nodeUpdateT00 = new LazyPhoneNodeUpdateT00(option.conn, option.schemaName);
 		
 		enforceNumberT00.addPostAction(nodeUpdateT00);
 

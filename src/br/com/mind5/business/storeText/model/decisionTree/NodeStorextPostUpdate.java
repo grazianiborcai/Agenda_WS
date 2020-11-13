@@ -8,7 +8,7 @@ import br.com.mind5.business.storeText.model.action.LazyStorextDaoUpdate;
 import br.com.mind5.business.storeText.model.action.StdStorextEnforceDefaultOn;
 import br.com.mind5.business.storeText.model.action.StdStorextSuccess;
 import br.com.mind5.business.storeText.model.checker.StorextCheckStorextault;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -56,7 +56,7 @@ public final class NodeStorextPostUpdate extends DeciTreeTemplateWriteV2<Storext
 		List<ActionStdV1<StorextInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<StorextInfo> enforceDefaultOn = new StdStorextEnforceDefaultOn(option);
-		ActionLazyV1<StorextInfo> update = new LazyStorextDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<StorextInfo> update = new LazyStorextDaoUpdate(option.conn, option.schemaName);
 		
 		enforceDefaultOn.addPostAction(update);
 		

@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrder.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,8 +39,8 @@ public final class NodePayordUser extends DeciTreeTemplateWriteV2<PayordInfo> {
 		List<ActionStdV1<PayordInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<PayordInfo> enforceCreatedOn = new StdPayordEnforceCreatedOn(option);	
-		ActionLazyV1<PayordInfo> enforceLChanged = new LazyPayordEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<PayordInfo> mergeUsername = new LazyPayordMergeUsername(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> enforceLChanged = new LazyPayordEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> mergeUsername = new LazyPayordMergeUsername(option.conn, option.schemaName);
 		
 		enforceCreatedOn.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeUsername);

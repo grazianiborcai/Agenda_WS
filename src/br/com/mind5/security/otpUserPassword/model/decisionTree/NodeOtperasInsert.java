@@ -3,7 +3,7 @@ package br.com.mind5.security.otpUserPassword.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -46,9 +46,9 @@ public final class NodeOtperasInsert extends DeciTreeTemplateWriteV2<OtperasInfo
 		List<ActionStdV1<OtperasInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OtperasInfo> upsert = new NodeOtperasUpsertL1(option).toAction();
-		ActionLazyV1<OtperasInfo> mergeUselis = new LazyOtperasMergeUselis(option.conn, option.schemaName);
-		ActionLazyV1<OtperasInfo> sendEmail = new LazyOtperasSendEmail(option.conn, option.schemaName);
-		ActionLazyV1<OtperasInfo> success = new LazyOtperasSuccess(option.conn, option.schemaName);
+		ActionLazy<OtperasInfo> mergeUselis = new LazyOtperasMergeUselis(option.conn, option.schemaName);
+		ActionLazy<OtperasInfo> sendEmail = new LazyOtperasSendEmail(option.conn, option.schemaName);
+		ActionLazy<OtperasInfo> success = new LazyOtperasSuccess(option.conn, option.schemaName);
 		
 		upsert.addPostAction(mergeUselis);
 		mergeUselis.addPostAction(sendEmail);

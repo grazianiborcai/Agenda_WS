@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.commom.ActionStdDummy;
 import br.com.mind5.model.decisionTree.DeciResult;
@@ -37,7 +37,7 @@ public class StdOrdemrapSuccess implements ActionStdV1<OrdemrapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<OrdemrapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<OrdemrapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

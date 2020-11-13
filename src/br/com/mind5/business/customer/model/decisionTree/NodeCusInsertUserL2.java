@@ -8,7 +8,7 @@ import br.com.mind5.business.customer.model.action.LazyCusNodeSnapshot;
 import br.com.mind5.business.customer.model.action.StdCusMergeUserarch;
 import br.com.mind5.business.customer.model.action.StdCusUserInsert;
 import br.com.mind5.business.customer.model.checker.CusCheckUserarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,7 +45,7 @@ public final class NodeCusInsertUserL2 extends DeciTreeTemplateWriteV2<CusInfo> 
 		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CusInfo> mergeUserarch = new StdCusMergeUserarch(option);
-		ActionLazyV1<CusInfo> snapshot = new LazyCusNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<CusInfo> snapshot = new LazyCusNodeSnapshot(option.conn, option.schemaName);
 		
 		mergeUserarch.addPostAction(snapshot);
 		
@@ -59,7 +59,7 @@ public final class NodeCusInsertUserL2 extends DeciTreeTemplateWriteV2<CusInfo> 
 		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CusInfo> insertUser = new StdCusUserInsert(option);
-		ActionLazyV1<CusInfo> snapshot = new LazyCusNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<CusInfo> snapshot = new LazyCusNodeSnapshot(option.conn, option.schemaName);
 		
 		insertUser.addPostAction(snapshot);
 		

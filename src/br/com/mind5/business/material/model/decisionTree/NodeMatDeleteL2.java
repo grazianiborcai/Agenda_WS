@@ -11,7 +11,7 @@ import br.com.mind5.business.material.model.action.LazyMatMergeUsername;
 import br.com.mind5.business.material.model.action.LazyMatNodeSytotauh;
 import br.com.mind5.business.material.model.action.StdMatMatextDelete;
 import br.com.mind5.business.material.model.action.StdMatMergeToDelete;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -44,11 +44,11 @@ public final class NodeMatDeleteL2 extends DeciTreeTemplateWriteV2<MatInfo> {
 		
 		ActionStdV1<MatInfo> deleteMatext = new StdMatMatextDelete(option);
 		ActionStdV1<MatInfo> mergeToDelete = new StdMatMergeToDelete(option);
-		ActionLazyV1<MatInfo> nodeSytotauh = new LazyMatNodeSytotauh(option.conn, option.schemaName);
-		ActionLazyV1<MatInfo> enforceLChanged = new LazyMatEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<MatInfo> updateAttr = new LazyMatDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<MatInfo> delete = new LazyMatDaoDelete(option.conn, option.schemaName);
+		ActionLazy<MatInfo> nodeSytotauh = new LazyMatNodeSytotauh(option.conn, option.schemaName);
+		ActionLazy<MatInfo> enforceLChanged = new LazyMatEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
+		ActionLazy<MatInfo> updateAttr = new LazyMatDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<MatInfo> delete = new LazyMatDaoDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(nodeSytotauh);
 		nodeSytotauh.addPostAction(enforceLChanged);

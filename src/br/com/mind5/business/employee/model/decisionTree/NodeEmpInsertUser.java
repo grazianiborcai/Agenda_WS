@@ -9,7 +9,7 @@ import br.com.mind5.business.employee.model.action.LazyEmpUserPromote;
 import br.com.mind5.business.employee.model.action.StdEmpMergeUserarch;
 import br.com.mind5.business.employee.model.action.StdEmpUserInsert;
 import br.com.mind5.business.employee.model.checker.EmpCheckUserarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -46,8 +46,8 @@ public final class NodeEmpInsertUser extends DeciTreeTemplateWriteV2<EmpInfo> {
 		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmpInfo> mergeUserarch = new StdEmpMergeUserarch(option);
-		ActionLazyV1<EmpInfo> promoteUser = new LazyEmpUserPromote(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> updateEmployee = new LazyEmpDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> promoteUser = new LazyEmpUserPromote(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> updateEmployee = new LazyEmpDaoUpdate(option.conn, option.schemaName);
 		
 		mergeUserarch.addPostAction(promoteUser);
 		promoteUser.addPostAction(updateEmployee);
@@ -62,7 +62,7 @@ public final class NodeEmpInsertUser extends DeciTreeTemplateWriteV2<EmpInfo> {
 		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmpInfo> insertUser = new StdEmpUserInsert(option);
-		ActionLazyV1<EmpInfo> updateEmployee = new LazyEmpDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> updateEmployee = new LazyEmpDaoUpdate(option.conn, option.schemaName);
 		
 		insertUser.addPostAction(updateEmployee);
 		

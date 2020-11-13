@@ -1,7 +1,7 @@
 package br.com.mind5.business.cartItem.model.action;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
@@ -17,7 +17,7 @@ public final class StdCartemSort implements ActionStdV1<CartemInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<CartemInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<CartemInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

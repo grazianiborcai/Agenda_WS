@@ -7,7 +7,7 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.action.LazyAddressRootUpdate;
 import br.com.mind5.business.address.model.action.StdAddressMergeAddarchStore;
 import br.com.mind5.business.address.model.checker.AddressCheckExistStore;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class NodeAddressUpsertStore extends DeciTreeTemplateWriteV2<Addres
 		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<AddressInfo> mergeAddarchStore = new StdAddressMergeAddarchStore(option);		
-		ActionLazyV1<AddressInfo> update = new LazyAddressRootUpdate(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> update = new LazyAddressRootUpdate(option.conn, option.schemaName);
 		
 		mergeAddarchStore.addPostAction(update);
 		

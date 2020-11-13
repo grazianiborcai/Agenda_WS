@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
 import br.com.mind5.config.sysStorePartitioning.model.decisionTree.RootSytotinSelect;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySytotinRootSelect extends ActionLazyTemplateV2<SytotinInfo, SytotinInfo> {
+public final class LazySytotinRootSelect extends ActionLazyTemplate<SytotinInfo, SytotinInfo> {
 
 	public LazySytotinRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

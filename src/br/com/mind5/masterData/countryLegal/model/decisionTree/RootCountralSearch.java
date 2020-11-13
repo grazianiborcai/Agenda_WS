@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.countryLegal.info.CountralInfo;
 import br.com.mind5.masterData.countryLegal.model.action.LazyCountralRootSelect;
 import br.com.mind5.masterData.countryLegal.model.action.StdCountralMergeCountrarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootCountralSearch extends DeciTreeTemplateReadV2<CountralInf
 		List<ActionStdV1<CountralInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CountralInfo> countrarch = new StdCountralMergeCountrarch(option);
-		ActionLazyV1<CountralInfo> select = new LazyCountralRootSelect(option.conn, option.schemaName);
+		ActionLazy<CountralInfo> select = new LazyCountralRootSelect(option.conn, option.schemaName);
 		
 		countrarch.addPostAction(select);
 		

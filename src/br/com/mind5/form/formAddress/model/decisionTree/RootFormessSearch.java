@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.form.formAddress.info.FormessInfo;
 import br.com.mind5.form.formAddress.model.action.LazyFormessRootSelect;
 import br.com.mind5.form.formAddress.model.action.StdFormessMergeFormesarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootFormessSearch extends DeciTreeTemplateReadV2<FormessInfo>
 		List<ActionStdV1<FormessInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<FormessInfo> mergeFormesarch = new StdFormessMergeFormesarch(option);
-		ActionLazyV1<FormessInfo> select = new LazyFormessRootSelect(option.conn, option.schemaName);
+		ActionLazy<FormessInfo> select = new LazyFormessRootSelect(option.conn, option.schemaName);
 		
 		mergeFormesarch.addPostAction(select);
 		

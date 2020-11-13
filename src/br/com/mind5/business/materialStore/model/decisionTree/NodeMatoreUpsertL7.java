@@ -9,7 +9,7 @@ import br.com.mind5.business.materialStore.model.action.LazyMatoreMergeUsername;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreNodeSnapshot;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreRootSelect;
 import br.com.mind5.business.materialStore.model.action.StdMatoreMergeToUpdate;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -41,10 +41,10 @@ public final class NodeMatoreUpsertL7 extends DeciTreeTemplateWriteV2<MatoreInfo
 		List<ActionStdV1<MatoreInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatoreInfo> mergeToUpdate = new StdMatoreMergeToUpdate(option);
-		ActionLazyV1<MatoreInfo> enforceLChanged = new LazyMatoreEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<MatoreInfo> enforceLChangedBy = new LazyMatoreMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<MatoreInfo> snapshot = new LazyMatoreNodeSnapshot(option.conn, option.schemaName);
-		ActionLazyV1<MatoreInfo> select = new LazyMatoreRootSelect(option.conn, option.schemaName);
+		ActionLazy<MatoreInfo> enforceLChanged = new LazyMatoreEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<MatoreInfo> enforceLChangedBy = new LazyMatoreMergeUsername(option.conn, option.schemaName);
+		ActionLazy<MatoreInfo> snapshot = new LazyMatoreNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<MatoreInfo> select = new LazyMatoreRootSelect(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

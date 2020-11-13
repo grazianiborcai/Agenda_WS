@@ -13,7 +13,7 @@ import br.com.mind5.business.company.model.checker.CompCheckDelete;
 import br.com.mind5.business.company.model.checker.CompCheckExist;
 import br.com.mind5.business.company.model.checker.CompCheckLangu;
 import br.com.mind5.business.company.model.checker.CompCheckOwner;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -71,10 +71,10 @@ public final class RootCompDelete extends DeciTreeTemplateWriteV2<CompInfo> {
 		List<ActionStdV1<CompInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CompInfo> mergeToDelete = new StdCompMergeToDelete(option);	
-		ActionLazyV1<CompInfo> enforceLChanged = new LazyCompEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<CompInfo> enforceLChangedBy = new LazyCompMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<CompInfo> updateCompany = new LazyCompDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<CompInfo> deleteCompany = new LazyCompDaoDelete(option.conn, option.schemaName);
+		ActionLazy<CompInfo> enforceLChanged = new LazyCompEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<CompInfo> enforceLChangedBy = new LazyCompMergeUsername(option.conn, option.schemaName);
+		ActionLazy<CompInfo> updateCompany = new LazyCompDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<CompInfo> deleteCompany = new LazyCompDaoDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

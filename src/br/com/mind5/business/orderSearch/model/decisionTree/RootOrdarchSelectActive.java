@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.business.orderSearch.model.action.LazyOrdarchPruneInactive;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -37,7 +37,7 @@ public final class RootOrdarchSelectActive extends DeciTreeTemplateReadV2<Ordarc
 		List<ActionStdV1<OrdarchInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<OrdarchInfo> select = new RootOrdarchSelect(option).toAction();
-		ActionLazyV1<OrdarchInfo> pruneInactive = new LazyOrdarchPruneInactive(option.conn, option.schemaName);
+		ActionLazy<OrdarchInfo> pruneInactive = new LazyOrdarchPruneInactive(option.conn, option.schemaName);
 		
 		select.addPostAction(pruneInactive);
 		

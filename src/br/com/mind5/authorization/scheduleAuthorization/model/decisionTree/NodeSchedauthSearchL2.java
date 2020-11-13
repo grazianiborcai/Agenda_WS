@@ -8,7 +8,7 @@ import br.com.mind5.authorization.scheduleAuthorization.model.action.LazySchedau
 import br.com.mind5.authorization.scheduleAuthorization.model.action.LazySchedauthObfuscateUser;
 import br.com.mind5.authorization.scheduleAuthorization.model.action.StdSchedauthMergeUsername;
 import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckAuthManager;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,8 +45,8 @@ public final class NodeSchedauthSearchL2 extends DeciTreeTemplateWriteV2<Schedau
 		List<ActionStdV1<SchedauthInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<SchedauthInfo> mergeUsername = new StdSchedauthMergeUsername(option);
-		ActionLazyV1<SchedauthInfo> mergeSotarch = new LazySchedauthMergeSotarch(option.conn, option.schemaName);
-		ActionLazyV1<SchedauthInfo> obfuscateUser = new LazySchedauthObfuscateUser(option.conn, option.schemaName);
+		ActionLazy<SchedauthInfo> mergeSotarch = new LazySchedauthMergeSotarch(option.conn, option.schemaName);
+		ActionLazy<SchedauthInfo> obfuscateUser = new LazySchedauthObfuscateUser(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(mergeSotarch);
 		mergeSotarch.addPostAction(obfuscateUser);

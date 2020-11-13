@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.action.LazyOwnerDaoUpdate;
 import br.com.mind5.business.owner.model.action.StdOwnerOwnerapInsert;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeOwnerSnapshot extends DeciTreeTemplateWriteV2<OwnerInfo> 
 		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OwnerInfo> insertOwnerap = new StdOwnerOwnerapInsert(option);
-		ActionLazyV1<OwnerInfo> update = new LazyOwnerDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> update = new LazyOwnerDaoUpdate(option.conn, option.schemaName);
 		
 		insertOwnerap.addPostAction(update);
 		

@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.decisionTree.RootMatDelete;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatRootDelete extends ActionLazyTemplateV2<MatInfo, MatInfo> {
+public final class LazyMatRootDelete extends ActionLazyTemplate<MatInfo, MatInfo> {
 	
 	public LazyMatRootDelete(Connection conn, String schemaName) {
 		super(conn, schemaName);

@@ -19,7 +19,7 @@ import br.com.mind5.business.store.model.checker.StoreCheckLangu;
 import br.com.mind5.business.store.model.checker.StoreCheckOwner;
 import br.com.mind5.business.store.model.checker.StoreCheckTimezone;
 import br.com.mind5.business.store.model.checker.StoreCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -92,15 +92,15 @@ public final class RootStoreInsert extends DeciTreeTemplateWriteV2<StoreInfo> {
 		//TODO: permitir que outro usuario seja associado ou inves de sempre criar um novo ?
 		//TODO: O que fazer se o CPF/e-mail ja tiver associado a um customer/owner/store manager ?
 		ActionStdV1<StoreInfo> insertStore = new NodeStoreInsert(option).toAction();
-		ActionLazyV1<StoreInfo> insertPerson = new LazyStoreNodeInsertPerson(option.conn, option.schemaName);	
-		ActionLazyV1<StoreInfo> insertComp = new LazyStoreNodeInsertComp(option.conn, option.schemaName);
-		ActionLazyV1<StoreInfo> insertUser = new LazyStoreUserInsert(option.conn, option.schemaName);
-		ActionLazyV1<StoreInfo> snapshot = new LazyStoreNodeSnapshot(option.conn, option.schemaName);
-		ActionLazyV1<StoreInfo> upsertAddress = new LazyStoreNodeUpsertAddress(option.conn, option.schemaName);		
-		ActionLazyV1<StoreInfo> insertPhone = new LazyStoreNodeInsertPhone(option.conn, option.schemaName);
-		ActionLazyV1<StoreInfo> insertStorext = new LazyStoreNodeInsertStorext(option.conn, option.schemaName);			
-		ActionLazyV1<StoreInfo> matbcinInsert = new LazyStoreMatbcinInsert(option.conn, option.schemaName);		
-		ActionLazyV1<StoreInfo> selectStore = new LazyStoreRootSelect(option.conn, option.schemaName);	
+		ActionLazy<StoreInfo> insertPerson = new LazyStoreNodeInsertPerson(option.conn, option.schemaName);	
+		ActionLazy<StoreInfo> insertComp = new LazyStoreNodeInsertComp(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> insertUser = new LazyStoreUserInsert(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> snapshot = new LazyStoreNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> upsertAddress = new LazyStoreNodeUpsertAddress(option.conn, option.schemaName);		
+		ActionLazy<StoreInfo> insertPhone = new LazyStoreNodeInsertPhone(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> insertStorext = new LazyStoreNodeInsertStorext(option.conn, option.schemaName);			
+		ActionLazy<StoreInfo> matbcinInsert = new LazyStoreMatbcinInsert(option.conn, option.schemaName);		
+		ActionLazy<StoreInfo> selectStore = new LazyStoreRootSelect(option.conn, option.schemaName);	
 		
 		insertStore.addPostAction(insertPerson);		
 		insertPerson.addPostAction(insertComp);		

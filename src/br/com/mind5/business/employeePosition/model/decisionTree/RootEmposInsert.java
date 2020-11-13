@@ -13,7 +13,7 @@ import br.com.mind5.business.employeePosition.model.checker.EmposCheckPosition;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckStorauth;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckStore;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -99,7 +99,7 @@ public final class RootEmposInsert extends DeciTreeTemplateWriteV2<EmposInfo> {
 		List<ActionStdV1<EmposInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmposInfo> upsert = new NodeEmposUpsert(option).toAction();
-		ActionLazyV1<EmposInfo> select = new LazyEmposRootSelect(option.conn, option.schemaName);
+		ActionLazy<EmposInfo> select = new LazyEmposRootSelect(option.conn, option.schemaName);
 		
 		upsert.addPostAction(select);
 		

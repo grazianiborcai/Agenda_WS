@@ -10,7 +10,7 @@ import br.com.mind5.business.orderList.model.action.StdOrdistMergeToSelect;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckLangu;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckOwner;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -61,8 +61,8 @@ public final class RootOrdistSelect extends DeciTreeTemplateReadV2<OrdistInfo> {
 		List<ActionStdV1<OrdistInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<OrdistInfo> select = new StdOrdistMergeToSelect(option);
-		ActionLazyV1<OrdistInfo> mergeCurrency = new LazyOrdistMergeCurrency(option.conn, option.schemaName);
-		ActionLazyV1<OrdistInfo> mergeOrderatus = new LazyOrdistMergeOrderatus(option.conn, option.schemaName);
+		ActionLazy<OrdistInfo> mergeCurrency = new LazyOrdistMergeCurrency(option.conn, option.schemaName);
+		ActionLazy<OrdistInfo> mergeOrderatus = new LazyOrdistMergeOrderatus(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCurrency);
 		mergeCurrency.addPostAction(mergeOrderatus);

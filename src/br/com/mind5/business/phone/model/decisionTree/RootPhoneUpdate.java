@@ -20,7 +20,7 @@ import br.com.mind5.business.phone.model.checker.PhoneCheckOwner;
 import br.com.mind5.business.phone.model.checker.PhoneCheckRefMulti;
 import br.com.mind5.business.phone.model.checker.PhoneCheckRefWrite;
 import br.com.mind5.business.phone.model.checker.PhoneCheckUpdate;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -106,13 +106,13 @@ public final class RootPhoneUpdate extends DeciTreeTemplateWriteV2<PhoneInfo> {
 		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<PhoneInfo> mergeToUpdate = new StdPhoneMergeToUpdate(option);	
-		ActionLazyV1<PhoneInfo> mergeCountrone = new LazyPhoneMergeCountrone(option.conn, option.schemaName);	
-		ActionLazyV1<PhoneInfo> mergeFormone = new LazyPhoneMergeFormone(option.conn, option.schemaName);	
-		ActionLazyV1<PhoneInfo> mergeUsername = new LazyPhoneMergeUsername(option.conn, option.schemaName);	
-		ActionLazyV1<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazyV1<PhoneInfo> nodeUpdate = new LazyPhoneNodeUpdate(option.conn, option.schemaName);	
-		ActionLazyV1<PhoneInfo> nodeDefault = new LazyPhoneNodeDefaultL1(option.conn, option.schemaName);
-		ActionLazyV1<PhoneInfo> nodeSnapshot = new LazyPhoneNodeSnapshot(option.conn, option.schemaName);	
+		ActionLazy<PhoneInfo> mergeCountrone = new LazyPhoneMergeCountrone(option.conn, option.schemaName);	
+		ActionLazy<PhoneInfo> mergeFormone = new LazyPhoneMergeFormone(option.conn, option.schemaName);	
+		ActionLazy<PhoneInfo> mergeUsername = new LazyPhoneMergeUsername(option.conn, option.schemaName);	
+		ActionLazy<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazy<PhoneInfo> nodeUpdate = new LazyPhoneNodeUpdate(option.conn, option.schemaName);	
+		ActionLazy<PhoneInfo> nodeDefault = new LazyPhoneNodeDefaultL1(option.conn, option.schemaName);
+		ActionLazy<PhoneInfo> nodeSnapshot = new LazyPhoneNodeSnapshot(option.conn, option.schemaName);	
 		
 		mergeToUpdate.addPostAction(mergeCountrone);
 		mergeCountrone.addPostAction(mergeFormone);

@@ -7,7 +7,7 @@ import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.business.storeNearby.model.action.LazyStorbyNodeSelectGeoL2;
 import br.com.mind5.business.storeNearby.model.action.LazyStorbyPruneEmpty;
 import br.com.mind5.business.storeNearby.model.action.StdStorbyGeoshGenerate;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,8 +39,8 @@ public final class NodeStorbySelectGeoL1 extends DeciTreeTemplateReadV2<StorbyIn
 		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<StorbyInfo> geoshGenerate = new StdStorbyGeoshGenerate(option);
-		ActionLazyV1<StorbyInfo> nodeL2 = new LazyStorbyNodeSelectGeoL2(option.conn, option.schemaName);
-		ActionLazyV1<StorbyInfo> pruneEmpty = new LazyStorbyPruneEmpty(option.conn, option.schemaName);
+		ActionLazy<StorbyInfo> nodeL2 = new LazyStorbyNodeSelectGeoL2(option.conn, option.schemaName);
+		ActionLazy<StorbyInfo> pruneEmpty = new LazyStorbyPruneEmpty(option.conn, option.schemaName);
 		
 		geoshGenerate.addPostAction(nodeL2);
 		nodeL2.addPostAction(pruneEmpty);

@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -84,7 +84,7 @@ public final class RootAccemoipUrl extends DeciTreeTemplateWriteV2<AccemoipInfo>
 		List<ActionStdV1<AccemoipInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<AccemoipInfo> enforcePayPartner = new StdAccemoipEnforcePayPartner(option);	
-		ActionLazyV1<AccemoipInfo> nodeUrl = new LazyAccemoipNodeUrl(option.conn, option.schemaName);
+		ActionLazy<AccemoipInfo> nodeUrl = new LazyAccemoipNodeUrl(option.conn, option.schemaName);
 		
 		enforcePayPartner.addPostAction(nodeUrl);
 		

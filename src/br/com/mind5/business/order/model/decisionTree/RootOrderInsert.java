@@ -10,7 +10,7 @@ import br.com.mind5.business.order.model.checker.OrderCheckCurrency;
 import br.com.mind5.business.order.model.checker.OrderCheckInsert;
 import br.com.mind5.business.order.model.checker.OrderCheckLangu;
 import br.com.mind5.business.order.model.checker.OrderCheckOwner;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -68,8 +68,8 @@ public final class RootOrderInsert extends DeciTreeTemplateWriteV2<OrderInfo> {
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<OrderInfo> insertOrder = new NodeOrderInsert(option).toAction();
-		ActionLazyV1<OrderInfo> insertOrderem = new LazyOrderNodeOrderem(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> snapshot = new LazyOrderNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> insertOrderem = new LazyOrderNodeOrderem(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> snapshot = new LazyOrderNodeSnapshot(option.conn, option.schemaName);
 		
 		insertOrder.addPostAction(insertOrderem);
 		insertOrderem.addPostAction(snapshot);

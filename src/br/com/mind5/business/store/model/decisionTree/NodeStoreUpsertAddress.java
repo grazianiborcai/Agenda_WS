@@ -8,7 +8,7 @@ import br.com.mind5.business.store.model.action.LazyStoreAddressUpsert;
 import br.com.mind5.business.store.model.action.StdStoreEnforceAddressKey;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
 import br.com.mind5.business.store.model.checker.StoreCheckHasAddress;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,7 +45,7 @@ public final class NodeStoreUpsertAddress extends DeciTreeTemplateWriteV2<StoreI
 		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StoreInfo> enforceAddressKey = new StdStoreEnforceAddressKey(option);
-		ActionLazyV1<StoreInfo> upsertAddress = new LazyStoreAddressUpsert(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> upsertAddress = new LazyStoreAddressUpsert(option.conn, option.schemaName);
 		
 		enforceAddressKey.addPostAction(upsertAddress);
 		

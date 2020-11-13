@@ -3,7 +3,7 @@ package br.com.mind5.payment.creditCard.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -61,8 +61,8 @@ public final class RootCrecardSelect extends DeciTreeTemplateReadV2<CrecardInfo>
 		List<ActionStdV1<CrecardInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CrecardInfo> mergeToSelect = new StdCrecardMergeToSelect(option);
-		ActionLazyV1<CrecardInfo> enforceExpired = new LazyCrecardEnforceExpired(option.conn, option.schemaName);
-		ActionLazyV1<CrecardInfo> mergeCuspar = new LazyCrecardMergeCuspar(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> enforceExpired = new LazyCrecardEnforceExpired(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> mergeCuspar = new LazyCrecardMergeCuspar(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(enforceExpired);
 		enforceExpired.addPostAction(mergeCuspar);

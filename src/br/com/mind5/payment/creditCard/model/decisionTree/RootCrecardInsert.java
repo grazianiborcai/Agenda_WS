@@ -3,7 +3,7 @@ package br.com.mind5.payment.creditCard.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -95,11 +95,11 @@ public final class RootCrecardInsert extends DeciTreeTemplateWriteV2<CrecardInfo
 		List<ActionStdV1<CrecardInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<CrecardInfo> nodeUser = new NodeCrecardUser(option).toAction();
-		ActionLazyV1<CrecardInfo> nodeAddress = new LazyCrecardNodeAddress(option.conn, option.schemaName);
-		ActionLazyV1<CrecardInfo> nodePhone = new LazyCrecardNodePhone(option.conn, option.schemaName);
-		ActionLazyV1<CrecardInfo> nodeCuspar = new LazyCrecardNodeCuspar(option.conn, option.schemaName);
-		ActionLazyV1<CrecardInfo> nodeInsert = new LazyCrecardNodeInsert(option.conn, option.schemaName);
-		ActionLazyV1<CrecardInfo> select = new LazyCrecardRootSelect(option.conn, option.schemaName);		
+		ActionLazy<CrecardInfo> nodeAddress = new LazyCrecardNodeAddress(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> nodePhone = new LazyCrecardNodePhone(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> nodeCuspar = new LazyCrecardNodeCuspar(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> nodeInsert = new LazyCrecardNodeInsert(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> select = new LazyCrecardRootSelect(option.conn, option.schemaName);		
 		
 		nodeUser.addPostAction(nodeAddress);
 		nodeAddress.addPostAction(nodePhone);

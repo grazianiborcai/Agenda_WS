@@ -3,7 +3,7 @@ package br.com.mind5.security.user.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,7 +45,7 @@ public final class NodeUserDeleteAddress extends DeciTreeTemplateWriteV2<UserInf
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UserInfo> mergeAddress = new StdUserMergeAddress(option);
-		ActionLazyV1<UserInfo> deleteAddress = new LazyUserAddressDelete(option.conn, option.schemaName);
+		ActionLazy<UserInfo> deleteAddress = new LazyUserAddressDelete(option.conn, option.schemaName);
 		
 		mergeAddress.addPostAction(deleteAddress);
 		

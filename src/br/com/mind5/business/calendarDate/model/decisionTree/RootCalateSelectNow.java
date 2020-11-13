@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.calendarDate.model.action.LazyCalateRootSelect;
 import br.com.mind5.business.calendarDate.model.action.StdCalateEnforceNow;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootCalateSelectNow extends DeciTreeTemplateReadV2<CalateInfo
 		List<ActionStdV1<CalateInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CalateInfo> enforceNow = new StdCalateEnforceNow(option);
-		ActionLazyV1<CalateInfo> select = new LazyCalateRootSelect(option.conn, option.schemaName);
+		ActionLazy<CalateInfo> select = new LazyCalateRootSelect(option.conn, option.schemaName);
 		
 		enforceNow.addPostAction(select);
 		

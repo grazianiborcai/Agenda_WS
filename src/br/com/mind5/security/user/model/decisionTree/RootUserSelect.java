@@ -3,7 +3,7 @@ package br.com.mind5.security.user.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -57,12 +57,12 @@ public final class RootUserSelect extends DeciTreeTemplateWriteV2<UserInfo> {
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UserInfo> mergeToSelect = new StdUserMergeToSelect(option);
-		ActionLazyV1<UserInfo> mergePerson = new LazyUserNodePerson(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> mergeAddress = new LazyUserMergeAddress(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> mergePhone = new LazyUserMergePhone(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> mergeAuthgrole = new LazyUserMergeAuthgrole(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> mergeCuspar = new LazyUserMergeCuspar(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> mergeFimist = new LazyUserMergeFimist(option.conn, option.schemaName);
+		ActionLazy<UserInfo> mergePerson = new LazyUserNodePerson(option.conn, option.schemaName);
+		ActionLazy<UserInfo> mergeAddress = new LazyUserMergeAddress(option.conn, option.schemaName);
+		ActionLazy<UserInfo> mergePhone = new LazyUserMergePhone(option.conn, option.schemaName);
+		ActionLazy<UserInfo> mergeAuthgrole = new LazyUserMergeAuthgrole(option.conn, option.schemaName);
+		ActionLazy<UserInfo> mergeCuspar = new LazyUserMergeCuspar(option.conn, option.schemaName);
+		ActionLazy<UserInfo> mergeFimist = new LazyUserMergeFimist(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(mergePerson);
 		mergePerson.addPostAction(mergeAddress);

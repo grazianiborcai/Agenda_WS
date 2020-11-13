@@ -3,7 +3,7 @@ package br.com.mind5.payment.creditCard.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeCrecardCusparRefL1 extends DeciTreeTemplateWriteV2<Crecar
 		List<ActionStdV1<CrecardInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<CrecardInfo> mergeCuspar = new  StdCrecardMergeCuspar(option);
-		ActionLazyV1<CrecardInfo> nodeL2 = new LazyCrecardNodeCusparRefL2(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> nodeL2 = new LazyCrecardNodeCusparRefL2(option.conn, option.schemaName);
 		
 		mergeCuspar.addPostAction(nodeL2);
 		

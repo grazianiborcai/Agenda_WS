@@ -17,7 +17,7 @@ import br.com.mind5.business.employeePosition.model.checker.EmposCheckLangu;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckOwner;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckStorauth;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckStore;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -89,12 +89,12 @@ public final class RootEmposDelete extends DeciTreeTemplateWriteV2<EmposInfo> {
 		List<ActionStdV1<EmposInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmposInfo> mergeToDelete = new StdEmposMergeToDelete(option);
-		ActionLazyV1<EmposInfo> enforceLChanged = new LazyEmposEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<EmposInfo> enforceLChangedBy = new LazyEmposMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<EmposInfo> update = new LazyEmposDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<EmposInfo> delete = new LazyEmposDaoDelete(option.conn, option.schemaName);
-		ActionLazyV1<EmposInfo> emposarch = new LazyEmposNodeEmposarch(option.conn, option.schemaName);
-		ActionLazyV1<EmposInfo> emptify = new LazyEmposEmptify(option.conn, option.schemaName);
+		ActionLazy<EmposInfo> enforceLChanged = new LazyEmposEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<EmposInfo> enforceLChangedBy = new LazyEmposMergeUsername(option.conn, option.schemaName);
+		ActionLazy<EmposInfo> update = new LazyEmposDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<EmposInfo> delete = new LazyEmposDaoDelete(option.conn, option.schemaName);
+		ActionLazy<EmposInfo> emposarch = new LazyEmposNodeEmposarch(option.conn, option.schemaName);
+		ActionLazy<EmposInfo> emptify = new LazyEmposEmptify(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

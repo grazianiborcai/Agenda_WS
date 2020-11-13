@@ -7,7 +7,7 @@ import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.file.fileImageSearch.model.action.LazyFimarchRootSelect;
 import br.com.mind5.file.fileImageSearch.model.action.StdFimarchEnforceOwner;
 import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckReadOwner;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class RootFimarchSelectOwner extends DeciTreeTemplateReadV2<Fimarch
 		List<ActionStdV1<FimarchInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<FimarchInfo> enforceOwner = new StdFimarchEnforceOwner(option);
-		ActionLazyV1<FimarchInfo> select = new LazyFimarchRootSelect(option.conn, option.schemaName);
+		ActionLazy<FimarchInfo> select = new LazyFimarchRootSelect(option.conn, option.schemaName);
 		
 		enforceOwner.addPostAction(select);
 		

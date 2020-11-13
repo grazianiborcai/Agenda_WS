@@ -11,7 +11,7 @@ import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckLangu;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckOwner;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckRead;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckStore;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -69,8 +69,8 @@ public final class RootStowotmSelect extends DeciTreeTemplateReadV2<StowotmInfo>
 		List<ActionStdV1<StowotmInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StowotmInfo> mergeToSelect = new StdStowotmMergeToSelect(option);
-		ActionLazyV1<StowotmInfo> mergeStolis = new LazyStowotmMergeStolis(option.conn, option.schemaName);
-		ActionLazyV1<StowotmInfo> mergeWeekday = new LazyStowotmMergeWeekday(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> mergeStolis = new LazyStowotmMergeStolis(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> mergeWeekday = new LazyStowotmMergeWeekday(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(mergeStolis);	
 		mergeStolis.addPostAction(mergeWeekday);

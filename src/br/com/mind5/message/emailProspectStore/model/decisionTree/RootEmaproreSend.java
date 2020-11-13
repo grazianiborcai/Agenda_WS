@@ -7,7 +7,7 @@ import br.com.mind5.message.emailProspectStore.info.EmaproreInfo;
 import br.com.mind5.message.emailProspectStore.model.action.LazyEmaproreSendEmail;
 import br.com.mind5.message.emailProspectStore.model.action.StdEmaproreEnforceEmabody;
 import br.com.mind5.message.emailProspectStore.model.checker.EmaproreCheckSend;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class RootEmaproreSend extends DeciTreeTemplateWriteV2<EmaproreInfo
 		List<ActionStdV1<EmaproreInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<EmaproreInfo> enforceEmabody = new StdEmaproreEnforceEmabody(option);
-		ActionLazyV1<EmaproreInfo> send = new LazyEmaproreSendEmail(option.conn, option.schemaName);
+		ActionLazy<EmaproreInfo> send = new LazyEmaproreSendEmail(option.conn, option.schemaName);
 		
 		enforceEmabody.addPostAction(send);
 		

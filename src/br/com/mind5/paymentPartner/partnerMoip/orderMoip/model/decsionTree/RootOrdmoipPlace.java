@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.decsionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -62,10 +62,10 @@ public final class RootOrdmoipPlace extends DeciTreeTemplateWriteV2<OrdmoipInfo>
 		List<ActionStdV1<OrdmoipInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<OrdmoipInfo> nodePayordist = new NodeOrdmoipPayordistL1(option).toAction();	
-		ActionLazyV1<OrdmoipInfo> nodePayordem = new LazyOrdmoipNodePayordemL1(option.conn, option.schemaName);
-		ActionLazyV1<OrdmoipInfo> nodeCuspar = new LazyOrdmoipNodeCusparL1(option.conn, option.schemaName);
-		ActionLazyV1<OrdmoipInfo> nodeSetupar = new LazyOrdmoipNodeSetuparL1(option.conn, option.schemaName);		
-		ActionLazyV1<OrdmoipInfo> nodeL1 = new LazyOrdmoipNodePlaceL1(option.conn, option.schemaName);	
+		ActionLazy<OrdmoipInfo> nodePayordem = new LazyOrdmoipNodePayordemL1(option.conn, option.schemaName);
+		ActionLazy<OrdmoipInfo> nodeCuspar = new LazyOrdmoipNodeCusparL1(option.conn, option.schemaName);
+		ActionLazy<OrdmoipInfo> nodeSetupar = new LazyOrdmoipNodeSetuparL1(option.conn, option.schemaName);		
+		ActionLazy<OrdmoipInfo> nodeL1 = new LazyOrdmoipNodePlaceL1(option.conn, option.schemaName);	
 		
 		nodePayordist.addPostAction(nodePayordem);
 		nodePayordem.addPostAction(nodeCuspar);

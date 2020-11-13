@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.masterData.weekday.model.decisionTree.RootWeekdaySelect;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyWeekdayRootSelect extends ActionLazyTemplateV2<WeekdayInfo, WeekdayInfo> {
+public final class LazyWeekdayRootSelect extends ActionLazyTemplate<WeekdayInfo, WeekdayInfo> {
 
 	public LazyWeekdayRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

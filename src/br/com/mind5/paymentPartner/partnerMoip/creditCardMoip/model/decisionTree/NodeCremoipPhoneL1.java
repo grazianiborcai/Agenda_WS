@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeCremoipPhoneL1 extends DeciTreeTemplateWriteV2<CremoipInf
 		List<ActionStdV1<CremoipInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CremoipInfo> mergePhonap = new StdCremoipMergePhonap(option);
-		ActionLazyV1<CremoipInfo> nodeL2 = new LazyCremoipNodePhoneL2(option.conn, option.schemaName);
+		ActionLazy<CremoipInfo> nodeL2 = new LazyCremoipNodePhoneL2(option.conn, option.schemaName);
 		
 		mergePhonap.addPostAction(nodeL2);
 		

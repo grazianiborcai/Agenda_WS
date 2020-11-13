@@ -14,7 +14,7 @@ import br.com.mind5.business.orderItem.model.checker.OrderemCheckEmposarch;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckInsertService;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckMatore;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckStore;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -86,9 +86,9 @@ public final class NodeOrderemInsertService extends DeciTreeTemplateWriteV2<Orde
 		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OrderemInfo> mergeStolis = new StdOrderemMergeStolis(option);	
-		ActionLazyV1<OrderemInfo> mergeRefupore = new LazyOrderemMergeRefupore(option.conn, option.schemaName);
-		ActionLazyV1<OrderemInfo> insert = new LazyOrderemDaoInsert(option.conn, option.schemaName);
-		ActionLazyV1<OrderemInfo> schedineInsert = new LazyOrderemSchedineInsert(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> mergeRefupore = new LazyOrderemMergeRefupore(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> insert = new LazyOrderemDaoInsert(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> schedineInsert = new LazyOrderemSchedineInsert(option.conn, option.schemaName);
 		
 		mergeStolis.addPostAction(mergeRefupore);
 		mergeRefupore.addPostAction(insert);

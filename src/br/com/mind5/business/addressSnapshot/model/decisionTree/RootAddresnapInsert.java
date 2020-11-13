@@ -9,7 +9,7 @@ import br.com.mind5.business.addressSnapshot.model.action.LazyAddresnapRootSelec
 import br.com.mind5.business.addressSnapshot.model.checker.AddresnapCheckAddress;
 import br.com.mind5.business.addressSnapshot.model.checker.AddresnapCheckOwner;
 import br.com.mind5.business.addressSnapshot.model.checker.AddresnapCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -60,8 +60,8 @@ public final class RootAddresnapInsert extends DeciTreeTemplateWriteV2<Addresnap
 		List<ActionStdV1<AddresnapInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<AddresnapInfo> nodeUser = new NodeAddresnapUselis(option).toAction();	
-		ActionLazyV1<AddresnapInfo> insert = new LazyAddresnapDaoInsert(option.conn, option.schemaName);		
-		ActionLazyV1<AddresnapInfo> select = new LazyAddresnapRootSelect(option.conn, option.schemaName);
+		ActionLazy<AddresnapInfo> insert = new LazyAddresnapDaoInsert(option.conn, option.schemaName);		
+		ActionLazy<AddresnapInfo> select = new LazyAddresnapRootSelect(option.conn, option.schemaName);
 		
 		nodeUser.addPostAction(insert);
 		insert.addPostAction(select);

@@ -3,7 +3,7 @@ package br.com.mind5.security.userAuthentication.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class RootUauthUpswd extends DeciTreeTemplateWriteV2<UauthInfo> {
 		List<ActionStdV1<UauthInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UauthInfo> authenticateUpswd = new StdUauthAuthenticateUpswd(option);
-		ActionLazyV1<UauthInfo> mergeUselis = new LazyUauthMergeUselis(option.conn, option.schemaName);
+		ActionLazy<UauthInfo> mergeUselis = new LazyUauthMergeUselis(option.conn, option.schemaName);
 		
 		authenticateUpswd.addPostAction(mergeUselis);
 		

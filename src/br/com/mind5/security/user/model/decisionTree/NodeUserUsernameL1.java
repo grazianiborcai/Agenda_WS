@@ -3,7 +3,7 @@ package br.com.mind5.security.user.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeUserUsernameL1 extends DeciTreeTemplateWriteV2<UserInfo> 
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<UserInfo> enforceUsername = new StdUserEnforceUsername(option);
-		ActionLazyV1<UserInfo> nodeL2 = new LazyUserNodeUsernameL2(option.conn, option.schemaName);
+		ActionLazy<UserInfo> nodeL2 = new LazyUserNodeUsernameL2(option.conn, option.schemaName);
 		
 		enforceUsername.addPostAction(nodeL2);
 		

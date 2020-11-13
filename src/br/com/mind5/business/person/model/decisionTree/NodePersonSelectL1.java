@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.action.LazyPersonNodeSelectL2;
 import br.com.mind5.business.person.model.action.StdPersonMergeToSelect;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodePersonSelectL1 extends DeciTreeTemplateReadV2<PersonInfo>
 		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<PersonInfo> select = new StdPersonMergeToSelect(option);
-		ActionLazyV1<PersonInfo> nodeL2 = new LazyPersonNodeSelectL2(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> nodeL2 = new LazyPersonNodeSelectL2(option.conn, option.schemaName);
 		
 		select.addPostAction(nodeL2);
 		

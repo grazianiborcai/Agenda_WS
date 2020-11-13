@@ -11,7 +11,7 @@ import br.com.mind5.business.storeNearby.model.action.StdStorbyEnforceNameKey;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckLangu;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckOwner;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckReadName;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -62,9 +62,9 @@ public final class RootStorbySelectName extends DeciTreeTemplateReadV2<StorbyInf
 		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<StorbyInfo> enforceNameKey = new StdStorbyEnforceNameKey(option);
-		ActionLazyV1<StorbyInfo> enforceNameSearch = new LazyStorbyEnforceNameSearch(option.conn, option.schemaName);
-		ActionLazyV1<StorbyInfo> select = new LazyStorbyMergeToSelect(option.conn, option.schemaName);
-		ActionLazyV1<StorbyInfo> nodeMerge = new LazyStorbyNodeMerge(option.conn, option.schemaName);
+		ActionLazy<StorbyInfo> enforceNameSearch = new LazyStorbyEnforceNameSearch(option.conn, option.schemaName);
+		ActionLazy<StorbyInfo> select = new LazyStorbyMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<StorbyInfo> nodeMerge = new LazyStorbyNodeMerge(option.conn, option.schemaName);
 		
 		enforceNameKey.addPostAction(enforceNameSearch);
 		enforceNameSearch.addPostAction(select);

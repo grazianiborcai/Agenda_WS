@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.action.LazyPersonNodeSytotauhL2;
 import br.com.mind5.business.person.model.action.StdPersonMergeSytotauh;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodePersonSytotauhL1 extends DeciTreeTemplateWriteV2<PersonIn
 		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<PersonInfo> mergeSytotauh = new StdPersonMergeSytotauh(option);	
-		ActionLazyV1<PersonInfo> nodeL2 = new LazyPersonNodeSytotauhL2(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> nodeL2 = new LazyPersonNodeSytotauhL2(option.conn, option.schemaName);
 		
 		mergeSytotauh.addPostAction(nodeL2);
 		

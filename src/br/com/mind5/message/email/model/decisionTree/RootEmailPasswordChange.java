@@ -9,7 +9,7 @@ import br.com.mind5.message.email.model.action.LazyEmailMergeEmabody;
 import br.com.mind5.message.email.model.action.LazyEmailNodeSend;
 import br.com.mind5.message.email.model.action.StdEmailEnforceEmabody;
 import br.com.mind5.message.email.model.checker.EmailCheckPasswordChange;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -46,9 +46,9 @@ public final class RootEmailPasswordChange extends DeciTreeTemplateWriteV2<Email
 		List<ActionStdV1<EmailInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<EmailInfo> enforceEmabody = new StdEmailEnforceEmabody(option);
-		ActionLazyV1<EmailInfo> enforceWelcome = new LazyEmailEnforcePasswordChange(option.conn, option.schemaName);
-		ActionLazyV1<EmailInfo> mergeEmabody = new LazyEmailMergeEmabody(option.conn, option.schemaName);
-		ActionLazyV1<EmailInfo> send = new LazyEmailNodeSend(option.conn, option.schemaName);
+		ActionLazy<EmailInfo> enforceWelcome = new LazyEmailEnforcePasswordChange(option.conn, option.schemaName);
+		ActionLazy<EmailInfo> mergeEmabody = new LazyEmailMergeEmabody(option.conn, option.schemaName);
+		ActionLazy<EmailInfo> send = new LazyEmailNodeSend(option.conn, option.schemaName);
 		
 		enforceEmabody .addPostAction(enforceWelcome);
 		enforceWelcome.addPostAction(mergeEmabody);

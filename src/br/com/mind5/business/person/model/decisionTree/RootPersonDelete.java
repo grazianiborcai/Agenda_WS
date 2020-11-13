@@ -12,7 +12,7 @@ import br.com.mind5.business.person.model.action.StdPersonMergeToSelect;
 import br.com.mind5.business.person.model.checker.PersonCheckDelete;
 import br.com.mind5.business.person.model.checker.PersonCheckExist;
 import br.com.mind5.business.person.model.checker.PersonCheckLangu;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -63,10 +63,10 @@ public final class RootPersonDelete extends DeciTreeTemplateWriteV2<PersonInfo> 
 		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<PersonInfo> select = new StdPersonMergeToSelect(option);	
-		ActionLazyV1<PersonInfo> enforceLChanged = new LazyPersonEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<PersonInfo> updatePerson = new LazyPersonDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<PersonInfo> deletePerson = new LazyPersonDaoDelete(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> enforceLChanged = new LazyPersonEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> updatePerson = new LazyPersonDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> deletePerson = new LazyPersonDaoDelete(option.conn, option.schemaName);
 		
 		select.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

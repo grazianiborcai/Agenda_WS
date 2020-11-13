@@ -8,10 +8,10 @@ import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.decisionTree.DeciResult;
 
 final class ActionLazyAdapter<T extends InfoRecord> implements ActionStdV1<T> {
-	private ActionLazyV1<T> handler;
+	private ActionLazy<T> handler;
 	private List<T> recordInfos;
 	
-	public ActionLazyAdapter(ActionLazyV1<T> actionHandler, List<T> recordInfos) {
+	public ActionLazyAdapter(ActionLazy<T> actionHandler, List<T> recordInfos) {
 		checkArgument(actionHandler, recordInfos);
 		
 		handler = actionHandler;
@@ -20,7 +20,7 @@ final class ActionLazyAdapter<T extends InfoRecord> implements ActionStdV1<T> {
 	
 	
 	
-	private void checkArgument(ActionLazyV1<T> actionHandler, List<T> recordInfos) {
+	private void checkArgument(ActionLazy<T> actionHandler, List<T> recordInfos) {
 		if (actionHandler == null) {
 			logException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT);
@@ -55,7 +55,7 @@ final class ActionLazyAdapter<T extends InfoRecord> implements ActionStdV1<T> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<T> actionHandler) {
+	@Override public void addPostAction(ActionLazy<T> actionHandler) {
 		//TODO: implementar esse método
 		logException(new IllegalStateException(SystemMessage.NO_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_IMPLEMENTATION);

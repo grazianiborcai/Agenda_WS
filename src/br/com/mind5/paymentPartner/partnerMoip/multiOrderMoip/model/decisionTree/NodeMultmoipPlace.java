@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -45,14 +45,14 @@ public final class NodeMultmoipPlace extends DeciTreeTemplateReadV2<MultmoipInfo
 		List<ActionStdV1<MultmoipInfo>> actions = new ArrayList<>();			
 		
 		ActionStdV1<MultmoipInfo> enforceMultiorder = new StdMultmoipEnforceMultiorder(option);		
-		ActionLazyV1<MultmoipInfo> enforcePaypar = new LazyMultmoipEnforcePaypar(option.conn, option.schemaName);
-		ActionLazyV1<MultmoipInfo> mergeSetupar = new LazyMultmoipMergeSetupar(option.conn, option.schemaName);
-		ActionLazyV1<MultmoipInfo> mergeSysenv = new LazyMultmoipMergeSysenv(option.conn, option.schemaName);	
-		ActionLazyV1<MultmoipInfo> enforceSetup = new LazyMultmoipEnforceSetup(option.conn, option.schemaName);	
-		ActionLazyV1<MultmoipInfo> enforceOwnId = new LazyMultmoipEnforceOwnId(option.conn, option.schemaName);
-		ActionLazyV1<MultmoipInfo> create = new LazyMultmoipCreate(option.conn, option.schemaName);
-		ActionLazyV1<MultmoipInfo> enforceResponseAttr = new LazyMultmoipEnforceResponseAttr(option.conn, option.schemaName);
-		ActionLazyV1<MultmoipInfo> enforceResponseOrdmoip = new LazyMultmoipEnforceResponseOrdmoip(option.conn, option.schemaName);
+		ActionLazy<MultmoipInfo> enforcePaypar = new LazyMultmoipEnforcePaypar(option.conn, option.schemaName);
+		ActionLazy<MultmoipInfo> mergeSetupar = new LazyMultmoipMergeSetupar(option.conn, option.schemaName);
+		ActionLazy<MultmoipInfo> mergeSysenv = new LazyMultmoipMergeSysenv(option.conn, option.schemaName);	
+		ActionLazy<MultmoipInfo> enforceSetup = new LazyMultmoipEnforceSetup(option.conn, option.schemaName);	
+		ActionLazy<MultmoipInfo> enforceOwnId = new LazyMultmoipEnforceOwnId(option.conn, option.schemaName);
+		ActionLazy<MultmoipInfo> create = new LazyMultmoipCreate(option.conn, option.schemaName);
+		ActionLazy<MultmoipInfo> enforceResponseAttr = new LazyMultmoipEnforceResponseAttr(option.conn, option.schemaName);
+		ActionLazy<MultmoipInfo> enforceResponseOrdmoip = new LazyMultmoipEnforceResponseOrdmoip(option.conn, option.schemaName);
 			
 		enforceMultiorder.addPostAction(enforcePaypar);
 		enforcePaypar.addPostAction(mergeSetupar);

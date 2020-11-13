@@ -15,7 +15,7 @@ import br.com.mind5.business.materialList.model.action.StdMatlisMergeToSelect;
 import br.com.mind5.business.materialList.model.checker.MatlisCheckLangu;
 import br.com.mind5.business.materialList.model.checker.MatlisCheckOwner;
 import br.com.mind5.business.materialList.model.checker.MatlisCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -66,13 +66,13 @@ public final class RootMatlisSelect extends DeciTreeTemplateReadV2<MatlisInfo> {
 		List<ActionStdV1<MatlisInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatlisInfo> select = new StdMatlisMergeToSelect(option);
-		ActionLazyV1<MatlisInfo> mergeMatype = new LazyMatlisMergeMatype(option.conn, option.schemaName);
-		ActionLazyV1<MatlisInfo> mergeMateg = new LazyMatlisMergeMateg(option.conn, option.schemaName);
-		ActionLazyV1<MatlisInfo> mergeMatoup = new LazyMatlisMergeMatoup(option.conn, option.schemaName);
-		ActionLazyV1<MatlisInfo> mergeMatubup = new LazyMatlisMergeMatubup(option.conn, option.schemaName);
-		ActionLazyV1<MatlisInfo> mergeMatunit = new LazyMatlisMergeMatunit(option.conn, option.schemaName);
-		ActionLazyV1<MatlisInfo> mergeMatext = new LazyMatlisMergeMatext(option.conn, option.schemaName);
-		ActionLazyV1<MatlisInfo> mergeFimist = new LazyMatlisMergeFimist(option.conn, option.schemaName);
+		ActionLazy<MatlisInfo> mergeMatype = new LazyMatlisMergeMatype(option.conn, option.schemaName);
+		ActionLazy<MatlisInfo> mergeMateg = new LazyMatlisMergeMateg(option.conn, option.schemaName);
+		ActionLazy<MatlisInfo> mergeMatoup = new LazyMatlisMergeMatoup(option.conn, option.schemaName);
+		ActionLazy<MatlisInfo> mergeMatubup = new LazyMatlisMergeMatubup(option.conn, option.schemaName);
+		ActionLazy<MatlisInfo> mergeMatunit = new LazyMatlisMergeMatunit(option.conn, option.schemaName);
+		ActionLazy<MatlisInfo> mergeMatext = new LazyMatlisMergeMatext(option.conn, option.schemaName);
+		ActionLazy<MatlisInfo> mergeFimist = new LazyMatlisMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMatype);
 		mergeMatype.addPostAction(mergeMateg);

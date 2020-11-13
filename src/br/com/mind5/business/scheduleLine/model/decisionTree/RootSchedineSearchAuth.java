@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineRootSearch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -37,7 +37,7 @@ public final class RootSchedineSearchAuth extends DeciTreeTemplateWriteV2<Schedi
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedineInfo> auth = new NodeSchedineAuthSearch(option).toAction();
-		ActionLazyV1<SchedineInfo> search = new LazySchedineRootSearch(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> search = new LazySchedineRootSearch(option.conn, option.schemaName);
 		
 		auth.addPostAction(search);
 		

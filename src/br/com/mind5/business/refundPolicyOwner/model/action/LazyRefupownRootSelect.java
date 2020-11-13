@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
 import br.com.mind5.business.refundPolicyOwner.model.decisionTree.RootRefupownSelectFallback;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyRefupownRootSelect extends ActionLazyTemplateV2<RefupownInfo, RefupownInfo> {
+public final class LazyRefupownRootSelect extends ActionLazyTemplate<RefupownInfo, RefupownInfo> {
 
 	public LazyRefupownRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

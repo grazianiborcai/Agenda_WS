@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.storeTextSearch.info.StorextarchInfo;
 import br.com.mind5.business.storeTextSearch.model.decisionTree.RootStorextarchSelect;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStorextarchRootSelect extends ActionLazyTemplateV2<StorextarchInfo, StorextarchInfo> {
+public final class LazyStorextarchRootSelect extends ActionLazyTemplate<StorextarchInfo, StorextarchInfo> {
 
 	public LazyStorextarchRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

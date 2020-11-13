@@ -12,7 +12,7 @@ import br.com.mind5.business.cart.model.action.StdCartMergeUsername;
 import br.com.mind5.business.cart.model.checker.CartCheckLangu;
 import br.com.mind5.business.cart.model.checker.CartCheckOwner;
 import br.com.mind5.business.cart.model.checker.CartCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -63,10 +63,10 @@ public final class RootCartUpsert extends DeciTreeTemplateWriteV2<CartInfo> {
 		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CartInfo> mergeUsername = new StdCartMergeUsername(option);
-		ActionLazyV1<CartInfo> enforceLChanged = new LazyCartEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazyV1<CartInfo> upsertHeader = new LazyCartNodeUpsertHeader(option.conn, option.schemaName);
-		ActionLazyV1<CartInfo> upsertItem = new LazyCartNodeUpsertItem(option.conn, option.schemaName);
-		ActionLazyV1<CartInfo> nodeL1 = new LazyCartNodeUpsert(option.conn, option.schemaName);
+		ActionLazy<CartInfo> enforceLChanged = new LazyCartEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazy<CartInfo> upsertHeader = new LazyCartNodeUpsertHeader(option.conn, option.schemaName);
+		ActionLazy<CartInfo> upsertItem = new LazyCartNodeUpsertItem(option.conn, option.schemaName);
+		ActionLazy<CartInfo> nodeL1 = new LazyCartNodeUpsert(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(upsertHeader);

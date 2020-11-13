@@ -15,7 +15,7 @@ import br.com.mind5.business.owner.model.action.LazyOwnerRootSelect;
 import br.com.mind5.business.owner.model.action.StdOwnerMergeToUpdate;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
 import br.com.mind5.business.owner.model.checker.OwnerCheckUpdate;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -59,14 +59,14 @@ public final class RootOwnerUpdate extends DeciTreeTemplateWriteV2<OwnerInfo> {
 		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<OwnerInfo> mergeToUpdate = new StdOwnerMergeToUpdate(option);
-		ActionLazyV1<OwnerInfo> enforceLChanged = new LazyOwnerEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<OwnerInfo> mergeUsername = new LazyOwnerMergeUsername(option.conn, option.schemaName);	
-		ActionLazyV1<OwnerInfo> updatePerson = new LazyOwnerNodeUpdatePerson(option.conn, option.schemaName);
-		ActionLazyV1<OwnerInfo> updateCompany = new LazyOwnerNodeUpdateComp(option.conn, option.schemaName);
-		ActionLazyV1<OwnerInfo> upsertAddress = new LazyOwnerNodeUpsertAddress(option.conn, option.schemaName);
-		ActionLazyV1<OwnerInfo> upsertPhone = new LazyOwnerNodeUpsertPhone(option.conn, option.schemaName);		
-		ActionLazyV1<OwnerInfo> snapshot = new LazyOwnerNodeSnapshot(option.conn, option.schemaName);
-		ActionLazyV1<OwnerInfo> select = new LazyOwnerRootSelect(option.conn, option.schemaName);		
+		ActionLazy<OwnerInfo> enforceLChanged = new LazyOwnerEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> mergeUsername = new LazyOwnerMergeUsername(option.conn, option.schemaName);	
+		ActionLazy<OwnerInfo> updatePerson = new LazyOwnerNodeUpdatePerson(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> updateCompany = new LazyOwnerNodeUpdateComp(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> upsertAddress = new LazyOwnerNodeUpsertAddress(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> upsertPhone = new LazyOwnerNodeUpsertPhone(option.conn, option.schemaName);		
+		ActionLazy<OwnerInfo> snapshot = new LazyOwnerNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> select = new LazyOwnerRootSelect(option.conn, option.schemaName);		
 		
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeUsername);

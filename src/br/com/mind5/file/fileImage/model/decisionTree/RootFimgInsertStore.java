@@ -10,7 +10,7 @@ import br.com.mind5.file.fileImage.model.checker.FimgCheckInsertStore;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckLimitStore;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckStorauth;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckStore;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -68,7 +68,7 @@ public final class RootFimgInsertStore extends DeciTreeTemplateWriteV2<FimgInfo>
 		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<FimgInfo> enforceStore = new StdFimgEnforceStore(option);	
-		ActionLazyV1<FimgInfo> insert = new LazyFimgRootInsert(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> insert = new LazyFimgRootInsert(option.conn, option.schemaName);
 		
 		enforceStore.addPostAction(insert);
 		

@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialSnapshot.model.decisionTree.RootMatsnapSelect;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatsnapRootSelect extends ActionLazyTemplateV2<MatsnapInfo, MatsnapInfo> {
+public final class LazyMatsnapRootSelect extends ActionLazyTemplate<MatsnapInfo, MatsnapInfo> {
 
 	public LazyMatsnapRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.message.emailScheduleConfirmation.info.EmulonInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmulonMergeCuslis extends ActionLazyTemplateV2<EmulonInfo, EmulonInfo> {
+public final class LazyEmulonMergeCuslis extends ActionLazyTemplate<EmulonInfo, EmulonInfo> {
 
 	public LazyEmulonMergeCuslis(Connection conn, String schemaName) {
 		super(conn, schemaName);

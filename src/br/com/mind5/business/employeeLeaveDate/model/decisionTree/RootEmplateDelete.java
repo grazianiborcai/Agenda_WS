@@ -16,7 +16,7 @@ import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckLangu;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckOwner;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckStorauth;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckStore;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -95,10 +95,10 @@ public final class RootEmplateDelete extends DeciTreeTemplateWriteV2<EmplateInfo
 		List<ActionStdV1<EmplateInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmplateInfo> mergeToDelete = new StdEmplateMergeToDelete(option);
-		ActionLazyV1<EmplateInfo> enforceLChanged = new LazyEmplateEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<EmplateInfo> enforceLChangedBy = new LazyEmplateMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<EmplateInfo> update = new LazyEmplateDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<EmplateInfo> delete = new LazyEmplateDaoDelete(option.conn, option.schemaName);
+		ActionLazy<EmplateInfo> enforceLChanged = new LazyEmplateEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<EmplateInfo> enforceLChangedBy = new LazyEmplateMergeUsername(option.conn, option.schemaName);
+		ActionLazy<EmplateInfo> update = new LazyEmplateDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<EmplateInfo> delete = new LazyEmplateDaoDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

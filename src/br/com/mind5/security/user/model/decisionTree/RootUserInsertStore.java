@@ -3,7 +3,7 @@ package br.com.mind5.security.user.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -70,9 +70,9 @@ public final class RootUserInsertStore extends DeciTreeTemplateWriteV2<UserInfo>
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<UserInfo> enforceCateg = new StdUserEnforceCategStore(option);
-		ActionLazyV1<UserInfo> enforceAuthGroup = new LazyUserEnforceAuthStore(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> mergePerson = new LazyUserMergePerson(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> insertUser = new LazyUserRootInsert(option.conn, option.schemaName);
+		ActionLazy<UserInfo> enforceAuthGroup = new LazyUserEnforceAuthStore(option.conn, option.schemaName);
+		ActionLazy<UserInfo> mergePerson = new LazyUserMergePerson(option.conn, option.schemaName);
+		ActionLazy<UserInfo> insertUser = new LazyUserRootInsert(option.conn, option.schemaName);
 		
 		enforceCateg.addPostAction(enforceAuthGroup);			
 		enforceAuthGroup.addPostAction(mergePerson);

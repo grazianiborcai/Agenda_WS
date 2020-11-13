@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.geo.geoCode.info.GeodeInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyGeodeMergeCountry extends ActionLazyTemplateV2<GeodeInfo, GeodeInfo> {
+public final class LazyGeodeMergeCountry extends ActionLazyTemplate<GeodeInfo, GeodeInfo> {
 
 	public LazyGeodeMergeCountry(Connection conn, String schemaName) {
 		super(conn, schemaName);

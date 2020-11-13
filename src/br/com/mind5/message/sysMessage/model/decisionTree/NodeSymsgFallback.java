@@ -9,7 +9,7 @@ import br.com.mind5.message.sysMessage.model.action.LazySymsgNodeSelectL1;
 import br.com.mind5.message.sysMessage.model.action.StdSymsgEnforceEnglish;
 import br.com.mind5.message.sysMessage.model.action.StdSymsgRestoreBase;
 import br.com.mind5.message.sysMessage.model.checker.SymsgCheckNotEnglish;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -46,7 +46,7 @@ public final class NodeSymsgFallback extends DeciTreeTemplateWriteV2<SymsgInfo> 
 		List<ActionStdV1<SymsgInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<SymsgInfo> enforceEnglish = new StdSymsgEnforceEnglish(option);
-		ActionLazyV1<SymsgInfo> nodeSelect = new LazySymsgNodeSelectL1(option.conn, option.schemaName);
+		ActionLazy<SymsgInfo> nodeSelect = new LazySymsgNodeSelectL1(option.conn, option.schemaName);
 		
 		enforceEnglish.addPostAction(nodeSelect);
 		
@@ -60,8 +60,8 @@ public final class NodeSymsgFallback extends DeciTreeTemplateWriteV2<SymsgInfo> 
 		List<ActionStdV1<SymsgInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<SymsgInfo> restoreBase = new StdSymsgRestoreBase(option);
-		ActionLazyV1<SymsgInfo> enforceError = new LazySymsgEnforceError(option.conn, option.schemaName);
-		ActionLazyV1<SymsgInfo> nodeSelect = new LazySymsgNodeSelectL1(option.conn, option.schemaName);
+		ActionLazy<SymsgInfo> enforceError = new LazySymsgEnforceError(option.conn, option.schemaName);
+		ActionLazy<SymsgInfo> nodeSelect = new LazySymsgNodeSelectL1(option.conn, option.schemaName);
 		
 		restoreBase.addPostAction(enforceError);
 		enforceError.addPostAction(nodeSelect);

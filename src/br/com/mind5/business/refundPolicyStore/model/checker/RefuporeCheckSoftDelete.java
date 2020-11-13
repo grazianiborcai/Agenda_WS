@@ -4,7 +4,7 @@ import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
 import br.com.mind5.business.refundPolicyStore.model.action.LazyRefuporeDaoSelect;
 import br.com.mind5.business.refundPolicyStore.model.action.StdRefuporeEnforceDel;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
@@ -20,7 +20,7 @@ public final class RefuporeCheckSoftDelete extends ModelCheckerTemplateActionV2<
 	
 	@Override protected ActionStdV1<RefuporeInfo> buildActionHook(DeciTreeOption<RefuporeInfo> option) {
 		ActionStdV1<RefuporeInfo> enforceDel = new StdRefuporeEnforceDel(option);
-		ActionLazyV1<RefuporeInfo> select = new LazyRefuporeDaoSelect(option.conn, option.schemaName);
+		ActionLazy<RefuporeInfo> select = new LazyRefuporeDaoSelect(option.conn, option.schemaName);
 		
 		enforceDel.addPostAction(select);
 		

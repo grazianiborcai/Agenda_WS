@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrder.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -52,7 +52,7 @@ public final class RootPayordUpdate extends DeciTreeTemplateWriteV2<PayordInfo> 
 		List<ActionStdV1<PayordInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<PayordInfo> select = new StdPayordMergeToUpdate(option);
-		ActionLazyV1<PayordInfo> updatePayord = new LazyPayordDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> updatePayord = new LazyPayordDaoUpdate(option.conn, option.schemaName);
 		
 		select.addPostAction(updatePayord);
 		

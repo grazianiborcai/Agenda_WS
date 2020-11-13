@@ -10,7 +10,7 @@ import br.com.mind5.business.calendarTimeEmployee.model.checker.CalimempCheckEmp
 import br.com.mind5.business.calendarTimeEmployee.model.checker.CalimempCheckOwner;
 import br.com.mind5.business.calendarTimeEmployee.model.checker.CalimempCheckRead;
 import br.com.mind5.business.calendarTimeEmployee.model.checker.CalimempCheckStore;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -68,7 +68,7 @@ public final class RootCalimempSelect extends DeciTreeTemplateWriteV2<CalimempIn
 		List<ActionStdV1<CalimempInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CalimempInfo> mergeCalate = new StdCalimempMergeCalate(option);
-		ActionLazyV1<CalimempInfo> select = new LazyCalimempNodeSelect(option.conn, option.schemaName);
+		ActionLazy<CalimempInfo> select = new LazyCalimempNodeSelect(option.conn, option.schemaName);
 		
 		mergeCalate.addPostAction(select);
 		

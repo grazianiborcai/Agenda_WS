@@ -9,7 +9,7 @@ import br.com.mind5.business.storeSnapshot.model.action.LazyStorextsnapInsert;
 import br.com.mind5.business.storeSnapshot.model.action.StdStorapMergeStorext;
 import br.com.mind5.business.storeSnapshot.model.action.StdStorapSuccess;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckStorextarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -46,8 +46,8 @@ public final class NodeStorapStorextsnap extends DeciTreeTemplateWriteV2<StorapI
 		List<ActionStdV1<StorapInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<StorapInfo> mergeStorext = new StdStorapMergeStorext(option);
-		ActionLazyV1<StorapInfo> enforceStorextsnapKey = new LazyStorapEnforceStorextsnapKey(option.conn, option.schemaName);
-		ActionLazyV1<StorapInfo> insertStorextsnap = new LazyStorextsnapInsert(option.conn, option.schemaName);
+		ActionLazy<StorapInfo> enforceStorextsnapKey = new LazyStorapEnforceStorextsnapKey(option.conn, option.schemaName);
+		ActionLazy<StorapInfo> insertStorextsnap = new LazyStorextsnapInsert(option.conn, option.schemaName);
 		
 		mergeStorext.addPostAction(enforceStorextsnapKey);
 		enforceStorextsnapKey.addPostAction(insertStorextsnap);

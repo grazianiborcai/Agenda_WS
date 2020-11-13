@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.refundPolicyGroupItem.info.RefugritemInfo;
 import br.com.mind5.masterData.refundPolicyGroupItem.model.action.LazyRefugritemRootSelect;
 import br.com.mind5.masterData.refundPolicyGroupItem.model.action.StdRefugritemMergeRefugritarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootRefugritemSearch extends DeciTreeTemplateReadV2<Refugrite
 		List<ActionStdV1<RefugritemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<RefugritemInfo> mergeRefugritarch = new StdRefugritemMergeRefugritarch(option);
-		ActionLazyV1<RefugritemInfo> select = new LazyRefugritemRootSelect(option.conn, option.schemaName);
+		ActionLazy<RefugritemInfo> select = new LazyRefugritemRootSelect(option.conn, option.schemaName);
 		
 		mergeRefugritarch.addPostAction(select);
 		

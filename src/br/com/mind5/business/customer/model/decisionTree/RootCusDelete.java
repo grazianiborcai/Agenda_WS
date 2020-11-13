@@ -17,7 +17,7 @@ import br.com.mind5.business.customer.model.checker.CusCheckDelete;
 import br.com.mind5.business.customer.model.checker.CusCheckExist;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
 import br.com.mind5.business.customer.model.checker.CusCheckOwner;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -75,14 +75,14 @@ public final class RootCusDelete extends DeciTreeTemplateWriteV2<CusInfo> {
 		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CusInfo> mergeToDelete = new StdCusMergeToDelete(option);
-		ActionLazyV1<CusInfo> nodeSytotauh = new LazyCusNodeSytotauh(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> enforceLChanged = new LazyCusEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> enforceLChangedBy = new LazyCusMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> update = new LazyCusDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> deleteAddress = new LazyCusNodeDeleteAddress(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> deletePhone = new LazyCusNodeDeletePhone(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> deletePerson = new LazyCusPersonDelete(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> deleteCustomer = new LazyCusDaoDelete(option.conn, option.schemaName);	
+		ActionLazy<CusInfo> nodeSytotauh = new LazyCusNodeSytotauh(option.conn, option.schemaName);
+		ActionLazy<CusInfo> enforceLChanged = new LazyCusEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<CusInfo> enforceLChangedBy = new LazyCusMergeUsername(option.conn, option.schemaName);
+		ActionLazy<CusInfo> update = new LazyCusDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<CusInfo> deleteAddress = new LazyCusNodeDeleteAddress(option.conn, option.schemaName);
+		ActionLazy<CusInfo> deletePhone = new LazyCusNodeDeletePhone(option.conn, option.schemaName);
+		ActionLazy<CusInfo> deletePerson = new LazyCusPersonDelete(option.conn, option.schemaName);
+		ActionLazy<CusInfo> deleteCustomer = new LazyCusDaoDelete(option.conn, option.schemaName);	
 		
 		mergeToDelete.addPostAction(nodeSytotauh);
 		nodeSytotauh.addPostAction(enforceLChanged);

@@ -8,7 +8,7 @@ import br.com.mind5.message.emailWelcome.model.action.LazyEmacomeNodeSend;
 import br.com.mind5.message.emailWelcome.model.action.LazyEmacomeMergeUselis;
 import br.com.mind5.message.emailWelcome.model.action.StdEmacomeMergeOwnelis;
 import br.com.mind5.message.emailWelcome.model.checker.EmacomeCheckSend;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,8 +45,8 @@ public final class RootEmacomeSend extends DeciTreeTemplateWriteV2<EmacomeInfo> 
 		List<ActionStdV1<EmacomeInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<EmacomeInfo> mergeOwnelis = new StdEmacomeMergeOwnelis(option);
-		ActionLazyV1<EmacomeInfo> mergeUselis = new LazyEmacomeMergeUselis(option.conn, option.schemaName);
-		ActionLazyV1<EmacomeInfo> nodeL1 = new LazyEmacomeNodeSend(option.conn, option.schemaName);	
+		ActionLazy<EmacomeInfo> mergeUselis = new LazyEmacomeMergeUselis(option.conn, option.schemaName);
+		ActionLazy<EmacomeInfo> nodeL1 = new LazyEmacomeNodeSend(option.conn, option.schemaName);	
 		
 		mergeOwnelis.addPostAction(mergeUselis);
 		mergeUselis.addPostAction(nodeL1);

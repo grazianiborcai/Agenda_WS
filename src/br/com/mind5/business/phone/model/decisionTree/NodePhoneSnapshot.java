@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.action.LazyPhoneDaoUpdate;
 import br.com.mind5.business.phone.model.action.StdPhoneInsertPhonap;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodePhoneSnapshot extends DeciTreeTemplateWriteV2<PhoneInfo> 
 		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<PhoneInfo> insertPhonap = new StdPhoneInsertPhonap(option);
-		ActionLazyV1<PhoneInfo> update = new LazyPhoneDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<PhoneInfo> update = new LazyPhoneDaoUpdate(option.conn, option.schemaName);
 		
 		insertPhonap.addPostAction(update);
 

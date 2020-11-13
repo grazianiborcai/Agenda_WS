@@ -7,7 +7,7 @@ import br.com.mind5.businessContent.material.petShop.info.MatbcetInfo;
 import br.com.mind5.businessContent.material.petShop.model.action.LazyMatbcetMatInsert;
 import br.com.mind5.businessContent.material.petShop.model.action.LazyMatbcetNodeInsertL09;
 import br.com.mind5.businessContent.material.petShop.model.action.StdMatbcetEnforceCatHaircutClipper;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,8 +39,8 @@ public final class NodeMatbcetInsertL08 extends DeciTreeTemplateWriteV2<MatbcetI
 		List<ActionStdV1<MatbcetInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<MatbcetInfo> enforceCatHaircutClipper = new StdMatbcetEnforceCatHaircutClipper(option);	
-		ActionLazyV1<MatbcetInfo> insertMat = new LazyMatbcetMatInsert(option.conn, option.schemaName);	
-		ActionLazyV1<MatbcetInfo> nodeL09 = new LazyMatbcetNodeInsertL09(option.conn, option.schemaName);
+		ActionLazy<MatbcetInfo> insertMat = new LazyMatbcetMatInsert(option.conn, option.schemaName);	
+		ActionLazy<MatbcetInfo> nodeL09 = new LazyMatbcetNodeInsertL09(option.conn, option.schemaName);
 		
 		enforceCatHaircutClipper.addPostAction(insertMat);
 		insertMat.addPostAction(nodeL09);

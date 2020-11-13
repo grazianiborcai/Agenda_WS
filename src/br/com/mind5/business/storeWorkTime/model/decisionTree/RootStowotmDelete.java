@@ -13,7 +13,7 @@ import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckDelete;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckEmpwotarch;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckExist;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckStorauth;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -71,10 +71,10 @@ public final class RootStowotmDelete extends DeciTreeTemplateWriteV2<StowotmInfo
 		List<ActionStdV1<StowotmInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StowotmInfo> mergeToDelete = new StdStowotmMergeToDelete(option);
-		ActionLazyV1<StowotmInfo> enforceLChanged = new LazyStowotmEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<StowotmInfo> update = new LazyStowotmDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<StowotmInfo> delete = new LazyStowotmDaoDelete(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> enforceLChanged = new LazyStowotmEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> update = new LazyStowotmDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> delete = new LazyStowotmDaoDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

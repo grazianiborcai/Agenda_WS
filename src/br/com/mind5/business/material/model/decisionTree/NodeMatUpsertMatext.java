@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.action.LazyMatMatextUpsert;
 import br.com.mind5.business.material.model.action.StdMatEnforceMatextKey;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeMatUpsertMatext extends DeciTreeTemplateWriteV2<MatInfo> 
 		List<ActionStdV1<MatInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatInfo> enforceMatextKey = new StdMatEnforceMatextKey(option);
-		ActionLazyV1<MatInfo> upsertMatext = new LazyMatMatextUpsert(option.conn, option.schemaName);
+		ActionLazy<MatInfo> upsertMatext = new LazyMatMatextUpsert(option.conn, option.schemaName);
 		
 		enforceMatextKey.addPostAction(upsertMatext);
 

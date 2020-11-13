@@ -4,7 +4,7 @@ import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateDaoSelect;
 import br.com.mind5.business.employeeLeaveDate.model.action.StdEmplateEnforceDel;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
@@ -20,7 +20,7 @@ public final class EmplateCheckSoftDelete extends ModelCheckerTemplateActionV2<E
 	
 	@Override protected ActionStdV1<EmplateInfo> buildActionHook(DeciTreeOption<EmplateInfo> option) {
 		ActionStdV1<EmplateInfo> enforceDel = new StdEmplateEnforceDel(option);
-		ActionLazyV1<EmplateInfo> select = new LazyEmplateDaoSelect(option.conn, option.schemaName);		
+		ActionLazy<EmplateInfo> select = new LazyEmplateDaoSelect(option.conn, option.schemaName);		
 		
 		enforceDel.addPostAction(select);
 		return enforceDel;

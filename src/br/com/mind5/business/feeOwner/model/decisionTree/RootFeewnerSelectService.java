@@ -7,7 +7,7 @@ import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.business.feeOwner.model.action.LazyFeewnerRootSelect;
 import br.com.mind5.business.feeOwner.model.action.StdFeewnerEnforceCategServ;
 import br.com.mind5.business.feeOwner.model.checker.FeewnerCheckReadService;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class RootFeewnerSelectService extends DeciTreeTemplateReadV2<Feewn
 		List<ActionStdV1<FeewnerInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<FeewnerInfo> enforceCateg = new StdFeewnerEnforceCategServ(option);
-		ActionLazyV1<FeewnerInfo> select = new LazyFeewnerRootSelect(option.conn, option.schemaName);
+		ActionLazy<FeewnerInfo> select = new LazyFeewnerRootSelect(option.conn, option.schemaName);
 		
 		enforceCateg.addPostAction(select);		
 		

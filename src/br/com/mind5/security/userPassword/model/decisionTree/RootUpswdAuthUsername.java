@@ -3,7 +3,7 @@ package br.com.mind5.security.userPassword.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -52,7 +52,7 @@ public final class RootUpswdAuthUsername extends DeciTreeTemplateWriteV2<UpswdIn
 		List<ActionStdV1<UpswdInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<UpswdInfo> mergeUsername = new StdUpswdMergeUsername(option);
-		ActionLazyV1<UpswdInfo> authenticate = new LazyUpswdRootAuth(option.conn, option.schemaName);		
+		ActionLazy<UpswdInfo> authenticate = new LazyUpswdRootAuth(option.conn, option.schemaName);		
 		
 		mergeUsername.addPostAction(authenticate);
 		

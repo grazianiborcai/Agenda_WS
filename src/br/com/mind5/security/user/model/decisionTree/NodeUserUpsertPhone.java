@@ -3,7 +3,7 @@ package br.com.mind5.security.user.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,7 +45,7 @@ public final class NodeUserUpsertPhone extends DeciTreeTemplateWriteV2<UserInfo>
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UserInfo> enforcePhoneKey = new StdUserEnforcePhoneKey(option);
-		ActionLazyV1<UserInfo> upsertPhone = new LazyUserPhoneUpsert(option.conn, option.schemaName);	
+		ActionLazy<UserInfo> upsertPhone = new LazyUserPhoneUpsert(option.conn, option.schemaName);	
 		
 		enforcePhoneKey.addPostAction(upsertPhone);
 		

@@ -8,7 +8,7 @@ import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceUser;
 import br.com.mind5.file.fileImage.model.action.LazyFimgNodeUpsertUser;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckInsertUser;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckUsername;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -52,8 +52,8 @@ public final class RootFimgInsertUserAuth extends DeciTreeTemplateWriteV2<FimgIn
 		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<FimgInfo> nodeUser = new NodeFimgUser(option).toAction();
-		ActionLazyV1<FimgInfo> enforceUser = new LazyFimgEnforceUser(option.conn, option.schemaName);	
-		ActionLazyV1<FimgInfo> upsert = new LazyFimgNodeUpsertUser(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> enforceUser = new LazyFimgEnforceUser(option.conn, option.schemaName);	
+		ActionLazy<FimgInfo> upsert = new LazyFimgNodeUpsertUser(option.conn, option.schemaName);
 		
 		nodeUser.addPostAction(enforceUser);
 		enforceUser.addPostAction(upsert);

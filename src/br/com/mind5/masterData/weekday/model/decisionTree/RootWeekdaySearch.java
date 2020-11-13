@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.masterData.weekday.model.action.LazyWeekdayRootSelect;
 import br.com.mind5.masterData.weekday.model.action.StdWeekdayMergeWeekdarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootWeekdaySearch extends DeciTreeTemplateWriteV2<WeekdayInfo
 		List<ActionStdV1<WeekdayInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<WeekdayInfo> mergeWeekdarch = new StdWeekdayMergeWeekdarch(option);		
-		ActionLazyV1<WeekdayInfo> select = new LazyWeekdayRootSelect(option.conn, option.schemaName);
+		ActionLazy<WeekdayInfo> select = new LazyWeekdayRootSelect(option.conn, option.schemaName);
 		
 		mergeWeekdarch.addPostAction(select);
 		

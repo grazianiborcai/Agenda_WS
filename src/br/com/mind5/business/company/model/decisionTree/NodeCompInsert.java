@@ -10,7 +10,7 @@ import br.com.mind5.business.company.model.action.LazyCompEnforceCreatedOn;
 import br.com.mind5.business.company.model.action.LazyCompEnforceNameSearch;
 import br.com.mind5.business.company.model.action.LazyCompMergeUsername;
 import br.com.mind5.business.company.model.action.StdCompEnforceLChanged;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -42,11 +42,11 @@ public final class NodeCompInsert extends DeciTreeTemplateWriteV2<CompInfo> {
 		List<ActionStdV1<CompInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CompInfo> enforceLChanged = new StdCompEnforceLChanged(option);
-		ActionLazyV1<CompInfo> enforceLChangedBy = new LazyCompMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<CompInfo> enforceCreatedOn = new LazyCompEnforceCreatedOn(option.conn, option.schemaName);	
-		ActionLazyV1<CompInfo> enforceCreatedBy = new LazyCompEnforceCreatedBy(option.conn, option.schemaName);
-		ActionLazyV1<CompInfo> enforceNameSearch = new LazyCompEnforceNameSearch(option.conn, option.schemaName);
-		ActionLazyV1<CompInfo> insert = new LazyCompDaoInsert(option.conn, option.schemaName);
+		ActionLazy<CompInfo> enforceLChangedBy = new LazyCompMergeUsername(option.conn, option.schemaName);
+		ActionLazy<CompInfo> enforceCreatedOn = new LazyCompEnforceCreatedOn(option.conn, option.schemaName);	
+		ActionLazy<CompInfo> enforceCreatedBy = new LazyCompEnforceCreatedBy(option.conn, option.schemaName);
+		ActionLazy<CompInfo> enforceNameSearch = new LazyCompEnforceNameSearch(option.conn, option.schemaName);
+		ActionLazy<CompInfo> insert = new LazyCompDaoInsert(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedOn);

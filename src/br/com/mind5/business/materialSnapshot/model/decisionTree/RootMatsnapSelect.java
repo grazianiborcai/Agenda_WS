@@ -14,7 +14,7 @@ import br.com.mind5.business.materialSnapshot.model.action.StdMatsnapMergeToSele
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckMat;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckOwner;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -65,12 +65,12 @@ public final class RootMatsnapSelect extends DeciTreeTemplateReadV2<MatsnapInfo>
 		List<ActionStdV1<MatsnapInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatsnapInfo> select = new StdMatsnapMergeToSelect(option);
-		ActionLazyV1<MatsnapInfo> mergeMatextsnap = new LazyMatsnapMergeMatextsnap(option.conn, option.schemaName);
-		ActionLazyV1<MatsnapInfo> mergeMatype = new LazyMatsnapMergeMatype(option.conn, option.schemaName);
-		ActionLazyV1<MatsnapInfo> mergeMateg = new LazyMatsnapMergeMateg(option.conn, option.schemaName);
-		ActionLazyV1<MatsnapInfo> mergeMatoup = new LazyMatsnapMergeMatoup(option.conn, option.schemaName);
-		ActionLazyV1<MatsnapInfo> mergeMatubup = new LazyMatsnapMergeMatubup(option.conn, option.schemaName);
-		ActionLazyV1<MatsnapInfo> mergeMatunit = new LazyMatsnapMergeMatunit(option.conn, option.schemaName);
+		ActionLazy<MatsnapInfo> mergeMatextsnap = new LazyMatsnapMergeMatextsnap(option.conn, option.schemaName);
+		ActionLazy<MatsnapInfo> mergeMatype = new LazyMatsnapMergeMatype(option.conn, option.schemaName);
+		ActionLazy<MatsnapInfo> mergeMateg = new LazyMatsnapMergeMateg(option.conn, option.schemaName);
+		ActionLazy<MatsnapInfo> mergeMatoup = new LazyMatsnapMergeMatoup(option.conn, option.schemaName);
+		ActionLazy<MatsnapInfo> mergeMatubup = new LazyMatsnapMergeMatubup(option.conn, option.schemaName);
+		ActionLazy<MatsnapInfo> mergeMatunit = new LazyMatsnapMergeMatunit(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMatextsnap);
 		mergeMatextsnap.addPostAction(mergeMatype);

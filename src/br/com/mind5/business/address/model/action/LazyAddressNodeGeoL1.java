@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.NodeAddressGeoL1;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyAddressNodeGeoL1 extends ActionLazyTemplateV2<AddressInfo, AddressInfo> {
+public final class LazyAddressNodeGeoL1 extends ActionLazyTemplate<AddressInfo, AddressInfo> {
 
 	public LazyAddressNodeGeoL1(Connection conn, String schemaName) {
 		super(conn, schemaName);

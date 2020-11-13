@@ -12,7 +12,7 @@ import br.com.mind5.business.orderItem.model.checker.OrderemCheckExist;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckLangu;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckOwner;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -70,9 +70,9 @@ public final class RootOrderemPlace extends DeciTreeTemplateWriteV2<OrderemInfo>
 		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OrderemInfo> mergeToSelect = new StdOrderemMergeToSelect(option);
-		ActionLazyV1<OrderemInfo> statusChange = new LazyOrderemMergeOrdugePlace(option.conn, option.schemaName);
-		ActionLazyV1<OrderemInfo> update = new LazyOrderemNodeUpdate(option.conn, option.schemaName);			
-		ActionLazyV1<OrderemInfo> select = new LazyOrderemRootSelect(option.conn, option.schemaName);	
+		ActionLazy<OrderemInfo> statusChange = new LazyOrderemMergeOrdugePlace(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> update = new LazyOrderemNodeUpdate(option.conn, option.schemaName);			
+		ActionLazy<OrderemInfo> select = new LazyOrderemRootSelect(option.conn, option.schemaName);	
 		
 		mergeToSelect.addPostAction(statusChange);
 		statusChange.addPostAction(update);

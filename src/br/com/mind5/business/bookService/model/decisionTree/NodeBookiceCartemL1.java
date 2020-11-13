@@ -9,7 +9,7 @@ import br.com.mind5.business.bookService.model.action.StdBookiceEnforceWeekday;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckLangu;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckOwner;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckServiceCartem;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -60,7 +60,7 @@ public final class NodeBookiceCartemL1 extends DeciTreeTemplateWriteV2<BookiceIn
 		List<ActionStdV1<BookiceInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<BookiceInfo> enforceWeekday = new StdBookiceEnforceWeekday(option);
-		ActionLazyV1<BookiceInfo> nodeL2 = new LazyBookiceNodeCartemL2(option.conn, option.schemaName);
+		ActionLazy<BookiceInfo> nodeL2 = new LazyBookiceNodeCartemL2(option.conn, option.schemaName);
 		
 		enforceWeekday.addPostAction(nodeL2);
 		

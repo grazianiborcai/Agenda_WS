@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.decisionTree.NodeMatextPostUpdate;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatextNodePostUpdate extends ActionLazyTemplateV2<MatextInfo, MatextInfo> {
+public final class LazyMatextNodePostUpdate extends ActionLazyTemplate<MatextInfo, MatextInfo> {
 
 	public LazyMatextNodePostUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName);

@@ -8,7 +8,7 @@ import br.com.mind5.business.customer.model.action.LazyCusPhoneUpsert;
 import br.com.mind5.business.customer.model.action.StdCusEnforcePhoneKey;
 import br.com.mind5.business.customer.model.action.StdCusSuccess;
 import br.com.mind5.business.customer.model.checker.CusCheckHasPhone;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,7 +45,7 @@ public final class NodeCusUpsertPhone extends DeciTreeTemplateWriteV2<CusInfo> {
 		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CusInfo> enforcePhoneKey = new StdCusEnforcePhoneKey(option);
-		ActionLazyV1<CusInfo> upsertPhone = new LazyCusPhoneUpsert(option.conn, option.schemaName);	
+		ActionLazy<CusInfo> upsertPhone = new LazyCusPhoneUpsert(option.conn, option.schemaName);	
 		
 		enforcePhoneKey.addPostAction(upsertPhone);
 		

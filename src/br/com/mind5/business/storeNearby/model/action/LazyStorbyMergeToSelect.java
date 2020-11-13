@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStorbyMergeToSelect extends ActionLazyTemplateV2<StorbyInfo, StorbyInfo> {
+public final class LazyStorbyMergeToSelect extends ActionLazyTemplate<StorbyInfo, StorbyInfo> {
 
 	public LazyStorbyMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

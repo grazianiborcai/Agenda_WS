@@ -3,13 +3,13 @@ package br.com.mind5.payment.refundOrder.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 
-public final class LazyRefuRefundRefem extends ActionLazyTemplateV2<RefuInfo, RefuInfo> {
+public final class LazyRefuRefundRefem extends ActionLazyTemplate<RefuInfo, RefuInfo> {
 	
 	public LazyRefuRefundRefem(Connection conn, String schemaName) {
 		super(conn, schemaName);

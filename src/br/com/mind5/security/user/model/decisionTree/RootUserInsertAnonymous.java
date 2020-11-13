@@ -3,7 +3,7 @@ package br.com.mind5.security.user.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -59,14 +59,14 @@ public final class RootUserInsertAnonymous extends DeciTreeTemplateWriteV2<UserI
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<UserInfo> enforceDaemon = new StdUserEnforceUsernameDaemon(option);
-		ActionLazyV1<UserInfo> enforceLChangedBy = new LazyUserMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> enforceUsername = new LazyUserEnforceUsernameAnonymous(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> enforceCateg = new LazyUserEnforceCategAnonymous(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> enforceAuthGroup = new LazyUserEnforceAuthAnonymous(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> insertUser = new LazyUserNodeInsert(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> snapshot = new LazyUserNodeSnapshot(option.conn, option.schemaName);		
-		ActionLazyV1<UserInfo> insertPassword = new LazyUserUpswdInsertAnonymous(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> select = new LazyUserRootSelect(option.conn, option.schemaName);	
+		ActionLazy<UserInfo> enforceLChangedBy = new LazyUserMergeUsername(option.conn, option.schemaName);
+		ActionLazy<UserInfo> enforceUsername = new LazyUserEnforceUsernameAnonymous(option.conn, option.schemaName);
+		ActionLazy<UserInfo> enforceCateg = new LazyUserEnforceCategAnonymous(option.conn, option.schemaName);
+		ActionLazy<UserInfo> enforceAuthGroup = new LazyUserEnforceAuthAnonymous(option.conn, option.schemaName);
+		ActionLazy<UserInfo> insertUser = new LazyUserNodeInsert(option.conn, option.schemaName);
+		ActionLazy<UserInfo> snapshot = new LazyUserNodeSnapshot(option.conn, option.schemaName);		
+		ActionLazy<UserInfo> insertPassword = new LazyUserUpswdInsertAnonymous(option.conn, option.schemaName);
+		ActionLazy<UserInfo> select = new LazyUserRootSelect(option.conn, option.schemaName);	
 		
 		enforceDaemon.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceUsername);

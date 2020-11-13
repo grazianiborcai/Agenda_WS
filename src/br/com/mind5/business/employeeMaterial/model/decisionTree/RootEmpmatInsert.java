@@ -17,7 +17,7 @@ import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckMat;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckMatarchService;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckOwner;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -96,11 +96,11 @@ public final class RootEmpmatInsert extends DeciTreeTemplateWriteV2<EmpmatInfo> 
 		List<ActionStdV1<EmpmatInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmpmatInfo> enforceLChanged = new StdEmpmatEnforceLChanged(option);
-		ActionLazyV1<EmpmatInfo> enforceLChangedBy = new LazyEmpmatMergeUsername(option.conn, option.schemaName);		
-		ActionLazyV1<EmpmatInfo> enforceCreatedBy = new LazyEmpmatEnforceCreatedBy(option.conn, option.schemaName);
-		ActionLazyV1<EmpmatInfo> enforceCreatedOn = new LazyEmpmatEnforceCreatedOn(option.conn, option.schemaName);		
-		ActionLazyV1<EmpmatInfo> nodeInsert = new LazyEmpmatNodeInsert(option.conn, option.schemaName);
-		ActionLazyV1<EmpmatInfo> select = new LazyEmpmatRootSelect(option.conn, option.schemaName);
+		ActionLazy<EmpmatInfo> enforceLChangedBy = new LazyEmpmatMergeUsername(option.conn, option.schemaName);		
+		ActionLazy<EmpmatInfo> enforceCreatedBy = new LazyEmpmatEnforceCreatedBy(option.conn, option.schemaName);
+		ActionLazy<EmpmatInfo> enforceCreatedOn = new LazyEmpmatEnforceCreatedOn(option.conn, option.schemaName);		
+		ActionLazy<EmpmatInfo> nodeInsert = new LazyEmpmatNodeInsert(option.conn, option.schemaName);
+		ActionLazy<EmpmatInfo> select = new LazyEmpmatRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);

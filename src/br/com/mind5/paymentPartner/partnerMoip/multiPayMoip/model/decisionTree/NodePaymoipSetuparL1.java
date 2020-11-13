@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodePaymoipSetuparL1 extends DeciTreeTemplateWriteV2<PaymoipI
 		List<ActionStdV1<PaymoipInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<PaymoipInfo> mergeSetupar = new StdPaymoipMergeSetupar(option);
-		ActionLazyV1<PaymoipInfo> nodeL2 = new LazyPaymoipNodeSetuparL2(option.conn, option.schemaName);
+		ActionLazy<PaymoipInfo> nodeL2 = new LazyPaymoipNodeSetuparL2(option.conn, option.schemaName);
 		
 		mergeSetupar.addPostAction(nodeL2);
 		

@@ -3,13 +3,13 @@ package br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 
-public final class LazyRefumoipMergeSysenv extends ActionLazyTemplateV2<RefumoipInfo, RefumoipInfo> {
+public final class LazyRefumoipMergeSysenv extends ActionLazyTemplate<RefumoipInfo, RefumoipInfo> {
 
 	public LazyRefumoipMergeSysenv(Connection conn, String schemaName) {
 		super(conn, schemaName);

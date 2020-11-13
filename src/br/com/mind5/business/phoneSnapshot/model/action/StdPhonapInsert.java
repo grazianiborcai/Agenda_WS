@@ -7,7 +7,7 @@ import br.com.mind5.business.phoneSnapshot.dao.DaoPhonapInsert;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmtV1;
 import br.com.mind5.model.decisionTree.DeciResult;
@@ -40,7 +40,7 @@ public final class StdPhonapInsert implements ActionStdV1<PhonapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<PhonapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<PhonapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

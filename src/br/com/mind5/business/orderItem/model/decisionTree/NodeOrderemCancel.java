@@ -9,7 +9,7 @@ import br.com.mind5.business.orderItem.model.action.LazyOrderemSchedineRefresh;
 import br.com.mind5.business.orderItem.model.action.StdOrderemMergeOrdugeCancel;
 import br.com.mind5.business.orderItem.model.action.StdOrderemSuccess;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckIsCancelled;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -57,8 +57,8 @@ public final class NodeOrderemCancel extends DeciTreeTemplateWriteV2<OrderemInfo
 		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OrderemInfo> statusChange = new StdOrderemMergeOrdugeCancel(option);
-		ActionLazyV1<OrderemInfo> update = new LazyOrderemNodeUpdate(option.conn, option.schemaName);	
-		ActionLazyV1<OrderemInfo> refreshSchedine = new LazyOrderemSchedineRefresh(option.conn, option.schemaName);			
+		ActionLazy<OrderemInfo> update = new LazyOrderemNodeUpdate(option.conn, option.schemaName);	
+		ActionLazy<OrderemInfo> refreshSchedine = new LazyOrderemSchedineRefresh(option.conn, option.schemaName);			
 		
 		statusChange.addPostAction(update);		
 		update.addPostAction(refreshSchedine);

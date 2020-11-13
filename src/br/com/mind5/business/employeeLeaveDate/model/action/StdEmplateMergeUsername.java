@@ -1,7 +1,7 @@
 package br.com.mind5.business.employeeLeaveDate.model.action;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
@@ -17,7 +17,7 @@ public final class StdEmplateMergeUsername implements ActionStdV1<EmplateInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<EmplateInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<EmplateInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

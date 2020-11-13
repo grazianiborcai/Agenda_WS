@@ -8,7 +8,7 @@ import br.com.mind5.business.bookService.model.action.LazyBookiceEnforceAged;
 import br.com.mind5.business.bookService.model.action.LazyBookiceMergeSymsg;
 import br.com.mind5.business.bookService.model.action.StdBookiceEnforceSymsgL07;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckEmpmat;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -56,8 +56,8 @@ public final class NodeBookiceAgedL07 extends DeciTreeTemplateWriteV2<BookiceInf
 		List<ActionStdV1<BookiceInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<BookiceInfo> enforceSymsg = new StdBookiceEnforceSymsgL07(option);	
-		ActionLazyV1<BookiceInfo> mergeSymsg = new LazyBookiceMergeSymsg(option.conn, option.schemaName);
-		ActionLazyV1<BookiceInfo> enforceAged = new LazyBookiceEnforceAged(option.conn, option.schemaName);
+		ActionLazy<BookiceInfo> mergeSymsg = new LazyBookiceMergeSymsg(option.conn, option.schemaName);
+		ActionLazy<BookiceInfo> enforceAged = new LazyBookiceEnforceAged(option.conn, option.schemaName);
 		
 		enforceSymsg.addPostAction(mergeSymsg);
 		mergeSymsg.addPostAction(enforceAged);

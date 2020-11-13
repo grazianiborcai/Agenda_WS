@@ -9,7 +9,7 @@ import br.com.mind5.business.storeTextSnapshot.model.action.StdStorextsnapMergeS
 import br.com.mind5.business.storeTextSnapshot.model.checker.StorextsnapCheckStorext;
 import br.com.mind5.business.storeTextSnapshot.model.checker.StorextsnapCheckOwner;
 import br.com.mind5.business.storeTextSnapshot.model.checker.StorextsnapCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -60,7 +60,7 @@ public final class RootStorextsnapInsert extends DeciTreeTemplateWriteV2<Storext
 		List<ActionStdV1<StorextsnapInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<StorextsnapInfo> mergeStorext = new StdStorextsnapMergeStorext(option);	
-		ActionLazyV1<StorextsnapInfo> insert = new LazyStorextsnapDaoInsert(option.conn, option.schemaName);	
+		ActionLazy<StorextsnapInfo> insert = new LazyStorextsnapDaoInsert(option.conn, option.schemaName);	
 		
 		mergeStorext.addPostAction(insert);
 		

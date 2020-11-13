@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.companyList.model.action.LazyComplisRootSelect;
 import br.com.mind5.business.companyList.model.action.StdComplisMergeComparch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootComplisSearch extends DeciTreeTemplateReadV2<ComplisInfo>
 		List<ActionStdV1<ComplisInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<ComplisInfo> mergeComparch = new StdComplisMergeComparch(option);	
-		ActionLazyV1<ComplisInfo> select = new LazyComplisRootSelect(option.conn, option.schemaName);
+		ActionLazy<ComplisInfo> select = new LazyComplisRootSelect(option.conn, option.schemaName);
 		
 		mergeComparch.addPostAction(select);
 		

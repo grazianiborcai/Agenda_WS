@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.calendarTimeEmployee.info.CalimempInfo;
 import br.com.mind5.business.calendarTimeEmployee.model.decisionTree.NodeCalimempSelect;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCalimempNodeSelect extends ActionLazyTemplateV2<CalimempInfo, CalimempInfo> {
+public final class LazyCalimempNodeSelect extends ActionLazyTemplate<CalimempInfo, CalimempInfo> {
 
 	public LazyCalimempNodeSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

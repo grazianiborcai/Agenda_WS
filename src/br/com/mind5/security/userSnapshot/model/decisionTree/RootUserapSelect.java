@@ -3,7 +3,7 @@ package br.com.mind5.security.userSnapshot.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -46,9 +46,9 @@ public final class RootUserapSelect extends DeciTreeTemplateReadV2<UserapInfo> {
 		List<ActionStdV1<UserapInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UserapInfo> select = new StdUserapMergeToSelect(option);
-		ActionLazyV1<UserapInfo> mergePerson = new LazyUserapMergePersonap(option.conn, option.schemaName);
-		ActionLazyV1<UserapInfo> mergeAddress = new LazyUserapMergeAddresnap(option.conn, option.schemaName);
-		ActionLazyV1<UserapInfo> mergePhone = new LazyUserapMergePhonap(option.conn, option.schemaName);
+		ActionLazy<UserapInfo> mergePerson = new LazyUserapMergePersonap(option.conn, option.schemaName);
+		ActionLazy<UserapInfo> mergeAddress = new LazyUserapMergeAddresnap(option.conn, option.schemaName);
+		ActionLazy<UserapInfo> mergePhone = new LazyUserapMergePhonap(option.conn, option.schemaName);
 		//TODO: PersonCus nao vem do snapshot. Corrigir isso
 		
 		select.addPostAction(mergePerson);

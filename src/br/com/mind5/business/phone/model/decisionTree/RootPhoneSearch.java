@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.action.LazyPhoneRootSelect;
 import br.com.mind5.business.phone.model.action.StdPhoneMergePhonarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootPhoneSearch extends DeciTreeTemplateWriteV2<PhoneInfo> {
 		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<PhoneInfo> mergePhonarch = new StdPhoneMergePhonarch(option);		
-		ActionLazyV1<PhoneInfo> select = new LazyPhoneRootSelect(option.conn, option.schemaName);
+		ActionLazy<PhoneInfo> select = new LazyPhoneRootSelect(option.conn, option.schemaName);
 		
 		mergePhonarch.addPostAction(select);
 		

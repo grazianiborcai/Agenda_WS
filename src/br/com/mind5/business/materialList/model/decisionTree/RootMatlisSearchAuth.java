@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.model.action.LazyMatlisRootSearch;
 import br.com.mind5.business.materialList.model.checker.MatlisCheckSearch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -43,7 +43,7 @@ public final class RootMatlisSearchAuth extends DeciTreeTemplateReadV2<MatlisInf
 		List<ActionStdV1<MatlisInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatlisInfo> nodeAuth = new NodeMatlisAuth(option).toAction();
-		ActionLazyV1<MatlisInfo> search = new LazyMatlisRootSearch(option.conn, option.schemaName);
+		ActionLazy<MatlisInfo> search = new LazyMatlisRootSearch(option.conn, option.schemaName);
 		
 		nodeAuth.addPostAction(search);
 		

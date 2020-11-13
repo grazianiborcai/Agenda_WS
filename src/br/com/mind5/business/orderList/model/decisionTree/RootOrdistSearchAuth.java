@@ -8,7 +8,7 @@ import br.com.mind5.business.orderList.model.action.LazyOrdistRootSearch;
 import br.com.mind5.business.orderList.model.action.StdOrdistMergeUsername;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckSearchAuth;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckUsername;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -52,7 +52,7 @@ public final class RootOrdistSearchAuth extends DeciTreeTemplateReadV2<OrdistInf
 		List<ActionStdV1<OrdistInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<OrdistInfo> mergeUsername = new StdOrdistMergeUsername(option);
-		ActionLazyV1<OrdistInfo> search = new LazyOrdistRootSearch(option.conn, option.schemaName);
+		ActionLazy<OrdistInfo> search = new LazyOrdistRootSearch(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(search);
 		

@@ -3,7 +3,7 @@ package br.com.mind5.security.userSnapshot.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -59,7 +59,7 @@ public final class RootUserapInsert extends DeciTreeTemplateWriteV2<UserapInfo> 
 		List<ActionStdV1<UserapInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<UserapInfo> nodePerson = new NodeUserapPerson(option).toAction();
-		ActionLazyV1<UserapInfo> insert = new LazyUserapDaoInsert(option.conn, option.schemaName);
+		ActionLazy<UserapInfo> insert = new LazyUserapDaoInsert(option.conn, option.schemaName);
 		
 		nodePerson.addPostAction(insert);
 		

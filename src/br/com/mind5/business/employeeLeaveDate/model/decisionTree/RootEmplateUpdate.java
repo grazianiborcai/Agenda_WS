@@ -20,7 +20,7 @@ import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckStoraut
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckStore;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckTimeRange;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -120,11 +120,11 @@ public final class RootEmplateUpdate extends DeciTreeTemplateWriteV2<EmplateInfo
 		List<ActionStdV1<EmplateInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmplateInfo> mergeToUpdate = new StdEmplateMergeToUpdate(option);
-		ActionLazyV1<EmplateInfo> enforceLChanged = new LazyEmplateEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<EmplateInfo> enforceLChangedBy = new LazyEmplateMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<EmplateInfo> enforceValidFrom = new LazyEmplateEnforceValidFrom(option.conn, option.schemaName);
-		ActionLazyV1<EmplateInfo> enforceValidTo = new LazyEmplateEnforceValidTo(option.conn, option.schemaName);
-		ActionLazyV1<EmplateInfo> update = new LazyEmplateDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<EmplateInfo> enforceLChanged = new LazyEmplateEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<EmplateInfo> enforceLChangedBy = new LazyEmplateMergeUsername(option.conn, option.schemaName);
+		ActionLazy<EmplateInfo> enforceValidFrom = new LazyEmplateEnforceValidFrom(option.conn, option.schemaName);
+		ActionLazy<EmplateInfo> enforceValidTo = new LazyEmplateEnforceValidTo(option.conn, option.schemaName);
+		ActionLazy<EmplateInfo> update = new LazyEmplateDaoUpdate(option.conn, option.schemaName);
 		ActionStdV1<EmplateInfo> select = new RootEmplateSelect(option).toAction();
 		
 		mergeToUpdate.addPostAction(enforceLChanged);

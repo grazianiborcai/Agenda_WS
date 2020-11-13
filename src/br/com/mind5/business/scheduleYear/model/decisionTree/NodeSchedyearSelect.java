@@ -9,7 +9,7 @@ import br.com.mind5.business.scheduleYear.model.action.LazySchedyearMergeStolis;
 import br.com.mind5.business.scheduleYear.model.action.StdSchedyearMergeMontharch;
 import br.com.mind5.business.scheduleYear.model.action.StdSchedyearMergeSchedyerat;
 import br.com.mind5.business.scheduleYear.model.checker.SchedyearCheckSchedyerat;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -46,8 +46,8 @@ public final class NodeSchedyearSelect extends DeciTreeTemplateWriteV2<Schedyear
 		List<ActionStdV1<SchedyearInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedyearInfo> mergeSchedyerat = new StdSchedyearMergeSchedyerat(option);
-		ActionLazyV1<SchedyearInfo> mergeStolis = new LazySchedyearMergeStolis(option.conn, option.schemaName);
-		ActionLazyV1<SchedyearInfo> mergeMontharch = new LazySchedyearMergeMontharch(option.conn, option.schemaName);
+		ActionLazy<SchedyearInfo> mergeStolis = new LazySchedyearMergeStolis(option.conn, option.schemaName);
+		ActionLazy<SchedyearInfo> mergeMontharch = new LazySchedyearMergeMontharch(option.conn, option.schemaName);
 		
 		mergeSchedyerat.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeMontharch);

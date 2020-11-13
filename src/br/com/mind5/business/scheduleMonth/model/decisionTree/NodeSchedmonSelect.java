@@ -11,7 +11,7 @@ import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeStolis;
 import br.com.mind5.business.scheduleMonth.model.action.StdSchedmonMergeCalate;
 import br.com.mind5.business.scheduleMonth.model.action.StdSchedmonMergeSchedonthat;
 import br.com.mind5.business.scheduleMonth.model.checker.SchedmonCheckSchedonthat;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -48,10 +48,10 @@ public final class NodeSchedmonSelect extends DeciTreeTemplateWriteV2<SchedmonIn
 		List<ActionStdV1<SchedmonInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedmonInfo> mergeSchedonthat = new StdSchedmonMergeSchedonthat(option);
-		ActionLazyV1<SchedmonInfo> mergeStolis = new LazySchedmonMergeStolis(option.conn, option.schemaName);
-		ActionLazyV1<SchedmonInfo> mergeMatlis = new LazySchedmonMergeMatlis(option.conn, option.schemaName);
-		ActionLazyV1<SchedmonInfo> mergeEmplis = new LazySchedmonMergeEmplis(option.conn, option.schemaName);
-		ActionLazyV1<SchedmonInfo> mergeCalate = new LazySchedmonMergeCalate(option.conn, option.schemaName);
+		ActionLazy<SchedmonInfo> mergeStolis = new LazySchedmonMergeStolis(option.conn, option.schemaName);
+		ActionLazy<SchedmonInfo> mergeMatlis = new LazySchedmonMergeMatlis(option.conn, option.schemaName);
+		ActionLazy<SchedmonInfo> mergeEmplis = new LazySchedmonMergeEmplis(option.conn, option.schemaName);
+		ActionLazy<SchedmonInfo> mergeCalate = new LazySchedmonMergeCalate(option.conn, option.schemaName);
 		
 		mergeSchedonthat.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeMatlis);

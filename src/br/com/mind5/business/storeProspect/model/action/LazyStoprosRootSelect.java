@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.storeProspect.info.StoprosInfo;
 import br.com.mind5.business.storeProspect.model.decisionTree.RootStoprosSelect;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStoprosRootSelect extends ActionLazyTemplateV2<StoprosInfo, StoprosInfo> {
+public final class LazyStoprosRootSelect extends ActionLazyTemplate<StoprosInfo, StoprosInfo> {
 
 	public LazyStoprosRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

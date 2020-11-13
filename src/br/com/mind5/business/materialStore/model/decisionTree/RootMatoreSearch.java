@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreRootSelect;
 import br.com.mind5.business.materialStore.model.action.StdMatoreMergeMatorarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootMatoreSearch extends DeciTreeTemplateReadV2<MatoreInfo> {
 		List<ActionStdV1<MatoreInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatoreInfo> mergeMatorarch = new StdMatoreMergeMatorarch(option);
-		ActionLazyV1<MatoreInfo> select = new LazyMatoreRootSelect(option.conn, option.schemaName);	
+		ActionLazy<MatoreInfo> select = new LazyMatoreRootSelect(option.conn, option.schemaName);	
 		
 		mergeMatorarch.addPostAction(select);
 		

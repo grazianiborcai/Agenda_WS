@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.business.personSearch.model.action.LazyPerarchRootSelect;
 import br.com.mind5.business.personSearch.model.action.StdPerarchEnforceCategEmp;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootPerarchSelectEmp extends DeciTreeTemplateReadV2<PerarchIn
 		List<ActionStdV1<PerarchInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<PerarchInfo> enforceCateg = new StdPerarchEnforceCategEmp(option);		
-		ActionLazyV1<PerarchInfo> select = new LazyPerarchRootSelect(option.conn, option.schemaName);
+		ActionLazy<PerarchInfo> select = new LazyPerarchRootSelect(option.conn, option.schemaName);
 		
 		enforceCateg.addPostAction(select);
 

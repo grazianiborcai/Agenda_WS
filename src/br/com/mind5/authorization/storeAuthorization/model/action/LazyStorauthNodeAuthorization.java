@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.authorization.storeAuthorization.model.decisionTree.NodeStorauthAuthorization;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStorauthNodeAuthorization extends ActionLazyTemplateV2<StorauthInfo, StorauthInfo> {
+public final class LazyStorauthNodeAuthorization extends ActionLazyTemplate<StorauthInfo, StorauthInfo> {
 	
 	public LazyStorauthNodeAuthorization(Connection conn, String schemaName) {
 		super(conn, schemaName);

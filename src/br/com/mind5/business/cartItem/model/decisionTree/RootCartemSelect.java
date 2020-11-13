@@ -8,7 +8,7 @@ import br.com.mind5.business.cartItem.model.action.LazyCartemNodeAged;
 import br.com.mind5.business.cartItem.model.action.LazyCartemNodeSelect;
 import br.com.mind5.business.cartItem.model.action.StdCartemMergeToSelect;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,8 +45,8 @@ public final class RootCartemSelect extends DeciTreeTemplateWriteV2<CartemInfo> 
 		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CartemInfo> select = new StdCartemMergeToSelect(option);
-		ActionLazyV1<CartemInfo> nodeSelect = new LazyCartemNodeSelect(option.conn, option.schemaName);		
-		ActionLazyV1<CartemInfo> nodeAged = new LazyCartemNodeAged(option.conn, option.schemaName);	
+		ActionLazy<CartemInfo> nodeSelect = new LazyCartemNodeSelect(option.conn, option.schemaName);		
+		ActionLazy<CartemInfo> nodeAged = new LazyCartemNodeAged(option.conn, option.schemaName);	
 		
 		select.addPostAction(nodeSelect);
 		nodeSelect.addPostAction(nodeAged);

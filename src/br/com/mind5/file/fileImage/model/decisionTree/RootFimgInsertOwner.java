@@ -7,7 +7,7 @@ import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.action.LazyFimgNodeUpsertOwner;
 import br.com.mind5.file.fileImage.model.action.StdFimgEnforceOwner;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckInsertOwner;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class RootFimgInsertOwner extends DeciTreeTemplateWriteV2<FimgInfo>
 		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<FimgInfo> enforceOwner = new StdFimgEnforceOwner(option);	
-		ActionLazyV1<FimgInfo> upsert = new LazyFimgNodeUpsertOwner(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> upsert = new LazyFimgNodeUpsertOwner(option.conn, option.schemaName);
 		
 		enforceOwner.addPostAction(upsert);
 		

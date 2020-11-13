@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.action.LazyFimgRootSelect;
 import br.com.mind5.file.fileImage.model.action.StdFimgMergeFimarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootFimgSearch extends DeciTreeTemplateReadV2<FimgInfo> {
 		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<FimgInfo> mergeFimarch = new StdFimgMergeFimarch(option);
-		ActionLazyV1<FimgInfo> select = new LazyFimgRootSelect(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> select = new LazyFimgRootSelect(option.conn, option.schemaName);
 		
 		mergeFimarch.addPostAction(select);
 		

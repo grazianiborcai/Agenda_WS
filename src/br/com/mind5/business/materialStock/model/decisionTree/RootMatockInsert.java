@@ -14,7 +14,7 @@ import br.com.mind5.business.materialStock.model.checker.MatockCheckOwner;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckStorauth;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckStore;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -93,8 +93,8 @@ public final class RootMatockInsert extends DeciTreeTemplateWriteV2<MatockInfo> 
 		List<ActionStdV1<MatockInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<MatockInfo> enforceLChanged = new StdMatockEnforceLChanged(option);
-		ActionLazyV1<MatockInfo> balance = new LazyMatockNodeBalanceL1(option.conn, option.schemaName);
-		ActionLazyV1<MatockInfo> insert = new LazyMatockDaoInsert(option.conn, option.schemaName);
+		ActionLazy<MatockInfo> balance = new LazyMatockNodeBalanceL1(option.conn, option.schemaName);
+		ActionLazy<MatockInfo> insert = new LazyMatockDaoInsert(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(balance);
 		balance.addPostAction(insert);

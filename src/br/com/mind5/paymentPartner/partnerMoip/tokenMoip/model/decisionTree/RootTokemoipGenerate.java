@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -84,7 +84,7 @@ public final class RootTokemoipGenerate extends DeciTreeTemplateWriteV2<Tokemoip
 		List<ActionStdV1<TokemoipInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<TokemoipInfo> enforcePayPartner = new StdTokemoipEnforcePayPartner(option);	
-		ActionLazyV1<TokemoipInfo> nodeGenerate = new LazyTokemoipNodeGenerate(option.conn, option.schemaName);
+		ActionLazy<TokemoipInfo> nodeGenerate = new LazyTokemoipNodeGenerate(option.conn, option.schemaName);
 		
 		enforcePayPartner.addPostAction(nodeGenerate);
 		

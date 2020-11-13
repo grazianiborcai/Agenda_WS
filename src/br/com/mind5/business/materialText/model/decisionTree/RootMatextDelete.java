@@ -12,7 +12,7 @@ import br.com.mind5.business.materialText.model.checker.MatextCheckExist;
 import br.com.mind5.business.materialText.model.checker.MatextCheckLangu;
 import br.com.mind5.business.materialText.model.checker.MatextCheckMat;
 import br.com.mind5.business.materialText.model.checker.MatextCheckOwner;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -77,8 +77,8 @@ public final class RootMatextDelete extends DeciTreeTemplateWriteV2<MatextInfo> 
 		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatextInfo> mergeToDelete = new StdMatextMergeToDelete(option);
-		ActionLazyV1<MatextInfo> nodeL1 = new LazyMatextNodeDeleteL1(option.conn, option.schemaName);
-		ActionLazyV1<MatextInfo> nodeL2 = new LazyMatextNodeDeleteL2(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> nodeL1 = new LazyMatextNodeDeleteL1(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> nodeL2 = new LazyMatextNodeDeleteL2(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(nodeL1);
 		mergeToDelete.addPostAction(nodeL2);		

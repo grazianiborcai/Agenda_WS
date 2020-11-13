@@ -9,7 +9,7 @@ import br.com.mind5.business.materialTextSnapshot.model.action.StdMatextsnapMerg
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckMat;
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckOwner;
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -60,7 +60,7 @@ public final class RootMatextsnapInsert extends DeciTreeTemplateWriteV2<Matextsn
 		List<ActionStdV1<MatextsnapInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<MatextsnapInfo> mergeMatext = new StdMatextsnapMergeMatext(option);	
-		ActionLazyV1<MatextsnapInfo> insert = new LazyMatextsnapDaoInsert(option.conn, option.schemaName);	
+		ActionLazy<MatextsnapInfo> insert = new LazyMatextsnapDaoInsert(option.conn, option.schemaName);	
 		
 		mergeMatext.addPostAction(insert);
 		

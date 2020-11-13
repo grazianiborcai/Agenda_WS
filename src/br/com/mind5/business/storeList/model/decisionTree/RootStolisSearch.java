@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.model.action.LazyStolisRootSelect;
 import br.com.mind5.business.storeList.model.action.StdStolisMergeSotarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,7 +39,7 @@ public final class RootStolisSearch extends DeciTreeTemplateWriteV2<StolisInfo> 
 		List<ActionStdV1<StolisInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<StolisInfo> mergeSotarch = new StdStolisMergeSotarch(option);
-		ActionLazyV1<StolisInfo> select = new LazyStolisRootSelect(option.conn, option.schemaName);
+		ActionLazy<StolisInfo> select = new LazyStolisRootSelect(option.conn, option.schemaName);
 		
 		mergeSotarch.addPostAction(select);
 		

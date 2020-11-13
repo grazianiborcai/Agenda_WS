@@ -8,7 +8,7 @@ import br.com.mind5.business.employeePosition.model.action.LazyEmposNodeDeleteEm
 import br.com.mind5.business.employeePosition.model.action.LazyEmposNodeDeleteEmpwotm;
 import br.com.mind5.business.employeePosition.model.action.StdEmposSuccess;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckEmposarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -56,8 +56,8 @@ public final class NodeEmposEmposarch extends DeciTreeTemplateWriteV2<EmposInfo>
 		List<ActionStdV1<EmposInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmposInfo> schedage = new NodeEmposSchedage(option).toAction();
-		ActionLazyV1<EmposInfo> deleteEmplate = new LazyEmposNodeDeleteEmplate(option.conn, option.schemaName);
-		ActionLazyV1<EmposInfo> deleteEmpwotm = new LazyEmposNodeDeleteEmpwotm(option.conn, option.schemaName);		
+		ActionLazy<EmposInfo> deleteEmplate = new LazyEmposNodeDeleteEmplate(option.conn, option.schemaName);
+		ActionLazy<EmposInfo> deleteEmpwotm = new LazyEmposNodeDeleteEmpwotm(option.conn, option.schemaName);		
 		
 		schedage.addPostAction(deleteEmplate);
 		schedage.addPostAction(deleteEmpwotm);

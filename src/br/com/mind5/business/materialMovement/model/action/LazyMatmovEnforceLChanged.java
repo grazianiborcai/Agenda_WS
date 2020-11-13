@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatmovEnforceLChanged extends ActionLazyTemplateV2<MatmovInfo, MatmovInfo> {
+public final class LazyMatmovEnforceLChanged extends ActionLazyTemplate<MatmovInfo, MatmovInfo> {
 	
 	public LazyMatmovEnforceLChanged(Connection conn, String schemaName) {
 		super(conn, schemaName);

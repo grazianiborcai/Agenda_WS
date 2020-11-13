@@ -7,7 +7,7 @@ import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.action.LazyOwnerCompUpdate;
 import br.com.mind5.business.owner.model.action.StdOwnerEnforceCompKey;
 import br.com.mind5.business.owner.model.checker.OwnerCheckHasComp;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class NodeOwnerUpdateComp extends DeciTreeTemplateWriteV2<OwnerInfo
 		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OwnerInfo> enforceCompKey = new StdOwnerEnforceCompKey(option);
-		ActionLazyV1<OwnerInfo> updateCompany = new LazyOwnerCompUpdate(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> updateCompany = new LazyOwnerCompUpdate(option.conn, option.schemaName);
 		
 		enforceCompKey.addPostAction(updateCompany);
 		

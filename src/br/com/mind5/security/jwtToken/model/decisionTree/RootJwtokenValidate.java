@@ -3,7 +3,7 @@ package br.com.mind5.security.jwtToken.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,8 +45,8 @@ public final class RootJwtokenValidate extends DeciTreeTemplateWriteV2<JwtokenIn
 		List<ActionStdV1<JwtokenInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<JwtokenInfo> enforceSecret = new StdJwtokenEnforceSecret(option);
-		ActionLazyV1<JwtokenInfo> enforceAlgo = new LazyJwtokenEnforceAlgo(option.conn, option.schemaName);
-		ActionLazyV1<JwtokenInfo> nodeL1 = new LazyJwtokenNodeValidateL1(option.conn, option.schemaName);
+		ActionLazy<JwtokenInfo> enforceAlgo = new LazyJwtokenEnforceAlgo(option.conn, option.schemaName);
+		ActionLazy<JwtokenInfo> nodeL1 = new LazyJwtokenNodeValidateL1(option.conn, option.schemaName);
 		
 		enforceSecret.addPostAction(enforceAlgo);
 		enforceAlgo.addPostAction(nodeL1);

@@ -8,7 +8,7 @@ import br.com.mind5.business.scheduleLine.model.action.LazySchedineBookiceValida
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineRootInsertForce;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineObfuscateRef;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineObfuscateOrder;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -40,9 +40,9 @@ public final class RootSchedineInsert extends DeciTreeTemplateWriteV2<SchedineIn
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedineInfo> obfuscateOrder = new StdSchedineObfuscateOrder(option);
-		ActionLazyV1<SchedineInfo> obfuscateRef = new LazySchedineObfuscateRef(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> bookiceValidate = new LazySchedineBookiceValidate(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> insert = new LazySchedineRootInsertForce(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> obfuscateRef = new LazySchedineObfuscateRef(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> bookiceValidate = new LazySchedineBookiceValidate(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> insert = new LazySchedineRootInsertForce(option.conn, option.schemaName);
 		
 		obfuscateOrder.addPostAction(obfuscateRef);
 		obfuscateRef.addPostAction(bookiceValidate);

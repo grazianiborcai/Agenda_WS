@@ -11,7 +11,7 @@ import br.com.mind5.business.order.model.checker.OrderCheckExist;
 import br.com.mind5.business.order.model.checker.OrderCheckLangu;
 import br.com.mind5.business.order.model.checker.OrderCheckOwner;
 import br.com.mind5.business.order.model.checker.OrderCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -69,8 +69,8 @@ public final class RootOrderPlace extends DeciTreeTemplateWriteV2<OrderInfo> {
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OrderInfo> mergeToSelect = new StdOrderMergeToSelect(option);
-		ActionLazyV1<OrderInfo> nodePlace = new LazyOrderNodePlace(option.conn, option.schemaName);		
-		ActionLazyV1<OrderInfo> select = new LazyOrderRootSelect(option.conn, option.schemaName);	
+		ActionLazy<OrderInfo> nodePlace = new LazyOrderNodePlace(option.conn, option.schemaName);		
+		ActionLazy<OrderInfo> select = new LazyOrderRootSelect(option.conn, option.schemaName);	
 		
 		mergeToSelect.addPostAction(nodePlace);
 		nodePlace.addPostAction(select);

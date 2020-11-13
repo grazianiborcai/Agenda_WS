@@ -3,7 +3,7 @@ package br.com.mind5.security.user.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -83,14 +83,14 @@ public final class RootUserInsert extends DeciTreeTemplateWriteV2<UserInfo> {
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<UserInfo> enforceLChangedBy = new StdUserMergeUsername(option);
-		ActionLazyV1<UserInfo> nodeUsername = new LazyUserNodeUsernameL1(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> insertUser = new LazyUserNodeInsert(option.conn, option.schemaName);		
-		ActionLazyV1<UserInfo> insertPerson = new LazyUserNodeInsertPerson(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> snapshot = new LazyUserNodeSnapshot(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> insertPassword = new LazyUserUpswdInsertRandom(option.conn, option.schemaName);		
-		ActionLazyV1<UserInfo> upsertAddress = new LazyUserNodeUpsertAddress(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> upsertPhone = new LazyUserNodeUpsertPhone(option.conn, option.schemaName);		
-		ActionLazyV1<UserInfo> select = new LazyUserRootSelect(option.conn, option.schemaName);	
+		ActionLazy<UserInfo> nodeUsername = new LazyUserNodeUsernameL1(option.conn, option.schemaName);
+		ActionLazy<UserInfo> insertUser = new LazyUserNodeInsert(option.conn, option.schemaName);		
+		ActionLazy<UserInfo> insertPerson = new LazyUserNodeInsertPerson(option.conn, option.schemaName);
+		ActionLazy<UserInfo> snapshot = new LazyUserNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<UserInfo> insertPassword = new LazyUserUpswdInsertRandom(option.conn, option.schemaName);		
+		ActionLazy<UserInfo> upsertAddress = new LazyUserNodeUpsertAddress(option.conn, option.schemaName);
+		ActionLazy<UserInfo> upsertPhone = new LazyUserNodeUpsertPhone(option.conn, option.schemaName);		
+		ActionLazy<UserInfo> select = new LazyUserRootSelect(option.conn, option.schemaName);	
 		
 		enforceLChangedBy.addPostAction(nodeUsername);
 		nodeUsername.addPostAction(insertUser);

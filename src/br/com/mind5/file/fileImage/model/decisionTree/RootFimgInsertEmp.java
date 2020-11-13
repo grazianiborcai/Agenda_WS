@@ -8,7 +8,7 @@ import br.com.mind5.file.fileImage.model.action.LazyFimgNodeUpsertEmp;
 import br.com.mind5.file.fileImage.model.action.StdFimgEnforceEmp;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckEmp;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckInsertEmp;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -52,7 +52,7 @@ public final class RootFimgInsertEmp extends DeciTreeTemplateWriteV2<FimgInfo> {
 		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<FimgInfo> enforceEmp = new StdFimgEnforceEmp(option);	
-		ActionLazyV1<FimgInfo> upsert = new LazyFimgNodeUpsertEmp(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> upsert = new LazyFimgNodeUpsertEmp(option.conn, option.schemaName);
 		
 		enforceEmp.addPostAction(upsert);
 		

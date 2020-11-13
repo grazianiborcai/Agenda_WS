@@ -16,7 +16,7 @@ import br.com.mind5.business.storeText.model.checker.StorextCheckLangu;
 import br.com.mind5.business.storeText.model.checker.StorextCheckOwner;
 import br.com.mind5.business.storeText.model.checker.StorextCheckStore;
 import br.com.mind5.business.storeText.model.checker.StorextCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -81,12 +81,12 @@ public final class RootStorextUpdate extends DeciTreeTemplateWriteV2<StorextInfo
 		List<ActionStdV1<StorextInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<StorextInfo> mergeToUpdate = new StdStorextMergeToUpdate(option);
-		ActionLazyV1<StorextInfo> nodeDefault = new LazyStorextNodeDefaultL1(option.conn, option.schemaName);
-		ActionLazyV1<StorextInfo> enforceLChanged = new LazyStorextEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazyV1<StorextInfo> enforceLChangedBy = new LazyStorextMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<StorextInfo> update = new LazyStorextDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<StorextInfo> postUpdate = new LazyStorextNodePostUpdate(option.conn, option.schemaName);
-		ActionLazyV1<StorextInfo> select = new LazyStorextRootSelect(option.conn, option.schemaName);	
+		ActionLazy<StorextInfo> nodeDefault = new LazyStorextNodeDefaultL1(option.conn, option.schemaName);
+		ActionLazy<StorextInfo> enforceLChanged = new LazyStorextEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazy<StorextInfo> enforceLChangedBy = new LazyStorextMergeUsername(option.conn, option.schemaName);
+		ActionLazy<StorextInfo> update = new LazyStorextDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<StorextInfo> postUpdate = new LazyStorextNodePostUpdate(option.conn, option.schemaName);
+		ActionLazy<StorextInfo> select = new LazyStorextRootSelect(option.conn, option.schemaName);	
 		
 		mergeToUpdate.addPostAction(nodeDefault);
 		nodeDefault.addPostAction(enforceLChanged);

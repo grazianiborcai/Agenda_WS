@@ -3,7 +3,7 @@ package br.com.mind5.security.userPassword.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,8 +38,8 @@ public final class RootUpswdInsert extends DeciTreeTemplateWriteV2<UpswdInfo> {
 		List<ActionStdV1<UpswdInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UpswdInfo> insertUpswd = new RootUpswdInsertSilent(option).toAction();
-		ActionLazyV1<UpswdInfo> sendEmail = new LazyUpswdEmacomeSend(option.conn, option.schemaName);
-		ActionLazyV1<UpswdInfo> success = new LazyUpswdSuccess(option.conn, option.schemaName);
+		ActionLazy<UpswdInfo> sendEmail = new LazyUpswdEmacomeSend(option.conn, option.schemaName);
+		ActionLazy<UpswdInfo> success = new LazyUpswdSuccess(option.conn, option.schemaName);
 		
 		insertUpswd.addPostAction(sendEmail);
 		sendEmail.addPostAction(success);

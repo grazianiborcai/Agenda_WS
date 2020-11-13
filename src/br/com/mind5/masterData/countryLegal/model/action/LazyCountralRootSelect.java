@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.masterData.countryLegal.info.CountralInfo;
 import br.com.mind5.masterData.countryLegal.model.decisionTree.RootCountralSelect;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCountralRootSelect extends ActionLazyTemplateV2<CountralInfo, CountralInfo> {
+public final class LazyCountralRootSelect extends ActionLazyTemplate<CountralInfo, CountralInfo> {
 	
 	public LazyCountralRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

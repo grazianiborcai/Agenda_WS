@@ -7,7 +7,7 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.action.LazyAddressNodeGeoL2;
 import br.com.mind5.business.address.model.action.StdAddressGeodeCoding;
 import br.com.mind5.business.address.model.checker.AddressCheckHasGeode;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class NodeAddressGeoL1 extends DeciTreeTemplateWriteV2<AddressInfo>
 		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<AddressInfo> geodeCoding = new StdAddressGeodeCoding(option);	
-		ActionLazyV1<AddressInfo> nodeL2 = new LazyAddressNodeGeoL2(option.conn, option.schemaName);	
+		ActionLazy<AddressInfo> nodeL2 = new LazyAddressNodeGeoL2(option.conn, option.schemaName);	
 		
 		geodeCoding.addPostAction(nodeL2);
 

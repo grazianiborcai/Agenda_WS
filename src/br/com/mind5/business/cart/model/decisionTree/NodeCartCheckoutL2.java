@@ -7,7 +7,7 @@ import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.model.action.LazyCartEmptfy;
 import br.com.mind5.business.cart.model.action.StdCartInsertOrder;
 import br.com.mind5.business.cart.model.checker.CartCheckAged;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class NodeCartCheckoutL2 extends DeciTreeTemplateWriteV2<CartInfo> 
 		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CartInfo> insertOrder = new StdCartInsertOrder(option);	
-		ActionLazyV1<CartInfo> emptfy = new LazyCartEmptfy(option.conn, option.schemaName);
+		ActionLazy<CartInfo> emptfy = new LazyCartEmptfy(option.conn, option.schemaName);
 		
 		insertOrder.addPostAction(emptfy);
 		

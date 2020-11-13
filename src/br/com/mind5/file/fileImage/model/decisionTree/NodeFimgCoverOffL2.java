@@ -11,7 +11,7 @@ import br.com.mind5.file.fileImage.model.action.StdFimgSuccess;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckExistStore;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckIsCover;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckIsStore;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -62,8 +62,8 @@ public final class NodeFimgCoverOffL2 extends DeciTreeTemplateWriteV2<FimgInfo> 
 		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<FimgInfo> mergeFimarch = new StdFimgMergeFimarchStore(option);	
-		ActionLazyV1<FimgInfo> select = new LazyFimgMergeToSelect(option.conn, option.schemaName);
-		ActionLazyV1<FimgInfo> coverOff = new LazyFimgNodeCoverOffL4(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> select = new LazyFimgMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> coverOff = new LazyFimgNodeCoverOffL4(option.conn, option.schemaName);
 		
 		mergeFimarch.addPostAction(select);
 		select.addPostAction(coverOff);

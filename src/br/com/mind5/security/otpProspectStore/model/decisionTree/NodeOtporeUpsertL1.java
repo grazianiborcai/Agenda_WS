@@ -3,7 +3,7 @@ package br.com.mind5.security.otpProspectStore.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -40,9 +40,9 @@ public final class NodeOtporeUpsertL1 extends DeciTreeTemplateWriteV2<OtporeInfo
 		List<ActionStdV1<OtporeInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OtporeInfo> otpGenerate = new StdOtporeOtpGenerate(option);
-		ActionLazyV1<OtporeInfo> enforceLChanged = new LazyOtporeEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<OtporeInfo> enforceValidUntil = new LazyOtporeEnforceValidUntil(option.conn, option.schemaName);
-		ActionLazyV1<OtporeInfo> nodeL2 = new LazyOtporeNodeUpsertL2(option.conn, option.schemaName);
+		ActionLazy<OtporeInfo> enforceLChanged = new LazyOtporeEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<OtporeInfo> enforceValidUntil = new LazyOtporeEnforceValidUntil(option.conn, option.schemaName);
+		ActionLazy<OtporeInfo> nodeL2 = new LazyOtporeNodeUpsertL2(option.conn, option.schemaName);
 		
 		otpGenerate.addPostAction(enforceLChanged);				
 		enforceLChanged.addPostAction(enforceValidUntil);

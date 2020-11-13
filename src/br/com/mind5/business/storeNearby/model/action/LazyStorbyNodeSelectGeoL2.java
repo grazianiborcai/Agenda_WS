@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.business.storeNearby.model.decisionTree.NodeStorbySelectGeoL2;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStorbyNodeSelectGeoL2 extends ActionLazyTemplateV2<StorbyInfo, StorbyInfo> {
+public final class LazyStorbyNodeSelectGeoL2 extends ActionLazyTemplate<StorbyInfo, StorbyInfo> {
 
 	public LazyStorbyNodeSelectGeoL2(Connection conn, String schemaName) {
 		super(conn, schemaName);

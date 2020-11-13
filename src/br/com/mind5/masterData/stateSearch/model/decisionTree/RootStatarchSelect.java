@@ -7,7 +7,7 @@ import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
 import br.com.mind5.masterData.stateSearch.model.action.LazyStatarchMergeCountry;
 import br.com.mind5.masterData.stateSearch.model.action.StdStatarchDaoSelect;
 import br.com.mind5.masterData.stateSearch.model.checker.StatarchCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class RootStatarchSelect extends DeciTreeTemplateReadV2<StatarchInf
 		List<ActionStdV1<StatarchInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StatarchInfo> select = new StdStatarchDaoSelect(option);
-		ActionLazyV1<StatarchInfo> mergeCountry = new LazyStatarchMergeCountry(option.conn, option.schemaName);
+		ActionLazy<StatarchInfo> mergeCountry = new LazyStatarchMergeCountry(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCountry);
 		

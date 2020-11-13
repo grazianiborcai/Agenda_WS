@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.business.storeSearch.model.decisionTree.RootSotarchSelectUser;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySotarchRootSelectUser extends ActionLazyTemplateV2<SotarchInfo, SotarchInfo> {
+public final class LazySotarchRootSelectUser extends ActionLazyTemplate<SotarchInfo, SotarchInfo> {
 
 	public LazySotarchRootSelectUser(Connection conn, String schemaName) {
 		super(conn, schemaName);

@@ -11,7 +11,7 @@ import br.com.mind5.business.person.model.action.LazyPersonEnforceCreatedOn;
 import br.com.mind5.business.person.model.action.LazyPersonMergeUsername;
 import br.com.mind5.business.person.model.action.LazyPersonNodeName;
 import br.com.mind5.business.person.model.action.StdPersonEnforceLChanged;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -43,12 +43,12 @@ public final class NodePersonInsert extends DeciTreeTemplateWriteV2<PersonInfo> 
 		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<PersonInfo> enforceLChanged = new StdPersonEnforceLChanged(option);
-		ActionLazyV1<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<PersonInfo> enforceCreatedOn = new LazyPersonEnforceCreatedOn(option.conn, option.schemaName);	
-		ActionLazyV1<PersonInfo> enforceCreatedBy = new LazyPersonEnforceCreatedBy(option.conn, option.schemaName);
-		ActionLazyV1<PersonInfo> nodeName = new LazyPersonNodeName(option.conn, option.schemaName);	
-		ActionLazyV1<PersonInfo> enforceBirthdate = new LazyPersonEnforceBirthdate(option.conn, option.schemaName);	
-		ActionLazyV1<PersonInfo> insert = new LazyPersonDaoInsert(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> enforceCreatedOn = new LazyPersonEnforceCreatedOn(option.conn, option.schemaName);	
+		ActionLazy<PersonInfo> enforceCreatedBy = new LazyPersonEnforceCreatedBy(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> nodeName = new LazyPersonNodeName(option.conn, option.schemaName);	
+		ActionLazy<PersonInfo> enforceBirthdate = new LazyPersonEnforceBirthdate(option.conn, option.schemaName);	
+		ActionLazy<PersonInfo> insert = new LazyPersonDaoInsert(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedOn);

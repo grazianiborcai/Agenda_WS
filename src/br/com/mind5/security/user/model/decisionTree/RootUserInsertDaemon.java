@@ -3,7 +3,7 @@ package br.com.mind5.security.user.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -56,11 +56,11 @@ public final class RootUserInsertDaemon extends DeciTreeTemplateWriteV2<UserInfo
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<UserInfo> enforceUsername = new StdUserEnforceUsernameDaemon(option);
-		ActionLazyV1<UserInfo> enforceCateg = new LazyUserEnforceCategDaemon(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> enforceAuthGroup = new LazyUserEnforceAuthDaemon(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> insertUser = new LazyUserNodeInsert(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> snapshot = new LazyUserNodeSnapshot(option.conn, option.schemaName);		
-		ActionLazyV1<UserInfo> select = new LazyUserRootSelect(option.conn, option.schemaName);	
+		ActionLazy<UserInfo> enforceCateg = new LazyUserEnforceCategDaemon(option.conn, option.schemaName);
+		ActionLazy<UserInfo> enforceAuthGroup = new LazyUserEnforceAuthDaemon(option.conn, option.schemaName);
+		ActionLazy<UserInfo> insertUser = new LazyUserNodeInsert(option.conn, option.schemaName);
+		ActionLazy<UserInfo> snapshot = new LazyUserNodeSnapshot(option.conn, option.schemaName);		
+		ActionLazy<UserInfo> select = new LazyUserRootSelect(option.conn, option.schemaName);	
 		
 		enforceUsername.addPostAction(enforceCateg);
 		enforceCateg.addPostAction(enforceAuthGroup);			

@@ -3,7 +3,7 @@ package br.com.mind5.payment.storePartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -95,10 +95,10 @@ public final class RootStoparInsert extends DeciTreeTemplateWriteV2<StoparInfo> 
 		List<ActionStdV1<StoparInfo>> actions = new ArrayList<>();		
 		//TODO: ID obrigatorio ?
 		ActionStdV1<StoparInfo> enforceLChanged = new StdStoparEnforceLChanged(option);	
-		ActionLazyV1<StoparInfo> enforceLChangedBy = new LazyStoparMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<StoparInfo> insert = new LazyStoparNodeInsert(option.conn, option.schemaName);
-		ActionLazyV1<StoparInfo> snapshot = new LazyStoparNodeSnapshot(option.conn, option.schemaName);
-		ActionLazyV1<StoparInfo> select = new LazyStoparRootSelect(option.conn, option.schemaName);		
+		ActionLazy<StoparInfo> enforceLChangedBy = new LazyStoparMergeUsername(option.conn, option.schemaName);
+		ActionLazy<StoparInfo> insert = new LazyStoparNodeInsert(option.conn, option.schemaName);
+		ActionLazy<StoparInfo> snapshot = new LazyStoparNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<StoparInfo> select = new LazyStoparRootSelect(option.conn, option.schemaName);		
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(insert);

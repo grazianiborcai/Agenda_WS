@@ -16,7 +16,7 @@ import br.com.mind5.business.company.model.checker.CompCheckLangu;
 import br.com.mind5.business.company.model.checker.CompCheckNameLength;
 import br.com.mind5.business.company.model.checker.CompCheckOwner;
 import br.com.mind5.business.company.model.checker.CompCheckUpdate;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -88,11 +88,11 @@ public final class RootCompUpdate extends DeciTreeTemplateWriteV2<CompInfo> {
 		List<ActionStdV1<CompInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CompInfo> mergeToUpdate = new StdCompMergeToUpdate(option);	
-		ActionLazyV1<CompInfo> cnpj = new LazyCompNodeCnpjL1(option.conn, option.schemaName);	
-		ActionLazyV1<CompInfo> enforceLChanged = new LazyCompEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<CompInfo> enforceLChangedBy = new LazyCompMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<CompInfo> enforceNameSearch = new LazyCompEnforceNameSearch(option.conn, option.schemaName);
-		ActionLazyV1<CompInfo> snapshot = new LazyCompNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<CompInfo> cnpj = new LazyCompNodeCnpjL1(option.conn, option.schemaName);	
+		ActionLazy<CompInfo> enforceLChanged = new LazyCompEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<CompInfo> enforceLChangedBy = new LazyCompMergeUsername(option.conn, option.schemaName);
+		ActionLazy<CompInfo> enforceNameSearch = new LazyCompEnforceNameSearch(option.conn, option.schemaName);
+		ActionLazy<CompInfo> snapshot = new LazyCompNodeSnapshot(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(cnpj);
 		cnpj.addPostAction(enforceLChanged);

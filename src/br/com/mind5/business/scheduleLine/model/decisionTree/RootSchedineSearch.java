@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineRootSelect;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineMergeSchedarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootSchedineSearch extends DeciTreeTemplateWriteV2<SchedineIn
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedineInfo> mergeSchedarch = new StdSchedineMergeSchedarch(option);
-		ActionLazyV1<SchedineInfo> select = new LazySchedineRootSelect(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> select = new LazySchedineRootSelect(option.conn, option.schemaName);
 		
 		mergeSchedarch.addPostAction(select);
 		

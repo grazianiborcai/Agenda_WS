@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeCremoipCusparL1 extends DeciTreeTemplateWriteV2<CremoipIn
 		List<ActionStdV1<CremoipInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CremoipInfo> mergeCuspar = new StdCremoipMergeCuspar(option);
-		ActionLazyV1<CremoipInfo> nodeL2 = new LazyCremoipNodeCusparL2(option.conn, option.schemaName);
+		ActionLazy<CremoipInfo> nodeL2 = new LazyCremoipNodeCusparL2(option.conn, option.schemaName);
 		
 		mergeCuspar.addPostAction(nodeL2);
 		

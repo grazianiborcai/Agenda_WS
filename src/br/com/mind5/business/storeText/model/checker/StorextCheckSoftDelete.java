@@ -4,7 +4,7 @@ import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.business.storeText.model.action.LazyStorextDaoSelect;
 import br.com.mind5.business.storeText.model.action.StdStorextEnforceDel;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
@@ -20,7 +20,7 @@ public final class StorextCheckSoftDelete extends ModelCheckerTemplateActionV2<S
 	
 	@Override protected ActionStdV1<StorextInfo> buildActionHook(DeciTreeOption<StorextInfo> option) {
 		ActionStdV1<StorextInfo> enforceDel = new StdStorextEnforceDel(option);
-		ActionLazyV1<StorextInfo> select = new LazyStorextDaoSelect(option.conn, option.schemaName);
+		ActionLazy<StorextInfo> select = new LazyStorextDaoSelect(option.conn, option.schemaName);
 		
 		enforceDel.addPostAction(select);
 		

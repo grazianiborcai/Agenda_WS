@@ -7,7 +7,7 @@ import br.com.mind5.business.feeDefault.info.FeedefInfo;
 import br.com.mind5.business.feeDefault.model.action.LazyFeedefSelect;
 import br.com.mind5.business.feeDefault.model.action.StdFeedefEnforceCategServ;
 import br.com.mind5.business.feeDefault.model.checker.FeedefCheckReadService;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class RootFeedefSelectService extends DeciTreeTemplateReadV2<Feedef
 		List<ActionStdV1<FeedefInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<FeedefInfo> enforceCateg = new StdFeedefEnforceCategServ(option);
-		ActionLazyV1<FeedefInfo> mergeMat = new LazyFeedefSelect(option.conn, option.schemaName);
+		ActionLazy<FeedefInfo> mergeMat = new LazyFeedefSelect(option.conn, option.schemaName);
 		
 		enforceCateg.addPostAction(mergeMat);		
 		

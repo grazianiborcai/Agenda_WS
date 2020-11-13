@@ -12,7 +12,7 @@ import br.com.mind5.business.store.model.action.StdStoreMergeToDelete;
 import br.com.mind5.business.store.model.checker.StoreCheckDelete;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.business.store.model.checker.StoreCheckLangu;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -63,10 +63,10 @@ public final class RootStoreDelete extends DeciTreeTemplateWriteV2<StoreInfo> {
 		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StoreInfo> mergeToDelete = new StdStoreMergeToDelete(option);
-		ActionLazyV1<StoreInfo> enforceLChanged = new LazyStoreEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<StoreInfo> update = new LazyStoreDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<StoreInfo> deleteCascade = new LazyStoreNodeDeleteCascade(option.conn, option.schemaName);			
+		ActionLazy<StoreInfo> enforceLChanged = new LazyStoreEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> update = new LazyStoreDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> deleteCascade = new LazyStoreNodeDeleteCascade(option.conn, option.schemaName);			
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

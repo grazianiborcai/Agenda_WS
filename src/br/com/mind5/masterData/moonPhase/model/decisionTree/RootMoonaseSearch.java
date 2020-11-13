@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.moonPhase.model.action.LazyMoonaseRootSelect;
 import br.com.mind5.masterData.moonPhase.model.action.StdMoonaseMergeMoonasarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootMoonaseSearch extends DeciTreeTemplateWriteV2<MoonaseInfo
 		List<ActionStdV1<MoonaseInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<MoonaseInfo> mergeMoonasarch = new StdMoonaseMergeMoonasarch(option);		
-		ActionLazyV1<MoonaseInfo> select = new LazyMoonaseRootSelect(option.conn, option.schemaName);
+		ActionLazy<MoonaseInfo> select = new LazyMoonaseRootSelect(option.conn, option.schemaName);
 		
 		mergeMoonasarch.addPostAction(select);
 		

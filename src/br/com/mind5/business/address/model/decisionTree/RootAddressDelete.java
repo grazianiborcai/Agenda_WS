@@ -13,7 +13,7 @@ import br.com.mind5.business.address.model.checker.AddressCheckDelete;
 import br.com.mind5.business.address.model.checker.AddressCheckExist;
 import br.com.mind5.business.address.model.checker.AddressCheckLangu;
 import br.com.mind5.business.address.model.checker.AddressCheckOwner;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -71,10 +71,10 @@ public final class RootAddressDelete extends DeciTreeTemplateWriteV2<AddressInfo
 		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<AddressInfo> mergeToDelete = new StdAddressMergeToDelete(option);	
-		ActionLazyV1<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<AddressInfo> enforceChangedBy = new LazyAddressMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<AddressInfo> update = new LazyAddressDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<AddressInfo> delete = new LazyAddressDaoDelete(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> enforceChangedBy = new LazyAddressMergeUsername(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> update = new LazyAddressDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> delete = new LazyAddressDaoDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceChangedBy);

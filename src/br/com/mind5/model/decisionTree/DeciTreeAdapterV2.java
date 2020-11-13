@@ -8,8 +8,7 @@ import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionLazyV2;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.common.DeciResultError;
 
@@ -18,7 +17,7 @@ public final class DeciTreeAdapterV2<T extends InfoRecord> implements ActionStdV
 	private final boolean FAILED = false;	
 	
 	private List<DeciTree<T>> trees;
-	private List<ActionLazyV1<T>> postActions;
+	private List<ActionLazy<T>> postActions;
 	private DeciResult<T> finalResult;
 	
 	
@@ -92,14 +91,14 @@ public final class DeciTreeAdapterV2<T extends InfoRecord> implements ActionStdV
 	
 	
 	
-	private DeciResult<T> executePostActions(List<ActionLazyV1<T>> actions, DeciResult<T> baseResult) {	
+	private DeciResult<T> executePostActions(List<ActionLazy<T>> actions, DeciResult<T> baseResult) {	
 		if (shouldExecute(actions, baseResult) == FAILED)
 			return baseResult;
 		
 		DeciResult<T> postResult = baseResult;	
 		
 		 
-		for (ActionLazyV1<T> eachAction : actions) {
+		for (ActionLazy<T> eachAction : actions) {
 			List<T> baseInfos = makeClone(baseResult.getResultset());
 			postResult = tryToExecutePostActions(eachAction, baseInfos);
 			
@@ -112,7 +111,7 @@ public final class DeciTreeAdapterV2<T extends InfoRecord> implements ActionStdV
 	
 	
 	
-	private DeciResult<T> tryToExecutePostActions(ActionLazyV1<T> postAction, List<T> baseInfos) {				
+	private DeciResult<T> tryToExecutePostActions(ActionLazy<T> postAction, List<T> baseInfos) {				
 		try {
 			postAction.executeAction(baseInfos);
 			return postAction.getDecisionResult();
@@ -132,7 +131,7 @@ public final class DeciTreeAdapterV2<T extends InfoRecord> implements ActionStdV
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<T> actionLazy) {
+	@Override public void addPostAction(ActionLazy<T> actionLazy) {
 		checkArgument(actionLazy);
 		
 		if (postActions == null)
@@ -175,22 +174,22 @@ public final class DeciTreeAdapterV2<T extends InfoRecord> implements ActionStdV
 	
 	
 	
-	private void closeActions(List<ActionLazyV1<T>> actions) {
+	private void closeActions(List<ActionLazy<T>> actions) {
 		if (actions == null)
 			return;
 		
 		if (actions.isEmpty())
 			return;
 		
-		for (ActionLazyV1<T> eachAction : actions)
+		for (ActionLazy<T> eachAction : actions)
 			closeAction(eachAction);
 	}
 	
 	
 	
-	private void closeAction(ActionLazyV1<T> action) {
-		if (action instanceof ActionLazyV2) {
-			((ActionLazyV2<T>) action).close();
+	private void closeAction(ActionLazy<T> action) {
+		if (action instanceof ActionLazy) {
+			((ActionLazy<T>) action).close();
 		}
 	}
 	
@@ -252,7 +251,7 @@ public final class DeciTreeAdapterV2<T extends InfoRecord> implements ActionStdV
 	
 	
 	
-	private boolean shouldExecute(List<ActionLazyV1<T>> actions, DeciResult<T> baseResult) {
+	private boolean shouldExecute(List<ActionLazy<T>> actions, DeciResult<T> baseResult) {
 		if (hasPostAction(actions) == FAILED)
 			return FAILED;
 		 
@@ -267,7 +266,7 @@ public final class DeciTreeAdapterV2<T extends InfoRecord> implements ActionStdV
 	
 	
 	
-	private boolean hasPostAction(List<ActionLazyV1<T>> actions) {
+	private boolean hasPostAction(List<ActionLazy<T>> actions) {
 		if (actions == null)
 			return FAILED;
 		
@@ -336,7 +335,7 @@ public final class DeciTreeAdapterV2<T extends InfoRecord> implements ActionStdV
 	
 	
 	
-	private void checkArgument(ActionLazyV1<T> actionHandler) {
+	private void checkArgument(ActionLazy<T> actionHandler) {
 		if (actionHandler == null) {
 			logException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT);

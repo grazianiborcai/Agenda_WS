@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personList.model.action.LazyPersolisEnforceRestricted;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -37,7 +37,7 @@ public final class RootPersolisSelectRestricted extends DeciTreeTemplateReadV2<P
 		List<ActionStdV1<PersolisInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<PersolisInfo> select = new RootPersolisSelect(option).toAction();		
-		ActionLazyV1<PersolisInfo> enforceRestricted = new LazyPersolisEnforceRestricted(option.conn, option.schemaName);	
+		ActionLazy<PersolisInfo> enforceRestricted = new LazyPersolisEnforceRestricted(option.conn, option.schemaName);	
 		
 		select.addPostAction(enforceRestricted);		
 		

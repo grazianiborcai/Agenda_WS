@@ -3,7 +3,7 @@ package br.com.mind5.security.user.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class NodeUserDeletePhone extends DeciTreeTemplateWriteV2<UserInfo>
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UserInfo> mergePhone = new StdUserMergePhone(option);
-		ActionLazyV1<UserInfo> deletePhone = new LazyUserPhoneDelete(option.conn, option.schemaName);
+		ActionLazy<UserInfo> deletePhone = new LazyUserPhoneDelete(option.conn, option.schemaName);
 		
 		mergePhone.addPostAction(deletePhone);
 		

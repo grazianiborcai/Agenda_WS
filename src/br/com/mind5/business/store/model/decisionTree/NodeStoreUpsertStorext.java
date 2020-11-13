@@ -8,7 +8,7 @@ import br.com.mind5.business.store.model.action.LazyStoreStorextUpsert;
 import br.com.mind5.business.store.model.action.StdStoreEnforceStorextKey;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
 import br.com.mind5.business.store.model.checker.StoreCheckHasStorext;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,7 +45,7 @@ public final class NodeStoreUpsertStorext extends DeciTreeTemplateWriteV2<StoreI
 		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StoreInfo> enforceStorextKey = new StdStoreEnforceStorextKey(option);
-		ActionLazyV1<StoreInfo> upsertStorext = new LazyStoreStorextUpsert(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> upsertStorext = new LazyStoreStorextUpsert(option.conn, option.schemaName);
 		
 		enforceStorextKey.addPostAction(upsertStorext);
 		

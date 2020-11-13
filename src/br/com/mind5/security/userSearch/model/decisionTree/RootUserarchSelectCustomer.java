@@ -3,7 +3,7 @@ package br.com.mind5.security.userSearch.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootUserarchSelectCustomer extends DeciTreeTemplateReadV2<Use
 		List<ActionStdV1<UserarchInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UserarchInfo> enforceCustomer = new StdUserarchEnforceCustomer(option);
-		ActionLazyV1<UserarchInfo> select = new LazyUserarchRootSelectAuth(option.conn, option.schemaName);
+		ActionLazy<UserarchInfo> select = new LazyUserarchRootSelectAuth(option.conn, option.schemaName);
 		
 		enforceCustomer.addPostAction(select);
 		

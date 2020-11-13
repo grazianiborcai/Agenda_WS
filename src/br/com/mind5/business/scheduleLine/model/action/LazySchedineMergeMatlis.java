@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedineMergeMatlis extends ActionLazyTemplateV2<SchedineInfo, SchedineInfo> {
+public final class LazySchedineMergeMatlis extends ActionLazyTemplate<SchedineInfo, SchedineInfo> {
 	
 	public LazySchedineMergeMatlis(Connection conn, String schemaName) {
 		super(conn, schemaName);

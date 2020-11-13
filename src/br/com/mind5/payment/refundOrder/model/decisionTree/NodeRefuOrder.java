@@ -3,7 +3,7 @@ package br.com.mind5.payment.refundOrder.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeRefuOrder extends DeciTreeTemplateWriteV2<RefuInfo> {
 		List<ActionStdV1<RefuInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<RefuInfo> orderRefund = new StdRefuOrderRefunding(option);
-		ActionLazyV1<RefuInfo> mergeOrdist = new LazyRefuMergeOrdist(option.conn, option.schemaName);
+		ActionLazy<RefuInfo> mergeOrdist = new LazyRefuMergeOrdist(option.conn, option.schemaName);
 		
 		orderRefund.addPostAction(mergeOrdist);
 		

@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,8 +45,8 @@ public final class NodeRefumoipSystem extends DeciTreeTemplateWriteV2<RefumoipIn
 		List<ActionStdV1<RefumoipInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<RefumoipInfo> mergeSetupar = new StdRefumoipMergeSetupar(option);	
-		ActionLazyV1<RefumoipInfo> mergeSysenv = new LazyRefumoipMergeSysenv(option.conn, option.schemaName);
-		ActionLazyV1<RefumoipInfo> enforceSetup = new LazyRefumoipEnforceSetupSys(option.conn, option.schemaName);	
+		ActionLazy<RefumoipInfo> mergeSysenv = new LazyRefumoipMergeSysenv(option.conn, option.schemaName);
+		ActionLazy<RefumoipInfo> enforceSetup = new LazyRefumoipEnforceSetupSys(option.conn, option.schemaName);	
 		
 		mergeSetupar.addPostAction(mergeSysenv);
 		mergeSysenv.addPostAction(enforceSetup);

@@ -12,7 +12,7 @@ import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckInsert;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -77,8 +77,8 @@ public final class RootSchedineMove extends DeciTreeTemplateWriteV2<SchedineInfo
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<SchedineInfo> mergeToMove = new StdSchedineMergeToMove(option);
-		ActionLazyV1<SchedineInfo> nodeL1 = new LazySchedineNodeMoveL1(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> nodeL2 = new LazySchedineNodeMoveL2(option.conn, option.schemaName);			
+		ActionLazy<SchedineInfo> nodeL1 = new LazySchedineNodeMoveL1(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> nodeL2 = new LazySchedineNodeMoveL2(option.conn, option.schemaName);			
 		
 		mergeToMove.addPostAction(nodeL1);
 		mergeToMove.addPostAction(nodeL2);

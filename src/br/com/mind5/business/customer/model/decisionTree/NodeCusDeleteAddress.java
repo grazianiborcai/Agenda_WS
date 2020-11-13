@@ -8,7 +8,7 @@ import br.com.mind5.business.customer.model.action.LazyCusAddressDelete;
 import br.com.mind5.business.customer.model.action.StdCusMergeAddress;
 import br.com.mind5.business.customer.model.action.StdCusSuccess;
 import br.com.mind5.business.customer.model.checker.CusCheckAddarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,7 +45,7 @@ public final class NodeCusDeleteAddress extends DeciTreeTemplateWriteV2<CusInfo>
 		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CusInfo> mergeAddress = new StdCusMergeAddress(option);
-		ActionLazyV1<CusInfo> deleteAddress = new LazyCusAddressDelete(option.conn, option.schemaName);
+		ActionLazy<CusInfo> deleteAddress = new LazyCusAddressDelete(option.conn, option.schemaName);
 		
 		mergeAddress.addPostAction(deleteAddress);
 		

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.masterData.materialGroup.model.action.LazyMatoupRootSelect;
 import br.com.mind5.masterData.materialGroup.model.action.StdMatoupMergeMatouparch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootMatoupSearch extends DeciTreeTemplateReadV1<MatoupInfo> {
 		List<ActionStdV1<MatoupInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatoupInfo> mergeMatouparch = new StdMatoupMergeMatouparch(option);
-		ActionLazyV1<MatoupInfo> select = new LazyMatoupRootSelect(option.conn, option.schemaName);
+		ActionLazy<MatoupInfo> select = new LazyMatoupRootSelect(option.conn, option.schemaName);
 		
 		mergeMatouparch.addPostAction(select);
 		

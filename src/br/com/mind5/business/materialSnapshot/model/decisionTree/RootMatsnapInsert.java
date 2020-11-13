@@ -10,7 +10,7 @@ import br.com.mind5.business.materialSnapshot.model.action.StdMatsnapDaoInsert;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckMat;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckOwner;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -61,8 +61,8 @@ public final class RootMatsnapInsert extends DeciTreeTemplateWriteV2<MatsnapInfo
 		List<ActionStdV1<MatsnapInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<MatsnapInfo> insertMatsnap = new StdMatsnapDaoInsert(option);
-		ActionLazyV1<MatsnapInfo> insertMatextsnap = new LazyMatsnapMatextsnapInsert(option.conn, option.schemaName);	
-		ActionLazyV1<MatsnapInfo> select = new LazyMatsnapRootSelect(option.conn, option.schemaName);	
+		ActionLazy<MatsnapInfo> insertMatextsnap = new LazyMatsnapMatextsnapInsert(option.conn, option.schemaName);	
+		ActionLazy<MatsnapInfo> select = new LazyMatsnapRootSelect(option.conn, option.schemaName);	
 		
 		insertMatsnap.addPostAction(insertMatextsnap);
 		insertMatextsnap.addPostAction(select);

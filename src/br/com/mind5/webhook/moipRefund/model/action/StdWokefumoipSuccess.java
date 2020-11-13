@@ -3,7 +3,7 @@ package br.com.mind5.webhook.moipRefund.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.commom.ActionStdDummy;
 import br.com.mind5.model.decisionTree.DeciResult;
@@ -38,7 +38,7 @@ public final class StdWokefumoipSuccess implements ActionStdV1<WokefumoipInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<WokefumoipInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<WokefumoipInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrder.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -41,10 +41,10 @@ public final class NodePayordInsert extends DeciTreeTemplateWriteV2<PayordInfo> 
 		List<ActionStdV1<PayordInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<PayordInfo> mergeCrecard = new StdPayordMergeCrecardAuth(option);
-		ActionLazyV1<PayordInfo> insertPayord = new LazyPayordDaoInsert(option.conn, option.schemaName);	
-		ActionLazyV1<PayordInfo> enforceFee = new LazyPayordEnforceFee(option.conn, option.schemaName);
-		ActionLazyV1<PayordInfo> enforceItem = new LazyPayordEnforceItem(option.conn, option.schemaName);		
-		ActionLazyV1<PayordInfo> insertPayordem = new LazyPayordInsertPayordem(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> insertPayord = new LazyPayordDaoInsert(option.conn, option.schemaName);	
+		ActionLazy<PayordInfo> enforceFee = new LazyPayordEnforceFee(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> enforceItem = new LazyPayordEnforceItem(option.conn, option.schemaName);		
+		ActionLazy<PayordInfo> insertPayordem = new LazyPayordInsertPayordem(option.conn, option.schemaName);
 		
 		mergeCrecard.addPostAction(insertPayord);
 		insertPayord.addPostAction(enforceFee);

@@ -3,7 +3,7 @@ package br.com.mind5.security.otpProspectStore.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -53,7 +53,7 @@ public final class RootOtporeAuthenticate extends DeciTreeTemplateWriteV2<Otpore
 		List<ActionStdV1<OtporeInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<OtporeInfo> mergeToAuthenticate = new StdOtporeMergeToAuthenticate(option);
-		ActionLazyV1<OtporeInfo> optValidate = new LazyOtporeOptValidate(option.conn, option.schemaName);
+		ActionLazy<OtporeInfo> optValidate = new LazyOtporeOptValidate(option.conn, option.schemaName);
 		ActionStdV1<OtporeInfo> delete = new StdOtporeDaoDelete(option);
 		
 		mergeToAuthenticate.addPostAction(optValidate);

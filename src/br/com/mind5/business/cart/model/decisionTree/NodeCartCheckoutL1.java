@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.model.action.LazyCartNodeCheckoutL2;
 import br.com.mind5.business.cart.model.checker.CartCheckCartemarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -43,7 +43,7 @@ public final class NodeCartCheckoutL1 extends DeciTreeTemplateWriteV2<CartInfo> 
 		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CartInfo> select = new RootCartSelect(option).toAction();
-		ActionLazyV1<CartInfo> nodeL2 = new LazyCartNodeCheckoutL2(option.conn, option.schemaName);	
+		ActionLazy<CartInfo> nodeL2 = new LazyCartNodeCheckoutL2(option.conn, option.schemaName);	
 		
 		select.addPostAction(nodeL2);
 		

@@ -13,7 +13,7 @@ import br.com.mind5.business.order.model.action.LazyOrderMergeOrdugeCreate;
 import br.com.mind5.business.order.model.action.LazyOrderMergeRefupown;
 import br.com.mind5.business.order.model.action.LazyOrderNodeCusL1;
 import br.com.mind5.business.order.model.action.StdOrderMergeUsername;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -45,14 +45,14 @@ public final class NodeOrderInsert extends DeciTreeTemplateWriteV2<OrderInfo> {
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 		//TODO: zerar Address e Phone - Somente aceitar no Place
 		ActionStdV1<OrderInfo> mergeUsername = new StdOrderMergeUsername(option);	
-		ActionLazyV1<OrderInfo> nodeCus = new LazyOrderNodeCusL1(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> enforceCreatedOn = new LazyOrderEnforceCreatedOn(option.conn, option.schemaName);			
-		ActionLazyV1<OrderInfo> enforceCreatedBy = new LazyOrderEnforceCreatedBy(option.conn, option.schemaName);	
-		ActionLazyV1<OrderInfo> enforcePostingDate = new LazyOrderEnforcePostingDate(option.conn, option.schemaName);	
-		ActionLazyV1<OrderInfo> enforceExtid = new LazyOrderEnforceExtid(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> statusChange = new LazyOrderMergeOrdugeCreate(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> mergeRefupown = new LazyOrderMergeRefupown(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> insert = new LazyOrderDaoInsert(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> nodeCus = new LazyOrderNodeCusL1(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> enforceCreatedOn = new LazyOrderEnforceCreatedOn(option.conn, option.schemaName);			
+		ActionLazy<OrderInfo> enforceCreatedBy = new LazyOrderEnforceCreatedBy(option.conn, option.schemaName);	
+		ActionLazy<OrderInfo> enforcePostingDate = new LazyOrderEnforcePostingDate(option.conn, option.schemaName);	
+		ActionLazy<OrderInfo> enforceExtid = new LazyOrderEnforceExtid(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> statusChange = new LazyOrderMergeOrdugeCreate(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeRefupown = new LazyOrderMergeRefupown(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> insert = new LazyOrderDaoInsert(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(nodeCus);
 		nodeCus.addPostAction(enforceCreatedOn);

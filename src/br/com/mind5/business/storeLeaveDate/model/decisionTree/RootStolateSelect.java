@@ -10,7 +10,7 @@ import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckLangu;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckOwner;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckRead;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckStore;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -74,7 +74,7 @@ public final class RootStolateSelect extends DeciTreeTemplateReadV2<StolateInfo>
 		List<ActionStdV1<StolateInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StolateInfo> mergeToSelect = new StdStolateMergeToSelect(option);
-		ActionLazyV1<StolateInfo> mergeStolis = new LazyStolateMergeStolis(option.conn, option.schemaName);
+		ActionLazy<StolateInfo> mergeStolis = new LazyStolateMergeStolis(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(mergeStolis);
 		

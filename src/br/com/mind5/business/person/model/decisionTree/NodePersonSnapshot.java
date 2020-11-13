@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.action.LazyPersonDaoUpdate;
 import br.com.mind5.business.person.model.action.StdPersonInsertPersonap;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodePersonSnapshot extends DeciTreeTemplateWriteV2<PersonInfo
 		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<PersonInfo> insertPersonap = new StdPersonInsertPersonap(option);		
-		ActionLazyV1<PersonInfo> update = new LazyPersonDaoUpdate(option.conn, option.schemaName);	
+		ActionLazy<PersonInfo> update = new LazyPersonDaoUpdate(option.conn, option.schemaName);	
 		
 		insertPersonap.addPostAction(update);
 		

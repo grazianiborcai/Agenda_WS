@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemNodeUpdate;
 import br.com.mind5.business.orderItem.model.action.StdOrderemMergeOrdugePay;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeOrderemPay extends DeciTreeTemplateWriteV2<OrderemInfo> {
 		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OrderemInfo> statusChange = new StdOrderemMergeOrdugePay(option);
-		ActionLazyV1<OrderemInfo> update = new LazyOrderemNodeUpdate(option.conn, option.schemaName);	
+		ActionLazy<OrderemInfo> update = new LazyOrderemNodeUpdate(option.conn, option.schemaName);	
 		
 		statusChange.addPostAction(update);
 		

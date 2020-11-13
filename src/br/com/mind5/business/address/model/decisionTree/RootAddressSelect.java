@@ -11,7 +11,7 @@ import br.com.mind5.business.address.model.action.StdAddressMergeToSelect;
 import br.com.mind5.business.address.model.checker.AddressCheckLangu;
 import br.com.mind5.business.address.model.checker.AddressCheckOwner;
 import br.com.mind5.business.address.model.checker.AddressCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -62,9 +62,9 @@ public final class RootAddressSelect extends DeciTreeTemplateWriteV2<AddressInfo
 		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<AddressInfo> select = new StdAddressMergeToSelect(option);		
-		ActionLazyV1<AddressInfo> mergeFormess = new LazyAddressMergeFormess(option.conn, option.schemaName);
-		ActionLazyV1<AddressInfo> mergeCountry = new LazyAddressMergeCountry(option.conn, option.schemaName);
-		ActionLazyV1<AddressInfo> nodeState = new LazyAddressNodeState(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> mergeFormess = new LazyAddressMergeFormess(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> mergeCountry = new LazyAddressMergeCountry(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> nodeState = new LazyAddressNodeState(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeFormess);	
 		mergeFormess.addPostAction(mergeCountry);

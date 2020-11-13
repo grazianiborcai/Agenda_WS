@@ -14,7 +14,7 @@ import br.com.mind5.business.storeProspect.model.checker.StoprosCheckLangu;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckOwner;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckProstus;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckUpdate;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -86,9 +86,9 @@ public final class RootStoprosUpdate extends DeciTreeTemplateWriteV2<StoprosInfo
 		List<ActionStdV1<StoprosInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<StoprosInfo> mergeToUpdate = new StdStoprosMergeToUpdate(option);
-		ActionLazyV1<StoprosInfo> enforceLChanged = new LazyStoprosEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<StoprosInfo> update = new LazyStoprosDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<StoprosInfo> select = new LazyStoprosRootSelect(option.conn, option.schemaName);		
+		ActionLazy<StoprosInfo> enforceLChanged = new LazyStoprosEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<StoprosInfo> update = new LazyStoprosDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<StoprosInfo> select = new LazyStoprosRootSelect(option.conn, option.schemaName);		
 			
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(update);

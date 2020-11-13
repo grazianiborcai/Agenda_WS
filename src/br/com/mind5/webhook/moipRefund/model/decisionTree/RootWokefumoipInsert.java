@@ -3,7 +3,7 @@ package br.com.mind5.webhook.moipRefund.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -47,10 +47,10 @@ public final class RootWokefumoipInsert extends DeciTreeTemplateWriteV2<Wokefumo
 		List<ActionStdV1<WokefumoipInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<WokefumoipInfo> enforceIdPayment = new StdWokefumoipEnforceIdPayment(option);
-		ActionLazyV1<WokefumoipInfo> select = new LazyWokefumoipDaoSelect(option.conn, option.schemaName);
-		ActionLazyV1<WokefumoipInfo> mergeDaemon = new LazyWokefumoipMergeDaemon(option.conn, option.schemaName);
-		ActionLazyV1<WokefumoipInfo> paytusRefresh = new LazyWokefumoipPaytusRefresh(option.conn, option.schemaName);
-		ActionLazyV1<WokefumoipInfo> success = new LazyWokefumoipSuccess(option.conn, option.schemaName);
+		ActionLazy<WokefumoipInfo> select = new LazyWokefumoipDaoSelect(option.conn, option.schemaName);
+		ActionLazy<WokefumoipInfo> mergeDaemon = new LazyWokefumoipMergeDaemon(option.conn, option.schemaName);
+		ActionLazy<WokefumoipInfo> paytusRefresh = new LazyWokefumoipPaytusRefresh(option.conn, option.schemaName);
+		ActionLazy<WokefumoipInfo> success = new LazyWokefumoipSuccess(option.conn, option.schemaName);
 		
 		enforceIdPayment.addPostAction(select);
 		select.addPostAction(mergeDaemon);

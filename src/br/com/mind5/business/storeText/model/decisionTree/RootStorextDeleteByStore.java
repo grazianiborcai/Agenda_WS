@@ -10,7 +10,7 @@ import br.com.mind5.business.storeText.model.checker.StorextCheckDeleteByStore;
 import br.com.mind5.business.storeText.model.checker.StorextCheckStore;
 import br.com.mind5.business.storeText.model.checker.StorextCheckStorextarch;
 import br.com.mind5.business.storeText.model.checker.StorextCheckOwner;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -68,7 +68,7 @@ public final class RootStorextDeleteByStore extends DeciTreeTemplateWriteV2<Stor
 		List<ActionStdV1<StorextInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<StorextInfo> mergeStorextarch = new StdStorextMergeStorextarch(option);
-		ActionLazyV1<StorextInfo> delete = new LazyStorextRootDelete(option.conn, option.schemaName);
+		ActionLazy<StorextInfo> delete = new LazyStorextRootDelete(option.conn, option.schemaName);
 		
 		mergeStorextarch.addPostAction(delete);
 		

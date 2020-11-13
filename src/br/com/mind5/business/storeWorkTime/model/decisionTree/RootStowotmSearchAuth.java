@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmRootSearch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -37,7 +37,7 @@ public final class RootStowotmSearchAuth extends DeciTreeTemplateReadV2<StowotmI
 		List<ActionStdV1<StowotmInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StowotmInfo> nodeAuth = new NodeStowotmAuth(option).toAction();
-		ActionLazyV1<StowotmInfo> search = new LazyStowotmRootSearch(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> search = new LazyStowotmRootSearch(option.conn, option.schemaName);
 		
 		nodeAuth.addPostAction(search);
 		

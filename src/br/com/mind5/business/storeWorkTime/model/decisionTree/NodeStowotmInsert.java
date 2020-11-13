@@ -12,7 +12,7 @@ import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmRootSelect;
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmDaoUpdate;
 import br.com.mind5.business.storeWorkTime.model.action.StdStowotmEnforceLChanged;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckSoftDelete;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -49,11 +49,11 @@ final class NodeStowotmInsert extends DeciTreeTemplateWriteV2<StowotmInfo> {
 		List<ActionStdV1<StowotmInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StowotmInfo> enforceLChanged = new StdStowotmEnforceLChanged(option);
-		ActionLazyV1<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<StowotmInfo> enforceCreatedOn = new LazyStowotmEnforceCreatedOn(option.conn, option.schemaName);
-		ActionLazyV1<StowotmInfo> enforceCreatedBy = new LazyStowotmEnforceCreatedBy(option.conn, option.schemaName);
-		ActionLazyV1<StowotmInfo> insert = new LazyStowotmDaoInsert(option.conn, option.schemaName);
-		ActionLazyV1<StowotmInfo> select = new LazyStowotmRootSelect(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> enforceCreatedOn = new LazyStowotmEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> enforceCreatedBy = new LazyStowotmEnforceCreatedBy(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> insert = new LazyStowotmDaoInsert(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> select = new LazyStowotmRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedOn);
@@ -71,11 +71,11 @@ final class NodeStowotmInsert extends DeciTreeTemplateWriteV2<StowotmInfo> {
 		List<ActionStdV1<StowotmInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StowotmInfo> enforceLChanged = new StdStowotmEnforceLChanged(option);
-		ActionLazyV1<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<StowotmInfo> enforceCreatedOn = new LazyStowotmEnforceCreatedOn(option.conn, option.schemaName);
-		ActionLazyV1<StowotmInfo> enforceCreatedBy = new LazyStowotmEnforceCreatedBy(option.conn, option.schemaName);
-		ActionLazyV1<StowotmInfo> update = new LazyStowotmDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<StowotmInfo> select = new LazyStowotmRootSelect(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> enforceCreatedOn = new LazyStowotmEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> enforceCreatedBy = new LazyStowotmEnforceCreatedBy(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> update = new LazyStowotmDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> select = new LazyStowotmRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedOn);

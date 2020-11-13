@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleMoviment.info.SchedovmInfo;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.commom.ActionStdDummy;
 import br.com.mind5.model.decisionTree.DeciResult;
@@ -37,7 +37,7 @@ public class StdSchedovmSuccess implements ActionStdV1<SchedovmInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<SchedovmInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<SchedovmInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

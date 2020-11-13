@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateRootSelect;
 import br.com.mind5.business.employeeLeaveDate.model.action.StdEmplateMergeEmplarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public class RootEmplateSearch extends DeciTreeTemplateReadV2<EmplateInfo> {
 		List<ActionStdV1<EmplateInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmplateInfo> mergeEmplarch = new StdEmplateMergeEmplarch(option);
-		ActionLazyV1<EmplateInfo> select = new LazyEmplateRootSelect(option.conn, option.schemaName);
+		ActionLazy<EmplateInfo> select = new LazyEmplateRootSelect(option.conn, option.schemaName);
 		
 		mergeEmplarch.addPostAction(select);
 		

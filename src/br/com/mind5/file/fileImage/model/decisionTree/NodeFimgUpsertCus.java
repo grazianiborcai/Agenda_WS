@@ -7,7 +7,7 @@ import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.action.LazyFimgRootReplace;
 import br.com.mind5.file.fileImage.model.action.StdFimgMergeFimarch;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckExistCus;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -55,7 +55,7 @@ public final class NodeFimgUpsertCus extends DeciTreeTemplateWriteV2<FimgInfo> {
 		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<FimgInfo> mergeFimarch = new StdFimgMergeFimarch(option);
-		ActionLazyV1<FimgInfo> replace = new LazyFimgRootReplace(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> replace = new LazyFimgRootReplace(option.conn, option.schemaName);
 		
 		mergeFimarch.addPostAction(replace);
 		

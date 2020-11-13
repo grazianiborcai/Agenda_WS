@@ -3,14 +3,14 @@ package br.com.mind5.payment.setupPartner.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.setupPartner.model.decisionTree.RootSetuparSelect;
 
-public final class LazySetuparRootSelect extends ActionLazyTemplateV2<SetuparInfo, SetuparInfo> {
+public final class LazySetuparRootSelect extends ActionLazyTemplate<SetuparInfo, SetuparInfo> {
 	
 	public LazySetuparRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

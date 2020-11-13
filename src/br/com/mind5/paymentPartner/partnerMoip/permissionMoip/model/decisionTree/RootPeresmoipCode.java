@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -76,7 +76,7 @@ public final class RootPeresmoipCode extends DeciTreeTemplateWriteV2<PeresmoipIn
 		List<ActionStdV1<PeresmoipInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<PeresmoipInfo> mergeToSelect = new StdPeresmoipMergeToSelect(option);	
-		ActionLazyV1<PeresmoipInfo> nodeCode = new LazyPeresmoipNodeCode(option.conn, option.schemaName);
+		ActionLazy<PeresmoipInfo> nodeCode = new LazyPeresmoipNodeCode(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(nodeCode);
 		

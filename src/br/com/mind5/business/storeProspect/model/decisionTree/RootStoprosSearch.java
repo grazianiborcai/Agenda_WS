@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.storeProspect.info.StoprosInfo;
 import br.com.mind5.business.storeProspect.model.action.LazyStoprosRootSelect;
 import br.com.mind5.business.storeProspect.model.action.StdStoprosMergeStoprarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -39,7 +39,7 @@ public final class RootStoprosSearch extends DeciTreeTemplateReadV2<StoprosInfo>
 		List<ActionStdV1<StoprosInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<StoprosInfo> mergeStoprarch = new StdStoprosMergeStoprarch(option);
-		ActionLazyV1<StoprosInfo> select = new LazyStoprosRootSelect(option.conn, option.schemaName);
+		ActionLazy<StoprosInfo> select = new LazyStoprosRootSelect(option.conn, option.schemaName);
 		
 		mergeStoprarch.addPostAction(select);
 		

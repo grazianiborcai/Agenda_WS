@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.dayParting.info.DaypartInfo;
 import br.com.mind5.masterData.dayParting.model.action.LazyDaypartRootSelect;
 import br.com.mind5.masterData.dayParting.model.action.StdDaypartMergeDayparch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootDaypartSearch extends DeciTreeTemplateWriteV2<DaypartInfo
 		List<ActionStdV1<DaypartInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<DaypartInfo> mergeDayparch = new StdDaypartMergeDayparch(option);		
-		ActionLazyV1<DaypartInfo> select = new LazyDaypartRootSelect(option.conn, option.schemaName);
+		ActionLazy<DaypartInfo> select = new LazyDaypartRootSelect(option.conn, option.schemaName);
 		
 		mergeDayparch.addPostAction(select);
 		

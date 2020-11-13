@@ -13,7 +13,7 @@ import br.com.mind5.business.notes.model.checker.NotesCheckExist;
 import br.com.mind5.business.notes.model.checker.NotesCheckLangu;
 import br.com.mind5.business.notes.model.checker.NotesCheckOwner;
 import br.com.mind5.business.notes.model.checker.NotesCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -71,10 +71,10 @@ public final class RootNotesUpdate extends DeciTreeTemplateWriteV2<NotesInfo> {
 		List<ActionStdV1<NotesInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<NotesInfo> mergeToUpdate = new StdNotesMergeToUpdate(option);
-		ActionLazyV1<NotesInfo> enforceLChanged = new LazyNotesEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazyV1<NotesInfo> enforceLChangedBy = new LazyNotesMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<NotesInfo> update = new LazyNotesDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<NotesInfo> select = new LazyNotesRootSelect(option.conn, option.schemaName);	
+		ActionLazy<NotesInfo> enforceLChanged = new LazyNotesEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazy<NotesInfo> enforceLChangedBy = new LazyNotesMergeUsername(option.conn, option.schemaName);
+		ActionLazy<NotesInfo> update = new LazyNotesDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<NotesInfo> select = new LazyNotesRootSelect(option.conn, option.schemaName);	
 		
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

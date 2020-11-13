@@ -8,7 +8,7 @@ import br.com.mind5.business.employee.model.action.LazyEmpPhoneUpsert;
 import br.com.mind5.business.employee.model.action.StdEmpEnforcePhoneKey;
 import br.com.mind5.business.employee.model.action.StdEmpSuccess;
 import br.com.mind5.business.employee.model.checker.EmpCheckHasPhone;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,7 +45,7 @@ public final class NodeEmpUpsertPhone extends DeciTreeTemplateWriteV2<EmpInfo> {
 		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmpInfo> enforcePhoneKey = new StdEmpEnforcePhoneKey(option);
-		ActionLazyV1<EmpInfo> upsertPhone = new LazyEmpPhoneUpsert(option.conn, option.schemaName);	
+		ActionLazy<EmpInfo> upsertPhone = new LazyEmpPhoneUpsert(option.conn, option.schemaName);	
 		
 		enforcePhoneKey.addPostAction(upsertPhone);
 		

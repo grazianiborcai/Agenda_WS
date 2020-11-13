@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleDay.model.decisionTree.RootSchedaySelect;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedayRootSelect extends ActionLazyTemplateV2<SchedayInfo, SchedayInfo> {
+public final class LazySchedayRootSelect extends ActionLazyTemplate<SchedayInfo, SchedayInfo> {
 	
 	public LazySchedayRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

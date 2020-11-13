@@ -3,7 +3,7 @@ package br.com.mind5.payment.ownerPartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class RootOwnparSelectDefault extends DeciTreeTemplateReadV2<Ownpar
 		List<ActionStdV1<OwnparInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OwnparInfo> enforceDefault = new StdOwnparEnforceDefault(option);
-		ActionLazyV1<OwnparInfo> rootSelect = new LazyOwnparRootSelect(option.conn, option.schemaName);
+		ActionLazy<OwnparInfo> rootSelect = new LazyOwnparRootSelect(option.conn, option.schemaName);
 		
 		enforceDefault.addPostAction(rootSelect);
 		

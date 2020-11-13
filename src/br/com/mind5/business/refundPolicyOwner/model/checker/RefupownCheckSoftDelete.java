@@ -4,7 +4,7 @@ import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
 import br.com.mind5.business.refundPolicyOwner.model.action.LazyRefupownDaoSelect;
 import br.com.mind5.business.refundPolicyOwner.model.action.StdRefupownEnforceDel;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
@@ -20,7 +20,7 @@ public final class RefupownCheckSoftDelete extends ModelCheckerTemplateActionV2<
 	
 	@Override protected ActionStdV1<RefupownInfo> buildActionHook(DeciTreeOption<RefupownInfo> option) {
 		ActionStdV1<RefupownInfo> enforceDel = new StdRefupownEnforceDel(option);
-		ActionLazyV1<RefupownInfo> select = new LazyRefupownDaoSelect(option.conn, option.schemaName);
+		ActionLazy<RefupownInfo> select = new LazyRefupownDaoSelect(option.conn, option.schemaName);
 		
 		enforceDel.addPostAction(select);
 		

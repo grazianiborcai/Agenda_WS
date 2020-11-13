@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.model.action.LazyPlanataNodeReserve;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -37,7 +37,7 @@ public class RootPlanataSelect extends DeciTreeTemplateReadV2<PlanataInfo> {
 		List<ActionStdV1<PlanataInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<PlanataInfo> select = new RootPlanataSelectNoReserve(option).toAction();	
-		ActionLazyV1<PlanataInfo> nodeReserve = new LazyPlanataNodeReserve(option.conn, option.schemaName);
+		ActionLazy<PlanataInfo> nodeReserve = new LazyPlanataNodeReserve(option.conn, option.schemaName);
 		
 		select.addPostAction(nodeReserve);
 		

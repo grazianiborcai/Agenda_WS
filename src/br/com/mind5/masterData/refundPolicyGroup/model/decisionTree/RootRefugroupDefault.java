@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 import br.com.mind5.masterData.refundPolicyGroup.model.action.LazyRefugroupRootSelect;
 import br.com.mind5.masterData.refundPolicyGroup.model.action.StdRefugroupEnforceDefault;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootRefugroupDefault extends DeciTreeTemplateReadV2<Refugroup
 		List<ActionStdV1<RefugroupInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<RefugroupInfo> enforceDefault = new StdRefugroupEnforceDefault(option);
-		ActionLazyV1<RefugroupInfo> select = new LazyRefugroupRootSelect(option.conn, option.schemaName);
+		ActionLazy<RefugroupInfo> select = new LazyRefugroupRootSelect(option.conn, option.schemaName);
 		
 		enforceDefault.addPostAction(select);
 		

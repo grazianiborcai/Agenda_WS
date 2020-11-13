@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.file.fileImageList.model.action.LazyFimistRootSelect;
 import br.com.mind5.file.fileImageList.model.action.StdFimistMergeFimarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootFimistSearch extends DeciTreeTemplateReadV2<FimistInfo> {
 		List<ActionStdV1<FimistInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<FimistInfo> mergeFimarch = new StdFimistMergeFimarch(option);
-		ActionLazyV1<FimistInfo> select = new LazyFimistRootSelect(option.conn, option.schemaName);
+		ActionLazy<FimistInfo> select = new LazyFimistRootSelect(option.conn, option.schemaName);
 		
 		mergeFimarch.addPostAction(select);
 		

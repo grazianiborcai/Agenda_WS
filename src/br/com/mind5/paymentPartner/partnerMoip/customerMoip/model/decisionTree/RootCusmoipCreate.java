@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -63,11 +63,11 @@ public final class RootCusmoipCreate extends DeciTreeTemplateWriteV2<CusmoipInfo
 		List<ActionStdV1<CusmoipInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CusmoipInfo> nodeSetupar = new NodeCusmoipSetuparL1(option).toAction();
-		ActionLazyV1<CusmoipInfo> nodeAddress = new LazyCusmoipNodeAddressL1(option.conn, option.schemaName);
-		ActionLazyV1<CusmoipInfo> nodePhone = new LazyCusmoipNodePhoneL1(option.conn, option.schemaName);
-		ActionLazyV1<CusmoipInfo> nodeUser = new LazyCusmoipNodeUserL1(option.conn, option.schemaName);		
-		ActionLazyV1<CusmoipInfo> enforcerequest = new LazyCusmoipEnforceRequest(option.conn, option.schemaName);
-		ActionLazyV1<CusmoipInfo> create = new LazyCusmoipCreate(option.conn, option.schemaName);
+		ActionLazy<CusmoipInfo> nodeAddress = new LazyCusmoipNodeAddressL1(option.conn, option.schemaName);
+		ActionLazy<CusmoipInfo> nodePhone = new LazyCusmoipNodePhoneL1(option.conn, option.schemaName);
+		ActionLazy<CusmoipInfo> nodeUser = new LazyCusmoipNodeUserL1(option.conn, option.schemaName);		
+		ActionLazy<CusmoipInfo> enforcerequest = new LazyCusmoipEnforceRequest(option.conn, option.schemaName);
+		ActionLazy<CusmoipInfo> create = new LazyCusmoipCreate(option.conn, option.schemaName);
 		
 		nodeSetupar.addPostAction(nodeAddress);
 		nodeAddress.addPostAction(nodeUser);

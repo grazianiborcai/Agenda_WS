@@ -8,7 +8,7 @@ import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeOrdugePartne
 import br.com.mind5.business.orderItem.model.action.LazyOrderemNodeUpdate;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemSchedineRefresh;
 import br.com.mind5.business.orderItem.model.action.StdOrderemMergePayordem;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -40,9 +40,9 @@ public final class NodeOrderemRefresh extends DeciTreeTemplateWriteV2<OrderemInf
 		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<OrderemInfo> nodePayordem = new StdOrderemMergePayordem(option);
-		ActionLazyV1<OrderemInfo> statusChange = new LazyOrderemMergeOrdugePartner(option.conn, option.schemaName);
-		ActionLazyV1<OrderemInfo> nodeUpdate = new LazyOrderemNodeUpdate(option.conn, option.schemaName);
-		ActionLazyV1<OrderemInfo> refreshSchedine = new LazyOrderemSchedineRefresh(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> statusChange = new LazyOrderemMergeOrdugePartner(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> nodeUpdate = new LazyOrderemNodeUpdate(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> refreshSchedine = new LazyOrderemSchedineRefresh(option.conn, option.schemaName);
 		
 		nodePayordem.addPostAction(statusChange);
 		statusChange.addPostAction(nodeUpdate);

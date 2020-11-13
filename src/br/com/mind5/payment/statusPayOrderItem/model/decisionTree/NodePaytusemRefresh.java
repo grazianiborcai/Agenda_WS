@@ -3,7 +3,7 @@ package br.com.mind5.payment.statusPayOrderItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -56,7 +56,7 @@ public final class NodePaytusemRefresh extends DeciTreeTemplateWriteV2<PaytusemI
 		List<ActionStdV1<PaytusemInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<PaytusemInfo> mergeOrdmoip = new StdPaytusemMergeOrdmoip(option);	
-		ActionLazyV1<PaytusemInfo> payordemUpdate = new LazyPaytusemPayordemUpdate(option.conn, option.schemaName);
+		ActionLazy<PaytusemInfo> payordemUpdate = new LazyPaytusemPayordemUpdate(option.conn, option.schemaName);
 		
 		mergeOrdmoip.addPostAction(payordemUpdate);
 		

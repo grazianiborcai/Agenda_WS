@@ -8,7 +8,7 @@ import br.com.mind5.file.fileImage.model.action.LazyFimgNodeDeleteMat;
 import br.com.mind5.file.fileImage.model.action.StdFimgMergeToUpdate;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckDelete;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckExist;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -52,7 +52,7 @@ public final class RootFimgDeleteMat extends DeciTreeTemplateWriteV2<FimgInfo> {
 		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<FimgInfo> mergeToUpdate = new StdFimgMergeToUpdate(option);
-		ActionLazyV1<FimgInfo> delete = new LazyFimgNodeDeleteMat(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> delete = new LazyFimgNodeDeleteMat(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(delete);
 		

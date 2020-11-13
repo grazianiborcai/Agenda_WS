@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.action.LazyCompRootInsert;
 import br.com.mind5.business.company.model.action.StdCompEnforceCategStore;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootCompInsertStore extends DeciTreeTemplateWriteV2<CompInfo>
 		List<ActionStdV1<CompInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CompInfo> enforceCategStore = new StdCompEnforceCategStore(option);
-		ActionLazyV1<CompInfo> insert = new LazyCompRootInsert(option.conn, option.schemaName);
+		ActionLazy<CompInfo> insert = new LazyCompRootInsert(option.conn, option.schemaName);
 		
 		enforceCategStore.addPostAction(insert);
 		

@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.scheduleDay.info.SchedayInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedayMergeSchedatus extends ActionLazyTemplateV2<SchedayInfo, SchedayInfo> {
+public final class LazySchedayMergeSchedatus extends ActionLazyTemplate<SchedayInfo, SchedayInfo> {
 	
 	public LazySchedayMergeSchedatus(Connection conn, String schemaName) {
 		super(conn, schemaName);

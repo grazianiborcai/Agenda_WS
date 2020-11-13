@@ -7,7 +7,7 @@ import br.com.mind5.business.orderReserve.info.OrderveInfo;
 import br.com.mind5.business.orderReserve.model.action.LazyOrderveMergeToSelect;
 import br.com.mind5.business.orderReserve.model.action.StdOrderveEnforceCancelled;
 import br.com.mind5.business.orderReserve.model.checker.OrderveCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class RootOrderveSelect extends DeciTreeTemplateReadV2<OrderveInfo>
 		List<ActionStdV1<OrderveInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<OrderveInfo> enforceStatus = new StdOrderveEnforceCancelled(option);
-		ActionLazyV1<OrderveInfo> select = new LazyOrderveMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<OrderveInfo> select = new LazyOrderveMergeToSelect(option.conn, option.schemaName);
 		
 		enforceStatus.addPostAction(select);
 		

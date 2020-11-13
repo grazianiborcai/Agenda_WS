@@ -7,7 +7,7 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.action.LazyCartemDaoUpdate;
 import br.com.mind5.business.cartItem.model.action.StdCartemMergeToUpdate;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckExist;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class NodeCartemUpsertL2 extends DeciTreeTemplateWriteV2<CartemInfo
 		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CartemInfo> mergeToUpdate = new StdCartemMergeToUpdate(option);	
-		ActionLazyV1<CartemInfo> update = new LazyCartemDaoUpdate(option.conn, option.schemaName);			
+		ActionLazy<CartemInfo> update = new LazyCartemDaoUpdate(option.conn, option.schemaName);			
 		
 		mergeToUpdate.addPostAction(update);
 		

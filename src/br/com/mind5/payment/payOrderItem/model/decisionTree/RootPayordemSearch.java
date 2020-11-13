@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrderItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootPayordemSearch extends DeciTreeTemplateWriteV2<PayordemIn
 		List<ActionStdV1<PayordemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<PayordemInfo> mergePayormarch = new StdPayordemMergePayormarch(option);
-		ActionLazyV1<PayordemInfo> select = new LazyPayordemRootSelect(option.conn, option.schemaName);
+		ActionLazy<PayordemInfo> select = new LazyPayordemRootSelect(option.conn, option.schemaName);
 		
 		mergePayormarch.addPostAction(select);
 		

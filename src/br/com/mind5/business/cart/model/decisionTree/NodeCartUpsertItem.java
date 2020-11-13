@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.model.action.LazyCartUpsertCartem;
 import br.com.mind5.business.cart.model.action.StdCartEnforceCartemKey;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeCartUpsertItem extends DeciTreeTemplateWriteV2<CartInfo> 
 		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<CartInfo> enforceCartemKey = new StdCartEnforceCartemKey(option);
-		ActionLazyV1<CartInfo> upsertCartem = new LazyCartUpsertCartem(option.conn, option.schemaName);
+		ActionLazy<CartInfo> upsertCartem = new LazyCartUpsertCartem(option.conn, option.schemaName);
 		
 		enforceCartemKey.addPostAction(upsertCartem);
 		

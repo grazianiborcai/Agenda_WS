@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposRootDelete;
 import br.com.mind5.business.employeePosition.model.action.StdEmposEnforceProfessional;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootEmposDeleteProfessional extends DeciTreeTemplateWriteV2<E
 		List<ActionStdV1<EmposInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmposInfo> enforceProfessional = new StdEmposEnforceProfessional(option);
-		ActionLazyV1<EmposInfo> delete = new LazyEmposRootDelete(option.conn, option.schemaName);
+		ActionLazy<EmposInfo> delete = new LazyEmposRootDelete(option.conn, option.schemaName);
 		
 		enforceProfessional.addPostAction(delete);
 		

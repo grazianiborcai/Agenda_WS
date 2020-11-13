@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -78,10 +78,10 @@ public final class RootCremoipAdd extends DeciTreeTemplateWriteV2<CremoipInfo> {
 		List<ActionStdV1<CremoipInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CremoipInfo> mergeSetupar = new NodeCremoipSetuparL1(option).toAction();
-		ActionLazyV1<CremoipInfo> nodeAddress = new LazyCremoipNodeAddressL1(option.conn, option.schemaName);
-		ActionLazyV1<CremoipInfo> nodePhone = new LazyCremoipNodePhoneL1(option.conn, option.schemaName);
-		ActionLazyV1<CremoipInfo> nodeCuspar = new LazyCremoipNodeCusparL1(option.conn, option.schemaName);		
-		ActionLazyV1<CremoipInfo> nodeAdd = new LazyCremoipNodeAdd(option.conn, option.schemaName);	
+		ActionLazy<CremoipInfo> nodeAddress = new LazyCremoipNodeAddressL1(option.conn, option.schemaName);
+		ActionLazy<CremoipInfo> nodePhone = new LazyCremoipNodePhoneL1(option.conn, option.schemaName);
+		ActionLazy<CremoipInfo> nodeCuspar = new LazyCremoipNodeCusparL1(option.conn, option.schemaName);		
+		ActionLazy<CremoipInfo> nodeAdd = new LazyCremoipNodeAdd(option.conn, option.schemaName);	
 		
 		mergeSetupar.addPostAction(nodeAddress);
 		nodeAddress.addPostAction(nodePhone);

@@ -13,7 +13,7 @@ import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckExist;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckLangu;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckOwner;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -71,10 +71,10 @@ public final class RootEmpmatDelete extends DeciTreeTemplateWriteV2<EmpmatInfo> 
 		List<ActionStdV1<EmpmatInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmpmatInfo> mergeToDelete = new StdEmpmatMergeToDelete(option);
-		ActionLazyV1<EmpmatInfo> enforceLChanged = new LazyEmpmatEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<EmpmatInfo> enforceLChangedBy = new LazyEmpmatMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<EmpmatInfo> update = new LazyEmpmatDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<EmpmatInfo> deleteEmpmat = new LazyEmpmatDaoDelete(option.conn, option.schemaName);
+		ActionLazy<EmpmatInfo> enforceLChanged = new LazyEmpmatEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<EmpmatInfo> enforceLChangedBy = new LazyEmpmatMergeUsername(option.conn, option.schemaName);
+		ActionLazy<EmpmatInfo> update = new LazyEmpmatDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<EmpmatInfo> deleteEmpmat = new LazyEmpmatDaoDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

@@ -7,7 +7,7 @@ import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.business.storeSearch.model.action.LazySotarchRootSelectUser;
 import br.com.mind5.business.storeSearch.model.action.StdSotarchMergeUsername;
 import br.com.mind5.business.storeSearch.model.checker.SotarchCheckReadUsername;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,7 +45,7 @@ public final class RootSotarchSelectUsename extends DeciTreeTemplateReadV2<Sotar
 		List<ActionStdV1<SotarchInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<SotarchInfo> mergeUsername = new StdSotarchMergeUsername(option);
-		ActionLazyV1<SotarchInfo> select = new LazySotarchRootSelectUser(option.conn, option.schemaName);
+		ActionLazy<SotarchInfo> select = new LazySotarchRootSelectUser(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(select);
 		

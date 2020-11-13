@@ -15,7 +15,7 @@ import br.com.mind5.business.materialMovement.model.checker.MatmovCheckMatore;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckOwner;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckStorauth;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckStore;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -108,8 +108,8 @@ public final class RootMatmovInsert extends DeciTreeTemplateWriteV2<MatmovInfo> 
 		List<ActionStdV1<MatmovInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<MatmovInfo> insert = new NodeMatmovInsert(option).toAction();
-		ActionLazyV1<MatmovInfo> upsertStock = new LazyMatmovNodeMatock(option.conn, option.schemaName);
-		ActionLazyV1<MatmovInfo> select = new LazyMatmovRootSelect(option.conn, option.schemaName);	
+		ActionLazy<MatmovInfo> upsertStock = new LazyMatmovNodeMatock(option.conn, option.schemaName);
+		ActionLazy<MatmovInfo> select = new LazyMatmovRootSelect(option.conn, option.schemaName);	
 		
 		insert.addPostAction(upsertStock);
 		upsertStock.addPostAction(select);

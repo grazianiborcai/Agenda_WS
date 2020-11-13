@@ -8,7 +8,7 @@ import br.com.mind5.business.owner.model.action.LazyOwnerPhoneUpsert;
 import br.com.mind5.business.owner.model.action.StdOwnerEnforcePhoneKey;
 import br.com.mind5.business.owner.model.action.StdOwnerSuccess;
 import br.com.mind5.business.owner.model.checker.OwnerCheckHasPhone;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,7 +45,7 @@ public final class NodeOwnerUpsertPhone extends DeciTreeTemplateWriteV2<OwnerInf
 		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OwnerInfo> enforcePhoneKey = new StdOwnerEnforcePhoneKey(option);
-		ActionLazyV1<OwnerInfo> upsertPhone = new LazyOwnerPhoneUpsert(option.conn, option.schemaName);	
+		ActionLazy<OwnerInfo> upsertPhone = new LazyOwnerPhoneUpsert(option.conn, option.schemaName);	
 		
 		enforcePhoneKey.addPostAction(upsertPhone);
 		

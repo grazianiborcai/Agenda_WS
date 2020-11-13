@@ -17,7 +17,7 @@ import br.com.mind5.business.materialText.model.checker.MatextCheckLength;
 import br.com.mind5.business.materialText.model.checker.MatextCheckMat;
 import br.com.mind5.business.materialText.model.checker.MatextCheckOwner;
 import br.com.mind5.business.materialText.model.checker.MatextCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -89,13 +89,13 @@ public final class RootMatextInsert extends DeciTreeTemplateWriteV2<MatextInfo> 
 		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<MatextInfo> nodeDefault = new NodeMatextDefaultL1(option).toAction();	
-		ActionLazyV1<MatextInfo> enforceLChanged = new LazyMatextEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazyV1<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);		
-		ActionLazyV1<MatextInfo> enforceCreatedBy = new LazyMatextEnforceCreatedBy(option.conn, option.schemaName);	
-		ActionLazyV1<MatextInfo> enforceCreatedOn = new LazyMatextEnforceCreatedOn(option.conn, option.schemaName);
-		ActionLazyV1<MatextInfo> enforceTxtSearch = new LazyMatextEnforceTxtSearch(option.conn, option.schemaName);
-		ActionLazyV1<MatextInfo> insert = new LazyMatextNodeInsert(option.conn, option.schemaName);
-		ActionLazyV1<MatextInfo> select = new LazyMatextRootSelect(option.conn, option.schemaName);		
+		ActionLazy<MatextInfo> enforceLChanged = new LazyMatextEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazy<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);		
+		ActionLazy<MatextInfo> enforceCreatedBy = new LazyMatextEnforceCreatedBy(option.conn, option.schemaName);	
+		ActionLazy<MatextInfo> enforceCreatedOn = new LazyMatextEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> enforceTxtSearch = new LazyMatextEnforceTxtSearch(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> insert = new LazyMatextNodeInsert(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> select = new LazyMatextRootSelect(option.conn, option.schemaName);		
 		
 		nodeDefault.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

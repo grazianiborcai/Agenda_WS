@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 import br.com.mind5.masterData.refundPolicyGroup.model.decisionTree.RootRefugroupSelect;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyRefugroupRootSelect extends ActionLazyTemplateV2<RefugroupInfo, RefugroupInfo> {
+public final class LazyRefugroupRootSelect extends ActionLazyTemplate<RefugroupInfo, RefugroupInfo> {
 
 	public LazyRefugroupRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

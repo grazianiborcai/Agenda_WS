@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.action.LazyMatDaoUpdate;
 import br.com.mind5.business.material.model.action.StdMatMatsnapInsert;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeMatSnapshot extends DeciTreeTemplateWriteV2<MatInfo> {
 		List<ActionStdV1<MatInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatInfo> insertMatsnap = new StdMatMatsnapInsert(option);
-		ActionLazyV1<MatInfo> update = new LazyMatDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<MatInfo> update = new LazyMatDaoUpdate(option.conn, option.schemaName);
 		
 		insertMatsnap.addPostAction(update);
 		

@@ -9,7 +9,7 @@ import br.com.mind5.business.cart.model.action.StdCartMergeUsername;
 import br.com.mind5.business.cart.model.checker.CartCheckCheckout;
 import br.com.mind5.business.cart.model.checker.CartCheckLangu;
 import br.com.mind5.business.cart.model.checker.CartCheckOwner;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -60,7 +60,7 @@ public final class RootCartCheckout extends DeciTreeTemplateWriteV2<CartInfo> {
 		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<CartInfo> mergeUsername = new StdCartMergeUsername(option);
-		ActionLazyV1<CartInfo> checkout = new LazyCartNodeCheckoutL1(option.conn, option.schemaName);
+		ActionLazy<CartInfo> checkout = new LazyCartNodeCheckoutL1(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(checkout);
 		

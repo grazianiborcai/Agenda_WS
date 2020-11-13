@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.model.action.LazyMatockNodeBalanceL2;
 import br.com.mind5.business.materialStock.model.action.StdMatockEnforceBalance;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeMatockBalanceL1 extends DeciTreeTemplateWriteV2<MatockInf
 		List<ActionStdV1<MatockInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<MatockInfo> enforceBalance = new StdMatockEnforceBalance(option);
-		ActionLazyV1<MatockInfo> balanceL2 = new LazyMatockNodeBalanceL2(option.conn, option.schemaName);
+		ActionLazy<MatockInfo> balanceL2 = new LazyMatockNodeBalanceL2(option.conn, option.schemaName);
 		
 		enforceBalance.addPostAction(balanceL2);
 		

@@ -11,7 +11,7 @@ import br.com.mind5.business.bookService.model.checker.BookiceCheckLangu;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckOwner;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckServiceSchedine;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckUsername;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -69,8 +69,8 @@ public final class NodeBookiceSchedineL1 extends DeciTreeTemplateWriteV2<Bookice
 		List<ActionStdV1<BookiceInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<BookiceInfo> enforceWeekday = new StdBookiceEnforceWeekday(option);
-		ActionLazyV1<BookiceInfo> mergeUsername = new LazyBookiceMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<BookiceInfo> nodeL2 = new LazyBookiceNodeSchedineL2(option.conn, option.schemaName);
+		ActionLazy<BookiceInfo> mergeUsername = new LazyBookiceMergeUsername(option.conn, option.schemaName);
+		ActionLazy<BookiceInfo> nodeL2 = new LazyBookiceNodeSchedineL2(option.conn, option.schemaName);
 		
 		enforceWeekday.addPostAction(mergeUsername);
 		mergeUsername.addPostAction(nodeL2);

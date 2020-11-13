@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
 import br.com.mind5.masterData.materialSubgroup.model.decisionTree.RootMatubupSelect;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatubupRootSelect extends ActionLazyTemplateV2<MatubupInfo, MatubupInfo> {
+public final class LazyMatubupRootSelect extends ActionLazyTemplate<MatubupInfo, MatubupInfo> {
 
 	public LazyMatubupRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

@@ -14,7 +14,7 @@ import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckOwner;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStorauth;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStore;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStowotarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -101,7 +101,7 @@ public final class RootEmpwotmInsertFromStore extends DeciTreeTemplateWriteV2<Em
 		List<ActionStdV1<EmpwotmInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmpwotmInfo> mergeStowotarch = new StdEmpwotmMergeStowotarch(option);
-		ActionLazyV1<EmpwotmInfo> insertDefault = new LazyEmpwotmNodeInsertDefault(option.conn, option.schemaName);
+		ActionLazy<EmpwotmInfo> insertDefault = new LazyEmpwotmNodeInsertDefault(option.conn, option.schemaName);
 		
 		mergeStowotarch.addPostAction(insertDefault);
 		

@@ -13,7 +13,7 @@ import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceUriExternal;
 import br.com.mind5.file.fileImage.model.action.LazyFimgMergeFath;
 import br.com.mind5.file.fileImage.model.action.LazyFimgMergeUsername;
 import br.com.mind5.file.fileImage.model.action.StdFimgEnforceLChanged;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -45,14 +45,14 @@ public final class NodeFimgInsert extends DeciTreeTemplateWriteV2<FimgInfo> {
 		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<FimgInfo> enforceLChanged = new StdFimgEnforceLChanged(option);	
-		ActionLazyV1<FimgInfo> enforceCreatedOn = new LazyFimgEnforceCreatedOn(option.conn, option.schemaName);
-		ActionLazyV1<FimgInfo> enforceLChangedBy = new LazyFimgMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<FimgInfo> enforceCreatedBy = new LazyFimgEnforceCreatedBy(option.conn, option.schemaName);
-		ActionLazyV1<FimgInfo> enforceFilename = new LazyFimgEnforceFilename(option.conn, option.schemaName);
-		ActionLazyV1<FimgInfo> mergeFath = new LazyFimgMergeFath(option.conn, option.schemaName);
-		ActionLazyV1<FimgInfo> enforceUri = new LazyFimgEnforceUri(option.conn, option.schemaName);
-		ActionLazyV1<FimgInfo> enforceUriExternal = new LazyFimgEnforceUriExternal(option.conn, option.schemaName);
-		ActionLazyV1<FimgInfo> insert = new LazyFimgDaoInsert(option.conn, option.schemaName);	
+		ActionLazy<FimgInfo> enforceCreatedOn = new LazyFimgEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> enforceLChangedBy = new LazyFimgMergeUsername(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> enforceCreatedBy = new LazyFimgEnforceCreatedBy(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> enforceFilename = new LazyFimgEnforceFilename(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> mergeFath = new LazyFimgMergeFath(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> enforceUri = new LazyFimgEnforceUri(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> enforceUriExternal = new LazyFimgEnforceUriExternal(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> insert = new LazyFimgDaoInsert(option.conn, option.schemaName);	
 		
 		enforceLChanged.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(enforceLChangedBy);

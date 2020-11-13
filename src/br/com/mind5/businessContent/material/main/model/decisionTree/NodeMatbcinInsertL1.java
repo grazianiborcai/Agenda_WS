@@ -9,7 +9,7 @@ import br.com.mind5.businessContent.material.main.model.action.StdMatbcinMergeOw
 import br.com.mind5.businessContent.material.main.model.action.StdMatbcinSuccess;
 import br.com.mind5.businessContent.material.main.model.checker.MatbcinCheckSytorbc;
 import br.com.mind5.businessContent.material.main.model.checker.MatbcinCheckSytotin;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -53,7 +53,7 @@ public final class NodeMatbcinInsertL1 extends DeciTreeTemplateWriteV2<MatbcinIn
 		List<ActionStdV1<MatbcinInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<MatbcinInfo> mergeOwnelis = new StdMatbcinMergeOwnelis(option);
-		ActionLazyV1<MatbcinInfo> nodeL2 = new LazyMatbcinNodeInsertL2(option.conn, option.schemaName);
+		ActionLazy<MatbcinInfo> nodeL2 = new LazyMatbcinNodeInsertL2(option.conn, option.schemaName);
 		
 		mergeOwnelis.addPostAction(nodeL2);
 		

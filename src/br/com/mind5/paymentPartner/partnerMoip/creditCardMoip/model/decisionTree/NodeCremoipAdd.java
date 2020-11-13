@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -41,10 +41,10 @@ public final class NodeCremoipAdd extends DeciTreeTemplateWriteV2<CremoipInfo> {
 		List<ActionStdV1<CremoipInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CremoipInfo> enforceDocument = new StdCremoipEnforceDocument(option);		
-		ActionLazyV1<CremoipInfo> enforceHolder = new LazyCremoipEnforceHolder(option.conn, option.schemaName);
-		ActionLazyV1<CremoipInfo> enforceCard = new LazyCremoipEnforceCard(option.conn, option.schemaName);
-		ActionLazyV1<CremoipInfo> enforceFunding = new LazyCremoipEnforceFunding(option.conn, option.schemaName);
-		ActionLazyV1<CremoipInfo> addCard = new LazyCremoipAdd(option.conn, option.schemaName);
+		ActionLazy<CremoipInfo> enforceHolder = new LazyCremoipEnforceHolder(option.conn, option.schemaName);
+		ActionLazy<CremoipInfo> enforceCard = new LazyCremoipEnforceCard(option.conn, option.schemaName);
+		ActionLazy<CremoipInfo> enforceFunding = new LazyCremoipEnforceFunding(option.conn, option.schemaName);
+		ActionLazy<CremoipInfo> addCard = new LazyCremoipAdd(option.conn, option.schemaName);
 
 		enforceDocument.addPostAction(enforceHolder);
 		enforceHolder.addPostAction(enforceCard);

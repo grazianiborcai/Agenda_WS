@@ -8,7 +8,7 @@ import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeMatlis;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemNodeSelect;
 import br.com.mind5.business.orderItem.model.action.StdOrderemMergeToSelect;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,8 +45,8 @@ public final class RootOrderemSelect extends DeciTreeTemplateWriteV2<OrderemInfo
 		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OrderemInfo> select = new StdOrderemMergeToSelect(option);
-		ActionLazyV1<OrderemInfo> mergeMatlis = new LazyOrderemMergeMatlis(option.conn, option.schemaName);
-		ActionLazyV1<OrderemInfo> nodeSelect = new LazyOrderemNodeSelect(option.conn, option.schemaName);		
+		ActionLazy<OrderemInfo> mergeMatlis = new LazyOrderemMergeMatlis(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> nodeSelect = new LazyOrderemNodeSelect(option.conn, option.schemaName);		
 		
 		select.addPostAction(mergeMatlis);
 		mergeMatlis.addPostAction(nodeSelect);

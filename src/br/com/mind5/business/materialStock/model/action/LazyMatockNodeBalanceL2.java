@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.model.decisionTree.NodeMatockBalanceL2;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatockNodeBalanceL2 extends ActionLazyTemplateV2<MatockInfo, MatockInfo> {
+public final class LazyMatockNodeBalanceL2 extends ActionLazyTemplate<MatockInfo, MatockInfo> {
 
 	public LazyMatockNodeBalanceL2(Connection conn, String schemaName) {
 		super(conn, schemaName);

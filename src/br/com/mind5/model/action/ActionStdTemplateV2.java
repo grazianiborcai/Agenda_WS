@@ -19,7 +19,7 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	
 	private ActionVisitorV2<T> actionVisitor;
 	private DeciResult<T> actionResult;
-	private List<ActionLazyV1<T>> postActions;
+	private List<ActionLazy<T>> postActions;
 	
 	
 	public ActionStdTemplateV2(DeciTreeOption<T> option) {
@@ -47,7 +47,7 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<T> actionLazy) {
+	@Override public void addPostAction(ActionLazy<T> actionLazy) {
 		checkArgument(actionLazy);
 		postActions.add(actionLazy);	//TODO: defensive copy
 	}
@@ -89,14 +89,14 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	
 	
 	
-	private DeciResult<T> executePostActions(List<ActionLazyV1<T>> actions, DeciResult<T> baseResult) {	
+	private DeciResult<T> executePostActions(List<ActionLazy<T>> actions, DeciResult<T> baseResult) {	
 		if (shouldExecute(actions, baseResult) == FAILED)
 			return baseResult;
 		
 		DeciResult<T> postResult = baseResult;	
 		
 		 
-		for (ActionLazyV1<T> eachAction : actions) {
+		for (ActionLazy<T> eachAction : actions) {
 			List<T> baseInfos = makeClone(baseResult.getResultset());
 			postResult = tryToExecutePostActions(eachAction, baseInfos);
 			
@@ -109,7 +109,7 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	
 	
 	
-	private DeciResult<T> tryToExecutePostActions(ActionLazyV1<T> postAction, List<T> baseInfos) {				
+	private DeciResult<T> tryToExecutePostActions(ActionLazy<T> postAction, List<T> baseInfos) {				
 		try {
 			postAction.executeAction(baseInfos);
 			return postAction.getDecisionResult();
@@ -171,22 +171,22 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	
 	
 	
-	private void closeActions(List<ActionLazyV1<T>> actions) {
+	private void closeActions(List<ActionLazy<T>> actions) {
 		if (actions == null)
 			return;
 		
 		if (actions.isEmpty())
 			return;
 		
-		for (ActionLazyV1<T> eachAction : actions)
+		for (ActionLazy<T> eachAction : actions)
 			closeAction(eachAction);
 	}
 	
 	
 	
-	private void closeAction(ActionLazyV1<T> action) {
-		if (action instanceof ActionLazyV2) {
-			((ActionLazyV2<T>) action).close();
+	private void closeAction(ActionLazy<T> action) {
+		if (action instanceof ActionLazy) {
+			((ActionLazy<T>) action).close();
 		}
 	}
 	
@@ -225,7 +225,7 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	
 	
 	
-	private boolean hasPostAction(List<ActionLazyV1<T>> actions) {
+	private boolean hasPostAction(List<ActionLazy<T>> actions) {
 		if (actions == null)
 			return FAILED;
 		
@@ -246,7 +246,7 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	
 	
 	
-	private boolean shouldExecute(List<ActionLazyV1<T>> actions, DeciResult<T> baseResult) {
+	private boolean shouldExecute(List<ActionLazy<T>> actions, DeciResult<T> baseResult) {
 		if (hasPostAction(actions) == FAILED)
 			return FAILED;
 		 
@@ -261,7 +261,7 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	
 	
 	
-	private void checkArgument(ActionLazyV1<T> actionHandler) {
+	private void checkArgument(ActionLazy<T> actionHandler) {
 		if (actionHandler == null) {
 			logException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT);

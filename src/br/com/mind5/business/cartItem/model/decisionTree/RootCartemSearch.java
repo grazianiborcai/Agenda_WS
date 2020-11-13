@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.action.LazyCartemRootSelect;
 import br.com.mind5.business.cartItem.model.action.StdCartemMergeCartemarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootCartemSearch extends DeciTreeTemplateWriteV2<CartemInfo> 
 		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CartemInfo> mergeCartemarch = new StdCartemMergeCartemarch(option);
-		ActionLazyV1<CartemInfo> select = new LazyCartemRootSelect(option.conn, option.schemaName);
+		ActionLazy<CartemInfo> select = new LazyCartemRootSelect(option.conn, option.schemaName);
 		
 		mergeCartemarch.addPostAction(select);
 		

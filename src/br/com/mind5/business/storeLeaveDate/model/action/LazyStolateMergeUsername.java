@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStolateMergeUsername extends ActionLazyTemplateV2<StolateInfo, StolateInfo> {
+public final class LazyStolateMergeUsername extends ActionLazyTemplate<StolateInfo, StolateInfo> {
 	
 	public LazyStolateMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName);

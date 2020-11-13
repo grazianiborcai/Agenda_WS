@@ -8,7 +8,7 @@ import br.com.mind5.file.fileImage.model.action.LazyFimgNodeUpsertCus;
 import br.com.mind5.file.fileImage.model.action.StdFimgEnforceCus;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckCus;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckInsertCus;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -52,7 +52,7 @@ public final class RootFimgInsertCus extends DeciTreeTemplateWriteV2<FimgInfo> {
 		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<FimgInfo> enforceCus = new StdFimgEnforceCus(option);	
-		ActionLazyV1<FimgInfo> upsert = new LazyFimgNodeUpsertCus(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> upsert = new LazyFimgNodeUpsertCus(option.conn, option.schemaName);
 		
 		enforceCus.addPostAction(upsert);
 		

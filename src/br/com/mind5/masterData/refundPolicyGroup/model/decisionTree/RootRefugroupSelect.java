@@ -7,7 +7,7 @@ import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 import br.com.mind5.masterData.refundPolicyGroup.model.action.LazyRefugroupMergeRefugritem;
 import br.com.mind5.masterData.refundPolicyGroup.model.action.StdRefugroupDaoSelect;
 import br.com.mind5.masterData.refundPolicyGroup.model.checker.RefugroupCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class RootRefugroupSelect extends DeciTreeTemplateReadV2<RefugroupI
 		List<ActionStdV1<RefugroupInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<RefugroupInfo> select = new StdRefugroupDaoSelect(option);
-		ActionLazyV1<RefugroupInfo> mergeRefugritem = new LazyRefugroupMergeRefugritem(option.conn, option.schemaName);
+		ActionLazy<RefugroupInfo> mergeRefugritem = new LazyRefugroupMergeRefugritem(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeRefugritem);
 		

@@ -9,7 +9,7 @@ import br.com.mind5.business.store.model.action.LazyStoreEnforceCreatedBy;
 import br.com.mind5.business.store.model.action.LazyStoreEnforceCreatedOn;
 import br.com.mind5.business.store.model.action.LazyStoreMergeUsername;
 import br.com.mind5.business.store.model.action.StdStoreEnforceLChanged;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -41,10 +41,10 @@ public final class NodeStoreInsert extends DeciTreeTemplateWriteV2<StoreInfo> {
 		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<StoreInfo> enforceLChanged = new StdStoreEnforceLChanged(option);
-		ActionLazyV1<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<StoreInfo> enforceCreatedBy = new LazyStoreEnforceCreatedBy(option.conn, option.schemaName);
-		ActionLazyV1<StoreInfo> enforceCreatedOn = new LazyStoreEnforceCreatedOn(option.conn, option.schemaName);
-		ActionLazyV1<StoreInfo> insertStore = new LazyStoreDaoInsert(option.conn, option.schemaName);		
+		ActionLazy<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> enforceCreatedBy = new LazyStoreEnforceCreatedBy(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> enforceCreatedOn = new LazyStoreEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> insertStore = new LazyStoreDaoInsert(option.conn, option.schemaName);		
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);

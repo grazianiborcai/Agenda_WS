@@ -11,7 +11,7 @@ import br.com.mind5.business.storeSnapshot.model.action.LazyStorapNodeUser;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckOwner;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckStore;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -62,10 +62,10 @@ public final class RootStorapInsert extends DeciTreeTemplateWriteV2<StorapInfo> 
 		List<ActionStdV1<StorapInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<StorapInfo> nodePerson = new NodeStorapPerson(option).toAction();
-		ActionLazyV1<StorapInfo> nodeComp = new LazyStorapNodeComp(option.conn, option.schemaName);
-		ActionLazyV1<StorapInfo> nodeUser = new LazyStorapNodeUser(option.conn, option.schemaName);
-		ActionLazyV1<StorapInfo> insert = new LazyStorapDaoInsert(option.conn, option.schemaName);
-		ActionLazyV1<StorapInfo> nodeStorextsnap = new LazyStorapNodeStorextsnap(option.conn, option.schemaName);
+		ActionLazy<StorapInfo> nodeComp = new LazyStorapNodeComp(option.conn, option.schemaName);
+		ActionLazy<StorapInfo> nodeUser = new LazyStorapNodeUser(option.conn, option.schemaName);
+		ActionLazy<StorapInfo> insert = new LazyStorapDaoInsert(option.conn, option.schemaName);
+		ActionLazy<StorapInfo> nodeStorextsnap = new LazyStorapNodeStorextsnap(option.conn, option.schemaName);
 		
 		nodePerson.addPostAction(nodeComp);
 		nodeComp.addPostAction(nodeUser);

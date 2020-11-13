@@ -11,7 +11,7 @@ import br.com.mind5.business.materialCatalogue.model.checker.MatogueCheckLangu;
 import br.com.mind5.business.materialCatalogue.model.checker.MatogueCheckOwner;
 import br.com.mind5.business.materialCatalogue.model.checker.MatogueCheckRead;
 import br.com.mind5.business.materialCatalogue.model.checker.MatogueCheckStore;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -69,8 +69,8 @@ public final class RootMatogueSelect extends DeciTreeTemplateReadV2<MatogueInfo>
 		List<ActionStdV1<MatogueInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatogueInfo> mergeMatore = new StdMatogueMergeMatore(option);
-		ActionLazyV1<MatogueInfo> enforceMatubup = new LazyMatogueEnforceMatubup(option.conn, option.schemaName);
-		ActionLazyV1<MatogueInfo> obfuscateStolis = new LazyMatogueObfuscateStolis(option.conn, option.schemaName);
+		ActionLazy<MatogueInfo> enforceMatubup = new LazyMatogueEnforceMatubup(option.conn, option.schemaName);
+		ActionLazy<MatogueInfo> obfuscateStolis = new LazyMatogueObfuscateStolis(option.conn, option.schemaName);
 		
 		mergeMatore.addPostAction(enforceMatubup);
 		enforceMatubup.addPostAction(obfuscateStolis);

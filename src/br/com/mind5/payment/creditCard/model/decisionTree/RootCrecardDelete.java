@@ -3,7 +3,7 @@ package br.com.mind5.payment.creditCard.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -61,8 +61,8 @@ public final class RootCrecardDelete extends DeciTreeTemplateWriteV2<CrecardInfo
 		List<ActionStdV1<CrecardInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CrecardInfo> mergeToDelete = new StdCrecardMergeToDelete(option);
-		ActionLazyV1<CrecardInfo> nodeAuth = new LazyCrecardNodeAuth(option.conn, option.schemaName);
-		ActionLazyV1<CrecardInfo> nodeDelete = new LazyCrecardNodeDelete(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> nodeAuth = new LazyCrecardNodeAuth(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> nodeDelete = new LazyCrecardNodeDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(nodeAuth);
 		nodeAuth.addPostAction(nodeDelete);

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.action.LazyPersonRootInsert;
 import br.com.mind5.business.person.model.action.StdPersonEnforceCategStore;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootPersonInsertStore extends DeciTreeTemplateWriteV2<PersonI
 		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<PersonInfo> enforceCateg = new StdPersonEnforceCategStore(option);	
-		ActionLazyV1<PersonInfo> insert = new LazyPersonRootInsert(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> insert = new LazyPersonRootInsert(option.conn, option.schemaName);
 		
 		enforceCateg.addPostAction(insert);
 		

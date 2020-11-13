@@ -10,7 +10,7 @@ import br.com.mind5.file.fileImage.model.checker.FimgCheckLangu;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckOwner;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckReference;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckInsert;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -69,8 +69,8 @@ public final class RootFimgInsert extends DeciTreeTemplateWriteV2<FimgInfo> {
 		
 		ActionStdV1<FimgInfo> coverOff = new NodeFimgCoverOffL1(option).toAction();
 		ActionStdV1<FimgInfo> insert = new NodeFimgInsert(option).toAction();	
-		ActionLazyV1<FimgInfo> writeOnDisk = new LazyFimgWriteOnDisk(option.conn, option.schemaName);
-		ActionLazyV1<FimgInfo> select = new LazyFimgRootSelect(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> writeOnDisk = new LazyFimgWriteOnDisk(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> select = new LazyFimgRootSelect(option.conn, option.schemaName);
 		
 		insert.addPostAction(writeOnDisk);
 		writeOnDisk.addPostAction(select);

@@ -3,7 +3,7 @@ package br.com.mind5.security.userList.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootUselisSearch extends DeciTreeTemplateReadV2<UselisInfo> {
 		List<ActionStdV1<UselisInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UselisInfo> mergeUserarch = new StdUselisMergeUserarch(option);
-		ActionLazyV1<UselisInfo> select = new LazyUselisRootSelect(option.conn, option.schemaName);
+		ActionLazy<UselisInfo> select = new LazyUselisRootSelect(option.conn, option.schemaName);
 		
 		mergeUserarch.addPostAction(select);
 		

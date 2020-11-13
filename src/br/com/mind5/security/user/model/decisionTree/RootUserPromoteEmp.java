@@ -3,7 +3,7 @@ package br.com.mind5.security.user.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -68,7 +68,7 @@ public final class RootUserPromoteEmp extends DeciTreeTemplateWriteV2<UserInfo> 
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<UserInfo> select = new StdUserMergeToSelect(option);
-		ActionLazyV1<UserInfo> nodeL1 = new LazyUserNodePromoteEmp(option.conn, option.schemaName);
+		ActionLazy<UserInfo> nodeL1 = new LazyUserNodePromoteEmp(option.conn, option.schemaName);
 		
 		select.addPostAction(nodeL1);
 		

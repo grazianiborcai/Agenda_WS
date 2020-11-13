@@ -9,7 +9,7 @@ import br.com.mind5.business.calendarDate.model.action.LazyCalateMergeMooncal;
 import br.com.mind5.business.calendarDate.model.action.LazyCalateMergeWeekday;
 import br.com.mind5.business.calendarDate.model.action.StdCalateMergeToSelect;
 import br.com.mind5.business.calendarDate.model.checker.CalateCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -46,9 +46,9 @@ public final class RootCalateSelect extends DeciTreeTemplateReadV2<CalateInfo> {
 		List<ActionStdV1<CalateInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CalateInfo> mergeToSelect = new StdCalateMergeToSelect(option);
-		ActionLazyV1<CalateInfo> mergeWeekday = new LazyCalateMergeWeekday(option.conn, option.schemaName);
-		ActionLazyV1<CalateInfo> mergeMonth = new LazyCalateMergeMonth(option.conn, option.schemaName);
-		ActionLazyV1<CalateInfo> mergeMooncal = new LazyCalateMergeMooncal(option.conn, option.schemaName);
+		ActionLazy<CalateInfo> mergeWeekday = new LazyCalateMergeWeekday(option.conn, option.schemaName);
+		ActionLazy<CalateInfo> mergeMonth = new LazyCalateMergeMonth(option.conn, option.schemaName);
+		ActionLazy<CalateInfo> mergeMooncal = new LazyCalateMergeMooncal(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(mergeWeekday);
 		mergeWeekday.addPostAction(mergeMonth);

@@ -8,7 +8,7 @@ import br.com.mind5.business.orderItem.model.action.LazyOrderemNodeUpdate;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemRefupolEvaluate;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemSchedineRefresh;
 import br.com.mind5.business.orderItem.model.action.StdOrderemMergeOrdugeRefunding;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -40,9 +40,9 @@ public final class NodeOrderemRefunding extends DeciTreeTemplateWriteV2<OrderemI
 		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OrderemInfo> enforceStatus = new StdOrderemMergeOrdugeRefunding(option);
-		ActionLazyV1<OrderemInfo> refupolEvaluate = new LazyOrderemRefupolEvaluate(option.conn, option.schemaName);			
-		ActionLazyV1<OrderemInfo> update = new LazyOrderemNodeUpdate(option.conn, option.schemaName);	
-		ActionLazyV1<OrderemInfo> schedineRefresh = new LazyOrderemSchedineRefresh(option.conn, option.schemaName);	
+		ActionLazy<OrderemInfo> refupolEvaluate = new LazyOrderemRefupolEvaluate(option.conn, option.schemaName);			
+		ActionLazy<OrderemInfo> update = new LazyOrderemNodeUpdate(option.conn, option.schemaName);	
+		ActionLazy<OrderemInfo> schedineRefresh = new LazyOrderemSchedineRefresh(option.conn, option.schemaName);	
 		
 		enforceStatus.addPostAction(refupolEvaluate);
 		refupolEvaluate.addPostAction(update);

@@ -10,7 +10,7 @@ import br.com.mind5.business.storeText.model.action.LazyStorextRootUpdate;
 import br.com.mind5.business.storeText.model.action.StdStorextMergeStorextarch;
 import br.com.mind5.business.storeText.model.action.StdStorextSuccess;
 import br.com.mind5.business.storeText.model.checker.StorextCheckStorextarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -47,9 +47,9 @@ public final class NodeStorextDeleteL3 extends DeciTreeTemplateWriteV2<StorextIn
 		List<ActionStdV1<StorextInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StorextInfo> mergeStorextarch = new StdStorextMergeStorextarch(option);
-		ActionLazyV1<StorextInfo> mergeToSelect = new LazyStorextMergeToSelect(option.conn, option.schemaName);
-		ActionLazyV1<StorextInfo> enforceDefaultOn = new LazyStorextEnforceDefaultOn(option.conn, option.schemaName); 
-		ActionLazyV1<StorextInfo> update = new LazyStorextRootUpdate(option.conn, option.schemaName); 
+		ActionLazy<StorextInfo> mergeToSelect = new LazyStorextMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<StorextInfo> enforceDefaultOn = new LazyStorextEnforceDefaultOn(option.conn, option.schemaName); 
+		ActionLazy<StorextInfo> update = new LazyStorextRootUpdate(option.conn, option.schemaName); 
 		
 		mergeStorextarch.addPostAction(mergeToSelect);
 		mergeToSelect.addPostAction(enforceDefaultOn);

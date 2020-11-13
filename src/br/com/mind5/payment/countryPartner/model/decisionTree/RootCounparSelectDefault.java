@@ -3,7 +3,7 @@ package br.com.mind5.payment.countryPartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -45,8 +45,8 @@ public final class RootCounparSelectDefault extends DeciTreeTemplateReadV2<Counp
 		List<ActionStdV1<CounparInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CounparInfo> enforceDefault = new StdCounparEnforceDefault(option);
-		ActionLazyV1<CounparInfo> mergeCounparch = new LazyCounparMergeCounparch(option.conn, option.schemaName);
-		ActionLazyV1<CounparInfo> select = new LazyCounparRootSelect(option.conn, option.schemaName);
+		ActionLazy<CounparInfo> mergeCounparch = new LazyCounparMergeCounparch(option.conn, option.schemaName);
+		ActionLazy<CounparInfo> select = new LazyCounparRootSelect(option.conn, option.schemaName);
 		
 		enforceDefault.addPostAction(mergeCounparch);
 		mergeCounparch.addPostAction(select);

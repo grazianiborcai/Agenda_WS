@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemRootSelect;
 import br.com.mind5.business.orderItem.model.action.StdOrderemMergeOrdemarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootOrderemSearch extends DeciTreeTemplateWriteV2<OrderemInfo
 		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OrderemInfo> mergeOrdemarch = new StdOrderemMergeOrdemarch(option);
-		ActionLazyV1<OrderemInfo> select = new LazyOrderemRootSelect(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> select = new LazyOrderemRootSelect(option.conn, option.schemaName);
 		
 		mergeOrdemarch.addPostAction(select);
 		

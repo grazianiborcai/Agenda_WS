@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.decsionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -40,9 +40,9 @@ public final class NodeOrdmoipPlaceFee extends DeciTreeTemplateWriteV2<OrdmoipIn
 		List<ActionStdV1<OrdmoipInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<OrdmoipInfo> enforceFeeTxt = new StdOrdmoipEnforceFeeTxt(option);	
-		ActionLazyV1<OrdmoipInfo> nodeSyspar = new LazyOrdmoipNodeSysparL1(option.conn, option.schemaName);
-		ActionLazyV1<OrdmoipInfo> enforceReceiverSys = new LazyOrdmoipEnforceReceiverSys(option.conn, option.schemaName);
-		ActionLazyV1<OrdmoipInfo> nodeL2 = new LazyOrdmoipNodePlaceL2(option.conn, option.schemaName);
+		ActionLazy<OrdmoipInfo> nodeSyspar = new LazyOrdmoipNodeSysparL1(option.conn, option.schemaName);
+		ActionLazy<OrdmoipInfo> enforceReceiverSys = new LazyOrdmoipEnforceReceiverSys(option.conn, option.schemaName);
+		ActionLazy<OrdmoipInfo> nodeL2 = new LazyOrdmoipNodePlaceL2(option.conn, option.schemaName);
 		
 		
 		enforceFeeTxt.addPostAction(nodeSyspar);

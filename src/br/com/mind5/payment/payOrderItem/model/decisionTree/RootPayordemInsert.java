@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrderItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -69,8 +69,8 @@ public final class RootPayordemInsert extends DeciTreeTemplateWriteV2<PayordemIn
 		List<ActionStdV1<PayordemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<PayordemInfo> enforceLChanged = new StdPayordemEnforceLChanged(option);
-		ActionLazyV1<PayordemInfo> insert = new LazyPayordemDaoInsert(option.conn, option.schemaName);
-		ActionLazyV1<PayordemInfo> nodePay = new LazyPayordemNodePay(option.conn, option.schemaName);
+		ActionLazy<PayordemInfo> insert = new LazyPayordemDaoInsert(option.conn, option.schemaName);
+		ActionLazy<PayordemInfo> nodePay = new LazyPayordemNodePay(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(insert);
 		insert.addPostAction(nodePay);

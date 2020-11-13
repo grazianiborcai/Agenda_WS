@@ -10,7 +10,7 @@ import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeMatore;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeRefugroup;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeWeekday;
 import br.com.mind5.business.orderItem.model.action.StdOrderemMergeStolis;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -42,11 +42,11 @@ public final class NodeOrderemSelectService extends DeciTreeTemplateWriteV2<Orde
 		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OrderemInfo> mergeStolis = new StdOrderemMergeStolis(option);
-		ActionLazyV1<OrderemInfo> mergeEmplis = new LazyOrderemMergeEmplis(option.conn, option.schemaName);
-		ActionLazyV1<OrderemInfo> enforceWeekday = new LazyOrderemEnforceWeekday(option.conn, option.schemaName);
-		ActionLazyV1<OrderemInfo> mergeWeekday = new LazyOrderemMergeWeekday(option.conn, option.schemaName);
-		ActionLazyV1<OrderemInfo> mergeMatore = new LazyOrderemMergeMatore(option.conn, option.schemaName);
-		ActionLazyV1<OrderemInfo> mergeRefugroup = new LazyOrderemMergeRefugroup(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> mergeEmplis = new LazyOrderemMergeEmplis(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> enforceWeekday = new LazyOrderemEnforceWeekday(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> mergeWeekday = new LazyOrderemMergeWeekday(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> mergeMatore = new LazyOrderemMergeMatore(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> mergeRefugroup = new LazyOrderemMergeRefugroup(option.conn, option.schemaName);
 		
 		mergeStolis.addPostAction(mergeEmplis);
 		mergeEmplis.addPostAction(enforceWeekday);

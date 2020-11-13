@@ -12,7 +12,7 @@ import br.com.mind5.business.address.model.action.LazyAddressMergeUsername;
 import br.com.mind5.business.address.model.action.StdAddressMergeAddault;
 import br.com.mind5.business.address.model.action.StdAddressSuccess;
 import br.com.mind5.business.address.model.checker.AddressCheckAddault;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -49,11 +49,11 @@ public final class NodeAddressDefaultL2 extends DeciTreeTemplateWriteV2<AddressI
 		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<AddressInfo> mergeAddault = new StdAddressMergeAddault(option);
-		ActionLazyV1<AddressInfo> mergeToSelect = new LazyAddressMergeToSelect(option.conn, option.schemaName);
-		ActionLazyV1<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazyV1<AddressInfo> enforceLChangedBy = new LazyAddressMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<AddressInfo> enforceDefaultOff = new LazyAddressEnforceDefaultOff(option.conn, option.schemaName);
-		ActionLazyV1<AddressInfo> update = new LazyAddressDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> mergeToSelect = new LazyAddressMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazy<AddressInfo> enforceLChangedBy = new LazyAddressMergeUsername(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> enforceDefaultOff = new LazyAddressEnforceDefaultOff(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> update = new LazyAddressDaoUpdate(option.conn, option.schemaName);
 		ActionStdV1<AddressInfo> success = new StdAddressSuccess(option);	
 		
 		mergeAddault.addPostAction(mergeToSelect);

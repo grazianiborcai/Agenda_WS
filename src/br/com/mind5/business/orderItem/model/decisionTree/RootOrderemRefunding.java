@@ -11,7 +11,7 @@ import br.com.mind5.business.orderItem.model.checker.OrderemCheckExist;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckLangu;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckOwner;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -69,8 +69,8 @@ public final class RootOrderemRefunding extends DeciTreeTemplateWriteV2<OrderemI
 		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OrderemInfo> select = new StdOrderemMergeToSelect(option);
-		ActionLazyV1<OrderemInfo> nodeRefunding = new LazyOrderemNodeRefunding(option.conn, option.schemaName);
-		ActionLazyV1<OrderemInfo> rootSelect = new LazyOrderemRootSelect(option.conn, option.schemaName);	
+		ActionLazy<OrderemInfo> nodeRefunding = new LazyOrderemNodeRefunding(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> rootSelect = new LazyOrderemRootSelect(option.conn, option.schemaName);	
 		
 		select.addPostAction(nodeRefunding);
 		nodeRefunding.addPostAction(rootSelect);

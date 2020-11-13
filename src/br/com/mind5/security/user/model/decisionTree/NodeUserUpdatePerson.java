@@ -3,7 +3,7 @@ package br.com.mind5.security.user.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -46,7 +46,7 @@ public final class NodeUserUpdatePerson extends DeciTreeTemplateWriteV2<UserInfo
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UserInfo> enforcePersonKey = new StdUserEnforcePersonKey(option);
-		ActionLazyV1<UserInfo> updatePerson = new LazyUserPersonUpdate(option.conn, option.schemaName);
+		ActionLazy<UserInfo> updatePerson = new LazyUserPersonUpdate(option.conn, option.schemaName);
 		
 		enforcePersonKey.addPostAction(updatePerson);
 		

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.action.LazyCompDaoUpdate;
 import br.com.mind5.business.company.model.action.StdCompInsertCompnap;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeCompSnapshot extends DeciTreeTemplateWriteV2<CompInfo> {
 		List<ActionStdV1<CompInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CompInfo> insertSnapshot = new StdCompInsertCompnap(option);		
-		ActionLazyV1<CompInfo> update = new LazyCompDaoUpdate(option.conn, option.schemaName);	
+		ActionLazy<CompInfo> update = new LazyCompDaoUpdate(option.conn, option.schemaName);	
 		
 		insertSnapshot.addPostAction(update);
 		

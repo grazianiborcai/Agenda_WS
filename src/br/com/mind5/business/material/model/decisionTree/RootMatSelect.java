@@ -14,7 +14,7 @@ import br.com.mind5.business.material.model.action.LazyMatMergeMatype;
 import br.com.mind5.business.material.model.action.LazyMatNodeSytotauh;
 import br.com.mind5.business.material.model.action.StdMatMergeToSelect;
 import br.com.mind5.business.material.model.checker.MatCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -51,14 +51,14 @@ public final class RootMatSelect extends DeciTreeTemplateReadV2<MatInfo> {
 		List<ActionStdV1<MatInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatInfo> select = new StdMatMergeToSelect(option);
-		ActionLazyV1<MatInfo> nodeSytotauh = new LazyMatNodeSytotauh(option.conn, option.schemaName);
-		ActionLazyV1<MatInfo> mergeMatype = new LazyMatMergeMatype(option.conn, option.schemaName);
-		ActionLazyV1<MatInfo> mergeMateg = new LazyMatMergeMateg(option.conn, option.schemaName);
-		ActionLazyV1<MatInfo> mergeMatoup = new LazyMatMergeMatoup(option.conn, option.schemaName);
-		ActionLazyV1<MatInfo> mergeMatubup = new LazyMatMergeMatubup(option.conn, option.schemaName);
-		ActionLazyV1<MatInfo> mergeMatunit = new LazyMatMergeMatunit(option.conn, option.schemaName);
-		ActionLazyV1<MatInfo> mergeMatext = new LazyMatMergeMatext(option.conn, option.schemaName);
-		ActionLazyV1<MatInfo> mergeFimist = new LazyMatMergeFimist(option.conn, option.schemaName);
+		ActionLazy<MatInfo> nodeSytotauh = new LazyMatNodeSytotauh(option.conn, option.schemaName);
+		ActionLazy<MatInfo> mergeMatype = new LazyMatMergeMatype(option.conn, option.schemaName);
+		ActionLazy<MatInfo> mergeMateg = new LazyMatMergeMateg(option.conn, option.schemaName);
+		ActionLazy<MatInfo> mergeMatoup = new LazyMatMergeMatoup(option.conn, option.schemaName);
+		ActionLazy<MatInfo> mergeMatubup = new LazyMatMergeMatubup(option.conn, option.schemaName);
+		ActionLazy<MatInfo> mergeMatunit = new LazyMatMergeMatunit(option.conn, option.schemaName);
+		ActionLazy<MatInfo> mergeMatext = new LazyMatMergeMatext(option.conn, option.schemaName);
+		ActionLazy<MatInfo> mergeFimist = new LazyMatMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(nodeSytotauh);
 		nodeSytotauh.addPostAction(mergeMatype);

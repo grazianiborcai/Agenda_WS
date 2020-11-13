@@ -11,7 +11,7 @@ import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeRefreshL2
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineMergeSchedarch;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineSuccess;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckSchedarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -48,10 +48,10 @@ public final class NodeSchedineRefreshL1 extends DeciTreeTemplateWriteV2<Schedin
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedineInfo> mergeSchedarch = new StdSchedineMergeSchedarch(option);
-		ActionLazyV1<SchedineInfo> mergeToSelect = new LazySchedineMergeToSelect(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> mergeOrdemist = new LazySchedineMergeOrdemist(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> enforceStatus = new LazySchedineEnforceStatus(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> nodeL2 = new LazySchedineNodeRefreshL2(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> mergeToSelect = new LazySchedineMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> mergeOrdemist = new LazySchedineMergeOrdemist(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> enforceStatus = new LazySchedineEnforceStatus(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> nodeL2 = new LazySchedineNodeRefreshL2(option.conn, option.schemaName);
 		
 		mergeSchedarch.addPostAction(mergeToSelect);
 		mergeToSelect.addPostAction(mergeOrdemist);

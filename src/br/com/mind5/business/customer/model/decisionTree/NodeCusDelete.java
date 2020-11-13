@@ -12,7 +12,7 @@ import br.com.mind5.business.customer.model.action.LazyCusNodeDeletePhone;
 import br.com.mind5.business.customer.model.action.LazyCusPersonDelete;
 import br.com.mind5.business.customer.model.action.StdCusEnforceLChanged;
 import br.com.mind5.business.customer.model.checker.CusCheckSytotauh;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -49,12 +49,12 @@ public final class NodeCusDelete extends DeciTreeTemplateWriteV2<CusInfo> {
 		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<CusInfo> enforceLChanged = new StdCusEnforceLChanged(option);
-		ActionLazyV1<CusInfo> enforceLChangedBy = new LazyCusMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> update = new LazyCusDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> deleteAddress = new LazyCusNodeDeleteAddress(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> deletePhone = new LazyCusNodeDeletePhone(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> deletePerson = new LazyCusPersonDelete(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> deleteCustomer = new LazyCusDaoDelete(option.conn, option.schemaName);	
+		ActionLazy<CusInfo> enforceLChangedBy = new LazyCusMergeUsername(option.conn, option.schemaName);
+		ActionLazy<CusInfo> update = new LazyCusDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<CusInfo> deleteAddress = new LazyCusNodeDeleteAddress(option.conn, option.schemaName);
+		ActionLazy<CusInfo> deletePhone = new LazyCusNodeDeletePhone(option.conn, option.schemaName);
+		ActionLazy<CusInfo> deletePerson = new LazyCusPersonDelete(option.conn, option.schemaName);
+		ActionLazy<CusInfo> deleteCustomer = new LazyCusDaoDelete(option.conn, option.schemaName);	
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);

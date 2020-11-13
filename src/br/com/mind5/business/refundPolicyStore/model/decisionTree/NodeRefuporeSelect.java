@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
 import br.com.mind5.business.refundPolicyStore.model.action.LazyRefuporeMergeRefugroup;
 import br.com.mind5.business.refundPolicyStore.model.action.StdRefuporeMergeToSelect;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeRefuporeSelect extends DeciTreeTemplateReadV2<RefuporeInf
 		List<ActionStdV1<RefuporeInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<RefuporeInfo> select = new StdRefuporeMergeToSelect(option);
-		ActionLazyV1<RefuporeInfo> mergeRefugroup = new LazyRefuporeMergeRefugroup(option.conn, option.schemaName);
+		ActionLazy<RefuporeInfo> mergeRefugroup = new LazyRefuporeMergeRefugroup(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeRefugroup);
 		

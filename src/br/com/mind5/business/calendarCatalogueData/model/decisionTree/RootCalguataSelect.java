@@ -9,7 +9,7 @@ import br.com.mind5.business.calendarCatalogueData.model.action.LazyCalguataPrun
 import br.com.mind5.business.calendarCatalogueData.model.action.StdCalguataMergeCalate;
 import br.com.mind5.business.calendarCatalogueData.model.checker.CalguataCheckRead;
 import br.com.mind5.business.calendarCatalogueData.model.checker.CalguataCheckYearMonth;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -53,8 +53,8 @@ public final class RootCalguataSelect extends DeciTreeTemplateReadV2<CalguataInf
 		List<ActionStdV1<CalguataInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<CalguataInfo> mergeCalate = new StdCalguataMergeCalate(option);
-		ActionLazyV1<CalguataInfo> pruneAged = new LazyCalguataPruneAged(option.conn, option.schemaName);
-		ActionLazyV1<CalguataInfo> prunePlanata = new LazyCalguataPrunePlanata(option.conn, option.schemaName);
+		ActionLazy<CalguataInfo> pruneAged = new LazyCalguataPruneAged(option.conn, option.schemaName);
+		ActionLazy<CalguataInfo> prunePlanata = new LazyCalguataPrunePlanata(option.conn, option.schemaName);
 		
 		mergeCalate.addPostAction(pruneAged);
 		pruneAged.addPostAction(prunePlanata);

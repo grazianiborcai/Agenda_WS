@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -78,9 +78,9 @@ public final class RootPeresmoipInsert extends DeciTreeTemplateWriteV2<Peresmoip
 		List<ActionStdV1<PeresmoipInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<PeresmoipInfo> enforceLChanged = new StdPeresmoipEnforceLChanged(option);	
-		ActionLazyV1<PeresmoipInfo> enforceExpected = new LazyPeresmoipEnforceExpected(option.conn, option.schemaName);
-		ActionLazyV1<PeresmoipInfo> enforcePaypar = new LazyPeresmoipEnforcePaypar(option.conn, option.schemaName);
-		ActionLazyV1<PeresmoipInfo> nodeInsertL1 = new LazyPeresmoipNodeInsertL1(option.conn, option.schemaName);	
+		ActionLazy<PeresmoipInfo> enforceExpected = new LazyPeresmoipEnforceExpected(option.conn, option.schemaName);
+		ActionLazy<PeresmoipInfo> enforcePaypar = new LazyPeresmoipEnforcePaypar(option.conn, option.schemaName);
+		ActionLazy<PeresmoipInfo> nodeInsertL1 = new LazyPeresmoipNodeInsertL1(option.conn, option.schemaName);	
 		
 		enforceLChanged.addPostAction(enforceExpected);
 		enforceExpected.addPostAction(enforcePaypar);

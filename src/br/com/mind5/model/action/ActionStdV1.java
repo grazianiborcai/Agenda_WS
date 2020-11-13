@@ -8,5 +8,5 @@ public interface ActionStdV1<T extends InfoRecord> {
 	
 	public DeciResult<T> getDecisionResult();
 	
-	public void addPostAction(ActionLazyV1<T> actionLazy);
+	public void addPostAction(ActionLazy<T> actionLazy);
 }

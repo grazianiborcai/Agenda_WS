@@ -3,7 +3,7 @@ package br.com.mind5.security.user.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -67,14 +67,14 @@ public final class RootUserDelete extends DeciTreeTemplateWriteV2<UserInfo> {
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UserInfo> enforceLChangedBy = new StdUserMergeUsername(option);	
-		ActionLazyV1<UserInfo> mergeToDelete = new LazyUserMergeToDelete(option.conn, option.schemaName);	
-		ActionLazyV1<UserInfo> enforceLChanged = new LazyUserEnforceLChanged(option.conn, option.schemaName);		
-		ActionLazyV1<UserInfo> updateUser = new LazyUserDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> deleteAddress = new LazyUserNodeDeleteAddress(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> deletePhone = new LazyUserNodeDeletePhone(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> deleteUser = new LazyUserDaoDelete(option.conn, option.schemaName);	
-		ActionLazyV1<UserInfo> deletePassword = new LazyUserUpswdDelete(option.conn, option.schemaName);	
-		ActionLazyV1<UserInfo> deletePerson = new LazyUserPersonDelete(option.conn, option.schemaName);
+		ActionLazy<UserInfo> mergeToDelete = new LazyUserMergeToDelete(option.conn, option.schemaName);	
+		ActionLazy<UserInfo> enforceLChanged = new LazyUserEnforceLChanged(option.conn, option.schemaName);		
+		ActionLazy<UserInfo> updateUser = new LazyUserDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<UserInfo> deleteAddress = new LazyUserNodeDeleteAddress(option.conn, option.schemaName);
+		ActionLazy<UserInfo> deletePhone = new LazyUserNodeDeletePhone(option.conn, option.schemaName);
+		ActionLazy<UserInfo> deleteUser = new LazyUserDaoDelete(option.conn, option.schemaName);	
+		ActionLazy<UserInfo> deletePassword = new LazyUserUpswdDelete(option.conn, option.schemaName);	
+		ActionLazy<UserInfo> deletePerson = new LazyUserPersonDelete(option.conn, option.schemaName);
 		
 		enforceLChangedBy.addPostAction(mergeToDelete);
 		mergeToDelete.addPostAction(enforceLChanged);		

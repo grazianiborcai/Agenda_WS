@@ -7,7 +7,7 @@ import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.business.personSearch.model.action.LazyPerarchRootSelectAuth;
 import br.com.mind5.business.personSearch.model.action.StdPerarchEnforceEmailPerson;
 import br.com.mind5.business.personSearch.model.checker.PerarchCheckReadEmailPerson;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class RootPerarchSelectEmailPerson extends DeciTreeTemplateReadV2<P
 		List<ActionStdV1<PerarchInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<PerarchInfo> enforceEmailPerson = new StdPerarchEnforceEmailPerson(option);	
-		ActionLazyV1<PerarchInfo> select = new LazyPerarchRootSelectAuth(option.conn, option.schemaName);
+		ActionLazy<PerarchInfo> select = new LazyPerarchRootSelectAuth(option.conn, option.schemaName);
 		
 		enforceEmailPerson.addPostAction(select);
 

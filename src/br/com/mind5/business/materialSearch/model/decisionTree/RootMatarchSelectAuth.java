@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialSearch.model.action.LazyMatarchRootSelect;
 import br.com.mind5.business.materialSearch.model.checker.MatarchCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -43,7 +43,7 @@ public final class RootMatarchSelectAuth extends DeciTreeTemplateReadV2<MatarchI
 		List<ActionStdV1<MatarchInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatarchInfo> nodeAuth = new NodeMatarchAuth(option).toAction();
-		ActionLazyV1<MatarchInfo> select = new LazyMatarchRootSelect(option.conn, option.schemaName);
+		ActionLazy<MatarchInfo> select = new LazyMatarchRootSelect(option.conn, option.schemaName);
 		
 		nodeAuth.addPostAction(select);
 		

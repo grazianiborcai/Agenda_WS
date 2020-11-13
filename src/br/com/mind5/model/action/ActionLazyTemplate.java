@@ -13,7 +13,7 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.common.DeciResultError;
 
-public abstract class ActionLazyTemplateV2<T extends InfoRecord, S extends InfoRecord> implements ActionLazyV2<T> {
+public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRecord> implements ActionLazy<T> {
 	protected final boolean SUCCESS = true;
 	protected final boolean FAILED = false;
 	protected final boolean EMPTY = false;
@@ -22,10 +22,10 @@ public abstract class ActionLazyTemplateV2<T extends InfoRecord, S extends InfoR
 	private String schemaName;
 	private ActionStdV1<S> mainAction;
 	private DeciResult<T> actionResult;
-	private List<ActionLazyV1<T>> postActions;
+	private List<ActionLazy<T>> postActions;
 	
 	
-	public ActionLazyTemplateV2(Connection conn, String schemaName) {
+	public ActionLazyTemplate(Connection conn, String schemaName) {
 		checkArgument(conn, schemaName);
 		
 		this.conn = conn;
@@ -85,14 +85,14 @@ public abstract class ActionLazyTemplateV2<T extends InfoRecord, S extends InfoR
 	
 	
 	
-	private DeciResult<T> executePostActions(List<ActionLazyV1<T>> lazyActions, DeciResult<T> mainResult) {				
+	private DeciResult<T> executePostActions(List<ActionLazy<T>> lazyActions, DeciResult<T> mainResult) {				
 		DeciResult<T> lazyResult = mainResult; 
 		
 		if (hasPostActions(lazyActions) == FAILED)
 			return lazyResult;
 		
 		
-		for (ActionLazyV1<T> eachLazy : lazyActions) {
+		for (ActionLazy<T> eachLazy : lazyActions) {
 			lazyResult = tryToExecutePostAction(eachLazy, mainResult.getResultset());
 			
 			if (lazyResult.isSuccess() == FAILED)
@@ -104,7 +104,7 @@ public abstract class ActionLazyTemplateV2<T extends InfoRecord, S extends InfoR
 	
 	
 	
-	private DeciResult<T> tryToExecutePostAction(ActionLazyV1<T> postAction, List<T> resultset) {				
+	private DeciResult<T> tryToExecutePostAction(ActionLazy<T> postAction, List<T> resultset) {				
 		try {
 			List<T> copies = makeClone(resultset);			
 			postAction.executeAction(copies);			
@@ -133,7 +133,7 @@ public abstract class ActionLazyTemplateV2<T extends InfoRecord, S extends InfoR
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<T> lazyAction) {
+	@Override public void addPostAction(ActionLazy<T> lazyAction) {
 		checkStateClosed();
 		checkArgument(lazyAction);		
 		
@@ -160,26 +160,26 @@ public abstract class ActionLazyTemplateV2<T extends InfoRecord, S extends InfoR
 	
 	
 	
-	private void closePostActions(List<ActionLazyV1<T>> lazyActions) {
+	private void closePostActions(List<ActionLazy<T>> lazyActions) {
 		if (lazyActions == null)
 			return;
 		
 		if (lazyActions.isEmpty())
 			return;
 		
-		for (ActionLazyV1<T> eachLazy : lazyActions) {
+		for (ActionLazy<T> eachLazy : lazyActions) {
 			closePostAction(eachLazy);
 		}
 	}
 	
 	
 	
-	private void closePostAction(ActionLazyV1<T> lazyAction) {
+	private void closePostAction(ActionLazy<T> lazyAction) {
 		if (lazyAction == null)
 			return;
 		
-		if (lazyAction instanceof ActionLazyV2)
-			((ActionLazyV2<T>) lazyAction).close();
+		if (lazyAction instanceof ActionLazy)
+			((ActionLazy<T>) lazyAction).close();
 	}
 	
 	
@@ -233,7 +233,7 @@ public abstract class ActionLazyTemplateV2<T extends InfoRecord, S extends InfoR
 	
 	
 	
-	private boolean hasPostActions(List<ActionLazyV1<T>> lazyActions) {
+	private boolean hasPostActions(List<ActionLazy<T>> lazyActions) {
 		if (lazyActions == null)
 			return FAILED;
 		
@@ -314,7 +314,7 @@ public abstract class ActionLazyTemplateV2<T extends InfoRecord, S extends InfoR
 	
 	
 	
-	private void checkArgument(ActionLazyV1<T> lazyAction) {
+	private void checkArgument(ActionLazy<T> lazyAction) {
 		if (lazyAction == null) {
 			logException(new NullPointerException("lazyAction" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("lazyAction" + SystemMessage.NULL_ARGUMENT);

@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.decisionTree.NodeOwnerSnapshot;
-import br.com.mind5.model.action.ActionLazyTemplateV2;
+import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyOwnerNodeSnapshot extends ActionLazyTemplateV2<OwnerInfo, OwnerInfo> {
+public final class LazyOwnerNodeSnapshot extends ActionLazyTemplate<OwnerInfo, OwnerInfo> {
 	
 	public LazyOwnerNodeSnapshot(Connection conn, String schemaName) {
 		super(conn, schemaName);

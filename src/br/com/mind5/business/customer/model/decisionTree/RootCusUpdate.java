@@ -12,7 +12,7 @@ import br.com.mind5.business.customer.model.checker.CusCheckExist;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
 import br.com.mind5.business.customer.model.checker.CusCheckOwner;
 import br.com.mind5.business.customer.model.checker.CusCheckUpdate;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -70,10 +70,10 @@ public final class RootCusUpdate extends DeciTreeTemplateWriteV2<CusInfo> {
 		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<CusInfo> updateCustomer = new NodeCusUpdate(option).toAction();	
-		ActionLazyV1<CusInfo> updatePerson = new LazyCusNodeUpdatePerson(option.conn, option.schemaName);		
-		ActionLazyV1<CusInfo> snapshot = new LazyCusNodeSnapshot(option.conn, option.schemaName);	
-		ActionLazyV1<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);	
-		ActionLazyV1<CusInfo> upsertPhone = new LazyCusNodeUpsertPhone(option.conn, option.schemaName);		
+		ActionLazy<CusInfo> updatePerson = new LazyCusNodeUpdatePerson(option.conn, option.schemaName);		
+		ActionLazy<CusInfo> snapshot = new LazyCusNodeSnapshot(option.conn, option.schemaName);	
+		ActionLazy<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);	
+		ActionLazy<CusInfo> upsertPhone = new LazyCusNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionStdV1<CusInfo> select = new RootCusSelect(option).toAction();	
 		
 		updateCustomer.addPostAction(updatePerson);	

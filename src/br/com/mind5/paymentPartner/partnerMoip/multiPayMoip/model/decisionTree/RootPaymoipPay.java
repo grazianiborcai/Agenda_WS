@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -53,16 +53,16 @@ public final class RootPaymoipPay extends DeciTreeTemplateWriteV2<PaymoipInfo> {
 		List<ActionStdV1<PaymoipInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<PaymoipInfo> enforcePaypar = new StdPaymoipEnforcePaypar(option);
-		ActionLazyV1<PaymoipInfo> nodeCrecard = new LazyPaymoipNodeCrecardL1(option.conn, option.schemaName);
-		ActionLazyV1<PaymoipInfo> nodeSyspar = new LazyPaymoipNodeSysparL1(option.conn, option.schemaName);
-		ActionLazyV1<PaymoipInfo> nodeSetupar = new LazyPaymoipNodeSetuparL1(option.conn, option.schemaName);
-		ActionLazyV1<PaymoipInfo> enforceCard = new LazyPaymoipEnforceCard(option.conn, option.schemaName);
-		ActionLazyV1<PaymoipInfo> enforceFunding = new LazyPaymoipEnforceFunding(option.conn, option.schemaName);
-		ActionLazyV1<PaymoipInfo> enforcePayment = new LazyPaymoipEnforcePayment(option.conn, option.schemaName);
-		ActionLazyV1<PaymoipInfo> mergeSysenv = new LazyPaymoipMergeSysenv(option.conn, option.schemaName);
-		ActionLazyV1<PaymoipInfo> enforceSetup = new LazyPaymoipEnforceSetup(option.conn, option.schemaName);
-		ActionLazyV1<PaymoipInfo> payWithCredicard = new LazyPaymoipCard(option.conn, option.schemaName);
-		ActionLazyV1<PaymoipInfo> enforceReponseAttr = new LazyPaymoipEnforceResponseAttr(option.conn, option.schemaName);
+		ActionLazy<PaymoipInfo> nodeCrecard = new LazyPaymoipNodeCrecardL1(option.conn, option.schemaName);
+		ActionLazy<PaymoipInfo> nodeSyspar = new LazyPaymoipNodeSysparL1(option.conn, option.schemaName);
+		ActionLazy<PaymoipInfo> nodeSetupar = new LazyPaymoipNodeSetuparL1(option.conn, option.schemaName);
+		ActionLazy<PaymoipInfo> enforceCard = new LazyPaymoipEnforceCard(option.conn, option.schemaName);
+		ActionLazy<PaymoipInfo> enforceFunding = new LazyPaymoipEnforceFunding(option.conn, option.schemaName);
+		ActionLazy<PaymoipInfo> enforcePayment = new LazyPaymoipEnforcePayment(option.conn, option.schemaName);
+		ActionLazy<PaymoipInfo> mergeSysenv = new LazyPaymoipMergeSysenv(option.conn, option.schemaName);
+		ActionLazy<PaymoipInfo> enforceSetup = new LazyPaymoipEnforceSetup(option.conn, option.schemaName);
+		ActionLazy<PaymoipInfo> payWithCredicard = new LazyPaymoipCard(option.conn, option.schemaName);
+		ActionLazy<PaymoipInfo> enforceReponseAttr = new LazyPaymoipEnforceResponseAttr(option.conn, option.schemaName);
 		
 		enforcePaypar.addPostAction(nodeCrecard);
 		nodeCrecard.addPostAction(nodeSyspar);

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemDaoUpdate;
 import br.com.mind5.business.orderItem.model.action.StdOrderemInsertOrdemrap;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class NodeOrderemSnapshot extends DeciTreeTemplateWriteV2<OrderemIn
 		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OrderemInfo> insertOrdemrap = new StdOrderemInsertOrdemrap(option);
-		ActionLazyV1<OrderemInfo> update = new LazyOrderemDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> update = new LazyOrderemDaoUpdate(option.conn, option.schemaName);
 		
 		insertOrdemrap.addPostAction(update);
 		

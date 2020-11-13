@@ -3,7 +3,7 @@ package br.com.mind5.security.otpProspectStore.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -60,8 +60,8 @@ public final class RootOtporeInsert extends DeciTreeTemplateWriteV2<OtporeInfo> 
 		List<ActionStdV1<OtporeInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OtporeInfo> upsert = new NodeOtporeUpsertL1(option).toAction();
-		ActionLazyV1<OtporeInfo> sendEmail = new LazyOtporeSendEmail(option.conn, option.schemaName);
-		ActionLazyV1<OtporeInfo> success = new LazyOtporeSuccess(option.conn, option.schemaName);
+		ActionLazy<OtporeInfo> sendEmail = new LazyOtporeSendEmail(option.conn, option.schemaName);
+		ActionLazy<OtporeInfo> success = new LazyOtporeSuccess(option.conn, option.schemaName);
 		
 		upsert.addPostAction(sendEmail);
 		sendEmail.addPostAction(success);

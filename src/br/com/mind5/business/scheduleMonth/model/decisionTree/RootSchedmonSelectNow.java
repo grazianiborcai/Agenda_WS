@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
 import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonRootSelect;
 import br.com.mind5.business.scheduleMonth.model.action.StdSchedmonEnforceNow;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -38,7 +38,7 @@ public final class RootSchedmonSelectNow extends DeciTreeTemplateWriteV2<Schedmo
 		List<ActionStdV1<SchedmonInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedmonInfo> enforceNow = new StdSchedmonEnforceNow(option);
-		ActionLazyV1<SchedmonInfo> select = new LazySchedmonRootSelect(option.conn, option.schemaName);
+		ActionLazy<SchedmonInfo> select = new LazySchedmonRootSelect(option.conn, option.schemaName);
 
 		enforceNow.addPostAction(select);
 		

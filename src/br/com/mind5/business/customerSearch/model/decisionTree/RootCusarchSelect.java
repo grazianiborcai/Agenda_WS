@@ -8,7 +8,7 @@ import br.com.mind5.business.customerSearch.model.action.LazyCusarchMergeToSelec
 import br.com.mind5.business.customerSearch.model.action.StdCusarchEnforceEntityCateg;
 import br.com.mind5.business.customerSearch.model.checker.CusarchCheckOwner;
 import br.com.mind5.business.customerSearch.model.checker.CusarchCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -52,7 +52,7 @@ public final class RootCusarchSelect extends DeciTreeTemplateReadV2<CusarchInfo>
 		List<ActionStdV1<CusarchInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CusarchInfo> enforceEntityCateg = new StdCusarchEnforceEntityCateg(option);
-		ActionLazyV1<CusarchInfo> select = new LazyCusarchMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<CusarchInfo> select = new LazyCusarchMergeToSelect(option.conn, option.schemaName);
 		
 		enforceEntityCateg.addPostAction(select);
 		

@@ -3,7 +3,7 @@ package br.com.mind5.security.userPasswordSearch.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -60,7 +60,7 @@ public final class RootUpswdarchChangedBefore extends DeciTreeTemplateWriteV2<Up
 		List<ActionStdV1<UpswdarchInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UpswdarchInfo> mergeUsername = new StdUpswdarchMergeUsername(option);	
-		ActionLazyV1<UpswdarchInfo> select = new LazyUpswdarchMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<UpswdarchInfo> select = new LazyUpswdarchMergeToSelect(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(select);
 		

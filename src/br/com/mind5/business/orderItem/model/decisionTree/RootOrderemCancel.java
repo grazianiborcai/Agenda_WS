@@ -11,7 +11,7 @@ import br.com.mind5.business.orderItem.model.checker.OrderemCheckExist;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckLangu;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckOwner;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -69,8 +69,8 @@ public final class RootOrderemCancel extends DeciTreeTemplateReadV2<OrderemInfo>
 		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OrderemInfo> mergeToSelect = new StdOrderemMergeToSelect(option);
-		ActionLazyV1<OrderemInfo> cancel = new LazyOrderemNodeCancel(option.conn, option.schemaName);
-		ActionLazyV1<OrderemInfo> select = new LazyOrderemRootSelect(option.conn, option.schemaName);		
+		ActionLazy<OrderemInfo> cancel = new LazyOrderemNodeCancel(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> select = new LazyOrderemRootSelect(option.conn, option.schemaName);		
 		
 		mergeToSelect.addPostAction(cancel);
 		cancel.addPostAction(select);

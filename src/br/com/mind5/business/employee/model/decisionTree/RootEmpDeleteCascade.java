@@ -18,7 +18,7 @@ import br.com.mind5.business.employee.model.action.StdEmpMergeToDelete;
 import br.com.mind5.business.employee.model.checker.EmpCheckDelete;
 import br.com.mind5.business.employee.model.checker.EmpCheckExist;
 import br.com.mind5.business.employee.model.checker.EmpCheckLangu;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -69,16 +69,16 @@ public final class RootEmpDeleteCascade extends DeciTreeTemplateWriteV2<EmpInfo>
 		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		//TODO: eliminar do carrinho de compras
 		ActionStdV1<EmpInfo> mergeToDelete = new StdEmpMergeToDelete(option);
-		ActionLazyV1<EmpInfo> enforceLChanged = new LazyEmpEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> update = new LazyEmpDaoUpdate(option.conn, option.schemaName);		
-		ActionLazyV1<EmpInfo> deleteEmpos = new LazyEmpNodeDeleteEmpos(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> deleteEmpmat = new LazyEmpNodeDeleteEmpmat(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> deleteAddress = new LazyEmpNodeDeleteAddress(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> deletePhone = new LazyEmpNodeDeletePhone(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> deletePerson = new LazyEmpPersonDelete(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> deleteUser = new LazyEmpNodeDeleteUser(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> deleteEmployee = new LazyEmpDaoDelete(option.conn, option.schemaName);	
+		ActionLazy<EmpInfo> enforceLChanged = new LazyEmpEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> update = new LazyEmpDaoUpdate(option.conn, option.schemaName);		
+		ActionLazy<EmpInfo> deleteEmpos = new LazyEmpNodeDeleteEmpos(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> deleteEmpmat = new LazyEmpNodeDeleteEmpmat(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> deleteAddress = new LazyEmpNodeDeleteAddress(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> deletePhone = new LazyEmpNodeDeletePhone(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> deletePerson = new LazyEmpPersonDelete(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> deleteUser = new LazyEmpNodeDeleteUser(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> deleteEmployee = new LazyEmpDaoDelete(option.conn, option.schemaName);	
 
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

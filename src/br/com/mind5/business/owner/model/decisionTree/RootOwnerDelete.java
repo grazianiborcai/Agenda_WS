@@ -11,7 +11,7 @@ import br.com.mind5.business.owner.model.action.LazyOwnerDaoUpdate;
 import br.com.mind5.business.owner.model.action.StdOwnerMergeToDelete;
 import br.com.mind5.business.owner.model.checker.OwnerCheckDelete;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -55,10 +55,10 @@ public final class RootOwnerDelete extends DeciTreeTemplateWriteV2<OwnerInfo> {
 		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OwnerInfo> mergeToDelete = new StdOwnerMergeToDelete(option);
-		ActionLazyV1<OwnerInfo> enforceLChanged = new LazyOwnerEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<OwnerInfo> enforceLChangedBy = new LazyOwnerMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<OwnerInfo> update = new LazyOwnerDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<OwnerInfo> delete = new LazyOwnerDaoDelete(option.conn, option.schemaName);			
+		ActionLazy<OwnerInfo> enforceLChanged = new LazyOwnerEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> enforceLChangedBy = new LazyOwnerMergeUsername(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> update = new LazyOwnerDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> delete = new LazyOwnerDaoDelete(option.conn, option.schemaName);			
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

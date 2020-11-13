@@ -13,7 +13,7 @@ import br.com.mind5.business.refundPolicyOwner.model.action.StdRefupownEnforceLC
 import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckOwner;
 import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckRefugroup;
 import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -64,11 +64,11 @@ public final class RootRefupownUpsert extends DeciTreeTemplateWriteV2<RefupownIn
 		List<ActionStdV1<RefupownInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<RefupownInfo> enforceLChanged = new StdRefupownEnforceLChanged(option);	
-		ActionLazyV1<RefupownInfo> enforceLChangedBy = new LazyRefupownMergeUsername(option.conn, option.schemaName);		
-		ActionLazyV1<RefupownInfo> enforceCreatedBy = new LazyRefupownEnforceCreatedBy(option.conn, option.schemaName);	
-		ActionLazyV1<RefupownInfo> enforceCreatedOn = new LazyRefupownEnforceCreatedOn(option.conn, option.schemaName);
-		ActionLazyV1<RefupownInfo> upsert = new LazyRefupownNodeUpsert(option.conn, option.schemaName);
-		ActionLazyV1<RefupownInfo> select = new LazyRefupownRootSelect(option.conn, option.schemaName);		
+		ActionLazy<RefupownInfo> enforceLChangedBy = new LazyRefupownMergeUsername(option.conn, option.schemaName);		
+		ActionLazy<RefupownInfo> enforceCreatedBy = new LazyRefupownEnforceCreatedBy(option.conn, option.schemaName);	
+		ActionLazy<RefupownInfo> enforceCreatedOn = new LazyRefupownEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazy<RefupownInfo> upsert = new LazyRefupownNodeUpsert(option.conn, option.schemaName);
+		ActionLazy<RefupownInfo> select = new LazyRefupownRootSelect(option.conn, option.schemaName);		
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);
