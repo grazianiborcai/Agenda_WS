@@ -209,7 +209,7 @@ import br.com.mind5.payment.payOrder.dao.DaoPayordDbTableColumn;
 import br.com.mind5.payment.payOrderItem.dao.DaoPayordemDbTableColumn;
 import br.com.mind5.payment.payOrderItemList.dao.DaoPayordemistDbTableColumn;
 import br.com.mind5.payment.payOrderItemSearch.dao.DaoPayormarchDbTableColumn;
-import br.com.mind5.payment.payOrderList.dao.PayordistDbTableColumn;
+import br.com.mind5.payment.payOrderList.dao.DaoPayordistDbTableColumn;
 import br.com.mind5.payment.payOrderSearch.dao.DaoPayordarchDbTableColumn;
 import br.com.mind5.payment.setupPartner.dao.DaoSetuparDbTableColumn;
 import br.com.mind5.payment.storePartner.dao.DaoStoparDbTableColumn;
@@ -363,7 +363,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoCrecarchDbTableColumn());
 		addTable(new DaoCounparchDbTableColumn());
 		addTable(new DaoPayormarchDbTableColumn());
-		addTable(new PayordistDbTableColumn());
+		addTable(new DaoPayordistDbTableColumn());
 		addTable(new DaoPayordemistDbTableColumn());
 		addTable(new DaoMoonasarchDbTableColumn());
 		addTable(new DaoMoonaseDbTableColumn());
