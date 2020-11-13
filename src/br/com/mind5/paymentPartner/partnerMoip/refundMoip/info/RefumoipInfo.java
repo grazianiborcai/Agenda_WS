@@ -3,6 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.refundMoip.info;
 import java.util.List;
 import java.util.Map;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
@@ -31,7 +32,7 @@ public final class RefumoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public RefumoipInfo() {
-		super(RefumoipInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		cusparData = DefaultValue.object();
@@ -59,39 +60,12 @@ public final class RefumoipInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		RefumoipInfo deepCopy = (RefumoipInfo) super.clone();	
 		
-		deepCopy.setuparData = cloneSetupar(deepCopy.setuparData);
-		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
-		deepCopy.stoparData = cloneStopar(deepCopy.stoparData);
+		deepCopy.setuparData = CloneUtil.cloneRecord(deepCopy.setuparData, this.getClass());
+		deepCopy.cusparData = CloneUtil.cloneRecord(deepCopy.cusparData, this.getClass());
+		deepCopy.stoparData = CloneUtil.cloneRecord(deepCopy.stoparData, this.getClass());
 		
 		return deepCopy;
 	}
-	
-	
-	
-	private SetuparInfo cloneSetupar(SetuparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (SetuparInfo) recordInfo.clone();
-	}	
-	
-	
-	
-	private CusparInfo cloneCuspar(CusparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (CusparInfo) recordInfo.clone();
-	}	
-	
-	
-	
-	private StoparInfo cloneStopar(StoparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (StoparInfo) recordInfo.clone();
-	}	
 	
 	
 	
