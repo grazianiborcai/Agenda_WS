@@ -16,7 +16,7 @@ public final class EmparchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EmparchInfo() {
-		super(EmparchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codEmployee = DefaultValue.number();
