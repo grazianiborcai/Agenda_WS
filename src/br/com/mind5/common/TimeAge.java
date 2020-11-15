@@ -45,8 +45,16 @@ public final class TimeAge {
 	
 	
 	
-	private LocalDateTime getNowMinusOffset() {
+	public LocalDateTime getNowMinusOffset() {
 		return DefaultValue.localDateTimeNow().minusMinutes(offset);
+	}
+	
+	
+	
+	public LocalDateTime getDateTimePlusOffset(LocalDateTime baseTime) {
+		checkArgument(baseTime);
+		
+		return baseTime.plusMinutes(offset);
 	}
 	
 	
@@ -70,6 +78,6 @@ public final class TimeAge {
 	
 	private void checkArgument(LocalDateTime toCompare) {
 		if (toCompare == null)
-			throw new NullPointerException("toCompare" + SystemMessage.NULL_ARGUMENT);
+			throw new NullPointerException("toCompare or baseTime" + SystemMessage.NULL_ARGUMENT);
 	}
 }
