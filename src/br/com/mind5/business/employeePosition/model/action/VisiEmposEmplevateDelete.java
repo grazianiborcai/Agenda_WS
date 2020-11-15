@@ -7,9 +7,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmposDeleteEmplevate extends ActionVisitorTemplateAction<EmposInfo, EmplateInfo> {
+final class VisiEmposEmplevateDelete extends ActionVisitorTemplateAction<EmposInfo, EmplateInfo> {
 	
-	public VisiEmposDeleteEmplevate(DeciTreeOption<EmposInfo> option) {
+	public VisiEmposEmplevateDelete(DeciTreeOption<EmposInfo> option) {
 		super(option, EmposInfo.class, EmplateInfo.class);
 	}
 	

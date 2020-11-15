@@ -2,20 +2,20 @@ package br.com.mind5.business.employeePosition.model.action;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.business.employeeWorkTime.model.decisionTree.RootEmpwotmDeleteByEmpos;
+import br.com.mind5.business.employeeWorkTime.model.decisionTree.RootEmpwotmDeleteFromEmp;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmposDeleteEmpwotm extends ActionVisitorTemplateAction<EmposInfo, EmpwotmInfo> {
+final class VisiEmposEmpwotmDelete extends ActionVisitorTemplateAction<EmposInfo, EmpwotmInfo> {
 	
-	public VisiEmposDeleteEmpwotm(DeciTreeOption<EmposInfo> option) {
+	public VisiEmposEmpwotmDelete(DeciTreeOption<EmposInfo> option) {
 		super(option, EmposInfo.class, EmpwotmInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<EmpwotmInfo>> getTreeClassHook() {
-		return RootEmpwotmDeleteByEmpos.class;
+		return RootEmpwotmDeleteFromEmp.class;
 	}
 }
