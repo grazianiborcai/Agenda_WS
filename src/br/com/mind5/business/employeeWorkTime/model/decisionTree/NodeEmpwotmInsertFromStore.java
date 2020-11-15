@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
+import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmRootInsert;
+import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmMergeStowotarch;
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmSuccess;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmpwoco;
-import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckExist;
-import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckWrite;
+import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmpwotarch;
+import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStowotarch;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -31,15 +34,15 @@ public final class NodeEmpwotmInsertFromStore extends DeciTreeTemplateWrite<Empw
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new EmpwotmCheckWrite(checkerOption);
-		queue.add(checker);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new EmpwotmCheckStowotarch(checkerOption);
+		queue.add(checker);		
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
-		checker = new EmpwotmCheckExist(checkerOption);
+		checker = new EmpwotmCheckEmpwotarch(checkerOption);
 		queue.add(checker);			
 		
 		checkerOption = new ModelCheckerOption();
@@ -58,9 +61,12 @@ public final class NodeEmpwotmInsertFromStore extends DeciTreeTemplateWrite<Empw
 	@Override protected List<ActionStd<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
 		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpwotmInfo> insert = new RootEmpwotmInsert(option).toAction();
+		ActionStd<EmpwotmInfo> merge = new StdEmpwotmMergeStowotarch(option);
+		ActionLazy<EmpwotmInfo> insert = new LazyEmpwotmRootInsert(option.conn, option.schemaName);
 		
-		actions.add(insert);
+		merge.addPostAction(insert);
+		
+		actions.add(merge);
 		return actions;
 	}
 	

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmNodeInsertDefault;
-import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmMergeStowotarch;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmp;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmposarch;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckInsertFromStore;
@@ -13,12 +11,10 @@ import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckLangu;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckOwner;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStorauth;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStore;
-import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStowotarch;
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -60,13 +56,6 @@ public final class RootEmpwotmInsertFromStore extends DeciTreeTemplateWrite<Empw
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new EmpwotmCheckEmp(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmpwotmCheckStore(checkerOption);
 		queue.add(checker);	
 		
@@ -74,21 +63,21 @@ public final class RootEmpwotmInsertFromStore extends DeciTreeTemplateWrite<Empw
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new EmpwotmCheckEmposarch(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new EmpwotmCheckStowotarch(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmpwotmCheckStorauth(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new EmpwotmCheckEmp(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new EmpwotmCheckEmposarch(checkerOption);
 		queue.add(checker);		
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -100,12 +89,9 @@ public final class RootEmpwotmInsertFromStore extends DeciTreeTemplateWrite<Empw
 	@Override protected List<ActionStd<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
 		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpwotmInfo> mergeStowotarch = new StdEmpwotmMergeStowotarch(option);
-		ActionLazy<EmpwotmInfo> insertDefault = new LazyEmpwotmNodeInsertDefault(option.conn, option.schemaName);
+		ActionStd<EmpwotmInfo> nodeL1 = new NodeEmpwotmInsertFromStore(option).toAction();
 		
-		mergeStowotarch.addPostAction(insertDefault);
-		
-		actions.add(mergeStowotarch);
+		actions.add(nodeL1);
 		return actions;
 	}	
 }
