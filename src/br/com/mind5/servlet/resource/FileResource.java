@@ -75,7 +75,10 @@ public class FileResource {
 		
 		Model model = new FimgModelInsertOwner(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	} 
 	
 	
@@ -102,7 +105,10 @@ public class FileResource {
 		
 		Model model = new FimgModelInsertEmp(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	} 
 	
 	
@@ -129,7 +135,10 @@ public class FileResource {
 		
 		Model model = new FimgModelInsertCus(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	} 
 	
 	
@@ -154,7 +163,10 @@ public class FileResource {
 		
 		Model model = new FimgModelInsertUserAuth(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	} 
 	
 	
@@ -183,7 +195,10 @@ public class FileResource {
 		
 		Model model = new FimgModelInsertStore(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	} 
 	
 	
@@ -196,7 +211,10 @@ public class FileResource {
 		
 		Model model = new FimgModelUpdateStore(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -218,7 +236,10 @@ public class FileResource {
 		
 		Model model = new FimgModelDeleteOwner(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	} 
 	
 	
@@ -240,7 +261,10 @@ public class FileResource {
 		
 		Model model = new FimgModelDeleteEmp(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	} 
 	
 	
@@ -262,7 +286,10 @@ public class FileResource {
 		
 		Model model = new FimgModelDeleteCus(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	} 
 	
 	
@@ -284,7 +311,10 @@ public class FileResource {
 		
 		Model model = new FimgModelDeleteUser(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	} 
 	
 	
@@ -306,7 +336,10 @@ public class FileResource {
 		
 		Model model = new FimgModelDeleteStore(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	} 
 	
 	
@@ -335,7 +368,10 @@ public class FileResource {
 		
 		Model model = new FimgModelInsertMat(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	} 
 	
 	
@@ -348,7 +384,10 @@ public class FileResource {
 		
 		Model model = new FimgModelUpdateMat(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -370,6 +409,9 @@ public class FileResource {
 		
 		Model model = new FimgModelDeleteMat(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	} 
 }

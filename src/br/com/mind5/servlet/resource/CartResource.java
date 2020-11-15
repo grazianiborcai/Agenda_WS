@@ -34,7 +34,10 @@ public final class CartResource {
 		
 		Model model = new CartModelUpsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	

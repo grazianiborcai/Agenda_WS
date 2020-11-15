@@ -39,7 +39,10 @@ public class CustomerResource {
 		
 		Model model = new CusModelInsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -51,7 +54,10 @@ public class CustomerResource {
 		
 		Model model = new CusModelUpdate(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 
 	
@@ -71,7 +77,10 @@ public class CustomerResource {
 		
 		Model model = new CusModelDelete(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 
 	
@@ -92,7 +101,10 @@ public class CustomerResource {
 		
 		Model model = new CusModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -113,6 +125,9 @@ public class CustomerResource {
 		
 		Model model = new CuslisModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 }

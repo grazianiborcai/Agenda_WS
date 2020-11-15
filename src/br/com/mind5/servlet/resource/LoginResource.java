@@ -34,6 +34,9 @@ public class LoginResource {
 		
 		Model model = new UauthModelUpswd(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 }

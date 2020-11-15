@@ -101,7 +101,10 @@ public class EmployeeResource {
 		
 		Model model = new EmpwotmModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -113,7 +116,10 @@ public class EmployeeResource {
 		
 		Model model = new EmpwotmModelSearch(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -126,7 +132,10 @@ public class EmployeeResource {
 		
 		Model model = new EmpwotmModelInsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -139,7 +148,10 @@ public class EmployeeResource {
 		
 		Model model = new EmpwotmModelInsertFromStore(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}	
 	
 	
@@ -152,7 +164,10 @@ public class EmployeeResource {
 		
 		Model model = new EmpwotmModelUpdate(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -177,7 +192,10 @@ public class EmployeeResource {
 		
 		Model model = new EmpwotmModelDelete(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -204,7 +222,10 @@ public class EmployeeResource {
 		
 		Model model = new EmpwotmModelConflict(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -231,7 +252,10 @@ public class EmployeeResource {
 		
 		Model model = new EmplateModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -254,7 +278,10 @@ public class EmployeeResource {
 		
 		Model model = new EmplateModelSearch(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -267,7 +294,10 @@ public class EmployeeResource {
 		
 		Model model = new EmplateModelInsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -280,7 +310,10 @@ public class EmployeeResource {
 		
 		Model model = new EmplateModelUpdate(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -307,7 +340,10 @@ public class EmployeeResource {
 		
 		Model model = new EmplateModelDelete(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -322,7 +358,10 @@ public class EmployeeResource {
 		//TODO: position (ex: cabelereiro, manicuro) não deviria ficar na tab empregado, mas somente na store_emp. Assim um empregado pode ter mais de uma position na loja
 		Model model = new EmpModelInsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 
 
@@ -335,7 +374,10 @@ public class EmployeeResource {
 
 		Model model = new EmpModelUpdate(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 
 	
@@ -356,7 +398,10 @@ public class EmployeeResource {
 		
 		Model model = new EmpModelDelete(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}	
 
 	
@@ -377,7 +422,10 @@ public class EmployeeResource {
 		
 		Model model = new EmpModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -390,7 +438,10 @@ public class EmployeeResource {
 		
 		Model model = new EmplisModelSearch(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -415,7 +466,10 @@ public class EmployeeResource {
 		
 		Model model = new EmposModelSelectProfessional(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -427,7 +481,10 @@ public class EmployeeResource {
 		
 		Model model = new EmposModelSearch(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -440,7 +497,10 @@ public class EmployeeResource {
 		
 		Model model = new EmposModelInsertProfessional(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -465,7 +525,10 @@ public class EmployeeResource {
 		
 		Model model = new EmposModelDeleteProfessional(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -488,7 +551,10 @@ public class EmployeeResource {
 		
 		Model model = new EmpmatModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -501,7 +567,10 @@ public class EmployeeResource {
 		
 		Model model = new EmpmatModelSearch(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -514,7 +583,10 @@ public class EmployeeResource {
 		
 		Model model = new EmpmatModelInsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}	
 	
 	
@@ -537,7 +609,10 @@ public class EmployeeResource {
 		
 		Model model = new EmpmatModelDelete(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -564,6 +639,9 @@ public class EmployeeResource {
 		
 		Model model = new EmpwotmModelOutlier(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 }

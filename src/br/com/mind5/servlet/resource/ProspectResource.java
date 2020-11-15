@@ -39,7 +39,10 @@ public class ProspectResource {
 		
 		Model model = new OtporeModelInsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -52,7 +55,10 @@ public class ProspectResource {
 		
 		Model model = new StoprosModelInsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -65,7 +71,10 @@ public class ProspectResource {
 		
 		Model model = new StoprosModelUpdate(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 
@@ -86,7 +95,10 @@ public class ProspectResource {
 		
 		Model model = new StoprosModelDelete(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -99,7 +111,10 @@ public class ProspectResource {
 		
 		Model model = new StoprosModelSearch(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 
 	
@@ -120,6 +135,9 @@ public class ProspectResource {
 		
 		Model model = new StoprosModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 }
