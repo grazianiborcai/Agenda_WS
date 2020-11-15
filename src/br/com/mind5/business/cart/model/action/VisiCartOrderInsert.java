@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartInsertOrder extends ActionVisitorTemplateAction<CartInfo, OrderInfo> {
+final class VisiCartOrderInsert extends ActionVisitorTemplateAction<CartInfo, OrderInfo> {
 	
-	public VisiCartInsertOrder(DeciTreeOption<CartInfo> option) {
+	public VisiCartOrderInsert(DeciTreeOption<CartInfo> option) {
 		super(option, CartInfo.class, OrderInfo.class);
 	}
 	

@@ -3,6 +3,7 @@ package br.com.mind5.business.cart.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
@@ -40,6 +41,7 @@ public final class DaoCartInsertSingle extends DaoStmtTemplate<CartInfo> {
 				stmt.setLong(i++, recordInfo.codOwner);
 				stmt.setLong(i++, recordInfo.codUser);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.expiryOn);
 	
 				return stmt;
 			}		

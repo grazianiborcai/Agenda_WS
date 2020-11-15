@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCartInsertOrder extends ActionStdTemplate<CartInfo> {
+public final class StdCartCartemDelete extends ActionStdTemplate<CartInfo> {
 
-	public StdCartInsertOrder(DeciTreeOption<CartInfo> option) {
+	public StdCartCartemDelete(DeciTreeOption<CartInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<CartInfo> buildVisitorHook(DeciTreeOption<CartInfo> option) {
-		return new VisiCartInsertOrder(option);
+		return new VisiCartCartemDelete(option);
 	}
 }

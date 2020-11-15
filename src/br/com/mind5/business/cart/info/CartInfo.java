@@ -17,6 +17,7 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 	public double grandTotal;	
 	public String codCurr;
 	public String txtCurr;
+	public LocalDateTime expiryOn;
 	public LocalDateTime lastChanged;
 	public String username;
 	public List<CartemInfo> cartems;
@@ -52,6 +53,7 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 		CartInfo deepCopy = (CartInfo) super.clone();
 		
 		deepCopy.lastChanged = lastChanged;
+		deepCopy.expiryOn = expiryOn;
 		deepCopy.cartems = CloneUtil.cloneRecords(cartems, this.getClass());
 		
 		return deepCopy;

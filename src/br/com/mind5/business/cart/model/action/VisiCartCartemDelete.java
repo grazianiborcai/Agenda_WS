@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartDeleteCartem extends ActionVisitorTemplateAction<CartInfo, CartemInfo> {
+final class VisiCartCartemDelete extends ActionVisitorTemplateAction<CartInfo, CartemInfo> {
 	
-	public VisiCartDeleteCartem(DeciTreeOption<CartInfo> option) {
+	public VisiCartCartemDelete(DeciTreeOption<CartInfo> option) {
 		super(option, CartInfo.class, CartemInfo.class);
 	}
 	

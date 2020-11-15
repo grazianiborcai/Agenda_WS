@@ -12,6 +12,7 @@ import br.com.mind5.dao.common.DaoDbTable;
 public final class DaoCartDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
+	public static final String COL_EXPIRY_ON = DaoDbField.COL_EXPIRY_ON;
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;	
 	
 	public DaoCartDbTableColumn() {
@@ -45,6 +46,14 @@ public final class DaoCartDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_LAST_CHANGED;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_EXPIRY_ON;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

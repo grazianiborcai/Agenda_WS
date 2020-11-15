@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
-import br.com.mind5.business.cart.model.action.StdCartDeleteCartem;
+import br.com.mind5.business.cart.model.action.StdCartCartemDelete;
 import br.com.mind5.business.cart.model.checker.CartCheckCartemarch;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -41,7 +41,7 @@ public final class NodeCartDeleteL1 extends DeciTreeTemplateWrite<CartInfo> {
 	@Override protected List<ActionStd<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CartInfo> deleteCartem = new StdCartDeleteCartem(option);
+		ActionStd<CartInfo> deleteCartem = new StdCartCartemDelete(option);
 		ActionStd<CartInfo> nodeL2 = new NodeCartDeleteL2(option).toAction();
 		
 		actions.add(deleteCartem);

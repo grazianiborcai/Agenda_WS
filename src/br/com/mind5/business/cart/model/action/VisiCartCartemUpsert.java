@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartUpsertCartem extends ActionVisitorTemplateAction<CartInfo, CartemInfo> {
+final class VisiCartCartemUpsert extends ActionVisitorTemplateAction<CartInfo, CartemInfo> {
 	
-	public VisiCartUpsertCartem(DeciTreeOption<CartInfo> option) {
+	public VisiCartCartemUpsert(DeciTreeOption<CartInfo> option) {
 		super(option, CartInfo.class, CartemInfo.class);
 	}
 	

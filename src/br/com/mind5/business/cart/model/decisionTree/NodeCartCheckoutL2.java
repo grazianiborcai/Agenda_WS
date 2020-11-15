@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.model.action.LazyCartEmptfy;
-import br.com.mind5.business.cart.model.action.StdCartInsertOrder;
+import br.com.mind5.business.cart.model.action.StdCartOrderInsert;
 import br.com.mind5.business.cart.model.checker.CartCheckAged;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -43,7 +43,7 @@ public final class NodeCartCheckoutL2 extends DeciTreeTemplateWrite<CartInfo> {
 	@Override protected List<ActionStd<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartInfo> insertOrder = new StdCartInsertOrder(option);	
+		ActionStd<CartInfo> insertOrder = new StdCartOrderInsert(option);	
 		ActionLazy<CartInfo> emptfy = new LazyCartEmptfy(option.conn, option.schemaName);
 		
 		insertOrder.addPostAction(emptfy);

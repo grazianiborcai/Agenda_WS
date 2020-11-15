@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartUpsertCartem extends ActionLazyTemplate<CartInfo, CartInfo> {
+public final class LazyCartCartemUpsert extends ActionLazyTemplate<CartInfo, CartInfo> {
 
-	public LazyCartUpsertCartem(Connection conn, String schemaName) {
+	public LazyCartCartemUpsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCartUpsertCartem extends ActionLazyTemplate<CartInfo, Car
 	
 	
 	@Override protected ActionStd<CartInfo> getInstanceOfActionHook(DeciTreeOption<CartInfo> option) {
-		return new StdCartUpsertCartem(option);
+		return new StdCartCartemUpsert(option);
 	}
 	
 	

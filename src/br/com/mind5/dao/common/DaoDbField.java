@@ -134,6 +134,7 @@ public final class DaoDbField {
 	public static final String COL_END_TIME = "end_time";	
 	public static final String COL_EXPIRATION_MONTH = "expiration_month";
 	public static final String COL_EXPIRATION_YEAR = "expiration_year";	
+	public static final String COL_EXPIRY_ON = "expiry_on";		
 	public static final String COL_FEE_SERVICE = "feeService";
 	public static final String COL_FILE_IMG_EXTENSION = "file_img_extension";
 	public static final String COL_FILE_IMG_NAME = "file_img_name";
