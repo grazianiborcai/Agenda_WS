@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.action.LazyEmpDaoDelete;
+import br.com.mind5.business.employee.model.action.LazyEmpEmpwotmDelete;
 import br.com.mind5.business.employee.model.action.StdEmpDaoDelete;
 import br.com.mind5.business.employee.model.checker.EmpCheckSytotin;
 import br.com.mind5.model.action.ActionLazy;
@@ -15,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeEmpDeleteL1 extends DeciTreeTemplateWrite<EmpInfo> {	
+public final class NodeEmpDelete extends DeciTreeTemplateWrite<EmpInfo> {	
 	
-	public NodeEmpDeleteL1(DeciTreeOption<EmpInfo> option) {
+	public NodeEmpDelete(DeciTreeOption<EmpInfo> option) {
 		super(option);
 	}
 	
@@ -44,9 +45,11 @@ public final class NodeEmpDeleteL1 extends DeciTreeTemplateWrite<EmpInfo> {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<EmpInfo> deleteEmpos = new NodeEmpDeleteEmpos(option).toAction();
+		ActionLazy<EmpInfo> deleteStowotarch = new LazyEmpEmpwotmDelete(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> deleteEmployee = new LazyEmpDaoDelete(option.conn, option.schemaName);	
 		
-		deleteEmpos.addPostAction(deleteEmployee);
+		deleteEmpos.addPostAction(deleteStowotarch);
+		deleteStowotarch.addPostAction(deleteEmployee);
 		
 		actions.add(deleteEmpos);	
 		return actions;
