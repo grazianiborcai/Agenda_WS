@@ -16,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeEmpwotmDeleteFromEmp extends DeciTreeTemplateWrite<EmpwotmInfo> {
+public final class NodeEmpwotmDeleteFromEmpos extends DeciTreeTemplateWrite<EmpwotmInfo> {
 	
-	public NodeEmpwotmDeleteFromEmp(DeciTreeOption<EmpwotmInfo> option) {
+	public NodeEmpwotmDeleteFromEmpos(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);
 	}
 	

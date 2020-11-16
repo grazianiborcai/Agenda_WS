@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmNodeDeleteFromEmp;
-import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmEnforceStoreKey;
-import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckDeleteFromEmp;
+import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmNodeDeleteFromEmpos;
+import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmEnforceEmposKey;
+import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckDeleteFromEmpos;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmp;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckLangu;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckOwner;
+import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStore;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -18,9 +19,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmpwotmDeleteFromEmp extends DeciTreeTemplateWrite<EmpwotmInfo> {
+public final class RootEmpwotmDeleteFromEmpos extends DeciTreeTemplateWrite<EmpwotmInfo> {
 	
-	public RootEmpwotmDeleteFromEmp(DeciTreeOption<EmpwotmInfo> option) {
+	public RootEmpwotmDeleteFromEmpos(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);
 	}
 	
@@ -35,7 +36,7 @@ public final class RootEmpwotmDeleteFromEmp extends DeciTreeTemplateWrite<Empwot
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new EmpwotmCheckDeleteFromEmp(checkerOption);
+		checker = new EmpwotmCheckDeleteFromEmpos(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -56,6 +57,13 @@ public final class RootEmpwotmDeleteFromEmp extends DeciTreeTemplateWrite<Empwot
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new EmpwotmCheckStore(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new EmpwotmCheckEmp(checkerOption);
 		queue.add(checker);
 		
@@ -67,12 +75,12 @@ public final class RootEmpwotmDeleteFromEmp extends DeciTreeTemplateWrite<Empwot
 	@Override protected List<ActionStd<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
 		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpwotmInfo> enforceStoreKey = new StdEmpwotmEnforceStoreKey(option);
-		ActionLazy<EmpwotmInfo> delete = new LazyEmpwotmNodeDeleteFromEmp(option.conn, option.schemaName);
+		ActionStd<EmpwotmInfo> enforceEmposKey = new StdEmpwotmEnforceEmposKey(option);
+		ActionLazy<EmpwotmInfo> delete = new LazyEmpwotmNodeDeleteFromEmpos(option.conn, option.schemaName);
 		
-		enforceStoreKey.addPostAction(delete);
+		enforceEmposKey.addPostAction(delete);
 		
-		actions.add(enforceStoreKey);
+		actions.add(enforceEmposKey);
 		return actions;
 	}
 }

@@ -4,15 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.business.employeeWorkTime.model.decisionTree.NodeEmpwotmDeleteFromEmp;
+import br.com.mind5.business.employeeWorkTime.model.decisionTree.NodeEmpwotmDeleteFromEmpos;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmpwotmNodeDeleteFromEmp extends ActionLazyTemplate<EmpwotmInfo, EmpwotmInfo> {
+public final class LazyEmpwotmNodeDeleteFromEmpos extends ActionLazyTemplate<EmpwotmInfo, EmpwotmInfo> {
 	
-	public LazyEmpwotmNodeDeleteFromEmp(Connection conn, String schemaName) {
+	public LazyEmpwotmNodeDeleteFromEmpos(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyEmpwotmNodeDeleteFromEmp extends ActionLazyTemplate<Empwo
 	
 	
 	@Override protected ActionStd<EmpwotmInfo> getInstanceOfActionHook(DeciTreeOption<EmpwotmInfo> option) {
-		return new NodeEmpwotmDeleteFromEmp(option).toAction();
+		return new NodeEmpwotmDeleteFromEmpos(option).toAction();
 	}
 	
 	
