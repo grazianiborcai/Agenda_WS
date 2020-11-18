@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.business.employee.model.action.LazyEmpDaoDelete;
-import br.com.mind5.business.employee.model.action.LazyEmpEmpwotmDelete;
-import br.com.mind5.business.employee.model.action.StdEmpDaoDelete;
+import br.com.mind5.business.employee.model.action.LazyEmpNodeDeleteEmpos;
+import br.com.mind5.business.employee.model.action.LazyEmpNodeDeleteL2;
+import br.com.mind5.business.employee.model.action.StdEmpEmpwotmDelete;
 import br.com.mind5.business.employee.model.checker.EmpCheckSytotin;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -16,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeEmpDelete extends DeciTreeTemplateWrite<EmpInfo> {	
+public final class NodeEmpDeleteL1 extends DeciTreeTemplateWrite<EmpInfo> {	
 	
-	public NodeEmpDelete(DeciTreeOption<EmpInfo> option) {
+	public NodeEmpDeleteL1(DeciTreeOption<EmpInfo> option) {
 		super(option);
 	}
 	
@@ -44,14 +44,14 @@ public final class NodeEmpDelete extends DeciTreeTemplateWrite<EmpInfo> {
 	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<EmpInfo> deleteEmpos = new NodeEmpDeleteEmpos(option).toAction();
-		ActionLazy<EmpInfo> deleteStowotarch = new LazyEmpEmpwotmDelete(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> deleteEmployee = new LazyEmpDaoDelete(option.conn, option.schemaName);	
+		ActionStd<EmpInfo> deleteEmpwotm = new StdEmpEmpwotmDelete(option);
+		ActionLazy<EmpInfo> deleteEmpos = new LazyEmpNodeDeleteEmpos(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> nodeL2 = new LazyEmpNodeDeleteL2(option.conn, option.schemaName);
 		
-		deleteEmpos.addPostAction(deleteStowotarch);
-		deleteStowotarch.addPostAction(deleteEmployee);
+		deleteEmpwotm.addPostAction(deleteEmpos);
+		deleteEmpos.addPostAction(nodeL2);
 		
-		actions.add(deleteEmpos);	
+		actions.add(deleteEmpwotm);	
 		return actions;
 	}
 	
@@ -60,9 +60,9 @@ public final class NodeEmpDelete extends DeciTreeTemplateWrite<EmpInfo> {
 	@Override protected List<ActionStd<EmpInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<EmpInfo> delete = new StdEmpDaoDelete(option);
+		ActionStd<EmpInfo> nodeL2 = new NodeEmpDeleteL2(option).toAction();
 		
-		actions.add(delete);	
+		actions.add(nodeL2);	
 		return actions;
 	}
 }

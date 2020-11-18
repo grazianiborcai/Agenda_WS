@@ -26,4 +26,10 @@ final class VisiEmpUserDelete extends ActionVisitorTemplateAction<EmpInfo, UserI
 	@Override protected List<UserInfo> toActionClassHook(List<EmpInfo> recordInfos) {
 		return UserCopier.copyFromEmpKey(recordInfos);
 	}
+	
+	
+	
+	@Override protected List<EmpInfo> toBaseClassHook(List<EmpInfo> baseInfos, List<UserInfo> results) {
+		return baseInfos;
+	}
 }

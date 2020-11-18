@@ -4,35 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.business.employee.model.action.StdEmpEmposDelete;
-import br.com.mind5.business.employee.model.action.StdEmpSuccess;
-import br.com.mind5.business.employee.model.checker.EmpCheckEmposarch;
+import br.com.mind5.business.employee.model.action.LazyEmpDaoDelete;
+import br.com.mind5.business.employee.model.action.StdEmpPersonDelete;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeEmpDeleteEmpos extends DeciTreeTemplateWrite<EmpInfo> {
+public final class NodeEmpDeleteL2 extends DeciTreeTemplateWrite<EmpInfo> {	
 	
-	public NodeEmpDeleteEmpos(DeciTreeOption<EmpInfo> option) {
+	public NodeEmpDeleteL2(DeciTreeOption<EmpInfo> option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected ModelChecker<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {
+	@Override protected ModelChecker<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {		
 		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
-		ModelCheckerOption checkerOption;	
+		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new EmpCheckEmposarch(checkerOption);
-		queue.add(checker);	
+		checker = new ModelCheckerDummy<>();
+		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
@@ -40,22 +41,14 @@ public final class NodeEmpDeleteEmpos extends DeciTreeTemplateWrite<EmpInfo> {
 	
 	
 	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
+		List<ActionStd<EmpInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<EmpInfo> deleteEmpos = new StdEmpEmposDelete(option);
+		ActionStd<EmpInfo> deletePerson = new StdEmpPersonDelete(option);
+		ActionLazy<EmpInfo> deleteEmployee = new LazyEmpDaoDelete(option.conn, option.schemaName);
 		
-		actions.add(deleteEmpos);		
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<EmpInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
+		deletePerson.addPostAction(deleteEmployee);
 		
-		ActionStd<EmpInfo> success = new StdEmpSuccess(option);
-		
-		actions.add(success);		
+		actions.add(deletePerson);	
 		return actions;
 	}
 }

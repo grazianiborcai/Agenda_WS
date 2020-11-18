@@ -7,7 +7,7 @@ import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.action.LazyEmpDaoUpdate;
 import br.com.mind5.business.employee.model.action.LazyEmpEnforceLChanged;
 import br.com.mind5.business.employee.model.action.LazyEmpMergeUsername;
-import br.com.mind5.business.employee.model.action.LazyEmpNodeDelete;
+import br.com.mind5.business.employee.model.action.LazyEmpNodeDeleteL1;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeSytotauh;
 import br.com.mind5.business.employee.model.action.StdEmpMergeToDelete;
 import br.com.mind5.business.employee.model.checker.EmpCheckDelete;
@@ -69,7 +69,7 @@ public final class RootEmpDelete extends DeciTreeTemplateWrite<EmpInfo> {
 		ActionLazy<EmpInfo> enforceLChanged = new LazyEmpEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> update = new LazyEmpDaoUpdate(option.conn, option.schemaName);	
-		ActionLazy<EmpInfo> nodeL1 = new LazyEmpNodeDelete(option.conn, option.schemaName);	
+		ActionLazy<EmpInfo> nodeL1 = new LazyEmpNodeDeleteL1(option.conn, option.schemaName);	
 
 		mergeToDelete.addPostAction(nodeSytotauh);
 		nodeSytotauh.addPostAction(enforceLChanged);
