@@ -11,6 +11,7 @@ import br.com.mind5.info.InfoRecord;
 public final class EmplisInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codEmployee;
+	public long codStore;
 	public long codSnapshot;
 	public long codPerson;
 	public PersolisInfo persolisData;
@@ -24,6 +25,7 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codEmployee = DefaultValue.number();
+		codStore = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();

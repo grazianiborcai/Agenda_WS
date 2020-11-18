@@ -5,16 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class EmplisVisiMergePerarch extends InfoMergerVisitorTemplate<EmplisInfo, PerarchInfo> {
-	
-	@Override public List<EmplisInfo> beforeMerge(List<EmplisInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(EmplisInfo baseInfo, PerarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +20,5 @@ final class EmplisVisiMergePerarch extends InfoMergerVisitorTemplate<EmplisInfo,
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<EmplisInfo> getUniquifier() {
-		return null;
 	}
 }
