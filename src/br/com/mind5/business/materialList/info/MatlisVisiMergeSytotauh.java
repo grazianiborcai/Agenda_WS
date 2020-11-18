@@ -7,6 +7,7 @@ import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
 final class MatlisVisiMergeSytotauh extends InfoMergerVisitorTemplate<MatlisInfo, SytotauhInfo> {
+	
 	@Override public boolean shouldMerge(MatlisInfo baseInfo, SytotauhInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner		&&
 				baseInfo.username.equals(selectedInfo.username)		);
