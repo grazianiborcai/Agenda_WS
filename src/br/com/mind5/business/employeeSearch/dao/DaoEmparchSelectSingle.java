@@ -87,10 +87,12 @@ public final class DaoEmparchSelectSingle extends DaoStmtTemplate<EmparchInfo> {
 					
 					dataInfo.codOwner = stmtResult.getLong(DaoEmparchDbTableColumn.COL_COD_OWNER);
 					dataInfo.codEmployee = stmtResult.getLong(DaoEmparchDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codStore = stmtResult.getLong(DaoEmparchDbTableColumn.COL_COD_STORE);
 					dataInfo.recordMode = stmtResult.getString(DaoEmparchDbTableColumn.COL_RECORD_MODE);
 					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoEmparchDbTableColumn.COL_COD_PERSON);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoEmparchDbTableColumn.COL_COD_USER);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoEmparchDbTableColumn.COL_COD_SNAPSHOT);				
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoEmparchDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.email = stmtResult.getString(DaoEmparchDbTableColumn.COL_EMAIL);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

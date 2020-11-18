@@ -35,8 +35,16 @@ final class DaoEmparchWhere implements DaoStmtWhere {
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 				break;
 				
+			case DaoEmparchDbTableColumn.COL_COD_STORE:
+				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
+				break;
+				
 			case DaoEmparchDbTableColumn.COL_COD_USER :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
+				break;
+				
+			case DaoEmparchDbTableColumn.COL_EMAIL:
+				builder.addClauseEqualAnd(eachColumn, recordInfo.email);
 				break;
 				
 			case DaoEmparchDbTableColumn.COL_RECORD_MODE :

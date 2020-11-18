@@ -23,6 +23,14 @@ public final class EmparchCheckRead extends ModelCheckerTemplateSimple<EmparchIn
 			return super.FAILED;
 		
 		
+		if (recordInfo.codEmployee 	<= 0 	&&
+			recordInfo.codStore 	<= 0 	&&
+			recordInfo.codUser 		<= 0 	&&
+			recordInfo.email 		== null		)	
+			
+			return super.FAILED;
+		
+		
 		return super.SUCCESS;
 	}
 	
