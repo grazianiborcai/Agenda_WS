@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.materialCategory.info.MategInfo;
 
 final class MatlisVisiMergeMateg extends InfoMergerVisitorTemplate<MatlisInfo, MategInfo> {
-	
-	@Override public List<MatlisInfo> beforeMerge(List<MatlisInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
 	
 	@Override public boolean shouldMerge(MatlisInfo baseInfo, MategInfo selectedInfo) {
 		return (baseInfo.codMatCateg == selectedInfo.codMatCateg);
@@ -28,11 +21,5 @@ final class MatlisVisiMergeMateg extends InfoMergerVisitorTemplate<MatlisInfo, M
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<MatlisInfo> getUniquifier() {
-		return null;
 	}
 }
