@@ -5,6 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.action.LazyEmpDaoDelete;
+import br.com.mind5.business.employee.model.action.LazyEmpObfuscate;
+import br.com.mind5.business.employee.model.action.LazyEmpUserDemote;
 import br.com.mind5.business.employee.model.action.StdEmpPersonDelete;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -45,8 +47,12 @@ public final class NodeEmpDeleteL2 extends DeciTreeTemplateWrite<EmpInfo> {
 		
 		ActionStd<EmpInfo> deletePerson = new StdEmpPersonDelete(option);
 		ActionLazy<EmpInfo> deleteEmployee = new LazyEmpDaoDelete(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> demoteUser = new LazyEmpUserDemote(option.conn, option.schemaName);		
+		ActionLazy<EmpInfo> obfuscate = new LazyEmpObfuscate(option.conn, option.schemaName);	
 		
 		deletePerson.addPostAction(deleteEmployee);
+		deletePerson.addPostAction(demoteUser);
+		deletePerson.addPostAction(obfuscate);
 		
 		actions.add(deletePerson);	
 		return actions;

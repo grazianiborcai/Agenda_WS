@@ -28,7 +28,7 @@ import br.com.mind5.business.employeeLeaveDate.model.EmplateModelInsert;
 import br.com.mind5.business.employeeLeaveDate.model.EmplateModelSearch;
 import br.com.mind5.business.employeeLeaveDate.model.EmplateModelSelect;
 import br.com.mind5.business.employeeLeaveDate.model.EmplateModelUpdate;
-import br.com.mind5.business.employeeList.model.EmplisModelSearch;
+import br.com.mind5.business.employeeList.model.EmplisModelSearchAuth;
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.EmpmatModelDelete;
 import br.com.mind5.business.employeeMaterial.model.EmpmatModelInsert;
@@ -436,7 +436,7 @@ public class EmployeeResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response searchEmployee(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new EmplisModelSearch(incomingData, request);
+		Model model = new EmplisModelSearchAuth(incomingData, request);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();
