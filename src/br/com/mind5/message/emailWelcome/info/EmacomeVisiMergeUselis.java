@@ -3,11 +3,11 @@ package br.com.mind5.message.emailWelcome.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class EmacomeVisiMergeUselis implements InfoMergerVisitor<EmacomeInfo, UselisInfo> {
+final class EmacomeVisiMergeUselis extends InfoMergerVisitorTemplate<EmacomeInfo, UselisInfo> {
 	
 	@Override public List<EmacomeInfo> beforeMerge(List<EmacomeInfo> baseInfos) {
 		return baseInfos;

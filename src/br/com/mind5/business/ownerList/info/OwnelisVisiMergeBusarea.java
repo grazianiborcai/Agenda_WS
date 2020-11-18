@@ -3,11 +3,11 @@ package br.com.mind5.business.ownerList.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.businessArea.info.BusareaInfo;
 
-final class OwnelisVisiMergeBusarea implements InfoMergerVisitor<OwnelisInfo, BusareaInfo> {
+final class OwnelisVisiMergeBusarea extends InfoMergerVisitorTemplate<OwnelisInfo, BusareaInfo> {
 	
 	@Override public List<OwnelisInfo> beforeMerge(List<OwnelisInfo> baseInfos) {
 		return baseInfos;

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class OrderemVisiMergeOrdemrap implements InfoMergerVisitor<OrderemInfo, OrdemrapInfo> {
+final class OrderemVisiMergeOrdemrap extends InfoMergerVisitorTemplate<OrderemInfo, OrdemrapInfo> {
 	
 	@Override public List<OrderemInfo> beforeMerge(List<OrderemInfo> baseInfos) {
 		return baseInfos;

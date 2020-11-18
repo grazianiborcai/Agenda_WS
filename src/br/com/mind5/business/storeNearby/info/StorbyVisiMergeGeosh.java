@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.geo.geoHash.info.GeoshInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StorbyVisiMergeGeosh implements InfoMergerVisitor<StorbyInfo, GeoshInfo> {
+final class StorbyVisiMergeGeosh extends InfoMergerVisitorTemplate<StorbyInfo, GeoshInfo> {
 	
 	@Override public List<StorbyInfo> beforeMerge(List<StorbyInfo> baseInfos) {
 		return baseInfos;

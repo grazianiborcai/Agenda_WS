@@ -8,4 +8,5 @@ public interface InfoMergerVisitor<T extends InfoRecord, K extends InfoRecord> {
 	public List<T> beforeMerge(List<T> baseInfos);
 	public boolean shouldMerge(T baseInfo, K selectedInfo);
 	public InfoUniquifier<T> getUniquifier();
+	public InfoMergerCardinality getCardinality();
 }

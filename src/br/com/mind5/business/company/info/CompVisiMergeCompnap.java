@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CompVisiMergeCompnap implements InfoMergerVisitor<CompInfo, CompnapInfo> {
+final class CompVisiMergeCompnap extends InfoMergerVisitorTemplate<CompInfo, CompnapInfo> {
 	
 	@Override public List<CompInfo> beforeMerge(List<CompInfo> baseInfos) {
 		return baseInfos;

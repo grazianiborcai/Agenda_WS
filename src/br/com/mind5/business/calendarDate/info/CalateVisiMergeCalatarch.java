@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.calendarDateSearch.info.CalatarchInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CalateVisiMergeCalatarch implements InfoMergerVisitor<CalateInfo, CalatarchInfo> {
+final class CalateVisiMergeCalatarch extends InfoMergerVisitorTemplate<CalateInfo, CalatarchInfo> {
 	
 	@Override public List<CalateInfo> beforeMerge(List<CalateInfo> baseInfos) {
 		return baseInfos;

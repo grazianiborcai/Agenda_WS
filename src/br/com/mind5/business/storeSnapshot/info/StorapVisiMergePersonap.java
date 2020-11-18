@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StorapVisiMergePersonap implements InfoMergerVisitor<StorapInfo, PersonapInfo> {
+final class StorapVisiMergePersonap extends InfoMergerVisitorTemplate<StorapInfo, PersonapInfo> {
 	
 	@Override public List<StorapInfo> beforeMerge(List<StorapInfo> baseInfos) {
 		return baseInfos;

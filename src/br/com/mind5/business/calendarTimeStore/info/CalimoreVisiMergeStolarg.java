@@ -7,10 +7,10 @@ import java.util.List;
 
 import br.com.mind5.business.calendarTime.info.CalimeInfo;
 import br.com.mind5.business.storeLeaveDateRange.info.StolargInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CalimoreVisiMergeStolarg implements InfoMergerVisitor<CalimoreInfo, StolargInfo> {
+final class CalimoreVisiMergeStolarg extends InfoMergerVisitorTemplate<CalimoreInfo, StolargInfo> {
 	
 	@Override public List<CalimoreInfo> beforeMerge(List<CalimoreInfo> baseInfos) {
 		return baseInfos;

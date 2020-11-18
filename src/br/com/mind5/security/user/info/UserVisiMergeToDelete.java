@@ -3,10 +3,10 @@ package br.com.mind5.security.user.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class UserVisiMergeToDelete implements InfoMergerVisitor<UserInfo, UserInfo> {
+final class UserVisiMergeToDelete extends InfoMergerVisitorTemplate<UserInfo, UserInfo> {
 	
 	@Override public List<UserInfo> beforeMerge(List<UserInfo> baseInfos) {
 		return baseInfos;

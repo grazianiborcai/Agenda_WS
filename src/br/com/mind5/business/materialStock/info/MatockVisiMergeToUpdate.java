@@ -3,10 +3,10 @@ package br.com.mind5.business.materialStock.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class MatockVisiMergeToUpdate implements InfoMergerVisitor<MatockInfo, MatockInfo> {
+final class MatockVisiMergeToUpdate extends InfoMergerVisitorTemplate<MatockInfo, MatockInfo> {
 	
 	@Override public List<MatockInfo> beforeMerge(List<MatockInfo> baseInfos) {
 		return baseInfos;

@@ -3,11 +3,11 @@ package br.com.mind5.business.customerSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class CusnapVisiMergeUselis implements InfoMergerVisitor<CusnapInfo, UselisInfo> {
+final class CusnapVisiMergeUselis extends InfoMergerVisitorTemplate<CusnapInfo, UselisInfo> {
 	
 	@Override public List<CusnapInfo> beforeMerge(List<CusnapInfo> baseInfos) {
 		return baseInfos;

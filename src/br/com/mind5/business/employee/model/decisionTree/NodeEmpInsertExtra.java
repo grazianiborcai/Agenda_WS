@@ -16,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeEmpInsertL2 extends DeciTreeTemplateWrite<EmpInfo> {	
+public final class NodeEmpInsertExtra extends DeciTreeTemplateWrite<EmpInfo> {	
 	
-	public NodeEmpInsertL2(DeciTreeOption<EmpInfo> option) {
+	public NodeEmpInsertExtra(DeciTreeOption<EmpInfo> option) {
 		super(option);
 	}
 	

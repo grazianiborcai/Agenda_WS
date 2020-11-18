@@ -3,10 +3,10 @@ package br.com.mind5.message.sysMessage.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class SymsgVisiMergeToSelect implements InfoMergerVisitor<SymsgInfo, SymsgInfo> {
+final class SymsgVisiMergeToSelect extends InfoMergerVisitorTemplate<SymsgInfo, SymsgInfo> {
 	
 	@Override public List<SymsgInfo> beforeMerge(List<SymsgInfo> baseInfos) {
 		return baseInfos;

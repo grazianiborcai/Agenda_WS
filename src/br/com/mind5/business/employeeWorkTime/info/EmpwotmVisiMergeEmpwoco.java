@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoInfo;
-import br.com.mind5.info.InfoMergerVisitor;
-import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class EmpwotmVisiMergeEmpwoco implements InfoMergerVisitor<EmpwotmInfo, EmpwocoInfo> {
-	
-	@Override public List<EmpwotmInfo> beforeMerge(List<EmpwotmInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
+final class EmpwotmVisiMergeEmpwoco extends InfoMergerVisitorTemplate<EmpwotmInfo, EmpwocoInfo> {
 	
 	@Override public boolean shouldMerge(EmpwotmInfo baseInfo, EmpwocoInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
@@ -28,11 +21,5 @@ final class EmpwotmVisiMergeEmpwoco implements InfoMergerVisitor<EmpwotmInfo, Em
 		
 		results.add(result);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<EmpwotmInfo> getUniquifier() {
-		return null;
 	}
 }

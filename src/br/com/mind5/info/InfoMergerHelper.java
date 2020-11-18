@@ -39,15 +39,27 @@ public final class InfoMergerHelper<T extends InfoRecord, K extends InfoRecord> 
 	
 	private List<T> mergeWithVisitor(List<T> baseInfos, List<K> selectedInfos, InfoMergerVisitor<T,K> visitor) {
 		baseInfos = visitor.beforeMerge(baseInfos);		
+		List<T> results = visitorMerge(baseInfos, selectedInfos, visitor);		
+		
+		checkResults(results);		
+		return uniquify(results, visitor);
+	}
+	
+	
+	
+	private List<T> visitorMerge(List<T> baseInfos, List<K> selectedInfos, InfoMergerVisitor<T,K> visitor) {
 		List<T> results = new ArrayList<>();
 		
 		
 		for (T eachBase : baseInfos) {
 			boolean flagMerge = false;
+			T eachBaseCopy = eachBase;
 			
 			for (K eachSelected : selectedInfos) {
-				if (visitor.shouldMerge(eachBase, eachSelected)) {
-					List<T> eachResults = visitor.merge(eachBase, eachSelected);
+				eachBaseCopy = copyWithVisitorCadinality(eachBase, visitor);
+				
+				if (visitor.shouldMerge(eachBaseCopy, eachSelected)) {
+					List<T> eachResults = visitor.merge(eachBaseCopy, eachSelected);
 					
 					checkResults(eachResults);
 					results.addAll(eachResults);
@@ -56,12 +68,20 @@ public final class InfoMergerHelper<T extends InfoRecord, K extends InfoRecord> 
 			}
 			
 			if (flagMerge == false)
-				results.add(eachBase);
+				results.add(eachBaseCopy);
 		}
 		
+	
+		return results;
+	}
+	
+	
+	
+	private T copyWithVisitorCadinality(T baseInfo, InfoMergerVisitor<T,K> visitor) {
+		if (visitor.getCardinality() == InfoMergerCardinality.ONE_TO_MANY)
+			return baseInfo;
 		
-		checkResults(results);		
-		return uniquify(results, visitor);
+		return InfoUtil.copy(baseInfo);
 	}
 	
 	

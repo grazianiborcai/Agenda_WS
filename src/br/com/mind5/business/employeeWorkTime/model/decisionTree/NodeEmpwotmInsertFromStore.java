@@ -8,7 +8,6 @@ import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmMergeStowo
 import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmRootInsert;
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmEnforceEmposKey;
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmSuccess;
-import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmpwoco;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmpwotarch;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStowotarch;
 import br.com.mind5.model.action.ActionLazy;
@@ -45,13 +44,6 @@ public final class NodeEmpwotmInsertFromStore extends DeciTreeTemplateWrite<Empw
 		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
 		checker = new EmpwotmCheckEmpwotarch(checkerOption);
 		queue.add(checker);			
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
-		checker = new EmpwotmCheckEmpwoco(checkerOption);
-		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueue<>(queue);
 	}

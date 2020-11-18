@@ -3,10 +3,10 @@ package br.com.mind5.business.orderSearch.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class OrdarchVisiMergeToSelect implements InfoMergerVisitor<OrdarchInfo, OrdarchInfo> {
+final class OrdarchVisiMergeToSelect extends InfoMergerVisitorTemplate<OrdarchInfo, OrdarchInfo> {
 
 	@Override public List<OrdarchInfo> beforeMerge(List<OrdarchInfo> baseInfos) {
 		return baseInfos;

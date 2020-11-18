@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CusmoipVisiMergePhonap implements InfoMergerVisitor<CusmoipInfo, PhonapInfo> {
+final class CusmoipVisiMergePhonap extends InfoMergerVisitorTemplate<CusmoipInfo, PhonapInfo> {
 	
 	@Override public List<CusmoipInfo> beforeMerge(List<CusmoipInfo> baseInfos) {
 		return baseInfos;

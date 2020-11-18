@@ -3,10 +3,10 @@ package br.com.mind5.business.storeNearby.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StorbyVisiMergeToSelect implements InfoMergerVisitor<StorbyInfo, StorbyInfo> {
+final class StorbyVisiMergeToSelect extends InfoMergerVisitorTemplate<StorbyInfo, StorbyInfo> {
 	
 	@Override public List<StorbyInfo> beforeMerge(List<StorbyInfo> baseInfos) {
 		return baseInfos;

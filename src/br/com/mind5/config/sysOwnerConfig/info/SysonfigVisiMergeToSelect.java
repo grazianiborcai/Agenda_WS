@@ -3,10 +3,10 @@ package br.com.mind5.config.sysOwnerConfig.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class SysonfigVisiMergeToSelect implements InfoMergerVisitor<SysonfigInfo, SysonfigInfo> {
+final class SysonfigVisiMergeToSelect extends InfoMergerVisitorTemplate<SysonfigInfo, SysonfigInfo> {
 	
 	@Override public List<SysonfigInfo> beforeMerge(List<SysonfigInfo> baseInfos) {
 		return baseInfos;

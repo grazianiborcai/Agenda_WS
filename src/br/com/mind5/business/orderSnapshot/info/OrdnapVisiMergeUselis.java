@@ -3,11 +3,11 @@ package br.com.mind5.business.orderSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class OrdnapVisiMergeUselis implements InfoMergerVisitor<OrdnapInfo, UselisInfo> {
+final class OrdnapVisiMergeUselis extends InfoMergerVisitorTemplate<OrdnapInfo, UselisInfo> {
 	
 	@Override public List<OrdnapInfo> beforeMerge(List<OrdnapInfo> baseInfos) {
 		return baseInfos;

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeText.info.StorextInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StoreVisiMergeStorext implements InfoMergerVisitor<StoreInfo, StorextInfo> {
+final class StoreVisiMergeStorext extends InfoMergerVisitorTemplate<StoreInfo, StorextInfo> {
 	
 	@Override public List<StoreInfo> beforeMerge(List<StoreInfo> baseInfos) {
 		return baseInfos;

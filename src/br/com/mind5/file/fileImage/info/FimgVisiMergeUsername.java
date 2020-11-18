@@ -3,11 +3,11 @@ package br.com.mind5.file.fileImage.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class FimgVisiMergeUsername implements InfoMergerVisitor<FimgInfo, UsernameInfo> {
+final class FimgVisiMergeUsername extends InfoMergerVisitorTemplate<FimgInfo, UsernameInfo> {
 	
 	@Override public List<FimgInfo> beforeMerge(List<FimgInfo> baseInfos) {
 		return baseInfos;

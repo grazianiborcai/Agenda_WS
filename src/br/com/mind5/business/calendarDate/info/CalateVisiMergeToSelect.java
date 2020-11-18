@@ -3,10 +3,10 @@ package br.com.mind5.business.calendarDate.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CalateVisiMergeToSelect implements InfoMergerVisitor<CalateInfo, CalateInfo> {
+final class CalateVisiMergeToSelect extends InfoMergerVisitorTemplate<CalateInfo, CalateInfo> {
 	
 	@Override public List<CalateInfo> beforeMerge(List<CalateInfo> baseInfos) {
 		return baseInfos;

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.companySearch.info.ComparchInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class ComplisVisiMergeComparch implements InfoMergerVisitor<ComplisInfo, ComparchInfo> {
+final class ComplisVisiMergeComparch extends InfoMergerVisitorTemplate<ComplisInfo, ComparchInfo> {
 	
 	@Override public List<ComplisInfo> beforeMerge(List<ComplisInfo> baseInfos) {
 		return baseInfos;

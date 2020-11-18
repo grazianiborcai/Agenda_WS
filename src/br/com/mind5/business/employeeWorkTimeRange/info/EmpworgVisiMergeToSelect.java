@@ -3,10 +3,10 @@ package br.com.mind5.business.employeeWorkTimeRange.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class EmpworgVisiMergeToSelect implements InfoMergerVisitor<EmpworgInfo, EmpworgInfo> {
+final class EmpworgVisiMergeToSelect extends InfoMergerVisitorTemplate<EmpworgInfo, EmpworgInfo> {
 	
 	@Override public List<EmpworgInfo> beforeMerge(List<EmpworgInfo> baseInfos) {
 		return baseInfos;

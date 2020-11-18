@@ -3,10 +3,10 @@ package br.com.mind5.business.cartReserve.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CarterveVisiMergeToSelect implements InfoMergerVisitor<CarterveInfo, CarterveInfo> {
+final class CarterveVisiMergeToSelect extends InfoMergerVisitorTemplate<CarterveInfo, CarterveInfo> {
 	
 	@Override public List<CarterveInfo> beforeMerge(List<CarterveInfo> baseInfos) {
 		return baseInfos;

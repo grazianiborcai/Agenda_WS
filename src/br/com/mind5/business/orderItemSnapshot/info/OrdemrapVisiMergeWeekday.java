@@ -3,11 +3,11 @@ package br.com.mind5.business.orderItemSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
-final class OrdemrapVisiMergeWeekday implements InfoMergerVisitor<OrdemrapInfo, WeekdayInfo> {
+final class OrdemrapVisiMergeWeekday extends InfoMergerVisitorTemplate<OrdemrapInfo, WeekdayInfo> {
 	
 	@Override public List<OrdemrapInfo> beforeMerge(List<OrdemrapInfo> baseInfos) {
 		return baseInfos;

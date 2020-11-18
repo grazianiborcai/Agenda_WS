@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class MatVisiMergeMatsnap implements InfoMergerVisitor<MatInfo, MatsnapInfo> {
+final class MatVisiMergeMatsnap extends InfoMergerVisitorTemplate<MatInfo, MatsnapInfo> {
 	
 	@Override public List<MatInfo> beforeMerge(List<MatInfo> baseInfos) {
 		return baseInfos;

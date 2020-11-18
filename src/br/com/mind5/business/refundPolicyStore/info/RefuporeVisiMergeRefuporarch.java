@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.refundPolicyStoreSearch.info.RefuporarchInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class RefuporeVisiMergeRefuporarch implements InfoMergerVisitor<RefuporeInfo, RefuporarchInfo> {
+final class RefuporeVisiMergeRefuporarch extends InfoMergerVisitorTemplate<RefuporeInfo, RefuporarchInfo> {
 	
 	@Override public List<RefuporeInfo> beforeMerge(List<RefuporeInfo> baseInfos) {
 		return baseInfos;

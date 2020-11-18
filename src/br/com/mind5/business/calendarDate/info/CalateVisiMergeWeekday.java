@@ -3,11 +3,11 @@ package br.com.mind5.business.calendarDate.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
-final class CalateVisiMergeWeekday implements InfoMergerVisitor<CalateInfo, WeekdayInfo> {
+final class CalateVisiMergeWeekday extends InfoMergerVisitorTemplate<CalateInfo, WeekdayInfo> {
 	
 	@Override public List<CalateInfo> beforeMerge(List<CalateInfo> baseInfos) {
 		return baseInfos;

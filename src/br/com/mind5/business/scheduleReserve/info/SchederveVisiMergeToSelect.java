@@ -3,10 +3,10 @@ package br.com.mind5.business.scheduleReserve.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class SchederveVisiMergeToSelect implements InfoMergerVisitor<SchederveInfo, SchederveInfo> {
+final class SchederveVisiMergeToSelect extends InfoMergerVisitorTemplate<SchederveInfo, SchederveInfo> {
 	
 	@Override public List<SchederveInfo> beforeMerge(List<SchederveInfo> baseInfos) {
 		return baseInfos;

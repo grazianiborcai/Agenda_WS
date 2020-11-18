@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class MatbcinVisiMergeOwnelis implements InfoMergerVisitor<MatbcinInfo, OwnelisInfo> {
+final class MatbcinVisiMergeOwnelis extends InfoMergerVisitorTemplate<MatbcinInfo, OwnelisInfo> {
 	
 	@Override public List<MatbcinInfo> beforeMerge(List<MatbcinInfo> baseInfos) {
 		return baseInfos;

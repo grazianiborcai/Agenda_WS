@@ -3,10 +3,10 @@ package br.com.mind5.message.emailBody.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class EmabodyVisiMergeToSelect implements InfoMergerVisitor<EmabodyInfo, EmabodyInfo> {
+final class EmabodyVisiMergeToSelect extends InfoMergerVisitorTemplate<EmabodyInfo, EmabodyInfo> {
 	
 	@Override public List<EmabodyInfo> beforeMerge(List<EmabodyInfo> baseInfos) {
 		return baseInfos;

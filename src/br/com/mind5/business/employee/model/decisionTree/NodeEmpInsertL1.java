@@ -9,12 +9,11 @@ import br.com.mind5.business.employee.model.action.LazyEmpEnforceCreatedBy;
 import br.com.mind5.business.employee.model.action.LazyEmpEnforceCreatedOn;
 import br.com.mind5.business.employee.model.action.LazyEmpMergeSytotauh;
 import br.com.mind5.business.employee.model.action.LazyEmpMergeUsername;
-import br.com.mind5.business.employee.model.action.LazyEmpNodeInsertL2;
 import br.com.mind5.business.employee.model.action.StdEmpEnforceLChanged;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
@@ -47,15 +46,13 @@ public final class NodeEmpInsertL1 extends DeciTreeTemplateWrite<EmpInfo> {
 		ActionLazy<EmpInfo> enforceCreatedBy = new LazyEmpEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> enforceCreatedOn = new LazyEmpEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> mergeSytotauh = new LazyEmpMergeSytotauh(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> insertEmployee = new LazyEmpDaoInsert(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> nodeL2 = new LazyEmpNodeInsertL2(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> insertEmployee = new LazyEmpDaoInsert(option.conn, option.schemaName);		
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);
 		enforceCreatedBy.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(mergeSytotauh);
 		mergeSytotauh.addPostAction(insertEmployee);
-		insertEmployee.addPostAction(nodeL2);
 		
 		actions.add(enforceLChanged);	
 		return actions;

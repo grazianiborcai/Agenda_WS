@@ -3,10 +3,10 @@ package br.com.mind5.business.personSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class PersonapVisiMergeToSelect implements InfoMergerVisitor<PersonapInfo, PersonapInfo> {
+final class PersonapVisiMergeToSelect extends InfoMergerVisitorTemplate<PersonapInfo, PersonapInfo> {
 	
 	@Override public List<PersonapInfo> beforeMerge(List<PersonapInfo> baseInfos) {
 		return baseInfos;

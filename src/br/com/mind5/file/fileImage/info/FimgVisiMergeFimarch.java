@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class FimgVisiMergeFimarch implements InfoMergerVisitor<FimgInfo, FimarchInfo> {
+final class FimgVisiMergeFimarch extends InfoMergerVisitorTemplate<FimgInfo, FimarchInfo> {
 	
 	@Override public List<FimgInfo> beforeMerge(List<FimgInfo> baseInfos) {
 		return baseInfos;

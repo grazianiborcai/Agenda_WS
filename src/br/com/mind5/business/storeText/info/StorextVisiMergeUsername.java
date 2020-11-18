@@ -3,11 +3,11 @@ package br.com.mind5.business.storeText.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class StorextVisiMergeUsername implements InfoMergerVisitor<StorextInfo, UsernameInfo> {
+final class StorextVisiMergeUsername extends InfoMergerVisitorTemplate<StorextInfo, UsernameInfo> {
 	
 	@Override public List<StorextInfo> beforeMerge(List<StorextInfo> baseInfos) {
 		return baseInfos;

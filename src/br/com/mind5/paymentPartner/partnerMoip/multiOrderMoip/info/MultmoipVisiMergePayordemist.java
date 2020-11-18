@@ -3,11 +3,11 @@ package br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.payOrderItemList.info.PayordemistInfo;
 
-final class MultmoipVisiMergePayordemist implements InfoMergerVisitor<MultmoipInfo, PayordemistInfo> {
+final class MultmoipVisiMergePayordemist extends InfoMergerVisitorTemplate<MultmoipInfo, PayordemistInfo> {
 	
 	@Override public List<MultmoipInfo> beforeMerge(List<MultmoipInfo> baseInfos) {
 		return baseInfos;

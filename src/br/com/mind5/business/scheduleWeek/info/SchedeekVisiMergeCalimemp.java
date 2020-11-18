@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.calendarTimeEmployee.info.CalimempInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class SchedeekVisiMergeCalimemp implements InfoMergerVisitor<SchedeekInfo, CalimempInfo> {
+final class SchedeekVisiMergeCalimemp extends InfoMergerVisitorTemplate<SchedeekInfo, CalimempInfo> {
 	
 	@Override public List<SchedeekInfo> beforeMerge(List<SchedeekInfo> baseInfos) {
 		return baseInfos;

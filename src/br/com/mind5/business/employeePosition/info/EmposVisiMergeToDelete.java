@@ -3,10 +3,10 @@ package br.com.mind5.business.employeePosition.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class EmposVisiMergeToDelete implements InfoMergerVisitor<EmposInfo, EmposInfo> {
+final class EmposVisiMergeToDelete extends InfoMergerVisitorTemplate<EmposInfo, EmposInfo> {
 	
 	@Override public List<EmposInfo> beforeMerge(List<EmposInfo> baseInfos) {
 		return baseInfos;

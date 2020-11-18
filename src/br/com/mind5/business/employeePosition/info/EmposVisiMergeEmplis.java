@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class EmposVisiMergeEmplis implements InfoMergerVisitor<EmposInfo, EmplisInfo> {
+final class EmposVisiMergeEmplis extends InfoMergerVisitorTemplate<EmposInfo, EmplisInfo> {
 	
 	@Override public List<EmposInfo> beforeMerge(List<EmposInfo> baseInfos) {
 		return baseInfos;

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.geo.geoCode.info.GeodeInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class AddressVisiMergeGeode implements InfoMergerVisitor<AddressInfo, GeodeInfo> {
+final class AddressVisiMergeGeode extends InfoMergerVisitorTemplate<AddressInfo, GeodeInfo> {
 	
 	@Override public List<AddressInfo> beforeMerge(List<AddressInfo> baseInfos) {
 		return baseInfos;

@@ -12,7 +12,7 @@ public final class InfoMergerBuilder<T extends InfoRecord, K extends InfoRecord>
 	
 	
 	public void addBaseInfo(T baseInfo) {
-		bases.addAll(InfoUtil.copy(baseInfo));
+		bases.addAll(InfoUtil.copyToList(baseInfo));
 	}
 	
 	
@@ -24,7 +24,7 @@ public final class InfoMergerBuilder<T extends InfoRecord, K extends InfoRecord>
 	
 	
 	public void addSelectedInfo(K selectedInfo) {
-		seles.addAll(InfoUtil.copy(selectedInfo));
+		seles.addAll(InfoUtil.copyToList(selectedInfo));
 	}
 	
 	

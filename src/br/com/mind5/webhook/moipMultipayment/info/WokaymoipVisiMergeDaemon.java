@@ -3,11 +3,11 @@ package br.com.mind5.webhook.moipMultipayment.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class WokaymoipVisiMergeDaemon implements InfoMergerVisitor<WokaymoipInfo, UserInfo> {
+final class WokaymoipVisiMergeDaemon extends InfoMergerVisitorTemplate<WokaymoipInfo, UserInfo> {
 	
 	@Override public List<WokaymoipInfo> beforeMerge(List<WokaymoipInfo> baseInfos) {
 		return baseInfos;

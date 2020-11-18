@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StorauthVisiMergeSotarch implements InfoMergerVisitor<StorauthInfo, SotarchInfo> {
+final class StorauthVisiMergeSotarch extends InfoMergerVisitorTemplate<StorauthInfo, SotarchInfo> {
 	
 	@Override public List<StorauthInfo> beforeMerge(List<StorauthInfo> baseInfos) {
 		return baseInfos;

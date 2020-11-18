@@ -3,11 +3,11 @@ package br.com.mind5.payment.refundOrderItem.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 
-final class RefemVisiMergeRefumoip implements InfoMergerVisitor<RefemInfo, RefumoipInfo> {
+final class RefemVisiMergeRefumoip extends InfoMergerVisitorTemplate<RefemInfo, RefumoipInfo> {
 	
 	@Override public List<RefemInfo> beforeMerge(List<RefemInfo> baseInfos) {
 		return baseInfos;

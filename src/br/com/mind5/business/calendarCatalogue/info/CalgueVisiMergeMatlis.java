@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CalgueVisiMergeMatlis implements InfoMergerVisitor<CalgueInfo, MatlisInfo> {
+final class CalgueVisiMergeMatlis extends InfoMergerVisitorTemplate<CalgueInfo, MatlisInfo> {
 	
 	@Override public List<CalgueInfo> beforeMerge(List<CalgueInfo> baseInfos) {
 		return baseInfos;

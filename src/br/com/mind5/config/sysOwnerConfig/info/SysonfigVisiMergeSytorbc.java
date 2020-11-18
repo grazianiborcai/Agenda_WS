@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.config.sysStoreBusinessContent.info.SytorbcInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class SysonfigVisiMergeSytorbc implements InfoMergerVisitor<SysonfigInfo, SytorbcInfo> {
+final class SysonfigVisiMergeSytorbc extends InfoMergerVisitorTemplate<SysonfigInfo, SytorbcInfo> {
 	
 	@Override public List<SysonfigInfo> beforeMerge(List<SysonfigInfo> baseInfos) {
 		return baseInfos;

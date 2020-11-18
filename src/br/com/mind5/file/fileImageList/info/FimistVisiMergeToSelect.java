@@ -3,10 +3,10 @@ package br.com.mind5.file.fileImageList.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class FimistVisiMergeToSelect implements InfoMergerVisitor<FimistInfo, FimistInfo> {
+final class FimistVisiMergeToSelect extends InfoMergerVisitorTemplate<FimistInfo, FimistInfo> {
 	
 	@Override public List<FimistInfo> beforeMerge(List<FimistInfo> baseInfos) {
 		return baseInfos;

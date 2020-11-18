@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class AddressVisiMergeAddarchStore implements InfoMergerVisitor<AddressInfo, AddarchInfo> {
+final class AddressVisiMergeAddarchStore extends InfoMergerVisitorTemplate<AddressInfo, AddarchInfo> {
 	
 	@Override public List<AddressInfo> beforeMerge(List<AddressInfo> baseInfos) {
 		return baseInfos;

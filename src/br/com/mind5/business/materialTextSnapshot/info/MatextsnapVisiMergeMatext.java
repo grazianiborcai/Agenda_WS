@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class MatextsnapVisiMergeMatext implements InfoMergerVisitor<MatextsnapInfo, MatextInfo> {
+final class MatextsnapVisiMergeMatext extends InfoMergerVisitorTemplate<MatextsnapInfo, MatextInfo> {
 	
 	@Override public List<MatextsnapInfo> beforeMerge(List<MatextsnapInfo> baseInfos) {
 		return baseInfos;

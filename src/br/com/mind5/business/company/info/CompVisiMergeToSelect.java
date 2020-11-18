@@ -3,10 +3,10 @@ package br.com.mind5.business.company.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CompVisiMergeToSelect implements InfoMergerVisitor<CompInfo, CompInfo> {
+final class CompVisiMergeToSelect extends InfoMergerVisitorTemplate<CompInfo, CompInfo> {
 	
 	@Override public List<CompInfo> beforeMerge(List<CompInfo> baseInfos) {
 		return baseInfos;

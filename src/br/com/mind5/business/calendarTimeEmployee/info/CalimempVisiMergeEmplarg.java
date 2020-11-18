@@ -7,10 +7,10 @@ import java.util.List;
 
 import br.com.mind5.business.calendarTime.info.CalimeInfo;
 import br.com.mind5.business.employeeLeaveDateRange.info.EmplargInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CalimempVisiMergeEmplarg implements InfoMergerVisitor<CalimempInfo, EmplargInfo> {
+final class CalimempVisiMergeEmplarg extends InfoMergerVisitorTemplate<CalimempInfo, EmplargInfo> {
 	
 	@Override public List<CalimempInfo> beforeMerge(List<CalimempInfo> baseInfos) {
 		return baseInfos;

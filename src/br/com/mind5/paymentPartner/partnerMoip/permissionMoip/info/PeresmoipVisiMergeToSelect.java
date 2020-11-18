@@ -3,10 +3,10 @@ package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class PeresmoipVisiMergeToSelect implements InfoMergerVisitor<PeresmoipInfo, PeresmoipInfo> {
+final class PeresmoipVisiMergeToSelect extends InfoMergerVisitorTemplate<PeresmoipInfo, PeresmoipInfo> {
 	
 	@Override public List<PeresmoipInfo> beforeMerge(List<PeresmoipInfo> baseInfos) {
 		return baseInfos;

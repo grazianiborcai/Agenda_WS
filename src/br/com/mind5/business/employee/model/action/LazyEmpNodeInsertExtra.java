@@ -4,15 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.business.employee.model.decisionTree.NodeEmpInsertL2;
+import br.com.mind5.business.employee.model.decisionTree.NodeEmpInsertExtra;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmpNodeInsertL2 extends ActionLazyTemplate<EmpInfo, EmpInfo> {
+public final class LazyEmpNodeInsertExtra extends ActionLazyTemplate<EmpInfo, EmpInfo> {
 
-	public LazyEmpNodeInsertL2(Connection conn, String schemaName) {
+	public LazyEmpNodeInsertExtra(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyEmpNodeInsertL2 extends ActionLazyTemplate<EmpInfo, EmpIn
 	
 	
 	@Override protected ActionStd<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
-		return new NodeEmpInsertL2(option).toAction();
+		return new NodeEmpInsertExtra(option).toAction();
 	}
 	
 	

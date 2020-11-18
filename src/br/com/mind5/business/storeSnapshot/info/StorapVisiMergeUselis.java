@@ -3,11 +3,11 @@ package br.com.mind5.business.storeSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class StorapVisiMergeUselis implements InfoMergerVisitor<StorapInfo, UselisInfo> {
+final class StorapVisiMergeUselis extends InfoMergerVisitorTemplate<StorapInfo, UselisInfo> {
 	
 	@Override public List<StorapInfo> beforeMerge(List<StorapInfo> baseInfos) {
 		return baseInfos;

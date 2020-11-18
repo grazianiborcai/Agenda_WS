@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class AddresnapVisiMergeCuslis implements InfoMergerVisitor<AddresnapInfo, CuslisInfo> {
+final class AddresnapVisiMergeCuslis extends InfoMergerVisitorTemplate<AddresnapInfo, CuslisInfo> {
 	
 	@Override public List<AddresnapInfo> beforeMerge(List<AddresnapInfo> baseInfos) {
 		return baseInfos;

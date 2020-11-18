@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeInsertAddress;
+import br.com.mind5.business.employee.model.action.LazyEmpNodeInsertExtra;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeInsertPerson;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeInsertPhone;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeInsertUser;
@@ -15,9 +16,9 @@ import br.com.mind5.business.employee.model.checker.EmpCheckLangu;
 import br.com.mind5.business.employee.model.checker.EmpCheckOwner;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -68,7 +69,8 @@ public final class RootEmpInsert extends DeciTreeTemplateWrite<EmpInfo> {
 		ActionLazy<EmpInfo> insertUser = new LazyEmpNodeInsertUser(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> snapshot = new LazyEmpNodeSnapshot(option.conn, option.schemaName);	
 		ActionLazy<EmpInfo> insertAddress = new LazyEmpNodeInsertAddress(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> insertPhone = new LazyEmpNodeInsertPhone(option.conn, option.schemaName);		
+		ActionLazy<EmpInfo> insertPhone = new LazyEmpNodeInsertPhone(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> insertExtra = new LazyEmpNodeInsertExtra(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> select = new LazyEmpRootSelect(option.conn, option.schemaName);	
 		
 		insertEmployee.addPostAction(insertPerson);		
@@ -76,7 +78,8 @@ public final class RootEmpInsert extends DeciTreeTemplateWrite<EmpInfo> {
 		insertUser.addPostAction(snapshot);
 		snapshot.addPostAction(insertAddress);		
 		snapshot.addPostAction(insertPhone);			
-		snapshot.addPostAction(select);
+		snapshot.addPostAction(insertExtra);
+		insertExtra.addPostAction(select);
 		
 		actions.add(insertEmployee);	
 		return actions;

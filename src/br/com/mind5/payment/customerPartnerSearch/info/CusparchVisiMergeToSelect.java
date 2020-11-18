@@ -3,10 +3,10 @@ package br.com.mind5.payment.customerPartnerSearch.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CusparchVisiMergeToSelect implements InfoMergerVisitor<CusparchInfo, CusparchInfo> {
+final class CusparchVisiMergeToSelect extends InfoMergerVisitorTemplate<CusparchInfo, CusparchInfo> {
 	
 	@Override public List<CusparchInfo> beforeMerge(List<CusparchInfo> baseInfos) {
 		return baseInfos;

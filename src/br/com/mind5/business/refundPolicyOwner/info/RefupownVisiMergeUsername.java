@@ -3,11 +3,11 @@ package br.com.mind5.business.refundPolicyOwner.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class RefupownVisiMergeUsername implements InfoMergerVisitor<RefupownInfo, UsernameInfo> {
+final class RefupownVisiMergeUsername extends InfoMergerVisitorTemplate<RefupownInfo, UsernameInfo> {
 	
 	@Override public List<RefupownInfo> beforeMerge(List<RefupownInfo> baseInfos) {
 		return baseInfos;

@@ -3,10 +3,10 @@ package br.com.mind5.business.phoneSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class PhonapVisiMergeToSelect implements InfoMergerVisitor<PhonapInfo, PhonapInfo> {
+final class PhonapVisiMergeToSelect extends InfoMergerVisitorTemplate<PhonapInfo, PhonapInfo> {
 	
 	@Override public List<PhonapInfo> beforeMerge(List<PhonapInfo> baseInfos) {
 		return baseInfos;

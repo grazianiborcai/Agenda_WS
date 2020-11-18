@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class SysonfigVisiMergeSytotin implements InfoMergerVisitor<SysonfigInfo, SytotinInfo> {
+final class SysonfigVisiMergeSytotin extends InfoMergerVisitorTemplate<SysonfigInfo, SytotinInfo> {
 	
 	@Override public List<SysonfigInfo> beforeMerge(List<SysonfigInfo> baseInfos) {
 		return baseInfos;

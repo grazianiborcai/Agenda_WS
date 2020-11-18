@@ -3,11 +3,11 @@ package br.com.mind5.security.user.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
-final class UserVisiMergeUserap implements InfoMergerVisitor<UserInfo, UserapInfo> {
+final class UserVisiMergeUserap extends InfoMergerVisitorTemplate<UserInfo, UserapInfo> {
 	
 	@Override public List<UserInfo> beforeMerge(List<UserInfo> baseInfos) {
 		return baseInfos;

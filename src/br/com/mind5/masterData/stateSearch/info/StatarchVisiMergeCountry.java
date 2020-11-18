@@ -3,11 +3,11 @@ package br.com.mind5.masterData.stateSearch.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.country.info.CountryInfo;
 
-final class StatarchVisiMergeCountry implements InfoMergerVisitor<StatarchInfo, CountryInfo> {
+final class StatarchVisiMergeCountry extends InfoMergerVisitorTemplate<StatarchInfo, CountryInfo> {
 	
 	@Override public List<StatarchInfo> beforeMerge(List<StatarchInfo> baseInfos) {
 		return baseInfos;

@@ -3,10 +3,10 @@ package br.com.mind5.business.storeWorkTimeRange.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StoworgVisiMergeToSelect implements InfoMergerVisitor<StoworgInfo, StoworgInfo> {
+final class StoworgVisiMergeToSelect extends InfoMergerVisitorTemplate<StoworgInfo, StoworgInfo> {
 	
 	@Override public List<StoworgInfo> beforeMerge(List<StoworgInfo> baseInfos) {
 		return baseInfos;

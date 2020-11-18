@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.InfoMergerVisitor;
-import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class EmpwotmVisiMergeStolis implements InfoMergerVisitor<EmpwotmInfo, StolisInfo> {
-	
-	@Override public List<EmpwotmInfo> beforeMerge(List<EmpwotmInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
+final class EmpwotmVisiMergeStolis extends InfoMergerVisitorTemplate<EmpwotmInfo, StolisInfo> {
 	
 	@Override public boolean shouldMerge(EmpwotmInfo baseInfo, StolisInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner &&
@@ -30,11 +23,5 @@ final class EmpwotmVisiMergeStolis implements InfoMergerVisitor<EmpwotmInfo, Sto
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<EmpwotmInfo> getUniquifier() {
-		return null;
 	}
 }

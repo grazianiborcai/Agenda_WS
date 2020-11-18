@@ -4,20 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
-import br.com.mind5.info.InfoMergerVisitor;
-import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.InfoMergerCardinality;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class EmpwotmVisiMergeStowotarch implements InfoMergerVisitor<EmpwotmInfo, StowotarchInfo> {
-	
-	@Override public List<EmpwotmInfo> beforeMerge(List<EmpwotmInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
+final class EmpwotmVisiMergeStowotarch extends InfoMergerVisitorTemplate<EmpwotmInfo, StowotarchInfo> {
 	
 	@Override public boolean shouldMerge(EmpwotmInfo baseInfo, StowotarchInfo selectedInfo) {
-		return (baseInfo.codOwner   == selectedInfo.codOwner		&&
-				baseInfo.codStore   == selectedInfo.codStore);
+		return (baseInfo.codOwner == selectedInfo.codOwner	&&
+				baseInfo.codStore == selectedInfo.codStore		);
 	}
 	
 	
@@ -35,7 +29,7 @@ final class EmpwotmVisiMergeStowotarch implements InfoMergerVisitor<EmpwotmInfo,
 	
 	
 	
-	@Override public InfoUniquifier<EmpwotmInfo> getUniquifier() {
-		return null;
+	@Override protected InfoMergerCardinality getCardinalityHook() {
+		return InfoMergerCardinality.MANY_TO_MANY;
 	}
 }

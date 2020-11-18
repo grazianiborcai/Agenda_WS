@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleDayData.info.SchedaytaInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class SchedayVisiMergeSchedayta implements InfoMergerVisitor<SchedayInfo, SchedaytaInfo> {
+final class SchedayVisiMergeSchedayta extends InfoMergerVisitorTemplate<SchedayInfo, SchedaytaInfo> {
 	
 	@Override public List<SchedayInfo> beforeMerge(List<SchedayInfo> baseInfos) {
 		return baseInfos;

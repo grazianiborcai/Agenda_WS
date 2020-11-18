@@ -6,10 +6,10 @@ import java.util.List;
 
 import br.com.mind5.business.calendarTime.info.CalimeInfo;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CalimoreVisiMergeStowotarch implements InfoMergerVisitor<CalimoreInfo, StowotarchInfo> {
+final class CalimoreVisiMergeStowotarch extends InfoMergerVisitorTemplate<CalimoreInfo, StowotarchInfo> {
 	
 	@Override public List<CalimoreInfo> beforeMerge(List<CalimoreInfo> baseInfos) {
 		

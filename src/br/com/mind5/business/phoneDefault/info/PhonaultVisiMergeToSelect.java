@@ -3,10 +3,10 @@ package br.com.mind5.business.phoneDefault.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class PhonaultVisiMergeToSelect implements InfoMergerVisitor<PhonaultInfo, PhonaultInfo> {
+final class PhonaultVisiMergeToSelect extends InfoMergerVisitorTemplate<PhonaultInfo, PhonaultInfo> {
 	
 	@Override public List<PhonaultInfo> beforeMerge(List<PhonaultInfo> baseInfos) {
 		return baseInfos;

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.form.formAddress.info.FormessInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class AddressVisiMergeFormess implements InfoMergerVisitor<AddressInfo, FormessInfo> {
+final class AddressVisiMergeFormess extends InfoMergerVisitorTemplate<AddressInfo, FormessInfo> {
 	
 	@Override public List<AddressInfo> beforeMerge(List<AddressInfo> baseInfos) {
 		return baseInfos;

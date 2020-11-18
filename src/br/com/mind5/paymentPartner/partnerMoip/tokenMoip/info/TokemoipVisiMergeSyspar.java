@@ -3,11 +3,11 @@ package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 
-final class TokemoipVisiMergeSyspar implements InfoMergerVisitor<TokemoipInfo, SysparInfo> {
+final class TokemoipVisiMergeSyspar extends InfoMergerVisitorTemplate<TokemoipInfo, SysparInfo> {
 	
 	@Override public List<TokemoipInfo> beforeMerge(List<TokemoipInfo> baseInfos) {
 		return baseInfos;

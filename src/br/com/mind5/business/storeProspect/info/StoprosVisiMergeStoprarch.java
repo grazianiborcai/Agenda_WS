@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeProspectSearch.info.StoprarchInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StoprosVisiMergeStoprarch implements InfoMergerVisitor<StoprosInfo, StoprarchInfo> {
+final class StoprosVisiMergeStoprarch extends InfoMergerVisitorTemplate<StoprosInfo, StoprarchInfo> {
 	
 	@Override public List<StoprosInfo> beforeMerge(List<StoprosInfo> baseInfos) {
 		return baseInfos;

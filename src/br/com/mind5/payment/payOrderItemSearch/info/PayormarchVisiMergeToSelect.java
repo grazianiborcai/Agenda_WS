@@ -3,10 +3,10 @@ package br.com.mind5.payment.payOrderItemSearch.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class PayormarchVisiMergeToSelect implements InfoMergerVisitor<PayormarchInfo, PayormarchInfo> {
+final class PayormarchVisiMergeToSelect extends InfoMergerVisitorTemplate<PayormarchInfo, PayormarchInfo> {
 	
 	@Override public List<PayormarchInfo> beforeMerge(List<PayormarchInfo> baseInfos) {
 		return baseInfos;
