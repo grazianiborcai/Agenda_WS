@@ -9,12 +9,6 @@ import br.com.mind5.info.InfoUniquifier;
 
 final class UserVisiMergeAddress extends InfoMergerVisitorTemplate<UserInfo, AddressInfo> {
 	
-	@Override public List<UserInfo> beforeMerge(List<UserInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(UserInfo baseInfo, AddressInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner && 
 				baseInfo.codUser  == selectedInfo.codUser		);

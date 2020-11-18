@@ -9,12 +9,6 @@ import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 
 final class UserVisiMergeAuthgrole extends InfoMergerVisitorTemplate<UserInfo, AuthgroleInfo> {
 	
-	@Override public List<UserInfo> beforeMerge(List<UserInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(UserInfo baseInfo, AuthgroleInfo selectedInfo) {
 		return true;
 	}

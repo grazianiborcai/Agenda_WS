@@ -9,12 +9,6 @@ import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
 final class UserVisiMergeUserap extends InfoMergerVisitorTemplate<UserInfo, UserapInfo> {
 	
-	@Override public List<UserInfo> beforeMerge(List<UserInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(UserInfo baseInfo, UserapInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner && 
 				baseInfo.codUser  == selectedInfo.codUser		);
