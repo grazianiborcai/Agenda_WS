@@ -11,8 +11,10 @@ public final class PersolisSetterRestricted extends InfoSetterTemplate<PersolisI
 		result.codPerson = recordInfo.codPerson;
 		result.codSnapshot = recordInfo.codSnapshot;
 		result.name = recordInfo.name;
+		result.nameDisplay = recordInfo.nameDisplay;
 		result.recordMode = recordInfo.recordMode;
 		result.username = recordInfo.username;		
+		result.codLanguage = recordInfo.codLanguage;	
 		
 		return result;
 	}

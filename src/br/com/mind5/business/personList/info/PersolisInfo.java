@@ -12,6 +12,7 @@ public final class PersolisInfo extends InfoRecord implements Cloneable {
 	public long codSnapshot;
 	public String cpf;
 	public String name;
+	public String nameDisplay;
 	public String email;
 	public LocalDate birthDate;
 	public int birthYear;

@@ -69,7 +69,8 @@ public final class DaoPersolisSelectSingle extends DaoStmtTemplate<PersolisInfo>
 					
 					dataInfo.codOwner = stmtResult.getLong(DaoPersolisDbTableColumn.COL_COD_OWNER);
 					dataInfo.codPerson = stmtResult.getLong(DaoPersolisDbTableColumn.COL_COD_PERSON);
-					dataInfo.name = stmtResult.getString(DaoPersolisDbTableColumn.COL_NAME);							
+					dataInfo.name = stmtResult.getString(DaoPersolisDbTableColumn.COL_NAME);		
+					dataInfo.nameDisplay = stmtResult.getString(DaoPersolisDbTableColumn.COL_NAME_DISPLAY);
 					dataInfo.recordMode = stmtResult.getString(DaoPersolisDbTableColumn.COL_RECORD_MODE);	
 					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoPersolisDbTableColumn.COL_COD_SNAPSHOT);
 					dataInfo.birthDate = DaoFormatter.sqlToLocalDate(stmtResult, DaoPersolisDbTableColumn.COL_BIRTH_DATE);
