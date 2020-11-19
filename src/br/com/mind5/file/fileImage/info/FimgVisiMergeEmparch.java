@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeSearch.info.EmparchInfo;
+import br.com.mind5.info.InfoMergerCardinality;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
 final class FimgVisiMergeEmparch extends InfoMergerVisitorTemplate<FimgInfo, EmparchInfo> {
@@ -22,5 +23,11 @@ final class FimgVisiMergeEmparch extends InfoMergerVisitorTemplate<FimgInfo, Emp
 		
 		results.add(baseInfo);
 		return results;
+	}
+	
+	
+	
+	@Override protected InfoMergerCardinality getCardinalityHook() {
+		return InfoMergerCardinality.MANY_TO_MANY;
 	}
 }

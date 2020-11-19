@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
-import br.com.mind5.info.InfoMergerCardinality;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
 final class FimgVisiMergeFimarch extends InfoMergerVisitorTemplate<FimgInfo, FimarchInfo> {
@@ -22,11 +21,5 @@ final class FimgVisiMergeFimarch extends InfoMergerVisitorTemplate<FimgInfo, Fim
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override protected InfoMergerCardinality getCardinalityHook() {
-		return InfoMergerCardinality.MANY_TO_MANY;
 	}
 }
