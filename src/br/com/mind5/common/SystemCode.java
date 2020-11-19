@@ -979,6 +979,8 @@ public final class SystemCode {
 	public static final int EMP_SEARCH_MANDATORY_FIELD_EMPTY			= 7450;
 	public static final int EMP_SEARCH_EMAIL_ALREADY_EXIST				= 7451;
 	public static final int EMP_SEARCH_EMAIL_NOT_FOUND					= 7452;
+	public static final int EMP_SEARCH_EMP_ALREADY_EXIST 				= 7453;
+	public static final int EMP_SEARCH_EMP_NOT_FOUND 					= 7454;
 	
 	// Person List
 	public static final int PERSON_LIST_MANDATORY_FIELD_EMPTY			= 7500;
