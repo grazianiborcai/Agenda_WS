@@ -16,8 +16,13 @@ public final class FimgCheckInsertEmp extends ModelCheckerTemplateSimple<FimgInf
 	
 	
 	@Override protected boolean checkHook(FimgInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codEmployee <= 0 )
+		if ( recordInfo.codOwner 	<= 0	||
+			 recordInfo.codEmployee <= 0 	||
+			 recordInfo.username 	== null	||
+			 recordInfo.codLanguage == null		)
+			
 			return super.FAILED;			
+		
 		
 		return super.SUCCESS;
 	}

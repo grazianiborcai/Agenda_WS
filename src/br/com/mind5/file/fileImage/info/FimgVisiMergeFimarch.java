@@ -5,15 +5,8 @@ import java.util.List;
 
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class FimgVisiMergeFimarch extends InfoMergerVisitorTemplate<FimgInfo, FimarchInfo> {
-	
-	@Override public List<FimgInfo> beforeMerge(List<FimgInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
 	
 	@Override public boolean shouldMerge(FimgInfo baseInfo, FimarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
@@ -28,11 +21,5 @@ final class FimgVisiMergeFimarch extends InfoMergerVisitorTemplate<FimgInfo, Fim
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<FimgInfo> getUniquifier() {
-		return null;
 	}
 }

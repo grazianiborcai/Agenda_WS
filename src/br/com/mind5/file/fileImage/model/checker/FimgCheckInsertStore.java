@@ -16,8 +16,13 @@ public final class FimgCheckInsertStore extends ModelCheckerTemplateSimple<FimgI
 	
 	
 	@Override protected boolean checkHook(FimgInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codStore <= 0 )
+		if ( recordInfo.codOwner 	<= 0	||
+			 recordInfo.codStore 	<= 0 	||
+			 recordInfo.username 	== null	||
+			 recordInfo.codLanguage == null		)
+			
 			return super.FAILED;			
+		
 		
 		return super.SUCCESS;
 	}

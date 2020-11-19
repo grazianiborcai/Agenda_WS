@@ -2,13 +2,27 @@ package br.com.mind5.file.fileImage.info;
 
 import java.util.List;
 
+import br.com.mind5.business.employeeSearch.info.EmparchInfo;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.file.filePath.info.FathInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class FimgMerger {	
+	public static List<FimgInfo> mergeWithEmparch(List<FimgInfo> baseInfos, List<EmparchInfo> selectedInfos) {
+		InfoMergerBuilder<FimgInfo, EmparchInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new FimgVisiMergeEmparch());
+		InfoMerger<FimgInfo, EmparchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<FimgInfo> mergeWithFimarch(List<FimgInfo> baseInfos, List<FimarchInfo> selectedInfos) {
 		InfoMergerBuilder<FimgInfo, FimarchInfo> builder = new InfoMergerBuilder<>();
 		

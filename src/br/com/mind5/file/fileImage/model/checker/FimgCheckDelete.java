@@ -16,10 +16,10 @@ public final class FimgCheckDelete extends ModelCheckerTemplateSimple<FimgInfo> 
 	
 	
 	@Override protected boolean checkHook(FimgInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 		<= 0 	
-			|| recordInfo.codFileImg	<= 0
-			|| recordInfo.codLanguage	== null
-			|| recordInfo.username		== null	)
+		if ( recordInfo.codOwner 	<= 0 	||
+			 recordInfo.codFileImg	<= 0	||
+			 recordInfo.codLanguage	== null	||
+			 recordInfo.username	== null		)
 			
 			return super.FAILED;
 			
