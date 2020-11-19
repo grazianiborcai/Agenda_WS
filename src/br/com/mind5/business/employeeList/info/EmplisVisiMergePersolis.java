@@ -7,6 +7,7 @@ import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
 final class EmplisVisiMergePersolis extends InfoMergerVisitorTemplate<EmplisInfo, PersolisInfo> {
+	
 	@Override public boolean shouldMerge(EmplisInfo baseInfo, PersolisInfo selectedInfo) {
 		return (baseInfo.codOwner  == selectedInfo.codOwner &&
 				baseInfo.codPerson == selectedInfo.codPerson	);

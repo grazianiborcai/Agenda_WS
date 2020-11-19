@@ -7,6 +7,7 @@ import br.com.mind5.business.employeeSearch.info.EmparchInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
 final class EmplisVisiMergeEmparch extends InfoMergerVisitorTemplate<EmplisInfo, EmparchInfo> {
+	
 	@Override public boolean shouldMerge(EmplisInfo baseInfo, EmparchInfo selectedInfo) {
 		boolean result = (baseInfo.codOwner == selectedInfo.codOwner);
 		

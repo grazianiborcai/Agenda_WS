@@ -72,6 +72,7 @@ public final class DaoEmplisSelectSingle extends DaoStmtTemplate<EmplisInfo> {
 					
 					dataInfo.codOwner = stmtResult.getLong(DaoEmplisDbTableColumn.COL_COD_OWNER);
 					dataInfo.codEmployee = stmtResult.getLong(DaoEmplisDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codStore = stmtResult.getLong(DaoEmplisDbTableColumn.COL_COD_STORE);
 					dataInfo.recordMode = stmtResult.getString(DaoEmplisDbTableColumn.COL_RECORD_MODE);
 					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoEmplisDbTableColumn.COL_COD_PERSON);
 					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoEmplisDbTableColumn.COL_COD_SNAPSHOT);				
