@@ -76,8 +76,10 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner   ^ (codOwner   >>> 32));
-		result = result * 31 + (int) (codFileImg ^ (codFileImg >>> 32));
+		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
+		result = result * 31 + (int) (codFileImg  ^ (codFileImg  >>> 32));
+		result = result * 31 + (int) (codEmployee ^ (codEmployee >>> 32));
+		result = result * 31 + (int) (codUser 	  ^ (codUser 	 >>> 32));
 		
 		if (fileImgName != null)
 			result = result * 31 + fileImgName.hashCode();
@@ -100,8 +102,10 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 		
 		
 		FimgInfo obj = (FimgInfo) o;		
-		return (codOwner    == obj.codOwner   && 
-				codFileImg 	== obj.codFileImg &&
+		return (codOwner    == obj.codOwner    	&& 
+				codFileImg 	== obj.codFileImg  	&&
+				codEmployee == obj.codEmployee 	&&
+				codUser 	== obj.codUser 		&&
 				super.isStringEqual(fileImgName, obj.fileImgName) &&
 				super.isStringEqual(fileImgExtension, obj.fileImgExtension));
 	}	
