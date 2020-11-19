@@ -53,13 +53,13 @@ public final class RootFimgInsertUserAuth extends DeciTreeTemplateWrite<FimgInfo
 		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<FimgInfo> nodeUser = new NodeFimgUser(option).toAction();
-		ActionLazy<FimgInfo> enforceUser = new LazyFimgEnforceUser(option.conn, option.schemaName);	
-		ActionLazy<FimgInfo> upsert = new LazyFimgNodeUpsertUser(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> enforceUser = new LazyFimgEnforceUser(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> nodeL1 = new LazyFimgNodeInsertUserAuth(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> upsert = new LazyFimgNodeUpsertUser(option.conn, option.schemaName);		
 		
 		nodeUser.addPostAction(enforceUser);
-		enforceUser.addPostAction(upsert);
 		enforceUser.addPostAction(nodeL1);
+		enforceUser.addPostAction(upsert);
 		
 		actions.add(nodeUser);		
 		return actions;
