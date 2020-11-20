@@ -4,15 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
-final class FimistVisiMergeToSelect extends InfoMergerVisitorTemplate<FimistInfo, FimistInfo> {
-	
-	@Override public List<FimistInfo> beforeMerge(List<FimistInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
+final class FimistVisiMergeToSelect extends InfoMergerVisitorTemplate<FimistInfo, FimistInfo> {	
 	
 	@Override public boolean shouldMerge(FimistInfo baseInfo, FimistInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
@@ -28,11 +21,5 @@ final class FimistVisiMergeToSelect extends InfoMergerVisitorTemplate<FimistInfo
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<FimistInfo> getUniquifier() {
-		return null;
 	}
 }
