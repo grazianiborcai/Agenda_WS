@@ -3,6 +3,7 @@ package br.com.mind5.file.fileImage.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoStmtParamTranslator;
@@ -71,7 +72,8 @@ public final class DaoFimgUpdateSingle extends DaoStmtTemplate<FimgInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
 				stmt.setString(i++, recordInfo.fileImgPathExternal);
-				stmt.setString(i++, recordInfo.fileImgUriExternal);	
+				stmt.setString(i++, recordInfo.fileImgUriExternal);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
 				
 				return stmt;
 			}		

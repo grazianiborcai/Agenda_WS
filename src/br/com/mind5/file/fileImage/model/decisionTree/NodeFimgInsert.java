@@ -12,6 +12,7 @@ import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceUri;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceUriExternal;
 import br.com.mind5.file.fileImage.model.action.LazyFimgMergeFath;
 import br.com.mind5.file.fileImage.model.action.LazyFimgMergeUsername;
+import br.com.mind5.file.fileImage.model.action.LazyFimgNodeSnapshot;
 import br.com.mind5.file.fileImage.model.action.StdFimgEnforceLChanged;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -52,7 +53,8 @@ public final class NodeFimgInsert extends DeciTreeTemplateWrite<FimgInfo> {
 		ActionLazy<FimgInfo> mergeFath = new LazyFimgMergeFath(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> enforceUri = new LazyFimgEnforceUri(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> enforceUriExternal = new LazyFimgEnforceUriExternal(option.conn, option.schemaName);
-		ActionLazy<FimgInfo> insert = new LazyFimgDaoInsert(option.conn, option.schemaName);	
+		ActionLazy<FimgInfo> insert = new LazyFimgDaoInsert(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> snapshot = new LazyFimgNodeSnapshot(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(enforceLChangedBy);
@@ -61,7 +63,8 @@ public final class NodeFimgInsert extends DeciTreeTemplateWrite<FimgInfo> {
 		enforceFilename.addPostAction(mergeFath);
 		mergeFath.addPostAction(enforceUri);	
 		enforceUri.addPostAction(enforceUriExternal);
-		enforceUriExternal.addPostAction(insert);		
+		enforceUriExternal.addPostAction(insert);
+		insert.addPostAction(snapshot);
 		
 		actions.add(enforceLChanged);		
 		return actions;

@@ -82,6 +82,7 @@ public final class DaoFimgSelectSingle extends DaoStmtTemplate<FimgInfo> {
 					dataInfo.fileImgPath = stmtResult.getString(DaoFimgDbTableColumn.COL_IMG_FILE_PATH);
 					dataInfo.fileImgPathExternal = stmtResult.getString(DaoFimgDbTableColumn.COL_IMG_FILE_PATH_EXTERNAL);
 					dataInfo.isCover = DaoFormatter.sqlToBoole(stmtResult, DaoFimgDbTableColumn.COL_IS_COVER);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoFimgDbTableColumn.COL_COD_SNAPSHOT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

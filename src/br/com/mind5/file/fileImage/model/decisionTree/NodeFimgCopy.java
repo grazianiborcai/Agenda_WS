@@ -8,6 +8,7 @@ import br.com.mind5.file.fileImage.model.action.LazyFimgDaoInsert;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceCreatedBy;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceCreatedOn;
 import br.com.mind5.file.fileImage.model.action.LazyFimgMergeUsername;
+import br.com.mind5.file.fileImage.model.action.LazyFimgNodeSnapshot;
 import br.com.mind5.file.fileImage.model.action.LazyFimgRootSelect;
 import br.com.mind5.file.fileImage.model.action.LazyFimgRootUpdate;
 import br.com.mind5.file.fileImage.model.action.StdFimgEnforceLChanged;
@@ -53,14 +54,16 @@ public final class NodeFimgCopy extends DeciTreeTemplateWrite<FimgInfo> {
 		ActionLazy<FimgInfo> enforceCreatedOn = new LazyFimgEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> enforceLChangedBy = new LazyFimgMergeUsername(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> enforceCreatedBy = new LazyFimgEnforceCreatedBy(option.conn, option.schemaName);
-		ActionLazy<FimgInfo> insert = new LazyFimgDaoInsert(option.conn, option.schemaName);	
+		ActionLazy<FimgInfo> insert = new LazyFimgDaoInsert(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> snapshot = new LazyFimgNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> select = new LazyFimgRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);
 		enforceCreatedBy.addPostAction(insert);
-		insert.addPostAction(select);
+		insert.addPostAction(snapshot);
+		snapshot.addPostAction(select);
 		
 		actions.add(enforceLChanged);		
 		return actions;

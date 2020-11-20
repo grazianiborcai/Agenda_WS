@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeSearch.info.EmparchInfo;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
+import br.com.mind5.file.fileImageSnapshot.info.FimgnapInfo;
 import br.com.mind5.file.filePath.info.FathInfo;
 import br.com.mind5.file.fileRead.info.FreadInfo;
 import br.com.mind5.info.InfoMerger;
@@ -11,6 +12,19 @@ import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class FimgMerger {	
+	public static List<FimgInfo> mergeWithFimgnap(List<FimgInfo> baseInfos, List<FimgnapInfo> selectedInfos) {
+		InfoMergerBuilder<FimgInfo, FimgnapInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new FimgVisiMergeFimgnap());
+		InfoMerger<FimgInfo, FimgnapInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<FimgInfo> mergeWithFread(List<FimgInfo> baseInfos, List<FreadInfo> selectedInfos) {
 		InfoMergerBuilder<FimgInfo, FreadInfo> builder = new InfoMergerBuilder<>();
 		

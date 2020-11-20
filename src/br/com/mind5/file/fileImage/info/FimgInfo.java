@@ -10,6 +10,7 @@ import br.com.mind5.info.InfoRecord;
 public final class FimgInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codFileImg;
+	public long codSnapshot;
 	public String fileImgUri;
 	public String fileImgUriExternal;
 	public String fileImgName;
@@ -38,6 +39,7 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codFileImg = DefaultValue.number();	
+		codSnapshot = DefaultValue.number();
 		isCover = DefaultValue.boole();
 		codPerson = DefaultValue.number();
 		codEmployee = DefaultValue.number();

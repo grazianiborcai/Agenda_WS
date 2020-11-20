@@ -14,11 +14,13 @@ final class FimgCopyEmp extends InfoCopierTemplate<FimgInfo, EmpInfo> {
 	@Override protected FimgInfo makeCopyHook(EmpInfo source) {		
 		FimgInfo result = new FimgInfo();
 		
-		result.codOwner = source.codOwner;
-		result.codFileImg = source.fimistData.codFileImg;
+		result.codOwner = source.codOwner;		
 		result.codEmployee = source.codEmployee;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
+		
+		if (source.fimistData != null)
+			result.codFileImg = source.fimistData.codFileImg;
 		
 		return result;
 	}

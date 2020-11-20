@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
+import br.com.mind5.file.fileImage.model.action.LazyFimgDaoUpdate;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceFilename;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceLChanged;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceUri;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceUriExternal;
 import br.com.mind5.file.fileImage.model.action.LazyFimgMergeFath;
 import br.com.mind5.file.fileImage.model.action.LazyFimgMergeUsername;
+import br.com.mind5.file.fileImage.model.action.LazyFimgNodeSnapshot;
 import br.com.mind5.file.fileImage.model.action.LazyFimgRootSelect;
-import br.com.mind5.file.fileImage.model.action.LazyFimgDaoUpdate;
 import br.com.mind5.file.fileImage.model.action.LazyFimgWriteOnDisk;
 import br.com.mind5.file.fileImage.model.action.StdFimgMergeToReplace;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckExist;
@@ -21,8 +22,8 @@ import br.com.mind5.file.fileImage.model.checker.FimgCheckReplace;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -82,7 +83,8 @@ public final class RootFimgReplace extends DeciTreeTemplateWrite<FimgInfo> {
 		ActionLazy<FimgInfo> mergeFath = new LazyFimgMergeFath(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> enforceUri = new LazyFimgEnforceUri(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> enforceUriExternal = new LazyFimgEnforceUriExternal(option.conn, option.schemaName);
-		ActionLazy<FimgInfo> update = new LazyFimgDaoUpdate(option.conn, option.schemaName);	
+		ActionLazy<FimgInfo> update = new LazyFimgDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> snapshot = new LazyFimgNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> writeOnDisk = new LazyFimgWriteOnDisk(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> select = new LazyFimgRootSelect(option.conn, option.schemaName);
 		
@@ -93,7 +95,8 @@ public final class RootFimgReplace extends DeciTreeTemplateWrite<FimgInfo> {
 		mergeFath.addPostAction(enforceUri);
 		enforceUri.addPostAction(enforceUriExternal);
 		enforceUriExternal.addPostAction(update);
-		update.addPostAction(writeOnDisk);
+		update.addPostAction(snapshot);
+		snapshot.addPostAction(writeOnDisk);
 		writeOnDisk.addPostAction(select);
 		
 		actions.add(mergeToReplace);		

@@ -5,10 +5,9 @@ import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.action.LazyFimgDaoUpdate;
-import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceLChanged;
-import br.com.mind5.file.fileImage.model.action.LazyFimgMergeUsername;
-import br.com.mind5.file.fileImage.model.action.LazyFimgNodeSnapshot;
-import br.com.mind5.file.fileImage.model.action.StdFimgMergeToUpdate;
+import br.com.mind5.file.fileImage.model.action.LazyFimgRootUpdate;
+import br.com.mind5.file.fileImage.model.action.StdFimgFimgnapInsert;
+import br.com.mind5.file.fileImage.model.action.StdFimgMergeFimarch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -17,9 +16,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeFimgUpdate extends DeciTreeTemplateWrite<FimgInfo> {
+public final class NodeFimgSnapshot extends DeciTreeTemplateWrite<FimgInfo> {
 	
-	public NodeFimgUpdate(DeciTreeOption<FimgInfo> option) {
+	public NodeFimgSnapshot(DeciTreeOption<FimgInfo> option) {
 		super(option);
 	}
 	
@@ -28,7 +27,7 @@ public final class NodeFimgUpdate extends DeciTreeTemplateWrite<FimgInfo> {
 	@Override protected ModelChecker<FimgInfo> buildCheckerHook(DeciTreeOption<FimgInfo> option) {
 		List<ModelChecker<FimgInfo>> queue = new ArrayList<>();		
 		ModelChecker<FimgInfo> checker;	
-
+	
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
@@ -40,18 +39,26 @@ public final class NodeFimgUpdate extends DeciTreeTemplateWrite<FimgInfo> {
 	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
 		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<FimgInfo> mergeToUpdate = new StdFimgMergeToUpdate(option);	
-		ActionLazy<FimgInfo> enforceLChanged = new LazyFimgEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazy<FimgInfo> enforceLChangedBy = new LazyFimgMergeUsername(option.conn, option.schemaName);
+		ActionStd<FimgInfo> insertSnapshot = new StdFimgFimgnapInsert(option);	
 		ActionLazy<FimgInfo> update = new LazyFimgDaoUpdate(option.conn, option.schemaName);
-		ActionLazy<FimgInfo> snapshot = new LazyFimgNodeSnapshot(option.conn, option.schemaName);
 		
-		mergeToUpdate.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(update);
-		update.addPostAction(snapshot);
+		insertSnapshot.addPostAction(update);
 		
-		actions.add(mergeToUpdate);		
+		actions.add(insertSnapshot);		
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<FimgInfo>> buildActionsOnFailedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
+		
+		ActionStd<FimgInfo> mergeFimarch = new StdFimgMergeFimarch(option);
+		ActionLazy<FimgInfo> update = new LazyFimgRootUpdate(option.conn, option.schemaName);
+		
+		mergeFimarch.addPostAction(update);
+		
+		actions.add(mergeFimarch);		
 		return actions;
 	}
 }
