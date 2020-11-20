@@ -111,6 +111,7 @@ public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRec
 			return postAction.getDecisionResult();
 		
 		} catch (Exception e) {
+			SystemLog.logError(this.getClass(), e);
 			return makeErrorResult();
 		}		
 	}
