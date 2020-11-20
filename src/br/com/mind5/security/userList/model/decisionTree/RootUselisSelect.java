@@ -5,12 +5,13 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.security.userList.info.UselisInfo;
+import br.com.mind5.security.userList.model.action.LazyUselisMergeFimist;
 import br.com.mind5.security.userList.model.action.LazyUselisNodePerson;
 import br.com.mind5.security.userList.model.action.StdUselisMergeToSelect;
 import br.com.mind5.security.userList.model.checker.UselisCheckLangu;
@@ -61,8 +62,10 @@ public final class RootUselisSelect extends DeciTreeTemplateRead<UselisInfo> {
 		
 		ActionStd<UselisInfo> select = new StdUselisMergeToSelect(option);
 		ActionLazy<UselisInfo> person = new LazyUselisNodePerson(option.conn, option.schemaName);
+		ActionLazy<UselisInfo> mergeFimist = new LazyUselisMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(person);
+		person.addPostAction(mergeFimist);
 		
 		actions.add(select);
 		return actions;

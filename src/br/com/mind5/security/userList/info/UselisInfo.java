@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
+import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
 
 public final class UselisInfo extends InfoRecord implements Cloneable {
@@ -17,6 +18,7 @@ public final class UselisInfo extends InfoRecord implements Cloneable {
 	public String codAuthGroup;
 	public long codPerson;
 	public PersolisInfo persolisData;
+	public FimistInfo fimistData;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -30,7 +32,8 @@ public final class UselisInfo extends InfoRecord implements Cloneable {
 		codSnapshot = DefaultValue.number();
 		codUserCategory = DefaultValue.character();
 		codPerson = DefaultValue.number();
-		persolisData = DefaultValue.object();	
+		persolisData = DefaultValue.object();
+		fimistData = DefaultValue.object();
 		recordMode = DefaultValue.recordMode();		
 		lastChangedBy = DefaultValue.number();
 	}
@@ -52,7 +55,9 @@ public final class UselisInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		UselisInfo deepCopy = (UselisInfo) super.clone();
 		
-		deepCopy.persolisData = CloneUtil.cloneRecord(deepCopy.persolisData, this.getClass());		
+		deepCopy.persolisData = CloneUtil.cloneRecord(deepCopy.persolisData, this.getClass());
+		deepCopy.fimistData = CloneUtil.cloneRecord(deepCopy.fimistData, this.getClass());
+		
 		return deepCopy;
 	}
 	

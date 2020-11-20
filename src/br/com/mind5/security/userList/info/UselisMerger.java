@@ -3,11 +3,25 @@ package br.com.mind5.security.userList.info;
 import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
-import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 
 public final class UselisMerger {
+	public static List<UselisInfo> mergeWithFimist(List<UselisInfo> baseInfos, List<FimistInfo> selectedInfos) {
+		InfoMergerBuilder<UselisInfo, FimistInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new UselisVisiMergeFimist());
+		InfoMerger<UselisInfo, FimistInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<UselisInfo> mergeWithUserarch(List<UselisInfo> baseInfos, List<UserarchInfo> selectedInfos) {
 		InfoMergerBuilder<UselisInfo, UserarchInfo> builder = new InfoMergerBuilder<>();
 		

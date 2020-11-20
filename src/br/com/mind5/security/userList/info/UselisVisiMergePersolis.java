@@ -5,15 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
-final class UselisVisiMergePersolis extends InfoMergerVisitorTemplate<UselisInfo, PersolisInfo> {
-	
-	@Override public List<UselisInfo> beforeMerge(List<UselisInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
+final class UselisVisiMergePersolis extends InfoMergerVisitorTemplate<UselisInfo, PersolisInfo> {	
 	
 	@Override public boolean shouldMerge(UselisInfo baseInfo, PersolisInfo selectedInfo) {
 		return (baseInfo.codOwner  == selectedInfo.codOwner &&
@@ -29,11 +22,5 @@ final class UselisVisiMergePersolis extends InfoMergerVisitorTemplate<UselisInfo
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<UselisInfo> getUniquifier() {
-		return null;
 	}
 }
