@@ -8,7 +8,7 @@ import br.com.mind5.business.employee.model.action.LazyEmpNodeInsertAddress;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeInsertExtra;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeInsertPerson;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeInsertPhone;
-import br.com.mind5.business.employee.model.action.LazyEmpNodeInsertUser;
+import br.com.mind5.business.employee.model.action.LazyEmpNodeInsertUserL1;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeSnapshot;
 import br.com.mind5.business.employee.model.action.LazyEmpRootSelect;
 import br.com.mind5.business.employee.model.checker.EmpCheckInsert;
@@ -66,7 +66,7 @@ public final class RootEmpInsert extends DeciTreeTemplateWrite<EmpInfo> {
 		//TODO: O que fazer se o CPF/e-mail ja tiver associado a um customer/owner/store manager ?
 		ActionStd<EmpInfo> insertEmployee = new NodeEmpInsertL1(option).toAction();	
 		ActionLazy<EmpInfo> insertPerson = new LazyEmpNodeInsertPerson(option.conn, option.schemaName);	
-		ActionLazy<EmpInfo> insertUser = new LazyEmpNodeInsertUser(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> insertUser = new LazyEmpNodeInsertUserL1(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> snapshot = new LazyEmpNodeSnapshot(option.conn, option.schemaName);	
 		ActionLazy<EmpInfo> insertAddress = new LazyEmpNodeInsertAddress(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> insertPhone = new LazyEmpNodeInsertPhone(option.conn, option.schemaName);

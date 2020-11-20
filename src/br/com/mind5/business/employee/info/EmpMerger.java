@@ -10,13 +10,27 @@ import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.security.user.info.UserInfo;
+import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmpMerger {
+	public static List<EmpInfo> mergeWithUselis(List<EmpInfo> baseInfos, List<UselisInfo> selectedInfos) {
+		InfoMergerBuilder<EmpInfo, UselisInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpVisiMergeUselis());
+		InfoMerger<EmpInfo, UselisInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<EmpInfo> mergeWithUserarch(List<EmpInfo> baseInfos, List<UserarchInfo> selectedInfos) {
 		InfoMergerBuilder<EmpInfo, UserarchInfo> builder = new InfoMergerBuilder<>();
 		

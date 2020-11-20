@@ -4,22 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.business.employee.model.action.LazyEmpDaoUpdate;
-import br.com.mind5.business.employee.model.action.LazyEmpUserPromote;
-import br.com.mind5.business.employee.model.action.StdEmpMergeUserarch;
-import br.com.mind5.business.employee.model.action.StdEmpUserInsert;
-import br.com.mind5.business.employee.model.checker.EmpCheckUserarch;
-import br.com.mind5.model.action.ActionLazy;
+import br.com.mind5.business.employee.model.action.StdEmpFimgCopy;
+import br.com.mind5.business.employee.model.action.StdEmpSuccess;
+import br.com.mind5.business.employee.model.checker.EmpCheckHasFimist;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeEmpInsertUser extends DeciTreeTemplateWrite<EmpInfo> {
+public final class NodeEmpInsertUserL2 extends DeciTreeTemplateWrite<EmpInfo> {
 	
-	public NodeEmpInsertUser(DeciTreeOption<EmpInfo> option) {
+	public NodeEmpInsertUserL2(DeciTreeOption<EmpInfo> option) {
 		super(option);
 	}
 	
@@ -33,8 +30,8 @@ public final class NodeEmpInsertUser extends DeciTreeTemplateWrite<EmpInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new EmpCheckUserarch(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new EmpCheckHasFimist(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -45,14 +42,9 @@ public final class NodeEmpInsertUser extends DeciTreeTemplateWrite<EmpInfo> {
 	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpInfo> mergeUserarch = new StdEmpMergeUserarch(option);
-		ActionLazy<EmpInfo> promoteUser = new LazyEmpUserPromote(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> updateEmployee = new LazyEmpDaoUpdate(option.conn, option.schemaName);
+		ActionStd<EmpInfo> copyFimg = new StdEmpFimgCopy(option);
 		
-		mergeUserarch.addPostAction(promoteUser);
-		promoteUser.addPostAction(updateEmployee);
-		
-		actions.add(mergeUserarch);	
+		actions.add(copyFimg);	
 		return actions;
 	}
 	
@@ -61,12 +53,9 @@ public final class NodeEmpInsertUser extends DeciTreeTemplateWrite<EmpInfo> {
 	@Override protected List<ActionStd<EmpInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpInfo> insertUser = new StdEmpUserInsert(option);
-		ActionLazy<EmpInfo> updateEmployee = new LazyEmpDaoUpdate(option.conn, option.schemaName);
+		ActionStd<EmpInfo> success = new StdEmpSuccess(option);
 		
-		insertUser.addPostAction(updateEmployee);
-		
-		actions.add(insertUser);	
+		actions.add(success);	
 		return actions;
 	}
 }
