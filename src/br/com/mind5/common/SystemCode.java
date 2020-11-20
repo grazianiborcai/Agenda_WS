@@ -1482,4 +1482,8 @@ public final class SystemCode {
 	
 	// BC Material Main
 	public static final int BC_MAT_MAIN_MANDATORY_FIELD_EMPTY 			= 14450;
+	
+	// File Read
+	public static final int FILE_READ_MANDATORY_FIELD_EMPTY 			= 14500;
+	public static final int FILE_READ_ERROR 							= 14501;
 }
