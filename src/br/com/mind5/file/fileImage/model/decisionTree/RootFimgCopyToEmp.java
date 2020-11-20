@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
-import br.com.mind5.file.fileImage.model.action.LazyFimgRootCopyToEmp;
-import br.com.mind5.file.fileImage.model.action.StdFimgMergeEmparch;
-import br.com.mind5.file.fileImage.model.action.StdFimgSuccess;
-import br.com.mind5.file.fileImage.model.checker.FimgCheckAuthEmployee;
-import br.com.mind5.file.fileImage.model.checker.FimgCheckEmparch;
+import br.com.mind5.file.fileImage.model.action.LazyFimgRootCopy;
+import br.com.mind5.file.fileImage.model.action.StdFimgEnforceEmp;
+import br.com.mind5.file.fileImage.model.checker.FimgCheckCopyToEmp;
+import br.com.mind5.file.fileImage.model.checker.FimgCheckEmp;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -17,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeFimgInsertUserAuth extends DeciTreeTemplateWrite<FimgInfo> {
+public final class RootFimgCopyToEmp extends DeciTreeTemplateWrite<FimgInfo> {
 	
-	public NodeFimgInsertUserAuth(DeciTreeOption<FimgInfo> option) {
+	public RootFimgCopyToEmp(DeciTreeOption<FimgInfo> option) {
 		super(option);
 	}
 	
@@ -33,15 +32,15 @@ public final class NodeFimgInsertUserAuth extends DeciTreeTemplateWrite<FimgInfo
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new FimgCheckAuthEmployee(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new FimgCheckCopyToEmp(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new FimgCheckEmparch(checkerOption);
+		checker = new FimgCheckEmp(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -52,23 +51,12 @@ public final class NodeFimgInsertUserAuth extends DeciTreeTemplateWrite<FimgInfo
 	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
 		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<FimgInfo> mergeEmparch = new StdFimgMergeEmparch(option);
-		ActionLazy<FimgInfo> copy = new LazyFimgRootCopyToEmp(option.conn, option.schemaName);
+		ActionStd<FimgInfo> enforceEmp = new StdFimgEnforceEmp(option);	
+		ActionLazy<FimgInfo> copy = new LazyFimgRootCopy(option.conn, option.schemaName);
 		
-		mergeEmparch.addPostAction(copy);
+		enforceEmp.addPostAction(copy);
 		
-		actions.add(mergeEmparch);		
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<FimgInfo>> buildActionsOnFailedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
-		
-		ActionStd<FimgInfo> success = new StdFimgSuccess(option);
-		
-		actions.add(success);		
+		actions.add(enforceEmp);		
 		return actions;
 	}
 }

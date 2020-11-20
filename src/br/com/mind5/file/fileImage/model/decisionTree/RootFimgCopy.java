@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
-import br.com.mind5.file.fileImage.model.action.LazyFimgRootSelect;
-import br.com.mind5.file.fileImage.model.action.LazyFimgWriteOnDisk;
-import br.com.mind5.file.fileImage.model.checker.FimgCheckInsert;
+import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceCopy;
+import br.com.mind5.file.fileImage.model.action.LazyFimgNodeCopy;
+import br.com.mind5.file.fileImage.model.action.StdFimgMergeToCopy;
+import br.com.mind5.file.fileImage.model.checker.FimgCheckCopy;
+import br.com.mind5.file.fileImage.model.checker.FimgCheckExist;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckLangu;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckOwner;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckReference;
@@ -18,9 +20,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootFimgInsert extends DeciTreeTemplateWrite<FimgInfo> {
+public final class RootFimgCopy extends DeciTreeTemplateWrite<FimgInfo> {
 	
-	public RootFimgInsert(DeciTreeOption<FimgInfo> option) {
+	public RootFimgCopy(DeciTreeOption<FimgInfo> option) {
 		super(option);
 	}
 	
@@ -35,7 +37,7 @@ public final class RootFimgInsert extends DeciTreeTemplateWrite<FimgInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new FimgCheckInsert(checkerOption);
+		checker = new FimgCheckCopy(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -59,6 +61,13 @@ public final class RootFimgInsert extends DeciTreeTemplateWrite<FimgInfo> {
 		checker = new FimgCheckLangu(checkerOption);
 		queue.add(checker);
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new FimgCheckExist(checkerOption);
+		queue.add(checker);
+		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
@@ -67,14 +76,14 @@ public final class RootFimgInsert extends DeciTreeTemplateWrite<FimgInfo> {
 	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
 		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<FimgInfo> insert = new NodeFimgInsert(option).toAction();	
-		ActionLazy<FimgInfo> writeOnDisk = new LazyFimgWriteOnDisk(option.conn, option.schemaName);
-		ActionLazy<FimgInfo> select = new LazyFimgRootSelect(option.conn, option.schemaName);
+		ActionStd<FimgInfo> select = new StdFimgMergeToCopy(option);
+		ActionLazy<FimgInfo> enforceCopy = new LazyFimgEnforceCopy(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> nodeL1 = new LazyFimgNodeCopy(option.conn, option.schemaName);
 		
-		insert.addPostAction(writeOnDisk);
-		writeOnDisk.addPostAction(select);
+		select.addPostAction(enforceCopy);
+		enforceCopy.addPostAction(nodeL1);
 		
-		actions.add(insert);		
+		actions.add(select);		
 		return actions;
 	}
 }
