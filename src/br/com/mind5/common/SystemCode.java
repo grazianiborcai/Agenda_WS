@@ -1486,4 +1486,7 @@ public final class SystemCode {
 	// File Read
 	public static final int FILE_READ_MANDATORY_FIELD_EMPTY 			= 14500;
 	public static final int FILE_READ_ERROR 							= 14501;
+	
+	// File Image Snapshot
+	public static final int FILE_IMG_SNAPSHOT_MANDATORY_FIELD_EMPTY 	= 14550;
 }
