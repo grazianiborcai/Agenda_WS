@@ -42,9 +42,7 @@ public final class NodeFimgInsert extends DeciTreeTemplateWrite<FimgInfo> {
 	
 	
 	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
-		
-		ActionStd<FimgInfo> coverOff = new NodeFimgCoverOffL1(option).toAction();
+		List<ActionStd<FimgInfo>> actions = new ArrayList<>();	
 		
 		ActionStd<FimgInfo> enforceLChanged = new StdFimgEnforceLChanged(option);	
 		ActionLazy<FimgInfo> enforceCreatedOn = new LazyFimgEnforceCreatedOn(option.conn, option.schemaName);
@@ -63,9 +61,8 @@ public final class NodeFimgInsert extends DeciTreeTemplateWrite<FimgInfo> {
 		enforceFilename.addPostAction(mergeFath);
 		mergeFath.addPostAction(enforceUri);	
 		enforceUri.addPostAction(enforceUriExternal);
-		enforceUriExternal.addPostAction(insert);
+		enforceUriExternal.addPostAction(insert);		
 		
-		actions.add(coverOff);
 		actions.add(enforceLChanged);		
 		return actions;
 	}
