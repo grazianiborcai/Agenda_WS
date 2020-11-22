@@ -13,8 +13,8 @@ import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
@@ -60,6 +60,7 @@ public final class RootEmpmatSelect extends DeciTreeTemplateRead<EmpmatInfo> {
 	@Override protected List<ActionStd<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
 		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
+		ActionStd<EmpmatInfo> nodeSytotauh = new NodeEmpmatSytotauhL1(option).toAction();
 		ActionStd<EmpmatInfo> select = new StdEmpmatMergeToSelect(option);
 		ActionLazy<EmpmatInfo> mergeMatlis = new LazyEmpmatMergeMatlis(option.conn, option.schemaName);
 		ActionLazy<EmpmatInfo> mergeEmplis = new LazyEmpmatMergeEmplis(option.conn, option.schemaName);
@@ -67,6 +68,7 @@ public final class RootEmpmatSelect extends DeciTreeTemplateRead<EmpmatInfo> {
 		select.addPostAction(mergeMatlis);
 		mergeMatlis.addPostAction(mergeEmplis);
 		
+		actions.add(nodeSytotauh);
 		actions.add(select);
 		return actions;
 	}

@@ -13,6 +13,7 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codEmployee;
 	public long codMat;
+	public long codStore;
 	public MatlisInfo matlisData;
 	public EmplisInfo emplisData;
 	public String recordMode;
@@ -29,7 +30,7 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();	
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();
-		codMat = DefaultValue.number();
+		codStore = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		lastChangedBy = DefaultValue.number();
 		matlisData = DefaultValue.object();

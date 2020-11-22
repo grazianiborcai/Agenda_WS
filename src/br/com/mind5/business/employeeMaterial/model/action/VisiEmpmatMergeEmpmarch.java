@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.info.EmpmatMerger;
 import br.com.mind5.business.employeeMaterialSearch.info.EmpmarchInfo;
-import br.com.mind5.business.employeeMaterialSearch.model.decisionTree.RootEmpmarchSelect;
+import br.com.mind5.business.employeeMaterialSearch.model.decisionTree.RootEmpmarchSelectEmp;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiEmpmatMergeEmpmarch extends ActionVisitorTemplateMerge<EmpmatInf
 	
 	
 	@Override protected Class<? extends DeciTree<EmpmarchInfo>> getTreeClassHook() {
-		return RootEmpmarchSelect.class;
+		return RootEmpmarchSelectEmp.class;
 	}
 	
 	

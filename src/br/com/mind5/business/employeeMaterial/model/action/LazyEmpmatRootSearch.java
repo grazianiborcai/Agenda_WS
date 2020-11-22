@@ -4,14 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
+import br.com.mind5.business.employeeMaterial.model.decisionTree.RootEmpmatSearch;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmpmatMergeEmpmarch extends ActionLazyTemplate<EmpmatInfo, EmpmatInfo> {
+public final class LazyEmpmatRootSearch extends ActionLazyTemplate<EmpmatInfo, EmpmatInfo> {
 	
-	public LazyEmpmatMergeEmpmarch(Connection conn, String schemaName) {
+	public LazyEmpmatRootSearch(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyEmpmatMergeEmpmarch extends ActionLazyTemplate<EmpmatInfo
 	
 	
 	@Override protected ActionStd<EmpmatInfo> getInstanceOfActionHook(DeciTreeOption<EmpmatInfo> option) {
-		return new StdEmpmatMergeEmpmarch(option);
+		return new RootEmpmatSearch(option).toAction();
 	}
 	
 	

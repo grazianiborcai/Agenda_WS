@@ -20,8 +20,8 @@ import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -95,6 +95,7 @@ public final class RootEmpmatInsert extends DeciTreeTemplateWrite<EmpmatInfo> {
 	@Override protected List<ActionStd<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
 		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
+		ActionStd<EmpmatInfo> nodeSytotauh = new NodeEmpmatSytotauhL1(option).toAction();
 		ActionStd<EmpmatInfo> enforceLChanged = new StdEmpmatEnforceLChanged(option);
 		ActionLazy<EmpmatInfo> enforceLChangedBy = new LazyEmpmatMergeUsername(option.conn, option.schemaName);		
 		ActionLazy<EmpmatInfo> enforceCreatedBy = new LazyEmpmatEnforceCreatedBy(option.conn, option.schemaName);
@@ -108,6 +109,7 @@ public final class RootEmpmatInsert extends DeciTreeTemplateWrite<EmpmatInfo> {
 		enforceCreatedOn.addPostAction(nodeInsert);
 		nodeInsert.addPostAction(select);
 		
+		actions.add(nodeSytotauh);
 		actions.add(enforceLChanged);
 		return actions;
 	}

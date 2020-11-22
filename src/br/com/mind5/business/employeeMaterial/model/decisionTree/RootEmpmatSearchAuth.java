@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
-import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatRootSelect;
-import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatMergeEmpmarch;
+import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatRootSearch;
+import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatMergeSytotauh;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckSearch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEmpmatSearch extends DeciTreeTemplateRead<EmpmatInfo> {
+public final class RootEmpmatSearchAuth extends DeciTreeTemplateRead<EmpmatInfo> {
 	
-	public RootEmpmatSearch(DeciTreeOption<EmpmatInfo> option) {
+	public RootEmpmatSearchAuth(DeciTreeOption<EmpmatInfo> option) {
 		super(option);
 	}
 	
@@ -43,12 +43,12 @@ public final class RootEmpmatSearch extends DeciTreeTemplateRead<EmpmatInfo> {
 	@Override protected List<ActionStd<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
 		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpmatInfo> mergeEmpmarch = new StdEmpmatMergeEmpmarch(option);
-		ActionLazy<EmpmatInfo> select = new LazyEmpmatRootSelect(option.conn, option.schemaName);
+		ActionStd<EmpmatInfo> mergeSytotauh = new StdEmpmatMergeSytotauh(option);
+		ActionLazy<EmpmatInfo> search = new LazyEmpmatRootSearch(option.conn, option.schemaName);
 		
-		mergeEmpmarch.addPostAction(select);
+		mergeSytotauh.addPostAction(search);
 		
-		actions.add(mergeEmpmarch);
+		actions.add(mergeSytotauh);
 		return actions;
 	}
 }

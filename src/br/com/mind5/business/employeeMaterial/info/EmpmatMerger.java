@@ -2,14 +2,28 @@ package br.com.mind5.business.employeeMaterial.info;
 
 import java.util.List;
 
+import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeMaterialSearch.info.EmpmarchInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmpmatMerger {
+	public static List<EmpmatInfo> mergeWithSytotauh(List<EmpmatInfo> baseInfos, List<SytotauhInfo> selectedInfos) {
+		InfoMergerBuilder<EmpmatInfo, SytotauhInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpmatVisiMergeSytotauh());
+		InfoMerger<EmpmatInfo, SytotauhInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<EmpmatInfo> mergeWithEmpmarch(List<EmpmatInfo> baseInfos, List<EmpmarchInfo> selectedInfos) {
 		InfoMergerBuilder<EmpmatInfo, EmpmarchInfo> builder = new InfoMergerBuilder<>();
 		

@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatDaoDelete;
+import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatDaoUpdate;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatEnforceLChanged;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatMergeUsername;
-import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatDaoUpdate;
 import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatMergeToDelete;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckExist;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckLangu;
@@ -16,8 +16,8 @@ import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -70,6 +70,7 @@ public final class RootEmpmatDelete extends DeciTreeTemplateWrite<EmpmatInfo> {
 	@Override protected List<ActionStd<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
 		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
+		ActionStd<EmpmatInfo> nodeSytotauh = new NodeEmpmatSytotauhL1(option).toAction();
 		ActionStd<EmpmatInfo> mergeToDelete = new StdEmpmatMergeToDelete(option);
 		ActionLazy<EmpmatInfo> enforceLChanged = new LazyEmpmatEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<EmpmatInfo> enforceLChangedBy = new LazyEmpmatMergeUsername(option.conn, option.schemaName);
@@ -81,6 +82,7 @@ public final class RootEmpmatDelete extends DeciTreeTemplateWrite<EmpmatInfo> {
 		enforceLChangedBy.addPostAction(update);
 		update.addPostAction(deleteEmpmat);
 		
+		actions.add(nodeSytotauh);
 		actions.add(mergeToDelete);
 		return actions;	
 	}

@@ -32,7 +32,7 @@ import br.com.mind5.business.employeeList.model.EmplisModelSearchAuth;
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.EmpmatModelDelete;
 import br.com.mind5.business.employeeMaterial.model.EmpmatModelInsert;
-import br.com.mind5.business.employeeMaterial.model.EmpmatModelSearch;
+import br.com.mind5.business.employeeMaterial.model.EmpmatModelSearchAuth;
 import br.com.mind5.business.employeeMaterial.model.EmpmatModelSelect;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.EmposModelDeleteProfessional;
@@ -565,7 +565,7 @@ public class EmployeeResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response searchEmpmat(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new EmpmatModelSearch(incomingData, request);
+		Model model = new EmpmatModelSearchAuth(incomingData, request);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();
