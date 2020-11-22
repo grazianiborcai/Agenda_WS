@@ -3,6 +3,7 @@ package br.com.mind5.business.employeeMaterial.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
@@ -58,6 +59,7 @@ public final class DaoEmpmatUpdateSingle extends DaoStmtTemplate<EmpmatInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
 				
 				return stmt;
 			}		

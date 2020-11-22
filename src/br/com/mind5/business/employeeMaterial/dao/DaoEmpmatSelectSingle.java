@@ -62,8 +62,9 @@ public final class DaoEmpmatSelectSingle extends DaoStmtTemplate<EmpmatInfo> {
 					EmpmatInfo dataInfo = new EmpmatInfo();
 					
 					dataInfo.codOwner = stmtResult.getLong(DaoEmpmatDbTableColumn.COL_COD_OWNER);
-					dataInfo.codEmployee = stmtResult.getLong(DaoEmpmatDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codEmployee = stmtResult.getLong(DaoEmpmatDbTableColumn.COL_COD_EMPLOYEE);					
 					dataInfo.codMat = stmtResult.getLong(DaoEmpmatDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.codStore = stmtResult.getLong(DaoEmpmatDbTableColumn.COL_COD_STORE);
 					dataInfo.recordMode = stmtResult.getString(DaoEmpmatDbTableColumn.COL_RECORD_MODE);	
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoEmpmatDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoEmpmatDbTableColumn.COL_LAST_CHANGED_BY);	

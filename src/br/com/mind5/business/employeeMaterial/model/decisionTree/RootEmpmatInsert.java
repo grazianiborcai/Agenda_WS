@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatEnforceCreatedBy;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatEnforceCreatedOn;
+import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatEnforceLChanged;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatMergeUsername;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatNodeInsert;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatRootSelect;
-import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatEnforceLChanged;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckEmp;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckExist;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckLangu;
@@ -96,13 +96,14 @@ public final class RootEmpmatInsert extends DeciTreeTemplateWrite<EmpmatInfo> {
 		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
 		ActionStd<EmpmatInfo> nodeSytotauh = new NodeEmpmatSytotauhL1(option).toAction();
-		ActionStd<EmpmatInfo> enforceLChanged = new StdEmpmatEnforceLChanged(option);
+		ActionLazy<EmpmatInfo> enforceLChanged = new LazyEmpmatEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<EmpmatInfo> enforceLChangedBy = new LazyEmpmatMergeUsername(option.conn, option.schemaName);		
 		ActionLazy<EmpmatInfo> enforceCreatedBy = new LazyEmpmatEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<EmpmatInfo> enforceCreatedOn = new LazyEmpmatEnforceCreatedOn(option.conn, option.schemaName);		
 		ActionLazy<EmpmatInfo> nodeInsert = new LazyEmpmatNodeInsert(option.conn, option.schemaName);
 		ActionLazy<EmpmatInfo> select = new LazyEmpmatRootSelect(option.conn, option.schemaName);
 		
+		nodeSytotauh.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);
 		enforceCreatedBy.addPostAction(enforceCreatedOn);
@@ -110,7 +111,6 @@ public final class RootEmpmatInsert extends DeciTreeTemplateWrite<EmpmatInfo> {
 		nodeInsert.addPostAction(select);
 		
 		actions.add(nodeSytotauh);
-		actions.add(enforceLChanged);
 		return actions;
 	}
 }

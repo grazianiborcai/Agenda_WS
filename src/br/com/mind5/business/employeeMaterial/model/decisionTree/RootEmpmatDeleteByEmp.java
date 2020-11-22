@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatRootDelete;
-import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatMergeEmpmarch;
+import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatMergeEmpmarchEmp;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckDeleteByEmp;
-import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckEmpmarch;
+import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckEmpmarchEmp;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -40,7 +40,7 @@ public final class RootEmpmatDeleteByEmp extends DeciTreeTemplateWrite<EmpmatInf
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new EmpmatCheckEmpmarch(checkerOption);
+		checker = new EmpmatCheckEmpmarchEmp(checkerOption);
 		queue.add(checker);	
 
 		return new ModelCheckerHelperQueue<EmpmatInfo>(queue);
@@ -51,7 +51,7 @@ public final class RootEmpmatDeleteByEmp extends DeciTreeTemplateWrite<EmpmatInf
 	@Override protected List<ActionStd<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
 		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpmatInfo> mergeEmpmarch = new StdEmpmatMergeEmpmarch(option);
+		ActionStd<EmpmatInfo> mergeEmpmarch = new StdEmpmatMergeEmpmarchEmp(option);
 		ActionLazy<EmpmatInfo> rootDelete = new LazyEmpmatRootDelete(option.conn, option.schemaName);
 		
 		mergeEmpmarch.addPostAction(rootDelete);

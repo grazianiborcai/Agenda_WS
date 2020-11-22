@@ -7,9 +7,9 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
 
-public final class EmpmatCheckEmpmarch extends ModelCheckerTemplateForward<EmpmatInfo, EmpmarchInfo> {
+public final class EmpmatCheckEmpmarchEmp extends ModelCheckerTemplateForward<EmpmatInfo, EmpmarchInfo> {
 	
-	public EmpmatCheckEmpmarch(ModelCheckerOption option) {
+	public EmpmatCheckEmpmarchEmp(ModelCheckerOption option) {
 		super(option);
 	}
 
