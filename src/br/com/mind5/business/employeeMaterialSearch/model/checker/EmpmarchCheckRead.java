@@ -24,7 +24,8 @@ public final class EmpmarchCheckRead extends ModelCheckerTemplateSimple<Empmarch
 		
 		
 		if ( recordInfo.codMat      <= 0	&&
-			 recordInfo.codEmployee <= 0		)		
+			 recordInfo.codEmployee <= 0	&&
+			 recordInfo.codStore 	<= 0		)		
 				
 			return super.FAILED;
 		

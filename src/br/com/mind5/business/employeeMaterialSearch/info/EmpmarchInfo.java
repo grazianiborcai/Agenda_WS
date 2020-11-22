@@ -9,6 +9,7 @@ public final class EmpmarchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codEmployee;
 	public long codMat;
+	public long codStore;
 	public String recordMode;
 	public String username;
 	
@@ -19,7 +20,7 @@ public final class EmpmarchInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();	
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();
-		codMat = DefaultValue.number();
+		codStore = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 	}
 	

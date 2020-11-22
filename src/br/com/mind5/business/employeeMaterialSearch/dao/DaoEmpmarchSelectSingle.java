@@ -15,8 +15,6 @@ import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoJoinEmp;
-import br.com.mind5.dao.common.DaoJoinMat;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class DaoEmpmarchSelectSingle extends DaoStmtTemplate<EmpmarchInfo> {
@@ -62,10 +60,10 @@ public final class DaoEmpmarchSelectSingle extends DaoStmtTemplate<EmpmarchInfo>
 	@Override protected List<DaoJoin> getJoinsHook(EmpmarchInfo recordInfo) {
 		List<DaoJoin> joins = new ArrayList<>();
 		
-		DaoJoinBuilder joinEmp = new DaoJoinEmp(MAIN_TABLE);		
+		DaoJoinBuilder joinEmp = new DaoEmpmarchJoinEmp(MAIN_TABLE);		
 		joins.add(joinEmp.build());
 		
-		DaoJoinBuilder joinMat = new DaoJoinMat(MAIN_TABLE);		
+		DaoJoinBuilder joinMat = new DaoEmpmarchJoinMat(MAIN_TABLE);		
 		joins.add(joinMat.build());
 		
 		return joins;
@@ -87,6 +85,7 @@ public final class DaoEmpmarchSelectSingle extends DaoStmtTemplate<EmpmarchInfo>
 					dataInfo.codOwner = stmtResult.getLong(DaoEmpmarchDbTableColumn.COL_COD_OWNER);
 					dataInfo.codEmployee = stmtResult.getLong(DaoEmpmarchDbTableColumn.COL_COD_EMPLOYEE);
 					dataInfo.codMat = stmtResult.getLong(DaoEmpmarchDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.codStore = stmtResult.getLong(DaoEmpmarchDbTableColumn.COL_COD_STORE);
 					dataInfo.recordMode = stmtResult.getString(DaoEmpmarchDbTableColumn.COL_RECORD_MODE);	
 					
 					finalResult.add(dataInfo);
