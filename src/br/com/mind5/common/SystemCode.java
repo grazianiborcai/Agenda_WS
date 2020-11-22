@@ -1033,6 +1033,8 @@ public final class SystemCode {
 	public static final int MAT_SEARCH_SERVICE_NOT_FOUND				= 7952;
 	public static final int MAT_SEARCH_PRODUCT_ALREADY_EXIST			= 7953;
 	public static final int MAT_SEARCH_PRODUCT_NOT_FOUND				= 7954;
+	public static final int MAT_SEARCH_ALREADY_EXIST					= 7955;
+	public static final int MAT_SEARCH_NOT_FOUND						= 7956;
 	
 	// Material Store Search
 	public static final int MAT_STORE_SEARCH_MANDATORY_FIELD_EMPTY		= 8000;
