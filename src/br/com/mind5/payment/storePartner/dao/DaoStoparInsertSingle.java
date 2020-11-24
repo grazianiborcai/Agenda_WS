@@ -3,6 +3,7 @@ package br.com.mind5.payment.storePartner.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoStmtParamTranslator;
@@ -37,8 +38,8 @@ public final class DaoStoparInsertSingle extends DaoStmtTemplate<StoparInfo> {
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoparInfo recordInfo) throws SQLException {					
 				int i = 1;
 				
-				stmt.setLong(i++, recordInfo.codOwner);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
+				stmt.setLong(i++, recordInfo.codOwner);				
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayPartner);
 				stmt.setString(i++, recordInfo.recordMode);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
