@@ -35,11 +35,11 @@ public final class DaoStoparDbTableColumn extends DaoDbTableColumnTemplate {
 		final String TABLE_NAME = DaoDbTable.PAY_PARTNER_STORE_TABLE;
 		
 		DaoColumn oneColumn;
-		List<DaoColumn> columns = new ArrayList<>();	
+		List<DaoColumn> columns = new ArrayList<>();
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_OWNER;
+		oneColumn.columnName = COL_COD_STORE;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -47,7 +47,7 @@ public final class DaoStoparDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_STORE;
+		oneColumn.columnName = COL_COD_OWNER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

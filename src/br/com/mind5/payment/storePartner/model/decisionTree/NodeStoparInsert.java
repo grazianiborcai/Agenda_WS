@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
@@ -23,8 +23,6 @@ public final class NodeStoparInsert extends DeciTreeTemplateWrite<StoparInfo> {
 	
 	
 	@Override protected ModelChecker<StoparInfo> buildCheckerHook(DeciTreeOption<StoparInfo> option) {
-		final boolean NOT_DELETED = false;	
-		
 		List<ModelChecker<StoparInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoparInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -32,7 +30,7 @@ public final class NodeStoparInsert extends DeciTreeTemplateWrite<StoparInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = NOT_DELETED;		
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
 		checker = new StoparCheckSoftDelete(checkerOption);
 		queue.add(checker);	
 		
@@ -44,7 +42,9 @@ public final class NodeStoparInsert extends DeciTreeTemplateWrite<StoparInfo> {
 	@Override protected List<ActionStd<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
 		List<ActionStd<StoparInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdStoparDaoInsert(option));
+		ActionStd<StoparInfo> insert = new StdStoparDaoInsert(option);
+		
+		actions.add(insert);
 		return actions;
 	}
 	
@@ -53,7 +53,9 @@ public final class NodeStoparInsert extends DeciTreeTemplateWrite<StoparInfo> {
 	@Override protected List<ActionStd<StoparInfo>> buildActionsOnFailedHook(DeciTreeOption<StoparInfo> option) {
 		List<ActionStd<StoparInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdStoparDaoUpdate(option));	
+		ActionStd<StoparInfo> update = new StdStoparDaoUpdate(option);
+		
+		actions.add(update);	
 		return actions;
 	}
 }
