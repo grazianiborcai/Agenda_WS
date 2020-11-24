@@ -14,6 +14,6 @@ public final class StdStoparnapMergeToSelect extends ActionStdTemplate<Stoparnap
 	
 	
 	protected ActionVisitor<StoparnapInfo> buildVisitorHook(DeciTreeOption<StoparnapInfo> option) {
-		return new VisiStoparnapDaoSelect(option);
+		return new VisiStoparnapMergeToSelect(option);
 	}
 }

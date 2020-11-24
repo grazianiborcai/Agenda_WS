@@ -14,6 +14,6 @@ public final class StdStoparnapDaoInsert extends ActionStdTemplate<StoparnapInfo
 	
 	
 	protected ActionVisitor<StoparnapInfo> buildVisitorHook(DeciTreeOption<StoparnapInfo> option) {
-		return new VisiStoparnapDaoSelect(option);
+		return new VisiStoparnapDaoInsert(option);
 	}
 }

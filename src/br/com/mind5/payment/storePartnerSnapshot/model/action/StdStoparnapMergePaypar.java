@@ -14,6 +14,6 @@ public final class StdStoparnapMergePaypar extends ActionStdTemplate<StoparnapIn
 	
 	
 	protected ActionVisitor<StoparnapInfo> buildVisitorHook(DeciTreeOption<StoparnapInfo> option) {
-		return new VisiStoparnapDaoSelect(option);
+		return new VisiStoparnapMergePaypar(option);
 	}
 }
