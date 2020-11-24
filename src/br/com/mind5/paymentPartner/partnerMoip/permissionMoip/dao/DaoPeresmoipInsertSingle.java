@@ -3,6 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoStmtParamTranslator;
@@ -37,8 +38,8 @@ public final class DaoPeresmoipInsertSingle extends DaoStmtTemplate<PeresmoipInf
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PeresmoipInfo recordInfo) throws SQLException {					
 				int i = 1;
 				
-				stmt.setLong(i++, recordInfo.codOwner);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
+				stmt.setLong(i++, recordInfo.codOwner);				
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt.setBoolean(i++, recordInfo.isExpected);
 				stmt.setString(i++, recordInfo.username);				
