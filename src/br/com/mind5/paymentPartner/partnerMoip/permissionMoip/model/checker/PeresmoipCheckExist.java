@@ -6,7 +6,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.decisionTree.RootPeresmoipSelect;
+import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.StdPeresmoipDaoSelect;
 
 public final class PeresmoipCheckExist extends ModelCheckerTemplateAction<PeresmoipInfo, PeresmoipInfo> {
 	
@@ -17,7 +17,7 @@ public final class PeresmoipCheckExist extends ModelCheckerTemplateAction<Peresm
 
 	
 	@Override protected ActionStd<PeresmoipInfo> buildActionHook(DeciTreeOption<PeresmoipInfo> option) {
-		ActionStd<PeresmoipInfo> select = new RootPeresmoipSelect(option).toAction();
+		ActionStd<PeresmoipInfo> select = new StdPeresmoipDaoSelect(option);
 		return select;
 	}
 	

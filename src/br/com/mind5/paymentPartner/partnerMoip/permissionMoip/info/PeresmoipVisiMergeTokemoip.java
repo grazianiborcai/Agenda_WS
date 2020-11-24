@@ -4,17 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 
 final class PeresmoipVisiMergeTokemoip extends InfoMergerVisitorTemplate<PeresmoipInfo, TokemoipInfo> {
-	
-	@Override public List<PeresmoipInfo> beforeMerge(List<PeresmoipInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(PeresmoipInfo baseInfo, TokemoipInfo selectedInfo) {
 		return (baseInfo.codPayPartner == selectedInfo.codPayPartner);
 	}
@@ -28,11 +20,5 @@ final class PeresmoipVisiMergeTokemoip extends InfoMergerVisitorTemplate<Peresmo
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<PeresmoipInfo> getUniquifier() {
-		return null;
 	}
 }

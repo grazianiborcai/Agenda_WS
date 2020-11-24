@@ -4,16 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class PeresmoipVisiMergeToSelect extends InfoMergerVisitorTemplate<PeresmoipInfo, PeresmoipInfo> {
-	
-	@Override public List<PeresmoipInfo> beforeMerge(List<PeresmoipInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(PeresmoipInfo baseInfo, PeresmoipInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -29,11 +21,5 @@ final class PeresmoipVisiMergeToSelect extends InfoMergerVisitorTemplate<Peresmo
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<PeresmoipInfo> getUniquifier() {
-		return null;
 	}
 }
