@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class UserarchVisiMergeToSelect extends InfoMergerVisitorTemplate<UserarchInfo, UserarchInfo> {
-	
-	@Override public List<UserarchInfo> beforeMerge(List<UserarchInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(UserarchInfo baseInfo, UserarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}	
@@ -27,11 +20,5 @@ final class UserarchVisiMergeToSelect extends InfoMergerVisitorTemplate<Userarch
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<UserarchInfo> getUniquifier() {
-		return null;
 	}
 }
