@@ -7,19 +7,20 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class CusCheckInsertFromOrder extends ModelCheckerTemplateSimple<CusInfo> {
+public final class CusCheckInsertFromOrderem extends ModelCheckerTemplateSimple<CusInfo> {
 
-	public CusCheckInsertFromOrder(ModelCheckerOption option) {
+	public CusCheckInsertFromOrderem(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CusInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner	<= 0	||
-			 recordInfo.codOrder	<= 0	||
-			 recordInfo.username 	== null ||
-			 recordInfo.codLanguage == null 	)
+		if ( recordInfo.codOwner		<= 0	||
+			 recordInfo.codOrder		<= 0	||
+			 recordInfo.codOrderItem	<= 0	||
+			 recordInfo.username 		== null ||
+			 recordInfo.codLanguage 	== null 	)
 				
 			return super.FAILED;
 			

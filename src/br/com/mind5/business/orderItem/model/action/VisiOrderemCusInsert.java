@@ -3,7 +3,7 @@ package br.com.mind5.business.orderItem.model.action;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.business.customer.model.decisionTree.RootCusInsertFromOrder;
+import br.com.mind5.business.customer.model.decisionTree.RootCusInsertFromOrderem;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.info.OrderemMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
@@ -19,7 +19,7 @@ final class VisiOrderemCusInsert extends ActionVisitorTemplateAction<OrderemInfo
 	
 	
 	@Override protected Class<? extends DeciTree<CusInfo>> getTreeClassHook() {
-		return RootCusInsertFromOrder.class;
+		return RootCusInsertFromOrderem.class;
 	}
 	
 	

@@ -19,6 +19,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	public long codPerson;
 	public long codUser;
 	public long codOrder;
+	public int codOrderItem;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -45,6 +46,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 		codPerson = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codOrder = DefaultValue.number();
+		codOrderItem = DefaultValue.number();
 		addresses = DefaultValue.list();
 		addressesUser = DefaultValue.list();
 		phones = DefaultValue.list();

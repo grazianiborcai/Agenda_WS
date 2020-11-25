@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCusEnforceOrderKey extends ActionStdTemplate<CusInfo> {
+public final class StdCusMergeOrdemist extends ActionStdTemplate<CusInfo> {
 
-	public StdCusEnforceOrderKey(DeciTreeOption<CusInfo> option) {
+	public StdCusMergeOrdemist(DeciTreeOption<CusInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<CusInfo> buildVisitorHook(DeciTreeOption<CusInfo> option) {
-		return new VisiCusEnforceOrderKey(option);
+		return new VisiCusMergeOrdemist(option);
 	}
 }

@@ -5,13 +5,13 @@ import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.action.LazyCusEnforceUserData;
-import br.com.mind5.business.customer.model.action.LazyCusMergeOrdemarch;
+import br.com.mind5.business.customer.model.action.LazyCusMergeOrdemist;
 import br.com.mind5.business.customer.model.action.LazyCusMergeUser;
 import br.com.mind5.business.customer.model.action.LazyCusRootInsert;
-import br.com.mind5.business.customer.model.action.StdCusEnforceOrderKey;
-import br.com.mind5.business.customer.model.checker.CusCheckInsertFromOrder;
+import br.com.mind5.business.customer.model.action.StdCusEnforceOrderemKey;
+import br.com.mind5.business.customer.model.checker.CusCheckInsertFromOrderem;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
-import br.com.mind5.business.customer.model.checker.CusCheckOrder;
+import br.com.mind5.business.customer.model.checker.CusCheckOrderem;
 import br.com.mind5.business.customer.model.checker.CusCheckOwner;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -21,9 +21,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootCusInsertFromOrder extends DeciTreeTemplateWrite<CusInfo> {
+public final class RootCusInsertFromOrderem extends DeciTreeTemplateWrite<CusInfo> {
 
-	public RootCusInsertFromOrder(DeciTreeOption<CusInfo> option) {
+	public RootCusInsertFromOrderem(DeciTreeOption<CusInfo> option) {
 		super(option);
 	}
 	
@@ -38,7 +38,7 @@ public final class RootCusInsertFromOrder extends DeciTreeTemplateWrite<CusInfo>
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CusCheckInsertFromOrder(checkerOption);
+		checker = new CusCheckInsertFromOrderem(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -59,7 +59,7 @@ public final class RootCusInsertFromOrder extends DeciTreeTemplateWrite<CusInfo>
 		checkerOption.expectedResult =  ModelCheckerOption.EXIST_ON_DB;		
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;		
-		checker = new CusCheckOrder(checkerOption);
+		checker = new CusCheckOrderem(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -70,18 +70,18 @@ public final class RootCusInsertFromOrder extends DeciTreeTemplateWrite<CusInfo>
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CusInfo> enforceOrderKey = new StdCusEnforceOrderKey(option);
-		ActionLazy<CusInfo> mergeOrdemarch = new LazyCusMergeOrdemarch(option.conn, option.schemaName);
+		ActionStd<CusInfo> enforceOrderemKey = new StdCusEnforceOrderemKey(option);
+		ActionLazy<CusInfo> mergeOrdemist = new LazyCusMergeOrdemist(option.conn, option.schemaName);
 		ActionLazy<CusInfo> mergeUser = new LazyCusMergeUser(option.conn, option.schemaName);
 		ActionLazy<CusInfo> copyUserData = new LazyCusEnforceUserData(option.conn, option.schemaName);		
 		ActionLazy<CusInfo> insert = new LazyCusRootInsert(option.conn, option.schemaName);
 		
-		enforceOrderKey.addPostAction(mergeOrdemarch);
-		mergeOrdemarch.addPostAction(mergeUser);
+		enforceOrderemKey.addPostAction(mergeOrdemist);
+		mergeOrdemist.addPostAction(mergeUser);
 		mergeUser.addPostAction(copyUserData);
 		copyUserData.addPostAction(insert);
 		
-		actions.add(enforceOrderKey);	
+		actions.add(enforceOrderemKey);	
 		return actions;
 	}
 }

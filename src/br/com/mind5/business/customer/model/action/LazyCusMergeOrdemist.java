@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCusMergeOrdemarch extends ActionLazyTemplate<CusInfo, CusInfo> {
+public final class LazyCusMergeOrdemist extends ActionLazyTemplate<CusInfo, CusInfo> {
 	
-	public LazyCusMergeOrdemarch(Connection conn, String schemaName) {
+	public LazyCusMergeOrdemist(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCusMergeOrdemarch extends ActionLazyTemplate<CusInfo, Cus
 	
 	
 	@Override protected ActionStd<CusInfo> getInstanceOfActionHook(DeciTreeOption<CusInfo> option) {
-		return new StdCusMergeOrdemarch(option);
+		return new StdCusMergeOrdemist(option);
 	}
 	
 	
