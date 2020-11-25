@@ -44,7 +44,6 @@ public final class DaoOrderInsertSingle extends DaoStmtTemplate<OrderInfo> {
 				
 				stmt.setLong(i++, recordInfo.codOwner);
 				stmt.setLong(i++, recordInfo.codUser);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
 				stmt.setString(i++, recordInfo.codOrderExt);
 				stmt.setString(i++, recordInfo.codOrderStatus);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.itemTotal);

@@ -13,7 +13,6 @@ public final class DaoOrderDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_ADDRESS_SHIP = DaoDbField.COL_COD_ADDRESS_SHIP;
 	public static final String COL_COD_ADDRESS_INVOICE = DaoDbField.COL_COD_ADDRESS_INVOICE;
 	public static final String COL_COD_CURRENCY = DaoDbField.COL_COD_CURRENCY;
-	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
 	public static final String COL_COD_ORDER = DaoDbField.COL_COD_ORDER;
 	public static final String COL_COD_ORDER_EXTERNAL = DaoDbField.COL_COD_ORDER_EXTERNAL;
 	public static final String COL_COD_ORDER_STATUS = DaoDbField.COL_COD_ORDER_STATUS;
@@ -67,14 +66,6 @@ public final class DaoOrderDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_USER;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_CUSTOMER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

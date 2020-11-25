@@ -2,15 +2,13 @@ package br.com.mind5.business.order.info;
 
 import java.util.List;
 
-import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.business.orderStatusChange.info.OrdugeInfo;
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.masterData.feeCategory.info.FeecatInfo;
 import br.com.mind5.masterData.orderStatus.info.OrderatusInfo;
@@ -67,20 +65,7 @@ public final class OrderMerger {
 		InfoMerger<OrderInfo, OrdarchInfo> merger = builder.build();		
 	
 		return merger.merge();
-	}	
-	
-	
-	
-	public static List<OrderInfo> mergeWithCus(List<OrderInfo> baseInfos, List<CusInfo> selectedInfos) {
-		InfoMergerBuilder<OrderInfo, CusInfo> builder = new InfoMergerBuilder<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderVisiMergeCus());
-		InfoMerger<OrderInfo, CusInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}	
+	}
 	
 	
 	
@@ -93,20 +78,7 @@ public final class OrderMerger {
 		InfoMerger<OrderInfo, OrdnapInfo> merger = builder.build();		
 	
 		return merger.merge();
-	}	
-	
-	
-	
-	public static List<OrderInfo> mergeWithCusarch(List<OrderInfo> baseInfos, List<CusarchInfo> selectedInfos) {
-		InfoMergerBuilder<OrderInfo, CusarchInfo> builder = new InfoMergerBuilder<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderVisiMergeCusarch());
-		InfoMerger<OrderInfo, CusarchInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}	
+	}
 	
 	
 	

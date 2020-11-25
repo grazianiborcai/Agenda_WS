@@ -11,12 +11,11 @@ import br.com.mind5.business.order.model.action.LazyOrderEnforceExtid;
 import br.com.mind5.business.order.model.action.LazyOrderEnforcePostingDate;
 import br.com.mind5.business.order.model.action.LazyOrderMergeOrdugeCreate;
 import br.com.mind5.business.order.model.action.LazyOrderMergeRefupown;
-import br.com.mind5.business.order.model.action.LazyOrderNodeCusL1;
 import br.com.mind5.business.order.model.action.StdOrderMergeUsername;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
@@ -44,8 +43,7 @@ public final class NodeOrderInsert extends DeciTreeTemplateWrite<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 		//TODO: zerar Address e Phone - Somente aceitar no Place
-		ActionStd<OrderInfo> mergeUsername = new StdOrderMergeUsername(option);	
-		ActionLazy<OrderInfo> nodeCus = new LazyOrderNodeCusL1(option.conn, option.schemaName);
+		ActionStd<OrderInfo> mergeUsername = new StdOrderMergeUsername(option);			
 		ActionLazy<OrderInfo> enforceCreatedOn = new LazyOrderEnforceCreatedOn(option.conn, option.schemaName);			
 		ActionLazy<OrderInfo> enforceCreatedBy = new LazyOrderEnforceCreatedBy(option.conn, option.schemaName);	
 		ActionLazy<OrderInfo> enforcePostingDate = new LazyOrderEnforcePostingDate(option.conn, option.schemaName);	
@@ -54,8 +52,7 @@ public final class NodeOrderInsert extends DeciTreeTemplateWrite<OrderInfo> {
 		ActionLazy<OrderInfo> mergeRefupown = new LazyOrderMergeRefupown(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> insert = new LazyOrderDaoInsert(option.conn, option.schemaName);
 		
-		mergeUsername.addPostAction(nodeCus);
-		nodeCus.addPostAction(enforceCreatedOn);
+		mergeUsername.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(enforceCreatedBy);		
 		enforceCreatedBy.addPostAction(enforcePostingDate);
 		enforcePostingDate.addPostAction(enforceExtid);

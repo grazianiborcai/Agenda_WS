@@ -13,8 +13,7 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
 	public long codOrder;	
 	public long codSnapshot;
-	public String codOrderExt;	
-	public long codCustomer;
+	public String codOrderExt;
 	public long codUser;
 	public long codAddressShip;
 	public long codAddressInvoice;
@@ -52,7 +51,6 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();	
 		codOrder = DefaultValue.number();			
 		codSnapshot = DefaultValue.number();
-		codCustomer = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codAddressShip = DefaultValue.number();
 		codAddressInvoice = DefaultValue.number();
