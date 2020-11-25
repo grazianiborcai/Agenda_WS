@@ -21,6 +21,7 @@ public final class OrdemistInfo extends InfoRecord implements Cloneable, Compara
 	public long codPayOrder;
 	public int codPayOrderItem;
 	public long codCustomer;
+	public long codUser;
 	public long codStore;
 	public long codEmployee;
 	public long codMat;
@@ -48,6 +49,7 @@ public final class OrdemistInfo extends InfoRecord implements Cloneable, Compara
 		codSnapshot = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
 		codCustomer = DefaultValue.number();
+		codUser = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();
