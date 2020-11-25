@@ -107,10 +107,10 @@ public final class DaoOrdemarchDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.ORDER_HDR_TABLE;
+		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_USER;
 		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
