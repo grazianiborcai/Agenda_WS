@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class StorauthVisiMergeSotarch extends InfoMergerVisitorTemplate<StorauthInfo, SotarchInfo> {
-	
-	@Override public List<StorauthInfo> beforeMerge(List<StorauthInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(StorauthInfo baseInfo, SotarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner	&&
 				baseInfo.codUser  == selectedInfo.codUser		);
@@ -29,11 +22,5 @@ final class StorauthVisiMergeSotarch extends InfoMergerVisitorTemplate<StorauthI
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<StorauthInfo> getUniquifier() {
-		return null;
 	}
 }
