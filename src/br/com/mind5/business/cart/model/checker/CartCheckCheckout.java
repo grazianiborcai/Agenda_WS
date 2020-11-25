@@ -16,9 +16,9 @@ public final class CartCheckCheckout extends ModelCheckerTemplateSimple<CartInfo
 	
 	
 	@Override protected boolean checkHook(CartInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 		<= 0 	
-			|| recordInfo.username		== null 
-			|| recordInfo.codLanguage 	== null )
+		if ( recordInfo.codOwner 	<= 0 	||
+			 recordInfo.username	== null ||
+			 recordInfo.codLanguage == null 	)
 			
 			return super.FAILED;
 		

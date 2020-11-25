@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class CartVisiMergeOrder extends InfoMergerVisitorTemplate<CartInfo, OrderInfo> {
-	
-	@Override public List<CartInfo> beforeMerge(List<CartInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CartInfo baseInfo, OrderInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class CartVisiMergeOrder extends InfoMergerVisitorTemplate<CartInfo, Order
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CartInfo> getUniquifier() {
-		return null;
 	}
 }

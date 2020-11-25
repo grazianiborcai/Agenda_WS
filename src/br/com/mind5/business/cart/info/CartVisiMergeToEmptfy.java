@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class CartVisiMergeToEmptfy extends InfoMergerVisitorTemplate<CartInfo, CartInfo> {
-	
-	@Override public List<CartInfo> beforeMerge(List<CartInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CartInfo baseInfo, CartInfo selectedInfo) {
 		return true;
 	}
@@ -32,11 +25,5 @@ final class CartVisiMergeToEmptfy extends InfoMergerVisitorTemplate<CartInfo, Ca
 		
 		results.add(result);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CartInfo> getUniquifier() {
-		return null;
 	}
 }
