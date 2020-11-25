@@ -73,7 +73,6 @@ public final class DaoOrdistSelectSingle extends DaoStmtTemplate<OrdistInfo> {
 					dataInfo.codOrderExt = stmtResult.getString(DaoOrdistDbTableColumn.COL_COD_ORDER_EXTERNAL);	
 					dataInfo.codOrderStatus = stmtResult.getString(DaoOrdistDbTableColumn.COL_COD_ORDER_STATUS);
 					dataInfo.codCurr = stmtResult.getString(DaoOrdistDbTableColumn.COL_COD_CURRENCY);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoOrdistDbTableColumn.COL_COD_CUSTOMER);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoOrdistDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.itemTotal = DaoFormatter.sqlToDouble(stmtResult, DaoOrdistDbTableColumn.COL_ITEM_TOTAL);
 					dataInfo.feeService = DaoFormatter.sqlToDouble(stmtResult, DaoOrdistDbTableColumn.COL_FEE_SERVICE);
