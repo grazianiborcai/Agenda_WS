@@ -68,10 +68,11 @@ public final class DaoOrdemistSelectSingle extends DaoStmtTemplate<OrdemistInfo>
 					OrdemistInfo dataInfo = new OrdemistInfo();
 					
 					dataInfo.codOwner = stmtResult.getLong(DaoOrdemistDbTableColumn.COL_COD_OWNER);	
-					dataInfo.codOrder = stmtResult.getLong(DaoOrdemistDbTableColumn.COL_COD_ORDER);
+					dataInfo.codOrder = stmtResult.getLong(DaoOrdemistDbTableColumn.COL_COD_ORDER);		
 					dataInfo.codOrderItem = DaoFormatter.sqlToInt(stmtResult, DaoOrdemistDbTableColumn.COL_COD_ORDER_ITEM);
 					dataInfo.quantity = stmtResult.getInt(DaoOrdemistDbTableColumn.COL_QUANTITY);
 					dataInfo.codCurr = stmtResult.getString(DaoOrdemistDbTableColumn.COL_COD_CURRENCY);
+					dataInfo.codCustomer = stmtResult.getLong(DaoOrdemistDbTableColumn.COL_COD_CUSTOMER);
 					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoOrdemistDbTableColumn.COL_COD_STORE);
 					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, DaoOrdemistDbTableColumn.COL_COD_EMPLOYEE);
 					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, DaoOrdemistDbTableColumn.COL_COD_MATERIAL);
