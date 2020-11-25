@@ -24,7 +24,7 @@ public final class OrdarchCheckRead extends ModelCheckerTemplateSimple<OrdarchIn
 		
 		
 		if ( recordInfo.codUser 	<= 0 	&& 
-			 recordInfo.codCustomer	<= 0		)
+			 recordInfo.codOrder	<= 0		)
 				
 			return super.FAILED;
 		

@@ -72,7 +72,6 @@ public final class DaoOrdarchSelectSingle extends DaoStmtTemplate<OrdarchInfo> {
 					dataInfo.codUser = stmtResult.getLong(DaoOrdarchDbTableColumn.COL_COD_USER);	
 					dataInfo.codOrderExt = stmtResult.getString(DaoOrdarchDbTableColumn.COL_COD_ORDER_EXTERNAL);	
 					dataInfo.codOrderStatus = stmtResult.getString(DaoOrdarchDbTableColumn.COL_COD_ORDER_STATUS);
-					dataInfo.codCustomer = stmtResult.getLong(DaoOrdarchDbTableColumn.COL_COD_CUSTOMER);
 					dataInfo.codPayOrder = stmtResult.getLong(DaoOrdarchDbTableColumn.COL_COD_PAY_ORDER);	
 					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, DaoOrdarchDbTableColumn.COL_POSTING_YEAR);
 					dataInfo.postingYearMonth = DaoFormatter.sqlToInt(stmtResult, DaoOrdarchDbTableColumn.COL_POSTING_YEAR_MONTH);

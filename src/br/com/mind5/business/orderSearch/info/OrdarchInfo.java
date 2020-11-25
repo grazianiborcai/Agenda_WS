@@ -8,8 +8,7 @@ import br.com.mind5.info.InfoRecord;
 public final class OrdarchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
 	public long codOrder;	
-	public String codOrderExt;	
-	public long codCustomer;
+	public String codOrderExt;
 	public long codUser;
 	public String codOrderStatus;
 	public int postingYear;
@@ -22,8 +21,7 @@ public final class OrdarchInfo extends InfoRecord implements Cloneable {
 		super();
 		
 		codOwner = DefaultValue.number();	
-		codOrder = DefaultValue.number();				
-		codCustomer = DefaultValue.number();
+		codOrder = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
 		postingYear = DefaultValue.number();
