@@ -12,6 +12,7 @@ public final class OrdemarchInfo extends InfoRecord implements Cloneable {
 	public long codOrder;
 	public int codOrderItem;
 	public long codStore;
+	public long codUser;
 	public long codEmployee;
 	public long codMat;
 	public LocalDate date;
@@ -27,6 +28,7 @@ public final class OrdemarchInfo extends InfoRecord implements Cloneable {
 		codOrder = DefaultValue.number();
 		codOrderItem = DefaultValue.number();
 		codStore = DefaultValue.number();
+		codUser = DefaultValue.number();		
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();
 	}

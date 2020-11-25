@@ -8,12 +8,15 @@ import java.util.List;
 
 import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
 import br.com.mind5.dao.DaoFormatter;
+import br.com.mind5.dao.DaoJoin;
+import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
+import br.com.mind5.dao.common.DaoJoinOrder;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class DaoOrdemarchSelectSingle extends DaoStmtTemplate<OrdemarchInfo> {	
@@ -52,7 +55,14 @@ public final class DaoOrdemarchSelectSingle extends DaoStmtTemplate<OrdemarchInf
 		
 		DaoStmtWhere whereClause = new DaoOrdemarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
-	}	
+	}
+	
+	
+	
+	@Override protected DaoJoin getJoinHook(OrdemarchInfo recordInfo) {
+		DaoJoinBuilder joinOrder = new DaoJoinOrder(MAIN_TABLE);		
+		return joinOrder.build();
+	}
 	
 	
 	
@@ -71,6 +81,7 @@ public final class DaoOrdemarchSelectSingle extends DaoStmtTemplate<OrdemarchInf
 					dataInfo.codOrder = stmtResult.getLong(DaoOrdemarchDbTableColumn.COL_COD_ORDER);
 					dataInfo.codOrderItem = DaoFormatter.sqlToInt(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_ORDER_ITEM);
 					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_STORE);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_USER);
 					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_EMPLOYEE);
 					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_MATERIAL);
 					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, DaoOrdemarchDbTableColumn.COL_DATE);
