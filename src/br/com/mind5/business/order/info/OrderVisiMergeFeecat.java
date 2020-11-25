@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.feeCategory.info.FeecatInfo;
 
 final class OrderVisiMergeFeecat extends InfoMergerVisitorTemplate<OrderInfo, FeecatInfo> {
 
-	@Override public List<OrderInfo> beforeMerge(List<OrderInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(OrderInfo baseInfo, FeecatInfo selectedInfo) {
 		return (baseInfo.codFeeCateg == selectedInfo.codFeeCateg);
 	}
@@ -28,11 +21,5 @@ final class OrderVisiMergeFeecat extends InfoMergerVisitorTemplate<OrderInfo, Fe
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<OrderInfo> getUniquifier() {
-		return null;
 	}
 }

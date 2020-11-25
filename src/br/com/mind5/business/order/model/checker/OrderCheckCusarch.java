@@ -1,12 +1,11 @@
 package br.com.mind5.business.order.model.checker;
 
-import br.com.mind5.business.customerSearch.info.CusarchCopier;
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.customerSearch.model.checker.CusarchCheckExist;
 import br.com.mind5.business.order.info.OrderInfo;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
-import br.com.mind5.model.checker.ModelChecker;
 
 public final class OrderCheckCusarch extends ModelCheckerTemplateForward<OrderInfo, CusarchInfo> {
 	
@@ -23,6 +22,6 @@ public final class OrderCheckCusarch extends ModelCheckerTemplateForward<OrderIn
 	
 	
 	@Override protected CusarchInfo toForwardClass(OrderInfo baseRecord) {
-		return CusarchCopier.copyFromOrder(baseRecord);
+		return CusarchInfo.copyFrom(baseRecord);
 	}
 }

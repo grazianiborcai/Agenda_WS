@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.orderStatus.info.OrderatusInfo;
 
 final class OrderVisiMergeOrderatus extends InfoMergerVisitorTemplate<OrderInfo, OrderatusInfo> {
 
-	@Override public List<OrderInfo> beforeMerge(List<OrderInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(OrderInfo baseInfo, OrderatusInfo selectedInfo) {
 		return (baseInfo.codOrderStatus.equals(selectedInfo.codOrderStatus));
 	}
@@ -28,11 +21,5 @@ final class OrderVisiMergeOrderatus extends InfoMergerVisitorTemplate<OrderInfo,
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<OrderInfo> getUniquifier() {
-		return null;
 	}
 }
