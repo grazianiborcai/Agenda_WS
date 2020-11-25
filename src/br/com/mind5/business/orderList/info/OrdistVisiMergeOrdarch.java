@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class OrdistVisiMergeOrdarch extends InfoMergerVisitorTemplate<OrdistInfo, OrdarchInfo> {
 
-	@Override public List<OrdistInfo> beforeMerge(List<OrdistInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(OrdistInfo baseInfo, OrdarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -30,11 +23,5 @@ final class OrdistVisiMergeOrdarch extends InfoMergerVisitorTemplate<OrdistInfo,
 		
 		results.add(result);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<OrdistInfo> getUniquifier() {
-		return null;
 	}
 }

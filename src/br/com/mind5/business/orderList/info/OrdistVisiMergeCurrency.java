@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 
 final class OrdistVisiMergeCurrency extends InfoMergerVisitorTemplate<OrdistInfo, CurrencyInfo> {
 
-	@Override public List<OrdistInfo> beforeMerge(List<OrdistInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(OrdistInfo baseInfo, CurrencyInfo selectedInfo) {
 		return (baseInfo.codCurr.equals(selectedInfo.codCurr));
 	}
@@ -29,11 +22,5 @@ final class OrdistVisiMergeCurrency extends InfoMergerVisitorTemplate<OrdistInfo
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<OrdistInfo> getUniquifier() {
-		return null;
 	}
 }
