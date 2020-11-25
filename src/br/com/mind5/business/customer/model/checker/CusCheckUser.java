@@ -1,10 +1,9 @@
 package br.com.mind5.business.customer.model.checker;
 
 import br.com.mind5.business.customer.info.CusInfo;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.checker.UserCheckExist;
 
@@ -23,6 +22,6 @@ public final class CusCheckUser extends ModelCheckerTemplateForward<CusInfo, Use
 	
 	
 	@Override protected UserInfo toForwardClass(CusInfo baseRecord) {
-		return UserCopier.copyFromCusKey(baseRecord);
+		return UserInfo.copyFrom(baseRecord);
 	}
 }

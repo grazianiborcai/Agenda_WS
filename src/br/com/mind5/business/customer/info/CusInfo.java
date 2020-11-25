@@ -18,6 +18,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codPerson;
 	public long codUser;
+	public long codOrder;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -43,6 +44,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codUser = DefaultValue.number();
+		codOrder = DefaultValue.number();
 		addresses = DefaultValue.list();
 		addressesUser = DefaultValue.list();
 		phones = DefaultValue.list();
@@ -92,6 +94,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 		
 		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
 		result = result * 31 + (int) (codCustomer ^ (codCustomer >>> 32));
+		result = result * 31 + (int) (codStore 	  ^ (codStore 	 >>> 32));
 		
 		return result;
 	}
@@ -108,7 +111,8 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 		
 		
 		CusInfo obj = (CusInfo) o;		
-		return (codOwner    == obj.codOwner && 
-				codCustomer == obj.codCustomer);
+		return (codOwner    == obj.codOwner 	&& 
+				codCustomer == obj.codCustomer	&&
+				codStore    == obj.codStore			);
 	}
 }

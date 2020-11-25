@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.business.customer.model.action.StdCusMergeUserarch;
-import br.com.mind5.business.customer.model.action.StdCusUserInsert;
-import br.com.mind5.business.customer.model.checker.CusCheckUserarch;
+import br.com.mind5.business.customer.model.action.StdCusSuccess;
+import br.com.mind5.business.customer.model.checker.CusCheckStore;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -14,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeCusInsertUserL2 extends DeciTreeTemplateWrite<CusInfo> {
-
-	public NodeCusInsertUserL2(DeciTreeOption<CusInfo> option) {
+public final class NodeCusSytotinL3 extends DeciTreeTemplateWrite<CusInfo> {
+	
+	public NodeCusSytotinL3(DeciTreeOption<CusInfo> option) {
 		super(option);
 	}
 	
@@ -31,8 +30,8 @@ public final class NodeCusInsertUserL2 extends DeciTreeTemplateWrite<CusInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new CusCheckUserarch(checkerOption);
-		queue.add(checker);	
+		checker = new CusCheckStore(checkerOption);
+		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
@@ -42,20 +41,9 @@ public final class NodeCusInsertUserL2 extends DeciTreeTemplateWrite<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> mergeUserarch = new StdCusMergeUserarch(option);
+		ActionStd<CusInfo> success = new StdCusSuccess(option);
 		
-		actions.add(mergeUserarch);	
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<CusInfo>> buildActionsOnFailedHook(DeciTreeOption<CusInfo> option) {
-		List<ActionStd<CusInfo>> actions = new ArrayList<>();
-		
-		ActionStd<CusInfo> insertUser = new StdCusUserInsert(option);		
-		
-		actions.add(insertUser);	
+		actions.add(success);
 		return actions;
 	}
 }

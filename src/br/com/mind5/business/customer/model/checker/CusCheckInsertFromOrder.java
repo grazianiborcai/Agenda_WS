@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class CusCheckInsertFromUser extends ModelCheckerTemplateSimple<CusInfo> {
+public final class CusCheckInsertFromOrder extends ModelCheckerTemplateSimple<CusInfo> {
 
-	public CusCheckInsertFromUser(ModelCheckerOption option) {
+	public CusCheckInsertFromOrder(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -17,7 +17,7 @@ public final class CusCheckInsertFromUser extends ModelCheckerTemplateSimple<Cus
 	
 	@Override protected boolean checkHook(CusInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner	<= 0	||
-			 recordInfo.codUser		<= 0	||
+			 recordInfo.codOrder	<= 0	||
 			 recordInfo.username 	== null ||
 			 recordInfo.codLanguage == null 	)
 				

@@ -7,16 +7,30 @@ import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
+import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CusMerger {
+	public static List<CusInfo> mergeWithOrdemarch(List<CusInfo> baseInfos, List<OrdemarchInfo> selectedInfos) {
+		InfoMergerBuilder<CusInfo, OrdemarchInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusVisiMergeOrdemarch());
+		InfoMerger<CusInfo, OrdemarchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<CusInfo> mergeWithSytotauh(List<CusInfo> baseInfos, List<SytotauhInfo> selectedInfos) {
 		InfoMergerBuilder<CusInfo, SytotauhInfo> builder = new InfoMergerBuilder<>();
 		

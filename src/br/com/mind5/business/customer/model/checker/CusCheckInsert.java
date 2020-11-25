@@ -17,6 +17,7 @@ public final class CusCheckInsert extends ModelCheckerTemplateSimple<CusInfo> {
 	
 	@Override protected boolean checkHook(CusInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner	<= 0	||
+			 recordInfo.codUser		<= 0	||
 			 recordInfo.personData 	== null ||
 			 recordInfo.username 	== null ||
 			 recordInfo.codLanguage == null 	)
