@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
 final class OrderemVisiMergeWeekday extends InfoMergerVisitorTemplate<OrderemInfo, WeekdayInfo> {
-	
-	@Override public List<OrderemInfo> beforeMerge(List<OrderemInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(OrderemInfo baseInfo, WeekdayInfo selectedInfo) {
 		return (baseInfo.codWeekday == selectedInfo.codWeekday);
 	}
@@ -28,11 +21,5 @@ final class OrderemVisiMergeWeekday extends InfoMergerVisitorTemplate<OrderemInf
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<OrderemInfo> getUniquifier() {
-		return null;
 	}
 }

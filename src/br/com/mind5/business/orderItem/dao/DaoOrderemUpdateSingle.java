@@ -71,6 +71,7 @@ public final class DaoOrderemUpdateSingle extends DaoStmtTemplate<OrderemInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrder);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrderItem);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codRefundPolicyGroup);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
 				
 				return stmt;
 			}		

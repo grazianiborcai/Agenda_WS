@@ -67,6 +67,7 @@ public final class DaoOrderemSelectSingle extends DaoStmtTemplate<OrderemInfo> {
 					dataInfo.quantity = stmtResult.getInt(DaoOrderemDbTableColumn.COL_QUANTITY);
 					dataInfo.codCurr = stmtResult.getString(DaoOrderemDbTableColumn.COL_COD_CURRENCY);
 					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoOrderemDbTableColumn.COL_COD_STORE);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoOrderemDbTableColumn.COL_COD_CUSTOMER);					
 					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, DaoOrderemDbTableColumn.COL_COD_EMPLOYEE);
 					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, DaoOrderemDbTableColumn.COL_COD_MATERIAL);
 					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, DaoOrderemDbTableColumn.COL_DATE);

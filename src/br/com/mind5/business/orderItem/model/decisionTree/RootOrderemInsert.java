@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
+import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeOrdist;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeOrdugeCreate;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeUsername;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemNodeInsert;
@@ -17,9 +18,9 @@ import br.com.mind5.business.orderItem.model.checker.OrderemCheckOrder;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckOwner;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -88,12 +89,14 @@ public final class RootOrderemInsert extends DeciTreeTemplateWrite<OrderemInfo> 
 		
 		ActionStd<OrderemInfo> enforceLChanged = new StdOrderemEnforceLChanged(option);
 		ActionLazy<OrderemInfo> mergeUsername = new LazyOrderemMergeUsername(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> mergeOrdist = new LazyOrderemMergeOrdist(option.conn, option.schemaName);
 		ActionLazy<OrderemInfo> statusChange = new LazyOrderemMergeOrdugeCreate(option.conn, option.schemaName);
 		ActionLazy<OrderemInfo> nodeInsert = new LazyOrderemNodeInsert(option.conn, option.schemaName);
 		ActionLazy<OrderemInfo> nodeSnapshot = new LazyOrderemNodeSnapshot(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(mergeUsername);
-		mergeUsername.addPostAction(statusChange);
+		mergeUsername.addPostAction(mergeOrdist);
+		mergeOrdist.addPostAction(statusChange);
 		statusChange.addPostAction(nodeInsert);
 		nodeInsert.addPostAction(nodeSnapshot);
 		

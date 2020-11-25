@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class OrderemVisiMergeOrdemrap extends InfoMergerVisitorTemplate<OrderemInfo, OrdemrapInfo> {
-	
-	@Override public List<OrderemInfo> beforeMerge(List<OrderemInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(OrderemInfo baseInfo, OrdemrapInfo selectedInfo) {
 		return (baseInfo.codOwner 		== selectedInfo.codOwner &&
 				baseInfo.codOrder 		== selectedInfo.codOrder &&
@@ -30,11 +23,5 @@ final class OrderemVisiMergeOrdemrap extends InfoMergerVisitorTemplate<OrderemIn
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<OrderemInfo> getUniquifier() {
-		return null;
 	}
 }

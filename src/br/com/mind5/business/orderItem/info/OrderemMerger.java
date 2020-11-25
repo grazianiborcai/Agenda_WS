@@ -2,22 +2,64 @@ package br.com.mind5.business.orderItem.info;
 
 import java.util.List;
 
+import br.com.mind5.business.customer.info.CusInfo;
+import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
+import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderStatusChange.info.OrdugeInfo;
 import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class OrderemMerger {
+	public static List<OrderemInfo> mergeWithOrdist(List<OrderemInfo> baseInfos, List<OrdistInfo> selectedInfos) {
+		InfoMergerBuilder<OrderemInfo, OrdistInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrderemVisiMergeOrdist());
+		InfoMerger<OrderemInfo,OrdistInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
+	public static List<OrderemInfo> mergeWithCus(List<OrderemInfo> baseInfos, List<CusInfo> selectedInfos) {
+		InfoMergerBuilder<OrderemInfo, CusInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrderemVisiMergeCus());
+		InfoMerger<OrderemInfo,CusInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
+	public static List<OrderemInfo> mergeWithCusarch(List<OrderemInfo> baseInfos, List<CusarchInfo> selectedInfos) {
+		InfoMergerBuilder<OrderemInfo, CusarchInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrderemVisiMergeCusarch());
+		InfoMerger<OrderemInfo,CusarchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
 	public static List<OrderemInfo> mergeWithRefugroup(List<OrderemInfo> baseInfos, List<RefugroupInfo> selectedInfos) {
 		InfoMergerBuilder<OrderemInfo, RefugroupInfo> builder = new InfoMergerBuilder<>();
 		
