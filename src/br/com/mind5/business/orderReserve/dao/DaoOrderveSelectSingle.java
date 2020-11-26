@@ -78,7 +78,6 @@ public final class DaoOrderveSelectSingle extends DaoStmtTemplate<OrderveInfo> {
 					
 					dataInfo.codOwner = stmtResult.getLong(DaoOrderveDbTableColumn.COL_COD_OWNER);
 					dataInfo.codOrder = stmtResult.getLong(DaoOrderveDbTableColumn.COL_COD_ORDER);
-					dataInfo.codCustomer = stmtResult.getLong(DaoOrderveDbTableColumn.COL_COD_CUSTOMER);
 					dataInfo.codUser = stmtResult.getLong(DaoOrderveDbTableColumn.COL_COD_USER);
 					dataInfo.codStore = stmtResult.getLong(DaoOrderveDbTableColumn.COL_COD_STORE);
 					dataInfo.codEmployee = stmtResult.getLong(DaoOrderveDbTableColumn.COL_COD_EMPLOYEE);

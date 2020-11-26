@@ -11,7 +11,6 @@ import br.com.mind5.dao.common.DaoDbTable;
 
 public final class DaoOrderveDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;
-	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
 	public static final String COL_COD_ORDER_STATUS = DaoDbField.COL_COD_ORDER_STATUS;
@@ -48,14 +47,6 @@ public final class DaoOrderveDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.tableName = DaoDbTable.ORDER_HDR_TABLE;
 		oneColumn.columnName = COL_COD_ORDER;
 		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.ORDER_HDR_TABLE;
-		oneColumn.columnName = COL_COD_CUSTOMER;
-		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
