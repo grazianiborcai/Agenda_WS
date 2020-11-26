@@ -84,6 +84,8 @@ public final class DaoOrdemrapSelectSingle extends DaoStmtTemplate<OrdemrapInfo>
 					dataInfo.codPayOrder = DaoFormatter.sqlToLong(stmtResult, DaoOrdemrapDbTableColumn.COL_COD_PAY_ORDER);
 					dataInfo.codPayOrderItem = DaoFormatter.sqlToInt(stmtResult, DaoOrdemrapDbTableColumn.COL_COD_PAY_ORDER_ITEM);
 					dataInfo.codRefundPolicyGroup = DaoFormatter.sqlToInt(stmtResult, DaoOrdemrapDbTableColumn.COL_COD_REFUND_POLICY_GROUP);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoOrdemrapDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoOrdemrapDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

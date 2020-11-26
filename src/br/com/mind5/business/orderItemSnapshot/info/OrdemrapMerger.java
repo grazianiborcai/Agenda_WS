@@ -2,15 +2,29 @@ package br.com.mind5.business.orderItemSnapshot.info;
 
 import java.util.List;
 
+import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
 public final class OrdemrapMerger {
+	public static List<OrdemrapInfo> mergeWithCuslis(List<OrdemrapInfo> baseInfos, List<CuslisInfo> selectedInfos) {
+		InfoMergerBuilder<OrdemrapInfo, CuslisInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrdemrapVisiMergeCuslis());
+		InfoMerger<OrdemrapInfo, CuslisInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
 	public static List<OrdemrapInfo> mergeWithMat(List<OrdemrapInfo> baseInfos, List<MatInfo> selectedInfos) {
 		InfoMergerBuilder<OrdemrapInfo, MatInfo> builder = new InfoMergerBuilder<>();
 		

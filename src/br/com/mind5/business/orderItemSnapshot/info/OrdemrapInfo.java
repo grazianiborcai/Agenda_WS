@@ -21,6 +21,8 @@ public final class OrdemrapInfo extends InfoRecord implements Cloneable, Compara
 	public String txtOrderStatus;
 	public long codPayOrder;
 	public int codPayOrderItem;
+	public long codCustomer;
+	public long codCustomerSnapshot;
 	public long codStore;
 	public long codStoreSnapshot;
 	public long codEmployee;
@@ -55,7 +57,9 @@ public final class OrdemrapInfo extends InfoRecord implements Cloneable, Compara
 		codOrder = DefaultValue.number();
 		codOrderItem = DefaultValue.number();		
 		codPayOrder = DefaultValue.number();
-		codPayOrderItem = DefaultValue.number();		
+		codPayOrderItem = DefaultValue.number();
+		codCustomer = DefaultValue.number();
+		codCustomerSnapshot = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codStoreSnapshot = DefaultValue.number();
 		codEmployee = DefaultValue.number();

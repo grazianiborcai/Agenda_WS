@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class OrdemrapVisiMergeMat extends InfoMergerVisitorTemplate<OrdemrapInfo, MatInfo> {
-	
-	@Override public List<OrdemrapInfo> beforeMerge(List<OrdemrapInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(OrdemrapInfo baseInfo, MatInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner && 
 				baseInfo.codMat   == selectedInfo.codMat		);
@@ -29,11 +22,5 @@ final class OrdemrapVisiMergeMat extends InfoMergerVisitorTemplate<OrdemrapInfo,
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<OrdemrapInfo> getUniquifier() {
-		return null;
 	}
 }
