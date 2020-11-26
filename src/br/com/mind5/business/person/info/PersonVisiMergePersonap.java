@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class PersonVisiMergePersonap extends InfoMergerVisitorTemplate<PersonInfo, PersonapInfo> {
-	
-	@Override public List<PersonInfo> beforeMerge(List<PersonInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(PersonInfo baseInfo, PersonapInfo selectedInfo) {
 		return (baseInfo.codOwner  == selectedInfo.codOwner	&&
 				baseInfo.codPerson == selectedInfo.codPerson		);
@@ -29,11 +22,5 @@ final class PersonVisiMergePersonap extends InfoMergerVisitorTemplate<PersonInfo
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<PersonInfo> getUniquifier() {
-		return null;
 	}
 }
