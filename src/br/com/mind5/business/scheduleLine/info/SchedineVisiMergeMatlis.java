@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class SchedineVisiMergeMatlis extends InfoMergerVisitorTemplate<SchedineInfo, MatlisInfo> {
-	
-	@Override public List<SchedineInfo> beforeMerge(List<SchedineInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(SchedineInfo baseInfo, MatlisInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner && 
 				baseInfo.codMat   == selectedInfo.codMat		);
@@ -29,11 +22,5 @@ final class SchedineVisiMergeMatlis extends InfoMergerVisitorTemplate<SchedineIn
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<SchedineInfo> getUniquifier() {
-		return null;
 	}
 }

@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
 
 final class SchedineVisiMergeSchedatus extends InfoMergerVisitorTemplate<SchedineInfo, SchedatusInfo> {
-	
-	@Override public List<SchedineInfo> beforeMerge(List<SchedineInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(SchedineInfo baseInfo, SchedatusInfo selectedInfo) {
 		if (baseInfo.codScheduleStatus  == null ||
 			baseInfo.codLanguage		== null ||
@@ -37,11 +30,5 @@ final class SchedineVisiMergeSchedatus extends InfoMergerVisitorTemplate<Schedin
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<SchedineInfo> getUniquifier() {
-		return null;
 	}
 }

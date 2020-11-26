@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.orderItemList.info.OrdemistInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class SchedineVisiMergeOrdemist extends InfoMergerVisitorTemplate<SchedineInfo, OrdemistInfo> {
-	
-	@Override public List<SchedineInfo> beforeMerge(List<SchedineInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(SchedineInfo baseInfo, OrdemistInfo selectedInfo) {
 		return (baseInfo.codOwner 	  == selectedInfo.codOwner &&
 				baseInfo.codOrder 	  == selectedInfo.codOrder &&
@@ -27,14 +20,9 @@ final class SchedineVisiMergeOrdemist extends InfoMergerVisitorTemplate<Schedine
 		List<SchedineInfo> results = new ArrayList<>();
 		
 		baseInfo.codOrderStatus = selectedInfo.codOrderStatus;
+		baseInfo.codCustomer = selectedInfo.codCustomer;
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<SchedineInfo> getUniquifier() {
-		return null;
 	}
 }

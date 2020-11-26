@@ -8,11 +8,10 @@ import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.orderItemList.info.OrdemistInfo;
-import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
@@ -51,19 +50,6 @@ public final class SchedineMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SchedineVisiMergeWeekday());
 		InfoMerger<SchedineInfo, WeekdayInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
-	public static List<SchedineInfo> mergeWithOrdist(List<SchedineInfo> baseInfos, List<OrdistInfo> selectedInfos) {
-		InfoMergerBuilder<SchedineInfo, OrdistInfo> builder = new InfoMergerBuilder<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeOrdist());
-		InfoMerger<SchedineInfo, OrdistInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
