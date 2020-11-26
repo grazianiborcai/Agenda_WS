@@ -18,7 +18,7 @@ final class OrdemistVisiMergeOrdist extends InfoMergerVisitorTemplate<OrdemistIn
 	@Override public List<OrdemistInfo> merge(OrdemistInfo baseInfo, OrdistInfo selectedInfo) {
 		List<OrdemistInfo> results = new ArrayList<>();
 		
-		baseInfo.codUser = baseInfo.codUser;
+		baseInfo.codUser = selectedInfo.codUser;
 		
 		results.add(baseInfo);
 		return results;
