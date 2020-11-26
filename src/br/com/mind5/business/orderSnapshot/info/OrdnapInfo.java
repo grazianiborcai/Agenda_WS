@@ -14,8 +14,6 @@ public final class OrdnapInfo extends InfoRecord implements Cloneable {
 	public long codSnapshot;	
 	public long codOrder;
 	public String codOrderExt;	
-	public long codCustomer;
-	public long codCustomerSnapshot;
 	public long codUser;
 	public long codUserSnapshot;	
 	public long codAddressShip;
@@ -57,8 +55,6 @@ public final class OrdnapInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();	
 		codSnapshot = DefaultValue.number();	
 		codOrder = DefaultValue.number();				
-		codCustomer = DefaultValue.number();
-		codCustomerSnapshot = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codUserSnapshot = DefaultValue.number();		
 		codAddressShip = DefaultValue.number();

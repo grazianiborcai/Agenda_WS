@@ -69,8 +69,6 @@ public final class DaoOrdnapSelectSingle extends DaoStmtTemplate<OrdnapInfo> {
 					dataInfo.codOrderStatus = stmtResult.getString(DaoOrdnapDbTableColumn.COL_COD_ORDER_STATUS);
 					dataInfo.codCurr = stmtResult.getString(DaoOrdnapDbTableColumn.COL_COD_CURRENCY);
 					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoOrdnapDbTableColumn.COL_COD_USER_SNAPSHOT);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoOrdnapDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoOrdnapDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoOrdnapDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoOrdnapDbTableColumn.COL_CREATED_ON);
 					dataInfo.itemTotal = DaoFormatter.sqlToDouble(stmtResult, DaoOrdnapDbTableColumn.COL_ITEM_TOTAL);

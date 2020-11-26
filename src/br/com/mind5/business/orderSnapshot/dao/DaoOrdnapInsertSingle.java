@@ -46,8 +46,6 @@ public final class DaoOrdnapInsertSingle extends DaoStmtTemplate<OrdnapInfo> {
 				stmt.setLong(i++, recordInfo.codOrder);
 				stmt.setLong(i++, recordInfo.codUser);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomerSnapshot);
 				stmt.setString(i++, recordInfo.codOrderExt);
 				stmt.setString(i++, recordInfo.codOrderStatus);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.itemTotal);
