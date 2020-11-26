@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.authorization.storeAuthorization.model.action.LazyStorauthNodeAuthorization;
+import br.com.mind5.authorization.storeAuthorization.model.action.LazyStorauthNodeAuthorizationL1;
 import br.com.mind5.authorization.storeAuthorization.model.action.StdStorauthMergeUsername;
 import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckOwner;
 import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckReadAuthorization;
@@ -60,9 +60,9 @@ public final class RootStorauthAuthorization extends DeciTreeTemplateWrite<Stora
 		List<ActionStd<StorauthInfo>> actions = new ArrayList<>();
 		
 		ActionStd<StorauthInfo> mergeUsername = new StdStorauthMergeUsername(option);	
-		ActionLazy<StorauthInfo> select = new LazyStorauthNodeAuthorization(option.conn, option.schemaName);	
+		ActionLazy<StorauthInfo> nodeL1 = new LazyStorauthNodeAuthorizationL1(option.conn, option.schemaName);	
 		
-		mergeUsername.addPostAction(select);
+		mergeUsername.addPostAction(nodeL1);
 		
 		actions.add(mergeUsername);		
 		return actions;

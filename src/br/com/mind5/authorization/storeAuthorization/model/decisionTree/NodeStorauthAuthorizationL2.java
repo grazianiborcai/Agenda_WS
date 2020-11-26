@@ -6,17 +6,17 @@ import java.util.List;
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.authorization.storeAuthorization.model.action.StdStorauthMergeToSelect;
 import br.com.mind5.authorization.storeAuthorization.model.action.StdStorauthSuccess;
-import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckAuthOwner;
+import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckAuthCustomer;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeStorauthAuthorization extends DeciTreeTemplateWrite<StorauthInfo> {
+public final class NodeStorauthAuthorizationL2 extends DeciTreeTemplateWrite<StorauthInfo> {
 	
-	public NodeStorauthAuthorization(DeciTreeOption<StorauthInfo> option) {
+	public NodeStorauthAuthorizationL2(DeciTreeOption<StorauthInfo> option) {
 		super(option);
 	}
 	
@@ -31,7 +31,7 @@ public final class NodeStorauthAuthorization extends DeciTreeTemplateWrite<Stora
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
-		checker = new StorauthCheckAuthOwner(checkerOption);
+		checker = new StorauthCheckAuthCustomer(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
