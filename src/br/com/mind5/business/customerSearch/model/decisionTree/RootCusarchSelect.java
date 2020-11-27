@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.business.customerSearch.model.action.LazyCusarchNodeSelectL1;
+import br.com.mind5.business.customerSearch.model.action.LazyCusarchMergeSytotauh;
+import br.com.mind5.business.customerSearch.model.action.LazyCusarchMergeToSelect;
 import br.com.mind5.business.customerSearch.model.action.StdCusarchEnforceEntityCateg;
 import br.com.mind5.business.customerSearch.model.checker.CusarchCheckOwner;
 import br.com.mind5.business.customerSearch.model.checker.CusarchCheckRead;
@@ -52,9 +53,11 @@ public final class RootCusarchSelect extends DeciTreeTemplateRead<CusarchInfo> {
 		List<ActionStd<CusarchInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CusarchInfo> enforceEntityCateg = new StdCusarchEnforceEntityCateg(option);
-		ActionLazy<CusarchInfo> nodeL1 = new LazyCusarchNodeSelectL1(option.conn, option.schemaName);
+		ActionLazy<CusarchInfo> mergeSytotauh = new LazyCusarchMergeSytotauh(option.conn, option.schemaName);
+		ActionLazy<CusarchInfo> select = new LazyCusarchMergeToSelect(option.conn, option.schemaName);
 		
-		enforceEntityCateg.addPostAction(nodeL1);
+		enforceEntityCateg.addPostAction(mergeSytotauh);
+		mergeSytotauh.addPostAction(select);
 		
 		actions.add(enforceEntityCateg);
 		return actions;

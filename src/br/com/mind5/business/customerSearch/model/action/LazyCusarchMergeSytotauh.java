@@ -4,15 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.business.customerSearch.model.decisionTree.NodeCusarchSelectL1;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCusarchNodeSelectL1 extends ActionLazyTemplate<CusarchInfo, CusarchInfo> {
+public final class LazyCusarchMergeSytotauh extends ActionLazyTemplate<CusarchInfo, CusarchInfo> {
 	
-	public LazyCusarchNodeSelectL1(Connection conn, String schemaName) {
+	public LazyCusarchMergeSytotauh(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +24,7 @@ public final class LazyCusarchNodeSelectL1 extends ActionLazyTemplate<CusarchInf
 	
 	
 	@Override protected ActionStd<CusarchInfo> getInstanceOfActionHook(DeciTreeOption<CusarchInfo> option) {
-		return new NodeCusarchSelectL1(option).toAction();
+		return new StdCusarchMergeSytotauh(option);
 	}
 	
 	
