@@ -18,7 +18,6 @@ import br.com.mind5.business.customer.model.CusModelDelete;
 import br.com.mind5.business.customer.model.CusModelInsertUser;
 import br.com.mind5.business.customer.model.CusModelSelect;
 import br.com.mind5.business.customer.model.CusModelUpdate;
-import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.model.CuslisModelSearch;
 import br.com.mind5.model.Model;
 
@@ -28,7 +27,7 @@ public class CustomerResource {
 	private static final String UPDATE_CUSTOMER = "/updateCustomer";
 	private static final String DELETE_CUSTOMER = "/deleteCustomer";
 	private static final String SELECT_CUSTOMER = "/selectCustomer";
-	private static final String SELECT_CUSTOMER_LIST = "/selectCustomerList";
+	private static final String SEARCH_CUSTOMER = "/searchCustomer";
 
 	
 	
@@ -109,21 +108,13 @@ public class CustomerResource {
 	
 	
 	
-	@GET
-	@Path(SELECT_CUSTOMER_LIST)
+	@POST
+	@Path(SEARCH_CUSTOMER)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectCuslis(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
-			                     @HeaderParam("codCustomer")    @DefaultValue("-1") int codCustomer,
-			                     @HeaderParam("codLanguage")	@DefaultValue("EN") String codLanguage,
-			                     @HeaderParam("TOKEN_USERNAME") String username) {
+	public Response searchCustomer(@Context HttpServletRequest request, String incomingData) {
 
-		CuslisInfo recordInfo = new CuslisInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codCustomer = codCustomer;
-		recordInfo.codLanguage = codLanguage;
-		recordInfo.username = username;
 		
-		Model model = new CuslisModelSearch(recordInfo);
+		Model model = new CuslisModelSearch(incomingData, request);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();
