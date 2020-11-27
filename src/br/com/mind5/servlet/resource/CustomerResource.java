@@ -19,7 +19,7 @@ import br.com.mind5.business.customer.model.CusModelInsertUser;
 import br.com.mind5.business.customer.model.CusModelSelect;
 import br.com.mind5.business.customer.model.CusModelUpdate;
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.business.customerList.model.CuslisModelSelect;
+import br.com.mind5.business.customerList.model.CuslisModelSearch;
 import br.com.mind5.model.Model;
 
 @Path("/Customer")
@@ -123,7 +123,7 @@ public class CustomerResource {
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.username = username;
 		
-		Model model = new CuslisModelSelect(recordInfo);
+		Model model = new CuslisModelSearch(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();

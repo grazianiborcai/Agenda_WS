@@ -25,6 +25,7 @@ final class CuslisCopySchedeek extends InfoCopierOneToManyTemplate<CuslisInfo, S
 		
 		for (SchedeekdatInfo eachSchedonthat : source.schedeekdates) {
 			CuslisInfo eachResult = new CuslisInfo();
+			
 			eachResult.codOwner = eachSchedonthat.codOwner;
 			eachResult.codCustomer = eachSchedonthat.codCustomer;
 			eachResult.codLanguage = eachSchedonthat.codLanguage;

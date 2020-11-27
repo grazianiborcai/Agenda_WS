@@ -11,6 +11,7 @@ import br.com.mind5.info.InfoRecord;
 public final class CuslisInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codCustomer;
+	public long codStore;
 	public long codSnapshot;
 	public long codPerson;
 	public long codUser;
@@ -25,6 +26,7 @@ public final class CuslisInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codCustomer = DefaultValue.number();
+		codStore = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codUser = DefaultValue.number();

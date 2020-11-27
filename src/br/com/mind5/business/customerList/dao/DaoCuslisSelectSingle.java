@@ -68,7 +68,8 @@ public final class DaoCuslisSelectSingle extends DaoStmtTemplate<CuslisInfo> {
 					CuslisInfo dataInfo = new CuslisInfo();
 					
 					dataInfo.codOwner = stmtResult.getLong(DaoCuslisDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCustomer = stmtResult.getLong(DaoCuslisDbTableColumn.COL_COD_CUSTOMER);									
+					dataInfo.codCustomer = stmtResult.getLong(DaoCuslisDbTableColumn.COL_COD_CUSTOMER);	
+					dataInfo.codStore = stmtResult.getLong(DaoCuslisDbTableColumn.COL_COD_STORE);	
 					dataInfo.recordMode = stmtResult.getString(DaoCuslisDbTableColumn.COL_RECORD_MODE);
 					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoCuslisDbTableColumn.COL_COD_PERSON);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoCuslisDbTableColumn.COL_COD_USER);

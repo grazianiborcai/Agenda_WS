@@ -25,6 +25,7 @@ final class CuslisCopyScheday extends InfoCopierOneToManyTemplate<CuslisInfo, Sc
 		
 		for (SchedaytaInfo eachSchedaytas : source.schedaytas) {
 			CuslisInfo eachResult = new CuslisInfo();
+			
 			eachResult.codOwner = eachSchedaytas.codOwner;
 			eachResult.codCustomer = eachSchedaytas.codCustomer;
 			eachResult.codLanguage = eachSchedaytas.codLanguage;

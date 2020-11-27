@@ -14,6 +14,7 @@ final class CuslisCopyAddresnap extends InfoCopierTemplate<CuslisInfo, Addresnap
 	
 	@Override protected CuslisInfo makeCopyHook(AddresnapInfo source) {
 		CuslisInfo result = new CuslisInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codCustomer = source.codCustomer;
 		result.codLanguage = source.codLanguage;
