@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
-import br.com.mind5.authorization.storePartitionAuthorization.model.action.StdSytotauhSuccess;
 import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckAuthCustomer;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -41,9 +40,9 @@ public final class NodeSytotauhSelectL3 extends DeciTreeTemplateWrite<SytotauhIn
 	@Override protected List<ActionStd<SytotauhInfo>> buildActionsOnPassedHook(DeciTreeOption<SytotauhInfo> option) {
 		List<ActionStd<SytotauhInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SytotauhInfo> success = new StdSytotauhSuccess(option);
+		ActionStd<SytotauhInfo> nodeStore = new NodeSytotauhStore(option).toAction();
 		
-		actions.add(success);
+		actions.add(nodeStore);
 		return actions;
 	}
 	
