@@ -12,6 +12,7 @@ import br.com.mind5.info.InfoRecord;
 public final class CusarchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codCustomer;
+	public long codStore;
 	public long codUser;
 	public String codEntityCateg;
 	public AddressInfo addressData;
@@ -26,6 +27,7 @@ public final class CusarchInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codCustomer = DefaultValue.number();
+		codStore = DefaultValue.number();
 		codUser = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();	
 		addressData = DefaultValue.object();

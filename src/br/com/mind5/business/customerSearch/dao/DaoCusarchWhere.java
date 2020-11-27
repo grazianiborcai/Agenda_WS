@@ -72,6 +72,10 @@ final class DaoCusarchWhere implements DaoStmtWhere {
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 				break;
 				
+			case DaoCusarchDbTableColumn.COL_COD_STORE :
+				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
+				break;
+				
 			case DaoCusarchDbTableColumn.COL_RECORD_MODE :
 				builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 				break;

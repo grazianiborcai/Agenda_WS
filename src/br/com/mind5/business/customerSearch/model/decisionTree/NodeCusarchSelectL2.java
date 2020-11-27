@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.business.customerSearch.model.action.LazyCusarchNodeSelectL1;
-import br.com.mind5.business.customerSearch.model.action.StdCusarchEnforceEntityCateg;
-import br.com.mind5.business.customerSearch.model.checker.CusarchCheckOwner;
-import br.com.mind5.business.customerSearch.model.checker.CusarchCheckRead;
-import br.com.mind5.model.action.ActionLazy;
+import br.com.mind5.business.customerSearch.model.action.StdCusarchMergeToSelect;
+import br.com.mind5.business.customerSearch.model.checker.CusarchCheckHasStore;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -16,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCusarchSelect extends DeciTreeTemplateRead<CusarchInfo> {
+public final class NodeCusarchSelectL2 extends DeciTreeTemplateRead<CusarchInfo> {
 	
-	public RootCusarchSelect(DeciTreeOption<CusarchInfo> option) {
+	public NodeCusarchSelectL2(DeciTreeOption<CusarchInfo> option) {
 		super(option);
 	}
 	
@@ -32,15 +29,8 @@ public final class RootCusarchSelect extends DeciTreeTemplateRead<CusarchInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult =  ModelCheckerOption.SUCCESS;	
-		checker = new CusarchCheckRead(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult =  ModelCheckerOption.EXIST_ON_DB;		
-		checker = new CusarchCheckOwner(checkerOption);
+		checkerOption.expectedResult =  ModelCheckerOption.SUCCESS;		
+		checker = new CusarchCheckHasStore(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -51,12 +41,9 @@ public final class RootCusarchSelect extends DeciTreeTemplateRead<CusarchInfo> {
 	@Override protected List<ActionStd<CusarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CusarchInfo> option) {
 		List<ActionStd<CusarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusarchInfo> enforceEntityCateg = new StdCusarchEnforceEntityCateg(option);
-		ActionLazy<CusarchInfo> nodeL1 = new LazyCusarchNodeSelectL1(option.conn, option.schemaName);
+		ActionStd<CusarchInfo> select = new StdCusarchMergeToSelect(option);
 		
-		enforceEntityCateg.addPostAction(nodeL1);
-		
-		actions.add(enforceEntityCateg);
+		actions.add(select);
 		return actions;
 	}
 }

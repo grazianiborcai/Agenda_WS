@@ -85,7 +85,8 @@ public final class DaoCusarchSelectSingle extends DaoStmtTemplate<CusarchInfo> {
 					CusarchInfo dataInfo = new CusarchInfo();
 					
 					dataInfo.codOwner = stmtResult.getLong(DaoCusarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCustomer = stmtResult.getLong(DaoCusarchDbTableColumn.COL_COD_CUSTOMER);	
+					dataInfo.codCustomer = stmtResult.getLong(DaoCusarchDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codStore = stmtResult.getLong(DaoCusarchDbTableColumn.COL_COD_STORE);
 					dataInfo.recordMode = stmtResult.getString(DaoCusarchDbTableColumn.COL_RECORD_MODE);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoCusarchDbTableColumn.COL_COD_USER);
 					

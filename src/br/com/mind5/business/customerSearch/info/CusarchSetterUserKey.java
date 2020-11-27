@@ -8,7 +8,8 @@ public final class CusarchSetterUserKey extends InfoSetterTemplate<CusarchInfo> 
 		CusarchInfo result = new CusarchInfo();
 		
 		result.codOwner = recordInfo.codOwner;	
-		result.codUser = recordInfo.codUser;	
+		result.codUser = recordInfo.codUser;
+		result.codStore = recordInfo.codStore;
 		result.codLanguage = recordInfo.codLanguage;
 		result.username = recordInfo.username;
 		
