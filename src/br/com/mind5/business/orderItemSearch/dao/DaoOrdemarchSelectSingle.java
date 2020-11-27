@@ -71,7 +71,7 @@ public final class DaoOrdemarchSelectSingle extends DaoStmtTemplate<OrdemarchInf
 					dataInfo.codOrder = stmtResult.getLong(DaoOrdemarchDbTableColumn.COL_COD_ORDER);
 					dataInfo.codOrderItem = DaoFormatter.sqlToInt(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_ORDER_ITEM);
 					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_STORE);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_USER);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_CUSTOMER);
 					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_EMPLOYEE);
 					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_MATERIAL);
 					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, DaoOrdemarchDbTableColumn.COL_DATE);
