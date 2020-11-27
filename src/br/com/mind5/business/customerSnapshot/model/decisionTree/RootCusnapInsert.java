@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
 import br.com.mind5.business.customerSnapshot.model.action.LazyCusnapDaoInsert;
+import br.com.mind5.business.customerSnapshot.model.action.LazyCusnapNodeStore;
 import br.com.mind5.business.customerSnapshot.model.action.LazyCusnapNodeUser;
 import br.com.mind5.business.customerSnapshot.model.action.StdCusnapMergePerson;
 import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckLangu;
@@ -12,9 +13,9 @@ import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckOwner;
 import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -62,10 +63,12 @@ public final class RootCusnapInsert extends DeciTreeTemplateWrite<CusnapInfo> {
 		
 		ActionStd<CusnapInfo> mergePerson = new StdCusnapMergePerson(option);
 		ActionLazy<CusnapInfo> nodeUser = new LazyCusnapNodeUser(option.conn, option.schemaName);
+		ActionLazy<CusnapInfo> nodeStore = new LazyCusnapNodeStore(option.conn, option.schemaName);
 		ActionLazy<CusnapInfo> insert = new LazyCusnapDaoInsert(option.conn, option.schemaName);
 		
 		mergePerson.addPostAction(nodeUser);
-		nodeUser.addPostAction(insert);
+		nodeUser.addPostAction(nodeStore);
+		nodeStore.addPostAction(insert);
 		
 		actions.add(mergePerson);	
 		return actions;

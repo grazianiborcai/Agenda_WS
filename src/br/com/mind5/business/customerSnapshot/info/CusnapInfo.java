@@ -15,6 +15,7 @@ public final class CusnapInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codCustomer;
 	public long codStore;
+	public long codStoreSnapshot;
 	public long codSnapshot;
 	public long codPerson;
 	public long codPersonSnapshot;
@@ -38,6 +39,7 @@ public final class CusnapInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		codStore = DefaultValue.number();
+		codStoreSnapshot = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codPersonSnapshot = DefaultValue.number();

@@ -4,11 +4,25 @@ package br.com.mind5.business.customerSnapshot.info;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.security.userList.info.UselisInfo;
 
 public final class CusnapMerger {
+	public static List<CusnapInfo> mergeWithStolis(List<CusnapInfo> baseInfos, List<StolisInfo> selectedInfos) {
+		InfoMergerBuilder<CusnapInfo, StolisInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusnapVisiMergeStolis());
+		InfoMerger<CusnapInfo, StolisInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<CusnapInfo> mergeWithUselis(List<CusnapInfo> baseInfos, List<UselisInfo> selectedInfos) {
 		InfoMergerBuilder<CusnapInfo, UselisInfo> builder = new InfoMergerBuilder<>();
 		
