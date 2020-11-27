@@ -25,6 +25,7 @@ public final class PerarchCheckRead extends ModelCheckerTemplateSimple<PerarchIn
 		if ( recordInfo.codPerson 	<= 0 	&&
 			 recordInfo.cpf			== null	&&
 			 recordInfo.name		== null	&&
+			 recordInfo.nameSearch	== null	&&
 			 recordInfo.email		== null		)			
 			return super.FAILED;	
 		

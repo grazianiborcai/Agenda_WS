@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class PerarchVisiMergeToSelect extends InfoMergerVisitorTemplate<PerarchInfo, PerarchInfo> {
-	
-	@Override public List<PerarchInfo> beforeMerge(List<PerarchInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(PerarchInfo baseInfo, PerarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -29,11 +22,5 @@ final class PerarchVisiMergeToSelect extends InfoMergerVisitorTemplate<PerarchIn
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<PerarchInfo> getUniquifier() {
-		return null;
 	}
 }
