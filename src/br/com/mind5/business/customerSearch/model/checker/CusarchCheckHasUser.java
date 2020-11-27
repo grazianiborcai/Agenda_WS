@@ -7,19 +7,16 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class CusarchCheckRead extends ModelCheckerTemplateSimple<CusarchInfo> {
+public final class CusarchCheckHasUser extends ModelCheckerTemplateSimple<CusarchInfo> {
 
-	public CusarchCheckRead(ModelCheckerOption option) {
+	public CusarchCheckHasUser(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CusarchInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner 	<= 0	||
-			recordInfo.codLanguage 	== null	||
-			recordInfo.username 	== null		)	
-			
+		if (recordInfo.codUser <= 0)			
 			return super.FAILED;		
 		
 		
@@ -27,7 +24,7 @@ public final class CusarchCheckRead extends ModelCheckerTemplateSimple<CusarchIn
 		if (recordInfo.codCustomer 	<= 0 	&&
 			recordInfo.codUser 		<= 0 	&&
 			recordInfo.codStore		<= 0 	&&
-			recordInfo.personData	== null &&
+			recordInfo.persolisData	== null &&
 			recordInfo.phoneData	== null		)
 			
 			return super.FAILED;

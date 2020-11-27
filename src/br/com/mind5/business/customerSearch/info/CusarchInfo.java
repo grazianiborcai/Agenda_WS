@@ -3,8 +3,7 @@ package br.com.mind5.business.customerSearch.info;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
@@ -12,12 +11,12 @@ import br.com.mind5.info.InfoRecord;
 public final class CusarchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codCustomer;
+	public long codPerson;
 	public long codStore;
 	public long codUser;
 	public String codEntityCateg;
 	public AddressInfo addressData;
-	public PhoneInfo phoneData;
-	public PersonInfo personData;
+	public PersolisInfo persolisData;
 	public String recordMode;
 	public String username;
 	
@@ -27,12 +26,12 @@ public final class CusarchInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codCustomer = DefaultValue.number();
+		codPerson = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codUser = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();	
 		addressData = DefaultValue.object();
-		phoneData = DefaultValue.object();
-		personData = DefaultValue.object();
+		persolisData = DefaultValue.object();
 	}
 	
 	
@@ -53,8 +52,7 @@ public final class CusarchInfo extends InfoRecord implements Cloneable {
 		CusarchInfo deepCopy = (CusarchInfo) super.clone();
 		
 		deepCopy.addressData = CloneUtil.cloneRecord(addressData, this.getClass());
-		deepCopy.phoneData = CloneUtil.cloneRecord(phoneData, this.getClass());
-		deepCopy.personData = CloneUtil.cloneRecord(personData, this.getClass());
+		deepCopy.persolisData = CloneUtil.cloneRecord(persolisData, this.getClass());
 		
 		return deepCopy;
 	}
@@ -66,6 +64,7 @@ public final class CusarchInfo extends InfoRecord implements Cloneable {
 		
 		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
 		result = result * 31 + (int) (codCustomer ^ (codCustomer >>> 32));
+		result = result * 31 + (int) (codPerson   ^ (codPerson   >>> 32));
 		
 		return result;
 	}
@@ -83,6 +82,7 @@ public final class CusarchInfo extends InfoRecord implements Cloneable {
 		
 		CusarchInfo obj = (CusarchInfo) o;		
 		return (codOwner    == obj.codOwner 	&& 
-				codCustomer == obj.codCustomer);
+				codCustomer == obj.codCustomer  &&
+				codPerson   == obj.codPerson		);
 	}
 }

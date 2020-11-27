@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCusarchMergeToSelect extends ActionLazyTemplate<CusarchInfo, CusarchInfo> {
+public final class LazyCusarchMergePersolis extends ActionLazyTemplate<CusarchInfo, CusarchInfo> {
 	
-	public LazyCusarchMergeToSelect(Connection conn, String schemaName) {
+	public LazyCusarchMergePersolis(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCusarchMergeToSelect extends ActionLazyTemplate<CusarchIn
 	
 	
 	@Override protected ActionStd<CusarchInfo> getInstanceOfActionHook(DeciTreeOption<CusarchInfo> option) {
-		return new StdCusarchMergeToSelect(option);
+		return new StdCusarchMergePersolis(option);
 	}
 	
 	

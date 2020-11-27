@@ -1,7 +1,7 @@
 package br.com.mind5.business.customerSearch.info;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.business.person.info.PersonInfo;
+import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
 final class CusarchCopyCusCpf extends InfoCopierTemplate<CusarchInfo, CusInfo> {
@@ -22,8 +22,8 @@ final class CusarchCopyCusCpf extends InfoCopierTemplate<CusarchInfo, CusInfo> {
 		if (source.personData == null)
 			return result;
 		
-		result.personData = new PersonInfo();
-		result.personData.cpf = source.personData.cpf;
+		result.persolisData = new PersolisInfo();
+		result.persolisData.cpf = source.personData.cpf;
 		
 		return result;
 	}

@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCusarchEnforceEntityCateg extends ActionStdTemplate<CusarchInfo> {
+public final class StdCusarchMergePerarch extends ActionStdTemplate<CusarchInfo> {
 
-	public StdCusarchEnforceEntityCateg(DeciTreeOption<CusarchInfo> option) {
+	public StdCusarchMergePerarch(DeciTreeOption<CusarchInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<CusarchInfo> buildVisitorHook(DeciTreeOption<CusarchInfo> option) {
-		return new VisiCusarchEnforceEntityCateg(option);
+		return new VisiCusarchMergePerarch(option);
 	}
 }

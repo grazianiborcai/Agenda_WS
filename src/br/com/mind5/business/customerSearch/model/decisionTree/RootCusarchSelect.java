@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.business.customerSearch.model.action.LazyCusarchMergeSytotauh;
-import br.com.mind5.business.customerSearch.model.action.LazyCusarchMergeToSelect;
-import br.com.mind5.business.customerSearch.model.action.StdCusarchEnforceEntityCateg;
+import br.com.mind5.business.customerSearch.model.action.LazyCusarchNodePerson;
+import br.com.mind5.business.customerSearch.model.action.LazyCusarchNodeSelect;
+import br.com.mind5.business.customerSearch.model.action.StdCusarchMergeSytotauh;
 import br.com.mind5.business.customerSearch.model.checker.CusarchCheckOwner;
 import br.com.mind5.business.customerSearch.model.checker.CusarchCheckRead;
 import br.com.mind5.model.action.ActionLazy;
@@ -52,14 +52,14 @@ public final class RootCusarchSelect extends DeciTreeTemplateRead<CusarchInfo> {
 	@Override protected List<ActionStd<CusarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CusarchInfo> option) {
 		List<ActionStd<CusarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusarchInfo> enforceEntityCateg = new StdCusarchEnforceEntityCateg(option);
-		ActionLazy<CusarchInfo> mergeSytotauh = new LazyCusarchMergeSytotauh(option.conn, option.schemaName);
-		ActionLazy<CusarchInfo> select = new LazyCusarchMergeToSelect(option.conn, option.schemaName);
+		ActionStd<CusarchInfo> mergeSytotauh = new StdCusarchMergeSytotauh(option);
+		ActionLazy<CusarchInfo> nodePerson = new LazyCusarchNodePerson(option.conn, option.schemaName);
+		ActionLazy<CusarchInfo> select = new LazyCusarchNodeSelect(option.conn, option.schemaName);
 		
-		enforceEntityCateg.addPostAction(mergeSytotauh);
-		mergeSytotauh.addPostAction(select);
+		mergeSytotauh.addPostAction(nodePerson);
+		nodePerson.addPostAction(select);
 		
-		actions.add(enforceEntityCateg);
+		actions.add(mergeSytotauh);
 		return actions;
 	}
 }

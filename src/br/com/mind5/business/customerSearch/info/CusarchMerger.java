@@ -3,10 +3,38 @@ package br.com.mind5.business.customerSearch.info;
 import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
+import br.com.mind5.business.personList.info.PersolisInfo;
+import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 
 public final class CusarchMerger {	
+	public static List<CusarchInfo> mergeWithPersolis(List<CusarchInfo> baseInfos, List<PersolisInfo> selectedInfos) {
+		InfoMergerBuilder<CusarchInfo, PersolisInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusarchVisiMergePersolis());
+		InfoMerger<CusarchInfo, PersolisInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<CusarchInfo> mergeWithPerarch(List<CusarchInfo> baseInfos, List<PerarchInfo> selectedInfos) {
+		InfoMergerBuilder<CusarchInfo, PerarchInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusarchVisiMergePerarch());
+		InfoMerger<CusarchInfo, PerarchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+
+	
+	
 	public static List<CusarchInfo> mergeWithSytotauh(List<CusarchInfo> baseInfos, List<SytotauhInfo> selectedInfos) {
 		InfoMergerBuilder<CusarchInfo, SytotauhInfo> builder = new InfoMergerBuilder<>();
 		

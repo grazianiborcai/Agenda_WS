@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.business.customerSearch.model.action.LazyCusarchRootSelect;
-import br.com.mind5.business.customerSearch.model.action.StdCusarchEnforceUserKey;
-import br.com.mind5.business.customerSearch.model.checker.CusarchCheckHasUser;
+import br.com.mind5.business.customerSearch.model.action.LazyCusarchMergePerarch;
+import br.com.mind5.business.customerSearch.model.action.StdCusarchEnforcePerson;
+import br.com.mind5.business.customerSearch.model.action.StdCusarchSuccess;
+import br.com.mind5.business.customerSearch.model.checker.CusarchCheckHasPerson;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -15,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCusarchSelectUser extends DeciTreeTemplateRead<CusarchInfo> {
+public final class NodeCusarchPerson extends DeciTreeTemplateRead<CusarchInfo> {
 	
-	public RootCusarchSelectUser(DeciTreeOption<CusarchInfo> option) {
+	public NodeCusarchPerson(DeciTreeOption<CusarchInfo> option) {
 		super(option);
 	}
 	
@@ -32,7 +33,7 @@ public final class RootCusarchSelectUser extends DeciTreeTemplateRead<CusarchInf
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult =  ModelCheckerOption.SUCCESS;	
-		checker = new CusarchCheckHasUser(checkerOption);
+		checker = new CusarchCheckHasPerson(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -43,12 +44,23 @@ public final class RootCusarchSelectUser extends DeciTreeTemplateRead<CusarchInf
 	@Override protected List<ActionStd<CusarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CusarchInfo> option) {
 		List<ActionStd<CusarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusarchInfo> enforceUserKey = new StdCusarchEnforceUserKey(option);
-		ActionLazy<CusarchInfo> select = new LazyCusarchRootSelect(option.conn, option.schemaName);
+		ActionStd<CusarchInfo> enforcePerson = new StdCusarchEnforcePerson(option);
+		ActionLazy<CusarchInfo> mergePerarch = new LazyCusarchMergePerarch(option.conn, option.schemaName);
 		
-		enforceUserKey.addPostAction(select);
+		enforcePerson.addPostAction(mergePerarch);
 		
-		actions.add(enforceUserKey);
+		actions.add(enforcePerson);
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<CusarchInfo>> buildActionsOnFailedHook(DeciTreeOption<CusarchInfo> option) {
+		List<ActionStd<CusarchInfo>> actions = new ArrayList<>();
+		
+		ActionStd<CusarchInfo> success = new StdCusarchSuccess(option);
+		
+		actions.add(success);
 		return actions;
 	}
 }

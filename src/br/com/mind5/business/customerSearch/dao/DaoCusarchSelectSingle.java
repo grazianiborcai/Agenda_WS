@@ -8,15 +8,12 @@ import java.util.List;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.dao.DaoFormatter;
-import br.com.mind5.dao.DaoJoin;
-import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoJoinPerson;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class DaoCusarchSelectSingle extends DaoStmtTemplate<CusarchInfo> {
@@ -59,20 +56,6 @@ public final class DaoCusarchSelectSingle extends DaoStmtTemplate<CusarchInfo> {
 	
 	
 	
-	@Override protected List<DaoJoin> getJoinsHook(CusarchInfo recordInfo) {
-		List<DaoJoin> joins = new ArrayList<>();
-		
-		DaoJoinBuilder joinPerson = new DaoJoinPerson(MAIN_TABLE);		
-		joins.add(joinPerson.build());
-		
-		DaoJoinBuilder joinPhone = new DaoCusarchJoinPhone(MAIN_TABLE);		
-		joins.add(joinPhone.build());
-		
-		return joins;
-	}
-	
-	
-	
 	@Override protected DaoResultParser<CusarchInfo> getResultParserHook() {
 		return new DaoResultParser<CusarchInfo>() {
 			@Override public List<CusarchInfo> parseResult(CusarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
@@ -89,6 +72,7 @@ public final class DaoCusarchSelectSingle extends DaoStmtTemplate<CusarchInfo> {
 					dataInfo.codStore = stmtResult.getLong(DaoCusarchDbTableColumn.COL_COD_STORE);
 					dataInfo.recordMode = stmtResult.getString(DaoCusarchDbTableColumn.COL_RECORD_MODE);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoCusarchDbTableColumn.COL_COD_USER);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoCusarchDbTableColumn.COL_COD_PERSON);
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());
