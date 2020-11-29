@@ -12,7 +12,8 @@ final class CusparCopyCrecard extends InfoCopierTemplate<CusparInfo, CrecardInfo
 	
 	
 	@Override protected CusparInfo makeCopyHook(CrecardInfo source) {
-		CusparInfo result = CusparInfo.copyFrom(source);		
+		CusparInfo result = CusparInfo.copyFrom(source);	
+		
 		result.codAddress = source.codAddressHolder;
 		result.codPhone = source.codPhoneHolder;	
 		
