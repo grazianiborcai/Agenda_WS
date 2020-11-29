@@ -1494,4 +1494,7 @@ public final class SystemCode {
 	
 	//Address Snapshot Search
 	public static final int ADDRESS_SNAP_SEARCH_MANDATORY_FIELD_EMPTY	= 14600;
+	
+	//Phone Snapshot Search
+	public static final int PHONE_SNAPSHOT_SEARCH_MANDATORY_FIELD_EMPTY	= 14650;
 }

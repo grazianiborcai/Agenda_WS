@@ -229,6 +229,7 @@ public final class DaoDbTable {
 	public static final String PERSON_SEARCH_VIEW = "view_person_search";
 	public static final String PHONE_DEFAULT_VIEW = "view_phone_default";
 	public static final String PHONE_SEARCH_VIEW = "view_phone_search";
+	public static final String PHONE_SNAPSHOT_SEARCH_VIEW = "view_phone_snapshot_search";
 	public static final String PLANING_DATA_VIEW = "planing_data_list";
 	public static final String PROSPECT_STATUS_SEARCH_VIEW = "view_prospect_status_search";
 	public static final String REFUND_VIEW = "view_refund";	
