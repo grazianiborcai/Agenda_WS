@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class PhonapVisiMergeStolis extends InfoMergerVisitorTemplate<PhonapInfo, StolisInfo> {
-	
-	@Override public List<PhonapInfo> beforeMerge(List<PhonapInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(PhonapInfo baseInfo, StolisInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner	&&
 				baseInfo.codStore == selectedInfo.codStore		);
@@ -29,11 +22,5 @@ final class PhonapVisiMergeStolis extends InfoMergerVisitorTemplate<PhonapInfo, 
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<PhonapInfo> getUniquifier() {
-		return null;
 	}
 }

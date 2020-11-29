@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.userList.info.UselisInfo;
 
 final class PhonapVisiMergeUselis extends InfoMergerVisitorTemplate<PhonapInfo, UselisInfo> {
-	
-	@Override public List<PhonapInfo> beforeMerge(List<PhonapInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(PhonapInfo baseInfo, UselisInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner	&&
 				baseInfo.codUser  == selectedInfo.codUser		);
@@ -29,11 +22,5 @@ final class PhonapVisiMergeUselis extends InfoMergerVisitorTemplate<PhonapInfo, 
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<PhonapInfo> getUniquifier() {
-		return null;
 	}
 }

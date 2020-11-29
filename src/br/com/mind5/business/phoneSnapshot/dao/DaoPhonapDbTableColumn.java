@@ -19,7 +19,7 @@ public final class DaoPhonapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER_REF = DaoDbField.COL_COD_OWNER_REF;
 	public static final String COL_COD_OWNER_REF_SNAPSHOT = DaoDbField.COL_COD_OWNER_REF_SNAPSHOT;
 	public static final String COL_COD_PHONE = DaoDbField.COL_COD_PHONE;
-	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
+	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
 	public static final String COL_COD_STORE_SNAPSHOT = DaoDbField.COL_COD_STORE_SNAPSHOT;
 	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;

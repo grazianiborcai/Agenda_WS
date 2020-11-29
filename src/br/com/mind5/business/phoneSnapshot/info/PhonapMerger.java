@@ -4,14 +4,28 @@ import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.phoneSnapshotSearch.info.PhonaparchInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.form.formPhone.info.FormoneInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.countryPhone.info.CountroneInfo;
 import br.com.mind5.security.userList.info.UselisInfo;
 
 public final class PhonapMerger {
+	public static List<PhonapInfo> mergeWithPhonaparch(List<PhonapInfo> baseInfos, List<PhonaparchInfo> selectedInfos) {
+		InfoMergerBuilder<PhonapInfo, PhonaparchInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PhonapVisiMergePhonaparch());
+		InfoMerger<PhonapInfo, PhonaparchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<PhonapInfo> mergeWithStolis(List<PhonapInfo> baseInfos, List<StolisInfo> selectedInfos) {
 		InfoMergerBuilder<PhonapInfo, StolisInfo> builder = new InfoMergerBuilder<>();
 		
