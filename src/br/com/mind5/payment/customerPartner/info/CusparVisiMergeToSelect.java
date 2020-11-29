@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class CusparVisiMergeToSelect extends InfoMergerVisitorTemplate<CusparInfo, CusparInfo> {
-	
-	@Override public List<CusparInfo> beforeMerge(List<CusparInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CusparInfo baseInfo, CusparInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class CusparVisiMergeToSelect extends InfoMergerVisitorTemplate<CusparInfo
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CusparInfo> getUniquifier() {
-		return null;
 	}
 }

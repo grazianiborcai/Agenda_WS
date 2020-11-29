@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class CusparVisiMergePhone extends InfoMergerVisitorTemplate<CusparInfo, PhoneInfo> {
-	
-	@Override public List<CusparInfo> beforeMerge(List<CusparInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CusparInfo baseInfo, PhoneInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner &&
 				baseInfo.codPhone == selectedInfo.codPhone	);
@@ -29,11 +22,5 @@ final class CusparVisiMergePhone extends InfoMergerVisitorTemplate<CusparInfo, P
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CusparInfo> getUniquifier() {
-		return null;
 	}
 }
