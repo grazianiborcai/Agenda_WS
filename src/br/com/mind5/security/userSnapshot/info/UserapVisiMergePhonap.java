@@ -8,13 +8,7 @@ import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
 final class UserapVisiMergePhonap extends InfoMergerVisitorTemplate<UserapInfo, PhonapInfo> {
-	
-	@Override public List<UserapInfo> beforeMerge(List<UserapInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(UserapInfo baseInfo, PhonapInfo selectedInfo) {
 		return (baseInfo.codOwner 	 == selectedInfo.codOwner 		&& 
 				baseInfo.codUser  	 == selectedInfo.codUser  		&&

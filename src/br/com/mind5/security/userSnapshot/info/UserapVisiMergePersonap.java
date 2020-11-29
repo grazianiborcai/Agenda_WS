@@ -8,13 +8,7 @@ import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
 final class UserapVisiMergePersonap extends InfoMergerVisitorTemplate<UserapInfo, PersonapInfo> {
-	
-	@Override public List<UserapInfo> beforeMerge(List<UserapInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(UserapInfo baseInfo, PersonapInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
