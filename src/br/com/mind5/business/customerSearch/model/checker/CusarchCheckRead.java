@@ -23,15 +23,14 @@ public final class CusarchCheckRead extends ModelCheckerTemplateSimple<CusarchIn
 			return super.FAILED;		
 		
 		
-	/*	
+		
 		if (recordInfo.codCustomer 	<= 0 	&&
 			recordInfo.codUser 		<= 0 	&&
 			recordInfo.codStore		<= 0 	&&
-			recordInfo.personData	== null &&
-			recordInfo.phoneData	== null		)
+			recordInfo.persolisData	== null		)
 			
 			return super.FAILED;
-	*/	
+	
 		
 		return super.SUCCESS;
 	}

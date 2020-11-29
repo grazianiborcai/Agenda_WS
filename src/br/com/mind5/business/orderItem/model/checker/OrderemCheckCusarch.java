@@ -1,7 +1,7 @@
 package br.com.mind5.business.orderItem.model.checker;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.business.customerSearch.model.checker.CusarchCheckExist;
+import br.com.mind5.business.customerSearch.model.checker.CusarchCheckExistSytotauh;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -16,7 +16,7 @@ public final class OrderemCheckCusarch extends ModelCheckerTemplateForward<Order
 
 	
 	@Override protected ModelChecker<CusarchInfo> getCheckerHook(ModelCheckerOption option) {
-		return new CusarchCheckExist(option);
+		return new CusarchCheckExistSytotauh(option);
 	}
 	
 	

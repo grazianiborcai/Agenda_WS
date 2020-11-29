@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.business.customerSearch.model.action.LazyCusarchMergePersolis;
-import br.com.mind5.business.customerSearch.model.action.LazyCusarchMergeToSelect;
-import br.com.mind5.business.customerSearch.model.checker.CusarchCheckRead;
+import br.com.mind5.business.customerSearch.model.action.LazyCusarchRootSelectSytotauh;
+import br.com.mind5.business.customerSearch.model.action.StdCusarchEnforceUserKey;
+import br.com.mind5.business.customerSearch.model.checker.CusarchCheckHasUser;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCusarchSelect extends DeciTreeTemplateRead<CusarchInfo> {
+public final class RootCusarchSelectUserSytotauh extends DeciTreeTemplateRead<CusarchInfo> {
 	
-	public RootCusarchSelect(DeciTreeOption<CusarchInfo> option) {
+	public RootCusarchSelectUserSytotauh(DeciTreeOption<CusarchInfo> option) {
 		super(option);
 	}
 	
@@ -32,8 +32,8 @@ public final class RootCusarchSelect extends DeciTreeTemplateRead<CusarchInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult =  ModelCheckerOption.SUCCESS;	
-		checker = new CusarchCheckRead(checkerOption);
-		queue.add(checker);
+		checker = new CusarchCheckHasUser(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
@@ -43,14 +43,12 @@ public final class RootCusarchSelect extends DeciTreeTemplateRead<CusarchInfo> {
 	@Override protected List<ActionStd<CusarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CusarchInfo> option) {
 		List<ActionStd<CusarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusarchInfo> nodePerson = new NodeCusarchPerson(option).toAction();
-		ActionLazy<CusarchInfo> select = new LazyCusarchMergeToSelect(option.conn, option.schemaName);
-		ActionLazy<CusarchInfo> mergePersolis = new LazyCusarchMergePersolis(option.conn, option.schemaName);
+		ActionStd<CusarchInfo> enforceUserKey = new StdCusarchEnforceUserKey(option);
+		ActionLazy<CusarchInfo> select = new LazyCusarchRootSelectSytotauh(option.conn, option.schemaName);
 		
-		nodePerson.addPostAction(select);
-		select.addPostAction(mergePersolis);
+		enforceUserKey.addPostAction(select);
 		
-		actions.add(nodePerson);
+		actions.add(enforceUserKey);
 		return actions;
 	}
 }

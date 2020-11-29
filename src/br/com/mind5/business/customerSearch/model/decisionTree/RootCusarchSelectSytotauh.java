@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.business.customerSearch.model.action.LazyCusarchMergePersolis;
-import br.com.mind5.business.customerSearch.model.action.StdCusarchMergeToSelect;
+import br.com.mind5.business.customerSearch.model.action.LazyCusarchRootSelect;
+import br.com.mind5.business.customerSearch.model.action.StdCusarchMergeSytotauh;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class NodeCusarchSelect extends DeciTreeTemplateRead<CusarchInfo> {
+public final class RootCusarchSelectSytotauh extends DeciTreeTemplateRead<CusarchInfo> {
 	
-	public NodeCusarchSelect(DeciTreeOption<CusarchInfo> option) {
+	public RootCusarchSelectSytotauh(DeciTreeOption<CusarchInfo> option) {
 		super(option);
 	}
 	
@@ -25,7 +25,7 @@ public final class NodeCusarchSelect extends DeciTreeTemplateRead<CusarchInfo> {
 	@Override protected ModelChecker<CusarchInfo> buildCheckerHook(DeciTreeOption<CusarchInfo> option) {
 		List<ModelChecker<CusarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusarchInfo> checker;
-
+		
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);	
 		
@@ -37,12 +37,12 @@ public final class NodeCusarchSelect extends DeciTreeTemplateRead<CusarchInfo> {
 	@Override protected List<ActionStd<CusarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CusarchInfo> option) {
 		List<ActionStd<CusarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusarchInfo> select = new StdCusarchMergeToSelect(option);
-		ActionLazy<CusarchInfo> mergePersolis = new LazyCusarchMergePersolis(option.conn, option.schemaName);
+		ActionStd<CusarchInfo> mergeSytotauh = new StdCusarchMergeSytotauh(option);
+		ActionLazy<CusarchInfo> select = new LazyCusarchRootSelect(option.conn, option.schemaName);
 		
-		select.addPostAction(mergePersolis);
+		mergeSytotauh.addPostAction(select);
 		
-		actions.add(select);
+		actions.add(mergeSytotauh);
 		return actions;
 	}
 }
