@@ -2,17 +2,31 @@ package br.com.mind5.business.addressSnapshot.info;
 
 import java.util.List;
 
+import br.com.mind5.business.addressSnapshotSearch.info.AddresnaparchInfo;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.form.formAddress.info.FormessInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.country.info.CountryInfo;
 import br.com.mind5.masterData.state.info.StateInfo;
 import br.com.mind5.security.userList.info.UselisInfo;
 
 public final class AddresnapMerger {
+	public static List<AddresnapInfo> mergeWithAddresnaparch(List<AddresnapInfo> baseInfos, List<AddresnaparchInfo> selectedInfos) {
+		InfoMergerBuilder<AddresnapInfo, AddresnaparchInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new AddresnapVisiMergeAddresnaparch());
+		InfoMerger<AddresnapInfo, AddresnaparchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<AddresnapInfo> mergeWithStolis(List<AddresnapInfo> baseInfos, List<StolisInfo> selectedInfos) {
 		InfoMergerBuilder<AddresnapInfo, StolisInfo> builder = new InfoMergerBuilder<>();
 		

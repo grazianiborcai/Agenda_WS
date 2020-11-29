@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.form.formAddress.info.FormessInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class AddresnapVisiMergeFormess extends InfoMergerVisitorTemplate<AddresnapInfo, FormessInfo> {
-	
-	@Override public List<AddresnapInfo> beforeMerge(List<AddresnapInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(AddresnapInfo baseInfo, FormessInfo selectedInfo) {
 		return (baseInfo.codCountry.equals(selectedInfo.codCountry));
 	}
@@ -28,11 +21,5 @@ final class AddresnapVisiMergeFormess extends InfoMergerVisitorTemplate<Addresna
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<AddresnapInfo> getUniquifier() {
-		return null;
 	}
 }

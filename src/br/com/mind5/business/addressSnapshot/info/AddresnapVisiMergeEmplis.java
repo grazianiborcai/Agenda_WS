@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class AddresnapVisiMergeEmplis extends InfoMergerVisitorTemplate<AddresnapInfo, EmplisInfo> {
-	
-	@Override public List<AddresnapInfo> beforeMerge(List<AddresnapInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(AddresnapInfo baseInfo, EmplisInfo selectedInfo) {
 		return (baseInfo.codOwner  	 == selectedInfo.codOwner	&&
 				baseInfo.codEmployee == selectedInfo.codEmployee);
@@ -29,11 +22,5 @@ final class AddresnapVisiMergeEmplis extends InfoMergerVisitorTemplate<Addresnap
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<AddresnapInfo> getUniquifier() {
-		return null;
 	}
 }

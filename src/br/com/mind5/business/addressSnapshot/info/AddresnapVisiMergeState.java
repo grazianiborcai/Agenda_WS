@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.state.info.StateInfo;
 
 final class AddresnapVisiMergeState extends InfoMergerVisitorTemplate<AddresnapInfo, StateInfo> {
-	
-	@Override public List<AddresnapInfo> beforeMerge(List<AddresnapInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(AddresnapInfo baseInfo, StateInfo selectedInfo) {
 		return baseInfo.codCountry.equals(selectedInfo.codCountry);
 	}
@@ -28,11 +21,5 @@ final class AddresnapVisiMergeState extends InfoMergerVisitorTemplate<AddresnapI
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<AddresnapInfo> getUniquifier() {
-		return null;
 	}
 }
