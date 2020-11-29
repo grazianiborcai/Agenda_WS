@@ -32,11 +32,6 @@ public final class DaoPersonapWhere implements DaoStmtWhere {
 					break;
 					
 					
-				case DaoPersonapDbTableColumn.COL_COD_PERSON :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPerson));
-					break;
-					
-					
 				case DaoPersonapDbTableColumn.COL_COD_SNAPSHOT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSnapshot));
 					break;

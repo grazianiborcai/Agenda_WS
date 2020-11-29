@@ -13,10 +13,12 @@ final class PersonapCopyStorap extends InfoCopierTemplate<PersonapInfo, StorapIn
 	
 	@Override protected PersonapInfo makeCopyHook(StorapInfo source) {
 		PersonapInfo result = new PersonapInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codPerson = source.codPerson;
 		result.codSnapshot = source.codPersonSnapshot;
 		result.codLanguage = source.codLanguage;
+		
 		return result;
 	}
 }

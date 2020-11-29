@@ -13,10 +13,12 @@ final class PersonapCopyEmpnapKey extends InfoCopierTemplate<PersonapInfo, Empna
 	
 	@Override protected PersonapInfo makeCopyHook(EmpnapInfo source) {
 		PersonapInfo result = new PersonapInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codPerson = source.codPerson;
 		result.codSnapshot = source.codPersonSnapshot;
 		result.codLanguage = source.codLanguage;
+		
 		return result;
 	}
 }
