@@ -158,6 +158,7 @@ public final class DaoDbTable {
 	public static final String ADDRESS_DEFAULT_VIEW = "view_address_default";
 	public static final String ADDRESS_FORM_SEARCH_VIEW = "view_address_form_search";
 	public static final String ADDRESS_SEARCH_VIEW = "view_address_search";
+	public static final String ADDRESS_SNAPSHOT_SEARCH_VIEW = "view_address_snapshot_search";
 	public static final String AREA_PHONE_SEARCH_VIEW = "view_area_phone_search";
 	public static final String BUSINESS_AREA_SEARCH_VIEW = "view_business_area_search";
 	public static final String CALENDAR_DATE_SEARCH_VIEW = "view_calendar_date_search";
