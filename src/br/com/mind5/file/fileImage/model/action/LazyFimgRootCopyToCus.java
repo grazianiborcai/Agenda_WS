@@ -4,15 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
-import br.com.mind5.file.fileImage.model.decisionTree.NodeFimgInsertUserAuth;
+import br.com.mind5.file.fileImage.model.decisionTree.RootFimgCopyToCus;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyFimgNodeInsertUserAuth extends ActionLazyTemplate<FimgInfo, FimgInfo> {
+public final class LazyFimgRootCopyToCus extends ActionLazyTemplate<FimgInfo, FimgInfo> {
 
-	public LazyFimgNodeInsertUserAuth(Connection conn, String schemaName) {
+	public LazyFimgRootCopyToCus(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyFimgNodeInsertUserAuth extends ActionLazyTemplate<FimgInf
 	
 	
 	@Override protected ActionStd<FimgInfo> getInstanceOfActionHook(DeciTreeOption<FimgInfo> option) {
-		return new NodeFimgInsertUserAuth(option).toAction();
+		return new RootFimgCopyToCus(option).toAction();
 	}
 	
 	

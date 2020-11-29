@@ -7,6 +7,7 @@ import br.com.mind5.file.filePath.info.FathInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
 final class FimgVisiMergeFath extends InfoMergerVisitorTemplate<FimgInfo, FathInfo> {
+	
 	@Override public boolean shouldMerge(FimgInfo baseInfo, FathInfo selectedInfo) {
 		return true;
 	}
