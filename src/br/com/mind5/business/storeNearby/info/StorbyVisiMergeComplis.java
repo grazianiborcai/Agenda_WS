@@ -5,18 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class StorbyVisiMergeComplis extends InfoMergerVisitorTemplate<StorbyInfo, ComplisInfo> {
 	
-	@Override public List<StorbyInfo> beforeMerge(List<StorbyInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(StorbyInfo baseInfo, ComplisInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner);
+		return (baseInfo.codOwner   == selectedInfo.codOwner 	&&
+				baseInfo.codCompany == selectedInfo.codCompany		);
 	}
 	
 	
@@ -28,11 +22,5 @@ final class StorbyVisiMergeComplis extends InfoMergerVisitorTemplate<StorbyInfo,
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<StorbyInfo> getUniquifier() {
-		return null;
 	}
 }
