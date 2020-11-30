@@ -48,7 +48,7 @@ public final class DaoPersonapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_COD_SNAPSHOT;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
+		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
