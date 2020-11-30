@@ -50,6 +50,7 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 			isError = false;
 			
 		} catch (Exception e) {
+			logException(e);
 			isError = true;
 		}
 	}
@@ -242,10 +243,8 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 	
 
 	@Override public Response getResponse() {
-		if (isStateValid() == false) {
-			logExceptionObjectIsClosed();
+		if (isStateValid(isError) == false) 
 			return buildResponseError();
-		}
 		
 		if(isError == true)
 			return buildResponseError();
@@ -315,6 +314,18 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 	private Response buildResponseError() {
 		ModelResponse<T> response = new ModelResponseError<>(); 
 		return response.build();
+	}
+	
+	
+	
+	private boolean isStateValid(boolean hasError) {
+		if (hasError == true)
+			return false;
+		
+		if (isStateValid() == false)
+			logExceptionObjectIsClosed();
+		
+		return isStateValid();
 	}
 	
 	
