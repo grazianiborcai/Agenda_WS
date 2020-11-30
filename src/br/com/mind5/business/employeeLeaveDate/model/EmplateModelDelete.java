@@ -17,10 +17,4 @@ public final class EmplateModelDelete extends ModelTemplate<EmplateInfo> {
 	@Override protected DeciTree<EmplateInfo> getDecisionTreeHook(DeciTreeOption<EmplateInfo> option) {
 		return new RootEmplateDelete(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

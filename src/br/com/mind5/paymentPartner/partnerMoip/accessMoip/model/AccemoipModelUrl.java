@@ -18,10 +18,4 @@ public final class AccemoipModelUrl extends ModelTemplate<AccemoipInfo> {
 	@Override protected DeciTree<AccemoipInfo> getDecisionTreeHook(DeciTreeOption<AccemoipInfo> option) {
 		return new RootAccemoipUrl(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

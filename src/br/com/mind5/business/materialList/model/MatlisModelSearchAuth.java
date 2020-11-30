@@ -19,10 +19,4 @@ public final class MatlisModelSearchAuth extends ModelTemplate<MatlisInfo> {
 	@Override protected DeciTree<MatlisInfo> getDecisionTreeHook(DeciTreeOption<MatlisInfo> option) {
 		return new RootMatlisSearchAuth(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

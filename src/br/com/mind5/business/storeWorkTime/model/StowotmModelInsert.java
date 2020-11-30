@@ -19,10 +19,4 @@ public final class StowotmModelInsert extends ModelTemplate<StowotmInfo> {
 	@Override protected DeciTree<StowotmInfo> getDecisionTreeHook(DeciTreeOption<StowotmInfo> option) {
 		return new RootStowotmInsert(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

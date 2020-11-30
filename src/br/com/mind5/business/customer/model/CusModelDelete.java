@@ -17,10 +17,4 @@ public final class CusModelDelete extends ModelTemplate<CusInfo> {
 	@Override protected DeciTree<CusInfo> getDecisionTreeHook(DeciTreeOption<CusInfo> option) {
 		return new RootCusDelete(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

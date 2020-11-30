@@ -17,10 +17,4 @@ public final class MatoreModelSelect extends ModelTemplate<MatoreInfo> {
 	@Override protected DeciTree<MatoreInfo> getDecisionTreeHook(DeciTreeOption<MatoreInfo> option) {
 		return new RootMatoreSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

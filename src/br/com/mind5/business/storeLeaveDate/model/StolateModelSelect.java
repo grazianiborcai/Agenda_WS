@@ -17,10 +17,4 @@ public final class StolateModelSelect extends ModelTemplate<StolateInfo> {
 	@Override protected DeciTree<StolateInfo> getDecisionTreeHook(DeciTreeOption<StolateInfo> option) {
 		return new RootStolateSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

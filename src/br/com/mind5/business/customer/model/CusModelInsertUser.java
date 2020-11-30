@@ -19,10 +19,4 @@ public final class CusModelInsertUser extends ModelTemplate<CusInfo> {
 	@Override protected DeciTree<CusInfo> getDecisionTreeHook(DeciTreeOption<CusInfo> option) {
 		return new RootCusInsertUser(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

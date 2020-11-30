@@ -19,10 +19,4 @@ public final class CuslisModelSearch extends ModelTemplate<CuslisInfo> {
 	@Override protected DeciTree<CuslisInfo> getDecisionTreeHook(DeciTreeOption<CuslisInfo> option) {
 		return new RootCuslisSearch(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

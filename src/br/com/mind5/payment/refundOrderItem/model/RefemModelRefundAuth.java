@@ -18,10 +18,4 @@ public final class RefemModelRefundAuth extends ModelTemplate<RefemInfo> {
 	@Override protected DeciTree<RefemInfo> getDecisionTreeHook(DeciTreeOption<RefemInfo> option) {
 		return new RootRefemRefundAuth(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}	
 }

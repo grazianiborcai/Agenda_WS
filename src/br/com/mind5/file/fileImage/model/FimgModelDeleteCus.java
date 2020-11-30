@@ -17,10 +17,4 @@ public final class FimgModelDeleteCus extends ModelTemplate<FimgInfo> {
 	@Override protected DeciTree<FimgInfo> getDecisionTreeHook(DeciTreeOption<FimgInfo> option) {
 		return new RootFimgDeleteCus(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

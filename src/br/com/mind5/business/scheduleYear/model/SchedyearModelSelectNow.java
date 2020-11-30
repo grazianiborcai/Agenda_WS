@@ -17,10 +17,4 @@ public final class SchedyearModelSelectNow extends ModelTemplate<SchedyearInfo> 
 	@Override protected DeciTree<SchedyearInfo> getDecisionTreeHook(DeciTreeOption<SchedyearInfo> option) {
 		return new RootSchedyearSelectNow(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

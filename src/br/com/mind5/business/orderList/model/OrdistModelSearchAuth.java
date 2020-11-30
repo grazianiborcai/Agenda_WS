@@ -19,10 +19,4 @@ public final class OrdistModelSearchAuth extends ModelTemplate<OrdistInfo> {
 	@Override protected DeciTree<OrdistInfo> getDecisionTreeHook(DeciTreeOption<OrdistInfo> option) {
 		return new RootOrdistSearchAuth(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

@@ -17,10 +17,4 @@ public final class MatyparchModelSelect extends ModelTemplate<MatyparchInfo> {
 	@Override protected DeciTree<MatyparchInfo> getDecisionTreeHook(DeciTreeOption<MatyparchInfo> option) {
 		return new RootMatyparchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

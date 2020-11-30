@@ -17,10 +17,4 @@ public final class StoprosModelDelete extends ModelTemplate<StoprosInfo> {
 	@Override protected DeciTree<StoprosInfo> getDecisionTreeHook(DeciTreeOption<StoprosInfo> option) {
 		return new RootStoprosDelete(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

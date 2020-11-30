@@ -19,10 +19,4 @@ public final class EmplisModelSearchAuth extends ModelTemplate<EmplisInfo> {
 	@Override protected DeciTree<EmplisInfo> getDecisionTreeHook(DeciTreeOption<EmplisInfo> option) {
 		return new RootEmplisSearchAuth(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

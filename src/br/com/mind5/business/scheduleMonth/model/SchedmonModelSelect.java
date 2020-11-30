@@ -17,10 +17,4 @@ public final class SchedmonModelSelect extends ModelTemplate<SchedmonInfo> {
 	@Override protected DeciTree<SchedmonInfo> getDecisionTreeHook(DeciTreeOption<SchedmonInfo> option) {
 		return new RootSchedmonSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

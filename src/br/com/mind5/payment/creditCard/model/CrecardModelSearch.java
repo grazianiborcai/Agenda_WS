@@ -20,10 +20,4 @@ public final class CrecardModelSearch extends ModelTemplate<CrecardInfo> {
 	@Override protected DeciTree<CrecardInfo> getDecisionTreeHook(DeciTreeOption<CrecardInfo> option) {
 		return new RootCrecardSearch(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

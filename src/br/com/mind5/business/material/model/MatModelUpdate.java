@@ -19,10 +19,4 @@ public final class MatModelUpdate extends ModelTemplate<MatInfo> {
 	@Override protected DeciTree<MatInfo> getDecisionTreeHook(DeciTreeOption<MatInfo> option) {
 		return new RootMatUpdate(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

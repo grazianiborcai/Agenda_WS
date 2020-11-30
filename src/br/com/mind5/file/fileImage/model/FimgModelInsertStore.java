@@ -17,10 +17,4 @@ public final class FimgModelInsertStore extends ModelTemplate<FimgInfo> {
 	@Override protected DeciTree<FimgInfo> getDecisionTreeHook(DeciTreeOption<FimgInfo> option) {
 		return new RootFimgInsertStore(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

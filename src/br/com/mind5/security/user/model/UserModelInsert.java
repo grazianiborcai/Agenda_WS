@@ -1,6 +1,7 @@
 package br.com.mind5.security.user.model;
 
 import javax.servlet.http.HttpServletRequest;
+
 import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,11 +18,5 @@ public final class UserModelInsert extends ModelTemplate<UserInfo> {
 	
 	@Override protected DeciTree<UserInfo> getDecisionTreeHook(DeciTreeOption<UserInfo> option) {
 		return new RootUserInsert(option);
-	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
 	}
 }

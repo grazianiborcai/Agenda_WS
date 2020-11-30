@@ -19,10 +19,4 @@ public final class OtperasModelInsert extends ModelTemplate<OtperasInfo> {
 	@Override protected DeciTree<OtperasInfo> getDecisionTreeHook(DeciTreeOption<OtperasInfo> option) {
 		return new RootOtperasInsert(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

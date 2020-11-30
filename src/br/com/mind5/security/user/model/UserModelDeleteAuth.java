@@ -17,10 +17,4 @@ public final class UserModelDeleteAuth extends ModelTemplate<UserInfo> {
 	@Override protected DeciTree<UserInfo> getDecisionTreeHook(DeciTreeOption<UserInfo> option) {
 		return new RootUserDeleteAuth(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

@@ -17,10 +17,4 @@ public final class EmposModelDeleteProfessional extends ModelTemplate<EmposInfo>
 	@Override protected DeciTree<EmposInfo> getDecisionTreeHook(DeciTreeOption<EmposInfo> option) {
 		return new RootEmposDeleteProfessional(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

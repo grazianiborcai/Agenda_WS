@@ -17,10 +17,4 @@ public final class EntitegModelSelect extends ModelTemplate<EntitegInfo> {
 	@Override protected DeciTree<EntitegInfo> getDecisionTreeHook(DeciTreeOption<EntitegInfo> option) {
 		return new RootEntitegSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

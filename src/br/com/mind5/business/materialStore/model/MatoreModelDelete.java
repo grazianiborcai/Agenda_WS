@@ -17,10 +17,4 @@ public final class MatoreModelDelete extends ModelTemplate<MatoreInfo> {
 	@Override protected DeciTree<MatoreInfo> getDecisionTreeHook(DeciTreeOption<MatoreInfo> option) {
 		return new RootMatoreDelete(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

@@ -134,7 +134,8 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 
 	
 	@Override public boolean executeRequest() {
-		checkState();
+		if (isStateValid() == false)
+			return RESULT_FAILED;
 		
 		if (isError == true)
 			return RESULT_FAILED;
@@ -194,7 +195,7 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 	
 	protected DeciTree<T> getDecisionTreeHook(DeciTreeOption<T> option) {
 		//Template method to be overridden by subclasses
-		logExceptionWithSupperClass(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
@@ -241,7 +242,10 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 	
 
 	@Override public Response getResponse() {
-		checkState();
+		if (isStateValid() == false) {
+			logExceptionObjectIsClosed();
+			return buildResponseError();
+		}
 		
 		if(isError == true)
 			return buildResponseError();
@@ -311,23 +315,24 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 	private Response buildResponseError() {
 		ModelResponse<T> response = new ModelResponseError<>(); 
 		return response.build();
-	}	
+	}
 	
 	
 	
-	private void checkState() {
-		boolean invalidState = false;
-		
+	private boolean isStateValid() {
 		if (recordInfos == null)
-			invalidState = true;
+			return false;
 		
 		if (recordInfos.isEmpty())
-			invalidState = true;		
+			return false;
 		
-		if (invalidState == true) {
-			logException(new IllegalStateException(SystemMessage.OBJECT_IS_CLOSED));
-			throw new IllegalStateException(SystemMessage.OBJECT_IS_CLOSED);
-		}
+		return true;
+	}
+	
+	
+	
+	private void logExceptionObjectIsClosed() {
+		logException(new IllegalStateException(SystemMessage.OBJECT_IS_CLOSED));
 	}
 	
 	
@@ -400,14 +405,6 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 		}
-	}	
-
-	
-	//TODO: remover esse metodo
-	protected Class<?> getImplamentationClassHook() {
-		//Template method to be overridden by subclasses
-		logExceptionWithSupperClass(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
-		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
 	
@@ -415,10 +412,4 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 	private void logException(Exception e) {
 		SystemLog.logError(this.getClass(), e);
 	}
-	
-	
-	
-	private void logExceptionWithSupperClass(Exception e) {		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

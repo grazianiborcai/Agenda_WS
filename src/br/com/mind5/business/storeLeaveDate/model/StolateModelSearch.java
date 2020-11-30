@@ -17,10 +17,4 @@ public final class StolateModelSearch extends ModelTemplate<StolateInfo> {
 	@Override protected DeciTree<StolateInfo> getDecisionTreeHook(DeciTreeOption<StolateInfo> option) {
 		return new RootStolateSearch(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

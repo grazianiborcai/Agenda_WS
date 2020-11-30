@@ -17,10 +17,4 @@ public final class EmpmatModelDelete extends ModelTemplate<EmpmatInfo> {
 	@Override protected DeciTree<EmpmatInfo> getDecisionTreeHook(DeciTreeOption<EmpmatInfo> option) {
 		return new RootEmpmatDelete(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

@@ -1,6 +1,7 @@
 package br.com.mind5.business.materialMovement.model;
 
 import javax.servlet.http.HttpServletRequest;
+
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.model.decisionTree.RootMatmovInsert;
 import br.com.mind5.model.ModelTemplate;
@@ -17,11 +18,5 @@ public final class MatmovModelInsert extends ModelTemplate<MatmovInfo> {
 	
 	@Override protected DeciTree<MatmovInfo> getDecisionTreeHook(DeciTreeOption<MatmovInfo> option) {
 		return new RootMatmovInsert(option);
-	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
 	}
 }

@@ -20,10 +20,4 @@ public final class CrecardModelInsert extends ModelTemplate<CrecardInfo> {
 	@Override protected DeciTree<CrecardInfo> getDecisionTreeHook(DeciTreeOption<CrecardInfo> option) {
 		return new RootCrecardInsert(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

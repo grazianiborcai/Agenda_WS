@@ -19,10 +19,4 @@ public final class EmpmatModelInsert extends ModelTemplate<EmpmatInfo> {
 	@Override protected DeciTree<EmpmatInfo> getDecisionTreeHook(DeciTreeOption<EmpmatInfo> option) {
 		return new RootEmpmatInsert(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

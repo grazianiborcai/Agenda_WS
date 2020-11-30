@@ -19,10 +19,4 @@ public final class StoreModelUpdate extends ModelTemplate<StoreInfo> {
 	@Override protected DeciTree<StoreInfo> getDecisionTreeHook(DeciTreeOption<StoreInfo> option) {
 		return new RootStoreUpdate(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

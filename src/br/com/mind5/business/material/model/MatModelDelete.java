@@ -17,10 +17,4 @@ public final class MatModelDelete extends ModelTemplate<MatInfo> {
 	@Override protected DeciTree<MatInfo> getDecisionTreeHook(DeciTreeOption<MatInfo> option) {
 		return new RootMatDelete(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

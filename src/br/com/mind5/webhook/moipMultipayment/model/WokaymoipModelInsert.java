@@ -24,12 +24,6 @@ public final class WokaymoipModelInsert extends ModelTemplate<WokaymoipInfo> {
 	
 	
 	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
-	
-	
-	
 	@Override protected JsonBodyParser<WokaymoipInfo> getJsonParserHook(Class<WokaymoipInfo> tClazz) {
 		return new JwokaymoipBodyParser<WokaymoipInfo>(tClazz);
 	}

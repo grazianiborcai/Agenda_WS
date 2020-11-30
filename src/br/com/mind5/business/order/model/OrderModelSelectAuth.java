@@ -17,10 +17,4 @@ public final class OrderModelSelectAuth extends ModelTemplate<OrderInfo> {
 	@Override protected DeciTree<OrderInfo> getDecisionTreeHook(DeciTreeOption<OrderInfo> option) {
 		return new RootOrderSelectAuth(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

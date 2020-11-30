@@ -19,10 +19,4 @@ public final class RefupownModelUpsert extends ModelTemplate<RefupownInfo> {
 	@Override protected DeciTree<RefupownInfo> getDecisionTreeHook(DeciTreeOption<RefupownInfo> option) {
 		return new RootRefupownUpsert(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

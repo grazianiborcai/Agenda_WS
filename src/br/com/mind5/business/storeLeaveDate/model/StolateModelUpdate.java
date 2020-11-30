@@ -19,10 +19,4 @@ public final class StolateModelUpdate extends ModelTemplate<StolateInfo> {
 	@Override protected DeciTree<StolateInfo> getDecisionTreeHook(DeciTreeOption<StolateInfo> option) {
 		return new RootStolateUpdate(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

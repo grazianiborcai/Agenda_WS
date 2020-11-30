@@ -1,6 +1,7 @@
 package br.com.mind5.business.planningTime.model;
 
 import javax.servlet.http.HttpServletRequest;
+
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.planningTime.model.decisionTree.RootPlanimeSelect;
 import br.com.mind5.model.ModelTemplate;
@@ -17,11 +18,5 @@ public final class PlanimeModelSelect extends ModelTemplate<PlanimeInfo> {
 	
 	@Override protected DeciTree<PlanimeInfo> getDecisionTreeHook(DeciTreeOption<PlanimeInfo> option) {
 		return new RootPlanimeSelect(option);
-	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
 	}
 }

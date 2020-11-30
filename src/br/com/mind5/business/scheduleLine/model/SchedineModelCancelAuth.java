@@ -17,10 +17,4 @@ public final class SchedineModelCancelAuth extends ModelTemplate<SchedineInfo> {
 	@Override protected DeciTree<SchedineInfo> getDecisionTreeHook(DeciTreeOption<SchedineInfo> option) {
 		return new RootSchedineCancelAuth(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

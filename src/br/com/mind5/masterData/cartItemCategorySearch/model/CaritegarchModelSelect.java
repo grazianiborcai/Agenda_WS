@@ -17,10 +17,4 @@ public final class CaritegarchModelSelect extends ModelTemplate<CaritegarchInfo>
 	@Override protected DeciTree<CaritegarchInfo> getDecisionTreeHook(DeciTreeOption<CaritegarchInfo> option) {
 		return new RootCaritegarchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

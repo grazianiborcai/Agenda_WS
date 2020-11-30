@@ -17,10 +17,4 @@ public final class OwnarchModelSelect extends ModelTemplate<OwnarchInfo> {
 	@Override protected DeciTree<OwnarchInfo> getDecisionTreeHook(DeciTreeOption<OwnarchInfo> option) {
 		return new RootOwnarchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

@@ -17,10 +17,4 @@ public final class SchedineModelSelectAuth extends ModelTemplate<SchedineInfo> {
 	@Override protected DeciTree<SchedineInfo> getDecisionTreeHook(DeciTreeOption<SchedineInfo> option) {
 		return new RootSchedineSelectAuth(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

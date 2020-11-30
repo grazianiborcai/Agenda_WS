@@ -17,10 +17,4 @@ public final class StoplisModelSearch extends ModelTemplate<StoplisInfo> {
 	@Override protected DeciTree<StoplisInfo> getDecisionTreeHook(DeciTreeOption<StoplisInfo> option) {
 		return new RootStoplisSearch(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

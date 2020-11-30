@@ -17,10 +17,4 @@ public final class UseregModelSelect extends ModelTemplate<UseregInfo> {
 	@Override protected DeciTree<UseregInfo> getDecisionTreeHook(DeciTreeOption<UseregInfo> option) {
 		return new UseregCategSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

@@ -17,10 +17,4 @@ public final class CountronarchModelSelect extends ModelTemplate<CountronarchInf
 	@Override protected DeciTree<CountronarchInfo> getDecisionTreeHook(DeciTreeOption<CountronarchInfo> option) {
 		return new RootCountronarchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

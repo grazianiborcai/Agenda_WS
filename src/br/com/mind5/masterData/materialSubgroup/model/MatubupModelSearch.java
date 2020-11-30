@@ -17,10 +17,4 @@ public final class MatubupModelSearch extends ModelTemplate<MatubupInfo> {
 	@Override protected DeciTree<MatubupInfo> getDecisionTreeHook(DeciTreeOption<MatubupInfo> option) {
 		return new RootMatubupSearch(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

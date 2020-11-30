@@ -17,10 +17,4 @@ public final class UserModelSelectAuth extends ModelTemplate<UserInfo> {
 	@Override protected DeciTree<UserInfo> getDecisionTreeHook(DeciTreeOption<UserInfo> option) {
 		return new RootUserSelectAuth(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

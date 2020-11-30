@@ -17,10 +17,4 @@ public final class MoonaseModelSearch extends ModelTemplate<MoonaseInfo> {
 	@Override protected DeciTree<MoonaseInfo> getDecisionTreeHook(DeciTreeOption<MoonaseInfo> option) {
 		return new RootMoonaseSearch(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

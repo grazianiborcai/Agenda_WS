@@ -17,10 +17,4 @@ public final class OrderModelCancelAuth extends ModelTemplate<OrderInfo> {
 	@Override protected DeciTree<OrderInfo> getDecisionTreeHook(DeciTreeOption<OrderInfo> option) {
 		return new RootOrderCancelAuth(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

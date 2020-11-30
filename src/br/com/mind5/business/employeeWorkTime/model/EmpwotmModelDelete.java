@@ -17,10 +17,4 @@ public final class EmpwotmModelDelete extends ModelTemplate<EmpwotmInfo> {
 	@Override protected DeciTree<EmpwotmInfo> getDecisionTreeHook(DeciTreeOption<EmpwotmInfo> option) {
 		return new RootEmpwotmDelete(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

@@ -17,10 +17,4 @@ public final class ProstarchModelSelect extends ModelTemplate<ProstarchInfo> {
 	@Override protected DeciTree<ProstarchInfo> getDecisionTreeHook(DeciTreeOption<ProstarchInfo> option) {
 		return new RootProstarchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

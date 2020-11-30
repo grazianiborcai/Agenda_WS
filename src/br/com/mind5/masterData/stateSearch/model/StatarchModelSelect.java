@@ -17,10 +17,4 @@ public final class StatarchModelSelect extends ModelTemplate<StatarchInfo> {
 	@Override protected DeciTree<StatarchInfo> getDecisionTreeHook(DeciTreeOption<StatarchInfo> option) {
 		return new RootStatarchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

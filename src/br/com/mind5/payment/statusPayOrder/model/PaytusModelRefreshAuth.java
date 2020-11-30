@@ -17,10 +17,4 @@ public final class PaytusModelRefreshAuth extends ModelTemplate<PaytusInfo> {
 	@Override protected DeciTree<PaytusInfo> getDecisionTreeHook(DeciTreeOption<PaytusInfo> option) {
 		return new RootPaytusRefreshAuth(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

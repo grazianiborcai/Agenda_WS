@@ -19,10 +19,4 @@ public final class StolisModelSearch extends ModelTemplate<StolisInfo> {
 	@Override protected DeciTree<StolisInfo> getDecisionTreeHook(DeciTreeOption<StolisInfo> option) {
 		return new RootStolisSearch(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

@@ -17,10 +17,4 @@ public final class DaypartModelSearch extends ModelTemplate<DaypartInfo> {
 	@Override protected DeciTree<DaypartInfo> getDecisionTreeHook(DeciTreeOption<DaypartInfo> option) {
 		return new RootDaypartSearch(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

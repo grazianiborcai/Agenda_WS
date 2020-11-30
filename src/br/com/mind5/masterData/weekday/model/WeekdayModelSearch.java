@@ -17,10 +17,4 @@ public final class WeekdayModelSearch extends ModelTemplate<WeekdayInfo> {
 	@Override protected DeciTree<WeekdayInfo> getDecisionTreeHook(DeciTreeOption<WeekdayInfo> option) {
 		return new RootWeekdaySearch(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

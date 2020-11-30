@@ -19,10 +19,4 @@ public final class CusModelUpdate extends ModelTemplate<CusInfo> {
 	@Override protected DeciTree<CusInfo> getDecisionTreeHook(DeciTreeOption<CusInfo> option) {
 		return new RootCusUpdate(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

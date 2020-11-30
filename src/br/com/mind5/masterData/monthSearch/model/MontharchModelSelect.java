@@ -17,10 +17,4 @@ public final class MontharchModelSelect extends ModelTemplate<MontharchInfo> {
 	@Override protected DeciTree<MontharchInfo> getDecisionTreeHook(DeciTreeOption<MontharchInfo> option) {
 		return new RootMontharchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

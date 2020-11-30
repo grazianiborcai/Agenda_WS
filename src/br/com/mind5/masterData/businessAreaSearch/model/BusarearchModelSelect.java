@@ -17,10 +17,4 @@ public final class BusarearchModelSelect extends ModelTemplate<BusarearchInfo> {
 	@Override protected DeciTree<BusarearchInfo> getDecisionTreeHook(DeciTreeOption<BusarearchInfo> option) {
 		return new RootBusarearchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

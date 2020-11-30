@@ -19,10 +19,4 @@ public final class UserModelSignup extends ModelTemplate<UserInfo> {
 	@Override protected DeciTree<UserInfo> getDecisionTreeHook(DeciTreeOption<UserInfo> option) {
 		return new RootUserSignup(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

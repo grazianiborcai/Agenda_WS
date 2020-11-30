@@ -17,10 +17,4 @@ public final class FimgModelInsertCus extends ModelTemplate<FimgInfo> {
 	@Override protected DeciTree<FimgInfo> getDecisionTreeHook(DeciTreeOption<FimgInfo> option) {
 		return new RootFimgInsertCus(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

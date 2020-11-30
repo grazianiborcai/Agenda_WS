@@ -19,10 +19,4 @@ public final class RefuporeModelSearch extends ModelTemplate<RefuporeInfo> {
 	@Override protected DeciTree<RefuporeInfo> getDecisionTreeHook(DeciTreeOption<RefuporeInfo> option) {
 		return new RootRefuporeSearch(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

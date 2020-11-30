@@ -19,10 +19,4 @@ public final class SchedineModelMoveAuth extends ModelTemplate<SchedineInfo> {
 	@Override protected DeciTree<SchedineInfo> getDecisionTreeHook(DeciTreeOption<SchedineInfo> option) {
 		return new RootSchedineMoveAuth(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

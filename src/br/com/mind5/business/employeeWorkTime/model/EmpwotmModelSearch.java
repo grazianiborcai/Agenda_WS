@@ -19,10 +19,4 @@ public final class EmpwotmModelSearch extends ModelTemplate<EmpwotmInfo> {
 	@Override protected DeciTree<EmpwotmInfo> getDecisionTreeHook(DeciTreeOption<EmpwotmInfo> option) {
 		return new RootEmpwotmSearch(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

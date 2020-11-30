@@ -17,10 +17,4 @@ public final class EmpwotmModelConflict extends ModelTemplate<EmpwotmInfo> {
 	@Override protected DeciTree<EmpwotmInfo> getDecisionTreeHook(DeciTreeOption<EmpwotmInfo> option) {
 		return new RootEmpwotmConflict(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

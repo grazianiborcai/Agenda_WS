@@ -17,10 +17,4 @@ public final class SchedatusModelSelect extends ModelTemplate<SchedatusInfo> {
 	@Override protected DeciTree<SchedatusInfo> getDecisionTreeHook(DeciTreeOption<SchedatusInfo> option) {
 		return new RootSchedatusSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

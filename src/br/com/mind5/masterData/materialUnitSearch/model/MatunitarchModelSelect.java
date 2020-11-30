@@ -17,10 +17,4 @@ public final class MatunitarchModelSelect extends ModelTemplate<MatunitarchInfo>
 	@Override protected DeciTree<MatunitarchInfo> getDecisionTreeHook(DeciTreeOption<MatunitarchInfo> option) {
 		return new RootMatunitarchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

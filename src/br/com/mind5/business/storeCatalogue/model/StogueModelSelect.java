@@ -19,10 +19,4 @@ public final class StogueModelSelect extends ModelTemplate<StogueInfo> {
 	@Override protected DeciTree<StogueInfo> getDecisionTreeHook(DeciTreeOption<StogueInfo> option) {
 		return new RootStogueSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

@@ -17,10 +17,4 @@ public final class SchedeekModelSelect extends ModelTemplate<SchedeekInfo> {
 	@Override protected DeciTree<SchedeekInfo> getDecisionTreeHook(DeciTreeOption<SchedeekInfo> option) {
 		return new RootSchedeekSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

@@ -17,10 +17,4 @@ public final class EmpwotmModelOutlier extends ModelTemplate<EmpwotmInfo> {
 	@Override protected DeciTree<EmpwotmInfo> getDecisionTreeHook(DeciTreeOption<EmpwotmInfo> option) {
 		return new RootEmpwotmOutlier(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

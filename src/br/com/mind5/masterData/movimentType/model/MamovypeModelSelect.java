@@ -17,10 +17,4 @@ public final class MamovypeModelSelect extends ModelTemplate<MamovypeInfo> {
 	@Override protected DeciTree<MamovypeInfo> getDecisionTreeHook(DeciTreeOption<MamovypeInfo> option) {
 		return new RootMamovypeSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

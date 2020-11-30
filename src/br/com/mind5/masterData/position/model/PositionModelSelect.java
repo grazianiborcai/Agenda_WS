@@ -17,10 +17,4 @@ public final class PositionModelSelect extends ModelTemplate<PositionInfo> {
 	@Override protected DeciTree<PositionInfo> getDecisionTreeHook(DeciTreeOption<PositionInfo> option) {
 		return new RootPositionSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

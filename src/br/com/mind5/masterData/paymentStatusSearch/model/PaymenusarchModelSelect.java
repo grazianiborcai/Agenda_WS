@@ -17,10 +17,4 @@ public final class PaymenusarchModelSelect extends ModelTemplate<PaymenusarchInf
 	@Override protected DeciTree<PaymenusarchInfo> getDecisionTreeHook(DeciTreeOption<PaymenusarchInfo> option) {
 		return new RootPaymenusarchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

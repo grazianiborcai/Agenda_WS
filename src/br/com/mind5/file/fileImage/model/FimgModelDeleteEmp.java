@@ -17,10 +17,4 @@ public final class FimgModelDeleteEmp extends ModelTemplate<FimgInfo> {
 	@Override protected DeciTree<FimgInfo> getDecisionTreeHook(DeciTreeOption<FimgInfo> option) {
 		return new RootFimgDeleteEmp(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

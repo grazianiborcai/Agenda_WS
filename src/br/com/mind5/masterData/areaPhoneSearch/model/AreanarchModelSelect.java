@@ -17,10 +17,4 @@ public final class AreanarchModelSelect extends ModelTemplate<AreanarchInfo> {
 	@Override protected DeciTree<AreanarchInfo> getDecisionTreeHook(DeciTreeOption<AreanarchInfo> option) {
 		return new RootAreanarchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

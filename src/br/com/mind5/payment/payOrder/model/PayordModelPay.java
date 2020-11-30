@@ -20,10 +20,4 @@ public final class PayordModelPay extends ModelTemplate<PayordInfo> {
 	@Override protected DeciTree<PayordInfo> getDecisionTreeHook(DeciTreeOption<PayordInfo> option) {
 		return new RootPayordPay(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

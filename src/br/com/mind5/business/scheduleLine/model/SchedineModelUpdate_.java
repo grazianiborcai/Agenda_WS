@@ -19,10 +19,4 @@ public final class SchedineModelUpdate_ extends ModelTemplate<SchedineInfo> {
 	@Override protected DeciTree<SchedineInfo> getDecisionTreeHook(DeciTreeOption<SchedineInfo> option) {
 		return new RootSchedineUpdate_(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

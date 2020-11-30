@@ -17,10 +17,4 @@ public final class GendarchModelSelect extends ModelTemplate<GendarchInfo> {
 	@Override protected DeciTree<GendarchInfo> getDecisionTreeHook(DeciTreeOption<GendarchInfo> option) {
 		return new RootGendarchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

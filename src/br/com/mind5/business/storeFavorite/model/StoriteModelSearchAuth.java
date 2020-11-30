@@ -19,10 +19,4 @@ public final class StoriteModelSearchAuth extends ModelTemplate<StoriteInfo> {
 	@Override protected DeciTree<StoriteInfo> getDecisionTreeHook(DeciTreeOption<StoriteInfo> option) {
 		return new RootStoriteSearchAuth(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

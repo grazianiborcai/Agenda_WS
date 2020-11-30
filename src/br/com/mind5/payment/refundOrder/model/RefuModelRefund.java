@@ -18,10 +18,4 @@ public final class RefuModelRefund extends ModelTemplate<RefuInfo> {
 	@Override protected DeciTree<RefuInfo> getDecisionTreeHook(DeciTreeOption<RefuInfo> option) {
 		return new RootRefuRefund(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}	
 }

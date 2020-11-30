@@ -19,10 +19,4 @@ public final class MatModelInsert extends ModelTemplate<MatInfo> {
 	@Override protected DeciTree<MatInfo> getDecisionTreeHook(DeciTreeOption<MatInfo> option) {
 		return new RootMatInsert(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

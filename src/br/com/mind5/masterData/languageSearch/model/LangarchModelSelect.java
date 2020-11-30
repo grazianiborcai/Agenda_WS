@@ -17,10 +17,4 @@ public final class LangarchModelSelect extends ModelTemplate<LangarchInfo> {
 	@Override protected DeciTree<LangarchInfo> getDecisionTreeHook(DeciTreeOption<LangarchInfo> option) {
 		return new RootLangarchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

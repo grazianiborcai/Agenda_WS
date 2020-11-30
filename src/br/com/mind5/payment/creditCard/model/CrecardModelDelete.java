@@ -18,10 +18,4 @@ public final class CrecardModelDelete extends ModelTemplate<CrecardInfo> {
 	@Override protected DeciTree<CrecardInfo> getDecisionTreeHook(DeciTreeOption<CrecardInfo> option) {
 		return new RootCrecardDelete(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

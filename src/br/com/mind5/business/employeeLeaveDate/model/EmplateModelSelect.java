@@ -17,10 +17,4 @@ public final class EmplateModelSelect extends ModelTemplate<EmplateInfo> {
 	@Override protected DeciTree<EmplateInfo> getDecisionTreeHook(DeciTreeOption<EmplateInfo> option) {
 		return new RootEmplateSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

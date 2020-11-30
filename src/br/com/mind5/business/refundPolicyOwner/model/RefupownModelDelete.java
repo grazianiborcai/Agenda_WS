@@ -17,10 +17,4 @@ public final class RefupownModelDelete extends ModelTemplate<RefupownInfo> {
 	@Override protected DeciTree<RefupownInfo> getDecisionTreeHook(DeciTreeOption<RefupownInfo> option) {
 		return new RootRefupownDelete(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

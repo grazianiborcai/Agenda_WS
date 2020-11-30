@@ -17,10 +17,4 @@ public final class FidocarchModelSelect extends ModelTemplate<FidocarchInfo> {
 	@Override protected DeciTree<FidocarchInfo> getDecisionTreeHook(DeciTreeOption<FidocarchInfo> option) {
 		return new RootFidocarchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

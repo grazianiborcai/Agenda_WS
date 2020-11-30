@@ -19,10 +19,4 @@ public final class EmpmatModelSearchAuth extends ModelTemplate<EmpmatInfo> {
 	@Override protected DeciTree<EmpmatInfo> getDecisionTreeHook(DeciTreeOption<EmpmatInfo> option) {
 		return new RootEmpmatSearchAuth(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

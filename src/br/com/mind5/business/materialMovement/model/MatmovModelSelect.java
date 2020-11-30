@@ -17,10 +17,4 @@ public final class MatmovModelSelect extends ModelTemplate<MatmovInfo> {
 	@Override protected DeciTree<MatmovInfo> getDecisionTreeHook(DeciTreeOption<MatmovInfo> option) {
 		return new RootMatmovSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

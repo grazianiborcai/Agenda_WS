@@ -24,12 +24,6 @@ public final class WokefumoipModelInsert extends ModelTemplate<WokefumoipInfo> {
 	
 	
 	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
-	
-	
-	
 	@Override protected JsonBodyParser<WokefumoipInfo> getJsonParserHook(Class<WokefumoipInfo> tClazz) {
 		return new JwokefumoipBodyParser<WokefumoipInfo>(tClazz);
 	}

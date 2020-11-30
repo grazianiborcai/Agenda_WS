@@ -17,10 +17,4 @@ public final class CurrarshModelSelect extends ModelTemplate<CurrarshInfo> {
 	@Override protected DeciTree<CurrarshInfo> getDecisionTreeHook(DeciTreeOption<CurrarshInfo> option) {
 		return new RootCurrarshSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

@@ -19,10 +19,4 @@ public final class MatogueModelSelect extends ModelTemplate<MatogueInfo> {
 	@Override protected DeciTree<MatogueInfo> getDecisionTreeHook(DeciTreeOption<MatogueInfo> option) {
 		return new RootMatogueSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

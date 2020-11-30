@@ -17,10 +17,4 @@ public final class PeresmoipModelCode extends ModelTemplate<PeresmoipInfo> {
 	@Override protected DeciTree<PeresmoipInfo> getDecisionTreeHook(DeciTreeOption<PeresmoipInfo> option) {
 		return new RootPeresmoipCode(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

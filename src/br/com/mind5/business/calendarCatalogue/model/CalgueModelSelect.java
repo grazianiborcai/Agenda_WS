@@ -19,10 +19,4 @@ public final class CalgueModelSelect extends ModelTemplate<CalgueInfo> {
 	@Override protected DeciTree<CalgueInfo> getDecisionTreeHook(DeciTreeOption<CalgueInfo> option) {
 		return new RootCalgueSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

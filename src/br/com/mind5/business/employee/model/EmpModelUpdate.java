@@ -19,10 +19,4 @@ public final class EmpModelUpdate extends ModelTemplate<EmpInfo> {
 	@Override protected DeciTree<EmpInfo> getDecisionTreeHook(DeciTreeOption<EmpInfo> option) {
 		return new RootEmpUpdate(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

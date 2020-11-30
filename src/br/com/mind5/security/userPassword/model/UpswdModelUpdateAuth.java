@@ -24,12 +24,6 @@ public final class UpswdModelUpdateAuth extends ModelTemplate<UpswdInfo> {
 	
 	
 	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
-	
-	
-	
 	@Override protected ModelResponse<UpswdInfo> getModelResponseHook() {	
 		return new ModelResponseJwt<>();
 	}

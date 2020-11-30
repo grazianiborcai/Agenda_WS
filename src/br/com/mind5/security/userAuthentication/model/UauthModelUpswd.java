@@ -17,10 +17,4 @@ public final class UauthModelUpswd extends ModelTemplate<UauthInfo> {
 	@Override protected DeciTree<UauthInfo> getDecisionTreeHook(DeciTreeOption<UauthInfo> option) {
 		return new RootUauthUpswd(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

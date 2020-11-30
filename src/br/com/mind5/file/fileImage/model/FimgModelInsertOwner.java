@@ -17,10 +17,4 @@ public final class FimgModelInsertOwner extends ModelTemplate<FimgInfo> {
 	@Override protected DeciTree<FimgInfo> getDecisionTreeHook(DeciTreeOption<FimgInfo> option) {
 		return new RootFimgInsertOwner(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
+import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.json.JsonResponseMaker;
 import br.com.mind5.json.standard.JstdResponseMaker;
@@ -35,7 +36,7 @@ public final class ModelResponseError<T extends InfoRecord> implements ModelResp
 		Response.Status htmlStatus = Response.Status.INTERNAL_SERVER_ERROR;		
 		JsonResponseMaker jsonMaker = new JstdResponseMaker();
 		
-		return jsonMaker.makeResponse(htmlStatus.toString(), 
+		return jsonMaker.makeResponse(SystemMessage.INTERNAL_ERROR, 
 									  htmlStatus.getStatusCode(), 
 									  htmlStatus, 
 									  Collections.emptyList());

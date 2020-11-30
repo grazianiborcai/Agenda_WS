@@ -19,10 +19,4 @@ public final class CartModelUpsert extends ModelTemplate<CartInfo> {
 	@Override protected DeciTree<CartInfo> getDecisionTreeHook(DeciTreeOption<CartInfo> option) {
 		return new RootCartUpsert(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

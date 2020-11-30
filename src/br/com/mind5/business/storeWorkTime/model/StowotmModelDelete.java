@@ -17,10 +17,4 @@ public final class StowotmModelDelete extends ModelTemplate<StowotmInfo> {
 	@Override protected DeciTree<StowotmInfo> getDecisionTreeHook(DeciTreeOption<StowotmInfo> option) {
 		return new RootStowotmDelete(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

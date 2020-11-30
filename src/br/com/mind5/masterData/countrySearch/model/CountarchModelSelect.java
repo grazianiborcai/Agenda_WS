@@ -17,10 +17,4 @@ public final class CountarchModelSelect extends ModelTemplate<CountarchInfo> {
 	@Override protected DeciTree<CountarchInfo> getDecisionTreeHook(DeciTreeOption<CountarchInfo> option) {
 		return new RootCountarchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

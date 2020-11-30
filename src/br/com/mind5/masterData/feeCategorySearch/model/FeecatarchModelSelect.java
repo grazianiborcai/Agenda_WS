@@ -17,10 +17,4 @@ public final class FeecatarchModelSelect extends ModelTemplate<FeecatarchInfo> {
 	@Override protected DeciTree<FeecatarchInfo> getDecisionTreeHook(DeciTreeOption<FeecatarchInfo> option) {
 		return new RootFeecatarchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

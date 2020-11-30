@@ -19,10 +19,4 @@ public final class EmpwotmModelInsertFromStore extends ModelTemplate<EmpwotmInfo
 	@Override protected DeciTree<EmpwotmInfo> getDecisionTreeHook(DeciTreeOption<EmpwotmInfo> option) {
 		return new RootEmpwotmInsertFromStore(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

@@ -17,10 +17,4 @@ public final class RefugroupModelSearch extends ModelTemplate<RefugroupInfo> {
 	@Override protected DeciTree<RefugroupInfo> getDecisionTreeHook(DeciTreeOption<RefugroupInfo> option) {
 		return new RootRefugroupSearch(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

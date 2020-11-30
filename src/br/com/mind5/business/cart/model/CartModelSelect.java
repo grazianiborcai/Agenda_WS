@@ -17,10 +17,4 @@ public final class CartModelSelect extends ModelTemplate<CartInfo> {
 	@Override protected DeciTree<CartInfo> getDecisionTreeHook(DeciTreeOption<CartInfo> option) {
 		return new RootCartSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

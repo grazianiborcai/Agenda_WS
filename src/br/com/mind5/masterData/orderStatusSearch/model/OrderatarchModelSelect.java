@@ -17,10 +17,4 @@ public final class OrderatarchModelSelect extends ModelTemplate<OrderatarchInfo>
 	@Override protected DeciTree<OrderatarchInfo> getDecisionTreeHook(DeciTreeOption<OrderatarchInfo> option) {
 		return new RootOrderatarchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

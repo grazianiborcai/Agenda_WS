@@ -17,10 +17,4 @@ public final class SchedageModelSelect extends ModelTemplate<SchedageInfo> {
 	@Override protected DeciTree<SchedageInfo> getDecisionTreeHook(DeciTreeOption<SchedageInfo> option) {
 		return new RootSchedageSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

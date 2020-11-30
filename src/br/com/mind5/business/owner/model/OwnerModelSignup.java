@@ -19,10 +19,4 @@ public final class OwnerModelSignup extends ModelTemplate<OwnerInfo> {
 	@Override protected DeciTree<OwnerInfo> getDecisionTreeHook(DeciTreeOption<OwnerInfo> option) {
 		return new RootOwnerSignup(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

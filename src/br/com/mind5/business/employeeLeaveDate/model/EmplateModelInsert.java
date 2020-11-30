@@ -19,10 +19,4 @@ public final class EmplateModelInsert extends ModelTemplate<EmplateInfo> {
 	@Override protected DeciTree<EmplateInfo> getDecisionTreeHook(DeciTreeOption<EmplateInfo> option) {
 		return new RootEmplateInsert(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

@@ -17,10 +17,4 @@ public final class CountralModelSearch extends ModelTemplate<CountralInfo> {
 	@Override protected DeciTree<CountralInfo> getDecisionTreeHook(DeciTreeOption<CountralInfo> option) {
 		return new RootCountralSearch(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

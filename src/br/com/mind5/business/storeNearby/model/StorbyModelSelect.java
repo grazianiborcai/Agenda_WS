@@ -19,10 +19,4 @@ public final class StorbyModelSelect extends ModelTemplate<StorbyInfo> {
 	@Override protected DeciTree<StorbyInfo> getDecisionTreeHook(DeciTreeOption<StorbyInfo> option) {
 		return new RootStorbySelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

@@ -17,10 +17,4 @@ public final class OwnerModelDelete extends ModelTemplate<OwnerInfo> {
 	@Override protected DeciTree<OwnerInfo> getDecisionTreeHook(DeciTreeOption<OwnerInfo> option) {
 		return new RootOwnerDelete(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

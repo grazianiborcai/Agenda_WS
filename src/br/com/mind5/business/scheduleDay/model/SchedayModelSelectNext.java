@@ -17,10 +17,4 @@ public final class SchedayModelSelectNext extends ModelTemplate<SchedayInfo> {
 	@Override protected DeciTree<SchedayInfo> getDecisionTreeHook(DeciTreeOption<SchedayInfo> option) {
 		return new RootSchedaySelectNext(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

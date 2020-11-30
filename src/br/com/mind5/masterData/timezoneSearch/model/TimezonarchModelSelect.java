@@ -17,10 +17,4 @@ public final class TimezonarchModelSelect extends ModelTemplate<TimezonarchInfo>
 	@Override protected DeciTree<TimezonarchInfo> getDecisionTreeHook(DeciTreeOption<TimezonarchInfo> option) {
 		return new RootTimezonarchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

@@ -1,6 +1,7 @@
 package br.com.mind5.business.materialStore.model;
 
 import javax.servlet.http.HttpServletRequest;
+
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.decisionTree.RootMatoreSearch;
 import br.com.mind5.model.ModelTemplate;
@@ -17,11 +18,5 @@ public final class MatoreModelSearch extends ModelTemplate<MatoreInfo> {
 	
 	@Override protected DeciTree<MatoreInfo> getDecisionTreeHook(DeciTreeOption<MatoreInfo> option) {
 		return new RootMatoreSearch(option);
-	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
 	}
 }

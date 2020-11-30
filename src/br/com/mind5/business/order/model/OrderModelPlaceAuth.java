@@ -17,10 +17,4 @@ public final class OrderModelPlaceAuth extends ModelTemplate<OrderInfo> {
 	@Override protected DeciTree<OrderInfo> getDecisionTreeHook(DeciTreeOption<OrderInfo> option) {
 		return new RootOrderPlaceAuth(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

@@ -17,10 +17,4 @@ public final class StoriteModelDeleteAuth extends ModelTemplate<StoriteInfo> {
 	@Override protected DeciTree<StoriteInfo> getDecisionTreeHook(DeciTreeOption<StoriteInfo> option) {
 		return new RootStoriteDeleteAuth(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

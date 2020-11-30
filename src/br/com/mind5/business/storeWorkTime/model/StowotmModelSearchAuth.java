@@ -19,10 +19,4 @@ public final class StowotmModelSearchAuth extends ModelTemplate<StowotmInfo> {
 	@Override protected DeciTree<StowotmInfo> getDecisionTreeHook(DeciTreeOption<StowotmInfo> option) {
 		return new RootStowotmSearchAuth(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

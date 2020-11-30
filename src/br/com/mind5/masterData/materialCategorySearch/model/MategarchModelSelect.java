@@ -17,10 +17,4 @@ public final class MategarchModelSelect extends ModelTemplate<MategarchInfo> {
 	@Override protected DeciTree<MategarchInfo> getDecisionTreeHook(DeciTreeOption<MategarchInfo> option) {
 		return new RootMategarchSelect(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

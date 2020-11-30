@@ -17,10 +17,4 @@ public final class EmposModelSelectProfessional extends ModelTemplate<EmposInfo>
 	@Override protected DeciTree<EmposInfo> getDecisionTreeHook(DeciTreeOption<EmposInfo> option) {
 		return new RootEmposSelectProfessional(option);
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }
