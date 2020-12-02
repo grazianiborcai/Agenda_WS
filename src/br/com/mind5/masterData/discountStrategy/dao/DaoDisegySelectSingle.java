@@ -71,7 +71,7 @@ public final class DaoDisegySelectSingle extends DaoStmtTemplate<DisegyInfo> {
 					
 					dataInfo.codDiscountStrategy = stmtResult.getInt(DaoDisegyDbTableColumn.COL_COD_DISCOUNT_STRATEGY);
 					dataInfo.txtDiscountStrategy = stmtResult.getString(DaoDisegyDbTableColumn.COL_NAME);
-					dataInfo.desciptionDiscountStrategy = stmtResult.getString(DaoDisegyDbTableColumn.COL_DESCRIPTION);
+					dataInfo.descriptionDiscountStrategy = stmtResult.getString(DaoDisegyDbTableColumn.COL_DESCRIPTION);
 					dataInfo.codLanguage = stmtResult.getString(DaoDisegyDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				

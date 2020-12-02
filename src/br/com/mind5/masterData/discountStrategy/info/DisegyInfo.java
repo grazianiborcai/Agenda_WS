@@ -8,7 +8,7 @@ import br.com.mind5.info.InfoRecord;
 public final class DisegyInfo extends InfoRecord implements Cloneable {
 	public int codDiscountStrategy;
 	public String txtDiscountStrategy; 
-	public String desciptionDiscountStrategy;
+	public String descriptionDiscountStrategy;
 	
 	
 	public DisegyInfo() {
