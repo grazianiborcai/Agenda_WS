@@ -1,0 +1,65 @@
+package br.com.mind5.discount.discountStore.model.decisionTree;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.discount.discountStore.info.DisoreInfo;
+import br.com.mind5.discount.discountStore.model.action.LazyDisoreEnforceFirstTimeStrategy;
+import br.com.mind5.discount.discountStore.model.action.LazyDisoreRootInsert;
+import br.com.mind5.discount.discountStore.model.action.StdDisoreEnforceFirstTimeKey;
+import br.com.mind5.discount.discountStore.model.checker.DisoreCheckInsertFirstTime;
+import br.com.mind5.discount.discountStore.model.checker.DisoreCheckLangu;
+import br.com.mind5.model.action.ActionLazy;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+
+public final class RootDisoreInsertFirstTime extends DeciTreeTemplateWrite<DisoreInfo> {
+	
+	public RootDisoreInsertFirstTime(DeciTreeOption<DisoreInfo> option) {
+		super(option);
+	}
+	
+	
+	
+	@Override protected ModelChecker<DisoreInfo> buildCheckerHook(DeciTreeOption<DisoreInfo> option) {
+		List<ModelChecker<DisoreInfo>> queue = new ArrayList<>();		
+		ModelChecker<DisoreInfo> checker;
+		ModelCheckerOption checkerOption;		
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new DisoreCheckInsertFirstTime(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new DisoreCheckLangu(checkerOption);
+		queue.add(checker);
+
+		return new ModelCheckerHelperQueue<>(queue);
+	}
+	
+	
+	
+	@Override protected List<ActionStd<DisoreInfo>> buildActionsOnPassedHook(DeciTreeOption<DisoreInfo> option) {
+		List<ActionStd<DisoreInfo>> actions = new ArrayList<>();
+		
+		ActionStd<DisoreInfo> enforceKey = new StdDisoreEnforceFirstTimeKey(option);
+		ActionLazy<DisoreInfo> enforceStrategy = new LazyDisoreEnforceFirstTimeStrategy(option.conn, option.schemaName);
+		ActionLazy<DisoreInfo> insert = new LazyDisoreRootInsert(option.conn, option.schemaName);
+		
+		enforceKey.addPostAction(enforceStrategy);
+		enforceStrategy.addPostAction(insert);
+		
+		actions.add(enforceKey);
+		return actions;
+	}
+}
