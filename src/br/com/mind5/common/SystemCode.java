@@ -204,6 +204,9 @@ public final class SystemCode {
 	public static final int MAT_SUBGROUP_SEARCH_MANDATORY_FIELD_EMPTY 	= 11678;
 	public static final int COUNTRY_LEGAL_SEARCH_MANDATORY_FIELD_EMPTY 	= 11679;
 	public static final int CART_CATEG_SEARCH_MANDATORY_FIELD_EMPTY 	= 11680;
+	public static final int DISCOUNT_STRATEGY_MANDATORY_FIELD_EMPTY 	= 11681;
+	public static final int DISCOUNT_STRATEGY_ALREADY_EXIST				= 11682;
+	public static final int DISCOUNT_STRATEGY_NOT_FOUND					= 11683;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;

@@ -152,6 +152,7 @@ import br.com.mind5.masterData.currency.dao.DaoCurrencyDbTableColumn;
 import br.com.mind5.masterData.currencySearch.dao.DaoCurrarshDbTableColumn;
 import br.com.mind5.masterData.dayParting.dao.DaoDaypartDbTableColumn;
 import br.com.mind5.masterData.dayPartingSearch.dao.DaoDayparchDbTableColumn;
+import br.com.mind5.masterData.discountStrategy.dao.DaoDisegyDbTableColumn;
 import br.com.mind5.masterData.entityCategory.dao.DaoEntitegDbTableColumn;
 import br.com.mind5.masterData.feeCategory.dao.DaoFeecatDbTableColumn;
 import br.com.mind5.masterData.feeCategorySearch.dao.DaoFeecatarchDbTableColumn;
@@ -466,6 +467,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoFimgnapDbTableColumn());
 		addTable(new DaoAddresnaparchDbTableColumn());
 		addTable(new DaoPhonaparchDbTableColumn());
+		addTable(new DaoDisegyDbTableColumn());
 	}
 	
 	
