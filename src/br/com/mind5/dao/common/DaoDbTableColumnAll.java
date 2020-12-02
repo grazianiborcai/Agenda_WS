@@ -127,6 +127,7 @@ import br.com.mind5.config.sysStorePartitioning.dao.DaoSytotinDbTableColumn;
 import br.com.mind5.config.sysStoreSignup.dao.DaoSysotupDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumn;
+import br.com.mind5.discount.discountStore.dao.DaoDisoreDbTableColumn;
 import br.com.mind5.file.fileImage.dao.DaoFimgDbTableColumn;
 import br.com.mind5.file.fileImageList.dao.DaoFimistDbTableColumn;
 import br.com.mind5.file.fileImageSearch.dao.DaoFimarchDbTableColumn;
@@ -468,6 +469,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoAddresnaparchDbTableColumn());
 		addTable(new DaoPhonaparchDbTableColumn());
 		addTable(new DaoDisegyDbTableColumn());
+		addTable(new DaoDisoreDbTableColumn());
 	}
 	
 	

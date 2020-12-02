@@ -37,6 +37,7 @@ public final class DaoDbField {
 	public static final String COL_COD_CUSTOMER = "cod_customer";
 	public static final String COL_COD_CUSTOMER_SNAPSHOT = "cod_customer_snapshot";	
 	public static final String COL_COD_DAYPART = "cod_dayparting";
+	public static final String COL_COD_DISCOUNT = "cod_discount";	
 	public static final String COL_COD_DISCOUNT_STRATEGY = "cod_discount_strategy";	
 	public static final String COL_COD_EMPLOYEE = "cod_employee";
 	public static final String COL_COD_EMPLOYEE_SNAPSHOT = "cod_employee_snapshot";	
@@ -128,6 +129,7 @@ public final class DaoDbField {
 	public static final String COL_DT_VALID_TO = "date_valid_to";
 	public static final String COL_DAY = "day";
 	public static final String COL_DESCRIPTION = "description";
+	public static final String COL_DISCOUNT_PERCENT = "discount_percent";	
 	public static final String COL_DISTRICT = "district";
 	public static final String COL_DISTRICT_SEARCH = "district_search";
 	public static final String COL_EMAIL = "email";
@@ -160,6 +162,7 @@ public final class DaoDbField {
 	public static final String COL_ID_REFUND_PARTNER = "id_refund_partner";
 	public static final String COL_IMG_FILE_PATH = "file_img_path";
 	public static final String COL_IMG_FILE_PATH_EXTERNAL = "file_img_path_external";
+	public static final String COL_IS_ACTIVE = "is_active";
 	public static final String COL_IS_COVER = "is_cover";
 	public static final String COL_IS_DEFAULT = "is_default";
 	public static final String COL_IS_EXPECTED = "is_expected";

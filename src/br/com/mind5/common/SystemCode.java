@@ -290,7 +290,7 @@ public final class SystemCode {
 	public static final int CART_HEADER_IS_AGED							= 1413;
 	public static final int CART_HEADER_IS_OK							= 1414;
 	
-	//Cart Item
+	// Cart Item
 	public static final int CART_ITEM_MANDATORY_FIELD_EMPTY				= 9400;	//1412;
 	public static final int CART_ITEM_QUANTITY_ILLEGAL					= 9401;	//1410;
 	public static final int CART_ITEM_AGED_DATE							= 9402;
@@ -588,7 +588,7 @@ public final class SystemCode {
 	public static final int STORE_TIME_IS_EMPTY							= 2900;
 	public static final int STORE_TIME_IS_FILLED						= 2901;
 	
-	//Material Movement
+	// Material Movement
 	public static final int MAT_MOV_ALREADY_EXIST 						= 2950;
 	public static final int MAT_MOV_NOT_FOUND 							= 2951;
 	public static final int MAT_MOV_TECH_FIELD_SHOULD_BE_EMPTY			= 2952;
@@ -596,14 +596,14 @@ public final class SystemCode {
 	public static final int MAT_MOV_TYPE_NOT_ALLOWED					= 2954;
 	public static final int MAT_MOV_MANDATORY_FIELD_EMPTY				= 2955;
 	
-	//Material Stock
+	// Material Stock
 	public static final int MAT_STOCK_ALREADY_EXIST 					= 3000;
 	public static final int MAT_STOCK_NOT_FOUND 						= 3001;
 	public static final int MAT_STOCK_NO_BALANCE 						= 3002;
 	public static final int MAT_STOCK_LIMIT_EXCEEDED					= 3003;
 	public static final int MAT_STOCK_MANDATORY_FIELD_EMPTY				= 3004;
 	
-	//Material Store
+	// Material Store
 	public static final int MAT_STORE_PRICE_INCONSISTENCY				= 3050;
 	public static final int MAT_STORE_MAT_CATEG_IS_NULL					= 3051;
 	public static final int MAT_STORE_FLAGGED_AS_DELETED 				= 3052;
@@ -616,7 +616,7 @@ public final class SystemCode {
 	public static final int MAT_STORE_IS_PRODUCT						= 3059;
 	public static final int MAT_STORE_IS_NOT_PRODUCT					= 3040;
 	
-	//Order Header
+	// Order Header
 	public static final int ORDER_HAVE_ITEM 							= 4000;
 	public static final int ORDER_IS_EMPTY 								= 4001;	
 	public static final int ORDER_HEADER_STATUS_CHANGE_NOT_ALLOWED		= 4004;
@@ -627,7 +627,7 @@ public final class SystemCode {
 	public static final int ORDER_ITEM_IS_NOT_SERVICE 					= 4009;
 	public static final int ORDER_DONT_HAVE_REFUND_POLICY				= 4010;
 	
-	//Pay-Order Header
+	// Pay-Order Header
 	public static final int PAY_ORDER_HEADER_DIF_ORDER_USER				= 4051;
 	public static final int PAY_ORDER_HEADER_MANDATORY_FIELD_EMPTY		= 4059;	
 	public static final int PAY_ORDER_HEADER_DIF_CUSPAR_USER			= 4060;
@@ -845,20 +845,20 @@ public final class SystemCode {
 	// System
 	public static final int AUTO_GENERATED_FIELD_IS_NOT_EMPTY			= 6250;
 	
-	//System Message
+	// System Message
 	public static final int SYS_MESSAGE_ALREADY_EXIST 					= 6300;
 	public static final int SYS_MESSAGE_NOT_FOUND 						= 6301;
 	public static final int SYS_MESSAGE_MANDATORY_FIELD_EMPTY			= 6302;
 	public static final int SYS_MESSAGE_IS_ENGLISH						= 6303;
 	public static final int SYS_MESSAGE_IS_NOT_ENGLISH					= 6304;
 	
-	//Owner Snapshot
+	// Owner Snapshot
 	public static final int OWNER_SNAP_MANDATORY_FIELD_EMPTY 			= 6350;
 	
-	//Company List
+	// Company List
 	public static final int COMPANY_LIST_MANDATORY_FIELD_EMPTY 			= 6400;
 	
-	//Address Snapshot
+	// Address Snapshot
 	public static final int ADDRESS_SNAP_MANDATORY_FIELD_EMPTY			= 6450;
 	public static final int ADDRESS_SNAP_USER_IS_FILLED					= 6451;
 	public static final int ADDRESS_SNAP_USER_IS_EMPTY					= 6452;
@@ -873,12 +873,12 @@ public final class SystemCode {
 	public static final int ADDRESS_SNAP_HAS_STATE						= 6461;	// 2004
 	public static final int ADDRESS_SNAP_HAS_NO_STATE					= 6462;	// 2005
 	
-	//Address Search
+	// Address Search
 	public static final int ADDRESS_SEARCH_MANDATORY_FIELD_EMPTY		= 6500;
 	public static final int ADDRESS_SEARCH_ALREADY_EXIST 				= 6501;
 	public static final int ADDRESS_SEARCH_NOT_FOUND 					= 6502;
 	
-	//Phone Search
+	// Phone Search
 	public static final int PHONE_SEARCH_MANDATORY_FIELD_EMPTY 			= 6550;	
 	public static final int PHONE_SEARCH_ALREADY_EXIST 					= 6551;
 	public static final int PHONE_SEARCH_NOT_FOUND 						= 6552;
@@ -886,7 +886,7 @@ public final class SystemCode {
 	// Store Search
 	public static final int STORE_SEARCH_MANDATORY_FIELD_EMPTY 			= 6600;
 	
-	//Company Search
+	// Company Search
 	public static final int COMPANY_SEARCH_MANDATORY_FIELD_EMPTY 		= 6650;
 	
 	//Person Search
@@ -924,12 +924,12 @@ public final class SystemCode {
 	public static final int STORE_WTIME_EMPLOYEE_NOT_FOUND 				= 6864;
 	
 	
-	//Employee Work Time Outlier
+	// Employee Work Time Outlier
 	public static final int EMP_WT_OUT_MANDATORY_FIELD_EMPTY 			= 6900;
 	public static final int EMP_WT_OUT_NOT_FOUND						= 6901;
 	public static final int EMP_WT_OUT_ALREADY_EXIST					= 6902;
 	
-	//Store Leave Date
+	// Store Leave Date
 	public static final int STORE_LDATE_MANDATORY_FIELD_EMPTY 			= 6950;
 	public static final int STORE_LDATE_NOT_FOUND 						= 6951; //1113;
 	public static final int STORE_LDATE_ALREADY_EXIST					= 6952; //1114;
@@ -939,7 +939,7 @@ public final class SystemCode {
 	public static final int STORE_LDATE_BAD_TIME_RANGE 					= 6956;
 	public static final int STORE_LDATE_SCHEDULE_CONFLICT 				= 6957;
 	
-	//Store Leave Date - Search
+	// Store Leave Date - Search
 	public static final int STORE_LDATE_SEARCH_MANDATORY_FIELD_EMPTY 	= 7000;
 	public static final int STORE_LDATE_SEARCH_ALREADY_EXIST 			= 7001;
 	public static final int STORE_LDATE_SEARCH_NOT_FOUND 				= 7002;
@@ -1098,32 +1098,32 @@ public final class SystemCode {
 	public static final int STORE_LDATE_RANGE_ALREADY_EXIST 			= 10001;
 	public static final int STORE_LDATE_RANGE_NOT_FOUND 				= 10002;
 	
-	//Order Item
+	// Order Item
 	public static final int ORDER_ITEM_ALREADY_EXIST 					= 10050; //4002;
 	public static final int ORDER_ITEM_NOT_FOUND 						= 10051; //4003;
 	public static final int ORDER_ITEM_MANDATORY_FIELD_EMPTY			= 10052; //4010;
 	public static final int ORDER_ITEM_IS_CANCELLED						= 10053; //4010;
 	public static final int ORDER_ITEM_IS_NOT_CANCELLED					= 10054; //4010;
 	
-	//Order Item Search
+	// Order Item Search
 	public static final int ORDER_ITEM_SEARCH_ALREADY_EXIST 			= 10100; 
 	public static final int ORDER_ITEM_SEARCH_NOT_FOUND 				= 10101; 
 	public static final int ORDER_ITEM_SEARCH_MANDATORY_FIELD_EMPTY		= 10102; 
 	
-	//Order Item Snapshot
+	// Order Item Snapshot
 	public static final int ORDER_ITEM_SNAP_MANDATORY_FIELD_EMPTY		= 10150; //5501;
 	
-	//Order Reserve
+	// Order Reserve
 	public static final int ORDER_RESERVE_MANDATORY_FIELD_EMPTY			= 10200;
 	public static final int ORDER_RESERVE_ALREADY_EXIST 				= 10201;
 	public static final int ORDER_RESERVE_NOT_FOUND 					= 10202;
 	
-	//Company Conflict
+	// Company Conflict
 	public static final int COMPANY_CONFLICT_MANDATORY_FIELD_EMPTY 		= 10250;
 	public static final int COMPANY_CONFLICT_CNPJ_ALREADY_EXIST 		= 10251;
 	public static final int COMPANY_CONFLICT_CNPJ_NOT_FOUND 			= 10252;
 	
-	//Fee Default
+	// Fee Default
 	public static final int FEE_DEFAULT_MANDATORY_FIELD_EMPTY 			= 10300;
 	
 	//Store Fee
@@ -1184,7 +1184,7 @@ public final class SystemCode {
 	public static final int PAYPAR_COUNTRY_SEARCH_NOT_FOUND 			= 10951;
 	public static final int PAYPAR_COUNTRY_SEARCH_MANDATORY_FIELD_EMPTY = 10952;
 	
-	//Pay-Order Item	
+	// Pay-Order Item	
 	public static final int PAY_ORDER_ITEM_MANDATORY_FIELD_EMPTY		= 11000; // 4054;
 	public static final int PAY_ORDER_ITEM_IS_FEE 						= 11001; // 4063;
 	public static final int PAY_ORDER_ITEM_IS_NOT_FEE 					= 11002; // 4064;
@@ -1193,15 +1193,15 @@ public final class SystemCode {
 	public static final int PAY_ORDER_HAVE_ITEM 						= 4057;
 	public static final int PAY_ORDER_IS_EMPTY 							= 4058;	
 	
-	//Pay-Order Item Search
+	// Pay-Order Item Search
 	public static final int PAY_ORDER_ITEM_SEARCH_MANDATORY_FIELD_EMPTY	= 11050;
 	public static final int PAY_ORDER_ITEM_SEARCH_ALREADY_EXIST 		= 11051;
 	public static final int PAY_ORDER_ITEM_SEARCH_NOT_FOUND 			= 11052;
 	
-	//Pay-Order List
+	// Pay-Order List
 	public static final int PAY_ORDER_LIST_MANDATORY_FIELD_EMPTY		= 11100;	
 	
-	//Pay-Order Item List
+	// Pay-Order Item List
 	public static final int PAY_ORDER_ITEM_LIST_MANDATORY_FIELD_EMPTY	= 11150;
 	public static final int PAY_ORDER_ITEM_LIST_ALREADY_EXIST 			= 11151;
 	public static final int PAY_ORDER_ITEM_LIST_NOT_FOUND 				= 11152;
@@ -1227,12 +1227,12 @@ public final class SystemCode {
 	// Webhook - Refund-Moip
 	public static final int WHOOK_MOIP_REFUND_MANDATORY_FIELD_EMPTY 	= 11450;
 	
-	//Moon Calendar
+	// Moon Calendar
 	public static final int MOON_CALENDAR_MANDATORY_FIELD_EMPTY 		= 11500;
 	public static final int MOON_CALENDAR_ALREADY_EXIST					= 11501;
 	public static final int MOON_CALENDAR_NOT_FOUND						= 11502;
 	
-	//Calendar Date
+	// Calendar Date
 	public static final int CALENDAR_DATE_ALREADY_EXIST					= 11550;
 	public static final int CALENDAR_DATE_NOT_FOUND						= 11551;
 	public static final int CALENDAR_DATE_MANDATORY_FIELD_EMPTY 		= 11552;
@@ -1240,7 +1240,7 @@ public final class SystemCode {
 	// Form Address Search
 	public static final int FORM_ADDRESS_SEARCH_MANDATORY_FIELD_EMPTY	= 11600;
 	
-	//Refund Policy Owner
+	// Refund Policy Owner
 	public static final int REFUPOL_OWNER_MANDATORY_FIELD_EMPTY 		= 11700;
 	public static final int REFUPOL_OWNER_ALREADY_EXIST					= 11701;
 	public static final int REFUPOL_OWNER_NOT_FOUND						= 11702;
@@ -1252,44 +1252,44 @@ public final class SystemCode {
 //	public static final int REFUPOL_OWNER_SEARCH_ALREADY_EXIST			= 11751;
 //	public static final int REFUPOL_OWNER_SEARCH_NOT_FOUND				= 11752;	
 	
-	//Refund Policy Store
+	// Refund Policy Store
 	public static final int REFUPOL_STORE_MANDATORY_FIELD_EMPTY 		= 11800;
 	public static final int REFUPOL_STORE_ALREADY_EXIST					= 11801;
 	public static final int REFUPOL_STORE_NOT_FOUND						= 11802;	
 	public static final int REFUPOL_STORE_FLAGGED_AS_DELETED 			= 11803;	
 	public static final int REFUPOL_STORE_NOT_FLAGGED_AS_DELETED 		= 11804;	
 	
-	//Refund Policy Store Search
+	// Refund Policy Store Search
 	public static final int REFUPOL_STORE_SEARCH_MANDATORY_FIELD_EMPTY 	= 11850;
 	public static final int REFUPOL_STORE_SEARCH_ALREADY_EXIST			= 11851;
 	public static final int REFUPOL_STORE_SEARCH_NOT_FOUND				= 11852;	
 	
-	//Refund Policy Group Header
+	// Refund Policy Group Header
 	public static final int REFUPOL_GR_HDR_MANDATORY_FIELD_EMPTY 		= 11900;
 	public static final int REFUPOL_GR_HDR_ALREADY_EXIST				= 11901;
 	public static final int REFUPOL_GR_HDR_NOT_FOUND					= 11902;	
 	
-	//Refund Policy Group Item
+	// Refund Policy Group Item
 	public static final int REFUPOL_GR_ITM_MANDATORY_FIELD_EMPTY 		= 11950;
 	public static final int REFUPOL_GR_ITM_ALREADY_EXIST				= 11951;
 	public static final int REFUPOL_GR_ITM_NOT_FOUND					= 11952;	
 	
-	//Refund Policy Group Item Search
+	// Refund Policy Group Item Search
 	public static final int REFUPOL_GR_ITM_SEARCH_MANDATORY_FIELD_EMPTY = 12000;
 	public static final int REFUPOL_GR_ITM_SEARCH_ALREADY_EXIST			= 12001;
 	public static final int REFUPOL_GR_ITM_SEARCH_NOT_FOUND				= 12002;	
 	
-	//Refund Policy Group
+	// Refund Policy Group
 	public static final int REFUPOL_GR_MANDATORY_FIELD_EMPTY 			= 12050;
 	public static final int REFUPOL_GR_ALREADY_EXIST					= 12051;
 	public static final int REFUPOL_GR_NOT_FOUND						= 12052;	
 	
-	//Order Status Change
+	// Order Status Change
 	public static final int ORDER_STATUS_CHANGE_NOT_ALLOWED				= 12100;
 	public static final int ORDER_STATUS_CHANGE_MANDATORY_FIELD_EMPTY	= 12101;
 	public static final int ORDER_STATUS_CHANGE_DONT_HAVE_PAYMENT		= 12102;
 	
-	//Order Item List
+	// Order Item List
 	public static final int ORDER_ITEM_LIST_MANDATORY_FIELD_EMPTY		= 12150;
 	
 	// Schedule Reserve
@@ -1297,14 +1297,14 @@ public final class SystemCode {
 	public static final int SCHEDULE_RESERVE_ALREADY_EXIST 				= 12201;
 	public static final int SCHEDULE_RESERVE_NOT_FOUND 					= 12202;
 	
-	//Refund Policy
+	// Refund Policy
 	public static final int REFUPOL_MANDATORY_FIELD_EMPTY 				= 12250;
 	public static final int REFUPOL_REJECTEC_BY_RULE 					= 12251;
 	
-	//Refund Policy Group Header Search
+	// Refund Policy Group Header Search
 	public static final int REFUPOL_GR_HDR_SEARCH_MANDATORY_FIELD_EMPTY = 12300;
 	
-	//Book Service
+	// Book Service
 	public static final int BOOK_SERVICE_MANDATORY_FIELD_EMPTY			= 12350;
 	public static final int BOOK_SERVICE_QUANTITY_ILLEGAL				= 12351;
 	public static final int BOOK_SERVICE_AGED_DATE						= 12352;
@@ -1318,7 +1318,7 @@ public final class SystemCode {
 	// Schedule Day
 	public static final int SCHEDULE_DAY_MANDATORY_FIELD_EMPTY			= 12450;
 	
-	//Calendar Date Search
+	// Calendar Date Search
 	public static final int CALENDAR_DATE_SEARCH_MANDATORY_FIELD_EMPTY 	= 12500;
 	public static final int CALENDAR_DATE_SEARCH_NOT_FOUND				= 12501;
 	public static final int CALENDAR_DATE_SEARCH_ALREADY_EXIST			= 12502;
@@ -1414,12 +1414,12 @@ public final class SystemCode {
 	public static final int STORE_PART_AUTH_NOT_AUTHORIZED				= 13601;
 	public static final int STORE_PART_AUTH_AUTHORIZED					= 13602;
 	
-	//User Password Search
+	// User Password Search
 	public static final int USER_PASSWORD_SEARCH_MANDATORY_FIELD_EMPTY	= 13650;
 	public static final int USER_PASSWORD_SEARCH_CHANGED				= 13651;
 	public static final int USER_PASSWORD_SEARCH_NOT_CHANGED			= 13652;
 	
-	//Material Group Store
+	// Material Group Store
 	public static final int MAT_GRP_STORE_MANDATORY_FIELD_EMPTY			= 13700;
 	
 	// Material Catalogue
@@ -1495,9 +1495,14 @@ public final class SystemCode {
 	// File Image Snapshot
 	public static final int FILE_IMG_SNAPSHOT_MANDATORY_FIELD_EMPTY 	= 14550;
 	
-	//Address Snapshot Search
+	// Address Snapshot Search
 	public static final int ADDRESS_SNAP_SEARCH_MANDATORY_FIELD_EMPTY	= 14600;
 	
-	//Phone Snapshot Search
+	// Phone Snapshot Search
 	public static final int PHONE_SNAPSHOT_SEARCH_MANDATORY_FIELD_EMPTY	= 14650;
+	
+	// Employee Position
+	public static final int DISCOUNT_STORE_ALREADY_EXIST 				= 14700;
+	public static final int DISCOUNT_STORE_NOT_FOUND 					= 14701;
+	public static final int DISCOUNT_STORE_MANDATORY_FIELD_EMPTY		= 14702;
 }
