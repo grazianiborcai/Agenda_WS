@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class EmposVisiMergeToSelect extends InfoMergerVisitorTemplate<EmposInfo, EmposInfo> {
-	
-	@Override public List<EmposInfo> beforeMerge(List<EmposInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(EmposInfo baseInfo, EmposInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class EmposVisiMergeToSelect extends InfoMergerVisitorTemplate<EmposInfo, 
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<EmposInfo> getUniquifier() {
-		return null;
 	}
 }

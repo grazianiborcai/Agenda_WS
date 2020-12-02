@@ -4,17 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.position.info.PositionInfo;
 
 final class EmposVisiMergePosition extends InfoMergerVisitorTemplate<EmposInfo, PositionInfo> {
-	
-	@Override public List<EmposInfo> beforeMerge(List<EmposInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(EmposInfo baseInfo, PositionInfo selectedInfo) {
 		return (baseInfo.codPosition == selectedInfo.codPosition);
 	}
@@ -28,11 +20,5 @@ final class EmposVisiMergePosition extends InfoMergerVisitorTemplate<EmposInfo, 
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<EmposInfo> getUniquifier() {
-		return null;
 	}
 }
