@@ -8,6 +8,8 @@ import br.com.mind5.discount.discountStore.model.action.LazyDisoreDaoInsert;
 import br.com.mind5.discount.discountStore.model.action.LazyDisoreEnforceCreatedBy;
 import br.com.mind5.discount.discountStore.model.action.LazyDisoreEnforceCreatedOn;
 import br.com.mind5.discount.discountStore.model.action.LazyDisoreMergeUsername;
+import br.com.mind5.discount.discountStore.model.action.LazyDisoreNodeSnapshot;
+import br.com.mind5.discount.discountStore.model.action.LazyDisoreRootSelect;
 import br.com.mind5.discount.discountStore.model.action.StdDisoreEnforceLChanged;
 import br.com.mind5.discount.discountStore.model.checker.DisoreCheckDisegy;
 import br.com.mind5.discount.discountStore.model.checker.DisoreCheckInsert;
@@ -91,11 +93,15 @@ public final class RootDisoreInsert extends DeciTreeTemplateWrite<DisoreInfo> {
 		ActionLazy<DisoreInfo> enforceCreatedBy = new LazyDisoreEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<DisoreInfo> enforceCreatedOn = new LazyDisoreEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<DisoreInfo> insert = new LazyDisoreDaoInsert(option.conn, option.schemaName);
+		ActionLazy<DisoreInfo> snapshot = new LazyDisoreNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<DisoreInfo> select = new LazyDisoreRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);
 		enforceCreatedBy.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(insert);
+		insert.addPostAction(snapshot);
+		snapshot.addPostAction(select);
 		
 		actions.add(enforceLChanged);
 		return actions;

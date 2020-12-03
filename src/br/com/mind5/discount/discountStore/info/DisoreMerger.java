@@ -3,12 +3,26 @@ package br.com.mind5.discount.discountStore.info;
 import java.util.List;
 
 import br.com.mind5.discount.discountStoreSearch.info.DisorarchInfo;
+import br.com.mind5.discount.discountStoreSnapshot.info.DisorapInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.discountStrategy.info.DisegyInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class DisoreMerger {
+	public static List<DisoreInfo> mergeWithDisorap(List<DisoreInfo> baseInfos, List<DisorapInfo> selectedInfos) {
+		InfoMergerBuilder<DisoreInfo, DisorapInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new DisoreVisiMergeDisorap());
+		InfoMerger<DisoreInfo, DisorapInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<DisoreInfo> mergeWithDisorarch(List<DisoreInfo> baseInfos, List<DisorarchInfo> selectedInfos) {
 		InfoMergerBuilder<DisoreInfo, DisorarchInfo> builder = new InfoMergerBuilder<>();
 		
