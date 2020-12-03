@@ -1501,8 +1501,13 @@ public final class SystemCode {
 	// Phone Snapshot Search
 	public static final int PHONE_SNAPSHOT_SEARCH_MANDATORY_FIELD_EMPTY	= 14650;
 	
-	// Employee Position
+	// Discount Store
 	public static final int DISCOUNT_STORE_ALREADY_EXIST 				= 14700;
 	public static final int DISCOUNT_STORE_NOT_FOUND 					= 14701;
 	public static final int DISCOUNT_STORE_MANDATORY_FIELD_EMPTY		= 14702;
+	
+	// Discount Store Search
+	public static final int DISCOUNT_STORE_SEARCH_ALREADY_EXIST 		= 14750;
+	public static final int DISCOUNT_STORE_SEARCH_NOT_FOUND 			= 14751;
+	public static final int DISCOUNT_STORE_SEARCH_MANDATORY_FIELD_EMPTY	= 14752;
 }
