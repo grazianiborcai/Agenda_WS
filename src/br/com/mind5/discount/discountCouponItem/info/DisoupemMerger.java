@@ -2,19 +2,33 @@ package br.com.mind5.discount.discountCouponItem.info;
 
 import java.util.List;
 
+import br.com.mind5.discount.discountStore.info.DisoreInfo;
+import br.com.mind5.discount.discountStoreSnapshot.info.DisorapInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
-import br.com.mind5.masterData.discountStrategy.info.DisegyInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class DisoupemMerger {
-	public static List<DisoupemInfo> mergeWithDisegy(List<DisoupemInfo> baseInfos, List<DisegyInfo> selectedInfos) {
-		InfoMergerBuilder<DisoupemInfo, DisegyInfo> builder = new InfoMergerBuilder<>();
+	public static List<DisoupemInfo> mergeWithDisore(List<DisoupemInfo> baseInfos, List<DisoreInfo> selectedInfos) {
+		InfoMergerBuilder<DisoupemInfo, DisoreInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new DisoupemVisiMergeDisegy());
-		InfoMerger<DisoupemInfo, DisegyInfo> merger = builder.build();		
+		builder.addVisitor(new DisoupemVisiMergeDisore());
+		InfoMerger<DisoupemInfo, DisoreInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<DisoupemInfo> mergeWithDisorap(List<DisoupemInfo> baseInfos, List<DisorapInfo> selectedInfos) {
+		InfoMergerBuilder<DisoupemInfo, DisorapInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new DisoupemVisiMergeDisorap());
+		InfoMerger<DisoupemInfo, DisorapInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

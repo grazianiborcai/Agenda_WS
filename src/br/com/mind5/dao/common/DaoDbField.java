@@ -32,12 +32,14 @@ public final class DaoDbField {
 	public static final String COL_COD_COUNTRY = "country";
 	public static final String COL_COD_COUNTRY_ALPHA3 = "country_alpha3";
 	public static final String COL_COD_COUNTRY_PHONE = "country_phone";	
+	public static final String COL_COD_COUPON_ITEM = "cod_coupon_item";	
 	public static final String COL_COD_CREDIT_CARD = "cod_credit_card";
 	public static final String COL_COD_CURRENCY = "cod_curr";
 	public static final String COL_COD_CUSTOMER = "cod_customer";
 	public static final String COL_COD_CUSTOMER_SNAPSHOT = "cod_customer_snapshot";	
 	public static final String COL_COD_DAYPART = "cod_dayparting";
-	public static final String COL_COD_DISCOUNT = "cod_discount";	
+	public static final String COL_COD_DISCOUNT = "cod_discount";
+	public static final String COL_COD_DISCOUNT_SNAPSHOT = "cod_discount_snapshot";	
 	public static final String COL_COD_DISCOUNT_STRATEGY = "cod_discount_strategy";	
 	public static final String COL_COD_EMPLOYEE = "cod_employee";
 	public static final String COL_COD_EMPLOYEE_SNAPSHOT = "cod_employee_snapshot";	
@@ -130,6 +132,7 @@ public final class DaoDbField {
 	public static final String COL_DAY = "day";
 	public static final String COL_DESCRIPTION = "description";
 	public static final String COL_DISCOUNT_PERCENT = "discount_percent";	
+	public static final String COL_DISCOUNT_PRICE = "discount_price";
 	public static final String COL_DISTRICT = "district";
 	public static final String COL_DISTRICT_SEARCH = "district_search";
 	public static final String COL_EMAIL = "email";

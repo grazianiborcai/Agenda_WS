@@ -15,7 +15,7 @@ import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.discount.discountCouponItem.info.DisoupemInfo;
 
 public final class DaoDisoupemUpdateSingle extends DaoStmtTemplate<DisoupemInfo> {
-	private final String MAIN_TABLE = DaoDbTable.DISCOUNT_COUPON_TABLE;	
+	private final String MAIN_TABLE = DaoDbTable.DISCOUNT_COUPON_ITEM_TABLE;	
 	
 	
 	public DaoDisoupemUpdateSingle(Connection conn, DisoupemInfo recordInfo, String schemaName) {
@@ -54,16 +54,16 @@ public final class DaoDisoupemUpdateSingle extends DaoStmtTemplate<DisoupemInfo>
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, DisoupemInfo recordInfo) throws SQLException {
 				int i = 1;			
 				
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codDiscountStrategy);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.discountPercent);
-				stmt.setBoolean(i++, recordInfo.isActive);								
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codDiscount);				
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codDiscountSnapshot);				
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.discountPrice);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.validFrom);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.validTo);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);			
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
-				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.validFrom);
-				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.validTo);
 				
 				return stmt;
 			}		

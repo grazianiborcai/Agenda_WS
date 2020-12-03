@@ -31,12 +31,8 @@ public final class DaoDisoupemWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoDisoupemDbTableColumn.COL_COD_STORE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
-					break;
-					
-				case DaoDisoupemDbTableColumn.COL_COD_DISCOUNT :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codDiscount));
+				case DaoDisoupemDbTableColumn.COL_COD_COUPON_ITEM :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCouponItem));
 					break;
 			}
 		}		

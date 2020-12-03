@@ -16,11 +16,11 @@ public final class DisoupemCheckInsert extends ModelCheckerTemplateSimple<Disoup
 	
 	
 	@Override protected boolean checkHook(DisoupemInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 			<= 0 	||	
-			 recordInfo.codStore 			<= 0 	||
-			 recordInfo.codDiscountStrategy	<= 0	||
-			 recordInfo.codLanguage			== null	||	
-			 recordInfo.username			== null		)
+		if (recordInfo.codOwner 	<= 0 	||
+			recordInfo.codStore 	<= 0 	||
+			recordInfo.codDiscount 	<= 0 	||
+			recordInfo.username 	== null ||
+			recordInfo.codLanguage 	== null		)			
 			
 			return super.FAILED;
 		

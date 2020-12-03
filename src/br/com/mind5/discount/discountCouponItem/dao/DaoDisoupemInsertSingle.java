@@ -16,7 +16,7 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.discount.discountCouponItem.info.DisoupemInfo;
 
 public final class DaoDisoupemInsertSingle extends DaoStmtTemplate<DisoupemInfo> {
-	private final String MAIN_TABLE = DaoDbTable.DISCOUNT_COUPON_TABLE;	
+	private final String MAIN_TABLE = DaoDbTable.DISCOUNT_COUPON_ITEM_TABLE;	
 	
 	
 	public DaoDisoupemInsertSingle(Connection conn, DisoupemInfo recordInfo, String schemaName) {
@@ -44,16 +44,15 @@ public final class DaoDisoupemInsertSingle extends DaoStmtTemplate<DisoupemInfo>
 				
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwner);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codDiscountStrategy);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.discountPercent);
-				stmt.setBoolean(i++, recordInfo.isActive);								
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codDiscount);				
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codDiscountSnapshot);				
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.discountPrice);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.validFrom);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.validTo);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);			
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
-				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.validFrom);
-				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.validTo);
 				
 				return stmt;
 			}		
@@ -66,7 +65,7 @@ public final class DaoDisoupemInsertSingle extends DaoStmtTemplate<DisoupemInfo>
 		return new DaoResultParser<DisoupemInfo>() {		
 			@Override public List<DisoupemInfo> parseResult(DisoupemInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<DisoupemInfo> finalResult = new ArrayList<>();
-				recordInfo.codDiscount = lastId;
+				recordInfo.codCouponItem = lastId;
 				finalResult.add(recordInfo);			
 				return finalResult;
 			}

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.discount.discountCouponItem.info.DisoupemInfo;
-import br.com.mind5.discount.discountCouponItem.model.action.LazyDisoupemMergeDisegy;
+import br.com.mind5.discount.discountCouponItem.model.action.LazyDisoupemMergeDisorap;
 import br.com.mind5.discount.discountCouponItem.model.action.StdDisoupemMergeToSelect;
 import br.com.mind5.discount.discountCouponItem.model.checker.DisoupemCheckLangu;
 import br.com.mind5.discount.discountCouponItem.model.checker.DisoupemCheckOwner;
@@ -60,9 +60,9 @@ public final class RootDisoupemSelect extends DeciTreeTemplateRead<DisoupemInfo>
 		List<ActionStd<DisoupemInfo>> actions = new ArrayList<>();
 		
 		ActionStd<DisoupemInfo> select = new StdDisoupemMergeToSelect(option);
-		ActionLazy<DisoupemInfo> mergeDisegy = new LazyDisoupemMergeDisegy(option.conn, option.schemaName);
+		ActionLazy<DisoupemInfo> mergeDisorap = new LazyDisoupemMergeDisorap(option.conn, option.schemaName);
 		
-		select.addPostAction(mergeDisegy);
+		select.addPostAction(mergeDisorap);
 		
 		actions.add(select);
 		return actions;

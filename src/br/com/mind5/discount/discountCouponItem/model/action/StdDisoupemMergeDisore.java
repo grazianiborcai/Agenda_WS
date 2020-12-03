@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdDisoupemMergeDisegy extends ActionStdTemplate<DisoupemInfo> {
+public final class StdDisoupemMergeDisore extends ActionStdTemplate<DisoupemInfo> {
 
-	public StdDisoupemMergeDisegy(DeciTreeOption<DisoupemInfo> option) {
+	public StdDisoupemMergeDisore(DeciTreeOption<DisoupemInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<DisoupemInfo> buildVisitorHook(DeciTreeOption<DisoupemInfo> option) {
-		return new VisiDisoupemMergeDisegy(option);
+		return new VisiDisoupemMergeDisore(option);
 	}
 }

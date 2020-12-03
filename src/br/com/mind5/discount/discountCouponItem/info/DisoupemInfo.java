@@ -8,14 +8,15 @@ import br.com.mind5.info.InfoRecord;
 
 public final class DisoupemInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
+	public long codCouponItem;
 	public long codStore;
 	public long codDiscount;
-	public long codSnapshot;
+	public long codDiscountSnapshot;
 	public int codDiscountStrategy;
 	public String txtDiscountStrategy;
 	public String descriptionDiscountStrategy;
 	public int discountPercent;
-	public boolean isActive;
+	public double discountPrice;
 	public LocalDateTime validFrom;
 	public LocalDateTime validTo;
 	public LocalDateTime lastChanged;
@@ -29,12 +30,13 @@ public final class DisoupemInfo extends InfoRecord implements Cloneable {
 		super();
 		
 		codOwner = DefaultValue.number();
+		codCouponItem = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codDiscount = DefaultValue.number();
-		codSnapshot = DefaultValue.number();
+		codDiscountSnapshot = DefaultValue.number();
 		codDiscountStrategy = DefaultValue.number();
 		discountPercent = DefaultValue.number();
-		isActive = DefaultValue.boole();
+		discountPrice = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
 		createdBy = DefaultValue.number();
 	}
@@ -62,9 +64,10 @@ public final class DisoupemInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
-		result = result * 31 + (int) (codStore    ^ (codStore    >>> 32));
-		result = result * 31 + (int) (codDiscount ^ (codDiscount >>> 32));
+		result = result * 31 + (int) (codOwner    	^ (codOwner    		>>> 32));
+		result = result * 31 + (int) (codCouponItem ^ (codCouponItem    >>> 32));
+		result = result * 31 + (int) (codStore    	^ (codStore    		>>> 32));
+		result = result * 31 + (int) (codDiscount 	^ (codDiscount 		>>> 32));
 		
 		return result;
 	}
@@ -81,8 +84,9 @@ public final class DisoupemInfo extends InfoRecord implements Cloneable {
 		
 		
 		DisoupemInfo obj = (DisoupemInfo) o;		
-		return (codOwner    == obj.codOwner 	&& 
-				codStore    == obj.codStore 	&&
-				codDiscount == obj.codDiscount		);
+		return (codOwner    	== obj.codOwner 		&& 
+				codCouponItem   == obj.codCouponItem 	&& 
+				codStore    	== obj.codStore 		&&
+				codDiscount 	== obj.codDiscount			);
 	}
 }
