@@ -130,6 +130,7 @@ import br.com.mind5.dao.DaoDbTableColumn;
 import br.com.mind5.discount.discountCouponItem.dao.DaoDisoupemDbTableColumn;
 import br.com.mind5.discount.discountStore.dao.DaoDisoreDbTableColumn;
 import br.com.mind5.discount.discountStoreSearch.dao.DaoDisorarchDbTableColumn;
+import br.com.mind5.discount.discountStoreSnapshot.dao.DaoDisorapDbTableColumn;
 import br.com.mind5.file.fileImage.dao.DaoFimgDbTableColumn;
 import br.com.mind5.file.fileImageList.dao.DaoFimistDbTableColumn;
 import br.com.mind5.file.fileImageSearch.dao.DaoFimarchDbTableColumn;
@@ -474,6 +475,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoDisoreDbTableColumn());
 		addTable(new DaoDisorarchDbTableColumn());
 		addTable(new DaoDisoupemDbTableColumn());
+		addTable(new DaoDisorapDbTableColumn());
 	}
 	
 	

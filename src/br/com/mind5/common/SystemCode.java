@@ -1516,4 +1516,9 @@ public final class SystemCode {
 	public static final int DISCOUNT_COUPON_NOT_FOUND 					= 14801;
 	public static final int DISCOUNT_COUPON_MANDATORY_FIELD_EMPTY		= 14802;
 	
+	
+	// Discount Store Snapshot
+	public static final int DISCOUNT_STORE_SNAP_ALREADY_EXIST 			= 14850;
+	public static final int DISCOUNT_STORE_SNAP_NOT_FOUND 				= 14851;
+	public static final int DISCOUNT_STORE_SNAP_MANDATORY_FIELD_EMPTY	= 14852;
 }
