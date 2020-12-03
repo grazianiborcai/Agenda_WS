@@ -1505,6 +1505,7 @@ public final class SystemCode {
 	public static final int DISCOUNT_STORE_ALREADY_EXIST 				= 14700;
 	public static final int DISCOUNT_STORE_NOT_FOUND 					= 14701;
 	public static final int DISCOUNT_STORE_MANDATORY_FIELD_EMPTY		= 14702;
+	public static final int DISCOUNT_STORE_IS_INVALID					= 14703;
 	
 	// Discount Store Search
 	public static final int DISCOUNT_STORE_SEARCH_ALREADY_EXIST 		= 14750;
