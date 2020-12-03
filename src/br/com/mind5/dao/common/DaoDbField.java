@@ -251,6 +251,8 @@ public final class DaoDbField {
 	public static final String COL_TXT_BODY = "body";
 	public static final String COL_URL_RETURN = "url_return";
 	public static final String COL_USERNAME = "username";
+	public static final String COL_VALID_FROM = "valid_from";
+	public static final String COL_VALID_TO = "valid_to";
 	public static final String COL_VALID_UNTIL = "valid_until";	
 	public static final String COL_VALUE = "value";
 	public static final String COL_WAITING = "waiting";

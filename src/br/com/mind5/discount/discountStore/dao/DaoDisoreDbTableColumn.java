@@ -21,6 +21,8 @@ public final class DaoDisoreDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_IS_ACTIVE = DaoDbField.COL_IS_ACTIVE;
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
+	public static final String COL_VALID_FROM = DaoDbField.COL_VALID_FROM;
+	public static final String COL_VALID_TO = DaoDbField.COL_VALID_TO;
 	
 	
 	public DaoDisoreDbTableColumn() {
@@ -118,6 +120,22 @@ public final class DaoDisoreDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_CREATED_ON;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_VALID_FROM;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_VALID_TO;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

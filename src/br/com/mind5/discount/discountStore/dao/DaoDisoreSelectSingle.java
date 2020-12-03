@@ -73,6 +73,8 @@ public final class DaoDisoreSelectSingle extends DaoStmtTemplate<DisoreInfo> {
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoDisoreDbTableColumn.COL_LAST_CHANGED_BY);				
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoDisoreDbTableColumn.COL_CREATED_ON);
 					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoDisoreDbTableColumn.COL_CREATED_BY);
+					dataInfo.validFrom = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoDisoreDbTableColumn.COL_VALID_FROM);
+					dataInfo.validTo = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoDisoreDbTableColumn.COL_VALID_TO);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

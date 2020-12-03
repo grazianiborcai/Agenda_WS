@@ -16,6 +16,8 @@ public final class DisoreInfo extends InfoRecord implements Cloneable {
 	public String descriptionDiscountStrategy;
 	public int discountPercent;
 	public boolean isActive;
+	public LocalDateTime validFrom;
+	public LocalDateTime validTo;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public LocalDateTime createdOn;

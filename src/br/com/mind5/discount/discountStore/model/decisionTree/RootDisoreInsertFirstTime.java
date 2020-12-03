@@ -5,6 +5,10 @@ import java.util.List;
 
 import br.com.mind5.discount.discountStore.info.DisoreInfo;
 import br.com.mind5.discount.discountStore.model.action.LazyDisoreEnforceFirstTimeStrategy;
+import br.com.mind5.discount.discountStore.model.action.LazyDisoreEnforceInactive;
+import br.com.mind5.discount.discountStore.model.action.LazyDisoreEnforcePercentDefault;
+import br.com.mind5.discount.discountStore.model.action.LazyDisoreEnforceValidFromMin;
+import br.com.mind5.discount.discountStore.model.action.LazyDisoreEnforceValidToMax;
 import br.com.mind5.discount.discountStore.model.action.LazyDisoreRootInsert;
 import br.com.mind5.discount.discountStore.model.action.StdDisoreEnforceFirstTimeKey;
 import br.com.mind5.discount.discountStore.model.checker.DisoreCheckInsertFirstTime;
@@ -54,10 +58,18 @@ public final class RootDisoreInsertFirstTime extends DeciTreeTemplateWrite<Disor
 		
 		ActionStd<DisoreInfo> enforceKey = new StdDisoreEnforceFirstTimeKey(option);
 		ActionLazy<DisoreInfo> enforceStrategy = new LazyDisoreEnforceFirstTimeStrategy(option.conn, option.schemaName);
+		ActionLazy<DisoreInfo> enforceValidFrom = new LazyDisoreEnforceValidFromMin(option.conn, option.schemaName);
+		ActionLazy<DisoreInfo> enforceValidTo = new LazyDisoreEnforceValidToMax(option.conn, option.schemaName);
+		ActionLazy<DisoreInfo> enforceInactive = new LazyDisoreEnforceInactive(option.conn, option.schemaName);
+		ActionLazy<DisoreInfo> enforcePricePercent = new LazyDisoreEnforcePercentDefault(option.conn, option.schemaName);
 		ActionLazy<DisoreInfo> insert = new LazyDisoreRootInsert(option.conn, option.schemaName);
 		
 		enforceKey.addPostAction(enforceStrategy);
-		enforceStrategy.addPostAction(insert);
+		enforceStrategy.addPostAction(enforceValidFrom);
+		enforceValidFrom.addPostAction(enforceValidTo);
+		enforceValidTo.addPostAction(enforceInactive);
+		enforceInactive.addPostAction(enforcePricePercent);
+		enforcePricePercent.addPostAction(insert);
 		
 		actions.add(enforceKey);
 		return actions;

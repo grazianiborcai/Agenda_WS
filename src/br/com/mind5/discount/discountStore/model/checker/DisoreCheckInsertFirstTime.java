@@ -18,7 +18,6 @@ public final class DisoreCheckInsertFirstTime extends ModelCheckerTemplateSimple
 	@Override protected boolean checkHook(DisoreInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 		<= 0 	||	
 			 recordInfo.codStore 		<= 0 	||
-			 recordInfo.discountPercent	<= 0	||
 			 recordInfo.codLanguage		== null	||	
 			 recordInfo.username		== null		)
 			
