@@ -11,13 +11,11 @@ import br.com.mind5.discount.discountStore.model.action.LazyDisoreEnforceValidFr
 import br.com.mind5.discount.discountStore.model.action.LazyDisoreEnforceValidToMax;
 import br.com.mind5.discount.discountStore.model.action.LazyDisoreRootInsert;
 import br.com.mind5.discount.discountStore.model.action.StdDisoreEnforceFirstTimeKey;
-import br.com.mind5.discount.discountStore.model.checker.DisoreCheckInsertFirstTime;
-import br.com.mind5.discount.discountStore.model.checker.DisoreCheckLangu;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
-import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -31,21 +29,9 @@ public final class RootDisoreInsertFirstTime extends DeciTreeTemplateWrite<Disor
 	
 	@Override protected ModelChecker<DisoreInfo> buildCheckerHook(DeciTreeOption<DisoreInfo> option) {
 		List<ModelChecker<DisoreInfo>> queue = new ArrayList<>();		
-		ModelChecker<DisoreInfo> checker;
-		ModelCheckerOption checkerOption;		
+		ModelChecker<DisoreInfo> checker;		
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
-		checker = new DisoreCheckInsertFirstTime(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new DisoreCheckLangu(checkerOption);
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 
 		return new ModelCheckerHelperQueue<>(queue);

@@ -59,7 +59,7 @@ public final class RootDisoreSelect extends DeciTreeTemplateRead<DisoreInfo> {
 	@Override protected List<ActionStd<DisoreInfo>> buildActionsOnPassedHook(DeciTreeOption<DisoreInfo> option) {
 		List<ActionStd<DisoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<DisoreInfo> select	= new StdDisoreMergeToSelect(option);
+		ActionStd<DisoreInfo> select = new StdDisoreMergeToSelect(option);
 		ActionLazy<DisoreInfo> mergeDisegy = new LazyDisoreMergeDisegy(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeDisegy);

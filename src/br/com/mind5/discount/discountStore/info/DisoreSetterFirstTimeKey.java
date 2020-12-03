@@ -15,6 +15,6 @@ public final class DisoreSetterFirstTimeKey extends InfoSetterTemplate<DisoreInf
 		result.username = recordInfo.username;
 		result.codLanguage = recordInfo.codLanguage;
 		
-		return recordInfo;
+		return result;
 	}
 }
