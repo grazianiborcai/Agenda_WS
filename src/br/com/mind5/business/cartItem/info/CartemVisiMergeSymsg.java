@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 
 final class CartemVisiMergeSymsg extends InfoMergerVisitorTemplate<CartemInfo, SymsgInfo> {
-	
-	@Override public List<CartemInfo> beforeMerge(List<CartemInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CartemInfo baseInfo, SymsgInfo selectedInfo) {
 		return true;
 	}
@@ -28,11 +21,5 @@ final class CartemVisiMergeSymsg extends InfoMergerVisitorTemplate<CartemInfo, S
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CartemInfo> getUniquifier() {
-		return null;
 	}
 }

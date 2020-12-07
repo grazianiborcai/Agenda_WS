@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class CartemVisiMergeToSelect extends InfoMergerVisitorTemplate<CartemInfo, CartemInfo> {
-	
-	@Override public List<CartemInfo> beforeMerge(List<CartemInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CartemInfo baseInfo, CartemInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class CartemVisiMergeToSelect extends InfoMergerVisitorTemplate<CartemInfo
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CartemInfo> getUniquifier() {
-		return null;
 	}
 }
