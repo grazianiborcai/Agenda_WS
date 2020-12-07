@@ -24,7 +24,7 @@ public final class LazyCartemMergeCartemarch extends ActionLazyTemplate<CartemIn
 	
 	
 	@Override protected ActionStd<CartemInfo> getInstanceOfActionHook(DeciTreeOption<CartemInfo> option) {
-		return new StdCartemMergeCartemarch(option);
+		return new StdCartemMergeCartemarchUser(option);
 	}
 	
 	
