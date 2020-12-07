@@ -9,9 +9,9 @@ import br.com.mind5.discount.discountStore.info.DisoreInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class DisoreCheckIsValid extends ModelCheckerTemplateSimple<DisoreInfo> {
+public final class DisoreCheckIsActive extends ModelCheckerTemplateSimple<DisoreInfo> {
 
-	public DisoreCheckIsValid(ModelCheckerOption option) {
+	public DisoreCheckIsActive(ModelCheckerOption option) {
 		super(option);
 	}
 	

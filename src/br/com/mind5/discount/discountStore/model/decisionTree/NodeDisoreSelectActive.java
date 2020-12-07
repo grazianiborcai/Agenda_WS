@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.discount.discountStore.info.DisoreInfo;
 import br.com.mind5.discount.discountStore.model.action.StdDisoreSuccess;
-import br.com.mind5.discount.discountStore.model.checker.DisoreCheckIsValid;
+import br.com.mind5.discount.discountStore.model.checker.DisoreCheckIsActive;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class NodeDisoreSelectValid extends DeciTreeTemplateRead<DisoreInfo> {
+public final class NodeDisoreSelectActive extends DeciTreeTemplateRead<DisoreInfo> {
 	
-	public NodeDisoreSelectValid(DeciTreeOption<DisoreInfo> option) {
+	public NodeDisoreSelectActive(DeciTreeOption<DisoreInfo> option) {
 		super(option);
 	}
 	
@@ -30,7 +30,7 @@ public final class NodeDisoreSelectValid extends DeciTreeTemplateRead<DisoreInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new DisoreCheckIsValid(checkerOption);
+		checker = new DisoreCheckIsActive(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);

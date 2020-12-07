@@ -4,15 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.discount.discountStore.info.DisoreInfo;
-import br.com.mind5.discount.discountStore.model.decisionTree.NodeDisoreSelectValid;
+import br.com.mind5.discount.discountStore.model.decisionTree.NodeDisoreSelectActive;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyDisoreNodeSelectValid extends ActionLazyTemplate<DisoreInfo, DisoreInfo> {
+public final class LazyDisoreNodeSelectActive extends ActionLazyTemplate<DisoreInfo, DisoreInfo> {
 	
-	public LazyDisoreNodeSelectValid(Connection conn, String schemaName) {
+	public LazyDisoreNodeSelectActive(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyDisoreNodeSelectValid extends ActionLazyTemplate<DisoreIn
 	
 	
 	@Override protected ActionStd<DisoreInfo> getInstanceOfActionHook(DeciTreeOption<DisoreInfo> option) {
-		return new NodeDisoreSelectValid(option).toAction();
+		return new NodeDisoreSelectActive(option).toAction();
 	}
 	
 	
