@@ -1522,4 +1522,10 @@ public final class SystemCode {
 	public static final int DISCOUNT_STORE_SNAP_ALREADY_EXIST 			= 14850;
 	public static final int DISCOUNT_STORE_SNAP_NOT_FOUND 				= 14851;
 	public static final int DISCOUNT_STORE_SNAP_MANDATORY_FIELD_EMPTY	= 14852;
+		
+	
+	// Discount Calculator Item
+	public static final int DISCOUNT_CALC_ITEM_ALREADY_EXIST 			= 1900;
+	public static final int DISCOUNT_CALC_ITEM_NOT_FOUND 				= 14901;
+	public static final int DISCOUNT_CALC_ITEM_MANDATORY_FIELD_EMPTY	= 14902;
 }
