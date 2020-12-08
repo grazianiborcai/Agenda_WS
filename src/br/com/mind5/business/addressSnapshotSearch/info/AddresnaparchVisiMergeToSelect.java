@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class AddresnaparchVisiMergeToSelect extends InfoMergerVisitorTemplate<AddresnaparchInfo, AddresnaparchInfo> {
-	
-	@Override public List<AddresnaparchInfo> beforeMerge(List<AddresnaparchInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(AddresnaparchInfo baseInfo, AddresnaparchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class AddresnaparchVisiMergeToSelect extends InfoMergerVisitorTemplate<Add
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<AddresnaparchInfo> getUniquifier() {
-		return null;
 	}
 }
