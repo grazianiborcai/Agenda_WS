@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.discount.discountCalculatorItem.info.DisalcemInfo;
 import br.com.mind5.discount.discountCalculatorItem.model.action.LazyDisalcemDisoupemInsert;
+import br.com.mind5.discount.discountCalculatorItem.model.action.LazyDisalcemEnforceDisoupem;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -37,9 +38,11 @@ public final class RootDisalcemInsert extends DeciTreeTemplateRead<DisalcemInfo>
 		List<ActionStd<DisalcemInfo>> actions = new ArrayList<>();
 		
 		ActionStd<DisalcemInfo> select = new RootDisalcemSelect(option).toAction();
+		ActionLazy<DisalcemInfo> enforceDisoupem = new LazyDisalcemEnforceDisoupem(option.conn, option.schemaName);
 		ActionLazy<DisalcemInfo> disoupemInsert = new LazyDisalcemDisoupemInsert(option.conn, option.schemaName);
 		
-		select.addPostAction(disoupemInsert);
+		select.addPostAction(enforceDisoupem);
+		enforceDisoupem.addPostAction(disoupemInsert);
 		
 		actions.add(select);
 		return actions;
