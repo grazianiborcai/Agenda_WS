@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class AddressVisiMergeToDelete extends InfoMergerVisitorTemplate<AddressInfo, AddressInfo> {
-	
-	@Override public List<AddressInfo> beforeMerge(List<AddressInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(AddressInfo baseInfo, AddressInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class AddressVisiMergeToDelete extends InfoMergerVisitorTemplate<AddressIn
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<AddressInfo> getUniquifier() {
-		return null;
 	}
 }

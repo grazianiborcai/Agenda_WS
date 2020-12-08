@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.country.info.CountryInfo;
 
 final class AddressVisiMergeCountry extends InfoMergerVisitorTemplate<AddressInfo, CountryInfo> {
-	
-	@Override public List<AddressInfo> beforeMerge(List<AddressInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(AddressInfo baseInfo, CountryInfo selectedInfo) {
 		return baseInfo.codCountry.equals(selectedInfo.codCountry);
 	}
@@ -29,11 +22,5 @@ final class AddressVisiMergeCountry extends InfoMergerVisitorTemplate<AddressInf
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<AddressInfo> getUniquifier() {
-		return null;
 	}
 }

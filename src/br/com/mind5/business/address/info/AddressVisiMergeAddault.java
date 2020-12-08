@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.addressDefault.info.AddaultInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class AddressVisiMergeAddault extends InfoMergerVisitorTemplate<AddressInfo, AddaultInfo> {
-	
-	@Override public List<AddressInfo> beforeMerge(List<AddressInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(AddressInfo baseInfo, AddaultInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class AddressVisiMergeAddault extends InfoMergerVisitorTemplate<AddressInf
 		
 		results.add(result);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<AddressInfo> getUniquifier() {
-		return null;
 	}
 }

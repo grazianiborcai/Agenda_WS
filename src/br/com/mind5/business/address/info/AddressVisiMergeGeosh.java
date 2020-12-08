@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.geo.geoHash.info.GeoshInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class AddressVisiMergeGeosh extends InfoMergerVisitorTemplate<AddressInfo, GeoshInfo> {
-	
-	@Override public List<AddressInfo> beforeMerge(List<AddressInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(AddressInfo baseInfo, GeoshInfo selectedInfo) {
 		return true;
 	}
@@ -33,11 +26,5 @@ final class AddressVisiMergeGeosh extends InfoMergerVisitorTemplate<AddressInfo,
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<AddressInfo> getUniquifier() {
-		return null;
 	}
 }

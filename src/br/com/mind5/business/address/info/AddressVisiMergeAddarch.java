@@ -3,19 +3,11 @@ package br.com.mind5.business.address.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class AddressVisiMergeAddarch extends InfoMergerVisitorTemplate<AddressInfo, AddarchInfo> {
-	
-	@Override public List<AddressInfo> beforeMerge(List<AddressInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(AddressInfo baseInfo, AddarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -29,11 +21,5 @@ final class AddressVisiMergeAddarch extends InfoMergerVisitorTemplate<AddressInf
 		
 		results.add(result);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<AddressInfo> getUniquifier() {
-		return null;
 	}
 }

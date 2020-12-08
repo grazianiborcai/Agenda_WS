@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.geo.geoCode.info.GeodeInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class AddressVisiMergeGeode extends InfoMergerVisitorTemplate<AddressInfo, GeodeInfo> {
-	
-	@Override public List<AddressInfo> beforeMerge(List<AddressInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(AddressInfo baseInfo, GeodeInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -29,11 +22,5 @@ final class AddressVisiMergeGeode extends InfoMergerVisitorTemplate<AddressInfo,
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<AddressInfo> getUniquifier() {
-		return null;
 	}
 }
