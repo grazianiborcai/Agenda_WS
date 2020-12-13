@@ -1525,7 +1525,13 @@ public final class SystemCode {
 		
 	
 	// Discount Calculator Item
-	public static final int DISCOUNT_CALC_ITEM_ALREADY_EXIST 			= 1900;
+	public static final int DISCOUNT_CALC_ITEM_ALREADY_EXIST 			= 19000;
 	public static final int DISCOUNT_CALC_ITEM_NOT_FOUND 				= 14901;
 	public static final int DISCOUNT_CALC_ITEM_MANDATORY_FIELD_EMPTY	= 14902;
+	
+	
+	// Discount Store Snapshot
+	public static final int STAT_STORE_USER_LIVE_ALREADY_EXIST 			= 14950;
+	public static final int STAT_STORE_USER_LIVE_NOT_FOUND 				= 14951;
+	public static final int STAT_STORE_USER_LIVE_MANDATORY_FIELD_EMPTY	= 14952;
 }

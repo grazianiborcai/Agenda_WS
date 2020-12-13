@@ -35,6 +35,7 @@ public final class DaoDbField {
 	public static final String COL_COD_COUPON_ITEM = "cod_coupon_item";	
 	public static final String COL_COD_CREDIT_CARD = "cod_credit_card";
 	public static final String COL_COD_CURRENCY = "cod_curr";
+	public static final String COL_COD_CURRENCY_1 = "cod_curr_1";
 	public static final String COL_COD_CUSTOMER = "cod_customer";
 	public static final String COL_COD_CUSTOMER_SNAPSHOT = "cod_customer_snapshot";	
 	public static final String COL_COD_DAYPART = "cod_dayparting";
@@ -251,6 +252,8 @@ public final class DaoDbField {
 	public static final String COL_TM_VALID_TO = "time_valid_to";
 	public static final String COL_TOKEN_EXPIRES_IN = "token_expires_in";
 	public static final String COL_TOTAL_ITEM = "total_item";
+	public static final String COL_TOTAL_QUANTITY = "total_quantity";	
+	public static final String COL_TOTAL_PRICE_1 = "total_price_1";	
 	public static final String COL_TXT_BODY = "body";
 	public static final String COL_URL_RETURN = "url_return";
 	public static final String COL_USERNAME = "username";
