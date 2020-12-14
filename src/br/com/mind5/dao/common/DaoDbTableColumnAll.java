@@ -236,6 +236,7 @@ import br.com.mind5.security.userPasswordSearch.dao.DaoUpswdarchDbTableColumn;
 import br.com.mind5.security.userSearch.dao.DaoUserarchDbTableColumn;
 import br.com.mind5.security.userSnapshot.dao.DaoUserapDbTableColumn;
 import br.com.mind5.security.username.dao.DaoUsernameDbTableColumn;
+import br.com.mind5.stats.userStoreAggr.dao.DaoStusoraggDbTableColumn;
 import br.com.mind5.stats.userStoreLive.dao.DaoStusoreveDbTableColumn;
 import br.com.mind5.stats.userStoreStgn.dao.DaoStusorageDbTableColumn;
 import br.com.mind5.webhook.moipMultipayment.dao.DaoWokaymoipDbTableColumn;
@@ -480,6 +481,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoDisorapDbTableColumn());
 		addTable(new DaoStusoreveDbTableColumn());
 		addTable(new DaoStusorageDbTableColumn());
+		addTable(new DaoStusoraggDbTableColumn());
 	}
 	
 	

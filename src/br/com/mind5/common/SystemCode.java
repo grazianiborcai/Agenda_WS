@@ -1527,13 +1527,18 @@ public final class SystemCode {
 	public static final int DISCOUNT_CALC_ITEM_NOT_FOUND 				= 14901;
 	public static final int DISCOUNT_CALC_ITEM_MANDATORY_FIELD_EMPTY	= 14902;
 	
-	// Statistics - Store User Purchase - Live
+	// Statistics - Store User - Live
 	public static final int STAT_STORE_USER_LIVE_ALREADY_EXIST 			= 14950;
 	public static final int STAT_STORE_USER_LIVE_NOT_FOUND 				= 14951;
 	public static final int STAT_STORE_USER_LIVE_MANDATORY_FIELD_EMPTY	= 14952;
 	
-	// Statistics - Store User Purchase - Staging
+	// Statistics - Store User - Staging
 	public static final int STAT_STORE_USER_STGN_ALREADY_EXIST 			= 15000;
 	public static final int STAT_STORE_USER_STGN_NOT_FOUND 				= 15001;
 	public static final int STAT_STORE_USER_STGN_MANDATORY_FIELD_EMPTY	= 15002;
+	
+	// Statistics - Store User - Aggregated
+	public static final int STAT_STORE_USER_AGGR_ALREADY_EXIST 			= 15050;
+	public static final int STAT_STORE_USER_AGGR_NOT_FOUND 				= 15051;
+	public static final int STAT_STORE_USER_AGGR_MANDATORY_FIELD_EMPTY	= 15052;
 }
