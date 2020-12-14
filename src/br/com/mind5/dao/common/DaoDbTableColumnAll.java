@@ -237,7 +237,7 @@ import br.com.mind5.security.userSearch.dao.DaoUserarchDbTableColumn;
 import br.com.mind5.security.userSnapshot.dao.DaoUserapDbTableColumn;
 import br.com.mind5.security.username.dao.DaoUsernameDbTableColumn;
 import br.com.mind5.stats.userStorePurchaseLive.dao.DaoStusoreveDbTableColumn;
-import br.com.mind5.stats.userStorePurchaseStgn.dao.DaoStusorageDbTableColumn;
+import br.com.mind5.stats.userStoreStgn.dao.DaoStusorageDbTableColumn;
 import br.com.mind5.webhook.moipMultipayment.dao.DaoWokaymoipDbTableColumn;
 import br.com.mind5.webhook.moipRefund.dao.DaoWokefumoipDbTableColumn;
 
