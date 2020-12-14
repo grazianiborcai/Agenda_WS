@@ -1541,4 +1541,9 @@ public final class SystemCode {
 	public static final int STAT_STORE_USER_AGGR_ALREADY_EXIST 			= 15050;
 	public static final int STAT_STORE_USER_AGGR_NOT_FOUND 				= 15051;
 	public static final int STAT_STORE_USER_AGGR_MANDATORY_FIELD_EMPTY	= 15052;
+	
+	// Statistics - Store User
+	public static final int STAT_STORE_USER_ALREADY_EXIST 				= 15100;
+	public static final int STAT_STORE_USER_NOT_FOUND 					= 15101;
+	public static final int STAT_STORE_USER_MANDATORY_FIELD_EMPTY		= 15102;
 }
