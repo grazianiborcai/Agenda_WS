@@ -1517,21 +1517,23 @@ public final class SystemCode {
 	public static final int DISCOUNT_COUPON_NOT_FOUND 					= 14801;
 	public static final int DISCOUNT_COUPON_MANDATORY_FIELD_EMPTY		= 14802;
 	
-	
 	// Discount Store Snapshot
 	public static final int DISCOUNT_STORE_SNAP_ALREADY_EXIST 			= 14850;
 	public static final int DISCOUNT_STORE_SNAP_NOT_FOUND 				= 14851;
 	public static final int DISCOUNT_STORE_SNAP_MANDATORY_FIELD_EMPTY	= 14852;
 		
-	
 	// Discount Calculator Item
 	public static final int DISCOUNT_CALC_ITEM_ALREADY_EXIST 			= 19000;
 	public static final int DISCOUNT_CALC_ITEM_NOT_FOUND 				= 14901;
 	public static final int DISCOUNT_CALC_ITEM_MANDATORY_FIELD_EMPTY	= 14902;
 	
-	
-	// Discount Store Snapshot
+	// Statistics - Store User Purchase - Live
 	public static final int STAT_STORE_USER_LIVE_ALREADY_EXIST 			= 14950;
 	public static final int STAT_STORE_USER_LIVE_NOT_FOUND 				= 14951;
 	public static final int STAT_STORE_USER_LIVE_MANDATORY_FIELD_EMPTY	= 14952;
+	
+	// Statistics - Store User Purchase - Staging
+	public static final int STAT_STORE_USER_STGN_ALREADY_EXIST 			= 15000;
+	public static final int STAT_STORE_USER_STGN_NOT_FOUND 				= 15001;
+	public static final int STAT_STORE_USER_STGN_MANDATORY_FIELD_EMPTY	= 15002;
 }

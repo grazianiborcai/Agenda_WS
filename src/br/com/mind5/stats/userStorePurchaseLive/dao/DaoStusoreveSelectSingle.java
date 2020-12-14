@@ -17,7 +17,7 @@ import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.stats.userStorePurchaseLive.info.StusoreveInfo;
 
 public final class DaoStusoreveSelectSingle extends DaoStmtTemplate<StusoreveInfo> {
-	private final String MAIN_TABLE = DaoDbTable.STAT_USER_STORE_TABLE;	
+	private final String MAIN_TABLE = DaoDbTable.STAT_USER_STORE_LIVE_TABLE;	
 	
 	
 	public DaoStusoreveSelectSingle(Connection conn, StusoreveInfo recordInfo, String schemaName) {

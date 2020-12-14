@@ -130,7 +130,8 @@ public final class DaoDbTable {
 	public static final String SCHEDULE_STATUS_TEXT_TABLE = "schedule_status_text";
 	public static final String SCHEDULE_WEEK_TABLE = "vw_schedule_week";
 	public static final String SCHEDULE_YEAR_TABLE = "vw_schedule_year";
-	public static final String STAT_USER_STORE_TABLE = "vw_stat_user_store";	
+	public static final String STAT_USER_STORE_LIVE_TABLE = "vw_stat_user_store";	
+	public static final String STAT_USER_STORE_STGN_TABLE = "stat_user_store_staging";
 	public static final String STATE_TABLE = "state";
 	public static final String STATE_TEXT_TABLE = "state_text";
 	public static final String STORE_TABLE = "store";
