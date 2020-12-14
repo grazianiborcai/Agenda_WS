@@ -1,4 +1,4 @@
-package br.com.mind5.stats.userStorePurchaseLive.info;
+package br.com.mind5.stats.userStoreLive.info;
 
 import java.util.ArrayList;
 import java.util.List;

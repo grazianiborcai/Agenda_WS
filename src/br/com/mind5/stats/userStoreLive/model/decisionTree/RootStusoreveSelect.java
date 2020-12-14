@@ -1,17 +1,19 @@
-package br.com.mind5.stats.userStorePurchaseLive.model.decisionTree;
+package br.com.mind5.stats.userStoreLive.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
-import br.com.mind5.stats.userStorePurchaseLive.info.StusoreveInfo;
-import br.com.mind5.stats.userStorePurchaseLive.model.action.StdStusoreveMergeToSelect;
-import br.com.mind5.stats.userStorePurchaseLive.model.checker.StusoreveCheckRead;
+import br.com.mind5.stats.userStoreLive.info.StusoreveInfo;
+import br.com.mind5.stats.userStoreLive.model.action.LazyStusoreveMergeCurrency;
+import br.com.mind5.stats.userStoreLive.model.action.StdStusoreveMergeToSelect;
+import br.com.mind5.stats.userStoreLive.model.checker.StusoreveCheckRead;
 
 
 public final class RootStusoreveSelect extends DeciTreeTemplateWrite<StusoreveInfo> {
@@ -43,6 +45,9 @@ public final class RootStusoreveSelect extends DeciTreeTemplateWrite<StusoreveIn
 		List<ActionStd<StusoreveInfo>> actions = new ArrayList<>();
 
 		ActionStd<StusoreveInfo> select = new StdStusoreveMergeToSelect(option);
+		ActionLazy<StusoreveInfo> mergeCurrency = new LazyStusoreveMergeCurrency(option.conn, option.schemaName);
+		
+		select.addPostAction(mergeCurrency);
 		
 		actions.add(select);
 		return actions;

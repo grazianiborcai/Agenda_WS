@@ -1,4 +1,4 @@
-package br.com.mind5.stats.userStorePurchaseLive.dao;
+package br.com.mind5.stats.userStoreLive.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,7 +14,7 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.stats.userStorePurchaseLive.info.StusoreveInfo;
+import br.com.mind5.stats.userStoreLive.info.StusoreveInfo;
 
 public final class DaoStusoreveSelectSingle extends DaoStmtTemplate<StusoreveInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STAT_USER_STORE_LIVE_TABLE;	
@@ -64,9 +64,19 @@ public final class DaoStusoreveSelectSingle extends DaoStmtTemplate<StusoreveInf
 					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoStusoreveDbTableColumn.COL_COD_OWNER);
 					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoStusoreveDbTableColumn.COL_COD_STORE);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoStusoreveDbTableColumn.COL_COD_USER);
-					dataInfo.codCurr1 = stmtResult.getString(DaoStusoreveDbTableColumn.COL_COD_CURRENCY_1);
-					dataInfo.totalPrice1 = DaoFormatter.sqlToDouble(stmtResult, DaoStusoreveDbTableColumn.COL_TOTAL_PRICE_1);
+					dataInfo.codCurr = stmtResult.getString(DaoStusoreveDbTableColumn.COL_COD_CURRENCY);
+					dataInfo.totalPrice = DaoFormatter.sqlToDouble(stmtResult, DaoStusoreveDbTableColumn.COL_TOTAL_PRICE);
+					dataInfo.totalPrice01m = DaoFormatter.sqlToDouble(stmtResult, DaoStusoreveDbTableColumn.COL_TOTAL_PRICE_01M);
+					dataInfo.totalPrice03m = DaoFormatter.sqlToDouble(stmtResult, DaoStusoreveDbTableColumn.COL_TOTAL_PRICE_03M);
+					dataInfo.totalPrice06m = DaoFormatter.sqlToDouble(stmtResult, DaoStusoreveDbTableColumn.COL_TOTAL_PRICE_06M);
+					dataInfo.totalPrice12m = DaoFormatter.sqlToDouble(stmtResult, DaoStusoreveDbTableColumn.COL_TOTAL_PRICE_12M);
+					dataInfo.totalPrice24m = DaoFormatter.sqlToDouble(stmtResult, DaoStusoreveDbTableColumn.COL_TOTAL_PRICE_24M);					
 					dataInfo.totalQuantity = DaoFormatter.sqlToInt(stmtResult, DaoStusoreveDbTableColumn.COL_TOTAL_QUANTITY);
+					dataInfo.totalQuantity01m = DaoFormatter.sqlToInt(stmtResult, DaoStusoreveDbTableColumn.COL_TOTAL_QUANTITY_01M);
+					dataInfo.totalQuantity03m = DaoFormatter.sqlToInt(stmtResult, DaoStusoreveDbTableColumn.COL_TOTAL_QUANTITY_03M);
+					dataInfo.totalQuantity06m = DaoFormatter.sqlToInt(stmtResult, DaoStusoreveDbTableColumn.COL_TOTAL_QUANTITY_06M);
+					dataInfo.totalQuantity12m = DaoFormatter.sqlToInt(stmtResult, DaoStusoreveDbTableColumn.COL_TOTAL_QUANTITY_12M);
+					dataInfo.totalQuantity24m = DaoFormatter.sqlToInt(stmtResult, DaoStusoreveDbTableColumn.COL_TOTAL_QUANTITY_24M);					
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoStusoreveDbTableColumn.COL_LAST_CHANGED);
 					
 					finalResult.add(dataInfo);

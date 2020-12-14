@@ -1,12 +1,12 @@
-package br.com.mind5.stats.userStorePurchaseLive.model.checker;
+package br.com.mind5.stats.userStoreLive.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.userStorePurchaseLive.info.StusoreveInfo;
-import br.com.mind5.stats.userStorePurchaseLive.model.action.StdStusoreveDaoSelect;
+import br.com.mind5.stats.userStoreLive.info.StusoreveInfo;
+import br.com.mind5.stats.userStoreLive.model.action.StdStusoreveDaoSelect;
 
 public final class StusoreveCheckExist extends ModelCheckerTemplateAction<StusoreveInfo, StusoreveInfo> {
 	

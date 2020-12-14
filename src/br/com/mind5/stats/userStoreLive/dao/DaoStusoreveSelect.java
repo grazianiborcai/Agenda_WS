@@ -1,4 +1,4 @@
-package br.com.mind5.stats.userStorePurchaseLive.dao;
+package br.com.mind5.stats.userStoreLive.dao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.stats.userStorePurchaseLive.info.StusoreveInfo;
+import br.com.mind5.stats.userStoreLive.info.StusoreveInfo;
 
 public final class DaoStusoreveSelect implements DaoStmtExec<StusoreveInfo> {
 	private DaoStmtExec<StusoreveInfo> helper;

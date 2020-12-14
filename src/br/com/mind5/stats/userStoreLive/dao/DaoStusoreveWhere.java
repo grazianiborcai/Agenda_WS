@@ -1,4 +1,4 @@
-package br.com.mind5.stats.userStorePurchaseLive.dao;
+package br.com.mind5.stats.userStoreLive.dao;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
-import br.com.mind5.stats.userStorePurchaseLive.info.StusoreveInfo;
+import br.com.mind5.stats.userStoreLive.info.StusoreveInfo;
 
 public final class DaoStusoreveWhere implements DaoStmtWhere {
 	private String whereClause;	

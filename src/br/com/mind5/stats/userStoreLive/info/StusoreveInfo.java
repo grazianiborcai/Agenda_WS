@@ -1,4 +1,4 @@
-package br.com.mind5.stats.userStorePurchaseLive.info;
+package br.com.mind5.stats.userStoreLive.info;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -10,10 +10,20 @@ public final class StusoreveInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public long codUser;
-	public String codCurr1;
-	public String txtCurr1;	
-	public double totalPrice1;
+	public String codCurr;
+	public String txtCurr;	
+	public double totalPrice;
+	public double totalPrice01m;
+	public double totalPrice03m;
+	public double totalPrice06m;
+	public double totalPrice12m;
+	public double totalPrice24m;	
 	public int totalQuantity;
+	public int totalQuantity01m;
+	public int totalQuantity03m;
+	public int totalQuantity06m;
+	public int totalQuantity12m;
+	public int totalQuantity24m;
 	public LocalDateTime lastChanged;
 	public String username;
 	
@@ -24,8 +34,18 @@ public final class StusoreveInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codUser = DefaultValue.number();
-		totalPrice1 = DefaultValue.number();
+		totalPrice = DefaultValue.number();
+		totalPrice01m = DefaultValue.number();
+		totalPrice03m = DefaultValue.number();
+		totalPrice06m = DefaultValue.number();
+		totalPrice12m = DefaultValue.number();
+		totalPrice24m = DefaultValue.number();
 		totalQuantity = DefaultValue.number();
+		totalQuantity01m = DefaultValue.number();
+		totalQuantity03m = DefaultValue.number();
+		totalQuantity06m = DefaultValue.number();
+		totalQuantity12m = DefaultValue.number();
+		totalQuantity24m = DefaultValue.number();
 	}
 	
 	

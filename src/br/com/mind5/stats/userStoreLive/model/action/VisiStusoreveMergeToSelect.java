@@ -1,12 +1,12 @@
-package br.com.mind5.stats.userStorePurchaseLive.model.action;
+package br.com.mind5.stats.userStoreLive.model.action;
 
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.userStorePurchaseLive.info.StusoreveInfo;
-import br.com.mind5.stats.userStorePurchaseLive.info.StusoreveMerger;
+import br.com.mind5.stats.userStoreLive.info.StusoreveInfo;
+import br.com.mind5.stats.userStoreLive.info.StusoreveMerger;
 
 final class VisiStusoreveMergeToSelect extends ActionVisitorTemplateMerge<StusoreveInfo, StusoreveInfo> {
 	
