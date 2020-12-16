@@ -17,8 +17,7 @@ public final class PersonapCheckRead extends ModelCheckerTemplateSimple<Personap
 	
 	@Override protected boolean checkHook(PersonapInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner  	 <= 0 ||
-			 recordInfo.codSnapshot  <= 0 ||
-			 recordInfo.codPerson 	 <= 0		)	
+			 recordInfo.codSnapshot  <= 0		)	
 			
 			return super.FAILED;		
 		

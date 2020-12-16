@@ -18,6 +18,7 @@ final class PersonapCopyEmpnapKey extends InfoCopierTemplate<PersonapInfo, Empna
 		result.codPerson = source.codPerson;
 		result.codSnapshot = source.codPersonSnapshot;
 		result.codLanguage = source.codLanguage;
+		result.username = source.username;
 		
 		return result;
 	}

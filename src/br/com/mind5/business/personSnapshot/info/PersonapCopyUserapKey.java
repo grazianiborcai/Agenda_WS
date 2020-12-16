@@ -17,6 +17,7 @@ final class PersonapCopyUserapKey extends InfoCopierTemplate<PersonapInfo, Usera
 		result.codOwner = source.codOwner;
 		result.codSnapshot = source.codPersonSnapshot;
 		result.codLanguage = source.codLanguage;
+		result.username = source.username;
 		
 		return result;
 	}

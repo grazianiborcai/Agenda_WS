@@ -18,6 +18,7 @@ final class PersonapCopyStorap extends InfoCopierTemplate<PersonapInfo, StorapIn
 		result.codPerson = source.codPerson;
 		result.codSnapshot = source.codPersonSnapshot;
 		result.codLanguage = source.codLanguage;
+		result.username = source.username;
 		
 		return result;
 	}
