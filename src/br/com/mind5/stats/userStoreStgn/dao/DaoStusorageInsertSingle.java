@@ -12,7 +12,7 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.stats.userStoreStgn.info.StusorageInfo;
 
 public final class DaoStusorageInsertSingle extends DaoStmtTemplate<StusorageInfo> {
-	private final String MAIN_TABLE = DaoDbTable.ADDRESS_TABLE;
+	private final String MAIN_TABLE = DaoDbTable.STAT_USER_STORE_STGN_TABLE;
 	
 	
 	public DaoStusorageInsertSingle(Connection conn, StusorageInfo recordInfo, String schemaName) {

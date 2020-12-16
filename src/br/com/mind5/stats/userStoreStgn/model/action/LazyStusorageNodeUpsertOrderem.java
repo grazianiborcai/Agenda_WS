@@ -8,11 +8,11 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.userStoreStgn.info.StusorageInfo;
-import br.com.mind5.stats.userStoreStgn.model.decisionTree.RootStusorageUpsert;
+import br.com.mind5.stats.userStoreStgn.model.decisionTree.NodeStusorageUpsertOrderem;
 
-public final class LazyStusorageRootUpsert extends ActionLazyTemplate<StusorageInfo, StusorageInfo> {
+public final class LazyStusorageNodeUpsertOrderem extends ActionLazyTemplate<StusorageInfo, StusorageInfo> {
 
-	public LazyStusorageRootUpsert(Connection conn, String schemaName) {
+	public LazyStusorageNodeUpsertOrderem(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyStusorageRootUpsert extends ActionLazyTemplate<StusorageI
 	
 	
 	@Override protected ActionStd<StusorageInfo> getInstanceOfActionHook(DeciTreeOption<StusorageInfo> option) {
-		return new RootStusorageUpsert(option).toAction();
+		return new NodeStusorageUpsertOrderem(option).toAction();
 	}
 	
 	

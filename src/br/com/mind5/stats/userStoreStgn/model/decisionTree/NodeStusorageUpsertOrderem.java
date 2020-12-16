@@ -3,7 +3,6 @@ package br.com.mind5.stats.userStoreStgn.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -11,8 +10,6 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.userStoreStgn.info.StusorageInfo;
-import br.com.mind5.stats.userStoreStgn.model.action.LazyStusorageRootUpsert;
-import br.com.mind5.stats.userStoreStgn.model.action.StdStusorageMergeOrdemist;
 import br.com.mind5.stats.userStoreStgn.model.action.StdStusorageSuccess;
 import br.com.mind5.stats.userStoreStgn.model.checker.StusorageCheckOrderStatus;
 
@@ -45,12 +42,9 @@ public final class NodeStusorageUpsertOrderem extends DeciTreeTemplateWrite<Stus
 	@Override protected List<ActionStd<StusorageInfo>> buildActionsOnPassedHook(DeciTreeOption<StusorageInfo> option) {
 		List<ActionStd<StusorageInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusorageInfo> mergeOrdemist = new StdStusorageMergeOrdemist(option);
-		ActionLazy<StusorageInfo> upsert = new LazyStusorageRootUpsert(option.conn, option.schemaName);
+		ActionStd<StusorageInfo> upsert = new RootStusorageUpsert(option).toAction();
 		
-		mergeOrdemist.addPostAction(upsert);
-		
-		actions.add(mergeOrdemist);
+		actions.add(upsert);
 		return actions;
 	}
 	

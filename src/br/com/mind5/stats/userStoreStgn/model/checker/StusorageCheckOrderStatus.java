@@ -37,9 +37,9 @@ public final class StusorageCheckOrderStatus extends ModelCheckerTemplateSimple<
 	
 	private boolean isStatusNull(StusorageInfo recordInfo) {
 		if (recordInfo.codOrderStatus == null)			
-			return super.FAILED;
+			return super.SUCCESS;
 		
-		return super.SUCCESS;
+		return super.FAILED;
 	}
 	
 	
