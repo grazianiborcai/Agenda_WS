@@ -12,7 +12,6 @@ final class OrdarchVisiMergeToSelect extends InfoMergerVisitorTemplate<OrdarchIn
 	}
 	
 	
-	
 
 	@Override public List<OrdarchInfo> merge(OrdarchInfo baseInfo, OrdarchInfo selectedInfo) {
 		List<OrdarchInfo> results = new ArrayList<>();
