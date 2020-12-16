@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 
 final class BookiceVisiMergeSymsg extends InfoMergerVisitorTemplate<BookiceInfo, SymsgInfo> {
-	
-	@Override public List<BookiceInfo> beforeMerge(List<BookiceInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(BookiceInfo baseInfo, SymsgInfo selectedInfo) {
 		return true;
 	}
@@ -28,11 +21,5 @@ final class BookiceVisiMergeSymsg extends InfoMergerVisitorTemplate<BookiceInfo,
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<BookiceInfo> getUniquifier() {
-		return null;
 	}
 }
