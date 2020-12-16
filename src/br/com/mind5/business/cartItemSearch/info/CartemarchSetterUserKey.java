@@ -7,10 +7,10 @@ public final class CartemarchSetterUserKey extends InfoSetterTemplate<Cartemarch
 	@Override protected CartemarchInfo setAttrHook(CartemarchInfo recordInfo) {
 		CartemarchInfo result = new CartemarchInfo();
 		
-		result.codOwner = result.codOwner;
-		result.codUser = result.codUser;
-		result.codLanguage = result.codLanguage;
-		result.username = result.username;
+		result.codOwner = recordInfo.codOwner;
+		result.codUser = recordInfo.codUser;
+		result.codLanguage = recordInfo.codLanguage;
+		result.username = recordInfo.username;
 		
 		return result;
 	}
