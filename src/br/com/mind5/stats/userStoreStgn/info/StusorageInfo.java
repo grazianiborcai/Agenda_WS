@@ -10,6 +10,9 @@ public final class StusorageInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public long codUser;
+	public long codOrder;
+	public int codOrderItem;	
+	public String codOrderStatus;
 	public LocalDateTime lastChanged;
 	public String username;
 	
@@ -20,6 +23,8 @@ public final class StusorageInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codUser = DefaultValue.number();
+		codOrder = DefaultValue.number();
+		codOrderItem = DefaultValue.number();
 	}
 	
 	
