@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
 
 final class EmailVisiMergeEmabody extends InfoMergerVisitorTemplate<EmailInfo, EmabodyInfo> {
-	
-	@Override public List<EmailInfo> beforeMerge(List<EmailInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(EmailInfo baseInfo, EmabodyInfo selectedInfo) {
 		return true;
 	}
@@ -28,11 +21,5 @@ final class EmailVisiMergeEmabody extends InfoMergerVisitorTemplate<EmailInfo, E
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<EmailInfo> getUniquifier() {
-		return null;
 	}
 }

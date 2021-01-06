@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class EmailVisiMergeToSelect extends InfoMergerVisitorTemplate<EmailInfo, EmailInfo> {
-	
-	@Override public List<EmailInfo> beforeMerge(List<EmailInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(EmailInfo baseInfo, EmailInfo selectedInfo) {
 		return true;
 	}
@@ -30,11 +23,5 @@ final class EmailVisiMergeToSelect extends InfoMergerVisitorTemplate<EmailInfo, 
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<EmailInfo> getUniquifier() {
-		return null;
 	}
 }

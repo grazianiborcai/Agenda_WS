@@ -1140,6 +1140,7 @@ public final class SystemCode {
 	
 	// Email
 	public static final int EMAIL_MANDATORY_FIELD_EMPTY					= 10450;
+	public static final int EMAIL_ERROR_WHEN_SENDING					= 10451;
 	
 	// Email Body
 	public static final int EMAIL_BODY_MANDATORY_FIELD_EMPTY			= 10500;

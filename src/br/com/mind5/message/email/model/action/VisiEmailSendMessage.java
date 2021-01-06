@@ -3,6 +3,7 @@ package br.com.mind5.message.email.model.action;
 import java.util.List;
 
 import br.com.mind5.common.EmailSender;
+import br.com.mind5.common.SystemCode;
 import br.com.mind5.message.email.info.EmailInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateSimple;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -18,7 +19,7 @@ final class VisiEmailSendMessage extends ActionVisitorTemplateSimple<EmailInfo> 
 	
 	
 	
-	@Override public List<EmailInfo> executeTransformationHook(List<EmailInfo> recordInfos) {
+	@Override protected List<EmailInfo> executeTransformationHook(List<EmailInfo> recordInfos) {
 		boolean result = SUCCESS;
 		
 		for (EmailInfo eachRecord : recordInfos) {
@@ -56,5 +57,11 @@ final class VisiEmailSendMessage extends ActionVisitorTemplateSimple<EmailInfo> 
 								.setSenderRecipient(recordInfo.recipientAddr)
 								.setSenderSubject(recordInfo.bodyData.subject)
 								.build();
+	}
+	
+	
+	
+	@Override protected int getErrorCodeHook() {
+		return SystemCode.EMAIL_ERROR_WHEN_SENDING;
 	}
 }
