@@ -19,7 +19,7 @@ final class VisiFriteWriteOnDisk extends ActionVisitorTemplateSimple<FriteInfo> 
 	
 
 	
-	@Override public List<FriteInfo> executeTransformationHook(List<FriteInfo> recordInfos) {
+	@Override protected List<FriteInfo> executeTransformationHook(List<FriteInfo> recordInfos) {
 		for(FriteInfo eachRecord: recordInfos) {
 			FriteInfo result = tryToWriteOnDisk(eachRecord);
 			
