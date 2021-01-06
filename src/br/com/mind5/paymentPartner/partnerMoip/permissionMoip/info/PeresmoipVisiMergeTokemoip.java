@@ -7,6 +7,7 @@ import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 
 final class PeresmoipVisiMergeTokemoip extends InfoMergerVisitorTemplate<PeresmoipInfo, TokemoipInfo> {
+	
 	@Override public boolean shouldMerge(PeresmoipInfo baseInfo, TokemoipInfo selectedInfo) {
 		return (baseInfo.codPayPartner == selectedInfo.codPayPartner);
 	}
