@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class EmulonVisiMergeCuslis extends InfoMergerVisitorTemplate<EmulonInfo, CuslisInfo> {
-	
-	@Override public List<EmulonInfo> beforeMerge(List<EmulonInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(EmulonInfo baseInfo, CuslisInfo selectedInfo) {
 		return (baseInfo.codOwner    == selectedInfo.codOwner 	||
 				baseInfo.codCustomer == selectedInfo.codCustomer	);
@@ -29,11 +22,5 @@ final class EmulonVisiMergeCuslis extends InfoMergerVisitorTemplate<EmulonInfo, 
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<EmulonInfo> getUniquifier() {
-		return null;
 	}
 }
