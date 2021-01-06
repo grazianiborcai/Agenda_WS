@@ -21,7 +21,7 @@ final class VisiAccemoipUrl extends ActionVisitorTemplateSimple<AccemoipInfo> {
 	
 	
 	
-	@Override public List<AccemoipInfo> executeTransformationHook(List<AccemoipInfo> recordInfos) {
+	@Override protected List<AccemoipInfo> executeTransformationHook(List<AccemoipInfo> recordInfos) {
 		List<AccemoipInfo> results = new ArrayList<>();
 		
 		for(AccemoipInfo eachRecod : recordInfos) {
