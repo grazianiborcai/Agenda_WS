@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class EmabodyVisiMergeToSelect extends InfoMergerVisitorTemplate<EmabodyInfo, EmabodyInfo> {
-	
-	@Override public List<EmabodyInfo> beforeMerge(List<EmabodyInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(EmabodyInfo baseInfo, EmabodyInfo selectedInfo) {
 		return (baseInfo.codBody.equals(selectedInfo.codBody));
 	}
@@ -28,11 +21,5 @@ final class EmabodyVisiMergeToSelect extends InfoMergerVisitorTemplate<EmabodyIn
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<EmabodyInfo> getUniquifier() {
-		return null;
 	}
 }
