@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 
 final class CremoipVisiMergeSysenv extends InfoMergerVisitorTemplate<CremoipInfo, SysenvInfo> {
 
-	@Override public List<CremoipInfo> beforeMerge(List<CremoipInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(CremoipInfo baseInfo, SysenvInfo selectedInfo) {
 		return true;
 	}
@@ -28,11 +21,5 @@ final class CremoipVisiMergeSysenv extends InfoMergerVisitorTemplate<CremoipInfo
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CremoipInfo> getUniquifier() {
-		return null;
 	}
 }

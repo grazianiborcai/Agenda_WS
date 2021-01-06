@@ -16,7 +16,7 @@ final class VisiCremoipDelete extends ActionVisitorTemplateSimple<CremoipInfo> {
 	
 	
 	
-	@Override public List<CremoipInfo> executeTransformationHook(List<CremoipInfo> baseInfos) {		
+	@Override protected List<CremoipInfo> executeTransformationHook(List<CremoipInfo> baseInfos) {		
 		for(CremoipInfo eachRecod : baseInfos) {
 			boolean eachResult = tryToDeleteMoip(eachRecod);
 			

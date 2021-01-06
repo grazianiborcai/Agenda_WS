@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 
 final class CremoipVisiMergeSetupar extends InfoMergerVisitorTemplate<CremoipInfo, SetuparInfo> {
-	
-	@Override public List<CremoipInfo> beforeMerge(List<CremoipInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CremoipInfo baseInfo, SetuparInfo selectedInfo) {
 		return (baseInfo.codPayPartner == selectedInfo.codPayPartner);
 	}
@@ -28,11 +21,5 @@ final class CremoipVisiMergeSetupar extends InfoMergerVisitorTemplate<CremoipInf
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CremoipInfo> getUniquifier() {
-		return null;
 	}
 }

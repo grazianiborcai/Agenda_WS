@@ -18,7 +18,7 @@ final class VisiCremoipAdd extends ActionVisitorTemplateSimple<CremoipInfo> {
 	
 	
 	
-	@Override public List<CremoipInfo> executeTransformationHook(List<CremoipInfo> baseInfos) {	
+	@Override protected List<CremoipInfo> executeTransformationHook(List<CremoipInfo> baseInfos) {	
 		List<CremoipInfo> results = new ArrayList<>();
 		
 		for(CremoipInfo eachRecod : baseInfos) {
