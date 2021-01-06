@@ -25,7 +25,7 @@ final class VisiTokemoipGenerate extends ActionVisitorTemplateSimple<TokemoipInf
 	
 	
 	
-	@Override public List<TokemoipInfo> executeTransformationHook(List<TokemoipInfo> recordInfos) {
+	@Override protected List<TokemoipInfo> executeTransformationHook(List<TokemoipInfo> recordInfos) {
 		List<TokemoipInfo> results = new ArrayList<>();
 		
 		for(TokemoipInfo eachRecod : recordInfos) {
