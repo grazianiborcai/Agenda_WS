@@ -17,7 +17,7 @@ final class VisiGeoshGenerate extends ActionVisitorTemplateSimple<GeoshInfo> {
 	
 	
 	
-	@Override public List<GeoshInfo> executeTransformationHook(List<GeoshInfo> recordInfos) {
+	@Override protected List<GeoshInfo> executeTransformationHook(List<GeoshInfo> recordInfos) {
 		List<GeoshInfo> results = new ArrayList<>();
 		
 		for(GeoshInfo eachRecod : recordInfos) {
