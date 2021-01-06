@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
 final class OrdmoipVisiMergeStopar extends InfoMergerVisitorTemplate<OrdmoipInfo, StoparInfo> {
-	
-	@Override public List<OrdmoipInfo> beforeMerge(List<OrdmoipInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(OrdmoipInfo baseInfo, StoparInfo selectedInfo) {
 		return (baseInfo.codOwner					== selectedInfo.codOwner	&&
 				baseInfo.payordemData.codStore  	== selectedInfo.codStore	&&
@@ -30,11 +23,5 @@ final class OrdmoipVisiMergeStopar extends InfoMergerVisitorTemplate<OrdmoipInfo
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<OrdmoipInfo> getUniquifier() {
-		return null;
 	}
 }

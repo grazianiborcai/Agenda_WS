@@ -18,7 +18,7 @@ final class VisiOrdmoipRead extends ActionVisitorTemplateSimple<OrdmoipInfo> {
 	
 	
 	
-	@Override public List<OrdmoipInfo> executeTransformationHook(List<OrdmoipInfo> recordInfos) {
+	@Override protected List<OrdmoipInfo> executeTransformationHook(List<OrdmoipInfo> recordInfos) {
 		List<OrdmoipInfo> results = new ArrayList<>();
 		
 		for(OrdmoipInfo eachRecod : recordInfos) {
