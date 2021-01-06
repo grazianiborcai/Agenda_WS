@@ -18,7 +18,7 @@ final class VisiRefumoipRefund extends ActionVisitorTemplateSimple<RefumoipInfo>
 	
 	
 	
-	@Override public List<RefumoipInfo> executeTransformationHook(List<RefumoipInfo> recordInfos) {
+	@Override protected List<RefumoipInfo> executeTransformationHook(List<RefumoipInfo> recordInfos) {
 		List<RefumoipInfo> results = new ArrayList<>();
 		
 		for(RefumoipInfo eachRecod : recordInfos) {
