@@ -8,13 +8,7 @@ import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 
 final class MultmoipVisiMergeSetupar extends InfoMergerVisitorTemplate<MultmoipInfo, SetuparInfo> {
-	
-	@Override public List<MultmoipInfo> beforeMerge(List<MultmoipInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(MultmoipInfo baseInfo, SetuparInfo selectedInfo) {
 		return baseInfo.codPayPartner == selectedInfo.codPayPartner;
 	}

@@ -19,7 +19,7 @@ final class VisiMultmoipCreate extends ActionVisitorTemplateSimple<MultmoipInfo>
 	
 	
 	
-	@Override public List<MultmoipInfo> executeTransformationHook(List<MultmoipInfo> recordInfos) {
+	@Override protected List<MultmoipInfo> executeTransformationHook(List<MultmoipInfo> recordInfos) {
 		List<MultmoipInfo> results = new ArrayList<>();
 		
 		for(MultmoipInfo eachRecod : recordInfos) {

@@ -8,13 +8,7 @@ import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 
 final class MultmoipVisiMergeSysenv extends InfoMergerVisitorTemplate<MultmoipInfo, SysenvInfo> {
-	
-	@Override public List<MultmoipInfo> beforeMerge(List<MultmoipInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(MultmoipInfo baseInfo, SysenvInfo selectedInfo) {
 		return true;
 	}
