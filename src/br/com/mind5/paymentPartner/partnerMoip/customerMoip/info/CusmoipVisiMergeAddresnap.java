@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class CusmoipVisiMergeAddresnap extends InfoMergerVisitorTemplate<CusmoipInfo, AddresnapInfo> {
-	
-	@Override public List<CusmoipInfo> beforeMerge(List<CusmoipInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CusmoipInfo baseInfo, AddresnapInfo selectedInfo) {
 		return (baseInfo.codOwner 			== selectedInfo.codOwner	&&
 				baseInfo.codAddressSnapshot	== selectedInfo.codSnapshot		);
@@ -29,11 +22,5 @@ final class CusmoipVisiMergeAddresnap extends InfoMergerVisitorTemplate<CusmoipI
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CusmoipInfo> getUniquifier() {
-		return null;
 	}
 }

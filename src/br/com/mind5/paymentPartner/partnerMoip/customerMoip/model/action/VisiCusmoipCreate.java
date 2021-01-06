@@ -18,7 +18,7 @@ final class VisiCusmoipCreate extends ActionVisitorTemplateSimple<CusmoipInfo> {
 	
 	
 	
-	@Override public List<CusmoipInfo> executeTransformationHook(List<CusmoipInfo> recordInfos) {
+	@Override protected List<CusmoipInfo> executeTransformationHook(List<CusmoipInfo> recordInfos) {
 		List<CusmoipInfo> results = new ArrayList<>();
 		
 		for(CusmoipInfo eachRecod : recordInfos) {
