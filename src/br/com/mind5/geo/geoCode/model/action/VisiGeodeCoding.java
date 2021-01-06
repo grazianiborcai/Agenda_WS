@@ -26,7 +26,7 @@ final class VisiGeodeCoding extends ActionVisitorTemplateSimple<GeodeInfo> {
 	
 	
 	
-	@Override public List<GeodeInfo> executeTransformationHook(List<GeodeInfo> recordInfos) {
+	@Override protected List<GeodeInfo> executeTransformationHook(List<GeodeInfo> recordInfos) {
 		List<GeodeInfo> results = new ArrayList<>();
 		
 		for(GeodeInfo eachRecod : recordInfos) {
