@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 
 final class PaymoipVisiMergeSetupar extends InfoMergerVisitorTemplate<PaymoipInfo, SetuparInfo> {
-	
-	@Override public List<PaymoipInfo> beforeMerge(List<PaymoipInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(PaymoipInfo baseInfo, SetuparInfo selectedInfo) {
 		return baseInfo.codPayPartner == selectedInfo.codPayPartner;
 	}
@@ -28,11 +21,5 @@ final class PaymoipVisiMergeSetupar extends InfoMergerVisitorTemplate<PaymoipInf
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<PaymoipInfo> getUniquifier() {
-		return null;
 	}
 }

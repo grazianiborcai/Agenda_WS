@@ -19,7 +19,7 @@ final class VisiPaymoipCard extends ActionVisitorTemplateSimple<PaymoipInfo> {
 	
 	
 	
-	@Override public List<PaymoipInfo> executeTransformationHook(List<PaymoipInfo> recordInfos) {
+	@Override protected List<PaymoipInfo> executeTransformationHook(List<PaymoipInfo> recordInfos) {
 		List<PaymoipInfo> results = new ArrayList<>();
 		
 		for(PaymoipInfo eachRecod : recordInfos) {
