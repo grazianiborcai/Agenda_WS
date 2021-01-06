@@ -18,7 +18,7 @@ final class VisiFreadReadFromDisk extends ActionVisitorTemplateSimple<FreadInfo>
 	
 
 	
-	@Override public List<FreadInfo> executeTransformationHook(List<FreadInfo> recordInfos) {
+	@Override protected List<FreadInfo> executeTransformationHook(List<FreadInfo> recordInfos) {
 		for(FreadInfo eachRecord: recordInfos) {
 			FreadInfo result = tryToReadFromDisk(eachRecord);
 			
