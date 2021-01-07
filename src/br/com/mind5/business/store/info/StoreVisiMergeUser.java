@@ -8,13 +8,7 @@ import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.user.info.UserInfo;
 
 final class StoreVisiMergeUser extends InfoMergerVisitorTemplate<StoreInfo, UserInfo> {
-	
-	@Override public List<StoreInfo> beforeMerge(List<StoreInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(StoreInfo baseInfo, UserInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
