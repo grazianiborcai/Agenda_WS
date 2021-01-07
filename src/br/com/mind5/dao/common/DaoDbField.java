@@ -200,7 +200,7 @@ public final class DaoDbField {
 	public static final String COL_NUMBER = "number";
 	public static final String COL_OAUTH_TOKEN = "oauth_token";
 	public static final String COL_OWN_ID = "own_id";
-	public static final String COL_DISTRICT_SEARCH_DEFAULT = "owner_district_search_default";
+	public static final String COL_DISTRICT_SEARCH_DEFAULT = "district_search_default";
 	public static final String COL_OWNER_SIGNUP = "owner_signup";
 	public static final String COL_PHONE_NAME = "phone_name";
 	public static final String COL_PROSPECT_EMAIL = "prospect_email";	

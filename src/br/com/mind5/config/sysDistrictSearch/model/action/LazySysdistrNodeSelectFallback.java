@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.config.sysDistrictSearch.info.SysdistrInfo;
-import br.com.mind5.config.sysDistrictSearch.model.decisionTree.RootSysdistrSelectFallback;
+import br.com.mind5.config.sysDistrictSearch.model.decisionTree.NodeSysdistrSelectFallback;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
@@ -25,7 +25,7 @@ public final class LazySysdistrNodeSelectFallback extends ActionLazyTemplate<Sys
 	
 	
 	@Override protected ActionStd<SysdistrInfo> getInstanceOfActionHook(DeciTreeOption<SysdistrInfo> option) {
-		return new RootSysdistrSelectFallback(option).toAction();
+		return new NodeSysdistrSelectFallback(option).toAction();
 	}
 	
 	
