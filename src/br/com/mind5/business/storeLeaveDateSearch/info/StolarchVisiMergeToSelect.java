@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class StolarchVisiMergeToSelect extends InfoMergerVisitorTemplate<StolarchInfo, StolarchInfo> {
-	
-	@Override public List<StolarchInfo> beforeMerge(List<StolarchInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(StolarchInfo baseInfo, StolarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class StolarchVisiMergeToSelect extends InfoMergerVisitorTemplate<Stolarch
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<StolarchInfo> getUniquifier() {
-		return null;
 	}
 }
