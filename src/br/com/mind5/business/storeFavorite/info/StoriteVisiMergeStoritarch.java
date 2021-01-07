@@ -8,13 +8,7 @@ import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
 final class StoriteVisiMergeStoritarch extends InfoMergerVisitorTemplate<StoriteInfo, StoritarchInfo> {
-	
-	@Override public List<StoriteInfo> beforeMerge(List<StoriteInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(StoriteInfo baseInfo, StoritarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
