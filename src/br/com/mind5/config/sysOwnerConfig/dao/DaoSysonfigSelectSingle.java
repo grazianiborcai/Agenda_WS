@@ -64,7 +64,8 @@ public final class DaoSysonfigSelectSingle extends DaoStmtTemplate<SysonfigInfo>
 					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSysonfigDbTableColumn.COL_COD_OWNER);
 					dataInfo.storePartitioning = stmtResult.getString(DaoSysonfigDbTableColumn.COL_STORE_PARTITIONING);	
 					dataInfo.storeBusinessContent = stmtResult.getString(DaoSysonfigDbTableColumn.COL_STORE_BUSINESS_CONTENT);	
-					dataInfo.storeSignup = stmtResult.getString(DaoSysonfigDbTableColumn.COL_STORE_SIGNUP);	
+					dataInfo.storeSignup = stmtResult.getString(DaoSysonfigDbTableColumn.COL_STORE_SIGNUP);
+					dataInfo.districtSearchDefault = stmtResult.getString(DaoSysonfigDbTableColumn.COL_DISTRICT_SEARCH_DEFAULT);
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

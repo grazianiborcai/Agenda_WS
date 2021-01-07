@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class SysonfigVisiMergeSytotin extends InfoMergerVisitorTemplate<SysonfigInfo, SytotinInfo> {
-	
-	@Override public List<SysonfigInfo> beforeMerge(List<SysonfigInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(SysonfigInfo baseInfo, SytotinInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class SysonfigVisiMergeSytotin extends InfoMergerVisitorTemplate<SysonfigI
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<SysonfigInfo> getUniquifier() {
-		return null;
 	}
 }

@@ -10,6 +10,7 @@ public final class SysonfigInfo extends InfoRecord implements Cloneable {
 	public String storePartitioning;
 	public String storeBusinessContent;
 	public String storeSignup;
+	public String districtSearchDefault;
 	
 	
 	public SysonfigInfo() {

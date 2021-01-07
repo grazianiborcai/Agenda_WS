@@ -5,15 +5,16 @@ import java.util.List;
 
 import br.com.mind5.config.sysOwnerConfig.info.SysonfigInfo;
 import br.com.mind5.config.sysOwnerConfig.model.action.LazySysonfigDaoInsert;
+import br.com.mind5.config.sysOwnerConfig.model.action.LazySysonfigMergeSysdistr;
 import br.com.mind5.config.sysOwnerConfig.model.action.LazySysonfigMergeSysotup;
 import br.com.mind5.config.sysOwnerConfig.model.action.LazySysonfigMergeSytorbc;
 import br.com.mind5.config.sysOwnerConfig.model.action.StdSysonfigMergeSytotin;
 import br.com.mind5.config.sysOwnerConfig.model.checker.SysonfigCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
@@ -47,12 +48,14 @@ public final class RootSysonfigInsert extends DeciTreeTemplateRead<SysonfigInfo>
 		
 		ActionStd<SysonfigInfo> mergeSytotin = new StdSysonfigMergeSytotin(option);
 		ActionLazy<SysonfigInfo> mergeSysotup = new LazySysonfigMergeSysotup(option.conn, option.schemaName);
-		ActionLazy<SysonfigInfo> mergeSytorbc = new LazySysonfigMergeSytorbc(option.conn, option.schemaName);		
+		ActionLazy<SysonfigInfo> mergeSytorbc = new LazySysonfigMergeSytorbc(option.conn, option.schemaName);
+		ActionLazy<SysonfigInfo> mergeSysdistr = new LazySysonfigMergeSysdistr(option.conn, option.schemaName);
 		ActionLazy<SysonfigInfo> insert = new LazySysonfigDaoInsert(option.conn, option.schemaName);
 		
 		mergeSytotin.addPostAction(mergeSysotup);
 		mergeSysotup.addPostAction(mergeSytorbc);
-		mergeSytorbc.addPostAction(insert);
+		mergeSytorbc.addPostAction(mergeSysdistr);
+		mergeSysdistr.addPostAction(insert);
 		
 		actions.add(mergeSytotin);
 		return actions;
