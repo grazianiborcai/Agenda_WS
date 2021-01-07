@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 final class SotarchVisiMergeUsername extends InfoMergerVisitorTemplate<SotarchInfo, UsernameInfo> {
-	
-	@Override public List<SotarchInfo> beforeMerge(List<SotarchInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(SotarchInfo baseInfo, UsernameInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner		&&
 				baseInfo.username.equals(selectedInfo.username)		);
@@ -29,11 +22,5 @@ final class SotarchVisiMergeUsername extends InfoMergerVisitorTemplate<SotarchIn
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<SotarchInfo> getUniquifier() {
-		return null;
 	}
 }
