@@ -9,12 +9,6 @@ import br.com.mind5.masterData.currency.info.CurrencyInfo;
 
 final class StorapVisiMergeCurrency extends InfoMergerVisitorTemplate<StorapInfo, CurrencyInfo> {
 
-	@Override public List<StorapInfo> beforeMerge(List<StorapInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(StorapInfo baseInfo, CurrencyInfo selectedInfo) {
 		return (baseInfo.codCurr.equals(selectedInfo.codCurr));
 	}

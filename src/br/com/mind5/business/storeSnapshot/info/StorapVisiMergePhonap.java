@@ -9,14 +9,7 @@ import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
 final class StorapVisiMergePhonap extends InfoMergerVisitorTemplate<StorapInfo, PhonapInfo> {
-	
-	
-	@Override public List<StorapInfo> beforeMerge(List<StorapInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(StorapInfo baseInfo, PhonapInfo selectedInfo) {
 		return (baseInfo.codOwner    == selectedInfo.codOwner	&&
 				baseInfo.codStore 	 == selectedInfo.codStore	&&

@@ -9,12 +9,6 @@ import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 
 final class StorapVisiMergeTimezone extends InfoMergerVisitorTemplate<StorapInfo, TimezoneInfo> {
 
-	@Override public List<StorapInfo> beforeMerge(List<StorapInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(StorapInfo baseInfo, TimezoneInfo selectedInfo) {
 		return (baseInfo.codTimezone.equals(selectedInfo.codTimezone));
 	}

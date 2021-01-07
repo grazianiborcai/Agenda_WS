@@ -8,12 +8,6 @@ import br.com.mind5.info.InfoUniquifier;
 
 final class StorapVisiMergeToSelect extends InfoMergerVisitorTemplate<StorapInfo, StorapInfo> {
 
-	@Override public List<StorapInfo> beforeMerge(List<StorapInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(StorapInfo baseInfo, StorapInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
