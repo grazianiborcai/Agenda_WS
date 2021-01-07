@@ -8,13 +8,7 @@ import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
 final class StolisVisiMergeAddress extends InfoMergerVisitorTemplate<StolisInfo, AddressInfo> {
-	
-	@Override public List<StolisInfo> beforeMerge(List<StolisInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(StolisInfo baseInfo, AddressInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner &&
 				baseInfo.codStore == selectedInfo.codStore	);

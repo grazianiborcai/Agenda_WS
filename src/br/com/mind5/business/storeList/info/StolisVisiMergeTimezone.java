@@ -8,13 +8,7 @@ import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 
 final class StolisVisiMergeTimezone extends InfoMergerVisitorTemplate<StolisInfo, TimezoneInfo> {
-	
-	@Override public List<StolisInfo> beforeMerge(List<StolisInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(StolisInfo baseInfo, TimezoneInfo selectedInfo) {
 		return (baseInfo.codTimezone.equals(selectedInfo.codTimezone));
 	}
