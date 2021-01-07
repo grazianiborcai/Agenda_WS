@@ -7,12 +7,26 @@ import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.materialGroupStore.info.MatoporeInfo;
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
 import br.com.mind5.business.storeText.info.StorextInfo;
+import br.com.mind5.config.sysDistrictSearch.info.SysdistrInfo;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.geo.geoHash.info.GeoshInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 
 public final class StorbyMerger {	
+	public static List<StorbyInfo> mergeWithSysdistr(List<StorbyInfo> baseInfos, List<SysdistrInfo> selectedInfos) {
+		InfoMergerBuilder<StorbyInfo, SysdistrInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StorbyVisiMergeSysdistr());
+		InfoMerger<StorbyInfo, SysdistrInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<StorbyInfo> mergeWithStorext(List<StorbyInfo> baseInfos, List<StorextInfo> selectedInfos) {
 		InfoMergerBuilder<StorbyInfo, StorextInfo> builder = new InfoMergerBuilder<>();
 		

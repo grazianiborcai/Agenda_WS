@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
+import br.com.mind5.business.storeNearby.model.action.LazyStorbyRootSelectDistrict;
+import br.com.mind5.business.storeNearby.model.action.StdStorbyMergeSysdistr;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckExist50km;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -43,6 +46,20 @@ public final class NodeStorbySelectHash01 extends DeciTreeTemplateRead<StorbyInf
 		ActionStd<StorbyInfo> select50km = new RootStorbySelect50km(option).toAction();
 		
 		actions.add(select50km);			
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<StorbyInfo>> buildActionsOnFailedHook(DeciTreeOption<StorbyInfo> option) {
+		List<ActionStd<StorbyInfo>> actions = new ArrayList<>();		
+		
+		ActionStd<StorbyInfo> mergeSysdistr = new StdStorbyMergeSysdistr(option);
+		ActionLazy<StorbyInfo> selectDistrict = new LazyStorbyRootSelectDistrict(option.conn, option.schemaName);
+		
+		mergeSysdistr.addPostAction(selectDistrict);
+		
+		actions.add(mergeSysdistr);			
 		return actions;
 	}
 	

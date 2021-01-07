@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
-import br.com.mind5.business.storeNearby.model.action.LazyStorbyRootSelectGeoL4;
+import br.com.mind5.business.storeNearby.model.action.LazyStorbyNodeSelectGeoL4;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckExistHash03;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -43,7 +43,7 @@ public final class NodeStorbySelectGeoL2 extends DeciTreeTemplateRead<StorbyInfo
 		List<ActionStd<StorbyInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<StorbyInfo> selectHash03 = new RootStorbySelectHash03(option).toAction();
-		ActionLazy<StorbyInfo> nodeL4 = new LazyStorbyRootSelectGeoL4(option.conn, option.schemaName);
+		ActionLazy<StorbyInfo> nodeL4 = new LazyStorbyNodeSelectGeoL4(option.conn, option.schemaName);
 		
 		selectHash03.addPostAction(nodeL4);
 		

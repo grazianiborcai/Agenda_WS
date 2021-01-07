@@ -4,15 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
-import br.com.mind5.business.storeNearby.model.decisionTree.NodeStorbySelectGeoL4;
+import br.com.mind5.business.storeNearby.model.decisionTree.RootStorbySelectDistrict;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStorbyRootSelectGeoL4 extends ActionLazyTemplate<StorbyInfo, StorbyInfo> {
+public final class LazyStorbyRootSelectDistrict extends ActionLazyTemplate<StorbyInfo, StorbyInfo> {
 
-	public LazyStorbyRootSelectGeoL4(Connection conn, String schemaName) {
+	public LazyStorbyRootSelectDistrict(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyStorbyRootSelectGeoL4 extends ActionLazyTemplate<StorbyIn
 	
 	
 	@Override protected ActionStd<StorbyInfo> getInstanceOfActionHook(DeciTreeOption<StorbyInfo> option) {
-		return new NodeStorbySelectGeoL4(option).toAction();
+		return new RootStorbySelectDistrict(option).toAction();
 	}
 	
 	
