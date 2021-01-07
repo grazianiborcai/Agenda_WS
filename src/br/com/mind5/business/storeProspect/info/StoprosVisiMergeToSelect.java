@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class StoprosVisiMergeToSelect extends InfoMergerVisitorTemplate<StoprosInfo, StoprosInfo> {
-	
-	@Override public List<StoprosInfo> beforeMerge(List<StoprosInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(StoprosInfo baseInfo, StoprosInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class StoprosVisiMergeToSelect extends InfoMergerVisitorTemplate<StoprosIn
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<StoprosInfo> getUniquifier() {
-		return null;
 	}
 }
