@@ -4,19 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class StorextVisiMergeToDelete extends InfoMergerVisitorTemplate<StorextInfo, StorextInfo> {
-	
-	@Override public List<StorextInfo> beforeMerge(List<StorextInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(StorextInfo baseInfo, StorextInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner	&& 
-				baseInfo.codStore   == selectedInfo.codStore		);
+				baseInfo.codStore   == selectedInfo.codStore	);
 	}
 	
 	
@@ -28,11 +21,5 @@ final class StorextVisiMergeToDelete extends InfoMergerVisitorTemplate<StorextIn
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<StorextInfo> getUniquifier() {
-		return null;
 	}
 }
