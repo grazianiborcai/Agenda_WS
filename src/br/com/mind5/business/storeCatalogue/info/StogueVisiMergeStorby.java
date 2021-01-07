@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class StogueVisiMergeStorby extends InfoMergerVisitorTemplate<StogueInfo, StorbyInfo> {
-	
-	@Override public List<StogueInfo> beforeMerge(List<StogueInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(StogueInfo baseInfo, StorbyInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class StogueVisiMergeStorby extends InfoMergerVisitorTemplate<StogueInfo, 
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<StogueInfo> getUniquifier() {
-		return null;
 	}
 }
