@@ -4,18 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
-import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeToSelect;
-import br.com.mind5.business.storeNearby.model.action.LazyStorbyNodeDistance50;
-import br.com.mind5.business.storeNearby.model.action.LazyStorbyNodeMerge;
+import br.com.mind5.business.storeNearby.model.action.LazyStorbyNodeSelectHash01;
 import br.com.mind5.business.storeNearby.model.action.StdStorbyEnforceHash01Key;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckLangu;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckOwner;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckReadHash01;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
@@ -62,13 +60,9 @@ public final class RootStorbySelectHash01 extends DeciTreeTemplateRead<StorbyInf
 		List<ActionStd<StorbyInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<StorbyInfo> enforceHash01Key = new StdStorbyEnforceHash01Key(option);
-		ActionLazy<StorbyInfo> select = new LazyStorbyMergeToSelect(option.conn, option.schemaName);
-		ActionLazy<StorbyInfo> nodeDistance = new LazyStorbyNodeDistance50(option.conn, option.schemaName);
-		ActionLazy<StorbyInfo> nodeMerge = new LazyStorbyNodeMerge(option.conn, option.schemaName);
+		ActionLazy<StorbyInfo> nodeL1 = new LazyStorbyNodeSelectHash01(option.conn, option.schemaName);
 		
-		enforceHash01Key.addPostAction(select);
-		select.addPostAction(nodeDistance);
-		nodeDistance.addPostAction(nodeMerge);
+		enforceHash01Key.addPostAction(nodeL1);
 		
 		actions.add(enforceHash01Key);			
 		return actions;
