@@ -1547,4 +1547,7 @@ public final class SystemCode {
 	public static final int STAT_STORE_USER_ALREADY_EXIST 				= 15100;
 	public static final int STAT_STORE_USER_NOT_FOUND 					= 15101;
 	public static final int STAT_STORE_USER_MANDATORY_FIELD_EMPTY		= 15102;
+	
+	// Sys District Search Default
+	public static final int SYS_DISTRICT_SEARCH_MANDATORY_FIELD_EMPTY	= 15150;
 }

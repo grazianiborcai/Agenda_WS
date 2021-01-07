@@ -264,6 +264,7 @@ public final class DaoDbTable {
 	public static final String STORE_TEXT_SEARCH_VIEW = "view_store_text_search";	
 	public static final String STORE_WTIME_RANGE_VIEW = "view_store_wtime_range";
 	public static final String STORE_WTIME_SEARCH_VIEW = "view_store_wtime_search";
+	public static final String SYS_DISTRICT_SEARCH_DEFAULT_VIEW = "view_owner_district_search";
 	public static final String SYS_OWNER_SIGNUP_VIEW = "view_sys_owner_signup";
 	public static final String SYS_PAY_PARTNER_SEARCH_VIEW = "view_sys_pay_partner_search";
 	public static final String SYS_STORE_BUSINESS_CONTENT_VIEW = "view_sys_store_business_content";	
