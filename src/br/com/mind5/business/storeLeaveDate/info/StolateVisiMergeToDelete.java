@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class StolateVisiMergeToDelete extends InfoMergerVisitorTemplate<StolateInfo, StolateInfo> {
-	
-	@Override public List<StolateInfo> beforeMerge(List<StolateInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(StolateInfo baseInfo, StolateInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner	&& 
 				baseInfo.codStore == selectedInfo.codStore		);
@@ -29,11 +22,5 @@ final class StolateVisiMergeToDelete extends InfoMergerVisitorTemplate<StolateIn
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<StolateInfo> getUniquifier() {
-		return null;
 	}
 }
