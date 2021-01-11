@@ -5,8 +5,7 @@ import java.util.List;
 
 import br.com.mind5.businessContent.material.petShop.info.MatbcetInfo;
 import br.com.mind5.businessContent.material.petShop.model.action.LazyMatbcetMatInsert;
-import br.com.mind5.businessContent.material.petShop.model.action.LazyMatbcetNodeInsertL11;
-import br.com.mind5.businessContent.material.petShop.model.action.StdMatbcetEnforceCatHydration;
+import br.com.mind5.businessContent.material.petShop.model.action.StdMatbcetEnforceDogVaccineV8;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -15,9 +14,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeMatbcetInsertL10 extends DeciTreeTemplateWrite<MatbcetInfo> {
+public final class NodeMatbcetInsertL18 extends DeciTreeTemplateWrite<MatbcetInfo> {
 	
-	public NodeMatbcetInsertL10(DeciTreeOption<MatbcetInfo> option) {
+	public NodeMatbcetInsertL18(DeciTreeOption<MatbcetInfo> option) {
 		super(option);
 	}
 	
@@ -38,14 +37,12 @@ public final class NodeMatbcetInsertL10 extends DeciTreeTemplateWrite<MatbcetInf
 	@Override protected List<ActionStd<MatbcetInfo>> buildActionsOnPassedHook(DeciTreeOption<MatbcetInfo> option) {
 		List<ActionStd<MatbcetInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<MatbcetInfo> enforceCatHydration = new StdMatbcetEnforceCatHydration(option);	
+		ActionStd<MatbcetInfo> enforceDogVaccineV8 = new StdMatbcetEnforceDogVaccineV8(option);	
 		ActionLazy<MatbcetInfo> insertMat = new LazyMatbcetMatInsert(option.conn, option.schemaName);
-		ActionLazy<MatbcetInfo> nodeL11 = new LazyMatbcetNodeInsertL11(option.conn, option.schemaName);
 		
-		enforceCatHydration.addPostAction(insertMat);
-		insertMat.addPostAction(nodeL11);
+		enforceDogVaccineV8.addPostAction(insertMat);
 		
-		actions.add(enforceCatHydration);		
+		actions.add(enforceDogVaccineV8);		
 		return actions;
 	}
 }
