@@ -38,7 +38,7 @@ public final class MatbcetSetterCatHydration extends InfoSetterTemplate<MatbcetI
 		result.codOwner = recordInfo.codOwner;
 		result.txtMat = "Hidrtação Felina";
 		result.description = "Massageamos o pelo do seu gato com óleo de coco. Isto deixa o pelo do seu gato mais brilhante, ajuda a combater infecções e hidrata a pele seca.";
-		result.isDefault = true;
+		result.isDefault = false;
 		result.isDeleted = false;
 		result.username = recordInfo.username;
 		result.codLanguage = "PT";
@@ -54,7 +54,7 @@ public final class MatbcetSetterCatHydration extends InfoSetterTemplate<MatbcetI
 		result.codOwner = recordInfo.codOwner;
 		result.txtMat = "Cat Hair Hydration";
 		result.description = "We massage your cat's fur with coconut oil. It makes your cat's coat shinier, will help fight infections and moisturize dry skin.";
-		result.isDefault = false;
+		result.isDefault = true;
 		result.isDeleted = false;
 		result.username = recordInfo.username;
 		result.codLanguage = "EN";

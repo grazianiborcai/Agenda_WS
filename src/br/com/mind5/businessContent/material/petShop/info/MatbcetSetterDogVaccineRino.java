@@ -36,7 +36,7 @@ public final class MatbcetSetterDogVaccineRino extends InfoSetterTemplate<Matbce
 		MatextInfo result = new MatextInfo();
 		
 		result.codOwner = recordInfo.codOwner;
-		result.txtMat = "Vacina Rinotraqueite Infecciosa";
+		result.txtMat = "Vacina Rinotraqueite";
 		result.description = "Combate a tosse canina. Primeira dose com 45 dias, segunda com 75 dias. Demais reforços anualmente.";
 		result.isDefault = false;
 		result.isDeleted = false;

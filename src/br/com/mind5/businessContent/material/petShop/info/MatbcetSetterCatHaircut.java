@@ -38,7 +38,7 @@ public final class MatbcetSetterCatHaircut extends InfoSetterTemplate<MatbcetInf
 		result.codOwner = recordInfo.codOwner;
 		result.txtMat = "Tosa Felina";
 		result.description = "Cuidamos da aparência do seu gato. Aparamos as unhas, pêlos e recompensamos o seu gato em uma sala de tratamento tranquila e silenciosa.";
-		result.isDefault = true;
+		result.isDefault = false;
 		result.isDeleted = false;
 		result.username = recordInfo.username;
 		result.codLanguage = "PT";
@@ -54,7 +54,7 @@ public final class MatbcetSetterCatHaircut extends InfoSetterTemplate<MatbcetInf
 		result.codOwner = recordInfo.codOwner;
 		result.txtMat = "Cat Haircut";
 		result.description = "We take care of your cat appearance. We shave or give a haircut, trim nails, and reward your cat in a calm, silent grooming room.";
-		result.isDefault = false;
+		result.isDefault = true;
 		result.isDeleted = false;
 		result.username = recordInfo.username;
 		result.codLanguage = "EN";

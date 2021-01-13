@@ -36,7 +36,7 @@ public final class MatbcetSetterDogWalkTradicional extends InfoSetterTemplate<Ma
 		MatextInfo result = new MatextInfo();
 		
 		result.codOwner = recordInfo.codOwner;
-		result.txtMat = "Passeio Curto";
+		result.txtMat = "Passeio Tradicional";
 		result.description = "O passeio ajuda a manter a saúde do seu cão em dia e a combater ansiedade e depressão.";
 		result.isDefault = false;
 		result.isDeleted = false;
@@ -52,7 +52,7 @@ public final class MatbcetSetterDogWalkTradicional extends InfoSetterTemplate<Ma
 		MatextInfo result = new MatextInfo();
 		
 		result.codOwner = recordInfo.codOwner;
-		result.txtMat = "Short Walk";
+		result.txtMat = "Tradicional Walk";
 		result.description = "Walk helps to keep your dog healthy and fight anxiety and depression.";
 		result.isDefault = true;
 		result.isDeleted = false;

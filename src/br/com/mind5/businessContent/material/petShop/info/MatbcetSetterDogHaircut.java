@@ -38,7 +38,7 @@ public final class MatbcetSetterDogHaircut extends InfoSetterTemplate<MatbcetInf
 		result.codOwner = recordInfo.codOwner;
 		result.txtMat = "Tosa Canina";
 		result.description = "Cuidamos da aparência do seu cão. Aparamos as unhas, pêlos e recompensamos o seu cão em uma sala de tratamento tranquila e silenciosa.";
-		result.isDefault = true;
+		result.isDefault = false;
 		result.isDeleted = false;
 		result.username = recordInfo.username;
 		result.codLanguage = "PT";
@@ -54,7 +54,7 @@ public final class MatbcetSetterDogHaircut extends InfoSetterTemplate<MatbcetInf
 		result.codOwner = recordInfo.codOwner;
 		result.txtMat = "Dog Haircut";
 		result.description = "We take care of your dog appearance. We shave or give a haircut, trim nails, and reward your dog in a calm, silent grooming room.";
-		result.isDefault = false;
+		result.isDefault = true;
 		result.isDeleted = false;
 		result.username = recordInfo.username;
 		result.codLanguage = "EN";
