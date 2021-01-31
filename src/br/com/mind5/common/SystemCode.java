@@ -1553,4 +1553,7 @@ public final class SystemCode {
 	
 	// Cart Counter
 	public static final int CART_COUNTER_MANDATORY_FIELD_EMPTY			= 15200;
+	
+	// Home
+	public static final int HOME_MANDATORY_FIELD_EMPTY					= 15250;
 }
