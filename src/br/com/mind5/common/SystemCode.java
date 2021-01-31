@@ -1550,4 +1550,7 @@ public final class SystemCode {
 	
 	// Sys District Search Default
 	public static final int SYS_DISTRICT_SEARCH_MANDATORY_FIELD_EMPTY	= 15150;
+	
+	// Cart Counter
+	public static final int CART_COUNTER_MANDATORY_FIELD_EMPTY			= 15200;
 }
