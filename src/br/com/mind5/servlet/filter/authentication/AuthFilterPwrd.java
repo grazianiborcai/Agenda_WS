@@ -24,6 +24,8 @@ import org.springframework.util.Assert;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import br.com.mind5.servlet.filter.common.HeaderJwtToken;
+import br.com.mind5.servlet.filter.common.HeaderParam;
+import br.com.mind5.servlet.filter.common.HeaderRequestWrapper;
 
 
 //Copy from org.springframework.security.web.authentication.www.BasicAuthenticationFilter
@@ -100,6 +102,7 @@ public final class AuthFilterPwrd extends OncePerRequestFilter {
 				this.rememberMeServices.loginSuccess(request, response, authResult);
 
 				response = onSuccessfulAuthentication(request, response, authResult, authRequest);
+				request = addHeaderValue(request, authRequest);
 			}
 
 		}
@@ -269,5 +272,14 @@ public final class AuthFilterPwrd extends OncePerRequestFilter {
 			return null;
 		
 		return language.trim();
+	}
+	
+	
+	
+	private HttpServletRequest addHeaderValue(HttpServletRequest request, AuthToken authRequest) {
+		HeaderRequestWrapper wrappedRequest = new HeaderRequestWrapper((HttpServletRequest)request);
+		
+		wrappedRequest.addHeader(HeaderParam.USERNAME, authRequest.getName());
+		return wrappedRequest;
 	}
 }

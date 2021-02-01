@@ -12,14 +12,15 @@ import br.com.mind5.servlet.filter.authentication.AuthJwtGenerate;
 import br.com.mind5.servlet.filter.authentication.AuthToken;
 
 public final class HeaderJwtToken {
-	static private String HEADER_STRING = "Authorization";
+	static private String HEADER_AUTH = "Authorization";
 	static private String TOKEN_PREFIX = "Bearer";
+	
 	
 	
 	
 	static public HttpServletResponse addJwtToken(HttpServletResponse response, AuthToken authToken) { 
 		JwtokenInfo jwtoken = parseAuthToken(authToken);
-		return  addJwtToken(response, jwtoken);
+		return addJwtToken(response, jwtoken);
 	}
 	
 	
@@ -27,7 +28,8 @@ public final class HeaderJwtToken {
 	static public HttpServletResponse addJwtToken(HttpServletResponse response, JwtokenInfo jwtoken) {		
 		String jwtToken = customGenerateJwtToken(jwtoken);
 		
-		response.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + jwtToken);
+		response.addHeader(HEADER_AUTH, TOKEN_PREFIX + " " + jwtToken);
+		
 		return response;
 	}
 	
@@ -38,7 +40,7 @@ public final class HeaderJwtToken {
 			return response;
 		
 		String jwtToken = customGenerateJwtToken(jwtoken);
-		return Response.ok(response.getEntity()).header(HEADER_STRING, TOKEN_PREFIX + " " + jwtToken).build();
+		return Response.ok(response.getEntity()).header(HEADER_AUTH, TOKEN_PREFIX + " " + jwtToken).build();
 	}
 	
 	
