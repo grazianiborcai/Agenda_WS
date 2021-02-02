@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.calendarCatalogueData.info.CalguataInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class CalgueVisiMergeCalguata extends InfoMergerVisitorTemplate<CalgueInfo, CalguataInfo> {
-	
-	@Override public List<CalgueInfo> beforeMerge(List<CalgueInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CalgueInfo baseInfo, CalguataInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner 	&&
 				baseInfo.codStore == selectedInfo.codStore 	&&
@@ -32,11 +25,5 @@ final class CalgueVisiMergeCalguata extends InfoMergerVisitorTemplate<CalgueInfo
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-		
-	@Override public InfoUniquifier<CalgueInfo> getUniquifier() {
-		return null;
 	}
 }
