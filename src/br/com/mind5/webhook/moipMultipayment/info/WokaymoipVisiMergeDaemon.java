@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.user.info.UserInfo;
 
 final class WokaymoipVisiMergeDaemon extends InfoMergerVisitorTemplate<WokaymoipInfo, UserInfo> {
-	
-	@Override public List<WokaymoipInfo> beforeMerge(List<WokaymoipInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(WokaymoipInfo baseInfo, UserInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class WokaymoipVisiMergeDaemon extends InfoMergerVisitorTemplate<Wokaymoip
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<WokaymoipInfo> getUniquifier() {
-		return null;
 	}
 }
