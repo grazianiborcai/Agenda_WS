@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class CompVisiMergeCompnap extends InfoMergerVisitorTemplate<CompInfo, CompnapInfo> {
-	
-	@Override public List<CompInfo> beforeMerge(List<CompInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CompInfo baseInfo, CompnapInfo selectedInfo) {
 		return (baseInfo.codOwner	== selectedInfo.codOwner	&&
 				baseInfo.codCompany == selectedInfo.codCompany);
@@ -29,11 +22,5 @@ final class CompVisiMergeCompnap extends InfoMergerVisitorTemplate<CompInfo, Com
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CompInfo> getUniquifier() {
-		return null;
 	}
 }
