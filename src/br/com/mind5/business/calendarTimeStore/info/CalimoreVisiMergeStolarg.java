@@ -8,16 +8,9 @@ import java.util.List;
 import br.com.mind5.business.calendarTime.info.CalimeInfo;
 import br.com.mind5.business.storeLeaveDateRange.info.StolargInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class CalimoreVisiMergeStolarg extends InfoMergerVisitorTemplate<CalimoreInfo, StolargInfo> {
-	
-	@Override public List<CalimoreInfo> beforeMerge(List<CalimoreInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CalimoreInfo baseInfo, StolargInfo selectedInfo) {
 		return (baseInfo.codOwner   == selectedInfo.codOwner 	&&
 				baseInfo.codStore   == selectedInfo.codStore 	&&
@@ -141,11 +134,5 @@ final class CalimoreVisiMergeStolarg extends InfoMergerVisitorTemplate<CalimoreI
 		
 		return (isBeginValid == true && 
 			    isEndValid   == true	);
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CalimoreInfo> getUniquifier() {
-		return null;
 	}
 }
