@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class ComparchVisiMergeToSelect extends InfoMergerVisitorTemplate<ComparchInfo, ComparchInfo> {
 
-	@Override public List<ComparchInfo> beforeMerge(List<ComparchInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(ComparchInfo baseInfo, ComparchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -29,11 +22,5 @@ final class ComparchVisiMergeToSelect extends InfoMergerVisitorTemplate<Comparch
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<ComparchInfo> getUniquifier() {
-		return null;
 	}
 }
