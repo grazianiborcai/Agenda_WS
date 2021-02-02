@@ -29,7 +29,8 @@ final class StorapVisiMergePhonap extends InfoMergerVisitorTemplate<StorapInfo, 
 	
 	
 	
-	@Override public InfoUniquifier<StorapInfo> getUniquifier() {
-		return new StorapUniquifier();
+	@Override public List<StorapInfo> uniquifyHook(List<StorapInfo> results) {
+		InfoUniquifier<StorapInfo> uniquifier = new StorapUniquifier();		
+		return uniquifier.uniquify(results);
 	}
 }
