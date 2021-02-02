@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.calendarDateSearch.info.CalatarchInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class CalateVisiMergeCalatarch extends InfoMergerVisitorTemplate<CalateInfo, CalatarchInfo> {
-	
-	@Override public List<CalateInfo> beforeMerge(List<CalateInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CalateInfo baseInfo, CalatarchInfo selectedInfo) {
 		return true;
 	}
@@ -28,11 +21,5 @@ final class CalateVisiMergeCalatarch extends InfoMergerVisitorTemplate<CalateInf
 		
 		results.add(result);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CalateInfo> getUniquifier() {
-		return null;
 	}
 }

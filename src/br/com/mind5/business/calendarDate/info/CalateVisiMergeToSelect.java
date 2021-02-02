@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class CalateVisiMergeToSelect extends InfoMergerVisitorTemplate<CalateInfo, CalateInfo> {
-	
-	@Override public List<CalateInfo> beforeMerge(List<CalateInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CalateInfo baseInfo, CalateInfo selectedInfo) {
 		return true;
 	}
@@ -28,11 +21,5 @@ final class CalateVisiMergeToSelect extends InfoMergerVisitorTemplate<CalateInfo
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CalateInfo> getUniquifier() {
-		return null;
 	}
 }

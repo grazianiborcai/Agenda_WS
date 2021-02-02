@@ -5,15 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.calendarMoon.info.MooncalInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
-final class CalateVisiMergeMooncal extends InfoMergerVisitorTemplate<CalateInfo, MooncalInfo> {
-	
-	@Override public List<CalateInfo> beforeMerge(List<CalateInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
+final class CalateVisiMergeMooncal extends InfoMergerVisitorTemplate<CalateInfo, MooncalInfo> {	
 	
 	@Override public boolean shouldMerge(CalateInfo baseInfo, MooncalInfo selectedInfo) {
 		return baseInfo.date.equals(selectedInfo.moonDate);
@@ -29,11 +22,5 @@ final class CalateVisiMergeMooncal extends InfoMergerVisitorTemplate<CalateInfo,
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CalateInfo> getUniquifier() {
-		return null;
 	}
 }
