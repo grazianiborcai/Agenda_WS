@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class CalatarchVisiMergeToSelect extends InfoMergerVisitorTemplate<CalatarchInfo, CalatarchInfo> {
-	
-	@Override public List<CalatarchInfo> beforeMerge(List<CalatarchInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CalatarchInfo baseInfo, CalatarchInfo selectedInfo) {
 		return true;
 	}
@@ -28,11 +21,5 @@ final class CalatarchVisiMergeToSelect extends InfoMergerVisitorTemplate<Calatar
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CalatarchInfo> getUniquifier() {
-		return null;
 	}
 }
