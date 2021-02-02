@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class CaleekyVisiMergeToSelect extends InfoMergerVisitorTemplate<CaleekyInfo, CaleekyInfo> {
-	
-	@Override public List<CaleekyInfo> beforeMerge(List<CaleekyInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CaleekyInfo baseInfo, CaleekyInfo selectedInfo) {
 		return true;
 	}
@@ -28,11 +21,5 @@ final class CaleekyVisiMergeToSelect extends InfoMergerVisitorTemplate<CaleekyIn
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CaleekyInfo> getUniquifier() {
-		return null;
 	}
 }
