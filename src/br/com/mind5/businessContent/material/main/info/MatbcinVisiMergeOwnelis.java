@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class MatbcinVisiMergeOwnelis extends InfoMergerVisitorTemplate<MatbcinInfo, OwnelisInfo> {
-	
-	@Override public List<MatbcinInfo> beforeMerge(List<MatbcinInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(MatbcinInfo baseInfo, OwnelisInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class MatbcinVisiMergeOwnelis extends InfoMergerVisitorTemplate<MatbcinInf
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<MatbcinInfo> getUniquifier() {
-		return null;
 	}
 }
