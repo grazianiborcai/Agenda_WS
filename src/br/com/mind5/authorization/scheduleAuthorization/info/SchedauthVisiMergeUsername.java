@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 final class SchedauthVisiMergeUsername extends InfoMergerVisitorTemplate<SchedauthInfo, UsernameInfo> {
-	
-	@Override public List<SchedauthInfo> beforeMerge(List<SchedauthInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(SchedauthInfo baseInfo, UsernameInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner		&&
 				baseInfo.username.equals(selectedInfo.username)		);
@@ -29,11 +22,5 @@ final class SchedauthVisiMergeUsername extends InfoMergerVisitorTemplate<Schedau
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<SchedauthInfo> getUniquifier() {
-		return null;
 	}
 }
