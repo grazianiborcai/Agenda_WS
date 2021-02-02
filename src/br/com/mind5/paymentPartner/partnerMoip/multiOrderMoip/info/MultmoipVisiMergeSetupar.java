@@ -26,7 +26,8 @@ final class MultmoipVisiMergeSetupar extends InfoMergerVisitorTemplate<MultmoipI
 	
 	
 	
-	@Override public InfoUniquifier<MultmoipInfo> getUniquifier() {
-		return new MultmoipUniquifier();
+	@Override public List<MultmoipInfo> uniquifyHook(List<MultmoipInfo> results) {
+		InfoUniquifier<MultmoipInfo> uniquifier = new MultmoipUniquifier();		
+		return uniquifier.uniquify(results);
 	}
 }
