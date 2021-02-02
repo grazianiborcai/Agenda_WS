@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class MooncalVisiMergeToSelect extends InfoMergerVisitorTemplate<MooncalInfo, MooncalInfo> {
-	
-	@Override public List<MooncalInfo> beforeMerge(List<MooncalInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(MooncalInfo baseInfo, MooncalInfo selectedInfo) {
 		return true;
 	}
@@ -28,11 +21,5 @@ final class MooncalVisiMergeToSelect extends InfoMergerVisitorTemplate<MooncalIn
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<MooncalInfo> getUniquifier() {
-		return null;
 	}
 }
