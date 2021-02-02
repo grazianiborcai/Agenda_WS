@@ -8,16 +8,9 @@ import java.util.List;
 import br.com.mind5.business.calendarTime.info.CalimeInfo;
 import br.com.mind5.business.employeeLeaveDateRange.info.EmplargInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class CalimempVisiMergeEmplarg extends InfoMergerVisitorTemplate<CalimempInfo, EmplargInfo> {
-	
-	@Override public List<CalimempInfo> beforeMerge(List<CalimempInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CalimempInfo baseInfo, EmplargInfo selectedInfo) {
 		return (baseInfo.codOwner    == selectedInfo.codOwner 		&&
 				baseInfo.codStore    == selectedInfo.codStore 		&&
@@ -142,11 +135,5 @@ final class CalimempVisiMergeEmplarg extends InfoMergerVisitorTemplate<CalimempI
 		
 		return (isBeginValid == true && 
 			    isEndValid   == true	);
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CalimempInfo> getUniquifier() {
-		return null;
 	}
 }

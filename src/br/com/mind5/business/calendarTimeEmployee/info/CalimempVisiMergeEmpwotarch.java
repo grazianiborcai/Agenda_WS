@@ -7,7 +7,6 @@ import java.util.List;
 import br.com.mind5.business.calendarTime.info.CalimeInfo;
 import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class CalimempVisiMergeEmpwotarch extends InfoMergerVisitorTemplate<CalimempInfo, EmpwotarchInfo> {
 	
@@ -92,11 +91,5 @@ final class CalimempVisiMergeEmpwotarch extends InfoMergerVisitorTemplate<Calime
 			timeBin = timeBin.minusMinutes(min);
 		
 		return timeBin;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CalimempInfo> getUniquifier() {
-		return null;
 	}
 }
