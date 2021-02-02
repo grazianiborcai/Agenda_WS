@@ -27,7 +27,8 @@ final class StolisVisiMergeFimist extends InfoMergerVisitorTemplate<StolisInfo, 
 	
 	
 	
-	@Override public InfoUniquifier<StolisInfo> getUniquifier() {
-		return new StolisUniquifier();
+	@Override public List<StolisInfo> uniquifyHook(List<StolisInfo> results) {
+		InfoUniquifier<StolisInfo> uniquifier = new StolisUniquifier();		
+		return uniquifier.uniquify(results);
 	}
 }
