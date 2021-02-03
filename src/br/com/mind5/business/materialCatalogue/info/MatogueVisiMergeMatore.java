@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class MatogueVisiMergeMatore extends InfoMergerVisitorTemplate<MatogueInfo, MatoreInfo> {
-	
-	@Override public List<MatogueInfo> beforeMerge(List<MatogueInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(MatogueInfo baseInfo, MatoreInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner && 
 				baseInfo.codStore == selectedInfo.codStore		);
@@ -30,11 +23,5 @@ final class MatogueVisiMergeMatore extends InfoMergerVisitorTemplate<MatogueInfo
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<MatogueInfo> getUniquifier() {
-		return null;
 	}
 }
