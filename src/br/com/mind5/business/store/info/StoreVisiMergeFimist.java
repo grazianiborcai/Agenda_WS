@@ -27,7 +27,8 @@ final class StoreVisiMergeFimist extends InfoMergerVisitorTemplate<StoreInfo, Fi
 	
 	
 	
-	@Override public InfoUniquifier<StoreInfo> getUniquifier() {
-		return new StoreUniquifier();
+	@Override public List<StoreInfo> uniquifyHook(List<StoreInfo> results) {
+		InfoUniquifier<StoreInfo> uniquifier = new StoreUniquifier();		
+		return uniquifier.uniquify(results);
 	}
 }
