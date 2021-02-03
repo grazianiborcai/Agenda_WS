@@ -2,7 +2,6 @@ package br.com.mind5.info;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
@@ -42,7 +41,10 @@ public final class InfoMergerHelper<T extends InfoRecord, K extends InfoRecord> 
 		List<T> results = visitorMerge(baseInfos, selectedInfos, visitor);		
 		
 		checkResults(results);		
-		return uniquify(results, visitor);
+		results = visitor.uniquify(results);
+		results = visitor.afterMerge(results);	
+		
+		return results;
 	}
 	
 	
@@ -78,21 +80,10 @@ public final class InfoMergerHelper<T extends InfoRecord, K extends InfoRecord> 
 	
 	
 	private T copyWithVisitorCadinality(T baseInfo, InfoMergerVisitor<T,K> visitor) {
-		if (visitor.getCardinality() == InfoMergerCardinality.ONE_TO_MANY)
+		if (visitor.getCardinality() == InfoMergerCardinality.ONE_TO_ONE)
 			return baseInfo;
 		
 		return InfoUtil.copy(baseInfo);
-	}
-	
-	
-	
-	private List<T> uniquify(List<T> results, InfoMergerVisitor<T,K> visitor) {
-		InfoUniquifier<T> uniquifier = visitor.getUniquifier();
-		
-		if (uniquifier == null)
-			return results.stream().distinct().collect(Collectors.toList());
-		
-		return uniquifier.uniquify(results);		
 	}
 	
 	

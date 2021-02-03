@@ -1,6 +1,8 @@
 package br.com.mind5.info;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class InfoMergerVisitorTemplate<T extends InfoRecord, K extends InfoRecord> implements InfoMergerVisitor<T, K> {
 	
@@ -10,14 +12,20 @@ public abstract class InfoMergerVisitorTemplate<T extends InfoRecord, K extends 
 	
 	
 	
-	@Override public InfoUniquifier<T> getUniquifier() {
-		return getUniquifierHook();
+	@Override public List<T> uniquify(List<T> results) {
+		return uniquifyHook(results);
 	}
 	
 	
 	
 	@Override public InfoMergerCardinality getCardinality() {
 		return getCardinalityHook();
+	}
+	
+	
+	
+	@Override public List<T> afterMerge(List<T> results) {
+		return afterMergeHook(results);
 	}
 	
 	
@@ -29,14 +37,28 @@ public abstract class InfoMergerVisitorTemplate<T extends InfoRecord, K extends 
 	
 	
 	
-	protected InfoUniquifier<T> getUniquifierHook() {
-		return null;
+	protected List<T> uniquifyHook(List<T> results) {
+		return results.stream().distinct().collect(Collectors.toList());
 	}
 	
 	
 	
 	protected InfoMergerCardinality getCardinalityHook() {
 		//Template Method: Default behavior
-		return InfoMergerCardinality.ONE_TO_MANY;
+		return InfoMergerCardinality.ONE_TO_ONE;
+	}
+	
+	
+	
+	protected List<T> afterMergeHook(List<T> results) {
+		//Template Method: Default behavior
+		return results;
+	}
+	
+
+	
+	protected <S extends Comparable<? super S>> List<S> sortAscending(List<S> results) {
+		Collections.sort(results);
+		return results;
 	}
 }
