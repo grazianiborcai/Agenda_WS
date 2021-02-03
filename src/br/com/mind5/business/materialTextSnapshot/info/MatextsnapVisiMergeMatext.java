@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class MatextsnapVisiMergeMatext extends InfoMergerVisitorTemplate<MatextsnapInfo, MatextInfo> {
-	
-	@Override public List<MatextsnapInfo> beforeMerge(List<MatextsnapInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(MatextsnapInfo baseInfo, MatextInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner	&&
 				baseInfo.codMat   == selectedInfo.codMat		);
@@ -30,11 +23,5 @@ final class MatextsnapVisiMergeMatext extends InfoMergerVisitorTemplate<Matextsn
 		
 		results.add(result);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<MatextsnapInfo> getUniquifier() {
-		return null;
 	}
 }
