@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.calendarMoon.info.MooncalInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class PlanataVisiMergeMooncal extends InfoMergerVisitorTemplate<PlanataInfo, MooncalInfo> {
-	
-	@Override public List<PlanataInfo> beforeMerge(List<PlanataInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(PlanataInfo baseInfo, MooncalInfo selectedInfo) {
 		return (baseInfo.date.isEqual(selectedInfo.moonDate));
 	}
@@ -28,11 +21,5 @@ final class PlanataVisiMergeMooncal extends InfoMergerVisitorTemplate<PlanataInf
 
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<PlanataInfo> getUniquifier() {
-		return null;
 	}
 }

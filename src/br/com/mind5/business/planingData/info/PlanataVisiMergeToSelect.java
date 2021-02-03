@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class PlanataVisiMergeToSelect extends InfoMergerVisitorTemplate<PlanataInfo, PlanataInfo> {
-	
-	@Override public List<PlanataInfo> beforeMerge(List<PlanataInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(PlanataInfo baseInfo, PlanataInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -32,7 +25,7 @@ final class PlanataVisiMergeToSelect extends InfoMergerVisitorTemplate<PlanataIn
 	
 	
 	
-	@Override public InfoUniquifier<PlanataInfo> getUniquifier() {
-		return null;
+	@Override protected List<PlanataInfo> afterMergeHook(List<PlanataInfo> results)  {
+		return super.sortAscending(results);
 	}
 }

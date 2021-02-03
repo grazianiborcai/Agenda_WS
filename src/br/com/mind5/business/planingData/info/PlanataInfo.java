@@ -6,9 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
+import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 
-public final class PlanataInfo extends InfoRecord implements Cloneable {
+public final class PlanataInfo extends InfoRecord implements Cloneable, Comparable<PlanataInfo> {
 	public long codOwner;	
 	public int codWeekday;
 	public long codStore;
@@ -104,5 +105,130 @@ public final class PlanataInfo extends InfoRecord implements Cloneable {
 				isDateEqual(date, obj.date)     	  &&
 				isTimeEqual(beginTime, obj.beginTime) &&
 				isTimeEqual(endTime, obj.endTime));
+	}
+	
+	
+	
+	@Override public int compareTo(PlanataInfo arg0) {
+		checkArgument(arg0);
+		
+		int result = compareToCodOwner(arg0);		
+		if (result != 0) return result;
+		
+		result = compareToDate(arg0);		
+		if (result != 0) return result;
+		
+		result = compareToBeginTime(arg0);		
+		if (result != 0) return result;
+		
+		result = compareToCodStore(arg0);		
+		if (result != 0) return result;
+		
+		result = compareToCodMat(arg0);		
+		if (result != 0) return result;
+
+		result = compareToCodEmployee(arg0);		
+		if (result != 0) return result;
+		
+		return 0;
+	}
+	
+	
+	
+	private void checkArgument(PlanataInfo arg0) {
+		if (arg0 == null) {
+			super.logException(new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT);	
+		}
+	}
+	
+	
+	
+	private int compareToCodOwner(PlanataInfo arg0) {
+		if (codOwner > arg0.codOwner) 
+			return  1;		
+		
+		if (codOwner < arg0.codOwner) 
+			return -1;
+		
+		return 0;
+	}
+	
+	
+	
+	private int compareToDate(PlanataInfo arg0) {
+		if (date == null & arg0.date == null)
+			return 0;
+		
+		if (date != null & arg0.date == null)
+			return 1;
+		
+		if (date == null & arg0.date != null)
+			return -1;
+		
+		if (date.isAfter(arg0.date))
+			return 1;
+		
+		if (date.isBefore(arg0.date))
+			return -1;
+		
+		return 0;
+	}
+	
+	
+	
+	private int compareToBeginTime(PlanataInfo arg0) {
+		if (beginTime == null & arg0.beginTime == null)
+			return 0;
+		
+		if (beginTime != null & arg0.beginTime == null)
+			return 1;
+		
+		if (beginTime == null & arg0.beginTime != null)
+			return -1;
+		
+		if (beginTime.isAfter(arg0.beginTime))
+			return 1;
+		
+		if (beginTime.isBefore(arg0.beginTime))
+			return -1;
+		
+		return 0;
+	}
+	
+	
+	
+	private int compareToCodStore(PlanataInfo arg0) {
+		if (codStore > arg0.codStore) 
+			return  1;		
+		
+		if (codStore < arg0.codStore) 
+			return -1;
+		
+		return 0;
+	}
+	
+	
+	
+	private int compareToCodMat(PlanataInfo arg0) {
+		if (codMat > arg0.codMat) 
+			return  1;		
+		
+		if (codMat < arg0.codMat) 
+			return -1;
+		
+		return 0;
+	}	
+	
+	
+	
+	private int compareToCodEmployee(PlanataInfo arg0) {
+		if (codEmployee > arg0.codEmployee) 
+			return  1;		
+		
+		if (codEmployee < arg0.codEmployee) 
+			return -1;
+		
+		return 0;
 	}
 }

@@ -7,17 +7,10 @@ import java.util.List;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.materialUnit.info.Matunit;
 
 final class PlanataVisiMergeMatlis extends InfoMergerVisitorTemplate<PlanataInfo, MatlisInfo> {
-	
-	@Override public List<PlanataInfo> beforeMerge(List<PlanataInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(PlanataInfo baseInfo, MatlisInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner && 
 				baseInfo.codMat   == selectedInfo.codMat		);
@@ -44,12 +37,6 @@ final class PlanataVisiMergeMatlis extends InfoMergerVisitorTemplate<PlanataInfo
 		
 
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<PlanataInfo> getUniquifier() {
-		return null;
 	}
 
 	
