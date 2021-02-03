@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class PhonarchVisiMergeToSelect extends InfoMergerVisitorTemplate<PhonarchInfo, PhonarchInfo> {
-	
-	@Override public List<PhonarchInfo> beforeMerge(List<PhonarchInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(PhonarchInfo baseInfo, PhonarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class PhonarchVisiMergeToSelect extends InfoMergerVisitorTemplate<Phonarch
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<PhonarchInfo> getUniquifier() {
-		return null;
 	}
 }
