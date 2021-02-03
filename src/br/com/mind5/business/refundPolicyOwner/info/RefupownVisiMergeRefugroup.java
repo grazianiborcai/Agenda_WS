@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 
 final class RefupownVisiMergeRefugroup extends InfoMergerVisitorTemplate<RefupownInfo, RefugroupInfo> {
-	
-	@Override public List<RefupownInfo> beforeMerge(List<RefupownInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(RefupownInfo baseInfo, RefugroupInfo selectedInfo) {
 		if (baseInfo.codRefundPolicyGroup <= 0)
 			return true;
@@ -33,11 +26,5 @@ final class RefupownVisiMergeRefugroup extends InfoMergerVisitorTemplate<Refupow
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<RefupownInfo> getUniquifier() {
-		return null;
 	}
 }
