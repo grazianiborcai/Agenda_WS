@@ -8,13 +8,7 @@ import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 
 final class UsernameVisiMergeAuthgrole extends InfoMergerVisitorTemplate<UsernameInfo, AuthgroleInfo> {
-	
-	@Override public List<UsernameInfo> beforeMerge(List<UsernameInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(UsernameInfo baseInfo, AuthgroleInfo selectedInfo) {
 		return true;
 	}
@@ -32,7 +26,8 @@ final class UsernameVisiMergeAuthgrole extends InfoMergerVisitorTemplate<Usernam
 	
 	
 	
-	@Override public InfoUniquifier<UsernameInfo> getUniquifier() {
-		return new UsernameUniquifier();
+	@Override public List<UsernameInfo> uniquifyHook(List<UsernameInfo> results) {
+		InfoUniquifier<UsernameInfo> uniquifier = new UsernameUniquifier();		
+		return uniquifier.uniquify(results);
 	}
 }
