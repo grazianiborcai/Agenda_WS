@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class OwnparVisiMergeOwner extends InfoMergerVisitorTemplate<OwnparInfo, OwnerInfo> {
-	
-	@Override public List<OwnparInfo> beforeMerge(List<OwnparInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(OwnparInfo baseInfo, OwnerInfo selectedInfo) {
 		return (selectedInfo != null && selectedInfo.companyData != null );
 	}
@@ -30,11 +23,5 @@ final class OwnparVisiMergeOwner extends InfoMergerVisitorTemplate<OwnparInfo, O
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<OwnparInfo> getUniquifier() {
-		return null;
 	}
 }
