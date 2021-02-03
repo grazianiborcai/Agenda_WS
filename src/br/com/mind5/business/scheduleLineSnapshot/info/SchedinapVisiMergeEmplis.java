@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class SchedinapVisiMergeEmplis extends InfoMergerVisitorTemplate<SchedinapInfo, EmplisInfo> {
-	
-	@Override public List<SchedinapInfo> beforeMerge(List<SchedinapInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(SchedinapInfo baseInfo, EmplisInfo selectedInfo) {
 		return (baseInfo.codOwner    == selectedInfo.codOwner 	&& 
 				baseInfo.codEmployee == selectedInfo.codEmployee	);
@@ -29,11 +22,5 @@ final class SchedinapVisiMergeEmplis extends InfoMergerVisitorTemplate<Schedinap
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<SchedinapInfo> getUniquifier() {
-		return null;
 	}
 }
