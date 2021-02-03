@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class SchedeekVisiMergeSchedeekdat extends InfoMergerVisitorTemplate<SchedeekInfo, SchedeekdatInfo> {
-	
-	@Override public List<SchedeekInfo> beforeMerge(List<SchedeekInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(SchedeekInfo baseInfo, SchedeekdatInfo selectedInfo) {
 		return (baseInfo.codOwner 	== selectedInfo.codOwner  && 
 				baseInfo.codStore 	== selectedInfo.codStore  &&
@@ -30,11 +23,5 @@ final class SchedeekVisiMergeSchedeekdat extends InfoMergerVisitorTemplate<Sched
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<SchedeekInfo> getUniquifier() {
-		return null;
 	}
 }

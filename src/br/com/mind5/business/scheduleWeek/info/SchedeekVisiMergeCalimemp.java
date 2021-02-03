@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.calendarTimeEmployee.info.CalimempInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class SchedeekVisiMergeCalimemp extends InfoMergerVisitorTemplate<SchedeekInfo, CalimempInfo> {
-	
-	@Override public List<SchedeekInfo> beforeMerge(List<SchedeekInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(SchedeekInfo baseInfo, CalimempInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner &&
 				baseInfo.codStore == selectedInfo.codStore		);
@@ -29,11 +22,5 @@ final class SchedeekVisiMergeCalimemp extends InfoMergerVisitorTemplate<Schedeek
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<SchedeekInfo> getUniquifier() {
-		return null;
 	}
 }
