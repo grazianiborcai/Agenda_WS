@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class SchedayVisiMergeCuslis extends InfoMergerVisitorTemplate<SchedayInfo, CuslisInfo> {
-	
-	@Override public List<SchedayInfo> beforeMerge(List<SchedayInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(SchedayInfo baseInfo, CuslisInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class SchedayVisiMergeCuslis extends InfoMergerVisitorTemplate<SchedayInfo
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<SchedayInfo> getUniquifier() {
-		return null;
 	}
 }

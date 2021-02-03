@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class SchedayVisiMergeStolis extends InfoMergerVisitorTemplate<SchedayInfo, StolisInfo> {
-	
-	@Override public List<SchedayInfo> beforeMerge(List<SchedayInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(SchedayInfo baseInfo, StolisInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class SchedayVisiMergeStolis extends InfoMergerVisitorTemplate<SchedayInfo
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<SchedayInfo> getUniquifier() {
-		return null;
 	}
 }
