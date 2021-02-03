@@ -8,13 +8,7 @@ import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
 final class EmpnapVisiMergePersolis extends InfoMergerVisitorTemplate<EmpnapInfo, PersolisInfo> {
-	
-	@Override public List<EmpnapInfo> beforeMerge(List<EmpnapInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(EmpnapInfo baseInfo, PersolisInfo selectedInfo) {
 		return (baseInfo.codOwner  == selectedInfo.codOwner	&&
 				baseInfo.codPerson == selectedInfo.codPerson	);
@@ -33,7 +27,8 @@ final class EmpnapVisiMergePersolis extends InfoMergerVisitorTemplate<EmpnapInfo
 	
 	
 	
-	@Override public InfoUniquifier<EmpnapInfo> getUniquifier() {
-		return new EmpnapUniquifier();
+	@Override public List<EmpnapInfo> uniquifyHook(List<EmpnapInfo> results) {
+		InfoUniquifier<EmpnapInfo> uniquifier = new EmpnapUniquifier();		
+		return uniquifier.uniquify(results);
 	}
 }
