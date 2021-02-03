@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class MatorapVisiMergeToSelect extends InfoMergerVisitorTemplate<MatorapInfo, MatorapInfo> {
-	
-	@Override public List<MatorapInfo> beforeMerge(List<MatorapInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(MatorapInfo baseInfo, MatorapInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class MatorapVisiMergeToSelect extends InfoMergerVisitorTemplate<MatorapIn
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<MatorapInfo> getUniquifier() {
-		return null;
 	}
 }
