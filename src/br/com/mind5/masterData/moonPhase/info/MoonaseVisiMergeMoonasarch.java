@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.moonPhaseSearch.info.MoonasarchInfo;
 
 final class MoonaseVisiMergeMoonasarch extends InfoMergerVisitorTemplate<MoonaseInfo, MoonasarchInfo> {
-	
-	@Override public List<MoonaseInfo> beforeMerge(List<MoonaseInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(MoonaseInfo baseInfo, MoonasarchInfo selectedInfo) {
 		return true;
 	}
@@ -28,11 +21,5 @@ final class MoonaseVisiMergeMoonasarch extends InfoMergerVisitorTemplate<Moonase
 		
 		results.add(result);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<MoonaseInfo> getUniquifier() {
-		return null;
 	}
 }
