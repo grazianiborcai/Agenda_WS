@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.userList.info.UselisInfo;
 
 final class OtperasVisiMergeUselis extends InfoMergerVisitorTemplate<OtperasInfo, UselisInfo> {
-	
-	@Override public List<OtperasInfo> beforeMerge(List<OtperasInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(OtperasInfo baseInfo, UselisInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner &&
 				baseInfo.codUser  == selectedInfo.codUser);
@@ -29,11 +22,5 @@ final class OtperasVisiMergeUselis extends InfoMergerVisitorTemplate<OtperasInfo
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<OtperasInfo> getUniquifier() {
-		return null;
 	}
 }

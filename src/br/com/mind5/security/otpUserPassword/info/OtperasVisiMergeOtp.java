@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.otp.info.OtpInfo;
 
 final class OtperasVisiMergeOtp extends InfoMergerVisitorTemplate<OtperasInfo, OtpInfo> {
-	
-	@Override public List<OtperasInfo> beforeMerge(List<OtperasInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(OtperasInfo baseInfo, OtpInfo selectedInfo) {
 		return true;
 	}
@@ -30,11 +23,5 @@ final class OtperasVisiMergeOtp extends InfoMergerVisitorTemplate<OtperasInfo, O
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<OtperasInfo> getUniquifier() {
-		return null;
 	}
 }

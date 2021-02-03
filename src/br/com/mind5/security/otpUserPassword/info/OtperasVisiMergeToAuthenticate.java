@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class OtperasVisiMergeToAuthenticate extends InfoMergerVisitorTemplate<OtperasInfo, OtperasInfo> {
-	
-	@Override public List<OtperasInfo> beforeMerge(List<OtperasInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(OtperasInfo baseInfo, OtperasInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class OtperasVisiMergeToAuthenticate extends InfoMergerVisitorTemplate<Otp
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<OtperasInfo> getUniquifier() {
-		return null;
 	}
 }
