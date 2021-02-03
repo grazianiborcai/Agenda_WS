@@ -36,7 +36,8 @@ final class PlanimeVisiMergeStolis extends InfoMergerVisitorTemplate<PlanimeInfo
 	
 	
 	
-	@Override public InfoUniquifier<PlanimeInfo> getUniquifier() {
-		return new PlanimeUniquifier();
+	@Override public List<PlanimeInfo> uniquifyHook(List<PlanimeInfo> results) {
+		InfoUniquifier<PlanimeInfo> uniquifier = new PlanimeUniquifier();		
+		return uniquifier.uniquify(results);
 	}
 }
