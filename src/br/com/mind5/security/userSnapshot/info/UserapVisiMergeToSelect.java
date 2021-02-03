@@ -26,7 +26,8 @@ final class UserapVisiMergeToSelect extends InfoMergerVisitorTemplate<UserapInfo
 	
 	
 	
-	@Override public InfoUniquifier<UserapInfo> getUniquifier() {
-		return new UserapUniquifier();
+	@Override public List<UserapInfo> uniquifyHook(List<UserapInfo> results) {
+		InfoUniquifier<UserapInfo> uniquifier = new UserapUniquifier();		
+		return uniquifier.uniquify(results);
 	}
 }
