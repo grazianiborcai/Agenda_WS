@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class CrecarchVisiMergeToSelect extends InfoMergerVisitorTemplate<CrecarchInfo, CrecarchInfo> {
-	
-	@Override public List<CrecarchInfo> beforeMerge(List<CrecarchInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CrecarchInfo baseInfo, CrecarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class CrecarchVisiMergeToSelect extends InfoMergerVisitorTemplate<Crecarch
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CrecarchInfo> getUniquifier() {
-		return null;
 	}
 }
