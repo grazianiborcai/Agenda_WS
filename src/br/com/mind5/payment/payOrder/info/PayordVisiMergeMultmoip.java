@@ -10,13 +10,7 @@ import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
 final class PayordVisiMergeMultmoip extends InfoMergerVisitorTemplate<PayordInfo, MultmoipInfo> {
-	
-	@Override public List<PayordInfo> beforeMerge(List<PayordInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(PayordInfo baseInfo, MultmoipInfo selectedInfo) {
 		return (baseInfo.codOwner 	 == selectedInfo.codOwner	 &&
 				baseInfo.codPayOrder == selectedInfo.codPayOrder	);
@@ -65,7 +59,8 @@ final class PayordVisiMergeMultmoip extends InfoMergerVisitorTemplate<PayordInfo
 	
 	
 	
-	@Override public InfoUniquifier<PayordInfo> getUniquifier() {
-		return new PayordUniquifier();
+	@Override public List<PayordInfo> uniquifyHook(List<PayordInfo> results) {
+		InfoUniquifier<PayordInfo> uniquifier = new PayordUniquifier();		
+		return uniquifier.uniquify(results);
 	}
 }

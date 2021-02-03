@@ -8,13 +8,7 @@ import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 
 final class PayordVisiMergePaypar extends InfoMergerVisitorTemplate<PayordInfo, PayparInfo> {
-	
-	@Override public List<PayordInfo> beforeMerge(List<PayordInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(PayordInfo baseInfo, PayparInfo selectedInfo) {
 		return (baseInfo.codPayPartner == selectedInfo.codPayPartner);
 	}
@@ -33,7 +27,8 @@ final class PayordVisiMergePaypar extends InfoMergerVisitorTemplate<PayordInfo, 
 	
 	
 	
-	@Override public InfoUniquifier<PayordInfo> getUniquifier() {
-		return new PayordUniquifier();
+	@Override public List<PayordInfo> uniquifyHook(List<PayordInfo> results) {
+		InfoUniquifier<PayordInfo> uniquifier = new PayordUniquifier();		
+		return uniquifier.uniquify(results);
 	}
 }
