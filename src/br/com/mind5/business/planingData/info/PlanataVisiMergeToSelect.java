@@ -22,10 +22,4 @@ final class PlanataVisiMergeToSelect extends InfoMergerVisitorTemplate<PlanataIn
 		results.add(selectedInfo);
 		return results;
 	}
-	
-	
-	
-	@Override protected List<PlanataInfo> afterMergeHook(List<PlanataInfo> results)  {
-		return super.sortAscending(results);
-	}
 }
