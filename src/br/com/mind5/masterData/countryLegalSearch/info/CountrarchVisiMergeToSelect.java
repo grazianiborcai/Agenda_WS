@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class CountrarchVisiMergeToSelect extends InfoMergerVisitorTemplate<CountrarchInfo, CountrarchInfo> {
-	
-	@Override public List<CountrarchInfo> beforeMerge(List<CountrarchInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CountrarchInfo baseInfo, CountrarchInfo selectedInfo) {
 		return true;
 	}
@@ -27,11 +20,5 @@ final class CountrarchVisiMergeToSelect extends InfoMergerVisitorTemplate<Countr
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CountrarchInfo> getUniquifier() {
-		return null;
 	}
 }
