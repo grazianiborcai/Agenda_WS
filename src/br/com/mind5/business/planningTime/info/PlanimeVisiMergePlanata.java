@@ -37,6 +37,16 @@ final class PlanimeVisiMergePlanata extends InfoMergerVisitorTemplate<PlanimeInf
 	
 	
 	
+	@Override protected List<PlanimeInfo> afterMergeHook(List<PlanimeInfo> results)  {
+		for (PlanimeInfo eachResult : results) {
+			eachResult.planatas = super.sortAscending(eachResult.planatas);
+		}
+		
+		return results;
+	}
+	
+	
+	
 	@Override public List<PlanimeInfo> uniquifyHook(List<PlanimeInfo> results) {
 		InfoUniquifier<PlanimeInfo> uniquifier = new PlanimeUniquifier();		
 		return uniquifier.uniquify(results);
