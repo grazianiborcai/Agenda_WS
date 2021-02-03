@@ -5,7 +5,6 @@ import java.util.List;
 
 import br.com.mind5.business.storeFavoriteSearch.info.StoritarchInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class StoriteVisiMergeStoritarch extends InfoMergerVisitorTemplate<StoriteInfo, StoritarchInfo> {
 
@@ -22,11 +21,5 @@ final class StoriteVisiMergeStoritarch extends InfoMergerVisitorTemplate<Storite
 		
 		results.add(result);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<StoriteInfo> getUniquifier() {
-		return null;
 	}
 }
