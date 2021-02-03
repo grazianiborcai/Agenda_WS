@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 
 final class EmplateVisiMergeTimezone extends InfoMergerVisitorTemplate<EmplateInfo, TimezoneInfo> {
-	
-	@Override public List<EmplateInfo> beforeMerge(List<EmplateInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(EmplateInfo baseInfo, TimezoneInfo selectedInfo) {
 		return (baseInfo.codTimezone.equals(selectedInfo.codTimezone)	&&
 				baseInfo.codLanguage.equals(selectedInfo.codLanguage)		);
@@ -29,11 +22,5 @@ final class EmplateVisiMergeTimezone extends InfoMergerVisitorTemplate<EmplateIn
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<EmplateInfo> getUniquifier() {
-		return null;
 	}
 }

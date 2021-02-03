@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDateSearch.info.EmplarchInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class EmplateVisiMergeEmplarch extends InfoMergerVisitorTemplate<EmplateInfo, EmplarchInfo> {
-	
-	@Override public List<EmplateInfo> beforeMerge(List<EmplateInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(EmplateInfo baseInfo, EmplarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class EmplateVisiMergeEmplarch extends InfoMergerVisitorTemplate<EmplateIn
 		
 		results.add(result);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<EmplateInfo> getUniquifier() {
-		return null;
 	}
 }
