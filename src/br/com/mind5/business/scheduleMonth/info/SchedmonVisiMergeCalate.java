@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class SchedmonVisiMergeCalate extends InfoMergerVisitorTemplate<SchedmonInfo, CalateInfo> {
-	
-	@Override public List<SchedmonInfo> beforeMerge(List<SchedmonInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(SchedmonInfo baseInfo, CalateInfo selectedInfo) {
 		return true;
 	}
@@ -28,11 +21,5 @@ final class SchedmonVisiMergeCalate extends InfoMergerVisitorTemplate<SchedmonIn
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<SchedmonInfo> getUniquifier() {
-		return null;
 	}
 }
