@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class SchedageVisiMergeToSelect extends InfoMergerVisitorTemplate<SchedageInfo, SchedageInfo> {
-	
-	@Override public List<SchedageInfo> beforeMerge(List<SchedageInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(SchedageInfo baseInfo, SchedageInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -32,11 +25,5 @@ final class SchedageVisiMergeToSelect extends InfoMergerVisitorTemplate<Schedage
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<SchedageInfo> getUniquifier() {
-		return null;
 	}
 }
