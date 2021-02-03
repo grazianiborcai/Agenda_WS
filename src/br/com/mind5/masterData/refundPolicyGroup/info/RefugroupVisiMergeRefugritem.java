@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.refundPolicyGroupItem.info.RefugritemInfo;
 
 final class RefugroupVisiMergeRefugritem extends InfoMergerVisitorTemplate<RefugroupInfo, RefugritemInfo> {
-	
-	@Override public List<RefugroupInfo> beforeMerge(List<RefugroupInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(RefugroupInfo baseInfo, RefugritemInfo selectedInfo) {
 		return baseInfo.codRefundPolicyGroup == selectedInfo.codRefundPolicyGroup;
 	}
@@ -28,11 +21,5 @@ final class RefugroupVisiMergeRefugritem extends InfoMergerVisitorTemplate<Refug
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<RefugroupInfo> getUniquifier() {
-		return null;
 	}
 }
