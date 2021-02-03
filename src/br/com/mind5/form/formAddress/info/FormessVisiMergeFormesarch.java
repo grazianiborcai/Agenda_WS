@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.form.formAddressSearch.info.FormesarchInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class FormessVisiMergeFormesarch extends InfoMergerVisitorTemplate<FormessInfo, FormesarchInfo> {
-	
-	@Override public List<FormessInfo> beforeMerge(List<FormessInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(FormessInfo baseInfo, FormesarchInfo selectedInfo) {
 		return true;
 	}
@@ -28,11 +21,5 @@ final class FormessVisiMergeFormesarch extends InfoMergerVisitorTemplate<Formess
 		
 		results.add(result);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<FormessInfo> getUniquifier() {
-		return null;
 	}
 }

@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class FormessVisiMergeToSelect extends InfoMergerVisitorTemplate<FormessInfo, FormessInfo> {
-	
-	@Override public List<FormessInfo> beforeMerge(List<FormessInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(FormessInfo baseInfo, FormessInfo selectedInfo) {
 		return true;
 	}
@@ -27,11 +20,5 @@ final class FormessVisiMergeToSelect extends InfoMergerVisitorTemplate<FormessIn
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<FormessInfo> getUniquifier() {
-		return null;
 	}
 }
