@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class OwnelisVisiMergeToSelect extends InfoMergerVisitorTemplate<OwnelisInfo, OwnelisInfo> {
-	
-	@Override public List<OwnelisInfo> beforeMerge(List<OwnelisInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(OwnelisInfo baseInfo, OwnelisInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class OwnelisVisiMergeToSelect extends InfoMergerVisitorTemplate<OwnelisIn
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<OwnelisInfo> getUniquifier() {
-		return null;
 	}
 }
