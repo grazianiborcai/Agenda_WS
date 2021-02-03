@@ -27,7 +27,8 @@ final class EmpVisiMergeAddress extends InfoMergerVisitorTemplate<EmpInfo, Addre
 	
 	
 	
-	@Override public InfoUniquifier<EmpInfo> getUniquifier() {
-		return new EmpUniquifier();
+	@Override public List<EmpInfo> uniquifyHook(List<EmpInfo> results) {
+		InfoUniquifier<EmpInfo> uniquifier = new EmpUniquifier();		
+		return uniquifier.uniquify(results);
 	}
 }

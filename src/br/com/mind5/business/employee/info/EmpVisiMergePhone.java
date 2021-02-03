@@ -10,8 +10,8 @@ import br.com.mind5.info.InfoUniquifier;
 final class EmpVisiMergePhone extends InfoMergerVisitorTemplate<EmpInfo, PhoneInfo> {	
 	
 	@Override public boolean shouldMerge(EmpInfo baseInfo, PhoneInfo selectedInfo) {
-		return (baseInfo.codOwner 		== selectedInfo.codOwner 		&&
-				baseInfo.codEmployee 	== selectedInfo.codEmployee		);
+		return (baseInfo.codOwner 	 == selectedInfo.codOwner 	&&
+				baseInfo.codEmployee == selectedInfo.codEmployee	);
 	}
 	
 	
@@ -27,7 +27,8 @@ final class EmpVisiMergePhone extends InfoMergerVisitorTemplate<EmpInfo, PhoneIn
 	
 	
 	
-	@Override public InfoUniquifier<EmpInfo> getUniquifier() {
-		return new EmpUniquifier();
+	@Override public List<EmpInfo> uniquifyHook(List<EmpInfo> results) {
+		InfoUniquifier<EmpInfo> uniquifier = new EmpUniquifier();		
+		return uniquifier.uniquify(results);
 	}
 }
