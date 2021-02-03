@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 
 final class PayordemVisiMergePayormarch extends InfoMergerVisitorTemplate<PayordemInfo, PayormarchInfo> {
-	
-	@Override public List<PayordemInfo> beforeMerge(List<PayordemInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(PayordemInfo baseInfo, PayormarchInfo selectedInfo) {
 		return true;
 	}
@@ -28,11 +21,5 @@ final class PayordemVisiMergePayormarch extends InfoMergerVisitorTemplate<Payord
 		
 		results.add(result);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<PayordemInfo> getUniquifier() {
-		return null;
 	}
 }
