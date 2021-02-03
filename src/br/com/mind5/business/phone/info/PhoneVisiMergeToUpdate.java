@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class PhoneVisiMergeToUpdate extends InfoMergerVisitorTemplate<PhoneInfo, PhoneInfo> {
-	
-	@Override public List<PhoneInfo> beforeMerge(List<PhoneInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(PhoneInfo baseInfo, PhoneInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner &&
 				baseInfo.codPhone == selectedInfo.codPhone		);
@@ -35,11 +28,5 @@ final class PhoneVisiMergeToUpdate extends InfoMergerVisitorTemplate<PhoneInfo, 
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<PhoneInfo> getUniquifier() {
-		return null;
 	}
 }

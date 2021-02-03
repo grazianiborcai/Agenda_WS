@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.form.formPhone.info.FormoneInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class PhoneVisiMergeFormone extends InfoMergerVisitorTemplate<PhoneInfo, FormoneInfo> {
-	
-	@Override public List<PhoneInfo> beforeMerge(List<PhoneInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(PhoneInfo baseInfo, FormoneInfo selectedInfo) {
 		return (baseInfo.codCountry == selectedInfo.codCountry);
 	}
@@ -28,11 +21,5 @@ final class PhoneVisiMergeFormone extends InfoMergerVisitorTemplate<PhoneInfo, F
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<PhoneInfo> getUniquifier() {
-		return null;
 	}
 }

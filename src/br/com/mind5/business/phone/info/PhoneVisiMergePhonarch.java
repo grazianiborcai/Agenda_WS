@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class PhoneVisiMergePhonarch extends InfoMergerVisitorTemplate<PhoneInfo, PhonarchInfo> {
-	
-	@Override public List<PhoneInfo> beforeMerge(List<PhoneInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(PhoneInfo baseInfo, PhonarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class PhoneVisiMergePhonarch extends InfoMergerVisitorTemplate<PhoneInfo, 
 		
 		results.add(result);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<PhoneInfo> getUniquifier() {
-		return null;
 	}
 }

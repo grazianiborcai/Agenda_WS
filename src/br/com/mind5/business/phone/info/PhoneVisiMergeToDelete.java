@@ -4,15 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class PhoneVisiMergeToDelete extends InfoMergerVisitorTemplate<PhoneInfo, PhoneInfo> {
-	
-	@Override public List<PhoneInfo> beforeMerge(List<PhoneInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
+
 	
 	@Override public boolean shouldMerge(PhoneInfo baseInfo, PhoneInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
@@ -28,11 +22,5 @@ final class PhoneVisiMergeToDelete extends InfoMergerVisitorTemplate<PhoneInfo, 
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<PhoneInfo> getUniquifier() {
-		return null;
 	}
 }
