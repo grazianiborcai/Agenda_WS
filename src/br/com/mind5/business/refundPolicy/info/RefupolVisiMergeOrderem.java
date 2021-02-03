@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class RefupolVisiMergeOrderem extends InfoMergerVisitorTemplate<RefupolInfo, OrderemInfo> {
-	
-	@Override public List<RefupolInfo> beforeMerge(List<RefupolInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(RefupolInfo baseInfo, OrderemInfo selectedInfo) {
 		return (baseInfo.codOwner 		== selectedInfo.codOwner &&
 				baseInfo.codOrder 		== selectedInfo.codOrder &&
@@ -34,11 +27,5 @@ final class RefupolVisiMergeOrderem extends InfoMergerVisitorTemplate<RefupolInf
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<RefupolInfo> getUniquifier() {
-		return null;
 	}
 }
