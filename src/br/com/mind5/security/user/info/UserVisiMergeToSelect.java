@@ -25,7 +25,8 @@ final class UserVisiMergeToSelect extends InfoMergerVisitorTemplate<UserInfo, Us
 	
 	
 	
-	@Override public InfoUniquifier<UserInfo> getUniquifier() {
-		return new UserUniquifier();
+	@Override public List<UserInfo> uniquifyHook(List<UserInfo> results) {
+		InfoUniquifier<UserInfo> uniquifier = new UserUniquifier();		
+		return uniquifier.uniquify(results);
 	}
 }

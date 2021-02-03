@@ -27,7 +27,8 @@ final class UserVisiMergeCuspar extends InfoMergerVisitorTemplate<UserInfo, Cusp
 	
 	
 	
-	@Override public InfoUniquifier<UserInfo> getUniquifier() {
-		return new UserUniquifier();
+	@Override public List<UserInfo> uniquifyHook(List<UserInfo> results) {
+		InfoUniquifier<UserInfo> uniquifier = new UserUniquifier();		
+		return uniquifier.uniquify(results);
 	}
 }
