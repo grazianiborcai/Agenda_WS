@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.dayPartingSearch.info.DayparchInfo;
 
 final class DaypartVisiMergeDayparch extends InfoMergerVisitorTemplate<DaypartInfo, DayparchInfo> {
-	
-	@Override public List<DaypartInfo> beforeMerge(List<DaypartInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(DaypartInfo baseInfo, DayparchInfo selectedInfo) {
 		return true;
 	}
@@ -28,11 +21,5 @@ final class DaypartVisiMergeDayparch extends InfoMergerVisitorTemplate<DaypartIn
 		
 		results.add(result);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<DaypartInfo> getUniquifier() {
-		return null;
 	}
 }
