@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 final class RefemVisiMergeUsername extends InfoMergerVisitorTemplate<RefemInfo, UsernameInfo> {
 
-	@Override public List<RefemInfo> beforeMerge(List<RefemInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(RefemInfo baseInfo, UsernameInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner		&&
 				baseInfo.username.equals(selectedInfo.username)		);
@@ -29,11 +22,5 @@ final class RefemVisiMergeUsername extends InfoMergerVisitorTemplate<RefemInfo, 
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<RefemInfo> getUniquifier() {
-		return null;
 	}
 }
