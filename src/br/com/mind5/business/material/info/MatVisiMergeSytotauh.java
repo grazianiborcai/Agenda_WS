@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class MatVisiMergeSytotauh extends InfoMergerVisitorTemplate<MatInfo, SytotauhInfo> {
-	
-	@Override public List<MatInfo> beforeMerge(List<MatInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(MatInfo baseInfo, SytotauhInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner		&&
 				baseInfo.username.equals(selectedInfo.username)		);
@@ -29,11 +22,5 @@ final class MatVisiMergeSytotauh extends InfoMergerVisitorTemplate<MatInfo, Syto
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<MatInfo> getUniquifier() {
-		return null;
 	}
 }

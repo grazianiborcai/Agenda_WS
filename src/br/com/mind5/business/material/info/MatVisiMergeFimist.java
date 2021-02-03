@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class MatVisiMergeFimist extends InfoMergerVisitorTemplate<MatInfo, FimistInfo> {
-	
-	@Override public List<MatInfo> beforeMerge(List<MatInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(MatInfo baseInfo, FimistInfo selectedInfo) {
 		return (baseInfo.codOwner 	== selectedInfo.codOwner &&
 				baseInfo.codMat 	== selectedInfo.codMat		);
@@ -29,11 +22,5 @@ final class MatVisiMergeFimist extends InfoMergerVisitorTemplate<MatInfo, Fimist
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<MatInfo> getUniquifier() {
-		return null;
 	}
 }

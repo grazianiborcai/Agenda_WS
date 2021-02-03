@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class MatVisiMergeToDelete extends InfoMergerVisitorTemplate<MatInfo, MatInfo> {
-	
-	@Override public List<MatInfo> beforeMerge(List<MatInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(MatInfo baseInfo, MatInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class MatVisiMergeToDelete extends InfoMergerVisitorTemplate<MatInfo, MatI
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<MatInfo> getUniquifier() {
-		return null;
 	}
 }

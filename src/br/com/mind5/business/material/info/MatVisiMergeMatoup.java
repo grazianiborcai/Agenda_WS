@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 
 final class MatVisiMergeMatoup extends InfoMergerVisitorTemplate<MatInfo, MatoupInfo> {
-	
-	@Override public List<MatInfo> beforeMerge(List<MatInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(MatInfo baseInfo, MatoupInfo selectedInfo) {
 		return (baseInfo.codGroup == selectedInfo.codGroup);
 	}
@@ -30,11 +23,5 @@ final class MatVisiMergeMatoup extends InfoMergerVisitorTemplate<MatInfo, Matoup
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<MatInfo> getUniquifier() {
-		return null;
 	}
 }

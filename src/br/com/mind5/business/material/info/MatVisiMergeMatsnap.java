@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class MatVisiMergeMatsnap extends InfoMergerVisitorTemplate<MatInfo, MatsnapInfo> {
-	
-	@Override public List<MatInfo> beforeMerge(List<MatInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(MatInfo baseInfo, MatsnapInfo selectedInfo) {
 		return (baseInfo.codOwner 	== selectedInfo.codOwner	&&
 				baseInfo.codMat 	== selectedInfo.codMat			);
@@ -29,11 +22,5 @@ final class MatVisiMergeMatsnap extends InfoMergerVisitorTemplate<MatInfo, Matsn
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<MatInfo> getUniquifier() {
-		return null;
 	}
 }
