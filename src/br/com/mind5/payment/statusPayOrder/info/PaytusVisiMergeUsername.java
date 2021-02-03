@@ -8,13 +8,7 @@ import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 final class PaytusVisiMergeUsername extends InfoMergerVisitorTemplate<PaytusInfo, UsernameInfo> {
-	
-	@Override public List<PaytusInfo> beforeMerge(List<PaytusInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(PaytusInfo baseInfo, UsernameInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner		&&
 				baseInfo.username.equals(selectedInfo.username)		);
@@ -33,7 +27,8 @@ final class PaytusVisiMergeUsername extends InfoMergerVisitorTemplate<PaytusInfo
 	
 	
 	
-	@Override public InfoUniquifier<PaytusInfo> getUniquifier() {
-		return new PaytusUniquifier();
+	@Override public List<PaytusInfo> uniquifyHook(List<PaytusInfo> results) {
+		InfoUniquifier<PaytusInfo> uniquifier = new PaytusUniquifier();		
+		return uniquifier.uniquify(results);
 	}
 }

@@ -37,7 +37,8 @@ final class PaytusVisiMergePaytusem extends InfoMergerVisitorTemplate<PaytusInfo
 	
 	
 	
-	@Override public InfoUniquifier<PaytusInfo> getUniquifier() {
-		return new PaytusUniquifier();
+	@Override public List<PaytusInfo> uniquifyHook(List<PaytusInfo> results) {
+		InfoUniquifier<PaytusInfo> uniquifier = new PaytusUniquifier();		
+		return uniquifier.uniquify(results);
 	}
 }
