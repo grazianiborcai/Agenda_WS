@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class CrecardVisiMergePhone extends InfoMergerVisitorTemplate<CrecardInfo, PhoneInfo> {
-	
-	@Override public List<CrecardInfo> beforeMerge(List<CrecardInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CrecardInfo baseInfo, PhoneInfo selectedInfo) {
 		return (baseInfo.codOwner 		== selectedInfo.codOwner &&
 				baseInfo.codPhoneHolder == selectedInfo.codPhone	);
@@ -29,11 +22,5 @@ final class CrecardVisiMergePhone extends InfoMergerVisitorTemplate<CrecardInfo,
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CrecardInfo> getUniquifier() {
-		return null;
 	}
 }

@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 
 final class CrecardVisiMergeCusparch extends InfoMergerVisitorTemplate<CrecardInfo, CusparchInfo> {
-	
-	@Override public List<CrecardInfo> beforeMerge(List<CrecardInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CrecardInfo baseInfo, CusparchInfo selectedInfo) {
 		return (baseInfo.codOwner 	== selectedInfo.codOwner &&
 				baseInfo.codUser 	== selectedInfo.codUser	);
@@ -30,11 +23,5 @@ final class CrecardVisiMergeCusparch extends InfoMergerVisitorTemplate<CrecardIn
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CrecardInfo> getUniquifier() {
-		return null;
 	}
 }

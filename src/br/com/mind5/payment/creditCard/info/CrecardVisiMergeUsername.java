@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 final class CrecardVisiMergeUsername extends InfoMergerVisitorTemplate<CrecardInfo, UsernameInfo> {
-	
-	@Override public List<CrecardInfo> beforeMerge(List<CrecardInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(CrecardInfo baseInfo, UsernameInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner &&
 				baseInfo.username.equals(selectedInfo.username)	);
@@ -30,11 +23,5 @@ final class CrecardVisiMergeUsername extends InfoMergerVisitorTemplate<CrecardIn
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<CrecardInfo> getUniquifier() {
-		return null;
 	}
 }
