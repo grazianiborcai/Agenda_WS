@@ -8,13 +8,7 @@ import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.user.info.UserInfo;
 
 final class OwnerVisiMergeDaemon extends InfoMergerVisitorTemplate<OwnerInfo, UserInfo> {
-	
-	@Override public List<OwnerInfo> beforeMerge(List<OwnerInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(OwnerInfo baseInfo, UserInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -33,7 +27,8 @@ final class OwnerVisiMergeDaemon extends InfoMergerVisitorTemplate<OwnerInfo, Us
 	
 	
 	
-	@Override public InfoUniquifier<OwnerInfo> getUniquifier() {
-		return new OwnerUniquifier();
+	@Override public List<OwnerInfo> uniquifyHook(List<OwnerInfo> results) {
+		InfoUniquifier<OwnerInfo> uniquifier = new OwnerUniquifier();		
+		return uniquifier.uniquify(results);
 	}
 }
