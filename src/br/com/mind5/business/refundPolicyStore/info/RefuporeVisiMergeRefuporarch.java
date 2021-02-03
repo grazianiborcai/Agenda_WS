@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.refundPolicyStoreSearch.info.RefuporarchInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class RefuporeVisiMergeRefuporarch extends InfoMergerVisitorTemplate<RefuporeInfo, RefuporarchInfo> {
-	
-	@Override public List<RefuporeInfo> beforeMerge(List<RefuporeInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(RefuporeInfo baseInfo, RefuporarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +21,5 @@ final class RefuporeVisiMergeRefuporarch extends InfoMergerVisitorTemplate<Refup
 		
 		results.add(result);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<RefuporeInfo> getUniquifier() {
-		return null;
 	}
 }
