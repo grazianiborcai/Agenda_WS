@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.feeDefault.info.FeedefInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class FeewnerVisiMergeFeedef extends InfoMergerVisitorTemplate<FeewnerInfo, FeedefInfo> {
-	
-	@Override public List<FeewnerInfo> beforeMerge(List<FeewnerInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(FeewnerInfo baseInfo, FeedefInfo selectedInfo) {
 		return (baseInfo.codCurr.equals(selectedInfo.codCurr));
 	}
@@ -28,11 +21,5 @@ final class FeewnerVisiMergeFeedef extends InfoMergerVisitorTemplate<FeewnerInfo
 		
 		results.add(baseInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<FeewnerInfo> getUniquifier() {
-		return null;
 	}
 }

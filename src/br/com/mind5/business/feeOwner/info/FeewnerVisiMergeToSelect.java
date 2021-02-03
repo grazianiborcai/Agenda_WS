@@ -4,16 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class FeewnerVisiMergeToSelect extends InfoMergerVisitorTemplate<FeewnerInfo, FeewnerInfo> {
-	
-	@Override public List<FeewnerInfo> beforeMerge(List<FeewnerInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
 	@Override public boolean shouldMerge(FeewnerInfo baseInfo, FeewnerInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
@@ -28,11 +20,5 @@ final class FeewnerVisiMergeToSelect extends InfoMergerVisitorTemplate<FeewnerIn
 		
 		results.add(selectedInfo);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<FeewnerInfo> getUniquifier() {
-		return null;
 	}
 }
