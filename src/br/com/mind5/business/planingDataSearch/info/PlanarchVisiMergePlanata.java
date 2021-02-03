@@ -5,16 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.info.InfoUniquifier;
 
 final class PlanarchVisiMergePlanata extends InfoMergerVisitorTemplate<PlanarchInfo, PlanataInfo> {
-	
-	@Override public List<PlanarchInfo> beforeMerge(List<PlanarchInfo> baseInfos) {
-		return baseInfos;
-	}
-	
-	
-	
+
 	@Override public boolean shouldMerge(PlanarchInfo baseInfo, PlanataInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner && 
 				baseInfo.date.equals(selectedInfo.date)   		);
@@ -31,11 +24,5 @@ final class PlanarchVisiMergePlanata extends InfoMergerVisitorTemplate<PlanarchI
 		
 		results.add(result);
 		return results;
-	}
-	
-	
-	
-	@Override public InfoUniquifier<PlanarchInfo> getUniquifier() {
-		return null;
 	}
 }
