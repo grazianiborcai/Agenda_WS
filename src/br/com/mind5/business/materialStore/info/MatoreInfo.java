@@ -23,6 +23,8 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 	public double matPrice5;
 	public double matPrice6;
 	public double matPrice7;
+	public double matPriceMin;
+	public double matPriceMax;
 	public String priceRange;
 	public int quantityStock;
 	public MatlisInfo matlisData;
@@ -51,6 +53,8 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 		matPrice5 = DefaultValue.number();
 		matPrice6 = DefaultValue.number();
 		matPrice7 = DefaultValue.number();
+		matPriceMin = DefaultValue.number();
+		matPriceMax = DefaultValue.number();
 		quantityStock = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();

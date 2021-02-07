@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
+import br.com.mind5.business.materialStore.model.action.LazyMatoreEnforceMax;
+import br.com.mind5.business.materialStore.model.action.LazyMatoreEnforceMin;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreEnforceRange;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreMergeMatlis;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreMergeStolis;
@@ -15,9 +17,9 @@ import br.com.mind5.business.materialStore.model.checker.MatoreCheckRead;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckStore;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
@@ -78,11 +80,15 @@ public final class RootMatoreSelect extends DeciTreeTemplateRead<MatoreInfo> {
 		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();
 		
 		ActionStd<MatoreInfo> select = new StdMatoreMergeToSelect(option);
+		ActionLazy<MatoreInfo> enforceMin = new LazyMatoreEnforceMin(option.conn, option.schemaName);
+		ActionLazy<MatoreInfo> enforceMax = new LazyMatoreEnforceMax(option.conn, option.schemaName);		
 		ActionLazy<MatoreInfo> enforceRange = new LazyMatoreEnforceRange(option.conn, option.schemaName);	
 		ActionLazy<MatoreInfo> mergeMatlis = new LazyMatoreMergeMatlis(option.conn, option.schemaName);		
 		ActionLazy<MatoreInfo> mergeStolis = new LazyMatoreMergeStolis(option.conn, option.schemaName);	
 		
-		select.addPostAction(enforceRange);
+		select.addPostAction(enforceMin);
+		enforceMin.addPostAction(enforceMax);
+		enforceMax.addPostAction(enforceRange);
 		enforceRange.addPostAction(mergeMatlis);
 		mergeMatlis.addPostAction(mergeStolis);
 		
