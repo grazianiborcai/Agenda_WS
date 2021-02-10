@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
+import br.com.mind5.common.SystemMessage;
 
 public abstract class InfoRecord implements Cloneable {
 	public String codLanguage;
@@ -141,5 +142,14 @@ public abstract class InfoRecord implements Cloneable {
 	
 	protected void logException(Exception e) {
 		SystemLog.logError(this.getClass(), e);
+	}
+	
+	
+	
+	protected void checkCompareToArgument(InfoRecord arg0) {
+		if (arg0 == null) {
+			logException(new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT);	
+		}
 	}
 }

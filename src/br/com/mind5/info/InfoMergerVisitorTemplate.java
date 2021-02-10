@@ -67,6 +67,16 @@ public abstract class InfoMergerVisitorTemplate<T extends InfoRecord, K extends 
 	
 	
 	
+	protected <S extends Comparable<? super S>> List<S> sortDescending(List<S> results) {
+		if(shouldSort(results) == false)
+			return results;
+		
+		Collections.reverse(results);
+		return results;
+	}
+	
+	
+	
 	private boolean shouldSort(List<?> results) {
 		if(results == null)
 			return false;
