@@ -7,7 +7,7 @@ import java.util.List;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
-public final class OrdistInfo extends InfoRecord implements Cloneable {
+public final class OrdistInfo extends InfoRecord implements Cloneable, Comparable<OrdistInfo> {
 	public long codOwner;	
 	public long codOrder;	
 	public String codOrderExt;	
@@ -86,5 +86,43 @@ public final class OrdistInfo extends InfoRecord implements Cloneable {
 		return (codOwner    == obj.codOwner && 
 				codOrder 	== obj.codOrder &&
 				codUser     == obj.codUser		);
+	}
+	
+	
+	
+	@Override public int compareTo(OrdistInfo arg0) {
+		super.checkCompareToArgument(arg0);
+		
+		int result = compareToCodOwner(arg0);		
+		if (result != 0) return result;
+		
+		result = compareToCodOrder(arg0);		
+		if (result != 0) return result;
+		
+		return 0;
+	}
+	
+	
+	
+	private int compareToCodOwner(OrdistInfo arg0) {
+		if (codOwner > arg0.codOwner) 
+			return  1;		
+		
+		if (codOwner < arg0.codOwner) 
+			return -1;
+		
+		return 0;
+	}
+	
+	
+	
+	private int compareToCodOrder(OrdistInfo arg0) {
+		if (codOrder > arg0.codOrder) 
+			return  1;		
+		
+		if (codOrder < arg0.codOrder) 
+			return -1;
+		
+		return 0;
 	}
 }

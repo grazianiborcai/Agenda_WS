@@ -23,4 +23,10 @@ final class OrdistVisiMergeToSelect extends InfoMergerVisitorTemplate<OrdistInfo
 		results.add(selectedInfo);
 		return results;
 	}
+	
+	
+	
+	@Override protected List<OrdistInfo> afterMergeHook(List<OrdistInfo> results)  {
+		return super.sortDescending(results);
+	}
 }
