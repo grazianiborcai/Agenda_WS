@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
-import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 
 public final class PlanataInfo extends InfoRecord implements Cloneable, Comparable<PlanataInfo> {
@@ -110,7 +109,7 @@ public final class PlanataInfo extends InfoRecord implements Cloneable, Comparab
 	
 	
 	@Override public int compareTo(PlanataInfo arg0) {
-		checkArgument(arg0);
+		super.checkCompareToArgument(arg0);
 		
 		int result = compareToCodOwner(arg0);		
 		if (result != 0) return result;
@@ -131,15 +130,6 @@ public final class PlanataInfo extends InfoRecord implements Cloneable, Comparab
 		if (result != 0) return result;
 		
 		return 0;
-	}
-	
-	
-	
-	private void checkArgument(PlanataInfo arg0) {
-		if (arg0 == null) {
-			super.logException(new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT);	
-		}
 	}
 	
 	
