@@ -1556,4 +1556,8 @@ public final class SystemCode {
 	
 	// Home
 	public static final int HOME_MANDATORY_FIELD_EMPTY					= 15250;
+	
+	
+	// Order Item Counter
+	public static final int ORDER_ITEM_COUNTER_MANDATORY_FIELD_EMPTY	= 15300;
 }
