@@ -2,14 +2,28 @@ package br.com.mind5.business.orderList.info;
 
 import java.util.List;
 
+import br.com.mind5.business.orderItemCounter.info.OrdereouInfo;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.masterData.orderStatus.info.OrderatusInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class OrdistMerger {	
+	public static List<OrdistInfo> mergeWithOrdereou(List<OrdistInfo> baseInfos, List<OrdereouInfo> selectedInfos) {
+		InfoMergerBuilder<OrdistInfo, OrdereouInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrdistVisiMergeOrdereou());
+		InfoMerger<OrdistInfo, OrdereouInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
 	public static List<OrdistInfo> mergeWithUsername(List<OrdistInfo> baseInfos, List<UsernameInfo> selectedInfos) {
 		InfoMergerBuilder<OrdistInfo, UsernameInfo> builder = new InfoMergerBuilder<>();
 		

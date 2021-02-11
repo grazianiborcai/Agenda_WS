@@ -6,15 +6,16 @@ import java.util.List;
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.model.action.LazyOrdistMergeCurrency;
 import br.com.mind5.business.orderList.model.action.LazyOrdistMergeOrderatus;
+import br.com.mind5.business.orderList.model.action.LazyOrdistMergeOrdereou;
 import br.com.mind5.business.orderList.model.action.StdOrdistMergeToSelect;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckLangu;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckOwner;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
@@ -63,9 +64,11 @@ public final class RootOrdistSelect extends DeciTreeTemplateRead<OrdistInfo> {
 		ActionStd<OrdistInfo> select = new StdOrdistMergeToSelect(option);
 		ActionLazy<OrdistInfo> mergeCurrency = new LazyOrdistMergeCurrency(option.conn, option.schemaName);
 		ActionLazy<OrdistInfo> mergeOrderatus = new LazyOrdistMergeOrderatus(option.conn, option.schemaName);
+		ActionLazy<OrdistInfo> mergeOrdereou = new LazyOrdistMergeOrdereou(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCurrency);
 		mergeCurrency.addPostAction(mergeOrderatus);
+		mergeOrderatus.addPostAction(mergeOrdereou);
 		
 		actions.add(select);			
 		return actions;

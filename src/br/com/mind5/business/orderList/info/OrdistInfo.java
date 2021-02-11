@@ -12,6 +12,7 @@ public final class OrdistInfo extends InfoRecord implements Cloneable, Comparabl
 	public long codOrder;	
 	public String codOrderExt;	
 	public long codUser;
+	public int itemCounter;
 	public double itemTotal;
 	public double feeService;
 	public double grandTotal;	
@@ -33,6 +34,7 @@ public final class OrdistInfo extends InfoRecord implements Cloneable, Comparabl
 		codOwner = DefaultValue.number();	
 		codOrder = DefaultValue.number();				
 		codUser = DefaultValue.number();		
+		itemCounter = DefaultValue.number();
 		itemTotal = DefaultValue.number();
 		feeService = DefaultValue.number();
 		grandTotal = DefaultValue.number();
