@@ -7,7 +7,7 @@ import br.com.mind5.business.orderItemCounter.info.OrdereouInfo;
 import br.com.mind5.business.orderItemCounter.model.action.LazyOrdereouEnforceItemCounter;
 import br.com.mind5.business.orderItemCounter.model.action.LazyOrdereouObfuscateOrdemist;
 import br.com.mind5.business.orderItemCounter.model.action.StdOrdereouEnforceItemCounter;
-import br.com.mind5.business.orderItemCounter.model.action.StdOrdereouMergeOrdemist;
+import br.com.mind5.business.orderItemCounter.model.action.StdOrdereouMergeOrdemarch;
 import br.com.mind5.business.orderItemCounter.model.checker.OrdereouCheckOrdemarch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -45,14 +45,14 @@ public final class NodeOrdereouSelect extends DeciTreeTemplateRead<OrdereouInfo>
 	@Override protected List<ActionStd<OrdereouInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdereouInfo> option) {
 		List<ActionStd<OrdereouInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrdereouInfo> mergeOrdemist = new StdOrdereouMergeOrdemist(option);
+		ActionStd<OrdereouInfo> mergeOrdemarch = new StdOrdereouMergeOrdemarch(option);
 		ActionLazy<OrdereouInfo> enforceItemCounter = new LazyOrdereouEnforceItemCounter(option.conn, option.schemaName);
 		ActionLazy<OrdereouInfo> obfuscateOrdemist = new LazyOrdereouObfuscateOrdemist(option.conn, option.schemaName);
 		
-		mergeOrdemist.addPostAction(enforceItemCounter);
+		mergeOrdemarch.addPostAction(enforceItemCounter);
 		enforceItemCounter.addPostAction(obfuscateOrdemist);
 		
-		actions.add(mergeOrdemist);	
+		actions.add(mergeOrdemarch);	
 		return actions;
 	}
 	

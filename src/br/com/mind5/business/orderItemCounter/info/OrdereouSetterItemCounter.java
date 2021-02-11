@@ -5,10 +5,10 @@ import br.com.mind5.info.InfoSetterTemplate;
 public final class OrdereouSetterItemCounter extends InfoSetterTemplate<OrdereouInfo> {
 	
 	@Override protected OrdereouInfo setAttrHook(OrdereouInfo recordInfo) {
-		if (recordInfo.ordemists == null)
+		if (recordInfo.ordemarches == null)
 			return setZeroItem(recordInfo);
 		
-		if (recordInfo.ordemists.isEmpty())
+		if (recordInfo.ordemarches.isEmpty())
 			return setZeroItem(recordInfo);
 		
 		return setTotItem(recordInfo);
@@ -24,7 +24,7 @@ public final class OrdereouSetterItemCounter extends InfoSetterTemplate<Ordereou
 	
 	
 	private OrdereouInfo setTotItem(OrdereouInfo recordInfo) {
-		recordInfo.itemCounter = recordInfo.ordemists.size();	
+		recordInfo.itemCounter = recordInfo.ordemarches.size();	
 		return recordInfo;
 	}
 }

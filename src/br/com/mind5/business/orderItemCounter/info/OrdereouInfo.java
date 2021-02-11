@@ -2,7 +2,7 @@ package br.com.mind5.business.orderItemCounter.info;
 
 import java.util.List;
 
-import br.com.mind5.business.orderItemList.info.OrdemistInfo;
+import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
@@ -11,7 +11,7 @@ public final class OrdereouInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
 	public long codOrder;
 	public int itemCounter;
-	public List<OrdemistInfo> ordemists;
+	public List<OrdemarchInfo> ordemarches;
 	public String username;
 	
 	
@@ -21,7 +21,7 @@ public final class OrdereouInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();	
 		codOrder = DefaultValue.number();
 		itemCounter = DefaultValue.number();
-		ordemists = DefaultValue.list();
+		ordemarches = DefaultValue.list();
 	}
 	
 	
@@ -41,7 +41,7 @@ public final class OrdereouInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		OrdereouInfo deepCopy = (OrdereouInfo) super.clone();
 		
-		deepCopy.ordemists = CloneUtil.cloneRecords(ordemists, this.getClass());		
+		deepCopy.ordemarches = CloneUtil.cloneRecords(ordemarches, this.getClass());		
 		return deepCopy;
 	}
 	

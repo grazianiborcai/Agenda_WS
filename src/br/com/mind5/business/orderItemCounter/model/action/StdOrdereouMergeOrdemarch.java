@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrdereouMergeOrdemist extends ActionStdTemplate<OrdereouInfo> {
+public final class StdOrdereouMergeOrdemarch extends ActionStdTemplate<OrdereouInfo> {
 
-	public StdOrdereouMergeOrdemist(DeciTreeOption<OrdereouInfo> option) {
+	public StdOrdereouMergeOrdemarch(DeciTreeOption<OrdereouInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<OrdereouInfo> buildVisitorHook(DeciTreeOption<OrdereouInfo> option) {
-		return new VisiOrdereouMergeOrdemist(option);
+		return new VisiOrdereouMergeOrdemarch(option);
 	}
 }
