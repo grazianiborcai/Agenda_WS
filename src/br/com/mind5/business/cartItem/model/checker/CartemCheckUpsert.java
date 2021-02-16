@@ -16,13 +16,13 @@ public final class CartemCheckUpsert extends ModelCheckerTemplateSimple<CartemIn
 	
 	
 	@Override protected boolean checkHook(CartemInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 		<= 0 	
-			|| recordInfo.codUser		<= 0 	
-			|| recordInfo.codStore 		<= 0
-			|| recordInfo.codMat		<= 0
-			|| recordInfo.quantity		<= 0
-			|| recordInfo.username		== null 
-			|| recordInfo.codLanguage	== null	)
+		if ( recordInfo.codOwner 	<= 0	||
+			 recordInfo.codUser		<= 0 	||
+			 recordInfo.codStore 	<= 0	||
+			 recordInfo.codMat		<= 0	||
+			 recordInfo.quantity	<= 0	||
+			 recordInfo.username	== null ||
+			 recordInfo.codLanguage	== null		)
 			
 			return super.FAILED;
 		

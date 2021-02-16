@@ -7,11 +7,12 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.action.LazyCartemNodeMatService;
 import br.com.mind5.business.cartItem.model.action.StdCartemEnforceWeekday;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckMatarchService;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckService;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -27,6 +28,13 @@ public final class NodeCartemMat extends DeciTreeTemplateWrite<CartemInfo> {
 		List<ModelChecker<CartemInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartemInfo> checker;	
 		ModelCheckerOption checkerOption;
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CartemCheckService(checkerOption);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;

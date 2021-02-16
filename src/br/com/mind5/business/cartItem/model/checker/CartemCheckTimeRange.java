@@ -1,6 +1,7 @@
 package br.com.mind5.business.cartItem.model.checker;
 
 import java.sql.Connection;
+import java.time.LocalTime;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.common.SystemCode;
@@ -17,16 +18,34 @@ public final class CartemCheckTimeRange extends ModelCheckerTemplateSimple<Carte
 	
 	
 	@Override protected boolean checkHook(CartemInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.beginTime == null || recordInfo.endTime == null )
-			return super.FAILED;			
+		if (isNull(recordInfo.beginTime, recordInfo.endTime) == true)
+			return super.FAILED;
 		
-		if (recordInfo.beginTime.equals(recordInfo.endTime))			
-			return super.FAILED;	
-		
-		if (recordInfo.beginTime.isAfter(recordInfo.endTime))			
-			return super.FAILED;	
+		if (isInvalidRange(recordInfo.beginTime, recordInfo.endTime) == true)
+			return super.FAILED;
 		
 		return super.SUCCESS;
+	}
+	
+	
+	
+	private boolean isNull(LocalTime beginTime, LocalTime endTime) {
+		if (beginTime == null || endTime == null )
+			return true;
+		
+		return false;
+	}
+	
+	
+	
+	private boolean isInvalidRange(LocalTime beginTime, LocalTime endTime) {
+		if (beginTime.equals(endTime))			
+			return true;	
+		
+		if (beginTime.isAfter(endTime))			
+			return true;
+		
+		return false;
 	}
 	
 	
