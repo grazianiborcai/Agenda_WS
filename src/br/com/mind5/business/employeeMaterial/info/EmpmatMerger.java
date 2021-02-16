@@ -3,8 +3,8 @@ package br.com.mind5.business.employeeMaterial.info;
 import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
-import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeMaterialSearch.info.EmpmarchInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
@@ -37,13 +37,13 @@ public final class EmpmatMerger {
 	
 	
 	
-	public static List<EmpmatInfo> mergeWithEmplis(List<EmpmatInfo> baseInfos, List<EmplisInfo> selectedInfos) {
-		InfoMergerBuilder<EmpmatInfo, EmplisInfo> builder = new InfoMergerBuilder<>();
+	public static List<EmpmatInfo> mergeWithEmplres(List<EmpmatInfo> baseInfos, List<EmplresInfo> selectedInfos) {
+		InfoMergerBuilder<EmpmatInfo, EmplresInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpmatVisiMergeEmplis());
-		InfoMerger<EmpmatInfo, EmplisInfo> merger = builder.build();		
+		builder.addVisitor(new EmpmatVisiMergeEmplres());
+		InfoMerger<EmpmatInfo, EmplresInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

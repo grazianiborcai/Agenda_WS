@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpmatMergeEmplis extends ActionStdTemplate<EmpmatInfo> {
+public final class StdEmpmatMergeEmplres extends ActionStdTemplate<EmpmatInfo> {
 
-	public StdEmpmatMergeEmplis(DeciTreeOption<EmpmatInfo> option) {
+	public StdEmpmatMergeEmplres(DeciTreeOption<EmpmatInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<EmpmatInfo> buildVisitorHook(DeciTreeOption<EmpmatInfo> option) {
-		return new VisiEmpmatMergeEmplis(option);
+		return new VisiEmpmatMergeEmplres(option);
 	}
 }

@@ -3,7 +3,7 @@ package br.com.mind5.business.employeeMaterial.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
@@ -15,7 +15,7 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 	public long codMat;
 	public long codStore;
 	public MatlisInfo matlisData;
-	public EmplisInfo emplisData;
+	public EmplresInfo emplresData;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -34,7 +34,7 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 		recordMode = DefaultValue.recordMode();
 		lastChangedBy = DefaultValue.number();
 		matlisData = DefaultValue.object();
-		emplisData = DefaultValue.object();
+		emplresData = DefaultValue.object();
 		createdBy = DefaultValue.number();
 	}
 	
@@ -56,7 +56,7 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 		EmpmatInfo deepCopy = (EmpmatInfo) super.clone();
 		
 		deepCopy.matlisData = CloneUtil.cloneRecord(deepCopy.matlisData, this.getClass());
-		deepCopy.emplisData = CloneUtil.cloneRecord(deepCopy.emplisData, this.getClass());
+		deepCopy.emplresData = CloneUtil.cloneRecord(deepCopy.emplresData, this.getClass());
 		
 		return deepCopy;
 	}
