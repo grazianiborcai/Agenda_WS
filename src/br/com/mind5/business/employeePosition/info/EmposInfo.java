@@ -3,7 +3,7 @@ package br.com.mind5.business.employeePosition.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
@@ -20,7 +20,7 @@ public final class EmposInfo extends InfoRecord implements Cloneable {
 	public long createdBy;	
 	public String username;
 	public String recordMode;
-	public EmplisInfo emplisData;
+	public EmplresInfo emplresData;
 	
 	
 	public EmposInfo() {
@@ -33,7 +33,7 @@ public final class EmposInfo extends InfoRecord implements Cloneable {
 		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		createdBy = DefaultValue.number();
-		emplisData = DefaultValue.object();
+		emplresData = DefaultValue.object();
 	}
 	
 	
@@ -53,7 +53,7 @@ public final class EmposInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		EmposInfo deepCopy = (EmposInfo) super.clone();
 		
-		deepCopy.emplisData = CloneUtil.cloneRecord(emplisData, this.getClass());
+		deepCopy.emplresData = CloneUtil.cloneRecord(emplresData, this.getClass());
 		
 		return deepCopy;
 	}
