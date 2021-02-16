@@ -3,12 +3,12 @@ package br.com.mind5.business.scheduleLineSnapshot.info;
 import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.security.userList.info.UselisInfo;
 
 public final class SchedinapMerger {
@@ -38,13 +38,13 @@ public final class SchedinapMerger {
 	
 	
 	
-	public static List<SchedinapInfo> mergeWithEmplis(List<SchedinapInfo> baseInfos, List<EmplisInfo> selectedInfos) {
-		InfoMergerBuilder<SchedinapInfo, EmplisInfo> builder = new InfoMergerBuilder<>();
+	public static List<SchedinapInfo> mergeWithEmplres(List<SchedinapInfo> baseInfos, List<EmplresInfo> selectedInfos) {
+		InfoMergerBuilder<SchedinapInfo, EmplresInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedinapVisiMergeEmplis());
-		InfoMerger<SchedinapInfo, EmplisInfo> merger = builder.build();		
+		builder.addVisitor(new SchedinapVisiMergeEmplres());
+		InfoMerger<SchedinapInfo, EmplresInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

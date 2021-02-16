@@ -8,7 +8,7 @@ import br.com.mind5.business.scheduleLineSnapshot.model.action.LazySchedinapDaoI
 import br.com.mind5.business.scheduleLineSnapshot.model.action.LazySchedinapMergapStolis;
 import br.com.mind5.business.scheduleLineSnapshot.model.action.LazySchedinapMergapUselis;
 import br.com.mind5.business.scheduleLineSnapshot.model.action.LazySchedinapMergeCuslis;
-import br.com.mind5.business.scheduleLineSnapshot.model.action.LazySchedinapMergeEmplis;
+import br.com.mind5.business.scheduleLineSnapshot.model.action.LazySchedinapMergeEmplres;
 import br.com.mind5.business.scheduleLineSnapshot.model.action.LazySchedinapMergeMatlis;
 import br.com.mind5.business.scheduleLineSnapshot.model.checker.SchedinapCheckLangu;
 import br.com.mind5.business.scheduleLineSnapshot.model.checker.SchedinapCheckOwner;
@@ -76,15 +76,15 @@ public final class RootSchedinapInsert extends DeciTreeTemplateWrite<SchedinapIn
 		ActionLazy<SchedinapInfo> mergeStolis = new LazySchedinapMergapStolis(option.conn, option.schemaName);
 		ActionLazy<SchedinapInfo> mergCuslis = new LazySchedinapMergeCuslis(option.conn, option.schemaName);
 		ActionLazy<SchedinapInfo> mergUselis = new LazySchedinapMergapUselis(option.conn, option.schemaName);
-		ActionLazy<SchedinapInfo> mergeEmplis = new LazySchedinapMergeEmplis(option.conn, option.schemaName);
+		ActionLazy<SchedinapInfo> mergeEmplres = new LazySchedinapMergeEmplres(option.conn, option.schemaName);
 		ActionLazy<SchedinapInfo> insert = new LazySchedinapDaoInsert(option.conn, option.schemaName);
 		
 		nodeOrder.addPostAction(mergeMatlis);
 		mergeMatlis.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergCuslis);		
 		mergCuslis.addPostAction(mergUselis);		
-		mergUselis.addPostAction(mergeEmplis);
-		mergeEmplis.addPostAction(insert);
+		mergUselis.addPostAction(mergeEmplres);
+		mergeEmplres.addPostAction(insert);
 		
 		actions.add(nodeOrder);
 		return actions;
