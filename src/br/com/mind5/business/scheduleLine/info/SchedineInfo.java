@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.CloneUtil;
@@ -42,7 +42,7 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 	public long codCustomer;
 	public MatlisInfo matlisData;
 	public StolisInfo stolisData;
-	public EmplisInfo emplisData;
+	public EmplresInfo emplresData;
 	public LocalDateTime createdOn;
 	public long createdBy;
 	public LocalDateTime lastChanged;
@@ -77,7 +77,7 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 		recordMode = DefaultValue.recordMode();
 		matlisData = DefaultValue.object();
 		stolisData = DefaultValue.object();
-		emplisData = DefaultValue.object();
+		emplresData = DefaultValue.object();
 	}
 	
 	
@@ -103,7 +103,7 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 		deepCopy.lastChanged = lastChanged;
 		deepCopy.matlisData = CloneUtil.cloneRecord(matlisData, this.getClass());
 		deepCopy.stolisData = CloneUtil.cloneRecord(stolisData, this.getClass());
-		deepCopy.emplisData = CloneUtil.cloneRecord(emplisData, this.getClass());
+		deepCopy.emplresData = CloneUtil.cloneRecord(emplresData, this.getClass());
 		
 		return deepCopy;
 	}

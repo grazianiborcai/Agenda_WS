@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedineMergeEmplis extends ActionLazyTemplate<SchedineInfo, SchedineInfo> {
+public final class LazySchedineMergeEmplres extends ActionLazyTemplate<SchedineInfo, SchedineInfo> {
 	
-	public LazySchedineMergeEmplis(Connection conn, String schemaName) {
+	public LazySchedineMergeEmplres(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazySchedineMergeEmplis extends ActionLazyTemplate<SchedineIn
 	
 	
 	@Override protected ActionStd<SchedineInfo> getInstanceOfActionHook(DeciTreeOption<SchedineInfo> option) {
-		return new StdSchedineMergeEmplis(option);
+		return new StdSchedineMergeEmplres(option);
 	}
 	
 	

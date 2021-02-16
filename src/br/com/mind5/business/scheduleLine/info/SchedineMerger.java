@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
 import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.orderItemList.info.OrdemistInfo;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
@@ -56,13 +56,13 @@ public final class SchedineMerger {
 	
 	
 	
-	public static List<SchedineInfo> mergeWithEmplis(List<SchedineInfo> baseInfos, List<EmplisInfo> selectedInfos) {
-		InfoMergerBuilder<SchedineInfo, EmplisInfo> builder = new InfoMergerBuilder<>();
+	public static List<SchedineInfo> mergeWithEmplres(List<SchedineInfo> baseInfos, List<EmplresInfo> selectedInfos) {
+		InfoMergerBuilder<SchedineInfo, EmplresInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeEmplis());
-		InfoMerger<SchedineInfo, EmplisInfo> merger = builder.build();		
+		builder.addVisitor(new SchedineVisiMergeEmplres());
+		InfoMerger<SchedineInfo, EmplresInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

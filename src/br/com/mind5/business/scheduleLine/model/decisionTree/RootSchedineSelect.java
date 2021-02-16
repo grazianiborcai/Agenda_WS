@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeEmplis;
+import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeEmplres;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeMatlis;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeSchedatus;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeStolis;
@@ -66,14 +66,14 @@ public final class RootSchedineSelect extends DeciTreeTemplateWrite<SchedineInfo
 		ActionStd<SchedineInfo> select = new StdSchedineMergeToSelect(option);
 		ActionLazy<SchedineInfo> mergeMatlis = new LazySchedineMergeMatlis(option.conn, option.schemaName);	
 		ActionLazy<SchedineInfo> mergeStolis = new LazySchedineMergeStolis(option.conn, option.schemaName);
-		ActionLazy<SchedineInfo> mergeEmplis = new LazySchedineMergeEmplis(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> mergeEmplres = new LazySchedineMergeEmplres(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> mergeStatus = new LazySchedineMergeSchedatus(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> mergeWeekday = new LazySchedineMergeWeekday(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMatlis);
 		mergeMatlis.addPostAction(mergeStolis);
-		mergeStolis.addPostAction(mergeEmplis);
-		mergeEmplis.addPostAction(mergeStatus);
+		mergeStolis.addPostAction(mergeEmplres);
+		mergeEmplres.addPostAction(mergeStatus);
 		mergeStatus.addPostAction(mergeWeekday);
 		
 		actions.add(select);
