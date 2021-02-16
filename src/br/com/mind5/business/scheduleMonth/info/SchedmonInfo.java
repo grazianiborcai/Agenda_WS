@@ -3,7 +3,7 @@ package br.com.mind5.business.scheduleMonth.info;
 import java.util.List;
 
 import br.com.mind5.business.calendarDate.info.CalateInfo;
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
@@ -21,7 +21,7 @@ public final class SchedmonInfo extends InfoRecord implements Cloneable {
 	public List<SchedonthatInfo> schedonthates;
 	public List<StolisInfo> stolises;
 	public List<MatlisInfo> matlises;
-	public List<EmplisInfo> emplises;
+	public List<EmplresInfo> emplreses;
 	public List<CalateInfo> calates;
 	public String username;	
 	
@@ -38,7 +38,7 @@ public final class SchedmonInfo extends InfoRecord implements Cloneable {
 		schedonthates = DefaultValue.list();
 		stolises = DefaultValue.list();
 		matlises = DefaultValue.list();
-		emplises = DefaultValue.list();
+		emplreses = DefaultValue.list();
 		calates = DefaultValue.list();
 	}
 	
@@ -62,7 +62,7 @@ public final class SchedmonInfo extends InfoRecord implements Cloneable {
 		deepCopy.schedonthates = CloneUtil.cloneRecords(schedonthates, this.getClass());
 		deepCopy.stolises = CloneUtil.cloneRecords(stolises, this.getClass());
 		deepCopy.matlises = CloneUtil.cloneRecords(matlises, this.getClass());
-		deepCopy.emplises = CloneUtil.cloneRecords(emplises, this.getClass());
+		deepCopy.emplreses = CloneUtil.cloneRecords(emplreses, this.getClass());
 		deepCopy.calates = CloneUtil.cloneRecords(calates, this.getClass());
 		
 		return deepCopy;

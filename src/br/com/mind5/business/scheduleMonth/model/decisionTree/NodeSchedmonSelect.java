@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
 import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeCalate;
-import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeEmplis;
+import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeEmplres;
 import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeMatlis;
 import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeStolis;
 import br.com.mind5.business.scheduleMonth.model.action.StdSchedmonMergeCalate;
@@ -50,13 +50,13 @@ public final class NodeSchedmonSelect extends DeciTreeTemplateWrite<SchedmonInfo
 		ActionStd<SchedmonInfo> mergeSchedonthat = new StdSchedmonMergeSchedonthat(option);
 		ActionLazy<SchedmonInfo> mergeStolis = new LazySchedmonMergeStolis(option.conn, option.schemaName);
 		ActionLazy<SchedmonInfo> mergeMatlis = new LazySchedmonMergeMatlis(option.conn, option.schemaName);
-		ActionLazy<SchedmonInfo> mergeEmplis = new LazySchedmonMergeEmplis(option.conn, option.schemaName);
+		ActionLazy<SchedmonInfo> mergeEmplres = new LazySchedmonMergeEmplres(option.conn, option.schemaName);
 		ActionLazy<SchedmonInfo> mergeCalate = new LazySchedmonMergeCalate(option.conn, option.schemaName);
 		
 		mergeSchedonthat.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeMatlis);
-		mergeMatlis.addPostAction(mergeEmplis);
-		mergeEmplis.addPostAction(mergeCalate);
+		mergeMatlis.addPostAction(mergeEmplres);
+		mergeEmplres.addPostAction(mergeCalate);
 		
 		actions.add(mergeSchedonthat);
 		return actions;

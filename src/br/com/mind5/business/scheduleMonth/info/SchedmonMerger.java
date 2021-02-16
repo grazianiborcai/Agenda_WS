@@ -3,21 +3,21 @@ package br.com.mind5.business.scheduleMonth.info;
 import java.util.List;
 
 import br.com.mind5.business.calendarDate.info.CalateInfo;
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 
 public final class SchedmonMerger {
-	public static List<SchedmonInfo> mergeWithEmplis(List<SchedmonInfo> baseInfos, List<EmplisInfo> selectedInfos) {
-		InfoMergerBuilder<SchedmonInfo, EmplisInfo> builder = new InfoMergerBuilder<>();
+	public static List<SchedmonInfo> mergeWithEmplres(List<SchedmonInfo> baseInfos, List<EmplresInfo> selectedInfos) {
+		InfoMergerBuilder<SchedmonInfo, EmplresInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedmonVisiMergeEmplis());
-		InfoMerger<SchedmonInfo, EmplisInfo> merger = builder.build();		
+		builder.addVisitor(new SchedmonVisiMergeEmplres());
+		InfoMerger<SchedmonInfo, EmplresInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
