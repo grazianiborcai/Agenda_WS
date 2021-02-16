@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.DefaultValue;
@@ -45,7 +45,7 @@ public final class OrdemrapInfo extends InfoRecord implements Cloneable, Compara
 	public long lastChangedBy;
 	public String username;
 	public StolisInfo stolisData;
-	public EmplisInfo emplisData;
+	public EmplresInfo emplresData;
 	public MatInfo matData;
 	
 	
@@ -73,7 +73,7 @@ public final class OrdemrapInfo extends InfoRecord implements Cloneable, Compara
 		lastChangedBy = DefaultValue.number();
 		codRefundPolicyGroup = DefaultValue.number();
 		stolisData = DefaultValue.object();
-		emplisData = DefaultValue.object();
+		emplresData = DefaultValue.object();
 		matData = DefaultValue.object();
 	}
 	
@@ -99,7 +99,7 @@ public final class OrdemrapInfo extends InfoRecord implements Cloneable, Compara
 		deepCopy.endTime = endTime;
 		deepCopy.lastChanged = lastChanged;
 		deepCopy.stolisData = cloneStolis(stolisData);
-		deepCopy.emplisData = cloneEmplis(emplisData);
+		deepCopy.emplresData = cloneEmplis(emplresData);
 		deepCopy.matData = cloneMat(matData);
 		
 		return deepCopy;
@@ -129,11 +129,11 @@ public final class OrdemrapInfo extends InfoRecord implements Cloneable, Compara
 	
 	
 	
-	private EmplisInfo cloneEmplis(EmplisInfo recordInfo) throws CloneNotSupportedException {
-		EmplisInfo result = null;
+	private EmplresInfo cloneEmplis(EmplresInfo recordInfo) throws CloneNotSupportedException {
+		EmplresInfo result = null;
 		
 		if (recordInfo != null)
-			result = (EmplisInfo) recordInfo.clone();
+			result = (EmplresInfo) recordInfo.clone();
 		
 		return result;
 	}		
