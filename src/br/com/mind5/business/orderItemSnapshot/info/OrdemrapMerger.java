@@ -3,7 +3,7 @@ package br.com.mind5.business.orderItemSnapshot.info;
 import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
@@ -51,13 +51,13 @@ public final class OrdemrapMerger {
 	
 	
 	
-	public static List<OrdemrapInfo> mergeWithEmplis(List<OrdemrapInfo> baseInfos, List<EmplisInfo> selectedInfos) {
-		InfoMergerBuilder<OrdemrapInfo, EmplisInfo> builder = new InfoMergerBuilder<>();
+	public static List<OrdemrapInfo> mergeWithEmplres(List<OrdemrapInfo> baseInfos, List<EmplresInfo> selectedInfos) {
+		InfoMergerBuilder<OrdemrapInfo, EmplresInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdemrapVisiMergeEmplis());
-		InfoMerger<OrdemrapInfo, EmplisInfo> merger = builder.build();		
+		builder.addVisitor(new OrdemrapVisiMergeEmplres());
+		InfoMerger<OrdemrapInfo, EmplresInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
-import br.com.mind5.business.orderItemSnapshot.model.action.StdOrdemrapMergeEmplis;
+import br.com.mind5.business.orderItemSnapshot.model.action.StdOrdemrapMergeEmplres;
 import br.com.mind5.business.orderItemSnapshot.model.action.StdOrdemrapSuccess;
 import br.com.mind5.business.orderItemSnapshot.model.checker.OrdemrapCheckHasEmp;
 import br.com.mind5.model.action.ActionStd;
@@ -42,9 +42,9 @@ public final class NodeOrdemrapEmp extends DeciTreeTemplateWrite<OrdemrapInfo> {
 	@Override protected List<ActionStd<OrdemrapInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdemrapInfo> option) {
 		List<ActionStd<OrdemrapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrdemrapInfo> mergeEmplis = new StdOrdemrapMergeEmplis(option);
+		ActionStd<OrdemrapInfo> mergeEmplres = new StdOrdemrapMergeEmplres(option);
 		
-		actions.add(mergeEmplis);
+		actions.add(mergeEmplres);
 		return actions;
 	}
 	

@@ -3,19 +3,19 @@ package br.com.mind5.business.orderItemSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class OrdemrapVisiMergeEmplis extends InfoMergerVisitorTemplate<OrdemrapInfo, EmplisInfo> {
+final class OrdemrapVisiMergeEmplres extends InfoMergerVisitorTemplate<OrdemrapInfo, EmplresInfo> {
 
-	@Override public boolean shouldMerge(OrdemrapInfo baseInfo, EmplisInfo selectedInfo) {
+	@Override public boolean shouldMerge(OrdemrapInfo baseInfo, EmplresInfo selectedInfo) {
 		return (baseInfo.codOwner 	 == selectedInfo.codOwner 	&& 
 				baseInfo.codEmployee == selectedInfo.codEmployee	);
 	}
 	
 	
 	
-	@Override public List<OrdemrapInfo> merge(OrdemrapInfo baseInfo, EmplisInfo selectedInfo) {
+	@Override public List<OrdemrapInfo> merge(OrdemrapInfo baseInfo, EmplresInfo selectedInfo) {
 		List<OrdemrapInfo> results = new ArrayList<>();
 		
 		baseInfo.codEmployeeSnapshot = selectedInfo.codSnapshot;
