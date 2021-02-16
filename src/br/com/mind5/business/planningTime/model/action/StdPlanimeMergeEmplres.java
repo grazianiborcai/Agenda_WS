@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdPlanimeMergeEmplis extends ActionStdTemplate<PlanimeInfo> {
+final class StdPlanimeMergeEmplres extends ActionStdTemplate<PlanimeInfo> {
 
-	public StdPlanimeMergeEmplis(DeciTreeOption<PlanimeInfo> option) {
+	public StdPlanimeMergeEmplres(DeciTreeOption<PlanimeInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<PlanimeInfo> buildVisitorHook(DeciTreeOption<PlanimeInfo> option) {
-		return new VisiPlanimeMergeEmplis(option);
+		return new VisiPlanimeMergeEmplres(option);
 	}
 }

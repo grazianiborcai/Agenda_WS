@@ -3,15 +3,15 @@ package br.com.mind5.business.planningTime.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class PlanimeVisiMergeEmplis extends InfoMergerVisitorTemplate<PlanimeInfo, EmplisInfo> {
+final class PlanimeVisiMergeEmplres extends InfoMergerVisitorTemplate<PlanimeInfo, EmplresInfo> {
 	
 	@Override public List<PlanimeInfo> beforeMerge(List<PlanimeInfo> baseInfos) {
 		for (PlanimeInfo eachBase : baseInfos) {
-			eachBase.emplises = new ArrayList<>();
+			eachBase.emplreses = new ArrayList<>();
 		}
 		
 		return baseInfos;
@@ -19,16 +19,16 @@ final class PlanimeVisiMergeEmplis extends InfoMergerVisitorTemplate<PlanimeInfo
 	
 	
 	
-	@Override public boolean shouldMerge(PlanimeInfo baseInfo, EmplisInfo selectedInfo) {
+	@Override public boolean shouldMerge(PlanimeInfo baseInfo, EmplresInfo selectedInfo) {
 		return (selectedInfo.codOwner == baseInfo.codOwner);
 	}
 	
 	
 	
-	@Override public List<PlanimeInfo> merge(PlanimeInfo baseInfo, EmplisInfo selectedInfo) {
+	@Override public List<PlanimeInfo> merge(PlanimeInfo baseInfo, EmplresInfo selectedInfo) {
 		List<PlanimeInfo> results = new ArrayList<>();
 		
-		baseInfo.emplises.add(selectedInfo);
+		baseInfo.emplreses.add(selectedInfo);
 		
 		results.add(baseInfo);
 		return results;

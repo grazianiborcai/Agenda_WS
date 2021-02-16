@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
@@ -80,13 +80,13 @@ final class PlanimeUniquifier implements InfoUniquifier<PlanimeInfo> {
 	
 	
 	private PlanimeInfo uniquifyEmployee(PlanimeInfo result) {
-		if (result.emplises == null)
+		if (result.emplreses == null)
 			return result;
 		
-		List<EmplisInfo> allEmployees = new ArrayList<>(result.emplises);
+		List<EmplresInfo> allEmployees = new ArrayList<>(result.emplreses);
 		allEmployees = allEmployees.stream().distinct().collect(Collectors.toList());			
 		
-		result.emplises = allEmployees;
+		result.emplreses = allEmployees;
 		return result;
 	}
 	

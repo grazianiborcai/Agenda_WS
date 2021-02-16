@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeDaypart;
-import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeEmplis;
+import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeEmplres;
 import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeMatlis;
 import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeMoonase;
 import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeStolis;
@@ -52,7 +52,7 @@ public class RootPlanimeSelect extends DeciTreeTemplateWrite<PlanimeInfo> {
 		ActionStd<PlanimeInfo> mergePlanata = new StdPlanimeMergePlanata(option);	
 		ActionLazy<PlanimeInfo> pruneDaypart = new LazyPlanimePruneDaypart(option.conn, option.schemaName);
 		ActionLazy<PlanimeInfo> mergeStolis = new LazyPlanimeMergeStolis(option.conn, option.schemaName);	
-		ActionLazy<PlanimeInfo> mergeEmplis = new LazyPlanimeMergeEmplis(option.conn, option.schemaName);
+		ActionLazy<PlanimeInfo> mergeEmplres = new LazyPlanimeMergeEmplres(option.conn, option.schemaName);
 		ActionLazy<PlanimeInfo> mergeMatlis = new LazyPlanimeMergeMatlis(option.conn, option.schemaName);			
 		ActionLazy<PlanimeInfo> mergeWeekday = new LazyPlanimeMergeWeekday(option.conn, option.schemaName);
 		ActionLazy<PlanimeInfo> mergeDaypart = new LazyPlanimeMergeDaypart(option.conn, option.schemaName);
@@ -60,8 +60,8 @@ public class RootPlanimeSelect extends DeciTreeTemplateWrite<PlanimeInfo> {
 		
 		mergePlanata.addPostAction(pruneDaypart);
 		pruneDaypart.addPostAction(mergeStolis);
-		mergeStolis.addPostAction(mergeEmplis);
-		mergeEmplis.addPostAction(mergeMatlis);
+		mergeStolis.addPostAction(mergeEmplres);
+		mergeEmplres.addPostAction(mergeMatlis);
 		mergeMatlis.addPostAction(mergeWeekday);
 		mergeWeekday.addPostAction(mergeDaypart);
 		mergeDaypart.addPostAction(mergeMoonase);

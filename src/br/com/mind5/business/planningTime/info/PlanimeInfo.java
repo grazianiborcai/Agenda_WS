@@ -4,10 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.masterData.dayParting.info.DaypartInfo;
@@ -20,7 +21,7 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	public List<LocalDate> dates;
 	public List<StolisInfo> stolises;
 	public List<MatlisInfo> matlises;
-	public List<EmplisInfo> emplises;
+	public List<EmplresInfo> emplreses;
 	public List<WeekdayInfo> weekdays;
 	public List<DaypartInfo> dayparts;
 	public List<MoonaseInfo> moonases;
@@ -34,7 +35,7 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 		dates = DefaultValue.list();
 		stolises = DefaultValue.list();
 		matlises = DefaultValue.list();
-		emplises = DefaultValue.list();
+		emplreses = DefaultValue.list();
 		weekdays = DefaultValue.list();
 		dayparts = DefaultValue.list();
 		moonases = DefaultValue.list();
@@ -59,13 +60,13 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 		PlanimeInfo deepCopy = (PlanimeInfo) super.clone();
 		
 		deepCopy.dates = cloneDates(deepCopy.dates);
-		deepCopy.stolises = cloneStores(deepCopy.stolises);
-		deepCopy.matlises = cloneMaterials(deepCopy.matlises);
-		deepCopy.emplises = cloneEmployees(deepCopy.emplises);
-		deepCopy.weekdays = cloneWeekdays(deepCopy.weekdays);
-		deepCopy.dayparts = cloneDayparts(deepCopy.dayparts);
-		deepCopy.moonases = cloneMoonases(deepCopy.moonases);
-		deepCopy.planatas = clonePlanatas(deepCopy.planatas);		
+		deepCopy.stolises = CloneUtil.cloneRecords(deepCopy.stolises, this.getClass());
+		deepCopy.matlises = CloneUtil.cloneRecords(deepCopy.matlises, this.getClass());
+		deepCopy.emplreses = CloneUtil.cloneRecords(deepCopy.emplreses, this.getClass());
+		deepCopy.weekdays = CloneUtil.cloneRecords(deepCopy.weekdays, this.getClass());
+		deepCopy.dayparts = CloneUtil.cloneRecords(deepCopy.dayparts, this.getClass());
+		deepCopy.moonases = CloneUtil.cloneRecords(deepCopy.moonases, this.getClass());
+		deepCopy.planatas = CloneUtil.cloneRecords(deepCopy.planatas, this.getClass());		
 		
 		return deepCopy;
 	}
@@ -81,118 +82,6 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<StolisInfo> cloneStores(List<StolisInfo> infoRecords) throws CloneNotSupportedException {
-		if (infoRecords == null)
-			return infoRecords;		
-		
-		List<StolisInfo> clones = new ArrayList<>();
-		
-		for (StolisInfo eachRecord : infoRecords) {
-			StolisInfo clonedRecord = (StolisInfo) eachRecord.clone();
-			clones.add(clonedRecord);
-		}
-		
-		return clones;
-	}
-	
-	
-	
-	private List<MatlisInfo> cloneMaterials(List<MatlisInfo> infoRecords) throws CloneNotSupportedException {
-		if (infoRecords == null)
-			return infoRecords;		
-		
-		List<MatlisInfo> clones = new ArrayList<>();
-		
-		for (MatlisInfo eachRecord : infoRecords) {
-			MatlisInfo clonedRecord = (MatlisInfo) eachRecord.clone();
-			clones.add(clonedRecord);
-		}
-		
-		return clones;
-	}
-	
-	
-	
-	private List<EmplisInfo> cloneEmployees(List<EmplisInfo> infoRecords) throws CloneNotSupportedException {
-		if (infoRecords == null)
-			return infoRecords;		
-		
-		List<EmplisInfo> clones = new ArrayList<>();
-		
-		for (EmplisInfo eachRecord : infoRecords) {
-			EmplisInfo clonedRecord = (EmplisInfo) eachRecord.clone();
-			clones.add(clonedRecord);
-		}
-		
-		return clones;
-	}
-	
-	
-	
-	private List<WeekdayInfo> cloneWeekdays(List<WeekdayInfo> infoRecords) throws CloneNotSupportedException {
-		if (infoRecords == null)
-			return infoRecords;		
-		
-		List<WeekdayInfo> clones = new ArrayList<>();
-		
-		for (WeekdayInfo eachRecord : infoRecords) {
-			WeekdayInfo clonedRecord = (WeekdayInfo) eachRecord.clone();
-			clones.add(clonedRecord);
-		}
-		
-		return clones;
-	}
-	
-	
-	
-	private List<DaypartInfo> cloneDayparts(List<DaypartInfo> infoRecords) throws CloneNotSupportedException {
-		if (infoRecords == null)
-			return infoRecords;		
-		
-		List<DaypartInfo> clones = new ArrayList<>();
-		
-		for (DaypartInfo eachRecord : infoRecords) {
-			DaypartInfo clonedRecord = (DaypartInfo) eachRecord.clone();
-			clones.add(clonedRecord);
-		}
-		
-		return clones;
-	}
-	
-	
-	
-	private List<MoonaseInfo> cloneMoonases(List<MoonaseInfo> infoRecords) throws CloneNotSupportedException {
-		if (infoRecords == null)
-			return infoRecords;		
-		
-		List<MoonaseInfo> clones = new ArrayList<>();
-		
-		for (MoonaseInfo eachRecord : infoRecords) {
-			MoonaseInfo clonedRecord = (MoonaseInfo) eachRecord.clone();
-			clones.add(clonedRecord);
-		}
-		
-		return clones;
-	}
-	
-	
-	
-	private List<PlanataInfo> clonePlanatas(List<PlanataInfo> infoRecords) throws CloneNotSupportedException {
-		if (infoRecords == null)
-			return infoRecords;		
-		
-		List<PlanataInfo> clones = new ArrayList<>();
-		
-		for (PlanataInfo eachPlanata : infoRecords) {
-			PlanataInfo clonedRecord = (PlanataInfo) eachPlanata.clone();
-			clones.add(clonedRecord);
-		}
-		
-		return clones;
-	}
-	
-	
-	
 	@Override public int hashCode() {
 		int result = 17;
 		
@@ -204,8 +93,8 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 		if (matlises != null)
 			result = result * 31 + matlises.hashCode();
 		
-		if (emplises != null)
-			result = result * 31 + emplises.hashCode();
+		if (emplreses != null)
+			result = result * 31 + emplreses.hashCode();
 		
 		if (weekdays != null)
 			result = result * 31 + weekdays.hashCode();
@@ -241,7 +130,7 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 		return (codOwner == obj.codOwner					&&
 				super.isListEqual(stolises , obj.stolises)	&&
 				super.isListEqual(matlises , obj.matlises) 	&&
-				super.isListEqual(emplises , obj.emplises) 	&&
+				super.isListEqual(emplreses , obj.emplreses) 	&&
 				super.isListEqual(weekdays , obj.weekdays) 	&&				
 				super.isListDateEqual(dates , obj.dates) 	&&
 				super.isListEqual(dayparts , obj.dayparts) 	&&

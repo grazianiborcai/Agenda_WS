@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPlanimeMergeEmplis extends ActionLazyTemplate<PlanimeInfo, PlanimeInfo> {
+public final class LazyPlanimeMergeEmplres extends ActionLazyTemplate<PlanimeInfo, PlanimeInfo> {
 
-	public LazyPlanimeMergeEmplis(Connection conn, String schemaName) {
+	public LazyPlanimeMergeEmplres(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyPlanimeMergeEmplis extends ActionLazyTemplate<PlanimeInfo
 	
 	
 	@Override protected ActionStd<PlanimeInfo> getInstanceOfActionHook(DeciTreeOption<PlanimeInfo> option) {
-		return new StdPlanimeMergeEmplis(option);
+		return new StdPlanimeMergeEmplres(option);
 	}
 	
 	
