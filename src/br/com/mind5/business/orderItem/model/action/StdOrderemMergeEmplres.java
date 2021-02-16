@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrderemMergeEmplis extends ActionStdTemplate<OrderemInfo> {
+public final class StdOrderemMergeEmplres extends ActionStdTemplate<OrderemInfo> {
 
-	public StdOrderemMergeEmplis(DeciTreeOption<OrderemInfo> option) {
+	public StdOrderemMergeEmplres(DeciTreeOption<OrderemInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<OrderemInfo> buildVisitorHook(DeciTreeOption<OrderemInfo> option) {
-		return new VisiOrderemMergeEmplis(option);
+		return new VisiOrderemMergeEmplres(option);
 	}
 }

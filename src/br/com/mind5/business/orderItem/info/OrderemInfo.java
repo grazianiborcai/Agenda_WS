@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.CloneUtil;
@@ -45,7 +45,7 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 	public long lastChangedBy;
 	public String username;
 	public StolisInfo stolisData;
-	public EmplisInfo emplisData;
+	public EmplresInfo emplresData;
 	public MatlisInfo matlisData;
 	
 	
@@ -70,7 +70,7 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 		lastChangedBy = DefaultValue.number();	
 		codRefundPolicyGroup = DefaultValue.number();
 		stolisData = DefaultValue.object();
-		emplisData = DefaultValue.object();
+		emplresData = DefaultValue.object();
 		matlisData = DefaultValue.object();
 	}
 	
@@ -96,7 +96,7 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 		deepCopy.endTime = endTime;
 		deepCopy.lastChanged = lastChanged;
 		deepCopy.stolisData = CloneUtil.cloneRecord(stolisData, this.getClass());
-		deepCopy.emplisData = CloneUtil.cloneRecord(emplisData, this.getClass());
+		deepCopy.emplresData = CloneUtil.cloneRecord(emplresData, this.getClass());
 		deepCopy.matlisData = CloneUtil.cloneRecord(matlisData, this.getClass());
 		
 		return deepCopy;

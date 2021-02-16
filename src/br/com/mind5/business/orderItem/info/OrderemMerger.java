@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
@@ -164,13 +164,13 @@ public final class OrderemMerger {
 	
 	
 	
-	public static List<OrderemInfo> mergeWithEmplis(List<OrderemInfo> baseInfos, List<EmplisInfo> selectedInfos) {
-		InfoMergerBuilder<OrderemInfo, EmplisInfo> builder = new InfoMergerBuilder<>();
+	public static List<OrderemInfo> mergeWithEmplres(List<OrderemInfo> baseInfos, List<EmplresInfo> selectedInfos) {
+		InfoMergerBuilder<OrderemInfo, EmplresInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderemVisiMergeEmplis());
-		InfoMerger<OrderemInfo, EmplisInfo> merger = builder.build();		
+		builder.addVisitor(new OrderemVisiMergeEmplres());
+		InfoMerger<OrderemInfo, EmplresInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	
