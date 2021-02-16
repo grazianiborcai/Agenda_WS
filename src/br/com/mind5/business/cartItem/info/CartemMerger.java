@@ -3,12 +3,12 @@ package br.com.mind5.business.cartItem.info;
 import java.util.List;
 
 import br.com.mind5.business.cartItemSearch.info.CartemarchInfo;
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
@@ -53,13 +53,13 @@ public final class CartemMerger {
 	
 	
 	
-	public static List<CartemInfo> mergeWithEmplis(List<CartemInfo> baseInfos, List<EmplisInfo> selectedInfos) {
-		InfoMergerBuilder<CartemInfo, EmplisInfo> builder = new InfoMergerBuilder<>();
+	public static List<CartemInfo> mergeWithEmplres(List<CartemInfo> baseInfos, List<EmplresInfo> selectedInfos) {
+		InfoMergerBuilder<CartemInfo, EmplresInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartemVisiMergeEmplis());
-		InfoMerger<CartemInfo, EmplisInfo> merger = builder.build();		
+		builder.addVisitor(new CartemVisiMergeEmplres());
+		InfoMerger<CartemInfo, EmplresInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

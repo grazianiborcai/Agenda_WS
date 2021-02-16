@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.CloneUtil;
@@ -34,7 +34,7 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 	public LocalDateTime createdOn;
 	public String username;
 	public StolisInfo stolisData;
-	public EmplisInfo emplisData;
+	public EmplresInfo emplresData;
 	public MatlisInfo matlisData;
 	public SymsgInfo symsgData;
 	
@@ -55,7 +55,7 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		totitem = DefaultValue.number();
 		codWeekday = DefaultValue.number();		
 		stolisData = DefaultValue.object();
-		emplisData = DefaultValue.object();
+		emplresData = DefaultValue.object();
 		matlisData = DefaultValue.object();
 		symsgData = DefaultValue.object();
 	}
@@ -82,7 +82,7 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		deepCopy.endTime = endTime;
 		deepCopy.createdOn = createdOn;
 		deepCopy.stolisData = CloneUtil.cloneRecord(stolisData, this.getClass());
-		deepCopy.emplisData = CloneUtil.cloneRecord(emplisData, this.getClass());
+		deepCopy.emplresData = CloneUtil.cloneRecord(emplresData, this.getClass());
 		deepCopy.matlisData = CloneUtil.cloneRecord(matlisData, this.getClass());
 		deepCopy.symsgData  = CloneUtil.cloneRecord(symsgData , this.getClass());
 		

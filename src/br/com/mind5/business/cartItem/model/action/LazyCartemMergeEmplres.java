@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartemMergeEmplis extends ActionLazyTemplate<CartemInfo, CartemInfo> {
+public final class LazyCartemMergeEmplres extends ActionLazyTemplate<CartemInfo, CartemInfo> {
 	
-	public LazyCartemMergeEmplis(Connection conn, String schemaName) {
+	public LazyCartemMergeEmplres(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCartemMergeEmplis extends ActionLazyTemplate<CartemInfo, 
 	
 	
 	@Override protected ActionStd<CartemInfo> getInstanceOfActionHook(DeciTreeOption<CartemInfo> option) {
-		return new StdCartemMergeEmplis(option);
+		return new StdCartemMergeEmplres(option);
 	}
 	
 	
