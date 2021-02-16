@@ -5,9 +5,10 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
@@ -40,7 +41,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	public LocalDateTime lastChanged;
 	public String username;
 	public StolisInfo stolisData;
-	public EmplisInfo emplisData;
+	public EmplresInfo emplresData;
 	public MatlisInfo matlisData;	
 	
 	
@@ -60,7 +61,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 		quantity = DefaultValue.number();
 		totitem = DefaultValue.number();
 		stolisData = DefaultValue.object();
-		emplisData = DefaultValue.object();
+		emplresData = DefaultValue.object();
 		matlisData = DefaultValue.object();
 	}
 	
@@ -81,44 +82,11 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	@Override public Object clone() throws CloneNotSupportedException {
 		PayordemInfo deepCopy = (PayordemInfo) super.clone();
 		
-		deepCopy.stolisData = cloneStolis(stolisData);
-		deepCopy.emplisData = cloneEmplis(emplisData);
-		deepCopy.matlisData = cloneMatlis(matlisData);
+		deepCopy.stolisData = CloneUtil.cloneRecord(stolisData, this.getClass());
+		deepCopy.emplresData = CloneUtil.cloneRecord(emplresData, this.getClass());
+		deepCopy.matlisData = CloneUtil.cloneRecord(matlisData, this.getClass());
 		
 		return deepCopy;
-	}
-	
-	
-	
-	private MatlisInfo cloneMatlis(MatlisInfo recordInfo) throws CloneNotSupportedException {
-		MatlisInfo result = null;
-		
-		if (recordInfo != null)
-			result = (MatlisInfo) recordInfo.clone();
-		
-		return result;
-	}
-	
-	
-	
-	private StolisInfo cloneStolis(StolisInfo recordInfo) throws CloneNotSupportedException {
-		StolisInfo result = null;
-		
-		if (recordInfo != null)
-			result = (StolisInfo) recordInfo.clone();
-		
-		return result;
-	}
-	
-	
-	
-	private EmplisInfo cloneEmplis(EmplisInfo recordInfo) throws CloneNotSupportedException {
-		EmplisInfo result = null;
-		
-		if (recordInfo != null)
-			result = (EmplisInfo) recordInfo.clone();
-		
-		return result;
 	}
 	
 	

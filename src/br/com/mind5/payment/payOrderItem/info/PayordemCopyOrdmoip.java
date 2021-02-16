@@ -13,6 +13,7 @@ final class PayordemCopyOrdmoip extends InfoCopierTemplate<PayordemInfo, Ordmoip
 	
 	@Override protected PayordemInfo makeCopyHook(OrdmoipInfo source) {
 		PayordemInfo oneResult = source.payordemData;
+		
 		oneResult.ownId = source.ownId;
 		oneResult.idOrderPartner = source.idOrderPartner;
 		oneResult.statusOrderPartner = source.statusOrderPartner;	
