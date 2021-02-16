@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
@@ -80,10 +80,10 @@ final class PlanataCopyPlanime extends InfoCopierOneToManyTemplate<PlanataInfo, 
 	
 	
 	private List<PlanataInfo> employeeResult(PlanimeInfo recordInfo, List<PlanataInfo> results) {
-		if (recordInfo.emplises == null)
+		if (recordInfo.emplreses == null)
 			return results;
 		
-		if (recordInfo.emplises.isEmpty())
+		if (recordInfo.emplreses.isEmpty())
 			return results;
 		
 		
@@ -91,7 +91,7 @@ final class PlanataCopyPlanime extends InfoCopierOneToManyTemplate<PlanataInfo, 
 		
 		
 		for (PlanataInfo eachResult : results) {			
-			for (EmplisInfo eachEmployee : recordInfo.emplises) {
+			for (EmplresInfo eachEmployee : recordInfo.emplreses) {
 				PlanataInfo oneEmployeeResult = tryToClone(eachResult);
 				oneEmployeeResult.codEmployee = eachEmployee.codEmployee;
 				
