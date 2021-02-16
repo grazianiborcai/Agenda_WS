@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeList.info.EmplisMerger;
 import br.com.mind5.business.personList.info.PersolisInfo;
-import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelectRestricted;
+import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiEmplisMergePersolis extends ActionVisitorTemplateMerge<EmplisInf
 	
 	
 	@Override protected Class<? extends DeciTree<PersolisInfo>> getTreeClassHook() {
-		return RootPersolisSelectRestricted.class;
+		return RootPersolisSelect.class;
 	}
 	
 	
