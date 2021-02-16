@@ -8,7 +8,7 @@ import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeCalate;
 import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeCalimemp;
 import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeCalimore;
 import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeCuslis;
-import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeEmplis;
+import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeEmplres;
 import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeMatlis;
 import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeStolis;
 import br.com.mind5.business.scheduleWeek.model.action.StdSchedeekMergeCalate;
@@ -53,7 +53,7 @@ public final class NodeSchedeekSelect extends DeciTreeTemplateWrite<SchedeekInfo
 		ActionStd<SchedeekInfo> mergeSchedeekdat = new StdSchedeekMergeSchedeekdat(option);
 		ActionLazy<SchedeekInfo> mergeStolis = new LazySchedeekMergeStolis(option.conn, option.schemaName);
 		ActionLazy<SchedeekInfo> mergeMatlis = new LazySchedeekMergeMatlis(option.conn, option.schemaName);
-		ActionLazy<SchedeekInfo> mergeEmplis = new LazySchedeekMergeEmplis(option.conn, option.schemaName);
+		ActionLazy<SchedeekInfo> mergeEmplres = new LazySchedeekMergeEmplres(option.conn, option.schemaName);
 		ActionLazy<SchedeekInfo> mergeCuslis = new LazySchedeekMergeCuslis(option.conn, option.schemaName);
 		ActionLazy<SchedeekInfo> mergeCalate = new LazySchedeekMergeCalate(option.conn, option.schemaName);
 		ActionLazy<SchedeekInfo> mergeCalimore = new LazySchedeekMergeCalimore(option.conn, option.schemaName);
@@ -61,8 +61,8 @@ public final class NodeSchedeekSelect extends DeciTreeTemplateWrite<SchedeekInfo
 		
 		mergeSchedeekdat.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeMatlis);
-		mergeMatlis.addPostAction(mergeEmplis);
-		mergeEmplis.addPostAction(mergeCuslis);
+		mergeMatlis.addPostAction(mergeEmplres);
+		mergeEmplres.addPostAction(mergeCuslis);
 		mergeCuslis.addPostAction(mergeCalate);
 		mergeCalate.addPostAction(mergeCalimore);
 		mergeCalimore.addPostAction(mergeCalimemp);

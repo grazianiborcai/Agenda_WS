@@ -7,12 +7,12 @@ import br.com.mind5.business.calendarTimeEmployee.info.CalimempInfo;
 import br.com.mind5.business.calendarTimeStore.info.CalimoreInfo;
 import br.com.mind5.business.calendarWeekYear.info.CaleekyInfo;
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 
 public final class SchedeekMerger {
 	public static List<SchedeekInfo> mergeWithCalimemp(List<SchedeekInfo> baseInfos, List<CalimempInfo> selectedInfos) {
@@ -80,13 +80,13 @@ public final class SchedeekMerger {
 	
 	
 	
-	public static List<SchedeekInfo> mergeWithEmplis(List<SchedeekInfo> baseInfos, List<EmplisInfo> selectedInfos) {
-		InfoMergerBuilder<SchedeekInfo, EmplisInfo> builder = new InfoMergerBuilder<>();
+	public static List<SchedeekInfo> mergeWithEmplres(List<SchedeekInfo> baseInfos, List<EmplresInfo> selectedInfos) {
+		InfoMergerBuilder<SchedeekInfo, EmplresInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedeekVisiMergeEmplis());
-		InfoMerger<SchedeekInfo, EmplisInfo> merger = builder.build();		
+		builder.addVisitor(new SchedeekVisiMergeEmplres());
+		InfoMerger<SchedeekInfo, EmplresInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

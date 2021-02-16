@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdSchedeekMergeEmplis extends ActionStdTemplate<SchedeekInfo> {
+final class StdSchedeekMergeEmplres extends ActionStdTemplate<SchedeekInfo> {
 
-	public StdSchedeekMergeEmplis(DeciTreeOption<SchedeekInfo> option) {
+	public StdSchedeekMergeEmplres(DeciTreeOption<SchedeekInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<SchedeekInfo> buildVisitorHook(DeciTreeOption<SchedeekInfo> option) {
-		return new VisiSchedeekMergeEmplis(option);
+		return new VisiSchedeekMergeEmplres(option);
 	}
 }
