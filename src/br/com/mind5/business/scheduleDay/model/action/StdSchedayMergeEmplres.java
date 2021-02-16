@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdSchedayMergeEmplis extends ActionStdTemplate<SchedayInfo> {
+final class StdSchedayMergeEmplres extends ActionStdTemplate<SchedayInfo> {
 
-	public StdSchedayMergeEmplis(DeciTreeOption<SchedayInfo> option) {
+	public StdSchedayMergeEmplres(DeciTreeOption<SchedayInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<SchedayInfo> buildVisitorHook(DeciTreeOption<SchedayInfo> option) {
-		return new VisiSchedayMergeEmplis(option);
+		return new VisiSchedayMergeEmplres(option);
 	}
 }

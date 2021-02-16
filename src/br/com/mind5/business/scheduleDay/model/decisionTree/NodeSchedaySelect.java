@@ -7,7 +7,7 @@ import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeCalate;
 import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeCalimore;
 import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeCuslis;
-import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeEmplis;
+import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeEmplres;
 import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeMatlis;
 import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeSchedatus;
 import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeStolis;
@@ -53,7 +53,7 @@ public final class NodeSchedaySelect extends DeciTreeTemplateWrite<SchedayInfo> 
 		ActionStd<SchedayInfo> mergeSchedayta = new StdSchedayMergeSchedayta(option);
 		ActionLazy<SchedayInfo> mergeStolis = new LazySchedayMergeStolis(option.conn, option.schemaName);
 		ActionLazy<SchedayInfo> mergeMatlis = new LazySchedayMergeMatlis(option.conn, option.schemaName);
-		ActionLazy<SchedayInfo> mergeEmplis = new LazySchedayMergeEmplis(option.conn, option.schemaName);
+		ActionLazy<SchedayInfo> mergeEmplres = new LazySchedayMergeEmplres(option.conn, option.schemaName);
 		ActionLazy<SchedayInfo> mergeCuslis = new LazySchedayMergeCuslis(option.conn, option.schemaName);
 		ActionLazy<SchedayInfo> mergeSchedatus = new LazySchedayMergeSchedatus(option.conn, option.schemaName);
 		ActionLazy<SchedayInfo> mergeCalate = new LazySchedayMergeCalate(option.conn, option.schemaName);
@@ -61,8 +61,8 @@ public final class NodeSchedaySelect extends DeciTreeTemplateWrite<SchedayInfo> 
 		
 		mergeSchedayta.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeMatlis);
-		mergeMatlis.addPostAction(mergeEmplis);
-		mergeEmplis.addPostAction(mergeCuslis);
+		mergeMatlis.addPostAction(mergeEmplres);
+		mergeEmplres.addPostAction(mergeCuslis);
 		mergeCuslis.addPostAction(mergeSchedatus);
 		mergeSchedatus.addPostAction(mergeCalate);
 		mergeCalate.addPostAction(mergeCalimore);

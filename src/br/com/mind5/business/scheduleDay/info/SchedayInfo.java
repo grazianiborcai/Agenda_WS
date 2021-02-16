@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.calendarTimeStore.info.CalimoreInfo;
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.scheduleDayData.info.SchedaytaInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
@@ -22,7 +22,7 @@ public final class SchedayInfo extends InfoRecord implements Cloneable {
 	public List<SchedaytaInfo> schedaytas;
 	public List<StolisInfo> stolises;
 	public List<MatlisInfo> matlises;
-	public List<EmplisInfo> emplises;
+	public List<EmplresInfo> emplreses;
 	public List<CuslisInfo> cuslises;
 	public List<SchedatusInfo> schedatuses;
 	public List<CalateInfo> calates;
@@ -39,7 +39,7 @@ public final class SchedayInfo extends InfoRecord implements Cloneable {
 		schedaytas = DefaultValue.list();
 		stolises = DefaultValue.list();
 		matlises = DefaultValue.list();
-		emplises = DefaultValue.list();
+		emplreses = DefaultValue.list();
 		cuslises = DefaultValue.list();
 		schedatuses = DefaultValue.list();
 		calates = DefaultValue.list();
@@ -66,7 +66,7 @@ public final class SchedayInfo extends InfoRecord implements Cloneable {
 		deepCopy.schedaytas = CloneUtil.cloneRecords(schedaytas, this.getClass());
 		deepCopy.stolises = CloneUtil.cloneRecords(stolises, this.getClass());
 		deepCopy.matlises = CloneUtil.cloneRecords(matlises, this.getClass());
-		deepCopy.emplises = CloneUtil.cloneRecords(emplises, this.getClass());
+		deepCopy.emplreses = CloneUtil.cloneRecords(emplreses, this.getClass());
 		deepCopy.cuslises = CloneUtil.cloneRecords(cuslises, this.getClass());
 		deepCopy.schedatuses = CloneUtil.cloneRecords(schedatuses, this.getClass());
 		deepCopy.calates = CloneUtil.cloneRecords(calates, this.getClass());

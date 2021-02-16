@@ -5,12 +5,12 @@ import java.util.List;
 import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.calendarTimeStore.info.CalimoreInfo;
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.scheduleDayData.info.SchedaytaInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
 
 public final class SchedayMerger {
@@ -79,13 +79,13 @@ public final class SchedayMerger {
 	
 	
 	
-	public static List<SchedayInfo> mergeWithEmplis(List<SchedayInfo> baseInfos, List<EmplisInfo> selectedInfos) {
-		InfoMergerBuilder<SchedayInfo, EmplisInfo> builder = new InfoMergerBuilder<>();
+	public static List<SchedayInfo> mergeWithEmplres(List<SchedayInfo> baseInfos, List<EmplresInfo> selectedInfos) {
+		InfoMergerBuilder<SchedayInfo, EmplresInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedayVisiMergeEmplis());
-		InfoMerger<SchedayInfo, EmplisInfo> merger = builder.build();		
+		builder.addVisitor(new SchedayVisiMergeEmplres());
+		InfoMerger<SchedayInfo, EmplresInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
