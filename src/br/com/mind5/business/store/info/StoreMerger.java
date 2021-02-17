@@ -9,9 +9,9 @@ import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeText.info.StorextInfo;
-import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.file.fileImageDecorated.info.FimecoInfo;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 import br.com.mind5.security.user.info.UserInfo;
@@ -31,13 +31,13 @@ public final class StoreMerger {
 	
 	
 	
-	public static List<StoreInfo> mergeWithFimist(List<StoreInfo> baseInfos, List<FimistInfo> selectedInfos) {
-		InfoMergerBuilder<StoreInfo, FimistInfo> builder = new InfoMergerBuilder<>();
+	public static List<StoreInfo> mergeWithFimeco(List<StoreInfo> baseInfos, List<FimecoInfo> selectedInfos) {
+		InfoMergerBuilder<StoreInfo, FimecoInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoreVisiMergeFimist());
-		InfoMerger<StoreInfo, FimistInfo> merger = builder.build();		
+		builder.addVisitor(new StoreVisiMergeFimeco());
+		InfoMerger<StoreInfo, FimecoInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

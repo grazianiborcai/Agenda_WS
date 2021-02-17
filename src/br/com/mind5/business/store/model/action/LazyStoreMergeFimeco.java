@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStoreMergeFimist extends ActionLazyTemplate<StoreInfo, StoreInfo> {
+public final class LazyStoreMergeFimeco extends ActionLazyTemplate<StoreInfo, StoreInfo> {
 	
-	public LazyStoreMergeFimist(Connection conn, String schemaName) {
+	public LazyStoreMergeFimeco(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyStoreMergeFimist extends ActionLazyTemplate<StoreInfo, St
 	
 	
 	@Override protected ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
-		return new StdStoreMergeFimist(option);
+		return new StdStoreMergeFimeco(option);
 	}
 	
 	
