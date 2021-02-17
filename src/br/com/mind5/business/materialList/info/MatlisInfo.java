@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
-import br.com.mind5.file.fileImageList.info.FimistInfo;
+import br.com.mind5.file.fileImageDecorated.info.FimecoInfo;
 import br.com.mind5.info.InfoRecord;
 
 
@@ -31,7 +31,7 @@ public final class MatlisInfo extends InfoRecord implements Cloneable {
 	public int codBusiness;
 	public String txtBusiness; 
 	public boolean isLocked;
-	public List<FimistInfo> fimistes;
+	public FimecoInfo fimecoData;
 	public String recordMode;
 	public String username;
 	
@@ -51,7 +51,7 @@ public final class MatlisInfo extends InfoRecord implements Cloneable {
 		sortSubgroup = DefaultValue.number();
 		codBusiness = DefaultValue.number();
 		isLocked = DefaultValue.boole();
-		fimistes = DefaultValue.list();
+		fimecoData = DefaultValue.object();
 		recordMode = DefaultValue.recordMode();	
 	}
 	
@@ -72,7 +72,7 @@ public final class MatlisInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		MatlisInfo deepCopy = (MatlisInfo) super.clone();
 		
-		deepCopy.fimistes = CloneUtil.cloneRecords(deepCopy.fimistes, this.getClass());
+		deepCopy.fimecoData = CloneUtil.cloneRecord(deepCopy.fimecoData, this.getClass());
 		
 		return deepCopy;
 	}

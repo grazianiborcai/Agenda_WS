@@ -5,9 +5,9 @@ import java.util.List;
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.file.fileImageDecorated.info.FimecoInfo;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.materialCategory.info.MategInfo;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
@@ -41,13 +41,13 @@ public final class MatlisMerger {
 	
 	
 	
-	public static List<MatlisInfo> mergeWithFimist(List<MatlisInfo> baseInfos, List<FimistInfo> selectedInfos) {
-		InfoMergerBuilder<MatlisInfo, FimistInfo> builder = new InfoMergerBuilder<>();
+	public static List<MatlisInfo> mergeWithFimeco(List<MatlisInfo> baseInfos, List<FimecoInfo> selectedInfos) {
+		InfoMergerBuilder<MatlisInfo, FimecoInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatlisVisiMergeFimist());
-		InfoMerger<MatlisInfo, FimistInfo> merger = builder.build();		
+		builder.addVisitor(new MatlisVisiMergeFimeco());
+		InfoMerger<MatlisInfo, FimecoInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

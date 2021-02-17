@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatlisMergeFimist extends ActionStdTemplate<MatlisInfo> {
+public final class StdMatlisMergeFimeco extends ActionStdTemplate<MatlisInfo> {
 
-	public StdMatlisMergeFimist(DeciTreeOption<MatlisInfo> option) {
+	public StdMatlisMergeFimeco(DeciTreeOption<MatlisInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<MatlisInfo> buildVisitorHook(DeciTreeOption<MatlisInfo> option) {
-		return new VisiMatlisMergeFimist(option);
+		return new VisiMatlisMergeFimeco(option);
 	}
 }

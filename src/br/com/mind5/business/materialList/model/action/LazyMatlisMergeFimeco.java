@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatlisMergeFimist extends ActionLazyTemplate<MatlisInfo, MatlisInfo> {
+public final class LazyMatlisMergeFimeco extends ActionLazyTemplate<MatlisInfo, MatlisInfo> {
 	
-	public LazyMatlisMergeFimist(Connection conn, String schemaName) {
+	public LazyMatlisMergeFimeco(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyMatlisMergeFimist extends ActionLazyTemplate<MatlisInfo, 
 	
 	
 	@Override protected ActionStd<MatlisInfo> getInstanceOfActionHook(DeciTreeOption<MatlisInfo> option) {
-		return new StdMatlisMergeFimist(option);
+		return new StdMatlisMergeFimeco(option);
 	}
 	
 	
