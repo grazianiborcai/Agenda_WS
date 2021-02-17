@@ -120,7 +120,8 @@
         <security:intercept-url pattern="/**/PlanningTime/selectPlanningTime"		access="isAuthenticated()" 							/>  
         <security:intercept-url pattern="/**/Cart/**"								access="isAuthenticated()" 							/>  
         <security:intercept-url pattern="/**/User/**"								access="isAuthenticated()" 							/>  
-        <security:intercept-url pattern="/**/Order/searchOrder"						access="isAuthenticated()" 							/>         
+        <security:intercept-url pattern="/**/Order/searchOrder"						access="isAuthenticated()" 							/>
+        <security:intercept-url pattern="/**/Order/searchHistoryOrder"				access="isAuthenticated()" 							/>
         <security:intercept-url pattern="/**/Order/**"								access="isAuthenticated()" 							/>   <!-- TODO: rever -->
         <security:intercept-url pattern="/**/Payment/payOrder"						access="isAuthenticated()" 							/>     
         <security:intercept-url pattern="/**/Payment/refundOrder"					access="hasAuthority('OWNER_WRITE')" 				/>

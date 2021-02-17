@@ -15,65 +15,17 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.OrderModelCancelAuth;
 import br.com.mind5.business.order.model.OrderModelPlaceAuth;
 import br.com.mind5.business.order.model.OrderModelSelectAuth;
+import br.com.mind5.business.orderHistory.model.OrdoryModelSearchAuth;
 import br.com.mind5.business.orderList.model.OrdistModelSearchAuth;
 import br.com.mind5.model.Model;
 
 @Path("/Order")
 public final class OrderResource {
-	private static final String SELECT_ORDER = "/selectOrder";
-	private static final String PLACE_ORDER = "/placeOrder";
 	private static final String CANCEL_ORDER = "/cancelOrder";
+	private static final String PLACE_ORDER = "/placeOrder";
 	private static final String SEARCH_ORDER = "/searchOrder";
-	
-	
-	
-	@GET
-	@Path(SELECT_ORDER)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectOrder(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner, 
-								@HeaderParam("TOKEN_USERNAME")  String username,
-							    @HeaderParam("codOrder")    	@DefaultValue("-1") long codOrder,
-							    @HeaderParam("codOrderStatus")  String codOrderStatus,
-							    @HeaderParam("codLanguage") 	@DefaultValue("EN") String codLanguage) {
-		
-		OrderInfo recordInfo = new OrderInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.username = username;
-		recordInfo.codOrder = codOrder;
-		recordInfo.codOrderStatus = codOrderStatus;
-		recordInfo.codLanguage = codLanguage;		
-		
-		Model model = new OrderModelSelectAuth(recordInfo);
-		model.executeRequest();
-		Response result = model.getResponse();
-		model.close();
-		
-		return result;
-	} 
-	
-	
-	
-	@GET
-	@Path(PLACE_ORDER)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response placeOrder(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner, 
-						  	   @HeaderParam("TOKEN_USERNAME")  String username,
-							   @HeaderParam("codOrder")    	@DefaultValue("-1") long codOrder,
-							   @HeaderParam("codLanguage") 	@DefaultValue("EN") String codLanguage) {
-		
-		OrderInfo recordInfo = new OrderInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.username = username;
-		recordInfo.codOrder = codOrder;
-		recordInfo.codLanguage = codLanguage;		
-		
-		Model model = new OrderModelPlaceAuth(recordInfo);
-		model.executeRequest();
-		Response result = model.getResponse();
-		model.close();
-		
-		return result;
-	} 
+	private static final String SEARCH_HISTORY_ORDER = "/searchHistoryOrder";
+	private static final String SELECT_ORDER = "/selectOrder";	
 	
 	
 	
@@ -97,16 +49,81 @@ public final class OrderResource {
 		model.close();
 		
 		return result;
-	} 
+	}
+	
+	
+	
+	@GET
+	@Path(PLACE_ORDER)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response placeOrder(@HeaderParam("TOKEN_OWNER") 		@DefaultValue("-1") long codOwner, 
+						  	   @HeaderParam("TOKEN_USERNAME")  	String username,
+							   @HeaderParam("codOrder")    		@DefaultValue("-1") long codOrder,
+							   @HeaderParam("codLanguage") 		@DefaultValue("EN") String codLanguage) {
+		
+		OrderInfo recordInfo = new OrderInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.username = username;
+		recordInfo.codOrder = codOrder;
+		recordInfo.codLanguage = codLanguage;		
+		
+		Model model = new OrderModelPlaceAuth(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
 	
 	
 	
 	@POST
 	@Path(SEARCH_ORDER)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectOrdistau(@Context HttpServletRequest request, String incomingData) {
+	public Response searchOrdist(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new OrdistModelSearchAuth(incomingData, request);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@POST
+	@Path(SEARCH_HISTORY_ORDER)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response searchOrdory(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new OrdoryModelSearchAuth(incomingData, request);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_ORDER)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectOrder(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner, 
+								@HeaderParam("TOKEN_USERNAME")  String username,
+							    @HeaderParam("codOrder")    	@DefaultValue("-1") long codOrder,
+							    @HeaderParam("codOrderStatus")  String codOrderStatus,
+							    @HeaderParam("codLanguage") 	@DefaultValue("EN") String codLanguage) {
+		
+		OrderInfo recordInfo = new OrderInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.username = username;
+		recordInfo.codOrder = codOrder;
+		recordInfo.codOrderStatus = codOrderStatus;
+		recordInfo.codLanguage = codLanguage;		
+		
+		Model model = new OrderModelSelectAuth(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();
