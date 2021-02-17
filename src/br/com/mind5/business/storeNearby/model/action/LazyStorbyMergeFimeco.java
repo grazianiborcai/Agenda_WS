@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStorbyMergeFimist extends ActionLazyTemplate<StorbyInfo, StorbyInfo> {
+public final class LazyStorbyMergeFimeco extends ActionLazyTemplate<StorbyInfo, StorbyInfo> {
 	
-	public LazyStorbyMergeFimist(Connection conn, String schemaName) {
+	public LazyStorbyMergeFimeco(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyStorbyMergeFimist extends ActionLazyTemplate<StorbyInfo, 
 	
 	
 	@Override protected ActionStd<StorbyInfo> getInstanceOfActionHook(DeciTreeOption<StorbyInfo> option) {
-		return new StdStorbyMergeFimist(option);
+		return new StdStorbyMergeFimeco(option);
 	}
 	
 	

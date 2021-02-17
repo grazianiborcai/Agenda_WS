@@ -8,7 +8,7 @@ import br.com.mind5.business.materialGroupStore.info.MatoporeInfo;
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
 import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.config.sysDistrictSearch.info.SysdistrInfo;
-import br.com.mind5.file.fileImageList.info.FimistInfo;
+import br.com.mind5.file.fileImageDecorated.info.FimecoInfo;
 import br.com.mind5.geo.geoHash.info.GeoshInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
@@ -66,13 +66,13 @@ public final class StorbyMerger {
 	
 	
 	
-	public static List<StorbyInfo> mergeWithFimist(List<StorbyInfo> baseInfos, List<FimistInfo> selectedInfos) {
-		InfoMergerBuilder<StorbyInfo, FimistInfo> builder = new InfoMergerBuilder<>();
+	public static List<StorbyInfo> mergeWithFimeco(List<StorbyInfo> baseInfos, List<FimecoInfo> selectedInfos) {
+		InfoMergerBuilder<StorbyInfo, FimecoInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorbyVisiMergeFimist());
-		InfoMerger<StorbyInfo, FimistInfo> merger = builder.build();		
+		builder.addVisitor(new StorbyVisiMergeFimeco());
+		InfoMerger<StorbyInfo, FimecoInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

@@ -8,7 +8,7 @@ import br.com.mind5.business.materialGroupStore.info.MatoporeInfo;
 import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
-import br.com.mind5.file.fileImageList.info.FimistInfo;
+import br.com.mind5.file.fileImageDecorated.info.FimecoInfo;
 import br.com.mind5.info.InfoRecord;
 
 public final class StorbyInfo extends InfoRecord implements Cloneable {
@@ -29,7 +29,7 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 	public StorextInfo storextData;
 	public AddressInfo addressData;
 	public ComplisInfo complisData;
-	public List<FimistInfo> fimistes;
+	public FimecoInfo fimecoData;
 	public List<MatoporeInfo> matopores;
 	
 	
@@ -47,7 +47,7 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 		storextData = DefaultValue.object();
 		complisData = DefaultValue.object();
 		addressData = DefaultValue.object();
-		fimistes = DefaultValue.list();
+		fimecoData = DefaultValue.object();
 		matopores = DefaultValue.list();
 	}
 	
@@ -69,7 +69,7 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 		StorbyInfo deepCopy = (StorbyInfo) super.clone();
 		
 		deepCopy.storextData = CloneUtil.cloneRecord(storextData, this.getClass());
-		deepCopy.fimistes = CloneUtil.cloneRecords(fimistes, this.getClass());
+		deepCopy.fimecoData = CloneUtil.cloneRecord(fimecoData, this.getClass());
 		deepCopy.addressData = CloneUtil.cloneRecord(addressData, this.getClass());
 		deepCopy.complisData = CloneUtil.cloneRecord(complisData, this.getClass());
 		deepCopy.matopores = CloneUtil.cloneRecords(matopores, this.getClass());
