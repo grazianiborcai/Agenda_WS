@@ -5,9 +5,9 @@ import java.util.List;
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.file.fileImageDecorated.info.FimecoInfo;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.materialCategory.info.MategInfo;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
@@ -42,13 +42,13 @@ public final class MatMerger {
 	
 	
 	
-	public static List<MatInfo> mergeWithFimist(List<MatInfo> baseInfos, List<FimistInfo> selectedInfos) {
-		InfoMergerBuilder<MatInfo, FimistInfo> builder = new InfoMergerBuilder<>();
+	public static List<MatInfo> mergeWithFimeco(List<MatInfo> baseInfos, List<FimecoInfo> selectedInfos) {
+		InfoMergerBuilder<MatInfo, FimecoInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatVisiMergeFimist());
-		InfoMerger<MatInfo, FimistInfo> merger = builder.build();		
+		builder.addVisitor(new MatVisiMergeFimeco());
+		InfoMerger<MatInfo, FimecoInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

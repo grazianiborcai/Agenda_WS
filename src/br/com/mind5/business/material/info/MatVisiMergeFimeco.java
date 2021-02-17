@@ -3,22 +3,22 @@ package br.com.mind5.business.material.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.file.fileImageList.info.FimistInfo;
+import br.com.mind5.file.fileImageDecorated.info.FimecoInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class MatVisiMergeFimist extends InfoMergerVisitorTemplate<MatInfo, FimistInfo> {
+final class MatVisiMergeFimeco extends InfoMergerVisitorTemplate<MatInfo, FimecoInfo> {
 
-	@Override public boolean shouldMerge(MatInfo baseInfo, FimistInfo selectedInfo) {
+	@Override public boolean shouldMerge(MatInfo baseInfo, FimecoInfo selectedInfo) {
 		return (baseInfo.codOwner 	== selectedInfo.codOwner &&
 				baseInfo.codMat 	== selectedInfo.codMat		);
 	}
 	
 	
 	
-	@Override public List<MatInfo> merge(MatInfo baseInfo, FimistInfo selectedInfo) {
+	@Override public List<MatInfo> merge(MatInfo baseInfo, FimecoInfo selectedInfo) {
 		List<MatInfo> results = new ArrayList<>();
 		
-		baseInfo.fimistes.add(selectedInfo);
+		baseInfo.fimecoData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;
