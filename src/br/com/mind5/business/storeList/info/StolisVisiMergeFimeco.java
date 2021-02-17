@@ -3,23 +3,23 @@ package br.com.mind5.business.storeList.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.file.fileImageList.info.FimistInfo;
+import br.com.mind5.file.fileImageDecorated.info.FimecoInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StolisVisiMergeFimist extends InfoMergerVisitorTemplate<StolisInfo, FimistInfo> {
+final class StolisVisiMergeFimeco extends InfoMergerVisitorTemplate<StolisInfo, FimecoInfo> {
 
-	@Override public boolean shouldMerge(StolisInfo baseInfo, FimistInfo selectedInfo) {
+	@Override public boolean shouldMerge(StolisInfo baseInfo, FimecoInfo selectedInfo) {
 		return (baseInfo.codOwner 	== selectedInfo.codOwner &&
 				baseInfo.codStore 	== selectedInfo.codStore	);
 	}
 	
 	
 	
-	@Override public List<StolisInfo> merge(StolisInfo baseInfo, FimistInfo selectedInfo) {
+	@Override public List<StolisInfo> merge(StolisInfo baseInfo, FimecoInfo selectedInfo) {
 		List<StolisInfo> results = new ArrayList<>();
 		
-		baseInfo.fimistes.add(selectedInfo);
+		baseInfo.fimecoData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;

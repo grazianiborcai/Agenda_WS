@@ -8,7 +8,7 @@ import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
-import br.com.mind5.file.fileImageList.info.FimistInfo;
+import br.com.mind5.file.fileImageDecorated.info.FimecoInfo;
 import br.com.mind5.info.InfoRecord;
 
 public final class StolisInfo extends InfoRecord implements Cloneable {
@@ -24,7 +24,7 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 	public AddressInfo addressData;
 	public List<PhoneInfo> phones;
 	public ComplisInfo complisData;
-	public List<FimistInfo> fimistes;
+	public FimecoInfo fimecoData;
 	public String username;
 	public String recordMode;
 	
@@ -41,7 +41,7 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 		complisData = DefaultValue.object();
 		addressData = DefaultValue.object();
 		phones = DefaultValue.list();
-		fimistes = DefaultValue.list();
+		fimecoData = DefaultValue.object();
 	}
 	
 	
@@ -62,7 +62,7 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 		StolisInfo deepCopy = (StolisInfo) super.clone();		
 		
 		deepCopy.storextData = CloneUtil.cloneRecord(storextData, this.getClass());
-		deepCopy.fimistes = CloneUtil.cloneRecords(fimistes, this.getClass());
+		deepCopy.fimecoData = CloneUtil.cloneRecord(fimecoData, this.getClass());
 		deepCopy.addressData = CloneUtil.cloneRecord(addressData, this.getClass());
 		deepCopy.phones = CloneUtil.cloneRecords(phones, this.getClass());
 		deepCopy.complisData = CloneUtil.cloneRecord(complisData, this.getClass());

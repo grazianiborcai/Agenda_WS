@@ -7,9 +7,9 @@ import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.business.storeText.info.StorextInfo;
-import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.file.fileImageDecorated.info.FimecoInfo;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 
@@ -40,13 +40,13 @@ public final class StolisMerger {
 	
 	
 	
-	public static List<StolisInfo> mergeWithFimist(List<StolisInfo> baseInfos, List<FimistInfo> selectedInfos) {
-		InfoMergerBuilder<StolisInfo, FimistInfo> builder = new InfoMergerBuilder<>();
+	public static List<StolisInfo> mergeWithFimeco(List<StolisInfo> baseInfos, List<FimecoInfo> selectedInfos) {
+		InfoMergerBuilder<StolisInfo, FimecoInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StolisVisiMergeFimist());
-		InfoMerger<StolisInfo, FimistInfo> merger = builder.build();		
+		builder.addVisitor(new StolisVisiMergeFimeco());
+		InfoMerger<StolisInfo, FimecoInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

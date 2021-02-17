@@ -7,7 +7,7 @@ import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.model.action.LazyStolisMergeAddress;
 import br.com.mind5.business.storeList.model.action.LazyStolisMergeComplis;
 import br.com.mind5.business.storeList.model.action.LazyStolisMergeCurrency;
-import br.com.mind5.business.storeList.model.action.LazyStolisMergeFimist;
+import br.com.mind5.business.storeList.model.action.LazyStolisMergeFimeco;
 import br.com.mind5.business.storeList.model.action.LazyStolisMergePhone;
 import br.com.mind5.business.storeList.model.action.LazyStolisMergeStorext;
 import br.com.mind5.business.storeList.model.action.LazyStolisMergeTimezone;
@@ -72,7 +72,7 @@ public final class RootStolisSelect extends DeciTreeTemplateWrite<StolisInfo> {
 		ActionLazy<StolisInfo> mergeComplis = new LazyStolisMergeComplis(option.conn, option.schemaName);
 		ActionLazy<StolisInfo> mergeAddress = new LazyStolisMergeAddress(option.conn, option.schemaName);
 		ActionLazy<StolisInfo> mergePhone = new LazyStolisMergePhone(option.conn, option.schemaName);
-		ActionLazy<StolisInfo> mergeFimist = new LazyStolisMergeFimist(option.conn, option.schemaName);
+		ActionLazy<StolisInfo> mergeFimeco = new LazyStolisMergeFimeco(option.conn, option.schemaName);
 		ActionLazy<StolisInfo> mergeStorext = new LazyStolisMergeStorext(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCurrency);
@@ -80,8 +80,8 @@ public final class RootStolisSelect extends DeciTreeTemplateWrite<StolisInfo> {
 		mergeTimezone.addPostAction(mergeComplis);
 		mergeComplis.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(mergePhone);
-		mergePhone.addPostAction(mergeFimist);
-		mergeFimist.addPostAction(mergeStorext);
+		mergePhone.addPostAction(mergeFimeco);
+		mergeFimeco.addPostAction(mergeStorext);
 		
 		actions.add(select);
 		return actions;
