@@ -1555,9 +1555,11 @@ public final class SystemCode {
 	public static final int CART_COUNTER_MANDATORY_FIELD_EMPTY			= 15200;
 	
 	// Home
-	public static final int HOME_MANDATORY_FIELD_EMPTY					= 15250;
-	
+	public static final int HOME_MANDATORY_FIELD_EMPTY					= 15250;	
 	
 	// Order Item Counter
 	public static final int ORDER_ITEM_COUNTER_MANDATORY_FIELD_EMPTY	= 15300;
+	
+	// File Image Decorated
+	public static final int FILE_IMG_DECO_MANDATORY_FIELD_EMPTY			= 15350;	
 }
