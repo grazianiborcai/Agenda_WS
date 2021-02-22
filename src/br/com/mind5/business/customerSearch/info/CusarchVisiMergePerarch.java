@@ -27,6 +27,6 @@ final class CusarchVisiMergePerarch extends InfoMergerVisitorTemplate<CusarchInf
 	
 	
 	@Override protected InfoMergerCardinality getCardinalityHook() {
-		return InfoMergerCardinality.MANY_TO_MANY;
+		return InfoMergerCardinality.ONE_TO_MANY;
 	}
 }

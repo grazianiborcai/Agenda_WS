@@ -30,6 +30,6 @@ final class EmpwotmVisiMergeStowotarch extends InfoMergerVisitorTemplate<Empwotm
 	
 	
 	@Override protected InfoMergerCardinality getCardinalityHook() {
-		return InfoMergerCardinality.MANY_TO_MANY;
+		return InfoMergerCardinality.ONE_TO_MANY;
 	}
 }
