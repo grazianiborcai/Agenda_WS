@@ -21,7 +21,6 @@ public final class PlanataInfo extends InfoRecord implements Cloneable, Comparab
 	public int codMoonPhase;
 	public double price;
 	public String codCurr;
-	public String txtCurr;
 	public String username;
 	public String recordMode;
 	

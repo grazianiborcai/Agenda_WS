@@ -21,7 +21,6 @@ final class PlanataVisiMergeMatice extends InfoMergerVisitorTemplate<PlanataInfo
 		
 		baseInfo.price = selectedInfo.price;
 		baseInfo.codCurr = selectedInfo.codCurr;
-		baseInfo.txtCurr = selectedInfo.txtCurr;
 		
 		results.add(baseInfo);
 		return results;

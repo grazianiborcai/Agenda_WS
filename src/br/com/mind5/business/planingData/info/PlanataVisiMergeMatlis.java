@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.materialUnit.info.Matunit;
 
@@ -41,25 +42,27 @@ final class PlanataVisiMergeMatlis extends InfoMergerVisitorTemplate<PlanataInfo
 	
 	
 	private PlanataInfo setEndTime(PlanataInfo baseInfo, MatlisInfo selectedInfo) {
-		Matunit matUnit = Matunit.getMatUnit(selectedInfo.codUnit);		
+		Matunit matUnit = Matunit.getMatUnit(selectedInfo.codUnit);
+		PlanataInfo resultInfo = CloneUtil.cloneRecord(baseInfo, this.getClass());
 		
 		if (Matunit.MINUTE == matUnit)
-			baseInfo.endTime = baseInfo.beginTime.plusMinutes(selectedInfo.priceUnit);
+			resultInfo.endTime = resultInfo.beginTime.plusMinutes(selectedInfo.priceUnit);
 		
-		return baseInfo;
+		return resultInfo;
 	}
 	
 	
 	
 	private PlanataInfo shiftTime(PlanataInfo baseInfo, MatlisInfo selectedInfo) {
 		Matunit matUnit = Matunit.getMatUnit(selectedInfo.codUnit);		
+		PlanataInfo resultInfo = CloneUtil.cloneRecord(baseInfo, this.getClass());
 		
 		if (Matunit.MINUTE == matUnit) {
-			baseInfo.beginTime = baseInfo.beginTime.plusMinutes(selectedInfo.priceUnit);
-			baseInfo.endTime = baseInfo.endTime.plusMinutes(selectedInfo.priceUnit);
+			resultInfo.beginTime = resultInfo.beginTime.plusMinutes(selectedInfo.priceUnit);
+			resultInfo.endTime = resultInfo.endTime.plusMinutes(selectedInfo.priceUnit);
 		}
 		
-		return baseInfo;
+		return resultInfo;
 	}
 	
 	
