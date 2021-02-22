@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.home.info.HomeInfo;
 import br.com.mind5.business.home.model.action.LazyHomeMergeCartou;
+import br.com.mind5.business.home.model.action.LazyHomeMergeUsome;
 import br.com.mind5.business.home.model.action.StdHomeMergeUsername;
 import br.com.mind5.business.home.model.checker.HomeCheckLangu;
 import br.com.mind5.business.home.model.checker.HomeCheckOwner;
@@ -61,8 +62,10 @@ public final class RootHomeSelect extends DeciTreeTemplateRead<HomeInfo> {
 		
 		ActionStd<HomeInfo> mergeUser = new StdHomeMergeUsername(option);
 		ActionLazy<HomeInfo> mergeCartou = new LazyHomeMergeCartou(option.conn, option.schemaName);
+		ActionLazy<HomeInfo> mergeUsome = new LazyHomeMergeUsome(option.conn, option.schemaName);
 		
 		mergeUser.addPostAction(mergeCartou);
+		mergeCartou.addPostAction(mergeUsome);
 		
 		actions.add(mergeUser);	
 		return actions;

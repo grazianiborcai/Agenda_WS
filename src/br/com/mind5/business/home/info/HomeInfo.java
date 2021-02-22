@@ -6,11 +6,13 @@ import br.com.mind5.business.cartCounter.info.CartouInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.security.userHome.info.UsomeInfo;
 
 public final class HomeInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
 	public long codUser;
 	public CartouInfo cartou;
+	public UsomeInfo usome;
 	public String username;
 	
 	
@@ -20,6 +22,7 @@ public final class HomeInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();	
 		codUser = DefaultValue.number();
 		cartou = DefaultValue.object();
+		usome = DefaultValue.object();
 	}
 	
 	
@@ -39,7 +42,9 @@ public final class HomeInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		HomeInfo deepCopy = (HomeInfo) super.clone();
 		
-		deepCopy.cartou = CloneUtil.cloneRecord(cartou, this.getClass());		
+		deepCopy.cartou = CloneUtil.cloneRecord(cartou, this.getClass());
+		deepCopy.usome = CloneUtil.cloneRecord(usome, this.getClass());
+		
 		return deepCopy;
 	}
 	
