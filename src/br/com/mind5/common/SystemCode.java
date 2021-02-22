@@ -291,13 +291,13 @@ public final class SystemCode {
 	public static final int CART_HEADER_IS_OK							= 1414;
 	
 	// Cart Item
-	public static final int CART_ITEM_MANDATORY_FIELD_EMPTY				= 9400;	//1412;
-	public static final int CART_ITEM_QUANTITY_ILLEGAL					= 9401;	//1410;
+	public static final int CART_ITEM_MANDATORY_FIELD_EMPTY				= 9400;
+	public static final int CART_ITEM_QUANTITY_ILLEGAL					= 9401;
 	public static final int CART_ITEM_AGED_DATE							= 9402;
-	public static final int CART_ITEM_FLAG_DELETE_FALSE 				= 9403;	//1409;
+	public static final int CART_ITEM_FLAG_DELETE_FALSE 				= 9403;
 	public static final int CART_ITEM_FLAG_DELETE_TRUE 					= 9404;
-	public static final int CART_ITEM_ALREADY_EXIST 					= 9405;	//1402;
-	public static final int CART_ITEM_NOT_FOUND 						= 9406;	//1403;
+	public static final int CART_ITEM_ALREADY_EXIST 					= 9405;
+	public static final int CART_ITEM_NOT_FOUND 						= 9406;
 	public static final int CART_ITEM_LIMIT_NOT_REACHED					= 9407;
 	public static final int CART_ITEM_LIMIT_EXCEEDED					= 9408;
 	public static final int CART_ITEM_BAD_TIME_RANGE 					= 9409;
@@ -1561,5 +1561,8 @@ public final class SystemCode {
 	public static final int ORDER_ITEM_COUNTER_MANDATORY_FIELD_EMPTY	= 15300;
 	
 	// File Image Decorated
-	public static final int FILE_IMG_DECO_MANDATORY_FIELD_EMPTY			= 15350;	
+	public static final int FILE_IMG_DECO_MANDATORY_FIELD_EMPTY			= 15350;
+	
+	// Material Price
+	public static final int MAT_PRICE_MANDATORY_FIELD_EMPTY				= 15400;
 }
