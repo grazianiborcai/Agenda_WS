@@ -19,6 +19,16 @@ final class MaticeVisiMergeMatore extends InfoMergerVisitorTemplate<MaticeInfo, 
 	@Override public List<MaticeInfo> merge(MaticeInfo baseInfo, MatoreInfo selectedInfo) {
 		List<MaticeInfo> results = new ArrayList<>();
 		
+		baseInfo = setPrice(baseInfo, selectedInfo);
+		baseInfo = setCurrency(baseInfo, selectedInfo);
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	private MaticeInfo setPrice(MaticeInfo baseInfo, MatoreInfo selectedInfo) {
 		baseInfo.price = selectedInfo.matPrice;
 		
 		if (baseInfo.codWeekday == 1)
@@ -42,7 +52,18 @@ final class MaticeVisiMergeMatore extends InfoMergerVisitorTemplate<MaticeInfo, 
 		if (baseInfo.codWeekday == 7)
 			baseInfo.price = selectedInfo.matPrice7;
 		
-		results.add(baseInfo);
-		return results;
+		return baseInfo;
+	}
+	
+	
+	
+	private MaticeInfo setCurrency(MaticeInfo baseInfo, MatoreInfo selectedInfo) {
+		if (selectedInfo.stolisData == null)
+			return baseInfo;
+		
+		baseInfo.codCurr = selectedInfo.stolisData.codCurr;
+		baseInfo.txtCurr = selectedInfo.stolisData.txtCurr;
+		
+		return baseInfo;
 	}
 }

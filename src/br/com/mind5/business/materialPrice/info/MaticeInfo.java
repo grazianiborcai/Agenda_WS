@@ -11,6 +11,8 @@ public final class MaticeInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codMat;
 	public double price;
+	public String codCurr;
+	public String txtCurr;
 	public LocalDate date;
 	public int codWeekday;
 	public String username;
