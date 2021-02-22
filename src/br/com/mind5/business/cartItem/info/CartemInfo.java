@@ -10,11 +10,10 @@ import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
-import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 
-public final class CartemInfo extends InfoRecord implements Cloneable, Comparable<CartemInfo> {
+public final class CartemInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
 	public long codCustomer;
 	public long codUser;
@@ -24,6 +23,7 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 	public long codEmployee;
 	public long codMat;
 	public double price;
+	public String codCurr;
 	public int quantity;
 	public double totitem;
 	public LocalDate date;
@@ -130,28 +130,5 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 				codEmployee == obj.codEmployee		&&
 				super.isDateEqual(date, obj.date)	&&
 				super.isTimeEqual(beginTime, obj.beginTime));
-	}
-
-
-	
-	@Override public int compareTo(CartemInfo arg0) {
-		if (arg0 == null) {
-			super.logException(new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT);	
-		}
-
-		/*
-		if (itemNumber < arg0.itemNumber)
-			return -1;
-		
-		if (itemNumber > arg0.itemNumber)
-			return 1;
-		
-		if (equals(arg0))*/
-			return 0;
-		
-		/*
-		logException(new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE));
-		throw new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE);*/
 	}
 }

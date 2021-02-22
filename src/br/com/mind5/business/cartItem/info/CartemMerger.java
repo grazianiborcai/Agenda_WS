@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.cartItemSearch.info.CartemarchInfo;
 import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.business.materialStore.info.MatoreInfo;
+import br.com.mind5.business.materialPrice.info.MaticeInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
@@ -92,13 +92,13 @@ public final class CartemMerger {
 	
 	
 	
-	public static List<CartemInfo> mergeWithMatore(List<CartemInfo> baseInfos, List<MatoreInfo> selectedInfos) {
-		InfoMergerBuilder<CartemInfo, MatoreInfo> builder = new InfoMergerBuilder<>();
+	public static List<CartemInfo> mergeWithMatice(List<CartemInfo> baseInfos, List<MaticeInfo> selectedInfos) {
+		InfoMergerBuilder<CartemInfo, MaticeInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartemVisiMergeMatore());
-		InfoMerger<CartemInfo, MatoreInfo> merger = builder.build();		
+		builder.addVisitor(new CartemVisiMergeMatice());
+		InfoMerger<CartemInfo, MaticeInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

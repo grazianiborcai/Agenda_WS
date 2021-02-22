@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCartemMergeMatore extends ActionStdTemplate<CartemInfo> {
+public final class StdCartemMergeMatice extends ActionStdTemplate<CartemInfo> {
 
-	public StdCartemMergeMatore(DeciTreeOption<CartemInfo> option) {
+	public StdCartemMergeMatice(DeciTreeOption<CartemInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<CartemInfo> buildVisitorHook(DeciTreeOption<CartemInfo> option) {
-		return new VisiCartemMergeMatore(option);
+		return new VisiCartemMergeMatice(option);
 	}
 }

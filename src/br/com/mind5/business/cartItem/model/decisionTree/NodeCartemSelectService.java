@@ -8,7 +8,7 @@ import br.com.mind5.business.cartItem.model.action.LazyCartemEnforceTotitem;
 import br.com.mind5.business.cartItem.model.action.LazyCartemEnforceWeekday;
 import br.com.mind5.business.cartItem.model.action.LazyCartemMergeEmplres;
 import br.com.mind5.business.cartItem.model.action.LazyCartemMergeMatlis;
-import br.com.mind5.business.cartItem.model.action.LazyCartemMergeMatore;
+import br.com.mind5.business.cartItem.model.action.LazyCartemMergeMatice;
 import br.com.mind5.business.cartItem.model.action.LazyCartemMergeWeekday;
 import br.com.mind5.business.cartItem.model.action.StdCartemMergeStolis;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckService;
@@ -53,15 +53,15 @@ public final class NodeCartemSelectService extends DeciTreeTemplateWrite<CartemI
 		ActionLazy<CartemInfo> mergeEmplres = new LazyCartemMergeEmplres(option.conn, option.schemaName);
 		ActionLazy<CartemInfo> enforceWeekday = new LazyCartemEnforceWeekday(option.conn, option.schemaName);
 		ActionLazy<CartemInfo> mergeWeekday = new LazyCartemMergeWeekday(option.conn, option.schemaName);
-		ActionLazy<CartemInfo> mergeMatore = new LazyCartemMergeMatore(option.conn, option.schemaName);
+		ActionLazy<CartemInfo> mergeMatice = new LazyCartemMergeMatice(option.conn, option.schemaName);
 		ActionLazy<CartemInfo> enforceTotitem = new LazyCartemEnforceTotitem(option.conn, option.schemaName);
 		
 		mergeStolis.addPostAction(mergeMatlis);
 		mergeMatlis.addPostAction(mergeEmplres);
 		mergeEmplres.addPostAction(enforceWeekday);
 		enforceWeekday.addPostAction(mergeWeekday);
-		mergeWeekday.addPostAction(mergeMatore);
-		mergeMatore.addPostAction(enforceTotitem);
+		mergeWeekday.addPostAction(mergeMatice);
+		mergeMatice.addPostAction(enforceTotitem);
 		
 		actions.add(mergeStolis);
 		return actions;
