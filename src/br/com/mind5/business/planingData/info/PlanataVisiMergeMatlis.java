@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.materialUnit.info.Matunit;
 
@@ -22,14 +21,14 @@ final class PlanataVisiMergeMatlis extends InfoMergerVisitorTemplate<PlanataInfo
 		List<PlanataInfo> results = new ArrayList<>();
 		LocalTime maxEndTime = baseInfo.endTime;
 		
-		PlanataInfo eachResult = setEndTime(selectedInfo, baseInfo);
+		PlanataInfo eachResult = setEndTime(baseInfo, selectedInfo);
 		
 		if (shouldAdd(eachResult, maxEndTime))
 			results.add(eachResult);
 		
 		
 		while(shouldAdd(eachResult, maxEndTime)) {
-			eachResult = shiftTime(selectedInfo, eachResult);
+			eachResult = shiftTime(eachResult, selectedInfo);
 			
 			if (shouldAdd(eachResult, maxEndTime))
 				results.add(eachResult);
@@ -41,28 +40,26 @@ final class PlanataVisiMergeMatlis extends InfoMergerVisitorTemplate<PlanataInfo
 
 	
 	
-	private PlanataInfo setEndTime(MatlisInfo mat, PlanataInfo planata) {
-		Matunit matUnit = Matunit.getMatUnit(mat.codUnit);		
-		PlanataInfo resultInfo = makeClone(planata);
+	private PlanataInfo setEndTime(PlanataInfo baseInfo, MatlisInfo selectedInfo) {
+		Matunit matUnit = Matunit.getMatUnit(selectedInfo.codUnit);		
 		
 		if (Matunit.MINUTE == matUnit)
-			resultInfo.endTime = resultInfo.beginTime.plusMinutes(mat.priceUnit);
+			baseInfo.endTime = baseInfo.beginTime.plusMinutes(selectedInfo.priceUnit);
 		
-		return resultInfo;
+		return baseInfo;
 	}
 	
 	
 	
-	private PlanataInfo shiftTime(MatlisInfo selectedInfo, PlanataInfo baseInfo) {
+	private PlanataInfo shiftTime(PlanataInfo baseInfo, MatlisInfo selectedInfo) {
 		Matunit matUnit = Matunit.getMatUnit(selectedInfo.codUnit);		
-		PlanataInfo resultInfo = makeClone(baseInfo);
 		
 		if (Matunit.MINUTE == matUnit) {
-			resultInfo.beginTime = resultInfo.beginTime.plusMinutes(selectedInfo.priceUnit);
-			resultInfo.endTime = resultInfo.endTime.plusMinutes(selectedInfo.priceUnit);
+			baseInfo.beginTime = baseInfo.beginTime.plusMinutes(selectedInfo.priceUnit);
+			baseInfo.endTime = baseInfo.endTime.plusMinutes(selectedInfo.priceUnit);
 		}
 		
-		return resultInfo;
+		return baseInfo;
 	}
 	
 	
@@ -70,23 +67,4 @@ final class PlanataVisiMergeMatlis extends InfoMergerVisitorTemplate<PlanataInfo
 	private boolean shouldAdd(PlanataInfo eachResult, LocalTime maxEndTime) {
 		return eachResult.endTime.isBefore(maxEndTime) || eachResult.endTime.equals(maxEndTime);
 	}
-	
-	
-	
-	private PlanataInfo makeClone(PlanataInfo recordInfo) {
-		try {
-			return (PlanataInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

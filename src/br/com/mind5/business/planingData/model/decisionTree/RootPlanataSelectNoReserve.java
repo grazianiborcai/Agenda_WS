@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.model.action.LazyPlanataEnforceDaypart;
+import br.com.mind5.business.planingData.model.action.LazyPlanataMergeMatice;
 import br.com.mind5.business.planingData.model.action.LazyPlanataMergeMatlis;
 import br.com.mind5.business.planingData.model.action.LazyPlanataMergeMooncal;
 import br.com.mind5.business.planingData.model.action.LazyPlanataMergeToSelect;
@@ -17,9 +18,9 @@ import br.com.mind5.business.planingData.model.checker.PlanataCheckDate;
 import br.com.mind5.business.planingData.model.checker.PlanataCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
@@ -60,7 +61,8 @@ public class RootPlanataSelectNoReserve extends DeciTreeTemplateRead<PlanataInfo
 		
 		ActionStd<PlanataInfo> enforceWeekday = new StdPlanataEnforceWeekday(option);		
 		ActionLazy<PlanataInfo> select = new LazyPlanataMergeToSelect(option.conn, option.schemaName);	
-		ActionLazy<PlanataInfo> mergeMooncal = new LazyPlanataMergeMooncal(option.conn, option.schemaName);	
+		ActionLazy<PlanataInfo> mergeMooncal = new LazyPlanataMergeMooncal(option.conn, option.schemaName);
+		ActionLazy<PlanataInfo> mergeMatice = new LazyPlanataMergeMatice(option.conn, option.schemaName);	
 		ActionLazy<PlanataInfo> mergeMatlis = new LazyPlanataMergeMatlis(option.conn, option.schemaName);	
 		ActionLazy<PlanataInfo> pruneEmplate = new LazyPlanataPruneEmplate(option.conn, option.schemaName);
 		ActionLazy<PlanataInfo> pruneStolate = new LazyPlanataPruneStolate(option.conn, option.schemaName);
@@ -70,7 +72,8 @@ public class RootPlanataSelectNoReserve extends DeciTreeTemplateRead<PlanataInfo
 		
 		enforceWeekday.addPostAction(select);
 		select.addPostAction(mergeMooncal);
-		mergeMooncal.addPostAction(mergeMatlis);
+		mergeMooncal.addPostAction(mergeMatice);
+		mergeMatice.addPostAction(mergeMatlis);		
 		mergeMatlis.addPostAction(pruneEmplate);
 		pruneEmplate.addPostAction(pruneStolate);
 		pruneStolate.addPostAction(pruneAged);
