@@ -769,6 +769,8 @@ public final class SystemCode {
 	
 	// Order List
 	public static final int ORDER_LIST_MANDATORY_FIELD_EMPTY 			= 5400;
+	public static final int ORDER_LIST_ALREADY_EXIST					= 5401;
+	public static final int ORDER_LIST_NOT_FOUND						= 5402;
 	
 	// Schedule Search
 	public static final int SCHEDULE_SEARCH_MANDATORY_FIELD_EMPTY		= 5450;
@@ -1565,4 +1567,9 @@ public final class SystemCode {
 	
 	// Material Price
 	public static final int MAT_PRICE_MANDATORY_FIELD_EMPTY				= 15400;
+	
+	// Statistics - User Order Year - Staging
+	public static final int STAT_USER_YEAR_STGN_ALREADY_EXIST 			= 15450;
+	public static final int STAT_USER_YEAR_STGN_NOT_FOUND 				= 15451;
+	public static final int STAT_USER_YEAR_STGN_MANDATORY_FIELD_EMPTY	= 15452;
 }
