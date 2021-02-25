@@ -7,6 +7,7 @@ import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemEnforceLChanged;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemNodeSnapshot;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemStusorageUpsert;
+import br.com.mind5.business.orderItem.model.action.LazyOrderemStusorygeUpsert;
 import br.com.mind5.business.orderItem.model.action.StdOrderemMergeUsername;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
@@ -49,10 +50,12 @@ public final class NodeOrderemUpdate extends DeciTreeTemplateWrite<OrderemInfo> 
 		ActionLazy<OrderemInfo> enforceLChanged = new LazyOrderemEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<OrderemInfo> snapshot = new LazyOrderemNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<OrderemInfo> stusorageUpsert = new LazyOrderemStusorageUpsert(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> stusorygeUpsert = new LazyOrderemStusorygeUpsert(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(snapshot);
 		snapshot.addPostAction(stusorageUpsert);
+		stusorageUpsert.addPostAction(stusorygeUpsert);
 		
 		actions.add(mergeUsername);
 		return actions;
