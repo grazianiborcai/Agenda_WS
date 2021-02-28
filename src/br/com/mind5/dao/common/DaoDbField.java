@@ -114,7 +114,13 @@ public final class DaoDbField {
 	public static final String COL_COUNTRY = "country";
 	public static final String COL_COUNTRY_LEGAL = "country_legal";
 	public static final String COL_COUNTRY_PHONE = "country_phone";
-	public static final String COL_CNPJ = "cnpj";
+	public static final String COL_CNPJ = "cnpj";	
+	public static final String COL_COUNT_YEAR_CANCELLED = "count_year_cancelled";	
+	public static final String COL_COUNT_YEAR_CREATED = "count_year_created";	
+	public static final String COL_COUNT_YEAR_PAID = "count_year_paid";
+	public static final String COL_COUNT_YEAR_PLACED = "count_year_placed";
+	public static final String COL_COUNT_YEAR_TOTAL = "count_year_total";
+	public static final String COL_COUNT_YEAR_WAITING = "count_year_waiting";	
 	public static final String COL_CPF = "cpf";
 	public static final String COL_CREATED_BY = "created_by";
 	public static final String COL_CREATED_ON = "created_on";

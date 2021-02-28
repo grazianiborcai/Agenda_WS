@@ -1572,4 +1572,9 @@ public final class SystemCode {
 	public static final int STAT_USER_YEAR_STGN_ALREADY_EXIST 			= 15450;
 	public static final int STAT_USER_YEAR_STGN_NOT_FOUND 				= 15451;
 	public static final int STAT_USER_YEAR_STGN_MANDATORY_FIELD_EMPTY	= 15452;
+	
+	// Statistics - User Order Year - Live
+	public static final int STAT_USER_YEAR_LIVE_ALREADY_EXIST 			= 15500;
+	public static final int STAT_USER_YEAR_LIVE_NOT_FOUND 				= 15501;
+	public static final int STAT_USER_YEAR_LIVE_MANDATORY_FIELD_EMPTY	= 15502;
 }
