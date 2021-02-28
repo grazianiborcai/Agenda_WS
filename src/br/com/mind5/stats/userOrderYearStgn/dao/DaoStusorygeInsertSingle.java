@@ -38,8 +38,8 @@ public final class DaoStusorygeInsertSingle extends DaoStmtTemplate<StusorygeInf
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StusorygeInfo recordInfo) throws SQLException {		
 				int i = 1;				
 				
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwner);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwner);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.postingYear);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);	
 	
