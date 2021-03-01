@@ -254,6 +254,7 @@ public final class DaoDbTable {
 	public static final String SCHEDULE_RANGE_VIEW = "view_schedule_range";
 	public static final String SCHEDULE_RESERVE_VIEW = "view_schedule_reserve";	
 	public static final String SCHEDULE_SEARCH_VIEW = "view_schedule_search";
+	public static final String STAT_USER_ORDER_YEAR_STGN_SEARCH_VIEW = "view_stat_user_order_year_staging_search";	
 	public static final String STATE_SEARCH_VIEW = "view_state_search";
 	public static final String STORE_AUTH_VIEW = "store_auth_view";
 	public static final String STORE_FAVORITE_SEARCH_VIEW = "view_store_favorite_search";
