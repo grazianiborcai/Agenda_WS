@@ -6,8 +6,8 @@ import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.userStoreStgn.info.StusorageInfo;
-import br.com.mind5.stats.userStoreStgn.model.decisionTree.RootStusorageUpsertOrderem;
+import br.com.mind5.stats.statsUserStore.userStoreStgn.info.StusorageInfo;
+import br.com.mind5.stats.statsUserStore.userStoreStgn.model.decisionTree.RootStusorageUpsertOrderem;
 
 final class VisiOrderemStusorageUpsert extends ActionVisitorTemplateAction<OrderemInfo, StusorageInfo> {
 	
