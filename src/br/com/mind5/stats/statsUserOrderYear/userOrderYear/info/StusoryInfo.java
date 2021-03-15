@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
-public final class StusoryInfo extends InfoRecord implements Cloneable {
+public final class StusoryInfo extends InfoRecord implements Cloneable, Comparable<StusoryInfo> {
 	public long codOwner;
 	public long codUser;
 	public int postingYear;	
@@ -77,5 +77,43 @@ public final class StusoryInfo extends InfoRecord implements Cloneable {
 		return (codOwner    == obj.codOwner && 				
 				codUser     == obj.codUser	&&
 				postingYear == obj.postingYear);
+	}
+	
+	
+	
+	@Override public int compareTo(StusoryInfo arg0) {
+		super.checkCompareToArgument(arg0);
+		
+		int result = compareToCodOwner(arg0);		
+		if (result != 0) return result;
+		
+		result = compareToPostingYear(arg0);		
+		if (result != 0) return result;
+		
+		return 0;
+	}
+	
+	
+	
+	private int compareToCodOwner(StusoryInfo arg0) {
+		if (codOwner > arg0.codOwner) 
+			return  1;		
+		
+		if (codOwner < arg0.codOwner) 
+			return -1;
+		
+		return 0;
+	}
+	
+	
+	
+	private int compareToPostingYear(StusoryInfo arg0) {
+		if (postingYear > arg0.postingYear) 
+			return  1;		
+		
+		if (postingYear < arg0.postingYear) 
+			return -1;
+		
+		return 0;
 	}
 }
