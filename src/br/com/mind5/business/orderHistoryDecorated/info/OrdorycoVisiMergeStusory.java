@@ -24,4 +24,14 @@ final class OrdorycoVisiMergeStusory extends InfoMergerVisitorTemplate<OrdorycoI
 		results.add(baseInfo);
 		return results;
 	}
+	
+	
+	
+	@Override protected List<OrdorycoInfo> afterMergeHook(List<OrdorycoInfo> results)  {
+		for (OrdorycoInfo eachResult : results) {
+			eachResult.stusorys = super.sortAscending(eachResult.stusorys);
+		}
+		
+		return results;
+	}
 }

@@ -15,7 +15,7 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.OrderModelCancelAuth;
 import br.com.mind5.business.order.model.OrderModelPlaceAuth;
 import br.com.mind5.business.order.model.OrderModelSelectAuth;
-import br.com.mind5.business.orderHistory.model.OrdoryModelSearchAuth;
+import br.com.mind5.business.orderHistoryDecorated.model.OrdorycoModelSearchAuth;
 import br.com.mind5.business.orderList.model.OrdistModelSearchAuth;
 import br.com.mind5.model.Model;
 
@@ -97,7 +97,7 @@ public final class OrderResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response searchOrdory(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new OrdoryModelSearchAuth(incomingData, request);
+		Model model = new OrdorycoModelSearchAuth(incomingData, request);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();
