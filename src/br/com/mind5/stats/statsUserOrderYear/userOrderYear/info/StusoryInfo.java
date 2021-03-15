@@ -1,6 +1,5 @@
 package br.com.mind5.stats.statsUserOrderYear.userOrderYear.info;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
@@ -16,7 +15,6 @@ public final class StusoryInfo extends InfoRecord implements Cloneable {
 	public int countYearPaid;
 	public int countYearPlaced;
 	public int countYearCancelled;
-	public LocalDateTime lastChanged;
 	public String username;
 	
 	
