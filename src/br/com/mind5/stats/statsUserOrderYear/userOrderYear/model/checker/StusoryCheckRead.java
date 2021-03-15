@@ -31,6 +31,6 @@ public final class StusoryCheckRead extends ModelCheckerTemplateSimple<StusoryIn
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.STAT_USER_YEAR_AGGR_MANDATORY_FIELD_EMPTY;
+		return SystemCode.STAT_USER_YEAR_MANDATORY_FIELD_EMPTY;
 	}
 }

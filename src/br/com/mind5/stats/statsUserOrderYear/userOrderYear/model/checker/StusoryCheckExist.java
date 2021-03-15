@@ -24,12 +24,12 @@ public final class StusoryCheckExist extends ModelCheckerTemplateAction<Stusoryg
 	
 	
 	@Override protected int getCodMsgOnResultTrueHook() {
-		return SystemCode.STAT_USER_YEAR_AGGR_ALREADY_EXIST;
+		return SystemCode.STAT_USER_YEAR_ALREADY_EXIST;
 	}	
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.STAT_USER_YEAR_AGGR_NOT_FOUND;
+		return SystemCode.STAT_USER_YEAR_NOT_FOUND;
 	}
 }
