@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItemList.info.OrdemistInfo;
+import br.com.mind5.business.orderItemList.model.action.LazyOrdemistMergeMatlis;
 import br.com.mind5.business.orderItemList.model.action.LazyOrdemistMergeOrdist;
 import br.com.mind5.business.orderItemList.model.action.StdOrdemistMergeToSelect;
 import br.com.mind5.business.orderItemList.model.checker.OrdemistCheckRead;
@@ -45,8 +46,10 @@ public final class RootOrdemistSelect extends DeciTreeTemplateWrite<OrdemistInfo
 		
 		ActionStd<OrdemistInfo> select = new StdOrdemistMergeToSelect(option);
 		ActionLazy<OrdemistInfo> mergeOrdist = new LazyOrdemistMergeOrdist(option.conn, option.schemaName);
+		ActionLazy<OrdemistInfo> mergeMatlis = new LazyOrdemistMergeMatlis(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeOrdist);
+		mergeOrdist.addPostAction(mergeMatlis);
 		
 		actions.add(select);
 		return actions;

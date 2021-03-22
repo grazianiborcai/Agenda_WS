@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+import br.com.mind5.business.materialList.info.MatlisInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
@@ -35,6 +37,7 @@ public final class OrdemistInfo extends InfoRecord implements Cloneable, Compara
 	public String txtWeekday;
 	public LocalTime beginTime;
 	public LocalTime endTime;
+	public MatlisInfo matlisData;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
@@ -57,6 +60,7 @@ public final class OrdemistInfo extends InfoRecord implements Cloneable, Compara
 		quantity = DefaultValue.number();
 		totitem = DefaultValue.number();
 		codWeekday = DefaultValue.number();
+		matlisData = DefaultValue.object();
 		lastChangedBy = DefaultValue.number();	
 	}
 	
@@ -75,7 +79,11 @@ public final class OrdemistInfo extends InfoRecord implements Cloneable, Compara
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		OrdemistInfo deepCopy = (OrdemistInfo) super.clone();
+		
+		deepCopy.matlisData = CloneUtil.cloneRecord(matlisData, this.getClass());
+		
+		return deepCopy;
 	}
 	
 	
