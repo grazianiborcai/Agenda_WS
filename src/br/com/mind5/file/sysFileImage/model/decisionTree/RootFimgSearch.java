@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.file.sysFileImage.info.FimgysInfo;
 import br.com.mind5.file.sysFileImage.model.action.LazyFimgysRootSelect;
-import br.com.mind5.file.sysFileImage.model.action.StdFimgysMergeFimarch;
+import br.com.mind5.file.sysFileImage.model.action.StdFimgysMergeFimgysarch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -37,12 +37,12 @@ public final class RootFimgSearch extends DeciTreeTemplateRead<FimgysInfo> {
 	@Override protected List<ActionStd<FimgysInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgysInfo> option) {
 		List<ActionStd<FimgysInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FimgysInfo> mergeFimarch = new StdFimgysMergeFimarch(option);
+		ActionStd<FimgysInfo> mergeFimgysarch = new StdFimgysMergeFimgysarch(option);
 		ActionLazy<FimgysInfo> select = new LazyFimgysRootSelect(option.conn, option.schemaName);
 		
-		mergeFimarch.addPostAction(select);
+		mergeFimgysarch.addPostAction(select);
 		
-		actions.add(mergeFimarch);
+		actions.add(mergeFimgysarch);
 		return actions;
 	}
 }

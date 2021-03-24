@@ -2,10 +2,10 @@ package br.com.mind5.file.sysFileImage.info;
 
 import java.util.List;
 
-import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.file.fileImageSnapshot.info.FimgnapInfo;
 import br.com.mind5.file.filePath.info.FathInfo;
 import br.com.mind5.file.fileRead.info.FreadInfo;
+import br.com.mind5.file.sysFileImageSearch.info.FimgysarchInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 
@@ -36,13 +36,13 @@ public final class FimgysMerger {
 	
 	
 	
-	public static List<FimgysInfo> mergeWithFimarch(List<FimgysInfo> baseInfos, List<FimarchInfo> selectedInfos) {
-		InfoMergerBuilder<FimgysInfo, FimarchInfo> builder = new InfoMergerBuilder<>();
+	public static List<FimgysInfo> mergeWithFimgysarch(List<FimgysInfo> baseInfos, List<FimgysarchInfo> selectedInfos) {
+		InfoMergerBuilder<FimgysInfo, FimgysarchInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgVisiMergeFimarch());
-		InfoMerger<FimgysInfo, FimarchInfo> merger = builder.build();		
+		builder.addVisitor(new FimgysVisiMergeFimgysarch());
+		InfoMerger<FimgysInfo, FimgysarchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

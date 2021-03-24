@@ -5,13 +5,13 @@ import java.util.List;
 
 import br.com.mind5.file.sysFileImage.info.FimgysInfo;
 import br.com.mind5.file.sysFileImage.model.action.LazyFimgysRootReplace;
-import br.com.mind5.file.sysFileImage.model.action.StdFimgysMergeFimarch;
-import br.com.mind5.file.sysFileImage.model.checker.FimgCheckExistOwner;
+import br.com.mind5.file.sysFileImage.model.action.StdFimgysMergeFimgysarchGroup;
+import br.com.mind5.file.sysFileImage.model.checker.FimgysCheckExistGroup;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -32,7 +32,7 @@ public final class NodeFimgysUpsertGroup extends DeciTreeTemplateWrite<FimgysInf
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
-		checker = new FimgCheckExistOwner(checkerOption);
+		checker = new FimgysCheckExistGroup(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -54,12 +54,12 @@ public final class NodeFimgysUpsertGroup extends DeciTreeTemplateWrite<FimgysInf
 	@Override protected List<ActionStd<FimgysInfo>> buildActionsOnFailedHook(DeciTreeOption<FimgysInfo> option) {
 		List<ActionStd<FimgysInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<FimgysInfo> mergeFimarch = new StdFimgysMergeFimarch(option);
+		ActionStd<FimgysInfo> mergeFimgysarch = new StdFimgysMergeFimgysarchGroup(option);
 		ActionLazy<FimgysInfo> replace = new LazyFimgysRootReplace(option.conn, option.schemaName);
 		
-		mergeFimarch.addPostAction(replace);
+		mergeFimgysarch.addPostAction(replace);
 		
-		actions.add(mergeFimarch);		
+		actions.add(mergeFimgysarch);		
 		return actions;
 	}
 }

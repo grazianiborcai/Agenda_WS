@@ -1,24 +1,24 @@
 package br.com.mind5.file.sysFileImage.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
-import br.com.mind5.file.fileImageSearch.model.decisionTree.RootFimarchSelectOwner;
 import br.com.mind5.file.sysFileImage.info.FimgysInfo;
+import br.com.mind5.file.sysFileImageSearch.info.FimgysarchInfo;
+import br.com.mind5.file.sysFileImageSearch.model.decisionTree.RootFimgysarchSelectGroup;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class FimgCheckExistOwner extends ModelCheckerTemplateAction<FimgysInfo, FimarchInfo> {	
+public final class FimgysCheckExistGroup extends ModelCheckerTemplateAction<FimgysInfo, FimgysarchInfo> {	
 	
-	public FimgCheckExistOwner(ModelCheckerOption option) {
-		super(option, FimarchInfo.class);
+	public FimgysCheckExistGroup(ModelCheckerOption option) {
+		super(option, FimgysarchInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStd<FimarchInfo> buildActionHook(DeciTreeOption<FimarchInfo> option) {
-		ActionStd<FimarchInfo> select = new RootFimarchSelectOwner(option).toAction();
+	@Override protected ActionStd<FimgysarchInfo> buildActionHook(DeciTreeOption<FimgysarchInfo> option) {
+		ActionStd<FimgysarchInfo> select = new RootFimgysarchSelectGroup(option).toAction();
 		return select;
 	}
 	
