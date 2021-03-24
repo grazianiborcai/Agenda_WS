@@ -62,7 +62,8 @@ public final class DaoFimgnapInsertSingle extends DaoStmtTemplate<FimgnapInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
 				stmt.setString(i++, recordInfo.fileImgPathExternal);
-				stmt.setString(i++, recordInfo.fileImgUriExternal);	
+				stmt.setString(i++, recordInfo.fileImgUriExternal);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codGroup);
 				
 				return stmt;
 			}		

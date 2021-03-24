@@ -26,6 +26,7 @@ public final class FimgnapInfo extends InfoRecord implements Cloneable {
 	public long codMat;
 	public long codStore;
 	public long codOwnerRef;
+	public int codGroup;
 	public LocalDateTime createdOn;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -47,7 +48,8 @@ public final class FimgnapInfo extends InfoRecord implements Cloneable {
 		codUser = DefaultValue.number();
 		codMat = DefaultValue.number();
 		codStore = DefaultValue.number();		
-		codOwnerRef = DefaultValue.number();	
+		codOwnerRef = DefaultValue.number();
+		codGroup = DefaultValue.number();
 		createdOn = DefaultValue.object();
 		lastChanged = DefaultValue.object();
 		lastChangedBy = DefaultValue.number();	
