@@ -5,13 +5,14 @@ import java.util.List;
 
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.masterData.materialGroup.model.action.LazyMatoupMergeBusarea;
+import br.com.mind5.masterData.materialGroup.model.action.LazyMatoupMergeFimgys;
 import br.com.mind5.masterData.materialGroup.model.action.StdMatoupDaoSelect;
 import br.com.mind5.masterData.materialGroup.model.checker.MatoupCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
@@ -45,8 +46,10 @@ public final class RootMatoupSelect extends DeciTreeTemplateRead<MatoupInfo> {
 		
 		ActionStd<MatoupInfo> select = new StdMatoupDaoSelect(option);
 		ActionLazy<MatoupInfo> mergeBusarea = new LazyMatoupMergeBusarea(option.conn, option.schemaName);
+		ActionLazy<MatoupInfo> mergeFimgys = new LazyMatoupMergeFimgys(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeBusarea);
+		mergeBusarea.addPostAction(mergeFimgys);
 		
 		actions.add(select);
 		return actions;

@@ -2,14 +2,17 @@ package br.com.mind5.masterData.materialGroup.info;
 
 import java.util.List;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
+import br.com.mind5.file.sysFileImage.info.FimgysInfo;
 import br.com.mind5.info.InfoRecord;
 
 public class MatoupInfo extends InfoRecord implements Cloneable {
 	public int codGroup;
 	public String txtGroup;
 	public int codBusiness;
-	public String txtBusiness; 
+	public String txtBusiness;
+	public FimgysInfo fimgysData;
 	
 	
 	public MatoupInfo() {
@@ -34,7 +37,10 @@ public class MatoupInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone()throws CloneNotSupportedException {
-		return super.clone();
+		MatoupInfo deepCopy = (MatoupInfo) super.clone();
+		
+		deepCopy.fimgysData = CloneUtil.cloneRecord(fimgysData, this.getClass());
+		return deepCopy;
 	}
 	
 	
