@@ -12,7 +12,6 @@ public final class FimgSetterEmp extends InfoSetterTemplate<FimgInfo> {
 		recordInfo.codStore = DefaultValue.number();
 		recordInfo.codCustomer = DefaultValue.number();
 		recordInfo.codUser = DefaultValue.number();
-		recordInfo.codGroup = DefaultValue.number();
 		
 		return recordInfo;
 	}

@@ -64,7 +64,6 @@ public final class DaoFimgSelectSingle extends DaoStmtTemplate<FimgInfo> {
 					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoFimgDbTableColumn.COL_COD_OWNER);
 					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, DaoFimgDbTableColumn.COL_COD_OWNER_REF);
 					dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, DaoFimgDbTableColumn.COL_COD_FILE_IMG);
-					dataInfo.codGroup = DaoFormatter.sqlToInt(stmtResult, DaoFimgDbTableColumn.COL_COD_MAT_GROUP);
 					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, DaoFimgDbTableColumn.COL_COD_MATERIAL);
 					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoFimgDbTableColumn.COL_COD_PERSON);
 					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, DaoFimgDbTableColumn.COL_COD_EMPLOYEE);

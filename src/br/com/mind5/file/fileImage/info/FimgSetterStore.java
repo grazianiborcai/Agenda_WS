@@ -12,7 +12,6 @@ public final class FimgSetterStore extends InfoSetterTemplate<FimgInfo> {
 		recordInfo.codMat = DefaultValue.number();
 		recordInfo.codCustomer = DefaultValue.number();
 		recordInfo.codUser = DefaultValue.number();
-		recordInfo.codGroup = DefaultValue.number();
 		
 		return recordInfo;
 	}

@@ -12,7 +12,6 @@ public final class FimgSetterCus extends InfoSetterTemplate<FimgInfo> {
 		recordInfo.codStore = DefaultValue.number();
 		recordInfo.codEmployee = DefaultValue.number();
 		recordInfo.codUser = DefaultValue.number();
-		recordInfo.codGroup = DefaultValue.number();
 		
 		return recordInfo;
 	}

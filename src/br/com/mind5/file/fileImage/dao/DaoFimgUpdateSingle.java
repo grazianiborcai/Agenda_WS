@@ -74,7 +74,6 @@ public final class DaoFimgUpdateSingle extends DaoStmtTemplate<FimgInfo> {
 				stmt.setString(i++, recordInfo.fileImgPathExternal);
 				stmt.setString(i++, recordInfo.fileImgUriExternal);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codGroup);
 				
 				return stmt;
 			}		
