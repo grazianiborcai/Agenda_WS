@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
-public final class FimistInfo extends InfoRecord implements Cloneable {
+public final class FimistInfo extends InfoRecord implements Cloneable, Comparable<FimistInfo> {
 	public long codOwner;
 	public long codFileImg;
 	public String fileImgUriExternal;
@@ -18,6 +18,7 @@ public final class FimistInfo extends InfoRecord implements Cloneable {
 	public long codCustomer;
 	public long codUser;
 	public long codOwnerRef;
+	public int codGroup;
 	public String recordMode;
 	public String username;
 	
@@ -35,6 +36,7 @@ public final class FimistInfo extends InfoRecord implements Cloneable {
 		codCustomer = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codOwnerRef = DefaultValue.number();
+		codGroup = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 	}
 	
@@ -85,5 +87,58 @@ public final class FimistInfo extends InfoRecord implements Cloneable {
 		return (codOwner    == obj.codOwner   && 
 				codFileImg 	== obj.codFileImg &&
 				super.isStringEqual(fileImgExtension, obj.fileImgExtension));
-	}	
+	}
+	
+	
+	
+	@Override public int compareTo(FimistInfo arg0) {
+		super.checkCompareToArgument(arg0);
+		
+		int result = compareToCodOwner(arg0);		
+		if (result != 0) return result;
+		
+		result = compareToCover(arg0);		
+		if (result != 0) return result;
+		
+		result = compareToCodFileImg(arg0);		
+		if (result != 0) return result;
+		
+		return 0;
+	}
+	
+	
+	
+	private int compareToCodOwner(FimistInfo arg0) {
+		if (codOwner > arg0.codOwner) 
+			return  1;		
+		
+		if (codOwner < arg0.codOwner) 
+			return -1;
+		
+		return 0;
+	}
+	
+	
+	
+	private int compareToCover(FimistInfo arg0) {
+		if (isCover && arg0.isCover)
+			return 0;
+		
+		if (isCover) 
+			return  1;		
+		
+		return -1;
+	}
+	
+	
+	
+	private int compareToCodFileImg(FimistInfo arg0) {
+		if (codFileImg > arg0.codFileImg) 
+			return  1;		
+		
+		if (codFileImg < arg0.codFileImg) 
+			return -1;
+		
+		return 0;
+	}
 }
