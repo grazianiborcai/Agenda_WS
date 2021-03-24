@@ -11,7 +11,7 @@ import br.com.mind5.dao.common.DaoDbTable;
 
 public final class DaoFimgysapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_FILE_IMG = DaoDbField.COL_COD_FILE_IMG;
-	public static final String COL_COD_MAT_CATEG = DaoDbField.COL_COD_MAT_CATEG;
+	public static final String COL_COD_MAT_GROUP = DaoDbField.COL_COD_MAT_GROUP;
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;	
 	public static final String COL_CREATED_ON = DaoDbField.COL_CREATED_ON;
 	public static final String COL_FILE_IMG_EXTENSION = DaoDbField.COL_FILE_IMG_EXTENSION;
@@ -95,7 +95,7 @@ public final class DaoFimgysapDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_MAT_CATEG;
+		oneColumn.columnName = COL_COD_MAT_GROUP;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

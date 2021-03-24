@@ -17,7 +17,7 @@ import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.file.sysFileImageSnapshot.info.FimgysapInfo;
 
 public final class DaoFimgysapSelectSingle extends DaoStmtTemplate<FimgysapInfo> {
-	private final String MAIN_TABLE = DaoDbTable.FILE_IMG_SNAPSHOT_TABLE;		
+	private final String MAIN_TABLE = DaoDbTable.SYS_FILE_IMG_SNAPSHOT_TABLE;		
 	
 	
 	public DaoFimgysapSelectSingle(Connection conn, FimgysapInfo recordInfo, String schemaName) {
@@ -62,7 +62,7 @@ public final class DaoFimgysapSelectSingle extends DaoStmtTemplate<FimgysapInfo>
 					FimgysapInfo dataInfo = new FimgysapInfo();
 					
 					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoFimgysapDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codGroup = DaoFormatter.sqlToInt(stmtResult, DaoFimgysapDbTableColumn.COL_COD_MAT_CATEG);
+					dataInfo.codGroup = DaoFormatter.sqlToInt(stmtResult, DaoFimgysapDbTableColumn.COL_COD_MAT_GROUP);
 					dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, DaoFimgysapDbTableColumn.COL_COD_FILE_IMG);
 					dataInfo.recordMode = stmtResult.getString(DaoFimgysapDbTableColumn.COL_RECORD_MODE);
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoFimgysapDbTableColumn.COL_CREATED_ON);		
