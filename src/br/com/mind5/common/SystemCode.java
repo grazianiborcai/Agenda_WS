@@ -1607,4 +1607,9 @@ public final class SystemCode {
 	public static final int STAT_USER_YEAR_S_ALREADY_EXIST 				= 15800;
 	public static final int STAT_USER_YEAR_S_NOT_FOUND 					= 15801;
 	public static final int STAT_USER_YEAR_S_MANDATORY_FIELD_EMPTY		= 15802;
+	
+	// Sys File Image Search
+	public static final int SYS_FILE_IMG_SEARCH_MANDATORY_FIELD_EMPTY 	= 15850;
+	public static final int SYS_FILE_IMG_SEARCH_ALREADY_EXIST			= 15851;
+	public static final int SYS_FILE_IMG_SEARCH_NOT_FOUND				= 15852;
 }
