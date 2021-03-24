@@ -53,6 +53,9 @@ public final class FimarchCheckRead extends ModelCheckerTemplateSimple<FimarchIn
 			counter = counter + 1;	
 		
 		if ( recordInfo.codCustomer	> 0 )
+			counter = counter + 1;
+		
+		if ( recordInfo.codGroup	> 0 )
 			counter = counter + 1;	
 		
 		return counter;
