@@ -65,7 +65,6 @@ public final class DaoFimgnapSelectSingle extends DaoStmtTemplate<FimgnapInfo> {
 					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoFimgnapDbTableColumn.COL_COD_SNAPSHOT);
 					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, DaoFimgnapDbTableColumn.COL_COD_OWNER_REF);
 					dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, DaoFimgnapDbTableColumn.COL_COD_FILE_IMG);
-					dataInfo.codGroup = DaoFormatter.sqlToInt(stmtResult, DaoFimgnapDbTableColumn.COL_COD_MAT_GROUP);
 					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, DaoFimgnapDbTableColumn.COL_COD_MATERIAL);
 					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoFimgnapDbTableColumn.COL_COD_PERSON);
 					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, DaoFimgnapDbTableColumn.COL_COD_EMPLOYEE);
