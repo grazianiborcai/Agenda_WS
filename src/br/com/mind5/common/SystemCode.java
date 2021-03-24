@@ -1612,4 +1612,7 @@ public final class SystemCode {
 	public static final int SYS_FILE_IMG_SEARCH_MANDATORY_FIELD_EMPTY 	= 15850;
 	public static final int SYS_FILE_IMG_SEARCH_ALREADY_EXIST			= 15851;
 	public static final int SYS_FILE_IMG_SEARCH_NOT_FOUND				= 15852;
+	
+	// Sys File Image Snapshot
+	public static final int SYS_FILE_IMG_SNAPSHOT_MANDATORY_FIELD_EMPTY = 15900;
 }
