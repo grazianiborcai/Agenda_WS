@@ -18,7 +18,6 @@ public final class FimistInfo extends InfoRecord implements Cloneable, Comparabl
 	public long codCustomer;
 	public long codUser;
 	public long codOwnerRef;
-	public int codGroup;
 	public String recordMode;
 	public String username;
 	
@@ -36,7 +35,6 @@ public final class FimistInfo extends InfoRecord implements Cloneable, Comparabl
 		codCustomer = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codOwnerRef = DefaultValue.number();
-		codGroup = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 	}
 	

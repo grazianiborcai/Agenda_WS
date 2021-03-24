@@ -69,8 +69,7 @@ public final class DaoFimistSelectSingle extends DaoStmtTemplate<FimistInfo> {
 					
 					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoFimistDbTableColumn.COL_COD_OWNER);
 					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, DaoFimistDbTableColumn.COL_COD_OWNER_REF);
-					dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, DaoFimistDbTableColumn.COL_COD_FILE_IMG);
-					dataInfo.codGroup = DaoFormatter.sqlToInt(stmtResult, DaoFimistDbTableColumn.COL_COD_MAT_GROUP);					
+					dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, DaoFimistDbTableColumn.COL_COD_FILE_IMG);				
 					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, DaoFimistDbTableColumn.COL_COD_MATERIAL);
 					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoFimistDbTableColumn.COL_COD_PERSON);
 					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoFimistDbTableColumn.COL_COD_STORE);
