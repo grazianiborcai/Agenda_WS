@@ -32,6 +32,12 @@ public final class DaoFimarchSelectSingle extends DaoStmtTemplate<FimarchInfo> {
 	
 	
 	
+	@Override protected String getLookupTableHook() {
+		return DaoDbTable.FILE_IMG_SEARCH_VIEW;
+	}	
+	
+	
+	
 	@Override protected DaoOperation getOperationHook() {
 		return DaoOperation.SELECT;
 	}
