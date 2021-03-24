@@ -137,6 +137,7 @@ import br.com.mind5.file.fileImageList.dao.DaoFimistDbTableColumn;
 import br.com.mind5.file.fileImageSearch.dao.DaoFimarchDbTableColumn;
 import br.com.mind5.file.fileImageSnapshot.dao.DaoFimgnapDbTableColumn;
 import br.com.mind5.file.filePath.dao.DaoFathDbTableColumn;
+import br.com.mind5.file.sysFileImage.dao.DaoFimgysDbTableColumn;
 import br.com.mind5.form.formAddress.dao.DaoFormessDbTableColumn;
 import br.com.mind5.form.formPhone.dao.DaoFormoneDbTableColumn;
 import br.com.mind5.masterData.areaPhone.dao.DaoAreaneDbTableColumn;
@@ -496,6 +497,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoStusorygerchDbTableColumn());
 		addTable(new DaoStusorylirchDbTableColumn());
 		addTable(new DaoStusorygrarchDbTableColumn());
+		addTable(new DaoFimgysDbTableColumn());
 	}
 	
 	

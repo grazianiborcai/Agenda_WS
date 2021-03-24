@@ -27,13 +27,14 @@ import br.com.mind5.file.fileImage.model.FimgModelDeleteStore;
 import br.com.mind5.file.fileImage.model.FimgModelDeleteUser;
 import br.com.mind5.file.fileImage.model.FimgModelInsertCus;
 import br.com.mind5.file.fileImage.model.FimgModelInsertEmp;
-import br.com.mind5.file.fileImage.model.FimgModelInsertGroup;
 import br.com.mind5.file.fileImage.model.FimgModelInsertMat;
 import br.com.mind5.file.fileImage.model.FimgModelInsertOwner;
 import br.com.mind5.file.fileImage.model.FimgModelInsertStore;
 import br.com.mind5.file.fileImage.model.FimgModelInsertUserAuth;
 import br.com.mind5.file.fileImage.model.FimgModelUpdateMat;
 import br.com.mind5.file.fileImage.model.FimgModelUpdateStore;
+import br.com.mind5.file.sysFileImage.info.FimgysInfo;
+import br.com.mind5.file.sysFileImage.model.FimgysModelInsertMat;
 import br.com.mind5.model.Model;
 
 @Path("/File")
@@ -96,16 +97,15 @@ public class FileResource {
 						               @FormDataParam("file") 		  InputStream fileData,
 						               @FormDataParam("file") 		  FormDataContentDisposition fileDetails) {		
 		
-		FimgInfo recordInfo = new FimgInfo();		
+		FimgysInfo recordInfo = new FimgysInfo();		
 		
-		recordInfo.codOwner = codOwner;	
 		recordInfo.codGroup = codGroup;
 		recordInfo.fileImgData = fileData;
 		recordInfo.codLanguage = codLanguage;		
 		recordInfo.username = username;	
 		recordInfo.fileImgExtension = FilenameUtils.getExtension(fileDetails.getFileName());
 		
-		Model model = new FimgModelInsertGroup(recordInfo);
+		Model model = new FimgysModelInsertMat(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();

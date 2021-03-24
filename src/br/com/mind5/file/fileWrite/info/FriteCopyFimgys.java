@@ -1,6 +1,6 @@
 package br.com.mind5.file.fileWrite.info;
 
-import br.com.mind5.file.fileImageSys.info.FimgysInfo;
+import br.com.mind5.file.sysFileImage.info.FimgysInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
 final class FriteCopyFimgys extends InfoCopierTemplate<FriteInfo, FimgysInfo> {
