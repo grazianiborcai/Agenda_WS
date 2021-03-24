@@ -33,4 +33,14 @@ final class FimecoVisiMergeFimist extends InfoMergerVisitorTemplate<FimecoInfo, 
 		results.add(baseInfo);
 		return results;
 	}
+	
+	
+	
+	@Override protected List<FimecoInfo> afterMergeHook(List<FimecoInfo> results)  {
+		for (FimecoInfo eachResult : results) {
+			eachResult.fimistes = super.sortAscending(eachResult.fimistes);
+		}
+		
+		return results;
+	}
 }
