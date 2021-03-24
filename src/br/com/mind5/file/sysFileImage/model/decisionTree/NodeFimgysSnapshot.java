@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.file.sysFileImage.info.FimgysInfo;
 import br.com.mind5.file.sysFileImage.model.action.LazyFimgysDaoUpdate;
-import br.com.mind5.file.sysFileImage.model.action.StdFimgysFimgnapInsert;
+import br.com.mind5.file.sysFileImage.model.action.StdFimgysFimgysapInsert;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -37,7 +37,7 @@ public final class NodeFimgysSnapshot extends DeciTreeTemplateWrite<FimgysInfo> 
 	@Override protected List<ActionStd<FimgysInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgysInfo> option) {
 		List<ActionStd<FimgysInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<FimgysInfo> insertSnapshot = new StdFimgysFimgnapInsert(option);	
+		ActionStd<FimgysInfo> insertSnapshot = new StdFimgysFimgysapInsert(option);	
 		ActionLazy<FimgysInfo> update = new LazyFimgysDaoUpdate(option.conn, option.schemaName);
 		
 		insertSnapshot.addPostAction(update);

@@ -2,21 +2,21 @@ package br.com.mind5.file.sysFileImage.info;
 
 import java.util.List;
 
-import br.com.mind5.file.fileImageSnapshot.info.FimgnapInfo;
 import br.com.mind5.file.filePath.info.FathInfo;
 import br.com.mind5.file.fileRead.info.FreadInfo;
 import br.com.mind5.file.sysFileImageSearch.info.FimgysarchInfo;
+import br.com.mind5.file.sysFileImageSnapshot.info.FimgysapInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 
 public final class FimgysMerger {	
-	public static List<FimgysInfo> mergeWithFimgnap(List<FimgysInfo> baseInfos, List<FimgnapInfo> selectedInfos) {
-		InfoMergerBuilder<FimgysInfo, FimgnapInfo> builder = new InfoMergerBuilder<>();
+	public static List<FimgysInfo> mergeWithFimgysap(List<FimgysInfo> baseInfos, List<FimgysapInfo> selectedInfos) {
+		InfoMergerBuilder<FimgysInfo, FimgysapInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgVisiMergeFimgnap());
-		InfoMerger<FimgysInfo, FimgnapInfo> merger = builder.build();		
+		builder.addVisitor(new FimgysVisiMergeFimgysap());
+		InfoMerger<FimgysInfo, FimgysapInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -28,7 +28,7 @@ public final class FimgysMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgVisiMergeFread());
+		builder.addVisitor(new FimgysVisiMergeFread());
 		InfoMerger<FimgysInfo, FreadInfo> merger = builder.build();		
 	
 		return merger.merge();

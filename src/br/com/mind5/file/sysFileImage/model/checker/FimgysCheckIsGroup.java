@@ -25,6 +25,6 @@ public final class FimgysCheckIsGroup extends ModelCheckerTemplateSimple<FimgysI
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.FILE_IMG_IS_NOT_OWNER;
+		return SystemCode.SYS_FILE_IMG_IS_NOT_GROUP;
 	}
 }

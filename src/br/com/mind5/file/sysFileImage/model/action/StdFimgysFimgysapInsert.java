@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdFimgysFimgnapInsert extends ActionStdTemplate<FimgysInfo> {
+public final class StdFimgysFimgysapInsert extends ActionStdTemplate<FimgysInfo> {
 
-	public StdFimgysFimgnapInsert(DeciTreeOption<FimgysInfo> option) {
+	public StdFimgysFimgysapInsert(DeciTreeOption<FimgysInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<FimgysInfo> buildVisitorHook(DeciTreeOption<FimgysInfo> option) {
-		return new VisiFimgysFimgnapInsert(option);
+		return new VisiFimgysFimgysapInsert(option);
 	}
 }

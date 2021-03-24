@@ -29,6 +29,6 @@ public final class FimgysCheckInsert extends ModelCheckerTemplateSimple<FimgysIn
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.FILE_IMG_MANDATORY_FIELD_EMPTY;
+		return SystemCode.SYS_FILE_IMG_MANDATORY_FIELD_EMPTY;
 	}
 }

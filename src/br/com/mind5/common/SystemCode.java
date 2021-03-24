@@ -1615,4 +1615,11 @@ public final class SystemCode {
 	
 	// Sys File Image Snapshot
 	public static final int SYS_FILE_IMG_SNAPSHOT_MANDATORY_FIELD_EMPTY = 15900;
+	
+	// Sys File Image
+	public static final int SYS_FILE_IMG_MANDATORY_FIELD_EMPTY 			= 15951;
+	public static final int SYS_FILE_IMG_ALREADY_EXIST					= 15952;
+	public static final int SYS_FILE_IMG_NOT_FOUND						= 15953;
+	public static final int SYS_FILE_IMG_IS_NOT_GROUP					= 15954;
+	public static final int SYS_FILE_IMG_ILLEGAL_REFERENCE 				= 15955;
 }

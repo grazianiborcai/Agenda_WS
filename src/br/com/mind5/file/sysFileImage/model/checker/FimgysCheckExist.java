@@ -24,12 +24,12 @@ public final class FimgysCheckExist extends ModelCheckerTemplateAction<FimgysInf
 	
 	
 	@Override protected int getCodMsgOnResultTrueHook() {
-		return SystemCode.FILE_IMG_ALREADY_EXIST;
+		return SystemCode.SYS_FILE_IMG_ALREADY_EXIST;
 	}	
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.FILE_IMG_NOT_FOUND;
+		return SystemCode.SYS_FILE_IMG_NOT_FOUND;
 	}
 }

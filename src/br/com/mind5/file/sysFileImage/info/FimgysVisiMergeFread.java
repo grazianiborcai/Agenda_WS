@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.file.fileRead.info.FreadInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class FimgVisiMergeFread extends InfoMergerVisitorTemplate<FimgysInfo, FreadInfo> {
+final class FimgysVisiMergeFread extends InfoMergerVisitorTemplate<FimgysInfo, FreadInfo> {
 	
 	@Override public boolean shouldMerge(FimgysInfo baseInfo, FreadInfo selectedInfo) {
 		return baseInfo.fileImgUri.equals(selectedInfo.fileUri);

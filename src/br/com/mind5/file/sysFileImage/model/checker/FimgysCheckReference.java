@@ -37,6 +37,6 @@ public final class FimgysCheckReference extends ModelCheckerTemplateSimple<Fimgy
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.FILE_IMG_ILLEGAL_REFERENCE;
+		return SystemCode.SYS_FILE_IMG_ILLEGAL_REFERENCE;
 	}
 }
