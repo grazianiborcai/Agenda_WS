@@ -69,7 +69,6 @@ public final class DaoFimarchSelectSingle extends DaoStmtTemplate<FimarchInfo> {
 					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoFimarchDbTableColumn.COL_COD_CUSTOMER);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoFimarchDbTableColumn.COL_COD_USER);
 					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoFimarchDbTableColumn.COL_COD_STORE);
-					dataInfo.codGroup = DaoFormatter.sqlToInt(stmtResult, DaoFimarchDbTableColumn.COL_COD_MAT_GROUP);
 					dataInfo.recordMode = stmtResult.getString(DaoFimarchDbTableColumn.COL_RECORD_MODE);
 					
 					finalResult.add(dataInfo);
