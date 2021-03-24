@@ -26,6 +26,7 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 	public long codMat;
 	public long codStore;
 	public long codOwnerRef;
+	public int codGroup;
 	public LocalDateTime createdOn;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -47,7 +48,8 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 		codUser = DefaultValue.number();
 		codMat = DefaultValue.number();
 		codStore = DefaultValue.number();		
-		codOwnerRef = DefaultValue.number();	
+		codOwnerRef = DefaultValue.number();
+		codGroup = DefaultValue.number();
 		createdOn = DefaultValue.object();
 		lastChanged = DefaultValue.object();
 		lastChangedBy = DefaultValue.number();	
@@ -83,6 +85,7 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 		result = result * 31 + (int) (codEmployee ^ (codEmployee >>> 32));
 		result = result * 31 + (int) (codUser 	  ^ (codUser 	 >>> 32));
 		result = result * 31 + (int) (codCustomer ^ (codCustomer >>> 32));
+		result = result * 31 + (int) (codGroup    ^ (codGroup    >>> 32));
 		
 		if (fileImgName != null)
 			result = result * 31 + fileImgName.hashCode();
@@ -110,6 +113,7 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 				codEmployee == obj.codEmployee 	&&
 				codUser 	== obj.codUser 		&&
 				codCustomer == obj.codCustomer 	&&
+				codGroup    == obj.codGroup 	&&
 				super.isStringEqual(fileImgName, obj.fileImgName) &&
 				super.isStringEqual(fileImgExtension, obj.fileImgExtension));
 	}	

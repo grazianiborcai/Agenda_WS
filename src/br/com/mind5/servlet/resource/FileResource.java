@@ -27,6 +27,7 @@ import br.com.mind5.file.fileImage.model.FimgModelDeleteStore;
 import br.com.mind5.file.fileImage.model.FimgModelDeleteUser;
 import br.com.mind5.file.fileImage.model.FimgModelInsertCus;
 import br.com.mind5.file.fileImage.model.FimgModelInsertEmp;
+import br.com.mind5.file.fileImage.model.FimgModelInsertGroup;
 import br.com.mind5.file.fileImage.model.FimgModelInsertMat;
 import br.com.mind5.file.fileImage.model.FimgModelInsertOwner;
 import br.com.mind5.file.fileImage.model.FimgModelInsertStore;
@@ -38,20 +39,21 @@ import br.com.mind5.model.Model;
 @Path("/File")
 public class FileResource {
 
-	private static final String INSERT_FILE_IMG_OWNER = "/insertFileImgOwner";
-	private static final String INSERT_FILE_IMG_EMPLOYEE = "/insertFileImgEmployee";
-	private static final String INSERT_FILE_IMG_CUSTOMER = "/insertFileImgCustomer";
-	private static final String INSERT_FILE_IMG_USER = "/insertFileImgUser";
-	private static final String INSERT_FILE_IMG_STORE = "/insertFileImgStore";
-	private static final String UPDATE_FILE_IMG_STORE = "/updateFileImgStore";
-	private static final String DELETE_FILE_IMG_STORE = "/deleteFileImgStore";
-	private static final String DELETE_FILE_IMG_OWNER = "/deleteFileImgOwner";
-	private static final String DELETE_FILE_IMG_EMPLOYEE = "/deleteFileImgEmployee";
 	private static final String DELETE_FILE_IMG_CUSTOMER = "/deleteFileImgCustomer";
-	private static final String DELETE_FILE_IMG_USER = "/deleteFileImgUser";
+	private static final String DELETE_FILE_IMG_EMPLOYEE = "/deleteFileImgEmployee";
+	private static final String DELETE_FILE_IMG_MAT = "/deleteFileImgMaterial";	
+	private static final String DELETE_FILE_IMG_OWNER = "/deleteFileImgOwner";
+	private static final String DELETE_FILE_IMG_STORE = "/deleteFileImgStore";
+	private static final String DELETE_FILE_IMG_USER = "/deleteFileImgUser";	
+	private static final String INSERT_FILE_IMG_CUSTOMER = "/insertFileImgCustomer";
+	private static final String INSERT_FILE_IMG_EMPLOYEE = "/insertFileImgEmployee";
+	private static final String INSERT_FILE_IMG_GROUP = "/insertFileImgGroup";
 	private static final String INSERT_FILE_IMG_MAT = "/insertFileImgMaterial";
+	private static final String INSERT_FILE_IMG_OWNER = "/insertFileImgOwner";
+	private static final String INSERT_FILE_IMG_STORE = "/insertFileImgStore";
+	private static final String INSERT_FILE_IMG_USER = "/insertFileImgUser";
 	private static final String UPDATE_FILE_IMG_MAT = "/updateFileImgMaterial";
-	private static final String DELETE_FILE_IMG_MAT = "/deleteFileImgMaterial";
+	private static final String UPDATE_FILE_IMG_STORE = "/updateFileImgStore";
 	
 	
 	
@@ -74,6 +76,36 @@ public class FileResource {
 		recordInfo.fileImgExtension = FilenameUtils.getExtension(fileDetails.getFileName());
 		
 		Model model = new FimgModelInsertOwner(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	} 
+	
+	
+	
+	@POST
+	@Path(INSERT_FILE_IMG_GROUP)
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	@Produces(MediaType.APPLICATION_JSON)	
+	public Response insertFileImgGroup(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+						               @HeaderParam("TOKEN_USERNAME") String username,
+						               @FormDataParam("codGroup")     @DefaultValue("-1") int codGroup,
+						               @FormDataParam("codLanguage")  @DefaultValue("EN") String codLanguage,
+						               @FormDataParam("file") 		  InputStream fileData,
+						               @FormDataParam("file") 		  FormDataContentDisposition fileDetails) {		
+		
+		FimgInfo recordInfo = new FimgInfo();		
+		
+		recordInfo.codOwner = codOwner;	
+		recordInfo.codGroup = codGroup;
+		recordInfo.fileImgData = fileData;
+		recordInfo.codLanguage = codLanguage;		
+		recordInfo.username = username;	
+		recordInfo.fileImgExtension = FilenameUtils.getExtension(fileDetails.getFileName());
+		
+		Model model = new FimgModelInsertGroup(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();

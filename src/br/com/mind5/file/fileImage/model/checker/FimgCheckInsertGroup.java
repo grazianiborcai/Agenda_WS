@@ -7,9 +7,9 @@ import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class FimgCheckInsertOwner extends ModelCheckerTemplateSimple<FimgInfo> {
+public final class FimgCheckInsertGroup extends ModelCheckerTemplateSimple<FimgInfo> {
 
-	public FimgCheckInsertOwner(ModelCheckerOption option) {
+	public FimgCheckInsertGroup(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -17,6 +17,7 @@ public final class FimgCheckInsertOwner extends ModelCheckerTemplateSimple<FimgI
 	
 	@Override protected boolean checkHook(FimgInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0	||
+			 recordInfo.codGroup 	<= 0 	||
 			 recordInfo.username 	== null	||
 			 recordInfo.codLanguage == null		)
 			

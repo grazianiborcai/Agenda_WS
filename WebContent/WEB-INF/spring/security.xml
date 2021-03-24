@@ -154,6 +154,7 @@
         <security:intercept-url pattern="/**/Schedule/selectScheduleDayNow"			access="hasAuthority('SCHEDULE_READ')"				/> 
         <security:intercept-url pattern="/**/Schedule/selectScheduleDayPrevious"	access="hasAuthority('SCHEDULE_READ')"				/> 
         <security:intercept-url pattern="/**/Schedule/selectScheduleRange"			access="hasAuthority('SCHEDULE_READ')"				/> 
+        <security:intercept-url pattern="/**/File/insertFileImgGroup"				access="hasAuthority('OWNER_WRITE')" 				/>        
         <security:intercept-url pattern="/**/File/insertFileImgOwner"				access="hasAuthority('OWNER_WRITE')" 				/>
         <security:intercept-url pattern="/**/File/deleteFileImgOwner"				access="hasAuthority('OWNER_WRITE')" 				/>
         <security:intercept-url pattern="/**/File/insertFileImgStore" 				access="hasAuthority('STORE_UPDATE')" 				/>
