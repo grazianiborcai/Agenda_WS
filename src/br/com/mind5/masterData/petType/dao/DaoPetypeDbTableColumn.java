@@ -10,6 +10,7 @@ import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class DaoPetypeDbTableColumn extends DaoDbTableColumnTemplate {
+	
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_COD_PET_TYPE = DaoDbField.COL_COD_PET_TYPE;
 	public static final String COL_NAME = DaoDbField.COL_NAME;
