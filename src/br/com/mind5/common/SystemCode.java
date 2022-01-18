@@ -1622,4 +1622,9 @@ public final class SystemCode {
 	public static final int SYS_FILE_IMG_NOT_FOUND						= 15953;
 	public static final int SYS_FILE_IMG_IS_NOT_GROUP					= 15954;
 	public static final int SYS_FILE_IMG_ILLEGAL_REFERENCE 				= 15955;
+	
+	// Pet Type
+	public static final int PET_TYPE_ALREADY_EXIST						= 16001;
+	public static final int PET_TYPE_NOT_FOUND							= 16002;
+	public static final int PET_TYPE_MANDATORY_FIELD_EMPTY 				= 16003;
 }
