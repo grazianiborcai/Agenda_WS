@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
+import br.com.mind5.dao.DaoJoin;
+import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
@@ -47,6 +49,13 @@ public final class DaoPetypeSelectSingle extends DaoStmtTemplate<PetypeInfo> {
 		DaoStmtWhere whereClause = new DaoPetypeWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
+	
+	
+	
+	@Override protected DaoJoin getJoinHook(PetypeInfo recordInfo) {
+		DaoJoinBuilder joinText = new DaoPetypeJoinTxt(MAIN_TABLE);		
+		return joinText.build();
+	}	
 	
 	
 	
