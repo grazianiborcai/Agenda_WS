@@ -180,7 +180,12 @@
         <security:intercept-url pattern="/**/Prospect/deleteProspectStore" 			access="hasAuthority('OWNER_WRITE')" 				/>
         <security:intercept-url pattern="/**/Prospect/searchProspectStore" 			access="hasAuthority('OWNER_READ')" 				/>        
         <security:intercept-url pattern="/**/Prospect/selectProspectStore" 			access="hasAuthority('OWNER_READ')" 				/>  
-        <security:intercept-url pattern="/**/Calendar/selectCalendarCatalogue" 		access="isAuthenticated()" 							/> 
+        <security:intercept-url pattern="/**/Calendar/selectCalendarCatalogue" 		access="isAuthenticated()" 							/>        
+ 		<security:intercept-url pattern="/**/Pet/insertPet" 						access="hasAuthority('PET_WRITE')"					/>
+        <security:intercept-url pattern="/**/Pet/updatePet" 						access="hasAuthority('PET_WRITE')" 					/>
+        <security:intercept-url pattern="/**/Pet/deletePet" 						access="hasAuthority('PET_WRITE')" 					/>
+        <security:intercept-url pattern="/**/Pet/selectMPet" 						access="hasAuthority('PET_READ')"					/>
+        <security:intercept-url pattern="/**/Pet/searchPet" 						access="hasAuthority('PET_READ')" 					/>        
         <security:intercept-url pattern="/**" 										access="denyAll" 									/>  
         <security:http-basic />
         <csrf disabled="true"/>

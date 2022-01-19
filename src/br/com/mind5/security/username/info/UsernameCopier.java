@@ -18,6 +18,7 @@ import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.notes.info.NotesInfo;
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.owner.info.OwnerInfo;
+import br.com.mind5.business.pet.info.PetInfo;
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
 import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
 import br.com.mind5.business.store.info.StoreInfo;
@@ -482,5 +483,19 @@ public final class UsernameCopier {
 	public static List<UsernameInfo> copyFromStopar(List<StoparInfo> sources) {
 		InfoCopier<UsernameInfo, StoparInfo> copier = new UsernameCopyStopar();
 		return copier.makeCopy(sources);
-	}	
+	}
+	
+	
+	
+	public static UsernameInfo copyFromPet(PetInfo source) {
+		InfoCopier<UsernameInfo, PetInfo> copier = new UsernameCopyPet();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UsernameInfo> copyFromPet(List<PetInfo> sources) {
+		InfoCopier<UsernameInfo, PetInfo> copier = new UsernameCopyPet();
+		return copier.makeCopy(sources);
+	}
 }

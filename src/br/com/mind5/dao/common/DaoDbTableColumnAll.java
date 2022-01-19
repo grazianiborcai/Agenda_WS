@@ -79,6 +79,7 @@ import br.com.mind5.business.person.dao.DaoPersonDbTableColumn;
 import br.com.mind5.business.personList.dao.DaoPersolisDbTableColumn;
 import br.com.mind5.business.personSearch.dao.DaoPerarchDbTableColumn;
 import br.com.mind5.business.personSnapshot.dao.DaoPersonapDbTableColumn;
+import br.com.mind5.business.pet.dao.DaoPetDbTableColumn;
 import br.com.mind5.business.phone.dao.DaoPhoneDbTableColumn;
 import br.com.mind5.business.phoneDefault.dao.DaoPhonaultDbTableColumn;
 import br.com.mind5.business.phoneSearch.dao.DaoPhonarchDbTableColumn;
@@ -510,6 +511,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoPetyparchDbTableColumn());
 		addTable(new DaoPeteightDbTableColumn());
 		addTable(new DaoPeteightarchDbTableColumn());
+		addTable(new DaoPetDbTableColumn());
 	}
 	
 	

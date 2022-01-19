@@ -73,6 +73,7 @@ public final class DaoDbField {
 	public static final String COL_COD_PAY_ORDER_ITEM = "cod_pay_order_item";
 	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
 	public static final String COL_COD_PAYMENT_STATUS = "cod_payment_status";
+	public static final String COL_COD_PET = "cod_pet";
 	public static final String COL_COD_PET_TYPE = "cod_pet_type";
 	public static final String COL_COD_PET_WEIGHT = "cod_pet_weight";
 	public static final String COL_COD_POSITION = "cod_position";	
@@ -211,6 +212,9 @@ public final class DaoDbField {
 	public static final String COL_OWN_ID = "own_id";
 	public static final String COL_DISTRICT_SEARCH_DEFAULT = "district_search_default";
 	public static final String COL_OWNER_SIGNUP = "owner_signup";
+	public static final String COL_PET_BIRTH_DATE = "pet_birth_date";
+	public static final String COL_PET_NAME = "pet_name";
+	public static final String COL_PET_NOTES = "pet_notes";
 	public static final String COL_PHONE_NAME = "phone_name";
 	public static final String COL_PROSPECT_EMAIL = "prospect_email";	
 	public static final String COL_PROSPECT_NAME = "prospect_name";
