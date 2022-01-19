@@ -22,7 +22,7 @@ public final class DaoPetyparchDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		final String TABLE_NAME = DaoDbTable.PET_TYPE_TEXT_TABLE;
+		final String TABLE_NAME = DaoDbTable.PET_TYPE_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();			
@@ -36,18 +36,18 @@ public final class DaoPetyparchDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);	
 		
 		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
+		oneColumn.tableName = DaoDbTable.PET_TYPE_TEXT_TABLE;
 		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
+		oneColumn.tableName = DaoDbTable.PET_TYPE_TEXT_TABLE;
 		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		

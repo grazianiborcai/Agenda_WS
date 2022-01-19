@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
+import br.com.mind5.dao.DaoJoin;
+import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
@@ -17,7 +19,7 @@ import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.petTypeSearch.info.PetyparchInfo;
 
 public final class DaoPetyparchSelectSingle extends DaoStmtTemplate<PetyparchInfo> {
-	private final String MAIN_TABLE = DaoDbTable.PET_TYPE_TEXT_TABLE;
+	private final String MAIN_TABLE = DaoDbTable.PET_TYPE_TABLE;
 	
 	
 	public DaoPetyparchSelectSingle(Connection conn, PetyparchInfo recordInfo, String schemaName) {
@@ -54,6 +56,13 @@ public final class DaoPetyparchSelectSingle extends DaoStmtTemplate<PetyparchInf
 		DaoStmtWhere whereClause = new DaoPetyparchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
+	
+	
+	
+	@Override protected DaoJoin getJoinHook(PetyparchInfo recordInfo) {
+		DaoJoinBuilder joinText = new DaoPetyparchJoinTxt(MAIN_TABLE);		
+		return joinText.build();
+	}	
 	
 	
 	
