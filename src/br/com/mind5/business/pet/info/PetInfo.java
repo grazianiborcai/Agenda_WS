@@ -10,6 +10,7 @@ import br.com.mind5.info.InfoRecord;
 public final class PetInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPet;
+	public long codSnapshot;
 	public String petNote;
 	public String petName;
 	public int codPetype;
@@ -31,6 +32,7 @@ public final class PetInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codPet = DefaultValue.number();
+		codSnapshot = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		codPetype = DefaultValue.number();
 		codPeteight = DefaultValue.number();

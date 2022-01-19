@@ -54,6 +54,7 @@ public final class DaoPetInsertSingle extends DaoStmtTemplate<PetInfo> {
 				stmt.setInt(i++, recordInfo.codPetype);
 				stmt.setString(i++, recordInfo.petNote);
 				stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.petBirthDate);
+				stmt.setLong(i++, recordInfo.codSnapshot);
 				
 				return stmt;
 			}		

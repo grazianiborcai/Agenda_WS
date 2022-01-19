@@ -15,9 +15,10 @@ public final class DaoPetDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PET = DaoDbField.COL_COD_PET;
 	public static final String COL_COD_PET_TYPE = DaoDbField.COL_COD_PET_TYPE;
 	public static final String COL_COD_PET_WEIGHT = DaoDbField.COL_COD_PET_WEIGHT;
-	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;	
+	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
+	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
 	public static final String COL_CREATED_BY = DaoDbField.COL_CREATED_BY;
-	public static final String COL_CREATED_ON = DaoDbField.COL_CREATED_ON;	
+	public static final String COL_CREATED_ON = DaoDbField.COL_CREATED_ON;
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
 	public static final String COL_PET_BIRTH_DATE = DaoDbField.COL_PET_BIRTH_DATE;
@@ -137,6 +138,14 @@ public final class DaoPetDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_PET_BIRTH_DATE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_SNAPSHOT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
