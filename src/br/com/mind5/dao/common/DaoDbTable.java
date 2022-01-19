@@ -107,6 +107,7 @@ public final class DaoDbTable {
 	public static final String PERSON_TABLE = "person";
 	public static final String PERSON_SNAPSHOT_TABLE = "person_snapshot";
 	public static final String PET_TABLE = "pet";
+	public static final String PET_SNAPSHOT_TABLE = "pet_snapshot";
 	public static final String PET_TYPE_TABLE = "pet_type";
 	public static final String PET_TYPE_TEXT_TABLE = "pet_type_text";
 	public static final String PET_WEIGHT_TABLE = "pet_weight";

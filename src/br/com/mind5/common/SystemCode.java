@@ -1644,4 +1644,7 @@ public final class SystemCode {
 	public static final int PET_NOT_FOUND								= 16201;
 	public static final int PET_ALREADY_EXIST							= 16202;
 	public static final int PET_INVALID_BIRTHDATE						= 16203;
+	
+	// Pet Snapshot
+	public static final int PET_SNAP_MANDATORY_FIELD_EMPTY				= 16250;
 }
