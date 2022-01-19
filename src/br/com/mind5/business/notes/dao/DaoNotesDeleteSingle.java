@@ -16,7 +16,7 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class DaoNotesDeleteSingle extends DaoStmtTemplate<NotesInfo> {
-	private final String MAIN_TABLE = DaoDbTable.MAT_TEXT_TABLE;	
+	private final String MAIN_TABLE = DaoDbTable.NOTES_TABLE;	
 	
 	
 	public DaoNotesDeleteSingle(Connection conn, NotesInfo recordInfo, String schemaName) {
