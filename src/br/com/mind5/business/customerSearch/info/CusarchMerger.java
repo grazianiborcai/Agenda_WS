@@ -7,6 +7,7 @@ import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CusarchMerger {	
 	public static List<CusarchInfo> mergeWithPersolis(List<CusarchInfo> baseInfos, List<PersolisInfo> selectedInfos) {
@@ -16,6 +17,18 @@ public final class CusarchMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CusarchVisiMergePersolis());
 		InfoMerger<CusarchInfo, PersolisInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	public static List<CusarchInfo> mergeWithUsername(List<CusarchInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilder<CusarchInfo, UsernameInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusarchVisiMergeUsername());
+		InfoMerger<CusarchInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

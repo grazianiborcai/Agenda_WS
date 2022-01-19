@@ -16,8 +16,9 @@ public final class UsernameCheckRead extends ModelCheckerTemplateSimple<Username
 	
 	
 	@Override protected boolean checkHook(UsernameInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner <= 0 	||
-			recordInfo.username	== null		)			
+		if (recordInfo.codOwner 	<= 0 	||
+			recordInfo.username		== null	||
+			recordInfo.codLanguage	== null		)			
 			
 			return super.FAILED;	
 		

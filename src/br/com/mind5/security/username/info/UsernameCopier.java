@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.business.bookService.info.BookiceInfo;
 import br.com.mind5.business.cartReserveConflict.info.CartercoInfo;
 import br.com.mind5.business.customer.info.CusInfo;
+import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
@@ -468,6 +469,20 @@ public final class UsernameCopier {
 	
 	public static List<UsernameInfo> copyFromCus(List<CusInfo> sources) {
 		InfoCopier<UsernameInfo, CusInfo> copier = new UsernameCopyCus();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static UsernameInfo copyFromCusarch(CusarchInfo source) {
+		InfoCopier<UsernameInfo, CusarchInfo> copier = new UsernameCopyCusarch();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UsernameInfo> copyFromCusarch(List<CusarchInfo> sources) {
+		InfoCopier<UsernameInfo, CusarchInfo> copier = new UsernameCopyCusarch();
 		return copier.makeCopy(sources);
 	}
 	
