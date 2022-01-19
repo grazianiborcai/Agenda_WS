@@ -54,6 +54,8 @@ import br.com.mind5.masterData.orderStatusSearch.info.OrderatarchInfo;
 import br.com.mind5.masterData.orderStatusSearch.model.OrderatarchModelSelect;
 import br.com.mind5.masterData.paymentStatusSearch.info.PaymenusarchInfo;
 import br.com.mind5.masterData.paymentStatusSearch.model.PaymenusarchModelSelect;
+import br.com.mind5.masterData.petTypeSearch.info.PetyparchInfo;
+import br.com.mind5.masterData.petTypeSearch.model.PetyparchModelSelect;
 import br.com.mind5.masterData.position.info.PositionInfo;
 import br.com.mind5.masterData.position.model.PositionModelSelect;
 import br.com.mind5.masterData.prospectStatusSearch.info.ProstarchInfo;
@@ -106,6 +108,7 @@ public final class MasterDataResource {
 	private static final String SELECT_REFUND_POLICY_GROUP = "/selectRefundPolicyGroup";
 	private static final String SELECT_FILE_DOC_TYPE = "/selectFileDocType";
 	private static final String SELECT_PROSPECT_STATUS = "/selectProspectStatus";
+	private static final String SELECT_PET_TYPE = "/selectPetType";
 	
 	
 	
@@ -752,6 +755,27 @@ public final class MasterDataResource {
 		
 		
 		Model model = new ProstarchModelSelect(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_PET_TYPE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectPetType(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
+			                      @HeaderParam("codPetype")   @DefaultValue("-1") int codPetype) {
+		
+		PetyparchInfo recordInfo = new PetyparchInfo();
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.codPetype = codPetype;
+		
+		
+		Model model = new PetyparchModelSelect(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();

@@ -1,4 +1,4 @@
-package br.com.mind5.masterData.petTypeSeach.dao;
+package br.com.mind5.masterData.petTypeSearch.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -9,27 +9,27 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoMontharchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoPetyparchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
-	public static final String COL_MONTH = DaoDbField.COL_MONTH;
+	public static final String COL_COD_PET_TYPE = DaoDbField.COL_COD_PET_TYPE;
 	public static final String COL_NAME = DaoDbField.COL_NAME;
 	
 	
-	public DaoMontharchDbTableColumn() {
+	public DaoPetyparchDbTableColumn() {
 		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		final String TABLE_NAME = DaoDbTable.MONTH_TEXT_TABLE;
+		final String TABLE_NAME = DaoDbTable.PET_TYPE_TEXT_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();			
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_MONTH;
+		oneColumn.columnName = COL_COD_PET_TYPE;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -52,7 +52,7 @@ public final class DaoMontharchDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
-		results.put(DaoDbTable.MONTH_TEXT_SEARCH_VIEW, columns);
+		results.put(DaoDbTable.PET_TYPE_TEXT_SEARCH_VIEW, columns);
 		return results;
 	}	
 }
