@@ -61,7 +61,7 @@ public final class DaoPetypeSelectSingle extends DaoStmtTemplate<PetypeInfo> {
 				do {				
 					PetypeInfo dataInfo = new PetypeInfo();
 					
-					dataInfo.petype = DaoFormatter.sqlToInt(stmtResult, DaoPetypeDbTableColumn.COL_COD_PET_TYPE);
+					dataInfo.codPetype = DaoFormatter.sqlToInt(stmtResult, DaoPetypeDbTableColumn.COL_COD_PET_TYPE);
 					dataInfo.txtPetype = stmtResult.getString(DaoPetypeDbTableColumn.COL_NAME);
 					dataInfo.codLanguage = stmtResult.getString(DaoPetypeDbTableColumn.COL_COD_LANGUAGE);		
 					

@@ -16,7 +16,7 @@ public final class PetypeCheckRead extends ModelCheckerTemplateSimple<PetypeInfo
 	
 	
 	@Override protected boolean checkHook(PetypeInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.petype 		<= 0 	||
+		if ( recordInfo.codPetype 		<= 0 	||
 			 recordInfo.codLanguage == null 	)			
 			return super.FAILED;
 		

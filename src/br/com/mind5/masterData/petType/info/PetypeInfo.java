@@ -6,14 +6,14 @@ import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
 public final class PetypeInfo extends InfoRecord implements Cloneable {
-	public int petype;
+	public int codPetype;
 	public String txtPetype;
 	
 	
 	public PetypeInfo() {
 		super();
 		
-		petype = DefaultValue.number();
+		codPetype = DefaultValue.number();
 	}
 	
 	
@@ -37,7 +37,7 @@ public final class PetypeInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public int hashCode() {		
-		return petype;
+		return codPetype;
 	}
 	
 	
@@ -52,6 +52,6 @@ public final class PetypeInfo extends InfoRecord implements Cloneable {
 		
 		
 		PetypeInfo obj = (PetypeInfo) o;
-		return petype == obj.petype;
+		return codPetype == obj.codPetype;
 	}
 }

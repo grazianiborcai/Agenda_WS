@@ -27,7 +27,7 @@ final class DaoPetypeWhere implements DaoStmtWhere {
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case DaoPetypeDbTableColumn.COL_COD_PET_TYPE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.petype));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPetype));
 					break;
 					
 					
