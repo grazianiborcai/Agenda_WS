@@ -16,8 +16,7 @@ public final class PeteightarchCheckRead extends ModelCheckerTemplateSimple<Pete
 	
 	
 	@Override protected boolean checkHook(PeteightarchInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codPeteight <= 0 	||
-			 recordInfo.codLanguage == null 	)			
+		if ( recordInfo.codLanguage == null )			
 			return super.FAILED;
 		
 		
