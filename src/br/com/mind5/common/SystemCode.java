@@ -1630,4 +1630,9 @@ public final class SystemCode {
 	
 	// Pet Type Search
 	public static final int PET_TYPE_SEARCH_MANDATORY_FIELD_EMPTY 		= 16051;
+	
+	// Pet Weight
+	public static final int PET_WEIGHT_MANDATORY_FIELD_EMPTY 			= 16101;
+	public static final int PET_WEIGHT_ALREADY_EXIST					= 16102;
+	public static final int PET_WEIGHT_NOT_FOUND						= 16103;
 }
