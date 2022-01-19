@@ -2,6 +2,7 @@ package br.com.mind5.business.pet.info;
 
 import java.util.List;
 
+import br.com.mind5.business.petSnapshot.info.PetsnapInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.petType.info.PetypeInfo;
@@ -44,7 +45,20 @@ public final class PetMerger {
 		InfoMerger<PetInfo, PeteightInfo> merger = builder.build();		
 	
 		return merger.merge();
-	}	
+	}
+	
+	
+	
+	public static List<PetInfo> mergeWithPetsnap(List<PetInfo> baseInfos, List<PetsnapInfo> selectedInfos) {
+		InfoMergerBuilder<PetInfo, PetsnapInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PetVisiMergePetsnap());
+		InfoMerger<PetInfo, PetsnapInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
 	
 	
 	

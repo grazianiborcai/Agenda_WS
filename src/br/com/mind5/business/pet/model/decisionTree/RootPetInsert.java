@@ -8,6 +8,7 @@ import br.com.mind5.business.pet.model.action.LazyPetDaoInsert;
 import br.com.mind5.business.pet.model.action.LazyPetEnforceCreatedBy;
 import br.com.mind5.business.pet.model.action.LazyPetEnforceCreatedOn;
 import br.com.mind5.business.pet.model.action.LazyPetMergeUsername;
+import br.com.mind5.business.pet.model.action.LazyPetNodeSnapshot;
 import br.com.mind5.business.pet.model.action.LazyPetRootSelect;
 import br.com.mind5.business.pet.model.action.StdPetEnforceLChanged;
 import br.com.mind5.business.pet.model.checker.PetCheckBirthdate;
@@ -93,13 +94,15 @@ public final class RootPetInsert extends DeciTreeTemplateWrite<PetInfo> {
 		ActionLazy<PetInfo> enforceCreatedBy = new LazyPetEnforceCreatedBy(option.conn, option.schemaName);	
 		ActionLazy<PetInfo> enforceCreatedOn = new LazyPetEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<PetInfo> insert = new LazyPetDaoInsert(option.conn, option.schemaName);
+		ActionLazy<PetInfo> snapshot = new LazyPetNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<PetInfo> select = new LazyPetRootSelect(option.conn, option.schemaName);		
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);
 		enforceCreatedBy.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(insert);
-		insert.addPostAction(select);
+		insert.addPostAction(snapshot);
+		snapshot.addPostAction(select);
 		
 		actions.add(nodeCustomer);
 		actions.add(enforceLChanged);
