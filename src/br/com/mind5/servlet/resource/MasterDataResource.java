@@ -56,6 +56,8 @@ import br.com.mind5.masterData.paymentStatusSearch.info.PaymenusarchInfo;
 import br.com.mind5.masterData.paymentStatusSearch.model.PaymenusarchModelSelect;
 import br.com.mind5.masterData.petTypeSearch.info.PetyparchInfo;
 import br.com.mind5.masterData.petTypeSearch.model.PetyparchModelSelect;
+import br.com.mind5.masterData.petWeightSearch.info.PeteightarchInfo;
+import br.com.mind5.masterData.petWeightSearch.model.PeteightarchModelSelect;
 import br.com.mind5.masterData.position.info.PositionInfo;
 import br.com.mind5.masterData.position.model.PositionModelSelect;
 import br.com.mind5.masterData.prospectStatusSearch.info.ProstarchInfo;
@@ -109,6 +111,7 @@ public final class MasterDataResource {
 	private static final String SELECT_FILE_DOC_TYPE = "/selectFileDocType";
 	private static final String SELECT_PROSPECT_STATUS = "/selectProspectStatus";
 	private static final String SELECT_PET_TYPE = "/selectPetType";
+	private static final String SELECT_PET_WEIGHT = "/selectPetWeight";
 	
 	
 	
@@ -768,7 +771,7 @@ public final class MasterDataResource {
 	@Path(SELECT_PET_TYPE)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectPetType(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
-			                      @HeaderParam("codPetype")   @DefaultValue("-1") int codPetype) {
+			                      @HeaderParam("codPetype")   @DefaultValue("-1") int    codPetype) {
 		
 		PetyparchInfo recordInfo = new PetyparchInfo();
 		recordInfo.codLanguage = codLanguage;
@@ -776,6 +779,27 @@ public final class MasterDataResource {
 		
 		
 		Model model = new PetyparchModelSelect(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_PET_WEIGHT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectPetWeight(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
+			                        @HeaderParam("codPeteight") @DefaultValue("-1") int    codPeteight) {
+		
+		PeteightarchInfo recordInfo = new PeteightarchInfo();
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.codPeteight = codPeteight;
+		
+		
+		Model model = new PeteightarchModelSelect(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();

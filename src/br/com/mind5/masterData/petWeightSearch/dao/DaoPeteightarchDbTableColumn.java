@@ -1,4 +1,4 @@
-package br.com.mind5.masterData.petTypeSearch.dao;
+package br.com.mind5.masterData.petWeightSearch.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -9,50 +9,50 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoPetyparchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoPeteightarchDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
-	public static final String COL_COD_PET_TYPE = DaoDbField.COL_COD_PET_TYPE;
-	public static final String COL_NAME = DaoDbField.COL_NAME;
+	public static final String COL_COD_PET_WEIGHT = DaoDbField.COL_COD_PET_WEIGHT;
+	public static final String COL_NAME_KG = DaoDbField.COL_NAME_KG;
 	
 	
-	public DaoPetyparchDbTableColumn() {
+	public DaoPeteightarchDbTableColumn() {
 		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		final String TABLE_NAME = DaoDbTable.PET_TYPE_TEXT_TABLE;
+		final String TABLE_NAME = DaoDbTable.PET_WEIGHT_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();			
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_PET_TYPE;
+		oneColumn.columnName = COL_COD_PET_WEIGHT;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
 		
 		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_NAME;
+		oneColumn.tableName = DaoDbTable.PET_WEIGHT_TEXT_TABLE;
+		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_LANGUAGE;
+		oneColumn.tableName = DaoDbTable.PET_WEIGHT_TEXT_TABLE;
+		oneColumn.columnName = COL_NAME_KG;
 		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
-		results.put(DaoDbTable.PET_TYPE_SEARCH_VIEW, columns);
+		results.put(DaoDbTable.PET_WEIGHT_SEARCH_VIEW, columns);
 		return results;
 	}	
 }

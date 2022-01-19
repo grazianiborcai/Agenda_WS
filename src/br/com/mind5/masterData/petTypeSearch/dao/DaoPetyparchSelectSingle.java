@@ -33,7 +33,7 @@ public final class DaoPetyparchSelectSingle extends DaoStmtTemplate<PetyparchInf
 	
 	
 	@Override protected String getLookupTableHook() {
-		return DaoDbTable.PET_TYPE_TEXT_SEARCH_VIEW;
+		return DaoDbTable.PET_TYPE_SEARCH_VIEW;
 	}	
 	
 	
