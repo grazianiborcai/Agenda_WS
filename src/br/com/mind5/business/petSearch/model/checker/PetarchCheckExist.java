@@ -24,12 +24,12 @@ public final class PetarchCheckExist extends ModelCheckerTemplateAction<PetarchI
 	
 	
 	@Override protected int getCodMsgOnResultTrueHook() {
-		return SystemCode.PERSON_SEARCH_ALREADY_EXIST;
+		return SystemCode.PET_SEARCH_ALREADY_EXIST;
 	}	
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.PERSON_SEARCH_NOT_FOUND;
+		return SystemCode.PET_SEARCH_NOT_FOUND;
 	}
 }

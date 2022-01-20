@@ -30,6 +30,6 @@ public final class PetarchCheckReadUser extends ModelCheckerTemplateSimple<Petar
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.PERSON_SEARCH_MANDATORY_FIELD_EMPTY;
+		return SystemCode.PET_SEARCH_MANDATORY_FIELD_EMPTY;
 	}
 }

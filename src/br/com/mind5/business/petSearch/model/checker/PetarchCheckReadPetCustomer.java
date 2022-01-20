@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class PetarchCheckRead extends ModelCheckerTemplateSimple<PetarchInfo> {
+public final class PetarchCheckReadPetCustomer extends ModelCheckerTemplateSimple<PetarchInfo> {
 
-	public PetarchCheckRead(ModelCheckerOption option) {
+	public PetarchCheckReadPetCustomer(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -17,15 +17,11 @@ public final class PetarchCheckRead extends ModelCheckerTemplateSimple<PetarchIn
 	
 	@Override protected boolean checkHook(PetarchInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner  	<= 0 	||
+			 recordInfo.codCustomer <= 0 	||
+			 recordInfo.codPet  	<= 0 	||
 			 recordInfo.username	== null	||
-			 recordInfo.codLanguage	== null		)			
-			return super.FAILED;		
-		
-		
-		if ( recordInfo.codPet 		<= 0 	&&
-			 recordInfo.codUser 	<= 0	&&
-			 recordInfo.codStore 	<= 0	&&
-			 recordInfo.codCustomer <= 0		)			
+			 recordInfo.codLanguage	== null		)	
+			
 			return super.FAILED;	
 		
 		

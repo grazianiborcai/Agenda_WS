@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPetarchMergeCusarch extends ActionStdTemplate<PetarchInfo> {
+public final class StdPetarchEnforcePetCustomer extends ActionStdTemplate<PetarchInfo> {
 
-	public StdPetarchMergeCusarch(DeciTreeOption<PetarchInfo> option) {
+	public StdPetarchEnforcePetCustomer(DeciTreeOption<PetarchInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<PetarchInfo> buildVisitorHook(DeciTreeOption<PetarchInfo> option) {
-		return new VisiPetarchMergeCusarch(option);
+		return new VisiPetarchEnforcePetCustomer(option);
 	}
 }
