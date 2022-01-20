@@ -13,12 +13,12 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.mind5.business.materialList.model.MatlisModelSearchAuth;
 import br.com.mind5.business.pet.info.PetInfo;
 import br.com.mind5.business.pet.model.PetModelDeleteAuth;
 import br.com.mind5.business.pet.model.PetModelInsertAuth;
 import br.com.mind5.business.pet.model.PetModelSelectAuth;
 import br.com.mind5.business.pet.model.PetModelUpdateAuth;
+import br.com.mind5.business.petList.model.PetlisModelSearchAuth;
 import br.com.mind5.model.Model;
 
 @Path("/Pet")
@@ -119,7 +119,7 @@ public class PetResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response searchPetlis(@Context HttpServletRequest request, String incomingData) {	
 		
-		Model model = new MatlisModelSearchAuth(incomingData, request);
+		Model model = new PetlisModelSearchAuth(incomingData, request);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();

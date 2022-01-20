@@ -30,6 +30,6 @@ public final class PetlisCheckRead extends ModelCheckerTemplateSimple<PetlisInfo
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.PET_MANDATORY_FIELD_EMPTY;
+		return SystemCode.PET_LIST_MANDATORY_FIELD_EMPTY;
 	}
 }

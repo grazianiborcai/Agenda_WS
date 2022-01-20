@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPetlisMergePetAuth extends ActionStdTemplate<PetlisInfo> {
+public final class StdPetlisMergePetSearchAuth extends ActionStdTemplate<PetlisInfo> {
 
-	public StdPetlisMergePetAuth(DeciTreeOption<PetlisInfo> option) {
+	public StdPetlisMergePetSearchAuth(DeciTreeOption<PetlisInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<PetlisInfo> buildVisitorHook(DeciTreeOption<PetlisInfo> option) {
-		return new VisiPetlisMergePetAuth(option);
+		return new VisiPetlisMergePetSearchAuth(option);
 	}
 }

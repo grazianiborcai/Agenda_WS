@@ -19,13 +19,6 @@ public final class PetlisCheckSearch extends ModelCheckerTemplateSimple<PetlisIn
 		if ( recordInfo.codOwner  	<= 0 	||
 			 recordInfo.username	== null	||
 			 recordInfo.codLanguage	== null		)			
-			return super.FAILED;		
-		
-		
-		if ( recordInfo.codPet 		<= 0 	&&
-			 recordInfo.codUser 	<= 0	&&
-			 recordInfo.codStore 	<= 0	&&
-			 recordInfo.codCustomer <= 0		)			
 			return super.FAILED;	
 		
 		
@@ -35,6 +28,6 @@ public final class PetlisCheckSearch extends ModelCheckerTemplateSimple<PetlisIn
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.PET_SEARCH_MANDATORY_FIELD_EMPTY;
+		return SystemCode.PET_LIST_MANDATORY_FIELD_EMPTY;
 	}
 }

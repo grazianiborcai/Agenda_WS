@@ -1648,8 +1648,11 @@ public final class SystemCode {
 	// Pet Snapshot
 	public static final int PET_SNAP_MANDATORY_FIELD_EMPTY				= 16250;
 	
-	//Pet Search
+	// Pet Search
 	public static final int PET_SEARCH_MANDATORY_FIELD_EMPTY			= 16300;
 	public static final int PET_SEARCH_ALREADY_EXIST					= 16301;
 	public static final int PET_SEARCH_NOT_FOUND						= 16302;
+	
+	// Pet List
+	public static final int PET_LIST_MANDATORY_FIELD_EMPTY				= 16350;
 }
