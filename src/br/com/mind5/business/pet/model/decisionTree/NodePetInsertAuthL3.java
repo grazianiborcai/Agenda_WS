@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
-import br.com.mind5.business.pet.model.action.LazyPetNodeAuthL4;
+import br.com.mind5.business.pet.model.action.LazyPetNodeInsertAuthL4;
 import br.com.mind5.business.pet.model.action.StdPetMergeCuslis;
 import br.com.mind5.business.pet.model.checker.PetCheckCus;
 import br.com.mind5.business.pet.model.checker.PetCheckHasCus;
@@ -16,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodePetAuthL3 extends DeciTreeTemplateWrite<PetInfo> {
+public final class NodePetInsertAuthL3 extends DeciTreeTemplateWrite<PetInfo> {
 	
-	public NodePetAuthL3(DeciTreeOption<PetInfo> option) {
+	public NodePetInsertAuthL3(DeciTreeOption<PetInfo> option) {
 		super(option);
 	}
 	
@@ -52,7 +52,7 @@ public final class NodePetAuthL3 extends DeciTreeTemplateWrite<PetInfo> {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();
 		
 		ActionStd<PetInfo> mergeCuslis = new StdPetMergeCuslis(option);
-		ActionLazy<PetInfo> nodeL4 = new LazyPetNodeAuthL4(option.conn, option.schemaName);	
+		ActionLazy<PetInfo> nodeL4 = new LazyPetNodeInsertAuthL4(option.conn, option.schemaName);	
 		
 		mergeCuslis.addPostAction(nodeL4);		
 		

@@ -58,7 +58,7 @@ public final class RootPetInsertAuth extends DeciTreeTemplateWrite<PetInfo> {
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnPassedHook(DeciTreeOption<PetInfo> option) {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PetInfo> nodeAuth = new NodePetAuthL1(option).toAction();
+		ActionStd<PetInfo> nodeAuth = new NodePetInsertAuthL1(option).toAction();
 		ActionLazy<PetInfo> insert = new LazyPetRootInsert(option.conn, option.schemaName);
 		
 		nodeAuth.addPostAction(insert);

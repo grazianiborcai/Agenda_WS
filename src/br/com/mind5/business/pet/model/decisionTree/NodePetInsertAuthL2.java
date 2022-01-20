@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodePetAuthL2 extends DeciTreeTemplateWrite<PetInfo> {
+public final class NodePetInsertAuthL2 extends DeciTreeTemplateWrite<PetInfo> {
 	
-	public NodePetAuthL2(DeciTreeOption<PetInfo> option) {
+	public NodePetInsertAuthL2(DeciTreeOption<PetInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +41,7 @@ public final class NodePetAuthL2 extends DeciTreeTemplateWrite<PetInfo> {
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnPassedHook(DeciTreeOption<PetInfo> option) {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PetInfo> nodeL3 = new NodePetAuthL3(option).toAction();		
+		ActionStd<PetInfo> nodeL3 = new NodePetInsertAuthL3(option).toAction();		
 		
 		actions.add(nodeL3);
 		return actions;

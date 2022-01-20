@@ -4,15 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
-import br.com.mind5.business.pet.model.decisionTree.NodePetAuthL4;
+import br.com.mind5.business.pet.model.decisionTree.NodePetInsertAuthL4;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPetNodeAuthL4 extends ActionLazyTemplate<PetInfo, PetInfo> {
+public final class LazyPetNodeInsertAuthL4 extends ActionLazyTemplate<PetInfo, PetInfo> {
 
-	public LazyPetNodeAuthL4(Connection conn, String schemaName) {
+	public LazyPetNodeInsertAuthL4(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyPetNodeAuthL4 extends ActionLazyTemplate<PetInfo, PetInfo
 	
 	
 	@Override protected ActionStd<PetInfo> getInstanceOfActionHook(DeciTreeOption<PetInfo> option) {
-		return new NodePetAuthL4(option).toAction();
+		return new NodePetInsertAuthL4(option).toAction();
 	}
 	
 	

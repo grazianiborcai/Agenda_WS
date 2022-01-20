@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
-import br.com.mind5.business.pet.model.action.StdPetSuccess;
-import br.com.mind5.business.pet.model.checker.PetCheckSytotauh;
+import br.com.mind5.business.pet.model.checker.PetCheckAuthCustomer;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -13,9 +12,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodePetInsertAuthL4 extends DeciTreeTemplateWrite<PetInfo> {
+public final class NodePetUpdateAuthL1 extends DeciTreeTemplateWrite<PetInfo> {
 	
-	public NodePetInsertAuthL4(DeciTreeOption<PetInfo> option) {
+	public NodePetUpdateAuthL1(DeciTreeOption<PetInfo> option) {
 		super(option);
 	}
 	
@@ -30,7 +29,7 @@ public final class NodePetInsertAuthL4 extends DeciTreeTemplateWrite<PetInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PetCheckSytotauh(checkerOption);
+		checker = new PetCheckAuthCustomer(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -41,9 +40,20 @@ public final class NodePetInsertAuthL4 extends DeciTreeTemplateWrite<PetInfo> {
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnPassedHook(DeciTreeOption<PetInfo> option) {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PetInfo> success = new StdPetSuccess(option);
+		ActionStd<PetInfo> nodeL2 = new NodePetUpdateAuthL2(option).toAction();
 		
-		actions.add(success);
+		actions.add(nodeL2);
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<PetInfo>> buildActionsOnFailedHook(DeciTreeOption<PetInfo> option) {
+		List<ActionStd<PetInfo>> actions = new ArrayList<>();
+		
+		ActionStd<PetInfo> nodeL2 = new NodePetInsertAuthL2(option).toAction();
+		
+		actions.add(nodeL2);
 		return actions;
 	}
 }
