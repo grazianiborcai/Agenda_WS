@@ -17,7 +17,9 @@ public final class PetsnapInfo extends InfoRecord implements Cloneable {
 	public String txtPetype;
 	public int codPeteight;
 	public String txtPeteightKg;
+	public long codUser;
 	public long codCustomer;
+	public long codStore;
 	public LocalDate petBirthDate;
 	public String recordMode;
 	public LocalDateTime lastChanged;
@@ -33,7 +35,9 @@ public final class PetsnapInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codPet = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
+		codUser = DefaultValue.number();
 		codCustomer = DefaultValue.number();
+		codStore = DefaultValue.number();
 		codPetype = DefaultValue.number();
 		codPeteight = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();	
