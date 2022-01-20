@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
-import br.com.mind5.business.pet.model.action.LazyPetNodeUpdateAuthL4;
-import br.com.mind5.business.pet.model.action.StdPetMergeCuslis;
-import br.com.mind5.business.pet.model.checker.PetCheckCus;
-import br.com.mind5.business.pet.model.checker.PetCheckHasCus;
+import br.com.mind5.business.pet.model.action.LazyPetRootUpdate;
+import br.com.mind5.business.pet.model.checker.PetCheckExist;
+import br.com.mind5.business.pet.model.checker.PetCheckLangu;
+import br.com.mind5.business.pet.model.checker.PetCheckOwner;
+import br.com.mind5.business.pet.model.checker.PetCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -16,9 +17,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodePetUpdateAuthL3 extends DeciTreeTemplateWrite<PetInfo> {
+public final class RootPetUpdateAuth extends DeciTreeTemplateWrite<PetInfo> {
 	
-	public NodePetUpdateAuthL3(DeciTreeOption<PetInfo> option) {
+	public RootPetUpdateAuth(DeciTreeOption<PetInfo> option) {
 		super(option);
 	}
 	
@@ -33,14 +34,28 @@ public final class NodePetUpdateAuthL3 extends DeciTreeTemplateWrite<PetInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PetCheckHasCus(checkerOption);
+		checker = new PetCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new PetCheckCus(checkerOption);
+		checker = new PetCheckOwner(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new PetCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new PetCheckExist(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -50,13 +65,13 @@ public final class NodePetUpdateAuthL3 extends DeciTreeTemplateWrite<PetInfo> {
 	
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnPassedHook(DeciTreeOption<PetInfo> option) {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();
+
+		ActionStd<PetInfo> nodeAuth = new NodePetUpdateAuthL1(option).toAction();
+		ActionLazy<PetInfo> update = new LazyPetRootUpdate(option.conn, option.schemaName);
 		
-		ActionStd<PetInfo> mergeCuslis = new StdPetMergeCuslis(option);
-		ActionLazy<PetInfo> nodeL4 = new LazyPetNodeUpdateAuthL4(option.conn, option.schemaName);	
+		nodeAuth.addPostAction(update);
 		
-		mergeCuslis.addPostAction(nodeL4);		
-		
-		actions.add(mergeCuslis);
+		actions.add(nodeAuth);
 		return actions;
 	}
 }

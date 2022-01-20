@@ -891,7 +891,7 @@ public final class SystemCode {
 	// Company Search
 	public static final int COMPANY_SEARCH_MANDATORY_FIELD_EMPTY 		= 6650;
 	
-	//Person Search
+	// Person Search
 	public static final int PERSON_SEARCH_MANDATORY_FIELD_EMPTY			= 6700;
 	public static final int PERSON_SEARCH_ALREADY_EXIST					= 6701;
 	public static final int PERSON_SEARCH_NOT_FOUND						= 6702;
@@ -1647,4 +1647,9 @@ public final class SystemCode {
 	
 	// Pet Snapshot
 	public static final int PET_SNAP_MANDATORY_FIELD_EMPTY				= 16250;
+	
+	//Pet Search
+	public static final int PET_SEARCH_MANDATORY_FIELD_EMPTY			= 16300;
+	public static final int PET_SEARCH_ALREADY_EXIST					= 16301;
+	public static final int PET_SEARCH_NOT_FOUND						= 16302;
 }

@@ -15,10 +15,10 @@ import javax.ws.rs.core.Response;
 
 import br.com.mind5.business.materialList.model.MatlisModelSearchAuth;
 import br.com.mind5.business.pet.info.PetInfo;
-import br.com.mind5.business.pet.model.PetModelDelete;
-import br.com.mind5.business.pet.model.PetModelInsert;
-import br.com.mind5.business.pet.model.PetModelSelect;
-import br.com.mind5.business.pet.model.PetModelUpdate;
+import br.com.mind5.business.pet.model.PetModelDeleteAuth;
+import br.com.mind5.business.pet.model.PetModelInsertAuth;
+import br.com.mind5.business.pet.model.PetModelSelectAuth;
+import br.com.mind5.business.pet.model.PetModelUpdateAuth;
 import br.com.mind5.model.Model;
 
 @Path("/Pet")
@@ -36,7 +36,7 @@ public class PetResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertPet(@Context HttpServletRequest request, String incomingData) {	
 		
-		Model model = new PetModelInsert(incomingData, request);
+		Model model = new PetModelInsertAuth(incomingData, request);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();
@@ -52,7 +52,7 @@ public class PetResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updatePet(@Context HttpServletRequest request, String incomingData) {
 
-		Model model = new PetModelUpdate(incomingData, request);
+		Model model = new PetModelUpdateAuth(incomingData, request);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();
@@ -77,7 +77,7 @@ public class PetResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model model = new PetModelDelete(recordInfo);
+		Model model = new PetModelDeleteAuth(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();
@@ -103,7 +103,7 @@ public class PetResource {
 		recordInfo.username = username;
 		
 		
-		Model model = new PetModelSelect(recordInfo);
+		Model model = new PetModelSelectAuth(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();
