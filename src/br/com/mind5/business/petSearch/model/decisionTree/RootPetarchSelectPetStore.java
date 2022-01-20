@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.petSearch.info.PetarchInfo;
-import br.com.mind5.business.petSearch.model.action.StdPetarchEnforceUsername;
-import br.com.mind5.business.petSearch.model.checker.PerarchCheckSytotin;
+import br.com.mind5.business.petSearch.model.action.LazyPetarchRootSelect;
+import br.com.mind5.business.petSearch.model.action.StdPetarchEnforcePetStore;
+import br.com.mind5.business.petSearch.model.checker.PetarchCheckReadPetStore;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class NodePerarchSytotinL1 extends DeciTreeTemplateRead<PetarchInfo> {
+public final class RootPetarchSelectPetStore extends DeciTreeTemplateRead<PetarchInfo> {
 	
-	public NodePerarchSytotinL1(DeciTreeOption<PetarchInfo> option) {
+	public RootPetarchSelectPetStore(DeciTreeOption<PetarchInfo> option) {
 		super(option);
 	}
 	
@@ -30,7 +32,7 @@ public final class NodePerarchSytotinL1 extends DeciTreeTemplateRead<PetarchInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PerarchCheckSytotin(checkerOption);
+		checker = new PetarchCheckReadPetStore(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -41,20 +43,12 @@ public final class NodePerarchSytotinL1 extends DeciTreeTemplateRead<PetarchInfo
 	@Override protected List<ActionStd<PetarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PetarchInfo> option) {
 		List<ActionStd<PetarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PetarchInfo> nodeL2 = new NodePerarchSytotinL2(option).toAction();	
-
-		actions.add(nodeL2);		
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<PetarchInfo>> buildActionsOnFailedHook(DeciTreeOption<PetarchInfo> option) {
-		List<ActionStd<PetarchInfo>> actions = new ArrayList<>();
+		ActionStd<PetarchInfo> enforcePetStore = new StdPetarchEnforcePetStore(option);
+		ActionLazy<PetarchInfo> select = new LazyPetarchRootSelect(option.conn, option.schemaName);
 		
-		ActionStd<PetarchInfo> obfuscateStore = new StdPetarchEnforceUsername(option);	
+		enforcePetStore.addPostAction(select);
 
-		actions.add(obfuscateStore);		
+		actions.add(enforcePetStore);		
 		return actions;
 	}
 }

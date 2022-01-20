@@ -5,18 +5,19 @@ import java.util.List;
 
 import br.com.mind5.business.petSearch.info.PetarchInfo;
 import br.com.mind5.business.petSearch.model.action.LazyPetarchRootSelect;
-import br.com.mind5.business.petSearch.model.checker.PetarchCheckRead;
+import br.com.mind5.business.petSearch.model.action.StdPetarchEnforcePetUser;
+import br.com.mind5.business.petSearch.model.checker.PetarchCheckReadPetUser;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPerarchSelectAuth extends DeciTreeTemplateRead<PetarchInfo> {
+public final class RootPetarchSelectPetUser extends DeciTreeTemplateRead<PetarchInfo> {
 	
-	public RootPerarchSelectAuth(DeciTreeOption<PetarchInfo> option) {
+	public RootPetarchSelectPetUser(DeciTreeOption<PetarchInfo> option) {
 		super(option);
 	}
 	
@@ -31,7 +32,7 @@ public final class RootPerarchSelectAuth extends DeciTreeTemplateRead<PetarchInf
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PetarchCheckRead(checkerOption);
+		checker = new PetarchCheckReadPetUser(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -42,12 +43,12 @@ public final class RootPerarchSelectAuth extends DeciTreeTemplateRead<PetarchInf
 	@Override protected List<ActionStd<PetarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PetarchInfo> option) {
 		List<ActionStd<PetarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PetarchInfo> nodeSytotin = new NodePerarchSytotinL1(option).toAction();
-		ActionLazy<PetarchInfo> select = new LazyPetarchRootSelect(option.conn, option.schemaName);		
+		ActionStd<PetarchInfo> enforcePetUser = new StdPetarchEnforcePetUser(option);
+		ActionLazy<PetarchInfo> select = new LazyPetarchRootSelect(option.conn, option.schemaName);
 		
-		nodeSytotin.addPostAction(select);
+		enforcePetUser.addPostAction(select);
 
-		actions.add(nodeSytotin);		
+		actions.add(enforcePetUser);		
 		return actions;
 	}
 }

@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPetarchDaoSelect extends ActionStdTemplate<PetarchInfo> {
+public final class StdPetarchEnforcePetUser extends ActionStdTemplate<PetarchInfo> {
 
-	public StdPetarchDaoSelect(DeciTreeOption<PetarchInfo> option) {
+	public StdPetarchEnforcePetUser(DeciTreeOption<PetarchInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<PetarchInfo> buildVisitorHook(DeciTreeOption<PetarchInfo> option) {
-		return new VisiPetarchDaoSelect(option);
+		return new VisiPetarchEnforcePetUser(option);
 	}
 }
