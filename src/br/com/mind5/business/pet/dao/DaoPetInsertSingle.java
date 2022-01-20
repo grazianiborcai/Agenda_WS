@@ -42,19 +42,21 @@ public final class DaoPetInsertSingle extends DaoStmtTemplate<PetInfo> {
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PetInfo recordInfo) throws SQLException {
 				int i = 1;
 				
-				stmt.setLong(i++, recordInfo.codOwner);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwner);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);	
 				stmt.setString(i++, recordInfo.recordMode);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
-				stmt.setLong(i++, recordInfo.codCustomer);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
 				stmt.setString(i++, recordInfo.petName);
 				stmt.setInt(i++, recordInfo.codPeteight);
 				stmt.setInt(i++, recordInfo.codPetype);
 				stmt.setString(i++, recordInfo.petNote);
 				stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.petBirthDate);
-				stmt.setLong(i++, recordInfo.codSnapshot);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
 				
 				return stmt;
 			}		

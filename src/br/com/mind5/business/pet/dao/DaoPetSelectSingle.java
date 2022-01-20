@@ -75,6 +75,8 @@ public final class DaoPetSelectSingle extends DaoStmtTemplate<PetInfo> {
 					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoPetDbTableColumn.COL_CREATED_BY);
 					dataInfo.petBirthDate = DaoFormatter.sqlToLocalDate(stmtResult, DaoPetDbTableColumn.COL_PET_BIRTH_DATE);
 					dataInfo.codSnapshot = stmtResult.getLong(DaoPetDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codUser = stmtResult.getLong(DaoPetDbTableColumn.COL_COD_USER);
+					dataInfo.codStore = stmtResult.getLong(DaoPetDbTableColumn.COL_COD_STORE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
