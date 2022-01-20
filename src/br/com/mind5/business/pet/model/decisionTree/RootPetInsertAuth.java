@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
 import br.com.mind5.business.pet.model.action.LazyPetRootInsert;
+import br.com.mind5.business.pet.model.checker.PetCheckInsert;
 import br.com.mind5.business.pet.model.checker.PetCheckLangu;
 import br.com.mind5.business.pet.model.checker.PetCheckOwner;
-import br.com.mind5.business.pet.model.checker.PetCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -33,7 +33,7 @@ public final class RootPetInsertAuth extends DeciTreeTemplateWrite<PetInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PetCheckWrite(checkerOption);
+		checker = new PetCheckInsert(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

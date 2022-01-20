@@ -11,7 +11,6 @@ import br.com.mind5.dao.common.DaoDbTable;
 
 public final class DaoPetDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
-	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_PET = DaoDbField.COL_COD_PET;
 	public static final String COL_COD_PET_TYPE = DaoDbField.COL_COD_PET_TYPE;

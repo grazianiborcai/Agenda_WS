@@ -70,6 +70,7 @@ public final class DaoPetInsertSingle extends DaoStmtTemplate<PetInfo> {
 			@Override public List<PetInfo> parseResult(PetInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<PetInfo> finalResult = new ArrayList<>();
 				recordInfo.codPet = lastId;
+
 				finalResult.add(recordInfo);			
 				return finalResult;
 			}

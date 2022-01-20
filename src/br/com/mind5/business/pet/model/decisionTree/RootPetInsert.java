@@ -13,12 +13,12 @@ import br.com.mind5.business.pet.model.action.LazyPetRootSelect;
 import br.com.mind5.business.pet.model.action.StdPetEnforceLChanged;
 import br.com.mind5.business.pet.model.checker.PetCheckBirthdate;
 import br.com.mind5.business.pet.model.checker.PetCheckHasUser;
+import br.com.mind5.business.pet.model.checker.PetCheckInsert;
 import br.com.mind5.business.pet.model.checker.PetCheckLangu;
 import br.com.mind5.business.pet.model.checker.PetCheckOwner;
 import br.com.mind5.business.pet.model.checker.PetCheckPeteight;
 import br.com.mind5.business.pet.model.checker.PetCheckPetype;
 import br.com.mind5.business.pet.model.checker.PetCheckUser;
-import br.com.mind5.business.pet.model.checker.PetCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -44,7 +44,7 @@ public final class RootPetInsert extends DeciTreeTemplateWrite<PetInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PetCheckWrite(checkerOption);
+		checker = new PetCheckInsert(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
