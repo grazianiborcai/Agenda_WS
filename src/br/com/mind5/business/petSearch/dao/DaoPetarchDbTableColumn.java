@@ -13,9 +13,11 @@ public final class DaoPetarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_PET = DaoDbField.COL_COD_PET;
-	public static final String COL_PET_NAME = DaoDbField.COL_PET_NAME;
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
+	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
+	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
 	public static final String COL_PET_BIRTH_DATE = DaoDbField.COL_PET_BIRTH_DATE;
+	public static final String COL_PET_NAME = DaoDbField.COL_PET_NAME;	
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
@@ -82,6 +84,22 @@ public final class DaoPetarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_CUSTOMER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_USER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_STORE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

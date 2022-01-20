@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.petSearch.info.PetarchInfo;
-import br.com.mind5.business.petSearch.model.action.LazyPetarchMergeUsername;
-import br.com.mind5.business.petSearch.model.action.LazyPetarchRootSelectUser;
-import br.com.mind5.business.petSearch.model.action.StdPetarchEnforceUsername;
-import br.com.mind5.business.petSearch.model.checker.PetarchCheckReadUsername;
-import br.com.mind5.business.petSearch.model.checker.PetarchCheckUsername;
+import br.com.mind5.business.petSearch.model.action.LazyPetarchRootSelect;
+import br.com.mind5.business.petSearch.model.action.StdPetarchEnforceUser;
+import br.com.mind5.business.petSearch.model.checker.PetarchCheckReadUser;
+import br.com.mind5.business.petSearch.model.checker.PetarchCheckUser;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -17,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPetarchSelectUsername extends DeciTreeTemplateRead<PetarchInfo> {
+public final class RootPetarchSelectUser extends DeciTreeTemplateRead<PetarchInfo> {
 	
-	public RootPetarchSelectUsername(DeciTreeOption<PetarchInfo> option) {
+	public RootPetarchSelectUser(DeciTreeOption<PetarchInfo> option) {
 		super(option);
 	}
 	
@@ -34,14 +33,14 @@ public final class RootPetarchSelectUsername extends DeciTreeTemplateRead<Petarc
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PetarchCheckReadUsername(checkerOption);
+		checker = new PetarchCheckReadUser(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new PetarchCheckUsername(checkerOption);
+		checker = new PetarchCheckUser(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -52,14 +51,12 @@ public final class RootPetarchSelectUsername extends DeciTreeTemplateRead<Petarc
 	@Override protected List<ActionStd<PetarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PetarchInfo> option) {
 		List<ActionStd<PetarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PetarchInfo> enforceUsername = new StdPetarchEnforceUsername(option);
-		ActionLazy<PetarchInfo> mergeUsername = new LazyPetarchMergeUsername(option.conn, option.schemaName);
-		ActionLazy<PetarchInfo> select = new LazyPetarchRootSelectUser(option.conn, option.schemaName);
+		ActionStd<PetarchInfo> enforceUser = new StdPetarchEnforceUser(option);
+		ActionLazy<PetarchInfo> select = new LazyPetarchRootSelect(option.conn, option.schemaName);
 		
-		enforceUsername.addPostAction(mergeUsername);
-		mergeUsername.addPostAction(select);
+		enforceUser.addPostAction(select);
 
-		actions.add(enforceUsername);		
+		actions.add(enforceUser);		
 		return actions;
 	}
 }

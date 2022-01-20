@@ -10,7 +10,9 @@ public final class PetarchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codSnapshot;
 	public long codPet;
+	public long codUser;
 	public long codCustomer;
+	public long codStore;
 	public String petName;
 	public LocalDate petBirthDate;
 	public String recordMode;
@@ -23,7 +25,9 @@ public final class PetarchInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codPet = DefaultValue.number();
+		codUser = DefaultValue.number();
 		codCustomer = DefaultValue.number();
+		codStore = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();	
 	}
 	

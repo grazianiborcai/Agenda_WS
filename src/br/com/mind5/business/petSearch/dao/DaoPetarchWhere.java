@@ -37,6 +37,15 @@ public final class DaoPetarchWhere implements DaoStmtWhere {
 					
 				case DaoPetarchDbTableColumn.COL_COD_CUSTOMER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCustomer));
+					break;
+					
+				case DaoPetarchDbTableColumn.COL_COD_USER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
+					break;
+					
+				case DaoPetarchDbTableColumn.COL_COD_STORE :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
+					break;
 					
 				case DaoPetarchDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);

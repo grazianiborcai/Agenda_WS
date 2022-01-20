@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.petSearch.info.PetarchInfo;
-import br.com.mind5.business.petSearch.model.action.LazyPetarchRootSelect;
+import br.com.mind5.business.petSearch.model.action.LazyPetarchMergeCuslis;
+import br.com.mind5.business.petSearch.model.action.LazyPetarchRootSelectUser;
 import br.com.mind5.business.petSearch.model.action.StdPetarchEnforceCus;
 import br.com.mind5.business.petSearch.model.checker.PetarchCheckCus;
 import br.com.mind5.business.petSearch.model.checker.PetarchCheckReadCus;
@@ -52,9 +53,11 @@ public final class RootPetarchSelectCus extends DeciTreeTemplateRead<PetarchInfo
 		List<ActionStd<PetarchInfo>> actions = new ArrayList<>();
 		
 		ActionStd<PetarchInfo> enforceCustomer = new StdPetarchEnforceCus(option);
-		ActionLazy<PetarchInfo> select = new LazyPetarchRootSelect(option.conn, option.schemaName);
+		ActionLazy<PetarchInfo> mergeCuslis = new LazyPetarchMergeCuslis(option.conn, option.schemaName);
+		ActionLazy<PetarchInfo> select = new LazyPetarchRootSelectUser(option.conn, option.schemaName);
 		
-		enforceCustomer.addPostAction(select);
+		enforceCustomer.addPostAction(mergeCuslis);
+		mergeCuslis.addPostAction(select);
 
 		actions.add(enforceCustomer);		
 		return actions;
