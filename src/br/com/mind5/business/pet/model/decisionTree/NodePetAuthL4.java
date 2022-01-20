@@ -5,17 +5,17 @@ import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
 import br.com.mind5.business.pet.model.action.StdPetSuccess;
-import br.com.mind5.business.pet.model.checker.PetCheckHasCustomer;
+import br.com.mind5.business.pet.model.checker.PetCheckSytotauh;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodePetCustomerL1 extends DeciTreeTemplateWrite<PetInfo> {
+public final class NodePetAuthL4 extends DeciTreeTemplateWrite<PetInfo> {
 	
-	public NodePetCustomerL1(DeciTreeOption<PetInfo> option) {
+	public NodePetAuthL4(DeciTreeOption<PetInfo> option) {
 		super(option);
 	}
 	
@@ -30,8 +30,7 @@ public final class NodePetCustomerL1 extends DeciTreeTemplateWrite<PetInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PetCheckHasCustomer(checkerOption);
-
+		checker = new PetCheckSytotauh(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -40,17 +39,6 @@ public final class NodePetCustomerL1 extends DeciTreeTemplateWrite<PetInfo> {
 	
 	
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnPassedHook(DeciTreeOption<PetInfo> option) {
-		List<ActionStd<PetInfo>> actions = new ArrayList<>();
-		
-		ActionStd<PetInfo> nodeL2 = new NodePetCustomerL2(option).toAction();
-		
-		actions.add(nodeL2);
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<PetInfo>> buildActionsOnFailedHook(DeciTreeOption<PetInfo> option) {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();
 		
 		ActionStd<PetInfo> success = new StdPetSuccess(option);

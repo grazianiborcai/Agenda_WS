@@ -9,7 +9,7 @@ final class PetVisiMergeToUpdate extends InfoMergerVisitorTemplate<PetInfo, PetI
 
 	@Override public boolean shouldMerge(PetInfo baseInfo, PetInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner &&
-				baseInfo.codPet  == selectedInfo.codPet		);
+				baseInfo.codPet   == selectedInfo.codPet		);
 	}
 	
 	
@@ -19,7 +19,7 @@ final class PetVisiMergeToUpdate extends InfoMergerVisitorTemplate<PetInfo, PetI
 		
 		baseInfo.createdOn = selectedInfo.createdOn;
 		baseInfo.createdBy = selectedInfo.createdBy;
-		baseInfo.codCustomer = selectedInfo.codCustomer;
+		baseInfo.codUser = selectedInfo.codUser;
 		
 		results.add(baseInfo);
 		return results;

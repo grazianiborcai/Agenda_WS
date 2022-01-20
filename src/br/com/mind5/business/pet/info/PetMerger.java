@@ -2,6 +2,7 @@ package br.com.mind5.business.pet.info;
 
 import java.util.List;
 
+import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.petSnapshot.info.PetsnapInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
@@ -20,6 +21,18 @@ public final class PetMerger {
 	
 		return merger.merge();
 	}
+	
+	
+	public static List<PetInfo> mergeWithCuslis(List<PetInfo> baseInfos, List<CuslisInfo> selectedInfos) {
+		InfoMergerBuilder<PetInfo, CuslisInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PetVisiMergeCuslis());
+		InfoMerger<PetInfo, CuslisInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
 	
 	
 	

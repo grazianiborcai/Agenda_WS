@@ -12,10 +12,12 @@ import br.com.mind5.business.pet.model.action.LazyPetNodeSnapshot;
 import br.com.mind5.business.pet.model.action.LazyPetRootSelect;
 import br.com.mind5.business.pet.model.action.StdPetEnforceLChanged;
 import br.com.mind5.business.pet.model.checker.PetCheckBirthdate;
+import br.com.mind5.business.pet.model.checker.PetCheckHasUser;
 import br.com.mind5.business.pet.model.checker.PetCheckLangu;
 import br.com.mind5.business.pet.model.checker.PetCheckOwner;
 import br.com.mind5.business.pet.model.checker.PetCheckPeteight;
 import br.com.mind5.business.pet.model.checker.PetCheckPetype;
+import br.com.mind5.business.pet.model.checker.PetCheckUser;
 import br.com.mind5.business.pet.model.checker.PetCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -43,6 +45,13 @@ public final class RootPetInsert extends DeciTreeTemplateWrite<PetInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new PetCheckWrite(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PetCheckHasUser(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -80,6 +89,13 @@ public final class RootPetInsert extends DeciTreeTemplateWrite<PetInfo> {
 		checker = new PetCheckPeteight(checkerOption);
 		queue.add(checker);
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new PetCheckUser(checkerOption);
+		queue.add(checker);
+		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
@@ -88,7 +104,6 @@ public final class RootPetInsert extends DeciTreeTemplateWrite<PetInfo> {
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnPassedHook(DeciTreeOption<PetInfo> option) {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PetInfo> nodeCustomer = new NodePetCustomerL1(option).toAction();
 		ActionStd<PetInfo> enforceLChanged = new StdPetEnforceLChanged(option);	
 		ActionLazy<PetInfo> enforceLChangedBy = new LazyPetMergeUsername(option.conn, option.schemaName);		
 		ActionLazy<PetInfo> enforceCreatedBy = new LazyPetEnforceCreatedBy(option.conn, option.schemaName);	
@@ -104,7 +119,6 @@ public final class RootPetInsert extends DeciTreeTemplateWrite<PetInfo> {
 		insert.addPostAction(snapshot);
 		snapshot.addPostAction(select);
 		
-		actions.add(nodeCustomer);
 		actions.add(enforceLChanged);
 		return actions;
 	}
