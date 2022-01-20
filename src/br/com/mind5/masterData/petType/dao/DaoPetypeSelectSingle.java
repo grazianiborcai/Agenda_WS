@@ -19,7 +19,7 @@ import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.petType.info.PetypeInfo;
 
 public final class DaoPetypeSelectSingle extends DaoStmtTemplate<PetypeInfo> {
-	private final String MAIN_TABLE = DaoDbTable.PET_TYPE_TEXT_TABLE;
+	private final String MAIN_TABLE = DaoDbTable.PET_TYPE_TABLE;
 	
 	
 	public DaoPetypeSelectSingle(Connection conn, PetypeInfo recordInfo, String schemaName) {
