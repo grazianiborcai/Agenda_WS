@@ -69,7 +69,7 @@ public final class DaoPetsnapInsertSingle extends DaoStmtTemplate<PetsnapInfo> {
 		return new DaoResultParser<PetsnapInfo>() {		
 			@Override public List<PetsnapInfo> parseResult(PetsnapInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<PetsnapInfo> finalResult = new ArrayList<>();
-				recordInfo.codPet = lastId;
+				recordInfo.codSnapshot = lastId;
 				finalResult.add(recordInfo);			
 				return finalResult;
 			}
