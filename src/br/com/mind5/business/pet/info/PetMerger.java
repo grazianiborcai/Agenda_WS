@@ -2,7 +2,9 @@ package br.com.mind5.business.pet.info;
 
 import java.util.List;
 
+import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.business.customerList.info.CuslisInfo;
+import br.com.mind5.business.petSearch.info.PetarchInfo;
 import br.com.mind5.business.petSnapshot.info.PetsnapInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
@@ -18,6 +20,31 @@ public final class PetMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new PetVisiMergeUsername());
 		InfoMerger<PetInfo, UsernameInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	public static List<PetInfo> mergeWithSytotauh(List<PetInfo> baseInfos, List<SytotauhInfo> selectedInfos) {
+		InfoMergerBuilder<PetInfo, SytotauhInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PetVisiMergeSytotauh());
+		InfoMerger<PetInfo, SytotauhInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
+	public static List<PetInfo> mergeWithPetarch(List<PetInfo> baseInfos, List<PetarchInfo> selectedInfos) {
+		InfoMergerBuilder<PetInfo, PetarchInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PetVisiMergePetarch());
+		InfoMerger<PetInfo, PetarchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
