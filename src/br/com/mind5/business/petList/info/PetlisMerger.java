@@ -17,4 +17,17 @@ public final class PetlisMerger {
 	
 		return merger.merge();
 	}
+	
+	
+	
+	public static List<PetlisInfo> mergeWithPetSearch(List<PetlisInfo> baseInfos, List<PetInfo> selectedInfos) {
+		InfoMergerBuilder<PetlisInfo, PetInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PetlisVisiMergePetSearch());
+		InfoMerger<PetlisInfo, PetInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
 }

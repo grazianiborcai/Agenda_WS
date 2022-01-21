@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.petList.info.PetlisInfo;
 import br.com.mind5.business.petList.model.action.StdPetlisMergePetSearchAuth;
-import br.com.mind5.business.petList.model.checker.PetlisCheckRead;
+import br.com.mind5.business.petList.model.checker.PetlisCheckSearch;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -30,7 +30,7 @@ public final class RootPetlisSearchAuth extends DeciTreeTemplateWrite<PetlisInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PetlisCheckRead(checkerOption);
+		checker = new PetlisCheckSearch(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);

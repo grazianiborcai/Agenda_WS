@@ -25,7 +25,7 @@ final class VisiPetlisMergePetSearchAuth extends ActionVisitorTemplateMerge<Petl
 	
 	
 	@Override protected List<PetlisInfo> mergeHook(List<PetlisInfo> baseInfos, List<PetInfo> selectedInfos) {	
-		return PetlisMerger.mergeWithPet(baseInfos, selectedInfos);
+		return PetlisMerger.mergeWithPetSearch(baseInfos, selectedInfos);
 	}
 	
 	
