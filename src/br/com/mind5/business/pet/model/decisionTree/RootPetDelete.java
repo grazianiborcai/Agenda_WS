@@ -5,7 +5,6 @@ import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
 import br.com.mind5.business.pet.model.action.LazyPetDaoDelete;
-import br.com.mind5.business.pet.model.action.LazyPetRootUpdate;
 import br.com.mind5.business.pet.model.action.StdPetMergeToSelect;
 import br.com.mind5.business.pet.model.checker.PetCheckDelete;
 import br.com.mind5.business.pet.model.checker.PetCheckExist;
@@ -13,9 +12,9 @@ import br.com.mind5.business.pet.model.checker.PetCheckLangu;
 import br.com.mind5.business.pet.model.checker.PetCheckOwner;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -69,10 +68,8 @@ public final class RootPetDelete extends DeciTreeTemplateWrite<PetInfo> {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();
 		
 		ActionStd<PetInfo> select = new StdPetMergeToSelect(option);
-		ActionLazy<PetInfo> update = new LazyPetRootUpdate(option.conn, option.schemaName);
 		ActionLazy<PetInfo> delete = new LazyPetDaoDelete(option.conn, option.schemaName);
 		
-		select.addPostAction(update);
 		select.addPostAction(delete);		
 		
 		actions.add(select);

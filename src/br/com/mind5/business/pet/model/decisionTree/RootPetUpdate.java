@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
-import br.com.mind5.business.pet.model.action.LazyPetDaoUpdate;
 import br.com.mind5.business.pet.model.action.LazyPetEnforceLChanged;
 import br.com.mind5.business.pet.model.action.LazyPetMergeUsername;
+import br.com.mind5.business.pet.model.action.LazyPetNodeSnapshot;
 import br.com.mind5.business.pet.model.action.LazyPetRootSelect;
 import br.com.mind5.business.pet.model.action.StdPetMergeToUpdate;
 import br.com.mind5.business.pet.model.checker.PetCheckBirthdate;
@@ -97,13 +97,13 @@ public final class RootPetUpdate extends DeciTreeTemplateWrite<PetInfo> {
 		ActionStd<PetInfo> mergeToUpdate = new StdPetMergeToUpdate(option);
 		ActionLazy<PetInfo> enforceLChanged = new LazyPetEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<PetInfo> enforceLChangedBy = new LazyPetMergeUsername(option.conn, option.schemaName);
-		ActionLazy<PetInfo> update = new LazyPetDaoUpdate(option.conn, option.schemaName);
+		ActionLazy<PetInfo> snapshot = new LazyPetNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<PetInfo> select = new LazyPetRootSelect(option.conn, option.schemaName);	
 		
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(update);
-		update.addPostAction(select);
+		enforceLChangedBy.addPostAction(snapshot);
+		snapshot.addPostAction(select);
 		
 		actions.add(mergeToUpdate);
 		return actions;

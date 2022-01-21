@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPetSearch extends DeciTreeTemplateWrite<PetInfo> {
+public final class RootPetSearch extends DeciTreeTemplateRead<PetInfo> {
 	
 	public RootPetSearch(DeciTreeOption<PetInfo> option) {
 		super(option);

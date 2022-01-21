@@ -2,8 +2,8 @@ package br.com.mind5.business.pet.model.action;
 
 import java.util.List;
 
-import br.com.mind5.business.pet.info.PetMerger;
 import br.com.mind5.business.pet.info.PetInfo;
+import br.com.mind5.business.pet.info.PetMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -38,6 +38,6 @@ final class VisiPetMergeUsername extends ActionVisitorTemplateMerge<PetInfo, Use
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return super.MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

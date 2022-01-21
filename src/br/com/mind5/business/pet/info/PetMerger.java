@@ -115,6 +115,19 @@ public final class PetMerger {
 	
 	
 	
+	public static List<PetInfo> mergeToSelectAuth(List<PetInfo> baseInfos, List<PetInfo> selectedInfos) {
+		InfoMergerBuilder<PetInfo, PetInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PetVisiMergeToSelectAuth());
+		InfoMerger<PetInfo, PetInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<PetInfo> mergeToUpdate(List<PetInfo> baseInfos, List<PetInfo> selectedInfos) {
 		InfoMergerBuilder<PetInfo, PetInfo> builder = new InfoMergerBuilder<>();
 		

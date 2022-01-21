@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
-import br.com.mind5.business.pet.model.action.LazyPetNodeUpdateAuthL1;
 import br.com.mind5.business.pet.model.action.LazyPetRootSelect;
-import br.com.mind5.business.pet.model.action.StdPetMergeToSelect;
 import br.com.mind5.business.pet.model.checker.PetCheckExist;
 import br.com.mind5.business.pet.model.checker.PetCheckLangu;
 import br.com.mind5.business.pet.model.checker.PetCheckOwner;
@@ -68,14 +66,12 @@ public final class RootPetSelectAuth extends DeciTreeTemplateWrite<PetInfo> {
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnPassedHook(DeciTreeOption<PetInfo> option) {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PetInfo> mergeToSelect = new StdPetMergeToSelect(option);
-		ActionLazy<PetInfo> nodeAuth = new LazyPetNodeUpdateAuthL1(option.conn, option.schemaName);
+		ActionStd<PetInfo> nodeAuth = new NodePetUpdateAuthL1(option).toAction();
 		ActionLazy<PetInfo> select = new LazyPetRootSelect(option.conn, option.schemaName);
 		
-		mergeToSelect.addPostAction(nodeAuth);
 		nodeAuth.addPostAction(select);
 		
-		actions.add(mergeToSelect);
+		actions.add(nodeAuth);
 		return actions;
 	}
 }

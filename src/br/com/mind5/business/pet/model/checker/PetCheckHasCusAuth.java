@@ -7,22 +7,16 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class PetCheckInsert extends ModelCheckerTemplateSimple<PetInfo> {
+public final class PetCheckHasCusAuth extends ModelCheckerTemplateSimple<PetInfo> {
 
-	public PetCheckInsert(ModelCheckerOption option) {
+	public PetCheckHasCusAuth(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(PetInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 	<= 0 	||
-			 recordInfo.codPetype	<= 0	||
-			 recordInfo.codPeteight	<= 0	||
-			 recordInfo.petName		== null	||
-			 recordInfo.codLanguage	== null	||
-			 recordInfo.username	== null		)
-			
+		if ( recordInfo.codCustomer <= 0 )			
 			return super.FAILED;
 		
 		
@@ -32,6 +26,6 @@ public final class PetCheckInsert extends ModelCheckerTemplateSimple<PetInfo> {
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.PET_MANDATORY_FIELD_EMPTY;
+		return SystemCode.PET_NOT_AUTHORIZED;
 	}
 }

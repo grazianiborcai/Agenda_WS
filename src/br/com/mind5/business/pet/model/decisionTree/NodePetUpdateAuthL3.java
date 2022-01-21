@@ -7,7 +7,7 @@ import br.com.mind5.business.pet.info.PetInfo;
 import br.com.mind5.business.pet.model.action.LazyPetNodeUpdateAuthL4;
 import br.com.mind5.business.pet.model.action.StdPetMergeCuslis;
 import br.com.mind5.business.pet.model.checker.PetCheckCus;
-import br.com.mind5.business.pet.model.checker.PetCheckHasCus;
+import br.com.mind5.business.pet.model.checker.PetCheckHasCusAuth;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -33,7 +33,7 @@ public final class NodePetUpdateAuthL3 extends DeciTreeTemplateWrite<PetInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PetCheckHasCus(checkerOption);
+		checker = new PetCheckHasCusAuth(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

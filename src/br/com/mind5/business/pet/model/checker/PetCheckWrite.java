@@ -20,6 +20,7 @@ public final class PetCheckWrite extends ModelCheckerTemplateSimple<PetInfo> {
 			 recordInfo.codPet		<= 0	||
 			 recordInfo.codPetype	<= 0	||
 			 recordInfo.codPeteight	<= 0	||
+			 recordInfo.petName		== null	||
 			 recordInfo.codLanguage	== null	||
 			 recordInfo.username	== null		)
 			

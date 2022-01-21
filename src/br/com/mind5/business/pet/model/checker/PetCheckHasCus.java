@@ -26,6 +26,6 @@ public final class PetCheckHasCus extends ModelCheckerTemplateSimple<PetInfo> {
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.PET_MANDATORY_FIELD_EMPTY;
+		return SystemCode.PET_EMPTY_CUSTOMER;
 	}
 }
