@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
 final class PhoneCopyCus extends InfoCopierOneToManyTemplate<PhoneInfo, CusInfo> {
@@ -50,15 +49,8 @@ final class PhoneCopyCus extends InfoCopierOneToManyTemplate<PhoneInfo, CusInfo>
 			return (PhoneInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
-			logException(e);
+			super.logException(e);
 			throw new IllegalStateException(e); 
 		}
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
 	}
 }
