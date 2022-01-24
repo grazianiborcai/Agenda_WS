@@ -76,6 +76,7 @@ public final class DaoPetarchSelectSingle extends DaoStmtTemplate<PetarchInfo> {
 					dataInfo.petBirthDate = DaoFormatter.sqlToLocalDate(stmtResult, DaoPetarchDbTableColumn.COL_PET_BIRTH_DATE);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoPetarchDbTableColumn.COL_COD_USER);
 					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoPetarchDbTableColumn.COL_COD_STORE);
+					dataInfo.isDefault = stmtResult.getBoolean(DaoPetarchDbTableColumn.COL_IS_DEFAULT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
