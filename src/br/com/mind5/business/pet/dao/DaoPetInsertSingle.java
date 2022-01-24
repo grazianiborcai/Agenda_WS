@@ -57,6 +57,7 @@ public final class DaoPetInsertSingle extends DaoStmtTemplate<PetInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
+				stmt.setBoolean(i++, recordInfo.isDefault);
 				
 				return stmt;
 			}		

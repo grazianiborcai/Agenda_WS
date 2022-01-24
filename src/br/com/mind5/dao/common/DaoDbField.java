@@ -174,12 +174,12 @@ public final class DaoDbField {
 	public static final String COL_ID_REFUND_PARTNER = "id_refund_partner";
 	public static final String COL_IMG_FILE_PATH = "file_img_path";
 	public static final String COL_IMG_FILE_PATH_EXTERNAL = "file_img_path_external";
+	public static final String COL_INSC_MUNICIPAL = "inscricao_municipal";
+	public static final String COL_INSC_ESTATUAL = "inscricao_estadual";
 	public static final String COL_IS_ACTIVE = "is_active";
 	public static final String COL_IS_COVER = "is_cover";
 	public static final String COL_IS_DEFAULT = "is_default";
 	public static final String COL_IS_EXPECTED = "is_expected";
-	public static final String COL_INSC_MUNICIPAL = "inscricao_municipal";
-	public static final String COL_INSC_ESTATUAL = "inscricao_estadual";
 	public static final String COL_IS_LOCKED = "is_locked";
 	public static final String COL_IS_WEEKEND = "is_weekend";
 	public static final String COL_ITEM_RECEIVER = "item_receiver";

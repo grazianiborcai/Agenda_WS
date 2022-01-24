@@ -77,6 +77,7 @@ public final class DaoPetSelectSingle extends DaoStmtTemplate<PetInfo> {
 					dataInfo.codSnapshot = stmtResult.getLong(DaoPetDbTableColumn.COL_COD_SNAPSHOT);
 					dataInfo.codUser = stmtResult.getLong(DaoPetDbTableColumn.COL_COD_USER);
 					dataInfo.codStore = stmtResult.getLong(DaoPetDbTableColumn.COL_COD_STORE);
+					dataInfo.isDefault = stmtResult.getBoolean(DaoPetDbTableColumn.COL_IS_DEFAULT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
