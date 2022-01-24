@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
-import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
 final class CartemCopyCart extends InfoCopierOneToManyTemplate<CartemInfo, CartInfo> {
@@ -32,14 +31,8 @@ final class CartemCopyCart extends InfoCopierOneToManyTemplate<CartemInfo, CartI
 			return (CartemInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
-			logException(e);
+			super.logException(e);
 			throw new IllegalStateException(e); 
 		}
-	}	
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
 	}	
 }
