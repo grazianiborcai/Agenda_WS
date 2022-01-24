@@ -1657,4 +1657,7 @@ public final class SystemCode {
 	
 	// Pet List
 	public static final int PET_LIST_MANDATORY_FIELD_EMPTY				= 16350;
+	
+	// Person Bio Snapshot
+	public static final int PERSON_BIO_SNAP_MANDATORY_FIELD_EMPTY		= 16400;
 }
