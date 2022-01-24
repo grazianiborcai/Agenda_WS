@@ -9,7 +9,6 @@ import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 
@@ -159,15 +158,8 @@ final class PlanataCopyPlanime extends InfoCopierOneToManyTemplate<PlanataInfo, 
 			return (PlanataInfo) recordInfo.clone();
 			
 		} catch (CloneNotSupportedException e) {
-			logException(e);
+			super.logException(e);
 			throw new IllegalStateException(e);
 		}
-	}
-		
-		
-		
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
 	}		
 }
