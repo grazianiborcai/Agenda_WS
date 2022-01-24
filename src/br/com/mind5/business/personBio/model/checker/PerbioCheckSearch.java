@@ -17,7 +17,7 @@ public final class PerbioCheckSearch extends ModelCheckerTemplateSimple<PerbioIn
 	
 	@Override protected boolean checkHook(PerbioInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner  	<= 0 	||
-			 recordInfo.codLanguage	== null		)			
+			 recordInfo.codPerson  	<= 0		)			
 			return super.FAILED;	
 		
 		
