@@ -70,8 +70,9 @@ public final class PetsnapInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner  ^ (codOwner	>>> 32));
-		result = result * 31 + (int) (codPet 	^ (codPet 	>>> 32));
+		result = result * 31 + (int) (codOwner    ^ (codOwner	 >>> 32));
+		result = result * 31 + (int) (codPet 	  ^ (codPet 	 >>> 32));
+		result = result * 31 + (int) (codSnapshot ^ (codSnapshot >>> 32));
 		
 		if (codLanguage != null)
 			result = result * 31 + codLanguage.hashCode();
@@ -96,6 +97,7 @@ public final class PetsnapInfo extends InfoRecord implements Cloneable {
 		PetsnapInfo obj = (PetsnapInfo) o;		
 		return (codOwner == obj.codOwner 					&& 
 				codPet   == obj.codPet						&&
+				codSnapshot == obj.codSnapshot				&&
 				super.isStringEqual(petName, obj.petName) 	&&
 				super.isStringEqual(codLanguage, obj.codLanguage));
 	}
