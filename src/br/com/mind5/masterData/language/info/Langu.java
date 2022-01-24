@@ -1,7 +1,8 @@
 package br.com.mind5.masterData.language.info;
 
 public enum Langu {
-	ENGLISH("EN");
+	ENGLISH("EN"),
+	PORTUGUESE_BR("PT");
 	
 	
 	private final String codLanguage;
