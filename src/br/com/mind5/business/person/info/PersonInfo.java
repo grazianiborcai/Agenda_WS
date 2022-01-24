@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.mind5.business.personBio.info.PerbioInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -24,6 +26,7 @@ public final class PersonInfo extends InfoRecord implements Cloneable {
 	public int birthMonth;
 	public int birthDay;
 	public String email;
+	public List<PerbioInfo> perbios;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -43,6 +46,7 @@ public final class PersonInfo extends InfoRecord implements Cloneable {
 		birthYear = DefaultValue.number();
 		birthMonth = DefaultValue.number();
 		birthDay = DefaultValue.number();
+		perbios = DefaultValue.list();
 		recordMode = DefaultValue.recordMode();	
 		lastChangedBy = DefaultValue.number();
 		createdBy = DefaultValue.number();
@@ -63,7 +67,11 @@ public final class PersonInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		PersonInfo deepCopy = (PersonInfo) super.clone();
+		
+		deepCopy.perbios = CloneUtil.cloneRecords(deepCopy.perbios, this.getClass());
+		
+		return deepCopy;
 	}
 	
 	

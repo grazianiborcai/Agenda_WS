@@ -3,13 +3,27 @@ package br.com.mind5.business.person.info;
 import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
+import br.com.mind5.business.personBio.info.PerbioInfo;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.gender.info.GenderInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class PersonMerger {
+	public static List<PersonInfo> mergeWithPerbio(List<PersonInfo> baseInfos, List<PerbioInfo> selectedInfos) {
+		InfoMergerBuilder<PersonInfo, PerbioInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PersonVisiMergePerbio());
+		InfoMerger<PersonInfo, PerbioInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<PersonInfo> mergeWithSytotauh(List<PersonInfo> baseInfos, List<SytotauhInfo> selectedInfos) {
 		InfoMergerBuilder<PersonInfo, SytotauhInfo> builder = new InfoMergerBuilder<>();
 		
