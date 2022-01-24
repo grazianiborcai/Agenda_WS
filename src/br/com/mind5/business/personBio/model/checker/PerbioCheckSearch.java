@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class PetCheckSearch extends ModelCheckerTemplateSimple<PerbioInfo> {
+public final class PerbioCheckSearch extends ModelCheckerTemplateSimple<PerbioInfo> {
 
-	public PetCheckSearch(ModelCheckerOption option) {
+	public PerbioCheckSearch(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -17,7 +17,6 @@ public final class PetCheckSearch extends ModelCheckerTemplateSimple<PerbioInfo>
 	
 	@Override protected boolean checkHook(PerbioInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner  	<= 0 	||
-			 recordInfo.username	== null	||
 			 recordInfo.codLanguage	== null		)			
 			return super.FAILED;	
 		

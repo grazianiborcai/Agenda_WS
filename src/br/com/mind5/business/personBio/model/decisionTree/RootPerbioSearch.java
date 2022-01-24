@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.personBio.info.PerbioInfo;
 import br.com.mind5.business.personBio.model.action.LazyPerbioRootSelect;
-import br.com.mind5.business.personBio.model.action.StdPetMergePetarch;
-import br.com.mind5.business.personBio.model.checker.PetCheckSearch;
+import br.com.mind5.business.personBio.model.action.StdPerbioMergePerbiorch;
+import br.com.mind5.business.personBio.model.checker.PerbioCheckSearch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPetSearch extends DeciTreeTemplateRead<PerbioInfo> {
+public final class RootPerbioSearch extends DeciTreeTemplateRead<PerbioInfo> {
 	
-	public RootPetSearch(DeciTreeOption<PerbioInfo> option) {
+	public RootPerbioSearch(DeciTreeOption<PerbioInfo> option) {
 		super(option);
 	}
 	
@@ -32,7 +32,7 @@ public final class RootPetSearch extends DeciTreeTemplateRead<PerbioInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PetCheckSearch(checkerOption);
+		checker = new PerbioCheckSearch(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -43,12 +43,12 @@ public final class RootPetSearch extends DeciTreeTemplateRead<PerbioInfo> {
 	@Override protected List<ActionStd<PerbioInfo>> buildActionsOnPassedHook(DeciTreeOption<PerbioInfo> option) {
 		List<ActionStd<PerbioInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PerbioInfo> mergePetarch = new StdPetMergePetarch(option);
+		ActionStd<PerbioInfo> mergePerbiorch = new StdPerbioMergePerbiorch(option);
 		ActionLazy<PerbioInfo> select = new LazyPerbioRootSelect(option.conn, option.schemaName);
 		
-		mergePetarch.addPostAction(select);
+		mergePerbiorch.addPostAction(select);
 		
-		actions.add(mergePetarch);
+		actions.add(mergePerbiorch);
 		return actions;
 	}
 }

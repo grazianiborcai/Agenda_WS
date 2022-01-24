@@ -2,8 +2,8 @@ package br.com.mind5.business.personBio.info;
 
 import java.util.List;
 
+import br.com.mind5.business.personBioSearch.info.PerbiorchInfo;
 import br.com.mind5.business.personBioSnapshot.info.PerbionapInfo;
-import br.com.mind5.business.petSearch.info.PetarchInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.security.username.info.UsernameInfo;
@@ -22,13 +22,13 @@ public final class PerbioMerger {
 	
 	
 	
-	public static List<PerbioInfo> mergeWithPetarch(List<PerbioInfo> baseInfos, List<PetarchInfo> selectedInfos) {
-		InfoMergerBuilder<PerbioInfo, PetarchInfo> builder = new InfoMergerBuilder<>();
+	public static List<PerbioInfo> mergeWithPerbiorch(List<PerbioInfo> baseInfos, List<PerbiorchInfo> selectedInfos) {
+		InfoMergerBuilder<PerbioInfo, PerbiorchInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetVisiMergePetarch());
-		InfoMerger<PerbioInfo, PetarchInfo> merger = builder.build();		
+		builder.addVisitor(new PerbioVisiMergePerbiorch());
+		InfoMerger<PerbioInfo, PerbiorchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
