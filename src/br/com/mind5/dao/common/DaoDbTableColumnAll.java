@@ -76,6 +76,7 @@ import br.com.mind5.business.ownerList.dao.DaoOwnelisDbTableColumn;
 import br.com.mind5.business.ownerSearch.dao.DaoOwnarchDbTableColumn;
 import br.com.mind5.business.ownerSnapshot.dao.DaoOwnerapDbTableColumn;
 import br.com.mind5.business.person.dao.DaoPersonDbTableColumn;
+import br.com.mind5.business.personBio.dao.DaoPerbioDbTableColumn;
 import br.com.mind5.business.personList.dao.DaoPersolisDbTableColumn;
 import br.com.mind5.business.personSearch.dao.DaoPerarchDbTableColumn;
 import br.com.mind5.business.personSnapshot.dao.DaoPersonapDbTableColumn;
@@ -516,6 +517,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoPetDbTableColumn());
 		addTable(new DaoPetsnapDbTableColumn());
 		addTable(new DaoPetarchDbTableColumn());
+		addTable(new DaoPerbioDbTableColumn());
 	}
 	
 	

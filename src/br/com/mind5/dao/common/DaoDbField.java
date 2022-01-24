@@ -9,6 +9,7 @@ public final class DaoDbField {
 	public static final String COL_BASIC_KEY = "basic_key";
 	public static final String COL_BASIC_TOKEN = "basic_token";	
 	public static final String COL_BEGIN_TIME = "begin_time";
+	public static final String COL_BIO_TEXT = "bio_text";
 	public static final String COL_BIRTH_DATE = "birth_date";
 	public static final String COL_BIRTH_DAY = "birth_day";
 	public static final String COL_BIRTH_MONTH = "birth_month";
@@ -212,7 +213,7 @@ public final class DaoDbField {
 	public static final String COL_OWN_ID = "own_id";
 	public static final String COL_DISTRICT_SEARCH_DEFAULT = "district_search_default";
 	public static final String COL_OWNER_SIGNUP = "owner_signup";
-	public static final String COL_PET_BIRTH_DATE = "pet_birth_date";
+	public static final String COL_PET_BIRTH_DATE = "pet_birth_date";		
 	public static final String COL_PET_NAME = "pet_name";
 	public static final String COL_PET_NOTES = "pet_notes";
 	public static final String COL_PHONE_NAME = "phone_name";
