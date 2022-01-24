@@ -9,9 +9,9 @@ import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPetDaoUpdate extends ActionVisitorTemplateStmt<PerbioInfo> {
+final class VisiPerbioDaoUpdate extends ActionVisitorTemplateStmt<PerbioInfo> {
 
-	public VisiPetDaoUpdate(DeciTreeOption<PerbioInfo> option) {
+	public VisiPerbioDaoUpdate(DeciTreeOption<PerbioInfo> option) {
 		super(option);
 	}
 	

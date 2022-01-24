@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPetDaoUpdate extends ActionLazyTemplate<PerbioInfo, PerbioInfo> {
+public final class LazyPerbioDaoUpdate extends ActionLazyTemplate<PerbioInfo, PerbioInfo> {
 	
-	public LazyPetDaoUpdate(Connection conn, String schemaName) {
+	public LazyPerbioDaoUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyPetDaoUpdate extends ActionLazyTemplate<PerbioInfo, Perbi
 	
 	
 	@Override protected ActionStd<PerbioInfo> getInstanceOfActionHook(DeciTreeOption<PerbioInfo> option) {
-		return new StdPetDaoUpdate(option);
+		return new StdPerbioDaoUpdate(option);
 	}
 	
 	

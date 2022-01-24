@@ -1660,4 +1660,9 @@ public final class SystemCode {
 	
 	// Person Bio Snapshot
 	public static final int PERSON_BIO_SNAP_MANDATORY_FIELD_EMPTY		= 16400;
+	
+	// Person Bio
+	public static final int PERSON_BIO_MANDATORY_FIELD_EMPTY			= 16450;
+	public static final int PERSON_BIO_NOT_FOUND						= 16201;
+	public static final int PERSON_BIO_ALREADY_EXIST					= 16202;
 }

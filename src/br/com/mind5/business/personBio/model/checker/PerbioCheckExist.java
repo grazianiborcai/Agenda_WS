@@ -24,12 +24,12 @@ public final class PerbioCheckExist extends ModelCheckerTemplateAction<PerbioInf
 	
 	
 	@Override protected int getCodMsgOnResultTrueHook() {
-		return SystemCode.PET_ALREADY_EXIST;
+		return SystemCode.PERSON_BIO_ALREADY_EXIST;
 	}	
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.PET_NOT_FOUND;
+		return SystemCode.PERSON_BIO_NOT_FOUND;
 	}
 }

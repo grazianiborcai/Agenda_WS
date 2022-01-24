@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.personBio.info.PerbioInfo;
-import br.com.mind5.business.personBio.model.decisionTree.NodePetSnapshot;
+import br.com.mind5.business.personBio.model.decisionTree.NodePerbioSnapshot;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
@@ -25,7 +25,7 @@ public final class LazyPerbioNodeSnapshot extends ActionLazyTemplate<PerbioInfo,
 	
 	
 	@Override protected ActionStd<PerbioInfo> getInstanceOfActionHook(DeciTreeOption<PerbioInfo> option) {
-		return new NodePetSnapshot(option).toAction();
+		return new NodePerbioSnapshot(option).toAction();
 	}
 	
 	

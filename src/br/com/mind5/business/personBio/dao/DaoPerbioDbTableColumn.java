@@ -20,9 +20,7 @@ public final class DaoPerbioDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;	
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
-	
 
-	
 	
 	public DaoPerbioDbTableColumn() {
 		super();

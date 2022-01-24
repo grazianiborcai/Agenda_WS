@@ -12,9 +12,9 @@ import br.com.mind5.business.personBio.model.action.LazyPerbioNodeSnapshot;
 import br.com.mind5.business.personBio.model.action.LazyPerbioRootSelect;
 import br.com.mind5.business.personBio.model.action.StdPerbioEnforceLChanged;
 import br.com.mind5.business.personBio.model.checker.PerbioCheckExist;
-import br.com.mind5.business.personBio.model.checker.PerbioCheckInsert;
 import br.com.mind5.business.personBio.model.checker.PerbioCheckLangu;
 import br.com.mind5.business.personBio.model.checker.PerbioCheckOwner;
+import br.com.mind5.business.personBio.model.checker.PerbioCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -40,7 +40,7 @@ public final class RootPerbioInsert extends DeciTreeTemplateWrite<PerbioInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PerbioCheckInsert(checkerOption);
+		checker = new PerbioCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

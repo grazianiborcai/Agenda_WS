@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.personBio.info.PerbioInfo;
-import br.com.mind5.business.personBio.model.action.LazyPetDaoUpdate;
-import br.com.mind5.business.personBio.model.action.StdPetInsertPetsnap;
+import br.com.mind5.business.personBio.model.action.LazyPerbioDaoUpdate;
+import br.com.mind5.business.personBio.model.action.StdPerbioInsertPerbionap;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodePetSnapshot extends DeciTreeTemplateWrite<PerbioInfo> {
+public final class NodePerbioSnapshot extends DeciTreeTemplateWrite<PerbioInfo> {
 	
-	public NodePetSnapshot(DeciTreeOption<PerbioInfo> option) {
+	public NodePerbioSnapshot(DeciTreeOption<PerbioInfo> option) {
 		super(option);
 	}
 	
@@ -37,12 +37,12 @@ public final class NodePetSnapshot extends DeciTreeTemplateWrite<PerbioInfo> {
 	@Override protected List<ActionStd<PerbioInfo>> buildActionsOnPassedHook(DeciTreeOption<PerbioInfo> option) {
 		List<ActionStd<PerbioInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PerbioInfo> insertPetsnap = new StdPetInsertPetsnap(option);		
-		ActionLazy<PerbioInfo> update = new LazyPetDaoUpdate(option.conn, option.schemaName);	
+		ActionStd<PerbioInfo> insertPerbionap = new StdPerbioInsertPerbionap(option);		
+		ActionLazy<PerbioInfo> update = new LazyPerbioDaoUpdate(option.conn, option.schemaName);	
 		
-		insertPetsnap.addPostAction(update);
+		insertPerbionap.addPostAction(update);
 		
-		actions.add(insertPetsnap);	
+		actions.add(insertPerbionap);	
 		return actions;
 	}
 }

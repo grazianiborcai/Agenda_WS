@@ -30,6 +30,6 @@ public final class PerbioCheckRead extends ModelCheckerTemplateSimple<PerbioInfo
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.PET_MANDATORY_FIELD_EMPTY;
+		return SystemCode.PERSON_BIO_MANDATORY_FIELD_EMPTY;
 	}
 }

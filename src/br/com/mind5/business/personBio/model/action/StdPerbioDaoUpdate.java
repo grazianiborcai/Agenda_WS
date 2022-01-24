@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPetInsertPetsnap extends ActionStdTemplate<PerbioInfo> {
+public final class StdPerbioDaoUpdate extends ActionStdTemplate<PerbioInfo> {
 
-	public StdPetInsertPetsnap(DeciTreeOption<PerbioInfo> option) {
+	public StdPerbioDaoUpdate(DeciTreeOption<PerbioInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<PerbioInfo> buildVisitorHook(DeciTreeOption<PerbioInfo> option) {
-		return new VisiPetInsertPetsnap(option);
+		return new VisiPerbioDaoUpdate(option);
 	}
 }

@@ -2,8 +2,8 @@ package br.com.mind5.business.personBio.info;
 
 import java.util.List;
 
+import br.com.mind5.business.personBioSnapshot.info.PerbionapInfo;
 import br.com.mind5.business.petSearch.info.PetarchInfo;
-import br.com.mind5.business.petSnapshot.info.PetsnapInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.security.username.info.UsernameInfo;
@@ -14,7 +14,7 @@ public final class PerbioMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetVisiMergeUsername());
+		builder.addVisitor(new PerbioVisiMergeUsername());
 		InfoMerger<PerbioInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -35,13 +35,13 @@ public final class PerbioMerger {
 	
 	
 	
-	public static List<PerbioInfo> mergeWithPetsnap(List<PerbioInfo> baseInfos, List<PetsnapInfo> selectedInfos) {
-		InfoMergerBuilder<PerbioInfo, PetsnapInfo> builder = new InfoMergerBuilder<>();
+	public static List<PerbioInfo> mergeWithPerbionap(List<PerbioInfo> baseInfos, List<PerbionapInfo> selectedInfos) {
+		InfoMergerBuilder<PerbioInfo, PerbionapInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetVisiMergePetsnap());
-		InfoMerger<PerbioInfo, PetsnapInfo> merger = builder.build();		
+		builder.addVisitor(new PerbioVisiMergePerbionap());
+		InfoMerger<PerbioInfo, PerbionapInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
