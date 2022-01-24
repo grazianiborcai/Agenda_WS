@@ -20,6 +20,7 @@ public final class DaoPetsnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
 	public static final String COL_CREATED_BY = DaoDbField.COL_CREATED_BY;
 	public static final String COL_CREATED_ON = DaoDbField.COL_CREATED_ON;
+	public static final String COL_IS_DEFAULT = DaoDbField.COL_IS_DEFAULT;
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
 	public static final String COL_PET_BIRTH_DATE = DaoDbField.COL_PET_BIRTH_DATE;
@@ -163,6 +164,14 @@ public final class DaoPetsnapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_STORE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_IS_DEFAULT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

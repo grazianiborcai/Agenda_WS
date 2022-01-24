@@ -77,6 +77,7 @@ public final class DaoPetsnapSelectSingle extends DaoStmtTemplate<PetsnapInfo> {
 					dataInfo.codSnapshot = stmtResult.getLong(DaoPetsnapDbTableColumn.COL_COD_SNAPSHOT);
 					dataInfo.codUser = stmtResult.getLong(DaoPetsnapDbTableColumn.COL_COD_USER);
 					dataInfo.codStore = stmtResult.getLong(DaoPetsnapDbTableColumn.COL_COD_STORE);
+					dataInfo.isDefault = stmtResult.getBoolean(DaoPetsnapDbTableColumn.COL_IS_DEFAULT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

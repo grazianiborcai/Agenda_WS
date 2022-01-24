@@ -45,7 +45,7 @@ public final class DaoPetsnapInsertSingle extends DaoStmtTemplate<PetsnapInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwner);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPet);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);	
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 				stmt.setString(i++, recordInfo.recordMode);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
@@ -55,8 +55,9 @@ public final class DaoPetsnapInsertSingle extends DaoStmtTemplate<PetsnapInfo> {
 				stmt.setInt(i++, recordInfo.codPetype);
 				stmt.setString(i++, recordInfo.petNote);
 				stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.petBirthDate);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);	
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);	
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
+				stmt.setBoolean(i++, recordInfo.isDefault);
 				
 				return stmt;
 			}		
