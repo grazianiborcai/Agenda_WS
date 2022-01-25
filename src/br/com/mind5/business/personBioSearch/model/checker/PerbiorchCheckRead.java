@@ -16,13 +16,10 @@ public final class PerbiorchCheckRead extends ModelCheckerTemplateSimple<Perbior
 	
 	
 	@Override protected boolean checkHook(PerbiorchInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner <= 0 	||
-			 recordInfo.username == null	 )			
-			return super.FAILED;		
-		
-		
-		if ( recordInfo.codPerson <= 0 )
-			return super.FAILED;	
+		if ( recordInfo.codOwner 	<= 0 	||
+			 recordInfo.username 	== null ||
+			 recordInfo.codPerson 	<= 0		)			
+			return super.FAILED;
 		
 		
 		return super.SUCCESS;

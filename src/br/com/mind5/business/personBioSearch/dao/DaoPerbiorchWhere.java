@@ -37,6 +37,7 @@ public final class DaoPerbiorchWhere implements DaoStmtWhere {
 					
 				case DaoPerbiorchDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+					break;
 					
 				case DaoPerbiorchDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);

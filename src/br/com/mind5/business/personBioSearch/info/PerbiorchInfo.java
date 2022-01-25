@@ -1,6 +1,5 @@
 package br.com.mind5.business.personBioSearch.info;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
@@ -12,10 +11,6 @@ public final class PerbiorchInfo extends InfoRecord implements Cloneable {
 	public long codSnapshot;	
 	public String txtBio;
 	public String recordMode;
-	public LocalDateTime lastChanged;
-	public long lastChangedBy;
-	public LocalDateTime createdOn;
-	public long createdBy;
 	public String username;
 	
 	
@@ -25,9 +20,7 @@ public final class PerbiorchInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
-		recordMode = DefaultValue.recordMode();	
-		lastChangedBy = DefaultValue.number();
-		createdBy = DefaultValue.number();
+		recordMode = DefaultValue.recordMode();
 	}
 	
 	

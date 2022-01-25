@@ -6,10 +6,7 @@ import br.com.mind5.masterData.language.info.Langu;
 public final class PerbiorchSetterPt extends InfoSetterTemplate<PerbiorchInfo> {
 	
 	@Override protected PerbiorchInfo setAttrHook(PerbiorchInfo recordInfo) {
-		PerbiorchInfo result = new PerbiorchInfo();		
-
-		result.codLanguage = Langu.PORTUGUESE_BR.getCod();
-		
-		return result;
+		recordInfo.codLanguage = Langu.PORTUGUESE_BR.getCod();		
+		return recordInfo;
 	}	
 }
