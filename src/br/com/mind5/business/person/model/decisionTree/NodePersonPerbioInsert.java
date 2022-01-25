@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.person.model.action.StdPersonPerbioInsert;
+import br.com.mind5.business.person.model.action.LazyPersonPerbioInsert;
+import br.com.mind5.business.person.model.action.StdPersonEnforcePerbioKey;
 import br.com.mind5.business.person.model.action.StdPersonSuccess;
 import br.com.mind5.business.person.model.checker.PersonCheckHasPerbio;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -42,9 +44,12 @@ public final class NodePersonPerbioInsert extends DeciTreeTemplateWrite<PersonIn
 	@Override protected List<ActionStd<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
 		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> perbioInsert = new StdPersonPerbioInsert(option);
+		ActionStd<PersonInfo> enforcePerbioKe = new StdPersonEnforcePerbioKey(option);
+		ActionLazy<PersonInfo> perbioInsert = new LazyPersonPerbioInsert(option.conn, option.schemaName);
 		
-		actions.add(perbioInsert);	
+		enforcePerbioKe.addPostAction(perbioInsert);
+		
+		actions.add(enforcePerbioKe);	
 		return actions;
 	}
 	
