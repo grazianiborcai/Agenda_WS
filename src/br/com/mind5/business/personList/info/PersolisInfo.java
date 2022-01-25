@@ -3,6 +3,8 @@ package br.com.mind5.business.personList.info;
 import java.time.LocalDate;
 import java.util.List;
 
+import br.com.mind5.business.personBioList.info.PerbiolisInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -18,6 +20,7 @@ public final class PersolisInfo extends InfoRecord implements Cloneable {
 	public int birthYear;
 	public int birthMonth;
 	public int birthDay;
+	public PerbiolisInfo perbiolisData;
 	public String recordMode;
 	public String username;
 	
@@ -31,6 +34,7 @@ public final class PersolisInfo extends InfoRecord implements Cloneable {
 		birthYear = DefaultValue.number();
 		birthMonth = DefaultValue.number();
 		birthDay = DefaultValue.number();
+		perbiolisData = DefaultValue.object();
 		recordMode = DefaultValue.recordMode();
 	}
 	
@@ -49,7 +53,11 @@ public final class PersolisInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		PersolisInfo deepCopy = (PersolisInfo) super.clone();
+		
+		deepCopy.perbiolisData = CloneUtil.cloneRecord(deepCopy.perbiolisData, this.getClass());
+		
+		return deepCopy;
 	}
 	
 	
