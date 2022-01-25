@@ -4,8 +4,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+//import java.lang.reflect;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
@@ -37,7 +39,8 @@ public abstract class InfoRecord implements Cloneable {
 	
 	
 	protected static <T> T copyFrom(Object sourceObj, Class<T> targetClass) {
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder().serializeNulls().create();		
+		
 		String sourceStr = gson.toJson(sourceObj);		
 		return gson.fromJson(sourceStr, targetClass);
 	}
