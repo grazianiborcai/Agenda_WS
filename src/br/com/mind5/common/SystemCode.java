@@ -1670,4 +1670,7 @@ public final class SystemCode {
 	public static final int PERSON_BIO_SEARCH_MANDATORY_FIELD_EMPTY		= 16500;
 	public static final int PERSON_BIO_SEARCH_NOT_FOUND					= 16501;
 	public static final int PERSON_BIO_SEARCH_ALREADY_EXIST				= 16502;
+	
+	// Person Bio List
+	public static final int PERSON_BIO_LIST_MANDATORY_FIELD_EMPTY		= 16550;
 }
