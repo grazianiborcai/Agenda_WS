@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.personBio.info.PerbioInfo;
 import br.com.mind5.business.personBio.model.action.LazyPerbioRootDelete;
 import br.com.mind5.business.personBio.model.action.StdPerbioSuccess;
-import br.com.mind5.business.personBio.model.checker.PerbioCheckPerbioPerson;
+import br.com.mind5.business.personBio.model.checker.PerbioCheckPerbiorchPerson;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -32,7 +32,7 @@ public final class NodePerbioDeletePerson extends DeciTreeTemplateRead<PerbioInf
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new PerbioCheckPerbioPerson(checkerOption);
+		checker = new PerbioCheckPerbiorchPerson(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
