@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.person.model.action.LazyPersonPerbioInsert;
+import br.com.mind5.business.person.model.action.LazyPersonPerbioUpsertdel;
 import br.com.mind5.business.person.model.action.StdPersonEnforcePerbioKey;
 import br.com.mind5.business.person.model.action.StdPersonSuccess;
 import br.com.mind5.business.person.model.checker.PersonCheckHasPerbio;
@@ -16,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodePersonPerbioInsert extends DeciTreeTemplateWrite<PersonInfo> {
+public final class NodePersonPerbioUpsertdel extends DeciTreeTemplateWrite<PersonInfo> {
 	
-	public NodePersonPerbioInsert(DeciTreeOption<PersonInfo> option) {
+	public NodePersonPerbioUpsertdel(DeciTreeOption<PersonInfo> option) {
 		super(option);
 	}
 	
@@ -45,9 +45,9 @@ public final class NodePersonPerbioInsert extends DeciTreeTemplateWrite<PersonIn
 		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
 		ActionStd<PersonInfo> enforcePerbioKe = new StdPersonEnforcePerbioKey(option);
-		ActionLazy<PersonInfo> perbioInsert = new LazyPersonPerbioInsert(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> perbioUpsertdel = new LazyPersonPerbioUpsertdel(option.conn, option.schemaName);
 		
-		enforcePerbioKe.addPostAction(perbioInsert);
+		enforcePerbioKe.addPostAction(perbioUpsertdel);
 		
 		actions.add(enforcePerbioKe);	
 		return actions;

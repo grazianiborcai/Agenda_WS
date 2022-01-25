@@ -4,14 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
+import br.com.mind5.business.person.model.decisionTree.NodePersonPerbioUpsertdel;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPersonPerbioInsert extends ActionLazyTemplate<PersonInfo, PersonInfo> {
+public final class LazyPersonNodePerbioUpsertdel extends ActionLazyTemplate<PersonInfo, PersonInfo> {
 
-	public LazyPersonPerbioInsert(Connection conn, String schemaName) {
+	public LazyPersonNodePerbioUpsertdel(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyPersonPerbioInsert extends ActionLazyTemplate<PersonInfo,
 	
 	
 	@Override protected ActionStd<PersonInfo> getInstanceOfActionHook(DeciTreeOption<PersonInfo> option) {
-		return new StdPersonPerbioInsert(option);
+		return new NodePersonPerbioUpsertdel(option).toAction();
 	}
 	
 	

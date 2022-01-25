@@ -10,6 +10,7 @@ import br.com.mind5.business.person.model.action.LazyPersonMergeUsername;
 import br.com.mind5.business.person.model.action.LazyPersonNodeCpfL1;
 import br.com.mind5.business.person.model.action.LazyPersonNodeEmailL1;
 import br.com.mind5.business.person.model.action.LazyPersonNodeName;
+import br.com.mind5.business.person.model.action.LazyPersonNodePerbioUpsertdel;
 import br.com.mind5.business.person.model.action.LazyPersonNodeSnapshot;
 import br.com.mind5.business.person.model.action.StdPersonMergeToUpdate;
 import br.com.mind5.business.person.model.checker.PersonCheckBirthdate;
@@ -20,9 +21,9 @@ import br.com.mind5.business.person.model.checker.PersonCheckOwner;
 import br.com.mind5.business.person.model.checker.PersonCheckUpdate;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -97,6 +98,7 @@ public final class RootPersonUpdate extends DeciTreeTemplateWrite<PersonInfo> {
 		ActionLazy<PersonInfo> nodeName = new LazyPersonNodeName(option.conn, option.schemaName);	
 		ActionLazy<PersonInfo> enforceBirthdate = new LazyPersonEnforceBirthdate(option.conn, option.schemaName);
 		ActionLazy<PersonInfo> snapshot = new LazyPersonNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> upsertdelPerbio = new LazyPersonNodePerbioUpsertdel(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(cpf);
 		cpf.addPostAction(email);
@@ -105,6 +107,7 @@ public final class RootPersonUpdate extends DeciTreeTemplateWrite<PersonInfo> {
 		enforceLChangedBy.addPostAction(nodeName);
 		nodeName.addPostAction(enforceBirthdate);
 		enforceBirthdate.addPostAction(snapshot);
+		snapshot.addPostAction(upsertdelPerbio);
 		
 		actions.add(mergeToUpdate);
 		return actions;

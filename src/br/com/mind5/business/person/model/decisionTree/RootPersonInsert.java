@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.action.LazyPersonNodeEmailL1;
 import br.com.mind5.business.person.model.action.LazyPersonNodeInsert;
-import br.com.mind5.business.person.model.action.LazyPersonNodePerbioInsert;
+import br.com.mind5.business.person.model.action.LazyPersonNodePerbioUpsertdel;
 import br.com.mind5.business.person.model.action.LazyPersonNodeSnapshot;
 import br.com.mind5.business.person.model.checker.PersonCheckBirthdate;
 import br.com.mind5.business.person.model.checker.PersonCheckEntiteg;
@@ -87,14 +87,14 @@ public final class RootPersonInsert extends DeciTreeTemplateWrite<PersonInfo> {
 		
 		ActionStd<PersonInfo> cpf = new NodePersonCpfL1(option).toAction();	
 		ActionLazy<PersonInfo> email = new LazyPersonNodeEmailL1(option.conn, option.schemaName);	
-		ActionLazy<PersonInfo> insert = new LazyPersonNodeInsert(option.conn, option.schemaName);
-		ActionLazy<PersonInfo> insertPerbio = new LazyPersonNodePerbioInsert(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> insert = new LazyPersonNodeInsert(option.conn, option.schemaName);		
 		ActionLazy<PersonInfo> snapshot = new LazyPersonNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> upsertdelPerbio = new LazyPersonNodePerbioUpsertdel(option.conn, option.schemaName);
 		
 		cpf.addPostAction(email);
 		email.addPostAction(insert);
-		insert.addPostAction(insertPerbio);
-		insertPerbio.addPostAction(snapshot);
+		insert.addPostAction(snapshot);
+		snapshot.addPostAction(upsertdelPerbio);
 		
 		actions.add(cpf);
 		return actions;
