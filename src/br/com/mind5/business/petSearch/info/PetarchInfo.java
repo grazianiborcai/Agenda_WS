@@ -58,6 +58,7 @@ public final class PetarchInfo extends InfoRecord implements Cloneable {
 		
 		result = result * 31 + (int) (codOwner  	^ (codOwner 	>>> 32));
 		result = result * 31 + (int) (codPet 		^ (codPet 		>>> 32));
+		result = result * 31 + (int) (codUser 		^ (codUser 		>>> 32));
 		result = result * 31 + (int) (codCustomer 	^ (codCustomer 	>>> 32));
 		result = result * 31 + (int) (codSnapshot 	^ (codSnapshot 	>>> 32));
 		
@@ -82,11 +83,12 @@ public final class PetarchInfo extends InfoRecord implements Cloneable {
 		
 		
 		PetarchInfo obj = (PetarchInfo) o;		
-		return (codOwner 	== obj.codOwner 	&& 
-				codPet 		== obj.codPet		&&
-				codCustomer == obj.codCustomer	&&
-				codSnapshot == obj.codSnapshot	&&
-				super.isStringEqual(petName, obj.petName)			&&
+		return (codOwner 	== obj.codOwner 				&& 
+				codPet 		== obj.codPet					&&
+				codUser 	== obj.codUser					&&
+				codCustomer == obj.codCustomer				&&
+				codSnapshot == obj.codSnapshot				&&
+				super.isStringEqual(petName, obj.petName)	&&
 				super.isDateEqual(petBirthDate, obj.petBirthDate)		);
 	}
 }
