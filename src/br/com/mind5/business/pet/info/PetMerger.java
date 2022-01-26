@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.business.customerList.info.CuslisInfo;
+import br.com.mind5.business.petDefault.info.PetaultInfo;
 import br.com.mind5.business.petSearch.info.PetarchInfo;
 import br.com.mind5.business.petSnapshot.info.PetsnapInfo;
 import br.com.mind5.info.InfoMerger;
@@ -37,7 +38,6 @@ public final class PetMerger {
 	}	
 	
 	
-	
 	public static List<PetInfo> mergeWithPetarch(List<PetInfo> baseInfos, List<PetarchInfo> selectedInfos) {
 		InfoMergerBuilder<PetInfo, PetarchInfo> builder = new InfoMergerBuilder<>();
 		
@@ -45,6 +45,18 @@ public final class PetMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new PetVisiMergePetarch());
 		InfoMerger<PetInfo, PetarchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	public static List<PetInfo> mergeWithPetault(List<PetInfo> baseInfos, List<PetaultInfo> selectedInfos) {
+		InfoMergerBuilder<PetInfo, PetaultInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PetVisiMergePetault());
+		InfoMerger<PetInfo, PetaultInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

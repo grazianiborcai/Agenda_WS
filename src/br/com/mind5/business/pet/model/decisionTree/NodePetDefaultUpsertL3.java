@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
-import br.com.mind5.business.pet.model.action.StdPetMergeSytotauh;
+import br.com.mind5.business.pet.model.action.StdPetEnforceDefaultOn;
 import br.com.mind5.business.pet.model.action.StdPetSuccess;
-import br.com.mind5.business.pet.model.checker.PetCheckSytotin;
+import br.com.mind5.business.pet.model.checker.PetCheckPetault;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodePetSearchAuthL3 extends DeciTreeTemplateWrite<PetInfo> {
+public final class NodePetDefaultUpsertL3 extends DeciTreeTemplateWrite<PetInfo> {
 	
-	public NodePetSearchAuthL3(DeciTreeOption<PetInfo> option) {
+	public NodePetDefaultUpsertL3(DeciTreeOption<PetInfo> option) {
 		super(option);
 	}
 	
@@ -30,8 +30,8 @@ public final class NodePetSearchAuthL3 extends DeciTreeTemplateWrite<PetInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PetCheckSytotin(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
+		checker = new PetCheckPetault(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -42,10 +42,9 @@ public final class NodePetSearchAuthL3 extends DeciTreeTemplateWrite<PetInfo> {
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnPassedHook(DeciTreeOption<PetInfo> option) {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PetInfo> mergeSytotauh = new StdPetMergeSytotauh(option);
-		//buscar todos os customers da loja
+		ActionStd<PetInfo> enforceDefaultOn = new StdPetEnforceDefaultOn(option);
 		
-		actions.add(mergeSytotauh);
+		actions.add(enforceDefaultOn);
 		return actions;
 	}
 	
@@ -53,10 +52,10 @@ public final class NodePetSearchAuthL3 extends DeciTreeTemplateWrite<PetInfo> {
 	
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnFailedHook(DeciTreeOption<PetInfo> option) {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();
+
+		ActionStd<PetInfo> success = new StdPetSuccess(option);	
 		
-		ActionStd<PetInfo> success = new StdPetSuccess(option);
-		
-		actions.add(success);
+		actions.add(success);		
 		return actions;
 	}
 }

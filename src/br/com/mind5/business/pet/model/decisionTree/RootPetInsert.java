@@ -7,10 +7,10 @@ import br.com.mind5.business.pet.info.PetInfo;
 import br.com.mind5.business.pet.model.action.LazyPetDaoInsert;
 import br.com.mind5.business.pet.model.action.LazyPetEnforceCreatedBy;
 import br.com.mind5.business.pet.model.action.LazyPetEnforceCreatedOn;
+import br.com.mind5.business.pet.model.action.LazyPetEnforceLChanged;
 import br.com.mind5.business.pet.model.action.LazyPetMergeUsername;
 import br.com.mind5.business.pet.model.action.LazyPetNodeSnapshot;
 import br.com.mind5.business.pet.model.action.LazyPetRootSelect;
-import br.com.mind5.business.pet.model.action.StdPetEnforceLChanged;
 import br.com.mind5.business.pet.model.checker.PetCheckBirthdate;
 import br.com.mind5.business.pet.model.checker.PetCheckHasUser;
 import br.com.mind5.business.pet.model.checker.PetCheckInsert;
@@ -104,7 +104,8 @@ public final class RootPetInsert extends DeciTreeTemplateWrite<PetInfo> {
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnPassedHook(DeciTreeOption<PetInfo> option) {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PetInfo> enforceLChanged = new StdPetEnforceLChanged(option);	
+		ActionStd<PetInfo> nodeDefault = new NodePetDefaultUpsertL1(option).toAction();
+		ActionLazy<PetInfo> enforceLChanged = new LazyPetEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<PetInfo> enforceLChangedBy = new LazyPetMergeUsername(option.conn, option.schemaName);		
 		ActionLazy<PetInfo> enforceCreatedBy = new LazyPetEnforceCreatedBy(option.conn, option.schemaName);	
 		ActionLazy<PetInfo> enforceCreatedOn = new LazyPetEnforceCreatedOn(option.conn, option.schemaName);
@@ -112,6 +113,7 @@ public final class RootPetInsert extends DeciTreeTemplateWrite<PetInfo> {
 		ActionLazy<PetInfo> snapshot = new LazyPetNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<PetInfo> select = new LazyPetRootSelect(option.conn, option.schemaName);		
 		
+		nodeDefault.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);
 		enforceCreatedBy.addPostAction(enforceCreatedOn);
@@ -119,7 +121,7 @@ public final class RootPetInsert extends DeciTreeTemplateWrite<PetInfo> {
 		insert.addPostAction(snapshot);
 		snapshot.addPostAction(select);
 		
-		actions.add(enforceLChanged);
+		actions.add(nodeDefault);
 		return actions;
 	}
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
 import br.com.mind5.business.pet.model.action.StdPetSuccess;
-import br.com.mind5.business.pet.model.checker.PetCheckPetarchPetCustomer;
+import br.com.mind5.business.pet.model.checker.PetCheckPetarchPetCus;
 import br.com.mind5.business.pet.model.checker.PetCheckPetarchPetStore;
 import br.com.mind5.business.pet.model.checker.PetCheckPetarchPetUser;
 import br.com.mind5.business.pet.model.checker.PetCheckSytotauh;
@@ -54,7 +54,7 @@ public final class NodePetUpdateAuthL4 extends DeciTreeTemplateWrite<PetInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new PetCheckPetarchPetCustomer(checkerOption);
+		checker = new PetCheckPetarchPetCus(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);

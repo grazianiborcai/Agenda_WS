@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPetDaoSelect extends ActionLazyTemplate<PetInfo, PetInfo> {
-
-	public LazyPetDaoSelect(Connection conn, String schemaName) {
+public final class LazyPetEnforceDefaultOff extends ActionLazyTemplate<PetInfo, PetInfo> {
+	
+	public LazyPetEnforceDefaultOff(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyPetDaoSelect extends ActionLazyTemplate<PetInfo, PetInfo>
 	
 	
 	@Override protected ActionStd<PetInfo> getInstanceOfActionHook(DeciTreeOption<PetInfo> option) {
-		return new StdPetDaoSelect(option);
+		return new StdPetEnforceDefaultOff(option);
 	}
 	
 	

@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
 import br.com.mind5.business.pet.model.action.LazyPetEnforceLChanged;
+import br.com.mind5.business.pet.model.action.LazyPetMergeToUpdate;
 import br.com.mind5.business.pet.model.action.LazyPetMergeUsername;
 import br.com.mind5.business.pet.model.action.LazyPetNodeSnapshot;
 import br.com.mind5.business.pet.model.action.LazyPetRootSelect;
-import br.com.mind5.business.pet.model.action.StdPetMergeToUpdate;
 import br.com.mind5.business.pet.model.checker.PetCheckBirthdate;
 import br.com.mind5.business.pet.model.checker.PetCheckExist;
 import br.com.mind5.business.pet.model.checker.PetCheckLangu;
@@ -94,18 +94,20 @@ public final class RootPetUpdate extends DeciTreeTemplateWrite<PetInfo> {
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnPassedHook(DeciTreeOption<PetInfo> option) {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();
 
-		ActionStd<PetInfo> mergeToUpdate = new StdPetMergeToUpdate(option);
+		ActionStd<PetInfo> nodeDefault = new NodePetDefaultUpsertL1(option).toAction();
+		ActionLazy<PetInfo> mergeToUpdate = new LazyPetMergeToUpdate(option.conn, option.schemaName);
 		ActionLazy<PetInfo> enforceLChanged = new LazyPetEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<PetInfo> enforceLChangedBy = new LazyPetMergeUsername(option.conn, option.schemaName);
 		ActionLazy<PetInfo> snapshot = new LazyPetNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<PetInfo> select = new LazyPetRootSelect(option.conn, option.schemaName);	
 		
+		nodeDefault.addPostAction(mergeToUpdate);
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(snapshot);
 		snapshot.addPostAction(select);
 		
-		actions.add(mergeToUpdate);
+		actions.add(nodeDefault);
 		return actions;
 	}
 }

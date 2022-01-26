@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
-import br.com.mind5.business.pet.model.action.StdPetMergeSytotauh;
+import br.com.mind5.business.pet.model.action.LazyPetEnforceDefaultOn;
+import br.com.mind5.business.pet.model.action.LazyPetMergeToSelect;
+import br.com.mind5.business.pet.model.action.LazyPetRootUpdate;
+import br.com.mind5.business.pet.model.action.StdPetMergePetarchUser;
 import br.com.mind5.business.pet.model.action.StdPetSuccess;
-import br.com.mind5.business.pet.model.checker.PetCheckSytotin;
+import br.com.mind5.business.pet.model.checker.PetCheckHasUser;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -14,9 +18,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodePetSearchAuthL3 extends DeciTreeTemplateWrite<PetInfo> {
+public final class NodePetDefaultDeleteL2 extends DeciTreeTemplateWrite<PetInfo> {
 	
-	public NodePetSearchAuthL3(DeciTreeOption<PetInfo> option) {
+	public NodePetDefaultDeleteL2(DeciTreeOption<PetInfo> option) {
 		super(option);
 	}
 	
@@ -31,7 +35,7 @@ public final class NodePetSearchAuthL3 extends DeciTreeTemplateWrite<PetInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PetCheckSytotin(checkerOption);
+		checker = new PetCheckHasUser(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -42,21 +46,19 @@ public final class NodePetSearchAuthL3 extends DeciTreeTemplateWrite<PetInfo> {
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnPassedHook(DeciTreeOption<PetInfo> option) {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PetInfo> mergeSytotauh = new StdPetMergeSytotauh(option);
-		//buscar todos os customers da loja
+		ActionStd<PetInfo> mergePetarchUser = new StdPetMergePetarchUser(option);
+		ActionLazy<PetInfo> mergeToSelect = new LazyPetMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<PetInfo> enforceDefaultOn = new LazyPetEnforceDefaultOn(option.conn, option.schemaName);
+		ActionLazy<PetInfo> update = new LazyPetRootUpdate(option.conn, option.schemaName);
+		ActionStd<PetInfo> success = new StdPetSuccess(option);	
 		
-		actions.add(mergeSytotauh);
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<PetInfo>> buildActionsOnFailedHook(DeciTreeOption<PetInfo> option) {
-		List<ActionStd<PetInfo>> actions = new ArrayList<>();
+		mergePetarchUser.addPostAction(mergeToSelect);
+		mergeToSelect.addPostAction(enforceDefaultOn);
+		enforceDefaultOn.addPostAction(update);
 		
-		ActionStd<PetInfo> success = new StdPetSuccess(option);
-		
+		actions.add(mergePetarchUser);
 		actions.add(success);
+		
 		return actions;
 	}
 }
