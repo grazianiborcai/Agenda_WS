@@ -15,7 +15,7 @@ public final class PetarchInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public String petName;
 	public LocalDate petBirthDate;
-	public Boolean isDefault;
+	public boolean isDefault;
 	public String recordMode;
 	public String username;
 	
@@ -29,7 +29,7 @@ public final class PetarchInfo extends InfoRecord implements Cloneable {
 		codUser = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		codStore = DefaultValue.number();
-		isDefault = DefaultValue.object();
+		isDefault = DefaultValue.boole();
 		recordMode = DefaultValue.recordMode();	
 	}
 	
