@@ -35,9 +35,9 @@ public abstract class ActionStdSuccessTemplate<T extends InfoRecord> implements 
 		deciResult.isSuccess = SUCCESS;
 		deciResult.hasResultset = SUCCESS;
 		
-		List<T> dummyResultset = new ArrayList<>();
-		dummyResultset.addAll(option.recordInfos);
-		deciResult.resultset = dummyResultset;
+		List<T> copyOfResultset = new ArrayList<>();
+		copyOfResultset.addAll(option.recordInfos);
+		deciResult.resultset = copyOfResultset;
 		
 		return deciResult;
 	}
@@ -53,9 +53,9 @@ public abstract class ActionStdSuccessTemplate<T extends InfoRecord> implements 
 		
 		T emptyRecord = getNewInstance(clazz);
 		
-		List<T> dummyResultset = new ArrayList<>();
-		dummyResultset.add(emptyRecord);
-		deciResult.resultset = dummyResultset;
+		List<T> emptyResultset = new ArrayList<>();
+		emptyResultset.add(emptyRecord);
+		deciResult.resultset = emptyResultset;
 		
 		return deciResult;
 	}
