@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class PetarchCheckReadPetCustomer extends ModelCheckerTemplateSimple<PetarchInfo> {
+public final class PetarchCheckReadPetCus extends ModelCheckerTemplateSimple<PetarchInfo> {
 
-	public PetarchCheckReadPetCustomer(ModelCheckerOption option) {
+	public PetarchCheckReadPetCus(ModelCheckerOption option) {
 		super(option);
 	}
 	

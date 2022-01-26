@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.petSearch.info.PetarchInfo;
 import br.com.mind5.business.petSearch.model.action.LazyPetarchRootSelect;
-import br.com.mind5.business.petSearch.model.action.StdPetarchEnforcePetCustomer;
-import br.com.mind5.business.petSearch.model.checker.PetarchCheckReadPetCustomer;
+import br.com.mind5.business.petSearch.model.action.StdPetarchEnforcePetCus;
+import br.com.mind5.business.petSearch.model.checker.PetarchCheckReadPetCus;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPetarchSelectPetCustomer extends DeciTreeTemplateRead<PetarchInfo> {
+public final class RootPetarchSelectPetCus extends DeciTreeTemplateRead<PetarchInfo> {
 	
-	public RootPetarchSelectPetCustomer(DeciTreeOption<PetarchInfo> option) {
+	public RootPetarchSelectPetCus(DeciTreeOption<PetarchInfo> option) {
 		super(option);
 	}
 	
@@ -32,7 +32,7 @@ public final class RootPetarchSelectPetCustomer extends DeciTreeTemplateRead<Pet
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PetarchCheckReadPetCustomer(checkerOption);
+		checker = new PetarchCheckReadPetCus(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -43,7 +43,7 @@ public final class RootPetarchSelectPetCustomer extends DeciTreeTemplateRead<Pet
 	@Override protected List<ActionStd<PetarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PetarchInfo> option) {
 		List<ActionStd<PetarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PetarchInfo> enforcePetCustomer = new StdPetarchEnforcePetCustomer(option);
+		ActionStd<PetarchInfo> enforcePetCustomer = new StdPetarchEnforcePetCus(option);
 		ActionLazy<PetarchInfo> select = new LazyPetarchRootSelect(option.conn, option.schemaName);
 		
 		enforcePetCustomer.addPostAction(select);
