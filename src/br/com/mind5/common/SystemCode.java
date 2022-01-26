@@ -1673,4 +1673,10 @@ public final class SystemCode {
 	
 	// Person Bio List
 	public static final int PERSON_BIO_LIST_MANDATORY_FIELD_EMPTY		= 16550;
+	
+	// Pet Default
+	// Address Default
+	public static final int PET_DEFAULT_MANDATORY_FIELD_EMPTY			= 16600;
+	public static final int PET_DEFAULT_ALREADY_EXIST 					= 16601;
+	public static final int PET_DEFAULT_NOT_FOUND 						= 16602;
 }

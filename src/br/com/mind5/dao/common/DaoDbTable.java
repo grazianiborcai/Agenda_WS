@@ -250,6 +250,7 @@ public final class DaoDbTable {
 	public static final String PERSON_BIO_SEARCH_VIEW = "view_person_bio_search";
 	public static final String PERSON_LIST_VIEW = "view_person_list";	
 	public static final String PERSON_SEARCH_VIEW = "view_person_search";
+	public static final String PET_DEFAULT_VIEW = "view_pet_default";
 	public static final String PET_SEARCH_VIEW = "view_pet_search";
 	public static final String PET_TYPE_SEARCH_VIEW = "view_pet_type_search";
 	public static final String PET_WEIGHT_SEARCH_VIEW = "view_pet_weight_search";
