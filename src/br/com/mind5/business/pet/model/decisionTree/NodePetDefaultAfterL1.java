@@ -4,13 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
-import br.com.mind5.business.pet.model.action.LazyPetDaoUpdate;
-import br.com.mind5.business.pet.model.action.LazyPetEnforceDefaultOff;
-import br.com.mind5.business.pet.model.action.LazyPetMergeToSelect;
-import br.com.mind5.business.pet.model.action.StdPetMergePetault;
 import br.com.mind5.business.pet.model.action.StdPetSuccess;
 import br.com.mind5.business.pet.model.checker.PetCheckPetault;
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -18,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodePetDefaultUpsertL2 extends DeciTreeTemplateWrite<PetInfo> {
+public final class NodePetDefaultAfterL1 extends DeciTreeTemplateWrite<PetInfo> {
 	
-	public NodePetDefaultUpsertL2(DeciTreeOption<PetInfo> option) {
+	public NodePetDefaultAfterL1(DeciTreeOption<PetInfo> option) {
 		super(option);
 	}
 	
@@ -44,19 +39,10 @@ public final class NodePetDefaultUpsertL2 extends DeciTreeTemplateWrite<PetInfo>
 	
 	
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnPassedHook(DeciTreeOption<PetInfo> option) {
+
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();
-		
-		ActionStd<PetInfo> mergePetault = new StdPetMergePetault(option);
-		ActionLazy<PetInfo> mergeToSelect = new LazyPetMergeToSelect(option.conn, option.schemaName);
-		ActionLazy<PetInfo> enforceDefaultOff = new LazyPetEnforceDefaultOff(option.conn, option.schemaName);
-		ActionLazy<PetInfo> update = new LazyPetDaoUpdate(option.conn, option.schemaName);
-		ActionStd<PetInfo> success = new StdPetSuccess(option);	
-		
-		mergePetault.addPostAction(mergeToSelect);
-		mergeToSelect.addPostAction(enforceDefaultOff);
-		enforceDefaultOff.addPostAction(update);
-		
-		actions.add(mergePetault);
+
+		ActionStd<PetInfo> success = new StdPetSuccess(option);		
 		actions.add(success);
 		
 		return actions;
@@ -67,9 +53,9 @@ public final class NodePetDefaultUpsertL2 extends DeciTreeTemplateWrite<PetInfo>
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnFailedHook(DeciTreeOption<PetInfo> option) {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();
 
-		ActionStd<PetInfo> success = new StdPetSuccess(option);		
-		actions.add(success);
+		ActionStd<PetInfo> nodeL2 = new NodePetDefaultAfterL2(option).toAction();
 		
+		actions.add(nodeL2);
 		return actions;
 	}
 }

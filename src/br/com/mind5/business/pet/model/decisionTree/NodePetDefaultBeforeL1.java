@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
+import br.com.mind5.business.pet.model.action.StdPetSuccess;
 import br.com.mind5.business.pet.model.checker.PetCheckIsDefault;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -12,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodePetDefaultUpsertL1 extends DeciTreeTemplateWrite<PetInfo> {
+public final class NodePetDefaultBeforeL1 extends DeciTreeTemplateWrite<PetInfo> {
 	
-	public NodePetDefaultUpsertL1(DeciTreeOption<PetInfo> option) {
+	public NodePetDefaultBeforeL1(DeciTreeOption<PetInfo> option) {
 		super(option);
 	}
 	
@@ -40,7 +41,7 @@ public final class NodePetDefaultUpsertL1 extends DeciTreeTemplateWrite<PetInfo>
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnPassedHook(DeciTreeOption<PetInfo> option) {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();
 
-		ActionStd<PetInfo> nodeL2 = new NodePetDefaultUpsertL2(option).toAction();
+		ActionStd<PetInfo> nodeL2 = new NodePetDefaultBeforeL2(option).toAction();
 		
 		actions.add(nodeL2);
 		return actions;
@@ -51,9 +52,9 @@ public final class NodePetDefaultUpsertL1 extends DeciTreeTemplateWrite<PetInfo>
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnFailedHook(DeciTreeOption<PetInfo> option) {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();
 
-		ActionStd<PetInfo> nodeL3 = new NodePetDefaultUpsertL3(option).toAction();	
+		ActionStd<PetInfo> success = new StdPetSuccess(option);	
 		
-		actions.add(nodeL3);		
+		actions.add(success);		
 		return actions;
 	}
 }

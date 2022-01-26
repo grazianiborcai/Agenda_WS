@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
-import br.com.mind5.business.pet.model.action.StdPetMergeSytotauh;
+import br.com.mind5.business.pet.model.action.StdPetMergeCusarchAuth;
 import br.com.mind5.business.pet.model.action.StdPetSuccess;
 import br.com.mind5.business.pet.model.checker.PetCheckSytotin;
 import br.com.mind5.model.action.ActionStd;
@@ -42,10 +42,9 @@ public final class NodePetSearchAuthL3 extends DeciTreeTemplateWrite<PetInfo> {
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnPassedHook(DeciTreeOption<PetInfo> option) {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PetInfo> mergeSytotauh = new StdPetMergeSytotauh(option);
-		//buscar todos os customers da loja
+		ActionStd<PetInfo> mergeCusarch = new StdPetMergeCusarchAuth(option);
 		
-		actions.add(mergeSytotauh);
+		actions.add(mergeCusarch);
 		return actions;
 	}
 	

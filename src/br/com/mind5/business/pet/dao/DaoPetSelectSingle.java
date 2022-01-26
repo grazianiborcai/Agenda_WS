@@ -61,11 +61,11 @@ public final class DaoPetSelectSingle extends DaoStmtTemplate<PetInfo> {
 				do {
 					PetInfo dataInfo = new PetInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoPetDbTableColumn.COL_COD_OWNER);
-					dataInfo.codPet = stmtResult.getLong(DaoPetDbTableColumn.COL_COD_PET);
-					dataInfo.codCustomer = stmtResult.getLong(DaoPetDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codPeteight = stmtResult.getInt(DaoPetDbTableColumn.COL_COD_PET_WEIGHT);
-					dataInfo.codPetype = stmtResult.getInt(DaoPetDbTableColumn.COL_COD_PET_TYPE);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoPetDbTableColumn.COL_COD_OWNER);
+					dataInfo.codPet = DaoFormatter.sqlToLong(stmtResult, DaoPetDbTableColumn.COL_COD_PET);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoPetDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codPeteight = DaoFormatter.sqlToInt(stmtResult, DaoPetDbTableColumn.COL_COD_PET_WEIGHT);
+					dataInfo.codPetype = DaoFormatter.sqlToInt(stmtResult, DaoPetDbTableColumn.COL_COD_PET_TYPE);
 					dataInfo.petName = stmtResult.getString(DaoPetDbTableColumn.COL_PET_NAME);
 					dataInfo.petNote = stmtResult.getString(DaoPetDbTableColumn.COL_PET_NOTES);
 					dataInfo.recordMode = stmtResult.getString(DaoPetDbTableColumn.COL_RECORD_MODE);
@@ -74,9 +74,9 @@ public final class DaoPetSelectSingle extends DaoStmtTemplate<PetInfo> {
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoPetDbTableColumn.COL_CREATED_ON);
 					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoPetDbTableColumn.COL_CREATED_BY);
 					dataInfo.petBirthDate = DaoFormatter.sqlToLocalDate(stmtResult, DaoPetDbTableColumn.COL_PET_BIRTH_DATE);
-					dataInfo.codSnapshot = stmtResult.getLong(DaoPetDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codUser = stmtResult.getLong(DaoPetDbTableColumn.COL_COD_USER);
-					dataInfo.codStore = stmtResult.getLong(DaoPetDbTableColumn.COL_COD_STORE);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoPetDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoPetDbTableColumn.COL_COD_USER);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoPetDbTableColumn.COL_COD_STORE);
 					dataInfo.isDefault = stmtResult.getBoolean(DaoPetDbTableColumn.COL_IS_DEFAULT);
 					
 					finalResult.add(dataInfo);

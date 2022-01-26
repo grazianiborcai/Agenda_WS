@@ -18,9 +18,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodePetDefaultDeleteL2 extends DeciTreeTemplateWrite<PetInfo> {
+public final class NodePetDefaultAfterL2 extends DeciTreeTemplateWrite<PetInfo> {
 	
-	public NodePetDefaultDeleteL2(DeciTreeOption<PetInfo> option) {
+	public NodePetDefaultAfterL2(DeciTreeOption<PetInfo> option) {
 		super(option);
 	}
 	

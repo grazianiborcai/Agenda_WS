@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.pet.info.PetInfo;
 import br.com.mind5.business.pet.model.action.LazyPetDaoDelete;
 import br.com.mind5.business.pet.model.action.LazyPetEmptify;
-import br.com.mind5.business.pet.model.action.LazyPetNodeDefaultDeleteL1;
+import br.com.mind5.business.pet.model.action.LazyPetNodeDefaultAfterL1;
 import br.com.mind5.business.pet.model.action.StdPetMergeToSelect;
 import br.com.mind5.business.pet.model.checker.PetCheckDelete;
 import br.com.mind5.business.pet.model.checker.PetCheckExist;
@@ -71,7 +71,7 @@ public final class RootPetDelete extends DeciTreeTemplateWrite<PetInfo> {
 		
 		ActionStd<PetInfo> select = new StdPetMergeToSelect(option);
 		ActionLazy<PetInfo> delete = new LazyPetDaoDelete(option.conn, option.schemaName);
-		ActionLazy<PetInfo> nodeDefault = new LazyPetNodeDefaultDeleteL1(option.conn, option.schemaName);
+		ActionLazy<PetInfo> nodeDefault = new LazyPetNodeDefaultAfterL1(option.conn, option.schemaName);
 		ActionLazy<PetInfo> emptify = new LazyPetEmptify(option.conn, option.schemaName);
 		
 		select.addPostAction(delete);
