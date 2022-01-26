@@ -3,7 +3,7 @@ package br.com.mind5.business.orderItem.model.action;
 import java.util.List;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.business.customerSearch.model.decisionTree.RootCusarchSelectUserSytotauh;
+import br.com.mind5.business.customerSearch.model.decisionTree.RootCusarchSelectUserAuth;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.info.OrderemMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiOrderemMergeCusarch extends ActionVisitorTemplateMerge<OrderemIn
 	
 	
 	@Override protected Class<? extends DeciTree<CusarchInfo>> getTreeClassHook() {
-		return RootCusarchSelectUserSytotauh.class;
+		return RootCusarchSelectUserAuth.class;
 	}
 	
 	

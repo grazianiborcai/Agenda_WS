@@ -1,7 +1,7 @@
 package br.com.mind5.business.customerSearch.model.checker;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.business.customerSearch.model.decisionTree.RootCusarchSelectSytotauh;
+import br.com.mind5.business.customerSearch.model.decisionTree.RootCusarchSelectAuth;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class CusarchCheckExistSytotauh extends ModelCheckerTemplateAction<
 
 	
 	@Override protected ActionStd<CusarchInfo> buildActionHook(DeciTreeOption<CusarchInfo> option) {
-		ActionStd<CusarchInfo> select = new RootCusarchSelectSytotauh(option).toAction();
+		ActionStd<CusarchInfo> select = new RootCusarchSelectAuth(option).toAction();
 		return select;
 	}
 	

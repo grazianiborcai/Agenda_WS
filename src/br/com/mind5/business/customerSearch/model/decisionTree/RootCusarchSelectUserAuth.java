@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCusarchSelectUserSytotauh extends DeciTreeTemplateRead<CusarchInfo> {
+public final class RootCusarchSelectUserAuth extends DeciTreeTemplateRead<CusarchInfo> {
 	
-	public RootCusarchSelectUserSytotauh(DeciTreeOption<CusarchInfo> option) {
+	public RootCusarchSelectUserAuth(DeciTreeOption<CusarchInfo> option) {
 		super(option);
 	}
 	

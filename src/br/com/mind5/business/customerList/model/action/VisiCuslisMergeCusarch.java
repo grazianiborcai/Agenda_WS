@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.info.CuslisMerger;
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.business.customerSearch.model.decisionTree.RootCusarchSelectSytotauh;
+import br.com.mind5.business.customerSearch.model.decisionTree.RootCusarchSelectAuth;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiCuslisMergeCusarch extends ActionVisitorTemplateMerge<CuslisInfo
 	
 	
 	@Override protected Class<? extends DeciTree<CusarchInfo>> getTreeClassHook() {
-		return RootCusarchSelectSytotauh.class;
+		return RootCusarchSelectAuth.class;
 	}
 	
 	

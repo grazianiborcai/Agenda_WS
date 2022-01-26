@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.business.customerSearch.model.decisionTree.RootCusarchSelectSytotauh;
+import br.com.mind5.business.customerSearch.model.decisionTree.RootCusarchSelectAuth;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
@@ -25,7 +25,7 @@ public final class LazyCusarchRootSelectSytotauh extends ActionLazyTemplate<Cusa
 	
 	
 	@Override protected ActionStd<CusarchInfo> getInstanceOfActionHook(DeciTreeOption<CusarchInfo> option) {
-		return new RootCusarchSelectSytotauh(option).toAction();
+		return new RootCusarchSelectAuth(option).toAction();
 	}
 	
 	
