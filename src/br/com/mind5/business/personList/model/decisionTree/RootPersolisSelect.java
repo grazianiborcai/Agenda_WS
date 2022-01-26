@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootPersolisSelect extends DeciTreeTemplateRead<PersolisInfo> {
+public final class RootPersolisSelect extends DeciTreeTemplateWrite<PersolisInfo> {
 	
 	public RootPersolisSelect(DeciTreeOption<PersolisInfo> option) {
 		super(option);
