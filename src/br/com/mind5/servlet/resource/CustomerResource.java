@@ -18,7 +18,7 @@ import br.com.mind5.business.customer.model.CusModelDelete;
 import br.com.mind5.business.customer.model.CusModelInsertUser;
 import br.com.mind5.business.customer.model.CusModelSelect;
 import br.com.mind5.business.customer.model.CusModelUpdate;
-import br.com.mind5.business.customerList.model.CuslisModelSearch;
+import br.com.mind5.business.customerList.model.CuslisModelSearchAuth;
 import br.com.mind5.model.Model;
 
 @Path("/Customer")
@@ -114,7 +114,7 @@ public class CustomerResource {
 	public Response searchCustomer(@Context HttpServletRequest request, String incomingData) {
 
 		
-		Model model = new CuslisModelSearch(incomingData, request);
+		Model model = new CuslisModelSearchAuth(incomingData, request);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();

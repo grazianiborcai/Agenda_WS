@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCuslisSearch extends DeciTreeTemplateRead<CuslisInfo> {
+public final class RootCuslisSearchAuth extends DeciTreeTemplateRead<CuslisInfo> {
 	
-	public RootCuslisSearch(DeciTreeOption<CuslisInfo> option) {
+	public RootCuslisSearchAuth(DeciTreeOption<CuslisInfo> option) {
 		super(option);
 	}
 	
