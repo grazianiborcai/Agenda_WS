@@ -68,6 +68,7 @@ public class DaoSchedineInsertSingle extends DaoStmtTemplate<SchedineInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt.setString(i++, recordInfo.codScheduleStatus);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codScheduleRef);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPet);
 				
 				return stmt;
 			}		

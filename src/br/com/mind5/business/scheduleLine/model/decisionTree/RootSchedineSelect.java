@@ -9,6 +9,7 @@ import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeMatlis;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeSchedatus;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeStolis;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeWeekday;
+import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodePetRead;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineMergeToSelect;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
@@ -16,8 +17,8 @@ import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -69,12 +70,14 @@ public final class RootSchedineSelect extends DeciTreeTemplateWrite<SchedineInfo
 		ActionLazy<SchedineInfo> mergeEmplres = new LazySchedineMergeEmplres(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> mergeStatus = new LazySchedineMergeSchedatus(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> mergeWeekday = new LazySchedineMergeWeekday(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> nodePet = new LazySchedineNodePetRead(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMatlis);
 		mergeMatlis.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeEmplres);
 		mergeEmplres.addPostAction(mergeStatus);
 		mergeStatus.addPostAction(mergeWeekday);
+		mergeWeekday.addPostAction(nodePet);
 		
 		actions.add(select);
 		return actions;

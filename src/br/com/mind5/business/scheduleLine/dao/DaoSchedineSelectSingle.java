@@ -61,7 +61,7 @@ public final class DaoSchedineSelectSingle extends DaoStmtTemplate<SchedineInfo>
 				do {
 					SchedineInfo dataInfo = new SchedineInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSchedineDbTableColumn.COL_COD_OWNER);	
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSchedineDbTableColumn.COL_COD_OWNER);
 					dataInfo.codSchedule = DaoFormatter.sqlToLong(stmtResult, DaoSchedineDbTableColumn.COL_COD_SCHEDULE);	
 					dataInfo.codScheduleRef = DaoFormatter.sqlToLong(stmtResult, DaoSchedineDbTableColumn.COL_COD_SCHEDULE_REF);	
 					dataInfo.codOrder = DaoFormatter.sqlToLong(stmtResult, DaoSchedineDbTableColumn.COL_COD_ORDER);
@@ -89,6 +89,7 @@ public final class DaoSchedineSelectSingle extends DaoStmtTemplate<SchedineInfo>
 					dataInfo.codWeekday = DaoFormatter.sqlToInt(stmtResult, DaoSchedineDbTableColumn.COL_COD_WEEKDAY);
 					dataInfo.codScheduleStatus = stmtResult.getString(DaoSchedineDbTableColumn.COL_COD_SCHEDULE_STATUS);
 					dataInfo.codScheduleStatusOld = stmtResult.getString(DaoSchedineDbTableColumn.COL_COD_SCHEDULE_STATUS);
+					dataInfo.codPet = DaoFormatter.sqlToLong(stmtResult, DaoSchedineDbTableColumn.COL_COD_PET);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

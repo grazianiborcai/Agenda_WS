@@ -8,6 +8,7 @@ import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.orderItemList.info.OrdemistInfo;
+import br.com.mind5.business.petList.info.PetlisInfo;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMerger;
@@ -17,6 +18,19 @@ import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class SchedineMerger {
+	public static List<SchedineInfo> mergeWithPetlis(List<SchedineInfo> baseInfos, List<PetlisInfo> selectedInfos) {
+		InfoMergerBuilder<SchedineInfo, PetlisInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedineVisiMergePetlis());
+		InfoMerger<SchedineInfo, PetlisInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<SchedineInfo> mergeWithSchedauth(List<SchedineInfo> baseInfos, List<SchedauthInfo> selectedInfos) {
 		InfoMergerBuilder<SchedineInfo, SchedauthInfo> builder = new InfoMergerBuilder<>();
 		

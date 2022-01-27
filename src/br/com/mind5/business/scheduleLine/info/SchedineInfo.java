@@ -7,6 +7,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
+import br.com.mind5.business.petList.info.PetlisInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
@@ -40,9 +41,11 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 	public LocalTime endTime;
 	public long codUser;
 	public long codCustomer;
+	public long codPet;
 	public MatlisInfo matlisData;
 	public StolisInfo stolisData;
 	public EmplresInfo emplresData;
+	public PetlisInfo petlisData;
 	public LocalDateTime createdOn;
 	public long createdBy;
 	public LocalDateTime lastChanged;
@@ -72,12 +75,14 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 		year = DefaultValue.number();	
 		codUser = DefaultValue.number();
 		codCustomer = DefaultValue.number();
+		codPet = DefaultValue.number();
 		createdBy = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		matlisData = DefaultValue.object();
 		stolisData = DefaultValue.object();
 		emplresData = DefaultValue.object();
+		petlisData = DefaultValue.object();
 	}
 	
 	
@@ -97,13 +102,14 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 	@Override public Object clone() throws CloneNotSupportedException {
 		SchedineInfo deepCopy = (SchedineInfo) super.clone();
 		
-		deepCopy.date = date;
-		deepCopy.beginTime = beginTime;
-		deepCopy.endTime = endTime;
+		deepCopy.date        = date;
+		deepCopy.beginTime   = beginTime;
+		deepCopy.endTime     = endTime;
 		deepCopy.lastChanged = lastChanged;
-		deepCopy.matlisData = CloneUtil.cloneRecord(matlisData, this.getClass());
-		deepCopy.stolisData = CloneUtil.cloneRecord(stolisData, this.getClass());
+		deepCopy.matlisData  = CloneUtil.cloneRecord(matlisData, this.getClass());
+		deepCopy.stolisData  = CloneUtil.cloneRecord(stolisData, this.getClass());
 		deepCopy.emplresData = CloneUtil.cloneRecord(emplresData, this.getClass());
+		deepCopy.petlisData  = CloneUtil.cloneRecord(petlisData, this.getClass());
 		
 		return deepCopy;
 	}

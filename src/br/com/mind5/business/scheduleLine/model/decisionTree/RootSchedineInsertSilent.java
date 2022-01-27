@@ -12,6 +12,7 @@ import br.com.mind5.business.scheduleLine.model.action.LazySchedineInsertSchedov
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeCalate;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeCuslis;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeUsername;
+import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodePetWriteL1;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeSnapshot;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineEnforceLChanged;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckCus;
@@ -26,9 +27,9 @@ import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckStore;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -130,6 +131,7 @@ public final class RootSchedineInsertSilent extends DeciTreeTemplateWrite<Schedi
 		ActionLazy<SchedineInfo> enforceCreatedOn = new LazySchedineEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> enforceCreatedBy = new LazySchedineEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> enforceStatus = new LazySchedineEnforceStatus(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> nodePet = new LazySchedineNodePetWriteL1(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> insert = new LazySchedineDaoInsert(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> nodeSnapshot = new LazySchedineNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> insertSchedovm = new LazySchedineInsertSchedovm(option.conn, option.schemaName);
@@ -140,7 +142,8 @@ public final class RootSchedineInsertSilent extends DeciTreeTemplateWrite<Schedi
 		mergeCalate.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(enforceCreatedBy);
 		enforceCreatedBy.addPostAction(enforceStatus);
-		enforceStatus.addPostAction(insert);
+		enforceStatus.addPostAction(nodePet);
+		nodePet.addPostAction(insert);
 		insert.addPostAction(nodeSnapshot);
 		nodeSnapshot.addPostAction(insertSchedovm);
 		
