@@ -20,7 +20,9 @@ public final class DaoSchedinapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_MATERIAL_SNAPSHOT = DaoDbField.COL_COD_MATERIAL_SNAPSHOT;
 	public static final String COL_COD_ORDER = DaoDbField.COL_COD_ORDER;	
 	public static final String COL_COD_ORDER_ITEM = DaoDbField.COL_COD_ORDER_ITEM;
-	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;			
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
+	public static final String COL_COD_PET = DaoDbField.COL_COD_PET;
+	public static final String COL_COD_PET_SNAPSHOT = DaoDbField.COL_COD_PET_SNAPSHOT;
 	public static final String COL_COD_SCHEDULE = DaoDbField.COL_COD_SCHEDULE;
 	public static final String COL_COD_SCHEDULE_REF = DaoDbField.COL_COD_SCHEDULE_REF;	
 	public static final String COL_COD_SCHEDULE_STATUS = DaoDbField.COL_COD_SCHEDULE_STATUS;
@@ -311,7 +313,23 @@ public final class DaoSchedinapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);	
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_PET;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_PET_SNAPSHOT;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
 		
 		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
 		results.put(TABLE_NAME, columns);

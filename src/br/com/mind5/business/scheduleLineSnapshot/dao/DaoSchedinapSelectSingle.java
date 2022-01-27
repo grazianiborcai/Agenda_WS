@@ -93,6 +93,8 @@ public final class DaoSchedinapSelectSingle extends DaoStmtTemplate<SchedinapInf
 					dataInfo.year = DaoFormatter.sqlToInt(stmtResult, DaoSchedinapDbTableColumn.COL_YEAR);		
 					dataInfo.codWeekday = DaoFormatter.sqlToInt(stmtResult, DaoSchedinapDbTableColumn.COL_COD_WEEKDAY);
 					dataInfo.codScheduleStatus = stmtResult.getString(DaoSchedinapDbTableColumn.COL_COD_SCHEDULE_STATUS);
+					dataInfo.codPet =  DaoFormatter.sqlToInt(stmtResult, DaoSchedinapDbTableColumn.COL_COD_PET);
+					dataInfo.codPetSnapshot =  DaoFormatter.sqlToInt(stmtResult, DaoSchedinapDbTableColumn.COL_COD_PET_SNAPSHOT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

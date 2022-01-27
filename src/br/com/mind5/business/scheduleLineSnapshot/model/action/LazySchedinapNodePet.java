@@ -4,14 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
+import br.com.mind5.business.scheduleLineSnapshot.model.decisionTree.NodeSchedinapPet;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedinapMergeMatlis extends ActionLazyTemplate<SchedinapInfo, SchedinapInfo> {
+public final class LazySchedinapNodePet extends ActionLazyTemplate<SchedinapInfo, SchedinapInfo> {
 	
-	public LazySchedinapMergeMatlis(Connection conn, String schemaName) {
+	public LazySchedinapNodePet(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazySchedinapMergeMatlis extends ActionLazyTemplate<Schedinap
 	
 	
 	@Override protected ActionStd<SchedinapInfo> getInstanceOfActionHook(DeciTreeOption<SchedinapInfo> option) {
-		return new StdSchedinapMergeMatlis(option);
+		return new NodeSchedinapPet(option).toAction();
 	}
 	
 	

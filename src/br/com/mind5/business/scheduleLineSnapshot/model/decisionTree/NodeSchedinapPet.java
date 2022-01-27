@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
+import br.com.mind5.business.scheduleLineSnapshot.model.action.StdSchedinapMergePetlis;
 import br.com.mind5.business.scheduleLineSnapshot.model.action.StdSchedinapSuccess;
-import br.com.mind5.business.scheduleLineSnapshot.model.checker.SchedinapCheckHasOrder;
+import br.com.mind5.business.scheduleLineSnapshot.model.checker.SchedinapCheckHasPet;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeSchedinapOrder extends DeciTreeTemplateWrite<SchedinapInfo> {
+public final class NodeSchedinapPet extends DeciTreeTemplateWrite<SchedinapInfo> {
 	
-	public NodeSchedinapOrder(DeciTreeOption<SchedinapInfo> option) {
+	public NodeSchedinapPet(DeciTreeOption<SchedinapInfo> option) {
 		super(option);
 	}
 	
@@ -30,7 +31,7 @@ public final class NodeSchedinapOrder extends DeciTreeTemplateWrite<SchedinapInf
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new SchedinapCheckHasOrder(checkerOption);
+		checker = new SchedinapCheckHasPet(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -41,9 +42,9 @@ public final class NodeSchedinapOrder extends DeciTreeTemplateWrite<SchedinapInf
 	@Override protected List<ActionStd<SchedinapInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedinapInfo> option) {
 		List<ActionStd<SchedinapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedinapInfo> success = new StdSchedinapSuccess(option);
+		ActionStd<SchedinapInfo> mergePetlis = new StdSchedinapMergePetlis(option);
 		
-		actions.add(success);
+		actions.add(mergePetlis);
 		return actions;
 	}
 	

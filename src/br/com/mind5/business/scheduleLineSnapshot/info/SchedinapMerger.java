@@ -5,13 +5,26 @@ import java.util.List;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
+import br.com.mind5.business.petList.info.PetlisInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.security.userList.info.UselisInfo;
 
 public final class SchedinapMerger {
+	public static List<SchedinapInfo> mergeWithPetlis(List<SchedinapInfo> baseInfos, List<PetlisInfo> selectedInfos) {
+		InfoMergerBuilder<SchedinapInfo, PetlisInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedinapVisiMergePetlis());
+		InfoMerger<SchedinapInfo, PetlisInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<SchedinapInfo> mergeWithUselis(List<SchedinapInfo> baseInfos, List<UselisInfo> selectedInfos) {
 		InfoMergerBuilder<SchedinapInfo, UselisInfo> builder = new InfoMergerBuilder<>();
 		
@@ -58,19 +71,6 @@ public final class SchedinapMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SchedinapVisiMergeStolis());
 		InfoMerger<SchedinapInfo, StolisInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
-	public static List<SchedinapInfo> mergeWithMatsnap(List<SchedinapInfo> baseInfos, List<MatsnapInfo> selectedInfos) {
-		InfoMergerBuilder<SchedinapInfo, MatsnapInfo> builder = new InfoMergerBuilder<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedinapVisiMergeMatsnap());
-		InfoMerger<SchedinapInfo, MatsnapInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

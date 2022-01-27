@@ -38,7 +38,9 @@ public final class SchedinapInfo extends InfoRecord implements Cloneable, Compar
 	public long codUser;
 	public long codUserSnapshot;
 	public long codCustomer;
-	public long codCustomerSnapshot;
+	public long codCustomerSnapshot;	
+	public long codPet;
+	public long codPetSnapshot;	
 	public MatsnapInfo matData;
 	public LocalDateTime createdOn;
 	public long createdBy;
@@ -73,7 +75,9 @@ public final class SchedinapInfo extends InfoRecord implements Cloneable, Compar
 		codUser = DefaultValue.number();
 		codUserSnapshot = DefaultValue.number();
 		codCustomer = DefaultValue.number();
-		codCustomerSnapshot = DefaultValue.number();
+		codCustomerSnapshot = DefaultValue.number();		
+		codPet = DefaultValue.number();
+		codPetSnapshot = DefaultValue.number();		
 		createdBy = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();

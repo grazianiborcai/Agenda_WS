@@ -9,16 +9,17 @@ import br.com.mind5.business.scheduleLineSnapshot.model.action.LazySchedinapMerg
 import br.com.mind5.business.scheduleLineSnapshot.model.action.LazySchedinapMergapUselis;
 import br.com.mind5.business.scheduleLineSnapshot.model.action.LazySchedinapMergeCuslis;
 import br.com.mind5.business.scheduleLineSnapshot.model.action.LazySchedinapMergeEmplres;
-import br.com.mind5.business.scheduleLineSnapshot.model.action.LazySchedinapMergeMatlis;
+import br.com.mind5.business.scheduleLineSnapshot.model.action.LazySchedinapNodePet;
+import br.com.mind5.business.scheduleLineSnapshot.model.action.StdSchedinapMergeMatlis;
 import br.com.mind5.business.scheduleLineSnapshot.model.checker.SchedinapCheckLangu;
 import br.com.mind5.business.scheduleLineSnapshot.model.checker.SchedinapCheckOwner;
 import br.com.mind5.business.scheduleLineSnapshot.model.checker.SchedinapCheckSchedine;
 import br.com.mind5.business.scheduleLineSnapshot.model.checker.SchedinapCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -71,22 +72,22 @@ public final class RootSchedinapInsert extends DeciTreeTemplateWrite<SchedinapIn
 	@Override protected List<ActionStd<SchedinapInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedinapInfo> option) {
 		List<ActionStd<SchedinapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedinapInfo> nodeOrder = new NodeSchedinapOrder(option).toAction();
-		ActionLazy<SchedinapInfo> mergeMatlis = new LazySchedinapMergeMatlis(option.conn, option.schemaName);
+		ActionStd<SchedinapInfo> mergeMatlis = new StdSchedinapMergeMatlis(option);
 		ActionLazy<SchedinapInfo> mergeStolis = new LazySchedinapMergapStolis(option.conn, option.schemaName);
 		ActionLazy<SchedinapInfo> mergCuslis = new LazySchedinapMergeCuslis(option.conn, option.schemaName);
 		ActionLazy<SchedinapInfo> mergUselis = new LazySchedinapMergapUselis(option.conn, option.schemaName);
 		ActionLazy<SchedinapInfo> mergeEmplres = new LazySchedinapMergeEmplres(option.conn, option.schemaName);
+		ActionLazy<SchedinapInfo> nodePet = new LazySchedinapNodePet(option.conn, option.schemaName);
 		ActionLazy<SchedinapInfo> insert = new LazySchedinapDaoInsert(option.conn, option.schemaName);
 		
-		nodeOrder.addPostAction(mergeMatlis);
 		mergeMatlis.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergCuslis);		
 		mergCuslis.addPostAction(mergUselis);		
 		mergUselis.addPostAction(mergeEmplres);
-		mergeEmplres.addPostAction(insert);
+		mergeEmplres.addPostAction(nodePet);
+		nodePet.addPostAction(insert);
 		
-		actions.add(nodeOrder);
+		actions.add(mergeMatlis);
 		return actions;
 	}
 }
