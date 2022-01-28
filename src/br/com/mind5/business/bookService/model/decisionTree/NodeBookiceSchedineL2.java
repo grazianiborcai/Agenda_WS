@@ -14,14 +14,14 @@ import br.com.mind5.business.bookService.model.checker.BookiceCheckMat;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckMatore;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckOrderve;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckPlanarch;
-import br.com.mind5.business.bookService.model.checker.BookiceCheckSchedarch;
+import br.com.mind5.business.bookService.model.checker.BookiceCheckSchederve;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckStolarg;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckStore;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckStoworg;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -126,7 +126,7 @@ public final class NodeBookiceSchedineL2 extends DeciTreeTemplateWrite<BookiceIn
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
-		checker = new BookiceCheckSchedarch(checkerOption);
+		checker = new BookiceCheckSchederve(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerHelperQueue<>(queue);
