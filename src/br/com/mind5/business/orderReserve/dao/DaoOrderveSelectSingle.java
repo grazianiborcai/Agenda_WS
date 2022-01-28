@@ -94,4 +94,10 @@ public final class DaoOrderveSelectSingle extends DaoStmtTemplate<OrderveInfo> {
 			}
 		};
 	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
+	}
 }
