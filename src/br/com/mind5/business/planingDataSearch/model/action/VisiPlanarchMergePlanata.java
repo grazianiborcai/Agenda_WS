@@ -6,7 +6,6 @@ import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.model.decisionTree.RootPlanataSelectNoReserve;
 import br.com.mind5.business.planingDataSearch.info.PlanarchInfo;
 import br.com.mind5.business.planingDataSearch.info.PlanarchMerger;
-
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
