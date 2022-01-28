@@ -96,4 +96,10 @@ public final class DaoSchedarchSelectSingle extends DaoStmtTemplate<SchedarchInf
 			}
 		};
 	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
+	}
 }
