@@ -1675,8 +1675,12 @@ public final class SystemCode {
 	public static final int PERSON_BIO_LIST_MANDATORY_FIELD_EMPTY		= 16550;
 	
 	// Pet Default
-	// Address Default
 	public static final int PET_DEFAULT_MANDATORY_FIELD_EMPTY			= 16600;
 	public static final int PET_DEFAULT_ALREADY_EXIST 					= 16601;
 	public static final int PET_DEFAULT_NOT_FOUND 						= 16602;
+	
+	// Statistics - Store Account - Live
+	public static final int STAT_STORE_ACCT_LIVE_ALREADY_EXIST 			= 16650;
+	public static final int STAT_STORE_ACCT_LIVE_NOT_FOUND 				= 16651;
+	public static final int STAT_STORE_ACCT_LIVE_MANDATORY_FIELD_EMPTY	= 16652;
 }

@@ -42,7 +42,8 @@
 
 
 	<!-- JWT Token authentication --> 
-    <security:http create-session="stateless" pattern="/**">    
+    <security:http create-session="stateless" pattern="/**" use-expressions="true">
+<!--    <security:intercept-url pattern="/admin*" 									access="hasIpAddress('127.0.0.1')"					/>	Chamadas locais para materializar dados statisticos -->
         <security:intercept-url pattern="/**/Owner/selectOwner"       				access="hasAuthority('OWNER_WRITE')" 				/>
         <security:intercept-url pattern="/**/Owner/updateOwner"       				access="hasAuthority('OWNER_WRITE')" 				/>
         <security:intercept-url pattern="/**/Owner/deleteOwner"       				access="denyAll" 									/>
