@@ -37,10 +37,16 @@ public final class StatarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public int hashCode() {
-		if (codCountry == null)
-			return 0;
+		int result = 17;		
 		
-		return codCountry.hashCode();
+		if (codCountry != null)
+			result = result * 31 + codCountry.hashCode();
+		
+		
+		if (codState != null)
+			result = result * 31 + codState.hashCode();
+		
+		return result;
 	}
 	
 	
