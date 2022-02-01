@@ -172,6 +172,7 @@ public final class DaoDbField {
 	public static final String COL_FILE_PATH_EXTERNAL = "file_path_external";
 	public static final String COL_FILE_URI = "file_img_uri";
 	public static final String COL_FILE_URI_EXTERNAL = "file_img_uri_external";
+	public static final String COL_FIRST_DAY = "first_day";	
 	public static final String COL_FULL_NUMBER = "full_number";
 	public static final String COL_GEO_HASH_01 = "geo_hash_01";
 	public static final String COL_GEO_HASH_02 = "geo_hash_02";	
@@ -201,6 +202,7 @@ public final class DaoDbField {
 	public static final String COL_ITEM_TOTAL = "itemTotal";
 	public static final String COL_LAST_CHANGED = "last_changed";
 	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
+	public static final String COL_LAST_DAY = "last_day";	
 	public static final String COL_LATITUDE = "latitude";
 	public static final String COL_LINE1 = "line1";
 	public static final String COL_LINE2 = "line2";

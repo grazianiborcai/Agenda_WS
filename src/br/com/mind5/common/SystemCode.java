@@ -1683,4 +1683,9 @@ public final class SystemCode {
 	public static final int STAT_STORE_ACCT_LIVE_ALREADY_EXIST 			= 16650;
 	public static final int STAT_STORE_ACCT_LIVE_NOT_FOUND 				= 16651;
 	public static final int STAT_STORE_ACCT_LIVE_MANDATORY_FIELD_EMPTY	= 16652;
+	
+	// Calendar Month
+	public static final int CALENDAR_MONTH_ALREADY_EXIST				= 16700;
+	public static final int CALENDAR_MONTH_NOT_FOUND					= 16701;
+	public static final int CALENDAR_MONTH_MANDATORY_FIELD_EMPTY 		= 16702;
 }

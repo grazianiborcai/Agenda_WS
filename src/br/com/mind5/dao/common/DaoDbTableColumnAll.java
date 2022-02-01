@@ -13,6 +13,7 @@ import br.com.mind5.business.addressSnapshot.dao.DaoAddresnapDbTableColumn;
 import br.com.mind5.business.addressSnapshotSearch.dao.DaoAddresnaparchDbTableColumn;
 import br.com.mind5.business.calendarDate.dao.DaoCalateDbTableColumn;
 import br.com.mind5.business.calendarDateSearch.dao.DaoCalatarchDbTableColumn;
+import br.com.mind5.business.calendarMonth.dao.DaoCalonthDbTableColumn;
 import br.com.mind5.business.calendarMoon.dao.DaoMooncalDbTableColumn;
 import br.com.mind5.business.calendarWeekYear.dao.DaoCaleekyDbTableColumn;
 import br.com.mind5.business.cart.dao.DaoCartDbTableColumn;
@@ -526,6 +527,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoPerbiorchDbTableColumn());
 		addTable(new DaoPetaultDbTableColumn());
 		addTable(new DaoStoraciveDbTableColumn());
+		addTable(new DaoCalonthDbTableColumn());
 	}
 	
 	
