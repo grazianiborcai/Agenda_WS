@@ -2,6 +2,7 @@ package br.com.mind5.business.calendarMonth.info;
 
 import java.util.List;
 
+import br.com.mind5.business.calendarMonthSearch.info.CalontharchInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.month.info.MonthInfo;
@@ -14,6 +15,19 @@ public final class CalonthMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CalonthVisiMergeMonth());
 		InfoMerger<CalonthInfo, MonthInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<CalonthInfo> mergeWithCalontharch(List<CalonthInfo> baseInfos, List<CalontharchInfo> selectedInfos) {
+		InfoMergerBuilder<CalonthInfo, CalontharchInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CalonthVisiMergeCalontharch());
+		InfoMerger<CalonthInfo, CalontharchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
