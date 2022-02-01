@@ -63,8 +63,8 @@ public final class DaoStoraciveSelectSingle extends DaoStmtTemplate<StoraciveInf
 					
 					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoStoraciveDbTableColumn.COL_COD_OWNER);
 					dataInfo.calmonth = stmtResult.getString(DaoStoraciveDbTableColumn.COL_CALMONTH);
-					dataInfo.year = stmtResult.getString(DaoStoraciveDbTableColumn.COL_YEAR);
-					dataInfo.month = stmtResult.getString(DaoStoraciveDbTableColumn.COL_MONTH);
+					dataInfo.year = DaoFormatter.sqlToInt(stmtResult, DaoStoraciveDbTableColumn.COL_YEAR);
+					dataInfo.month = DaoFormatter.sqlToInt(stmtResult, DaoStoraciveDbTableColumn.COL_MONTH);
 					dataInfo.codCountry = stmtResult.getString(DaoStoraciveDbTableColumn.COL_COD_COUNTRY);
 					dataInfo.codState = stmtResult.getString(DaoStoraciveDbTableColumn.COL_STATE_PROVINCE);
 					dataInfo.city = stmtResult.getString(DaoStoraciveDbTableColumn.COL_CITY);

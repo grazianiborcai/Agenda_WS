@@ -8,8 +8,9 @@ import br.com.mind5.info.InfoRecord;
 public final class StoraciveInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public String calmonth;
-	public String year;
-	public String month;
+	public int year;
+	public int month;
+	public String txtMonth;
 	public String codCountry;
 	public String txtCountry;
 	public String codState;
@@ -34,6 +35,8 @@ public final class StoraciveInfo extends InfoRecord implements Cloneable {
 		super();
 		
 		codOwner = DefaultValue.number();
+		year = DefaultValue.number();
+		month = DefaultValue.number();
 		countStoreMonth = DefaultValue.number();
 		countStoreCompletedMonth = DefaultValue.number();
 		countStorePendingMonth = DefaultValue.number();

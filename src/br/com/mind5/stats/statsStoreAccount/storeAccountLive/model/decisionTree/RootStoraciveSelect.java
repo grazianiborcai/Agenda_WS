@@ -11,6 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreAccount.storeAccountLive.info.StoraciveInfo;
+import br.com.mind5.stats.statsStoreAccount.storeAccountLive.model.action.LazyStoraciveMergeMonth;
 import br.com.mind5.stats.statsStoreAccount.storeAccountLive.model.action.LazyStoraciveMergeState;
 import br.com.mind5.stats.statsStoreAccount.storeAccountLive.model.action.StdStoraciveMergeToSelect;
 import br.com.mind5.stats.statsStoreAccount.storeAccountLive.model.checker.StoraciveCheckRead;
@@ -46,8 +47,10 @@ public final class RootStoraciveSelect extends DeciTreeTemplateWrite<StoraciveIn
 
 		ActionStd<StoraciveInfo> select = new StdStoraciveMergeToSelect(option);
 		ActionLazy<StoraciveInfo> mergeStore = new LazyStoraciveMergeState(option.conn, option.schemaName);
+		ActionLazy<StoraciveInfo> mergeMonth = new LazyStoraciveMergeMonth(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeStore);
+		mergeStore.addPostAction(mergeMonth);
 		
 		actions.add(select);
 		return actions;
