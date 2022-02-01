@@ -1688,4 +1688,7 @@ public final class SystemCode {
 	public static final int CALENDAR_MONTH_ALREADY_EXIST				= 16700;
 	public static final int CALENDAR_MONTH_NOT_FOUND					= 16701;
 	public static final int CALENDAR_MONTH_MANDATORY_FIELD_EMPTY 		= 16702;
+	
+	// Calendar Month Search
+	public static final int CALENDAR_MONTH_SEARCH_MANDATORY_FIELD_EMPTY = 16750;
 }
