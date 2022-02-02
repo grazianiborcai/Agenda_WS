@@ -71,6 +71,8 @@ public final class DaoUserSelectSingle extends DaoStmtTemplate<UserInfo> {
 					dataInfo.codUserCategory = DaoFormatter.sqlToChar(stmtResult, DaoUserDbTableColumn.COL_COD_USER_CATEG);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoUserDbTableColumn.COL_LAST_CHANGED_BY);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoUserDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoUserDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoUserDbTableColumn.COL_CREATED_BY);	
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

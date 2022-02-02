@@ -21,7 +21,9 @@ final class UserVisiMergeToUpdate extends InfoMergerVisitorTemplate<UserInfo, Us
 		baseInfo.username = selectedInfo.username;
 		baseInfo.codSnapshot = selectedInfo.codSnapshot;
 		baseInfo.codUserCategory = selectedInfo.codUserCategory;
-		baseInfo.codAuthGroup = selectedInfo.codAuthGroup;
+		baseInfo.codAuthGroup = selectedInfo.codAuthGroup;		
+		baseInfo.createdBy = selectedInfo.createdBy;
+		baseInfo.createdOn = selectedInfo.createdOn;
 		
 		results.add(baseInfo);
 		return results;

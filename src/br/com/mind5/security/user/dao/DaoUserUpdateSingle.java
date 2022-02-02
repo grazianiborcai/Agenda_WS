@@ -3,6 +3,7 @@ package br.com.mind5.security.user.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoStmtParamTranslator;
@@ -53,14 +54,16 @@ public final class DaoUserUpdateSingle extends DaoStmtTemplate<UserInfo> {
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, UserInfo recordInfo) throws SQLException {
 				int i = 1;
 	
-				stmt.setString(i++, recordInfo.recordMode);	
+				stmt.setString(i++, recordInfo.recordMode);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPerson);
 				stmt = DaoFormatter.charToStmt(stmt, i++, recordInfo.codUserCategory);
-				stmt.setString(i++, recordInfo.username);	
+				stmt.setString(i++, recordInfo.username);
 				stmt.setString(i++, recordInfo.codAuthGroup);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);				
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				
 				return stmt;
 			}	

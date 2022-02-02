@@ -28,6 +28,8 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	public List<CusparInfo> cuspars;
 	public FimistInfo fimistData;
 	public String recordMode;
+	public LocalDateTime createdOn;
+	public long createdBy;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	
@@ -44,9 +46,12 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 		authgroles = DefaultValue.list();
 		cuspars = DefaultValue.list();
 		addresses = DefaultValue.list();
-		phones = DefaultValue.list();	
+		phones = DefaultValue.list();
 		fimistData = DefaultValue.object();
-		recordMode = DefaultValue.recordMode();		
+		recordMode = DefaultValue.recordMode();
+		createdOn = DefaultValue.object();
+		createdBy = DefaultValue.number();
+		lastChanged = DefaultValue.object();
 		lastChangedBy = DefaultValue.number();
 	}
 	
