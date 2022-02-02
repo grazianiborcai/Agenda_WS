@@ -42,16 +42,18 @@ public final class DaoUserapInsertSingle extends DaoStmtTemplate<UserapInfo> {
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, UserapInfo recordInfo) throws SQLException {	
 				int i = 1;
 				
-				stmt.setLong(i++, recordInfo.codOwner);		
-				stmt.setLong(i++, recordInfo.codUser);	
-				stmt.setString(i++, recordInfo.recordMode);			
+				stmt.setLong(i++, recordInfo.codOwner);
+				stmt.setLong(i++, recordInfo.codUser);
+				stmt.setString(i++, recordInfo.recordMode);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPerson);
 				stmt = DaoFormatter.charToStmt(stmt, i++, recordInfo.codUserCategory);
-				stmt.setString(i++, recordInfo.username);	
+				stmt.setString(i++, recordInfo.username);
 				stmt.setString(i++, recordInfo.codAuthGroup);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPersonSnapshot);							
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPersonSnapshot);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				
 				return stmt;
 			}			

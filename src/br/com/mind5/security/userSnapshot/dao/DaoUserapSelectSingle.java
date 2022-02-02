@@ -63,7 +63,7 @@ public final class DaoUserapSelectSingle extends DaoStmtTemplate<UserapInfo> {
 					
 					dataInfo.codOwner = stmtResult.getLong(DaoUserapDbTableColumn.COL_COD_OWNER);
 					dataInfo.codSnapshot = stmtResult.getLong(DaoUserapDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codUser = stmtResult.getLong(DaoUserapDbTableColumn.COL_COD_USER);									
+					dataInfo.codUser = stmtResult.getLong(DaoUserapDbTableColumn.COL_COD_USER);
 					dataInfo.recordMode = stmtResult.getString(DaoUserapDbTableColumn.COL_RECORD_MODE);
 					dataInfo.username = stmtResult.getString(DaoUserapDbTableColumn.COL_USERNAME);
 					dataInfo.codAuthGroup = stmtResult.getString(DaoUserapDbTableColumn.COL_COD_AUTH_GROUP);
@@ -72,6 +72,8 @@ public final class DaoUserapSelectSingle extends DaoStmtTemplate<UserapInfo> {
 					dataInfo.codUserCategory = DaoFormatter.sqlToChar(stmtResult, DaoUserapDbTableColumn.COL_COD_USER_CATEG);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoUserapDbTableColumn.COL_LAST_CHANGED_BY);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoUserapDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoUserapDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoUserapDbTableColumn.COL_CREATED_BY);
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());
