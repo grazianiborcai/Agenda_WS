@@ -15,6 +15,8 @@ import br.com.mind5.stats.statsStoreAccount.storeAccountLive.model.action.LazySt
 import br.com.mind5.stats.statsStoreAccount.storeAccountLive.model.action.LazyStoraciveMergeMonth;
 import br.com.mind5.stats.statsStoreAccount.storeAccountLive.model.action.LazyStoraciveMergeState;
 import br.com.mind5.stats.statsStoreAccount.storeAccountLive.model.action.StdStoraciveMergeToSelect;
+import br.com.mind5.stats.statsStoreAccount.storeAccountLive.model.checker.StoraciveCheckLangu;
+import br.com.mind5.stats.statsStoreAccount.storeAccountLive.model.checker.StoraciveCheckOwner;
 import br.com.mind5.stats.statsStoreAccount.storeAccountLive.model.checker.StoraciveCheckRead;
 
 
@@ -36,6 +38,20 @@ public final class RootStoraciveSelect extends DeciTreeTemplateWrite<StoraciveIn
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new StoraciveCheckRead(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new StoraciveCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new StoraciveCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
