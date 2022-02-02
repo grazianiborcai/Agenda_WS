@@ -11,6 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreAccount.storeAccountLive.info.StoraciveInfo;
+import br.com.mind5.stats.statsStoreAccount.storeAccountLive.model.action.LazyStoraciveEnforceHasData;
 import br.com.mind5.stats.statsStoreAccount.storeAccountLive.model.action.LazyStoraciveEnforceLChanged;
 import br.com.mind5.stats.statsStoreAccount.storeAccountLive.model.action.LazyStoraciveMergeMonth;
 import br.com.mind5.stats.statsStoreAccount.storeAccountLive.model.action.LazyStoraciveMergeState;
@@ -64,11 +65,13 @@ public final class RootStoraciveSelect extends DeciTreeTemplateWrite<StoraciveIn
 
 		ActionStd<StoraciveInfo> select = new StdStoraciveMergeToSelect(option);
 		ActionLazy<StoraciveInfo> enforceLChanged = new LazyStoraciveEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<StoraciveInfo> enforceHasData = new LazyStoraciveEnforceHasData(option.conn, option.schemaName);
 		ActionLazy<StoraciveInfo> mergeState = new LazyStoraciveMergeState(option.conn, option.schemaName);
 		ActionLazy<StoraciveInfo> mergeMonth = new LazyStoraciveMergeMonth(option.conn, option.schemaName);		
 		
 		select.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(mergeState);
+		enforceLChanged.addPostAction(enforceHasData);
+		enforceHasData.addPostAction(mergeState);
 		mergeState.addPostAction(mergeMonth);
 		
 		actions.add(select);
