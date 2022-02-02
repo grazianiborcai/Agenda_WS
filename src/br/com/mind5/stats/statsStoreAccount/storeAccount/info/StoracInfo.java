@@ -29,6 +29,7 @@ public final class StoracInfo extends InfoRecord implements Cloneable {
 	public int countStoreCumulative;
 	public int countStoreCompletedCumulative;
 	public int countStorePendingCumulative;
+	public boolean hasData;
 	public LocalDateTime lastChanged;
 	public String username;
 	
@@ -51,6 +52,7 @@ public final class StoracInfo extends InfoRecord implements Cloneable {
 		countStorePendingVar = DefaultValue.number();
 		countStoreCompletedCumulative = DefaultValue.number();
 		countStorePendingCumulative = DefaultValue.number();
+		hasData = DefaultValue.boole();
 		lastChanged = DefaultValue.object();
 	}
 	

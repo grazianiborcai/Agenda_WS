@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.calendarMonth.info.CalonthInfo;
+import br.com.mind5.info.InfoMergerCardinality;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
 final class StoracVisiMergeCalonth extends InfoMergerVisitorTemplate<StoracInfo, CalonthInfo> {
@@ -24,5 +25,11 @@ final class StoracVisiMergeCalonth extends InfoMergerVisitorTemplate<StoracInfo,
 		
 		results.add(baseInfo);
 		return results;
+	}
+	
+	
+	
+	@Override protected InfoMergerCardinality getCardinalityHook() {
+		return InfoMergerCardinality.ONE_TO_MANY;
 	}
 }
