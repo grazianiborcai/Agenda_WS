@@ -1,5 +1,6 @@
 package br.com.mind5.stats.statsStoreAccount.storeAccountLive.info;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
@@ -28,6 +29,7 @@ public final class StoraciveInfo extends InfoRecord implements Cloneable {
 	public int countStoreCumulative;
 	public int countStoreCompletedCumulative;
 	public int countStorePendingCumulative;
+	public LocalDateTime lastChanged;
 	public String username;
 	
 	
@@ -49,6 +51,7 @@ public final class StoraciveInfo extends InfoRecord implements Cloneable {
 		countStorePendingVar = DefaultValue.number();
 		countStoreCompletedCumulative = DefaultValue.number();
 		countStorePendingCumulative = DefaultValue.number();
+		lastChanged = DefaultValue.object();
 	}
 	
 	
