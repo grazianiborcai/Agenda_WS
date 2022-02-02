@@ -69,6 +69,8 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 		longitude = DefaultValue.geo();
 		latitude = DefaultValue.geo();
 		recordMode = DefaultValue.recordMode();
+		createdOn = DefaultValue.object();
+		lastChanged = DefaultValue.object();
 		lastChangedBy = DefaultValue.number();
 		createdBy = DefaultValue.number();
 		isDeleted = DefaultValue.boole();		
