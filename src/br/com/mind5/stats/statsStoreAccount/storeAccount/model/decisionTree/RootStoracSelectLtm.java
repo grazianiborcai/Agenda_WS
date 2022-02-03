@@ -12,6 +12,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreAccount.storeAccount.info.StoracInfo;
 import br.com.mind5.stats.statsStoreAccount.storeAccount.model.action.LazyStoracNodeSelectLtm;
+import br.com.mind5.stats.statsStoreAccount.storeAccount.model.action.LazyStoracNodeZerofy;
 import br.com.mind5.stats.statsStoreAccount.storeAccount.model.action.StdStoracMergeCalonthLtm;
 
 
@@ -40,8 +41,10 @@ public final class RootStoracSelectLtm extends DeciTreeTemplateWrite<StoracInfo>
 
 		ActionStd<StoracInfo> mergeCalonthLtm = new StdStoracMergeCalonthLtm(option);
 		ActionLazy<StoracInfo> nodeL1 = new LazyStoracNodeSelectLtm(option.conn, option.schemaName);
+		ActionLazy<StoracInfo> zerofy = new LazyStoracNodeZerofy(option.conn, option.schemaName);		
 		
 		mergeCalonthLtm.addPostAction(nodeL1);
+		nodeL1.addPostAction(zerofy);
 		
 		actions.add(mergeCalonthLtm);
 		return actions;
