@@ -31,7 +31,7 @@ public final class NodeStoracZerofy extends DeciTreeTemplateWrite<StoracInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.FAILED;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new StoracCheckHasData(checkerOption);
 		queue.add(checker);
 		
