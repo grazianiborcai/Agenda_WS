@@ -1699,4 +1699,7 @@ public final class SystemCode {
 	public static final int STAT_USER_ACCT_LIVE_ALREADY_EXIST 			= 16850;
 	public static final int STAT_USER_ACCT_LIVE_NOT_FOUND 				= 16851;
 	public static final int STAT_USER_ACCT_LIVE_MANDATORY_FIELD_EMPTY	= 16852;
+	
+	// Statistics - User Account
+	public static final int STAT_USER_ACCT_MANDATORY_FIELD_EMPTY		= 16900;
 }
