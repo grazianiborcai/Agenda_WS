@@ -31,7 +31,7 @@ public final class NodeSuseracZerofy extends DeciTreeTemplateWrite<SuseracInfo> 
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.FAILED;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new SuseracCheckHasData(checkerOption);
 		queue.add(checker);
 		
