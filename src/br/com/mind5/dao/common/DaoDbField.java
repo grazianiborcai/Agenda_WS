@@ -300,7 +300,11 @@ public final class DaoDbField {
 	public static final String COL_SUBJECT = "subject";	
 	public static final String COL_TM_VALID_FROM = "time_valid_from";
 	public static final String COL_TM_VALID_TO = "time_valid_to";
-	public static final String COL_TOKEN_EXPIRES_IN = "token_expires_in";
+	public static final String COL_TOKEN_EXPIRES_IN = "token_expires_in";	
+	public static final String COL_TOTAL_FEE_CUMULATIVE = "total_fee_cumulative";
+	public static final String COL_TOTAL_FEE_MONTH = "total_fee_month";
+	public static final String COL_TOTAL_FEE_MONTH_LAST_YEAR = "total_fee_month_last_year";
+	public static final String COL_TOTAL_FEE_VAR = "total_fee_var";	
 	public static final String COL_TOTAL_ITEM = "total_item";
 	public static final String COL_TOTAL_QUANTITY = "total_quantity";
 	public static final String COL_TOTAL_QUANTITY_01M = "total_quantity_01m";
@@ -313,7 +317,11 @@ public final class DaoDbField {
 	public static final String COL_TOTAL_PRICE_03M = "total_price_03m";
 	public static final String COL_TOTAL_PRICE_06M = "total_price_06m";
 	public static final String COL_TOTAL_PRICE_12M = "total_price_12m";
-	public static final String COL_TOTAL_PRICE_24M = "total_price_24m";
+	public static final String COL_TOTAL_PRICE_24M = "total_price_24m";	
+	public static final String COL_TOTAL_SALE_CUMULATIVE = "total_sale_cumulative";
+	public static final String COL_TOTAL_SALE_MONTH = "total_sale_month";
+	public static final String COL_TOTAL_SALE_MONTH_LAST_YEAR = "total_sale_month_last_year";
+	public static final String COL_TOTAL_SALE_VAR = "total_sale_var";	
 	public static final String COL_TXT_BODY = "body";
 	public static final String COL_URL_RETURN = "url_return";
 	public static final String COL_USERNAME = "username";
