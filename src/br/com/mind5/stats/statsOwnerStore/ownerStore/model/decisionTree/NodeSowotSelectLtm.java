@@ -10,9 +10,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerStore.ownerStore.info.SowotInfo;
-import br.com.mind5.stats.statsOwnerStore.ownerStore.model.action.StdSowotMergeStoracive;
+import br.com.mind5.stats.statsOwnerStore.ownerStore.model.action.StdSowotMergeSowotive;
 import br.com.mind5.stats.statsOwnerStore.ownerStore.model.action.StdSowotSuccess;
-import br.com.mind5.stats.statsOwnerStore.ownerStore.model.checker.SowotCheckStoracive;
+import br.com.mind5.stats.statsOwnerStore.ownerStore.model.checker.SowotCheckSowotive;
 
 
 public final class NodeSowotSelectLtm extends DeciTreeTemplateWrite<SowotInfo> {
@@ -32,7 +32,7 @@ public final class NodeSowotSelectLtm extends DeciTreeTemplateWrite<SowotInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new SowotCheckStoracive(checkerOption);
+		checker = new SowotCheckSowotive(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -43,9 +43,9 @@ public final class NodeSowotSelectLtm extends DeciTreeTemplateWrite<SowotInfo> {
 	@Override protected List<ActionStd<SowotInfo>> buildActionsOnPassedHook(DeciTreeOption<SowotInfo> option) {
 		List<ActionStd<SowotInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowotInfo> mergeStoracive = new StdSowotMergeStoracive(option);
+		ActionStd<SowotInfo> mergeSowotive = new StdSowotMergeSowotive(option);
 		
-		actions.add(mergeStoracive);
+		actions.add(mergeSowotive);
 		return actions;
 	}
 	

@@ -5,16 +5,16 @@ import java.util.List;
 import br.com.mind5.business.calendarMonth.info.CalonthInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
-import br.com.mind5.stats.statsOwnerStore.storeAccountLive.info.StoraciveInfo;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveInfo;
 
 public final class SowotMerger {
-	public static List<SowotInfo> mergeWithStoracive(List<SowotInfo> baseInfos, List<StoraciveInfo> selectedInfos) {
-		InfoMergerBuilder<SowotInfo, StoraciveInfo> builder = new InfoMergerBuilder<>();
+	public static List<SowotInfo> mergeWithSowotive(List<SowotInfo> baseInfos, List<SowotiveInfo> selectedInfos) {
+		InfoMergerBuilder<SowotInfo, SowotiveInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowotVisiMergeStoracive());
-		InfoMerger<SowotInfo, StoraciveInfo> merger = builder.build();		
+		builder.addVisitor(new SowotVisiMergeSowotive());
+		InfoMerger<SowotInfo, SowotiveInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
