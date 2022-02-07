@@ -39,7 +39,7 @@ public final class DaoStoraciveDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		final String TABLE_NAME = DaoDbTable.STAT_STORE_ACCOUNT_LIVE_TABLE;
+		final String TABLE_NAME = DaoDbTable.STAT_STORE_ACCOUNT_DASH_LIVE_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();

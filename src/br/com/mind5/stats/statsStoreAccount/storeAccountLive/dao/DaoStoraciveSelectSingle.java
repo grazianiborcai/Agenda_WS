@@ -17,7 +17,7 @@ import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.stats.statsStoreAccount.storeAccountLive.info.StoraciveInfo;
 
 public final class DaoStoraciveSelectSingle extends DaoStmtTemplate<StoraciveInfo> {
-	private final String MAIN_TABLE = DaoDbTable.STAT_STORE_ACCOUNT_LIVE_TABLE;	
+	private final String MAIN_TABLE = DaoDbTable.STAT_STORE_ACCOUNT_DASH_LIVE_TABLE;	
 	
 	
 	public DaoStoraciveSelectSingle(Connection conn, StoraciveInfo recordInfo, String schemaName) {
