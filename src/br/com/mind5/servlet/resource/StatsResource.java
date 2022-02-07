@@ -9,8 +9,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.mind5.model.Model;
-import br.com.mind5.stats.statsStoreAccount.storeAccount.info.StoracInfo;
-import br.com.mind5.stats.statsStoreAccount.storeAccount.model.StoracModelSelectLtm;
+import br.com.mind5.stats.statsOwnerStore.ownerStore.info.SowotInfo;
+import br.com.mind5.stats.statsOwnerStore.ownerStore.model.SowotModelSelectLtm;
 import br.com.mind5.stats.statsUserAccount.userAccount.info.SuseracInfo;
 import br.com.mind5.stats.statsUserAccount.userAccount.model.SuseracModelSelectLtm;
 
@@ -29,12 +29,12 @@ public class StatsResource {
 									      @HeaderParam("TOKEN_USERNAME") String username,
 									      @HeaderParam("codLanguage") 	 @DefaultValue("EN") String codLanguage) {
 
-		StoracInfo recordInfo = new StoracInfo();
+		SowotInfo recordInfo = new SowotInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.username = username;
 		recordInfo.codLanguage = codLanguage;
 		
-		Model model = new StoracModelSelectLtm(recordInfo);
+		Model model = new SowotModelSelectLtm(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();

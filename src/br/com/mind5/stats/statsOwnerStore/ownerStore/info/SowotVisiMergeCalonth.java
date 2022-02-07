@@ -1,4 +1,4 @@
-package br.com.mind5.stats.statsStoreAccount.storeAccount.info;
+package br.com.mind5.stats.statsOwnerStore.ownerStore.info;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,16 +7,16 @@ import br.com.mind5.business.calendarMonth.info.CalonthInfo;
 import br.com.mind5.info.InfoMergerCardinality;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class StoracVisiMergeCalonth extends InfoMergerVisitorTemplate<StoracInfo, CalonthInfo> {
+final class SowotVisiMergeCalonth extends InfoMergerVisitorTemplate<SowotInfo, CalonthInfo> {
 
-	@Override public boolean shouldMerge(StoracInfo baseInfo, CalonthInfo selectedInfo) {
+	@Override public boolean shouldMerge(SowotInfo baseInfo, CalonthInfo selectedInfo) {
 		return true;
 	}
 	
 	
 	
-	@Override public List<StoracInfo> merge(StoracInfo baseInfo, CalonthInfo selectedInfo) {
-		List<StoracInfo> results = new ArrayList<>();
+	@Override public List<SowotInfo> merge(SowotInfo baseInfo, CalonthInfo selectedInfo) {
+		List<SowotInfo> results = new ArrayList<>();
 		
 		baseInfo.calmonth = selectedInfo.calmonth;
 		baseInfo.year = selectedInfo.year;

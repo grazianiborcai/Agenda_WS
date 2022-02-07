@@ -1692,8 +1692,8 @@ public final class SystemCode {
 	// Calendar Month Search
 	public static final int CALENDAR_MONTH_SEARCH_MANDATORY_FIELD_EMPTY = 16750;
 	
-	// Statistics - Store Account
-	public static final int STAT_STORE_ACCT_MANDATORY_FIELD_EMPTY		= 16800;
+	// Statistics - Owner-Store
+	public static final int STAT_OWNER_STORE_MANDATORY_FIELD_EMPTY		= 16800;
 	
 	// Statistics - User Account - Live
 	public static final int STAT_USER_ACCT_LIVE_ALREADY_EXIST 			= 16850;

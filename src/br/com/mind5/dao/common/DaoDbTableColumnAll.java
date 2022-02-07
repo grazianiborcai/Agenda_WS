@@ -254,7 +254,7 @@ import br.com.mind5.security.userSearch.dao.DaoUserarchDbTableColumn;
 import br.com.mind5.security.userSnapshot.dao.DaoUserapDbTableColumn;
 import br.com.mind5.security.username.dao.DaoUsernameDbTableColumn;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderLive.dao.DaoSowordiveDbTableColumn;
-import br.com.mind5.stats.statsStoreAccount.storeAccountLive.dao.DaoStoraciveDbTableColumn;
+import br.com.mind5.stats.statsOwnerStore.storeAccountLive.dao.DaoStoraciveDbTableColumn;
 import br.com.mind5.stats.statsUserAccount.userAccountLive.dao.DaoSuseraciveDbTableColumn;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggr.dao.DaoStusorygrDbTableColumn;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggrSearch.dao.DaoStusorygrarchDbTableColumn;

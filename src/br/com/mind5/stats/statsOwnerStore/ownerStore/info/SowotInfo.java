@@ -1,4 +1,4 @@
-package br.com.mind5.stats.statsStoreAccount.storeAccount.info;
+package br.com.mind5.stats.statsOwnerStore.ownerStore.info;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
-public final class StoracInfo extends InfoRecord implements Cloneable {
+public final class SowotInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public String calmonth;
 	public int year;
@@ -34,7 +34,7 @@ public final class StoracInfo extends InfoRecord implements Cloneable {
 	public String username;
 	
 	
-	public StoracInfo() {
+	public SowotInfo() {
 		super();
 		
 		codOwner = DefaultValue.number();
@@ -58,14 +58,14 @@ public final class StoracInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	public static StoracInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, StoracInfo.class);
+	public static SowotInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, SowotInfo.class);
 	}
 	
 	
 	
-	public static List<StoracInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, StoracInfo.class);
+	public static List<SowotInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, SowotInfo.class);
 	}
 	
 	
@@ -103,11 +103,11 @@ public final class StoracInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof StoracInfo))
+		if (!(o instanceof SowotInfo))
 			return false;
 		
 		
-		StoracInfo obj = (StoracInfo) o;		
+		SowotInfo obj = (SowotInfo) o;		
 		return (codOwner == obj.codOwner && 
 				super.isStringEqual(calmonth  , obj.calmonth) 	&&
 				super.isStringEqual(codCountry, obj.codCountry) &&

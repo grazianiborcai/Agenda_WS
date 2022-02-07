@@ -1,4 +1,4 @@
-package br.com.mind5.stats.statsStoreAccount.storeAccount.model.action;
+package br.com.mind5.stats.statsOwnerStore.ownerStore.model.action;
 
 import java.util.List;
 
@@ -7,12 +7,12 @@ import br.com.mind5.business.calendarMonth.model.decisionTree.RootCalonthSelectL
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.statsStoreAccount.storeAccount.info.StoracInfo;
-import br.com.mind5.stats.statsStoreAccount.storeAccount.info.StoracMerger;
+import br.com.mind5.stats.statsOwnerStore.ownerStore.info.SowotInfo;
+import br.com.mind5.stats.statsOwnerStore.ownerStore.info.SowotMerger;
 
-final class VisiStoracMergeCalonthLtm extends ActionVisitorTemplateMerge<StoracInfo, CalonthInfo> {
+final class VisiSowotMergeCalonthLtm extends ActionVisitorTemplateMerge<SowotInfo, CalonthInfo> {
 	
-	public VisiStoracMergeCalonthLtm(DeciTreeOption<StoracInfo> option) {
+	public VisiSowotMergeCalonthLtm(DeciTreeOption<SowotInfo> option) {
 		super(option, CalonthInfo.class);
 	}
 	
@@ -24,8 +24,8 @@ final class VisiStoracMergeCalonthLtm extends ActionVisitorTemplateMerge<StoracI
 	
 	
 	
-	@Override protected List<StoracInfo> mergeHook(List<StoracInfo> baseInfos, List<CalonthInfo> selectedInfos) {	
-		return StoracMerger.mergeWithCalonth(baseInfos, selectedInfos);
+	@Override protected List<SowotInfo> mergeHook(List<SowotInfo> baseInfos, List<CalonthInfo> selectedInfos) {	
+		return SowotMerger.mergeWithCalonth(baseInfos, selectedInfos);
 	}
 	
 	

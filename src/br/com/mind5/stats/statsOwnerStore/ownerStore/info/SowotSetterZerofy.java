@@ -1,10 +1,10 @@
-package br.com.mind5.stats.statsStoreAccount.storeAccount.info;
+package br.com.mind5.stats.statsOwnerStore.ownerStore.info;
 
 import br.com.mind5.info.InfoSetterTemplate;
 
-public final class StoracSetterZerofy extends InfoSetterTemplate<StoracInfo> {
+public final class SowotSetterZerofy extends InfoSetterTemplate<SowotInfo> {
 	
-	@Override protected StoracInfo setAttrHook(StoracInfo recordInfo) {
+	@Override protected SowotInfo setAttrHook(SowotInfo recordInfo) {
 		recordInfo.countStoreCreatedMonth = 0;
 		recordInfo.countStoreCompletedMonth = 0;
 		recordInfo.countStorePendingMonth = 0;
