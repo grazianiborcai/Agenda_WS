@@ -17,7 +17,7 @@ import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.stats.statsUserAccount.userAccountLive.info.SuseraciveInfo;
 
 public final class DaoSuseraciveSelectSingle extends DaoStmtTemplate<SuseraciveInfo> {
-	private final String MAIN_TABLE = DaoDbTable.STAT_USER_ACCOUNT_LIVE_TABLE;	
+	private final String MAIN_TABLE = DaoDbTable.STAT_USER_ACCOUNT_DASH_LIVE_TABLE;	
 	
 	
 	public DaoSuseraciveSelectSingle(Connection conn, SuseraciveInfo recordInfo, String schemaName) {
