@@ -255,7 +255,7 @@ import br.com.mind5.security.userSnapshot.dao.DaoUserapDbTableColumn;
 import br.com.mind5.security.username.dao.DaoUsernameDbTableColumn;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderLive.dao.DaoSowordiveDbTableColumn;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.dao.DaoSowotiveDbTableColumn;
-import br.com.mind5.stats.statsUserAccount.userAccountLive.dao.DaoSuseraciveDbTableColumn;
+import br.com.mind5.stats.statsOwnerUser.userAccountLive.dao.DaoSowusiveDbTableColumn;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggr.dao.DaoStusorygrDbTableColumn;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggrSearch.dao.DaoStusorygrarchDbTableColumn;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearLive.dao.DaoStusoryliDbTableColumn;
@@ -532,7 +532,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoSowotiveDbTableColumn());
 		addTable(new DaoCalonthDbTableColumn());
 		addTable(new DaoCalontharchDbTableColumn());
-		addTable(new DaoSuseraciveDbTableColumn());
+		addTable(new DaoSowusiveDbTableColumn());
 		addTable(new DaoSowordiveDbTableColumn());
 	}
 	
