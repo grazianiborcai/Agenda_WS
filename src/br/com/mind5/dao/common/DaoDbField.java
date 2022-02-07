@@ -185,7 +185,7 @@ public final class DaoDbField {
 	public static final String COL_EXPIRATION_MONTH = "expiration_month";
 	public static final String COL_EXPIRATION_YEAR = "expiration_year";	
 	public static final String COL_EXPIRY_ON = "expiry_on";		
-	public static final String COL_FEE_SERVICE = "feeService";
+	public static final String COL_FEE_SERVICE = "fee_service";
 	public static final String COL_FILE_IMG_EXTENSION = "file_img_extension";
 	public static final String COL_FILE_IMG_NAME = "file_img_name";
 	public static final String COL_FILE_PATH = "file_path";
@@ -200,7 +200,7 @@ public final class DaoDbField {
 	public static final String COL_GEO_HASH_04 = "geo_hash_04";
 	public static final String COL_GEO_HASH_05 = "geo_hash_05";
 	public static final String COL_GEO_HASH_12 = "geo_hash_12";	
-	public static final String COL_GRAND_TOTAL = "grandTotal";
+	public static final String COL_GRAND_TOTAL = "grand_total";
 	public static final String COL_HOUR_BEFORE = "hour_before";
 	public static final String COL_ID_ORDER_PARTNER = "id_order_partner";
 	public static final String COL_ID_PAY_PARTNER_APP = "id_pay_partner_app";	
@@ -219,7 +219,7 @@ public final class DaoDbField {
 	public static final String COL_IS_LOCKED = "is_locked";
 	public static final String COL_IS_WEEKEND = "is_weekend";
 	public static final String COL_ITEM_RECEIVER = "item_receiver";
-	public static final String COL_ITEM_TOTAL = "itemTotal";
+	public static final String COL_ITEM_TOTAL = "item_total";
 	public static final String COL_LAST_CHANGED = "last_changed";
 	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
 	public static final String COL_LAST_DAY = "last_day";	

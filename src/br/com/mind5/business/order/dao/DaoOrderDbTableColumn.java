@@ -20,7 +20,7 @@ public final class DaoOrderDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PAY_ORDER = DaoDbField.COL_COD_PAY_ORDER;
 	public static final String COL_COD_PHONE_SHIP = DaoDbField.COL_COD_PHONE_SHIP;
 	public static final String COL_COD_PHONE_INVOICE = DaoDbField.COL_COD_PHONE_INVOICE;
-	public static final String COL_COD_REFUND_POLICY_GROUP = DaoDbField.COL_COD_REFUND_POLICY_GROUP;	
+	public static final String COL_COD_REFUND_POLICY_GROUP = DaoDbField.COL_COD_REFUND_POLICY_GROUP;
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
 	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
 	public static final String COL_CREATED_BY = DaoDbField.COL_CREATED_BY;
@@ -30,9 +30,9 @@ public final class DaoOrderDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_ITEM_TOTAL = DaoDbField.COL_ITEM_TOTAL;
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
-	public static final String COL_POSTING_DATE = DaoDbField.COL_POSTING_DATE;	
+	public static final String COL_POSTING_DATE = DaoDbField.COL_POSTING_DATE;
 	public static final String COL_POSTING_YEAR = DaoDbField.COL_POSTING_YEAR;
-	public static final String COL_POSTING_YEAR_MONTH = DaoDbField.COL_POSTING_YEAR_MONTH;	
+	public static final String COL_POSTING_YEAR_MONTH = DaoDbField.COL_POSTING_YEAR_MONTH;
 	
 	
 	public DaoOrderDbTableColumn() {
