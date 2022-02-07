@@ -1707,4 +1707,7 @@ public final class SystemCode {
 	public static final int STAT_OWNER_ORDER_LIVE_ALREADY_EXIST 		= 16950;
 	public static final int STAT_OWNER_ORDER_LIVE_NOT_FOUND 			= 16951;
 	public static final int STAT_OWNER_ORDER_LIVE_MANDATORY_FIELD_EMPTY	= 16952;
+	
+	// Statistics - Owner-Order
+	public static final int STAT_OWNER_ORDER_MANDATORY_FIELD_EMPTY		= 17000;
 }
