@@ -1700,8 +1700,8 @@ public final class SystemCode {
 	public static final int STAT_OWNER_USER_LIVE_NOT_FOUND 				= 16851;
 	public static final int STAT_OWNER_USER_LIVE_MANDATORY_FIELD_EMPTY	= 16852;
 	
-	// Statistics - User Account
-	public static final int STAT_USER_ACCT_MANDATORY_FIELD_EMPTY		= 16900;
+	// Statistics - Owner-User
+	public static final int STAT_OWNER_USER_MANDATORY_FIELD_EMPTY		= 16900;
 	
 	// Statistics - Owner-Order - Live
 	public static final int STAT_OWNER_ORDER_LIVE_ALREADY_EXIST 		= 16950;

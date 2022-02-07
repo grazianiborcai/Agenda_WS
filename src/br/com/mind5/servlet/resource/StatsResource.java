@@ -11,8 +11,8 @@ import javax.ws.rs.core.Response;
 import br.com.mind5.model.Model;
 import br.com.mind5.stats.statsOwnerStore.ownerStore.info.SowotInfo;
 import br.com.mind5.stats.statsOwnerStore.ownerStore.model.SowotModelSelectLtm;
-import br.com.mind5.stats.statsUserAccount.userAccount.info.SuseracInfo;
-import br.com.mind5.stats.statsUserAccount.userAccount.model.SuseracModelSelectLtm;
+import br.com.mind5.stats.statsOwnerUser.ownerUser.info.SowusInfo;
+import br.com.mind5.stats.statsOwnerUser.ownerUser.model.SowusModelSelectLtm;
 
 @Path("/Stats")
 public class StatsResource {
@@ -51,12 +51,12 @@ public class StatsResource {
 									     @HeaderParam("TOKEN_USERNAME") String username,
 									     @HeaderParam("codLanguage") 	@DefaultValue("EN") String codLanguage) {
 
-		SuseracInfo recordInfo = new SuseracInfo();
+		SowusInfo recordInfo = new SowusInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.username = username;
 		recordInfo.codLanguage = codLanguage;
 		
-		Model model = new SuseracModelSelectLtm(recordInfo);
+		Model model = new SowusModelSelectLtm(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();
