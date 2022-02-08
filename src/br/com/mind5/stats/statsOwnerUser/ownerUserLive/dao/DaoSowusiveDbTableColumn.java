@@ -14,23 +14,18 @@ public final class DaoSowusiveDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CITY = DaoDbField.COL_CITY;
 	public static final String COL_COD_COUNTRY = DaoDbField.COL_COD_COUNTRY;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
-	public static final String COL_COUNT_ORDER_TOTAL_CUMULATIVE = DaoDbField.COL_COUNT_ORDER_TOTAL_CUMULATIVE;
 	public static final String COL_COUNT_ORDER_TOTAL_MONTH = DaoDbField.COL_COUNT_ORDER_TOTAL_MONTH;
 	public static final String COL_COUNT_ORDER_TOTAL_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_ORDER_TOTAL_MONTH_LAST_YEAR;
 	public static final String COL_COUNT_ORDER_TOTAL_VAR = DaoDbField.COL_COUNT_ORDER_TOTAL_VAR;
-	public static final String COL_COUNT_USER_ACTIVE_CUMULATIVE = DaoDbField.COL_COUNT_USER_ACTIVE_CUMULATIVE;
 	public static final String COL_COUNT_USER_ACTIVE_MONTH = DaoDbField.COL_COUNT_USER_ACTIVE_MONTH;
 	public static final String COL_COUNT_USER_ACTIVE_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_USER_ACTIVE_MONTH_LAST_YEAR;
 	public static final String COL_COUNT_USER_ACTIVE_VAR = DaoDbField.COL_COUNT_USER_ACTIVE_VAR;
-	public static final String COL_COUNT_USER_CREATION_CUMULATIVE = DaoDbField.COL_COUNT_USER_CREATION_CUMULATIVE;
 	public static final String COL_COUNT_USER_CREATION_MONTH = DaoDbField.COL_COUNT_USER_CREATION_MONTH;
 	public static final String COL_COUNT_USER_CREATION_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_USER_CREATION_MONTH_LAST_YEAR;
 	public static final String COL_COUNT_USER_CREATION_VAR = DaoDbField.COL_COUNT_USER_CREATION_VAR;
-	public static final String COL_COUNT_USER_ENGAGEMENT_CUMULATIVE = DaoDbField.COL_COUNT_USER_ENGAGEMENT_CUMULATIVE;
 	public static final String COL_COUNT_USER_ENGAGEMENT_MONTH = DaoDbField.COL_COUNT_USER_ENGAGEMENT_MONTH;
 	public static final String COL_COUNT_USER_ENGAGEMENT_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_USER_ENGAGEMENT_MONTH_LAST_YEAR;
-	public static final String COL_COUNT_USER_ENGAGEMENT_MONTH_VAR = DaoDbField.COL_COUNT_USER_ENGAGEMENT_MONTH_VAR;	
-	public static final String COL_COUNT_USER_INACTIVE_CUMULATIVE = DaoDbField.COL_COUNT_USER_INACTIVE_CUMULATIVE;	
+	public static final String COL_COUNT_USER_ENGAGEMENT_MONTH_VAR = DaoDbField.COL_COUNT_USER_ENGAGEMENT_MONTH_VAR;
 	public static final String COL_COUNT_USER_INACTIVE_MONTH = DaoDbField.COL_COUNT_USER_INACTIVE_MONTH;
 	public static final String COL_COUNT_USER_INACTIVE_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_USER_INACTIVE_MONTH_LAST_YEAR;
 	public static final String COL_COUNT_USER_INACTIVE_VAR = DaoDbField.COL_COUNT_USER_INACTIVE_VAR;
@@ -181,30 +176,6 @@ public final class DaoSowusiveDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_USER_CREATION_CUMULATIVE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_USER_ACTIVE_CUMULATIVE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_USER_INACTIVE_CUMULATIVE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COUNT_ORDER_TOTAL_MONTH;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
@@ -222,22 +193,6 @@ public final class DaoSowusiveDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COUNT_ORDER_TOTAL_VAR;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_ORDER_TOTAL_CUMULATIVE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_USER_ENGAGEMENT_CUMULATIVE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

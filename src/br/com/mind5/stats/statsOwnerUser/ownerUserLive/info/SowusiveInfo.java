@@ -32,11 +32,6 @@ public final class SowusiveInfo extends InfoRecord implements Cloneable {
 	public double countUserInactiveVar;	
 	public double countOrderVar;
 	public double userEngagementVar;	
-	public int countUserCreatedCumulative;
-	public int countUserActiveCumulative;
-	public int countUserInactiveCumulative;	
-	public int countOrderCumulative;
-	public int userEngagementCumulative;
 	public boolean hasData;
 	public LocalDateTime lastChanged;
 	public String username;
@@ -60,14 +55,9 @@ public final class SowusiveInfo extends InfoRecord implements Cloneable {
 		countOrderMonthLastYear = DefaultValue.number();
 		countUserCreatedVar = DefaultValue.number();
 		countUserActiveVar = DefaultValue.number();
-		countUserCreatedCumulative = DefaultValue.number();
 		countUserInactiveVar = DefaultValue.number();
 		countOrderVar = DefaultValue.number();
 		userEngagementVar = DefaultValue.number();
-		countUserActiveCumulative = DefaultValue.number();
-		countUserInactiveCumulative = DefaultValue.number();
-		countOrderCumulative = DefaultValue.number();
-		userEngagementCumulative = DefaultValue.number();
 		hasData = DefaultValue.boole();
 		lastChanged = DefaultValue.object();
 	}
