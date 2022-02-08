@@ -20,15 +20,12 @@ public final class SowordInfo extends InfoRecord implements Cloneable {
 	public double totalFeeMonth;
 	public double totalSaleMonth;
 	public int countOrderMonth;
-	public double totalFeeMMonthLastYear;
+	public double totalFeeLastYear;
 	public double totalSaleMonthLastYear;
-	public int countOrderMonthLastYear;
-	public double totalFeeMVar;
+	public int countOrderLastYear;
+	public double totalFeeVar;
 	public double totalSaleVar;
 	public double countOrderVar;
-	public double totalFeeMCumulative;
-	public double totalSaleCumulative;
-	public int countOrderCumulative;
 	public boolean hasData;
 	public LocalDateTime lastChanged;
 	public String username;
@@ -44,14 +41,11 @@ public final class SowordInfo extends InfoRecord implements Cloneable {
 		totalSaleMonth = DefaultValue.number();
 		countOrderMonth = DefaultValue.number();
 		totalSaleMonthLastYear = DefaultValue.number();
-		totalFeeMMonthLastYear = DefaultValue.number();
-		countOrderMonthLastYear = DefaultValue.number();
-		totalFeeMVar = DefaultValue.number();
+		totalFeeLastYear = DefaultValue.number();
+		countOrderLastYear = DefaultValue.number();
+		totalFeeVar = DefaultValue.number();
 		totalSaleVar = DefaultValue.number();
-		totalFeeMCumulative = DefaultValue.number();
 		countOrderVar = DefaultValue.number();
-		totalSaleCumulative = DefaultValue.number();
-		countOrderCumulative = DefaultValue.number();
 		hasData = DefaultValue.boole();
 		lastChanged = DefaultValue.object();
 	}
