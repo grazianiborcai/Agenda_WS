@@ -43,7 +43,7 @@ public final class DaoDbField {
 	public static final String COL_COUNT_USER_ENGAGEMENT_CUMULATIVE = "user_engagement_cumulative";
 	public static final String COL_COUNT_USER_ENGAGEMENT_MONTH = "user_engagement_month";
 	public static final String COL_COUNT_USER_ENGAGEMENT_MONTH_LAST_YEAR = "user_engagement_month_last_year";
-	public static final String COL_COUNT_USER_ENGAGEMENT_MONTH_VAR = "user_engagement_month_var";	
+	public static final String COL_COUNT_USER_ENGAGEMENT_VAR = "user_engagement_var";	
 	public static final String COL_COUNT_USER_INACTIVE_CUMULATIVE = "count_user_inactive_cumulative";
 	public static final String COL_COUNT_USER_INACTIVE_MONTH = "count_user_inactive_month";
 	public static final String COL_COUNT_USER_INACTIVE_MONTH_LAST_YEAR = "count_user_inactive_month_last_year";

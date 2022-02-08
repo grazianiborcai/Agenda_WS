@@ -25,7 +25,7 @@ public final class DaoSowusiveDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COUNT_USER_CREATION_VAR = DaoDbField.COL_COUNT_USER_CREATION_VAR;
 	public static final String COL_COUNT_USER_ENGAGEMENT_MONTH = DaoDbField.COL_COUNT_USER_ENGAGEMENT_MONTH;
 	public static final String COL_COUNT_USER_ENGAGEMENT_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_USER_ENGAGEMENT_MONTH_LAST_YEAR;
-	public static final String COL_COUNT_USER_ENGAGEMENT_MONTH_VAR = DaoDbField.COL_COUNT_USER_ENGAGEMENT_MONTH_VAR;
+	public static final String COL_COUNT_USER_ENGAGEMENT_VAR = DaoDbField.COL_COUNT_USER_ENGAGEMENT_VAR;
 	public static final String COL_COUNT_USER_INACTIVE_MONTH = DaoDbField.COL_COUNT_USER_INACTIVE_MONTH;
 	public static final String COL_COUNT_USER_INACTIVE_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_USER_INACTIVE_MONTH_LAST_YEAR;
 	public static final String COL_COUNT_USER_INACTIVE_VAR = DaoDbField.COL_COUNT_USER_INACTIVE_VAR;
@@ -216,7 +216,7 @@ public final class DaoSowusiveDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_USER_ENGAGEMENT_MONTH_VAR;
+		oneColumn.columnName = COL_COUNT_USER_ENGAGEMENT_VAR;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

@@ -82,7 +82,7 @@ public final class DaoSowusiveSelectSingle extends DaoStmtTemplate<SowusiveInfo>
 					dataInfo.countOrderVar = DaoFormatter.sqlToDouble(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_ORDER_TOTAL_VAR);
 					dataInfo.userEngagementMonth = DaoFormatter.sqlToInt(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_ENGAGEMENT_MONTH);
 					dataInfo.userEngagementMonthLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_ENGAGEMENT_MONTH_LAST_YEAR);
-					dataInfo.userEngagementVar = DaoFormatter.sqlToDouble(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_ENGAGEMENT_MONTH_VAR);
+					dataInfo.userEngagementVar = DaoFormatter.sqlToDouble(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_ENGAGEMENT_VAR);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
