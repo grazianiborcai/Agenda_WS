@@ -8,15 +8,12 @@ public final class SowotSetterZerofy extends InfoSetterTemplate<SowotInfo> {
 		recordInfo.countStoreCreatedMonth = 0;
 		recordInfo.countStoreCompletedMonth = 0;
 		recordInfo.countStorePendingMonth = 0;
-		recordInfo.countStoreCreatedMonthLastYear = 0;
-		recordInfo.countStoreCompletedMonthLastYear = 0;
-		recordInfo.countStorePendingMonthLastYear = 0;
+		recordInfo.countStoreCreatedLastYear = 0;
+		recordInfo.countStoreCompletedLastYear = 0;
+		recordInfo.countStorePendingLastYear = 0;
 		recordInfo.countStoreCreatedVar = 0;
 		recordInfo.countStoreCompletedVar = 0;
 		recordInfo.countStorePendingVar = 0;
-		recordInfo.countStoreCreatedCumulative = 0;
-		recordInfo.countStoreCompletedCumulative = 0;
-		recordInfo.countStorePendingCumulative = 0;
 
 		return recordInfo;
 	}

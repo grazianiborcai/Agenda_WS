@@ -20,15 +20,12 @@ public final class SowotInfo extends InfoRecord implements Cloneable {
 	public int countStoreCreatedMonth;
 	public int countStoreCompletedMonth;
 	public int countStorePendingMonth;
-	public int countStoreCreatedMonthLastYear;
-	public int countStoreCompletedMonthLastYear;
-	public int countStorePendingMonthLastYear;
+	public int countStoreCreatedLastYear;
+	public int countStoreCompletedLastYear;
+	public int countStorePendingLastYear;
 	public double countStoreCreatedVar;
 	public double countStoreCompletedVar;
 	public double countStorePendingVar;
-	public int countStoreCreatedCumulative;
-	public int countStoreCompletedCumulative;
-	public int countStorePendingCumulative;
 	public boolean hasData;
 	public LocalDateTime lastChanged;
 	public String username;
@@ -43,15 +40,12 @@ public final class SowotInfo extends InfoRecord implements Cloneable {
 		countStoreCreatedMonth = DefaultValue.number();
 		countStoreCompletedMonth = DefaultValue.number();
 		countStorePendingMonth = DefaultValue.number();
-		countStoreCreatedMonthLastYear = DefaultValue.number();
-		countStoreCompletedMonthLastYear = DefaultValue.number();
-		countStorePendingMonthLastYear = DefaultValue.number();
+		countStoreCreatedLastYear = DefaultValue.number();
+		countStoreCompletedLastYear = DefaultValue.number();
+		countStorePendingLastYear = DefaultValue.number();
 		countStoreCreatedVar = DefaultValue.number();
 		countStoreCompletedVar = DefaultValue.number();
-		countStoreCreatedCumulative = DefaultValue.number();
 		countStorePendingVar = DefaultValue.number();
-		countStoreCompletedCumulative = DefaultValue.number();
-		countStorePendingCumulative = DefaultValue.number();
 		hasData = DefaultValue.boole();
 		lastChanged = DefaultValue.object();
 	}
