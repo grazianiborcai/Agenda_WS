@@ -71,15 +71,12 @@ public final class DaoSowotiveSelectSingle extends DaoStmtTemplate<SowotiveInfo>
 					dataInfo.countStoreCreatedMonth = DaoFormatter.sqlToInt(stmtResult, DaoSowotiveDbTableColumn.COL_COUNT_STORE_MONTH);					
 					dataInfo.countStoreCompletedMonth = DaoFormatter.sqlToInt(stmtResult, DaoSowotiveDbTableColumn.COL_COUNT_STORE_ACCOUNT_COMPLETED_MONTH);
 					dataInfo.countStorePendingMonth = DaoFormatter.sqlToInt(stmtResult, DaoSowotiveDbTableColumn.COL_COUNT_STORE_ACCOUNT_PENDING_MONTH);					
-					dataInfo.countStoreCreatedMonthLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowotiveDbTableColumn.COL_COUNT_STORE_MONTH_LAST_YEAR);					
-					dataInfo.countStoreCompletedMonthLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowotiveDbTableColumn.COL_COUNT_STORE_ACCOUNT_COMPLETED_MONTH_LAST_YEAR);
-					dataInfo.countStorePendingMonthLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowotiveDbTableColumn.COL_COUNT_STORE_ACCOUNT_PENDING_MONTH_LAST_YEAR);					
+					dataInfo.countStoreCreatedLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowotiveDbTableColumn.COL_COUNT_STORE_MONTH_LAST_YEAR);					
+					dataInfo.countStoreCompletedLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowotiveDbTableColumn.COL_COUNT_STORE_ACCOUNT_COMPLETED_MONTH_LAST_YEAR);
+					dataInfo.countStorePendingLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowotiveDbTableColumn.COL_COUNT_STORE_ACCOUNT_PENDING_MONTH_LAST_YEAR);					
 					dataInfo.countStoreCreatedVar = DaoFormatter.sqlToDouble(stmtResult, DaoSowotiveDbTableColumn.COL_COUNT_STORE_VAR);					
 					dataInfo.countStoreCompletedVar = DaoFormatter.sqlToDouble(stmtResult, DaoSowotiveDbTableColumn.COL_COUNT_STORE_ACCOUNT_COMPLETED_VAR);
-					dataInfo.countStorePendingVar = DaoFormatter.sqlToDouble(stmtResult, DaoSowotiveDbTableColumn.COL_COUNT_STORE_ACCOUNT_PENDING_VAR);					
-					dataInfo.countStoreCreatedCumulative = DaoFormatter.sqlToInt(stmtResult, DaoSowotiveDbTableColumn.COL_COUNT_STORE_CUMULATIVE);					
-					dataInfo.countStoreCompletedCumulative = DaoFormatter.sqlToInt(stmtResult, DaoSowotiveDbTableColumn.COL_COUNT_STORE_ACCOUNT_COMPLETED_CUMULATIVE);
-					dataInfo.countStorePendingCumulative = DaoFormatter.sqlToInt(stmtResult, DaoSowotiveDbTableColumn.COL_COUNT_STORE_ACCOUNT_PENDING_CUMULATIVE);
+					dataInfo.countStorePendingVar = DaoFormatter.sqlToDouble(stmtResult, DaoSowotiveDbTableColumn.COL_COUNT_STORE_ACCOUNT_PENDING_VAR);	
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

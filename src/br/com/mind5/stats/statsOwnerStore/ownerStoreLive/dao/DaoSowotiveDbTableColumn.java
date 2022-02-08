@@ -23,9 +23,6 @@ public final class DaoSowotiveDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COUNT_STORE_VAR = DaoDbField.COL_COUNT_STORE_VAR;
 	public static final String COL_COUNT_STORE_ACCOUNT_COMPLETED_VAR = DaoDbField.COL_COUNT_STORE_ACCOUNT_COMPLETED_VAR;
 	public static final String COL_COUNT_STORE_ACCOUNT_PENDING_VAR = DaoDbField.COL_COUNT_STORE_ACCOUNT_PENDING_VAR;
-	public static final String COL_COUNT_STORE_CUMULATIVE = DaoDbField.COL_COUNT_STORE_CUMULATIVE;
-	public static final String COL_COUNT_STORE_ACCOUNT_COMPLETED_CUMULATIVE = DaoDbField.COL_COUNT_STORE_ACCOUNT_COMPLETED_CUMULATIVE;
-	public static final String COL_COUNT_STORE_ACCOUNT_PENDING_CUMULATIVE = DaoDbField.COL_COUNT_STORE_ACCOUNT_PENDING_CUMULATIVE;
 	public static final String COL_MONTH = DaoDbField.COL_MONTH;
 	public static final String COL_STATE_PROVINCE = DaoDbField.COL_STATE_PROVINCE;
 	public static final String COL_YEAR = DaoDbField.COL_YEAR;
@@ -166,30 +163,6 @@ public final class DaoSowotiveDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COUNT_STORE_ACCOUNT_PENDING_VAR;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_STORE_CUMULATIVE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_STORE_ACCOUNT_COMPLETED_CUMULATIVE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_STORE_ACCOUNT_PENDING_CUMULATIVE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
