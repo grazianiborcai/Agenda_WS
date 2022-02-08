@@ -20,11 +20,6 @@ public final class SowusSetterZerofy extends InfoSetterTemplate<SowusInfo> {
 		recordInfo.countUserInactiveVar = 0;	
 		recordInfo.countOrderVar = 0;
 		recordInfo.userEngagementVar = 0;	
-		recordInfo.countUserCreatedCumulative = 0;
-		recordInfo.countUserActiveCumulative = 0;
-		recordInfo.countUserInactiveCumulative = 0;	
-		recordInfo.countOrderCumulative = 0;
-		recordInfo.userEngagementCumulative = 0;
 
 		return recordInfo;
 	}
