@@ -12,6 +12,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerDashboard.info.SowashInfo;
 import br.com.mind5.stats.statsOwnerDashboard.model.action.LazySowashMergeSoword;
+import br.com.mind5.stats.statsOwnerDashboard.model.action.LazySowashMergeSowus;
 import br.com.mind5.stats.statsOwnerDashboard.model.action.StdSowashMergeSowot;
 
 
@@ -40,11 +41,11 @@ public final class RootSowashSelectLtm extends DeciTreeTemplateWrite<SowashInfo>
 
 		ActionStd<SowashInfo> mergeSowot = new StdSowashMergeSowot(option);
 		ActionLazy<SowashInfo> mergeSoword = new LazySowashMergeSoword(option.conn, option.schemaName);
-	//	ActionLazy<SowashInfo> mergeSowus = new LazySowashMergeSowus(option.conn, option.schemaName);
+		ActionLazy<SowashInfo> mergeSowus = new LazySowashMergeSowus(option.conn, option.schemaName);
 		
 		
 		mergeSowot.addPostAction(mergeSoword);
-//		mergeSoword.addPostAction(mergeSowus);
+		mergeSoword.addPostAction(mergeSowus);
 		
 		actions.add(mergeSowot);
 		return actions;
