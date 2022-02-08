@@ -69,19 +69,19 @@ public final class DaoSowusiveSelectSingle extends DaoStmtTemplate<SowusiveInfo>
 					dataInfo.codState = stmtResult.getString(DaoSowusiveDbTableColumn.COL_STATE_PROVINCE);
 					dataInfo.city = stmtResult.getString(DaoSowusiveDbTableColumn.COL_CITY);
 					dataInfo.countUserCreatedMonth = DaoFormatter.sqlToInt(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_CREATION_MONTH);
-					dataInfo.countUserCreatedMonthLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_CREATION_MONTH_LAST_YEAR);
+					dataInfo.countUserCreatedLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_CREATION_MONTH_LAST_YEAR);
 					dataInfo.countUserCreatedVar = DaoFormatter.sqlToDouble(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_CREATION_VAR);
 					dataInfo.countUserActiveMonth = DaoFormatter.sqlToInt(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_ACTIVE_MONTH);
-					dataInfo.countUserActiveMonthLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_ACTIVE_MONTH_LAST_YEAR);
+					dataInfo.countUserActiveLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_ACTIVE_MONTH_LAST_YEAR);
 					dataInfo.countUserActiveVar = DaoFormatter.sqlToDouble(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_ACTIVE_VAR);
 					dataInfo.countUserInactiveMonth = DaoFormatter.sqlToInt(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_INACTIVE_MONTH);
-					dataInfo.countUserInactiveMonthLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_INACTIVE_MONTH_LAST_YEAR);
+					dataInfo.countUserInactiveLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_INACTIVE_MONTH_LAST_YEAR);
 					dataInfo.countUserInactiveVar = DaoFormatter.sqlToDouble(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_INACTIVE_VAR);
 					dataInfo.countOrderMonth = DaoFormatter.sqlToInt(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_ORDER_TOTAL_MONTH);
-					dataInfo.countOrderMonthLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_ORDER_TOTAL_MONTH_LAST_YEAR);
+					dataInfo.countOrderLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_ORDER_TOTAL_MONTH_LAST_YEAR);
 					dataInfo.countOrderVar = DaoFormatter.sqlToDouble(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_ORDER_TOTAL_VAR);
 					dataInfo.userEngagementMonth = DaoFormatter.sqlToInt(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_ENGAGEMENT_MONTH);
-					dataInfo.userEngagementMonthLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_ENGAGEMENT_MONTH_LAST_YEAR);
+					dataInfo.userEngagementLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_ENGAGEMENT_MONTH_LAST_YEAR);
 					dataInfo.userEngagementVar = DaoFormatter.sqlToDouble(stmtResult, DaoSowusiveDbTableColumn.COL_COUNT_USER_ENGAGEMENT_VAR);
 					
 					finalResult.add(dataInfo);
