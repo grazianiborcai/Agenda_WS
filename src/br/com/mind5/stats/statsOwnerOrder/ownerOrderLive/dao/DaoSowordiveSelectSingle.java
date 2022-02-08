@@ -68,17 +68,14 @@ public final class DaoSowordiveSelectSingle extends DaoStmtTemplate<SowordiveInf
 					dataInfo.codCountry = stmtResult.getString(DaoSowordiveDbTableColumn.COL_COD_COUNTRY);
 					dataInfo.codState = stmtResult.getString(DaoSowordiveDbTableColumn.COL_STATE_PROVINCE);
 					dataInfo.city = stmtResult.getString(DaoSowordiveDbTableColumn.COL_CITY);
-					dataInfo.totalFeeMCumulative = DaoFormatter.sqlToDouble(stmtResult, DaoSowordiveDbTableColumn.COL_TOTAL_FEE_CUMULATIVE);
 					dataInfo.totalFeeMonth = DaoFormatter.sqlToDouble(stmtResult, DaoSowordiveDbTableColumn.COL_TOTAL_FEE_MONTH);
-					dataInfo.totalFeeMMonthLastYear = DaoFormatter.sqlToDouble(stmtResult, DaoSowordiveDbTableColumn.COL_TOTAL_FEE_MONTH_LAST_YEAR);
-					dataInfo.totalFeeMVar = DaoFormatter.sqlToDouble(stmtResult, DaoSowordiveDbTableColumn.COL_TOTAL_FEE_VAR);
-					dataInfo.totalSaleCumulative = DaoFormatter.sqlToDouble(stmtResult, DaoSowordiveDbTableColumn.COL_TOTAL_SALE_CUMULATIVE);
+					dataInfo.totalFeeLastYear = DaoFormatter.sqlToDouble(stmtResult, DaoSowordiveDbTableColumn.COL_TOTAL_FEE_MONTH_LAST_YEAR);
+					dataInfo.totalFeeVar = DaoFormatter.sqlToDouble(stmtResult, DaoSowordiveDbTableColumn.COL_TOTAL_FEE_VAR);
 					dataInfo.totalSaleMonth = DaoFormatter.sqlToDouble(stmtResult, DaoSowordiveDbTableColumn.COL_TOTAL_SALE_MONTH);
-					dataInfo.totalSaleMonthLastYear = DaoFormatter.sqlToDouble(stmtResult, DaoSowordiveDbTableColumn.COL_TOTAL_SALE_MONTH_LAST_YEAR);
+					dataInfo.totalSaleLastYear = DaoFormatter.sqlToDouble(stmtResult, DaoSowordiveDbTableColumn.COL_TOTAL_SALE_MONTH_LAST_YEAR);
 					dataInfo.totalSaleVar = DaoFormatter.sqlToDouble(stmtResult, DaoSowordiveDbTableColumn.COL_TOTAL_SALE_VAR);
-					dataInfo.countOrderCumulative = DaoFormatter.sqlToInt(stmtResult, DaoSowordiveDbTableColumn.COL_COUNT_ORDER_TOTAL_CUMULATIVE);
 					dataInfo.countOrderMonth = DaoFormatter.sqlToInt(stmtResult, DaoSowordiveDbTableColumn.COL_COUNT_ORDER_TOTAL_MONTH);
-					dataInfo.countOrderMonthLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowordiveDbTableColumn.COL_COUNT_ORDER_TOTAL_MONTH_LAST_YEAR);
+					dataInfo.countOrderLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowordiveDbTableColumn.COL_COUNT_ORDER_TOTAL_MONTH_LAST_YEAR);
 					dataInfo.countOrderVar = DaoFormatter.sqlToDouble(stmtResult, DaoSowordiveDbTableColumn.COL_COUNT_ORDER_TOTAL_VAR);
 					
 					finalResult.add(dataInfo);
