@@ -10,11 +10,11 @@ public final class SowusSetterZerofy extends InfoSetterTemplate<SowusInfo> {
 		recordInfo.countUserInactiveMonth = 0;
 		recordInfo.countOrderMonth = 0;
 		recordInfo.userEngagementMonth = 0;	
-		recordInfo.countUserCreatedMonthLastYear = 0;
-		recordInfo.countUserActiveMonthLastYear = 0;
-		recordInfo.countUserInactiveMonthLastYear = 0;
-		recordInfo.userEngagementMonthLastYear = 0;	
-		recordInfo.countOrderMonthLastYear = 0;
+		recordInfo.countUserCreatedLastYear = 0;
+		recordInfo.countUserActiveLastYear = 0;
+		recordInfo.countUserInactiveLastYear = 0;
+		recordInfo.userEngagementLastYear = 0;	
+		recordInfo.countOrderLastYear = 0;
 		recordInfo.countUserCreatedVar = 0;
 		recordInfo.countUserActiveVar = 0;
 		recordInfo.countUserInactiveVar = 0;	
