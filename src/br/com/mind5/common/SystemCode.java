@@ -1709,5 +1709,13 @@ public final class SystemCode {
 	public static final int STAT_OWNER_ORDER_LIVE_MANDATORY_FIELD_EMPTY	= 16952;
 	
 	// Statistics - Owner-Order
-	public static final int STAT_OWNER_ORDER_MANDATORY_FIELD_EMPTY		= 17000;
+	public static final int STAT_OWNER_ORDER_MANDATORY_FIELD_EMPTY		= 17000;	
+	
+	// Statistics - Owner-Schedule - Live
+	public static final int STAT_OWNER_SCHED_LIVE_ALREADY_EXIST 		= 17050;
+	public static final int STAT_OWNER_SCHED_LIVE_NOT_FOUND 			= 17051;
+	public static final int STAT_OWNER_SCHED_LIVE_MANDATORY_FIELD_EMPTY	= 17052;
+	
+	// Statistics - Owner-Schedule
+	public static final int STAT_OWNER_SCHED_MANDATORY_FIELD_EMPTY		= 17100;
 }
