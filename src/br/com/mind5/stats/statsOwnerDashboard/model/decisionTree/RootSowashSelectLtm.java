@@ -11,6 +11,7 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerDashboard.info.SowashInfo;
+import br.com.mind5.stats.statsOwnerDashboard.model.action.LazySowashMergeSowal;
 import br.com.mind5.stats.statsOwnerDashboard.model.action.LazySowashMergeSowedul;
 import br.com.mind5.stats.statsOwnerDashboard.model.action.LazySowashMergeSoword;
 import br.com.mind5.stats.statsOwnerDashboard.model.action.LazySowashMergeSowus;
@@ -26,7 +27,7 @@ public final class RootSowashSelectLtm extends DeciTreeTemplateWrite<SowashInfo>
 	
 	
 	@Override protected ModelChecker<SowashInfo> buildCheckerHook(DeciTreeOption<SowashInfo> option) {
-		List<ModelChecker<SowashInfo>> queue = new ArrayList<>();		
+		List<ModelChecker<SowashInfo>> queue = new ArrayList<>();
 		ModelChecker<SowashInfo> checker;
 		
 		checker = new ModelCheckerDummy<>();
@@ -44,11 +45,13 @@ public final class RootSowashSelectLtm extends DeciTreeTemplateWrite<SowashInfo>
 		ActionLazy<SowashInfo> mergeSoword = new LazySowashMergeSoword(option.conn, option.schemaName);
 		ActionLazy<SowashInfo> mergeSowus = new LazySowashMergeSowus(option.conn, option.schemaName);
 		ActionLazy<SowashInfo> mergeSowedul = new LazySowashMergeSowedul(option.conn, option.schemaName);
+		ActionLazy<SowashInfo> mergeSowal = new LazySowashMergeSowal(option.conn, option.schemaName);
 		
 		
 		mergeSowot.addPostAction(mergeSoword);
 		mergeSoword.addPostAction(mergeSowus);
 		mergeSowus.addPostAction(mergeSowedul);
+		mergeSowedul.addPostAction(mergeSowal);
 		
 		actions.add(mergeSowot);
 		return actions;

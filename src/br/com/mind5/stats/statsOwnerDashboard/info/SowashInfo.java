@@ -6,6 +6,7 @@ import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrder.info.SowordInfo;
+import br.com.mind5.stats.statsOwnerSale.ownerSale.info.SowalInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.info.SowedulInfo;
 import br.com.mind5.stats.statsOwnerStore.ownerStore.info.SowotInfo;
 import br.com.mind5.stats.statsOwnerUser.ownerUser.info.SowusInfo;
@@ -16,6 +17,7 @@ public final class SowashInfo extends InfoRecord implements Cloneable {
 	public List<SowusInfo> sowuses;
 	public List<SowordInfo> sowordes;
 	public List<SowedulInfo> sowedules;
+	public List<SowalInfo> sowales;
 	public String username;
 	
 	
@@ -27,6 +29,7 @@ public final class SowashInfo extends InfoRecord implements Cloneable {
 		sowuses = DefaultValue.list();
 		sowordes = DefaultValue.list();
 		sowedules = DefaultValue.list();
+		sowales = DefaultValue.list();
 	}
 	
 	
@@ -50,6 +53,7 @@ public final class SowashInfo extends InfoRecord implements Cloneable {
 		deepCopy.sowuses = CloneUtil.cloneRecords(sowuses, this.getClass());
 		deepCopy.sowordes = CloneUtil.cloneRecords(sowordes, this.getClass());
 		deepCopy.sowedules = CloneUtil.cloneRecords(sowedules, this.getClass());
+		deepCopy.sowales = CloneUtil.cloneRecords(sowales, this.getClass());
 		
 		return deepCopy;
 	}
@@ -73,6 +77,9 @@ public final class SowashInfo extends InfoRecord implements Cloneable {
 		if (sowedules != null)
 			result = result * 31 + sowedules.hashCode();
 		
+		if (sowales != null)
+			result = result * 31 + sowales.hashCode();
+		
 		return result;
 	}
 	
@@ -87,11 +94,12 @@ public final class SowashInfo extends InfoRecord implements Cloneable {
 			return false;
 		
 		
-		SowashInfo obj = (SowashInfo) o;		
+		SowashInfo obj = (SowashInfo) o;
 		return (codOwner == obj.codOwner && 
 				super.isListEqual(sowotes  , obj.sowotes  ) &&
 				super.isListEqual(sowuses  , obj.sowuses  ) &&
 				super.isListEqual(sowordes , obj.sowordes ) &&
-				super.isListEqual(sowedules, obj.sowedules));
+				super.isListEqual(sowedules, obj.sowedules) &&
+				super.isListEqual(sowales  , obj.sowales  ));
 	}
 }

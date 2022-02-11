@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrder.info.SowordInfo;
+import br.com.mind5.stats.statsOwnerSale.ownerSale.info.SowalInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.info.SowedulInfo;
 import br.com.mind5.stats.statsOwnerStore.ownerStore.info.SowotInfo;
 import br.com.mind5.stats.statsOwnerUser.ownerUser.info.SowusInfo;
@@ -16,7 +17,20 @@ public final class SowashMerger {
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SowashVisiMergeSowedul());
-		InfoMerger<SowashInfo, SowedulInfo> merger = builder.build();		
+		InfoMerger<SowashInfo, SowedulInfo> merger = builder.build();
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<SowashInfo> mergeWithSowal(List<SowashInfo> baseInfos, List<SowalInfo> selectedInfos) {
+		InfoMergerBuilder<SowashInfo, SowalInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SowashVisiMergeSowal());
+		InfoMerger<SowashInfo, SowalInfo> merger = builder.build();
 	
 		return merger.merge();
 	}
@@ -29,7 +43,7 @@ public final class SowashMerger {
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SowashVisiMergeSowot());
-		InfoMerger<SowashInfo, SowotInfo> merger = builder.build();		
+		InfoMerger<SowashInfo, SowotInfo> merger = builder.build();
 	
 		return merger.merge();
 	}
@@ -42,7 +56,7 @@ public final class SowashMerger {
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SowashVisiMergeSowus());
-		InfoMerger<SowashInfo, SowusInfo> merger = builder.build();		
+		InfoMerger<SowashInfo, SowusInfo> merger = builder.build();
 	
 		return merger.merge();
 	}
@@ -55,7 +69,7 @@ public final class SowashMerger {
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SowashVisiMergeSoword());
-		InfoMerger<SowashInfo, SowordInfo> merger = builder.build();		
+		InfoMerger<SowashInfo, SowordInfo> merger = builder.build();
 	
 		return merger.merge();
 	}
