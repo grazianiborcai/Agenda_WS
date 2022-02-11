@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.info.SowaliveInfo;
 
-public final class LazySowordiveMergeMonth extends ActionLazyTemplate<SowaliveInfo, SowaliveInfo> {
+public final class LazySowaliveMergeState extends ActionLazyTemplate<SowaliveInfo, SowaliveInfo> {
 
-	public LazySowordiveMergeMonth(Connection conn, String schemaName) {
+	public LazySowaliveMergeState(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazySowordiveMergeMonth extends ActionLazyTemplate<SowaliveIn
 	
 	
 	@Override protected ActionStd<SowaliveInfo> getInstanceOfActionHook(DeciTreeOption<SowaliveInfo> option) {
-		return new StdSowordiveMergeMonth(option);
+		return new StdSowaliveMergeState(option);
 	}
 	
 	

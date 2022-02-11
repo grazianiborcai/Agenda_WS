@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.info.SowaliveInfo;
 
-public final class LazySowordiveEnforceHasData extends ActionLazyTemplate<SowaliveInfo, SowaliveInfo> {
+public final class LazySowaliveEnforceLChanged extends ActionLazyTemplate<SowaliveInfo, SowaliveInfo> {
 
-	public LazySowordiveEnforceHasData(Connection conn, String schemaName) {
+	public LazySowaliveEnforceLChanged(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazySowordiveEnforceHasData extends ActionLazyTemplate<Sowali
 	
 	
 	@Override protected ActionStd<SowaliveInfo> getInstanceOfActionHook(DeciTreeOption<SowaliveInfo> option) {
-		return new StdSowordiveEnforceHasData(option);
+		return new StdSowaliveEnforceLChanged(option);
 	}
 	
 	

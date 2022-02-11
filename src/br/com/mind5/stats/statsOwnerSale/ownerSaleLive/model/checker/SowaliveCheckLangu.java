@@ -7,9 +7,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.info.SowaliveInfo;
 
-public final class SowordiveCheckLangu extends ModelCheckerTemplateForward<SowaliveInfo, LanguInfo> {
+public final class SowaliveCheckLangu extends ModelCheckerTemplateForward<SowaliveInfo, LanguInfo> {
 	
-	public SowordiveCheckLangu(ModelCheckerOption option) {
+	public SowaliveCheckLangu(ModelCheckerOption option) {
 		super(option);
 	}
 

@@ -7,9 +7,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.info.SowaliveInfo;
 
-public final class SowordiveCheckRead extends ModelCheckerTemplateSimple<SowaliveInfo> {
+public final class SowaliveCheckRead extends ModelCheckerTemplateSimple<SowaliveInfo> {
 
-	public SowordiveCheckRead(ModelCheckerOption option) {
+	public SowaliveCheckRead(ModelCheckerOption option) {
 		super(option);
 	}
 	

@@ -7,9 +7,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.info.SowaliveInfo;
 
-public final class SowordiveCheckOwner extends ModelCheckerTemplateForward<SowaliveInfo, OwnerInfo> {
+public final class SowaliveCheckOwner extends ModelCheckerTemplateForward<SowaliveInfo, OwnerInfo> {
 	
-	public SowordiveCheckOwner(ModelCheckerOption option) {
+	public SowaliveCheckOwner(ModelCheckerOption option) {
 		super(option);
 	}
 

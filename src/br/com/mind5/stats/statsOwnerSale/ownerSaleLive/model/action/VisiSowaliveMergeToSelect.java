@@ -8,16 +8,16 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.info.SowaliveInfo;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.info.SowaliveMerger;
 
-final class VisiSowordiveMergeToSelect extends ActionVisitorTemplateMerge<SowaliveInfo, SowaliveInfo> {
+final class VisiSowaliveMergeToSelect extends ActionVisitorTemplateMerge<SowaliveInfo, SowaliveInfo> {
 	
-	public VisiSowordiveMergeToSelect(DeciTreeOption<SowaliveInfo> option) {
+	public VisiSowaliveMergeToSelect(DeciTreeOption<SowaliveInfo> option) {
 		super(option, SowaliveInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends ActionStd<SowaliveInfo>> getActionClassHook() {
-		return StdSowordiveDaoSelect.class;
+		return StdSowaliveDaoSelect.class;
 	}
 	
 	

@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.info.SowaliveInfo;
 
-public final class StdSowordiveEnforceHasData extends ActionStdTemplate<SowaliveInfo> {
+public final class StdSowaliveMergeState extends ActionStdTemplate<SowaliveInfo> {
 
-	public StdSowordiveEnforceHasData(DeciTreeOption<SowaliveInfo> option) {
+	public StdSowaliveMergeState(DeciTreeOption<SowaliveInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<SowaliveInfo> buildVisitorHook(DeciTreeOption<SowaliveInfo> option) {
-		return new VisiSowordiveEnforceHasData(option);
+		return new VisiSowaliveMergeState(option);
 	}
 }

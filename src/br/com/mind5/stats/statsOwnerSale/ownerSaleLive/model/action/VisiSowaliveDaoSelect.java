@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.dao.DaoSowaliveSelect;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.info.SowaliveInfo;
 
-final class VisiSowordiveDaoSelect extends ActionVisitorTemplateStmt<SowaliveInfo> {
+final class VisiSowaliveDaoSelect extends ActionVisitorTemplateStmt<SowaliveInfo> {
 
-	public VisiSowordiveDaoSelect(DeciTreeOption<SowaliveInfo> option) {
+	public VisiSowaliveDaoSelect(DeciTreeOption<SowaliveInfo> option) {
 		super(option);
 	}
 	

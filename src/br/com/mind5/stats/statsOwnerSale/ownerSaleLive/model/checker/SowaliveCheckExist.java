@@ -6,18 +6,18 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.info.SowaliveInfo;
-import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.action.StdSowordiveDaoSelect;
+import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.action.StdSowaliveDaoSelect;
 
-public final class SowordiveCheckExist extends ModelCheckerTemplateAction<SowaliveInfo, SowaliveInfo> {
+public final class SowaliveCheckExist extends ModelCheckerTemplateAction<SowaliveInfo, SowaliveInfo> {
 	
-	public SowordiveCheckExist(ModelCheckerOption option) {
+	public SowaliveCheckExist(ModelCheckerOption option) {
 		super(option, SowaliveInfo.class);
 	}
 	
 	
 	
 	@Override protected ActionStd<SowaliveInfo> buildActionHook(DeciTreeOption<SowaliveInfo> option) {
-		ActionStd<SowaliveInfo> select = new StdSowordiveDaoSelect(option);
+		ActionStd<SowaliveInfo> select = new StdSowaliveDaoSelect(option);
 		return select;
 	}
 	
