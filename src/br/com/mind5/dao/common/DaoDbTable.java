@@ -146,6 +146,7 @@ public final class DaoDbTable {
 	public static final String STAT_USER_STORE_AGGR_TABLE = "stat_user_store";
 	public static final String STAT_USER_STORE_LIVE_TABLE = "vw_stat_user_store";	
 	public static final String STAT_USER_STORE_STGN_TABLE = "stat_user_store_staging";
+	public static final String STAT_SALES_DASH_LIVE_TABLE = "vw_stats_sales_dash";	
 	public static final String STAT_STORE_SCHEDULE_DASH_LIVE_TABLE = "vw_stats_store_schedule_dash";	
 	public static final String STAT_STORE_ORDER_DASH_LIVE_TABLE = "vw_stats_store_order_dash";
 	public static final String STAT_STORE_ACCOUNT_DASH_LIVE_TABLE = "vw_stats_store_account_dash";

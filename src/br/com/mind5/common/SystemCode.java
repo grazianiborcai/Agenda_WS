@@ -1718,4 +1718,12 @@ public final class SystemCode {
 	
 	// Statistics - Owner-Schedule
 	public static final int STAT_OWNER_SCHED_MANDATORY_FIELD_EMPTY		= 17100;
+	
+	// Statistics - Owner-Sale - Live
+	public static final int STAT_OWNER_SALE_LIVE_ALREADY_EXIST 			= 17150;
+	public static final int STAT_OWNER_SALE_LIVE_NOT_FOUND 				= 17151;
+	public static final int STAT_OWNER_SALE_LIVE_MANDATORY_FIELD_EMPTY	= 17152;
+	
+	// Statistics - Owner-Sale
+	public static final int STAT_OWNER_SALE_MANDATORY_FIELD_EMPTY		= 17200;	
 }
