@@ -11,14 +11,12 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerSale.ownerSale.info.SowalInfo;
-import br.com.mind5.stats.statsOwnerSale.ownerSale.model.action.LazySowalNodeSelectLtm;
 import br.com.mind5.stats.statsOwnerSale.ownerSale.model.action.LazySowalNodeZerofy;
-import br.com.mind5.stats.statsOwnerSale.ownerSale.model.action.StdSowalMergeCalonthLtm;
 
 
-public final class RootSowalSelectLtm extends DeciTreeTemplateWrite<SowalInfo> {
+public final class RootSowalSelect extends DeciTreeTemplateWrite<SowalInfo> {
 	
-	public RootSowalSelectLtm(DeciTreeOption<SowalInfo> option) {
+	public RootSowalSelect(DeciTreeOption<SowalInfo> option) {
 		super(option);
 	}
 	
@@ -39,14 +37,12 @@ public final class RootSowalSelectLtm extends DeciTreeTemplateWrite<SowalInfo> {
 	@Override protected List<ActionStd<SowalInfo>> buildActionsOnPassedHook(DeciTreeOption<SowalInfo> option) {
 		List<ActionStd<SowalInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowalInfo> mergeCalonthLtm = new StdSowalMergeCalonthLtm(option);
-		ActionLazy<SowalInfo> nodeL1 = new LazySowalNodeSelectLtm(option.conn, option.schemaName);
+		ActionStd<SowalInfo> nodeL1 = new NodeSowalSelect(option).toAction();
 		ActionLazy<SowalInfo> zerofy = new LazySowalNodeZerofy(option.conn, option.schemaName);		
 		
-		mergeCalonthLtm.addPostAction(nodeL1);
 		nodeL1.addPostAction(zerofy);
 		
-		actions.add(mergeCalonthLtm);
+		actions.add(nodeL1);
 		return actions;
 	}
 }

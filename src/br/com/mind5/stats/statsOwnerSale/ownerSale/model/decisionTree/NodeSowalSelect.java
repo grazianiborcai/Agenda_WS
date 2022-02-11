@@ -15,9 +15,9 @@ import br.com.mind5.stats.statsOwnerSale.ownerSale.model.action.StdSowalSuccess;
 import br.com.mind5.stats.statsOwnerSale.ownerSale.model.checker.SowalCheckSowordive;
 
 
-public final class NodeSowalSelectLtm extends DeciTreeTemplateWrite<SowalInfo> {
+public final class NodeSowalSelect extends DeciTreeTemplateWrite<SowalInfo> {
 	
-	public NodeSowalSelectLtm(DeciTreeOption<SowalInfo> option) {
+	public NodeSowalSelect(DeciTreeOption<SowalInfo> option) {
 		super(option);
 	}
 	

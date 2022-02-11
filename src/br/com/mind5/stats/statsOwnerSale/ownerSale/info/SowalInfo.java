@@ -8,10 +8,6 @@ import br.com.mind5.info.InfoRecord;
 
 public final class SowalInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
-	public String calmonth;
-	public int year;
-	public int month;
-	public String txtMonth;
 	public String codCountry;
 	public String txtCountry;
 	public String codState;
@@ -48,8 +44,6 @@ public final class SowalInfo extends InfoRecord implements Cloneable {
 		super();
 		
 		codOwner = DefaultValue.number();
-		year = DefaultValue.number();
-		month = DefaultValue.number();
 		totalFee12m = DefaultValue.number();
 		totalFee30d = DefaultValue.number();
 		totalFeeCancelled12m = DefaultValue.number();
@@ -101,9 +95,6 @@ public final class SowalInfo extends InfoRecord implements Cloneable {
 		
 		result = result * 31 + (int) (codOwner ^ (codOwner >>> 32));
 		
-		if (calmonth != null)
-			result = result * 31 + calmonth.hashCode();
-		
 		if (codCountry != null)
 			result = result * 31 + codCountry.hashCode();
 		
@@ -128,8 +119,7 @@ public final class SowalInfo extends InfoRecord implements Cloneable {
 		
 		
 		SowalInfo obj = (SowalInfo) o;		
-		return (codOwner == obj.codOwner && 
-				super.isStringEqual(calmonth  , obj.calmonth) 	&&
+		return (codOwner == obj.codOwner &&
 				super.isStringEqual(codCountry, obj.codCountry) &&
 				super.isStringEqual(codState  , obj.codState) 	&&
 				super.isStringEqual(city      , obj.city) );
