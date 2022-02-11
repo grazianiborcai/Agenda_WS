@@ -13,7 +13,6 @@ import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.info.SowaliveInfo;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.action.LazySowaliveEnforceHasData;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.action.LazySowaliveEnforceLChanged;
-import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.action.LazySowaliveMergeMonth;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.action.LazySowaliveMergeState;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.action.StdSowaliveMergeToSelect;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.checker.SowaliveCheckLangu;
@@ -66,13 +65,11 @@ public final class RootSowaliveSelect extends DeciTreeTemplateWrite<SowaliveInfo
 		ActionStd<SowaliveInfo> select = new StdSowaliveMergeToSelect(option);
 		ActionLazy<SowaliveInfo> enforceLChanged = new LazySowaliveEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<SowaliveInfo> enforceHasData = new LazySowaliveEnforceHasData(option.conn, option.schemaName);
-		ActionLazy<SowaliveInfo> mergeState = new LazySowaliveMergeState(option.conn, option.schemaName);
-		ActionLazy<SowaliveInfo> mergeMonth = new LazySowaliveMergeMonth(option.conn, option.schemaName);		
+		ActionLazy<SowaliveInfo> mergeState = new LazySowaliveMergeState(option.conn, option.schemaName);		
 		
 		select.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceHasData);
 		enforceHasData.addPostAction(mergeState);
-		mergeState.addPostAction(mergeMonth);
 		
 		actions.add(select);
 		return actions;

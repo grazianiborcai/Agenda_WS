@@ -30,10 +30,6 @@ public final class DaoSowaliveWhere implements DaoStmtWhere {
 				case DaoSowaliveDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
-					
-				case DaoSowaliveDbTableColumn.COL_CALMONTH :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.calmonth);
-					break;
 			}
 		}		
 		

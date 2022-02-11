@@ -17,7 +17,6 @@ public final class SowaliveCheckRead extends ModelCheckerTemplateSimple<Sowalive
 	
 	@Override protected boolean checkHook(SowaliveInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
-			recordInfo.calmonth 	== null ||
 			recordInfo.username 	== null ||
 			recordInfo.codLanguage 	== null		)	
 			

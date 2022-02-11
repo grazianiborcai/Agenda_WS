@@ -62,9 +62,6 @@ public final class DaoSowaliveSelectSingle extends DaoStmtTemplate<SowaliveInfo>
 					SowaliveInfo dataInfo = new SowaliveInfo();
 					
 					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSowaliveDbTableColumn.COL_COD_OWNER);
-					dataInfo.calmonth = stmtResult.getString(DaoSowaliveDbTableColumn.COL_CALMONTH);
-					dataInfo.year = DaoFormatter.sqlToInt(stmtResult, DaoSowaliveDbTableColumn.COL_YEAR);
-					dataInfo.month = DaoFormatter.sqlToInt(stmtResult, DaoSowaliveDbTableColumn.COL_MONTH);
 					dataInfo.codCountry = stmtResult.getString(DaoSowaliveDbTableColumn.COL_COD_COUNTRY);
 					dataInfo.codState = stmtResult.getString(DaoSowaliveDbTableColumn.COL_STATE_PROVINCE);
 					dataInfo.city = stmtResult.getString(DaoSowaliveDbTableColumn.COL_CITY);					

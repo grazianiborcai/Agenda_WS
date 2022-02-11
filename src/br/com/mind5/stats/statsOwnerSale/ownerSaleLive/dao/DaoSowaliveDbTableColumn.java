@@ -10,11 +10,9 @@ import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class DaoSowaliveDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_CALMONTH = DaoDbField.COL_CALMONTH;
 	public static final String COL_CITY = DaoDbField.COL_CITY;
 	public static final String COL_COD_COUNTRY = DaoDbField.COL_COD_COUNTRY;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
-	public static final String COL_MONTH = DaoDbField.COL_MONTH;
 	public static final String COL_STATE_PROVINCE = DaoDbField.COL_STATE_PROVINCE;	
 	public static final String COL_TOTAL_FEE_12M = DaoDbField.COL_TOTAL_FEE_12M;
 	public static final String COL_TOTAL_FEE_30D = DaoDbField.COL_TOTAL_FEE_30D;
@@ -38,10 +36,6 @@ public final class DaoSowaliveDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_TOTAL_SALE_PLACED_30D = DaoDbField.COL_TOTAL_SALE_PLACED_30D;
 	public static final String COL_TOTAL_SALE_WAITING_12M = DaoDbField.COL_TOTAL_SALE_WAITING_12M;
 	public static final String COL_TOTAL_SALE_WAITING_30D = DaoDbField.COL_TOTAL_SALE_WAITING_30D;
-
-
-	public static final String COL_YEAR = DaoDbField.COL_YEAR;
-
 	
 	
 	
@@ -59,30 +53,6 @@ public final class DaoSowaliveDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_OWNER;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_CALMONTH;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_YEAR;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_MONTH;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
