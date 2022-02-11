@@ -1,0 +1,36 @@
+package br.com.mind5.stats.statsOwnerSale.ownerSale.model.action;
+
+import java.util.List;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
+import br.com.mind5.stats.statsOwnerSale.ownerSale.info.SowalInfo;
+import br.com.mind5.stats.statsOwnerSale.ownerSale.info.SowalMerger;
+import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.info.SowaliveInfo;
+import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.decisionTree.RootSowaliveSelect;
+
+final class VisiSowalMergeSowalive extends ActionVisitorTemplateMerge<SowalInfo, SowaliveInfo> {
+	
+	public VisiSowalMergeSowalive(DeciTreeOption<SowalInfo> option) {
+		super(option, SowaliveInfo.class);
+	}
+	
+	
+	
+	@Override protected Class<? extends DeciTree<SowaliveInfo>> getTreeClassHook() {
+		return RootSowaliveSelect.class;
+	}
+	
+	
+	
+	@Override protected List<SowalInfo> mergeHook(List<SowalInfo> baseInfos, List<SowaliveInfo> selectedInfos) {	
+		return SowalMerger.mergeWithSowalive(baseInfos, selectedInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return super.DONT_MERGE_WHEN_EMPTY;
+	}
+}
