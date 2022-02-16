@@ -11,11 +11,14 @@ import javax.ws.rs.core.Response;
 import br.com.mind5.model.Model;
 import br.com.mind5.stats.statsOwnerDashboard.info.SowashInfo;
 import br.com.mind5.stats.statsOwnerDashboard.model.SowashModelSelectLtm;
+import br.com.mind5.stats.statsStoreDashboard.info.StorashInfo;
+import br.com.mind5.stats.statsStoreDashboard.model.StorashModelSelectAuth;
 
 @Path("/Stats")
 public class StatsResource {
 
 	private static final String SELECT_OWNER_DASHBOARD = "/selectOwnerDashboard";
+	private static final String SELECT_STORE_DASHBOARD = "/selectStoreDashboard";
 
 	
 	
@@ -32,6 +35,32 @@ public class StatsResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		Model model = new SowashModelSelectLtm(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_STORE_DASHBOARD)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectStorash(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner,
+								  @HeaderParam("TOKEN_USERNAME") String username,
+								  @HeaderParam("codStore")    	 @DefaultValue("-1") long codStore,
+								  @HeaderParam("calmonth") 		 String calmonth,
+								  @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage) {
+
+		StorashInfo recordInfo = new StorashInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.calmonth = calmonth;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;
+		
+		Model model = new StorashModelSelectAuth(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();

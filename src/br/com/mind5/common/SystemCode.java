@@ -1735,4 +1735,7 @@ public final class SystemCode {
 	
 	// Statistics - Store-Schedule-Day
 	public static final int STAT_STR_SCH_DAY_MANDATORY_FIELD_EMPTY		= 17300;
+	
+	// Statistics - Store-Dashboard
+	public static final int STAT_STORE_DASH_MANDATORY_FIELD_EMPTY		= 17350;
 }

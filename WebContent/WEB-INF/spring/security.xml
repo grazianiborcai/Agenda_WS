@@ -188,6 +188,7 @@
         <security:intercept-url pattern="/**/Pet/selectPet" 						access="hasAuthority('PET_READ')"					/>
         <security:intercept-url pattern="/**/Pet/searchPet" 						access="hasAuthority('PET_READ')" 					/>
         <security:intercept-url pattern="/**/Stats/selectOwnerDashboard" 			access="hasAuthority('OWNER_READ')" 				/>
+        <security:intercept-url pattern="/**/Stats/selectStoreDashboard" 			access="hasAuthority('OWNER_READ')" 				/>
         <security:intercept-url pattern="/**" 										access="denyAll" 									/>
         <security:http-basic />
         <csrf disabled="true"/>
