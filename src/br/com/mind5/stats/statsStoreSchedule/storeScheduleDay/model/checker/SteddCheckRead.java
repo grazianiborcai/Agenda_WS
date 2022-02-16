@@ -7,9 +7,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
 
-public final class SteddCheckReadMonth extends ModelCheckerTemplateSimple<SteddInfo> {
+public final class SteddCheckRead extends ModelCheckerTemplateSimple<SteddInfo> {
 
-	public SteddCheckReadMonth(ModelCheckerOption option) {
+	public SteddCheckRead(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -18,7 +18,7 @@ public final class SteddCheckReadMonth extends ModelCheckerTemplateSimple<SteddI
 	@Override protected boolean checkHook(SteddInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
 			recordInfo.codStore 	<= 0 	||
-			recordInfo.calmonth 	== null	||
+			recordInfo.date 		== null	||
 			recordInfo.codLanguage 	== null	||
 			recordInfo.username 	== null		)
 			

@@ -10,14 +10,13 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.StdSteddMergeSteddive;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.StdSteddSuccess;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.checker.SteddCheckSteddive;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.StdSteddMergeSteddagr;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.checker.SteddCheckSteddagr;
 
 
-public final class NodeSteddSelectMonth extends DeciTreeTemplateWrite<SteddInfo> {
+public final class NodeSteddSelectL1 extends DeciTreeTemplateWrite<SteddInfo> {
 	
-	public NodeSteddSelectMonth(DeciTreeOption<SteddInfo> option) {
+	public NodeSteddSelectL1(DeciTreeOption<SteddInfo> option) {
 		super(option);
 	}
 	
@@ -32,7 +31,7 @@ public final class NodeSteddSelectMonth extends DeciTreeTemplateWrite<SteddInfo>
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new SteddCheckSteddive(checkerOption);
+		checker = new SteddCheckSteddagr(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -43,9 +42,9 @@ public final class NodeSteddSelectMonth extends DeciTreeTemplateWrite<SteddInfo>
 	@Override protected List<ActionStd<SteddInfo>> buildActionsOnPassedHook(DeciTreeOption<SteddInfo> option) {
 		List<ActionStd<SteddInfo>> actions = new ArrayList<>();
 
-		ActionStd<SteddInfo> mergeSteddive = new StdSteddMergeSteddive(option);
+		ActionStd<SteddInfo> mergeSteddagr = new StdSteddMergeSteddagr(option);
 		
-		actions.add(mergeSteddive);
+		actions.add(mergeSteddagr);
 		return actions;
 	}
 	
@@ -54,9 +53,9 @@ public final class NodeSteddSelectMonth extends DeciTreeTemplateWrite<SteddInfo>
 	@Override protected List<ActionStd<SteddInfo>> buildActionsOnFailedHook(DeciTreeOption<SteddInfo> option) {
 		List<ActionStd<SteddInfo>> actions = new ArrayList<>();
 
-		ActionStd<SteddInfo> success = new StdSteddSuccess(option);
+		ActionStd<SteddInfo> nodeL2 = new NodeSteddSelectL2(option).toAction();
 		
-		actions.add(success);
+		actions.add(nodeL2);
 		return actions;
 	}
 }

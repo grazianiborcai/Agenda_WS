@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.info.SteddiveInfo;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.info.SteddagrInfo;
 
-final class SteddVisiMergeSteddive extends InfoMergerVisitorTemplate<SteddInfo, SteddiveInfo> {
+final class SteddVisiMergeSteddagr extends InfoMergerVisitorTemplate<SteddInfo, SteddagrInfo> {
 
-	@Override public boolean shouldMerge(SteddInfo baseInfo, SteddiveInfo selectedInfo) {
+	@Override public boolean shouldMerge(SteddInfo baseInfo, SteddagrInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner &&
 				baseInfo.codStore == selectedInfo.codStore &&
 				baseInfo.date.isEqual(selectedInfo.date));
@@ -16,7 +16,7 @@ final class SteddVisiMergeSteddive extends InfoMergerVisitorTemplate<SteddInfo, 
 	
 	
 	
-	@Override public List<SteddInfo> merge(SteddInfo baseInfo, SteddiveInfo selectedInfo) {
+	@Override public List<SteddInfo> merge(SteddInfo baseInfo, SteddagrInfo selectedInfo) {
 		List<SteddInfo> results = new ArrayList<>();
 		
 		SteddInfo result = SteddInfo.copyFrom(selectedInfo);

@@ -3,6 +3,7 @@ package br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -10,14 +11,15 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.LazySteddSteddagrInsert;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.StdSteddEnforceZerofy;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.StdSteddSuccess;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.checker.SteddCheckHasData;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.StdSteddMergeSteddive;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.checker.SteddCheckSteddive;
 
 
-public final class NodeSteddZerofy extends DeciTreeTemplateWrite<SteddInfo> {
+public final class NodeSteddSelectL2 extends DeciTreeTemplateWrite<SteddInfo> {
 	
-	public NodeSteddZerofy(DeciTreeOption<SteddInfo> option) {
+	public NodeSteddSelectL2(DeciTreeOption<SteddInfo> option) {
 		super(option);
 	}
 	
@@ -31,8 +33,8 @@ public final class NodeSteddZerofy extends DeciTreeTemplateWrite<SteddInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new SteddCheckHasData(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new SteddCheckSteddive(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -43,9 +45,13 @@ public final class NodeSteddZerofy extends DeciTreeTemplateWrite<SteddInfo> {
 	@Override protected List<ActionStd<SteddInfo>> buildActionsOnPassedHook(DeciTreeOption<SteddInfo> option) {
 		List<ActionStd<SteddInfo>> actions = new ArrayList<>();
 
-		ActionStd<SteddInfo> success = new StdSteddSuccess(option);
+		ActionStd<SteddInfo> mergeSteddive = new StdSteddMergeSteddive(option);
+		ActionLazy<SteddInfo> insertSteddagr = new LazySteddSteddagrInsert(option.conn, option.schemaName);
 		
-		actions.add(success);
+		mergeSteddive.addPostAction(insertSteddagr);
+		
+		
+		actions.add(mergeSteddive);
 		return actions;
 	}
 	
@@ -55,6 +61,9 @@ public final class NodeSteddZerofy extends DeciTreeTemplateWrite<SteddInfo> {
 		List<ActionStd<SteddInfo>> actions = new ArrayList<>();
 
 		ActionStd<SteddInfo> zerofy = new StdSteddEnforceZerofy(option);
+		ActionLazy<SteddInfo> insertSteddagr = new LazySteddSteddagrInsert(option.conn, option.schemaName);
+		
+		zerofy.addPostAction(insertSteddagr);
 		
 		actions.add(zerofy);
 		return actions;

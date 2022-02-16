@@ -8,11 +8,11 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.decisionTree.NodeSteddZerofy;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.decisionTree.RootSteddSelect;
 
-public final class LazySteddNodeZerofy extends ActionLazyTemplate<SteddInfo, SteddInfo> {
+public final class LazySteddRootSelect extends ActionLazyTemplate<SteddInfo, SteddInfo> {
 
-	public LazySteddNodeZerofy(Connection conn, String schemaName) {
+	public LazySteddRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazySteddNodeZerofy extends ActionLazyTemplate<SteddInfo, Ste
 	
 	
 	@Override protected ActionStd<SteddInfo> getInstanceOfActionHook(DeciTreeOption<SteddInfo> option) {
-		return new NodeSteddZerofy(option).toAction();
+		return new RootSteddSelect(option).toAction();
 	}
 	
 	

@@ -8,11 +8,10 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.decisionTree.NodeSteddSelectMonth;
 
-public final class LazySteddNodeSelectMonth extends ActionLazyTemplate<SteddInfo, SteddInfo> {
+public final class LazySteddSteddagrInsert extends ActionLazyTemplate<SteddInfo, SteddInfo> {
 
-	public LazySteddNodeSelectMonth(Connection conn, String schemaName) {
+	public LazySteddSteddagrInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +24,7 @@ public final class LazySteddNodeSelectMonth extends ActionLazyTemplate<SteddInfo
 	
 	
 	@Override protected ActionStd<SteddInfo> getInstanceOfActionHook(DeciTreeOption<SteddInfo> option) {
-		return new NodeSteddSelectMonth(option).toAction();
+		return new StdSteddSteddagrInsert(option);
 	}
 	
 	

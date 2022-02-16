@@ -3,7 +3,6 @@ package br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -11,15 +10,12 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.LazySteddMergeCalateMonth;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.LazySteddRootSelect;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.StdSteddEnforceYearMonth;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.checker.SteddCheckReadMonth;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.checker.SteddCheckRead;
 
 
-public final class RootSteddSelectMonth extends DeciTreeTemplateWrite<SteddInfo> {
+public final class RootSteddSelect extends DeciTreeTemplateWrite<SteddInfo> {
 	
-	public RootSteddSelectMonth(DeciTreeOption<SteddInfo> option) {
+	public RootSteddSelect(DeciTreeOption<SteddInfo> option) {
 		super(option);
 	}
 	
@@ -34,7 +30,7 @@ public final class RootSteddSelectMonth extends DeciTreeTemplateWrite<SteddInfo>
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new SteddCheckReadMonth(checkerOption);
+		checker = new SteddCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -45,15 +41,9 @@ public final class RootSteddSelectMonth extends DeciTreeTemplateWrite<SteddInfo>
 	@Override protected List<ActionStd<SteddInfo>> buildActionsOnPassedHook(DeciTreeOption<SteddInfo> option) {
 		List<ActionStd<SteddInfo>> actions = new ArrayList<>();
 
-
-		ActionStd<SteddInfo> enforceYearMonth = new StdSteddEnforceYearMonth(option);
-		ActionLazy<SteddInfo> mergeCalateMonth = new LazySteddMergeCalateMonth(option.conn, option.schemaName);
-		ActionLazy<SteddInfo> select = new LazySteddRootSelect(option.conn, option.schemaName);	
+		ActionStd<SteddInfo> nodeL1 = new NodeSteddSelectL1(option).toAction();
 		
-		enforceYearMonth.addPostAction(mergeCalateMonth);
-		mergeCalateMonth.addPostAction(select);
-		
-		actions.add(enforceYearMonth);
+		actions.add(nodeL1);
 		return actions;
 	}
 }
