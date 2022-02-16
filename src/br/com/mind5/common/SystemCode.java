@@ -1732,4 +1732,7 @@ public final class SystemCode {
 	public static final int STAT_STR_SCH_DAY_LIVE_ALREADY_EXIST 		= 17250;
 	public static final int STAT_STR_SCH_DAY_LIVE_NOT_FOUND 			= 17251;
 	public static final int STAT_STR_SCH_DAY_LIVE_MANDATORY_FIELD_EMPTY	= 17252;
+	
+	// Statistics - Store-Schedule-Day
+	public static final int STAT_STR_SCH_DAY_MANDATORY_FIELD_EMPTY		= 17300;
 }
