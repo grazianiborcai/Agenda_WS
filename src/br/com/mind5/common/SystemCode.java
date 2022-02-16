@@ -1738,4 +1738,9 @@ public final class SystemCode {
 	
 	// Statistics - Store-Dashboard
 	public static final int STAT_STORE_DASH_MANDATORY_FIELD_EMPTY		= 17350;
+	
+	// Statistics - Store-Schedule-Day - Aggr
+	public static final int STAT_STR_SCH_DAY_AGGR_ALREADY_EXIST 		= 17400;
+	public static final int STAT_STR_SCH_DAY_AGGR_NOT_FOUND 			= 17401;
+	public static final int STAT_STR_SCH_DAY_AGGR_MANDATORY_FIELD_EMPTY	= 17402;
 }
