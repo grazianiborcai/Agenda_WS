@@ -19,9 +19,13 @@ public final class DaoDbField {
 	public static final String COL_COUNT_ORDER_TOTAL_MONTH_LAST_YEAR = "count_order_total_month_last_year";
 	public static final String COL_COUNT_ORDER_TOTAL_VAR = "count_order_total_var";
 	public static final String COL_COUNT_ORDER_TOTAL_MONTH = "count_order_total_month";
+	public static final String COL_COUNT_SCHEDULE_TOTAL_DAY = "count_schedule_total_day";
 	public static final String COL_COUNT_SCHEDULE_TOTAL_MONTH = "count_schedule_total_month";
+	public static final String COL_COUNT_SCHEDULE_CANCELLED_DAY = "count_schedule_canceled_day";
 	public static final String COL_COUNT_SCHEDULE_CANCELLED_MONTH = "count_schedule_canceled_month";
+	public static final String COL_COUNT_SCHEDULE_WAITING_DAY = "count_schedule_waiting_day";
 	public static final String COL_COUNT_SCHEDULE_WAITING_MONTH = "count_schedule_waiting_month";
+	public static final String COL_COUNT_SCHEDULE_CONFIRMED_DAY = "count_schedule_confirmed_day";
 	public static final String COL_COUNT_SCHEDULE_CONFIRMED_MONTH = "count_schedule_confirmed_month";
 	public static final String COL_COUNT_SCHEDULE_TOTAL_MONTH_LAST_YEAR = "count_schedule_total_month_last_year";
 	public static final String COL_COUNT_SCHEDULE_CANCELLED_MONTH_LAST_YEAR = "count_schedule_canceled_month_last_year";
