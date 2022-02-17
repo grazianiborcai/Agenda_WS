@@ -11,7 +11,7 @@ public final class CalonthInfo extends InfoRecord implements Cloneable {
 	public int year;
 	public int month;
 	public String txtMonth;
-	public LocalDate firstDay;	
+	public LocalDate firstDay;
 	public LocalDate lastDay;
 	public String username;
 	
@@ -65,7 +65,7 @@ public final class CalonthInfo extends InfoRecord implements Cloneable {
 			return false;
 		
 		
-		CalonthInfo obj = (CalonthInfo) o;		
+		CalonthInfo obj = (CalonthInfo) o;
 		return (super.isStringEqual(calmonth, obj.calmonth));
 	}
 }

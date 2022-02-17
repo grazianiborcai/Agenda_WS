@@ -27,7 +27,7 @@ public final class DaoCalonthDbTableColumn extends DaoDbTableColumnTemplate {
 		final String TABLE_NAME = DaoDbTable.CALENDAR_MONTH_TABLE;
 		
 		DaoColumn oneColumn;
-		List<DaoColumn> columns = new ArrayList<>();			
+		List<DaoColumn> columns = new ArrayList<>();
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
@@ -35,7 +35,7 @@ public final class DaoCalonthDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);	
+		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;

@@ -10,7 +10,7 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
 final class DaoCalonthWhere implements DaoStmtWhere {
-	private String whereClause;	
+	private String whereClause;
 	
 	
 	public DaoCalonthWhere(DaoWhereBuilderOption whereOption, String tableName, CalonthInfo recordInfo) {
@@ -20,7 +20,7 @@ final class DaoCalonthWhere implements DaoStmtWhere {
 	
 	
 	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, CalonthInfo recordInfo) {
-		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);		
+		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
 		for (DaoColumn eachColumn : columns) {

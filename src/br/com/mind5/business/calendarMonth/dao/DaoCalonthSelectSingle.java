@@ -42,7 +42,7 @@ public final class DaoCalonthSelectSingle extends DaoStmtTemplate<CalonthInfo> {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new DaoCalonthWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
@@ -62,12 +62,12 @@ public final class DaoCalonthSelectSingle extends DaoStmtTemplate<CalonthInfo> {
 					CalonthInfo dataInfo = new CalonthInfo();
 					
 					dataInfo.calmonth = stmtResult.getString(DaoCalonthDbTableColumn.COL_CALMONTH);
-					dataInfo.year = stmtResult.getInt(DaoCalonthDbTableColumn.COL_YEAR);					
+					dataInfo.year = stmtResult.getInt(DaoCalonthDbTableColumn.COL_YEAR);
 					dataInfo.month = stmtResult.getInt(DaoCalonthDbTableColumn.COL_MONTH);
 					dataInfo.lastDay = DaoFormatter.sqlToLocalDate(stmtResult, DaoCalonthDbTableColumn.COL_LAST_DAY);
 					dataInfo.firstDay =  DaoFormatter.sqlToLocalDate(stmtResult, DaoCalonthDbTableColumn.COL_FIRST_DAY);
 					
-					finalResult.add(dataInfo);				
+					finalResult.add(dataInfo);
 				} while (stmtResult.next());
 				
 				return finalResult;
