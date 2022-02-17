@@ -22,14 +22,14 @@ public final class RootCalontharchSelect extends DeciTreeTemplateRead<Calontharc
 	
 	
 	@Override protected ModelChecker<CalontharchInfo> buildCheckerHook(DeciTreeOption<CalontharchInfo> option) {
-		List<ModelChecker<CalontharchInfo>> queue = new ArrayList<>();		
+		List<ModelChecker<CalontharchInfo>> queue = new ArrayList<>();
 		ModelChecker<CalontharchInfo> checker;
-		ModelCheckerOption checkerOption;	
+		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
 		checker = new CalontharchCheckRead(checkerOption);
 		queue.add(checker);
 		

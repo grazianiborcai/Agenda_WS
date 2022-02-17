@@ -44,13 +44,13 @@ public final class CalontharchInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		if (calmonth != null)		
+		if (calmonth != null)
 			result = result * 31 + calmonth.hashCode();
 		
-		if (calmonthBegin != null)		
+		if (calmonthBegin != null)
 			result = result * 31 + calmonthBegin.hashCode();
 		
-		if (calmonthEnd != null)		
+		if (calmonthEnd != null)
 			result = result * 31 + calmonthEnd.hashCode();
 		
 		return result;
@@ -67,7 +67,7 @@ public final class CalontharchInfo extends InfoRecord implements Cloneable {
 			return false;
 		
 		
-		CalontharchInfo obj = (CalontharchInfo) o;		
+		CalontharchInfo obj = (CalontharchInfo) o;
 		return (super.isStringEqual(calmonth     , obj.calmonth)		&&
 				super.isStringEqual(calmonthBegin, obj.calmonthBegin)	&&
 				super.isStringEqual(calmonthEnd  , obj.calmonthEnd));

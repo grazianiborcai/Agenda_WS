@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.calendarMonthSearch.info.CalontharchInfo;
 import br.com.mind5.business.calendarMonthSearch.model.action.LazyCalontharchRootSelect;
-import br.com.mind5.business.calendarMonthSearch.model.action.StdCalontharchEnforceLtm;
+import br.com.mind5.business.calendarMonthSearch.model.action.StdCalontharchEnforceL2m;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCalontharchSelectLtm extends DeciTreeTemplateRead<CalontharchInfo> {
+public final class RootCalontharchSelectL2m extends DeciTreeTemplateRead<CalontharchInfo> {
 	
-	public RootCalontharchSelectLtm(DeciTreeOption<CalontharchInfo> option) {
+	public RootCalontharchSelectL2m(DeciTreeOption<CalontharchInfo> option) {
 		super(option);
 	}
 	
@@ -37,12 +37,12 @@ public final class RootCalontharchSelectLtm extends DeciTreeTemplateRead<Calonth
 	@Override protected List<ActionStd<CalontharchInfo>> buildActionsOnPassedHook(DeciTreeOption<CalontharchInfo> option) {
 		List<ActionStd<CalontharchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CalontharchInfo> enforceLtm = new StdCalontharchEnforceLtm(option);
+		ActionStd<CalontharchInfo> enforceL2m = new StdCalontharchEnforceL2m(option);
 		ActionLazy<CalontharchInfo> select = new LazyCalontharchRootSelect(option.conn, option.schemaName);
 		
-		enforceLtm.addPostAction(select);
+		enforceL2m.addPostAction(select);
 		
-		actions.add(enforceLtm);
+		actions.add(enforceL2m);
 		return actions;
 	}
 }

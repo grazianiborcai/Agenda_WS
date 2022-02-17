@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoSetterTemplate;
 
-public final class CalontharchSetterLtm extends InfoSetterTemplate<CalontharchInfo> {
+public final class CalontharchSetterL2m extends InfoSetterTemplate<CalontharchInfo> {
 	
 	@Override protected CalontharchInfo setAttrHook(CalontharchInfo recordInfo) {
 		CalontharchInfo result = new CalontharchInfo();
@@ -22,17 +22,15 @@ public final class CalontharchSetterLtm extends InfoSetterTemplate<CalontharchIn
 	
 	
 	private String getBegin() {
-		LocalDate now = DefaultValue.localDateNow();
-		LocalDate lastYear = now.minusYears(1);
-		
-		return getYear(lastYear) + getMonth(lastYear);
+		LocalDate lastMonth = getLastMonth();
+		return getYear(lastMonth) + getMonth(lastMonth);
 	}
 	
 	
 	
 	private String getEnd() {		
-		LocalDate lastMonth = getLastMonth();
-		return getYear(lastMonth) + getMonth(lastMonth);
+		LocalDate currentMonth = DefaultValue.localDateNow();
+		return getYear(currentMonth) + getMonth(currentMonth);
 	}
 	
 	

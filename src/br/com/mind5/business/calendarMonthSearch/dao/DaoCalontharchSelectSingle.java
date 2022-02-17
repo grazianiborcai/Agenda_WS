@@ -47,7 +47,7 @@ public final class DaoCalontharchSelectSingle extends DaoStmtTemplate<Calontharc
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new DaoCalontharchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
@@ -67,10 +67,10 @@ public final class DaoCalontharchSelectSingle extends DaoStmtTemplate<Calontharc
 					CalontharchInfo dataInfo = new CalontharchInfo();
 					
 					dataInfo.calmonth = stmtResult.getString(DaoCalontharchDbTableColumn.COL_CALMONTH);
-					dataInfo.year = stmtResult.getInt(DaoCalontharchDbTableColumn.COL_YEAR);					
+					dataInfo.year = stmtResult.getInt(DaoCalontharchDbTableColumn.COL_YEAR);
 					dataInfo.month = stmtResult.getInt(DaoCalontharchDbTableColumn.COL_MONTH);
 					
-					finalResult.add(dataInfo);				
+					finalResult.add(dataInfo);
 				} while (stmtResult.next());
 				
 				return finalResult;
