@@ -11,7 +11,6 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.info.SteddiveInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.action.LazySteddiveEnforceHasData;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.action.LazySteddiveEnforceLChanged;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.action.LazySteddiveMergeCalate;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.action.LazySteddiveMergeState;
@@ -73,13 +72,11 @@ public final class RootSteddiveSelect extends DeciTreeTemplateWrite<SteddiveInfo
 
 		ActionStd<SteddiveInfo> select = new StdSteddiveMergeToSelect(option);
 		ActionLazy<SteddiveInfo> enforceLChanged = new LazySteddiveEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<SteddiveInfo> enforceHasData = new LazySteddiveEnforceHasData(option.conn, option.schemaName);
 		ActionLazy<SteddiveInfo> mergeState = new LazySteddiveMergeState(option.conn, option.schemaName);
 		ActionLazy<SteddiveInfo> mergeCalate = new LazySteddiveMergeCalate(option.conn, option.schemaName);		
 		
 		select.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(enforceHasData);
-		enforceHasData.addPostAction(mergeState);
+		enforceLChanged.addPostAction(mergeState);
 		mergeState.addPostAction(mergeCalate);
 		
 		actions.add(select);
