@@ -3,6 +3,7 @@ package br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info;
 import java.util.List;
 
 import br.com.mind5.business.calendarDate.info.CalateInfo;
+import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.info.SteddagrInfo;
@@ -16,6 +17,19 @@ public final class SteddMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SteddVisiMergeSteddagr());
 		InfoMerger<SteddInfo, SteddagrInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<SteddInfo> mergeWithStolis(List<SteddInfo> baseInfos, List<StolisInfo> selectedInfos) {
+		InfoMergerBuilder<SteddInfo, StolisInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SteddVisiMergeStolis());
+		InfoMerger<SteddInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

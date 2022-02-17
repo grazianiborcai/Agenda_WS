@@ -22,12 +22,11 @@ public final class SteddInfo extends InfoRecord implements Cloneable {
 	public String txtCountry;
 	public String codState;
 	public String txtState;
-	public String city;	
+	public String city;
 	public int countScheduleCancelledDay;
 	public int countScheduleWaitingDay;
 	public int countScheduleConfirmedDay;
 	public int countScheduleTotalDay;
-	public boolean hasData;
 	public LocalDateTime lastChanged;
 	public String username;
 	
@@ -46,7 +45,6 @@ public final class SteddInfo extends InfoRecord implements Cloneable {
 		countScheduleWaitingDay = DefaultValue.number();
 		countScheduleConfirmedDay = DefaultValue.number();
 		countScheduleTotalDay = DefaultValue.number();
-		hasData = DefaultValue.boole();
 		lastChanged = DefaultValue.object();
 	}
 	
@@ -93,7 +91,7 @@ public final class SteddInfo extends InfoRecord implements Cloneable {
 			return false;
 		
 		
-		SteddInfo obj = (SteddInfo) o;		
+		SteddInfo obj = (SteddInfo) o;
 		return (codOwner == obj.codOwner &&
 				codStore == obj.codStore &&
 				super.isDateEqual(date  , obj.date));

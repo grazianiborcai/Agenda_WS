@@ -11,6 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.LazySteddMergeStolis;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.LazySteddSteddagrInsert;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.StdSteddEnforceZerofy;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.StdSteddMergeSteddive;
@@ -61,9 +62,11 @@ public final class NodeSteddSelectL2 extends DeciTreeTemplateWrite<SteddInfo> {
 		List<ActionStd<SteddInfo>> actions = new ArrayList<>();
 
 		ActionStd<SteddInfo> zerofy = new StdSteddEnforceZerofy(option);
+		ActionLazy<SteddInfo> mergeStolis = new LazySteddMergeStolis(option.conn, option.schemaName);
 		ActionLazy<SteddInfo> insertSteddagr = new LazySteddSteddagrInsert(option.conn, option.schemaName);
 		
-		zerofy.addPostAction(insertSteddagr);
+		zerofy.addPostAction(mergeStolis);
+		mergeStolis.addPostAction(insertSteddagr);
 		
 		actions.add(zerofy);
 		return actions;

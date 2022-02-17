@@ -23,6 +23,8 @@ final class SteddVisiMergeCalate extends InfoMergerVisitorTemplate<SteddInfo, Ca
 		baseInfo.date = selectedInfo.date;
 		baseInfo.calmonth = Integer.toString(selectedInfo.year) + Integer.toString(selectedInfo.month);
 		baseInfo.txtMonth = selectedInfo.txtMonth;
+		baseInfo.codWeekday = selectedInfo.codWeekday;
+		baseInfo.txtWeekday = selectedInfo.txtWeekday;
 		
 		results.add(baseInfo);
 		return results;
