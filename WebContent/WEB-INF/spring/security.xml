@@ -27,6 +27,7 @@
 	<http pattern="/**/Prospect/insertOtpProspectStore"	security="none"/>
 	<http pattern="/**/insertOtpUserPassword"			security="none"/>
 	<http pattern="/**/updateUserPassword"				security="none"/>
+	<http pattern="/**/Bot/upsertStatsStoreScheduleL2m"				access="hasIpAddress('127.0.0.1')" use-expressions="true" />
 	<http pattern="/**/MoipApp/**"  					security="none"/>	<!-- TODO: Somente para teste -->
 	
 	
@@ -43,7 +44,6 @@
 
 	<!-- JWT Token authentication --> 
     <security:http create-session="stateless" pattern="/**" use-expressions="true">
-<!--    <security:intercept-url pattern="/admin*" 									access="hasIpAddress('127.0.0.1')"					/>	Chamadas locais para materializar dados statisticos -->
         <security:intercept-url pattern="/**/Owner/selectOwner"       				access="hasAuthority('OWNER_WRITE')" 				/>
         <security:intercept-url pattern="/**/Owner/updateOwner"       				access="hasAuthority('OWNER_WRITE')" 				/>
         <security:intercept-url pattern="/**/Owner/deleteOwner"       				access="denyAll" 									/>
@@ -194,7 +194,7 @@
         <csrf disabled="true"/>
         <custom-filter after="SECURITY_CONTEXT_FILTER" ref="tokenParamFilter" />
         <custom-filter before="BASIC_AUTH_FILTER" ref="authFilterJwtoken" />
-    </security:http> 
+    </security:http>
     
     
     <!-- TODO: habilitar CSRF protection 
