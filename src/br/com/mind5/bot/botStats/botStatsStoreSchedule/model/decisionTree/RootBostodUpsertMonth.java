@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.bot.botStats.botStatsStoreSchedule.info.BostodInfo;
-import br.com.mind5.bot.botStats.botStatsStoreSchedule.model.action.LazyBostodSteddUpsertMonth;
-import br.com.mind5.bot.botStats.botStatsStoreSchedule.model.action.StdBostodMergeDaemon;
+import br.com.mind5.bot.botStats.botStatsStoreSchedule.model.action.StdBostodSteddUpsertMonth;
 import br.com.mind5.bot.botStats.botStatsStoreSchedule.model.checker.BostodCheckLangu;
 import br.com.mind5.bot.botStats.botStatsStoreSchedule.model.checker.BostodCheckOwner;
 import br.com.mind5.bot.botStats.botStatsStoreSchedule.model.checker.BostodCheckStore;
 import br.com.mind5.bot.botStats.botStatsStoreSchedule.model.checker.BostodCheckWriteMonth;
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -68,12 +66,9 @@ public final class RootBostodUpsertMonth extends DeciTreeTemplateWrite<BostodInf
 	@Override protected List<ActionStd<BostodInfo>> buildActionsOnPassedHook(DeciTreeOption<BostodInfo> option) {
 		List<ActionStd<BostodInfo>> actions = new ArrayList<>();
 
-		ActionStd<BostodInfo> mergeDaemon = new StdBostodMergeDaemon(option);
-		ActionLazy<BostodInfo> steddUpsert = new LazyBostodSteddUpsertMonth(option.conn, option.schemaName);
+		ActionStd<BostodInfo> steddUpsert = new StdBostodSteddUpsertMonth(option);
 		
-		mergeDaemon.addPostAction(steddUpsert);
-		
-		actions.add(mergeDaemon);
+		actions.add(steddUpsert);
 		return actions;
 	}
 }

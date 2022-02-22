@@ -17,12 +17,12 @@ public final class BostodCheckWriteL2m extends ModelCheckerTemplateSimple<Bostod
 	
 	@Override protected boolean checkHook(BostodInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
-			recordInfo.codLanguage 	== null		)	
+			recordInfo.codLanguage 	== null		)
 			
-			return super.SUCCESS;
+			return super.FAILED;
 		
 		
-		return super.FAILED;
+		return super.SUCCESS;
 	}
 	
 	

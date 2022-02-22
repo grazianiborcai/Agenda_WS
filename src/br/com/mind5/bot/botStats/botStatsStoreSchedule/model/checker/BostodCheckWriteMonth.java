@@ -21,10 +21,10 @@ public final class BostodCheckWriteMonth extends ModelCheckerTemplateSimple<Bost
 			recordInfo.calmonth 	== null ||
 			recordInfo.codLanguage 	== null		)	
 			
-			return super.SUCCESS;
+			return super.FAILED;
 		
 		
-		return super.FAILED;
+		return super.SUCCESS;
 	}
 	
 	

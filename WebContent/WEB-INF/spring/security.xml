@@ -27,14 +27,22 @@
 	<http pattern="/**/Prospect/insertOtpProspectStore"	security="none"/>
 	<http pattern="/**/insertOtpUserPassword"			security="none"/>
 	<http pattern="/**/updateUserPassword"				security="none"/>
-	<http pattern="/**/Bot/upsertStatsStoreScheduleL2m"				access="hasIpAddress('127.0.0.1')" use-expressions="true" />
 	<http pattern="/**/MoipApp/**"  					security="none"/>	<!-- TODO: Somente para teste -->
 	
+
+	<!-- Localhost hasIpAddress('127.0.0.1') -->
+	<security:http create-session="stateless" pattern="/**/Bot/**" use-expressions="true">
+    	<security:intercept-url pattern="/**/Bot/upsertStatsStoreScheduleL2m" access="permitAll" />
+        <security:http-basic />
+        <csrf disabled="true"/>
+    	<custom-filter before="BASIC_AUTH_FILTER" ref="authFilterLocalhost" />
+    </security:http>
 	
 	
-	<!-- BASIC authentication --> 
+	
+	<!-- BASIC authentication -->
     <security:http create-session="stateless" pattern="/**/Home/**">
-    	 <security:intercept-url pattern="/**" access="isAuthenticated()" />
+    	<security:intercept-url pattern="/**" access="isAuthenticated()" />
         <security:http-basic />
         <csrf disabled="true"/>
         <custom-filter before="BASIC_AUTH_FILTER" ref="authFilterPwrd" />
@@ -43,7 +51,7 @@
 
 
 	<!-- JWT Token authentication --> 
-    <security:http create-session="stateless" pattern="/**" use-expressions="true">
+    <security:http create-session="stateless" pattern="/**">
         <security:intercept-url pattern="/**/Owner/selectOwner"       				access="hasAuthority('OWNER_WRITE')" 				/>
         <security:intercept-url pattern="/**/Owner/updateOwner"       				access="hasAuthority('OWNER_WRITE')" 				/>
         <security:intercept-url pattern="/**/Owner/deleteOwner"       				access="denyAll" 									/>
@@ -222,7 +230,14 @@
 	
 	<beans:bean id="tokenParamFilter"
 		class="br.com.mind5.servlet.filter.header.TokenParamFilter">
-	</beans:bean> 
+	</beans:bean>
+	
+	
+	<beans:bean id="authFilterLocalhost"
+		class="br.com.mind5.servlet.filter.authentication.AuthFilterLocalhost">
+		<beans:constructor-arg ref="authenticationManagerLocalhost"/>
+	</beans:bean>
+
 
 
 	<!-- Authentication Provider - Basic -->
@@ -234,6 +249,7 @@
     <beans:bean id="authProviderPwrd" class="br.com.mind5.servlet.filter.authentication.AuthProviderPwrd"/>    
     
     
+    
 	<!-- Authentication Provider - Token -->
     <security:authentication-manager alias="authenticationManagerJwtoken" id="authenticationManagerJwtoken">
         <authentication-provider ref="authProviderJwtoken" >
@@ -241,4 +257,14 @@
     </security:authentication-manager>     
     
     <beans:bean id="authProviderJwtoken" class="br.com.mind5.servlet.filter.authentication.AuthProviderJwtoken"/>
+    
+    
+    
+	<!-- Authentication Provider - Localhost -->
+    <security:authentication-manager alias="authenticationManagerLocalhost" id="authenticationManagerLocalhost">
+        <authentication-provider ref="authProviderLocalhost" >
+        </authentication-provider>
+    </security:authentication-manager>     
+    
+    <beans:bean id="authProviderLocalhost" class="br.com.mind5.servlet.filter.authentication.AuthProviderLocalhost"/>
 </beans:beans>

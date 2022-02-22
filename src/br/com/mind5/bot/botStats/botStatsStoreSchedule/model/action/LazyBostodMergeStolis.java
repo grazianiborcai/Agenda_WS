@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyBostodSteddUpsertMonth extends ActionLazyTemplate<BostodInfo, BostodInfo> {
+public final class LazyBostodMergeStolis extends ActionLazyTemplate<BostodInfo, BostodInfo> {
 
-	public LazyBostodSteddUpsertMonth(Connection conn, String schemaName) {
+	public LazyBostodMergeStolis(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyBostodSteddUpsertMonth extends ActionLazyTemplate<BostodI
 	
 	
 	@Override protected ActionStd<BostodInfo> getInstanceOfActionHook(DeciTreeOption<BostodInfo> option) {
-		return new StdBostodSteddUpsertMonth(option);
+		return new StdBostodMergeStolis(option);
 	}
 	
 	
