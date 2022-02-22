@@ -19,7 +19,7 @@ public final class DaoCalateSelect implements DaoStmtExec<CalateInfo> {
 	
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();		
+		helper.executeStmt();
 	}
 
 	
@@ -31,6 +31,6 @@ public final class DaoCalateSelect implements DaoStmtExec<CalateInfo> {
 
 	
 	@Override public void close() {
-		helper.close();		
+		helper.close();
 	}
 }

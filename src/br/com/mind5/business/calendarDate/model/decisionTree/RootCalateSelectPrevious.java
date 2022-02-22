@@ -24,14 +24,14 @@ public final class RootCalateSelectPrevious extends DeciTreeTemplateRead<CalateI
 	
 	
 	@Override protected ModelChecker<CalateInfo> buildCheckerHook(DeciTreeOption<CalateInfo> option) {
-		List<ModelChecker<CalateInfo>> queue = new ArrayList<>();		
+		List<ModelChecker<CalateInfo>> queue = new ArrayList<>();
 		ModelChecker<CalateInfo> checker;
-		ModelCheckerOption checkerOption;	
+		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
 		checker = new CalateCheckRead(checkerOption);
 		queue.add(checker);
 		

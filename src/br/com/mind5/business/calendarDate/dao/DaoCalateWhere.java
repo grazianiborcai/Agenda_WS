@@ -11,7 +11,7 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
 final class DaoCalateWhere implements DaoStmtWhere {
-	private String whereClause;	
+	private String whereClause;
 	
 	
 	public DaoCalateWhere(DaoWhereBuilderOption whereOption, String tableName, CalateInfo recordInfo) {
@@ -21,7 +21,7 @@ final class DaoCalateWhere implements DaoStmtWhere {
 	
 	
 	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, CalateInfo recordInfo) {
-		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);		
+		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
 		for (DaoColumn eachColumn : columns) {

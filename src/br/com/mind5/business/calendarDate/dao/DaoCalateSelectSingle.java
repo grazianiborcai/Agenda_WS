@@ -42,7 +42,7 @@ public final class DaoCalateSelectSingle extends DaoStmtTemplate<CalateInfo> {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new DaoCalateWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
@@ -62,7 +62,7 @@ public final class DaoCalateSelectSingle extends DaoStmtTemplate<CalateInfo> {
 					CalateInfo dataInfo = new CalateInfo();
 					
 					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, DaoCalateDbTableColumn.COL_DATE);
-					dataInfo.year = stmtResult.getInt(DaoCalateDbTableColumn.COL_YEAR);					
+					dataInfo.year = stmtResult.getInt(DaoCalateDbTableColumn.COL_YEAR);
 					dataInfo.month = stmtResult.getInt(DaoCalateDbTableColumn.COL_MONTH);
 					dataInfo.day = stmtResult.getInt(DaoCalateDbTableColumn.COL_DAY);
 					dataInfo.codWeekday = stmtResult.getInt(DaoCalateDbTableColumn.COL_COD_WEEKDAY);
@@ -71,7 +71,7 @@ public final class DaoCalateSelectSingle extends DaoStmtTemplate<CalateInfo> {
 					dataInfo.weekMonth = stmtResult.getInt(DaoCalateDbTableColumn.COL_WEEK_MONTH);
 					dataInfo.isWeekend = stmtResult.getBoolean(DaoCalateDbTableColumn.COL_IS_WEEKEND);
 					
-					finalResult.add(dataInfo);				
+					finalResult.add(dataInfo);
 				} while (stmtResult.next());
 				
 				return finalResult;

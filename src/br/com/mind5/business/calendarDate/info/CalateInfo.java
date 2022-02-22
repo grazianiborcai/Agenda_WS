@@ -10,6 +10,7 @@ public final class CalateInfo extends InfoRecord implements Cloneable {
 	public LocalDate date;
 	public int year;
 	public int month;
+	public String calmonth;
 	public String txtMonth;
 	public int day;
 	public int codWeekday;
@@ -35,7 +36,7 @@ public final class CalateInfo extends InfoRecord implements Cloneable {
 		weekYear = DefaultValue.number();
 		weekMonth = DefaultValue.number();
 		isWeekend = DefaultValue.boole();
-		codMoonPhase = DefaultValue.number();	
+		codMoonPhase = DefaultValue.number();
 	}
 	
 	
@@ -78,7 +79,7 @@ public final class CalateInfo extends InfoRecord implements Cloneable {
 			return false;
 		
 		
-		CalateInfo obj = (CalateInfo) o;		
+		CalateInfo obj = (CalateInfo) o;
 		return (super.isDateEqual(date, obj.date));
 	}
 }

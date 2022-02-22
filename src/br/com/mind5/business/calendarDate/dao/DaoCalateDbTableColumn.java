@@ -10,13 +10,13 @@ import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class DaoCalateDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_WEEKDAY = DaoDbField.COL_COD_WEEKDAY;	
+	public static final String COL_COD_WEEKDAY = DaoDbField.COL_COD_WEEKDAY;
 	public static final String COL_DATE = DaoDbField.COL_DATE;
 	public static final String COL_DAY = DaoDbField.COL_DAY;
 	public static final String COL_IS_WEEKEND = DaoDbField.COL_IS_WEEKEND;
-	public static final String COL_MONTH = DaoDbField.COL_MONTH;	
+	public static final String COL_MONTH = DaoDbField.COL_MONTH;
 	public static final String COL_QUARTER = DaoDbField.COL_QUARTER;
-	public static final String COL_YEAR = DaoDbField.COL_YEAR;	
+	public static final String COL_YEAR = DaoDbField.COL_YEAR;
 	public static final String COL_WEEK_MONTH = DaoDbField.COL_WEEK_MONTH;
 	public static final String COL_WEEK_YEAR = DaoDbField.COL_WEEK_YEAR;
 	
@@ -31,7 +31,7 @@ public final class DaoCalateDbTableColumn extends DaoDbTableColumnTemplate {
 		final String TABLE_NAME = DaoDbTable.CALENDAR_DATE_TABLE;
 		
 		DaoColumn oneColumn;
-		List<DaoColumn> columns = new ArrayList<>();			
+		List<DaoColumn> columns = new ArrayList<>();
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
@@ -39,7 +39,7 @@ public final class DaoCalateDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);	
+		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
