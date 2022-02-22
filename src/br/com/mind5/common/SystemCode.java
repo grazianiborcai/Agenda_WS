@@ -1679,7 +1679,7 @@ public final class SystemCode {
 	public static final int PET_DEFAULT_ALREADY_EXIST 					= 16601;
 	public static final int PET_DEFAULT_NOT_FOUND 						= 16602;
 	
-	// Statistics - Owner-Store - Live
+	// Statistics - Owner-Store-Live
 	public static final int STAT_OWNER_STORE_ALREADY_EXIST 				= 16650;
 	public static final int STAT_OWNER_STORE_LIVE_NOT_FOUND 			= 16651;
 	public static final int STAT_OWNER_STORE_LIVE_MANDATORY_FIELD_EMPTY	= 16652;
@@ -1695,7 +1695,7 @@ public final class SystemCode {
 	// Statistics - Owner-Store
 	public static final int STAT_OWNER_STORE_MANDATORY_FIELD_EMPTY		= 16800;
 	
-	// Statistics - Owner-User - Live
+	// Statistics - Owner-User-Live
 	public static final int STAT_OWNER_USER_LIVE_ALREADY_EXIST 			= 16850;
 	public static final int STAT_OWNER_USER_LIVE_NOT_FOUND 				= 16851;
 	public static final int STAT_OWNER_USER_LIVE_MANDATORY_FIELD_EMPTY	= 16852;
@@ -1703,7 +1703,7 @@ public final class SystemCode {
 	// Statistics - Owner-User
 	public static final int STAT_OWNER_USER_MANDATORY_FIELD_EMPTY		= 16900;
 	
-	// Statistics - Owner-Order - Live
+	// Statistics - Owner-Order-Live
 	public static final int STAT_OWNER_ORDER_LIVE_ALREADY_EXIST 		= 16950;
 	public static final int STAT_OWNER_ORDER_LIVE_NOT_FOUND 			= 16951;
 	public static final int STAT_OWNER_ORDER_LIVE_MANDATORY_FIELD_EMPTY	= 16952;
@@ -1719,7 +1719,7 @@ public final class SystemCode {
 	// Statistics - Owner-Schedule
 	public static final int STAT_OWNER_SCHED_MANDATORY_FIELD_EMPTY		= 17100;
 	
-	// Statistics - Owner-Sale - Live
+	// Statistics - Owner-Sale-Live
 	public static final int STAT_OWNER_SALE_LIVE_ALREADY_EXIST 			= 17150;
 	public static final int STAT_OWNER_SALE_LIVE_NOT_FOUND 				= 17151;
 	public static final int STAT_OWNER_SALE_LIVE_MANDATORY_FIELD_EMPTY	= 17152;
@@ -1728,7 +1728,7 @@ public final class SystemCode {
 	public static final int STAT_OWNER_SALE_MANDATORY_FIELD_EMPTY		= 17200;
 	
 	
-	// Statistics - Store-Schedule-Day - Live
+	// Statistics - Store-Schedule-Day-Live
 	public static final int STAT_STR_SCH_DAY_LIVE_ALREADY_EXIST 		= 17250;
 	public static final int STAT_STR_SCH_DAY_LIVE_NOT_FOUND 			= 17251;
 	public static final int STAT_STR_SCH_DAY_LIVE_MANDATORY_FIELD_EMPTY	= 17252;
@@ -1746,4 +1746,9 @@ public final class SystemCode {
 	
 	// Bot - Bot-Store-Schedule
 	public static final int STAT_BOT_STORE_SCHED_MANDATORY_FIELD_EMPTY	= 17450;
+	
+	// Statistics - Store-Schedule-Month-Live
+	public static final int STAT_STR_SCH_MTH_LIVE_ALREADY_EXIST 		= 17500;
+	public static final int STAT_STR_SCH_MTH_LIVE_NOT_FOUND 			= 17501;
+	public static final int STAT_STR_SCH_MTH_LIVE_MANDATORY_FIELD_EMPTY	= 17502;
 }
