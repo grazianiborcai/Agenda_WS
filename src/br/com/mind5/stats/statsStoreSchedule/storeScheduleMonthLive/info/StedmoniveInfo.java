@@ -22,6 +22,10 @@ public final class StedmoniveInfo extends InfoRecord implements Cloneable {
 	public int countScheduleWaitingMonth;
 	public int countScheduleConfirmedMonth;
 	public int countScheduleTotalMonth;
+	public int countScheduleCancelledLastYear;
+	public int countScheduleWaitingLastYear;
+	public int countScheduleConfirmedLastYear;
+	public int countScheduleTotalLastYear;
 	public LocalDateTime lastChanged;
 	public String username;
 	
@@ -37,6 +41,10 @@ public final class StedmoniveInfo extends InfoRecord implements Cloneable {
 		countScheduleWaitingMonth = DefaultValue.number();
 		countScheduleConfirmedMonth = DefaultValue.number();
 		countScheduleTotalMonth = DefaultValue.number();
+		countScheduleCancelledLastYear = DefaultValue.number();
+		countScheduleWaitingLastYear = DefaultValue.number();
+		countScheduleConfirmedLastYear = DefaultValue.number();
+		countScheduleTotalLastYear = DefaultValue.number();
 		lastChanged = DefaultValue.object();
 	}
 	
