@@ -3,7 +3,6 @@ package br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -11,8 +10,6 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.LazySteddSteddagrUpsert;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.StdSteddMergeSteddive;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.checker.SteddCheckWrite;
 
 
@@ -44,13 +41,9 @@ public final class RootSteddUpsert extends DeciTreeTemplateWrite<SteddInfo> {
 	@Override protected List<ActionStd<SteddInfo>> buildActionsOnPassedHook(DeciTreeOption<SteddInfo> option) {
 		List<ActionStd<SteddInfo>> actions = new ArrayList<>();
 
-		ActionStd<SteddInfo> mergeSteddive = new StdSteddMergeSteddive(option);
-		ActionLazy<SteddInfo> upsertSteddagr = new LazySteddSteddagrUpsert(option.conn, option.schemaName);
+		ActionStd<SteddInfo> nodeL1 = new NodeSteddUpsert(option).toAction();		
 		
-		mergeSteddive.addPostAction(upsertSteddagr);
-		
-		
-		actions.add(mergeSteddive);
+		actions.add(nodeL1);
 		return actions;
 	}
 }
