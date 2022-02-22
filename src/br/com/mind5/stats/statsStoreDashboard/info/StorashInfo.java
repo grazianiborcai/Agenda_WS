@@ -6,12 +6,14 @@ import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.info.StedmonInfo;
 
 public final class StorashInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public String calmonth;
 	public List<SteddInfo> steddes;
+	public List<StedmonInfo> stedmones;
 	public String username;
 	
 	
@@ -21,6 +23,7 @@ public final class StorashInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		steddes = DefaultValue.list();
+		stedmones = DefaultValue.list();
 	}
 	
 	
@@ -40,7 +43,8 @@ public final class StorashInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		StorashInfo deepCopy = (StorashInfo) super.clone();
 		
-		deepCopy.steddes = CloneUtil.cloneRecords(steddes, this.getClass());
+		deepCopy.steddes   = CloneUtil.cloneRecords(steddes  , this.getClass());
+		deepCopy.stedmones = CloneUtil.cloneRecords(stedmones, this.getClass());
 		
 		return deepCopy;
 	}
@@ -73,6 +77,6 @@ public final class StorashInfo extends InfoRecord implements Cloneable {
 		StorashInfo obj = (StorashInfo) o;
 		return (codOwner == obj.codOwner &&
 				codStore == obj.codStore &&
-				super.isStringEqual(calmonth  , obj.calmonth));
+				super.isStringEqual(calmonth, obj.calmonth));
 	}
 }

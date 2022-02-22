@@ -3,6 +3,7 @@ package br.com.mind5.stats.statsStoreDashboard.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -10,6 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreDashboard.info.StorashInfo;
+import br.com.mind5.stats.statsStoreDashboard.model.action.LazyStorashMergeStedmonLtm;
 import br.com.mind5.stats.statsStoreDashboard.model.action.StdStorashMergeSteddMonth;
 import br.com.mind5.stats.statsStoreDashboard.model.checker.StorashCheckLangu;
 import br.com.mind5.stats.statsStoreDashboard.model.checker.StorashCheckOwner;
@@ -67,6 +69,9 @@ public final class RootStorashSelect extends DeciTreeTemplateWrite<StorashInfo> 
 		List<ActionStd<StorashInfo>> actions = new ArrayList<>();
 
 		ActionStd<StorashInfo> mergeStedd = new StdStorashMergeSteddMonth(option);
+		ActionLazy<StorashInfo> mergeStedmon = new LazyStorashMergeStedmonLtm(option.conn, option.schemaName);
+		
+		mergeStedd.addPostAction(mergeStedmon);
 		
 		actions.add(mergeStedd);
 		return actions;
