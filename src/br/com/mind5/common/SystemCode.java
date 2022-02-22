@@ -1756,4 +1756,7 @@ public final class SystemCode {
 	public static final int STAT_STR_SCH_MTH_AGGR_ALREADY_EXIST 		= 17550;
 	public static final int STAT_STR_SCH_MTH_AGGR_NOT_FOUND 			= 17551;
 	public static final int STAT_STR_SCH_MTH_AGGR_MANDATORY_FIELD_EMPTY	= 17552;
+	
+	// Statistics - Store-Schedule-Month
+	public static final int STAT_STR_SCH_MTH_MANDATORY_FIELD_EMPTY		= 17600;
 }
