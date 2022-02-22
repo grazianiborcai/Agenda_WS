@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.bot.botStats.botStatsStoreSchedule.info.BostodInfo;
+import br.com.mind5.bot.botStats.botStatsStoreSchedule.model.action.LazyBostodStedmonUpsert;
 import br.com.mind5.bot.botStats.botStatsStoreSchedule.model.action.StdBostodSteddUpsertMonth;
 import br.com.mind5.bot.botStats.botStatsStoreSchedule.model.checker.BostodCheckLangu;
 import br.com.mind5.bot.botStats.botStatsStoreSchedule.model.checker.BostodCheckOwner;
 import br.com.mind5.bot.botStats.botStatsStoreSchedule.model.checker.BostodCheckStore;
 import br.com.mind5.bot.botStats.botStatsStoreSchedule.model.checker.BostodCheckWriteMonth;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -67,6 +69,9 @@ public final class RootBostodUpsertMonth extends DeciTreeTemplateWrite<BostodInf
 		List<ActionStd<BostodInfo>> actions = new ArrayList<>();
 
 		ActionStd<BostodInfo> steddUpsert = new StdBostodSteddUpsertMonth(option);
+		ActionLazy<BostodInfo> stedmonUpsert = new LazyBostodStedmonUpsert(option.conn, option.schemaName);
+		
+		steddUpsert.addPostAction(stedmonUpsert);
 		
 		actions.add(steddUpsert);
 		return actions;
