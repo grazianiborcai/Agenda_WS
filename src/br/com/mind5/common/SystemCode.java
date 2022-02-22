@@ -1739,7 +1739,7 @@ public final class SystemCode {
 	// Statistics - Store-Dashboard
 	public static final int STAT_STORE_DASH_MANDATORY_FIELD_EMPTY		= 17350;
 	
-	// Statistics - Store-Schedule-Day - Aggr
+	// Statistics - Store-Schedule-Day-Aggr
 	public static final int STAT_STR_SCH_DAY_AGGR_ALREADY_EXIST 		= 17400;
 	public static final int STAT_STR_SCH_DAY_AGGR_NOT_FOUND 			= 17401;
 	public static final int STAT_STR_SCH_DAY_AGGR_MANDATORY_FIELD_EMPTY	= 17402;
@@ -1751,4 +1751,9 @@ public final class SystemCode {
 	public static final int STAT_STR_SCH_MTH_LIVE_ALREADY_EXIST 		= 17500;
 	public static final int STAT_STR_SCH_MTH_LIVE_NOT_FOUND 			= 17501;
 	public static final int STAT_STR_SCH_MTH_LIVE_MANDATORY_FIELD_EMPTY	= 17502;
+	
+	// Statistics - Store-Schedule-Month-Aggr
+	public static final int STAT_STR_SCH_MTH_AGGR_ALREADY_EXIST 		= 17550;
+	public static final int STAT_STR_SCH_MTH_AGGR_NOT_FOUND 			= 17551;
+	public static final int STAT_STR_SCH_MTH_AGGR_MANDATORY_FIELD_EMPTY	= 17552;
 }
