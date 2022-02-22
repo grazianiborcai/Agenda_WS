@@ -18,10 +18,10 @@ public final class StedmonInfo extends InfoRecord implements Cloneable {
 	public String codState;
 	public String txtState;
 	public String city;
-	public int countScheduleCancelledDay;
-	public int countScheduleWaitingDay;
-	public int countScheduleConfirmedDay;
-	public int countScheduleTotalDay;
+	public int countScheduleCancelledMonth;
+	public int countScheduleWaitingMonth;
+	public int countScheduleConfirmedMonth;
+	public int countScheduleTotalMonth;
 	public LocalDateTime lastChanged;
 	public String username;
 	
@@ -33,10 +33,10 @@ public final class StedmonInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		year = DefaultValue.number();
 		month = DefaultValue.number();
-		countScheduleCancelledDay = DefaultValue.number();
-		countScheduleWaitingDay = DefaultValue.number();
-		countScheduleConfirmedDay = DefaultValue.number();
-		countScheduleTotalDay = DefaultValue.number();
+		countScheduleCancelledMonth = DefaultValue.number();
+		countScheduleWaitingMonth = DefaultValue.number();
+		countScheduleConfirmedMonth = DefaultValue.number();
+		countScheduleTotalMonth = DefaultValue.number();
 		lastChanged = DefaultValue.object();
 	}
 	
