@@ -10,8 +10,7 @@ final class StorashVisiMergeStedmon extends InfoMergerVisitorTemplate<StorashInf
 
 	@Override public boolean shouldMerge(StorashInfo baseInfo, StedmonInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner &&
-				baseInfo.codStore == selectedInfo.codStore &&
-				baseInfo.calmonth.equals(selectedInfo.calmonth));
+				baseInfo.codStore == selectedInfo.codStore);
 	}
 	
 	
