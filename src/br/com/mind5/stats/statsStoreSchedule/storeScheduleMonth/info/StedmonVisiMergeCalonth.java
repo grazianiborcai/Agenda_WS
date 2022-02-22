@@ -19,6 +19,8 @@ final class StedmonVisiMergeCalonth extends InfoMergerVisitorTemplate<StedmonInf
 		List<StedmonInfo> results = new ArrayList<>();
 		
 		baseInfo.calmonth = selectedInfo.calmonth;
+		baseInfo.month = selectedInfo.month;
+		baseInfo.year = selectedInfo.year;
 		baseInfo.txtMonth = selectedInfo.txtMonth;
 		
 		results.add(baseInfo);
