@@ -10,7 +10,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.info.SteddagrInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.action.StdSteddagrDaoSelect;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.action.StdSteddagrDaoDelete;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.checker.SteddagrCheckExist;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.checker.SteddagrCheckLangu;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.checker.SteddagrCheckOwner;
@@ -73,7 +73,7 @@ public final class RootSteddagrDelete extends DeciTreeTemplateWrite<SteddagrInfo
 	@Override protected List<ActionStd<SteddagrInfo>> buildActionsOnPassedHook(DeciTreeOption<SteddagrInfo> option) {
 		List<ActionStd<SteddagrInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<SteddagrInfo> delete = new StdSteddagrDaoSelect(option);	
+		ActionStd<SteddagrInfo> delete = new StdSteddagrDaoDelete(option);	
 		
 		actions.add(delete);		
 		
