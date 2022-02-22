@@ -11,6 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.info.StedmonInfo;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.LazyStedmonMergeStolis;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.LazyStedmonStedmonagrUpsert;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.StdStedmonEnforceZerofy;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.StdStedmonMergeSteddive;
@@ -61,9 +62,11 @@ public final class NodeStedmonUpsert extends DeciTreeTemplateWrite<StedmonInfo> 
 		List<ActionStd<StedmonInfo>> actions = new ArrayList<>();
 
 		ActionStd<StedmonInfo> zerofy = new StdStedmonEnforceZerofy(option);
+		ActionLazy<StedmonInfo> mergeStolis = new LazyStedmonMergeStolis(option.conn, option.schemaName);
 		ActionLazy<StedmonInfo> upsertSteddagr = new LazyStedmonStedmonagrUpsert(option.conn, option.schemaName);
 		
-		zerofy.addPostAction(upsertSteddagr);
+		zerofy.addPostAction(mergeStolis);
+		mergeStolis.addPostAction(upsertSteddagr);
 		
 		
 		actions.add(zerofy);
