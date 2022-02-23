@@ -35,6 +35,19 @@ public final class StorashMerger {
 	}
 	
 	
+	public static List<StorashInfo> mergeWithStedmonLtm(List<StorashInfo> baseInfos, List<StedmonInfo> selectedInfos) {
+		InfoMergerBuilder<StorashInfo, StedmonInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StorashVisiMergeStedmonLtm());
+		InfoMerger<StorashInfo, StedmonInfo> merger = builder.build();
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<StorashInfo> mergeWithStedmon(List<StorashInfo> baseInfos, List<StedmonInfo> selectedInfos) {
 		InfoMergerBuilder<StorashInfo, StedmonInfo> builder = new InfoMergerBuilder<>();
 		

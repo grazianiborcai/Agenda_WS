@@ -14,6 +14,7 @@ public final class StorashInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public String calmonth;
+	public StedmonInfo stedmonData;
 	public List<SteddInfo> steddes;
 	public List<StedmonInfo> stedmones;
 	public List<StordInfo> stordes;
@@ -26,6 +27,7 @@ public final class StorashInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
+		stedmonData = DefaultValue.object();
 		steddes = DefaultValue.list();
 		stedmones = DefaultValue.list();
 		stordes = DefaultValue.list();
@@ -49,10 +51,11 @@ public final class StorashInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		StorashInfo deepCopy = (StorashInfo) super.clone();
 		
-		deepCopy.steddes   = CloneUtil.cloneRecords(steddes  , this.getClass());
-		deepCopy.stedmones = CloneUtil.cloneRecords(stedmones, this.getClass());
-		deepCopy.stordes   = CloneUtil.cloneRecords(stordes  , this.getClass());
-		deepCopy.storones  = CloneUtil.cloneRecords(storones , this.getClass());
+		deepCopy.stedmonData = CloneUtil.cloneRecord (stedmonData, this.getClass());
+		deepCopy.steddes   	 = CloneUtil.cloneRecords(steddes    , this.getClass());
+		deepCopy.stedmones 	 = CloneUtil.cloneRecords(stedmones  , this.getClass());
+		deepCopy.stordes   	 = CloneUtil.cloneRecords(stordes    , this.getClass());
+		deepCopy.storones  	 = CloneUtil.cloneRecords(storones   , this.getClass());
 		
 		return deepCopy;
 	}

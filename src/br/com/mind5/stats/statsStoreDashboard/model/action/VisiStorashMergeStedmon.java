@@ -8,24 +8,24 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreDashboard.info.StorashInfo;
 import br.com.mind5.stats.statsStoreDashboard.info.StorashMerger;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.info.StedmonInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.decisionTree.RootStedmonSelectLtm;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.decisionTree.RootStedmonSelect;
 
-final class VisiStorashMergeStedmonLtm extends ActionVisitorTemplateMerge<StorashInfo, StedmonInfo> {
+final class VisiStorashMergeStedmon extends ActionVisitorTemplateMerge<StorashInfo, StedmonInfo> {
 	
-	public VisiStorashMergeStedmonLtm(DeciTreeOption<StorashInfo> option) {
+	public VisiStorashMergeStedmon(DeciTreeOption<StorashInfo> option) {
 		super(option, StedmonInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<StedmonInfo>> getTreeClassHook() {
-		return RootStedmonSelectLtm.class;
+		return RootStedmonSelect.class;
 	}
 	
 	
 	
 	@Override protected List<StorashInfo> mergeHook(List<StorashInfo> baseInfos, List<StedmonInfo> selectedInfos) {	
-		return StorashMerger.mergeWithStedmonLtm(baseInfos, selectedInfos);
+		return StorashMerger.mergeWithStedmon(baseInfos, selectedInfos);
 	}
 	
 	
