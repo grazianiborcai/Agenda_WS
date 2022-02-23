@@ -57,7 +57,7 @@ public final class DaoStoronagrInsertSingle extends DaoStmtTemplate<StoronagrInf
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalSaleMonth);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalSalePaidMonth);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalSalePlacedMonth);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalSaleWaitingMonth);				
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalSaleWaitingMonth);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalFeeCancelledMonth);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalFeeCreatedMonth);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalFeeMonth);
@@ -65,6 +65,24 @@ public final class DaoStoronagrInsertSingle extends DaoStmtTemplate<StoronagrInf
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalFeePlacedMonth);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalFeeWaitingMonth);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countOrderCancelledLastYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countOrderWaitingLastYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countOrderTotalLastYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countOrderPlacedLastYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countOrderCreatedLastYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countOrderPaidLastYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalSaleCancelledLastYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalSaleCreatedLastYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalSaleLastYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalSalePaidLastYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalSalePlacedLastYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalSaleWaitingLastYear);				
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalFeeCancelledLastYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalFeeCreatedLastYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalFeeLastYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalFeePaidLastYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalFeePlacedLastYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totalFeeWaitingLastYear);
 	
 				return stmt;
 			}		
