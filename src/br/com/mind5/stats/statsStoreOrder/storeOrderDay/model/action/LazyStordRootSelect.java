@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.decisionTree.RootStordSelect;
 
-public final class LazySteddRootSelect extends ActionLazyTemplate<StordInfo, StordInfo> {
+public final class LazyStordRootSelect extends ActionLazyTemplate<StordInfo, StordInfo> {
 
-	public LazySteddRootSelect(Connection conn, String schemaName) {
+	public LazyStordRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	

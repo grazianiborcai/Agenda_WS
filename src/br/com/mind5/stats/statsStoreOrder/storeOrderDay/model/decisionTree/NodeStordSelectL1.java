@@ -42,9 +42,9 @@ public final class NodeStordSelectL1 extends DeciTreeTemplateWrite<StordInfo> {
 	@Override protected List<ActionStd<StordInfo>> buildActionsOnPassedHook(DeciTreeOption<StordInfo> option) {
 		List<ActionStd<StordInfo>> actions = new ArrayList<>();
 
-		ActionStd<StordInfo> mergeSteddagr = new StdStordMergeStordagr(option);
+		ActionStd<StordInfo> mergeStordagr = new StdStordMergeStordagr(option);
 		
-		actions.add(mergeSteddagr);
+		actions.add(mergeStordagr);
 		return actions;
 	}
 	

@@ -12,7 +12,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.LazySteddMergeCalateMonth;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.LazySteddRootSelect;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.LazyStordRootSelect;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.StdStordEnforceYearMonth;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.checker.StordCheckReadMonth;
 
@@ -48,7 +48,7 @@ public final class RootStordSelectMonth extends DeciTreeTemplateWrite<StordInfo>
 
 		ActionStd<StordInfo> enforceYearMonth = new StdStordEnforceYearMonth(option);
 		ActionLazy<StordInfo> mergeCalateMonth = new LazySteddMergeCalateMonth(option.conn, option.schemaName);
-		ActionLazy<StordInfo> select = new LazySteddRootSelect(option.conn, option.schemaName);
+		ActionLazy<StordInfo> select = new LazyStordRootSelect(option.conn, option.schemaName);
 		
 		enforceYearMonth.addPostAction(mergeCalateMonth);
 		mergeCalateMonth.addPostAction(select);

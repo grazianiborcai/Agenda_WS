@@ -46,13 +46,12 @@ public final class NodeStordSelectL2 extends DeciTreeTemplateWrite<StordInfo> {
 	@Override protected List<ActionStd<StordInfo>> buildActionsOnPassedHook(DeciTreeOption<StordInfo> option) {
 		List<ActionStd<StordInfo>> actions = new ArrayList<>();
 
-		ActionStd<StordInfo> mergeSteddive = new StdStordMergeStordive(option);
-		ActionLazy<StordInfo> insertSteddagr = new LazyStordStordagrInsert(option.conn, option.schemaName);
+		ActionStd<StordInfo> mergeStordive = new StdStordMergeStordive(option);
+		ActionLazy<StordInfo> insertStordagr = new LazyStordStordagrInsert(option.conn, option.schemaName);
 		
-		mergeSteddive.addPostAction(insertSteddagr);
+		mergeStordive.addPostAction(insertStordagr);		
 		
-		
-		actions.add(mergeSteddive);
+		actions.add(mergeStordive);
 		return actions;
 	}
 	
@@ -63,10 +62,10 @@ public final class NodeStordSelectL2 extends DeciTreeTemplateWrite<StordInfo> {
 
 		ActionStd<StordInfo> zerofy = new StdStordEnforceZerofy(option);
 		ActionLazy<StordInfo> mergeStolis = new LazySteddMergeStolis(option.conn, option.schemaName);
-		ActionLazy<StordInfo> insertSteddagr = new LazyStordStordagrInsert(option.conn, option.schemaName);
+		ActionLazy<StordInfo> insertStordagr = new LazyStordStordagrInsert(option.conn, option.schemaName);
 		
 		zerofy.addPostAction(mergeStolis);
-		mergeStolis.addPostAction(insertSteddagr);
+		mergeStolis.addPostAction(insertStordagr);
 		
 		actions.add(zerofy);
 		return actions;
