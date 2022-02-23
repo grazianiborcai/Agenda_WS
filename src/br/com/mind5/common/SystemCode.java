@@ -1759,4 +1759,9 @@ public final class SystemCode {
 	
 	// Statistics - Store-Schedule-Month
 	public static final int STAT_STR_SCH_MTH_MANDATORY_FIELD_EMPTY		= 17600;
+	
+	// Statistics - Store-Order-Day-Live
+	public static final int STAT_STR_ODR_DAY_LIVE_ALREADY_EXIST 		= 17650;
+	public static final int STAT_STR_ODR_DAY_LIVE_NOT_FOUND 			= 17651;
+	public static final int STAT_STR_ODR_DAY_LIVE_MANDATORY_FIELD_EMPTY	= 17652;
 }
