@@ -8,21 +8,21 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.mind5.bot.botStats.botStatsStoreSchedule.info.BostodInfo;
-import br.com.mind5.bot.botStats.botStatsStoreSchedule.model.BostodModelUpsertL2m;
+import br.com.mind5.bot.botStats.botStatsStore.info.BostodInfo;
+import br.com.mind5.bot.botStats.botStatsStore.model.BostodModelUpsertL2m;
 import br.com.mind5.model.Model;
 
 @Path("/Bot")
 public class BotResource {
-	private static final String UPSERT_STATS_STORE_SCHEDULE_L2M = "/upsertStatsStoreScheduleL2m";
+	private static final String UPSERT_STATS_STORE_L2M = "/upsertStatsStoreL2m";
 
 	
 	
 	@GET
-	@Path(UPSERT_STATS_STORE_SCHEDULE_L2M)
+	@Path(UPSERT_STATS_STORE_L2M)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response upsertL2m(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
-							  @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
+	public Response BostodUpsertL2m(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+							  	    @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 
 		BostodInfo recordInfo = new BostodInfo();
 		recordInfo.codOwner = codOwner;
