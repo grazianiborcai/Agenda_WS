@@ -1777,4 +1777,9 @@ public final class SystemCode {
 	public static final int STAT_STR_ODR_MTH_LIVE_ALREADY_EXIST 		= 17800;
 	public static final int STAT_STR_ODR_MTH_LIVE_NOT_FOUND 			= 17801;
 	public static final int STAT_STR_ODR_MTH_LIVE_MANDATORY_FIELD_EMPTY	= 17802;
+	
+	// Statistics - Store-Order-Month-Aggr
+	public static final int STAT_STR_ODR_MTH_AGGR_ALREADY_EXIST 		= 17850;
+	public static final int STAT_STR_ODR_MTH_AGGR_NOT_FOUND 			= 17851;
+	public static final int STAT_STR_ODR_MTH_AGGR_MANDATORY_FIELD_EMPTY	= 17852;
 }
