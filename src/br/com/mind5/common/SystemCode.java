@@ -1772,4 +1772,9 @@ public final class SystemCode {
 	
 	// Statistics - Store-Order-Day
 	public static final int STAT_STR_ODR_DAY_MANDATORY_FIELD_EMPTY		= 17750;
+	
+	// Statistics - Store-Order-Month-Live
+	public static final int STAT_STR_ODR_MTH_LIVE_ALREADY_EXIST 		= 17800;
+	public static final int STAT_STR_ODR_MTH_LIVE_NOT_FOUND 			= 17801;
+	public static final int STAT_STR_ODR_MTH_LIVE_MANDATORY_FIELD_EMPTY	= 17802;
 }
