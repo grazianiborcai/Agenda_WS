@@ -54,7 +54,7 @@ public final class DaoStordagrDbTableColumn extends DaoDbTableColumnTemplate {
 		List<DaoColumn> columns = new ArrayList<>();
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_OWNER;
+		oneColumn.columnName = COL_COD_STORE;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -62,7 +62,7 @@ public final class DaoStordagrDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_STORE;
+		oneColumn.columnName = COL_COD_OWNER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

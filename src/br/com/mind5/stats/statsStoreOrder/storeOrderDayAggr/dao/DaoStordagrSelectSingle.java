@@ -89,6 +89,7 @@ public final class DaoStordagrSelectSingle extends DaoStmtTemplate<StordagrInfo>
 					dataInfo.totalFeePaidDay = DaoFormatter.sqlToDouble(stmtResult, DaoStordagrDbTableColumn.COL_TOTAL_FEE_PAID_DAY);
 					dataInfo.totalFeePlacedDay = DaoFormatter.sqlToDouble(stmtResult, DaoStordagrDbTableColumn.COL_TOTAL_FEE_PLACED_DAY);
 					dataInfo.totalFeeCancelledDay = DaoFormatter.sqlToDouble(stmtResult, DaoStordagrDbTableColumn.COL_TOTAL_FEE_CANCELLED_DAY);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoStordagrDbTableColumn.COL_LAST_CHANGED);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
