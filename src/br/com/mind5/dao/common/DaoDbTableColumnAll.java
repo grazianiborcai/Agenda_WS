@@ -258,6 +258,7 @@ import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.dao.DaoSowaliveDbTableCol
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleLive.dao.DaoSoweduliveDbTableColumn;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.dao.DaoSowotiveDbTableColumn;
 import br.com.mind5.stats.statsOwnerUser.ownerUserLive.dao.DaoSowusiveDbTableColumn;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.dao.DaoStordagrDbTableColumn;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.dao.DaoStordiveDbTableColumn;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.dao.DaoSteddagrDbTableColumn;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.dao.DaoSteddiveDbTableColumn;
@@ -548,6 +549,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoStedmoniveDbTableColumn());
 		addTable(new DaoStedmonagrDbTableColumn());
 		addTable(new DaoStordiveDbTableColumn());
+		addTable(new DaoStordagrDbTableColumn());
 	}
 	
 	

@@ -1764,4 +1764,9 @@ public final class SystemCode {
 	public static final int STAT_STR_ODR_DAY_LIVE_ALREADY_EXIST 		= 17650;
 	public static final int STAT_STR_ODR_DAY_LIVE_NOT_FOUND 			= 17651;
 	public static final int STAT_STR_ODR_DAY_LIVE_MANDATORY_FIELD_EMPTY	= 17652;
+	
+	// Statistics - Store-Order-Day-Aggr
+	public static final int STAT_STR_ODR_DAY_AGGR_ALREADY_EXIST 		= 17700;
+	public static final int STAT_STR_ODR_DAY_AGGR_NOT_FOUND 			= 17701;
+	public static final int STAT_STR_ODR_DAY_AGGR_MANDATORY_FIELD_EMPTY	= 17702;
 }
