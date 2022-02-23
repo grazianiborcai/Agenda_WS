@@ -37,8 +37,7 @@ public final class DaoStordiveDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_TOTAL_SALE_PAID_DAY = DaoDbField.COL_TOTAL_SALE_PAID_DAY;
 	public static final String COL_TOTAL_SALE_PLACED_DAY = DaoDbField.COL_TOTAL_SALE_PLACED_DAY;
 	public static final String COL_TOTAL_SALE_WAITING_DAY = DaoDbField.COL_TOTAL_SALE_WAITING_DAY;
-	public static final String COL_YEAR = DaoDbField.COL_YEAR;
-	
+	public static final String COL_YEAR = DaoDbField.COL_YEAR;	
 	
 	
 	public DaoStordiveDbTableColumn() {
@@ -63,6 +62,14 @@ public final class DaoStordiveDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_STORE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_DATE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -174,14 +181,6 @@ public final class DaoStordiveDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_DATE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_TOTAL_SALE_CANCELLED_DAY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
@@ -275,7 +274,7 @@ public final class DaoStordiveDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
-
+		
 
 		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
 		results.put(TABLE_NAME, columns);
