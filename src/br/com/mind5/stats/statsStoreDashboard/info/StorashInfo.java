@@ -5,6 +5,8 @@ import java.util.List;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordInfo;
+import br.com.mind5.stats.statsStoreOrder.storeOrderMonth.info.StoronInfo;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.info.StedmonInfo;
 
@@ -14,6 +16,8 @@ public final class StorashInfo extends InfoRecord implements Cloneable {
 	public String calmonth;
 	public List<SteddInfo> steddes;
 	public List<StedmonInfo> stedmones;
+	public List<StordInfo> stordes;
+	public List<StoronInfo> storones;
 	public String username;
 	
 	
@@ -24,6 +28,8 @@ public final class StorashInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		steddes = DefaultValue.list();
 		stedmones = DefaultValue.list();
+		stordes = DefaultValue.list();
+		storones = DefaultValue.list();
 	}
 	
 	
@@ -45,6 +51,8 @@ public final class StorashInfo extends InfoRecord implements Cloneable {
 		
 		deepCopy.steddes   = CloneUtil.cloneRecords(steddes  , this.getClass());
 		deepCopy.stedmones = CloneUtil.cloneRecords(stedmones, this.getClass());
+		deepCopy.stordes   = CloneUtil.cloneRecords(stordes  , this.getClass());
+		deepCopy.storones  = CloneUtil.cloneRecords(storones , this.getClass());
 		
 		return deepCopy;
 	}

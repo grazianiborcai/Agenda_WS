@@ -12,6 +12,8 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreDashboard.info.StorashInfo;
 import br.com.mind5.stats.statsStoreDashboard.model.action.LazyStorashMergeStedmonLtm;
+import br.com.mind5.stats.statsStoreDashboard.model.action.LazyStorashMergeStordMonth;
+import br.com.mind5.stats.statsStoreDashboard.model.action.LazyStorashMergeStoronLtm;
 import br.com.mind5.stats.statsStoreDashboard.model.action.StdStorashMergeSteddMonth;
 import br.com.mind5.stats.statsStoreDashboard.model.checker.StorashCheckLangu;
 import br.com.mind5.stats.statsStoreDashboard.model.checker.StorashCheckOwner;
@@ -70,8 +72,12 @@ public final class RootStorashSelect extends DeciTreeTemplateWrite<StorashInfo> 
 
 		ActionStd<StorashInfo> mergeStedd = new StdStorashMergeSteddMonth(option);
 		ActionLazy<StorashInfo> mergeStedmon = new LazyStorashMergeStedmonLtm(option.conn, option.schemaName);
+		ActionLazy<StorashInfo> mergeStord = new LazyStorashMergeStordMonth(option.conn, option.schemaName);
+		ActionLazy<StorashInfo> mergeStoron = new LazyStorashMergeStoronLtm(option.conn, option.schemaName);
 		
 		mergeStedd.addPostAction(mergeStedmon);
+		mergeStedmon.addPostAction(mergeStord);
+		mergeStord.addPostAction(mergeStoron);
 		
 		actions.add(mergeStedd);
 		return actions;
