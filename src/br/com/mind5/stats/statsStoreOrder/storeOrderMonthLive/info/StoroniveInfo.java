@@ -36,6 +36,24 @@ public final class StoroniveInfo extends InfoRecord implements Cloneable {
 	public double totalFeePaidMonth;
 	public double totalFeePlacedMonth;
 	public double totalFeeCancelledMonth;
+	public int countOrderTotalLastYear;
+	public int countOrderCreatedLastYear;
+	public int countOrderWaitingLastYear;
+	public int countOrderPaidLastYear;
+	public int countOrderPlacedLastYear;
+	public int countOrderCancelledLastYear;
+	public double totalSaleLastYear;
+	public double totalSaleCreatedLastYear;
+	public double totalSaleWaitingLastYear;
+	public double totalSalePaidLastYear;
+	public double totalSalePlacedLastYear;
+	public double totalSaleCancelledLastYear;
+	public double totalFeeLastYear;
+	public double totalFeeCreatedLastYear;
+	public double totalFeeWaitingLastYear;
+	public double totalFeePaidLastYear;
+	public double totalFeePlacedLastYear;
+	public double totalFeeCancelledLastYear;
 	public LocalDateTime lastChanged;
 	public String username;
 	
@@ -65,6 +83,24 @@ public final class StoroniveInfo extends InfoRecord implements Cloneable {
 		totalFeePaidMonth = DefaultValue.number();
 		totalFeePlacedMonth = DefaultValue.number();
 		totalFeeCancelledMonth = DefaultValue.number();
+		countOrderCancelledLastYear = DefaultValue.number();
+		countOrderWaitingLastYear = DefaultValue.number();
+		countOrderPlacedLastYear = DefaultValue.number();
+		countOrderTotalLastYear = DefaultValue.number();
+		countOrderCreatedLastYear = DefaultValue.number();
+		countOrderPaidLastYear = DefaultValue.number();
+		totalSaleLastYear = DefaultValue.number();
+		totalSaleCreatedLastYear = DefaultValue.number();
+		totalSaleWaitingLastYear = DefaultValue.number();
+		totalSalePaidLastYear = DefaultValue.number();
+		totalSalePlacedLastYear = DefaultValue.number();
+		totalSaleCancelledLastYear = DefaultValue.number();
+		totalFeeLastYear = DefaultValue.number();
+		totalFeeCreatedLastYear = DefaultValue.number();
+		totalFeeWaitingLastYear = DefaultValue.number();
+		totalFeePaidLastYear = DefaultValue.number();
+		totalFeePlacedLastYear = DefaultValue.number();
+		totalFeeCancelledLastYear = DefaultValue.number();
 		lastChanged = DefaultValue.object();
 	}
 	

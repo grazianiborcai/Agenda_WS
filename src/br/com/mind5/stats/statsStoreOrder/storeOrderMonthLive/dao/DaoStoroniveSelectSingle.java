@@ -87,6 +87,24 @@ public final class DaoStoroniveSelectSingle extends DaoStmtTemplate<StoroniveInf
 					dataInfo.totalFeePaidMonth = DaoFormatter.sqlToDouble(stmtResult, DaoStoroniveDbTableColumn.COL_TOTAL_FEE_PAID_MONTH);
 					dataInfo.totalFeePlacedMonth = DaoFormatter.sqlToDouble(stmtResult, DaoStoroniveDbTableColumn.COL_TOTAL_FEE_PLACED_MONTH);
 					dataInfo.totalFeeCancelledMonth = DaoFormatter.sqlToDouble(stmtResult, DaoStoroniveDbTableColumn.COL_TOTAL_FEE_CANCELLED_MONTH);
+					dataInfo.countOrderCancelledLastYear = DaoFormatter.sqlToInt(stmtResult, DaoStoroniveDbTableColumn.COL_COUNT_ORDER_CANCELLED_MONTH_LAST_YEAR);
+					dataInfo.countOrderWaitingLastYear = DaoFormatter.sqlToInt(stmtResult, DaoStoroniveDbTableColumn.COL_COUNT_ORDER_WAITING_MONTH_LAST_YEAR);
+					dataInfo.countOrderTotalLastYear = DaoFormatter.sqlToInt(stmtResult, DaoStoroniveDbTableColumn.COL_COUNT_ORDER_TOTAL_MONTH_LAST_YEAR);
+					dataInfo.countOrderPlacedLastYear = DaoFormatter.sqlToInt(stmtResult, DaoStoroniveDbTableColumn.COL_COUNT_ORDER_PLACED_MONTH_LAST_YEAR);
+					dataInfo.countOrderCreatedLastYear = DaoFormatter.sqlToInt(stmtResult, DaoStoroniveDbTableColumn.COL_COUNT_ORDER_CREATED_MONTH_LAST_YEAR);
+					dataInfo.countOrderPaidLastYear = DaoFormatter.sqlToInt(stmtResult, DaoStoroniveDbTableColumn.COL_COUNT_ORDER_PAID_MONTH_LAST_YEAR);					
+					dataInfo.totalSaleLastYear = DaoFormatter.sqlToDouble(stmtResult, DaoStoroniveDbTableColumn.COL_TOTAL_SALE_MONTH_LAST_YEAR);
+					dataInfo.totalSaleCreatedLastYear = DaoFormatter.sqlToDouble(stmtResult, DaoStoroniveDbTableColumn.COL_TOTAL_SALE_CREATED_MONTH_LAST_YEAR);
+					dataInfo.totalSaleWaitingLastYear = DaoFormatter.sqlToDouble(stmtResult, DaoStoroniveDbTableColumn.COL_TOTAL_SALE_WAITING_MONTH_LAST_YEAR);
+					dataInfo.totalSalePaidLastYear = DaoFormatter.sqlToDouble(stmtResult, DaoStoroniveDbTableColumn.COL_TOTAL_SALE_PAID_MONTH_LAST_YEAR);
+					dataInfo.totalSalePlacedLastYear = DaoFormatter.sqlToDouble(stmtResult, DaoStoroniveDbTableColumn.COL_TOTAL_SALE_PLACED_MONTH_LAST_YEAR);
+					dataInfo.totalSaleCancelledLastYear = DaoFormatter.sqlToDouble(stmtResult, DaoStoroniveDbTableColumn.COL_TOTAL_SALE_CANCELLED_MONTH_LAST_YEAR);					
+					dataInfo.totalFeeLastYear = DaoFormatter.sqlToDouble(stmtResult, DaoStoroniveDbTableColumn.COL_TOTAL_FEE_MONTH_LAST_YEAR);
+					dataInfo.totalFeeCreatedLastYear = DaoFormatter.sqlToDouble(stmtResult, DaoStoroniveDbTableColumn.COL_TOTAL_FEE_CREATED_MONTH_LAST_YEAR);
+					dataInfo.totalFeeWaitingLastYear = DaoFormatter.sqlToDouble(stmtResult, DaoStoroniveDbTableColumn.COL_TOTAL_FEE_WAITING_MONTH_LAST_YEAR);
+					dataInfo.totalFeePaidLastYear = DaoFormatter.sqlToDouble(stmtResult, DaoStoroniveDbTableColumn.COL_TOTAL_FEE_PAID_MONTH_LAST_YEAR);
+					dataInfo.totalFeePlacedLastYear = DaoFormatter.sqlToDouble(stmtResult, DaoStoroniveDbTableColumn.COL_TOTAL_FEE_PLACED_MONTH_LAST_YEAR);
+					dataInfo.totalFeeCancelledLastYear = DaoFormatter.sqlToDouble(stmtResult, DaoStoroniveDbTableColumn.COL_TOTAL_FEE_CANCELLED_MONTH_LAST_YEAR);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
