@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchhInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchInfo;
 
-public final class DaoSowedularchSelect implements DaoStmtExec<SowedularchhInfo> {
-	private DaoStmtExec<SowedularchhInfo> helper;
+public final class DaoSowedularchSelect implements DaoStmtExec<SowedularchInfo> {
+	private DaoStmtExec<SowedularchInfo> helper;
 	
 	
-	public DaoSowedularchSelect(List<DaoStmtExecOption<SowedularchhInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoSowedularchSelectSingle.class, SowedularchhInfo.class);
+	public DaoSowedularchSelect(List<DaoStmtExecOption<SowedularchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, DaoSowedularchSelectSingle.class, SowedularchInfo.class);
 	}
 	
 	
@@ -24,7 +24,7 @@ public final class DaoSowedularchSelect implements DaoStmtExec<SowedularchhInfo>
 
 	
 	
-	@Override public List<SowedularchhInfo> getResultset() {
+	@Override public List<SowedularchInfo> getResultset() {
 		return helper.getResultset();
 	}
 	

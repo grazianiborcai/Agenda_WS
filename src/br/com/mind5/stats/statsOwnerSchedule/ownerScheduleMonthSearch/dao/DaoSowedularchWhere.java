@@ -8,19 +8,19 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchhInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchInfo;
 
 public final class DaoSowedularchWhere implements DaoStmtWhere {
 	private String whereClause;
 	
 	
-	public DaoSowedularchWhere(DaoWhereBuilderOption whereOption, String tableName, SowedularchhInfo recordInfo) {
+	public DaoSowedularchWhere(DaoWhereBuilderOption whereOption, String tableName, SowedularchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, SowedularchhInfo recordInfo) {
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, SowedularchInfo recordInfo) {
 		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);
 		
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);

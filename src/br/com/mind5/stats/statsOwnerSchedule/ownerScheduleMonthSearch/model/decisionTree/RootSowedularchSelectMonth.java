@@ -10,23 +10,23 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchhInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.action.LazySowedularchRootSelect;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.action.StdSowedularchEnforceCalmonth;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.checker.SowedularchCheckReadMonth;
 
 
-public final class RootSowedularchSelectMonth extends DeciTreeTemplateWrite<SowedularchhInfo> {
+public final class RootSowedularchSelectMonth extends DeciTreeTemplateWrite<SowedularchInfo> {
 	
-	public RootSowedularchSelectMonth(DeciTreeOption<SowedularchhInfo> option) {
+	public RootSowedularchSelectMonth(DeciTreeOption<SowedularchInfo> option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected ModelChecker<SowedularchhInfo> buildCheckerHook(DeciTreeOption<SowedularchhInfo> option) {
-		List<ModelChecker<SowedularchhInfo>> queue = new ArrayList<>();
-		ModelChecker<SowedularchhInfo> checker;
+	@Override protected ModelChecker<SowedularchInfo> buildCheckerHook(DeciTreeOption<SowedularchInfo> option) {
+		List<ModelChecker<SowedularchInfo>> queue = new ArrayList<>();
+		ModelChecker<SowedularchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -41,11 +41,11 @@ public final class RootSowedularchSelectMonth extends DeciTreeTemplateWrite<Sowe
 	
 	
 	
-	@Override protected List<ActionStd<SowedularchhInfo>> buildActionsOnPassedHook(DeciTreeOption<SowedularchhInfo> option) {
-		List<ActionStd<SowedularchhInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SowedularchInfo>> buildActionsOnPassedHook(DeciTreeOption<SowedularchInfo> option) {
+		List<ActionStd<SowedularchInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowedularchhInfo> enforceCalmonth = new StdSowedularchEnforceCalmonth(option);
-		ActionLazy<SowedularchhInfo> select = new LazySowedularchRootSelect(option.conn, option.schemaName);
+		ActionStd<SowedularchInfo> enforceCalmonth = new StdSowedularchEnforceCalmonth(option);
+		ActionLazy<SowedularchInfo> select = new LazySowedularchRootSelect(option.conn, option.schemaName);
 		
 		enforceCalmonth.addPostAction(select);
 		

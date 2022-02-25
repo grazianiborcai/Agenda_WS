@@ -9,24 +9,24 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchhInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.action.StdSowedularchMergeToSelect;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.checker.SowedularchCheckLangu;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.checker.SowedularchCheckOwner;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.checker.SowedularchCheckRead;
 
 
-public final class RootSowedularchSelect extends DeciTreeTemplateWrite<SowedularchhInfo> {
+public final class RootSowedularchSelect extends DeciTreeTemplateWrite<SowedularchInfo> {
 	
-	public RootSowedularchSelect(DeciTreeOption<SowedularchhInfo> option) {
+	public RootSowedularchSelect(DeciTreeOption<SowedularchInfo> option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected ModelChecker<SowedularchhInfo> buildCheckerHook(DeciTreeOption<SowedularchhInfo> option) {
-		List<ModelChecker<SowedularchhInfo>> queue = new ArrayList<>();
-		ModelChecker<SowedularchhInfo> checker;
+	@Override protected ModelChecker<SowedularchInfo> buildCheckerHook(DeciTreeOption<SowedularchInfo> option) {
+		List<ModelChecker<SowedularchInfo>> queue = new ArrayList<>();
+		ModelChecker<SowedularchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -55,10 +55,10 @@ public final class RootSowedularchSelect extends DeciTreeTemplateWrite<Sowedular
 	
 	
 	
-	@Override protected List<ActionStd<SowedularchhInfo>> buildActionsOnPassedHook(DeciTreeOption<SowedularchhInfo> option) {
-		List<ActionStd<SowedularchhInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SowedularchInfo>> buildActionsOnPassedHook(DeciTreeOption<SowedularchInfo> option) {
+		List<ActionStd<SowedularchInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowedularchhInfo> select = new StdSowedularchMergeToSelect(option);
+		ActionStd<SowedularchInfo> select = new StdSowedularchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

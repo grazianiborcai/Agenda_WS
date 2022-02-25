@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class SowedularchVisiMergeToSelect extends InfoMergerVisitorTemplate<SowedularchhInfo, SowedularchhInfo> {
+final class SowedularchVisiMergeToSelect extends InfoMergerVisitorTemplate<SowedularchInfo, SowedularchInfo> {
 
-	@Override public boolean shouldMerge(SowedularchhInfo baseInfo, SowedularchhInfo selectedInfo) {
+	@Override public boolean shouldMerge(SowedularchInfo baseInfo, SowedularchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	@Override public List<SowedularchhInfo> merge(SowedularchhInfo baseInfo, SowedularchhInfo selectedInfo) {
-		List<SowedularchhInfo> results = new ArrayList<>();
+	@Override public List<SowedularchInfo> merge(SowedularchInfo baseInfo, SowedularchInfo selectedInfo) {
+		List<SowedularchInfo> results = new ArrayList<>();
 		
 		selectedInfo.username = baseInfo.username;
 		selectedInfo.codLanguage = baseInfo.codLanguage;

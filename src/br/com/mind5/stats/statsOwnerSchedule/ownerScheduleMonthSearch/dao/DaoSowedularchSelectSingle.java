@@ -14,13 +14,13 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchhInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchInfo;
 
-public final class DaoSowedularchSelectSingle extends DaoStmtTemplate<SowedularchhInfo> {
+public final class DaoSowedularchSelectSingle extends DaoStmtTemplate<SowedularchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STAT_OWNER_SCHEDULE_MONTH_TABLE;
 	
 	
-	public DaoSowedularchSelectSingle(Connection conn, SowedularchhInfo recordInfo, String schemaName) {
+	public DaoSowedularchSelectSingle(Connection conn, SowedularchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoSowedularchSelectSingle extends DaoStmtTemplate<Sowedularc
 	
 	
 	
-	@Override protected String buildWhereClauseHook(String tableName, SowedularchhInfo recordInfo) {
+	@Override protected String buildWhereClauseHook(String tableName, SowedularchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
@@ -56,16 +56,16 @@ public final class DaoSowedularchSelectSingle extends DaoStmtTemplate<Sowedularc
 	
 	
 	
-	@Override protected DaoResultParser<SowedularchhInfo> getResultParserHook() {
-		return new DaoResultParser<SowedularchhInfo>() {
-			@Override public List<SowedularchhInfo> parseResult(SowedularchhInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
-				List<SowedularchhInfo> finalResult = new ArrayList<>();
+	@Override protected DaoResultParser<SowedularchInfo> getResultParserHook() {
+		return new DaoResultParser<SowedularchInfo>() {
+			@Override public List<SowedularchInfo> parseResult(SowedularchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<SowedularchInfo> finalResult = new ArrayList<>();
 				
 				if (stmtResult.next() == false)				
 					return finalResult;
 				
 				do {
-					SowedularchhInfo dataInfo = new SowedularchhInfo();
+					SowedularchInfo dataInfo = new SowedularchInfo();
 					
 					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSowedularchDbTableColumn.COL_COD_OWNER);
 					dataInfo.calmonth = stmtResult.getString(DaoSowedularchDbTableColumn.COL_CALMONTH);

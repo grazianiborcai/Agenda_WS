@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchhInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchInfo;
 
-public final class SowedularchCheckRead extends ModelCheckerTemplateSimple<SowedularchhInfo> {
+public final class SowedularchCheckRead extends ModelCheckerTemplateSimple<SowedularchInfo> {
 
 	public SowedularchCheckRead(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class SowedularchCheckRead extends ModelCheckerTemplateSimple<Sowed
 	
 	
 	
-	@Override protected boolean checkHook(SowedularchhInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(SowedularchInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
 			recordInfo.username 	== null ||
 			recordInfo.codLanguage 	== null		)

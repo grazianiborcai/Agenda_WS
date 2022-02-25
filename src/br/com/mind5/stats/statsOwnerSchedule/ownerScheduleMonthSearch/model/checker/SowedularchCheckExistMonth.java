@@ -5,19 +5,19 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchhInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.decisionTree.RootSowedularchSelectMonth;
 
-public final class SowedularchCheckExistMonth extends ModelCheckerTemplateAction<SowedularchhInfo, SowedularchhInfo> {
+public final class SowedularchCheckExistMonth extends ModelCheckerTemplateAction<SowedularchInfo, SowedularchInfo> {
 	
 	public SowedularchCheckExistMonth(ModelCheckerOption option) {
-		super(option, SowedularchhInfo.class);
+		super(option, SowedularchInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStd<SowedularchhInfo> buildActionHook(DeciTreeOption<SowedularchhInfo> option) {
-		ActionStd<SowedularchhInfo> select = new RootSowedularchSelectMonth(option).toAction();
+	@Override protected ActionStd<SowedularchInfo> buildActionHook(DeciTreeOption<SowedularchInfo> option) {
+		ActionStd<SowedularchInfo> select = new RootSowedularchSelectMonth(option).toAction();
 		return select;
 	}
 	

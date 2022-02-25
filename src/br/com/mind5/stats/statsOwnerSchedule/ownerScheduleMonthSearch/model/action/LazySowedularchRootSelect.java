@@ -7,10 +7,10 @@ import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchhInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.decisionTree.RootSowedularchSelect;
 
-public final class LazySowedularchRootSelect extends ActionLazyTemplate<SowedularchhInfo, SowedularchhInfo> {
+public final class LazySowedularchRootSelect extends ActionLazyTemplate<SowedularchInfo, SowedularchInfo> {
 
 	public LazySowedularchRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
@@ -18,19 +18,19 @@ public final class LazySowedularchRootSelect extends ActionLazyTemplate<Sowedula
 	
 	
 	
-	@Override protected List<SowedularchhInfo> translateRecordInfosHook(List<SowedularchhInfo> recordInfos) {
+	@Override protected List<SowedularchInfo> translateRecordInfosHook(List<SowedularchInfo> recordInfos) {
 		return recordInfos;
 	}
 	
 	
 	
-	@Override protected ActionStd<SowedularchhInfo> getInstanceOfActionHook(DeciTreeOption<SowedularchhInfo> option) {
+	@Override protected ActionStd<SowedularchInfo> getInstanceOfActionHook(DeciTreeOption<SowedularchInfo> option) {
 		return new RootSowedularchSelect(option).toAction();
 	}
 	
 	
 	
-	@Override protected DeciResult<SowedularchhInfo> translateResultHook(DeciResult<SowedularchhInfo> result) {
+	@Override protected DeciResult<SowedularchInfo> translateResultHook(DeciResult<SowedularchInfo> result) {
 		return result;
 	}
 }

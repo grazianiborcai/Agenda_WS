@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
-public final class SowedularchhInfo extends InfoRecord implements Cloneable {
+public final class SowedularchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public String calmonth;
 	public int year;
@@ -29,7 +29,7 @@ public final class SowedularchhInfo extends InfoRecord implements Cloneable {
 	public String username;
 	
 	
-	public SowedularchhInfo() {
+	public SowedularchInfo() {
 		super();
 
 		codOwner = DefaultValue.number();
@@ -48,14 +48,14 @@ public final class SowedularchhInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	public static SowedularchhInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, SowedularchhInfo.class);
+	public static SowedularchInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, SowedularchInfo.class);
 	}
 	
 	
 	
-	public static List<SowedularchhInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, SowedularchhInfo.class);
+	public static List<SowedularchInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, SowedularchInfo.class);
 	}
 	
 	
@@ -93,11 +93,11 @@ public final class SowedularchhInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof SowedularchhInfo))
+		if (!(o instanceof SowedularchInfo))
 			return false;
 		
 		
-		SowedularchhInfo obj = (SowedularchhInfo) o;
+		SowedularchInfo obj = (SowedularchInfo) o;
 		return (codOwner == obj.codOwner && 
 				super.isStringEqual(calmonth  , obj.calmonth) 	&&
 				super.isStringEqual(codCountry, obj.codCountry) &&

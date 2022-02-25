@@ -5,9 +5,9 @@ import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchhInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchInfo;
 
-public final class SowedularchCheckOwner extends ModelCheckerTemplateForward<SowedularchhInfo, OwnerInfo> {
+public final class SowedularchCheckOwner extends ModelCheckerTemplateForward<SowedularchInfo, OwnerInfo> {
 	
 	public SowedularchCheckOwner(ModelCheckerOption option) {
 		super(option);
@@ -21,7 +21,7 @@ public final class SowedularchCheckOwner extends ModelCheckerTemplateForward<Sow
 	
 	
 	
-	@Override protected OwnerInfo toForwardClass(SowedularchhInfo baseRecord) {
+	@Override protected OwnerInfo toForwardClass(SowedularchInfo baseRecord) {
 		return OwnerInfo.copyFrom(baseRecord);
 	}
 }

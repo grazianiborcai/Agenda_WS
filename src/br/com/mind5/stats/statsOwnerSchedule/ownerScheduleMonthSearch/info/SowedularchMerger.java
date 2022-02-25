@@ -6,13 +6,13 @@ import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 
 public final class SowedularchMerger {
-	public static List<SowedularchhInfo> mergeToSelect(List<SowedularchhInfo> baseInfos, List<SowedularchhInfo> selectedInfos) {
-		InfoMergerBuilder<SowedularchhInfo, SowedularchhInfo> builder = new InfoMergerBuilder<>();
+	public static List<SowedularchInfo> mergeToSelect(List<SowedularchInfo> baseInfos, List<SowedularchInfo> selectedInfos) {
+		InfoMergerBuilder<SowedularchInfo, SowedularchInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SowedularchVisiMergeToSelect());
-		InfoMerger<SowedularchhInfo, SowedularchhInfo> merger = builder.build();
+		InfoMerger<SowedularchInfo, SowedularchInfo> merger = builder.build();
 	
 		return merger.merge();
 	}

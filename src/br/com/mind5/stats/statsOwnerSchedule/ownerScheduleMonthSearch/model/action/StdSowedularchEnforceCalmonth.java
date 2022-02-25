@@ -3,17 +3,17 @@ package br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.act
 import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchhInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchInfo;
 
-public final class StdSowedularchEnforceCalmonth extends ActionStdTemplate<SowedularchhInfo> {
+public final class StdSowedularchEnforceCalmonth extends ActionStdTemplate<SowedularchInfo> {
 
-	public StdSowedularchEnforceCalmonth(DeciTreeOption<SowedularchhInfo> option) {
+	public StdSowedularchEnforceCalmonth(DeciTreeOption<SowedularchInfo> option) {
 		super(option);
 	}
 	
 	
 	
-	protected ActionVisitor<SowedularchhInfo> buildVisitorHook(DeciTreeOption<SowedularchhInfo> option) {
+	protected ActionVisitor<SowedularchInfo> buildVisitorHook(DeciTreeOption<SowedularchInfo> option) {
 		return new VisiSowedularchEnforceCalmonth(option);
 	}
 }

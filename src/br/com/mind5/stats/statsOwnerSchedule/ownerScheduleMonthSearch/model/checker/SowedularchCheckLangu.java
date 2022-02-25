@@ -5,9 +5,9 @@ import br.com.mind5.masterData.language.model.checker.LanguCheckExist;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchhInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchInfo;
 
-public final class SowedularchCheckLangu extends ModelCheckerTemplateForward<SowedularchhInfo, LanguInfo> {
+public final class SowedularchCheckLangu extends ModelCheckerTemplateForward<SowedularchInfo, LanguInfo> {
 	
 	public SowedularchCheckLangu(ModelCheckerOption option) {
 		super(option);
@@ -21,7 +21,7 @@ public final class SowedularchCheckLangu extends ModelCheckerTemplateForward<Sow
 	
 	
 	
-	@Override protected LanguInfo toForwardClass(SowedularchhInfo baseRecord) {
+	@Override protected LanguInfo toForwardClass(SowedularchInfo baseRecord) {
 		return LanguInfo.copyFrom(baseRecord);
 	}
 }
