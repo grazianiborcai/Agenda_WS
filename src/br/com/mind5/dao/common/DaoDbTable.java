@@ -141,6 +141,7 @@ public final class DaoDbTable {
 	public static final String SCHEDULE_YEAR_TABLE = "vw_schedule_year";
 	public static final String STAT_OWNER_ORDER_MONTH_TABLE = "stat_owner_order_month";
 	public static final String STAT_OWNER_ORDER_MONTH_LIVE_TABLE = "vw_stats_owner_order_month";
+	public static final String STAT_OWNER_SCHEDULE_MONTH_TABLE = "stat_owner_schedule_month";
 	public static final String STAT_SALES_DASH_LIVE_TABLE = "vw_stats_sales_dash";
 	public static final String STAT_STORE_ACCOUNT_DASH_LIVE_TABLE = "vw_stats_store_account_dash";
 	public static final String STAT_STORE_ORDER_DAY_LIVE_TABLE = "vw_stats_store_order_day";
