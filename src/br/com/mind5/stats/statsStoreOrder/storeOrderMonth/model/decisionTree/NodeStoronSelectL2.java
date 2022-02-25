@@ -63,10 +63,10 @@ public final class NodeStoronSelectL2 extends DeciTreeTemplateWrite<StoronInfo> 
 
 		ActionStd<StoronInfo> zerofy = new StdStoronEnforceZerofy(option);
 		ActionLazy<StoronInfo> mergeStolis = new LazyStoronMergeStolis(option.conn, option.schemaName);
-		ActionLazy<StoronInfo> insertSteddagr = new LazyStoronStoronagrInsert(option.conn, option.schemaName);
+		ActionLazy<StoronInfo> insertStoronagr = new LazyStoronStoronagrInsert(option.conn, option.schemaName);
 		
 		zerofy.addPostAction(mergeStolis);
-		mergeStolis.addPostAction(insertSteddagr);
+		mergeStolis.addPostAction(insertStoronagr);
 		
 		actions.add(zerofy);
 		return actions;

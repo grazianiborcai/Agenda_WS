@@ -46,13 +46,13 @@ public final class NodeStoronUpsert extends DeciTreeTemplateWrite<StoronInfo> {
 	@Override protected List<ActionStd<StoronInfo>> buildActionsOnPassedHook(DeciTreeOption<StoronInfo> option) {
 		List<ActionStd<StoronInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoronInfo> mergeSteddive = new StdStoronMergeStoronive(option);
-		ActionLazy<StoronInfo> upsertSteddagr = new LazyStoronStoronagrUpsert(option.conn, option.schemaName);
+		ActionStd<StoronInfo> mergeStoronive = new StdStoronMergeStoronive(option);
+		ActionLazy<StoronInfo> upsertStoronagr = new LazyStoronStoronagrUpsert(option.conn, option.schemaName);
 		
-		mergeSteddive.addPostAction(upsertSteddagr);
+		mergeStoronive.addPostAction(upsertStoronagr);
 		
 		
-		actions.add(mergeSteddive);
+		actions.add(mergeStoronive);
 		return actions;
 	}
 	
@@ -63,10 +63,10 @@ public final class NodeStoronUpsert extends DeciTreeTemplateWrite<StoronInfo> {
 
 		ActionStd<StoronInfo> zerofy = new StdStoronEnforceZerofy(option);
 		ActionLazy<StoronInfo> mergeStolis = new LazyStoronMergeStolis(option.conn, option.schemaName);
-		ActionLazy<StoronInfo> upsertSteddagr = new LazyStoronStoronagrUpsert(option.conn, option.schemaName);
+		ActionLazy<StoronInfo> upsertStoronagr = new LazyStoronStoronagrUpsert(option.conn, option.schemaName);
 		
 		zerofy.addPostAction(mergeStolis);
-		mergeStolis.addPostAction(upsertSteddagr);
+		mergeStolis.addPostAction(upsertStoronagr);
 		
 		
 		actions.add(zerofy);
