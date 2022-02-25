@@ -8,9 +8,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.info.SowordiveInfo;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.action.StdSowordiveDaoSelect;
 
-public final class SowordiveCheckExistMonth extends ModelCheckerTemplateAction<SowordiveInfo, SowordiveInfo> {
+public final class SowordiveCheckExist extends ModelCheckerTemplateAction<SowordiveInfo, SowordiveInfo> {
 	
-	public SowordiveCheckExistMonth(ModelCheckerOption option) {
+	public SowordiveCheckExist(ModelCheckerOption option) {
 		super(option, SowordiveInfo.class);
 	}
 	

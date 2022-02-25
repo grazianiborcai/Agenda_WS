@@ -20,9 +20,9 @@ import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.checker.Sowo
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.checker.SowordiveCheckRead;
 
 
-public final class RootSowordiveSelectMonth extends DeciTreeTemplateWrite<SowordiveInfo> {
+public final class RootSowordiveSelect extends DeciTreeTemplateWrite<SowordiveInfo> {
 	
-	public RootSowordiveSelectMonth(DeciTreeOption<SowordiveInfo> option) {
+	public RootSowordiveSelect(DeciTreeOption<SowordiveInfo> option) {
 		super(option);
 	}
 	
