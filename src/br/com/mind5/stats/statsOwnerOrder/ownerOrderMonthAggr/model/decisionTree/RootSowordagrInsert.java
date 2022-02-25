@@ -16,7 +16,6 @@ import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthAggr.model.action.StdSo
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthAggr.model.checker.SowordagrCheckExist;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthAggr.model.checker.SowordagrCheckLangu;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthAggr.model.checker.SowordagrCheckOwner;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthAggr.model.checker.SowordagrCheckStore;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthAggr.model.checker.SowordagrCheckWrite;
 
 
@@ -52,13 +51,6 @@ public final class RootSowordagrInsert extends DeciTreeTemplateWrite<SowordagrIn
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;
 		checker = new SowordagrCheckOwner(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;
-		checker = new SowordagrCheckStore(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
