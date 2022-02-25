@@ -10,11 +10,11 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordCheckLangu;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordCheckOwner;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordInfo;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.LazySowordNodeSelectL1;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.StdSowordMergeStolis;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.checker.SowordCheckLangu;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.checker.SowordCheckOwner;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.checker.SowordCheckRead;
 
 

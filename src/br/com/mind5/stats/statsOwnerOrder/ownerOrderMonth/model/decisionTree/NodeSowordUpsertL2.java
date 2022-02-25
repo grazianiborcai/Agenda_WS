@@ -17,9 +17,9 @@ import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.StdSoword
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.checker.SowordCheckSowordive;
 
 
-public final class NodeSowordUpsert extends DeciTreeTemplateWrite<SowordInfo> {
+public final class NodeSowordUpsertL2 extends DeciTreeTemplateWrite<SowordInfo> {
 	
-	public NodeSowordUpsert(DeciTreeOption<SowordInfo> option) {
+	public NodeSowordUpsertL2(DeciTreeOption<SowordInfo> option) {
 		super(option);
 	}
 	

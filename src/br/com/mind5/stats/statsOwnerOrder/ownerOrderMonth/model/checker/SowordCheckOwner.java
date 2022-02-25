@@ -1,10 +1,11 @@
-package br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info;
+package br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.checker;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordInfo;
 
 public final class SowordCheckOwner extends ModelCheckerTemplateForward<SowordInfo, OwnerInfo> {
 	

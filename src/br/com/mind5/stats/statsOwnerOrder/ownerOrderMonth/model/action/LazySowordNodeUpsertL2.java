@@ -8,11 +8,11 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordInfo;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.decisionTree.NodeSowordUpsert;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.decisionTree.NodeSowordUpsertL2;
 
-public final class LazySowordNodeUpsert extends ActionLazyTemplate<SowordInfo, SowordInfo> {
+public final class LazySowordNodeUpsertL2 extends ActionLazyTemplate<SowordInfo, SowordInfo> {
 
-	public LazySowordNodeUpsert(Connection conn, String schemaName) {
+	public LazySowordNodeUpsertL2(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazySowordNodeUpsert extends ActionLazyTemplate<SowordInfo, S
 	
 	
 	@Override protected ActionStd<SowordInfo> getInstanceOfActionHook(DeciTreeOption<SowordInfo> option) {
-		return new NodeSowordUpsert(option).toAction();
+		return new NodeSowordUpsertL2(option).toAction();
 	}
 	
 	
