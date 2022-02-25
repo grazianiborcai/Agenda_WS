@@ -7,8 +7,8 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrder.info.SowordInfo;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrder.info.SowordMerger;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderLive.info.SowordiveInfo;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderLive.model.decisionTree.RootSowordiveSelect;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.info.SowordiveInfo;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.decisionTree.RootSowordiveSelectMonth;
 
 final class VisiSowordMergeSowordive extends ActionVisitorTemplateMerge<SowordInfo, SowordiveInfo> {
 	
@@ -19,7 +19,7 @@ final class VisiSowordMergeSowordive extends ActionVisitorTemplateMerge<SowordIn
 	
 	
 	@Override protected Class<? extends DeciTree<SowordiveInfo>> getTreeClassHook() {
-		return RootSowordiveSelect.class;
+		return RootSowordiveSelectMonth.class;
 	}
 	
 	

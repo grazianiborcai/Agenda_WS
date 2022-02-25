@@ -4,8 +4,8 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrder.info.SowordInfo;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderLive.info.SowordiveInfo;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderLive.model.checker.SowordiveCheckExist;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.info.SowordiveInfo;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.checker.SowordiveCheckExistMonth;
 
 public final class SowordCheckSowordive extends ModelCheckerTemplateForward<SowordInfo, SowordiveInfo> {
 	
@@ -16,7 +16,7 @@ public final class SowordCheckSowordive extends ModelCheckerTemplateForward<Sowo
 
 	
 	@Override protected ModelChecker<SowordiveInfo> getCheckerHook(ModelCheckerOption option) {
-		return new SowordiveCheckExist(option);
+		return new SowordiveCheckExistMonth(option);
 	}
 	
 	
