@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrder.info.SowordInfo;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordInfo;
 import br.com.mind5.stats.statsOwnerSale.ownerSale.info.SowalInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.info.SowedulInfo;
 import br.com.mind5.stats.statsOwnerStore.ownerStore.info.SowotInfo;
