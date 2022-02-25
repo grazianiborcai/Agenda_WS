@@ -18,9 +18,9 @@ import br.com.mind5.stats.statsOwnerDashboard.model.action.LazySowashMergeSowus;
 import br.com.mind5.stats.statsOwnerDashboard.model.action.StdSowashMergeSowot;
 
 
-public final class RootSowashSelectLtm extends DeciTreeTemplateWrite<SowashInfo> {
+public final class RootSowashSelect extends DeciTreeTemplateWrite<SowashInfo> {
 	
-	public RootSowashSelectLtm(DeciTreeOption<SowashInfo> option) {
+	public RootSowashSelect(DeciTreeOption<SowashInfo> option) {
 		super(option);
 	}
 	
