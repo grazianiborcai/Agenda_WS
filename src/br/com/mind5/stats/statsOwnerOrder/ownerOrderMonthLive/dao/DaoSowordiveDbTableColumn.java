@@ -26,7 +26,6 @@ public final class DaoSowordiveDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COUNT_ORDER_TOTAL_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_ORDER_TOTAL_MONTH_LAST_YEAR;
 	public static final String COL_COUNT_ORDER_WAITING_MONTH = DaoDbField.COL_COUNT_ORDER_WAITING_MONTH;
 	public static final String COL_COUNT_ORDER_WAITING_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_ORDER_WAITING_MONTH_LAST_YEAR;
-	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_MONTH = DaoDbField.COL_MONTH;
 	public static final String COL_STATE_PROVINCE = DaoDbField.COL_STATE_PROVINCE;
 	public static final String COL_TOTAL_FEE_CANCELLED_MONTH = DaoDbField.COL_TOTAL_FEE_CANCELLED_MONTH;
@@ -63,7 +62,7 @@ public final class DaoSowordiveDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		final String TABLE_NAME = DaoDbTable.STAT_STORE_ORDER_DASH_LIVE_TABLE;
+		final String TABLE_NAME = DaoDbTable.STAT_OWNER_ORDER_MONTH_LIVE_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();
@@ -262,14 +261,6 @@ public final class DaoSowordiveDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_TOTAL_FEE_WAITING_MONTH;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_LAST_CHANGED;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

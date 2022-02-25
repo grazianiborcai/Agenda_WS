@@ -17,7 +17,7 @@ import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.info.SowordiveInfo;
 
 public final class DaoSowordiveSelectSingle extends DaoStmtTemplate<SowordiveInfo> {
-	private final String MAIN_TABLE = DaoDbTable.STAT_STORE_ORDER_DASH_LIVE_TABLE;	
+	private final String MAIN_TABLE = DaoDbTable.STAT_OWNER_ORDER_MONTH_LIVE_TABLE;	
 	
 	
 	public DaoSowordiveSelectSingle(Connection conn, SowordiveInfo recordInfo, String schemaName) {
@@ -86,7 +86,6 @@ public final class DaoSowordiveSelectSingle extends DaoStmtTemplate<SowordiveInf
 					dataInfo.totalFeePaidMonth = DaoFormatter.sqlToDouble(stmtResult, DaoSowordiveDbTableColumn.COL_TOTAL_FEE_PAID_MONTH);
 					dataInfo.totalFeePlacedMonth = DaoFormatter.sqlToDouble(stmtResult, DaoSowordiveDbTableColumn.COL_TOTAL_FEE_PLACED_MONTH);
 					dataInfo.totalFeeCancelledMonth = DaoFormatter.sqlToDouble(stmtResult, DaoSowordiveDbTableColumn.COL_TOTAL_FEE_CANCELLED_MONTH);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoSowordiveDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.countOrderCancelledLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowordiveDbTableColumn.COL_COUNT_ORDER_CANCELLED_MONTH_LAST_YEAR);
 					dataInfo.countOrderWaitingLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowordiveDbTableColumn.COL_COUNT_ORDER_WAITING_MONTH_LAST_YEAR);
 					dataInfo.countOrderTotalLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSowordiveDbTableColumn.COL_COUNT_ORDER_TOTAL_MONTH_LAST_YEAR);
