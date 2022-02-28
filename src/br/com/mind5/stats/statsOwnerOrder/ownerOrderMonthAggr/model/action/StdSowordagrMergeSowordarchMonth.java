@@ -14,6 +14,6 @@ public final class StdSowordagrMergeSowordarchMonth extends ActionStdTemplate<So
 	
 	
 	protected ActionVisitor<SowordagrInfo> buildVisitorHook(DeciTreeOption<SowordagrInfo> option) {
-		return new VisiSowordagrDaoDelete(option);
+		return new VisiSowordagrMergeSowordarchMonth(option);
 	}
 }
