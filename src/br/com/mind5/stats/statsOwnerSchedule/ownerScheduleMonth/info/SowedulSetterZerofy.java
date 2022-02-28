@@ -13,10 +13,6 @@ public final class SowedulSetterZerofy extends InfoSetterTemplate<SowedulInfo> {
 		recordInfo.countScheduleWaitingLastYear = 0;
 		recordInfo.countScheduleConfirmedLastYear = 0;	
 		recordInfo.countScheduleTotalLastYear = 0;
-		recordInfo.countScheduleCancelledVar = 0;
-		recordInfo.countScheduleWaitingVar = 0;
-		recordInfo.countScheduleConfirmedVar = 0;	
-		recordInfo.countScheduleTotalVar = 0;
 
 		return recordInfo;
 	}

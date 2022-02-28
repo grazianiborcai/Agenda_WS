@@ -10,29 +10,28 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action.StdSowedulMergeSowedulive;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action.StdSowedulSuccess;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.checker.SowedulCheckSowedulive;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action.StdSowedulMergeSowedulagr;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.checker.SowedulCheckSowedulagr;
 
 
-public final class NodeSowedulSelectLtm extends DeciTreeTemplateWrite<SowedulInfo> {
+public final class NodeSowedulSelectL1 extends DeciTreeTemplateWrite<SowedulInfo> {
 	
-	public NodeSowedulSelectLtm(DeciTreeOption<SowedulInfo> option) {
+	public NodeSowedulSelectL1(DeciTreeOption<SowedulInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected ModelChecker<SowedulInfo> buildCheckerHook(DeciTreeOption<SowedulInfo> option) {
-		List<ModelChecker<SowedulInfo>> queue = new ArrayList<>();		
+		List<ModelChecker<SowedulInfo>> queue = new ArrayList<>();
 		ModelChecker<SowedulInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new SowedulCheckSowedulive(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;
+		checker = new SowedulCheckSowedulagr(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -43,9 +42,9 @@ public final class NodeSowedulSelectLtm extends DeciTreeTemplateWrite<SowedulInf
 	@Override protected List<ActionStd<SowedulInfo>> buildActionsOnPassedHook(DeciTreeOption<SowedulInfo> option) {
 		List<ActionStd<SowedulInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowedulInfo> mergeSowedulive = new StdSowedulMergeSowedulive(option);
+		ActionStd<SowedulInfo> mergeSowedulagr = new StdSowedulMergeSowedulagr(option);
 		
-		actions.add(mergeSowedulive);
+		actions.add(mergeSowedulagr);
 		return actions;
 	}
 	
@@ -54,9 +53,9 @@ public final class NodeSowedulSelectLtm extends DeciTreeTemplateWrite<SowedulInf
 	@Override protected List<ActionStd<SowedulInfo>> buildActionsOnFailedHook(DeciTreeOption<SowedulInfo> option) {
 		List<ActionStd<SowedulInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowedulInfo> success = new StdSowedulSuccess(option);
+		ActionStd<SowedulInfo> nodeL2 = new NodeSowedulSelectL2(option).toAction();
 		
-		actions.add(success);
+		actions.add(nodeL2);
 		return actions;
 	}
 }

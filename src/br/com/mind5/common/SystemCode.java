@@ -1805,4 +1805,7 @@ public final class SystemCode {
 	public static final int STAT_OWN_SCH_MTH_AGGR_ALREADY_EXIST 		= 18100;
 	public static final int STAT_OWN_SCH_MTH_AGGR_NOT_FOUND 			= 18101;
 	public static final int STAT_OWN_SCH_MTH_AGGR_MANDATORY_FIELD_EMPTY	= 18102;
+	
+	// Statistics - Schedule-Order
+	public static final int STAT_OWNER_SCH_MANDATORY_FIELD_EMPTY		= 18150;
 }

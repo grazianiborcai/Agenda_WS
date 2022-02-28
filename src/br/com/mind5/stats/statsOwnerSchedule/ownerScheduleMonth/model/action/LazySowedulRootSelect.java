@@ -8,11 +8,11 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.decisionTree.NodeSowedulZerofy;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.decisionTree.RootSowedulSelect;
 
-public final class LazySowedulNodeZerofy extends ActionLazyTemplate<SowedulInfo, SowedulInfo> {
+public final class LazySowedulRootSelect extends ActionLazyTemplate<SowedulInfo, SowedulInfo> {
 
-	public LazySowedulNodeZerofy(Connection conn, String schemaName) {
+	public LazySowedulRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazySowedulNodeZerofy extends ActionLazyTemplate<SowedulInfo,
 	
 	
 	@Override protected ActionStd<SowedulInfo> getInstanceOfActionHook(DeciTreeOption<SowedulInfo> option) {
-		return new NodeSowedulZerofy(option).toAction();
+		return new RootSowedulSelect(option).toAction();
 	}
 	
 	

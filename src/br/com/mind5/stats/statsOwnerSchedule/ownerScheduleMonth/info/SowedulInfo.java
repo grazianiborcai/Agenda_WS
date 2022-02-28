@@ -16,23 +16,17 @@ public final class SowedulInfo extends InfoRecord implements Cloneable {
 	public String txtCountry;
 	public String codState;
 	public String txtState;
-	public String city;	
+	public String city;
 	public int countScheduleCancelledMonth;
 	public int countScheduleWaitingMonth;
 	public int countScheduleConfirmedMonth;
 	public int countScheduleTotalMonth;
 	public int countScheduleCancelledLastYear;
 	public int countScheduleWaitingLastYear;
-	public int countScheduleConfirmedLastYear;	
+	public int countScheduleConfirmedLastYear;
 	public int countScheduleTotalLastYear;
-	public double countScheduleCancelledVar;
-	public double countScheduleWaitingVar;
-	public double countScheduleConfirmedVar;	
-	public double countScheduleTotalVar;
-	public boolean hasData;
 	public LocalDateTime lastChanged;
 	public String username;
-	
 	
 	public SowedulInfo() {
 		super();
@@ -44,15 +38,10 @@ public final class SowedulInfo extends InfoRecord implements Cloneable {
 		countScheduleWaitingMonth = DefaultValue.number();
 		countScheduleConfirmedMonth = DefaultValue.number();
 		countScheduleTotalMonth = DefaultValue.number();
+		countScheduleCancelledLastYear = DefaultValue.number();
 		countScheduleWaitingLastYear = DefaultValue.number();
 		countScheduleConfirmedLastYear = DefaultValue.number();
-		countScheduleCancelledLastYear = DefaultValue.number();
 		countScheduleTotalLastYear = DefaultValue.number();
-		countScheduleCancelledVar = DefaultValue.number();
-		countScheduleWaitingVar = DefaultValue.number();
-		countScheduleConfirmedVar = DefaultValue.number();
-		countScheduleTotalVar = DefaultValue.number();
-		hasData = DefaultValue.boole();
 		lastChanged = DefaultValue.object();
 	}
 	

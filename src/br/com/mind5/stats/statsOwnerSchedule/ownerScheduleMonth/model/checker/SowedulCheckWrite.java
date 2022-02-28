@@ -7,25 +7,29 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo;
 
-public final class SowedulCheckHasData extends ModelCheckerTemplateSimple<SowedulInfo> {
+public final class SowedulCheckWrite extends ModelCheckerTemplateSimple<SowedulInfo> {
 
-	public SowedulCheckHasData(ModelCheckerOption option) {
+	public SowedulCheckWrite(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(SowedulInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.hasData )
-			return super.SUCCESS;
+		if (recordInfo.codOwner 	<= 0 	||
+			recordInfo.calmonth 	== null ||
+			recordInfo.username 	== null ||
+			recordInfo.codLanguage 	== null		)
+			
+			return super.FAILED;
 		
 		
-		return super.FAILED;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.STAT_OWNER_SCHED_MANDATORY_FIELD_EMPTY;
+		return SystemCode.STAT_OWNER_SCH_MANDATORY_FIELD_EMPTY;
 	}
 }

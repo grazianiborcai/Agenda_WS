@@ -11,13 +11,13 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action.LazySowedulRootSelect;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action.StdSowedulMergeCalonthLtm;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action.LazySowedulNodeUpsertL2;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action.StdSowedulMergeStolis;
 
 
-public final class RootSowedulSelectLtm extends DeciTreeTemplateWrite<SowedulInfo> {
+public final class NodeSowedulUpsertL1 extends DeciTreeTemplateWrite<SowedulInfo> {
 	
-	public RootSowedulSelectLtm(DeciTreeOption<SowedulInfo> option) {
+	public NodeSowedulUpsertL1(DeciTreeOption<SowedulInfo> option) {
 		super(option);
 	}
 	
@@ -27,7 +27,7 @@ public final class RootSowedulSelectLtm extends DeciTreeTemplateWrite<SowedulInf
 		List<ModelChecker<SowedulInfo>> queue = new ArrayList<>();
 		ModelChecker<SowedulInfo> checker;
 
-		checker = new ModelCheckerDummy<SowedulInfo>();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -38,12 +38,12 @@ public final class RootSowedulSelectLtm extends DeciTreeTemplateWrite<SowedulInf
 	@Override protected List<ActionStd<SowedulInfo>> buildActionsOnPassedHook(DeciTreeOption<SowedulInfo> option) {
 		List<ActionStd<SowedulInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowedulInfo> mergeCalonthLtm = new StdSowedulMergeCalonthLtm(option);
-		ActionLazy<SowedulInfo> select = new LazySowedulRootSelect(option.conn, option.schemaName);
+		ActionStd<SowedulInfo> mergeStolis = new StdSowedulMergeStolis(option);
+		ActionLazy<SowedulInfo> nodeL1 = new LazySowedulNodeUpsertL2(option.conn, option.schemaName);
 		
-		mergeCalonthLtm.addPostAction(select);
+		mergeStolis.addPostAction(nodeL1);
 		
-		actions.add(mergeCalonthLtm);
+		actions.add(mergeStolis);
 		return actions;
 	}
 }
