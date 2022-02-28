@@ -1,4 +1,4 @@
-package br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.model.action;
+package br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import br.com.mind5.business.calendarMonth.model.decisionTree.RootCalonthSelectL
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.info.SowedulInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.info.SowedulMerger;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulMerger;
 
 final class VisiSowedulMergeCalonthLtm extends ActionVisitorTemplateMerge<SowedulInfo, CalonthInfo> {
 	

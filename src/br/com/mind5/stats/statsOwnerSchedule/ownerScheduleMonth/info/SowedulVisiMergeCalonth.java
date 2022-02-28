@@ -1,4 +1,4 @@
-package br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.info;
+package br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info;
 
 import java.util.ArrayList;
 import java.util.List;

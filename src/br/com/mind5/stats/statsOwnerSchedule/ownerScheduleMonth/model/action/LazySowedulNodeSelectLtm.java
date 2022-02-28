@@ -1,4 +1,4 @@
-package br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.model.action;
+package br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action;
 
 import java.sql.Connection;
 import java.util.List;
@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.info.SowedulInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.model.decisionTree.NodeSowedulZerofy;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.decisionTree.NodeSowedulSelectLtm;
 
-public final class LazySowedulNodeZerofy extends ActionLazyTemplate<SowedulInfo, SowedulInfo> {
+public final class LazySowedulNodeSelectLtm extends ActionLazyTemplate<SowedulInfo, SowedulInfo> {
 
-	public LazySowedulNodeZerofy(Connection conn, String schemaName) {
+	public LazySowedulNodeSelectLtm(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazySowedulNodeZerofy extends ActionLazyTemplate<SowedulInfo,
 	
 	
 	@Override protected ActionStd<SowedulInfo> getInstanceOfActionHook(DeciTreeOption<SowedulInfo> option) {
-		return new NodeSowedulZerofy(option).toAction();
+		return new NodeSowedulSelectLtm(option).toAction();
 	}
 	
 	

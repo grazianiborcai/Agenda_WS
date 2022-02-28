@@ -1,11 +1,11 @@
-package br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.model.checker;
+package br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.checker;
 
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
-import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.info.SowedulInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo;
 
 public final class SowedulCheckHasData extends ModelCheckerTemplateSimple<SowedulInfo> {
 

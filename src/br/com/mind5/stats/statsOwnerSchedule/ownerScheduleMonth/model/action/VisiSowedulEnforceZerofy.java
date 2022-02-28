@@ -1,10 +1,10 @@
-package br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.model.action;
+package br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action;
 
 import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.info.SowedulInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.info.SowedulSetterZerofy;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulSetterZerofy;
 
 final class VisiSowedulEnforceZerofy extends ActionVisitorTemplateEnforce<SowedulInfo> {
 	

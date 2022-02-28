@@ -7,8 +7,8 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerDashboard.info.SowashInfo;
 import br.com.mind5.stats.statsOwnerDashboard.info.SowashMerger;
-import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.info.SowedulInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.model.decisionTree.RootSowedulSelectLtm;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.decisionTree.RootSowedulSelectLtm;
 
 final class VisiSowashMergeSowedul extends ActionVisitorTemplateMerge<SowashInfo, SowedulInfo> {
 	

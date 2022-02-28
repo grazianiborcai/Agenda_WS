@@ -1,4 +1,4 @@
-package br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.model.decisionTree;
+package br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,10 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
-import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.info.SowedulInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.model.action.StdSowedulEnforceZerofy;
-import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.model.action.StdSowedulSuccess;
-import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.model.checker.SowedulCheckHasData;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action.StdSowedulEnforceZerofy;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action.StdSowedulSuccess;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.checker.SowedulCheckHasData;
 
 
 public final class NodeSowedulZerofy extends DeciTreeTemplateWrite<SowedulInfo> {

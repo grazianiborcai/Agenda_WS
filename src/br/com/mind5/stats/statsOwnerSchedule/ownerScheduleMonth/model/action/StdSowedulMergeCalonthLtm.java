@@ -1,9 +1,9 @@
-package br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.model.action;
+package br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action;
 
 import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.info.SowedulInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo;
 
 public final class StdSowedulMergeCalonthLtm extends ActionStdTemplate<SowedulInfo> {
 

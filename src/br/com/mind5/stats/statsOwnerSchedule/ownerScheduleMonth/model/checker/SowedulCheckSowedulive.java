@@ -1,9 +1,9 @@
-package br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.model.checker;
+package br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.checker;
 
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
-import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.info.SowedulInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.info.SoweduliveInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.model.checker.SoweduliveCheckExist;
 
