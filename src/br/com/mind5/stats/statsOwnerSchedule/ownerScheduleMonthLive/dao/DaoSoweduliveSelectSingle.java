@@ -67,19 +67,15 @@ public final class DaoSoweduliveSelectSingle extends DaoStmtTemplate<SoweduliveI
 					dataInfo.month = DaoFormatter.sqlToInt(stmtResult, DaoSoweduliveDbTableColumn.COL_MONTH);
 					dataInfo.codCountry = stmtResult.getString(DaoSoweduliveDbTableColumn.COL_COD_COUNTRY);
 					dataInfo.codState = stmtResult.getString(DaoSoweduliveDbTableColumn.COL_STATE_PROVINCE);
-					dataInfo.city = stmtResult.getString(DaoSoweduliveDbTableColumn.COL_CITY);					
+					dataInfo.city = stmtResult.getString(DaoSoweduliveDbTableColumn.COL_CITY);
 					dataInfo.countScheduleCancelledMonth = DaoFormatter.sqlToInt(stmtResult, DaoSoweduliveDbTableColumn.COL_COUNT_SCHEDULE_CANCELLED_MONTH);
-					dataInfo.countScheduleCancelledLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSoweduliveDbTableColumn.COL_COUNT_SCHEDULE_CANCELLED_MONTH_LAST_YEAR);
-					dataInfo.countScheduleCancelledVar = DaoFormatter.sqlToDouble(stmtResult, DaoSoweduliveDbTableColumn.COL_COUNT_SCHEDULE_CANCELLED_VAR);
 					dataInfo.countScheduleWaitingMonth = DaoFormatter.sqlToInt(stmtResult, DaoSoweduliveDbTableColumn.COL_COUNT_SCHEDULE_WAITING_MONTH);
-					dataInfo.countScheduleWaitingLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSoweduliveDbTableColumn.COL_COUNT_SCHEDULE_WAITING_MONTH_LAST_YEAR);
-					dataInfo.countScheduleWaitingVar = DaoFormatter.sqlToDouble(stmtResult, DaoSoweduliveDbTableColumn.COL_COUNT_SCHEDULE_WAITING_VAR);
 					dataInfo.countScheduleTotalMonth = DaoFormatter.sqlToInt(stmtResult, DaoSoweduliveDbTableColumn.COL_COUNT_SCHEDULE_TOTAL_MONTH);
-					dataInfo.countScheduleTotalLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSoweduliveDbTableColumn.COL_COUNT_SCHEDULE_TOTAL_MONTH_LAST_YEAR);
-					dataInfo.countScheduleTotalVar = DaoFormatter.sqlToDouble(stmtResult, DaoSoweduliveDbTableColumn.COL_COUNT_SCHEDULE_TOTAL_VAR);
 					dataInfo.countScheduleConfirmedMonth = DaoFormatter.sqlToInt(stmtResult, DaoSoweduliveDbTableColumn.COL_COUNT_SCHEDULE_CONFIRMED_MONTH);
+					dataInfo.countScheduleCancelledLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSoweduliveDbTableColumn.COL_COUNT_SCHEDULE_CANCELLED_MONTH_LAST_YEAR);
+					dataInfo.countScheduleWaitingLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSoweduliveDbTableColumn.COL_COUNT_SCHEDULE_WAITING_MONTH_LAST_YEAR);
+					dataInfo.countScheduleTotalLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSoweduliveDbTableColumn.COL_COUNT_SCHEDULE_TOTAL_MONTH_LAST_YEAR);
 					dataInfo.countScheduleConfirmedLastYear = DaoFormatter.sqlToInt(stmtResult, DaoSoweduliveDbTableColumn.COL_COUNT_SCHEDULE_CONFIRMED_MONTH_LAST_YEAR);
-					dataInfo.countScheduleConfirmedVar = DaoFormatter.sqlToDouble(stmtResult, DaoSoweduliveDbTableColumn.COL_COUNT_SCHEDULE_CONFIRMED_VAR);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

@@ -11,7 +11,6 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.info.SoweduliveInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.model.action.LazySoweduliveEnforceHasData;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.model.action.LazySoweduliveEnforceLChanged;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.model.action.LazySoweduliveMergeMonth;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.model.action.LazySoweduliveMergeState;
@@ -65,13 +64,11 @@ public final class RootSoweduliveSelect extends DeciTreeTemplateWrite<Sowedulive
 
 		ActionStd<SoweduliveInfo> select = new StdSoweduliveMergeToSelect(option);
 		ActionLazy<SoweduliveInfo> enforceLChanged = new LazySoweduliveEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<SoweduliveInfo> enforceHasData = new LazySoweduliveEnforceHasData(option.conn, option.schemaName);
 		ActionLazy<SoweduliveInfo> mergeState = new LazySoweduliveMergeState(option.conn, option.schemaName);
 		ActionLazy<SoweduliveInfo> mergeMonth = new LazySoweduliveMergeMonth(option.conn, option.schemaName);		
 		
 		select.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(enforceHasData);
-		enforceHasData.addPostAction(mergeState);
+		enforceLChanged.addPostAction(mergeState);
 		mergeState.addPostAction(mergeMonth);
 		
 		actions.add(select);
