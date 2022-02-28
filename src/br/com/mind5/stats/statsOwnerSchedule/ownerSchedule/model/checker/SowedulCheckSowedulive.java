@@ -4,8 +4,8 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
 import br.com.mind5.stats.statsOwnerSchedule.ownerSchedule.info.SowedulInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleLive.info.SoweduliveInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleLive.model.checker.SoweduliveCheckExist;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.info.SoweduliveInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.model.checker.SoweduliveCheckExist;
 
 public final class SowedulCheckSowedulive extends ModelCheckerTemplateForward<SowedulInfo, SoweduliveInfo> {
 	
