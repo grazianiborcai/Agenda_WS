@@ -8,10 +8,11 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.decisionTree.RootSowedulagrDelete;
 
-public final class LazyStedmonagrEnforceLChanged extends ActionLazyTemplate<SowedulagrInfo, SowedulagrInfo> {
+public final class LazySowedulagrRootDelete extends ActionLazyTemplate<SowedulagrInfo, SowedulagrInfo> {
 
-	public LazyStedmonagrEnforceLChanged(Connection conn, String schemaName) {
+	public LazySowedulagrRootDelete(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyStedmonagrEnforceLChanged extends ActionLazyTemplate<Sowe
 	
 	
 	@Override protected ActionStd<SowedulagrInfo> getInstanceOfActionHook(DeciTreeOption<SowedulagrInfo> option) {
-		return new StdStedmonagrEnforceLChanged(option);
+		return new RootSowedulagrDelete(option).toAction();
 	}
 	
 	

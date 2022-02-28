@@ -11,9 +11,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.action.LazyStedmonagrMergeCalonth;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.action.LazyStedmonagrMergeState;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.action.StdStedmonagrMergeToSelect;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.action.LazySowedulagrMergeCalonth;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.action.LazySowedulagrMergeState;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.action.StdSowedulagrMergeToSelect;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.checker.SowedulagrCheckLangu;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.checker.SowedulagrCheckOwner;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.checker.SowedulagrCheckRead;
@@ -61,9 +61,9 @@ public final class RootSowedulagrSelect extends DeciTreeTemplateWrite<Sowedulagr
 	@Override protected List<ActionStd<SowedulagrInfo>> buildActionsOnPassedHook(DeciTreeOption<SowedulagrInfo> option) {
 		List<ActionStd<SowedulagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowedulagrInfo> select = new StdStedmonagrMergeToSelect(option);
-		ActionLazy<SowedulagrInfo> mergeState = new LazyStedmonagrMergeState(option.conn, option.schemaName);
-		ActionLazy<SowedulagrInfo> mergeCalonth = new LazyStedmonagrMergeCalonth(option.conn, option.schemaName);
+		ActionStd<SowedulagrInfo> select = new StdSowedulagrMergeToSelect(option);
+		ActionLazy<SowedulagrInfo> mergeState = new LazySowedulagrMergeState(option.conn, option.schemaName);
+		ActionLazy<SowedulagrInfo> mergeCalonth = new LazySowedulagrMergeCalonth(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeState);
 		mergeState.addPostAction(mergeCalonth);

@@ -1800,4 +1800,9 @@ public final class SystemCode {
 	public static final int STAT_OWN_SCH_MTH_SRCH_ALREADY_EXIST 		= 18050;
 	public static final int STAT_OWN_SCH_MTH_SRCH_NOT_FOUND 			= 18051;
 	public static final int STAT_OWN_SCH_MTH_SRCH_MANDATORY_FIELD_EMPTY	= 18052;
+	
+	// Statistics - Owner-Schedule-Month-Aggr
+	public static final int STAT_OWN_SCH_MTH_AGGR_ALREADY_EXIST 		= 18100;
+	public static final int STAT_OWN_SCH_MTH_AGGR_NOT_FOUND 			= 18101;
+	public static final int STAT_OWN_SCH_MTH_AGGR_MANDATORY_FIELD_EMPTY	= 18102;
 }

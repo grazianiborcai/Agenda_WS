@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.dao.DaoSowedulagrSelect;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
 
-final class VisiStedmonagrDaoSelect extends ActionVisitorTemplateStmt<SowedulagrInfo> {
+final class VisiSowedulagrDaoSelect extends ActionVisitorTemplateStmt<SowedulagrInfo> {
 
-	public VisiStedmonagrDaoSelect(DeciTreeOption<SowedulagrInfo> option) {
+	public VisiSowedulagrDaoSelect(DeciTreeOption<SowedulagrInfo> option) {
 		super(option);
 	}
 	

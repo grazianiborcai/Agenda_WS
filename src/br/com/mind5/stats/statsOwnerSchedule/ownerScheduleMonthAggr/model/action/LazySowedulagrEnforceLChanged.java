@@ -8,11 +8,10 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.decisionTree.RootSowedulagrInsert;
 
-public final class LazyStedmonagrRootInsert extends ActionLazyTemplate<SowedulagrInfo, SowedulagrInfo> {
+public final class LazySowedulagrEnforceLChanged extends ActionLazyTemplate<SowedulagrInfo, SowedulagrInfo> {
 
-	public LazyStedmonagrRootInsert(Connection conn, String schemaName) {
+	public LazySowedulagrEnforceLChanged(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +24,7 @@ public final class LazyStedmonagrRootInsert extends ActionLazyTemplate<Sowedulag
 	
 	
 	@Override protected ActionStd<SowedulagrInfo> getInstanceOfActionHook(DeciTreeOption<SowedulagrInfo> option) {
-		return new RootSowedulagrInsert(option).toAction();
+		return new StdSowedulagrEnforceLChanged(option);
 	}
 	
 	

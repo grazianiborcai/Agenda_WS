@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrSetterLChanged;
 
-final class VisiStedmonagrEnforceLChanged extends ActionVisitorTemplateEnforce<SowedulagrInfo> {
+final class VisiSowedulagrEnforceLChanged extends ActionVisitorTemplateEnforce<SowedulagrInfo> {
 	
-	public VisiStedmonagrEnforceLChanged(DeciTreeOption<SowedulagrInfo> option) {
+	public VisiSowedulagrEnforceLChanged(DeciTreeOption<SowedulagrInfo> option) {
 		super(option);
 	}
 

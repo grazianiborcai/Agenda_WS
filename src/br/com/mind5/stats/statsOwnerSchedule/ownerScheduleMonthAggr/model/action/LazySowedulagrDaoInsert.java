@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
 
-public final class LazyStedmonagrDaoInsert extends ActionLazyTemplate<SowedulagrInfo, SowedulagrInfo> {
+public final class LazySowedulagrDaoInsert extends ActionLazyTemplate<SowedulagrInfo, SowedulagrInfo> {
 
-	public LazyStedmonagrDaoInsert(Connection conn, String schemaName) {
+	public LazySowedulagrDaoInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyStedmonagrDaoInsert extends ActionLazyTemplate<Sowedulagr
 	
 	
 	@Override protected ActionStd<SowedulagrInfo> getInstanceOfActionHook(DeciTreeOption<SowedulagrInfo> option) {
-		return new StdStedmonagrDaoInsert(option);
+		return new StdSowedulagrDaoInsert(option);
 	}
 	
 	

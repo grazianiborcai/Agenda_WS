@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
 
-public final class StdStedmonagrDaoSelect extends ActionStdTemplate<SowedulagrInfo> {
+public final class StdSowedulagrEnforceLChanged extends ActionStdTemplate<SowedulagrInfo> {
 
-	public StdStedmonagrDaoSelect(DeciTreeOption<SowedulagrInfo> option) {
+	public StdSowedulagrEnforceLChanged(DeciTreeOption<SowedulagrInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<SowedulagrInfo> buildVisitorHook(DeciTreeOption<SowedulagrInfo> option) {
-		return new VisiStedmonagrDaoSelect(option);
+		return new VisiSowedulagrEnforceLChanged(option);
 	}
 }

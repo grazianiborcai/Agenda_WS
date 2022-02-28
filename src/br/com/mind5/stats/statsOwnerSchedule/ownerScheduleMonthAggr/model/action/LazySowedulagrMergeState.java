@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
 
-public final class LazyStedmonagrMergeState extends ActionLazyTemplate<SowedulagrInfo, SowedulagrInfo> {
+public final class LazySowedulagrMergeState extends ActionLazyTemplate<SowedulagrInfo, SowedulagrInfo> {
 
-	public LazyStedmonagrMergeState(Connection conn, String schemaName) {
+	public LazySowedulagrMergeState(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyStedmonagrMergeState extends ActionLazyTemplate<Sowedulag
 	
 	
 	@Override protected ActionStd<SowedulagrInfo> getInstanceOfActionHook(DeciTreeOption<SowedulagrInfo> option) {
-		return new StdStedmonagrMergeState(option);
+		return new StdSowedulagrMergeState(option);
 	}
 	
 	

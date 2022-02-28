@@ -8,16 +8,16 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrMerger;
 
-final class VisiStedmonagrMergeToSelect extends ActionVisitorTemplateMerge<SowedulagrInfo, SowedulagrInfo> {
+final class VisiSowedulagrMergeToSelect extends ActionVisitorTemplateMerge<SowedulagrInfo, SowedulagrInfo> {
 	
-	public VisiStedmonagrMergeToSelect(DeciTreeOption<SowedulagrInfo> option) {
+	public VisiSowedulagrMergeToSelect(DeciTreeOption<SowedulagrInfo> option) {
 		super(option, SowedulagrInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends ActionStd<SowedulagrInfo>> getActionClassHook() {
-		return StdStedmonagrDaoSelect.class;
+		return StdSowedulagrDaoSelect.class;
 	}
 	
 	

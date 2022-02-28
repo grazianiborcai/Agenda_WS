@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
 
-public final class StdStedmonagrMergeState extends ActionStdTemplate<SowedulagrInfo> {
+public final class StdSowedulagrDaoDelete extends ActionStdTemplate<SowedulagrInfo> {
 
-	public StdStedmonagrMergeState(DeciTreeOption<SowedulagrInfo> option) {
+	public StdSowedulagrDaoDelete(DeciTreeOption<SowedulagrInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<SowedulagrInfo> buildVisitorHook(DeciTreeOption<SowedulagrInfo> option) {
-		return new VisiStedmonagrMergeState(option);
+		return new VisiSowedulagrDaoDelete(option);
 	}
 }

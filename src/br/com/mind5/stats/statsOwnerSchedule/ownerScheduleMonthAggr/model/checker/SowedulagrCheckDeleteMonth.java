@@ -7,9 +7,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
 
-public final class SowedulagrCheckWrite extends ModelCheckerTemplateSimple<SowedulagrInfo> {
+public final class SowedulagrCheckDeleteMonth extends ModelCheckerTemplateSimple<SowedulagrInfo> {
 
-	public SowedulagrCheckWrite(ModelCheckerOption option) {
+	public SowedulagrCheckDeleteMonth(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -18,15 +18,12 @@ public final class SowedulagrCheckWrite extends ModelCheckerTemplateSimple<Sowed
 	@Override protected boolean checkHook(SowedulagrInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
 			recordInfo.calmonth 	== null ||
-			recordInfo.codCountry 	== null ||
-			recordInfo.codState 	== null ||
-			recordInfo.city 		== null ||
 			recordInfo.username 	== null ||
 			recordInfo.codLanguage 	== null		)	
 			
 			return super.FAILED;
-			
-			
+		
+		
 		return super.SUCCESS;
 	}
 	

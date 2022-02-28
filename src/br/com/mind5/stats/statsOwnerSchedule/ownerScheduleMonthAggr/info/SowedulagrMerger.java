@@ -6,8 +6,22 @@ import br.com.mind5.business.calendarMonth.info.CalonthInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.state.info.StateInfo;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchInfo;
 
 public final class SowedulagrMerger {
+	public static List<SowedulagrInfo> mergeWithSowedularch(List<SowedulagrInfo> baseInfos, List<SowedularchInfo> selectedInfos) {
+		InfoMergerBuilder<SowedulagrInfo, SowedularchInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SowedulagrVisiMergeSowedularch());
+		InfoMerger<SowedulagrInfo, SowedularchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<SowedulagrInfo> mergeWithCalonth(List<SowedulagrInfo> baseInfos, List<CalonthInfo> selectedInfos) {
 		InfoMergerBuilder<SowedulagrInfo, CalonthInfo> builder = new InfoMergerBuilder<>();
 		

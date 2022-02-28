@@ -11,8 +11,8 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.action.LazyStedmonagrDaoInsert;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.action.StdStedmonagrEnforceLChanged;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.action.LazySowedulagrDaoInsert;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.action.StdSowedulagrEnforceLChanged;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.checker.SowedulagrCheckWrite;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.checker.SowedulagrCheckExist;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.checker.SowedulagrCheckLangu;
@@ -68,8 +68,8 @@ public final class RootSowedulagrInsert extends DeciTreeTemplateWrite<Sowedulagr
 	@Override protected List<ActionStd<SowedulagrInfo>> buildActionsOnPassedHook(DeciTreeOption<SowedulagrInfo> option) {
 		List<ActionStd<SowedulagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowedulagrInfo> enforceLChanged = new StdStedmonagrEnforceLChanged(option);
-		ActionLazy<SowedulagrInfo> insert = new LazyStedmonagrDaoInsert(option.conn, option.schemaName);
+		ActionStd<SowedulagrInfo> enforceLChanged = new StdSowedulagrEnforceLChanged(option);
+		ActionLazy<SowedulagrInfo> insert = new LazySowedulagrDaoInsert(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(insert);
 		

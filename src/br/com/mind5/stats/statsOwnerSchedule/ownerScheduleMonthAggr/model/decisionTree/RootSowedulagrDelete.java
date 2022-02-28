@@ -10,7 +10,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.action.StdStedmonagrDaoDelete;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.action.StdSowedulagrDaoDelete;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.checker.SowedulagrCheckWrite;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.checker.SowedulagrCheckExist;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.checker.SowedulagrCheckLangu;
@@ -65,7 +65,7 @@ public final class RootSowedulagrDelete extends DeciTreeTemplateWrite<Sowedulagr
 	@Override protected List<ActionStd<SowedulagrInfo>> buildActionsOnPassedHook(DeciTreeOption<SowedulagrInfo> option) {
 		List<ActionStd<SowedulagrInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<SowedulagrInfo> delete = new StdStedmonagrDaoDelete(option);	
+		ActionStd<SowedulagrInfo> delete = new StdSowedulagrDaoDelete(option);	
 		
 		actions.add(delete);		
 		

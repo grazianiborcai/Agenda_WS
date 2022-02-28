@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.dao.DaoSowedulagrDelete;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
 
-final class VisiStedmonagrDaoDelete extends ActionVisitorTemplateStmt<SowedulagrInfo> {
+final class VisiSowedulagrDaoDelete extends ActionVisitorTemplateStmt<SowedulagrInfo> {
 
-	public VisiStedmonagrDaoDelete(DeciTreeOption<SowedulagrInfo> option) {
+	public VisiSowedulagrDaoDelete(DeciTreeOption<SowedulagrInfo> option) {
 		super(option);
 	}
 	

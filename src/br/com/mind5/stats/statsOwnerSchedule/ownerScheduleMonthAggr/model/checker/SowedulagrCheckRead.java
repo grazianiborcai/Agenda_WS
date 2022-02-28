@@ -27,12 +27,12 @@ public final class SowedulagrCheckRead extends ModelCheckerTemplateSimple<Sowedu
 			return super.FAILED;
 			
 			
-			return super.SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.STAT_STR_SCH_MTH_AGGR_MANDATORY_FIELD_EMPTY;
+		return SystemCode.STAT_OWN_SCH_MTH_AGGR_MANDATORY_FIELD_EMPTY;
 	}
 }
