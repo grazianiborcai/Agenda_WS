@@ -6,7 +6,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.decisionTree.RootSowedulagrSelectMonth;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.decisionTree.SowedulagrRootSelectMonth;
 
 public final class SowedulagrCheckExistMonth extends ModelCheckerTemplateAction<SowedulagrInfo, SowedulagrInfo> {
 	
@@ -17,7 +17,7 @@ public final class SowedulagrCheckExistMonth extends ModelCheckerTemplateAction<
 	
 	
 	@Override protected ActionStd<SowedulagrInfo> buildActionHook(DeciTreeOption<SowedulagrInfo> option) {
-		ActionStd<SowedulagrInfo> select = new RootSowedulagrSelectMonth(option).toAction();
+		ActionStd<SowedulagrInfo> select = new SowedulagrRootSelectMonth(option).toAction();
 		return select;
 	}
 	

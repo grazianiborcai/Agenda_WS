@@ -2,11 +2,12 @@ package br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.check
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.action.StdSowedulagrDaoSelect;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.action.SowedulagrVisiDaoSelect;
 
 public final class SowedulagrCheckExist extends ModelCheckerTemplateAction<SowedulagrInfo, SowedulagrInfo> {
 	
@@ -17,7 +18,7 @@ public final class SowedulagrCheckExist extends ModelCheckerTemplateAction<Sowed
 	
 	
 	@Override protected ActionStd<SowedulagrInfo> buildActionHook(DeciTreeOption<SowedulagrInfo> option) {
-		ActionStd<SowedulagrInfo> select = new StdSowedulagrDaoSelect(option);
+		ActionStd<SowedulagrInfo> select = new ActionStdCommom<SowedulagrInfo>(option, SowedulagrVisiDaoSelect.class);
 		return select;
 	}
 	

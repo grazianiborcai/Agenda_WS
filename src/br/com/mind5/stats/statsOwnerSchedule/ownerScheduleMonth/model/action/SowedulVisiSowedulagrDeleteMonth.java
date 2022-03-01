@@ -7,7 +7,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.decisionTree.RootSowedulagrDeleteMonth;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.decisionTree.SowedulagrRootDeleteMonth;
 
 public final class SowedulVisiSowedulagrDeleteMonth extends ActionVisitorTemplateAction<SowedulInfo, SowedulagrInfo> {
 
@@ -18,7 +18,7 @@ public final class SowedulVisiSowedulagrDeleteMonth extends ActionVisitorTemplat
 	
 	
 	@Override protected Class<? extends DeciTree<SowedulagrInfo>> getTreeClassHook() {
-		return RootSowedulagrDeleteMonth.class;
+		return SowedulagrRootDeleteMonth.class;
 	}
 	
 	
