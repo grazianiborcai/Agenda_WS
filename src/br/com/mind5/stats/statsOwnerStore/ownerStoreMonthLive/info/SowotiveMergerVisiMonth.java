@@ -1,4 +1,4 @@
-package br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info;
+package br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.info;
 
 import java.util.ArrayList;
 import java.util.List;

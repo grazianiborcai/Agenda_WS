@@ -1,11 +1,11 @@
-package br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.checker;
+package br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.model.checker;
 
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveInfo;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.info.SowotiveInfo;
 
 public final class SowotiveCheckRead extends ModelCheckerTemplateSimple<SowotiveInfo> {
 

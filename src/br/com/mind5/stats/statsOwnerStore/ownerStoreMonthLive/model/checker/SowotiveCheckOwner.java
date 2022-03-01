@@ -1,11 +1,11 @@
-package br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.checker;
+package br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.model.checker;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveInfo;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.info.SowotiveInfo;
 
 public final class SowotiveCheckOwner extends ModelCheckerTemplateForward<SowotiveInfo, OwnerInfo> {
 	

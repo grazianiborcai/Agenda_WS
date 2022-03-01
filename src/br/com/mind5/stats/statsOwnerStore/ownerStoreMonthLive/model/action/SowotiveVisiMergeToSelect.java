@@ -1,12 +1,12 @@
-package br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.action;
+package br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.model.action;
 
 import java.util.List;
 
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveInfo;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveMerger;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.info.SowotiveInfo;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.info.SowotiveMerger;
 
 public final class SowotiveVisiMergeToSelect extends ActionVisitorTemplateMerge<SowotiveInfo, SowotiveInfo> {
 	

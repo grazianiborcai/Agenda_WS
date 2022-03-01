@@ -1,4 +1,4 @@
-package br.com.mind5.stats.statsOwnerStore.ownerStoreLive.dao;
+package br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.dao;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveInfo;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.info.SowotiveInfo;
 
 public final class SowotiveDaoWhere implements DaoStmtWhere {
 	private String whereClause;	

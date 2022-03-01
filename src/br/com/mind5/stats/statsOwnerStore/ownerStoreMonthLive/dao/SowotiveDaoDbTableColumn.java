@@ -1,4 +1,4 @@
-package br.com.mind5.stats.statsOwnerStore.ownerStoreLive.dao;
+package br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -14,15 +14,14 @@ public final class SowotiveDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CITY = DaoDbField.COL_CITY;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_COUNTRY = DaoDbField.COL_COD_COUNTRY;
+	public static final String COL_COUNT_STORE_CREATED_MONTH = DaoDbField.COL_COUNT_STORE_CREATED_MONTH;
+	public static final String COL_COUNT_STORE_CREATED_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_STORE_CREATED_MONTH_LAST_YEAR;
 	public static final String COL_COUNT_STORE_MONTH = DaoDbField.COL_COUNT_STORE_MONTH;
 	public static final String COL_COUNT_STORE_ACCOUNT_COMPLETED_MONTH = DaoDbField.COL_COUNT_STORE_ACCOUNT_COMPLETED_MONTH;
 	public static final String COL_COUNT_STORE_ACCOUNT_PENDING_MONTH = DaoDbField.COL_COUNT_STORE_ACCOUNT_PENDING_MONTH;
 	public static final String COL_COUNT_STORE_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_STORE_MONTH_LAST_YEAR;
 	public static final String COL_COUNT_STORE_ACCOUNT_COMPLETED_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_STORE_ACCOUNT_COMPLETED_MONTH_LAST_YEAR;
 	public static final String COL_COUNT_STORE_ACCOUNT_PENDING_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_STORE_ACCOUNT_PENDING_MONTH_LAST_YEAR;
-	public static final String COL_COUNT_STORE_VAR = DaoDbField.COL_COUNT_STORE_VAR;
-	public static final String COL_COUNT_STORE_ACCOUNT_COMPLETED_VAR = DaoDbField.COL_COUNT_STORE_ACCOUNT_COMPLETED_VAR;
-	public static final String COL_COUNT_STORE_ACCOUNT_PENDING_VAR = DaoDbField.COL_COUNT_STORE_ACCOUNT_PENDING_VAR;
 	public static final String COL_MONTH = DaoDbField.COL_MONTH;
 	public static final String COL_STATE_PROVINCE = DaoDbField.COL_STATE_PROVINCE;
 	public static final String COL_YEAR = DaoDbField.COL_YEAR;
@@ -98,7 +97,7 @@ public final class SowotiveDaoDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_STORE_MONTH;
+		oneColumn.columnName = COL_COUNT_STORE_CREATED_MONTH;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -106,11 +105,27 @@ public final class SowotiveDaoDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_STORE_ACCOUNT_COMPLETED_MONTH;
+		oneColumn.columnName = COL_COUNT_STORE_CREATED_MONTH_LAST_YEAR;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COUNT_STORE_MONTH;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COUNT_STORE_ACCOUNT_COMPLETED_MONTH;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
@@ -139,30 +154,6 @@ public final class SowotiveDaoDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COUNT_STORE_ACCOUNT_PENDING_MONTH_LAST_YEAR;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_STORE_VAR;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_STORE_ACCOUNT_COMPLETED_VAR;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_STORE_ACCOUNT_PENDING_VAR;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

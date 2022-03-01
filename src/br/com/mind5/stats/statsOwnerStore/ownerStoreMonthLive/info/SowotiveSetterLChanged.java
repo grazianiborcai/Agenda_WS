@@ -1,4 +1,4 @@
-package br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info;
+package br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.info;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoSetterTemplate;

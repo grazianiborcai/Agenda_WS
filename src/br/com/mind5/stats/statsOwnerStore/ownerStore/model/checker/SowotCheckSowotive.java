@@ -4,8 +4,8 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
 import br.com.mind5.stats.statsOwnerStore.ownerStore.info.SowotInfo;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveInfo;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.checker.SowotiveCheckExist;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.info.SowotiveInfo;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.model.checker.SowotiveCheckExist;
 
 public final class SowotCheckSowotive extends ModelCheckerTemplateForward<SowotInfo, SowotiveInfo> {
 	

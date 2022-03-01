@@ -1,4 +1,4 @@
-package br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.action;
+package br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.model.action;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.dao.SowotiveDaoSelect;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveInfo;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.dao.SowotiveDaoSelect;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.info.SowotiveInfo;
 
 public final class SowotiveVisiDaoSelect extends ActionVisitorTemplateStmt<SowotiveInfo> {
 

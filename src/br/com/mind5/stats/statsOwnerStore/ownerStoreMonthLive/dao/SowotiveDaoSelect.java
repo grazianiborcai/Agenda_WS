@@ -1,4 +1,4 @@
-package br.com.mind5.stats.statsOwnerStore.ownerStoreLive.dao;
+package br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.dao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveInfo;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.info.SowotiveInfo;
 
 public final class SowotiveDaoSelect implements DaoStmtExec<SowotiveInfo> {
 	private DaoStmtExec<SowotiveInfo> helper;

@@ -1,12 +1,12 @@
-package br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.action;
+package br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.model.action;
 
 import java.util.List;
 
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveInfo;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.decisionTree.SowotiveRootSelect;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.info.SowotiveInfo;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.model.decisionTree.SowotiveRootSelect;
 
 public final class SowotiveVisiRootSelect extends ActionVisitorTemplateAction<SowotiveInfo, SowotiveInfo> {
 
