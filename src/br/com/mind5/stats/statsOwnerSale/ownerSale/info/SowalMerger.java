@@ -14,7 +14,7 @@ public final class SowalMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowalVisiMergeSowalagr());
+		builder.addVisitor(new SowalMergerVisiSowalagr());
 		InfoMerger<SowalInfo, SowalagrInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class SowalMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowalVisiMergeSowalive());
+		builder.addVisitor(new SowalMergerVisiSowalive());
 		InfoMerger<SowalInfo, SowaliveInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class SowalMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowalVisiMergeStolis());
+		builder.addVisitor(new SowalMergerVisiStolis());
 		InfoMerger<SowalInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
