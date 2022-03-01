@@ -11,6 +11,7 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -80,11 +81,14 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 		if (option == null)
 			return null;
 		
-		if (hasTreeClass())
+		if (isTreeClass())
 			return buildActionTree(option);		
 		
-		if (hasActionClass())
+		if (isActionClass())
 			return buildActionStd(option);		
+		
+		if (isVisitorClass())
+			return buildActionVisitor(option);		
 		
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
@@ -111,6 +115,19 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 			Class<? extends ActionStd<S>> actionClass = getActionClassHook();
 			Constructor<? extends ActionStd<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
 			return (ActionStd<S>) actionConstru.newInstance(option);
+				
+			} catch (Exception e) {
+				logException(e);
+				throw new IllegalArgumentException(e);
+			}
+	}
+	
+	
+	
+	private ActionStd<S> buildActionVisitor(DeciTreeOption<S> option) {
+		try {
+			Class<? extends ActionVisitor<S>> actionClass = getVisitorClassHook();
+			return new ActionStdCommom<S>(option, actionClass);
 				
 			} catch (Exception e) {
 				logException(e);
@@ -331,7 +348,7 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 	
 	
 	
-	private boolean hasTreeClass() {
+	private boolean isTreeClass() {
 		if (getTreeClassHook() == null)
 			return false;
 		
@@ -347,7 +364,7 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 	
 	
 	
-	private boolean hasActionClass() {
+	private boolean isActionClass() {
 		if (getActionClassHook() == null)
 			return false;
 		
@@ -357,6 +374,22 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 	
 	
 	protected Class<? extends ActionStd<S>> getActionClassHook() {
+		//Template method: default behavior
+		return null;
+	}
+	
+	
+	
+	private boolean isVisitorClass() {
+		if (getVisitorClassHook() == null)
+			return false;
+		
+		return true;
+	}
+	
+	
+	
+	protected Class<? extends ActionVisitor<S>> getVisitorClassHook() {
 		//Template method: default behavior
 		return null;
 	}
