@@ -1806,7 +1806,7 @@ public final class SystemCode {
 	public static final int STAT_OWN_SCH_MTH_AGGR_NOT_FOUND 			= 18101;
 	public static final int STAT_OWN_SCH_MTH_AGGR_MANDATORY_FIELD_EMPTY	= 18102;
 	
-	// Statistics - Schedule-Order
+	// Statistics - Schedule-Month
 	public static final int STAT_OWNER_SCH_MANDATORY_FIELD_EMPTY		= 18150;
 	
 	// Statistics - Owner-Sale-Aggr
@@ -1823,4 +1823,7 @@ public final class SystemCode {
 	public static final int STAT_OWN_STR_MTH_SRCH_ALREADY_EXIST 		= 18300;
 	public static final int STAT_OWN_STR_MTH_SRCH_NOT_FOUND 			= 18301;
 	public static final int STAT_OWN_STR_MTH_SRCH_MANDATORY_FIELD_EMPTY	= 18302;
+	
+	// Statistics - Store-Month
+	public static final int STAT_OWN_STR_MTH_MANDATORY_FIELD_EMPTY		= 18350;
 }

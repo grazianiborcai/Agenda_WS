@@ -1,18 +1,18 @@
-package br.com.mind5.stats.statsOwnerStore.ownerStore.model.action;
+package br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.model.action;
 
 import java.util.List;
 
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.statsOwnerStore.ownerStore.info.SowotInfo;
-import br.com.mind5.stats.statsOwnerStore.ownerStore.info.SowotMerger;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.info.SowotInfo;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.info.SowotMerger;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.info.SowotiveInfo;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.model.decisionTree.SowotiveRootSelect;
 
-final class VisiSowotMergeSowotive extends ActionVisitorTemplateMerge<SowotInfo, SowotiveInfo> {
+public final class SowotVisiMergeSowotive extends ActionVisitorTemplateMerge<SowotInfo, SowotiveInfo> {
 	
-	public VisiSowotMergeSowotive(DeciTreeOption<SowotInfo> option) {
+	public SowotVisiMergeSowotive(DeciTreeOption<SowotInfo> option) {
 		super(option, SowotiveInfo.class);
 	}
 	

@@ -1,4 +1,4 @@
-package br.com.mind5.stats.statsOwnerStore.ownerStore.info;
+package br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.info;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import br.com.mind5.business.calendarMonth.info.CalonthInfo;
 import br.com.mind5.info.InfoMergerCardinality;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class SowotVisiMergeCalonth extends InfoMergerVisitorTemplate<SowotInfo, CalonthInfo> {
+final class SowotMergerVisiCalonth extends InfoMergerVisitorTemplate<SowotInfo, CalonthInfo> {
 
 	@Override public boolean shouldMerge(SowotInfo baseInfo, CalonthInfo selectedInfo) {
 		return true;

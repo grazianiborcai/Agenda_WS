@@ -1,4 +1,4 @@
-package br.com.mind5.stats.statsOwnerStore.ownerStore.info;
+package br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.info;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,17 +16,15 @@ public final class SowotInfo extends InfoRecord implements Cloneable {
 	public String txtCountry;
 	public String codState;
 	public String txtState;
-	public String city;	
+	public String city;
+	public int countStoreTotalMonth;
 	public int countStoreCreatedMonth;
 	public int countStoreCompletedMonth;
 	public int countStorePendingMonth;
+	public int countStoreTotalLastYear;
 	public int countStoreCreatedLastYear;
 	public int countStoreCompletedLastYear;
 	public int countStorePendingLastYear;
-	public double countStoreCreatedVar;
-	public double countStoreCompletedVar;
-	public double countStorePendingVar;
-	public boolean hasData;
 	public LocalDateTime lastChanged;
 	public String username;
 	
@@ -37,16 +35,14 @@ public final class SowotInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		year = DefaultValue.number();
 		month = DefaultValue.number();
+		countStoreTotalMonth = DefaultValue.number();
 		countStoreCreatedMonth = DefaultValue.number();
 		countStoreCompletedMonth = DefaultValue.number();
 		countStorePendingMonth = DefaultValue.number();
+		countStoreTotalLastYear = DefaultValue.number();
 		countStoreCreatedLastYear = DefaultValue.number();
 		countStoreCompletedLastYear = DefaultValue.number();
 		countStorePendingLastYear = DefaultValue.number();
-		countStoreCreatedVar = DefaultValue.number();
-		countStoreCompletedVar = DefaultValue.number();
-		countStorePendingVar = DefaultValue.number();
-		hasData = DefaultValue.boole();
 		lastChanged = DefaultValue.object();
 	}
 	

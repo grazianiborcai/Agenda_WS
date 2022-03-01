@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.stats.statsOwnerStore.ownerStore.info.SowotInfo;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.info.SowotInfo;
 
 final class SowashVisiMergeSowot extends InfoMergerVisitorTemplate<SowashInfo, SowotInfo> {
 

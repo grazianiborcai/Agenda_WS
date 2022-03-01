@@ -1,9 +1,9 @@
-package br.com.mind5.stats.statsOwnerStore.ownerStore.model.checker;
+package br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.model.checker;
 
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
-import br.com.mind5.stats.statsOwnerStore.ownerStore.info.SowotInfo;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.info.SowotInfo;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.info.SowotiveInfo;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthLive.model.checker.SowotiveCheckExist;
 

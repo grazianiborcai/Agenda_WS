@@ -1,38 +1,38 @@
-package br.com.mind5.stats.statsOwnerStore.ownerStore.model.decisionTree;
+package br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
-import br.com.mind5.stats.statsOwnerStore.ownerStore.info.SowotInfo;
-import br.com.mind5.stats.statsOwnerStore.ownerStore.model.action.StdSowotMergeSowotive;
-import br.com.mind5.stats.statsOwnerStore.ownerStore.model.action.StdSowotSuccess;
-import br.com.mind5.stats.statsOwnerStore.ownerStore.model.checker.SowotCheckSowotive;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.info.SowotInfo;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.model.action.SowotVisiMergeSowotagr;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.model.checker.SowotCheckSowotagr;
 
 
-public final class NodeSowotSelectLtm extends DeciTreeTemplateWrite<SowotInfo> {
+public final class SowotNodeSelectL1 extends DeciTreeTemplateWrite<SowotInfo> {
 	
-	public NodeSowotSelectLtm(DeciTreeOption<SowotInfo> option) {
+	public SowotNodeSelectL1(DeciTreeOption<SowotInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected ModelChecker<SowotInfo> buildCheckerHook(DeciTreeOption<SowotInfo> option) {
-		List<ModelChecker<SowotInfo>> queue = new ArrayList<>();		
+		List<ModelChecker<SowotInfo>> queue = new ArrayList<>();
 		ModelChecker<SowotInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new SowotCheckSowotive(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;
+		checker = new SowotCheckSowotagr(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -43,9 +43,9 @@ public final class NodeSowotSelectLtm extends DeciTreeTemplateWrite<SowotInfo> {
 	@Override protected List<ActionStd<SowotInfo>> buildActionsOnPassedHook(DeciTreeOption<SowotInfo> option) {
 		List<ActionStd<SowotInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowotInfo> mergeSowotive = new StdSowotMergeSowotive(option);
+		ActionStd<SowotInfo> mergeSowotagr = new ActionStdCommom<SowotInfo>(option, SowotVisiMergeSowotagr.class);
 		
-		actions.add(mergeSowotive);
+		actions.add(mergeSowotagr);
 		return actions;
 	}
 	
@@ -54,9 +54,9 @@ public final class NodeSowotSelectLtm extends DeciTreeTemplateWrite<SowotInfo> {
 	@Override protected List<ActionStd<SowotInfo>> buildActionsOnFailedHook(DeciTreeOption<SowotInfo> option) {
 		List<ActionStd<SowotInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowotInfo> success = new StdSowotSuccess(option);
+		ActionStd<SowotInfo> nodeL2 = new SowotNodeSelectL2(option).toAction();
 		
-		actions.add(success);
+		actions.add(nodeL2);
 		return actions;
 	}
 }
