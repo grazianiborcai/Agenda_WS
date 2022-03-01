@@ -13,7 +13,7 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthAggr.info.SowotagrInfo;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthAggr.model.action.SowotagrVisiMergeSowedularchMonth;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthAggr.model.action.SowotagrVisiMergeSowotarchMonth;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthAggr.model.action.SowotagrVisiRootSelect;
 
 
@@ -40,12 +40,12 @@ public final class SowotagrRootSelectMonth extends DeciTreeTemplateWrite<Sowotag
 	@Override protected List<ActionStd<SowotagrInfo>> buildActionsOnPassedHook(DeciTreeOption<SowotagrInfo> option) {
 		List<ActionStd<SowotagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowotagrInfo> mergeSowedularchMonth = new ActionStdCommom<SowotagrInfo>(option, SowotagrVisiMergeSowedularchMonth.class);
+		ActionStd<SowotagrInfo> mergeSowotarchMonth = new ActionStdCommom<SowotagrInfo>(option, SowotagrVisiMergeSowotarchMonth.class);
 		ActionLazy<SowotagrInfo> select = new ActionLazyCommom<SowotagrInfo>(option.conn, option.schemaName, SowotagrVisiRootSelect.class);
 		
-		mergeSowedularchMonth.addPostAction(select);
+		mergeSowotarchMonth.addPostAction(select);
 		
-		actions.add(mergeSowedularchMonth);
+		actions.add(mergeSowotarchMonth);
 		return actions;
 	}
 }

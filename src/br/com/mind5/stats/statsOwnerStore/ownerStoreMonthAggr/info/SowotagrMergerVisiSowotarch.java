@@ -5,18 +5,18 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerCardinality;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchInfo;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthSearch.info.SowotarchInfo;
 
-final class SowotagrMergerVisiSowedularch extends InfoMergerVisitorTemplate<SowotagrInfo, SowedularchInfo> {
+final class SowotagrMergerVisiSowotarch extends InfoMergerVisitorTemplate<SowotagrInfo, SowotarchInfo> {
 
-	@Override public boolean shouldMerge(SowotagrInfo baseInfo, SowedularchInfo selectedInfo) {
+	@Override public boolean shouldMerge(SowotagrInfo baseInfo, SowotarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner &&
 				baseInfo.codLanguage.equals(selectedInfo.codLanguage));
 	}
 	
 	
 	
-	@Override public List<SowotagrInfo> merge(SowotagrInfo baseInfo, SowedularchInfo selectedInfo) {
+	@Override public List<SowotagrInfo> merge(SowotagrInfo baseInfo, SowotarchInfo selectedInfo) {
 		List<SowotagrInfo> results = new ArrayList<>();		
 		SowotagrInfo result = SowotagrInfo.copyFrom(selectedInfo);
 		
