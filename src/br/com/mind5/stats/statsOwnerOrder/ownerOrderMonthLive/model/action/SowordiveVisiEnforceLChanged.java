@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.info.SowordiveInfo;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.info.SowordiveSetterLChanged;
 
-final class VisiSowordiveEnforceLChanged extends ActionVisitorTemplateEnforce<SowordiveInfo> {
+public final class SowordiveVisiEnforceLChanged extends ActionVisitorTemplateEnforce<SowordiveInfo> {
 	
-	public VisiSowordiveEnforceLChanged(DeciTreeOption<SowordiveInfo> option) {
+	public SowordiveVisiEnforceLChanged(DeciTreeOption<SowordiveInfo> option) {
 		super(option);
 	}
 

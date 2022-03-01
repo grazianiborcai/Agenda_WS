@@ -2,11 +2,12 @@ package br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.info.SowordiveInfo;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.action.StdSowordiveDaoSelect;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.action.SowordiveVisiDaoSelect;
 
 public final class SowordiveCheckExist extends ModelCheckerTemplateAction<SowordiveInfo, SowordiveInfo> {
 	
@@ -17,7 +18,7 @@ public final class SowordiveCheckExist extends ModelCheckerTemplateAction<Soword
 	
 	
 	@Override protected ActionStd<SowordiveInfo> buildActionHook(DeciTreeOption<SowordiveInfo> option) {
-		ActionStd<SowordiveInfo> select = new StdSowordiveDaoSelect(option);
+		ActionStd<SowordiveInfo> select = new ActionStdCommom<SowordiveInfo>(option, SowordiveVisiDaoSelect.class);
 		return select;
 	}
 	

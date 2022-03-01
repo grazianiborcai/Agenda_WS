@@ -5,24 +5,26 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.info.SowordiveInfo;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.action.LazySowordiveEnforceLChanged;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.action.LazySowordiveMergeMonth;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.action.LazySowordiveMergeState;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.action.StdSowordiveMergeToSelect;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.action.SowordiveVisiEnforceLChanged;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.action.SowordiveVisiMergeMonth;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.action.SowordiveVisiMergeState;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.action.SowordiveVisiMergeToSelect;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.checker.SowordiveCheckLangu;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.checker.SowordiveCheckOwner;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.model.checker.SowordiveCheckRead;
 
 
-public final class RootSowordiveSelect extends DeciTreeTemplateWrite<SowordiveInfo> {
+public final class SowordiveRootSelect extends DeciTreeTemplateWrite<SowordiveInfo> {
 	
-	public RootSowordiveSelect(DeciTreeOption<SowordiveInfo> option) {
+	public SowordiveRootSelect(DeciTreeOption<SowordiveInfo> option) {
 		super(option);
 	}
 	
@@ -62,10 +64,10 @@ public final class RootSowordiveSelect extends DeciTreeTemplateWrite<SowordiveIn
 	@Override protected List<ActionStd<SowordiveInfo>> buildActionsOnPassedHook(DeciTreeOption<SowordiveInfo> option) {
 		List<ActionStd<SowordiveInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowordiveInfo> select = new StdSowordiveMergeToSelect(option);
-		ActionLazy<SowordiveInfo> enforceLChanged = new LazySowordiveEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<SowordiveInfo> mergeState = new LazySowordiveMergeState(option.conn, option.schemaName);
-		ActionLazy<SowordiveInfo> mergeMonth = new LazySowordiveMergeMonth(option.conn, option.schemaName);		
+		ActionStd<SowordiveInfo> select = new ActionStdCommom<SowordiveInfo>(option, SowordiveVisiMergeToSelect.class);
+		ActionLazy<SowordiveInfo> enforceLChanged = new ActionLazyCommom<SowordiveInfo>(option.conn, option.schemaName, SowordiveVisiEnforceLChanged.class);
+		ActionLazy<SowordiveInfo> mergeState = new ActionLazyCommom<SowordiveInfo>(option.conn, option.schemaName, SowordiveVisiMergeState.class);
+		ActionLazy<SowordiveInfo> mergeMonth = new ActionLazyCommom<SowordiveInfo>(option.conn, option.schemaName, SowordiveVisiMergeMonth.class);		
 		
 		select.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeState);

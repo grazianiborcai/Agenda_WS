@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.info.SowordiveInfo;
 
-public final class DaoSowordiveSelect implements DaoStmtExec<SowordiveInfo> {
+public final class SowordiveDaoSelect implements DaoStmtExec<SowordiveInfo> {
 	private DaoStmtExec<SowordiveInfo> helper;
 	
 	
-	public DaoSowordiveSelect(List<DaoStmtExecOption<SowordiveInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoSowordiveSelectSingle.class, SowordiveInfo.class);
+	public SowordiveDaoSelect(List<DaoStmtExecOption<SowordiveInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, SowordiveDaoSelectSingle.class, SowordiveInfo.class);
 	}
 	
 	

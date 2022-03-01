@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.month.info.MonthInfo;
 
-final class SowordiveVisiMergeMonth extends InfoMergerVisitorTemplate<SowordiveInfo, MonthInfo> {
+final class SowordiveMergerVisiMonth extends InfoMergerVisitorTemplate<SowordiveInfo, MonthInfo> {
 
 	@Override public boolean shouldMerge(SowordiveInfo baseInfo, MonthInfo selectedInfo) {
 		return (baseInfo.month == selectedInfo.month	&&
