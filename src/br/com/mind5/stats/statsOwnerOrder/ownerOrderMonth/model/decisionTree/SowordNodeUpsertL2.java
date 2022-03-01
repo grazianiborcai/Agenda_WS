@@ -5,21 +5,23 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordInfo;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.LazySowordSowordagrUpsert;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.StdSowordEnforceZerofy;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.StdSowordMergeSowordive;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.SowordVisiEnforceZerofy;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.SowordVisiMergeSowordive;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.SowordVisiSowordagrUpsert;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.checker.SowordCheckSowordive;
 
 
-public final class NodeSowordUpsertL2 extends DeciTreeTemplateWrite<SowordInfo> {
+public final class SowordNodeUpsertL2 extends DeciTreeTemplateWrite<SowordInfo> {
 	
-	public NodeSowordUpsertL2(DeciTreeOption<SowordInfo> option) {
+	public SowordNodeUpsertL2(DeciTreeOption<SowordInfo> option) {
 		super(option);
 	}
 	
@@ -45,8 +47,8 @@ public final class NodeSowordUpsertL2 extends DeciTreeTemplateWrite<SowordInfo> 
 	@Override protected List<ActionStd<SowordInfo>> buildActionsOnPassedHook(DeciTreeOption<SowordInfo> option) {
 		List<ActionStd<SowordInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowordInfo> mergeSowordive = new StdSowordMergeSowordive(option);
-		ActionLazy<SowordInfo> upsertSowordagr = new LazySowordSowordagrUpsert(option.conn, option.schemaName);
+		ActionStd<SowordInfo> mergeSowordive = new ActionStdCommom<SowordInfo>(option, SowordVisiMergeSowordive.class);
+		ActionLazy<SowordInfo> upsertSowordagr = new ActionLazyCommom<SowordInfo>(option.conn, option.schemaName, SowordVisiSowordagrUpsert.class);
 		
 		mergeSowordive.addPostAction(upsertSowordagr);
 		
@@ -60,8 +62,8 @@ public final class NodeSowordUpsertL2 extends DeciTreeTemplateWrite<SowordInfo> 
 	@Override protected List<ActionStd<SowordInfo>> buildActionsOnFailedHook(DeciTreeOption<SowordInfo> option) {
 		List<ActionStd<SowordInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowordInfo> zerofy = new StdSowordEnforceZerofy(option);
-		ActionLazy<SowordInfo> upsertSowordagr = new LazySowordSowordagrUpsert(option.conn, option.schemaName);
+		ActionStd<SowordInfo> zerofy = new ActionStdCommom<SowordInfo>(option, SowordVisiEnforceZerofy.class);
+		ActionLazy<SowordInfo> upsertSowordagr = new ActionLazyCommom<SowordInfo>(option.conn, option.schemaName, SowordVisiSowordagrUpsert.class);
 		
 		zerofy.addPostAction(upsertSowordagr);
 		

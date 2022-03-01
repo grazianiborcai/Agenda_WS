@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordInfo;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.StdSowordSowordagrDeleteMonth;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.SowordVisiSowordagrDeleteMonth;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.checker.SowordCheckWrite;
 
 
-public final class RootSowordUpsert extends DeciTreeTemplateWrite<SowordInfo> {
+public final class SowordRootUpsert extends DeciTreeTemplateWrite<SowordInfo> {
 	
-	public RootSowordUpsert(DeciTreeOption<SowordInfo> option) {
+	public SowordRootUpsert(DeciTreeOption<SowordInfo> option) {
 		super(option);
 	}
 	
@@ -42,8 +43,8 @@ public final class RootSowordUpsert extends DeciTreeTemplateWrite<SowordInfo> {
 	@Override protected List<ActionStd<SowordInfo>> buildActionsOnPassedHook(DeciTreeOption<SowordInfo> option) {
 		List<ActionStd<SowordInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowordInfo> delete = new StdSowordSowordagrDeleteMonth(option);
-		ActionStd<SowordInfo> nodeL1 = new NodeSowordUpsertL1(option).toAction();
+		ActionStd<SowordInfo> delete = new ActionStdCommom<SowordInfo>(option, SowordVisiSowordagrDeleteMonth.class);
+		ActionStd<SowordInfo> nodeL1 = new SowordNodeUpsertL1(option).toAction();
 		
 		actions.add(delete);
 		actions.add(nodeL1);

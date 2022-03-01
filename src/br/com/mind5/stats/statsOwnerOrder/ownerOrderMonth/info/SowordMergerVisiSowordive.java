@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthAggr.info.SowordagrInfo;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthLive.info.SowordiveInfo;
 
-final class SowordVisiMergeSowordagr extends InfoMergerVisitorTemplate<SowordInfo, SowordagrInfo> {
+final class SowordMergerVisiSowordive extends InfoMergerVisitorTemplate<SowordInfo, SowordiveInfo> {
 
-	@Override public boolean shouldMerge(SowordInfo baseInfo, SowordagrInfo selectedInfo) {
+	@Override public boolean shouldMerge(SowordInfo baseInfo, SowordiveInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner 			&&
 				baseInfo.calmonth.equals(selectedInfo.calmonth) 	&&
 				baseInfo.codCountry.equals(selectedInfo.codCountry) &&
@@ -18,7 +18,7 @@ final class SowordVisiMergeSowordagr extends InfoMergerVisitorTemplate<SowordInf
 	
 	
 	
-	@Override public List<SowordInfo> merge(SowordInfo baseInfo, SowordagrInfo selectedInfo) {
+	@Override public List<SowordInfo> merge(SowordInfo baseInfo, SowordiveInfo selectedInfo) {
 		List<SowordInfo> results = new ArrayList<>();
 		
 		SowordInfo result = SowordInfo.copyFrom(selectedInfo);

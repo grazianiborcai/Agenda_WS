@@ -10,9 +10,9 @@ import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordMerger;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthAggr.info.SowordagrInfo;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthAggr.model.decisionTree.RootSowordagrSelect;
 
-final class VisiSowordMergeSowordagr extends ActionVisitorTemplateMerge<SowordInfo, SowordagrInfo> {
+public final class SowordVisiMergeSowordagr extends ActionVisitorTemplateMerge<SowordInfo, SowordagrInfo> {
 	
-	public VisiSowordMergeSowordagr(DeciTreeOption<SowordInfo> option) {
+	public SowordVisiMergeSowordagr(DeciTreeOption<SowordInfo> option) {
 		super(option, SowordagrInfo.class);
 	}
 	

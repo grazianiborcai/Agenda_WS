@@ -3,23 +3,22 @@ package br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordInfo;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.LazySowordSowordagrInsert;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.StdSowordEnforceZerofy;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.StdSowordMergeSowordive;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.checker.SowordCheckSowordive;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.SowordVisiMergeSowordagr;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.SowordVisiNodeSelectL2;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.checker.SowordCheckSowordagr;
 
 
-public final class NodeSowordSelectL2 extends DeciTreeTemplateWrite<SowordInfo> {
+public final class SowordNodeSelectL1 extends DeciTreeTemplateWrite<SowordInfo> {
 	
-	public NodeSowordSelectL2(DeciTreeOption<SowordInfo> option) {
+	public SowordNodeSelectL1(DeciTreeOption<SowordInfo> option) {
 		super(option);
 	}
 	
@@ -34,7 +33,7 @@ public final class NodeSowordSelectL2 extends DeciTreeTemplateWrite<SowordInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;
-		checker = new SowordCheckSowordive(checkerOption);
+		checker = new SowordCheckSowordagr(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -45,13 +44,9 @@ public final class NodeSowordSelectL2 extends DeciTreeTemplateWrite<SowordInfo> 
 	@Override protected List<ActionStd<SowordInfo>> buildActionsOnPassedHook(DeciTreeOption<SowordInfo> option) {
 		List<ActionStd<SowordInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowordInfo> mergeSowordive = new StdSowordMergeSowordive(option);
-		ActionLazy<SowordInfo> insertSowordagr = new LazySowordSowordagrInsert(option.conn, option.schemaName);
+		ActionStd<SowordInfo> mergeSowordagr = new ActionStdCommom<SowordInfo>(option, SowordVisiMergeSowordagr.class);
 		
-		mergeSowordive.addPostAction(insertSowordagr);
-		
-		
-		actions.add(mergeSowordive);
+		actions.add(mergeSowordagr);
 		return actions;
 	}
 	
@@ -60,12 +55,9 @@ public final class NodeSowordSelectL2 extends DeciTreeTemplateWrite<SowordInfo> 
 	@Override protected List<ActionStd<SowordInfo>> buildActionsOnFailedHook(DeciTreeOption<SowordInfo> option) {
 		List<ActionStd<SowordInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowordInfo> zerofy = new StdSowordEnforceZerofy(option);
-		ActionLazy<SowordInfo> insertSoword = new LazySowordSowordagrInsert(option.conn, option.schemaName);
+		ActionStd<SowordInfo> nodeL2 = new ActionStdCommom<SowordInfo>(option, SowordVisiNodeSelectL2.class);
 		
-		zerofy.addPostAction(insertSoword);
-		
-		actions.add(zerofy);
+		actions.add(nodeL2);
 		return actions;
 	}
 }

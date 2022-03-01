@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordInfo;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordSetterZerofy;
 
-final class VisiSowordEnforceZerofy extends ActionVisitorTemplateEnforce<SowordInfo> {
+public final class SowordVisiEnforceZerofy extends ActionVisitorTemplateEnforce<SowordInfo> {
 	
-	public VisiSowordEnforceZerofy(DeciTreeOption<SowordInfo> option) {
+	public SowordVisiEnforceZerofy(DeciTreeOption<SowordInfo> option) {
 		super(option);
 	}
 

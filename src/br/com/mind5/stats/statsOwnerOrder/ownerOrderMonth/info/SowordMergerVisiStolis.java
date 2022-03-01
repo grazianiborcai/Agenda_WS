@@ -7,7 +7,7 @@ import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMergerCardinality;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class SowordVisiMergeStolis extends InfoMergerVisitorTemplate<SowordInfo, StolisInfo> {
+final class SowordMergerVisiStolis extends InfoMergerVisitorTemplate<SowordInfo, StolisInfo> {
 
 	@Override public boolean shouldMerge(SowordInfo baseInfo, StolisInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);

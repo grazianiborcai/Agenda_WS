@@ -5,19 +5,21 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordInfo;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.LazySowordNodeUpsertL2;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.StdSowordMergeStolis;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.SowordVisiMergeCalonthLtm;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.SowordVisiRootSelect;
 
 
-public final class NodeSowordUpsertL1 extends DeciTreeTemplateWrite<SowordInfo> {
+public final class SowordRootSelectLtm extends DeciTreeTemplateWrite<SowordInfo> {
 	
-	public NodeSowordUpsertL1(DeciTreeOption<SowordInfo> option) {
+	public SowordRootSelectLtm(DeciTreeOption<SowordInfo> option) {
 		super(option);
 	}
 	
@@ -27,7 +29,7 @@ public final class NodeSowordUpsertL1 extends DeciTreeTemplateWrite<SowordInfo> 
 		List<ModelChecker<SowordInfo>> queue = new ArrayList<>();
 		ModelChecker<SowordInfo> checker;
 
-		checker = new ModelCheckerDummy<>();
+		checker = new ModelCheckerDummy<SowordInfo>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -38,12 +40,12 @@ public final class NodeSowordUpsertL1 extends DeciTreeTemplateWrite<SowordInfo> 
 	@Override protected List<ActionStd<SowordInfo>> buildActionsOnPassedHook(DeciTreeOption<SowordInfo> option) {
 		List<ActionStd<SowordInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowordInfo> mergeStolis = new StdSowordMergeStolis(option);
-		ActionLazy<SowordInfo> nodeL1 = new LazySowordNodeUpsertL2(option.conn, option.schemaName);
+		ActionStd<SowordInfo> mergeCalonthLtm = new ActionStdCommom<SowordInfo>(option, SowordVisiMergeCalonthLtm.class);
+		ActionLazy<SowordInfo> select = new ActionLazyCommom<SowordInfo>(option.conn, option.schemaName, SowordVisiRootSelect.class);
 		
-		mergeStolis.addPostAction(nodeL1);
+		mergeCalonthLtm.addPostAction(select);
 		
-		actions.add(mergeStolis);
+		actions.add(mergeCalonthLtm);
 		return actions;
 	}
 }

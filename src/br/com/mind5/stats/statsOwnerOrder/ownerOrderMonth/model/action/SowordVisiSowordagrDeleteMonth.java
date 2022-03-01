@@ -9,9 +9,9 @@ import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordInfo;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthAggr.info.SowordagrInfo;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthAggr.model.decisionTree.RootSowordagrDeleteMonth;
 
-final class VisiSowordSowordagrDeleteMonth extends ActionVisitorTemplateAction<SowordInfo, SowordagrInfo> {
+public final class SowordVisiSowordagrDeleteMonth extends ActionVisitorTemplateAction<SowordInfo, SowordagrInfo> {
 
-	public VisiSowordSowordagrDeleteMonth(DeciTreeOption<SowordInfo> option) {
+	public SowordVisiSowordagrDeleteMonth(DeciTreeOption<SowordInfo> option) {
 		super(option, SowordInfo.class, SowordagrInfo.class);
 	}
 	
