@@ -35,7 +35,6 @@ public final class SowalInfo extends InfoRecord implements Cloneable {
 	public double totalSalePaid30d;
 	public double totalSaleWaiting12m;
 	public double totalSaleWaiting30d;
-	public boolean hasData;
 	public LocalDateTime lastChanged;
 	public String username;
 	
@@ -66,7 +65,6 @@ public final class SowalInfo extends InfoRecord implements Cloneable {
 		totalSalePaid30d = DefaultValue.number();
 		totalSaleWaiting12m = DefaultValue.number();
 		totalSaleWaiting30d = DefaultValue.number();
-		hasData = DefaultValue.boole();
 		lastChanged = DefaultValue.object();
 	}
 	

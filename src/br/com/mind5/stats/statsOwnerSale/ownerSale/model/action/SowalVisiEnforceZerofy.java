@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSale.ownerSale.info.SowalInfo;
 import br.com.mind5.stats.statsOwnerSale.ownerSale.info.SowalSetterZerofy;
 
-final class VisiSowalEnforceZerofy extends ActionVisitorTemplateEnforce<SowalInfo> {
+public final class SowalVisiEnforceZerofy extends ActionVisitorTemplateEnforce<SowalInfo> {
 	
-	public VisiSowalEnforceZerofy(DeciTreeOption<SowalInfo> option) {
+	public SowalVisiEnforceZerofy(DeciTreeOption<SowalInfo> option) {
 		super(option);
 	}
 

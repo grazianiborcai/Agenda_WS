@@ -7,20 +7,23 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.stats.statsOwnerSale.ownerSale.info.SowalInfo;
 
-public final class SowalCheckHasData extends ModelCheckerTemplateSimple<SowalInfo> {
+public final class SowalCheckWrite extends ModelCheckerTemplateSimple<SowalInfo> {
 
-	public SowalCheckHasData(ModelCheckerOption option) {
+	public SowalCheckWrite(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(SowalInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.hasData )
-			return super.SUCCESS;
+		if (recordInfo.codOwner 	<= 0 	||
+			recordInfo.username 	== null ||
+			recordInfo.codLanguage 	== null		)
+			
+			return super.FAILED;
 		
 		
-		return super.FAILED;
+		return super.SUCCESS;
 	}
 	
 	
