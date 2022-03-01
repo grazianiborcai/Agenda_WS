@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordInfo;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordMerger;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthAggr.info.SowordagrInfo;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthAggr.model.decisionTree.RootSowordagrUpsert;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthAggr.model.decisionTree.SowordagrRootUpsert;
 
 public final class SowordVisiSowordagrUpsert extends ActionVisitorTemplateAction<SowordInfo, SowordagrInfo> {
 
@@ -19,7 +19,7 @@ public final class SowordVisiSowordagrUpsert extends ActionVisitorTemplateAction
 	
 	
 	@Override protected Class<? extends DeciTree<SowordagrInfo>> getTreeClassHook() {
-		return RootSowordagrUpsert.class;
+		return SowordagrRootUpsert.class;
 	}
 	
 	

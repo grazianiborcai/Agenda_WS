@@ -14,7 +14,7 @@ public final class SowordagrMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowordagrVisiMergeSowordarch());
+		builder.addVisitor(new SowordagrMergerVisiSowordarch());
 		InfoMerger<SowordagrInfo, SowordarchInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class SowordagrMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowordagrVisiMergeCalonth());
+		builder.addVisitor(new SowordagrMergerVisiCalonth());
 		InfoMerger<SowordagrInfo, CalonthInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class SowordagrMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowordagrVisiMergeState());
+		builder.addVisitor(new SowordagrMergerVisiState());
 		InfoMerger<SowordagrInfo, StateInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -53,7 +53,7 @@ public final class SowordagrMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowordagrVisiMergeToSelect());
+		builder.addVisitor(new SowordagrMergerVisiToSelect());
 		InfoMerger<SowordagrInfo, SowordagrInfo> merger = builder.build();
 	
 		return merger.merge();
