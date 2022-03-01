@@ -34,6 +34,18 @@ public final class DaoSoweduliveWhere implements DaoStmtWhere {
 				case DaoSoweduliveDbTableColumn.COL_CALMONTH :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.calmonth);
 					break;
+					
+				case DaoSoweduliveDbTableColumn.COL_COD_COUNTRY :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codCountry);
+					break;
+					
+				case DaoSoweduliveDbTableColumn.COL_STATE_PROVINCE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codState);
+					break;
+					
+				case DaoSoweduliveDbTableColumn.COL_CITY :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.city);
+					break;
 			}
 		}		
 		
