@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.calendarMonth.info.CalonthInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class SowotiveVisiMergeCalonth extends InfoMergerVisitorTemplate<SowotiveInfo, CalonthInfo> {
+final class SowotiveMergerVisiCalonth extends InfoMergerVisitorTemplate<SowotiveInfo, CalonthInfo> {
 
 	@Override public boolean shouldMerge(SowotiveInfo baseInfo, CalonthInfo selectedInfo) {
 		return true;

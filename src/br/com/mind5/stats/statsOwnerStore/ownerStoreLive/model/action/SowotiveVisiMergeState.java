@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveInfo;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveMerger;
 
-final class VisiSowotiveMergeState extends ActionVisitorTemplateMerge<SowotiveInfo, StateInfo> {
+public final class SowotiveVisiMergeState extends ActionVisitorTemplateMerge<SowotiveInfo, StateInfo> {
 	
-	public VisiSowotiveMergeState(DeciTreeOption<SowotiveInfo> option) {
+	public SowotiveVisiMergeState(DeciTreeOption<SowotiveInfo> option) {
 		super(option, StateInfo.class);
 	}
 	

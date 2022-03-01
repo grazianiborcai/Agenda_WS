@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoSowotiveDbTableColumn extends DaoDbTableColumnTemplate {
+public final class SowotiveDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CALMONTH = DaoDbField.COL_CALMONTH;
 	public static final String COL_CITY = DaoDbField.COL_CITY;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
@@ -29,21 +29,21 @@ public final class DaoSowotiveDbTableColumn extends DaoDbTableColumnTemplate {
 	
 
 	
-	public DaoSowotiveDbTableColumn() {
+	public SowotiveDaoDbTableColumn() {
 		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		final String TABLE_NAME = DaoDbTable.STAT_STORE_ACCOUNT_DASH_LIVE_TABLE;
+		final String TABLE_NAME = DaoDbTable.STAT_OWNER_STORE_MONTH_LIVE_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_OWNER;
-		oneColumn.isPK = NEGATIVE;
+		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
@@ -51,7 +51,7 @@ public final class DaoSowotiveDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_CALMONTH;
-		oneColumn.isPK = NEGATIVE;
+		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
@@ -59,7 +59,7 @@ public final class DaoSowotiveDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_YEAR;
-		oneColumn.isPK = NEGATIVE;
+		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
@@ -67,7 +67,7 @@ public final class DaoSowotiveDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_MONTH;
-		oneColumn.isPK = NEGATIVE;
+		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
@@ -75,7 +75,7 @@ public final class DaoSowotiveDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_COUNTRY;
-		oneColumn.isPK = NEGATIVE;
+		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
@@ -83,7 +83,7 @@ public final class DaoSowotiveDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_STATE_PROVINCE;
-		oneColumn.isPK = NEGATIVE;
+		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
@@ -91,7 +91,7 @@ public final class DaoSowotiveDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_CITY;
-		oneColumn.isPK = NEGATIVE;
+		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	

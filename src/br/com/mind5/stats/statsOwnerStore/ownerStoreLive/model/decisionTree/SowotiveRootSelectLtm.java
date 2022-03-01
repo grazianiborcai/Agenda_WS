@@ -5,19 +5,21 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveInfo;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.action.LazySowotiveRootSelect;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.action.StdSowotiveMergeCalonthLtm;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.action.SowotiveVisiMergeCalonthLtm;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.action.SowotiveVisiRootSelect;
 
 
-public final class RootSowotiveSelectLtm extends DeciTreeTemplateWrite<SowotiveInfo> {
+public final class SowotiveRootSelectLtm extends DeciTreeTemplateWrite<SowotiveInfo> {
 	
-	public RootSowotiveSelectLtm(DeciTreeOption<SowotiveInfo> option) {
+	public SowotiveRootSelectLtm(DeciTreeOption<SowotiveInfo> option) {
 		super(option);
 	}
 	
@@ -38,8 +40,8 @@ public final class RootSowotiveSelectLtm extends DeciTreeTemplateWrite<SowotiveI
 	@Override protected List<ActionStd<SowotiveInfo>> buildActionsOnPassedHook(DeciTreeOption<SowotiveInfo> option) {
 		List<ActionStd<SowotiveInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowotiveInfo> mergeCalonthLtm = new StdSowotiveMergeCalonthLtm(option);
-		ActionLazy<SowotiveInfo> select = new LazySowotiveRootSelect(option.conn, option.schemaName);
+		ActionStd<SowotiveInfo> mergeCalonthLtm = new ActionStdCommom<SowotiveInfo>(option, SowotiveVisiMergeCalonthLtm.class);
+		ActionLazy<SowotiveInfo> select = new ActionLazyCommom<SowotiveInfo>(option.conn, option.schemaName, SowotiveVisiRootSelect.class);
 		
 		mergeCalonthLtm.addPostAction(select);
 		

@@ -2,22 +2,22 @@ package br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveInfo;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveMerger;
 
-final class VisiSowotiveMergeToSelect extends ActionVisitorTemplateMerge<SowotiveInfo, SowotiveInfo> {
+public final class SowotiveVisiMergeToSelect extends ActionVisitorTemplateMerge<SowotiveInfo, SowotiveInfo> {
 	
-	public VisiSowotiveMergeToSelect(DeciTreeOption<SowotiveInfo> option) {
+	public SowotiveVisiMergeToSelect(DeciTreeOption<SowotiveInfo> option) {
 		super(option, SowotiveInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<SowotiveInfo>> getActionClassHook() {
-		return StdSowotiveDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<SowotiveInfo>> getVisitorClassHook() {
+		return SowotiveVisiDaoSelect.class;
 	}
 	
 	

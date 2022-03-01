@@ -5,25 +5,26 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveInfo;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.action.LazySowotiveEnforceHasData;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.action.LazySowotiveEnforceLChanged;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.action.LazySowotiveMergeMonth;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.action.LazySowotiveMergeState;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.action.StdSowotiveMergeToSelect;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.action.SowotiveVisiEnforceLChanged;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.action.SowotiveVisiMergeMonth;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.action.SowotiveVisiMergeState;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.action.SowotiveVisiMergeToSelect;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.checker.SowotiveCheckLangu;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.checker.SowotiveCheckOwner;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.model.checker.SowotiveCheckRead;
 
 
-public final class RootSowotiveSelect extends DeciTreeTemplateWrite<SowotiveInfo> {
+public final class SowotiveRootSelect extends DeciTreeTemplateWrite<SowotiveInfo> {
 	
-	public RootSowotiveSelect(DeciTreeOption<SowotiveInfo> option) {
+	public SowotiveRootSelect(DeciTreeOption<SowotiveInfo> option) {
 		super(option);
 	}
 	
@@ -63,15 +64,13 @@ public final class RootSowotiveSelect extends DeciTreeTemplateWrite<SowotiveInfo
 	@Override protected List<ActionStd<SowotiveInfo>> buildActionsOnPassedHook(DeciTreeOption<SowotiveInfo> option) {
 		List<ActionStd<SowotiveInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowotiveInfo> select = new StdSowotiveMergeToSelect(option);
-		ActionLazy<SowotiveInfo> enforceLChanged = new LazySowotiveEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<SowotiveInfo> enforceHasData = new LazySowotiveEnforceHasData(option.conn, option.schemaName);
-		ActionLazy<SowotiveInfo> mergeState = new LazySowotiveMergeState(option.conn, option.schemaName);
-		ActionLazy<SowotiveInfo> mergeMonth = new LazySowotiveMergeMonth(option.conn, option.schemaName);		
+		ActionStd<SowotiveInfo> select = new ActionStdCommom<SowotiveInfo>(option, SowotiveVisiMergeToSelect.class);
+		ActionLazy<SowotiveInfo> enforceLChanged = new ActionLazyCommom<SowotiveInfo>(option.conn, option.schemaName, SowotiveVisiEnforceLChanged.class);
+		ActionLazy<SowotiveInfo> mergeState = new ActionLazyCommom<SowotiveInfo>(option.conn, option.schemaName, SowotiveVisiMergeState.class);
+		ActionLazy<SowotiveInfo> mergeMonth = new ActionLazyCommom<SowotiveInfo>(option.conn, option.schemaName, SowotiveVisiMergeMonth.class);		
 		
 		select.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(enforceHasData);
-		enforceHasData.addPostAction(mergeState);
+		enforceLChanged.addPostAction(mergeState);
 		mergeState.addPostAction(mergeMonth);
 		
 		actions.add(select);

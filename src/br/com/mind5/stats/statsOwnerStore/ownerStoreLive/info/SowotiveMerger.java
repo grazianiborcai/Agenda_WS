@@ -14,7 +14,7 @@ public final class SowotiveMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowotiveVisiMergeCalonth());
+		builder.addVisitor(new SowotiveMergerVisiCalonth());
 		InfoMerger<SowotiveInfo, CalonthInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class SowotiveMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowotiveVisiMergeMonth());
+		builder.addVisitor(new SowotiveMergerVisiMonth());
 		InfoMerger<SowotiveInfo, MonthInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class SowotiveMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowotiveVisiMergeState());
+		builder.addVisitor(new SowotiveMergerVisiState());
 		InfoMerger<SowotiveInfo, StateInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -53,7 +53,7 @@ public final class SowotiveMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowotiveVisiMergeToSelect());
+		builder.addVisitor(new SowotiveMergerVisiToSelect());
 		InfoMerger<SowotiveInfo, SowotiveInfo> merger = builder.build();		
 	
 		return merger.merge();

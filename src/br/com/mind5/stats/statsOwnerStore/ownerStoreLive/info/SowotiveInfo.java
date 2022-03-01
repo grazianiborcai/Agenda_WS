@@ -26,7 +26,6 @@ public final class SowotiveInfo extends InfoRecord implements Cloneable {
 	public double countStoreCreatedVar;
 	public double countStoreCompletedVar;
 	public double countStorePendingVar;
-	public boolean hasData;
 	public LocalDateTime lastChanged;
 	public String username;
 	
@@ -46,7 +45,6 @@ public final class SowotiveInfo extends InfoRecord implements Cloneable {
 		countStoreCreatedVar = DefaultValue.number();
 		countStoreCompletedVar = DefaultValue.number();
 		countStorePendingVar = DefaultValue.number();
-		hasData = DefaultValue.boole();
 		lastChanged = DefaultValue.object();
 	}
 	

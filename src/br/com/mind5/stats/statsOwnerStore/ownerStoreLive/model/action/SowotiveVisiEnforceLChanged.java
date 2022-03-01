@@ -4,18 +4,18 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveInfo;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveSetterHasData;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveSetterLChanged;
 
-final class VisiSowotiveEnforceHasData extends ActionVisitorTemplateEnforce<SowotiveInfo> {
+public final class SowotiveVisiEnforceLChanged extends ActionVisitorTemplateEnforce<SowotiveInfo> {
 	
-	public VisiSowotiveEnforceHasData(DeciTreeOption<SowotiveInfo> option) {
+	public SowotiveVisiEnforceLChanged(DeciTreeOption<SowotiveInfo> option) {
 		super(option);
 	}
 
 	
 	
 	@Override protected SowotiveInfo enforceHook(SowotiveInfo recordInfo) {
-		InfoSetter<SowotiveInfo> attrSetter = new SowotiveSetterHasData();
+		InfoSetter<SowotiveInfo> attrSetter = new SowotiveSetterLChanged();
 		return attrSetter.setAttr(recordInfo);
 	}
 }

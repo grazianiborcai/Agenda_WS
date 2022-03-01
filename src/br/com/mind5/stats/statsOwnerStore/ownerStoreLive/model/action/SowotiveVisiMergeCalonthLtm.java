@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveInfo;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.info.SowotiveMerger;
 
-final class VisiSowotiveMergeCalonthLtm extends ActionVisitorTemplateMerge<SowotiveInfo, CalonthInfo> {
+public final class SowotiveVisiMergeCalonthLtm extends ActionVisitorTemplateMerge<SowotiveInfo, CalonthInfo> {
 	
-	public VisiSowotiveMergeCalonthLtm(DeciTreeOption<SowotiveInfo> option) {
+	public SowotiveVisiMergeCalonthLtm(DeciTreeOption<SowotiveInfo> option) {
 		super(option, CalonthInfo.class);
 	}
 	
