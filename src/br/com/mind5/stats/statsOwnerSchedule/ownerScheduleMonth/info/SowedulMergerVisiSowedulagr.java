@@ -6,10 +6,14 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
 
-final class SowedulVisiMergeSowedulagr extends InfoMergerVisitorTemplate<SowedulInfo, SowedulagrInfo> {
+final class SowedulMergerVisiSowedulagr extends InfoMergerVisitorTemplate<SowedulInfo, SowedulagrInfo> {
 
 	@Override public boolean shouldMerge(SowedulInfo baseInfo, SowedulagrInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner);
+		return (baseInfo.codOwner == selectedInfo.codOwner 			&&
+				baseInfo.calmonth.equals(selectedInfo.calmonth) 	&&
+				baseInfo.codCountry.equals(selectedInfo.codCountry) &&
+				baseInfo.codState.equals(selectedInfo.codState) 	&&
+				baseInfo.city.equals(selectedInfo.city) 				);
 	}
 	
 	

@@ -5,19 +5,21 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action.LazySowedulRootSelect;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action.StdSowedulMergeCalonthLtm;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action.SowedulVisiMergeCalonthLtm;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action.SowedulVisiRootSelect;
 
 
-public final class RootSowedulSelectLtm extends DeciTreeTemplateWrite<SowedulInfo> {
+public final class SowedulRootSelectLtm extends DeciTreeTemplateWrite<SowedulInfo> {
 	
-	public RootSowedulSelectLtm(DeciTreeOption<SowedulInfo> option) {
+	public SowedulRootSelectLtm(DeciTreeOption<SowedulInfo> option) {
 		super(option);
 	}
 	
@@ -38,8 +40,8 @@ public final class RootSowedulSelectLtm extends DeciTreeTemplateWrite<SowedulInf
 	@Override protected List<ActionStd<SowedulInfo>> buildActionsOnPassedHook(DeciTreeOption<SowedulInfo> option) {
 		List<ActionStd<SowedulInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowedulInfo> mergeCalonthLtm = new StdSowedulMergeCalonthLtm(option);
-		ActionLazy<SowedulInfo> select = new LazySowedulRootSelect(option.conn, option.schemaName);
+		ActionStd<SowedulInfo> mergeCalonthLtm = new ActionStdCommom<SowedulInfo>(option, SowedulVisiMergeCalonthLtm.class);
+		ActionLazy<SowedulInfo> select = new ActionLazyCommom<SowedulInfo>(option.conn, option.schemaName, SowedulVisiRootSelect.class);
 		
 		mergeCalonthLtm.addPostAction(select);
 		

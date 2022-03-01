@@ -10,9 +10,9 @@ import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulMerg
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.info.SoweduliveInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.model.decisionTree.RootSoweduliveSelect;
 
-final class VisiSowedulMergeSowedulive extends ActionVisitorTemplateMerge<SowedulInfo, SoweduliveInfo> {
+public final class SowedulVisiMergeSowedulive extends ActionVisitorTemplateMerge<SowedulInfo, SoweduliveInfo> {
 	
-	public VisiSowedulMergeSowedulive(DeciTreeOption<SowedulInfo> option) {
+	public SowedulVisiMergeSowedulive(DeciTreeOption<SowedulInfo> option) {
 		super(option, SoweduliveInfo.class);
 	}
 	

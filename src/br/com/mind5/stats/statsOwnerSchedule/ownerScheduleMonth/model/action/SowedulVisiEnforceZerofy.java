@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulSetterZerofy;
 
-final class VisiSowedulEnforceZerofy extends ActionVisitorTemplateEnforce<SowedulInfo> {
+public final class SowedulVisiEnforceZerofy extends ActionVisitorTemplateEnforce<SowedulInfo> {
 	
-	public VisiSowedulEnforceZerofy(DeciTreeOption<SowedulInfo> option) {
+	public SowedulVisiEnforceZerofy(DeciTreeOption<SowedulInfo> option) {
 		super(option);
 	}
 

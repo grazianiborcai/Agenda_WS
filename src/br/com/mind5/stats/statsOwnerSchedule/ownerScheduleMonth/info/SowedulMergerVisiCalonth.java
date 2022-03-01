@@ -7,7 +7,7 @@ import br.com.mind5.business.calendarMonth.info.CalonthInfo;
 import br.com.mind5.info.InfoMergerCardinality;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class SowedulVisiMergeCalonth extends InfoMergerVisitorTemplate<SowedulInfo, CalonthInfo> {
+final class SowedulMergerVisiCalonth extends InfoMergerVisitorTemplate<SowedulInfo, CalonthInfo> {
 
 	@Override public boolean shouldMerge(SowedulInfo baseInfo, CalonthInfo selectedInfo) {
 		return true;

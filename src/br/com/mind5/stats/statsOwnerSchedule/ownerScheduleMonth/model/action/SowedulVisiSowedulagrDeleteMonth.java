@@ -9,9 +9,9 @@ import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.info.SowedulagrInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.model.decisionTree.RootSowedulagrDeleteMonth;
 
-final class VisiSowedulSowedulagrDeleteMonth extends ActionVisitorTemplateAction<SowedulInfo, SowedulagrInfo> {
+public final class SowedulVisiSowedulagrDeleteMonth extends ActionVisitorTemplateAction<SowedulInfo, SowedulagrInfo> {
 
-	public VisiSowedulSowedulagrDeleteMonth(DeciTreeOption<SowedulInfo> option) {
+	public SowedulVisiSowedulagrDeleteMonth(DeciTreeOption<SowedulInfo> option) {
 		super(option, SowedulInfo.class, SowedulagrInfo.class);
 	}
 	

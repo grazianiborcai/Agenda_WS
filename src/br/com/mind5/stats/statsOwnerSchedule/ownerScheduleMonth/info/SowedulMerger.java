@@ -15,7 +15,7 @@ public final class SowedulMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowedulVisiMergeStolis());
+		builder.addVisitor(new SowedulMergerVisiStolis());
 		InfoMerger<SowedulInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -28,7 +28,7 @@ public final class SowedulMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowedulVisiMergeSowedulive());
+		builder.addVisitor(new SowedulMergerVisiSowedulive());
 		InfoMerger<SowedulInfo, SoweduliveInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -41,7 +41,7 @@ public final class SowedulMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowedulVisiMergeSowedulagr());
+		builder.addVisitor(new SowedulMergerVisiSowedulagr());
 		InfoMerger<SowedulInfo, SowedulagrInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -54,7 +54,7 @@ public final class SowedulMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowedulVisiMergeCalonth());
+		builder.addVisitor(new SowedulMergerVisiCalonth());
 		InfoMerger<SowedulInfo, CalonthInfo> merger = builder.build();		
 	
 		return merger.merge();
