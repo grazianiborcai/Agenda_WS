@@ -12,7 +12,7 @@ public final class SowalagrMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowalagrVisiMergeState());
+		builder.addVisitor(new SowalagrMergerVisiState());
 		InfoMerger<SowalagrInfo, StateInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class SowalagrMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowalagrVisiMergeToSelect());
+		builder.addVisitor(new SowalagrMergerVisiToSelect());
 		InfoMerger<SowalagrInfo, SowalagrInfo> merger = builder.build();		
 	
 		return merger.merge();
