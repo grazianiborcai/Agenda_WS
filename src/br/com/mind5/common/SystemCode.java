@@ -1818,4 +1818,9 @@ public final class SystemCode {
 	public static final int STAT_OWN_STR_MTH_AGGR_ALREADY_EXIST 		= 18250;
 	public static final int STAT_OWN_STR_MTH_AGGR_NOT_FOUND 			= 18251;
 	public static final int STAT_OWN_STR_MTH_AGGR_MANDATORY_FIELD_EMPTY	= 18252;
+	
+	// Statistics - Owner-Store-Month-Search
+	public static final int STAT_OWN_STR_MTH_SRCH_ALREADY_EXIST 		= 18300;
+	public static final int STAT_OWN_STR_MTH_SRCH_NOT_FOUND 			= 18301;
+	public static final int STAT_OWN_STR_MTH_SRCH_MANDATORY_FIELD_EMPTY	= 18302;
 }

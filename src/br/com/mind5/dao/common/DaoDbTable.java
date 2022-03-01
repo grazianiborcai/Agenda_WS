@@ -290,6 +290,7 @@ public final class DaoDbTable {
 	public static final String SCHEDULE_SEARCH_VIEW = "view_schedule_search";
 	public static final String STAT_OWNER_ORDER_MONTH_SEARCH_VIEW = "view_owner_order_month_search";
 	public static final String STAT_OWNER_SCHEDULE_MONTH_SEARCH_VIEW = "view_owner_schedule_month_search";
+	public static final String STAT_OWNER_STORE_MONTH_SEARCH_VIEW = "view_owner_store_month_search";
 	public static final String STAT_USER_ORDER_YEAR_AGGR_SEARCH_VIEW = "view_user_order_year_search";
 	public static final String STAT_USER_ORDER_YEAR_LIVE_SEARCH_VIEW = "view_stat_user_order_year_search";
 	public static final String STAT_USER_ORDER_YEAR_STGN_SEARCH_VIEW = "view_stat_user_order_year_staging_search";
