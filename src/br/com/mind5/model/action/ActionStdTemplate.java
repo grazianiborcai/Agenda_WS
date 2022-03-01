@@ -31,6 +31,21 @@ public abstract class ActionStdTemplate<T extends InfoRecord> implements ActionS
 	
 	
 	
+	public ActionStdTemplate(DeciTreeOption<T> option, Class<? extends ActionVisitor<T>> actionVisitorClazz) {
+		checkArgument(option, actionVisitorClazz);
+		clear();
+		
+		actionVisitor = buildVisitorHook(option, actionVisitorClazz);
+	}
+	
+	
+	
+	protected ActionVisitor<T> buildVisitorHook(DeciTreeOption<T> option, Class<? extends ActionVisitor<T>> actionVisitorClazz) {
+		return buildVisitorHook(option);
+	}
+	
+	
+	
 	protected ActionVisitor<T> buildVisitorHook(DeciTreeOption<T> option) {
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
@@ -270,6 +285,17 @@ public abstract class ActionStdTemplate<T extends InfoRecord> implements ActionS
 	
 	
 	
+	private void checkArgument(DeciTreeOption<T> option, Class<? extends ActionVisitor<T>> actionVisitor) {
+		checkArgument(option);
+		
+		if (actionVisitor == null) {
+			logException(new NullPointerException("actionVisitor" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("actionVisitor" + SystemMessage.NULL_ARGUMENT);
+		}
+	}
+	
+	
+	
 	private void checkArgument(DeciTreeOption<T> option) {
 		if (option == null) {
 			logException(new NullPointerException("option" + SystemMessage.NULL_ARGUMENT));
@@ -279,7 +305,7 @@ public abstract class ActionStdTemplate<T extends InfoRecord> implements ActionS
 	
 	
 	
-	private void logException(Exception e) {		
+	protected void logException(Exception e) {		
 		SystemLog.logError(this.getClass(), e);
 	}
 }

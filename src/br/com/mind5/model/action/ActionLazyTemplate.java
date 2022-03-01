@@ -323,7 +323,7 @@ public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRec
 	
 	
 	
-	private void logException(Exception e) {		
+	protected void logException(Exception e) {		
 		SystemLog.logError(this.getClass(), e);
 	}
 }
