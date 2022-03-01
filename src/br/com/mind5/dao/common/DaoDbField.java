@@ -52,6 +52,8 @@ public final class DaoDbField {
 	public static final String COL_COUNT_SCHEDULE_WAITING_VAR = "count_schedule_waiting_var";
 	public static final String COL_COUNT_SCHEDULE_CONFIRMED_VAR = "count_schedule_confirmed_var";
 	public static final String COL_COUNT_STORE_MONTH = "count_store_month";
+	public static final String COL_COUNT_STORE_CREATED_MONTH = "count_store_created_month";
+	public static final String COL_COUNT_STORE_CREATED_MONTH_LAST_YEAR = "count_store_created_month_last_year";
 	public static final String COL_COUNT_STORE_ACCOUNT_COMPLETED_MONTH = "count_store_account_completed_month";
 	public static final String COL_COUNT_STORE_ACCOUNT_PENDING_MONTH = "count_store_account_pending_month";
 	public static final String COL_COUNT_STORE_MONTH_LAST_YEAR = "count_store_month_last_year";
