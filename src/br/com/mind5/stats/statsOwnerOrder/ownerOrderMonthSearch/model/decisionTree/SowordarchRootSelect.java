@@ -4,21 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthSearch.info.SowordarchInfo;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthSearch.model.action.StdSowordarchMergeToSelect;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthSearch.model.action.SowordarchVisiMergeToSelect;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthSearch.model.checker.SowordarchCheckLangu;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthSearch.model.checker.SowordarchCheckOwner;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthSearch.model.checker.SowordarchCheckRead;
 
 
-public final class RootSowordarchSelect extends DeciTreeTemplateWrite<SowordarchInfo> {
+public final class SowordarchRootSelect extends DeciTreeTemplateWrite<SowordarchInfo> {
 	
-	public RootSowordarchSelect(DeciTreeOption<SowordarchInfo> option) {
+	public SowordarchRootSelect(DeciTreeOption<SowordarchInfo> option) {
 		super(option);
 	}
 	
@@ -58,7 +59,7 @@ public final class RootSowordarchSelect extends DeciTreeTemplateWrite<Sowordarch
 	@Override protected List<ActionStd<SowordarchInfo>> buildActionsOnPassedHook(DeciTreeOption<SowordarchInfo> option) {
 		List<ActionStd<SowordarchInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowordarchInfo> select = new StdSowordarchMergeToSelect(option);
+		ActionStd<SowordarchInfo> select = new ActionStdCommom<SowordarchInfo>(option, SowordarchVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

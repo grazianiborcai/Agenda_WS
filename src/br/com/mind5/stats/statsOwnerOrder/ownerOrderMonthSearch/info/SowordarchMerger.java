@@ -11,7 +11,7 @@ public final class SowordarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowordarchVisiMergeToSelect());
+		builder.addVisitor(new SowordarchMergerVisiToSelect());
 		InfoMerger<SowordarchInfo, SowordarchInfo> merger = builder.build();
 	
 		return merger.merge();

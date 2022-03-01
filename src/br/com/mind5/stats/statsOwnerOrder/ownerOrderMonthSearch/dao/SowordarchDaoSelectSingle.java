@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthSearch.info.SowordarchInfo;
 
-public final class DaoSowordarchSelectSingle extends DaoStmtTemplate<SowordarchInfo> {
+public final class SowordarchDaoSelectSingle extends DaoStmtTemplate<SowordarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STAT_OWNER_ORDER_MONTH_TABLE;
 	
 	
-	public DaoSowordarchSelectSingle(Connection conn, SowordarchInfo recordInfo, String schemaName) {
+	public SowordarchDaoSelectSingle(Connection conn, SowordarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoSowordarchSelectSingle extends DaoStmtTemplate<SowordarchI
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoSowordarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new SowordarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,13 +67,13 @@ public final class DaoSowordarchSelectSingle extends DaoStmtTemplate<SowordarchI
 				do {
 					SowordarchInfo dataInfo = new SowordarchInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSowordarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.calmonth = stmtResult.getString(DaoSowordarchDbTableColumn.COL_CALMONTH);
-					dataInfo.year = DaoFormatter.sqlToInt(stmtResult, DaoSowordarchDbTableColumn.COL_YEAR);
-					dataInfo.month = DaoFormatter.sqlToInt(stmtResult, DaoSowordarchDbTableColumn.COL_MONTH);
-					dataInfo.codCountry = stmtResult.getString(DaoSowordarchDbTableColumn.COL_COD_COUNTRY);
-					dataInfo.codState = stmtResult.getString(DaoSowordarchDbTableColumn.COL_STATE_PROVINCE);
-					dataInfo.city = stmtResult.getString(DaoSowordarchDbTableColumn.COL_CITY);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, SowordarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.calmonth = stmtResult.getString(SowordarchDaoDbTableColumn.COL_CALMONTH);
+					dataInfo.year = DaoFormatter.sqlToInt(stmtResult, SowordarchDaoDbTableColumn.COL_YEAR);
+					dataInfo.month = DaoFormatter.sqlToInt(stmtResult, SowordarchDaoDbTableColumn.COL_MONTH);
+					dataInfo.codCountry = stmtResult.getString(SowordarchDaoDbTableColumn.COL_COD_COUNTRY);
+					dataInfo.codState = stmtResult.getString(SowordarchDaoDbTableColumn.COL_STATE_PROVINCE);
+					dataInfo.city = stmtResult.getString(SowordarchDaoDbTableColumn.COL_CITY);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

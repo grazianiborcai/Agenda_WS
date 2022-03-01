@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthSearch.info.SowordarchInfo;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthSearch.info.SowordarchSetterCalmonth;
 
-final class VisiSowordarchEnforceCalmonth extends ActionVisitorTemplateEnforce<SowordarchInfo> {
+public final class SowordarchVisiEnforceCalmonth extends ActionVisitorTemplateEnforce<SowordarchInfo> {
 	
-	public VisiSowordarchEnforceCalmonth(DeciTreeOption<SowordarchInfo> option) {
+	public SowordarchVisiEnforceCalmonth(DeciTreeOption<SowordarchInfo> option) {
 		super(option);
 	}
 

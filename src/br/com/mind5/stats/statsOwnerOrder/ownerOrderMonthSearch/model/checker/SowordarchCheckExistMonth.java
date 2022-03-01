@@ -6,7 +6,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthSearch.info.SowordarchInfo;
-import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthSearch.model.decisionTree.RootSowordarchSelectMonth;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonthSearch.model.decisionTree.SowordarchRootSelectMonth;
 
 public final class SowordarchCheckExistMonth extends ModelCheckerTemplateAction<SowordarchInfo, SowordarchInfo> {
 	
@@ -17,7 +17,7 @@ public final class SowordarchCheckExistMonth extends ModelCheckerTemplateAction<
 	
 	
 	@Override protected ActionStd<SowordarchInfo> buildActionHook(DeciTreeOption<SowordarchInfo> option) {
-		ActionStd<SowordarchInfo> select = new RootSowordarchSelectMonth(option).toAction();
+		ActionStd<SowordarchInfo> select = new SowordarchRootSelectMonth(option).toAction();
 		return select;
 	}
 	
