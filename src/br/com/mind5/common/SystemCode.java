@@ -1808,4 +1808,9 @@ public final class SystemCode {
 	
 	// Statistics - Schedule-Order
 	public static final int STAT_OWNER_SCH_MANDATORY_FIELD_EMPTY		= 18150;
+	
+	// Statistics - Owner-Sale-Aggr
+	public static final int STAT_OWN_SALE_AGGR_ALREADY_EXIST 			= 18200;
+	public static final int STAT_OWN_SALE_AGGR_NOT_FOUND 				= 18201;
+	public static final int STAT_OWN_SALE_AGGR_MANDATORY_FIELD_EMPTY	= 18202;
 }
