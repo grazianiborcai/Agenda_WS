@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.info.SoweduliveInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.info.SoweduliveSetterLChanged;
 
-final class VisiSoweduliveEnforceLChanged extends ActionVisitorTemplateEnforce<SoweduliveInfo> {
+public final class SoweduliveVisiEnforceLChanged extends ActionVisitorTemplateEnforce<SoweduliveInfo> {
 	
-	public VisiSoweduliveEnforceLChanged(DeciTreeOption<SoweduliveInfo> option) {
+	public SoweduliveVisiEnforceLChanged(DeciTreeOption<SoweduliveInfo> option) {
 		super(option);
 	}
 

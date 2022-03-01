@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulMerger;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.info.SoweduliveInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.model.decisionTree.RootSoweduliveSelect;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.model.decisionTree.SoweduliveRootSelect;
 
 public final class SowedulVisiMergeSowedulive extends ActionVisitorTemplateMerge<SowedulInfo, SoweduliveInfo> {
 	
@@ -19,7 +19,7 @@ public final class SowedulVisiMergeSowedulive extends ActionVisitorTemplateMerge
 	
 	
 	@Override protected Class<? extends DeciTree<SoweduliveInfo>> getTreeClassHook() {
-		return RootSoweduliveSelect.class;
+		return SoweduliveRootSelect.class;
 	}
 	
 	

@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.info.SoweduliveInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.info.SoweduliveMerger;
 
-final class VisiSoweduliveMergeState extends ActionVisitorTemplateMerge<SoweduliveInfo, StateInfo> {
+public final class SoweduliveVisiMergeState extends ActionVisitorTemplateMerge<SoweduliveInfo, StateInfo> {
 	
-	public VisiSoweduliveMergeState(DeciTreeOption<SoweduliveInfo> option) {
+	public SoweduliveVisiMergeState(DeciTreeOption<SoweduliveInfo> option) {
 		super(option, StateInfo.class);
 	}
 	
