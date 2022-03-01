@@ -12,7 +12,7 @@ public final class SowaliveMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowaliveVisiMergeState());
+		builder.addVisitor(new SowaliveMergerVisiState());
 		InfoMerger<SowaliveInfo, StateInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class SowaliveMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowaliveVisiMergeToSelect());
+		builder.addVisitor(new SowaliveMergerVisiToSelect());
 		InfoMerger<SowaliveInfo, SowaliveInfo> merger = builder.build();		
 	
 		return merger.merge();
