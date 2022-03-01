@@ -11,7 +11,7 @@ public final class SowedularchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowedularchVisiMergeToSelect());
+		builder.addVisitor(new SowedularchMergerVisiToSelect());
 		InfoMerger<SowedularchInfo, SowedularchInfo> merger = builder.build();
 	
 		return merger.merge();

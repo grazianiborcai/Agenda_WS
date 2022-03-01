@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchInfo;
 
-public final class DaoSowedularchSelect implements DaoStmtExec<SowedularchInfo> {
+public final class SowedularchDaoSelect implements DaoStmtExec<SowedularchInfo> {
 	private DaoStmtExec<SowedularchInfo> helper;
 	
 	
-	public DaoSowedularchSelect(List<DaoStmtExecOption<SowedularchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoSowedularchSelectSingle.class, SowedularchInfo.class);
+	public SowedularchDaoSelect(List<DaoStmtExecOption<SowedularchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, SowedularchDaoSelectSingle.class, SowedularchInfo.class);
 	}
 	
 	

@@ -2,22 +2,22 @@ package br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.act
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchMerger;
 
-final class VisiSowedularchMergeToSelect extends ActionVisitorTemplateMerge<SowedularchInfo, SowedularchInfo> {
+public final class SowedularchVisiMergeToSelect extends ActionVisitorTemplateMerge<SowedularchInfo, SowedularchInfo> {
 	
-	public VisiSowedularchMergeToSelect(DeciTreeOption<SowedularchInfo> option) {
+	public SowedularchVisiMergeToSelect(DeciTreeOption<SowedularchInfo> option) {
 		super(option, SowedularchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<SowedularchInfo>> getActionClassHook() {
-		return StdSowedularchDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<SowedularchInfo>> getVisitorClassHook() {
+		return SowedularchVisiDaoSelect.class;
 	}
 	
 	

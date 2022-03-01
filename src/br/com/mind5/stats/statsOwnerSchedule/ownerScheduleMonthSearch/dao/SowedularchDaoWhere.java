@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchInfo;
 
-public final class DaoSowedularchWhere implements DaoStmtWhere {
+public final class SowedularchDaoWhere implements DaoStmtWhere {
 	private String whereClause;
 	
 	
-	public DaoSowedularchWhere(DaoWhereBuilderOption whereOption, String tableName, SowedularchInfo recordInfo) {
+	public SowedularchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, SowedularchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,23 +27,23 @@ public final class DaoSowedularchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoSowedularchDbTableColumn.COL_COD_OWNER :
+				case SowedularchDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoSowedularchDbTableColumn.COL_CALMONTH :
+				case SowedularchDaoDbTableColumn.COL_CALMONTH :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.calmonth);
 					break;
 					
-				case DaoSowedularchDbTableColumn.COL_COD_COUNTRY :
+				case SowedularchDaoDbTableColumn.COL_COD_COUNTRY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codCountry);
 					break;
 					
-				case DaoSowedularchDbTableColumn.COL_STATE_PROVINCE :
+				case SowedularchDaoDbTableColumn.COL_STATE_PROVINCE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codState);
 					break;
 					
-				case DaoSowedularchDbTableColumn.COL_CITY :
+				case SowedularchDaoDbTableColumn.COL_CITY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.city);
 					break;
 			}

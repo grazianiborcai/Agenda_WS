@@ -260,7 +260,7 @@ import br.com.mind5.stats.statsOwnerSale.ownerSaleAggr.dao.SowalagrDaoDbTableCol
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.dao.SowaliveDaoDbTableColumn;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthAggr.dao.SowedulagrDaoDbTableColumn;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.dao.SoweduliveDaoDbTableColumn;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.dao.DaoSowedularchDbTableColumn;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.dao.SowedularchDaoDbTableColumn;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreLive.dao.DaoSowotiveDbTableColumn;
 import br.com.mind5.stats.statsOwnerUser.ownerUserLive.dao.DaoSowusiveDbTableColumn;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.dao.DaoStordagrDbTableColumn;
@@ -562,7 +562,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new SowordagrDaoDbTableColumn());
 		addTable(new SowordarchDaoDbTableColumn());
 		addTable(new SowedulagrDaoDbTableColumn());
-		addTable(new DaoSowedularchDbTableColumn());
+		addTable(new SowedularchDaoDbTableColumn());
 		addTable(new SowalagrDaoDbTableColumn());
 	}
 	

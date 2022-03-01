@@ -4,21 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.action.StdSowedularchMergeToSelect;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.action.SowedularchVisiMergeToSelect;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.checker.SowedularchCheckLangu;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.checker.SowedularchCheckOwner;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.checker.SowedularchCheckRead;
 
 
-public final class RootSowedularchSelect extends DeciTreeTemplateWrite<SowedularchInfo> {
+public final class SowedularchRootSelect extends DeciTreeTemplateWrite<SowedularchInfo> {
 	
-	public RootSowedularchSelect(DeciTreeOption<SowedularchInfo> option) {
+	public SowedularchRootSelect(DeciTreeOption<SowedularchInfo> option) {
 		super(option);
 	}
 	
@@ -58,7 +59,7 @@ public final class RootSowedularchSelect extends DeciTreeTemplateWrite<Sowedular
 	@Override protected List<ActionStd<SowedularchInfo>> buildActionsOnPassedHook(DeciTreeOption<SowedularchInfo> option) {
 		List<ActionStd<SowedularchInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowedularchInfo> select = new StdSowedularchMergeToSelect(option);
+		ActionStd<SowedularchInfo> select = new ActionStdCommom<SowedularchInfo>(option, SowedularchVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

@@ -2,11 +2,12 @@ package br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.che
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.info.SowedularchInfo;
-import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.action.StdSowedularchDaoSelect;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthSearch.model.action.SowedularchVisiRootSelect;
 
 public final class SowedularchCheckExist extends ModelCheckerTemplateAction<SowedularchInfo, SowedularchInfo> {
 	
@@ -17,7 +18,7 @@ public final class SowedularchCheckExist extends ModelCheckerTemplateAction<Sowe
 	
 	
 	@Override protected ActionStd<SowedularchInfo> buildActionHook(DeciTreeOption<SowedularchInfo> option) {
-		ActionStd<SowedularchInfo> select = new StdSowedularchDaoSelect(option);
+		ActionStd<SowedularchInfo> select = new ActionStdCommom<SowedularchInfo>(option, SowedularchVisiRootSelect.class);
 		return select;
 	}
 	
