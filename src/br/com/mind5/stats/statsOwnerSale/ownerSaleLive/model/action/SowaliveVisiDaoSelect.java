@@ -6,18 +6,18 @@ import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.dao.DaoSowaliveSelect;
+import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.dao.SowaliveDaoSelect;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.info.SowaliveInfo;
 
-final class VisiSowaliveDaoSelect extends ActionVisitorTemplateStmt<SowaliveInfo> {
+public final class SowaliveVisiDaoSelect extends ActionVisitorTemplateStmt<SowaliveInfo> {
 
-	public VisiSowaliveDaoSelect(DeciTreeOption<SowaliveInfo> option) {
+	public SowaliveVisiDaoSelect(DeciTreeOption<SowaliveInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected DaoStmtExec<SowaliveInfo> buildStmtExecHook(List<DaoStmtExecOption<SowaliveInfo>> stmtOptions) {
-		return new DaoSowaliveSelect(stmtOptions);
+		return new SowaliveDaoSelect(stmtOptions);
 	}
 }

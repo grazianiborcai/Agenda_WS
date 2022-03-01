@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.info.SowaliveInfo;
 
-public final class DaoSowaliveSelect implements DaoStmtExec<SowaliveInfo> {
+public final class SowaliveDaoSelect implements DaoStmtExec<SowaliveInfo> {
 	private DaoStmtExec<SowaliveInfo> helper;
 	
 	
-	public DaoSowaliveSelect(List<DaoStmtExecOption<SowaliveInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoSowaliveSelectSingle.class, SowaliveInfo.class);
+	public SowaliveDaoSelect(List<DaoStmtExecOption<SowaliveInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, SowaliveDaoSelectSingle.class, SowaliveInfo.class);
 	}
 	
 	

@@ -5,24 +5,25 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.info.SowaliveInfo;
-import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.action.LazySowaliveEnforceHasData;
-import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.action.LazySowaliveEnforceLChanged;
-import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.action.LazySowaliveMergeState;
-import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.action.StdSowaliveMergeToSelect;
+import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.action.SowaliveVisiEnforceLChanged;
+import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.action.SowaliveVisiMergeState;
+import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.action.SowaliveVisiMergeToSelect;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.checker.SowaliveCheckLangu;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.checker.SowaliveCheckOwner;
 import br.com.mind5.stats.statsOwnerSale.ownerSaleLive.model.checker.SowaliveCheckRead;
 
 
-public final class RootSowaliveSelect extends DeciTreeTemplateWrite<SowaliveInfo> {
+public final class SowaliveRootSelect extends DeciTreeTemplateWrite<SowaliveInfo> {
 	
-	public RootSowaliveSelect(DeciTreeOption<SowaliveInfo> option) {
+	public SowaliveRootSelect(DeciTreeOption<SowaliveInfo> option) {
 		super(option);
 	}
 	
@@ -62,14 +63,12 @@ public final class RootSowaliveSelect extends DeciTreeTemplateWrite<SowaliveInfo
 	@Override protected List<ActionStd<SowaliveInfo>> buildActionsOnPassedHook(DeciTreeOption<SowaliveInfo> option) {
 		List<ActionStd<SowaliveInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowaliveInfo> select = new StdSowaliveMergeToSelect(option);
-		ActionLazy<SowaliveInfo> enforceLChanged = new LazySowaliveEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<SowaliveInfo> enforceHasData = new LazySowaliveEnforceHasData(option.conn, option.schemaName);
-		ActionLazy<SowaliveInfo> mergeState = new LazySowaliveMergeState(option.conn, option.schemaName);		
+		ActionStd<SowaliveInfo> select = new ActionStdCommom<SowaliveInfo>(option, SowaliveVisiMergeToSelect.class);
+		ActionLazy<SowaliveInfo> enforceLChanged = new ActionLazyCommom<SowaliveInfo>(option.conn, option.schemaName, SowaliveVisiEnforceLChanged.class);
+		ActionLazy<SowaliveInfo> mergeState = new ActionLazyCommom<SowaliveInfo>(option.conn, option.schemaName, SowaliveVisiMergeState.class);
 		
 		select.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(enforceHasData);
-		enforceHasData.addPostAction(mergeState);
+		enforceLChanged.addPostAction(mergeState);
 		
 		actions.add(select);
 		return actions;
