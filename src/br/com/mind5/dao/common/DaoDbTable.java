@@ -146,7 +146,8 @@ public final class DaoDbTable {
 	public static final String STAT_OWNER_SALE_LIVE_TABLE = "vw_stats_owner_sale";
 	public static final String STAT_OWNER_STORE_MONTH_TABLE = "stat_owner_store_month";
 	public static final String STAT_OWNER_STORE_MONTH_LIVE_TABLE = "vw_stats_owner_store_month";
-	public static final String STAT_OWNER_USER_MONTH_TABLE = "stat_owner_user_month";	
+	public static final String STAT_OWNER_USER_MONTH_TABLE = "stat_owner_user_month";
+	public static final String STAT_OWNER_USER_MONTH_LIVE_TABLE = "vw_stats_owner_user_month";
 	public static final String STAT_STORE_ORDER_DAY_LIVE_TABLE = "vw_stats_store_order_day";
 	public static final String STAT_STORE_ORDER_DAY_TABLE = "stat_store_order_day";	
 	public static final String STAT_STORE_ORDER_MONTH_LIVE_TABLE = "vw_stats_store_order_month";
@@ -156,7 +157,6 @@ public final class DaoDbTable {
 	public static final String STAT_STORE_SCHEDULE_DAY_LIVE_TABLE = "vw_stats_store_schedule_day";
 	public static final String STAT_STORE_SCHEDULE_MONTH_TABLE = "stat_store_schedule_month";
 	public static final String STAT_STORE_SCHEDULE_MONTH_LIVE_TABLE = "vw_stats_store_schedule_month";
-	public static final String STAT_USER_ACCOUNT_DASH_LIVE_TABLE = "vw_stats_user_account_dash";
 	public static final String STAT_USER_ORDER_YEAR_AGGR_TABLE = "stat_user_order_year";
 	public static final String STAT_USER_ORDER_YEAR_LIVE_TABLE = "vw_stat_user_order_year";
 	public static final String STAT_USER_ORDER_YEAR_STGN_TABLE = "stat_user_order_year_staging";

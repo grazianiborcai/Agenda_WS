@@ -4,8 +4,8 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
 import br.com.mind5.stats.statsOwnerUser.ownerUser.info.SowusInfo;
-import br.com.mind5.stats.statsOwnerUser.ownerUserLive.info.SowusiveInfo;
-import br.com.mind5.stats.statsOwnerUser.ownerUserLive.model.checker.SowusiveCheckExist;
+import br.com.mind5.stats.statsOwnerUser.ownerUserMonthLive.info.SowusiveInfo;
+import br.com.mind5.stats.statsOwnerUser.ownerUserMonthLive.model.checker.SowusiveCheckExist;
 
 public final class SowusCheckSuseracive extends ModelCheckerTemplateForward<SowusInfo, SowusiveInfo> {
 	

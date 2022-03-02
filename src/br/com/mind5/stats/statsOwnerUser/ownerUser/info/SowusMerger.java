@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.calendarMonth.info.CalonthInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
-import br.com.mind5.stats.statsOwnerUser.ownerUserLive.info.SowusiveInfo;
+import br.com.mind5.stats.statsOwnerUser.ownerUserMonthLive.info.SowusiveInfo;
 
 public final class SowusMerger {
 	public static List<SowusInfo> mergeWithStoracive(List<SowusInfo> baseInfos, List<SowusiveInfo> selectedInfos) {
