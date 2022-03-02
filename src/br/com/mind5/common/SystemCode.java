@@ -1744,8 +1744,8 @@ public final class SystemCode {
 	public static final int STAT_STR_SCH_DAY_AGGR_NOT_FOUND 			= 17401;
 	public static final int STAT_STR_SCH_DAY_AGGR_MANDATORY_FIELD_EMPTY	= 17402;
 	
-	// Bot - Bot-Store-Schedule
-	public static final int STAT_BOT_STORE_SCHED_MANDATORY_FIELD_EMPTY	= 17450;
+	// Bot - Bot-Store
+	public static final int STAT_BOT_STORE_MANDATORY_FIELD_EMPTY	= 17450;
 	
 	// Statistics - Store-Schedule-Month-Live
 	public static final int STAT_STR_SCH_MTH_LIVE_ALREADY_EXIST 		= 17500;

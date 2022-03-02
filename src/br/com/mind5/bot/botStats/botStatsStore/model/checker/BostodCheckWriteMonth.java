@@ -30,6 +30,6 @@ public final class BostodCheckWriteMonth extends ModelCheckerTemplateSimple<Bost
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.STAT_BOT_STORE_SCHED_MANDATORY_FIELD_EMPTY;
+		return SystemCode.STAT_BOT_STORE_MANDATORY_FIELD_EMPTY;
 	}
 }

@@ -28,6 +28,6 @@ public final class BostodCheckWriteL2m extends ModelCheckerTemplateSimple<Bostod
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.STAT_BOT_STORE_SCHED_MANDATORY_FIELD_EMPTY;
+		return SystemCode.STAT_BOT_STORE_MANDATORY_FIELD_EMPTY;
 	}
 }
