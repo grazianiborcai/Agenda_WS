@@ -85,4 +85,10 @@ public final class SowotagrDaoSelectSingle extends DaoStmtTemplate<SowotagrInfo>
 			}
 		};
 	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
+	}
 }

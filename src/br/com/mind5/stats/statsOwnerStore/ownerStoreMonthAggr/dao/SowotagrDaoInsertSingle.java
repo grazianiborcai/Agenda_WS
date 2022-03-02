@@ -40,11 +40,11 @@ public final class SowotagrDaoInsertSingle extends DaoStmtTemplate<SowotagrInfo>
 				
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwner);
 				stmt.setString(i++, recordInfo.calmonth);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.year);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.month);
 				stmt.setString(i++, recordInfo.codCountry);
 				stmt.setString(i++, recordInfo.codState);
 				stmt.setString(i++, recordInfo.city);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.year);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.month);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countStoreCreatedMonth);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countStoreCreatedLastYear);				
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countStoreTotalMonth);				
