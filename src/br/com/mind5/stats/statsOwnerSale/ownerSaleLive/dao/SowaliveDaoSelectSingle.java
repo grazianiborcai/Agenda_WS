@@ -95,4 +95,10 @@ public final class SowaliveDaoSelectSingle extends DaoStmtTemplate<SowaliveInfo>
 			}
 		};
 	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
+	}
 }
