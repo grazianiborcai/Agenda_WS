@@ -17,8 +17,11 @@ public final class SowalCheckWrite extends ModelCheckerTemplateSimple<SowalInfo>
 	
 	@Override protected boolean checkHook(SowalInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
+			recordInfo.codCountry 	== null ||
+			recordInfo.codState 	== null ||
+			recordInfo.city 		== null ||
 			recordInfo.username 	== null ||
-			recordInfo.codLanguage 	== null		)
+			recordInfo.codLanguage 	== null		)	
 			
 			return super.FAILED;
 		
