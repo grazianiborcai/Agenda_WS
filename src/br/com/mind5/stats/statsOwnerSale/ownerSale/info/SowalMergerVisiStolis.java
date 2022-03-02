@@ -18,6 +18,13 @@ final class SowalMergerVisiStolis extends InfoMergerVisitorTemplate<SowalInfo, S
 	@Override public List<SowalInfo> merge(SowalInfo baseInfo, StolisInfo selectedInfo) {
 		List<SowalInfo> results = new ArrayList<>();
 		
+		baseInfo.codCountry = "N/A";
+		baseInfo.txtCountry = "N/A";
+		baseInfo.codState 	= "N/A";
+		baseInfo.txtState 	= "N/A";
+		baseInfo.city 		= "N/A";
+		
+		
 		if (selectedInfo.addressData != null) {
 			baseInfo.codCountry = selectedInfo.addressData.codCountry;
 			baseInfo.txtCountry = selectedInfo.addressData.txtCountry;
