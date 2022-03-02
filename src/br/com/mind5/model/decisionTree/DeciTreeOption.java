@@ -12,7 +12,7 @@ public final class DeciTreeOption<T extends InfoRecord> implements Cloneable {
 	public String schemaName;
 	
 	
-	@Override public Object clone()throws CloneNotSupportedException {  
+	@Override public Object clone() throws CloneNotSupportedException {  
 		DeciTreeOption<T> deepCopy = new DeciTreeOption<>();
 		
 		deepCopy.recordInfos = cloneRecords(recordInfos);
