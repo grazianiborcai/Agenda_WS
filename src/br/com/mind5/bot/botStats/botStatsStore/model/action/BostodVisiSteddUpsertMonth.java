@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.decisionTree.RootSteddUpsertMonth;
 
-final class VisiBostodSteddUpsertMonth extends ActionVisitorTemplateAction<BostodInfo, SteddInfo> {
+public final class BostodVisiSteddUpsertMonth extends ActionVisitorTemplateAction<BostodInfo, SteddInfo> {
 
-	public VisiBostodSteddUpsertMonth(DeciTreeOption<BostodInfo> option) {
+	public BostodVisiSteddUpsertMonth(DeciTreeOption<BostodInfo> option) {
 		super(option, BostodInfo.class, SteddInfo.class);
 	}
 	

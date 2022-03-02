@@ -14,7 +14,7 @@ public final class BostodMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new BostodVisiMergeDaemon());
+		builder.addVisitor(new BostodMergerVisiDaemon());
 		InfoMerger<BostodInfo, UserInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class BostodMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new BostodVisiMergeCalonth());
+		builder.addVisitor(new BostodMergerVisiCalonth());
 		InfoMerger<BostodInfo, CalonthInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class BostodMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new BostodVisiMergeStolis());
+		builder.addVisitor(new BostodMergerVisiStolis());
 		InfoMerger<BostodInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();

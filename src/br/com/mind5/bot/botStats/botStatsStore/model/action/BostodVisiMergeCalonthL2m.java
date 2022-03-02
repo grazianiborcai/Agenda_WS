@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiBostodMergeCalonthL2m extends ActionVisitorTemplateMerge<BostodInfo, CalonthInfo> {
+public final class BostodVisiMergeCalonthL2m extends ActionVisitorTemplateMerge<BostodInfo, CalonthInfo> {
 	
-	public VisiBostodMergeCalonthL2m(DeciTreeOption<BostodInfo> option) {
+	public BostodVisiMergeCalonthL2m(DeciTreeOption<BostodInfo> option) {
 		super(option, CalonthInfo.class);
 	}
 	

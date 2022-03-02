@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiBostodMergeStolis extends ActionVisitorTemplateMerge<BostodInfo, StolisInfo> {
+public final class BostodVisiMergeStolis extends ActionVisitorTemplateMerge<BostodInfo, StolisInfo> {
 	
-	public VisiBostodMergeStolis(DeciTreeOption<BostodInfo> option) {
+	public BostodVisiMergeStolis(DeciTreeOption<BostodInfo> option) {
 		super(option, StolisInfo.class);
 	}
 	

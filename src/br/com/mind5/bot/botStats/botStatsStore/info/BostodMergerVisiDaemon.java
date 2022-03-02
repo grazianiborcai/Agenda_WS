@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class BostodVisiMergeDaemon extends InfoMergerVisitorTemplate<BostodInfo, UserInfo> {
+final class BostodMergerVisiDaemon extends InfoMergerVisitorTemplate<BostodInfo, UserInfo> {
 
 	@Override public boolean shouldMerge(BostodInfo baseInfo, UserInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);

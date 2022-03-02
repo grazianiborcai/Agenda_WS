@@ -4,15 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.bot.botStats.botStatsStore.info.BostodInfo;
-import br.com.mind5.bot.botStats.botStatsStore.model.action.LazyBostodMergeCalonthL2m;
-import br.com.mind5.bot.botStats.botStatsStore.model.action.LazyBostodMergeStolis;
-import br.com.mind5.bot.botStats.botStatsStore.model.action.LazyBostodRootUpsertMonth;
-import br.com.mind5.bot.botStats.botStatsStore.model.action.StdBostodMergeDaemon;
+import br.com.mind5.bot.botStats.botStatsStore.model.action.BostodVisiMergeCalonthL2m;
+import br.com.mind5.bot.botStats.botStatsStore.model.action.BostodVisiMergeDaemon;
+import br.com.mind5.bot.botStats.botStatsStore.model.action.BostodVisiMergeStolis;
+import br.com.mind5.bot.botStats.botStatsStore.model.action.BostodVisiRootUpsertMonth;
 import br.com.mind5.bot.botStats.botStatsStore.model.checker.BostodCheckLangu;
 import br.com.mind5.bot.botStats.botStatsStore.model.checker.BostodCheckOwner;
 import br.com.mind5.bot.botStats.botStatsStore.model.checker.BostodCheckWriteL2m;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -20,9 +22,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
 
-public final class RootBostodUpsertL2m extends DeciTreeTemplateRead<BostodInfo> {
+public final class BostodRootUpsertL2m extends DeciTreeTemplateRead<BostodInfo> {
 	
-	public RootBostodUpsertL2m(DeciTreeOption<BostodInfo> option) {
+	public BostodRootUpsertL2m(DeciTreeOption<BostodInfo> option) {
 		super(option);
 	}
 	
@@ -62,10 +64,10 @@ public final class RootBostodUpsertL2m extends DeciTreeTemplateRead<BostodInfo> 
 	@Override protected List<ActionStd<BostodInfo>> buildActionsOnPassedHook(DeciTreeOption<BostodInfo> option) {
 		List<ActionStd<BostodInfo>> actions = new ArrayList<>();
 
-		ActionStd<BostodInfo> mergeDaemon = new StdBostodMergeDaemon(option);
-		ActionLazy<BostodInfo> mergeStolis = new LazyBostodMergeStolis(option.conn, option.schemaName);
-		ActionLazy<BostodInfo> mergeCalonth = new LazyBostodMergeCalonthL2m(option.conn, option.schemaName);
-		ActionLazy<BostodInfo> upsert = new LazyBostodRootUpsertMonth(option.conn, option.schemaName);
+		ActionStd<BostodInfo> mergeDaemon = new ActionStdCommom<BostodInfo>(option, BostodVisiMergeDaemon.class);
+		ActionLazy<BostodInfo> mergeStolis = new ActionLazyCommom<BostodInfo>(option.conn, option.schemaName, BostodVisiMergeStolis.class);
+		ActionLazy<BostodInfo> mergeCalonth = new ActionLazyCommom<BostodInfo>(option.conn, option.schemaName, BostodVisiMergeCalonthL2m.class);
+		ActionLazy<BostodInfo> upsert = new ActionLazyCommom<BostodInfo>(option.conn, option.schemaName, BostodVisiRootUpsertMonth.class);
 		
 		mergeDaemon.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeCalonth);

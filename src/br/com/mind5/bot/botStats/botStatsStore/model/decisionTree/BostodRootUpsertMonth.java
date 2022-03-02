@@ -4,16 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.bot.botStats.botStatsStore.info.BostodInfo;
-import br.com.mind5.bot.botStats.botStatsStore.model.action.LazyBostodStedmonUpsert;
-import br.com.mind5.bot.botStats.botStatsStore.model.action.LazyBostodStordUpsertMonth;
-import br.com.mind5.bot.botStats.botStatsStore.model.action.LazyBostodStoronUpsert;
-import br.com.mind5.bot.botStats.botStatsStore.model.action.StdBostodSteddUpsertMonth;
+import br.com.mind5.bot.botStats.botStatsStore.model.action.BostodVisiSteddUpsertMonth;
+import br.com.mind5.bot.botStats.botStatsStore.model.action.BostodVisiStedmonUpsert;
+import br.com.mind5.bot.botStats.botStatsStore.model.action.BostodVisiStordUpsertMonth;
+import br.com.mind5.bot.botStats.botStatsStore.model.action.BostodVisiStoronUpsert;
 import br.com.mind5.bot.botStats.botStatsStore.model.checker.BostodCheckLangu;
 import br.com.mind5.bot.botStats.botStatsStore.model.checker.BostodCheckOwner;
 import br.com.mind5.bot.botStats.botStatsStore.model.checker.BostodCheckStore;
 import br.com.mind5.bot.botStats.botStatsStore.model.checker.BostodCheckWriteMonth;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -21,9 +23,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
 
-public final class RootBostodUpsertMonth extends DeciTreeTemplateWrite<BostodInfo> {
+public final class BostodRootUpsertMonth extends DeciTreeTemplateWrite<BostodInfo> {
 	
-	public RootBostodUpsertMonth(DeciTreeOption<BostodInfo> option) {
+	public BostodRootUpsertMonth(DeciTreeOption<BostodInfo> option) {
 		super(option);
 	}
 	
@@ -70,10 +72,10 @@ public final class RootBostodUpsertMonth extends DeciTreeTemplateWrite<BostodInf
 	@Override protected List<ActionStd<BostodInfo>> buildActionsOnPassedHook(DeciTreeOption<BostodInfo> option) {
 		List<ActionStd<BostodInfo>> actions = new ArrayList<>();
 
-		ActionStd<BostodInfo> steddUpsert = new StdBostodSteddUpsertMonth(option);
-		ActionLazy<BostodInfo> stedmonUpsert = new LazyBostodStedmonUpsert(option.conn, option.schemaName);
-		ActionLazy<BostodInfo> stordUpsert = new LazyBostodStordUpsertMonth(option.conn, option.schemaName);
-		ActionLazy<BostodInfo> storonUpsert = new LazyBostodStoronUpsert(option.conn, option.schemaName);
+		ActionStd<BostodInfo> steddUpsert = new ActionStdCommom<BostodInfo>(option, BostodVisiSteddUpsertMonth.class);
+		ActionLazy<BostodInfo> stedmonUpsert = new ActionLazyCommom<BostodInfo>(option.conn, option.schemaName, BostodVisiStedmonUpsert.class);
+		ActionLazy<BostodInfo> stordUpsert = new ActionLazyCommom<BostodInfo>(option.conn, option.schemaName, BostodVisiStordUpsertMonth.class);
+		ActionLazy<BostodInfo> storonUpsert = new ActionLazyCommom<BostodInfo>(option.conn, option.schemaName, BostodVisiStoronUpsert.class);
 		
 		steddUpsert.addPostAction(stedmonUpsert);
 		stedmonUpsert.addPostAction(stordUpsert);

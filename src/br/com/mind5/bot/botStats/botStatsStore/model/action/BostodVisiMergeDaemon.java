@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.decisionTree.RootUserSelectDaemon;
 
-final class VisiBostodMergeDaemon extends ActionVisitorTemplateMerge<BostodInfo, UserInfo> {
+public final class BostodVisiMergeDaemon extends ActionVisitorTemplateMerge<BostodInfo, UserInfo> {
 	
-	public VisiBostodMergeDaemon(DeciTreeOption<BostodInfo> option) {
+	public BostodVisiMergeDaemon(DeciTreeOption<BostodInfo> option) {
 		super(option, UserInfo.class);
 	}
 	
