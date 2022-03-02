@@ -50,6 +50,9 @@ public final class BostowInfo extends InfoRecord implements Cloneable {
 		
 		result = result * 31 + (int) (codOwner ^ (codOwner >>> 32));
 		
+		if (calmonth != null)
+			result = result * 31 + calmonth.hashCode();
+		
 		if (codCountry != null)
 			result = result * 31 + codCountry.hashCode();
 		
@@ -76,6 +79,7 @@ public final class BostowInfo extends InfoRecord implements Cloneable {
 		BostowInfo obj = (BostowInfo) o;		
 		return (codOwner == obj.codOwner &&
 				super.isStringEqual(codCountry, obj.codCountry) &&
+				super.isStringEqual(calmonth  , obj.calmonth) 	&&
 				super.isStringEqual(codState  , obj.codState) 	&&
 				super.isStringEqual(city      , obj.city) );
 	}

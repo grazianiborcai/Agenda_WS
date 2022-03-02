@@ -12,9 +12,7 @@ import br.com.mind5.bot.botStats.botStatsOwner.model.action.BostowVisiSowusUpser
 import br.com.mind5.bot.botStats.botStatsOwner.model.checker.BostowCheckLangu;
 import br.com.mind5.bot.botStats.botStatsOwner.model.checker.BostowCheckOwner;
 import br.com.mind5.bot.botStats.botStatsOwner.model.checker.BostowCheckWriteMonth;
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -66,17 +64,17 @@ public final class BostowRootUpsertMonth extends DeciTreeTemplateWrite<BostowInf
 		List<ActionStd<BostowInfo>> actions = new ArrayList<>();
 
 		ActionStd<BostowInfo> sowordUpsert = new ActionStdCommom<BostowInfo>(option, BostowVisiSowordUpsert.class);
-		ActionLazy<BostowInfo> sowalUpsert = new ActionLazyCommom<BostowInfo>(option.conn, option.schemaName, BostowVisiSowalUpsert.class);
-		ActionLazy<BostowInfo> sowedulUpsert = new ActionLazyCommom<BostowInfo>(option.conn, option.schemaName, BostowVisiSowedulUpsert.class);
-		ActionLazy<BostowInfo> sowotUpsert = new ActionLazyCommom<BostowInfo>(option.conn, option.schemaName, BostowVisiSowotUpsert.class);
-		ActionLazy<BostowInfo> sowusUpsert = new ActionLazyCommom<BostowInfo>(option.conn, option.schemaName, BostowVisiSowusUpsert.class);
-		
-		sowordUpsert.addPostAction(sowalUpsert);
-		sowalUpsert.addPostAction(sowedulUpsert);
-		sowedulUpsert.addPostAction(sowotUpsert);
-		sowotUpsert.addPostAction(sowusUpsert);
+		ActionStd<BostowInfo> sowalUpsert = new ActionStdCommom<BostowInfo>(option, BostowVisiSowalUpsert.class);
+		ActionStd<BostowInfo> sowedulUpsert = new ActionStdCommom<BostowInfo>(option, BostowVisiSowedulUpsert.class);
+		ActionStd<BostowInfo> sowotUpsert = new ActionStdCommom<BostowInfo>(option, BostowVisiSowotUpsert.class);
+		ActionStd<BostowInfo> sowusUpsert = new ActionStdCommom<BostowInfo>(option, BostowVisiSowusUpsert.class);
 		
 		actions.add(sowordUpsert);
+		actions.add(sowalUpsert);
+		actions.add(sowedulUpsert);
+		actions.add(sowotUpsert);
+		actions.add(sowusUpsert);
+		
 		return actions;
 	}
 }
