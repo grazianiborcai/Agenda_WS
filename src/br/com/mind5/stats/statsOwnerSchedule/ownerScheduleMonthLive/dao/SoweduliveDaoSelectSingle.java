@@ -84,4 +84,10 @@ public final class SoweduliveDaoSelectSingle extends DaoStmtTemplate<SoweduliveI
 			}
 		};
 	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
+	}
 }
