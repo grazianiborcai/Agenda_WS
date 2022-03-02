@@ -17,7 +17,7 @@ import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreMonthSearch.info.SowotarchInfo;
 
 public final class SowotarchDaoSelectSingle extends DaoStmtTemplate<SowotarchInfo> {
-	private final String MAIN_TABLE = DaoDbTable.STAT_OWNER_STORE_MONTH_SEARCH_VIEW;
+	private final String MAIN_TABLE = DaoDbTable.STAT_OWNER_STORE_MONTH_TABLE;
 	
 	
 	public SowotarchDaoSelectSingle(Connection conn, SowotarchInfo recordInfo, String schemaName) {
