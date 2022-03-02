@@ -112,4 +112,10 @@ public final class SowordiveDaoSelectSingle extends DaoStmtTemplate<SowordiveInf
 			}
 		};
 	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
+	}
 }
