@@ -12,9 +12,7 @@ import br.com.mind5.bot.botStats.botStatsStore.model.checker.BostodCheckLangu;
 import br.com.mind5.bot.botStats.botStatsStore.model.checker.BostodCheckOwner;
 import br.com.mind5.bot.botStats.botStatsStore.model.checker.BostodCheckStore;
 import br.com.mind5.bot.botStats.botStatsStore.model.checker.BostodCheckWriteMonth;
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -73,15 +71,15 @@ public final class BostodRootUpsertMonth extends DeciTreeTemplateWrite<BostodInf
 		List<ActionStd<BostodInfo>> actions = new ArrayList<>();
 
 		ActionStd<BostodInfo> steddUpsert = new ActionStdCommom<BostodInfo>(option, BostodVisiSteddUpsertMonth.class);
-		ActionLazy<BostodInfo> stedmonUpsert = new ActionLazyCommom<BostodInfo>(option.conn, option.schemaName, BostodVisiStedmonUpsert.class);
-		ActionLazy<BostodInfo> stordUpsert = new ActionLazyCommom<BostodInfo>(option.conn, option.schemaName, BostodVisiStordUpsertMonth.class);
-		ActionLazy<BostodInfo> storonUpsert = new ActionLazyCommom<BostodInfo>(option.conn, option.schemaName, BostodVisiStoronUpsert.class);
-		
-		steddUpsert.addPostAction(stedmonUpsert);
-		stedmonUpsert.addPostAction(stordUpsert);
-		stordUpsert.addPostAction(storonUpsert);
+		ActionStd<BostodInfo> stedmonUpsert = new ActionStdCommom<BostodInfo>(option, BostodVisiStedmonUpsert.class);
+		ActionStd<BostodInfo> stordUpsert = new ActionStdCommom<BostodInfo>(option, BostodVisiStordUpsertMonth.class);
+		ActionStd<BostodInfo> storonUpsert = new ActionStdCommom<BostodInfo>(option, BostodVisiStoronUpsert.class);
 		
 		actions.add(steddUpsert);
+		actions.add(stedmonUpsert);
+		actions.add(stordUpsert);
+		actions.add(storonUpsert);
+		
 		return actions;
 	}
 }
