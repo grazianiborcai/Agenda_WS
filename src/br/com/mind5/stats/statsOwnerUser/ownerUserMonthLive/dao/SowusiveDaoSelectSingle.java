@@ -82,4 +82,10 @@ public final class SowusiveDaoSelectSingle extends DaoStmtTemplate<SowusiveInfo>
 			}
 		};
 	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
+	}
 }
