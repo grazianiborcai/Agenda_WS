@@ -18,6 +18,13 @@ final class StedmonVisiMergeStolis extends InfoMergerVisitorTemplate<StedmonInfo
 	@Override public List<StedmonInfo> merge(StedmonInfo baseInfo, StolisInfo selectedInfo) {
 		List<StedmonInfo> results = new ArrayList<>();
 		
+		baseInfo.codCountry = "N/A";
+		baseInfo.txtCountry = "N/A";
+		baseInfo.codState 	= "N/A";
+		baseInfo.txtState 	= "N/A";
+		baseInfo.city 		= "N/A";
+		
+		
 		if (selectedInfo.addressData != null) {
 			baseInfo.codCountry = selectedInfo.addressData.codCountry;
 			baseInfo.txtCountry = selectedInfo.addressData.txtCountry;
