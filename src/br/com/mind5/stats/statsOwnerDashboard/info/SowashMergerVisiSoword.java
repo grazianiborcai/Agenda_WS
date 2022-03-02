@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordInfo;
 
-final class SowashVisiMergeSoword extends InfoMergerVisitorTemplate<SowashInfo, SowordInfo> {
+final class SowashMergerVisiSoword extends InfoMergerVisitorTemplate<SowashInfo, SowordInfo> {
 
 	@Override public boolean shouldMerge(SowashInfo baseInfo, SowordInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);

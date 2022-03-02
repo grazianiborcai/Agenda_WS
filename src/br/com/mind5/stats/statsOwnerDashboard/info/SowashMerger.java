@@ -16,7 +16,7 @@ public final class SowashMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowashVisiMergeSowedul());
+		builder.addVisitor(new SowashMergerVisiSowedul());
 		InfoMerger<SowashInfo, SowedulInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -29,7 +29,7 @@ public final class SowashMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowashVisiMergeSowal());
+		builder.addVisitor(new SowashMergerVisiSowal());
 		InfoMerger<SowashInfo, SowalInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -42,7 +42,7 @@ public final class SowashMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowashVisiMergeSowot());
+		builder.addVisitor(new SowashMergerVisiSowot());
 		InfoMerger<SowashInfo, SowotInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -55,7 +55,7 @@ public final class SowashMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowashVisiMergeSowus());
+		builder.addVisitor(new SowashMergerVisiSowus());
 		InfoMerger<SowashInfo, SowusInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -68,7 +68,7 @@ public final class SowashMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SowashVisiMergeSoword());
+		builder.addVisitor(new SowashMergerVisiSoword());
 		InfoMerger<SowashInfo, SowordInfo> merger = builder.build();
 	
 		return merger.merge();

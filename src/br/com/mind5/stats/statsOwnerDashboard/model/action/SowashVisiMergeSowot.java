@@ -10,9 +10,9 @@ import br.com.mind5.stats.statsOwnerDashboard.info.SowashMerger;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.info.SowotInfo;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.model.decisionTree.SowotRootSelectLtm;
 
-final class VisiSowashMergeSowot extends ActionVisitorTemplateMerge<SowashInfo, SowotInfo> {
+public final class SowashVisiMergeSowot extends ActionVisitorTemplateMerge<SowashInfo, SowotInfo> {
 	
-	public VisiSowashMergeSowot(DeciTreeOption<SowashInfo> option) {
+	public SowashVisiMergeSowot(DeciTreeOption<SowashInfo> option) {
 		super(option, SowotInfo.class);
 	}
 	
