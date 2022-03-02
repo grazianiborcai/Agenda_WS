@@ -1839,4 +1839,7 @@ public final class SystemCode {
 	
 	// Statistics - Owner-User-Month
 	public static final int STAT_OWNER_USR_MANDATORY_FIELD_EMPTY		= 18500;
+	
+	// Bot - Bot-Owner
+	public static final int STAT_BOT_OWNER_MANDATORY_FIELD_EMPTY		= 18550;
 }
