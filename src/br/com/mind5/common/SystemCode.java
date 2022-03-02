@@ -1826,4 +1826,9 @@ public final class SystemCode {
 	
 	// Statistics - Store-Month
 	public static final int STAT_OWN_STR_MTH_MANDATORY_FIELD_EMPTY		= 18350;
+	
+	// Statistics - Owner-User-Month-Search
+	public static final int STAT_OWN_USR_MTH_SRCH_ALREADY_EXIST 		= 18400;
+	public static final int STAT_OWN_USR_MTH_SRCH_NOT_FOUND 			= 18401;
+	public static final int STAT_OWN_USR_MTH_SRCH_MANDATORY_FIELD_EMPTY	= 18402;
 }
