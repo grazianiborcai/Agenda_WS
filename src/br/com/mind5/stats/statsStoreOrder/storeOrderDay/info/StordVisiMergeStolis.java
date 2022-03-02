@@ -18,6 +18,13 @@ final class StordVisiMergeStolis extends InfoMergerVisitorTemplate<StordInfo, St
 	@Override public List<StordInfo> merge(StordInfo baseInfo, StolisInfo selectedInfo) {
 		List<StordInfo> results = new ArrayList<>();
 		
+		baseInfo.codCountry = "N/A";
+		baseInfo.txtCountry = "N/A";
+		baseInfo.codState 	= "N/A";
+		baseInfo.txtState 	= "N/A";
+		baseInfo.city 		= "N/A";
+		
+		
 		if (selectedInfo.addressData != null) {
 			baseInfo.codCountry = selectedInfo.addressData.codCountry;
 			baseInfo.txtCountry = selectedInfo.addressData.txtCountry;
