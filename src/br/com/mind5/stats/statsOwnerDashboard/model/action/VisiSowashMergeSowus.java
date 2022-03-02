@@ -7,8 +7,8 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsOwnerDashboard.info.SowashInfo;
 import br.com.mind5.stats.statsOwnerDashboard.info.SowashMerger;
-import br.com.mind5.stats.statsOwnerUser.ownerUser.info.SowusInfo;
-import br.com.mind5.stats.statsOwnerUser.ownerUser.model.decisionTree.RootSowusSelectLtm;
+import br.com.mind5.stats.statsOwnerUser.ownerUserMonth.info.SowusInfo;
+import br.com.mind5.stats.statsOwnerUser.ownerUserMonth.model.decisionTree.SowusRootSelectLtm;
 
 final class VisiSowashMergeSowus extends ActionVisitorTemplateMerge<SowashInfo, SowusInfo> {
 	
@@ -19,7 +19,7 @@ final class VisiSowashMergeSowus extends ActionVisitorTemplateMerge<SowashInfo, 
 	
 	
 	@Override protected Class<? extends DeciTree<SowusInfo>> getTreeClassHook() {
-		return RootSowusSelectLtm.class;
+		return SowusRootSelectLtm.class;
 	}
 	
 	

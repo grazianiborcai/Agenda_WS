@@ -1,4 +1,4 @@
-package br.com.mind5.stats.statsOwnerUser.ownerUser.info;
+package br.com.mind5.stats.statsOwnerUser.ownerUserMonth.info;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,19 +20,9 @@ public final class SowusInfo extends InfoRecord implements Cloneable {
 	public int countUserCreatedMonth;
 	public int countUserActiveMonth;
 	public int countUserInactiveMonth;
-	public int countOrderMonth;
-	public int userEngagementMonth;	
 	public int countUserCreatedLastYear;
 	public int countUserActiveLastYear;
 	public int countUserInactiveLastYear;
-	public int userEngagementLastYear;	
-	public int countOrderLastYear;
-	public double countUserCreatedVar;
-	public double countUserActiveVar;
-	public double countUserInactiveVar;	
-	public double countOrderVar;
-	public double userEngagementVar;
-	public boolean hasData;
 	public LocalDateTime lastChanged;
 	public String username;
 	
@@ -46,19 +36,9 @@ public final class SowusInfo extends InfoRecord implements Cloneable {
 		countUserCreatedMonth = DefaultValue.number();
 		countUserActiveMonth = DefaultValue.number();
 		countUserInactiveMonth = DefaultValue.number();
-		countOrderMonth = DefaultValue.number();
-		userEngagementMonth = DefaultValue.number();
 		countUserActiveLastYear = DefaultValue.number();
 		countUserCreatedLastYear = DefaultValue.number();
 		countUserInactiveLastYear = DefaultValue.number();
-		userEngagementLastYear = DefaultValue.number();
-		countOrderLastYear = DefaultValue.number();
-		countUserCreatedVar = DefaultValue.number();
-		countUserActiveVar = DefaultValue.number();
-		countUserInactiveVar = DefaultValue.number();
-		countOrderVar = DefaultValue.number();
-		userEngagementVar = DefaultValue.number();
-		hasData = DefaultValue.boole();
 		lastChanged = DefaultValue.object();
 	}
 	

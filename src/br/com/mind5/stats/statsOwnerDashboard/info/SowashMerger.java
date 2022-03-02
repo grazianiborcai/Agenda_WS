@@ -8,7 +8,7 @@ import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordInfo;
 import br.com.mind5.stats.statsOwnerSale.ownerSale.info.SowalInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.info.SowotInfo;
-import br.com.mind5.stats.statsOwnerUser.ownerUser.info.SowusInfo;
+import br.com.mind5.stats.statsOwnerUser.ownerUserMonth.info.SowusInfo;
 
 public final class SowashMerger {
 	public static List<SowashInfo> mergeWithSowedul(List<SowashInfo> baseInfos, List<SowedulInfo> selectedInfos) {

@@ -1832,8 +1832,11 @@ public final class SystemCode {
 	public static final int STAT_OWN_USR_MTH_SRCH_NOT_FOUND 			= 18401;
 	public static final int STAT_OWN_USR_MTH_SRCH_MANDATORY_FIELD_EMPTY	= 18402;
 	
-	// Statistics - Owner-uSER-Month-Aggr
+	// Statistics - Owner-User-Month-Aggr
 	public static final int STAT_OWN_USR_MTH_AGGR_ALREADY_EXIST 		= 18450;
 	public static final int STAT_OWN_USR_MTH_AGGR_NOT_FOUND 			= 18451;
 	public static final int STAT_OWN_USR_MTH_AGGR_MANDATORY_FIELD_EMPTY	= 18452;
+	
+	// Statistics - Owner-User-Month
+	public static final int STAT_OWNER_USR_MANDATORY_FIELD_EMPTY		= 18500;
 }

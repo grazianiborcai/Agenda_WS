@@ -1,38 +1,38 @@
-package br.com.mind5.stats.statsOwnerUser.ownerUser.model.decisionTree;
+package br.com.mind5.stats.statsOwnerUser.ownerUserMonth.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
-import br.com.mind5.stats.statsOwnerUser.ownerUser.info.SowusInfo;
-import br.com.mind5.stats.statsOwnerUser.ownerUser.model.action.StdSowusEnforceZerofy;
-import br.com.mind5.stats.statsOwnerUser.ownerUser.model.action.StdSowusSuccess;
-import br.com.mind5.stats.statsOwnerUser.ownerUser.model.checker.SowusCheckHasData;
+import br.com.mind5.stats.statsOwnerUser.ownerUserMonth.info.SowusInfo;
+import br.com.mind5.stats.statsOwnerUser.ownerUserMonth.model.action.SowusVisiMergeSowusagr;
+import br.com.mind5.stats.statsOwnerUser.ownerUserMonth.model.checker.SowusCheckSowusagr;
 
 
-public final class NodeSowusZerofy extends DeciTreeTemplateWrite<SowusInfo> {
+public final class SowusNodeSelectL1 extends DeciTreeTemplateWrite<SowusInfo> {
 	
-	public NodeSowusZerofy(DeciTreeOption<SowusInfo> option) {
+	public SowusNodeSelectL1(DeciTreeOption<SowusInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected ModelChecker<SowusInfo> buildCheckerHook(DeciTreeOption<SowusInfo> option) {
-		List<ModelChecker<SowusInfo>> queue = new ArrayList<>();		
+		List<ModelChecker<SowusInfo>> queue = new ArrayList<>();
 		ModelChecker<SowusInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new SowusCheckHasData(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;
+		checker = new SowusCheckSowusagr(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -43,9 +43,9 @@ public final class NodeSowusZerofy extends DeciTreeTemplateWrite<SowusInfo> {
 	@Override protected List<ActionStd<SowusInfo>> buildActionsOnPassedHook(DeciTreeOption<SowusInfo> option) {
 		List<ActionStd<SowusInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowusInfo> success = new StdSowusSuccess(option);
+		ActionStd<SowusInfo> mergeSowusagr = new ActionStdCommom<SowusInfo>(option, SowusVisiMergeSowusagr.class);
 		
-		actions.add(success);
+		actions.add(mergeSowusagr);
 		return actions;
 	}
 	
@@ -54,9 +54,9 @@ public final class NodeSowusZerofy extends DeciTreeTemplateWrite<SowusInfo> {
 	@Override protected List<ActionStd<SowusInfo>> buildActionsOnFailedHook(DeciTreeOption<SowusInfo> option) {
 		List<ActionStd<SowusInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowusInfo> zerofy = new StdSowusEnforceZerofy(option);
+		ActionStd<SowusInfo> nodeL2 = new SowusNodeSelectL2(option).toAction();
 		
-		actions.add(zerofy);
+		actions.add(nodeL2);
 		return actions;
 	}
 }

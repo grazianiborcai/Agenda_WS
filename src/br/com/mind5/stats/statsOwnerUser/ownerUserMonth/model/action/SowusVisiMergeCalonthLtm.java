@@ -1,4 +1,4 @@
-package br.com.mind5.stats.statsOwnerUser.ownerUser.model.action;
+package br.com.mind5.stats.statsOwnerUser.ownerUserMonth.model.action;
 
 import java.util.List;
 
@@ -7,12 +7,12 @@ import br.com.mind5.business.calendarMonth.model.decisionTree.RootCalonthSelectL
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.statsOwnerUser.ownerUser.info.SowusInfo;
-import br.com.mind5.stats.statsOwnerUser.ownerUser.info.SowusMerger;
+import br.com.mind5.stats.statsOwnerUser.ownerUserMonth.info.SowusInfo;
+import br.com.mind5.stats.statsOwnerUser.ownerUserMonth.info.SowusMerger;
 
-final class VisiSowusMergeCalonthLtm extends ActionVisitorTemplateMerge<SowusInfo, CalonthInfo> {
+public final class SowusVisiMergeCalonthLtm extends ActionVisitorTemplateMerge<SowusInfo, CalonthInfo> {
 	
-	public VisiSowusMergeCalonthLtm(DeciTreeOption<SowusInfo> option) {
+	public SowusVisiMergeCalonthLtm(DeciTreeOption<SowusInfo> option) {
 		super(option, CalonthInfo.class);
 	}
 	
