@@ -45,12 +45,12 @@ public final class CalonthRootSelectLtm extends DeciTreeTemplateRead<CalonthInfo
 	@Override protected List<ActionStd<CalonthInfo>> buildActionsOnPassedHook(DeciTreeOption<CalonthInfo> option) {
 		List<ActionStd<CalonthInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CalonthInfo> mergeCalontharch = new ActionStdCommom<CalonthInfo>(option, CalonthVisiMergeCalontharchLtm.class);
+		ActionStd<CalonthInfo> mergeCalontharchLtm = new ActionStdCommom<CalonthInfo>(option, CalonthVisiMergeCalontharchLtm.class);
 		ActionLazy<CalonthInfo> select = new  ActionLazyCommom<CalonthInfo>(option.conn, option.schemaName, CalonthVisiRootSelect.class);
 		
-		mergeCalontharch.addPostAction(select);
+		mergeCalontharchLtm.addPostAction(select);
 		
-		actions.add(mergeCalontharch);
+		actions.add(mergeCalontharchLtm);
 		return actions;
 	}
 }
