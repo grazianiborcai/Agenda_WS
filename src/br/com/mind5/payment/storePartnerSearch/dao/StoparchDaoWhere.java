@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.payment.storePartnerSearch.info.StoparchInfo;
 
-final class DaoStoparchWhere implements DaoStmtWhere {
+final class StoparchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoStoparchWhere(DaoWhereBuilderOption whereOption, String tableName, StoparchInfo recordInfo) {
+	public StoparchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, StoparchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,23 +27,23 @@ final class DaoStoparchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoStoparchDbTableColumn.COL_COD_OWNER :
+				case StoparchDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoStoparchDbTableColumn.COL_COD_STORE :
+				case StoparchDaoDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case DaoStoparchDbTableColumn.COL_COD_PAY_PARTNER :
+				case StoparchDaoDbTableColumn.COL_COD_PAY_PARTNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayPartner));
 					break;
 					
-				case DaoStoparchDbTableColumn.COL_ID_PAY_PARTNER_STORE :
+				case StoparchDaoDbTableColumn.COL_ID_PAY_PARTNER_STORE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.idPayPartnerStore);
 					break;	
 					
-				case DaoStoparchDbTableColumn.COL_RECORD_MODE :
+				case StoparchDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

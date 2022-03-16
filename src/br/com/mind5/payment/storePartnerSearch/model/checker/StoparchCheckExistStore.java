@@ -6,18 +6,18 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerSearch.info.StoparchInfo;
-import br.com.mind5.payment.storePartnerSearch.model.decisionTree.StoparchRootSelect;
+import br.com.mind5.payment.storePartnerSearch.model.decisionTree.StoparchRootSelectStore;
 
-public final class StoparchCheckExist extends ModelCheckerTemplateAction<StoparchInfo, StoparchInfo> {
+public final class StoparchCheckExistStore extends ModelCheckerTemplateAction<StoparchInfo, StoparchInfo> {
 	
-	public StoparchCheckExist(ModelCheckerOption option) {
+	public StoparchCheckExistStore(ModelCheckerOption option) {
 		super(option, StoparchInfo.class);
 	}
 	
 
 	
 	@Override protected ActionStd<StoparchInfo> buildActionHook(DeciTreeOption<StoparchInfo> option) {
-		ActionStd<StoparchInfo> select = new StoparchRootSelect(option).toAction();
+		ActionStd<StoparchInfo> select = new StoparchRootSelectStore(option).toAction();
 		return select;
 	}
 	

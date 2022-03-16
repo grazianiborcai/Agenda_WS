@@ -239,7 +239,7 @@ import br.com.mind5.payment.payOrderSearch.dao.DaoPayordarchDbTableColumn;
 import br.com.mind5.payment.setupPartner.dao.DaoSetuparDbTableColumn;
 import br.com.mind5.payment.storePartner.dao.DaoStoparDbTableColumn;
 import br.com.mind5.payment.storePartnerList.dao.DaoStoplisDbTableColumn;
-import br.com.mind5.payment.storePartnerSearch.dao.DaoStoparchDbTableColumn;
+import br.com.mind5.payment.storePartnerSearch.dao.StoparchDaoDbTableColumn;
 import br.com.mind5.payment.storePartnerSnapshot.dao.DaoStoparnapDbTableColumn;
 import br.com.mind5.payment.systemPartner.dao.DaoSysparDbTableColumn;
 import br.com.mind5.payment.systemPartnerSearch.dao.DaoSysparchDbTableColumn;
@@ -407,7 +407,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoMatocarchDbTableColumn());
 		addTable(new DaoMatmarchDbTableColumn());
 		addTable(new DaoUserarchDbTableColumn());
-		addTable(new DaoStoparchDbTableColumn());
+		addTable(new StoparchDaoDbTableColumn());
 		addTable(new DaoCartemarchDbTableColumn());
 		addTable(new DaoEmpworgDbTableColumn());
 		addTable(new DaoEmplargDbTableColumn());

@@ -11,7 +11,7 @@ public final class StoparchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoparchVisiMergeToSelect());
+		builder.addVisitor(new StoparchMergerVisiToSelect());
 		InfoMerger<StoparchInfo, StoparchInfo> merger = builder.build();		
 	
 		return merger.merge();

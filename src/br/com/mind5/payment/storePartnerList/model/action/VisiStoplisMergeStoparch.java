@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
 import br.com.mind5.payment.storePartnerList.info.StoplisMerger;
 import br.com.mind5.payment.storePartnerSearch.info.StoparchInfo;
-import br.com.mind5.payment.storePartnerSearch.model.decisionTree.RootStoparchSelect;
+import br.com.mind5.payment.storePartnerSearch.model.decisionTree.StoparchRootSelect;
 
 final class VisiStoplisMergeStoparch extends ActionVisitorTemplateMerge<StoplisInfo, StoparchInfo> {
 	
@@ -20,7 +20,7 @@ final class VisiStoplisMergeStoparch extends ActionVisitorTemplateMerge<StoplisI
 	
 	
 	@Override protected Class<? extends DeciTree<StoparchInfo>> getTreeClassHook() {
-		return RootStoparchSelect.class;
+		return StoparchRootSelect.class;
 	}
 	
 	

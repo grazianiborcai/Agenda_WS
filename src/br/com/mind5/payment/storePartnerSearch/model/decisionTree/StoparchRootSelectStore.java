@@ -4,19 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.storePartnerSearch.info.StoparchInfo;
-import br.com.mind5.payment.storePartnerSearch.model.action.StdStoparchMergeToSelect;
 import br.com.mind5.payment.storePartnerSearch.model.checker.StoparchCheckOwner;
-import br.com.mind5.payment.storePartnerSearch.model.checker.StoparchCheckRead;
+import br.com.mind5.payment.storePartnerSearch.model.checker.StoparchCheckReadStore;
 
-public final class RootStoparchSelect extends DeciTreeTemplateRead<StoparchInfo> {
+public final class StoparchRootSelectStore extends DeciTreeTemplateRead<StoparchInfo> {
 	
-	public RootStoparchSelect(DeciTreeOption<StoparchInfo> option) {
+	public StoparchRootSelectStore(DeciTreeOption<StoparchInfo> option) {
 		super(option);
 	}
 	
@@ -31,7 +30,7 @@ public final class RootStoparchSelect extends DeciTreeTemplateRead<StoparchInfo>
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new StoparchCheckRead(checkerOption);
+		checker = new StoparchCheckReadStore(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,7 +48,7 @@ public final class RootStoparchSelect extends DeciTreeTemplateRead<StoparchInfo>
 	@Override protected List<ActionStd<StoparchInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparchInfo> option) {
 		List<ActionStd<StoparchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoparchInfo> select = new StdStoparchMergeToSelect(option);
+		ActionStd<StoparchInfo> select = new StoparchRootSelect(option).toAction();
 		
 		actions.add(select);
 		return actions;
