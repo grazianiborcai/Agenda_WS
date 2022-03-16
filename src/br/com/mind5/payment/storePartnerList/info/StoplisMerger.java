@@ -13,7 +13,7 @@ public final class StoplisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoplisVisiMergeToSelect());
+		builder.addVisitor(new StoplisMergerVisiToSelect());
 		InfoMerger<StoplisInfo, StoplisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class StoplisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoplisVisiMergePaypar());
+		builder.addVisitor(new StoplisMergerVisiPaypar());
 		InfoMerger<StoplisInfo, PayparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -39,7 +39,7 @@ public final class StoplisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoplisVisiMergeStoparch());
+		builder.addVisitor(new StoplisMergerVisiStoparch());
 		InfoMerger<StoplisInfo, StoparchInfo> merger = builder.build();		
 	
 		return merger.merge();

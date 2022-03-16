@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerList.info.StoplisCopier;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
-import br.com.mind5.payment.storePartnerList.model.decisionTree.RootStoplisSearch;
+import br.com.mind5.payment.storePartnerList.model.decisionTree.StoplisRootSearch;
 
 final class VisiPlanataPruneStoplis extends ActionVisitorTemplatePrune<PlanataInfo, StoplisInfo> {
 	
@@ -20,7 +20,7 @@ final class VisiPlanataPruneStoplis extends ActionVisitorTemplatePrune<PlanataIn
 	
 	
 	@Override protected Class<? extends DeciTree<StoplisInfo>> getTreeClassHook() {
-		return RootStoplisSearch.class;
+		return StoplisRootSearch.class;
 	}
 	
 	

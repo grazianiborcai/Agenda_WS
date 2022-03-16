@@ -2,7 +2,6 @@ package br.com.mind5.payment.storePartnerList.model.action;
 
 import java.util.List;
 
-
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -11,9 +10,9 @@ import br.com.mind5.payment.storePartnerList.info.StoplisMerger;
 import br.com.mind5.payment.storePartnerSearch.info.StoparchInfo;
 import br.com.mind5.payment.storePartnerSearch.model.decisionTree.StoparchRootSelect;
 
-final class VisiStoplisMergeStoparch extends ActionVisitorTemplateMerge<StoplisInfo, StoparchInfo> {
+public final class StoplisVisiMergeStoparch extends ActionVisitorTemplateMerge<StoplisInfo, StoparchInfo> {
 	
-	public VisiStoplisMergeStoparch(DeciTreeOption<StoplisInfo> option) {
+	public StoplisVisiMergeStoparch(DeciTreeOption<StoplisInfo> option) {
 		super(option, StoparchInfo.class);
 	}
 	

@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
 
-public final class DaoStoplisSelect implements DaoStmtExec<StoplisInfo> {
+public final class StoplisDaoSelect implements DaoStmtExec<StoplisInfo> {
 	private DaoStmtExec<StoplisInfo> helper;
 	
 	
-	public DaoStoplisSelect(List<DaoStmtExecOption<StoplisInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoStoplisSelectSingle.class, StoplisInfo.class);
+	public StoplisDaoSelect(List<DaoStmtExecOption<StoplisInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, StoplisDaoSelectSingle.class, StoplisInfo.class);
 	}
 	
 	
