@@ -9,13 +9,14 @@ import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
-import br.com.mind5.model.checker.common.ModelCheckerDummy;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordInfo;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.SowordVisiMergeCalonthLtm;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.SowordVisiMergeStolis;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.action.SowordVisiRootSelect;
+import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.model.checker.SowordCheckReadLtm;
 
 
 public final class SowordRootSelectLtm extends DeciTreeTemplateWrite<SowordInfo> {
@@ -29,8 +30,13 @@ public final class SowordRootSelectLtm extends DeciTreeTemplateWrite<SowordInfo>
 	@Override protected ModelChecker<SowordInfo> buildCheckerHook(DeciTreeOption<SowordInfo> option) {
 		List<ModelChecker<SowordInfo>> queue = new ArrayList<>();
 		ModelChecker<SowordInfo> checker;
-
-		checker = new ModelCheckerDummy<SowordInfo>();
+		ModelCheckerOption checkerOption;
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new SowordCheckReadLtm(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
