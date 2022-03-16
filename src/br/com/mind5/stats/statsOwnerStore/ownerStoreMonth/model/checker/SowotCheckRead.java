@@ -18,6 +18,9 @@ public final class SowotCheckRead extends ModelCheckerTemplateSimple<SowotInfo> 
 	@Override protected boolean checkHook(SowotInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
 			recordInfo.calmonth 	== null ||
+			recordInfo.codCountry 	== null ||
+			recordInfo.codState 	== null ||
+			recordInfo.city 		== null ||
 			recordInfo.username 	== null ||
 			recordInfo.codLanguage 	== null		)
 			
