@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.calendarMonthSearch.info.CalontharchInfo;
 import br.com.mind5.business.calendarMonthSearch.info.CalontharchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalontharchMergeToSelect extends ActionVisitorTemplateMerge<CalontharchInfo, CalontharchInfo> {
+public final class CalontharchVisiMergeToSelect extends ActionVisitorTemplateMerge<CalontharchInfo, CalontharchInfo> {
 	
-	public VisiCalontharchMergeToSelect(DeciTreeOption<CalontharchInfo> option) {
+	public CalontharchVisiMergeToSelect(DeciTreeOption<CalontharchInfo> option) {
 		super(option, CalontharchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<CalontharchInfo>> getActionClassHook() {
-		return StdCalontharchDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<CalontharchInfo>> getVisitorClassHook() {
+		return CalontharchVisiDaoSelect.class;
 	}
 	
 	

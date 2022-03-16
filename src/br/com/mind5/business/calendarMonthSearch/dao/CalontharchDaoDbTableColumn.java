@@ -9,13 +9,13 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoCalontharchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class CalontharchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CALMONTH = DaoDbField.COL_CALMONTH;
 	public static final String COL_MONTH = DaoDbField.COL_MONTH;
 	public static final String COL_YEAR = DaoDbField.COL_YEAR;
 	
 	
-	public DaoCalontharchDbTableColumn() {
+	public CalontharchDaoDbTableColumn() {
 		super();
 	}
 	

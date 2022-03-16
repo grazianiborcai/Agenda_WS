@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoCalontharchSelectSingle extends DaoStmtTemplate<CalontharchInfo> {
+public final class CalontharchDaoSelectSingle extends DaoStmtTemplate<CalontharchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CALENDAR_MONTH_TABLE;
 	
 	
-	public DaoCalontharchSelectSingle(Connection conn, CalontharchInfo recordInfo, String schemaName) {
+	public CalontharchDaoSelectSingle(Connection conn, CalontharchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -49,7 +49,7 @@ public final class DaoCalontharchSelectSingle extends DaoStmtTemplate<Calontharc
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoCalontharchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new CalontharchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -66,9 +66,9 @@ public final class DaoCalontharchSelectSingle extends DaoStmtTemplate<Calontharc
 				do {				
 					CalontharchInfo dataInfo = new CalontharchInfo();
 					
-					dataInfo.calmonth = stmtResult.getString(DaoCalontharchDbTableColumn.COL_CALMONTH);
-					dataInfo.year = stmtResult.getInt(DaoCalontharchDbTableColumn.COL_YEAR);
-					dataInfo.month = stmtResult.getInt(DaoCalontharchDbTableColumn.COL_MONTH);
+					dataInfo.calmonth = stmtResult.getString(CalontharchDaoDbTableColumn.COL_CALMONTH);
+					dataInfo.year = stmtResult.getInt(CalontharchDaoDbTableColumn.COL_YEAR);
+					dataInfo.month = stmtResult.getInt(CalontharchDaoDbTableColumn.COL_MONTH);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

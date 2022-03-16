@@ -11,7 +11,7 @@ public final class CalontharchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalontharchVisiMergeToSelect());
+		builder.addVisitor(new CalontharchMergerVisiToSelect());
 		InfoMerger<CalontharchInfo, CalontharchInfo> merger = builder.build();
 	
 		return merger.merge();

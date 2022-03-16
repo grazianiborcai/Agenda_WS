@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.calendarMonthSearch.info.CalontharchInfo;
-import br.com.mind5.business.calendarMonthSearch.model.action.LazyCalontharchRootSelect;
-import br.com.mind5.business.calendarMonthSearch.model.action.StdCalontharchEnforceLtm;
+import br.com.mind5.business.calendarMonthSearch.model.action.CalontharchVisiRootSelect;
+import br.com.mind5.business.calendarMonthSearch.model.action.CalontharchVisiEnforceLtmNow;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCalontharchSelectLtmNow extends DeciTreeTemplateRead<CalontharchInfo> {
+public final class CalontharchRootSelectLtmNow extends DeciTreeTemplateRead<CalontharchInfo> {
 	
-	public RootCalontharchSelectLtmNow(DeciTreeOption<CalontharchInfo> option) {
+	public CalontharchRootSelectLtmNow(DeciTreeOption<CalontharchInfo> option) {
 		super(option);
 	}
 	
@@ -37,12 +39,12 @@ public final class RootCalontharchSelectLtmNow extends DeciTreeTemplateRead<Calo
 	@Override protected List<ActionStd<CalontharchInfo>> buildActionsOnPassedHook(DeciTreeOption<CalontharchInfo> option) {
 		List<ActionStd<CalontharchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CalontharchInfo> enforceLtm = new StdCalontharchEnforceLtm(option);
-		ActionLazy<CalontharchInfo> select = new LazyCalontharchRootSelect(option.conn, option.schemaName);
+		ActionStd<CalontharchInfo> enforceLtmNow = new ActionStdCommom<CalontharchInfo>(option, CalontharchVisiEnforceLtmNow.class);
+		ActionLazy<CalontharchInfo> select = new ActionLazyCommom<CalontharchInfo>(option.conn, option.schemaName, CalontharchVisiRootSelect.class);
 		
-		enforceLtm.addPostAction(select);
+		enforceLtmNow.addPostAction(select);
 		
-		actions.add(enforceLtm);
+		actions.add(enforceLtmNow);
 		return actions;
 	}
 }

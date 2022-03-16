@@ -3,16 +3,15 @@ package br.com.mind5.business.calendarMonthSearch.info;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoSetterTemplate;
 
-public final class CalontharchSetterL2m extends InfoSetterTemplate<CalontharchInfo> {
+public final class CalontharchSetterLtm extends InfoSetterTemplate<CalontharchInfo> {
 	
 	@Override protected CalontharchInfo setAttrHook(CalontharchInfo recordInfo) {
 		CalontharchInfo result = new CalontharchInfo();
 		
-		result.calmonthBegin = getBegin();
-		result.calmonthEnd = getEnd();
+		result.calmonthBegin = recordInfo.calmonthBegin;
+		result.calmonthEnd = getEnd(result.calmonthBegin);
 		result.codLanguage = recordInfo.codLanguage;
 		result.username = recordInfo.username;
 		
@@ -21,22 +20,21 @@ public final class CalontharchSetterL2m extends InfoSetterTemplate<CalontharchIn
 	
 	
 	
-	private String getBegin() {
-		LocalDate lastMonth = getLastMonth();
-		return getYear(lastMonth) + getMonth(lastMonth);
+	private String getEnd(String calmonthBegin) {		
+		LocalDate begin = toLocalDate(calmonthBegin);
+		LocalDate end = begin.minusMonths(11);
+		
+		return getYear(end) + getMonth(end);
 	}
 	
 	
 	
-	private String getEnd() {		
-		LocalDate currentMonth = DefaultValue.localDateNow();
-		return getYear(currentMonth) + getMonth(currentMonth);
-	}
-	
-	
-	
-	private LocalDate getLastMonth() {
-		return DefaultValue.localDateNow().minusMonths(1);
+	private LocalDate toLocalDate(String calmonth) {
+		int year = Integer.valueOf(calmonth.substring(0, 4));
+		int month = Integer.valueOf(calmonth.substring(4, 6));
+		int day = 1;
+		
+		return LocalDate.of(year, month, day);
 	}
 	
 	
