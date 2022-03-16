@@ -14,7 +14,6 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerDashboard.info.SowashInfo;
 import br.com.mind5.stats.statsOwnerDashboard.model.action.SowashVisiEnforceLChanged;
-import br.com.mind5.stats.statsOwnerDashboard.model.action.SowashVisiMergeSowal;
 import br.com.mind5.stats.statsOwnerDashboard.model.action.SowashVisiMergeSowedul;
 import br.com.mind5.stats.statsOwnerDashboard.model.action.SowashVisiMergeSoword;
 import br.com.mind5.stats.statsOwnerDashboard.model.action.SowashVisiMergeSowot;
@@ -54,15 +53,15 @@ public final class SowashRootSelect extends DeciTreeTemplateWrite<SowashInfo> {
 		ActionLazy<SowashInfo> mergeSoword = new ActionLazyCommom<SowashInfo>(option.conn, option.schemaName, SowashVisiMergeSoword.class);
 		ActionLazy<SowashInfo> mergeSowus = new ActionLazyCommom<SowashInfo>(option.conn, option.schemaName, SowashVisiMergeSowus.class);
 		ActionLazy<SowashInfo> mergeSowedul = new ActionLazyCommom<SowashInfo>(option.conn, option.schemaName, SowashVisiMergeSowedul.class);
-		ActionLazy<SowashInfo> mergeSowal = new ActionLazyCommom<SowashInfo>(option.conn, option.schemaName, SowashVisiMergeSowal.class);
+//		ActionLazy<SowashInfo> mergeSowal = new ActionLazyCommom<SowashInfo>(option.conn, option.schemaName, SowashVisiMergeSowal.class);
 		ActionLazy<SowashInfo> enforceLChanged = new ActionLazyCommom<SowashInfo>(option.conn, option.schemaName, SowashVisiEnforceLChanged.class);
 		
 		
 		mergeSowot.addPostAction(mergeSoword);
 		mergeSoword.addPostAction(mergeSowus);
 		mergeSowus.addPostAction(mergeSowedul);
-		mergeSowedul.addPostAction(mergeSowal);
-		mergeSowal.addPostAction(enforceLChanged);
+		mergeSowedul.addPostAction(enforceLChanged);
+//		mergeSowal.addPostAction(enforceLChanged);
 		
 		actions.add(mergeSowot);
 		return actions;
