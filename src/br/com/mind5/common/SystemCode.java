@@ -1845,4 +1845,7 @@ public final class SystemCode {
 	
 	// Statistics - Owner-Dashboard
 	public static final int STAT_OWNER_DASH_MANDATORY_FIELD_EMPTY		= 18600;
+	
+	// Store-Account
+	public static final int STORE_ACCOUNT_MANDATORY_FIELD_EMPTY			= 18650;
 }
