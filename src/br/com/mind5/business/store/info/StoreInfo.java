@@ -7,6 +7,7 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.business.storeAccount.info.StoracInfo;
 import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
@@ -30,6 +31,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public List<StorextInfo> storextes;
 	public CompInfo companyData;
 	public PersonInfo personData;
+	public StoracInfo storacData;
 	public LocalDateTime createdOn;
 	public long createdBy;
 	public LocalDateTime lastChanged;
@@ -51,6 +53,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		storextes = DefaultValue.list();
 		companyData = DefaultValue.object();
 		personData = DefaultValue.object();
+		storacData = DefaultValue.object();
 		addressData = DefaultValue.object();
 		phones = DefaultValue.list();
 		fimecoData = DefaultValue.object();
@@ -81,6 +84,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		deepCopy.phones = CloneUtil.cloneRecords(deepCopy.phones, this.getClass());
 		deepCopy.personData = CloneUtil.cloneRecord(deepCopy.personData, this.getClass());
 		deepCopy.companyData = CloneUtil.cloneRecord(deepCopy.companyData, this.getClass());
+		deepCopy.storacData = CloneUtil.cloneRecord(deepCopy.storacData, this.getClass());
 		
 		return deepCopy;
 	}

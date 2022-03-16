@@ -6,6 +6,7 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.business.storeAccount.info.StoracInfo;
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeText.info.StorextInfo;
@@ -18,12 +19,25 @@ import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class StoreMerger {
+	public static List<StoreInfo> mergeWithStorac(List<StoreInfo> baseInfos, List<StoracInfo> selectedInfos) {
+		InfoMergerBuilder<StoreInfo, StoracInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StoreMergerVisiStorac());
+		InfoMerger<StoreInfo, StoracInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<StoreInfo> mergeWithStorext(List<StoreInfo> baseInfos, List<StorextInfo> selectedInfos) {
 		InfoMergerBuilder<StoreInfo, StorextInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoreVisiMergeStorext());
+		builder.addVisitor(new StoreMergerVisiStorext());
 		InfoMerger<StoreInfo, StorextInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -36,7 +50,7 @@ public final class StoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoreVisiMergeFimeco());
+		builder.addVisitor(new StoreMergerVisiFimeco());
 		InfoMerger<StoreInfo, FimecoInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -49,7 +63,7 @@ public final class StoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoreVisiMergeSotarch());
+		builder.addVisitor(new StoreMergerVisiSotarch());
 		InfoMerger<StoreInfo, SotarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -62,7 +76,7 @@ public final class StoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoreVisiMergeAddress());
+		builder.addVisitor(new StoreMergerVisiAddress());
 		InfoMerger<StoreInfo, AddressInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -75,7 +89,7 @@ public final class StoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoreVisiMergeStorap());
+		builder.addVisitor(new StoreMergerVisiStorap());
 		InfoMerger<StoreInfo, StorapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -88,7 +102,7 @@ public final class StoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoreVisiMergeComp());
+		builder.addVisitor(new StoreMergerVisiComp());
 		InfoMerger<StoreInfo, CompInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -101,7 +115,7 @@ public final class StoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoreVisiMergeCurrency());
+		builder.addVisitor(new StoreMergerVisiCurrency());
 		InfoMerger<StoreInfo, CurrencyInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -114,7 +128,7 @@ public final class StoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoreVisiMergePerson());
+		builder.addVisitor(new StoreMergerVisiPerson());
 		InfoMerger<StoreInfo, PersonInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -127,7 +141,7 @@ public final class StoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoreVisiMergePhone());
+		builder.addVisitor(new StoreMergerVisiPhone());
 		InfoMerger<StoreInfo, PhoneInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -140,7 +154,7 @@ public final class StoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoreVisiMergeTimezone());
+		builder.addVisitor(new StoreMergerVisiTimezone());
 		InfoMerger<StoreInfo, TimezoneInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -153,7 +167,7 @@ public final class StoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoreVisiMergeUser());
+		builder.addVisitor(new StoreMergerVisiUser());
 		InfoMerger<StoreInfo, UserInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -166,7 +180,7 @@ public final class StoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoreVisiMergeUsername());
+		builder.addVisitor(new StoreMergerVisiUsername());
 		InfoMerger<StoreInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -179,7 +193,7 @@ public final class StoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoreVisiMergeToDelete());
+		builder.addVisitor(new StoreMergerVisiToDelete());
 		InfoMerger<StoreInfo, StoreInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -192,7 +206,7 @@ public final class StoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoreVisiMergeToSelect());
+		builder.addVisitor(new StoreMergerVisiToSelect());
 		InfoMerger<StoreInfo, StoreInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -205,7 +219,7 @@ public final class StoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoreVisiMergeToUpdate());
+		builder.addVisitor(new StoreMergerVisiToUpdate());
 		InfoMerger<StoreInfo, StoreInfo> merger = builder.build();		
 	
 		return merger.merge();
