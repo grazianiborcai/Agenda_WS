@@ -9,7 +9,7 @@ import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
-import br.com.mind5.model.checker.common.ModelCheckerDummy;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerDashboard.info.SowashInfo;
@@ -19,6 +19,7 @@ import br.com.mind5.stats.statsOwnerDashboard.model.action.SowashVisiMergeSowedu
 import br.com.mind5.stats.statsOwnerDashboard.model.action.SowashVisiMergeSoword;
 import br.com.mind5.stats.statsOwnerDashboard.model.action.SowashVisiMergeSowot;
 import br.com.mind5.stats.statsOwnerDashboard.model.action.SowashVisiMergeSowus;
+import br.com.mind5.stats.statsOwnerDashboard.model.checker.SowashCheckRead;
 
 
 public final class SowashRootSelect extends DeciTreeTemplateWrite<SowashInfo> {
@@ -32,8 +33,13 @@ public final class SowashRootSelect extends DeciTreeTemplateWrite<SowashInfo> {
 	@Override protected ModelChecker<SowashInfo> buildCheckerHook(DeciTreeOption<SowashInfo> option) {
 		List<ModelChecker<SowashInfo>> queue = new ArrayList<>();
 		ModelChecker<SowashInfo> checker;
+		ModelCheckerOption checkerOption;
 		
-		checker = new ModelCheckerDummy<>();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new SowashCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);

@@ -1842,4 +1842,7 @@ public final class SystemCode {
 	
 	// Bot - Bot-Owner
 	public static final int STAT_BOT_OWNER_MANDATORY_FIELD_EMPTY		= 18550;
+	
+	// Statistics - Owner-Dashboard
+	public static final int STAT_OWNER_DASH_MANDATORY_FIELD_EMPTY		= 18600;
 }

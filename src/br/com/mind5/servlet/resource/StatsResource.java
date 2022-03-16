@@ -27,11 +27,13 @@ public class StatsResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectSowash(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner,
 								 @HeaderParam("TOKEN_USERNAME") String username,
-								 @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage) {
+								 @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage,
+								 @HeaderParam("calmonth")       String calmonth) {
 
 		SowashInfo recordInfo = new SowashInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.username = username;
+		recordInfo.calmonth = calmonth;
 		recordInfo.codLanguage = codLanguage;
 		
 		Model model = new SowashModelSelect(recordInfo);

@@ -14,6 +14,7 @@ import br.com.mind5.stats.statsOwnerUser.ownerUserMonth.info.SowusInfo;
 
 public final class SowashInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
+	public String calmonth;
 	public List<SowotInfo> sowotes;
 	public List<SowusInfo> sowuses;
 	public List<SowordInfo> sowordes;
@@ -68,6 +69,9 @@ public final class SowashInfo extends InfoRecord implements Cloneable {
 		
 		result = result * 31 + (int) (codOwner ^ (codOwner >>> 32));
 		
+		if (calmonth != null)
+			result = result * 31 + calmonth.hashCode();
+		
 		if (sowotes != null)
 			result = result * 31 + sowotes.hashCode();
 		
@@ -98,11 +102,12 @@ public final class SowashInfo extends InfoRecord implements Cloneable {
 		
 		
 		SowashInfo obj = (SowashInfo) o;
-		return (codOwner == obj.codOwner && 
-				super.isListEqual(sowotes  , obj.sowotes  ) &&
-				super.isListEqual(sowuses  , obj.sowuses  ) &&
-				super.isListEqual(sowordes , obj.sowordes ) &&
-				super.isListEqual(sowedules, obj.sowedules) &&
-				super.isListEqual(sowales  , obj.sowales  ));
+		return (codOwner == obj.codOwner &&
+				super.isStringEqual(calmonth, obj.calmonth ) &&
+				super.isListEqual(sowotes   , obj.sowotes  ) &&
+				super.isListEqual(sowuses   , obj.sowuses  ) &&
+				super.isListEqual(sowordes  , obj.sowordes ) &&
+				super.isListEqual(sowedules , obj.sowedules) &&
+				super.isListEqual(sowales   , obj.sowales  ));
 	}
 }
