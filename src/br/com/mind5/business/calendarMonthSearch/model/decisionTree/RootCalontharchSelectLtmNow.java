@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCalontharchSelectLtm extends DeciTreeTemplateRead<CalontharchInfo> {
+public final class RootCalontharchSelectLtmNow extends DeciTreeTemplateRead<CalontharchInfo> {
 	
-	public RootCalontharchSelectLtm(DeciTreeOption<CalontharchInfo> option) {
+	public RootCalontharchSelectLtmNow(DeciTreeOption<CalontharchInfo> option) {
 		super(option);
 	}
 	

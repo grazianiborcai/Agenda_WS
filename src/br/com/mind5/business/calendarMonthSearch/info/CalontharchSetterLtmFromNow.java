@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoSetterTemplate;
 
-public final class CalontharchSetterLtm extends InfoSetterTemplate<CalontharchInfo> {
+public final class CalontharchSetterLtmFromNow extends InfoSetterTemplate<CalontharchInfo> {
 	
 	@Override protected CalontharchInfo setAttrHook(CalontharchInfo recordInfo) {
 		CalontharchInfo result = new CalontharchInfo();
