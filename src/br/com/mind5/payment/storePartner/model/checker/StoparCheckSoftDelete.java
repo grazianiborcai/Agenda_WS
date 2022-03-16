@@ -3,12 +3,14 @@ package br.com.mind5.payment.storePartner.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
-import br.com.mind5.payment.storePartner.model.action.LazyStoparDaoSelect;
-import br.com.mind5.payment.storePartner.model.action.StdStoparEnforceDel;
+import br.com.mind5.payment.storePartner.model.action.StoparVisiDaoSelect;
+import br.com.mind5.payment.storePartner.model.action.StoparVisiEnforceDel;
 
 public final class StoparCheckSoftDelete extends ModelCheckerTemplateAction<StoparInfo, StoparInfo> {
 	
@@ -19,8 +21,8 @@ public final class StoparCheckSoftDelete extends ModelCheckerTemplateAction<Stop
 	
 	
 	@Override protected ActionStd<StoparInfo> buildActionHook(DeciTreeOption<StoparInfo> option) {
-		ActionStd<StoparInfo> enforceDel = new StdStoparEnforceDel(option);
-		ActionLazy<StoparInfo> select = new LazyStoparDaoSelect(option.conn, option.schemaName);
+		ActionStd<StoparInfo> enforceDel = new ActionStdCommom<StoparInfo>(option, StoparVisiEnforceDel.class);
+		ActionLazy<StoparInfo> select = new ActionLazyCommom<StoparInfo>(option.conn, option.schemaName, StoparVisiDaoSelect.class);
 		
 		enforceDel.addPostAction(select);
 		return enforceDel;

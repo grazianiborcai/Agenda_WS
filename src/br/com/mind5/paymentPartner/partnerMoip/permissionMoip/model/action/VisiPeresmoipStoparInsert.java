@@ -7,7 +7,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartner.info.StoparCopier;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
-import br.com.mind5.payment.storePartner.model.decisionTree.RootStoparInsert;
+import br.com.mind5.payment.storePartner.model.decisionTree.StoparRootInsert;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 
 final class VisiPeresmoipStoparInsert extends ActionVisitorTemplateAction<PeresmoipInfo, StoparInfo> {
@@ -19,7 +19,7 @@ final class VisiPeresmoipStoparInsert extends ActionVisitorTemplateAction<Peresm
 	
 	
 	@Override protected Class<? extends DeciTree<StoparInfo>> getTreeClassHook() {
-		return RootStoparInsert.class;
+		return StoparRootInsert.class;
 	}
 	
 	

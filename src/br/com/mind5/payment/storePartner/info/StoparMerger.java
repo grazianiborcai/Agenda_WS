@@ -2,33 +2,19 @@ package br.com.mind5.payment.storePartner.info;
 
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
-import br.com.mind5.payment.storePartnerSearch.info.StoparchInfo;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-public final class StoparMerger {	
-	public static List<StoparInfo> mergeWithStoparch(List<StoparInfo> baseInfos, List<StoparchInfo> selectedInfos) {
-		InfoMergerBuilder<StoparInfo, StoparchInfo> builder = new InfoMergerBuilder<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoparVisiMergeStoparch());
-		InfoMerger<StoparInfo, StoparchInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}	
-	
-	
-	
+public final class StoparMerger {
 	public static List<StoparInfo> mergeWithPaypar(List<StoparInfo> baseInfos, List<PayparInfo> selectedInfos) {
 		InfoMergerBuilder<StoparInfo, PayparInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoparVisiMergePaypar());
+		builder.addVisitor(new StoparMergerVisiPaypar());
 		InfoMerger<StoparInfo, PayparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -41,7 +27,7 @@ public final class StoparMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoparVisiMergeStoparnap());
+		builder.addVisitor(new StoparMergerVisiStoparnap());
 		InfoMerger<StoparInfo, StoparnapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -54,7 +40,7 @@ public final class StoparMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoparVisiMergeUsername());
+		builder.addVisitor(new StoparMergerVisiUsername());
 		InfoMerger<StoparInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -68,7 +54,7 @@ public final class StoparMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoparVisiMergeToSelect());
+		builder.addVisitor(new StoparMergerVisiToSelect());
 		InfoMerger<StoparInfo, StoparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -81,7 +67,7 @@ public final class StoparMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoparVisiMergeToDelete());
+		builder.addVisitor(new StoparMergerVisiToDelete());
 		InfoMerger<StoparInfo, StoparInfo> merger = builder.build();		
 	
 		return merger.merge();

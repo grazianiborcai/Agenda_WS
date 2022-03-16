@@ -6,7 +6,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
-import br.com.mind5.payment.storePartner.model.decisionTree.RootStoparSelect;
+import br.com.mind5.payment.storePartner.model.decisionTree.StoparRootSelect;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipMerger;
 
@@ -19,7 +19,7 @@ final class VisiRefumoipMergeStopar extends ActionVisitorTemplateMerge<RefumoipI
 	
 	
 	@Override protected Class<? extends DeciTree<StoparInfo>> getTreeClassHook() {
-		return RootStoparSelect.class;
+		return StoparRootSelect.class;
 	}
 	
 	
