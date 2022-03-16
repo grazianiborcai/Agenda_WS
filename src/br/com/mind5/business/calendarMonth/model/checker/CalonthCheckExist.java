@@ -1,9 +1,10 @@
 package br.com.mind5.business.calendarMonth.model.checker;
 
 import br.com.mind5.business.calendarMonth.info.CalonthInfo;
-import br.com.mind5.business.calendarMonth.model.action.StdCalonthDaoSelect;
+import br.com.mind5.business.calendarMonth.model.action.CalonthVisiDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class CalonthCheckExist extends ModelCheckerTemplateAction<CalonthI
 	
 	
 	@Override protected ActionStd<CalonthInfo> buildActionHook(DeciTreeOption<CalonthInfo> option) {
-		ActionStd<CalonthInfo> select = new StdCalonthDaoSelect(option);
+		ActionStd<CalonthInfo> select = new ActionStdCommom<CalonthInfo>(option, CalonthVisiDaoSelect.class);
 		return select;
 	}
 	

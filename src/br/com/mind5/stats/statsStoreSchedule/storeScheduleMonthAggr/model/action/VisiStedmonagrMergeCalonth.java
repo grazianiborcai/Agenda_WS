@@ -3,7 +3,7 @@ package br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.model.actio
 import java.util.List;
 
 import br.com.mind5.business.calendarMonth.info.CalonthInfo;
-import br.com.mind5.business.calendarMonth.model.decisionTree.RootCalonthSelect;
+import br.com.mind5.business.calendarMonth.model.decisionTree.CalonthRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiStedmonagrMergeCalonth extends ActionVisitorTemplateMerge<Stedmo
 	
 	
 	@Override protected Class<? extends DeciTree<CalonthInfo>> getTreeClassHook() {
-		return RootCalonthSelect.class;
+		return CalonthRootSelect.class;
 	}
 	
 	

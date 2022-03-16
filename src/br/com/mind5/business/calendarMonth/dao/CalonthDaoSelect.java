@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoCalonthSelect implements DaoStmtExec<CalonthInfo> {
+public final class CalonthDaoSelect implements DaoStmtExec<CalonthInfo> {
 	private DaoStmtExec<CalonthInfo> helper;
 	
 	
-	public DaoCalonthSelect(List<DaoStmtExecOption<CalonthInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCalonthSelectSingle.class, CalonthInfo.class);
+	public CalonthDaoSelect(List<DaoStmtExecOption<CalonthInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CalonthDaoSelectSingle.class, CalonthInfo.class);
 	}
 	
 	

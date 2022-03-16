@@ -13,7 +13,7 @@ public final class CalonthMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalonthVisiMergeMonth());
+		builder.addVisitor(new CalonthMergerVisiMonth());
 		InfoMerger<CalonthInfo, MonthInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class CalonthMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalonthVisiMergeCalontharch());
+		builder.addVisitor(new CalonthMergerVisiCalontharch());
 		InfoMerger<CalonthInfo, CalontharchInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -39,7 +39,7 @@ public final class CalonthMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalonthVisiMergeToSelect());
+		builder.addVisitor(new CalonthMergerVisiToSelect());
 		InfoMerger<CalonthInfo, CalonthInfo> merger = builder.build();
 	
 		return merger.merge();

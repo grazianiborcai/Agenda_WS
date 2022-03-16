@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class CalonthVisiMergeToSelect extends InfoMergerVisitorTemplate<CalonthInfo, CalonthInfo> {
+final class CalonthMergerVisiToSelect extends InfoMergerVisitorTemplate<CalonthInfo, CalonthInfo> {
 
 	@Override public boolean shouldMerge(CalonthInfo baseInfo, CalonthInfo selectedInfo) {
 		return true;

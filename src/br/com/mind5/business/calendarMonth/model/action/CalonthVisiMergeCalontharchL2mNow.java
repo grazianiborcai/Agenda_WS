@@ -5,21 +5,21 @@ import java.util.List;
 import br.com.mind5.business.calendarMonth.info.CalonthInfo;
 import br.com.mind5.business.calendarMonth.info.CalonthMerger;
 import br.com.mind5.business.calendarMonthSearch.info.CalontharchInfo;
-import br.com.mind5.business.calendarMonthSearch.model.decisionTree.CalontharchRootSelectLtmNow;
+import br.com.mind5.business.calendarMonthSearch.model.decisionTree.CalontharchRootSelectL2mNow;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalonthMergeCalontharchLtm extends ActionVisitorTemplateMerge<CalonthInfo, CalontharchInfo> {
+public final class CalonthVisiMergeCalontharchL2mNow extends ActionVisitorTemplateMerge<CalonthInfo, CalontharchInfo> {
 	
-	public VisiCalonthMergeCalontharchLtm(DeciTreeOption<CalonthInfo> option) {
+	public CalonthVisiMergeCalontharchL2mNow(DeciTreeOption<CalonthInfo> option) {
 		super(option, CalontharchInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<CalontharchInfo>> getTreeClassHook() {
-		return CalontharchRootSelectLtmNow.class;
+		return CalontharchRootSelectL2mNow.class;
 	}
 	
 	

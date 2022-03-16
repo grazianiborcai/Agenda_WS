@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class DaoCalonthWhere implements DaoStmtWhere {
+final class CalonthDaoWhere implements DaoStmtWhere {
 	private String whereClause;
 	
 	
-	public DaoCalonthWhere(DaoWhereBuilderOption whereOption, String tableName, CalonthInfo recordInfo) {
+	public CalonthDaoWhere(DaoWhereBuilderOption whereOption, String tableName, CalonthInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -25,7 +25,7 @@ final class DaoCalonthWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoCalonthDbTableColumn.COL_CALMONTH :
+				case CalonthDaoDbTableColumn.COL_CALMONTH :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.calmonth);
 					break;
 			}

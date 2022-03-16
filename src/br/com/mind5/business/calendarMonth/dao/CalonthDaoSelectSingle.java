@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoCalonthSelectSingle extends DaoStmtTemplate<CalonthInfo> {
+public final class CalonthDaoSelectSingle extends DaoStmtTemplate<CalonthInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CALENDAR_MONTH_TABLE;
 	
 	
-	public DaoCalonthSelectSingle(Connection conn, CalonthInfo recordInfo, String schemaName) {
+	public CalonthDaoSelectSingle(Connection conn, CalonthInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoCalonthSelectSingle extends DaoStmtTemplate<CalonthInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoCalonthWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new CalonthDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,11 +61,11 @@ public final class DaoCalonthSelectSingle extends DaoStmtTemplate<CalonthInfo> {
 				do {				
 					CalonthInfo dataInfo = new CalonthInfo();
 					
-					dataInfo.calmonth = stmtResult.getString(DaoCalonthDbTableColumn.COL_CALMONTH);
-					dataInfo.year = stmtResult.getInt(DaoCalonthDbTableColumn.COL_YEAR);
-					dataInfo.month = stmtResult.getInt(DaoCalonthDbTableColumn.COL_MONTH);
-					dataInfo.lastDay = DaoFormatter.sqlToLocalDate(stmtResult, DaoCalonthDbTableColumn.COL_LAST_DAY);
-					dataInfo.firstDay =  DaoFormatter.sqlToLocalDate(stmtResult, DaoCalonthDbTableColumn.COL_FIRST_DAY);
+					dataInfo.calmonth = stmtResult.getString(CalonthDaoDbTableColumn.COL_CALMONTH);
+					dataInfo.year = stmtResult.getInt(CalonthDaoDbTableColumn.COL_YEAR);
+					dataInfo.month = stmtResult.getInt(CalonthDaoDbTableColumn.COL_MONTH);
+					dataInfo.lastDay = DaoFormatter.sqlToLocalDate(stmtResult, CalonthDaoDbTableColumn.COL_LAST_DAY);
+					dataInfo.firstDay =  DaoFormatter.sqlToLocalDate(stmtResult, CalonthDaoDbTableColumn.COL_FIRST_DAY);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

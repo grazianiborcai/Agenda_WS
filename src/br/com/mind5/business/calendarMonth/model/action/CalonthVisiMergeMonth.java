@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalonthMergeMonth extends ActionVisitorTemplateMerge<CalonthInfo, MonthInfo> {
+public final class CalonthVisiMergeMonth extends ActionVisitorTemplateMerge<CalonthInfo, MonthInfo> {
 	
-	public VisiCalonthMergeMonth(DeciTreeOption<CalonthInfo> option) {
+	public CalonthVisiMergeMonth(DeciTreeOption<CalonthInfo> option) {
 		super(option, MonthInfo.class);
 	}
 	

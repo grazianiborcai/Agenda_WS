@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoCalonthDbTableColumn extends DaoDbTableColumnTemplate {
+public final class CalonthDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CALMONTH = DaoDbField.COL_CALMONTH;
 	public static final String COL_FIRST_DAY = DaoDbField.COL_FIRST_DAY;
 	public static final String COL_LAST_DAY = DaoDbField.COL_LAST_DAY;
@@ -17,7 +17,7 @@ public final class DaoCalonthDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_YEAR = DaoDbField.COL_YEAR;
 	
 	
-	public DaoCalonthDbTableColumn() {
+	public CalonthDaoDbTableColumn() {
 		super();
 	}
 	
