@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.business.storeAccount.info.StoracInfo;
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.file.fileImageDecorated.info.FimecoInfo;
@@ -14,12 +15,25 @@ import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 
 public final class StolisMerger {
+	public static List<StolisInfo> mergeWithStorac(List<StolisInfo> baseInfos, List<StoracInfo> selectedInfos) {
+		InfoMergerBuilder<StolisInfo, StoracInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StolisMergerVisiStorac());
+		InfoMerger<StolisInfo, StoracInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<StolisInfo> mergeWithStorext(List<StolisInfo> baseInfos, List<StorextInfo> selectedInfos) {
 		InfoMergerBuilder<StolisInfo, StorextInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StolisVisiMergeStorext());
+		builder.addVisitor(new StolisMergerVisiStorext());
 		InfoMerger<StolisInfo, StorextInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -32,7 +46,7 @@ public final class StolisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StolisVisiMergeSotarch());
+		builder.addVisitor(new StolisMergerVisiSotarch());
 		InfoMerger<StolisInfo, SotarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -45,7 +59,7 @@ public final class StolisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StolisVisiMergeFimeco());
+		builder.addVisitor(new StolisMergerVisiFimeco());
 		InfoMerger<StolisInfo, FimecoInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -58,7 +72,7 @@ public final class StolisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StolisVisiMergeAddress());
+		builder.addVisitor(new StolisMergerVisiAddress());
 		InfoMerger<StolisInfo, AddressInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -71,7 +85,7 @@ public final class StolisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StolisVisiMergeComplis());
+		builder.addVisitor(new StolisMergerVisiComplis());
 		InfoMerger<StolisInfo, ComplisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -84,7 +98,7 @@ public final class StolisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StolisVisiMergeCurrency());
+		builder.addVisitor(new StolisMergerVisiCurrency());
 		InfoMerger<StolisInfo, CurrencyInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -97,7 +111,7 @@ public final class StolisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StolisVisiMergePhone());
+		builder.addVisitor(new StolisMergerVisiPhone());
 		InfoMerger<StolisInfo, PhoneInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -110,7 +124,7 @@ public final class StolisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StolisVisiMergeTimezone());
+		builder.addVisitor(new StolisMergerVisiTimezone());
 		InfoMerger<StolisInfo, TimezoneInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -123,7 +137,7 @@ public final class StolisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StolisVisiMergeToSelect());
+		builder.addVisitor(new StolisMergerVisiToSelect());
 		InfoMerger<StolisInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();

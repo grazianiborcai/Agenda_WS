@@ -3,7 +3,7 @@ package br.com.mind5.business.storeWorkTime.model.action;
 import java.util.List;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.business.storeList.model.decisionTree.RootStolisSelect;
+import br.com.mind5.business.storeList.model.decisionTree.StolisRootSelect;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.info.StowotmMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiStowotmMergeStolis extends ActionVisitorTemplateMerge<StowotmInf
 	
 	
 	@Override protected Class<? extends DeciTree<StolisInfo>> getTreeClassHook() {
-		return RootStolisSelect.class;
+		return StolisRootSelect.class;
 	}
 	
 	

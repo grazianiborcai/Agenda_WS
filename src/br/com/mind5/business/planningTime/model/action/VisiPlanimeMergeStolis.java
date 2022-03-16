@@ -6,7 +6,7 @@ import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.planningTime.info.PlanimeMerger;
 import br.com.mind5.business.storeList.info.StolisCopier;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.business.storeList.model.decisionTree.RootStolisSelect;
+import br.com.mind5.business.storeList.model.decisionTree.StolisRootSelect;
 
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -21,7 +21,7 @@ final class VisiPlanimeMergeStolis extends ActionVisitorTemplateMerge<PlanimeInf
 	
 	
 	@Override protected Class<? extends DeciTree<StolisInfo>> getTreeClassHook() {
-		return RootStolisSelect.class;
+		return StolisRootSelect.class;
 	}
 	
 	

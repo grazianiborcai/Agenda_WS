@@ -3,7 +3,7 @@ package br.com.mind5.business.storeList.model;
 import javax.servlet.http.HttpServletRequest;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.business.storeList.model.decisionTree.RootStolisSearch;
+import br.com.mind5.business.storeList.model.decisionTree.StolisRootSearch;
 import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,6 +17,6 @@ public final class StolisModelSearch extends ModelTemplate<StolisInfo> {
 	
 	
 	@Override protected DeciTree<StolisInfo> getDecisionTreeHook(DeciTreeOption<StolisInfo> option) {
-		return new RootStolisSearch(option);
+		return new StolisRootSearch(option);
 	}
 }

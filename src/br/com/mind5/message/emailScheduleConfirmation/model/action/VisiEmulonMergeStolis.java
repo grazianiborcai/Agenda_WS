@@ -3,7 +3,7 @@ package br.com.mind5.message.emailScheduleConfirmation.model.action;
 import java.util.List;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.business.storeList.model.decisionTree.RootStolisSelect;
+import br.com.mind5.business.storeList.model.decisionTree.StolisRootSelect;
 import br.com.mind5.message.emailScheduleConfirmation.info.EmulonInfo;
 import br.com.mind5.message.emailScheduleConfirmation.info.EmulonMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiEmulonMergeStolis extends ActionVisitorTemplateMerge<EmulonInfo,
 	
 	
 	@Override protected Class<? extends DeciTree<StolisInfo>> getTreeClassHook() {
-		return RootStolisSelect.class;
+		return StolisRootSelect.class;
 	}
 	
 	
