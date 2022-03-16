@@ -1,5 +1,6 @@
 package br.com.mind5.stats.statsOwnerDashboard.info;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.mind5.common.CloneUtil;
@@ -18,6 +19,7 @@ public final class SowashInfo extends InfoRecord implements Cloneable {
 	public List<SowordInfo> sowordes;
 	public List<SowedulInfo> sowedules;
 	public List<SowalInfo> sowales;
+	public LocalDateTime lastChanged;
 	public String username;
 	
 	
@@ -30,6 +32,7 @@ public final class SowashInfo extends InfoRecord implements Cloneable {
 		sowordes = DefaultValue.list();
 		sowedules = DefaultValue.list();
 		sowales = DefaultValue.list();
+		lastChanged = DefaultValue.object();
 	}
 	
 	
