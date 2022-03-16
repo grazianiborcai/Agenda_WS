@@ -18,7 +18,7 @@ final class StolisMergerVisiStorac extends InfoMergerVisitorTemplate<StolisInfo,
 	@Override public List<StolisInfo> merge(StolisInfo baseInfo, StoracInfo selectedInfo) {
 		List<StolisInfo> results = new ArrayList<>();
 		
-		baseInfo.isAccountCompleted = selectedInfo.isAccountCompleted;
+		baseInfo.storacData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;

@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.business.storeAccount.info.StoracInfo;
 import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
@@ -20,7 +21,7 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 	public String txtCurr;
 	public String codTimezone;
 	public String txtTimezone;
-	public boolean isAccountCompleted;
+	public StoracInfo storacData;
 	public StorextInfo storextData;
 	public AddressInfo addressData;
 	public List<PhoneInfo> phones;
@@ -38,7 +39,7 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 		codSnapshot = DefaultValue.number();
 		codCompany = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
-		isAccountCompleted = DefaultValue.boole();
+		storacData = DefaultValue.object();
 		storextData = DefaultValue.object();
 		complisData = DefaultValue.object();
 		addressData = DefaultValue.object();
@@ -68,6 +69,7 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 		deepCopy.addressData = CloneUtil.cloneRecord(addressData, this.getClass());
 		deepCopy.phones = CloneUtil.cloneRecords(phones, this.getClass());
 		deepCopy.complisData = CloneUtil.cloneRecord(complisData, this.getClass());
+		deepCopy.storacData = CloneUtil.cloneRecord(storacData, this.getClass());
 		
 		return deepCopy;
 	}
