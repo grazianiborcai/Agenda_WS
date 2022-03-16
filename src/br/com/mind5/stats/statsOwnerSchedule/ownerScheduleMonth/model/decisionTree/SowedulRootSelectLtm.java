@@ -14,6 +14,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.info.SowedulInfo;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action.SowedulVisiMergeCalonthLtm;
+import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action.SowedulVisiMergeStolis;
 import br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonth.model.action.SowedulVisiRootSelect;
 
 
@@ -40,12 +41,14 @@ public final class SowedulRootSelectLtm extends DeciTreeTemplateWrite<SowedulInf
 	@Override protected List<ActionStd<SowedulInfo>> buildActionsOnPassedHook(DeciTreeOption<SowedulInfo> option) {
 		List<ActionStd<SowedulInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowedulInfo> mergeCalonthLtm = new ActionStdCommom<SowedulInfo>(option, SowedulVisiMergeCalonthLtm.class);
+		ActionStd<SowedulInfo> mergeStolis = new ActionStdCommom<SowedulInfo>(option, SowedulVisiMergeStolis.class);
+		ActionLazy<SowedulInfo> mergeCalonthLtm = new ActionLazyCommom<SowedulInfo>(option.conn, option.schemaName, SowedulVisiMergeCalonthLtm.class);
 		ActionLazy<SowedulInfo> select = new ActionLazyCommom<SowedulInfo>(option.conn, option.schemaName, SowedulVisiRootSelect.class);
 		
+		mergeStolis.addPostAction(mergeCalonthLtm);
 		mergeCalonthLtm.addPostAction(select);
 		
-		actions.add(mergeCalonthLtm);
+		actions.add(mergeStolis);
 		return actions;
 	}
 }
