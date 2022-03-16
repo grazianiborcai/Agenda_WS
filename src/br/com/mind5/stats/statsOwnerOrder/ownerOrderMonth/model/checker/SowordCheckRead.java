@@ -18,6 +18,9 @@ public final class SowordCheckRead extends ModelCheckerTemplateSimple<SowordInfo
 	@Override protected boolean checkHook(SowordInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
 			recordInfo.calmonth 	== null ||
+			recordInfo.codCountry 	== null ||
+			recordInfo.codState 	== null ||
+			recordInfo.city 		== null ||
 			recordInfo.username 	== null ||
 			recordInfo.codLanguage 	== null		)
 			
