@@ -10,8 +10,8 @@ public final class CalontharchSetterLtm extends InfoSetterTemplate<CalontharchIn
 	@Override protected CalontharchInfo setAttrHook(CalontharchInfo recordInfo) {
 		CalontharchInfo result = new CalontharchInfo();
 		
-		result.calmonthBegin = recordInfo.calmonthBegin;
-		result.calmonthEnd = getEnd(result.calmonthBegin);
+		result.calmonthBegin = getBegin(recordInfo.calmonthEnd);
+		result.calmonthEnd = recordInfo.calmonthEnd;
 		result.codLanguage = recordInfo.codLanguage;
 		result.username = recordInfo.username;
 		
@@ -20,11 +20,11 @@ public final class CalontharchSetterLtm extends InfoSetterTemplate<CalontharchIn
 	
 	
 	
-	private String getEnd(String calmonthBegin) {		
-		LocalDate begin = toLocalDate(calmonthBegin);
-		LocalDate end = begin.minusMonths(11);
+	private String getBegin(String calmonthEnd) {		
+		LocalDate end = toLocalDate(calmonthEnd);
+		LocalDate begin = end.minusMonths(11);
 		
-		return getYear(end) + getMonth(end);
+		return getYear(begin) + getMonth(begin);
 	}
 	
 	
