@@ -6,7 +6,7 @@ import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
 import br.com.mind5.business.storeSnapshot.info.StorapCopier;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
-import br.com.mind5.business.storeSnapshot.model.decisionTree.RootStorapInsert;
+import br.com.mind5.business.storeSnapshot.model.decisionTree.StorapRootInsert;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class StoreVisiStorapInsert extends ActionVisitorTemplateAction<Sto
 	
 	
 	@Override protected Class<? extends DeciTree<StorapInfo>> getTreeClassHook() {
-		return RootStorapInsert.class;
+		return StorapRootInsert.class;
 	}
 	
 	

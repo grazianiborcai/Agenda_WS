@@ -20,7 +20,7 @@ public final class StorapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorapVisiMergeStorext());
+		builder.addVisitor(new StorapMergerVisiStorext());
 		InfoMerger<StorapInfo, StorextInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -33,7 +33,7 @@ public final class StorapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorapVisiMergeComplis());
+		builder.addVisitor(new StorapMergerVisiComplis());
 		InfoMerger<StorapInfo, ComplisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -46,7 +46,7 @@ public final class StorapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorapVisiMergeCompnap());
+		builder.addVisitor(new StorapMergerVisiCompnap());
 		InfoMerger<StorapInfo, CompnapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -59,7 +59,7 @@ public final class StorapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorapVisiMergeCurrency());
+		builder.addVisitor(new StorapMergerVisiCurrency());
 		InfoMerger<StorapInfo, CurrencyInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -72,7 +72,7 @@ public final class StorapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorapVisiMergePersolis());
+		builder.addVisitor(new StorapMergerVisiPersolis());
 		InfoMerger<StorapInfo, PersolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -85,7 +85,7 @@ public final class StorapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorapVisiMergePersonap());
+		builder.addVisitor(new StorapMergerVisiPersonap());
 		InfoMerger<StorapInfo, PersonapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -98,7 +98,7 @@ public final class StorapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorapVisiMergePhonap());
+		builder.addVisitor(new StorapMergerVisiPhonap());
 		InfoMerger<StorapInfo, PhonapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -111,7 +111,7 @@ public final class StorapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorapVisiMergeTimezone());
+		builder.addVisitor(new StorapMergerVisiTimezone());
 		InfoMerger<StorapInfo, TimezoneInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -124,7 +124,7 @@ public final class StorapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorapVisiMergeUselis());
+		builder.addVisitor(new StorapMergerVisiUselis());
 		InfoMerger<StorapInfo, UselisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -137,7 +137,7 @@ public final class StorapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorapVisiMergeToSelect());
+		builder.addVisitor(new StorapMergerVisiToSelect());
 		InfoMerger<StorapInfo, StorapInfo> merger = builder.build();		
 	
 		return merger.merge();
