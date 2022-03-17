@@ -21,6 +21,7 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 	public String txtCurr;
 	public String codTimezone;
 	public String txtTimezone;
+	public boolean isActive;
 	public StoracInfo storacData;
 	public StorextInfo storextData;
 	public AddressInfo addressData;
@@ -39,6 +40,7 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 		codSnapshot = DefaultValue.number();
 		codCompany = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
+		isActive = DefaultValue.boole();
 		storacData = DefaultValue.object();
 		storextData = DefaultValue.object();
 		complisData = DefaultValue.object();
