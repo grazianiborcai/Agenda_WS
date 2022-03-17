@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.StoreVisiNodeSnapshot;
-import br.com.mind5.business.store.model.action.StoreVisiNodeUpsertStorext;
-import br.com.mind5.business.store.model.action.StoreVisiEnforceLChanged;
 import br.com.mind5.business.store.model.action.StoreVisiMergeToUpdate;
-import br.com.mind5.business.store.model.action.StoreVisiMergeUsername;
+import br.com.mind5.business.store.model.action.StoreVisiNodeUpdateL2;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -19,9 +16,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class StoreNodeUpdate extends DeciTreeTemplateWrite<StoreInfo> {
+public final class StoreNodeUpdateL1 extends DeciTreeTemplateWrite<StoreInfo> {
 	
-	public StoreNodeUpdate(DeciTreeOption<StoreInfo> option) {
+	public StoreNodeUpdateL1(DeciTreeOption<StoreInfo> option) {
 		super(option);
 	}
 	
@@ -43,15 +40,9 @@ public final class StoreNodeUpdate extends DeciTreeTemplateWrite<StoreInfo> {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 
 		ActionStd<StoreInfo> mergeToUpdate = new ActionStdCommom<StoreInfo>(option, StoreVisiMergeToUpdate.class);
-		ActionLazy<StoreInfo> enforceLChanged = new  ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiEnforceLChanged.class);
-		ActionLazy<StoreInfo> enforceLChangedBy = new  ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiMergeUsername.class);
-		ActionLazy<StoreInfo> upsertStorext = new  ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeUpsertStorext.class);
-		ActionLazy<StoreInfo> snapshot = new  ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeSnapshot.class);	
-		
-		mergeToUpdate.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(upsertStorext);
-		upsertStorext.addPostAction(snapshot);
+		ActionLazy<StoreInfo> nodeL2 = new  ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeUpdateL2.class);
+
+		mergeToUpdate.addPostAction(nodeL2);
 		
 		actions.add(mergeToUpdate);
 		return actions;

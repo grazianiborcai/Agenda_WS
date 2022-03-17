@@ -23,6 +23,7 @@ final class StoreMergerVisiToUpdate extends InfoMergerVisitorTemplate<StoreInfo,
 		baseInfo.codCompany = selectedInfo.codCompany;
 		baseInfo.createdOn = selectedInfo.createdOn;
 		baseInfo.createdBy = selectedInfo.createdBy;
+		baseInfo.isActive = selectedInfo.isActive;
 		
 		results.add(baseInfo);
 		return results;

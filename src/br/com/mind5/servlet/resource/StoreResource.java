@@ -18,7 +18,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.mind5.business.store.info.StoreInfo;
+import br.com.mind5.business.store.model.StoreModelActivate;
 import br.com.mind5.business.store.model.StoreModelDelete;
+import br.com.mind5.business.store.model.StoreModelInactivate;
 import br.com.mind5.business.store.model.StoreModelInsert;
 import br.com.mind5.business.store.model.StoreModelSelect;
 import br.com.mind5.business.store.model.StoreModelUpdate;
@@ -50,6 +52,8 @@ import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.AccemoipModelUrl
 @Path("/Store")
 @Produces(MediaType.APPLICATION_JSON)
 public class StoreResource {
+	private static final String ACTIVATE_STORE = "/activateStore";
+	private static final String INACTIVATE_STORE = "/inactivateStore";	
 	private static final String INSERT_STORE = "/insertStore";
 	private static final String UPDATE_STORE = "/updateStore";
 	private static final String DELETE_STORE = "/deleteStore";
@@ -71,8 +75,57 @@ public class StoreResource {
 	private static final String GRANT_MOIP = "/grantMoip";
 	private static final String INSERT_STORE_FAVORITE = "/insertStoreFavorite";
 	private static final String DELETE_STORE_FAVORITE = "/deleteStoreFavorite";
-	private static final String SEARCH_STORE_FAVORITE = "/searchStoreFavorite";	
+	private static final String SEARCH_STORE_FAVORITE = "/searchStoreFavorite";
+	
+	
+	
+	@GET
+	@Path(ACTIVATE_STORE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response activateStore(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+			                      @HeaderParam("codStore")       @DefaultValue("-1") int codStore,
+			                      @HeaderParam("codLanguage")	 @DefaultValue("EN") String codLanguage,
+			                      @HeaderParam("TOKEN_USERNAME") String username) {
 
+		StoreInfo recordInfo = new StoreInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		Model model = new StoreModelActivate(recordInfo);
+		model.executeRequest();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
+	}
+	
+	
+	
+	@GET
+	@Path(INACTIVATE_STORE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response inactivateStore(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+			                        @HeaderParam("codStore")       @DefaultValue("-1") int codStore,
+			                        @HeaderParam("codLanguage")	   @DefaultValue("EN") String codLanguage,
+			                        @HeaderParam("TOKEN_USERNAME") String username) {
+
+		StoreInfo recordInfo = new StoreInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		Model model = new StoreModelInactivate(recordInfo);
+		model.executeRequest();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
+	}
+
+	
 	
 	@POST
 	@Path(INSERT_STORE)

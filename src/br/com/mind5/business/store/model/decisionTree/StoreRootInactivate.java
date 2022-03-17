@@ -4,29 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.StoreVisiNodeUpdateComp;
-import br.com.mind5.business.store.model.action.StoreVisiNodeUpdatePerson;
-import br.com.mind5.business.store.model.action.StoreVisiNodeUpsertAddress;
-import br.com.mind5.business.store.model.action.StoreVisiNodeUpsertPhone;
-import br.com.mind5.business.store.model.checker.StoreCheckCurrency;
+import br.com.mind5.business.store.model.action.StoreVisiEnforceActiveOff;
+import br.com.mind5.business.store.model.action.StoreVisiMergeToSelect;
+import br.com.mind5.business.store.model.action.StoreVisiNodeUpdateL2;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.business.store.model.checker.StoreCheckLangu;
 import br.com.mind5.business.store.model.checker.StoreCheckOwner;
+import br.com.mind5.business.store.model.checker.StoreCheckRead;
 import br.com.mind5.business.store.model.checker.StoreCheckStorauth;
-import br.com.mind5.business.store.model.checker.StoreCheckTimezone;
-import br.com.mind5.business.store.model.checker.StoreCheckUpdate;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class StoreRootUpdate extends DeciTreeTemplateWrite<StoreInfo> {
+public final class StoreRootInactivate extends DeciTreeTemplateWrite<StoreInfo> {
 	
-	public StoreRootUpdate(DeciTreeOption<StoreInfo> option) {
+	public StoreRootInactivate(DeciTreeOption<StoreInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +39,7 @@ public final class StoreRootUpdate extends DeciTreeTemplateWrite<StoreInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StoreCheckUpdate(checkerOption);
+		checker = new StoreCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -56,21 +54,7 @@ public final class StoreRootUpdate extends DeciTreeTemplateWrite<StoreInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StoreCheckOwner(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new StoreCheckTimezone(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new StoreCheckCurrency(checkerOption);
-		queue.add(checker);	
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
@@ -94,20 +78,14 @@ public final class StoreRootUpdate extends DeciTreeTemplateWrite<StoreInfo> {
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoreInfo> updateStore = new StoreNodeUpdateL1(option).toAction();
-		ActionLazy<StoreInfo> updatePerson = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeUpdatePerson.class);
-		ActionLazy<StoreInfo> updateCompany = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeUpdateComp.class);
-		ActionLazy<StoreInfo> upsertAddress = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeUpsertAddress.class);
-		ActionLazy<StoreInfo> upsertPhone = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeUpsertPhone.class);		
-		ActionStd<StoreInfo> select = new StoreRootSelect(option).toAction();	
+		ActionStd<StoreInfo> mergeToSelect = new ActionStdCommom<StoreInfo>(option, StoreVisiMergeToSelect.class);
+		ActionLazy<StoreInfo> enforceActiveOff = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiEnforceActiveOff.class);
+		ActionLazy<StoreInfo> update = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeUpdateL2.class);
 			
-		updateStore.addPostAction(updatePerson);
-		updateStore.addPostAction(updateCompany);		
-		updateStore.addPostAction(upsertAddress);		
-		updateStore.addPostAction(upsertPhone);
+		mergeToSelect.addPostAction(enforceActiveOff);
+		enforceActiveOff.addPostAction(update);
 		
-		actions.add(updateStore);
-		actions.add(select);
+		actions.add(mergeToSelect);
 		return actions;
 	}
 }

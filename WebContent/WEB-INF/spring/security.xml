@@ -77,7 +77,9 @@
         <security:intercept-url pattern="/**/Store/selectStoreCatalogue" 			access="isAuthenticated()" 							/>  
         <security:intercept-url pattern="/**/Store/insertStoreFavorite" 			access="isAuthenticated()" 							/> 
         <security:intercept-url pattern="/**/Store/deleteStoreFavorite" 			access="isAuthenticated()" 							/> 
-        <security:intercept-url pattern="/**/Store/searchStoreFavorite" 			access="isAuthenticated()" 							/> 
+        <security:intercept-url pattern="/**/Store/searchStoreFavorite" 			access="isAuthenticated()" 							/>        
+        <security:intercept-url pattern="/**/Store/activateStore" 					access="hasAuthority('OWNER_WRITE')" 				/>
+        <security:intercept-url pattern="/**/Store/inactivateStore" 				access="hasAuthority('OWNER_WRITE')" 				/>        
         <security:intercept-url pattern="/**/Material/insertMatmov" 				access="hasAuthority('MAT_MOV_WRITE')"				/>
         <security:intercept-url pattern="/**/Material/selectMatmov" 				access="hasAuthority('MAT_MOV_READ')"				/>     
         <security:intercept-url pattern="/**/Material/searchMatmov" 				access="hasAuthority('MAT_MOV_READ')"				/>     
