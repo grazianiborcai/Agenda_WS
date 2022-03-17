@@ -57,6 +57,7 @@ public final class StorapDaoInsertSingle extends DaoStmtTemplate<StorapInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt.setBoolean(i++, recordInfo.isActive);
 				
 				return stmt;
 			}	

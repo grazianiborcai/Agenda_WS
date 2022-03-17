@@ -76,7 +76,8 @@ public final class StorapDaoSelectSingle extends DaoStmtTemplate<StorapInfo> {
 					dataInfo.codPersonSnapshot = DaoFormatter.sqlToLong(stmtResult, StorapDaoDbTableColumn.COL_COD_PERSON_SNAPSHOT);
 					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, StorapDaoDbTableColumn.COL_COD_USER_SNAPSHOT);
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, StorapDaoDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, StorapDaoDbTableColumn.COL_CREATED_BY);		
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, StorapDaoDbTableColumn.COL_CREATED_BY);
+					dataInfo.isActive = DaoFormatter.sqlToBoole(stmtResult, StorapDaoDbTableColumn.COL_IS_ACTIVE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
