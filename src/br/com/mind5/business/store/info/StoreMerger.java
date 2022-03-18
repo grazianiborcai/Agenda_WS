@@ -17,8 +17,22 @@ import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
+import br.com.mind5.stats.statsStoreProfile.storeProfileMonth.info.StefilonInfo;
 
 public final class StoreMerger {
+	public static List<StoreInfo> mergeWithStefilon(List<StoreInfo> baseInfos, List<StefilonInfo> selectedInfos) {
+		InfoMergerBuilder<StoreInfo, StefilonInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StoreMergerVisiStefilon());
+		InfoMerger<StoreInfo, StefilonInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<StoreInfo> mergeWithStorac(List<StoreInfo> baseInfos, List<StoracInfo> selectedInfos) {
 		InfoMergerBuilder<StoreInfo, StoracInfo> builder = new InfoMergerBuilder<>();
 		
