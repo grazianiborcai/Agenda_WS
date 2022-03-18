@@ -10,13 +10,12 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.info.StedmonInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.StdStedmonMergeSteddagr;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.checker.StedmonCheckStedmonagr;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.checker.StedmonCheckRead;
 
 
-public final class NodeStedmonSelectL1 extends DeciTreeTemplateWrite<StedmonInfo> {
+public final class StedmonRootSelect extends DeciTreeTemplateWrite<StedmonInfo> {
 	
-	public NodeStedmonSelectL1(DeciTreeOption<StedmonInfo> option) {
+	public StedmonRootSelect(DeciTreeOption<StedmonInfo> option) {
 		super(option);
 	}
 	
@@ -30,8 +29,8 @@ public final class NodeStedmonSelectL1 extends DeciTreeTemplateWrite<StedmonInfo
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new StedmonCheckStedmonagr(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new StedmonCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -42,20 +41,9 @@ public final class NodeStedmonSelectL1 extends DeciTreeTemplateWrite<StedmonInfo
 	@Override protected List<ActionStd<StedmonInfo>> buildActionsOnPassedHook(DeciTreeOption<StedmonInfo> option) {
 		List<ActionStd<StedmonInfo>> actions = new ArrayList<>();
 
-		ActionStd<StedmonInfo> mergeSteddagr = new StdStedmonMergeSteddagr(option);
+		ActionStd<StedmonInfo> nodeL1 = new StedmonNodeSelectL1(option).toAction();
 		
-		actions.add(mergeSteddagr);
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<StedmonInfo>> buildActionsOnFailedHook(DeciTreeOption<StedmonInfo> option) {
-		List<ActionStd<StedmonInfo>> actions = new ArrayList<>();
-
-		ActionStd<StedmonInfo> nodeL2 = new NodeStedmonSelectL2(option).toAction();
-		
-		actions.add(nodeL2);
+		actions.add(nodeL1);
 		return actions;
 	}
 }

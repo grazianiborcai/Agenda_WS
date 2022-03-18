@@ -3,24 +3,21 @@ package br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.decisionT
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.info.StedmonInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.LazyStedmonMergeStolis;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.LazyStedmonStedmonagrUpsert;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.StdStedmonEnforceZerofy;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.StdStedmonMergeSteddive;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.checker.StedmonCheckStedmonive;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.StedmonVisiMergeStedmonagr;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.checker.StedmonCheckStedmonagr;
 
 
-public final class NodeStedmonUpsert extends DeciTreeTemplateWrite<StedmonInfo> {
+public final class StedmonNodeSelectL1 extends DeciTreeTemplateWrite<StedmonInfo> {
 	
-	public NodeStedmonUpsert(DeciTreeOption<StedmonInfo> option) {
+	public StedmonNodeSelectL1(DeciTreeOption<StedmonInfo> option) {
 		super(option);
 	}
 	
@@ -35,7 +32,7 @@ public final class NodeStedmonUpsert extends DeciTreeTemplateWrite<StedmonInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new StedmonCheckStedmonive(checkerOption);
+		checker = new StedmonCheckStedmonagr(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -46,13 +43,9 @@ public final class NodeStedmonUpsert extends DeciTreeTemplateWrite<StedmonInfo> 
 	@Override protected List<ActionStd<StedmonInfo>> buildActionsOnPassedHook(DeciTreeOption<StedmonInfo> option) {
 		List<ActionStd<StedmonInfo>> actions = new ArrayList<>();
 
-		ActionStd<StedmonInfo> mergeSteddive = new StdStedmonMergeSteddive(option);
-		ActionLazy<StedmonInfo> upsertSteddagr = new LazyStedmonStedmonagrUpsert(option.conn, option.schemaName);
+		ActionStd<StedmonInfo> mergeStedmonagr = new ActionStdCommom<StedmonInfo>(option, StedmonVisiMergeStedmonagr.class);
 		
-		mergeSteddive.addPostAction(upsertSteddagr);
-		
-		
-		actions.add(mergeSteddive);
+		actions.add(mergeStedmonagr);
 		return actions;
 	}
 	
@@ -61,15 +54,9 @@ public final class NodeStedmonUpsert extends DeciTreeTemplateWrite<StedmonInfo> 
 	@Override protected List<ActionStd<StedmonInfo>> buildActionsOnFailedHook(DeciTreeOption<StedmonInfo> option) {
 		List<ActionStd<StedmonInfo>> actions = new ArrayList<>();
 
-		ActionStd<StedmonInfo> zerofy = new StdStedmonEnforceZerofy(option);
-		ActionLazy<StedmonInfo> mergeStolis = new LazyStedmonMergeStolis(option.conn, option.schemaName);
-		ActionLazy<StedmonInfo> upsertSteddagr = new LazyStedmonStedmonagrUpsert(option.conn, option.schemaName);
+		ActionStd<StedmonInfo> nodeL2 = new StedmonNodeSelectL2(option).toAction();
 		
-		zerofy.addPostAction(mergeStolis);
-		mergeStolis.addPostAction(upsertSteddagr);
-		
-		
-		actions.add(zerofy);
+		actions.add(nodeL2);
 		return actions;
 	}
 }

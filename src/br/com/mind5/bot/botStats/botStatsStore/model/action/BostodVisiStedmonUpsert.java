@@ -7,7 +7,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.info.StedmonInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.decisionTree.RootStedmonUpsert;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.decisionTree.StedmonRootUpsert;
 
 public final class BostodVisiStedmonUpsert extends ActionVisitorTemplateAction<BostodInfo, StedmonInfo> {
 
@@ -18,7 +18,7 @@ public final class BostodVisiStedmonUpsert extends ActionVisitorTemplateAction<B
 	
 	
 	@Override protected Class<? extends DeciTree<StedmonInfo>> getTreeClassHook() {
-		return RootStedmonUpsert.class;
+		return StedmonRootUpsert.class;
 	}
 	
 	

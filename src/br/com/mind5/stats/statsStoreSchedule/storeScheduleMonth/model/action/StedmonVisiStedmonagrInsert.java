@@ -10,9 +10,9 @@ import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.info.StedmonMerg
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.info.StedmonagrInfo;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.model.decisionTree.RootStedmonagrInsert;
 
-final class VisiStedmonStedmonagrInsert extends ActionVisitorTemplateAction<StedmonInfo, StedmonagrInfo> {
+public final class StedmonVisiStedmonagrInsert extends ActionVisitorTemplateAction<StedmonInfo, StedmonagrInfo> {
 
-	public VisiStedmonStedmonagrInsert(DeciTreeOption<StedmonInfo> option) {
+	public StedmonVisiStedmonagrInsert(DeciTreeOption<StedmonInfo> option) {
 		super(option, StedmonInfo.class, StedmonagrInfo.class);
 	}
 	

@@ -10,9 +10,9 @@ import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.info.StedmonMerg
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthLive.info.StedmoniveInfo;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthLive.model.decisionTree.RootStedmoniveSelect;
 
-final class VisiStedmonMergeStedmonive extends ActionVisitorTemplateMerge<StedmonInfo, StedmoniveInfo> {
+public final class StedmonVisiMergeStedmonive extends ActionVisitorTemplateMerge<StedmonInfo, StedmoniveInfo> {
 	
-	public VisiStedmonMergeStedmonive(DeciTreeOption<StedmonInfo> option) {
+	public StedmonVisiMergeStedmonive(DeciTreeOption<StedmonInfo> option) {
 		super(option, StedmoniveInfo.class);
 	}
 	

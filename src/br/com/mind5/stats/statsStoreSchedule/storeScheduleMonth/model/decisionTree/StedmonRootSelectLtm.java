@@ -3,19 +3,23 @@ package br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.decisionT
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
-import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.info.StedmonInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.checker.StedmonCheckWrite;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.StedmonVisiRootSelect;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.StedmonVisiMergeCalonthLtm;
 
 
-public final class RootStedmonUpsert extends DeciTreeTemplateWrite<StedmonInfo> {
+public final class StedmonRootSelectLtm extends DeciTreeTemplateWrite<StedmonInfo> {
 	
-	public RootStedmonUpsert(DeciTreeOption<StedmonInfo> option) {
+	public StedmonRootSelectLtm(DeciTreeOption<StedmonInfo> option) {
 		super(option);
 	}
 	
@@ -24,13 +28,8 @@ public final class RootStedmonUpsert extends DeciTreeTemplateWrite<StedmonInfo> 
 	@Override protected ModelChecker<StedmonInfo> buildCheckerHook(DeciTreeOption<StedmonInfo> option) {
 		List<ModelChecker<StedmonInfo>> queue = new ArrayList<>();		
 		ModelChecker<StedmonInfo> checker;
-		ModelCheckerOption checkerOption;
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StedmonCheckWrite(checkerOption);
+
+		checker = new ModelCheckerDummy<StedmonInfo>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -41,9 +40,12 @@ public final class RootStedmonUpsert extends DeciTreeTemplateWrite<StedmonInfo> 
 	@Override protected List<ActionStd<StedmonInfo>> buildActionsOnPassedHook(DeciTreeOption<StedmonInfo> option) {
 		List<ActionStd<StedmonInfo>> actions = new ArrayList<>();
 
-		ActionStd<StedmonInfo> nodeL1 = new NodeStedmonUpsert(option).toAction();		
+		ActionStd<StedmonInfo> mergeCalonthLtm = new ActionStdCommom<StedmonInfo>(option, StedmonVisiMergeCalonthLtm.class);
+		ActionLazy<StedmonInfo> select = new ActionLazyCommom<StedmonInfo>(option.conn, option.schemaName, StedmonVisiRootSelect.class);
 		
-		actions.add(nodeL1);
+		mergeCalonthLtm.addPostAction(select);
+		
+		actions.add(mergeCalonthLtm);
 		return actions;
 	}
 }

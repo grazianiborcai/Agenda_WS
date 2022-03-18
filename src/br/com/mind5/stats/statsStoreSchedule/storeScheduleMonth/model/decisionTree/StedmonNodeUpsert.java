@@ -5,22 +5,24 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.info.StedmonInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.LazyStedmonMergeStolis;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.LazyStedmonStedmonagrInsert;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.StdStedmonEnforceZerofy;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.StdStedmonMergeSteddive;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.StedmonVisiEnforceZerofy;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.StedmonVisiMergeStedmonive;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.StedmonVisiMergeStolis;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.StedmonVisiStedmonagrUpsert;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.checker.StedmonCheckStedmonive;
 
 
-public final class NodeStedmonSelectL2 extends DeciTreeTemplateWrite<StedmonInfo> {
+public final class StedmonNodeUpsert extends DeciTreeTemplateWrite<StedmonInfo> {
 	
-	public NodeStedmonSelectL2(DeciTreeOption<StedmonInfo> option) {
+	public StedmonNodeUpsert(DeciTreeOption<StedmonInfo> option) {
 		super(option);
 	}
 	
@@ -46,13 +48,13 @@ public final class NodeStedmonSelectL2 extends DeciTreeTemplateWrite<StedmonInfo
 	@Override protected List<ActionStd<StedmonInfo>> buildActionsOnPassedHook(DeciTreeOption<StedmonInfo> option) {
 		List<ActionStd<StedmonInfo>> actions = new ArrayList<>();
 
-		ActionStd<StedmonInfo> mergeSteddive = new StdStedmonMergeSteddive(option);
-		ActionLazy<StedmonInfo> insertSteddagr = new LazyStedmonStedmonagrInsert(option.conn, option.schemaName);
+		ActionStd<StedmonInfo> mergeStedmonive = new ActionStdCommom<StedmonInfo>(option, StedmonVisiMergeStedmonive.class);
+		ActionLazy<StedmonInfo> upsertStedmonagr = new ActionLazyCommom<StedmonInfo>(option.conn, option.schemaName, StedmonVisiStedmonagrUpsert.class);
 		
-		mergeSteddive.addPostAction(insertSteddagr);
+		mergeStedmonive.addPostAction(upsertStedmonagr);
 		
 		
-		actions.add(mergeSteddive);
+		actions.add(mergeStedmonive);
 		return actions;
 	}
 	
@@ -61,12 +63,13 @@ public final class NodeStedmonSelectL2 extends DeciTreeTemplateWrite<StedmonInfo
 	@Override protected List<ActionStd<StedmonInfo>> buildActionsOnFailedHook(DeciTreeOption<StedmonInfo> option) {
 		List<ActionStd<StedmonInfo>> actions = new ArrayList<>();
 
-		ActionStd<StedmonInfo> zerofy = new StdStedmonEnforceZerofy(option);
-		ActionLazy<StedmonInfo> mergeStolis = new LazyStedmonMergeStolis(option.conn, option.schemaName);
-		ActionLazy<StedmonInfo> insertSteddagr = new LazyStedmonStedmonagrInsert(option.conn, option.schemaName);
+		ActionStd<StedmonInfo> zerofy = new ActionStdCommom<StedmonInfo>(option, StedmonVisiEnforceZerofy.class);
+		ActionLazy<StedmonInfo> mergeStolis = new ActionLazyCommom<StedmonInfo>(option.conn, option.schemaName, StedmonVisiMergeStolis.class);
+		ActionLazy<StedmonInfo> upsertStedmonagr = new ActionLazyCommom<StedmonInfo>(option.conn, option.schemaName, StedmonVisiStedmonagrUpsert.class);
 		
 		zerofy.addPostAction(mergeStolis);
-		mergeStolis.addPostAction(insertSteddagr);
+		mergeStolis.addPostAction(upsertStedmonagr);
+		
 		
 		actions.add(zerofy);
 		return actions;

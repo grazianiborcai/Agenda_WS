@@ -3,21 +3,19 @@ package br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.decisionT
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
-import br.com.mind5.model.checker.common.ModelCheckerDummy;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.info.StedmonInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.LazyStedmonRootSelect;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.action.StdStedmonMergeCalonthLtm;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.model.checker.StedmonCheckWrite;
 
 
-public final class RootStedmonSelectLtm extends DeciTreeTemplateWrite<StedmonInfo> {
+public final class StedmonRootUpsert extends DeciTreeTemplateWrite<StedmonInfo> {
 	
-	public RootStedmonSelectLtm(DeciTreeOption<StedmonInfo> option) {
+	public StedmonRootUpsert(DeciTreeOption<StedmonInfo> option) {
 		super(option);
 	}
 	
@@ -26,8 +24,13 @@ public final class RootStedmonSelectLtm extends DeciTreeTemplateWrite<StedmonInf
 	@Override protected ModelChecker<StedmonInfo> buildCheckerHook(DeciTreeOption<StedmonInfo> option) {
 		List<ModelChecker<StedmonInfo>> queue = new ArrayList<>();		
 		ModelChecker<StedmonInfo> checker;
-
-		checker = new ModelCheckerDummy<StedmonInfo>();
+		ModelCheckerOption checkerOption;
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new StedmonCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -38,12 +41,9 @@ public final class RootStedmonSelectLtm extends DeciTreeTemplateWrite<StedmonInf
 	@Override protected List<ActionStd<StedmonInfo>> buildActionsOnPassedHook(DeciTreeOption<StedmonInfo> option) {
 		List<ActionStd<StedmonInfo>> actions = new ArrayList<>();
 
-		ActionStd<StedmonInfo> mergeCalonthLtm = new StdStedmonMergeCalonthLtm(option);
-		ActionLazy<StedmonInfo> select = new LazyStedmonRootSelect(option.conn, option.schemaName);
+		ActionStd<StedmonInfo> nodeL1 = new StedmonNodeUpsert(option).toAction();		
 		
-		mergeCalonthLtm.addPostAction(select);
-		
-		actions.add(mergeCalonthLtm);
+		actions.add(nodeL1);
 		return actions;
 	}
 }

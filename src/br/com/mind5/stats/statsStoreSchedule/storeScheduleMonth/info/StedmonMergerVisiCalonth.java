@@ -7,7 +7,7 @@ import br.com.mind5.business.calendarMonth.info.CalonthInfo;
 import br.com.mind5.info.InfoMergerCardinality;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class StedmonVisiMergeCalonth extends InfoMergerVisitorTemplate<StedmonInfo, CalonthInfo> {
+final class StedmonMergerVisiCalonth extends InfoMergerVisitorTemplate<StedmonInfo, CalonthInfo> {
 
 	@Override public boolean shouldMerge(StedmonInfo baseInfo, CalonthInfo selectedInfo) {
 		return (baseInfo.codLanguage.equals(selectedInfo.codLanguage));
