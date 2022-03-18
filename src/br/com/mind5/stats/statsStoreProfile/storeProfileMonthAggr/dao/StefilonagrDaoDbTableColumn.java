@@ -39,16 +39,16 @@ public final class StefilonagrDaoDbTableColumn extends DaoDbTableColumnTemplate 
 		List<DaoColumn> columns = new ArrayList<>();
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_OWNER;
-		oneColumn.isPK = NEGATIVE;
+		oneColumn.columnName = COL_COD_STORE;
+		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_STORE;
-		oneColumn.isPK = NEGATIVE;
+		oneColumn.columnName = COL_COD_OWNER;
+		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
@@ -56,7 +56,7 @@ public final class StefilonagrDaoDbTableColumn extends DaoDbTableColumnTemplate 
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_CALMONTH;
-		oneColumn.isPK = NEGATIVE;
+		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);

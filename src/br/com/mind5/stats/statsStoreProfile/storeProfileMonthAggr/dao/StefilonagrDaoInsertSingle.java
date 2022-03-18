@@ -36,10 +36,10 @@ public final class StefilonagrDaoInsertSingle extends DaoStmtTemplate<Stefilonag
 	@Override protected DaoStmtParamTranslator<StefilonagrInfo> getParamTranslatorHook() {
 		return new DaoStmtParamTranslator<StefilonagrInfo>() {		
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StefilonagrInfo recordInfo) throws SQLException {		
-				int i = 1;
+				int i = 1;				
 				
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwner);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwner);
 				stmt.setString(i++, recordInfo.calmonth);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.year);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.month);
