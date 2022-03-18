@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class StedmoniveVisiMergeSytotauh extends InfoMergerVisitorTemplate<StedmoniveInfo, SytotauhInfo> {
+final class StedmoniveMergerVisiSytotauh extends InfoMergerVisitorTemplate<StedmoniveInfo, SytotauhInfo> {
 
 	@Override public boolean shouldMerge(StedmoniveInfo baseInfo, SytotauhInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner		&&

@@ -14,7 +14,7 @@ public final class StedmoniveMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StedmoniveVisiMergeSytotauh());
+		builder.addVisitor(new StedmoniveMergerVisiSytotauh());
 		InfoMerger<StedmoniveInfo, SytotauhInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class StedmoniveMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StedmoniveVisiMergeCalonth());
+		builder.addVisitor(new StedmoniveMergerVisiCalonth());
 		InfoMerger<StedmoniveInfo, CalonthInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class StedmoniveMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StedmoniveVisiMergeState());
+		builder.addVisitor(new StedmoniveMergerVisiState());
 		InfoMerger<StedmoniveInfo, StateInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -53,7 +53,7 @@ public final class StedmoniveMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StedmoniveVisiMergeToSelect());
+		builder.addVisitor(new StedmoniveMergerVisiToSelect());
 		InfoMerger<StedmoniveInfo, StedmoniveInfo> merger = builder.build();		
 	
 		return merger.merge();
