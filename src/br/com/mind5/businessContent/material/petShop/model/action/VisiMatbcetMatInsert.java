@@ -3,7 +3,7 @@ package br.com.mind5.businessContent.material.petShop.model.action;
 import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
-import br.com.mind5.business.material.model.decisionTree.RootMatInsert;
+import br.com.mind5.business.material.model.decisionTree.MatRootInsert;
 import br.com.mind5.businessContent.material.petShop.info.MatbcetInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -18,7 +18,7 @@ final class VisiMatbcetMatInsert extends ActionVisitorTemplateAction<MatbcetInfo
 	
 	
 	@Override protected Class<? extends DeciTree<MatInfo>> getTreeClassHook() {
-		return RootMatInsert.class;
+		return MatRootInsert.class;
 	}
 	
 	

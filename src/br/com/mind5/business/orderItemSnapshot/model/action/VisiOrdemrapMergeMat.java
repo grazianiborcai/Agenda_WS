@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.material.info.MatCopier;
 import br.com.mind5.business.material.info.MatInfo;
-import br.com.mind5.business.material.model.decisionTree.RootMatSelect;
+import br.com.mind5.business.material.model.decisionTree.MatRootSelect;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -20,7 +20,7 @@ final class VisiOrdemrapMergeMat extends ActionVisitorTemplateMerge<OrdemrapInfo
 	
 	
 	@Override protected Class<? extends DeciTree<MatInfo>> getTreeClassHook() {
-		return RootMatSelect.class;
+		return MatRootSelect.class;
 	}
 	
 	

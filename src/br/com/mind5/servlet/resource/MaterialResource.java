@@ -14,7 +14,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.material.model.MatModelActivate;
 import br.com.mind5.business.material.model.MatModelDelete;
+import br.com.mind5.business.material.model.MatModelInactivate;
 import br.com.mind5.business.material.model.MatModelInsert;
 import br.com.mind5.business.material.model.MatModelSelect;
 import br.com.mind5.business.material.model.MatModelUpdate;
@@ -34,6 +36,8 @@ import br.com.mind5.model.Model;
 
 @Path("/Material")
 public class MaterialResource {
+	private static final String ACTIVATE_MATERIAL = "/activateMaterial";
+	private static final String INACTIVATE_MATERIAL = "/inactivateMaterial";
 	private static final String INSERT_MATERIAL = "/insertMaterial";
 	private static final String UPDATE_MATERIAL = "/updateMaterial";
 	private static final String DELETE_MATERIAL = "/deleteMaterial";
@@ -48,7 +52,59 @@ public class MaterialResource {
 	private static final String SELECT_MAT_MOV = "/selectMatmov";	
 	private static final String SEARCH_MAT_MOV = "/searchMatmov";
 	private static final String SELECT_MAT_CATALOGUE = "/selectMaterialCatalogue";
+	
+	
+	@GET
+	@Path(ACTIVATE_MATERIAL)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response activateMaterial(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner,
+								     @HeaderParam("codMat") 		@DefaultValue("-1") long codMat, 
+								     @HeaderParam("TOKEN_USERNAME") String username,
+								     @HeaderParam("codLanguage") 	@DefaultValue("EN") String codLanguage) {
 
+
+		MatInfo recordInfo = new MatInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codMat = codMat;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		
+		Model model = new MatModelActivate(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
+	@Path(INACTIVATE_MATERIAL)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response inactivateMaterial(@HeaderParam("TOKEN_OWNER") 	  @DefaultValue("-1") long codOwner,
+								       @HeaderParam("codMat") 		  @DefaultValue("-1") long codMat, 
+								       @HeaderParam("TOKEN_USERNAME") String username,
+								       @HeaderParam("codLanguage") 	  @DefaultValue("EN") String codLanguage) {
+
+
+		MatInfo recordInfo = new MatInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codMat = codMat;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		
+		Model model = new MatModelInactivate(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}
+
+	
 	
 	@POST
 	@Path(INSERT_MATERIAL)

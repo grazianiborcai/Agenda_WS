@@ -87,7 +87,9 @@
         <security:intercept-url pattern="/**/Material/updateMatStore" 				access="hasAuthority('MAT_STORE_WRITE')"			/>
         <security:intercept-url pattern="/**/Material/insertMatStore" 				access="hasAuthority('MAT_STORE_WRITE')"			/>
         <security:intercept-url pattern="/**/Material/selectMatStore" 				access="isAuthenticated()"							/>	<!-- TODO: rever -->
-        <security:intercept-url pattern="/**/Material/searchMatStore" 				access="isAuthenticated()"							/>	<!-- TODO: rever -->
+        <security:intercept-url pattern="/**/Material/searchMatStore" 				access="isAuthenticated()"							/>	<!-- TODO: rever -->        
+        <security:intercept-url pattern="/**/Material/activateMaterial" 			access="hasAuthority('MATERIAL_WRITE')"				/>
+        <security:intercept-url pattern="/**/Material/inactivateMaterial" 			access="hasAuthority('MATERIAL_WRITE')"				/>        
         <security:intercept-url pattern="/**/Material/insertMaterial" 				access="hasAuthority('MATERIAL_WRITE')"				/>	<!-- TODO: rever -->
         <security:intercept-url pattern="/**/Material/updateMaterial" 				access="hasAuthority('MATERIAL_WRITE')" 			/>
         <security:intercept-url pattern="/**/Material/deleteMaterial" 				access="hasAuthority('MATERIAL_WRITE')" 			/>

@@ -21,7 +21,7 @@ public final class MatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatVisiMergeMatubup());
+		builder.addVisitor(new MatMergerVisiMatubup());
 		InfoMerger<MatInfo, MatubupInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -34,7 +34,7 @@ public final class MatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatVisiMergeSytotauh());
+		builder.addVisitor(new MatMergerVisiSytotauh());
 		InfoMerger<MatInfo, SytotauhInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -47,7 +47,7 @@ public final class MatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatVisiMergeFimeco());
+		builder.addVisitor(new MatMergerVisiFimeco());
 		InfoMerger<MatInfo, FimecoInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -60,7 +60,7 @@ public final class MatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatVisiMergeMateg());
+		builder.addVisitor(new MatMergerVisiMateg());
 		InfoMerger<MatInfo, MategInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -73,7 +73,7 @@ public final class MatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatVisiMergeMatext());
+		builder.addVisitor(new MatMergerVisiMatext());
 		InfoMerger<MatInfo, MatextInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -86,7 +86,7 @@ public final class MatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatVisiMergeMatype());
+		builder.addVisitor(new MatMergerVisiMatype());
 		InfoMerger<MatInfo, MatypeInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -99,7 +99,7 @@ public final class MatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatVisiMergeMatoup());
+		builder.addVisitor(new MatMergerVisiMatoup());
 		InfoMerger<MatInfo, MatoupInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -112,7 +112,7 @@ public final class MatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatVisiMergeMatunit());
+		builder.addVisitor(new MatMergerVisiMatunit());
 		InfoMerger<MatInfo, MatunitInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -125,7 +125,7 @@ public final class MatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatVisiMergeMatsnap());
+		builder.addVisitor(new MatMergerVisiMatsnap());
 		InfoMerger<MatInfo, MatsnapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -138,7 +138,7 @@ public final class MatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatVisiMergeUsername());
+		builder.addVisitor(new MatMergerVisiUsername());
 		InfoMerger<MatInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -151,7 +151,7 @@ public final class MatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatVisiMergeToSelect());
+		builder.addVisitor(new MatMergerVisiToSelect());
 		InfoMerger<MatInfo, MatInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -164,7 +164,7 @@ public final class MatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatVisiMergeToDelete());
+		builder.addVisitor(new MatMergerVisiToDelete());
 		InfoMerger<MatInfo, MatInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -177,7 +177,7 @@ public final class MatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatVisiMergeToUpdate());
+		builder.addVisitor(new MatMergerVisiToUpdate());
 		InfoMerger<MatInfo, MatInfo> merger = builder.build();		
 	
 		return merger.merge();
