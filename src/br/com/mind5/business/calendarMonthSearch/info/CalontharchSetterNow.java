@@ -22,9 +22,8 @@ public final class CalontharchSetterNow extends InfoSetterTemplate<CalontharchIn
 	
 	private String getNow() {
 		LocalDate now = DefaultValue.localDateNow();
-		LocalDate lastYear = now.minusYears(1);
 		
-		return getYear(lastYear) + getMonth(lastYear);
+		return getYear(now) + getMonth(now);
 	}
 	
 	
