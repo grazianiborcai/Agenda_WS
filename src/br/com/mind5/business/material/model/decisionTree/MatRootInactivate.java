@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.action.MatVisiEnforceLockedOn;
 import br.com.mind5.business.material.model.action.MatVisiMergeToSelect;
+import br.com.mind5.business.material.model.action.MatVisiNodeSytotauh;
 import br.com.mind5.business.material.model.action.MatVisiNodeUpdate;
 import br.com.mind5.business.material.model.checker.MatCheckExist;
 import br.com.mind5.business.material.model.checker.MatCheckLangu;
@@ -71,11 +72,13 @@ public final class MatRootInactivate extends DeciTreeTemplateWrite<MatInfo> {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 
 		ActionStd<MatInfo> mergeToSelect = new ActionStdCommom<MatInfo>(option, MatVisiMergeToSelect.class);
-		ActionLazy<MatInfo> nodeUpdate = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiEnforceLockedOn.class);
-		ActionLazy<MatInfo> nodeL1 = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiNodeUpdate.class);	
+		ActionLazy<MatInfo> nodeSytotauh = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiNodeSytotauh.class);
+		ActionLazy<MatInfo> enforceLockedOn = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiEnforceLockedOn.class);
+		ActionLazy<MatInfo> nodeUpdate = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiNodeUpdate.class);	
 		
-		mergeToSelect.addPostAction(nodeUpdate);
-		nodeUpdate.addPostAction(nodeL1);
+		mergeToSelect.addPostAction(nodeSytotauh);
+		nodeSytotauh.addPostAction(enforceLockedOn);
+		enforceLockedOn.addPostAction(nodeUpdate);
 		
 		actions.add(mergeToSelect);
 		return actions;

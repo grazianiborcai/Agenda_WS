@@ -5,6 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.action.MatVisiMergeToUpdate;
+import br.com.mind5.business.material.model.action.MatVisiNodeServiceL1;
+import br.com.mind5.business.material.model.action.MatVisiNodeSytotauh;
 import br.com.mind5.business.material.model.action.MatVisiNodeUpdate;
 import br.com.mind5.business.material.model.checker.MatCheckExist;
 import br.com.mind5.business.material.model.checker.MatCheckLangu;
@@ -109,10 +111,14 @@ public final class MatRootUpdate extends DeciTreeTemplateWrite<MatInfo> {
 	@Override protected List<ActionStd<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatInfo> mergeToUpdate = new ActionStdCommom<MatInfo>(option, MatVisiMergeToUpdate.class);
+		ActionStd<MatInfo> mergeToUpdate = new ActionStdCommom<MatInfo>(option, MatVisiMergeToUpdate.class);		
+		ActionLazy<MatInfo> nodeSytotauh = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiNodeSytotauh.class);
+		ActionLazy<MatInfo> nodeService = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiNodeServiceL1.class);		
 		ActionLazy<MatInfo> nodeL1 = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiNodeUpdate.class);	
 		
-		mergeToUpdate.addPostAction(nodeL1);
+		mergeToUpdate.addPostAction(nodeSytotauh);
+		nodeSytotauh.addPostAction(nodeService);
+		nodeService.addPostAction(nodeL1);
 		
 		actions.add(mergeToUpdate);
 		return actions;
