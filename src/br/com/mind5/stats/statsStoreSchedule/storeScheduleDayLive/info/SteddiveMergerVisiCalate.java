@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class SteddiveVisiMergeCalate extends InfoMergerVisitorTemplate<SteddiveInfo, CalateInfo> {
+final class SteddiveMergerVisiCalate extends InfoMergerVisitorTemplate<SteddiveInfo, CalateInfo> {
 
 	@Override public boolean shouldMerge(SteddiveInfo baseInfo, CalateInfo selectedInfo) {
 		return (baseInfo.date.isEqual(selectedInfo.date) &&

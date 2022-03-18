@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.info.SteddiveInfo;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.info.SteddiveSetterLChanged;
 
-final class VisiSteddiveEnforceLChanged extends ActionVisitorTemplateEnforce<SteddiveInfo> {
+public final class SteddiveVisiEnforceLChanged extends ActionVisitorTemplateEnforce<SteddiveInfo> {
 	
-	public VisiSteddiveEnforceLChanged(DeciTreeOption<SteddiveInfo> option) {
+	public SteddiveVisiEnforceLChanged(DeciTreeOption<SteddiveInfo> option) {
 		super(option);
 	}
 

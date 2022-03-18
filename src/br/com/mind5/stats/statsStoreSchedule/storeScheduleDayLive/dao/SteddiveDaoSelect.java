@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.info.SteddiveInfo;
 
-public final class DaoSteddiveSelect implements DaoStmtExec<SteddiveInfo> {
+public final class SteddiveDaoSelect implements DaoStmtExec<SteddiveInfo> {
 	private DaoStmtExec<SteddiveInfo> helper;
 	
 	
-	public DaoSteddiveSelect(List<DaoStmtExecOption<SteddiveInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoSteddiveSelectSingle.class, SteddiveInfo.class);
+	public SteddiveDaoSelect(List<DaoStmtExecOption<SteddiveInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, SteddiveDaoSelectSingle.class, SteddiveInfo.class);
 	}
 	
 	

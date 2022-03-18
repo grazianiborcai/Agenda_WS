@@ -5,22 +5,27 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.info.SteddiveInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.action.LazySteddiveRootSelect;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.action.SteddiveVisiEnforceLChanged;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.action.SteddiveVisiMergeCalate;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.action.SteddiveVisiMergeState;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.action.SteddiveVisiMergeToSelect;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.checker.SteddiveCheckLangu;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.checker.SteddiveCheckOwner;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.checker.SteddiveCheckRead;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.checker.SteddiveCheckStore;
 
 
-public final class RootSteddiveSelectAuth extends DeciTreeTemplateWrite<SteddiveInfo> {
+public final class SteddiveRootSelect extends DeciTreeTemplateWrite<SteddiveInfo> {
 	
-	public RootSteddiveSelectAuth(DeciTreeOption<SteddiveInfo> option) {
+	public SteddiveRootSelect(DeciTreeOption<SteddiveInfo> option) {
 		super(option);
 	}
 	
@@ -67,12 +72,16 @@ public final class RootSteddiveSelectAuth extends DeciTreeTemplateWrite<Steddive
 	@Override protected List<ActionStd<SteddiveInfo>> buildActionsOnPassedHook(DeciTreeOption<SteddiveInfo> option) {
 		List<ActionStd<SteddiveInfo>> actions = new ArrayList<>();
 
-		ActionStd<SteddiveInfo> auth = new NodeSteddiveAuthL1(option).toAction();
-		ActionLazy<SteddiveInfo> select = new LazySteddiveRootSelect(option.conn, option.schemaName);
+		ActionStd<SteddiveInfo> select = new ActionStdCommom<SteddiveInfo>(option, SteddiveVisiMergeToSelect.class);
+		ActionLazy<SteddiveInfo> enforceLChanged = new ActionLazyCommom<SteddiveInfo>(option.conn, option.schemaName, SteddiveVisiEnforceLChanged.class);
+		ActionLazy<SteddiveInfo> mergeState = new ActionLazyCommom<SteddiveInfo>(option.conn, option.schemaName, SteddiveVisiMergeState.class);
+		ActionLazy<SteddiveInfo> mergeCalate = new ActionLazyCommom<SteddiveInfo>(option.conn, option.schemaName, SteddiveVisiMergeCalate.class);		
 		
-		auth.addPostAction(select);
+		select.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(mergeState);
+		mergeState.addPostAction(mergeCalate);
 		
-		actions.add(auth);
+		actions.add(select);
 		return actions;
 	}
 }

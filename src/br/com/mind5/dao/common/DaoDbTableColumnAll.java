@@ -272,7 +272,7 @@ import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.dao.DaoStordiveDbTab
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.dao.DaoStoronagrDbTableColumn;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.dao.DaoStoroniveDbTableColumn;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.dao.DaoSteddagrDbTableColumn;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.dao.DaoSteddiveDbTableColumn;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.dao.SteddiveDaoDbTableColumn;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.dao.StedmonagrDaoDbTableColumn;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthLive.dao.StedmoniveDaoDbTableColumn;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggr.dao.DaoStusorygrDbTableColumn;
@@ -555,7 +555,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new SowordiveDaoDbTableColumn());
 		addTable(new SoweduliveDaoDbTableColumn());
 		addTable(new SowaliveDaoDbTableColumn());
-		addTable(new DaoSteddiveDbTableColumn());
+		addTable(new SteddiveDaoDbTableColumn());
 		addTable(new DaoSteddagrDbTableColumn());
 		addTable(new StedmoniveDaoDbTableColumn());
 		addTable(new StedmonagrDaoDbTableColumn());

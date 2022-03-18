@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.info.SteddiveInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.action.StdSteddiveSuccess;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.checker.SteddiveCheckAuthOwner;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.action.SteddiveVisiMergeSytotauh;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.checker.SteddiveCheckSytotin;
 
-public final class NodeSteddiveAuthL1 extends DeciTreeTemplateWrite<SteddiveInfo> {
+public final class SteddiveNodeAuthL2 extends DeciTreeTemplateWrite<SteddiveInfo> {
 	
-	public NodeSteddiveAuthL1(DeciTreeOption<SteddiveInfo> option) {
+	public SteddiveNodeAuthL2(DeciTreeOption<SteddiveInfo> option) {
 		super(option);
 	}
 	
@@ -30,7 +32,7 @@ public final class NodeSteddiveAuthL1 extends DeciTreeTemplateWrite<SteddiveInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new SteddiveCheckAuthOwner(checkerOption);
+		checker = new SteddiveCheckSytotin(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -41,9 +43,9 @@ public final class NodeSteddiveAuthL1 extends DeciTreeTemplateWrite<SteddiveInfo
 	@Override protected List<ActionStd<SteddiveInfo>> buildActionsOnPassedHook(DeciTreeOption<SteddiveInfo> option) {
 		List<ActionStd<SteddiveInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SteddiveInfo> success = new StdSteddiveSuccess(option);
+		ActionStd<SteddiveInfo> mergeSytotauh = new ActionStdCommom<SteddiveInfo>(option, SteddiveVisiMergeSytotauh.class);		
 		
-		actions.add(success);
+		actions.add(mergeSytotauh);
 		return actions;
 	}
 	
@@ -52,9 +54,9 @@ public final class NodeSteddiveAuthL1 extends DeciTreeTemplateWrite<SteddiveInfo
 	@Override protected List<ActionStd<SteddiveInfo>> buildActionsOnFailedHook(DeciTreeOption<SteddiveInfo> option) {
 		List<ActionStd<SteddiveInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SteddiveInfo> nodeL2 = new NodeSteddiveAuthL2(option).toAction();
+		ActionStd<SteddiveInfo> success = new ActionStdSuccessCommom<SteddiveInfo>(option);
 		
-		actions.add(nodeL2);
+		actions.add(success);
 		return actions;
 	}
 }

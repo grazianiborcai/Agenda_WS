@@ -2,22 +2,22 @@ package br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.info.SteddiveInfo;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.info.SteddiveMerger;
 
-final class VisiSteddiveMergeToSelect extends ActionVisitorTemplateMerge<SteddiveInfo, SteddiveInfo> {
+public final class SteddiveVisiMergeToSelect extends ActionVisitorTemplateMerge<SteddiveInfo, SteddiveInfo> {
 	
-	public VisiSteddiveMergeToSelect(DeciTreeOption<SteddiveInfo> option) {
+	public SteddiveVisiMergeToSelect(DeciTreeOption<SteddiveInfo> option) {
 		super(option, SteddiveInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<SteddiveInfo>> getActionClassHook() {
-		return StdSteddiveDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<SteddiveInfo>> getVisitorClassHook() {
+		return SteddiveVisiDaoSelect.class;
 	}
 	
 	

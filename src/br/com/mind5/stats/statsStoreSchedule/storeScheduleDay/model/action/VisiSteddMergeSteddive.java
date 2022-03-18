@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddMerger;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.info.SteddiveInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.decisionTree.RootSteddiveSelect;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.model.decisionTree.SteddiveRootSelect;
 
 final class VisiSteddMergeSteddive extends ActionVisitorTemplateMerge<SteddInfo, SteddiveInfo> {
 	
@@ -19,7 +19,7 @@ final class VisiSteddMergeSteddive extends ActionVisitorTemplateMerge<SteddInfo,
 	
 	
 	@Override protected Class<? extends DeciTree<SteddiveInfo>> getTreeClassHook() {
-		return RootSteddiveSelect.class;
+		return SteddiveRootSelect.class;
 	}
 	
 	

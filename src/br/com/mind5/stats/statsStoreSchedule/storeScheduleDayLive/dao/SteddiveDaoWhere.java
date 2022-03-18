@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayLive.info.SteddiveInfo;
 
-public final class DaoSteddiveWhere implements DaoStmtWhere {
+public final class SteddiveDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoSteddiveWhere(DaoWhereBuilderOption whereOption, String tableName, SteddiveInfo recordInfo) {
+	public SteddiveDaoWhere(DaoWhereBuilderOption whereOption, String tableName, SteddiveInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class DaoSteddiveWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoSteddiveDbTableColumn.COL_COD_OWNER :
+				case SteddiveDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoSteddiveDbTableColumn.COL_COD_STORE :
+				case SteddiveDaoDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case DaoSteddiveDbTableColumn.COL_DATE :
+				case SteddiveDaoDbTableColumn.COL_DATE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.date));
 					break;
 			}
