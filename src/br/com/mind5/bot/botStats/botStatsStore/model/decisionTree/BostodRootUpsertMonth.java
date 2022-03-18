@@ -75,13 +75,13 @@ public final class BostodRootUpsertMonth extends DeciTreeTemplateWrite<BostodInf
 		ActionStd<BostodInfo> stedmonUpsert = new ActionStdCommom<BostodInfo>(option, BostodVisiStedmonUpsert.class);
 		ActionStd<BostodInfo> stordUpsert = new ActionStdCommom<BostodInfo>(option, BostodVisiStordUpsertMonth.class);
 		ActionStd<BostodInfo> storonUpsert = new ActionStdCommom<BostodInfo>(option, BostodVisiStoronUpsert.class);
-		ActionStd<BostodInfo> StefilonUpsert = new ActionStdCommom<BostodInfo>(option, BostodVisiStefilonUpsert.class);
+		ActionStd<BostodInfo> stefilonUpsert = new ActionStdCommom<BostodInfo>(option, BostodVisiStefilonUpsert.class);
 		
 		actions.add(steddUpsert);
 		actions.add(stedmonUpsert);
 		actions.add(stordUpsert);
 		actions.add(storonUpsert);
-		actions.add(StefilonUpsert);
+		actions.add(stefilonUpsert);
 		
 		return actions;
 	}
