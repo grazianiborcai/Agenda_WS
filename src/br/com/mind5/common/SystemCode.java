@@ -1848,4 +1848,9 @@ public final class SystemCode {
 	
 	// Store-Account
 	public static final int STORE_ACCOUNT_MANDATORY_FIELD_EMPTY			= 18650;
+	
+	// Statistics - Store-Profile-Month-Live
+	public static final int STAT_STR_PRF_MTH_LIVE_ALREADY_EXIST 		= 18700;
+	public static final int STAT_STR_PRF_MTH_LIVE_NOT_FOUND 			= 18701;
+	public static final int STAT_STR_PRF_MTH_LIVE_MANDATORY_FIELD_EMPTY	= 18702;
 }
