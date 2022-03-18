@@ -43,9 +43,9 @@ public final class StefilonNodeSelectL1 extends DeciTreeTemplateWrite<StefilonIn
 	@Override protected List<ActionStd<StefilonInfo>> buildActionsOnPassedHook(DeciTreeOption<StefilonInfo> option) {
 		List<ActionStd<StefilonInfo>> actions = new ArrayList<>();
 
-		ActionStd<StefilonInfo> mergeStedmonagr = new ActionStdCommom<StefilonInfo>(option, StefilonVisiMergeStefilonagr.class);
+		ActionStd<StefilonInfo> mergeStefilonagr = new ActionStdCommom<StefilonInfo>(option, StefilonVisiMergeStefilonagr.class);
 		
-		actions.add(mergeStedmonagr);
+		actions.add(mergeStefilonagr);
 		return actions;
 	}
 	

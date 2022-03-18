@@ -47,13 +47,13 @@ public final class StefilonNodeUpsert extends DeciTreeTemplateWrite<StefilonInfo
 	@Override protected List<ActionStd<StefilonInfo>> buildActionsOnPassedHook(DeciTreeOption<StefilonInfo> option) {
 		List<ActionStd<StefilonInfo>> actions = new ArrayList<>();
 
-		ActionStd<StefilonInfo> mergeStedmonive = new ActionStdCommom<StefilonInfo>(option, StefilonVisiMergeStefilonive.class);
-		ActionLazy<StefilonInfo> upsertStedmonagr = new ActionLazyCommom<StefilonInfo>(option.conn, option.schemaName, StefilonVisiStefilonagrUpsert.class);
+		ActionStd<StefilonInfo> mergeStefilonive = new ActionStdCommom<StefilonInfo>(option, StefilonVisiMergeStefilonive.class);
+		ActionLazy<StefilonInfo> upsertStefilonagr = new ActionLazyCommom<StefilonInfo>(option.conn, option.schemaName, StefilonVisiStefilonagrUpsert.class);
 		
-		mergeStedmonive.addPostAction(upsertStedmonagr);
+		mergeStefilonive.addPostAction(upsertStefilonagr);
 		
 		
-		actions.add(mergeStedmonive);
+		actions.add(mergeStefilonive);
 		return actions;
 	}
 	
@@ -63,9 +63,9 @@ public final class StefilonNodeUpsert extends DeciTreeTemplateWrite<StefilonInfo
 		List<ActionStd<StefilonInfo>> actions = new ArrayList<>();
 
 		ActionStd<StefilonInfo> zerofy = new ActionStdCommom<StefilonInfo>(option, StefilonVisiEnforceZerofy.class);
-		ActionLazy<StefilonInfo> upsertStedmonagr = new ActionLazyCommom<StefilonInfo>(option.conn, option.schemaName, StefilonVisiStefilonagrUpsert.class);
+		ActionLazy<StefilonInfo> upsertStefilonagr = new ActionLazyCommom<StefilonInfo>(option.conn, option.schemaName, StefilonVisiStefilonagrUpsert.class);
 		
-		zerofy.addPostAction(upsertStedmonagr);
+		zerofy.addPostAction(upsertStefilonagr);
 		
 		
 		actions.add(zerofy);
