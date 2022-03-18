@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddSetterYearMonth;
 
-final class VisiSteddEnforceYearMonth extends ActionVisitorTemplateEnforce<SteddInfo> {
+public final class SteddVisiEnforceYearMonth extends ActionVisitorTemplateEnforce<SteddInfo> {
 	
-	public VisiSteddEnforceYearMonth(DeciTreeOption<SteddInfo> option) {
+	public SteddVisiEnforceYearMonth(DeciTreeOption<SteddInfo> option) {
 		super(option);
 	}
 

@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddSetterZerofy;
 
-final class VisiSteddEnforceZerofy extends ActionVisitorTemplateEnforce<SteddInfo> {
+public final class SteddVisiEnforceZerofy extends ActionVisitorTemplateEnforce<SteddInfo> {
 	
-	public VisiSteddEnforceZerofy(DeciTreeOption<SteddInfo> option) {
+	public SteddVisiEnforceZerofy(DeciTreeOption<SteddInfo> option) {
 		super(option);
 	}
 

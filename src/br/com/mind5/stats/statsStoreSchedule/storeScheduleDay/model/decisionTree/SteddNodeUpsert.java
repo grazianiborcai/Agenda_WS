@@ -5,22 +5,24 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.LazySteddMergeStolis;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.LazySteddSteddagrUpsert;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.StdSteddEnforceZerofy;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.StdSteddMergeSteddive;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.SteddVisiEnforceZerofy;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.SteddVisiMergeSteddive;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.SteddVisiMergeStolis;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.SteddVisiSteddagrUpsert;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.checker.SteddCheckSteddive;
 
 
-public final class NodeSteddUpsert extends DeciTreeTemplateWrite<SteddInfo> {
+public final class SteddNodeUpsert extends DeciTreeTemplateWrite<SteddInfo> {
 	
-	public NodeSteddUpsert(DeciTreeOption<SteddInfo> option) {
+	public SteddNodeUpsert(DeciTreeOption<SteddInfo> option) {
 		super(option);
 	}
 	
@@ -46,8 +48,8 @@ public final class NodeSteddUpsert extends DeciTreeTemplateWrite<SteddInfo> {
 	@Override protected List<ActionStd<SteddInfo>> buildActionsOnPassedHook(DeciTreeOption<SteddInfo> option) {
 		List<ActionStd<SteddInfo>> actions = new ArrayList<>();
 
-		ActionStd<SteddInfo> mergeSteddive = new StdSteddMergeSteddive(option);
-		ActionLazy<SteddInfo> upsertSteddagr = new LazySteddSteddagrUpsert(option.conn, option.schemaName);
+		ActionStd<SteddInfo> mergeSteddive = new ActionStdCommom<SteddInfo>(option, SteddVisiMergeSteddive.class);
+		ActionLazy<SteddInfo> upsertSteddagr = new ActionLazyCommom<SteddInfo>(option.conn, option.schemaName, SteddVisiSteddagrUpsert.class);
 		
 		mergeSteddive.addPostAction(upsertSteddagr);
 		
@@ -61,9 +63,9 @@ public final class NodeSteddUpsert extends DeciTreeTemplateWrite<SteddInfo> {
 	@Override protected List<ActionStd<SteddInfo>> buildActionsOnFailedHook(DeciTreeOption<SteddInfo> option) {
 		List<ActionStd<SteddInfo>> actions = new ArrayList<>();
 
-		ActionStd<SteddInfo> zerofy = new StdSteddEnforceZerofy(option);
-		ActionLazy<SteddInfo> mergeStolis = new LazySteddMergeStolis(option.conn, option.schemaName);
-		ActionLazy<SteddInfo> upsertSteddagr = new LazySteddSteddagrUpsert(option.conn, option.schemaName);
+		ActionStd<SteddInfo> zerofy = new ActionStdCommom<SteddInfo>(option, SteddVisiEnforceZerofy.class);
+		ActionLazy<SteddInfo> mergeStolis = new ActionLazyCommom<SteddInfo>(option.conn, option.schemaName, SteddVisiMergeStolis.class);
+		ActionLazy<SteddInfo> upsertSteddagr = new ActionLazyCommom<SteddInfo>(option.conn, option.schemaName, SteddVisiSteddagrUpsert.class);
 		
 		zerofy.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(upsertSteddagr);

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.info.SteddagrInfo;
 
-final class SteddVisiMergeSteddagr extends InfoMergerVisitorTemplate<SteddInfo, SteddagrInfo> {
+final class SteddMergerVisiSteddagr extends InfoMergerVisitorTemplate<SteddInfo, SteddagrInfo> {
 
 	@Override public boolean shouldMerge(SteddInfo baseInfo, SteddagrInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner &&

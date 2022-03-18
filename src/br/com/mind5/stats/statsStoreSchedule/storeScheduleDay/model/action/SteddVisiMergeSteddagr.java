@@ -10,9 +10,9 @@ import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddMerger;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.info.SteddagrInfo;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.decisionTree.SteddagrRootSelect;
 
-final class VisiSteddMergeSteddagr extends ActionVisitorTemplateMerge<SteddInfo, SteddagrInfo> {
+public final class SteddVisiMergeSteddagr extends ActionVisitorTemplateMerge<SteddInfo, SteddagrInfo> {
 	
-	public VisiSteddMergeSteddagr(DeciTreeOption<SteddInfo> option) {
+	public SteddVisiMergeSteddagr(DeciTreeOption<SteddInfo> option) {
 		super(option, SteddagrInfo.class);
 	}
 	

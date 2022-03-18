@@ -7,7 +7,7 @@ import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.info.InfoMergerCardinality;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class SteddVisiMergeCalate extends InfoMergerVisitorTemplate<SteddInfo, CalateInfo> {
+final class SteddMergerVisiCalate extends InfoMergerVisitorTemplate<SteddInfo, CalateInfo> {
 
 	@Override public boolean shouldMerge(SteddInfo baseInfo, CalateInfo selectedInfo) {
 		return (baseInfo.year  == selectedInfo.year	&&

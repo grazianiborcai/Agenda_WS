@@ -10,13 +10,12 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.action.StdSteddMergeSteddagr;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.checker.SteddCheckSteddagr;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.checker.SteddCheckRead;
 
 
-public final class NodeSteddSelectL1 extends DeciTreeTemplateWrite<SteddInfo> {
+public final class SteddRootSelect extends DeciTreeTemplateWrite<SteddInfo> {
 	
-	public NodeSteddSelectL1(DeciTreeOption<SteddInfo> option) {
+	public SteddRootSelect(DeciTreeOption<SteddInfo> option) {
 		super(option);
 	}
 	
@@ -30,8 +29,8 @@ public final class NodeSteddSelectL1 extends DeciTreeTemplateWrite<SteddInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new SteddCheckSteddagr(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new SteddCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -42,20 +41,9 @@ public final class NodeSteddSelectL1 extends DeciTreeTemplateWrite<SteddInfo> {
 	@Override protected List<ActionStd<SteddInfo>> buildActionsOnPassedHook(DeciTreeOption<SteddInfo> option) {
 		List<ActionStd<SteddInfo>> actions = new ArrayList<>();
 
-		ActionStd<SteddInfo> mergeSteddagr = new StdSteddMergeSteddagr(option);
+		ActionStd<SteddInfo> nodeL1 = new SteddNodeSelectL1(option).toAction();
 		
-		actions.add(mergeSteddagr);
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<SteddInfo>> buildActionsOnFailedHook(DeciTreeOption<SteddInfo> option) {
-		List<ActionStd<SteddInfo>> actions = new ArrayList<>();
-
-		ActionStd<SteddInfo> nodeL2 = new NodeSteddSelectL2(option).toAction();
-		
-		actions.add(nodeL2);
+		actions.add(nodeL1);
 		return actions;
 	}
 }
