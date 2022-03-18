@@ -1858,4 +1858,7 @@ public final class SystemCode {
 	public static final int STAT_STR_PRF_MTH_AGGR_ALREADY_EXIST 		= 18750;
 	public static final int STAT_STR_PRF_MTH_AGGR_NOT_FOUND 			= 18751;
 	public static final int STAT_STR_PRF_MTH_AGGR_MANDATORY_FIELD_EMPTY	= 18752;
+	
+	// Statistics - Store-Profile-Month
+	public static final int STAT_STR_PRF_MTH_MANDATORY_FIELD_EMPTY		= 18800;
 }
