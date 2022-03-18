@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.info.SteddagrInfo;
 
-public final class DaoSteddagrSelectSingle extends DaoStmtTemplate<SteddagrInfo> {
+public final class SteddagrDaoSelectSingle extends DaoStmtTemplate<SteddagrInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STAT_STORE_SCHEDULE_DAY_TABLE;
 	
 	
-	public DaoSteddagrSelectSingle(Connection conn, SteddagrInfo recordInfo, String schemaName) {
+	public SteddagrDaoSelectSingle(Connection conn, SteddagrInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoSteddagrSelectSingle extends DaoStmtTemplate<SteddagrInfo>
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoSteddagrWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new SteddagrDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -61,21 +61,21 @@ public final class DaoSteddagrSelectSingle extends DaoStmtTemplate<SteddagrInfo>
 				do {
 					SteddagrInfo dataInfo = new SteddagrInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSteddagrDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoSteddagrDbTableColumn.COL_COD_STORE);
-					dataInfo.calmonth = stmtResult.getString(DaoSteddagrDbTableColumn.COL_CALMONTH);
-					dataInfo.year = DaoFormatter.sqlToInt(stmtResult, DaoSteddagrDbTableColumn.COL_YEAR);
-					dataInfo.month = DaoFormatter.sqlToInt(stmtResult, DaoSteddagrDbTableColumn.COL_MONTH);
-					dataInfo.day = DaoFormatter.sqlToInt(stmtResult, DaoSteddagrDbTableColumn.COL_DAY);
-					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, DaoSteddagrDbTableColumn.COL_DATE);
-					dataInfo.codCountry = stmtResult.getString(DaoSteddagrDbTableColumn.COL_COD_COUNTRY);
-					dataInfo.codState = stmtResult.getString(DaoSteddagrDbTableColumn.COL_STATE_PROVINCE);
-					dataInfo.city = stmtResult.getString(DaoSteddagrDbTableColumn.COL_CITY);
-					dataInfo.countScheduleCancelledDay = DaoFormatter.sqlToInt(stmtResult, DaoSteddagrDbTableColumn.COL_COUNT_SCHEDULE_CANCELLED_DAY);
-					dataInfo.countScheduleWaitingDay = DaoFormatter.sqlToInt(stmtResult, DaoSteddagrDbTableColumn.COL_COUNT_SCHEDULE_WAITING_DAY);
-					dataInfo.countScheduleTotalDay = DaoFormatter.sqlToInt(stmtResult, DaoSteddagrDbTableColumn.COL_COUNT_SCHEDULE_TOTAL_DAY);
-					dataInfo.countScheduleConfirmedDay = DaoFormatter.sqlToInt(stmtResult, DaoSteddagrDbTableColumn.COL_COUNT_SCHEDULE_CONFIRMED_DAY);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoSteddagrDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, SteddagrDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, SteddagrDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.calmonth = stmtResult.getString(SteddagrDaoDbTableColumn.COL_CALMONTH);
+					dataInfo.year = DaoFormatter.sqlToInt(stmtResult, SteddagrDaoDbTableColumn.COL_YEAR);
+					dataInfo.month = DaoFormatter.sqlToInt(stmtResult, SteddagrDaoDbTableColumn.COL_MONTH);
+					dataInfo.day = DaoFormatter.sqlToInt(stmtResult, SteddagrDaoDbTableColumn.COL_DAY);
+					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, SteddagrDaoDbTableColumn.COL_DATE);
+					dataInfo.codCountry = stmtResult.getString(SteddagrDaoDbTableColumn.COL_COD_COUNTRY);
+					dataInfo.codState = stmtResult.getString(SteddagrDaoDbTableColumn.COL_STATE_PROVINCE);
+					dataInfo.city = stmtResult.getString(SteddagrDaoDbTableColumn.COL_CITY);
+					dataInfo.countScheduleCancelledDay = DaoFormatter.sqlToInt(stmtResult, SteddagrDaoDbTableColumn.COL_COUNT_SCHEDULE_CANCELLED_DAY);
+					dataInfo.countScheduleWaitingDay = DaoFormatter.sqlToInt(stmtResult, SteddagrDaoDbTableColumn.COL_COUNT_SCHEDULE_WAITING_DAY);
+					dataInfo.countScheduleTotalDay = DaoFormatter.sqlToInt(stmtResult, SteddagrDaoDbTableColumn.COL_COUNT_SCHEDULE_TOTAL_DAY);
+					dataInfo.countScheduleConfirmedDay = DaoFormatter.sqlToInt(stmtResult, SteddagrDaoDbTableColumn.COL_COUNT_SCHEDULE_CONFIRMED_DAY);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, SteddagrDaoDbTableColumn.COL_LAST_CHANGED);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

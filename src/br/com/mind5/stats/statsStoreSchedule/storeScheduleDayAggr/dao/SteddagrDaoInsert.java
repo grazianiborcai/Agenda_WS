@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.info.SteddagrInfo;
 
-public final class DaoSteddagrDelete implements DaoStmtExec<SteddagrInfo> {
+public final class SteddagrDaoInsert implements DaoStmtExec<SteddagrInfo> {
 	private DaoStmtExec<SteddagrInfo> helper;
 	
 	
-	public DaoSteddagrDelete(List<DaoStmtExecOption<SteddagrInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoSteddagrDeleteSingle.class, SteddagrInfo.class);
+	public SteddagrDaoInsert(List<DaoStmtExecOption<SteddagrInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, SteddagrDaoInsertSingle.class, SteddagrInfo.class);
 	}
 	
 	

@@ -16,9 +16,9 @@ import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.checker.
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.checker.SteddagrCheckWrite;
 
 
-public final class RootSteddagrUpsert extends DeciTreeTemplateWrite<SteddagrInfo> {
+public final class SteddagrRootUpsert extends DeciTreeTemplateWrite<SteddagrInfo> {
 	
-	public RootSteddagrUpsert(DeciTreeOption<SteddagrInfo> option) {
+	public SteddagrRootUpsert(DeciTreeOption<SteddagrInfo> option) {
 		super(option);
 	}
 	
@@ -65,7 +65,7 @@ public final class RootSteddagrUpsert extends DeciTreeTemplateWrite<SteddagrInfo
 	@Override protected List<ActionStd<SteddagrInfo>> buildActionsOnPassedHook(DeciTreeOption<SteddagrInfo> option) {
 		List<ActionStd<SteddagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<SteddagrInfo> nodeL1 = new NodeSteddagrUpsert(option).toAction();
+		ActionStd<SteddagrInfo> nodeL1 = new SteddagrNodeUpsert(option).toAction();
 		
 		actions.add(nodeL1);
 		return actions;

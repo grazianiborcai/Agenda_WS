@@ -5,67 +5,62 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.info.SteddagrInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.action.LazySteddagrDaoInsert;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.action.StdSteddagrEnforceLChanged;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.checker.SteddagrCheckExist;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.action.SteddagrVisiMergeCalate;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.action.SteddagrVisiMergeState;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.action.SteddagrVisiMergeToSelect;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.checker.SteddagrCheckLangu;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.checker.SteddagrCheckOwner;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.checker.SteddagrCheckRead;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.checker.SteddagrCheckStore;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.checker.SteddagrCheckWrite;
 
 
-public final class RootSteddagrInsert extends DeciTreeTemplateWrite<SteddagrInfo> {
+public final class SteddagrRootSelect extends DeciTreeTemplateWrite<SteddagrInfo> {
 	
-	public RootSteddagrInsert(DeciTreeOption<SteddagrInfo> option) {
+	public SteddagrRootSelect(DeciTreeOption<SteddagrInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected ModelChecker<SteddagrInfo> buildCheckerHook(DeciTreeOption<SteddagrInfo> option) {
-		List<ModelChecker<SteddagrInfo>> queue = new ArrayList<>();		
+		List<ModelChecker<SteddagrInfo>> queue = new ArrayList<>();
 		ModelChecker<SteddagrInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new SteddagrCheckWrite(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new SteddagrCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;
 		checker = new SteddagrCheckLangu(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;
 		checker = new SteddagrCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;
 		checker = new SteddagrCheckStore(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
-		checker = new SteddagrCheckExist(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -76,12 +71,14 @@ public final class RootSteddagrInsert extends DeciTreeTemplateWrite<SteddagrInfo
 	@Override protected List<ActionStd<SteddagrInfo>> buildActionsOnPassedHook(DeciTreeOption<SteddagrInfo> option) {
 		List<ActionStd<SteddagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<SteddagrInfo> enforceLChanged = new StdSteddagrEnforceLChanged(option);
-		ActionLazy<SteddagrInfo> insert = new LazySteddagrDaoInsert(option.conn, option.schemaName);
+		ActionStd<SteddagrInfo> select = new ActionStdCommom<SteddagrInfo>(option, SteddagrVisiMergeToSelect.class);
+		ActionLazy<SteddagrInfo> mergeState = new ActionLazyCommom<SteddagrInfo>(option.conn, option.schemaName, SteddagrVisiMergeState.class);
+		ActionLazy<SteddagrInfo> mergeCalate = new ActionLazyCommom<SteddagrInfo>(option.conn, option.schemaName, SteddagrVisiMergeCalate.class);
 		
-		enforceLChanged.addPostAction(insert);
+		select.addPostAction(mergeState);
+		mergeState.addPostAction(mergeCalate);
 		
-		actions.add(enforceLChanged);
+		actions.add(select);
 		return actions;
 	}
 }

@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.info.SteddagrInfo;
 
-public final class DaoSteddagrDeleteSingle extends DaoStmtTemplate<SteddagrInfo> {
+public final class SteddagrDaoDeleteSingle extends DaoStmtTemplate<SteddagrInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STAT_STORE_SCHEDULE_DAY_TABLE;	
 	
 	
-	public DaoSteddagrDeleteSingle(Connection conn, SteddagrInfo recordInfo, String schemaName) {
+	public SteddagrDaoDeleteSingle(Connection conn, SteddagrInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoSteddagrDeleteSingle extends DaoStmtTemplate<SteddagrInfo>
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
-		DaoStmtWhere whereClause = new DaoSteddagrWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new SteddagrDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

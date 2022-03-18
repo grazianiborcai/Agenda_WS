@@ -13,9 +13,9 @@ import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.info.SteddagrI
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.model.checker.SteddagrCheckExist;
 
 
-public final class NodeSteddagrUpsert extends DeciTreeTemplateWrite<SteddagrInfo> {
+public final class SteddagrNodeUpsert extends DeciTreeTemplateWrite<SteddagrInfo> {
 	
-	public NodeSteddagrUpsert(DeciTreeOption<SteddagrInfo> option) {
+	public SteddagrNodeUpsert(DeciTreeOption<SteddagrInfo> option) {
 		super(option);
 	}
 	
@@ -41,8 +41,8 @@ public final class NodeSteddagrUpsert extends DeciTreeTemplateWrite<SteddagrInfo
 	@Override protected List<ActionStd<SteddagrInfo>> buildActionsOnPassedHook(DeciTreeOption<SteddagrInfo> option) {
 		List<ActionStd<SteddagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<SteddagrInfo> delete = new RootSteddagrDelete(option).toAction();
-		ActionStd<SteddagrInfo> insert = new RootSteddagrInsert(option).toAction();
+		ActionStd<SteddagrInfo> delete = new SteddagrRootDelete(option).toAction();
+		ActionStd<SteddagrInfo> insert = new SteddagrRootInsert(option).toAction();
 		
 		actions.add(delete);
 		actions.add(insert);
@@ -55,7 +55,7 @@ public final class NodeSteddagrUpsert extends DeciTreeTemplateWrite<SteddagrInfo
 	@Override protected List<ActionStd<SteddagrInfo>> buildActionsOnFailedHook(DeciTreeOption<SteddagrInfo> option) {
 		List<ActionStd<SteddagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<SteddagrInfo> insert = new RootSteddagrInsert(option).toAction();
+		ActionStd<SteddagrInfo> insert = new SteddagrRootInsert(option).toAction();
 		
 		actions.add(insert);
 		return actions;

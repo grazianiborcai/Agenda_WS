@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.info.SteddagrInfo;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDayAggr.info.SteddagrMerger;
 
-final class VisiSteddagrMergeCalate extends ActionVisitorTemplateMerge<SteddagrInfo, CalateInfo> {
+public final class SteddagrVisiMergeCalate extends ActionVisitorTemplateMerge<SteddagrInfo, CalateInfo> {
 	
-	public VisiSteddagrMergeCalate(DeciTreeOption<SteddagrInfo> option) {
+	public SteddagrVisiMergeCalate(DeciTreeOption<SteddagrInfo> option) {
 		super(option, CalateInfo.class);
 	}
 	
