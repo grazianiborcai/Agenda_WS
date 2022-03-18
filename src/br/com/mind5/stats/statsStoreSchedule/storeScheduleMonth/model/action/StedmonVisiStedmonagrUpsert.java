@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.info.StedmonInfo;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.info.StedmonMerger;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.info.StedmonagrInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.model.decisionTree.RootStedmonagrUpsert;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.model.decisionTree.StedmonagrRootUpsert;
 
 public final class StedmonVisiStedmonagrUpsert extends ActionVisitorTemplateAction<StedmonInfo, StedmonagrInfo> {
 
@@ -19,7 +19,7 @@ public final class StedmonVisiStedmonagrUpsert extends ActionVisitorTemplateActi
 	
 	
 	@Override protected Class<? extends DeciTree<StedmonagrInfo>> getTreeClassHook() {
-		return RootStedmonagrUpsert.class;
+		return StedmonagrRootUpsert.class;
 	}
 	
 	

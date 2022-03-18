@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.info.StedmonagrInfo;
 
-public final class DaoStedmonagrWhere implements DaoStmtWhere {
+public final class StedmonagrDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoStedmonagrWhere(DaoWhereBuilderOption whereOption, String tableName, StedmonagrInfo recordInfo) {
+	public StedmonagrDaoWhere(DaoWhereBuilderOption whereOption, String tableName, StedmonagrInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class DaoStedmonagrWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoStedmonagrDbTableColumn.COL_COD_STORE :
+				case StedmonagrDaoDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 				
-				case DaoStedmonagrDbTableColumn.COL_COD_OWNER :
+				case StedmonagrDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoStedmonagrDbTableColumn.COL_CALMONTH :
+				case StedmonagrDaoDbTableColumn.COL_CALMONTH :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.calmonth);
 					break;
 			}

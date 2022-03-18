@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoStedmonagrDbTableColumn extends DaoDbTableColumnTemplate {
+public final class StedmonagrDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CALMONTH = DaoDbField.COL_CALMONTH;
 	public static final String COL_CITY = DaoDbField.COL_CITY;
 	public static final String COL_COD_COUNTRY = DaoDbField.COL_COD_COUNTRY;
@@ -30,7 +30,7 @@ public final class DaoStedmonagrDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	
-	public DaoStedmonagrDbTableColumn() {
+	public StedmonagrDaoDbTableColumn() {
 		super();
 	}
 	

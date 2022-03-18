@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.info.StedmonagrInfo;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.info.StedmonagrMerger;
 
-final class VisiStedmonagrMergeCalonth extends ActionVisitorTemplateMerge<StedmonagrInfo, CalonthInfo> {
+public final class StedmonagrVisiMergeCalonth extends ActionVisitorTemplateMerge<StedmonagrInfo, CalonthInfo> {
 	
-	public VisiStedmonagrMergeCalonth(DeciTreeOption<StedmonagrInfo> option) {
+	public StedmonagrVisiMergeCalonth(DeciTreeOption<StedmonagrInfo> option) {
 		super(option, CalonthInfo.class);
 	}
 	

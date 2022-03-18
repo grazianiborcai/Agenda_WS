@@ -3,7 +3,6 @@ package br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.model.decis
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -11,18 +10,15 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.info.StedmonagrInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.model.action.LazyStedmonagrDaoInsert;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.model.action.StdStedmonagrEnforceLChanged;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.model.checker.StedmonagrCheckExist;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.model.checker.StedmonagrCheckLangu;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.model.checker.StedmonagrCheckOwner;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.model.checker.StedmonagrCheckStore;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.model.checker.StedmonagrCheckWrite;
 
 
-public final class RootStedmonagrInsert extends DeciTreeTemplateWrite<StedmonagrInfo> {
+public final class StedmonagrRootUpsert extends DeciTreeTemplateWrite<StedmonagrInfo> {
 	
-	public RootStedmonagrInsert(DeciTreeOption<StedmonagrInfo> option) {
+	public StedmonagrRootUpsert(DeciTreeOption<StedmonagrInfo> option) {
 		super(option);
 	}
 	
@@ -61,13 +57,6 @@ public final class RootStedmonagrInsert extends DeciTreeTemplateWrite<Stedmonagr
 		checker = new StedmonagrCheckStore(checkerOption);
 		queue.add(checker);
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
-		checker = new StedmonagrCheckExist(checkerOption);
-		queue.add(checker);
-		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
@@ -76,12 +65,9 @@ public final class RootStedmonagrInsert extends DeciTreeTemplateWrite<Stedmonagr
 	@Override protected List<ActionStd<StedmonagrInfo>> buildActionsOnPassedHook(DeciTreeOption<StedmonagrInfo> option) {
 		List<ActionStd<StedmonagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<StedmonagrInfo> enforceLChanged = new StdStedmonagrEnforceLChanged(option);
-		ActionLazy<StedmonagrInfo> insert = new LazyStedmonagrDaoInsert(option.conn, option.schemaName);
+		ActionStd<StedmonagrInfo> nodeL1 = new StedmonagrNodeUpsert(option).toAction();
 		
-		enforceLChanged.addPostAction(insert);
-		
-		actions.add(enforceLChanged);
+		actions.add(nodeL1);
 		return actions;
 	}
 }

@@ -2,11 +2,12 @@ package br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.model.check
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.info.StedmonagrInfo;
-import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.model.action.StdStedmonagrDaoSelect;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.model.action.StedmonagrVisiDaoSelect;
 
 public final class StedmonagrCheckExist extends ModelCheckerTemplateAction<StedmonagrInfo, StedmonagrInfo> {
 	
@@ -17,7 +18,7 @@ public final class StedmonagrCheckExist extends ModelCheckerTemplateAction<Stedm
 	
 	
 	@Override protected ActionStd<StedmonagrInfo> buildActionHook(DeciTreeOption<StedmonagrInfo> option) {
-		ActionStd<StedmonagrInfo> select = new StdStedmonagrDaoSelect(option);
+		ActionStd<StedmonagrInfo> select = new ActionStdCommom<StedmonagrInfo>(option, StedmonagrVisiDaoSelect.class);
 		return select;
 	}
 	

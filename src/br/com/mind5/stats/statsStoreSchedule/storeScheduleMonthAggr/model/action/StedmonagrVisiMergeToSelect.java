@@ -2,22 +2,22 @@ package br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.model.actio
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.info.StedmonagrInfo;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.info.StedmonagrMerger;
 
-final class VisiStedmonagrMergeToSelect extends ActionVisitorTemplateMerge<StedmonagrInfo, StedmonagrInfo> {
+public final class StedmonagrVisiMergeToSelect extends ActionVisitorTemplateMerge<StedmonagrInfo, StedmonagrInfo> {
 	
-	public VisiStedmonagrMergeToSelect(DeciTreeOption<StedmonagrInfo> option) {
+	public StedmonagrVisiMergeToSelect(DeciTreeOption<StedmonagrInfo> option) {
 		super(option, StedmonagrInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<StedmonagrInfo>> getActionClassHook() {
-		return StdStedmonagrDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<StedmonagrInfo>> getVisitorClassHook() {
+		return StedmonagrVisiDaoSelect.class;
 	}
 	
 	

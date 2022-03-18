@@ -13,9 +13,9 @@ import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.info.Stedmon
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonthAggr.model.checker.StedmonagrCheckExist;
 
 
-public final class NodeStedmonagrUpsert extends DeciTreeTemplateWrite<StedmonagrInfo> {
+public final class StedmonagrNodeUpsert extends DeciTreeTemplateWrite<StedmonagrInfo> {
 	
-	public NodeStedmonagrUpsert(DeciTreeOption<StedmonagrInfo> option) {
+	public StedmonagrNodeUpsert(DeciTreeOption<StedmonagrInfo> option) {
 		super(option);
 	}
 	
@@ -41,8 +41,8 @@ public final class NodeStedmonagrUpsert extends DeciTreeTemplateWrite<Stedmonagr
 	@Override protected List<ActionStd<StedmonagrInfo>> buildActionsOnPassedHook(DeciTreeOption<StedmonagrInfo> option) {
 		List<ActionStd<StedmonagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<StedmonagrInfo> delete = new RootStedmonagrDelete(option).toAction();
-		ActionStd<StedmonagrInfo> insert = new RootStedmonagrInsert(option).toAction();
+		ActionStd<StedmonagrInfo> delete = new StedmonagrRootDelete(option).toAction();
+		ActionStd<StedmonagrInfo> insert = new StedmonagrRootInsert(option).toAction();
 		
 		actions.add(delete);
 		actions.add(insert);
@@ -55,7 +55,7 @@ public final class NodeStedmonagrUpsert extends DeciTreeTemplateWrite<Stedmonagr
 	@Override protected List<ActionStd<StedmonagrInfo>> buildActionsOnFailedHook(DeciTreeOption<StedmonagrInfo> option) {
 		List<ActionStd<StedmonagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<StedmonagrInfo> insert = new RootStedmonagrInsert(option).toAction();
+		ActionStd<StedmonagrInfo> insert = new StedmonagrRootInsert(option).toAction();
 		
 		actions.add(insert);
 		return actions;
