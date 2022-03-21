@@ -71,7 +71,7 @@ public final class SowalagrRootInsert extends DeciTreeTemplateWrite<SowalagrInfo
 		List<ActionStd<SowalagrInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowalagrInfo> enforceLChanged = new ActionStdCommom<SowalagrInfo>(option, SowalagrVisiEnforceLChanged.class);
-		ActionLazy<SowalagrInfo> insert = new ActionLazyCommom<SowalagrInfo>(option.conn, option.schemaName, SowalagrVisiDaoInsert.class);
+		ActionLazy<SowalagrInfo> insert = new ActionLazyCommom<SowalagrInfo>(option, SowalagrVisiDaoInsert.class);
 		
 		enforceLChanged.addPostAction(insert);
 		

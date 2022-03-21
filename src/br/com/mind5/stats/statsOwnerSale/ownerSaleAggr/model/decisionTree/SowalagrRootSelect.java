@@ -63,7 +63,7 @@ public final class SowalagrRootSelect extends DeciTreeTemplateWrite<SowalagrInfo
 		List<ActionStd<SowalagrInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowalagrInfo> select = new ActionStdCommom<SowalagrInfo>(option, SowalagrVisiMergeToSelect.class);
-		ActionLazy<SowalagrInfo> mergeState = new ActionLazyCommom<SowalagrInfo>(option.conn, option.schemaName, SowalagrVisiMergeState.class);
+		ActionLazy<SowalagrInfo> mergeState = new ActionLazyCommom<SowalagrInfo>(option, SowalagrVisiMergeState.class);
 		
 		select.addPostAction(mergeState);
 		
