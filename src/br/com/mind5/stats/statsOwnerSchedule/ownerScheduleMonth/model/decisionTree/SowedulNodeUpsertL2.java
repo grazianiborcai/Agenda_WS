@@ -48,7 +48,7 @@ public final class SowedulNodeUpsertL2 extends DeciTreeTemplateWrite<SowedulInfo
 		List<ActionStd<SowedulInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowedulInfo> mergeSowedulive = new ActionStdCommom<SowedulInfo>(option, SowedulVisiMergeSowedulive.class);
-		ActionLazy<SowedulInfo> upsertSowedulagr = new ActionLazyCommom<SowedulInfo>(option.conn, option.schemaName, SowedulVisiSowedulagrUpsert.class);
+		ActionLazy<SowedulInfo> upsertSowedulagr = new ActionLazyCommom<SowedulInfo>(option, SowedulVisiSowedulagrUpsert.class);
 		
 		mergeSowedulive.addPostAction(upsertSowedulagr);
 		
@@ -63,7 +63,7 @@ public final class SowedulNodeUpsertL2 extends DeciTreeTemplateWrite<SowedulInfo
 		List<ActionStd<SowedulInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowedulInfo> zerofy = new ActionStdCommom<SowedulInfo>(option, SowedulVisiEnforceZerofy.class);
-		ActionLazy<SowedulInfo> upsertSowedulagr = new ActionLazyCommom<SowedulInfo>(option.conn, option.schemaName, SowedulVisiSowedulagrUpsert.class);
+		ActionLazy<SowedulInfo> upsertSowedulagr = new ActionLazyCommom<SowedulInfo>(option, SowedulVisiSowedulagrUpsert.class);
 		
 		zerofy.addPostAction(upsertSowedulagr);
 		
