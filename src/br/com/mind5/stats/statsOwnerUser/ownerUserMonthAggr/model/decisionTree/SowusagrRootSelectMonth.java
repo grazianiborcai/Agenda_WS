@@ -41,7 +41,7 @@ public final class SowusagrRootSelectMonth extends DeciTreeTemplateWrite<Sowusag
 		List<ActionStd<SowusagrInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowusagrInfo> mergeSowusarchMonth = new ActionStdCommom<SowusagrInfo>(option, SowusagrVisiMergeSowusarchMonth.class);
-		ActionLazy<SowusagrInfo> select = new ActionLazyCommom<SowusagrInfo>(option.conn, option.schemaName, SowusagrVisiRootSelect.class);
+		ActionLazy<SowusagrInfo> select = new ActionLazyCommom<SowusagrInfo>(option, SowusagrVisiRootSelect.class);
 		
 		mergeSowusarchMonth.addPostAction(select);
 		
