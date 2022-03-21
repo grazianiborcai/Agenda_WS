@@ -79,7 +79,7 @@ public final class StefilonagrRootInsert extends DeciTreeTemplateWrite<Stefilona
 		List<ActionStd<StefilonagrInfo>> actions = new ArrayList<>();
 
 		ActionStd<StefilonagrInfo> enforceLChanged = new ActionStdCommom<StefilonagrInfo>(option, StefilonagrVisiEnforceLChanged.class);
-		ActionLazy<StefilonagrInfo> insert = new ActionLazyCommom<StefilonagrInfo>(option.conn, option.schemaName, StefilonagrVisiDaoInsert.class);
+		ActionLazy<StefilonagrInfo> insert = new ActionLazyCommom<StefilonagrInfo>(option, StefilonagrVisiDaoInsert.class);
 		
 		enforceLChanged.addPostAction(insert);
 		

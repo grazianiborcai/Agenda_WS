@@ -71,7 +71,7 @@ public final class StefilonagrRootSelect extends DeciTreeTemplateWrite<Stefilona
 		List<ActionStd<StefilonagrInfo>> actions = new ArrayList<>();
 
 		ActionStd<StefilonagrInfo> select = new ActionStdCommom<StefilonagrInfo>(option, StefilonagrVisiMergeToSelect.class);
-		ActionLazy<StefilonagrInfo> mergeCalonth = new ActionLazyCommom<StefilonagrInfo>(option.conn, option.schemaName, StefilonagrVisiMergeCalonth.class);
+		ActionLazy<StefilonagrInfo> mergeCalonth = new ActionLazyCommom<StefilonagrInfo>(option, StefilonagrVisiMergeCalonth.class);
 		
 		select.addPostAction(mergeCalonth);
 		
