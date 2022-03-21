@@ -40,7 +40,7 @@ public final class StoreNodeSnapshot extends DeciTreeTemplateWrite<StoreInfo> {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
 		ActionStd<StoreInfo> insertSnapshot = new ActionStdCommom<StoreInfo>(option, StoreVisiStorapInsert.class);		
-		ActionLazy<StoreInfo> update = new  ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiDaoUpdate.class);	
+		ActionLazy<StoreInfo> update = new  ActionLazyCommom<StoreInfo>(option, StoreVisiDaoUpdate.class);	
 		
 		insertSnapshot.addPostAction(update);
 		

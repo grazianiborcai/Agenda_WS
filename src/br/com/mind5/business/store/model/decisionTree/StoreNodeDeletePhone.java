@@ -47,7 +47,7 @@ public final class StoreNodeDeletePhone extends DeciTreeTemplateWrite<StoreInfo>
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
 		ActionStd<StoreInfo> mergePhone = new ActionStdCommom<StoreInfo>(option, StoreVisiMergePhone.class);
-		ActionLazy<StoreInfo> deletePhone = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiPhoneDelete.class);
+		ActionLazy<StoreInfo> deletePhone = new ActionLazyCommom<StoreInfo>(option, StoreVisiPhoneDelete.class);
 		
 		mergePhone.addPostAction(deletePhone);
 		

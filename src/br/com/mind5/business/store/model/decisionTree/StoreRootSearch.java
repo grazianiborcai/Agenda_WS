@@ -41,7 +41,7 @@ public final class StoreRootSearch extends DeciTreeTemplateRead<StoreInfo> {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 
 		ActionStd<StoreInfo> mergeSotarch = new ActionStdCommom<StoreInfo>(option, StoreVisiMergeSotarch.class);
-		ActionLazy<StoreInfo> select = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiRootSelect.class);
+		ActionLazy<StoreInfo> select = new ActionLazyCommom<StoreInfo>(option, StoreVisiRootSelect.class);
 		
 		mergeSotarch.addPostAction(select);
 		

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.StoreVisiEnforceActiveOn;
+import br.com.mind5.business.store.model.action.StoreVisiEnforceLockedOff;
 import br.com.mind5.business.store.model.action.StoreVisiMergeToSelect;
-import br.com.mind5.business.store.model.action.StoreVisiNodeUpdateL2;
+import br.com.mind5.business.store.model.action.StoreVisiNodeUpdateLock;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.business.store.model.checker.StoreCheckLangu;
 import br.com.mind5.business.store.model.checker.StoreCheckOwner;
@@ -79,11 +79,11 @@ public final class StoreRootActivate extends DeciTreeTemplateWrite<StoreInfo> {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 
 		ActionStd<StoreInfo> mergeToSelect = new ActionStdCommom<StoreInfo>(option, StoreVisiMergeToSelect.class);
-		ActionLazy<StoreInfo> enforceActiveOn = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiEnforceActiveOn.class);
-		ActionLazy<StoreInfo> update = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeUpdateL2.class);
+		ActionLazy<StoreInfo> enforceLockedOff = new ActionLazyCommom<StoreInfo>(option, StoreVisiEnforceLockedOff.class);
+		ActionLazy<StoreInfo> update = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeUpdateLock.class);
 			
-		mergeToSelect.addPostAction(enforceActiveOn);
-		enforceActiveOn.addPostAction(update);
+		mergeToSelect.addPostAction(enforceLockedOff);
+		enforceLockedOff.addPostAction(update);
 		
 		actions.add(mergeToSelect);
 		return actions;

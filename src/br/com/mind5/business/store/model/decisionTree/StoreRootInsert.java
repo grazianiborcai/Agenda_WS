@@ -93,15 +93,15 @@ public final class StoreRootInsert extends DeciTreeTemplateWrite<StoreInfo> {
 		//TODO: permitir que outro usuario seja associado ou inves de sempre criar um novo ?
 		//TODO: O que fazer se o CPF/e-mail ja tiver associado a um customer/owner/store manager ?
 		ActionStd<StoreInfo> insertStore = new StoreNodeInsert(option).toAction();
-		ActionLazy<StoreInfo> insertPerson = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeInsertPerson.class);	
-		ActionLazy<StoreInfo> insertComp = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeInsertComp.class);
-		ActionLazy<StoreInfo> insertUser = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiUserInsert.class);
-		ActionLazy<StoreInfo> snapshot = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeSnapshot.class);
-		ActionLazy<StoreInfo> upsertAddress = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeUpsertAddress.class);		
-		ActionLazy<StoreInfo> insertPhone = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeInsertPhone.class);
-		ActionLazy<StoreInfo> insertStorext = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeInsertStorext.class);			
-		ActionLazy<StoreInfo> matbcinInsert = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiMatbcinInsert.class);		
-		ActionLazy<StoreInfo> selectStore = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiRootSelect.class);	
+		ActionLazy<StoreInfo> insertPerson = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeInsertPerson.class);	
+		ActionLazy<StoreInfo> insertComp = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeInsertComp.class);
+		ActionLazy<StoreInfo> insertUser = new ActionLazyCommom<StoreInfo>(option, StoreVisiUserInsert.class);
+		ActionLazy<StoreInfo> snapshot = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeSnapshot.class);
+		ActionLazy<StoreInfo> upsertAddress = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeUpsertAddress.class);		
+		ActionLazy<StoreInfo> insertPhone = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeInsertPhone.class);
+		ActionLazy<StoreInfo> insertStorext = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeInsertStorext.class);			
+		ActionLazy<StoreInfo> matbcinInsert = new ActionLazyCommom<StoreInfo>(option, StoreVisiMatbcinInsert.class);		
+		ActionLazy<StoreInfo> selectStore = new ActionLazyCommom<StoreInfo>(option, StoreVisiRootSelect.class);	
 		
 		insertStore.addPostAction(insertPerson);		
 		insertPerson.addPostAction(insertComp);		

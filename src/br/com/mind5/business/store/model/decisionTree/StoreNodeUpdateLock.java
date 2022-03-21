@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.StoreVisiEnforcePersonKey;
-import br.com.mind5.business.store.model.action.StoreVisiPersonInsert;
-import br.com.mind5.business.store.model.checker.StoreCheckHasPerson;
+import br.com.mind5.business.store.model.action.StoreVisiEnforceLChanged;
+import br.com.mind5.business.store.model.action.StoreVisiMergeUsername;
+import br.com.mind5.business.store.model.action.StoreVisiNodeSnapshot;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
-import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class StoreNodeInsertPerson extends DeciTreeTemplateWrite<StoreInfo> {
+public final class StoreNodeUpdateLock extends DeciTreeTemplateWrite<StoreInfo> {
 	
-	public StoreNodeInsertPerson(DeciTreeOption<StoreInfo> option) {
+	public StoreNodeUpdateLock(DeciTreeOption<StoreInfo> option) {
 		super(option);
 	}
 	
@@ -28,13 +28,8 @@ public final class StoreNodeInsertPerson extends DeciTreeTemplateWrite<StoreInfo
 	@Override protected ModelChecker<StoreInfo> buildCheckerHook(DeciTreeOption<StoreInfo> option) {
 		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
-		ModelCheckerOption checkerOption;	
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StoreCheckHasPerson(checkerOption);
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -44,13 +39,15 @@ public final class StoreNodeInsertPerson extends DeciTreeTemplateWrite<StoreInfo
 	
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
-		
-		ActionStd<StoreInfo> enforcePersonKey = new ActionStdCommom<StoreInfo>(option, StoreVisiEnforcePersonKey.class);
-		ActionLazy<StoreInfo> insertPerson = new  ActionLazyCommom<StoreInfo>(option, StoreVisiPersonInsert.class);	
 
-		enforcePersonKey.addPostAction(insertPerson);
+		ActionStd<StoreInfo> enforceLChanged = new  ActionStdCommom<StoreInfo>(option, StoreVisiEnforceLChanged.class);
+		ActionLazy<StoreInfo> enforceLChangedBy = new  ActionLazyCommom<StoreInfo>(option, StoreVisiMergeUsername.class);
+		ActionLazy<StoreInfo> snapshot = new  ActionLazyCommom<StoreInfo>(option, StoreVisiNodeSnapshot.class);	
 		
-		actions.add(enforcePersonKey);	
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(snapshot);
+		
+		actions.add(enforceLChanged);
 		return actions;
 	}
 }

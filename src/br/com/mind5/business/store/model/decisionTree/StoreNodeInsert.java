@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.StoreVisiDaoInsert;
-import br.com.mind5.business.store.model.action.StoreVisiEnforceActiveOn;
 import br.com.mind5.business.store.model.action.StoreVisiEnforceCreatedBy;
 import br.com.mind5.business.store.model.action.StoreVisiEnforceCreatedOn;
 import br.com.mind5.business.store.model.action.StoreVisiEnforceLChanged;
+import br.com.mind5.business.store.model.action.StoreVisiEnforceLockedOff;
 import br.com.mind5.business.store.model.action.StoreVisiMergeUsername;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -44,17 +44,17 @@ public final class StoreNodeInsert extends DeciTreeTemplateWrite<StoreInfo> {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 
 		ActionStd<StoreInfo> enforceLChanged = new ActionStdCommom<StoreInfo>(option, StoreVisiEnforceLChanged.class);
-		ActionLazy<StoreInfo> enforceLChangedBy = new  ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiMergeUsername.class);
-		ActionLazy<StoreInfo> enforceCreatedBy = new  ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiEnforceCreatedBy.class);
-		ActionLazy<StoreInfo> enforceCreatedOn = new  ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiEnforceCreatedOn.class);
-		ActionLazy<StoreInfo> enforceActiveOn = new  ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiEnforceActiveOn.class);
-		ActionLazy<StoreInfo> insertStore = new  ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiDaoInsert.class);		
+		ActionLazy<StoreInfo> enforceLChangedBy = new  ActionLazyCommom<StoreInfo>(option, StoreVisiMergeUsername.class);
+		ActionLazy<StoreInfo> enforceCreatedBy = new  ActionLazyCommom<StoreInfo>(option, StoreVisiEnforceCreatedBy.class);
+		ActionLazy<StoreInfo> enforceCreatedOn = new  ActionLazyCommom<StoreInfo>(option, StoreVisiEnforceCreatedOn.class);
+		ActionLazy<StoreInfo> enforceLockedOff = new  ActionLazyCommom<StoreInfo>(option, StoreVisiEnforceLockedOff.class);
+		ActionLazy<StoreInfo> insertStore = new  ActionLazyCommom<StoreInfo>(option, StoreVisiDaoInsert.class);		
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);
 		enforceCreatedBy.addPostAction(enforceCreatedOn);
-		enforceCreatedOn.addPostAction(enforceActiveOn);
-		enforceActiveOn.addPostAction(insertStore);
+		enforceCreatedOn.addPostAction(enforceLockedOff);
+		enforceLockedOff.addPostAction(insertStore);
 		
 		actions.add(enforceLChanged);	
 		return actions;

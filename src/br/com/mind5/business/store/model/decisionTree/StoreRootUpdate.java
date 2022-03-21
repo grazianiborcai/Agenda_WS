@@ -95,10 +95,10 @@ public final class StoreRootUpdate extends DeciTreeTemplateWrite<StoreInfo> {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 
 		ActionStd<StoreInfo> updateStore = new StoreNodeUpdateL1(option).toAction();
-		ActionLazy<StoreInfo> updatePerson = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeUpdatePerson.class);
-		ActionLazy<StoreInfo> updateCompany = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeUpdateComp.class);
-		ActionLazy<StoreInfo> upsertAddress = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeUpsertAddress.class);
-		ActionLazy<StoreInfo> upsertPhone = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeUpsertPhone.class);		
+		ActionLazy<StoreInfo> updatePerson = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeUpdatePerson.class);
+		ActionLazy<StoreInfo> updateCompany = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeUpdateComp.class);
+		ActionLazy<StoreInfo> upsertAddress = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeUpsertAddress.class);
+		ActionLazy<StoreInfo> upsertPhone = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeUpsertPhone.class);		
 		ActionStd<StoreInfo> select = new StoreRootSelect(option).toAction();	
 			
 		updateStore.addPostAction(updatePerson);

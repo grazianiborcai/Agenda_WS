@@ -47,7 +47,7 @@ public final class StoreNodeUpsertPhone extends DeciTreeTemplateWrite<StoreInfo>
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
 		ActionStd<StoreInfo> enforcePhoneKey = new ActionStdCommom<StoreInfo>(option, StoreVisiEnforcePhoneKey.class);
-		ActionLazy<StoreInfo> upsertPhone = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiPhoneUpsert.class);	
+		ActionLazy<StoreInfo> upsertPhone = new ActionLazyCommom<StoreInfo>(option, StoreVisiPhoneUpsert.class);	
 		
 		enforcePhoneKey.addPostAction(upsertPhone);
 		

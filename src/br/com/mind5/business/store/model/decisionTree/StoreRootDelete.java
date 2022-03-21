@@ -65,10 +65,10 @@ public final class StoreRootDelete extends DeciTreeTemplateWrite<StoreInfo> {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
 		ActionStd<StoreInfo> mergeToDelete = new ActionStdCommom<StoreInfo>(option, StoreVisiMergeToDelete.class);
-		ActionLazy<StoreInfo> enforceLChanged = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiEnforceLChanged.class);
-		ActionLazy<StoreInfo> enforceLChangedBy = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiMergeUsername.class);
-		ActionLazy<StoreInfo> update = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiDaoUpdate.class);
-		ActionLazy<StoreInfo> deleteCascade = new ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeDeleteCascade.class);			
+		ActionLazy<StoreInfo> enforceLChanged = new ActionLazyCommom<StoreInfo>(option, StoreVisiEnforceLChanged.class);
+		ActionLazy<StoreInfo> enforceLChangedBy = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeUsername.class);
+		ActionLazy<StoreInfo> update = new ActionLazyCommom<StoreInfo>(option, StoreVisiDaoUpdate.class);
+		ActionLazy<StoreInfo> deleteCascade = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeDeleteCascade.class);			
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

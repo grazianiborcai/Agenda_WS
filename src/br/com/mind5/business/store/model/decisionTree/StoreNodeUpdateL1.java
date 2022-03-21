@@ -40,7 +40,7 @@ public final class StoreNodeUpdateL1 extends DeciTreeTemplateWrite<StoreInfo> {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 
 		ActionStd<StoreInfo> mergeToUpdate = new ActionStdCommom<StoreInfo>(option, StoreVisiMergeToUpdate.class);
-		ActionLazy<StoreInfo> nodeL2 = new  ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiNodeUpdateL2.class);
+		ActionLazy<StoreInfo> nodeL2 = new  ActionLazyCommom<StoreInfo>(option, StoreVisiNodeUpdateL2.class);
 
 		mergeToUpdate.addPostAction(nodeL2);
 		

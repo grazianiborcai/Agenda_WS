@@ -46,7 +46,7 @@ public final class StoreNodeInsertComp extends DeciTreeTemplateWrite<StoreInfo> 
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
 		ActionStd<StoreInfo> enforceCompKey = new ActionStdCommom<StoreInfo>(option, StoreVisiEnforceCompKey.class);
-		ActionLazy<StoreInfo> insertComp = new  ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiCompInsert.class);
+		ActionLazy<StoreInfo> insertComp = new  ActionLazyCommom<StoreInfo>(option, StoreVisiCompInsert.class);
 		
 		enforceCompKey.addPostAction(insertComp);
 		

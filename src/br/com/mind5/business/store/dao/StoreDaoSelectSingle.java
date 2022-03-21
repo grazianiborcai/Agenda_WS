@@ -74,7 +74,7 @@ public final class StoreDaoSelectSingle extends DaoStmtTemplate<StoreInfo> {
 					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_COD_SNAPSHOT);
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, StoreDaoDbTableColumn.COL_CREATED_ON);
 					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_CREATED_BY);
-					dataInfo.isActive = DaoFormatter.sqlToBoole(stmtResult, StoreDaoDbTableColumn.COL_IS_ACTIVE);
+					dataInfo.isLocked = DaoFormatter.sqlToBoole(stmtResult, StoreDaoDbTableColumn.COL_IS_LOCKED);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

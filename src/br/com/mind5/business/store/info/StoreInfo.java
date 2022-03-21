@@ -26,7 +26,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public String txtCurr;
 	public String codTimezone;
 	public String txtTimezone;
-	public boolean isActive;
+	public boolean isLocked;
 	public AddressInfo addressData;
 	public List<PhoneInfo> phones;
 	public FimecoInfo fimecoData;
@@ -58,7 +58,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		personData = DefaultValue.object();
 		storacData = DefaultValue.object();
 		stefilonData = DefaultValue.object();
-		isActive = DefaultValue.boole();
+		isLocked = DefaultValue.boole();
 		addressData = DefaultValue.object();
 		phones = DefaultValue.list();
 		fimecoData = DefaultValue.object();

@@ -47,7 +47,7 @@ public final class StoreNodeUpdatePerson extends DeciTreeTemplateWrite<StoreInfo
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
 		ActionStd<StoreInfo> enforcePersonKey = new ActionStdCommom<StoreInfo>(option, StoreVisiEnforcePersonKey.class);
-		ActionLazy<StoreInfo> updatePerson = new  ActionLazyCommom<StoreInfo>(option.conn, option.schemaName, StoreVisiPersonUpdate.class);
+		ActionLazy<StoreInfo> updatePerson = new  ActionLazyCommom<StoreInfo>(option, StoreVisiPersonUpdate.class);
 		
 		enforcePersonKey.addPostAction(updatePerson);
 		
