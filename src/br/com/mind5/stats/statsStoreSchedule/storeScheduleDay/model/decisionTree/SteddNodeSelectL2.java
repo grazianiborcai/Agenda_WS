@@ -49,7 +49,7 @@ public final class SteddNodeSelectL2 extends DeciTreeTemplateWrite<SteddInfo> {
 		List<ActionStd<SteddInfo>> actions = new ArrayList<>();
 
 		ActionStd<SteddInfo> mergeSteddive = new ActionStdCommom<SteddInfo>(option, SteddVisiMergeSteddive.class);
-		ActionLazy<SteddInfo> insertSteddagr = new ActionLazyCommom<SteddInfo>(option.conn, option.schemaName, SteddVisiSteddagrInsert.class);
+		ActionLazy<SteddInfo> insertSteddagr = new ActionLazyCommom<SteddInfo>(option, SteddVisiSteddagrInsert.class);
 		
 		mergeSteddive.addPostAction(insertSteddagr);
 		
@@ -64,8 +64,8 @@ public final class SteddNodeSelectL2 extends DeciTreeTemplateWrite<SteddInfo> {
 		List<ActionStd<SteddInfo>> actions = new ArrayList<>();
 
 		ActionStd<SteddInfo> zerofy = new ActionStdCommom<SteddInfo>(option, SteddVisiEnforceZerofy.class);
-		ActionLazy<SteddInfo> mergeStolis = new ActionLazyCommom<SteddInfo>(option.conn, option.schemaName, SteddVisiMergeStolis.class);
-		ActionLazy<SteddInfo> insertSteddagr = new ActionLazyCommom<SteddInfo>(option.conn, option.schemaName, SteddVisiSteddagrInsert.class);
+		ActionLazy<SteddInfo> mergeStolis = new ActionLazyCommom<SteddInfo>(option, SteddVisiMergeStolis.class);
+		ActionLazy<SteddInfo> insertSteddagr = new ActionLazyCommom<SteddInfo>(option, SteddVisiSteddagrInsert.class);
 		
 		zerofy.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(insertSteddagr);

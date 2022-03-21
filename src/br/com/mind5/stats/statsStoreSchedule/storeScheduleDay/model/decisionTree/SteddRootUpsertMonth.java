@@ -49,8 +49,8 @@ public final class SteddRootUpsertMonth extends DeciTreeTemplateWrite<SteddInfo>
 
 
 		ActionStd<SteddInfo> enforceYearMonth = new ActionStdCommom<SteddInfo>(option, SteddVisiEnforceYearMonth.class);
-		ActionLazy<SteddInfo> mergeCalateMonth = new ActionLazyCommom<SteddInfo>(option.conn, option.schemaName, SteddVisiMergeCalateMonth.class);
-		ActionLazy<SteddInfo> upsert = new ActionLazyCommom<SteddInfo>(option.conn, option.schemaName, SteddVisiRootUpsert.class);	
+		ActionLazy<SteddInfo> mergeCalateMonth = new ActionLazyCommom<SteddInfo>(option, SteddVisiMergeCalateMonth.class);
+		ActionLazy<SteddInfo> upsert = new ActionLazyCommom<SteddInfo>(option, SteddVisiRootUpsert.class);	
 		
 		enforceYearMonth.addPostAction(mergeCalateMonth);
 		mergeCalateMonth.addPostAction(upsert);

@@ -49,8 +49,8 @@ public final class SteddRootSelectMonth extends DeciTreeTemplateWrite<SteddInfo>
 
 
 		ActionStd<SteddInfo> enforceYearMonth = new ActionStdCommom<SteddInfo>(option, SteddVisiEnforceYearMonth.class);
-		ActionLazy<SteddInfo> mergeCalateMonth = new ActionLazyCommom<SteddInfo>(option.conn, option.schemaName, SteddVisiMergeCalateMonth.class);
-		ActionLazy<SteddInfo> select = new ActionLazyCommom<SteddInfo>(option.conn, option.schemaName, SteddVisiRootSelect.class);	
+		ActionLazy<SteddInfo> mergeCalateMonth = new ActionLazyCommom<SteddInfo>(option, SteddVisiMergeCalateMonth.class);
+		ActionLazy<SteddInfo> select = new ActionLazyCommom<SteddInfo>(option, SteddVisiRootSelect.class);	
 		
 		enforceYearMonth.addPostAction(mergeCalateMonth);
 		mergeCalateMonth.addPostAction(select);
