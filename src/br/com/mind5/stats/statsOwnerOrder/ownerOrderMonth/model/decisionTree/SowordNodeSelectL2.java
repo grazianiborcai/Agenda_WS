@@ -48,7 +48,7 @@ public final class SowordNodeSelectL2 extends DeciTreeTemplateWrite<SowordInfo> 
 		List<ActionStd<SowordInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowordInfo> mergeSowordive = new ActionStdCommom<SowordInfo>(option, SowordVisiMergeSowordive.class);
-		ActionLazy<SowordInfo> insertSowordagr = new ActionLazyCommom<SowordInfo>(option.conn, option.schemaName, SowordVisiSowordagrInsert.class);
+		ActionLazy<SowordInfo> insertSowordagr = new ActionLazyCommom<SowordInfo>(option, SowordVisiSowordagrInsert.class);
 		
 		mergeSowordive.addPostAction(insertSowordagr);
 		
@@ -63,7 +63,7 @@ public final class SowordNodeSelectL2 extends DeciTreeTemplateWrite<SowordInfo> 
 		List<ActionStd<SowordInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowordInfo> zerofy = new ActionStdCommom<SowordInfo>(option, SowordVisiEnforceZerofy.class);
-		ActionLazy<SowordInfo> insertSowordagr = new ActionLazyCommom<SowordInfo>(option.conn, option.schemaName, SowordVisiSowordagrInsert.class);
+		ActionLazy<SowordInfo> insertSowordagr = new ActionLazyCommom<SowordInfo>(option, SowordVisiSowordagrInsert.class);
 		
 		zerofy.addPostAction(insertSowordagr);
 		

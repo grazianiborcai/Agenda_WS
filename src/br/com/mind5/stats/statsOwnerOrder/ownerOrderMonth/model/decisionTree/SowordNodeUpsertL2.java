@@ -48,7 +48,7 @@ public final class SowordNodeUpsertL2 extends DeciTreeTemplateWrite<SowordInfo> 
 		List<ActionStd<SowordInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowordInfo> mergeSowordive = new ActionStdCommom<SowordInfo>(option, SowordVisiMergeSowordive.class);
-		ActionLazy<SowordInfo> upsertSowordagr = new ActionLazyCommom<SowordInfo>(option.conn, option.schemaName, SowordVisiSowordagrUpsert.class);
+		ActionLazy<SowordInfo> upsertSowordagr = new ActionLazyCommom<SowordInfo>(option, SowordVisiSowordagrUpsert.class);
 		
 		mergeSowordive.addPostAction(upsertSowordagr);
 		
@@ -63,7 +63,7 @@ public final class SowordNodeUpsertL2 extends DeciTreeTemplateWrite<SowordInfo> 
 		List<ActionStd<SowordInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowordInfo> zerofy = new ActionStdCommom<SowordInfo>(option, SowordVisiEnforceZerofy.class);
-		ActionLazy<SowordInfo> upsertSowordagr = new ActionLazyCommom<SowordInfo>(option.conn, option.schemaName, SowordVisiSowordagrUpsert.class);
+		ActionLazy<SowordInfo> upsertSowordagr = new ActionLazyCommom<SowordInfo>(option, SowordVisiSowordagrUpsert.class);
 		
 		zerofy.addPostAction(upsertSowordagr);
 		
