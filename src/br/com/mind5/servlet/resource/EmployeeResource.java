@@ -18,7 +18,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.mind5.business.employee.info.EmpInfo;
+import br.com.mind5.business.employee.model.EmpModelActivate;
 import br.com.mind5.business.employee.model.EmpModelDelete;
+import br.com.mind5.business.employee.model.EmpModelInactivate;
 import br.com.mind5.business.employee.model.EmpModelInsert;
 import br.com.mind5.business.employee.model.EmpModelSelect;
 import br.com.mind5.business.employee.model.EmpModelUpdate;
@@ -52,6 +54,8 @@ import br.com.mind5.model.Model;
 
 @Path("/Employee")
 public class EmployeeResource {
+	private static final String ACTIVATE_EMP = "/activateEmployee";
+	private static final String INACTIVATE_EMP = "/inactivateEmployee";	
 	private static final String INSERT_EMP = "/insertEmployee";
 	private static final String UPDATE_EMP = "/updateEmployee";
 	private static final String DELETE_EMP = "/deleteEmployee";
@@ -78,6 +82,54 @@ public class EmployeeResource {
 	private static final String INSERT_EMP_MATERIAL = "/insertMaterial";
 	private static final String DELETE_EMP_MATERIAL = "/deleteMaterial";
 	private static final String SELECT_EMP_WT_OUTLIER = "/selectWorkTimeOutlier";
+	
+	
+	
+	@GET
+	@Path(ACTIVATE_EMP)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response activateEmployee(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner,
+								     @HeaderParam("codEmployee") 	@DefaultValue("-1") int codEmployee,
+								     @HeaderParam("codLanguage")	@DefaultValue("EN") String codLanguage,
+				                     @HeaderParam("TOKEN_USERNAME") String username) {
+		
+		EmpInfo recordInfo = new EmpInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		Model model = new EmpModelActivate(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
+	@Path(INACTIVATE_EMP)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response inactivateEmployee(@HeaderParam("TOKEN_OWNER") 		@DefaultValue("-1") long codOwner,
+								       @HeaderParam("codEmployee") 		@DefaultValue("-1") int codEmployee,
+								       @HeaderParam("codLanguage")		@DefaultValue("EN") String codLanguage,
+				                       @HeaderParam("TOKEN_USERNAME") 	String username) {
+		
+		EmpInfo recordInfo = new EmpInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		Model model = new EmpModelInactivate(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}
 	
 	
 	

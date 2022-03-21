@@ -18,6 +18,7 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 	public long codStore;	
 	public long codPerson;	
 	public long codUser;
+	public boolean isLocked;
 	public PersonInfo personData;
 	public PersonInfo personDataUser;
 	public FimistInfo fimistData;
@@ -43,6 +44,7 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 		codSnapshot = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		personDataUser = DefaultValue.object();
+		isLocked = DefaultValue.boole();
 		codUser = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		personData = DefaultValue.object();

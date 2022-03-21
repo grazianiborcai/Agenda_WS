@@ -95,7 +95,9 @@
         <security:intercept-url pattern="/**/Material/deleteMaterial" 				access="hasAuthority('MATERIAL_WRITE')" 			/>
         <security:intercept-url pattern="/**/Material/selectMaterial" 				access="isAuthenticated()" 							/>  <!-- TODO: rever --> 
         <security:intercept-url pattern="/**/Material/searchMaterial" 				access="isAuthenticated()" 							/>
-        <security:intercept-url pattern="/**/Material/selectMaterialCatalogue" 		access="isAuthenticated()" 							/> 
+        <security:intercept-url pattern="/**/Material/selectMaterialCatalogue" 		access="isAuthenticated()" 							/>        
+        <security:intercept-url pattern="/**/Employee/activateEmployee"				access="hasAuthority('EMPLOYEE_WRITE')"				/>
+        <security:intercept-url pattern="/**/Employee/inactivateEmployee"			access="hasAuthority('EMPLOYEE_WRITE')"				/>        
         <security:intercept-url pattern="/**/Employee/selectEmployee" 				access="hasAuthority('EMPLOYEE_READ')" 				/>
         <security:intercept-url pattern="/**/Employee/searchEmployee" 				access="hasAuthority('EMPLOYEE_READ')" 				/>
         <security:intercept-url pattern="/**/Employee/insertEmployee"				access="hasAuthority('EMPLOYEE_WRITE')"				/>

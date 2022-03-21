@@ -72,6 +72,7 @@ public final class EmpDaoSelectSingle extends DaoStmtTemplate<EmpInfo> {
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, EmpDaoDbTableColumn.COL_LAST_CHANGED_BY);	
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, EmpDaoDbTableColumn.COL_CREATED_ON);
 					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, EmpDaoDbTableColumn.COL_CREATED_BY);
+					dataInfo.isLocked = stmtResult.getBoolean(EmpDaoDbTableColumn.COL_IS_LOCKED);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
