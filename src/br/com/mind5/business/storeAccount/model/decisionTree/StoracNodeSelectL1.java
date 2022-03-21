@@ -48,7 +48,7 @@ public final class StoracNodeSelectL1 extends DeciTreeTemplateWrite<StoracInfo> 
 		List<ActionStd<StoracInfo>> actions = new ArrayList<>();
 
 		ActionStd<StoracInfo> enforceHasPartner = new ActionStdCommom<StoracInfo>(option, StoracVisiEnforceHasPartner.class);
-		ActionLazy<StoracInfo> enforceAccountCompleted = new ActionLazyCommom<StoracInfo>(option.conn, option.schemaName, StoracVisiEnforceAccountCompleted.class);
+		ActionLazy<StoracInfo> enforceAccountCompleted = new ActionLazyCommom<StoracInfo>(option, StoracVisiEnforceAccountCompleted.class);
 		
 		actions.add(enforceHasPartner);
 		enforceHasPartner.addPostAction(enforceAccountCompleted);
