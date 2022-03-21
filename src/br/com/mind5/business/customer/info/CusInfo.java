@@ -59,7 +59,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 		personDataUser = DefaultValue.object();
 		fimistData = DefaultValue.object();
 		fimistDataUser = DefaultValue.object();
-		pets = DefaultValue.object();
+		pets = DefaultValue.list();
 		createdBy = DefaultValue.number();
 	}
 	
