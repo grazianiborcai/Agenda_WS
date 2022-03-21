@@ -23,7 +23,7 @@ public final class CusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusVisiMergeOrdemist());
+		builder.addVisitor(new CusMergerVisiOrdemist());
 		InfoMerger<CusInfo, OrdemistInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -36,7 +36,7 @@ public final class CusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusVisiMergeSytotauh());
+		builder.addVisitor(new CusMergerVisiSytotauh());
 		InfoMerger<CusInfo, SytotauhInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -49,7 +49,7 @@ public final class CusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusVisiMergeUserarch());
+		builder.addVisitor(new CusMergerVisiUserarch());
 		InfoMerger<CusInfo, UserarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -62,7 +62,7 @@ public final class CusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusVisiMergeFimist());
+		builder.addVisitor(new CusMergerVisiFimist());
 		InfoMerger<CusInfo, FimistInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -75,7 +75,7 @@ public final class CusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusVisiMergeCusnap());
+		builder.addVisitor(new CusMergerVisiCusnap());
 		InfoMerger<CusInfo, CusnapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -88,7 +88,7 @@ public final class CusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusVisiMergeAddress());
+		builder.addVisitor(new CusMergerVisiAddress());
 		InfoMerger<CusInfo, AddressInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -101,7 +101,7 @@ public final class CusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusVisiMergeCusarch());
+		builder.addVisitor(new CusMergerVisiCusarch());
 		InfoMerger<CusInfo, CusarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -114,7 +114,7 @@ public final class CusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusVisiMergePerson());
+		builder.addVisitor(new CusMergerVisiPerson());
 		InfoMerger<CusInfo, PersonInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -127,7 +127,7 @@ public final class CusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusVisiMergePhone());
+		builder.addVisitor(new CusMergerVisiPhone());
 		InfoMerger<CusInfo, PhoneInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -140,7 +140,7 @@ public final class CusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusVisiMergeUser());
+		builder.addVisitor(new CusMergerVisiUser());
 		InfoMerger<CusInfo, UserInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -153,7 +153,7 @@ public final class CusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusVisiMergeUsername());
+		builder.addVisitor(new CusMergerVisiUsername());
 		InfoMerger<CusInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -166,7 +166,7 @@ public final class CusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusVisiMergeToDelete());
+		builder.addVisitor(new CusMergerVisiToDelete());
 		InfoMerger<CusInfo, CusInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -179,7 +179,7 @@ public final class CusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusVisiMergeToSelect());
+		builder.addVisitor(new CusMergerVisiToSelect());
 		InfoMerger<CusInfo, CusInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -192,7 +192,7 @@ public final class CusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusVisiMergeToUpdate());
+		builder.addVisitor(new CusMergerVisiToUpdate());
 		InfoMerger<CusInfo, CusInfo> merger = builder.build();		
 	
 		return merger.merge();

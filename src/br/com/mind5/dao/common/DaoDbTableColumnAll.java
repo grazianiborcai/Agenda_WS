@@ -26,7 +26,7 @@ import br.com.mind5.business.companyConflict.dao.DaoCompcoDbTableColumn;
 import br.com.mind5.business.companyList.dao.DaoComplisDbTableColumn;
 import br.com.mind5.business.companySearch.dao.DaoComparchDbTableColumn;
 import br.com.mind5.business.companySnapshot.dao.DaoCompnapDbTableColumn;
-import br.com.mind5.business.customer.dao.DaoCusDbTableColumn;
+import br.com.mind5.business.customer.dao.CusDaoDbTableColumn;
 import br.com.mind5.business.customerList.dao.DaoCuslisDbTableColumn;
 import br.com.mind5.business.customerSearch.dao.DaoCusarchDbTableColumn;
 import br.com.mind5.business.customerSnapshot.dao.DaoCusnapDbTableColumn;
@@ -313,7 +313,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new EmpDaoDbTableColumn());
 		addTable(new EmpnapDaoDbTableColumn());
 		addTable(new DaoEmplisDbTableColumn());
-		addTable(new DaoCusDbTableColumn());
+		addTable(new CusDaoDbTableColumn());
 		addTable(new DaoOwnerDbTableColumn());
 		addTable(new DaoMatoreDbTableColumn());
 		addTable(new DaoCartDbTableColumn());
