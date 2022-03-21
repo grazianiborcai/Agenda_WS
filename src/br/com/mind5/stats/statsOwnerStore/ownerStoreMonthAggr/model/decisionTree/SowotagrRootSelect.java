@@ -64,8 +64,8 @@ public final class SowotagrRootSelect extends DeciTreeTemplateWrite<SowotagrInfo
 		List<ActionStd<SowotagrInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowotagrInfo> select = new ActionStdCommom<SowotagrInfo>(option, SowotagrVisiMergeToSelect.class);
-		ActionLazy<SowotagrInfo> mergeState = new ActionLazyCommom<SowotagrInfo>(option.conn, option.schemaName, SowotagrVisiMergeState.class);
-		ActionLazy<SowotagrInfo> mergeCalonth = new ActionLazyCommom<SowotagrInfo>(option.conn, option.schemaName, SowotagrVisiMergeCalonth.class);
+		ActionLazy<SowotagrInfo> mergeState = new ActionLazyCommom<SowotagrInfo>(option, SowotagrVisiMergeState.class);
+		ActionLazy<SowotagrInfo> mergeCalonth = new ActionLazyCommom<SowotagrInfo>(option, SowotagrVisiMergeCalonth.class);
 		
 		select.addPostAction(mergeState);
 		mergeState.addPostAction(mergeCalonth);

@@ -41,7 +41,7 @@ public final class SowotagrRootSelectMonth extends DeciTreeTemplateWrite<Sowotag
 		List<ActionStd<SowotagrInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowotagrInfo> mergeSowotarchMonth = new ActionStdCommom<SowotagrInfo>(option, SowotagrVisiMergeSowotarchMonth.class);
-		ActionLazy<SowotagrInfo> select = new ActionLazyCommom<SowotagrInfo>(option.conn, option.schemaName, SowotagrVisiRootSelect.class);
+		ActionLazy<SowotagrInfo> select = new ActionLazyCommom<SowotagrInfo>(option, SowotagrVisiRootSelect.class);
 		
 		mergeSowotarchMonth.addPostAction(select);
 		
