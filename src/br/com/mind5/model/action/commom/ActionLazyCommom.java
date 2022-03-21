@@ -15,6 +15,15 @@ public final class ActionLazyCommom<T extends InfoRecord> extends ActionLazyTemp
 	private final Class<? extends ActionVisitor<T>> visitorClass;
 	
 
+	public ActionLazyCommom(DeciTreeOption<T> option, Class<? extends ActionVisitor<T>> actionVisitorClazz) {
+		super(option);
+		
+		checkArgument(actionVisitorClazz);
+		visitorClass = actionVisitorClazz;
+	}
+	
+	
+	
 	public ActionLazyCommom(Connection conn, String schemaName, Class<? extends ActionVisitor<T>> actionVisitorClazz) {
 		super(conn, schemaName);
 		

@@ -25,6 +25,16 @@ public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRec
 	private List<ActionLazy<T>> postActions;
 	
 	
+	public ActionLazyTemplate(DeciTreeOption<T> option) {
+		checkArgument(option);
+		
+		this.conn = option.conn;
+		this.schemaName = option.schemaName;
+		this.postActions = new ArrayList<>();
+	}
+	
+	
+	
 	public ActionLazyTemplate(Connection conn, String schemaName) {
 		checkArgument(conn, schemaName);
 		
@@ -271,6 +281,17 @@ public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRec
 			logException(new IllegalStateException(SystemMessage.OBJECT_IS_CLOSED));
 			throw new IllegalStateException(SystemMessage.OBJECT_IS_CLOSED);
 		}
+	}
+	
+	
+	
+	private void checkArgument(DeciTreeOption<T> option) {
+		if (option == null) {
+			logException(new NullPointerException("option" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		checkArgument(option.conn, option.schemaName);
 	}
 	
 	
