@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.business.employee.model.action.EmpVisiDaoUpdate;
-import br.com.mind5.business.employee.model.action.EmpVisiEnforceLChanged;
 import br.com.mind5.business.employee.model.action.EmpVisiEnforceLockedOff;
 import br.com.mind5.business.employee.model.action.EmpVisiMergeToSelect;
-import br.com.mind5.business.employee.model.action.EmpVisiMergeUsername;
-import br.com.mind5.business.employee.model.action.EmpVisiNodeSytotauh;
+import br.com.mind5.business.employee.model.action.EmpVisiNodeUpdateLock;
 import br.com.mind5.business.employee.model.checker.EmpCheckExist;
 import br.com.mind5.business.employee.model.checker.EmpCheckLangu;
 import br.com.mind5.business.employee.model.checker.EmpCheckOwner;
@@ -74,17 +71,11 @@ public final class EmpRootActivate extends DeciTreeTemplateWrite<EmpInfo> {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 
 		ActionStd<EmpInfo> mergeToSelect = new ActionStdCommom<EmpInfo>(option, EmpVisiMergeToSelect.class);
-		ActionLazy<EmpInfo> nodeSytotauh = new ActionLazyCommom<EmpInfo>(option.conn, option.schemaName, EmpVisiNodeSytotauh.class);
-		ActionLazy<EmpInfo> enforceLockedOff = new ActionLazyCommom<EmpInfo>(option.conn, option.schemaName, EmpVisiEnforceLockedOff.class);
-		ActionLazy<EmpInfo> enforceLChanged = new ActionLazyCommom<EmpInfo>(option, EmpVisiEnforceLChanged.class);
-		ActionLazy<EmpInfo> enforceLChangedBy = new ActionLazyCommom<EmpInfo>(option, EmpVisiMergeUsername.class);
-		ActionLazy<EmpInfo> updateEmployee = new ActionLazyCommom<EmpInfo>(option, EmpVisiDaoUpdate.class);
+		ActionLazy<EmpInfo> enforceLockedOff = new ActionLazyCommom<EmpInfo>(option, EmpVisiEnforceLockedOff.class);
+		ActionLazy<EmpInfo> nodeUpdateLock = new ActionLazyCommom<EmpInfo>(option, EmpVisiNodeUpdateLock.class);
 		
-		mergeToSelect.addPostAction(nodeSytotauh);
-		nodeSytotauh.addPostAction(enforceLockedOff);
-		enforceLockedOff.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(updateEmployee);
+		mergeToSelect.addPostAction(enforceLockedOff);
+		enforceLockedOff.addPostAction(nodeUpdateLock);
 		
 		actions.add(mergeToSelect);
 		return actions;
