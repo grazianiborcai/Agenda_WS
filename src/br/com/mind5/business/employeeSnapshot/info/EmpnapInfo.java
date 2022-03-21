@@ -18,6 +18,7 @@ public final class EmpnapInfo extends InfoRecord implements Cloneable {
 	public long codPerson;
 	public long codPersonSnapshot;
 	public long codUser;
+	public boolean isLocked;
 	public long codUserSnapshot;
 	public String codEntityCateg;
 	public char codUserCategory;
@@ -43,6 +44,7 @@ public final class EmpnapInfo extends InfoRecord implements Cloneable {
 		codPerson = DefaultValue.number();
 		codPersonSnapshot = DefaultValue.number();
 		codUser = DefaultValue.number();
+		isLocked = DefaultValue.boole();
 		codUserSnapshot = DefaultValue.number();
 		codUserCategory = DefaultValue.character();
 		recordMode = DefaultValue.recordMode();

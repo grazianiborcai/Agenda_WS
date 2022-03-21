@@ -74,6 +74,7 @@ public final class EmpnapDaoSelectSingle extends DaoStmtTemplate<EmpnapInfo> {
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, EmpnapDaoDbTableColumn.COL_LAST_CHANGED_BY);		
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, EmpnapDaoDbTableColumn.COL_CREATED_ON);
 					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, EmpnapDaoDbTableColumn.COL_CREATED_BY);
+					dataInfo.isLocked = stmtResult.getBoolean(EmpnapDaoDbTableColumn.COL_IS_LOCKED);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
