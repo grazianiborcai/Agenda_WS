@@ -47,7 +47,7 @@ public final class SowotarchRootSelectMonth extends DeciTreeTemplateWrite<Sowota
 		List<ActionStd<SowotarchInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowotarchInfo> enforceCalmonth = new ActionStdCommom<SowotarchInfo>(option, SowotarchVisiEnforceCalmonth.class);
-		ActionLazy<SowotarchInfo> select = new ActionLazyCommom<SowotarchInfo>(option.conn, option.schemaName, SowotarchVisiRootSelect.class);
+		ActionLazy<SowotarchInfo> select = new ActionLazyCommom<SowotarchInfo>(option, SowotarchVisiRootSelect.class);
 		
 		enforceCalmonth.addPostAction(select);
 		
