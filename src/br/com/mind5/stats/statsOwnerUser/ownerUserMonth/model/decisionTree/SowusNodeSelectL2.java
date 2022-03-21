@@ -48,7 +48,7 @@ public final class SowusNodeSelectL2 extends DeciTreeTemplateWrite<SowusInfo> {
 		List<ActionStd<SowusInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowusInfo> mergeSowusive = new ActionStdCommom<SowusInfo>(option, SowusVisiMergeSowusive.class);
-		ActionLazy<SowusInfo> insertSowusagr = new ActionLazyCommom<SowusInfo>(option.conn, option.schemaName, SowusVisiSowusagrInsert.class);
+		ActionLazy<SowusInfo> insertSowusagr = new ActionLazyCommom<SowusInfo>(option, SowusVisiSowusagrInsert.class);
 		
 		mergeSowusive.addPostAction(insertSowusagr);
 		
@@ -63,7 +63,7 @@ public final class SowusNodeSelectL2 extends DeciTreeTemplateWrite<SowusInfo> {
 		List<ActionStd<SowusInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowusInfo> zerofy = new ActionStdCommom<SowusInfo>(option, SowusVisiEnforceZerofy.class);
-		ActionLazy<SowusInfo> insertSowusagr = new ActionLazyCommom<SowusInfo>(option.conn, option.schemaName, SowusVisiSowusagrInsert.class);
+		ActionLazy<SowusInfo> insertSowusagr = new ActionLazyCommom<SowusInfo>(option, SowusVisiSowusagrInsert.class);
 		
 		zerofy.addPostAction(insertSowusagr);
 		
