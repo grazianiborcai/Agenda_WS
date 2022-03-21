@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
 import br.com.mind5.business.pet.model.action.PetVisiDaoUpdate;
-import br.com.mind5.business.pet.model.action.PetVisiInsertPetsnap;
+import br.com.mind5.business.pet.model.action.PetVisiPetsnapInsert;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -39,7 +39,7 @@ public final class PetNodeSnapshot extends DeciTreeTemplateWrite<PetInfo> {
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnPassedHook(DeciTreeOption<PetInfo> option) {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PetInfo> insertPetsnap = new ActionStdCommom<PetInfo>(option, PetVisiInsertPetsnap.class);		
+		ActionStd<PetInfo> insertPetsnap = new ActionStdCommom<PetInfo>(option, PetVisiPetsnapInsert.class);		
 		ActionLazy<PetInfo> update = new ActionLazyCommom<PetInfo>(option, PetVisiDaoUpdate.class);	
 		
 		insertPetsnap.addPostAction(update);

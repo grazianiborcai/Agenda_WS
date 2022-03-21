@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PetVisiInsertPetsnap extends ActionVisitorTemplateAction<PetInfo, PetsnapInfo> {
+public final class PetVisiPetsnapInsert extends ActionVisitorTemplateAction<PetInfo, PetsnapInfo> {
 
-	public PetVisiInsertPetsnap(DeciTreeOption<PetInfo> option) {
+	public PetVisiPetsnapInsert(DeciTreeOption<PetInfo> option) {
 		super(option, PetInfo.class, PetsnapInfo.class);
 	}
 	
