@@ -48,8 +48,8 @@ public final class SowotRootSelectLtm extends DeciTreeTemplateWrite<SowotInfo> {
 		List<ActionStd<SowotInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowotInfo> mergeStolis = new ActionStdCommom<SowotInfo>(option, SowotVisiMergeStolis.class);
-		ActionLazy<SowotInfo> mergeCalonthLtm = new ActionLazyCommom<SowotInfo>(option.conn, option.schemaName, SowotVisiMergeCalonthLtm.class);
-		ActionLazy<SowotInfo> select = new ActionLazyCommom<SowotInfo>(option.conn, option.schemaName, SowotVisiRootSelect.class);
+		ActionLazy<SowotInfo> mergeCalonthLtm = new ActionLazyCommom<SowotInfo>(option, SowotVisiMergeCalonthLtm.class);
+		ActionLazy<SowotInfo> select = new ActionLazyCommom<SowotInfo>(option, SowotVisiRootSelect.class);
 		
 		mergeStolis.addPostAction(mergeCalonthLtm);
 		mergeCalonthLtm.addPostAction(select);

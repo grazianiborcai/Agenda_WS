@@ -41,7 +41,7 @@ public final class SowotNodeUpsertL1 extends DeciTreeTemplateWrite<SowotInfo> {
 		List<ActionStd<SowotInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowotInfo> mergeStolis = new ActionStdCommom<SowotInfo>(option, SowotVisiMergeStolis.class);
-		ActionLazy<SowotInfo> nodeL1 = new ActionLazyCommom<SowotInfo>(option.conn, option.schemaName, SowotVisiNodeUpsertL2.class);
+		ActionLazy<SowotInfo> nodeL1 = new ActionLazyCommom<SowotInfo>(option, SowotVisiNodeUpsertL2.class);
 		
 		mergeStolis.addPostAction(nodeL1);
 		

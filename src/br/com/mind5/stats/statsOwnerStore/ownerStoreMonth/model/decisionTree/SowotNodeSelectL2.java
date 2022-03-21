@@ -48,7 +48,7 @@ public final class SowotNodeSelectL2 extends DeciTreeTemplateWrite<SowotInfo> {
 		List<ActionStd<SowotInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowotInfo> mergeSowotive = new ActionStdCommom<SowotInfo>(option, SowotVisiMergeSowotive.class);
-		ActionLazy<SowotInfo> insertSowotagr = new ActionLazyCommom<SowotInfo>(option.conn, option.schemaName, SowotVisiSowotagrInsert.class);
+		ActionLazy<SowotInfo> insertSowotagr = new ActionLazyCommom<SowotInfo>(option, SowotVisiSowotagrInsert.class);
 		
 		mergeSowotive.addPostAction(insertSowotagr);
 		
@@ -63,7 +63,7 @@ public final class SowotNodeSelectL2 extends DeciTreeTemplateWrite<SowotInfo> {
 		List<ActionStd<SowotInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowotInfo> zerofy = new ActionStdCommom<SowotInfo>(option, SowotVisiEnforceZerofy.class);
-		ActionLazy<SowotInfo> insertSowotagr = new ActionLazyCommom<SowotInfo>(option.conn, option.schemaName, SowotVisiSowotagrInsert.class);
+		ActionLazy<SowotInfo> insertSowotagr = new ActionLazyCommom<SowotInfo>(option, SowotVisiSowotagrInsert.class);
 		
 		zerofy.addPostAction(insertSowotagr);
 		
