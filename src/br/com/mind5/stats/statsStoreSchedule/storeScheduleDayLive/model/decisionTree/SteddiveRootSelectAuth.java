@@ -69,7 +69,7 @@ public final class SteddiveRootSelectAuth extends DeciTreeTemplateWrite<Steddive
 		List<ActionStd<SteddiveInfo>> actions = new ArrayList<>();
 
 		ActionStd<SteddiveInfo> auth = new SteddiveNodeAuthL1(option).toAction();
-		ActionLazy<SteddiveInfo> select = new ActionLazyCommom<SteddiveInfo>(option.conn, option.schemaName, SteddiveVisiRootSelect.class);
+		ActionLazy<SteddiveInfo> select = new ActionLazyCommom<SteddiveInfo>(option, SteddiveVisiRootSelect.class);
 		
 		auth.addPostAction(select);
 		

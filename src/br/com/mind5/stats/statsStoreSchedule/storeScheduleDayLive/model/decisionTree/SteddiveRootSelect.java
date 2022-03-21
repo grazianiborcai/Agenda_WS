@@ -73,9 +73,9 @@ public final class SteddiveRootSelect extends DeciTreeTemplateWrite<SteddiveInfo
 		List<ActionStd<SteddiveInfo>> actions = new ArrayList<>();
 
 		ActionStd<SteddiveInfo> select = new ActionStdCommom<SteddiveInfo>(option, SteddiveVisiMergeToSelect.class);
-		ActionLazy<SteddiveInfo> enforceLChanged = new ActionLazyCommom<SteddiveInfo>(option.conn, option.schemaName, SteddiveVisiEnforceLChanged.class);
-		ActionLazy<SteddiveInfo> mergeState = new ActionLazyCommom<SteddiveInfo>(option.conn, option.schemaName, SteddiveVisiMergeState.class);
-		ActionLazy<SteddiveInfo> mergeCalate = new ActionLazyCommom<SteddiveInfo>(option.conn, option.schemaName, SteddiveVisiMergeCalate.class);		
+		ActionLazy<SteddiveInfo> enforceLChanged = new ActionLazyCommom<SteddiveInfo>(option, SteddiveVisiEnforceLChanged.class);
+		ActionLazy<SteddiveInfo> mergeState = new ActionLazyCommom<SteddiveInfo>(option, SteddiveVisiMergeState.class);
+		ActionLazy<SteddiveInfo> mergeCalate = new ActionLazyCommom<SteddiveInfo>(option, SteddiveVisiMergeCalate.class);		
 		
 		select.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeState);
