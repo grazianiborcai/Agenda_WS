@@ -65,9 +65,9 @@ public final class BostowRootUpsertL2m extends DeciTreeTemplateRead<BostowInfo> 
 		List<ActionStd<BostowInfo>> actions = new ArrayList<>();
 
 		ActionStd<BostowInfo> mergeDaemon = new ActionStdCommom<BostowInfo>(option, BostowVisiMergeDaemon.class);
-		ActionLazy<BostowInfo> mergeStolis = new ActionLazyCommom<BostowInfo>(option.conn, option.schemaName, BostowVisiMergeStolis.class);
-		ActionLazy<BostowInfo> mergeCalonth = new ActionLazyCommom<BostowInfo>(option.conn, option.schemaName, BostowVisiMergeCalonthL2m.class);
-		ActionLazy<BostowInfo> upsert = new ActionLazyCommom<BostowInfo>(option.conn, option.schemaName, BostowVisiRootUpsertMonth.class);
+		ActionLazy<BostowInfo> mergeStolis = new ActionLazyCommom<BostowInfo>(option, BostowVisiMergeStolis.class);
+		ActionLazy<BostowInfo> mergeCalonth = new ActionLazyCommom<BostowInfo>(option, BostowVisiMergeCalonthL2m.class);
+		ActionLazy<BostowInfo> upsert = new ActionLazyCommom<BostowInfo>(option, BostowVisiRootUpsertMonth.class);
 		
 		mergeDaemon.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeCalonth);
