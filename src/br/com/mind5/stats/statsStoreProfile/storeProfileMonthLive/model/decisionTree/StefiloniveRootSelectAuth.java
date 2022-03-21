@@ -69,7 +69,7 @@ public final class StefiloniveRootSelectAuth extends DeciTreeTemplateWrite<Stefi
 		List<ActionStd<StefiloniveInfo>> actions = new ArrayList<>();
 
 		ActionStd<StefiloniveInfo> auth = new StefiloniveNodeAuthL1(option).toAction();
-		ActionLazy<StefiloniveInfo> select = new ActionLazyCommom<StefiloniveInfo>(option.conn, option.schemaName, StefiloniveVisiRootSelect.class);
+		ActionLazy<StefiloniveInfo> select = new ActionLazyCommom<StefiloniveInfo>(option, StefiloniveVisiRootSelect.class);
 		
 		auth.addPostAction(select);
 		

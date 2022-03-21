@@ -72,8 +72,8 @@ public final class StefiloniveRootSelect extends DeciTreeTemplateWrite<Stefiloni
 		List<ActionStd<StefiloniveInfo>> actions = new ArrayList<>();
 
 		ActionStd<StefiloniveInfo> select = new ActionStdCommom<StefiloniveInfo>(option, StefiloniveVisiMergeToSelect.class);
-		ActionLazy<StefiloniveInfo> enforceLChanged = new ActionLazyCommom<StefiloniveInfo>(option.conn, option.schemaName, StefiloniveVisiEnforceLChanged.class);
-		ActionLazy<StefiloniveInfo> mergeCalonth = new ActionLazyCommom<StefiloniveInfo>(option.conn, option.schemaName, StefiloniveVisiMergeCalonth.class);		
+		ActionLazy<StefiloniveInfo> enforceLChanged = new ActionLazyCommom<StefiloniveInfo>(option, StefiloniveVisiEnforceLChanged.class);
+		ActionLazy<StefiloniveInfo> mergeCalonth = new ActionLazyCommom<StefiloniveInfo>(option, StefiloniveVisiMergeCalonth.class);		
 		
 		select.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeCalonth);
