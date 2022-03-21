@@ -20,7 +20,7 @@ public final class PetMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetVisiMergeUsername());
+		builder.addVisitor(new PetMergerVisiUsername());
 		InfoMerger<PetInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -33,7 +33,7 @@ public final class PetMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetVisiMergeCusarch());
+		builder.addVisitor(new PetMergerVisiCusarch());
 		InfoMerger<PetInfo, CusarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -45,7 +45,7 @@ public final class PetMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetVisiMergeSytotauh());
+		builder.addVisitor(new PetMergerVisiSytotauh());
 		InfoMerger<PetInfo, SytotauhInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -57,7 +57,7 @@ public final class PetMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetVisiMergePetarch());
+		builder.addVisitor(new PetMergerVisiPetarch());
 		InfoMerger<PetInfo, PetarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -69,7 +69,7 @@ public final class PetMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetVisiMergePetault());
+		builder.addVisitor(new PetMergerVisiPetault());
 		InfoMerger<PetInfo, PetaultInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -81,7 +81,7 @@ public final class PetMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetVisiMergeCuslis());
+		builder.addVisitor(new PetMergerVisiCuslis());
 		InfoMerger<PetInfo, CuslisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -94,7 +94,7 @@ public final class PetMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetVisiMergePetype());
+		builder.addVisitor(new PetMergerVisiPetype());
 		InfoMerger<PetInfo, PetypeInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -107,7 +107,7 @@ public final class PetMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetVisiMergePeteight());
+		builder.addVisitor(new PetMergerVisiPeteight());
 		InfoMerger<PetInfo, PeteightInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -120,7 +120,7 @@ public final class PetMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetVisiMergePetsnap());
+		builder.addVisitor(new PetMergerVisiPetsnap());
 		InfoMerger<PetInfo, PetsnapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -133,7 +133,7 @@ public final class PetMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetVisiMergeToSelect());
+		builder.addVisitor(new PetMergerVisiToSelect());
 		InfoMerger<PetInfo, PetInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -146,7 +146,7 @@ public final class PetMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetVisiMergeToSelectAuth());
+		builder.addVisitor(new PetMergerVisiToSelectAuth());
 		InfoMerger<PetInfo, PetInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -159,7 +159,7 @@ public final class PetMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetVisiMergeToUpdate());
+		builder.addVisitor(new PetMergerVisiToUpdate());
 		InfoMerger<PetInfo, PetInfo> merger = builder.build();		
 	
 		return merger.merge();

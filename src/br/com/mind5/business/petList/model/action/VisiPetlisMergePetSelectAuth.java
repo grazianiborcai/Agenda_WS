@@ -3,7 +3,7 @@ package br.com.mind5.business.petList.model.action;
 import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
-import br.com.mind5.business.pet.model.decisionTree.RootPetSelectAuth;
+import br.com.mind5.business.pet.model.decisionTree.PetRootSelectAuth;
 import br.com.mind5.business.petList.info.PetlisInfo;
 import br.com.mind5.business.petList.info.PetlisMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiPetlisMergePetSelectAuth extends ActionVisitorTemplateMerge<Petl
 	
 	
 	@Override protected Class<? extends DeciTree<PetInfo>> getTreeClassHook() {
-		return RootPetSelectAuth.class;
+		return PetRootSelectAuth.class;
 	}
 	
 	
