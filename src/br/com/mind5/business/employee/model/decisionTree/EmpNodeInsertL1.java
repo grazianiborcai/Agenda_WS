@@ -8,6 +8,7 @@ import br.com.mind5.business.employee.model.action.EmpVisiDaoInsert;
 import br.com.mind5.business.employee.model.action.EmpVisiEnforceCreatedBy;
 import br.com.mind5.business.employee.model.action.EmpVisiEnforceCreatedOn;
 import br.com.mind5.business.employee.model.action.EmpVisiEnforceLChanged;
+import br.com.mind5.business.employee.model.action.EmpVisiEnforceLockedOff;
 import br.com.mind5.business.employee.model.action.EmpVisiMergeSytotauh;
 import br.com.mind5.business.employee.model.action.EmpVisiMergeUsername;
 import br.com.mind5.model.action.ActionLazy;
@@ -47,13 +48,15 @@ public final class EmpNodeInsertL1 extends DeciTreeTemplateWrite<EmpInfo> {
 		ActionLazy<EmpInfo> enforceLChangedBy = new ActionLazyCommom<EmpInfo>(option, EmpVisiMergeUsername.class);
 		ActionLazy<EmpInfo> enforceCreatedBy = new ActionLazyCommom<EmpInfo>(option, EmpVisiEnforceCreatedBy.class);
 		ActionLazy<EmpInfo> enforceCreatedOn = new ActionLazyCommom<EmpInfo>(option, EmpVisiEnforceCreatedOn.class);
+		ActionLazy<EmpInfo> enforceLockedOff = new ActionLazyCommom<EmpInfo>(option, EmpVisiEnforceLockedOff.class);
 		ActionLazy<EmpInfo> mergeSytotauh = new ActionLazyCommom<EmpInfo>(option, EmpVisiMergeSytotauh.class);
 		ActionLazy<EmpInfo> insertEmployee = new ActionLazyCommom<EmpInfo>(option, EmpVisiDaoInsert.class);		
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);
 		enforceCreatedBy.addPostAction(enforceCreatedOn);
-		enforceCreatedOn.addPostAction(mergeSytotauh);
+		enforceCreatedOn.addPostAction(enforceLockedOff);
+		enforceLockedOff.addPostAction(mergeSytotauh);
 		mergeSytotauh.addPostAction(insertEmployee);
 		
 		actions.add(enforceLChanged);	
