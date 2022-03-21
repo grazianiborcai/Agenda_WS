@@ -41,7 +41,7 @@ public final class StolisRootSearch extends DeciTreeTemplateWrite<StolisInfo> {
 		List<ActionStd<StolisInfo>> actions = new ArrayList<>();
 
 		ActionStd<StolisInfo> mergeSotarch = new ActionStdCommom<StolisInfo>(option, StolisVisiMergeSotarch.class);
-		ActionLazy<StolisInfo> select = new ActionLazyCommom<StolisInfo>(option.conn, option.schemaName, StolisVisiRootSelect.class);
+		ActionLazy<StolisInfo> select = new ActionLazyCommom<StolisInfo>(option, StolisVisiRootSelect.class);
 		
 		mergeSotarch.addPostAction(select);
 		

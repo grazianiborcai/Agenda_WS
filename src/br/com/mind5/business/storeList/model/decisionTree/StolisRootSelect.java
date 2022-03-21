@@ -70,14 +70,14 @@ public final class StolisRootSelect extends DeciTreeTemplateWrite<StolisInfo> {
 		List<ActionStd<StolisInfo>> actions = new ArrayList<>();
 
 		ActionStd<StolisInfo> select = new ActionStdCommom<StolisInfo>(option, StolisVisiMergeToSelect.class);
-		ActionLazy<StolisInfo> mergeCurrency = new ActionLazyCommom<StolisInfo>(option.conn, option.schemaName, StolisVisiMergeCurrency.class);
-		ActionLazy<StolisInfo> mergeTimezone = new ActionLazyCommom<StolisInfo>(option.conn, option.schemaName, StolisVisiMergeTimezone.class);
-		ActionLazy<StolisInfo> mergeComplis = new ActionLazyCommom<StolisInfo>(option.conn, option.schemaName, StolisVisiMergeComplis.class);
-		ActionLazy<StolisInfo> mergeAddress = new ActionLazyCommom<StolisInfo>(option.conn, option.schemaName, StolisVisiMergeAddress.class);
-		ActionLazy<StolisInfo> mergePhone = new ActionLazyCommom<StolisInfo>(option.conn, option.schemaName, StolisVisiMergePhone.class);
-		ActionLazy<StolisInfo> mergeFimeco = new ActionLazyCommom<StolisInfo>(option.conn, option.schemaName, StolisVisiMergeFimeco.class);
-		ActionLazy<StolisInfo> mergeStorext = new ActionLazyCommom<StolisInfo>(option.conn, option.schemaName, StolisVisiMergeStorext.class);
-		ActionLazy<StolisInfo> mergeStorac = new ActionLazyCommom<StolisInfo>(option.conn, option.schemaName, StolisVisiMergeStorac.class);
+		ActionLazy<StolisInfo> mergeCurrency = new ActionLazyCommom<StolisInfo>(option, StolisVisiMergeCurrency.class);
+		ActionLazy<StolisInfo> mergeTimezone = new ActionLazyCommom<StolisInfo>(option, StolisVisiMergeTimezone.class);
+		ActionLazy<StolisInfo> mergeComplis = new ActionLazyCommom<StolisInfo>(option, StolisVisiMergeComplis.class);
+		ActionLazy<StolisInfo> mergeAddress = new ActionLazyCommom<StolisInfo>(option, StolisVisiMergeAddress.class);
+		ActionLazy<StolisInfo> mergePhone = new ActionLazyCommom<StolisInfo>(option, StolisVisiMergePhone.class);
+		ActionLazy<StolisInfo> mergeFimeco = new ActionLazyCommom<StolisInfo>(option, StolisVisiMergeFimeco.class);
+		ActionLazy<StolisInfo> mergeStorext = new ActionLazyCommom<StolisInfo>(option, StolisVisiMergeStorext.class);
+		ActionLazy<StolisInfo> mergeStorac = new ActionLazyCommom<StolisInfo>(option, StolisVisiMergeStorac.class);
 		
 		select.addPostAction(mergeCurrency);
 		mergeCurrency.addPostAction(mergeTimezone);
