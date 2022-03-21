@@ -40,7 +40,7 @@ public final class CalontharchRootSelectNow extends DeciTreeTemplateRead<Calonth
 		List<ActionStd<CalontharchInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CalontharchInfo> enforceNow = new ActionStdCommom<CalontharchInfo>(option, CalontharchVisiEnforceNow.class);
-		ActionLazy<CalontharchInfo> select = new ActionLazyCommom<CalontharchInfo>(option.conn, option.schemaName, CalontharchVisiRootSelect.class);
+		ActionLazy<CalontharchInfo> select = new ActionLazyCommom<CalontharchInfo>(option, CalontharchVisiRootSelect.class);
 		
 		enforceNow.addPostAction(select);
 		
