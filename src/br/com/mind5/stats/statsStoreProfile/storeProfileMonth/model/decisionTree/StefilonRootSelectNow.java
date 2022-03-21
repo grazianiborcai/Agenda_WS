@@ -41,7 +41,7 @@ public final class StefilonRootSelectNow extends DeciTreeTemplateWrite<StefilonI
 		List<ActionStd<StefilonInfo>> actions = new ArrayList<>();
 
 		ActionStd<StefilonInfo> mergeCalonthNow = new ActionStdCommom<StefilonInfo>(option, StefilonVisiMergeCalonthNow.class);
-		ActionLazy<StefilonInfo> select = new ActionLazyCommom<StefilonInfo>(option.conn, option.schemaName, StefilonVisiRootSelect.class);
+		ActionLazy<StefilonInfo> select = new ActionLazyCommom<StefilonInfo>(option, StefilonVisiRootSelect.class);
 		
 		mergeCalonthNow.addPostAction(select);
 		

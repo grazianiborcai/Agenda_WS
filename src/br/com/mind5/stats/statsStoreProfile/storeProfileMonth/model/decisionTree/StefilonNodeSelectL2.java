@@ -48,7 +48,7 @@ public final class StefilonNodeSelectL2 extends DeciTreeTemplateWrite<StefilonIn
 		List<ActionStd<StefilonInfo>> actions = new ArrayList<>();
 
 		ActionStd<StefilonInfo> mergeStefilonive = new ActionStdCommom<StefilonInfo>(option, StefilonVisiMergeStefilonive.class);
-		ActionLazy<StefilonInfo> insertStefilonagr = new ActionLazyCommom<StefilonInfo>(option.conn, option.schemaName, StefilonVisiStefilonagrInsert.class);
+		ActionLazy<StefilonInfo> insertStefilonagr = new ActionLazyCommom<StefilonInfo>(option, StefilonVisiStefilonagrInsert.class);
 		
 		mergeStefilonive.addPostAction(insertStefilonagr);
 		
@@ -63,7 +63,7 @@ public final class StefilonNodeSelectL2 extends DeciTreeTemplateWrite<StefilonIn
 		List<ActionStd<StefilonInfo>> actions = new ArrayList<>();
 
 		ActionStd<StefilonInfo> zerofy = new ActionStdCommom<StefilonInfo>(option, StefilonVisiEnforceZerofy.class);
-		ActionLazy<StefilonInfo> insertStefilonagr = new ActionLazyCommom<StefilonInfo>(option.conn, option.schemaName, StefilonVisiStefilonagrInsert.class);
+		ActionLazy<StefilonInfo> insertStefilonagr = new ActionLazyCommom<StefilonInfo>(option, StefilonVisiStefilonagrInsert.class);
 		
 		zerofy.addPostAction(insertStefilonagr);
 		
