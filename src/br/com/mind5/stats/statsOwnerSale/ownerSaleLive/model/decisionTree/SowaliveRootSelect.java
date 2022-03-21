@@ -64,8 +64,8 @@ public final class SowaliveRootSelect extends DeciTreeTemplateWrite<SowaliveInfo
 		List<ActionStd<SowaliveInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowaliveInfo> select = new ActionStdCommom<SowaliveInfo>(option, SowaliveVisiMergeToSelect.class);
-		ActionLazy<SowaliveInfo> enforceLChanged = new ActionLazyCommom<SowaliveInfo>(option.conn, option.schemaName, SowaliveVisiEnforceLChanged.class);
-		ActionLazy<SowaliveInfo> mergeState = new ActionLazyCommom<SowaliveInfo>(option.conn, option.schemaName, SowaliveVisiMergeState.class);
+		ActionLazy<SowaliveInfo> enforceLChanged = new ActionLazyCommom<SowaliveInfo>(option, SowaliveVisiEnforceLChanged.class);
+		ActionLazy<SowaliveInfo> mergeState = new ActionLazyCommom<SowaliveInfo>(option, SowaliveVisiMergeState.class);
 		
 		select.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeState);
