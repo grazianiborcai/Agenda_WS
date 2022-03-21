@@ -65,9 +65,9 @@ public final class SoweduliveRootSelect extends DeciTreeTemplateWrite<Sowedulive
 		List<ActionStd<SoweduliveInfo>> actions = new ArrayList<>();
 
 		ActionStd<SoweduliveInfo> select = new ActionStdCommom<SoweduliveInfo>(option, SoweduliveVisiMergeToSelect.class);
-		ActionLazy<SoweduliveInfo> enforceLChanged = new ActionLazyCommom<SoweduliveInfo>(option.conn, option.schemaName, SoweduliveVisiEnforceLChanged.class);
-		ActionLazy<SoweduliveInfo> mergeState = new ActionLazyCommom<SoweduliveInfo>(option.conn, option.schemaName, SoweduliveVisiMergeState.class);
-		ActionLazy<SoweduliveInfo> mergeMonth = new ActionLazyCommom<SoweduliveInfo>(option.conn, option.schemaName, SoweduliveVisiMergeMonth.class);		
+		ActionLazy<SoweduliveInfo> enforceLChanged = new ActionLazyCommom<SoweduliveInfo>(option, SoweduliveVisiEnforceLChanged.class);
+		ActionLazy<SoweduliveInfo> mergeState = new ActionLazyCommom<SoweduliveInfo>(option, SoweduliveVisiMergeState.class);
+		ActionLazy<SoweduliveInfo> mergeMonth = new ActionLazyCommom<SoweduliveInfo>(option, SoweduliveVisiMergeMonth.class);		
 		
 		select.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeState);
