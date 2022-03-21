@@ -22,7 +22,7 @@ public final class StoparCheckSoftDelete extends ModelCheckerTemplateAction<Stop
 	
 	@Override protected ActionStd<StoparInfo> buildActionHook(DeciTreeOption<StoparInfo> option) {
 		ActionStd<StoparInfo> enforceDel = new ActionStdCommom<StoparInfo>(option, StoparVisiEnforceDel.class);
-		ActionLazy<StoparInfo> select = new ActionLazyCommom<StoparInfo>(option.conn, option.schemaName, StoparVisiDaoSelect.class);
+		ActionLazy<StoparInfo> select = new ActionLazyCommom<StoparInfo>(option, StoparVisiDaoSelect.class);
 		
 		enforceDel.addPostAction(select);
 		return enforceDel;
