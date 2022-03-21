@@ -47,7 +47,7 @@ public final class SowedularchRootSelectMonth extends DeciTreeTemplateWrite<Sowe
 		List<ActionStd<SowedularchInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowedularchInfo> enforceCalmonth = new ActionStdCommom<SowedularchInfo>(option, SowedularchVisiEnforceCalmonth.class);
-		ActionLazy<SowedularchInfo> select = new ActionLazyCommom<SowedularchInfo>(option.conn, option.schemaName, SowedularchVisiRootSelect.class);
+		ActionLazy<SowedularchInfo> select = new ActionLazyCommom<SowedularchInfo>(option, SowedularchVisiRootSelect.class);
 		
 		enforceCalmonth.addPostAction(select);
 		
