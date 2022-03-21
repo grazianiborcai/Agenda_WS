@@ -79,7 +79,7 @@ public final class SteddagrRootInsert extends DeciTreeTemplateWrite<SteddagrInfo
 		List<ActionStd<SteddagrInfo>> actions = new ArrayList<>();
 
 		ActionStd<SteddagrInfo> enforceLChanged = new ActionStdCommom<SteddagrInfo>(option, SteddagrVisiEnforceLChanged.class);
-		ActionLazy<SteddagrInfo> insert = new ActionLazyCommom<SteddagrInfo>(option.conn, option.schemaName, SteddagrVisiDaoInsert.class);
+		ActionLazy<SteddagrInfo> insert = new ActionLazyCommom<SteddagrInfo>(option, SteddagrVisiDaoInsert.class);
 		
 		enforceLChanged.addPostAction(insert);
 		
