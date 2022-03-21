@@ -16,7 +16,7 @@ public final class EmpnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpnapVisiMergeUselis());
+		builder.addVisitor(new EmpnapMergerVisiUselis());
 		InfoMerger<EmpnapInfo, UselisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -29,7 +29,7 @@ public final class EmpnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpnapVisiMergePersolis());
+		builder.addVisitor(new EmpnapMergerVisiPersolis());
 		InfoMerger<EmpnapInfo, PersolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -42,7 +42,7 @@ public final class EmpnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpnapVisiMergeAddresnap());
+		builder.addVisitor(new EmpnapMergerVisiAddresnap());
 		InfoMerger<EmpnapInfo, AddresnapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -55,7 +55,7 @@ public final class EmpnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpnapVisiMergePersonap());
+		builder.addVisitor(new EmpnapMergerVisiPersonap());
 		InfoMerger<EmpnapInfo, PersonapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -68,7 +68,7 @@ public final class EmpnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpnapVisiMergePhonap());
+		builder.addVisitor(new EmpnapMergerVisiPhonap());
 		InfoMerger<EmpnapInfo, PhonapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -81,7 +81,7 @@ public final class EmpnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpnapVisiMergeToSelect());
+		builder.addVisitor(new EmpnapMergerVisiToSelect());
 		InfoMerger<EmpnapInfo, EmpnapInfo> merger = builder.build();		
 	
 		return merger.merge();

@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoEmpnapInsertSingle extends DaoStmtTemplate<EmpnapInfo> {	
+public final class EmpnapDaoInsertSingle extends DaoStmtTemplate<EmpnapInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.EMP_SNAPSHOT_TABLE;	
 	
 	
-	public DaoEmpnapInsertSingle(Connection conn, EmpnapInfo recordInfo, String schemaName) {
+	public EmpnapDaoInsertSingle(Connection conn, EmpnapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpnapMergeToSelect extends ActionVisitorTemplateMerge<EmpnapInfo, EmpnapInfo> {
+public final class VisiEmpnapMergeToSelect extends ActionVisitorTemplateMerge<EmpnapInfo, EmpnapInfo> {
 	
 	public VisiEmpnapMergeToSelect(DeciTreeOption<EmpnapInfo> option) {
 		super(option, EmpnapInfo.class);
@@ -16,8 +16,8 @@ final class VisiEmpnapMergeToSelect extends ActionVisitorTemplateMerge<EmpnapInf
 	
 	
 	
-	@Override protected Class<? extends ActionStd<EmpnapInfo>> getActionClassHook() {
-		return StdEmpnapDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<EmpnapInfo>> getVisitorClassHook() {
+		return VisiEmpnapDaoSelect.class;
 	}
 	
 	

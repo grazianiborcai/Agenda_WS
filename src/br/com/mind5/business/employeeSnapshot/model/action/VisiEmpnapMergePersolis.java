@@ -11,7 +11,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpnapMergePersolis extends ActionVisitorTemplateMerge<EmpnapInfo, PersolisInfo> {
+public final class VisiEmpnapMergePersolis extends ActionVisitorTemplateMerge<EmpnapInfo, PersolisInfo> {
 	
 	public VisiEmpnapMergePersolis(DeciTreeOption<EmpnapInfo> option) {
 		super(option, PersolisInfo.class);

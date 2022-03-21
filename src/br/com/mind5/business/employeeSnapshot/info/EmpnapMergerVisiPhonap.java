@@ -7,7 +7,7 @@ import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class EmpnapVisiMergePhonap extends InfoMergerVisitorTemplate<EmpnapInfo, PhonapInfo> {
+final class EmpnapMergerVisiPhonap extends InfoMergerVisitorTemplate<EmpnapInfo, PhonapInfo> {
 
 	@Override public boolean shouldMerge(EmpnapInfo baseInfo, PhonapInfo selectedInfo) {
 		return (baseInfo.codOwner 	 == selectedInfo.codOwner 		&&

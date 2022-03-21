@@ -4,24 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
-import br.com.mind5.business.employeeSnapshot.model.action.LazyEmpnapMergeAddresnap;
-import br.com.mind5.business.employeeSnapshot.model.action.LazyEmpnapMergePersonap;
-import br.com.mind5.business.employeeSnapshot.model.action.LazyEmpnapMergePhonap;
-import br.com.mind5.business.employeeSnapshot.model.action.StdEmpnapMergeToSelect;
+import br.com.mind5.business.employeeSnapshot.model.action.VisiEmpnapDaoInsert;
+import br.com.mind5.business.employeeSnapshot.model.action.VisiEmpnapMergePersolis;
+import br.com.mind5.business.employeeSnapshot.model.action.VisiEmpnapMergeUselis;
+import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckEmp;
 import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckLangu;
 import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckOwner;
-import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckRead;
+import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmpnapSelect extends DeciTreeTemplateRead<EmpnapInfo> {
+public final class EmpnapRootInsert extends DeciTreeTemplateWrite<EmpnapInfo> {	
 	
-	public RootEmpnapSelect(DeciTreeOption<EmpnapInfo> option) {
+	public EmpnapRootInsert(DeciTreeOption<EmpnapInfo> option) {
 		super(option);
 	}
 	
@@ -30,13 +32,13 @@ public final class RootEmpnapSelect extends DeciTreeTemplateRead<EmpnapInfo> {
 	@Override protected ModelChecker<EmpnapInfo> buildCheckerHook(DeciTreeOption<EmpnapInfo> option) {
 		List<ModelChecker<EmpnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpnapInfo> checker;
-		ModelCheckerOption checkerOption;	
-		
+		ModelCheckerOption checkerOption;		
+
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new EmpnapCheckRead(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new EmpnapCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -53,6 +55,13 @@ public final class RootEmpnapSelect extends DeciTreeTemplateRead<EmpnapInfo> {
 		checker = new EmpnapCheckOwner(checkerOption);
 		queue.add(checker);	
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new EmpnapCheckEmp(checkerOption);
+		queue.add(checker);	
+		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
@@ -61,16 +70,14 @@ public final class RootEmpnapSelect extends DeciTreeTemplateRead<EmpnapInfo> {
 	@Override protected List<ActionStd<EmpnapInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpnapInfo> option) {
 		List<ActionStd<EmpnapInfo>> actions = new ArrayList<>();
 
-		ActionStd<EmpnapInfo> select = new StdEmpnapMergeToSelect(option);
-		ActionLazy<EmpnapInfo> mergePerson = new LazyEmpnapMergePersonap(option.conn, option.schemaName);
-		ActionLazy<EmpnapInfo> mergeAddress = new LazyEmpnapMergeAddresnap(option.conn, option.schemaName);
-		ActionLazy<EmpnapInfo> mergePhone = new LazyEmpnapMergePhonap(option.conn, option.schemaName);
+		ActionStd<EmpnapInfo> mergePersolis = new ActionStdCommom<EmpnapInfo>(option, VisiEmpnapMergePersolis.class);
+		ActionLazy<EmpnapInfo> mergeUselis = new ActionLazyCommom<EmpnapInfo>(option, VisiEmpnapMergeUselis.class);
+		ActionLazy<EmpnapInfo> insert = new ActionLazyCommom<EmpnapInfo>(option, VisiEmpnapDaoInsert.class);
 		
-		select.addPostAction(mergePerson);
-		mergePerson.addPostAction(mergeAddress);
-		mergeAddress.addPostAction(mergePhone);
+		mergePersolis.addPostAction(mergeUselis);
+		mergeUselis.addPostAction(insert);
 		
-		actions.add(select);
+		actions.add(mergePersolis);	
 		return actions;
 	}
 }

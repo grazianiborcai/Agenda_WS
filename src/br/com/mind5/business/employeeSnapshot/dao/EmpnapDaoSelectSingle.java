@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoEmpnapSelectSingle extends DaoStmtTemplate<EmpnapInfo> {
+public final class EmpnapDaoSelectSingle extends DaoStmtTemplate<EmpnapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.EMP_SNAPSHOT_TABLE;	
 	
 	
-	public DaoEmpnapSelectSingle(Connection conn, EmpnapInfo recordInfo, String schemaName) {
+	public EmpnapDaoSelectSingle(Connection conn, EmpnapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoEmpnapSelectSingle extends DaoStmtTemplate<EmpnapInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoEmpnapWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new EmpnapDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,19 +61,19 @@ public final class DaoEmpnapSelectSingle extends DaoStmtTemplate<EmpnapInfo> {
 				do {
 					EmpnapInfo dataInfo = new EmpnapInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoEmpnapDbTableColumn.COL_COD_OWNER);
-					dataInfo.codSnapshot = stmtResult.getLong(DaoEmpnapDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codEmployee = stmtResult.getLong(DaoEmpnapDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoEmpnapDbTableColumn.COL_COD_STORE);
-					dataInfo.recordMode = stmtResult.getString(DaoEmpnapDbTableColumn.COL_RECORD_MODE);	
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoEmpnapDbTableColumn.COL_COD_USER);
-					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoEmpnapDbTableColumn.COL_COD_USER_SNAPSHOT);
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoEmpnapDbTableColumn.COL_COD_PERSON);
-					dataInfo.codPersonSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoEmpnapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoEmpnapDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoEmpnapDbTableColumn.COL_LAST_CHANGED_BY);		
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoEmpnapDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoEmpnapDbTableColumn.COL_CREATED_BY);
+					dataInfo.codOwner = stmtResult.getLong(EmpnapDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codSnapshot = stmtResult.getLong(EmpnapDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codEmployee = stmtResult.getLong(EmpnapDaoDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, EmpnapDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.recordMode = stmtResult.getString(EmpnapDaoDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, EmpnapDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, EmpnapDaoDbTableColumn.COL_COD_USER_SNAPSHOT);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, EmpnapDaoDbTableColumn.COL_COD_PERSON);
+					dataInfo.codPersonSnapshot = DaoFormatter.sqlToLong(stmtResult, EmpnapDaoDbTableColumn.COL_COD_PERSON_SNAPSHOT);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, EmpnapDaoDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, EmpnapDaoDbTableColumn.COL_LAST_CHANGED_BY);		
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, EmpnapDaoDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, EmpnapDaoDbTableColumn.COL_CREATED_BY);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

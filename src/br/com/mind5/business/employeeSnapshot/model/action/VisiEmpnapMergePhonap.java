@@ -11,7 +11,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpnapMergePhonap extends ActionVisitorTemplateMerge<EmpnapInfo, PhonapInfo> {
+public final class VisiEmpnapMergePhonap extends ActionVisitorTemplateMerge<EmpnapInfo, PhonapInfo> {
 	
 	public VisiEmpnapMergePhonap(DeciTreeOption<EmpnapInfo> option) {
 		super(option, PhonapInfo.class);

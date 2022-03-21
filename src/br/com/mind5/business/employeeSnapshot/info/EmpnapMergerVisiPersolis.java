@@ -3,23 +3,23 @@ package br.com.mind5.business.employeeSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.security.userList.info.UselisInfo;
 
-final class EmpnapVisiMergeUselis extends InfoMergerVisitorTemplate<EmpnapInfo, UselisInfo> {
+final class EmpnapMergerVisiPersolis extends InfoMergerVisitorTemplate<EmpnapInfo, PersolisInfo> {
 
-	@Override public boolean shouldMerge(EmpnapInfo baseInfo, UselisInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner	&&
-				baseInfo.codUser  == selectedInfo.codUser		);
+	@Override public boolean shouldMerge(EmpnapInfo baseInfo, PersolisInfo selectedInfo) {
+		return (baseInfo.codOwner  == selectedInfo.codOwner	&&
+				baseInfo.codPerson == selectedInfo.codPerson	);
 	}
 	
 	
 	
-	@Override public List<EmpnapInfo> merge(EmpnapInfo baseInfo, UselisInfo selectedInfo) {
+	@Override public List<EmpnapInfo> merge(EmpnapInfo baseInfo, PersolisInfo selectedInfo) {
 		List<EmpnapInfo> results = new ArrayList<>();
 		
-		baseInfo.codUserSnapshot = selectedInfo.codSnapshot;
+		baseInfo.codPersonSnapshot = selectedInfo.codSnapshot;
 		
 		results.add(baseInfo);
 		return results;

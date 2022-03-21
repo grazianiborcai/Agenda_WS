@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class EmpnapVisiMergeToSelect extends InfoMergerVisitorTemplate<EmpnapInfo, EmpnapInfo> {
+final class EmpnapMergerVisiToSelect extends InfoMergerVisitorTemplate<EmpnapInfo, EmpnapInfo> {
 
 	@Override public boolean shouldMerge(EmpnapInfo baseInfo, EmpnapInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);

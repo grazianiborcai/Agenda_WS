@@ -7,7 +7,7 @@ import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class EmpnapVisiMergePersonap extends InfoMergerVisitorTemplate<EmpnapInfo, PersonapInfo> {
+final class EmpnapMergerVisiPersonap extends InfoMergerVisitorTemplate<EmpnapInfo, PersonapInfo> {
 
 	@Override public boolean shouldMerge(EmpnapInfo baseInfo, PersonapInfo selectedInfo) {
 		return (baseInfo.codOwner    	   == selectedInfo.codOwner		&&

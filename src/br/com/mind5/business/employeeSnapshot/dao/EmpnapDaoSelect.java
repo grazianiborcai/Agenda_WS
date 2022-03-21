@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoEmpnapInsert implements DaoStmtExec<EmpnapInfo> {
+public final class EmpnapDaoSelect implements DaoStmtExec<EmpnapInfo> {
 	private DaoStmtExec<EmpnapInfo> helper;
 	
 	
-	public DaoEmpnapInsert(List<DaoStmtExecOption<EmpnapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoEmpnapInsertSingle.class, EmpnapInfo.class);
+	public EmpnapDaoSelect(List<DaoStmtExecOption<EmpnapInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, EmpnapDaoSelectSingle.class, EmpnapInfo.class);
 	}
 	
 	
