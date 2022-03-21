@@ -41,7 +41,7 @@ public final class SowotiveRootSelectLtm extends DeciTreeTemplateWrite<SowotiveI
 		List<ActionStd<SowotiveInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowotiveInfo> mergeCalonthLtm = new ActionStdCommom<SowotiveInfo>(option, SowotiveVisiMergeCalonthLtm.class);
-		ActionLazy<SowotiveInfo> select = new ActionLazyCommom<SowotiveInfo>(option.conn, option.schemaName, SowotiveVisiRootSelect.class);
+		ActionLazy<SowotiveInfo> select = new ActionLazyCommom<SowotiveInfo>(option, SowotiveVisiRootSelect.class);
 		
 		mergeCalonthLtm.addPostAction(select);
 		
