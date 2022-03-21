@@ -9,6 +9,7 @@ import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
 import br.com.mind5.business.orderItemList.info.OrdemistInfo;
 import br.com.mind5.business.person.info.PersonInfo;
+import br.com.mind5.business.pet.info.PetInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoMerger;
@@ -18,6 +19,19 @@ import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CusMerger {
+	public static List<CusInfo> mergeWithPet(List<CusInfo> baseInfos, List<PetInfo> selectedInfos) {
+		InfoMergerBuilder<CusInfo, PetInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusMergerVisiPet());
+		InfoMerger<CusInfo, PetInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<CusInfo> mergeWithOrdemist(List<CusInfo> baseInfos, List<OrdemistInfo> selectedInfos) {
 		InfoMergerBuilder<CusInfo, OrdemistInfo> builder = new InfoMergerBuilder<>();
 		

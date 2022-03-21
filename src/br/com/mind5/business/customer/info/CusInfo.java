@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.person.info.PersonInfo;
+import br.com.mind5.business.pet.info.PetInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
@@ -34,6 +35,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	public PersonInfo personDataUser;
 	public FimistInfo fimistData;
 	public FimistInfo fimistDataUser;
+	public List<PetInfo> pets;
 	
 	
 	public CusInfo() {
@@ -57,6 +59,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 		personDataUser = DefaultValue.object();
 		fimistData = DefaultValue.object();
 		fimistDataUser = DefaultValue.object();
+		pets = DefaultValue.object();
 		createdBy = DefaultValue.number();
 	}
 	
@@ -85,6 +88,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 		deepCopy.personDataUser = CloneUtil.cloneRecord(deepCopy.personDataUser, this.getClass());
 		deepCopy.fimistData = CloneUtil.cloneRecord(deepCopy.fimistData, this.getClass());
 		deepCopy.fimistDataUser = CloneUtil.cloneRecord(deepCopy.fimistDataUser, this.getClass());
+		deepCopy.pets = CloneUtil.cloneRecords(deepCopy.pets, this.getClass());
 		
 		return deepCopy;
 	}

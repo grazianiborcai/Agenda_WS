@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.business.customer.model.action.CusVisiNodeSytotauh;
-import br.com.mind5.business.customer.model.action.CusVisiNodeUser;
 import br.com.mind5.business.customer.model.action.CusVisiMergeAddress;
 import br.com.mind5.business.customer.model.action.CusVisiMergeFimist;
 import br.com.mind5.business.customer.model.action.CusVisiMergePerson;
+import br.com.mind5.business.customer.model.action.CusVisiMergePet;
 import br.com.mind5.business.customer.model.action.CusVisiMergePhone;
 import br.com.mind5.business.customer.model.action.CusVisiMergeToSelect;
+import br.com.mind5.business.customer.model.action.CusVisiNodeSytotauh;
+import br.com.mind5.business.customer.model.action.CusVisiNodeUser;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
 import br.com.mind5.business.customer.model.checker.CusCheckOwner;
 import br.com.mind5.business.customer.model.checker.CusCheckRead;
@@ -73,6 +74,7 @@ public final class CusRootSelect extends DeciTreeTemplateRead<CusInfo> {
 		ActionLazy<CusInfo> mergePhone = new ActionLazyCommom<CusInfo>(option, CusVisiMergePhone.class);
 		ActionLazy<CusInfo> nodeUser = new ActionLazyCommom<CusInfo>(option, CusVisiNodeUser.class);
 		ActionLazy<CusInfo> mergeFimist = new ActionLazyCommom<CusInfo>(option, CusVisiMergeFimist.class);
+		ActionLazy<CusInfo> mergePet = new ActionLazyCommom<CusInfo>(option, CusVisiMergePet.class);
 		
 		select.addPostAction(nodeSytotauh);
 		nodeSytotauh.addPostAction(mergePerson);
@@ -80,6 +82,7 @@ public final class CusRootSelect extends DeciTreeTemplateRead<CusInfo> {
 		mergeAddress.addPostAction(mergePhone);
 		mergePhone.addPostAction(nodeUser);
 		nodeUser.addPostAction(mergeFimist);
+		mergeFimist.addPostAction(mergePet);
 		
 		actions.add(select);
 		return actions;
