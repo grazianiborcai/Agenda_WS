@@ -62,7 +62,7 @@ public final class StoplisRootSelect extends DeciTreeTemplateRead<StoplisInfo> {
 		List<ActionStd<StoplisInfo>> actions = new ArrayList<>();
 		
 		ActionStd<StoplisInfo> select = new ActionStdCommom<StoplisInfo>(option, StoplisVisiMergeToSelect.class);
-		ActionLazy<StoplisInfo> mergePayPartner = new ActionLazyCommom<StoplisInfo>(option.conn, option.schemaName, StoplisVisiMergePaypar.class);
+		ActionLazy<StoplisInfo> mergePayPartner = new ActionLazyCommom<StoplisInfo>(option, StoplisVisiMergePaypar.class);
 		
 		select.addPostAction(mergePayPartner);
 		

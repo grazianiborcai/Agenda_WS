@@ -40,7 +40,7 @@ public final class StoplisRootSearch extends DeciTreeTemplateRead<StoplisInfo> {
 		List<ActionStd<StoplisInfo>> actions = new ArrayList<>();
 		
 		ActionStd<StoplisInfo> mergeStoparch = new ActionStdCommom<StoplisInfo>(option, StoplisVisiMergeStoparch.class);
-		ActionLazy<StoplisInfo> select = new ActionLazyCommom<StoplisInfo>(option.conn, option.schemaName, StoplisVisiRootSelect.class);
+		ActionLazy<StoplisInfo> select = new ActionLazyCommom<StoplisInfo>(option, StoplisVisiRootSelect.class);
 		
 		mergeStoparch.addPostAction(select);
 		
