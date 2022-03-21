@@ -72,8 +72,8 @@ public final class StedmonagrRootSelect extends DeciTreeTemplateWrite<Stedmonagr
 		List<ActionStd<StedmonagrInfo>> actions = new ArrayList<>();
 
 		ActionStd<StedmonagrInfo> select = new ActionStdCommom<StedmonagrInfo>(option, StedmonagrVisiMergeToSelect.class);
-		ActionLazy<StedmonagrInfo> mergeState = new ActionLazyCommom<StedmonagrInfo>(option.conn, option.schemaName, StedmonagrVisiMergeState.class);
-		ActionLazy<StedmonagrInfo> mergeCalonth = new ActionLazyCommom<StedmonagrInfo>(option.conn, option.schemaName, StedmonagrVisiMergeCalonth.class);
+		ActionLazy<StedmonagrInfo> mergeState = new ActionLazyCommom<StedmonagrInfo>(option, StedmonagrVisiMergeState.class);
+		ActionLazy<StedmonagrInfo> mergeCalonth = new ActionLazyCommom<StedmonagrInfo>(option, StedmonagrVisiMergeCalonth.class);
 		
 		select.addPostAction(mergeState);
 		mergeState.addPostAction(mergeCalonth);
