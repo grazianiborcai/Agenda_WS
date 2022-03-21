@@ -71,7 +71,7 @@ public final class SowedulagrRootInsert extends DeciTreeTemplateWrite<Sowedulagr
 		List<ActionStd<SowedulagrInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowedulagrInfo> enforceLChanged = new ActionStdCommom<SowedulagrInfo>(option, SowedulagrVisiEnforceLChanged.class);
-		ActionLazy<SowedulagrInfo> insert = new ActionLazyCommom<SowedulagrInfo>(option.conn, option.schemaName, SowedulagrVisiDaoInsert.class);
+		ActionLazy<SowedulagrInfo> insert = new ActionLazyCommom<SowedulagrInfo>(option, SowedulagrVisiDaoInsert.class);
 		
 		enforceLChanged.addPostAction(insert);
 		
