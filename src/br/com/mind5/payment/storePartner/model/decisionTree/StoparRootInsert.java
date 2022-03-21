@@ -97,10 +97,10 @@ public final class StoparRootInsert extends DeciTreeTemplateWrite<StoparInfo> {
 		List<ActionStd<StoparInfo>> actions = new ArrayList<>();		
 		//TODO: ID obrigatorio ?
 		ActionStd<StoparInfo> enforceLChanged = new ActionStdCommom<StoparInfo>(option, StoparVisiEnforceLChanged.class);	
-		ActionLazy<StoparInfo> enforceLChangedBy = new ActionLazyCommom<StoparInfo>(option.conn, option.schemaName, StoparVisiMergeUsername.class);
-		ActionLazy<StoparInfo> insert = new ActionLazyCommom<StoparInfo>(option.conn, option.schemaName, StoparVisiNodeInsert.class);
-		ActionLazy<StoparInfo> snapshot = new ActionLazyCommom<StoparInfo>(option.conn, option.schemaName, StoparVisiNodeSnapshot.class);
-		ActionLazy<StoparInfo> select = new ActionLazyCommom<StoparInfo>(option.conn, option.schemaName, StoparVisiRootSelect.class);		
+		ActionLazy<StoparInfo> enforceLChangedBy = new ActionLazyCommom<StoparInfo>(option, StoparVisiMergeUsername.class);
+		ActionLazy<StoparInfo> insert = new ActionLazyCommom<StoparInfo>(option, StoparVisiNodeInsert.class);
+		ActionLazy<StoparInfo> snapshot = new ActionLazyCommom<StoparInfo>(option, StoparVisiNodeSnapshot.class);
+		ActionLazy<StoparInfo> select = new ActionLazyCommom<StoparInfo>(option, StoparVisiRootSelect.class);		
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(insert);

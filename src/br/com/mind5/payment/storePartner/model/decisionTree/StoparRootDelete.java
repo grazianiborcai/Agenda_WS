@@ -81,10 +81,10 @@ public final class StoparRootDelete extends DeciTreeTemplateWrite<StoparInfo> {
 		List<ActionStd<StoparInfo>> actions = new ArrayList<>();
 		//TODO: nao pode elimnar se for Owner-Default
 		ActionStd<StoparInfo> mergeToDelete = new ActionStdCommom<StoparInfo>(option, StoparVisiMergeToDelete.class);
-		ActionLazy<StoparInfo> enforceLChanged = new ActionLazyCommom<StoparInfo>(option.conn, option.schemaName, StoparVisiEnforceLChanged.class);
-		ActionLazy<StoparInfo> enforceLChangedBy = new ActionLazyCommom<StoparInfo>(option.conn, option.schemaName, StoparVisiMergeUsername.class);
-		ActionLazy<StoparInfo> update = new ActionLazyCommom<StoparInfo>(option.conn, option.schemaName, StoparVisiDaoUpdate.class);
-		ActionLazy<StoparInfo> delete = new ActionLazyCommom<StoparInfo>(option.conn, option.schemaName, StoparVisiDaoDelete.class);
+		ActionLazy<StoparInfo> enforceLChanged = new ActionLazyCommom<StoparInfo>(option, StoparVisiEnforceLChanged.class);
+		ActionLazy<StoparInfo> enforceLChangedBy = new ActionLazyCommom<StoparInfo>(option, StoparVisiMergeUsername.class);
+		ActionLazy<StoparInfo> update = new ActionLazyCommom<StoparInfo>(option, StoparVisiDaoUpdate.class);
+		ActionLazy<StoparInfo> delete = new ActionLazyCommom<StoparInfo>(option, StoparVisiDaoDelete.class);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
