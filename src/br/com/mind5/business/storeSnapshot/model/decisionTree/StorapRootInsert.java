@@ -63,10 +63,10 @@ public final class StorapRootInsert extends DeciTreeTemplateWrite<StorapInfo> {
 		List<ActionStd<StorapInfo>> actions = new ArrayList<>();
 
 		ActionStd<StorapInfo> nodePerson = new StorapNodePerson(option).toAction();
-		ActionLazy<StorapInfo> nodeComp = new ActionLazyCommom<StorapInfo>(option.conn, option.schemaName, StorapVisiNodeComp.class);
-		ActionLazy<StorapInfo> nodeUser = new ActionLazyCommom<StorapInfo>(option.conn, option.schemaName, StorapVisiNodeUser.class);
-		ActionLazy<StorapInfo> insert = new ActionLazyCommom<StorapInfo>(option.conn, option.schemaName, StorapVisiDaoInsert.class);
-		ActionLazy<StorapInfo> nodeStorextsnap = new ActionLazyCommom<StorapInfo>(option.conn, option.schemaName, StorapVisiNodeStorextsnap.class);
+		ActionLazy<StorapInfo> nodeComp = new ActionLazyCommom<StorapInfo>(option, StorapVisiNodeComp.class);
+		ActionLazy<StorapInfo> nodeUser = new ActionLazyCommom<StorapInfo>(option, StorapVisiNodeUser.class);
+		ActionLazy<StorapInfo> insert = new ActionLazyCommom<StorapInfo>(option, StorapVisiDaoInsert.class);
+		ActionLazy<StorapInfo> nodeStorextsnap = new ActionLazyCommom<StorapInfo>(option, StorapVisiNodeStorextsnap.class);
 		
 		nodePerson.addPostAction(nodeComp);
 		nodeComp.addPostAction(nodeUser);

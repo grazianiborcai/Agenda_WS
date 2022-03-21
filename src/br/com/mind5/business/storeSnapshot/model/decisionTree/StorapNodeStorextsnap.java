@@ -48,8 +48,8 @@ public final class StorapNodeStorextsnap extends DeciTreeTemplateWrite<StorapInf
 		List<ActionStd<StorapInfo>> actions = new ArrayList<>();
 
 		ActionStd<StorapInfo> mergeStorext = new ActionStdCommom<StorapInfo>(option, StorapVisiMergeStorext.class);
-		ActionLazy<StorapInfo> enforceStorextsnapKey = new ActionLazyCommom<StorapInfo>(option.conn, option.schemaName, StorapVisiEnforceStorextsnapKey.class);
-		ActionLazy<StorapInfo> insertStorextsnap = new ActionLazyCommom<StorapInfo>(option.conn, option.schemaName, StorapVisiStorextsnapInsert.class);
+		ActionLazy<StorapInfo> enforceStorextsnapKey = new ActionLazyCommom<StorapInfo>(option, StorapVisiEnforceStorextsnapKey.class);
+		ActionLazy<StorapInfo> insertStorextsnap = new ActionLazyCommom<StorapInfo>(option, StorapVisiStorextsnapInsert.class);
 		
 		mergeStorext.addPostAction(enforceStorextsnapKey);
 		enforceStorextsnapKey.addPostAction(insertStorextsnap);

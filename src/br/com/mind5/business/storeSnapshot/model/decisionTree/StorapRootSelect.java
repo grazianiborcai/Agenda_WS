@@ -67,11 +67,11 @@ public final class StorapRootSelect extends DeciTreeTemplateRead<StorapInfo> {
 		List<ActionStd<StorapInfo>> actions = new ArrayList<>();
 
 		ActionStd<StorapInfo> select = new ActionStdCommom<StorapInfo>(option, StorapVisiMergeToSelect.class);
-		ActionLazy<StorapInfo> mergeCurrency = new  ActionLazyCommom<StorapInfo>(option.conn, option.schemaName, StorapVisiMergeCurrency.class);
-		ActionLazy<StorapInfo> mergeTimezone = new ActionLazyCommom<StorapInfo>(option.conn, option.schemaName, StorapVisiMergeTimezone.class); 
-		ActionLazy<StorapInfo> mergePhonap = new ActionLazyCommom<StorapInfo>(option.conn, option.schemaName, StorapVisiMergePhonap.class);
-		ActionLazy<StorapInfo> nodePersonap = new ActionLazyCommom<StorapInfo>(option.conn, option.schemaName, StorapVisiNodePersonap.class);
-		ActionLazy<StorapInfo> nodeCompnap = new ActionLazyCommom<StorapInfo>(option.conn, option.schemaName, StorapVisiNodeCompnap.class);
+		ActionLazy<StorapInfo> mergeCurrency = new  ActionLazyCommom<StorapInfo>(option, StorapVisiMergeCurrency.class);
+		ActionLazy<StorapInfo> mergeTimezone = new ActionLazyCommom<StorapInfo>(option, StorapVisiMergeTimezone.class); 
+		ActionLazy<StorapInfo> mergePhonap = new ActionLazyCommom<StorapInfo>(option, StorapVisiMergePhonap.class);
+		ActionLazy<StorapInfo> nodePersonap = new ActionLazyCommom<StorapInfo>(option, StorapVisiNodePersonap.class);
+		ActionLazy<StorapInfo> nodeCompnap = new ActionLazyCommom<StorapInfo>(option, StorapVisiNodeCompnap.class);
 		
 		select.addPostAction(mergeCurrency);
 		mergeCurrency.addPostAction(mergeTimezone); 
