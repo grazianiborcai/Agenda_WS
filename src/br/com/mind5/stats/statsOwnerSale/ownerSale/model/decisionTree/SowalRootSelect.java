@@ -63,7 +63,7 @@ public final class SowalRootSelect extends DeciTreeTemplateWrite<SowalInfo> {
 		List<ActionStd<SowalInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowalInfo> mergeStolis = new ActionStdCommom<SowalInfo>(option, SowalVisiMergeStolis.class);
-		ActionLazy<SowalInfo> nodeL1 = new ActionLazyCommom<SowalInfo>(option.conn, option.schemaName, SowalVisiNodeSelectL1.class);
+		ActionLazy<SowalInfo> nodeL1 = new ActionLazyCommom<SowalInfo>(option, SowalVisiNodeSelectL1.class);
 		
 		mergeStolis.addPostAction(nodeL1);
 		

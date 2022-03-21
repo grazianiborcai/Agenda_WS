@@ -48,7 +48,7 @@ public final class SowalNodeUpsertL2 extends DeciTreeTemplateWrite<SowalInfo> {
 		List<ActionStd<SowalInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowalInfo> mergeSowalive = new ActionStdCommom<SowalInfo>(option, SowalVisiMergeSowalive.class);
-		ActionLazy<SowalInfo> upsertSowalagr = new ActionLazyCommom<SowalInfo>(option.conn, option.schemaName, SowalVisiSowalagrUpsert.class);
+		ActionLazy<SowalInfo> upsertSowalagr = new ActionLazyCommom<SowalInfo>(option, SowalVisiSowalagrUpsert.class);
 		
 		mergeSowalive.addPostAction(upsertSowalagr);
 		
@@ -63,7 +63,7 @@ public final class SowalNodeUpsertL2 extends DeciTreeTemplateWrite<SowalInfo> {
 		List<ActionStd<SowalInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowalInfo> zerofy = new ActionStdCommom<SowalInfo>(option, SowalVisiEnforceZerofy.class);
-		ActionLazy<SowalInfo> upsertSowalagr = new ActionLazyCommom<SowalInfo>(option.conn, option.schemaName, SowalVisiSowalagrUpsert.class);
+		ActionLazy<SowalInfo> upsertSowalagr = new ActionLazyCommom<SowalInfo>(option, SowalVisiSowalagrUpsert.class);
 		
 		zerofy.addPostAction(upsertSowalagr);
 		

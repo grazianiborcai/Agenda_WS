@@ -48,7 +48,7 @@ public final class SowalNodeSelectL2 extends DeciTreeTemplateWrite<SowalInfo> {
 		List<ActionStd<SowalInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowalInfo> mergeSowalive = new ActionStdCommom<SowalInfo>(option, SowalVisiMergeSowalive.class);
-		ActionLazy<SowalInfo> insertSowalagr = new ActionLazyCommom<SowalInfo>(option.conn, option.schemaName, SowalVisiSowalagrInsert.class);
+		ActionLazy<SowalInfo> insertSowalagr = new ActionLazyCommom<SowalInfo>(option, SowalVisiSowalagrInsert.class);
 		
 		mergeSowalive.addPostAction(insertSowalagr);
 		
@@ -63,7 +63,7 @@ public final class SowalNodeSelectL2 extends DeciTreeTemplateWrite<SowalInfo> {
 		List<ActionStd<SowalInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowalInfo> zerofy = new ActionStdCommom<SowalInfo>(option, SowalVisiEnforceZerofy.class);
-		ActionLazy<SowalInfo> insertSowalagr = new ActionLazyCommom<SowalInfo>(option.conn, option.schemaName, SowalVisiSowalagrInsert.class);
+		ActionLazy<SowalInfo> insertSowalagr = new ActionLazyCommom<SowalInfo>(option, SowalVisiSowalagrInsert.class);
 		
 		zerofy.addPostAction(insertSowalagr);
 		
