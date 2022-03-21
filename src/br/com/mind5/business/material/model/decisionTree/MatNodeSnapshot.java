@@ -40,7 +40,7 @@ public final class MatNodeSnapshot extends DeciTreeTemplateWrite<MatInfo> {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 		
 		ActionStd<MatInfo> insertMatsnap = new ActionStdCommom<MatInfo>(option, MatVisiMatsnapInsert.class);
-		ActionLazy<MatInfo> update = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiDaoUpdate.class);
+		ActionLazy<MatInfo> update = new ActionLazyCommom<MatInfo>(option, MatVisiDaoUpdate.class);
 		
 		insertMatsnap.addPostAction(update);
 		

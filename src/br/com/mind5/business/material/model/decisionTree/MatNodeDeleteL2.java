@@ -46,11 +46,11 @@ public final class MatNodeDeleteL2 extends DeciTreeTemplateWrite<MatInfo> {
 		
 		ActionStd<MatInfo> deleteMatext = new ActionStdCommom<MatInfo>(option, MatVisiMatextDelete.class);
 		ActionStd<MatInfo> mergeToDelete = new ActionStdCommom<MatInfo>(option, MatVisiMergeToDelete.class);
-		ActionLazy<MatInfo> nodeSytotauh = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiNodeSytotauh.class);
-		ActionLazy<MatInfo> enforceLChanged = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiEnforceLChanged.class);
-		ActionLazy<MatInfo> enforceLChangedBy = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiMergeUsername.class);
-		ActionLazy<MatInfo> updateAttr = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiDaoUpdate.class);
-		ActionLazy<MatInfo> delete = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiDaoDelete.class);
+		ActionLazy<MatInfo> nodeSytotauh = new ActionLazyCommom<MatInfo>(option, MatVisiNodeSytotauh.class);
+		ActionLazy<MatInfo> enforceLChanged = new ActionLazyCommom<MatInfo>(option, MatVisiEnforceLChanged.class);
+		ActionLazy<MatInfo> enforceLChangedBy = new ActionLazyCommom<MatInfo>(option, MatVisiMergeUsername.class);
+		ActionLazy<MatInfo> updateAttr = new ActionLazyCommom<MatInfo>(option, MatVisiDaoUpdate.class);
+		ActionLazy<MatInfo> delete = new ActionLazyCommom<MatInfo>(option, MatVisiDaoDelete.class);
 		
 		mergeToDelete.addPostAction(nodeSytotauh);
 		nodeSytotauh.addPostAction(enforceLChanged);

@@ -44,13 +44,13 @@ public final class MatNodeInsert extends DeciTreeTemplateWrite<MatInfo> {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<MatInfo> nodeService = new MatNodeServiceL1(option).toAction();	
-		ActionLazy<MatInfo> enforceLChanged = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiEnforceLChanged.class);	
-		ActionLazy<MatInfo> enforceLChangedBy = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiMergeUsername.class);
-		ActionLazy<MatInfo> enforceCreatedOn = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiEnforceCreatedOn.class);	
-		ActionLazy<MatInfo> enforceCreatedBy = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiEnforceCreatedBy.class);
-		ActionLazy<MatInfo> enforceLockedOff = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiEnforceLockedOff.class);
-		ActionLazy<MatInfo> mergeSytotauh = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiMergeSytotauh.class);
-		ActionLazy<MatInfo> insertMat = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiDaoInsert.class);	
+		ActionLazy<MatInfo> enforceLChanged = new ActionLazyCommom<MatInfo>(option, MatVisiEnforceLChanged.class);	
+		ActionLazy<MatInfo> enforceLChangedBy = new ActionLazyCommom<MatInfo>(option, MatVisiMergeUsername.class);
+		ActionLazy<MatInfo> enforceCreatedOn = new ActionLazyCommom<MatInfo>(option, MatVisiEnforceCreatedOn.class);	
+		ActionLazy<MatInfo> enforceCreatedBy = new ActionLazyCommom<MatInfo>(option, MatVisiEnforceCreatedBy.class);
+		ActionLazy<MatInfo> enforceLockedOff = new ActionLazyCommom<MatInfo>(option, MatVisiEnforceLockedOff.class);
+		ActionLazy<MatInfo> mergeSytotauh = new ActionLazyCommom<MatInfo>(option, MatVisiMergeSytotauh.class);
+		ActionLazy<MatInfo> insertMat = new ActionLazyCommom<MatInfo>(option, MatVisiDaoInsert.class);	
 		
 		nodeService.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

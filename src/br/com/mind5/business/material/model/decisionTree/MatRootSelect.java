@@ -53,14 +53,14 @@ public final class MatRootSelect extends DeciTreeTemplateRead<MatInfo> {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 		
 		ActionStd<MatInfo> select = new ActionStdCommom<MatInfo>(option, MatVisiMergeToSelect.class);
-		ActionLazy<MatInfo> nodeSytotauh = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiNodeSytotauh.class);
-		ActionLazy<MatInfo> mergeMatype = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiMergeMatype.class);
-		ActionLazy<MatInfo> mergeMateg = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiMergeMateg.class);
-		ActionLazy<MatInfo> mergeMatoup = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiMergeMatoup.class);
-		ActionLazy<MatInfo> mergeMatubup = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiMergeMatubup.class);
-		ActionLazy<MatInfo> mergeMatunit = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiMergeMatunit.class);
-		ActionLazy<MatInfo> mergeMatext = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiMergeMatext.class);
-		ActionLazy<MatInfo> mergeFimeco = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiMergeFimeco.class);
+		ActionLazy<MatInfo> nodeSytotauh = new ActionLazyCommom<MatInfo>(option, MatVisiNodeSytotauh.class);
+		ActionLazy<MatInfo> mergeMatype = new ActionLazyCommom<MatInfo>(option, MatVisiMergeMatype.class);
+		ActionLazy<MatInfo> mergeMateg = new ActionLazyCommom<MatInfo>(option, MatVisiMergeMateg.class);
+		ActionLazy<MatInfo> mergeMatoup = new ActionLazyCommom<MatInfo>(option, MatVisiMergeMatoup.class);
+		ActionLazy<MatInfo> mergeMatubup = new ActionLazyCommom<MatInfo>(option, MatVisiMergeMatubup.class);
+		ActionLazy<MatInfo> mergeMatunit = new ActionLazyCommom<MatInfo>(option, MatVisiMergeMatunit.class);
+		ActionLazy<MatInfo> mergeMatext = new ActionLazyCommom<MatInfo>(option, MatVisiMergeMatext.class);
+		ActionLazy<MatInfo> mergeFimeco = new ActionLazyCommom<MatInfo>(option, MatVisiMergeFimeco.class);
 		
 		select.addPostAction(nodeSytotauh);
 		nodeSytotauh.addPostAction(mergeMatype);

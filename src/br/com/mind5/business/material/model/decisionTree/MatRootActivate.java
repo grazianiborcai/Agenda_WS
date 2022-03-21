@@ -72,9 +72,9 @@ public final class MatRootActivate extends DeciTreeTemplateWrite<MatInfo> {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 
 		ActionStd<MatInfo> mergeToSelect = new ActionStdCommom<MatInfo>(option, MatVisiMergeToSelect.class);
-		ActionLazy<MatInfo> nodeSytotauh = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiNodeSytotauh.class);
-		ActionLazy<MatInfo> enforceLockedOff = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiEnforceLockedOff.class);
-		ActionLazy<MatInfo> nodeUpdate = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiNodeUpdate.class);	
+		ActionLazy<MatInfo> nodeSytotauh = new ActionLazyCommom<MatInfo>(option, MatVisiNodeSytotauh.class);
+		ActionLazy<MatInfo> enforceLockedOff = new ActionLazyCommom<MatInfo>(option, MatVisiEnforceLockedOff.class);
+		ActionLazy<MatInfo> nodeUpdate = new ActionLazyCommom<MatInfo>(option, MatVisiNodeUpdate.class);	
 		
 		mergeToSelect.addPostAction(nodeSytotauh);
 		nodeSytotauh.addPostAction(enforceLockedOff);

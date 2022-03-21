@@ -112,9 +112,9 @@ public final class MatRootUpdate extends DeciTreeTemplateWrite<MatInfo> {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 
 		ActionStd<MatInfo> mergeToUpdate = new ActionStdCommom<MatInfo>(option, MatVisiMergeToUpdate.class);		
-		ActionLazy<MatInfo> nodeSytotauh = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiNodeSytotauh.class);
-		ActionLazy<MatInfo> nodeService = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiNodeServiceL1.class);		
-		ActionLazy<MatInfo> nodeL1 = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiNodeUpdate.class);	
+		ActionLazy<MatInfo> nodeSytotauh = new ActionLazyCommom<MatInfo>(option, MatVisiNodeSytotauh.class);
+		ActionLazy<MatInfo> nodeService = new ActionLazyCommom<MatInfo>(option, MatVisiNodeServiceL1.class);		
+		ActionLazy<MatInfo> nodeL1 = new ActionLazyCommom<MatInfo>(option, MatVisiNodeUpdate.class);	
 		
 		mergeToUpdate.addPostAction(nodeSytotauh);
 		nodeSytotauh.addPostAction(nodeService);

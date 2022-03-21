@@ -102,9 +102,9 @@ public final class MatRootInsert extends DeciTreeTemplateWrite<MatInfo> {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<MatInfo> insertMat = new MatNodeInsert(option).toAction();	
-		ActionLazy<MatInfo> upsertMatext = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiNodeMatextUpsert.class);	
-		ActionLazy<MatInfo> snapshot = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiNodeSnapshot.class);
-		ActionLazy<MatInfo> select = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiRootSelect.class);		
+		ActionLazy<MatInfo> upsertMatext = new ActionLazyCommom<MatInfo>(option, MatVisiNodeMatextUpsert.class);	
+		ActionLazy<MatInfo> snapshot = new ActionLazyCommom<MatInfo>(option, MatVisiNodeSnapshot.class);
+		ActionLazy<MatInfo> select = new ActionLazyCommom<MatInfo>(option, MatVisiRootSelect.class);		
 		
 		insertMat.addPostAction(upsertMatext);
 		upsertMatext.addPostAction(snapshot);	

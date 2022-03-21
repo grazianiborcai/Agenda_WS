@@ -47,7 +47,7 @@ public final class MatNodeMatextUpsert extends DeciTreeTemplateWrite<MatInfo> {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 		
 		ActionStd<MatInfo> enforceMatextKey = new ActionStdCommom<MatInfo>(option, MatVisiEnforceMatextKey.class);
-		ActionLazy<MatInfo> upsertMatext = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiMatextUpsert.class);
+		ActionLazy<MatInfo> upsertMatext = new ActionLazyCommom<MatInfo>(option, MatVisiMatextUpsert.class);
 		
 		enforceMatextKey.addPostAction(upsertMatext);
 

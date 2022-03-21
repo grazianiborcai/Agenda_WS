@@ -44,11 +44,11 @@ public final class MatNodeUpdate extends DeciTreeTemplateWrite<MatInfo> {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 	
 		ActionStd<MatInfo> enforceLChanged = new ActionStdCommom<MatInfo>(option, MatVisiEnforceLChanged.class);	
-		ActionLazy<MatInfo> enforceLChangedBy = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiMergeUsername.class);
-		ActionLazy<MatInfo> updateMat = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiDaoUpdate.class);		
-		ActionLazy<MatInfo> upsertMatext = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiNodeMatextUpsert.class);
-		ActionLazy<MatInfo> snapshot = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiNodeSnapshot.class);
-		ActionLazy<MatInfo> select = new ActionLazyCommom<MatInfo>(option.conn, option.schemaName, MatVisiRootSelect.class);
+		ActionLazy<MatInfo> enforceLChangedBy = new ActionLazyCommom<MatInfo>(option, MatVisiMergeUsername.class);
+		ActionLazy<MatInfo> updateMat = new ActionLazyCommom<MatInfo>(option, MatVisiDaoUpdate.class);		
+		ActionLazy<MatInfo> upsertMatext = new ActionLazyCommom<MatInfo>(option, MatVisiNodeMatextUpsert.class);
+		ActionLazy<MatInfo> snapshot = new ActionLazyCommom<MatInfo>(option, MatVisiNodeSnapshot.class);
+		ActionLazy<MatInfo> select = new ActionLazyCommom<MatInfo>(option, MatVisiRootSelect.class);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(updateMat);
