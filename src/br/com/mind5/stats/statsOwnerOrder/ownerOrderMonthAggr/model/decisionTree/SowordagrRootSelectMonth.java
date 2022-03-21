@@ -41,7 +41,7 @@ public final class SowordagrRootSelectMonth extends DeciTreeTemplateWrite<Soword
 		List<ActionStd<SowordagrInfo>> actions = new ArrayList<>();
 
 		ActionStd<SowordagrInfo> mergeSowordarchMonth = new ActionStdCommom<SowordagrInfo>(option, SowordagrVisiMergeSowordarchMonth.class);
-		ActionLazy<SowordagrInfo> select = new ActionLazyCommom<SowordagrInfo>(option.conn, option.schemaName, SowordagrVisiRootSelect.class);
+		ActionLazy<SowordagrInfo> select = new ActionLazyCommom<SowordagrInfo>(option, SowordagrVisiRootSelect.class);
 		
 		mergeSowordarchMonth.addPostAction(select);
 		
