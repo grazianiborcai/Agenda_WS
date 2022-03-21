@@ -49,7 +49,7 @@ public final class StedmonNodeUpsert extends DeciTreeTemplateWrite<StedmonInfo> 
 		List<ActionStd<StedmonInfo>> actions = new ArrayList<>();
 
 		ActionStd<StedmonInfo> mergeStedmonive = new ActionStdCommom<StedmonInfo>(option, StedmonVisiMergeStedmonive.class);
-		ActionLazy<StedmonInfo> upsertStedmonagr = new ActionLazyCommom<StedmonInfo>(option.conn, option.schemaName, StedmonVisiStedmonagrUpsert.class);
+		ActionLazy<StedmonInfo> upsertStedmonagr = new ActionLazyCommom<StedmonInfo>(option, StedmonVisiStedmonagrUpsert.class);
 		
 		mergeStedmonive.addPostAction(upsertStedmonagr);
 		
@@ -64,8 +64,8 @@ public final class StedmonNodeUpsert extends DeciTreeTemplateWrite<StedmonInfo> 
 		List<ActionStd<StedmonInfo>> actions = new ArrayList<>();
 
 		ActionStd<StedmonInfo> zerofy = new ActionStdCommom<StedmonInfo>(option, StedmonVisiEnforceZerofy.class);
-		ActionLazy<StedmonInfo> mergeStolis = new ActionLazyCommom<StedmonInfo>(option.conn, option.schemaName, StedmonVisiMergeStolis.class);
-		ActionLazy<StedmonInfo> upsertStedmonagr = new ActionLazyCommom<StedmonInfo>(option.conn, option.schemaName, StedmonVisiStedmonagrUpsert.class);
+		ActionLazy<StedmonInfo> mergeStolis = new ActionLazyCommom<StedmonInfo>(option, StedmonVisiMergeStolis.class);
+		ActionLazy<StedmonInfo> upsertStedmonagr = new ActionLazyCommom<StedmonInfo>(option, StedmonVisiStedmonagrUpsert.class);
 		
 		zerofy.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(upsertStedmonagr);

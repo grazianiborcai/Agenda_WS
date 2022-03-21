@@ -41,7 +41,7 @@ public final class StedmonRootSelectLtm extends DeciTreeTemplateWrite<StedmonInf
 		List<ActionStd<StedmonInfo>> actions = new ArrayList<>();
 
 		ActionStd<StedmonInfo> mergeCalonthLtm = new ActionStdCommom<StedmonInfo>(option, StedmonVisiMergeCalonthLtm.class);
-		ActionLazy<StedmonInfo> select = new ActionLazyCommom<StedmonInfo>(option.conn, option.schemaName, StedmonVisiRootSelect.class);
+		ActionLazy<StedmonInfo> select = new ActionLazyCommom<StedmonInfo>(option, StedmonVisiRootSelect.class);
 		
 		mergeCalonthLtm.addPostAction(select);
 		
