@@ -14,14 +14,10 @@ public final class CutefilonagrDaoDbTableColumn extends DaoDbTableColumnTemplate
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
-	public static final String COL_COUNT_CUSTOMER = DaoDbField.COL_COUNT_CUSTOMER;
-	public static final String COL_COUNT_EMPLOYEE = DaoDbField.COL_COUNT_EMPLOYEE;
-	public static final String COL_COUNT_GOODS = DaoDbField.COL_COUNT_GOODS;
 	public static final String COL_COUNT_SCHEDULE_CANCELLED = DaoDbField.COL_COUNT_SCHEDULE_CANCELLED;
 	public static final String COL_COUNT_SCHEDULE_CONFIRMED = DaoDbField.COL_COUNT_SCHEDULE_CONFIRMED;
 	public static final String COL_COUNT_SCHEDULE_TOTAL = DaoDbField.COL_COUNT_SCHEDULE_TOTAL;
 	public static final String COL_COUNT_SCHEDULE_WAITING = DaoDbField.COL_COUNT_SCHEDULE_WAITING;
-	public static final String COL_COUNT_SERVICE = DaoDbField.COL_COUNT_SERVICE;
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_MONTH = DaoDbField.COL_MONTH;
 	public static final String COL_YEAR = DaoDbField.COL_YEAR;
@@ -113,38 +109,6 @@ public final class CutefilonagrDaoDbTableColumn extends DaoDbTableColumnTemplate
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COUNT_SCHEDULE_CONFIRMED;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_GOODS;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_SERVICE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_EMPLOYEE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_CUSTOMER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

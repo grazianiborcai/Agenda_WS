@@ -47,11 +47,7 @@ public final class CutefilonagrDaoInsertSingle extends DaoStmtTemplate<Cutefilon
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countScheduleCancelled);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countScheduleWaiting);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countScheduleTotal);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countScheduleConfirmed);				
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countGoods);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countService);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countEmployee);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countCustomer);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countScheduleConfirmed);	
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 	
 				return stmt;
