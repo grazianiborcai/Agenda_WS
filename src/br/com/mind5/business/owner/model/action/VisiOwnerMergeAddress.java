@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressCopier;
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.decisionTree.RootAddressSearch;
+import br.com.mind5.business.address.model.decisionTree.AddressRootSearch;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -20,7 +20,7 @@ final class VisiOwnerMergeAddress extends ActionVisitorTemplateMerge<OwnerInfo, 
 	
 	
 	@Override protected Class<? extends DeciTree<AddressInfo>> getTreeClassHook() {
-		return RootAddressSearch.class;
+		return AddressRootSearch.class;
 	}
 	
 	

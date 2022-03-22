@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressCopier;
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.decisionTree.RootAddressUpsertdel;
+import br.com.mind5.business.address.model.decisionTree.AddressRootUpsertdel;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.info.CusMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
@@ -20,7 +20,7 @@ public final class CusVisiAddressUpsert extends ActionVisitorTemplateAction<CusI
 	
 	
 	@Override protected Class<? extends DeciTree<AddressInfo>> getTreeClassHook() {
-		return RootAddressUpsertdel.class;
+		return AddressRootUpsertdel.class;
 	}
 	
 	

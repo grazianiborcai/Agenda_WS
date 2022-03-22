@@ -1,9 +1,10 @@
 package br.com.mind5.business.address.model.checker;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.action.StdAddressDaoSelect;
+import br.com.mind5.business.address.model.action.AddressVisiDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class AddressCheckExist extends ModelCheckerTemplateAction<AddressI
 	
 	
 	@Override protected ActionStd<AddressInfo> buildActionHook(DeciTreeOption<AddressInfo> option) {
-		ActionStd<AddressInfo> select = new StdAddressDaoSelect(option);
+		ActionStd<AddressInfo> select = new ActionStdCommom<AddressInfo>(option, AddressVisiDaoSelect.class);
 		return select;
 	}
 	

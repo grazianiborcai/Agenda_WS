@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.decisionTree.RootAddressDelete;
+import br.com.mind5.business.address.model.decisionTree.AddressRootDelete;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -18,7 +18,7 @@ public final class EmpVisiAddressDelete extends ActionVisitorTemplateAction<EmpI
 	
 	
 	@Override protected Class<? extends DeciTree<AddressInfo>> getTreeClassHook() {
-		return RootAddressDelete.class;
+		return AddressRootDelete.class;
 	}
 	
 	

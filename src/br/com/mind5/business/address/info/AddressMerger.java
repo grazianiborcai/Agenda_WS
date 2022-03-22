@@ -20,7 +20,7 @@ public final class AddressMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddressVisiMergeAddault());
+		builder.addVisitor(new AddressMergerVisiAddault());
 		InfoMerger<AddressInfo, AddaultInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -33,7 +33,7 @@ public final class AddressMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddressVisiMergeGeode());
+		builder.addVisitor(new AddressMergerVisiGeode());
 		InfoMerger<AddressInfo, GeodeInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -46,7 +46,7 @@ public final class AddressMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddressVisiMergeGeosh());
+		builder.addVisitor(new AddressMergerVisiGeosh());
 		InfoMerger<AddressInfo, GeoshInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -59,7 +59,7 @@ public final class AddressMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddressVisiMergeAddarch());
+		builder.addVisitor(new AddressMergerVisiAddarch());
 		InfoMerger<AddressInfo, AddarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -72,7 +72,7 @@ public final class AddressMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddressVisiMergeAddarchStore());
+		builder.addVisitor(new AddressMergerVisiAddarchStore());
 		InfoMerger<AddressInfo, AddarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -85,7 +85,7 @@ public final class AddressMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddressVisiMergeUsername());
+		builder.addVisitor(new AddressMergerVisiUsername());
 		InfoMerger<AddressInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -98,7 +98,7 @@ public final class AddressMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddressVisiMergeCountry());
+		builder.addVisitor(new AddressMergerVisiCountry());
 		InfoMerger<AddressInfo, CountryInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -111,7 +111,7 @@ public final class AddressMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddressVisiMergeFormess());
+		builder.addVisitor(new AddressMergerVisiFormess());
 		InfoMerger<AddressInfo, FormessInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -124,7 +124,7 @@ public final class AddressMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddressVisiMergeState());
+		builder.addVisitor(new AddressMergerVisiState());
 		InfoMerger<AddressInfo, StateInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -137,7 +137,7 @@ public final class AddressMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddressVisiMergeAddresnap());
+		builder.addVisitor(new AddressMergerVisiAddresnap());
 		InfoMerger<AddressInfo, AddresnapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -150,7 +150,7 @@ public final class AddressMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddressVisiMergeToDelete());
+		builder.addVisitor(new AddressMergerVisiToDelete());
 		InfoMerger<AddressInfo, AddressInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -163,7 +163,7 @@ public final class AddressMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddressVisiMergeToSelect());
+		builder.addVisitor(new AddressMergerVisiToSelect());
 		InfoMerger<AddressInfo, AddressInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -176,7 +176,7 @@ public final class AddressMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddressVisiMergeToUpdate());
+		builder.addVisitor(new AddressMergerVisiToUpdate());
 		InfoMerger<AddressInfo, AddressInfo> merger = builder.build();		
 	
 		return merger.merge();

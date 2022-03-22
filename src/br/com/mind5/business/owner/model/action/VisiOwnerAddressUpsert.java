@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressCopier;
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.decisionTree.RootAddressUpsertdel;
+import br.com.mind5.business.address.model.decisionTree.AddressRootUpsertdel;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -19,7 +19,7 @@ final class VisiOwnerAddressUpsert extends ActionVisitorTemplateAction<OwnerInfo
 	
 	
 	@Override protected Class<? extends DeciTree<AddressInfo>> getTreeClassHook() {
-		return RootAddressUpsertdel.class;
+		return AddressRootUpsertdel.class;
 	}
 	
 	

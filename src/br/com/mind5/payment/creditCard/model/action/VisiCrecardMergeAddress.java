@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressCopier;
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.decisionTree.RootAddressSearch;
+import br.com.mind5.business.address.model.decisionTree.AddressRootSearch;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ final class VisiCrecardMergeAddress extends ActionVisitorTemplateMerge<CrecardIn
 	
 	
 	@Override protected Class<? extends DeciTree<AddressInfo>> getTreeClassHook() {
-		return RootAddressSearch.class;
+		return AddressRootSearch.class;
 	}
 	
 	
