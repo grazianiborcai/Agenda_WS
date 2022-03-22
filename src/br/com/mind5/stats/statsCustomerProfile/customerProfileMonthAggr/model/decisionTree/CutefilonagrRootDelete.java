@@ -15,7 +15,7 @@ import br.com.mind5.stats.statsCustomerProfile.customerProfileMonthAggr.model.ac
 import br.com.mind5.stats.statsCustomerProfile.customerProfileMonthAggr.model.checker.CutefilonagrCheckExist;
 import br.com.mind5.stats.statsCustomerProfile.customerProfileMonthAggr.model.checker.CutefilonagrCheckLangu;
 import br.com.mind5.stats.statsCustomerProfile.customerProfileMonthAggr.model.checker.CutefilonagrCheckOwner;
-import br.com.mind5.stats.statsCustomerProfile.customerProfileMonthAggr.model.checker.CutefilonagrCheckStore;
+import br.com.mind5.stats.statsCustomerProfile.customerProfileMonthAggr.model.checker.CutefilonagrCheckCus;
 import br.com.mind5.stats.statsCustomerProfile.customerProfileMonthAggr.model.checker.CutefilonagrCheckWrite;
 
 public final class CutefilonagrRootDelete extends DeciTreeTemplateWrite<CutefilonagrInfo> {
@@ -56,7 +56,7 @@ public final class CutefilonagrRootDelete extends DeciTreeTemplateWrite<Cutefilo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CutefilonagrCheckStore(checkerOption);
+		checker = new CutefilonagrCheckCus(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
