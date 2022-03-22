@@ -20,7 +20,7 @@ import br.com.mind5.stats.statsCustomerSchedule.customerScheduleMonthLive.model.
 import br.com.mind5.stats.statsCustomerSchedule.customerScheduleMonthLive.model.checker.CustamoniveCheckLangu;
 import br.com.mind5.stats.statsCustomerSchedule.customerScheduleMonthLive.model.checker.CustamoniveCheckOwner;
 import br.com.mind5.stats.statsCustomerSchedule.customerScheduleMonthLive.model.checker.CustamoniveCheckRead;
-import br.com.mind5.stats.statsCustomerSchedule.customerScheduleMonthLive.model.checker.CustamoniveCheckStore;
+import br.com.mind5.stats.statsCustomerSchedule.customerScheduleMonthLive.model.checker.CustamoniveCheckCus;
 
 
 public final class CustamoniveRootSelect extends DeciTreeTemplateWrite<CustamoniveInfo> {
@@ -61,7 +61,7 @@ public final class CustamoniveRootSelect extends DeciTreeTemplateWrite<Custamoni
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new CustamoniveCheckStore(checkerOption);
+		checker = new CustamoniveCheckCus(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);

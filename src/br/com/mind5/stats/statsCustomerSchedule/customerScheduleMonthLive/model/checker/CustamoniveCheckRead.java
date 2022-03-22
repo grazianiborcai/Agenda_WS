@@ -17,7 +17,7 @@ public final class CustamoniveCheckRead extends ModelCheckerTemplateSimple<Custa
 	
 	@Override protected boolean checkHook(CustamoniveInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
-			recordInfo.codStore 	<= 0 	||
+			recordInfo.codCustomer 	<= 0 	||
 			recordInfo.calmonth 	== null ||
 			recordInfo.username 	== null ||
 			recordInfo.codLanguage 	== null		)	
