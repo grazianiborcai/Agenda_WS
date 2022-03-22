@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
 import br.com.mind5.business.addressDefault.info.AddaultInfo;
-import br.com.mind5.business.addressDefault.model.decisionTree.RootAddaultSelect;
+import br.com.mind5.business.addressDefault.model.decisionTree.AddaultRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiAddressMergeAddault extends ActionVisitorTemplateMerge<AddressIn
 	
 	
 	@Override protected Class<? extends DeciTree<AddaultInfo>> getTreeClassHook() {
-		return RootAddaultSelect.class;
+		return AddaultRootSelect.class;
 	}
 	
 	

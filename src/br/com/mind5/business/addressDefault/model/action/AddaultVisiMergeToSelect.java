@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.addressDefault.info.AddaultInfo;
 import br.com.mind5.business.addressDefault.info.AddaultMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddaultMergeToSelect extends ActionVisitorTemplateMerge<AddaultInfo, AddaultInfo> {
+public final class AddaultVisiMergeToSelect extends ActionVisitorTemplateMerge<AddaultInfo, AddaultInfo> {
 	
-	public VisiAddaultMergeToSelect(DeciTreeOption<AddaultInfo> option) {
+	public AddaultVisiMergeToSelect(DeciTreeOption<AddaultInfo> option) {
 		super(option, AddaultInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<AddaultInfo>> getActionClassHook() {
-		return StdAddaultDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<AddaultInfo>> getVisitorClassHook() {
+		return AddaultVisiDaoSelect.class;
 	}
 	
 	

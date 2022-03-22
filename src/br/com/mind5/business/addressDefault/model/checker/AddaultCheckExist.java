@@ -1,7 +1,7 @@
 package br.com.mind5.business.addressDefault.model.checker;
 
 import br.com.mind5.business.addressDefault.info.AddaultInfo;
-import br.com.mind5.business.addressDefault.model.decisionTree.RootAddaultSelect;
+import br.com.mind5.business.addressDefault.model.decisionTree.AddaultRootSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class AddaultCheckExist extends ModelCheckerTemplateAction<AddaultI
 	
 	
 	@Override protected ActionStd<AddaultInfo> buildActionHook(DeciTreeOption<AddaultInfo> option) {
-		ActionStd<AddaultInfo> select = new RootAddaultSelect(option).toAction();
+		ActionStd<AddaultInfo> select = new AddaultRootSelect(option).toAction();
 		return select;
 	}
 	

@@ -11,7 +11,7 @@ public final class AddaultMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddaultVisiMergeToSelect());
+		builder.addVisitor(new AddaultMergerVisiToSelect());
 		InfoMerger<AddaultInfo, AddaultInfo> merger = builder.build();		
 	
 		return merger.merge();

@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class DaoAddaultWhere implements DaoStmtWhere {	
+final class AddaultDaoWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public DaoAddaultWhere(DaoWhereBuilderOption whereOption, String tableName, AddaultInfo recordInfo) {
+	public AddaultDaoWhere(DaoWhereBuilderOption whereOption, String tableName, AddaultInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,35 +27,35 @@ final class DaoAddaultWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoAddaultDbTableColumn.COL_COD_OWNER :
+				case AddaultDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoAddaultDbTableColumn.COL_COD_CUSTOMER :
+				case AddaultDaoDbTableColumn.COL_COD_CUSTOMER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCustomer));
 					break;
 					
-				case DaoAddaultDbTableColumn.COL_COD_STORE :
+				case AddaultDaoDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case DaoAddaultDbTableColumn.COL_COD_EMPLOYEE :
+				case AddaultDaoDbTableColumn.COL_COD_EMPLOYEE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 					break;
 					
-				case DaoAddaultDbTableColumn.COL_COD_USER :
+				case AddaultDaoDbTableColumn.COL_COD_USER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 					
-				case DaoAddaultDbTableColumn.COL_COD_OWNER_REF :
+				case AddaultDaoDbTableColumn.COL_COD_OWNER_REF :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwnerRef));
 					break;
 					
-				case DaoAddaultDbTableColumn.COL_IS_DEFAULT :
+				case AddaultDaoDbTableColumn.COL_IS_DEFAULT :
 					builder.addClauseEqualAnd(eachColumn, "1");
 					break;
 					
-				case DaoAddaultDbTableColumn.COL_RECORD_MODE :
+				case AddaultDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

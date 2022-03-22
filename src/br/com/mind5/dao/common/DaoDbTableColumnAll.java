@@ -7,7 +7,7 @@ import java.util.List;
 import br.com.mind5.authorization.scheduleAuthorization.dao.DaoSchedauthDbTableColumn;
 import br.com.mind5.authorization.storeAuthorization.dao.DaoStorauthDbTableColumn;
 import br.com.mind5.business.address.dao.DaoAddressDbTableColumn;
-import br.com.mind5.business.addressDefault.dao.DaoAddaultDbTableColumn;
+import br.com.mind5.business.addressDefault.dao.AddaultDaoDbTableColumn;
 import br.com.mind5.business.addressSearch.dao.DaoAddarchDbTableColumn;
 import br.com.mind5.business.addressSnapshot.dao.DaoAddresnapDbTableColumn;
 import br.com.mind5.business.addressSnapshotSearch.dao.DaoAddresnaparchDbTableColumn;
@@ -507,7 +507,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoUpswdarchDbTableColumn());
 		addTable(new DaoMatubupDbTableColumn());
 		addTable(new DaoMatubuparchDbTableColumn());
-		addTable(new DaoAddaultDbTableColumn());
+		addTable(new AddaultDaoDbTableColumn());
 		addTable(new DaoPhonaultDbTableColumn());
 		addTable(new DaoStoriteDbTableColumn());
 		addTable(new DaoStoritarchDbTableColumn());
