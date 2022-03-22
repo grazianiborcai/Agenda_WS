@@ -47,7 +47,7 @@ public final class BostusInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner ^ (codOwner >>> 32));
+		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
 		result = result * 31 + (int) (codCustomer ^ (codCustomer >>> 32));
 		
 		if (calmonth != null)
@@ -68,7 +68,7 @@ public final class BostusInfo extends InfoRecord implements Cloneable {
 		
 		
 		BostusInfo obj = (BostusInfo) o;		
-		return (codOwner == obj.codOwner &&
+		return (codOwner    == obj.codOwner    &&
 				codCustomer == obj.codCustomer &&
 				super.isStringEqual(calmonth, obj.calmonth));
 	}

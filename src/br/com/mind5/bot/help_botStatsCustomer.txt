@@ -1,0 +1,31 @@
+1- Criar script
+vi /usr/local/sbin/run_agendaBotStatsCustomerL2m_26.sh
+
+
+#!/bin/sh
+LOG="/var/log/agendaBotStatsCustomerL2m_26.log"
+echo -e "\n***************************************" >> $LOG
+echo -e "[`date`] :: Begin" >> $LOG
+curl localhost:8080/Agenda_WS/Bot/upsertStatsCustomerL2m -H "codLanguage: PT" -H "codOwner: 26" >> $LOG
+echo -e "\n[`date`] :: End" >> $LOG
+
+
+
+2- Alterar permissões para tornar um executável
+chmod u+x /usr/local/sbin/run_agendaBotStatsCustomerL2m_26.sh
+
+
+
+3- Executar para testar
+/usr/local/sbin/run_agendaBotStatsCustomerL2m_26.sh
+cat /var/log/agendaBotStatsCustomerL2m_26.log
+
+
+
+4- Adicionar ao crontab
+crontab -e
+
+SHELL=/bin/bash
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+
+00 */4 * * * /usr/local/sbin/run_agendaBotStatsCustomerL2m_26.sh

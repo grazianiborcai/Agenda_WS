@@ -32,8 +32,9 @@
 
 	<!-- Localhost hasIpAddress('127.0.0.1') -->
 	<security:http create-session="stateless" pattern="/**/Bot/**" use-expressions="true">
-    	<security:intercept-url pattern="/**/Bot/upsertStatsOwnerL2m" access="permitAll" />
-    	<security:intercept-url pattern="/**/Bot/upsertStatsStoreL2m" access="permitAll" />
+    	<security:intercept-url pattern="/**/Bot/upsertStatsOwnerL2m" 		access="permitAll" />
+    	<security:intercept-url pattern="/**/Bot/upsertStatsStoreL2m" 		access="permitAll" />
+    	<security:intercept-url pattern="/**/Bot/upsertStatsCustomerL2m" 	access="permitAll" />
         <security:http-basic />
         <csrf disabled="true"/>
     	<custom-filter before="BASIC_AUTH_FILTER" ref="authFilterLocalhost" />
