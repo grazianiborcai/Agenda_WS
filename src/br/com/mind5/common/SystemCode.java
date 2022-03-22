@@ -1861,4 +1861,17 @@ public final class SystemCode {
 	
 	// Statistics - Store-Profile-Month
 	public static final int STAT_STR_PRF_MTH_MANDATORY_FIELD_EMPTY		= 18800;
+	
+	// Statistics - Customer-Schedule-Month-Live
+	public static final int STAT_CUS_SCH_MTH_LIVE_ALREADY_EXIST 		= 18850;
+	public static final int STAT_CUS_SCH_MTH_LIVE_NOT_FOUND 			= 18851;
+	public static final int STAT_CUS_SCH_MTH_LIVE_MANDATORY_FIELD_EMPTY	= 18852;
+	
+	// Statistics - Customer-Schedule-Month
+	public static final int STAT_CUS_SCH_MTH_MANDATORY_FIELD_EMPTY		= 18900;
+	
+	// Statistics - Customer-Schedule-Month-Aggr
+	public static final int STAT_CUS_SCH_MTH_AGGR_ALREADY_EXIST 		= 18950;
+	public static final int STAT_CUS_SCH_MTH_AGGR_NOT_FOUND 			= 18951;
+	public static final int STAT_CUS_SCH_MTH_AGGR_MANDATORY_FIELD_EMPTY	= 18952;
 }
