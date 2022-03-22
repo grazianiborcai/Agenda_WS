@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class BostodCheckWriteL2m extends ModelCheckerTemplateSimple<BostusInfo> {
+public final class BostusCheckWriteL2m extends ModelCheckerTemplateSimple<BostusInfo> {
 
-	public BostodCheckWriteL2m(ModelCheckerOption option) {
+	public BostusCheckWriteL2m(ModelCheckerOption option) {
 		super(option);
 	}
 	

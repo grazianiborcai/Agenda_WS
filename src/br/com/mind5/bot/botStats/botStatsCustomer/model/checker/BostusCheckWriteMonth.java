@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class BostodCheckWriteMonth extends ModelCheckerTemplateSimple<BostusInfo> {
+public final class BostusCheckWriteMonth extends ModelCheckerTemplateSimple<BostusInfo> {
 
-	public BostodCheckWriteMonth(ModelCheckerOption option) {
+	public BostusCheckWriteMonth(ModelCheckerOption option) {
 		super(option);
 	}
 	

@@ -7,9 +7,9 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
 
-public final class BostodCheckOwner extends ModelCheckerTemplateForward<BostusInfo, OwnerInfo> {
+public final class BostusCheckOwner extends ModelCheckerTemplateForward<BostusInfo, OwnerInfo> {
 	
-	public BostodCheckOwner(ModelCheckerOption option) {
+	public BostusCheckOwner(ModelCheckerOption option) {
 		super(option);
 	}
 

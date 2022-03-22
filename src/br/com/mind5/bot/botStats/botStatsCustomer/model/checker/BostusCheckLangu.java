@@ -7,9 +7,9 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
 
-public final class BostodCheckLangu extends ModelCheckerTemplateForward<BostusInfo, LanguInfo> {
+public final class BostusCheckLangu extends ModelCheckerTemplateForward<BostusInfo, LanguInfo> {
 	
-	public BostodCheckLangu(ModelCheckerOption option) {
+	public BostusCheckLangu(ModelCheckerOption option) {
 		super(option);
 	}
 
