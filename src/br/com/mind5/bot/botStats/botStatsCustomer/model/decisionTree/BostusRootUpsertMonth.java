@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.bot.botStats.botStatsCustomer.info.BostusInfo;
 import br.com.mind5.bot.botStats.botStatsCustomer.model.action.BostusVisiCustamonUpsert;
+import br.com.mind5.bot.botStats.botStatsCustomer.model.action.BostusVisiCutefilonUpsert;
 import br.com.mind5.bot.botStats.botStatsCustomer.model.checker.BostusCheckCus;
 import br.com.mind5.bot.botStats.botStatsCustomer.model.checker.BostusCheckLangu;
 import br.com.mind5.bot.botStats.botStatsCustomer.model.checker.BostusCheckOwner;
@@ -68,8 +69,10 @@ public final class BostusRootUpsertMonth extends DeciTreeTemplateWrite<BostusInf
 		List<ActionStd<BostusInfo>> actions = new ArrayList<>();
 
 		ActionStd<BostusInfo> custamonUpsert = new ActionStdCommom<BostusInfo>(option, BostusVisiCustamonUpsert.class);
+		ActionStd<BostusInfo> cutefilonUpsert = new ActionStdCommom<BostusInfo>(option, BostusVisiCutefilonUpsert.class);
 		
 		actions.add(custamonUpsert);
+		actions.add(cutefilonUpsert);
 		
 		return actions;
 	}
