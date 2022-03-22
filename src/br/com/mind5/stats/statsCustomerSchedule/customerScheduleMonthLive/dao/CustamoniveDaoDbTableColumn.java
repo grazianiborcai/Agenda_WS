@@ -17,13 +17,9 @@ public final class CustamoniveDaoDbTableColumn extends DaoDbTableColumnTemplate 
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
 	public static final String COL_COUNT_SCHEDULE_CANCELLED_MONTH = DaoDbField.COL_COUNT_SCHEDULE_CANCELLED_MONTH;
-	public static final String COL_COUNT_SCHEDULE_CANCELLED_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_SCHEDULE_CANCELLED_MONTH_LAST_YEAR;
 	public static final String COL_COUNT_SCHEDULE_CONFIRMED_MONTH = DaoDbField.COL_COUNT_SCHEDULE_CONFIRMED_MONTH;
-	public static final String COL_COUNT_SCHEDULE_CONFIRMED_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_SCHEDULE_CONFIRMED_MONTH_LAST_YEAR;
 	public static final String COL_COUNT_SCHEDULE_TOTAL_MONTH = DaoDbField.COL_COUNT_SCHEDULE_TOTAL_MONTH;
-	public static final String COL_COUNT_SCHEDULE_TOTAL_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_SCHEDULE_TOTAL_MONTH_LAST_YEAR;
 	public static final String COL_COUNT_SCHEDULE_WAITING_MONTH = DaoDbField.COL_COUNT_SCHEDULE_WAITING_MONTH;
-	public static final String COL_COUNT_SCHEDULE_WAITING_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_SCHEDULE_WAITING_MONTH_LAST_YEAR;
 	public static final String COL_MONTH = DaoDbField.COL_MONTH;
 	public static final String COL_STATE_PROVINCE = DaoDbField.COL_STATE_PROVINCE;
 	public static final String COL_YEAR = DaoDbField.COL_YEAR;
@@ -140,38 +136,6 @@ public final class CustamoniveDaoDbTableColumn extends DaoDbTableColumnTemplate 
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COUNT_SCHEDULE_CONFIRMED_MONTH;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_SCHEDULE_CANCELLED_MONTH_LAST_YEAR;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_SCHEDULE_WAITING_MONTH_LAST_YEAR;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_SCHEDULE_TOTAL_MONTH_LAST_YEAR;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COUNT_SCHEDULE_CONFIRMED_MONTH_LAST_YEAR;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
