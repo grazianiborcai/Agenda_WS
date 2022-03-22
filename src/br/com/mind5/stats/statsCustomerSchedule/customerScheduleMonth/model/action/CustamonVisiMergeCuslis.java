@@ -3,7 +3,7 @@ package br.com.mind5.stats.statsCustomerSchedule.customerScheduleMonth.model.act
 import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.business.customerList.model.decisionTree.RootCuslisSelect;
+import br.com.mind5.business.customerList.model.decisionTree.CuslisRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class CustamonVisiMergeCuslis extends ActionVisitorTemplateMerge<Cu
 	
 	
 	@Override protected Class<? extends DeciTree<CuslisInfo>> getTreeClassHook() {
-		return RootCuslisSelect.class;
+		return CuslisRootSelect.class;
 	}
 	
 	

@@ -6,7 +6,7 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.info.AddresnapMerger;
 import br.com.mind5.business.customerList.info.CuslisCopier;
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.business.customerList.model.decisionTree.RootCuslisSelect;
+import br.com.mind5.business.customerList.model.decisionTree.CuslisRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ final class VisiAddresnapMergeCuslis extends ActionVisitorTemplateMerge<Addresna
 	
 	
 	@Override protected Class<? extends DeciTree<CuslisInfo>> getTreeClassHook() {
-		return RootCuslisSelect.class;
+		return CuslisRootSelect.class;
 	}
 
 	

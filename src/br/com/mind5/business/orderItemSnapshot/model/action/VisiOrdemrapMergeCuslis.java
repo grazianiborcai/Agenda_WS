@@ -3,7 +3,7 @@ package br.com.mind5.business.orderItemSnapshot.model.action;
 import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.business.customerList.model.decisionTree.RootCuslisSelect;
+import br.com.mind5.business.customerList.model.decisionTree.CuslisRootSelect;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiOrdemrapMergeCuslis extends ActionVisitorTemplateMerge<OrdemrapI
 	
 	
 	@Override protected Class<? extends DeciTree<CuslisInfo>> getTreeClassHook() {
-		return RootCuslisSelect.class;
+		return CuslisRootSelect.class;
 	}
 	
 	

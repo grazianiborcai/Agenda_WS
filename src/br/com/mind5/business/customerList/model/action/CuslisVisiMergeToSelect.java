@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.info.CuslisMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCuslisMergeToSelect extends ActionVisitorTemplateMerge<CuslisInfo, CuslisInfo> {
+public final class CuslisVisiMergeToSelect extends ActionVisitorTemplateMerge<CuslisInfo, CuslisInfo> {
 	
-	public VisiCuslisMergeToSelect(DeciTreeOption<CuslisInfo> option) {
+	public CuslisVisiMergeToSelect(DeciTreeOption<CuslisInfo> option) {
 		super(option, CuslisInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<CuslisInfo>> getActionClassHook() {
-		return StdCuslisDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<CuslisInfo>> getVisitorClassHook() {
+		return CuslisVisiDaoSelect.class;
 	}
 	
 	

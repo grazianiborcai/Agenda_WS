@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisCopier;
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.business.customerList.model.decisionTree.RootCuslisSelect;
+import br.com.mind5.business.customerList.model.decisionTree.CuslisRootSelect;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapMerger;
 
@@ -21,7 +21,7 @@ final class VisiPhonapMergeCuslis extends ActionVisitorTemplateMerge<PhonapInfo,
 	
 	
 	@Override protected Class<? extends DeciTree<CuslisInfo>> getTreeClassHook() {
-		return RootCuslisSelect.class;
+		return CuslisRootSelect.class;
 	}
 
 	

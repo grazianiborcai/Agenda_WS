@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisCopier;
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.business.customerList.model.decisionTree.RootCuslisSelect;
+import br.com.mind5.business.customerList.model.decisionTree.CuslisRootSelect;
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.business.scheduleWeek.info.SchedeekMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -20,7 +20,7 @@ final class VisiSchedeekMergeCuslis extends ActionVisitorTemplateMerge<SchedeekI
 	
 	
 	@Override protected Class<? extends DeciTree<CuslisInfo>> getTreeClassHook() {
-		return RootCuslisSelect.class;
+		return CuslisRootSelect.class;
 	}
 	
 	

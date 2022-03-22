@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoCuslisSelect implements DaoStmtExec<CuslisInfo> {
+public final class CuslisDaoSelect implements DaoStmtExec<CuslisInfo> {
 	private DaoStmtExec<CuslisInfo> helper;
 	
 	
-	public DaoCuslisSelect(List<DaoStmtExecOption<CuslisInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCuslisSelectSingle.class, CuslisInfo.class);
+	public CuslisDaoSelect(List<DaoStmtExecOption<CuslisInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CuslisDaoSelectSingle.class, CuslisInfo.class);
 	}
 	
 	

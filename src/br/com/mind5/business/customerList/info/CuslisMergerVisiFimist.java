@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class CuslisVisiMergeFimist extends InfoMergerVisitorTemplate<CuslisInfo, FimistInfo> {
+final class CuslisMergerVisiFimist extends InfoMergerVisitorTemplate<CuslisInfo, FimistInfo> {
 
 	@Override public boolean shouldMerge(CuslisInfo baseInfo, FimistInfo selectedInfo) {
 		return (baseInfo.codOwner    == selectedInfo.codOwner	&&

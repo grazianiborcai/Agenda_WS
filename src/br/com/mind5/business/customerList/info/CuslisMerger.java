@@ -15,7 +15,7 @@ public final class CuslisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CuslisVisiMergeFimist());
+		builder.addVisitor(new CuslisMergerVisiFimist());
 		InfoMerger<CuslisInfo, FimistInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -28,7 +28,7 @@ public final class CuslisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CuslisVisiMergeCusarch());
+		builder.addVisitor(new CuslisMergerVisiCusarch());
 		InfoMerger<CuslisInfo, CusarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -41,7 +41,7 @@ public final class CuslisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CuslisVisiMergePersolis());
+		builder.addVisitor(new CuslisMergerVisiPersolis());
 		InfoMerger<CuslisInfo, PersolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -54,7 +54,7 @@ public final class CuslisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CuslisVisiMergeToSelect());
+		builder.addVisitor(new CuslisMergerVisiToSelect());
 		InfoMerger<CuslisInfo, CuslisInfo> merger = builder.build();		
 	
 		return merger.merge();

@@ -4,23 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.business.customerList.model.action.LazyCuslisMergeFimist;
-import br.com.mind5.business.customerList.model.action.LazyCuslisMergePersolis;
-import br.com.mind5.business.customerList.model.action.StdCuslisMergeToSelect;
+import br.com.mind5.business.customerList.model.action.CuslisVisiMergeFimist;
+import br.com.mind5.business.customerList.model.action.CuslisVisiMergePersolis;
+import br.com.mind5.business.customerList.model.action.CuslisVisiMergeToSelect;
 import br.com.mind5.business.customerList.model.checker.CuslisCheckLangu;
 import br.com.mind5.business.customerList.model.checker.CuslisCheckOwner;
 import br.com.mind5.business.customerList.model.checker.CuslisCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCuslisSelect extends DeciTreeTemplateRead<CuslisInfo> {
+public final class CuslisRootSelect extends DeciTreeTemplateRead<CuslisInfo> {
 	
-	public RootCuslisSelect(DeciTreeOption<CuslisInfo> option) {
+	public CuslisRootSelect(DeciTreeOption<CuslisInfo> option) {
 		super(option);
 	}
 	
@@ -60,9 +62,9 @@ public final class RootCuslisSelect extends DeciTreeTemplateRead<CuslisInfo> {
 	@Override protected List<ActionStd<CuslisInfo>> buildActionsOnPassedHook(DeciTreeOption<CuslisInfo> option) {
 		List<ActionStd<CuslisInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CuslisInfo> select = new StdCuslisMergeToSelect(option);
-		ActionLazy<CuslisInfo> mergePersolis = new LazyCuslisMergePersolis(option.conn, option.schemaName);
-		ActionLazy<CuslisInfo> mergeFimist = new LazyCuslisMergeFimist(option.conn, option.schemaName);
+		ActionStd<CuslisInfo> select = new ActionStdCommom<CuslisInfo>(option, CuslisVisiMergeToSelect.class);
+		ActionLazy<CuslisInfo> mergePersolis = new ActionLazyCommom<CuslisInfo>(option, CuslisVisiMergePersolis.class);
+		ActionLazy<CuslisInfo> mergeFimist = new ActionLazyCommom<CuslisInfo>(option, CuslisVisiMergeFimist.class);
 		
 		select.addPostAction(mergePersolis);
 		mergePersolis.addPostAction(mergeFimist);

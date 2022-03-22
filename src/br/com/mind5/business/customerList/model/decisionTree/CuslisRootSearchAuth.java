@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.business.customerList.model.action.LazyCuslisRootSelect;
-import br.com.mind5.business.customerList.model.action.StdCuslisMergeCusarch;
+import br.com.mind5.business.customerList.model.action.CuslisVisiRootSelect;
+import br.com.mind5.business.customerList.model.action.CuslisVisiMergeCusarchAuth;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCuslisSearchAuth extends DeciTreeTemplateRead<CuslisInfo> {
+public final class CuslisRootSearchAuth extends DeciTreeTemplateRead<CuslisInfo> {
 	
-	public RootCuslisSearchAuth(DeciTreeOption<CuslisInfo> option) {
+	public CuslisRootSearchAuth(DeciTreeOption<CuslisInfo> option) {
 		super(option);
 	}
 	
@@ -37,8 +39,8 @@ public final class RootCuslisSearchAuth extends DeciTreeTemplateRead<CuslisInfo>
 	@Override protected List<ActionStd<CuslisInfo>> buildActionsOnPassedHook(DeciTreeOption<CuslisInfo> option) {
 		List<ActionStd<CuslisInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CuslisInfo> mergeCusarch = new StdCuslisMergeCusarch(option);
-		ActionLazy<CuslisInfo> select = new LazyCuslisRootSelect(option.conn, option.schemaName);
+		ActionStd<CuslisInfo> mergeCusarch = new ActionStdCommom<CuslisInfo>(option, CuslisVisiMergeCusarchAuth.class);
+		ActionLazy<CuslisInfo> select = new ActionLazyCommom<CuslisInfo>(option, CuslisVisiRootSelect.class);
 		
 		mergeCusarch.addPostAction(select);
 		

@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoCuslisSelectSingle extends DaoStmtTemplate<CuslisInfo> {
+public final class CuslisDaoSelectSingle extends DaoStmtTemplate<CuslisInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CUS_TABLE;
 	
 	
-	public DaoCuslisSelectSingle(Connection conn, CuslisInfo recordInfo, String schemaName) {
+	public CuslisDaoSelectSingle(Connection conn, CuslisInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoCuslisSelectSingle extends DaoStmtTemplate<CuslisInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoCuslisWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new CuslisDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,13 +67,13 @@ public final class DaoCuslisSelectSingle extends DaoStmtTemplate<CuslisInfo> {
 				do {
 					CuslisInfo dataInfo = new CuslisInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoCuslisDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCustomer = stmtResult.getLong(DaoCuslisDbTableColumn.COL_COD_CUSTOMER);	
-					dataInfo.codStore = stmtResult.getLong(DaoCuslisDbTableColumn.COL_COD_STORE);	
-					dataInfo.recordMode = stmtResult.getString(DaoCuslisDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoCuslisDbTableColumn.COL_COD_PERSON);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoCuslisDbTableColumn.COL_COD_USER);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoCuslisDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codOwner = stmtResult.getLong(CuslisDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCustomer = stmtResult.getLong(CuslisDaoDbTableColumn.COL_COD_CUSTOMER);	
+					dataInfo.codStore = stmtResult.getLong(CuslisDaoDbTableColumn.COL_COD_STORE);	
+					dataInfo.recordMode = stmtResult.getString(CuslisDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, CuslisDaoDbTableColumn.COL_COD_PERSON);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, CuslisDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, CuslisDaoDbTableColumn.COL_COD_SNAPSHOT);
 	
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
