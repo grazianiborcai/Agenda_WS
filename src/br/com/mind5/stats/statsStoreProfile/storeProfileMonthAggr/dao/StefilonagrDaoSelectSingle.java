@@ -61,6 +61,7 @@ public final class StefilonagrDaoSelectSingle extends DaoStmtTemplate<Stefilonag
 				do {
 					StefilonagrInfo dataInfo = new StefilonagrInfo();
 					
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, StefilonagrDaoDbTableColumn.COL_COD_OWNER);
 					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, StefilonagrDaoDbTableColumn.COL_COD_STORE);
 					dataInfo.calmonth = stmtResult.getString(StefilonagrDaoDbTableColumn.COL_CALMONTH);
 					dataInfo.year = DaoFormatter.sqlToInt(stmtResult, StefilonagrDaoDbTableColumn.COL_YEAR);
