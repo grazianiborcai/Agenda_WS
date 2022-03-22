@@ -71,10 +71,6 @@ public final class CutefiloniveDaoSelectSingle extends DaoStmtTemplate<Cutefilon
 					dataInfo.countScheduleWaiting = DaoFormatter.sqlToInt(stmtResult, CutefiloniveDaoDbTableColumn.COL_COUNT_SCHEDULE_WAITING);
 					dataInfo.countScheduleTotal = DaoFormatter.sqlToInt(stmtResult, CutefiloniveDaoDbTableColumn.COL_COUNT_SCHEDULE_TOTAL);
 					dataInfo.countScheduleConfirmed = DaoFormatter.sqlToInt(stmtResult, CutefiloniveDaoDbTableColumn.COL_COUNT_SCHEDULE_CONFIRMED);
-					dataInfo.countGoods = DaoFormatter.sqlToInt(stmtResult, CutefiloniveDaoDbTableColumn.COL_COUNT_GOODS);
-					dataInfo.countService = DaoFormatter.sqlToInt(stmtResult, CutefiloniveDaoDbTableColumn.COL_COUNT_SERVICE);
-					dataInfo.countEmployee = DaoFormatter.sqlToInt(stmtResult, CutefiloniveDaoDbTableColumn.COL_COUNT_EMPLOYEE);
-					dataInfo.countCustomer = DaoFormatter.sqlToInt(stmtResult, CutefiloniveDaoDbTableColumn.COL_COUNT_CUSTOMER);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

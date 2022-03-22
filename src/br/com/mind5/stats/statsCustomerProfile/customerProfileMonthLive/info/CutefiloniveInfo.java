@@ -14,10 +14,6 @@ public final class CutefiloniveInfo extends InfoRecord implements Cloneable {
 	public int year;
 	public int month;
 	public String txtMonth;
-	public int countGoods;
-	public int countService;
-	public int countEmployee;
-	public int countCustomer;
 	public int countScheduleCancelled;
 	public int countScheduleWaiting;
 	public int countScheduleConfirmed;
@@ -38,10 +34,6 @@ public final class CutefiloniveInfo extends InfoRecord implements Cloneable {
 		countScheduleWaiting = DefaultValue.number();
 		countScheduleConfirmed = DefaultValue.number();
 		countScheduleTotal = DefaultValue.number();
-		countGoods = DefaultValue.number();
-		countService = DefaultValue.number();
-		countEmployee = DefaultValue.number();
-		countCustomer = DefaultValue.number();
 		lastChanged = DefaultValue.object();
 	}
 	
