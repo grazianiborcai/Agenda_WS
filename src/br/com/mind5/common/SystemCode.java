@@ -1884,4 +1884,7 @@ public final class SystemCode {
 	public static final int STAT_CUS_PRF_MTH_AGGR_ALREADY_EXIST 		= 19050;
 	public static final int STAT_CUS_PRF_MTH_AGGR_NOT_FOUND 			= 19051;
 	public static final int STAT_CUS_PRF_MTH_AGGR_MANDATORY_FIELD_EMPTY	= 19052;
+	
+	// Statistics - Customer-Profile-Month
+	public static final int STAT_CUS_PRF_MTH_MANDATORY_FIELD_EMPTY		= 19100;
 }
