@@ -22,11 +22,7 @@ public final class CustamonInfo extends InfoRecord implements Cloneable {
 	public int countScheduleCancelledMonth;
 	public int countScheduleWaitingMonth;
 	public int countScheduleConfirmedMonth;
-	public int countScheduleTotalMonth;	
-	public int countScheduleCancelledLastYear;
-	public int countScheduleWaitingLastYear;
-	public int countScheduleConfirmedLastYear;
-	public int countScheduleTotalLastYear;
+	public int countScheduleTotalMonth;
 	public LocalDateTime lastChanged;
 	public String username;
 	
@@ -42,11 +38,7 @@ public final class CustamonInfo extends InfoRecord implements Cloneable {
 		countScheduleCancelledMonth = DefaultValue.number();
 		countScheduleWaitingMonth = DefaultValue.number();
 		countScheduleConfirmedMonth = DefaultValue.number();
-		countScheduleTotalMonth = DefaultValue.number();		
-		countScheduleCancelledLastYear = DefaultValue.number();
-		countScheduleWaitingLastYear = DefaultValue.number();
-		countScheduleConfirmedLastYear = DefaultValue.number();
-		countScheduleTotalLastYear = DefaultValue.number();
+		countScheduleTotalMonth = DefaultValue.number();
 		lastChanged = DefaultValue.object();
 	}
 	

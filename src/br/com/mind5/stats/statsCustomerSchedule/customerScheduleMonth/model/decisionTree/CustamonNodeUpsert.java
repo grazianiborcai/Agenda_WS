@@ -13,10 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsCustomerSchedule.customerScheduleMonth.info.CustamonInfo;
-import br.com.mind5.stats.statsCustomerSchedule.customerScheduleMonth.model.action.CustamonVisiEnforceZerofy;
-import br.com.mind5.stats.statsCustomerSchedule.customerScheduleMonth.model.action.CustamonVisiMergeCustamonive;
-import br.com.mind5.stats.statsCustomerSchedule.customerScheduleMonth.model.action.CustamonVisiMergeCuslis;
 import br.com.mind5.stats.statsCustomerSchedule.customerScheduleMonth.model.action.CustamonVisiCustamonagrUpsert;
+import br.com.mind5.stats.statsCustomerSchedule.customerScheduleMonth.model.action.CustamonVisiMergeCustamonive;
+import br.com.mind5.stats.statsCustomerSchedule.customerScheduleMonth.model.action.CustamonVisiNodeZerofy;
 import br.com.mind5.stats.statsCustomerSchedule.customerScheduleMonth.model.checker.CustamonCheckCustamonive;
 
 
@@ -63,15 +62,13 @@ public final class CustamonNodeUpsert extends DeciTreeTemplateWrite<CustamonInfo
 	@Override protected List<ActionStd<CustamonInfo>> buildActionsOnFailedHook(DeciTreeOption<CustamonInfo> option) {
 		List<ActionStd<CustamonInfo>> actions = new ArrayList<>();
 
-		ActionStd<CustamonInfo> zerofy = new ActionStdCommom<CustamonInfo>(option, CustamonVisiEnforceZerofy.class);
-		ActionLazy<CustamonInfo> mergeCuslis = new ActionLazyCommom<CustamonInfo>(option, CustamonVisiMergeCuslis.class);
+		ActionStd<CustamonInfo> nodeZerofy = new ActionStdCommom<CustamonInfo>(option, CustamonVisiNodeZerofy.class);
 		ActionLazy<CustamonInfo> upsertCustamonagr = new ActionLazyCommom<CustamonInfo>(option, CustamonVisiCustamonagrUpsert.class);
 		
-		zerofy.addPostAction(mergeCuslis);
-		mergeCuslis.addPostAction(upsertCustamonagr);
+		nodeZerofy.addPostAction(upsertCustamonagr);
 		
 		
-		actions.add(zerofy);
+		actions.add(nodeZerofy);
 		return actions;
 	}
 }
