@@ -27,13 +27,13 @@ public final class CutefiloniveDaoWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case CutefiloniveDaoDbTableColumn.COL_COD_OWNER :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
-					break;
-					
 				case CutefiloniveDaoDbTableColumn.COL_COD_CUSTOMER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCustomer));
 					break;
+				
+				case CutefiloniveDaoDbTableColumn.COL_COD_OWNER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
+					break;					
 					
 				case CutefiloniveDaoDbTableColumn.COL_CALMONTH :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.calmonth);

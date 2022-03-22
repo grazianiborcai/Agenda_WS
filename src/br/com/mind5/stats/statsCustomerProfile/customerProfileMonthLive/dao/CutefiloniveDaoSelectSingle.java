@@ -17,7 +17,7 @@ import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.stats.statsCustomerProfile.customerProfileMonthLive.info.CutefiloniveInfo;
 
 public final class CutefiloniveDaoSelectSingle extends DaoStmtTemplate<CutefiloniveInfo> {
-	private final String MAIN_TABLE = DaoDbTable.STAT_STORE_PROFILE_MONTH_LIVE_TABLE;
+	private final String MAIN_TABLE = DaoDbTable.STAT_CUSTOMER_PROFILE_MONTH_LIVE_TABLE;
 	
 	
 	public CutefiloniveDaoSelectSingle(Connection conn, CutefiloniveInfo recordInfo, String schemaName) {

@@ -34,7 +34,7 @@ public final class CutefiloniveDaoDbTableColumn extends DaoDbTableColumnTemplate
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		final String TABLE_NAME = DaoDbTable.STAT_STORE_PROFILE_MONTH_LIVE_TABLE;
+		final String TABLE_NAME = DaoDbTable.STAT_CUSTOMER_PROFILE_MONTH_LIVE_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();
