@@ -17,8 +17,22 @@ import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
+import br.com.mind5.stats.statsCustomerProfile.customerProfileMonth.info.CutefilonInfo;
 
 public final class CusMerger {
+	public static List<CusInfo> mergeWithCutefilon(List<CusInfo> baseInfos, List<CutefilonInfo> selectedInfos) {
+		InfoMergerBuilder<CusInfo, CutefilonInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusMergerVisiCutefilon());
+		InfoMerger<CusInfo, CutefilonInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<CusInfo> mergeWithPet(List<CusInfo> baseInfos, List<PetInfo> selectedInfos) {
 		InfoMergerBuilder<CusInfo, PetInfo> builder = new InfoMergerBuilder<>();
 		

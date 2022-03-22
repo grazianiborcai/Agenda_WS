@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.action.CusVisiMergeAddress;
+import br.com.mind5.business.customer.model.action.CusVisiMergeCutefilon;
 import br.com.mind5.business.customer.model.action.CusVisiMergeFimist;
 import br.com.mind5.business.customer.model.action.CusVisiMergePerson;
 import br.com.mind5.business.customer.model.action.CusVisiMergePet;
@@ -75,6 +76,7 @@ public final class CusRootSelect extends DeciTreeTemplateRead<CusInfo> {
 		ActionLazy<CusInfo> nodeUser = new ActionLazyCommom<CusInfo>(option, CusVisiNodeUser.class);
 		ActionLazy<CusInfo> mergeFimist = new ActionLazyCommom<CusInfo>(option, CusVisiMergeFimist.class);
 		ActionLazy<CusInfo> mergePet = new ActionLazyCommom<CusInfo>(option, CusVisiMergePet.class);
+		ActionLazy<CusInfo> mergeCutefilon = new ActionLazyCommom<CusInfo>(option, CusVisiMergeCutefilon.class);
 		
 		select.addPostAction(nodeSytotauh);
 		nodeSytotauh.addPostAction(mergePerson);
@@ -83,6 +85,7 @@ public final class CusRootSelect extends DeciTreeTemplateRead<CusInfo> {
 		mergePhone.addPostAction(nodeUser);
 		nodeUser.addPostAction(mergeFimist);
 		mergeFimist.addPostAction(mergePet);
+		mergePet.addPostAction(mergeCutefilon);
 		
 		actions.add(select);
 		return actions;

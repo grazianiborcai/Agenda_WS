@@ -11,6 +11,7 @@ import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.stats.statsCustomerProfile.customerProfileMonth.info.CutefilonInfo;
 
 public final class CusInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
@@ -32,7 +33,8 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	public List<PhoneInfo> phones;
 	public List<PhoneInfo> phonesUser;
 	public PersonInfo personData;
-	public PersonInfo personDataUser;
+	public PersonInfo personDataUser;	
+	public CutefilonInfo cutefilonData;	
 	public FimistInfo fimistData;
 	public FimistInfo fimistDataUser;
 	public List<PetInfo> pets;
@@ -57,6 +59,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 		lastChangedBy = DefaultValue.number();
 		personData = DefaultValue.object();
 		personDataUser = DefaultValue.object();
+		cutefilonData = DefaultValue.object();
 		fimistData = DefaultValue.object();
 		fimistDataUser = DefaultValue.object();
 		pets = DefaultValue.list();
@@ -86,6 +89,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 		deepCopy.phonesUser = CloneUtil.cloneRecords(deepCopy.phonesUser, this.getClass());
 		deepCopy.personData = CloneUtil.cloneRecord(deepCopy.personData, this.getClass());
 		deepCopy.personDataUser = CloneUtil.cloneRecord(deepCopy.personDataUser, this.getClass());
+		deepCopy.cutefilonData = CloneUtil.cloneRecord(deepCopy.cutefilonData, this.getClass());		
 		deepCopy.fimistData = CloneUtil.cloneRecord(deepCopy.fimistData, this.getClass());
 		deepCopy.fimistDataUser = CloneUtil.cloneRecord(deepCopy.fimistDataUser, this.getClass());
 		deepCopy.pets = CloneUtil.cloneRecords(deepCopy.pets, this.getClass());
