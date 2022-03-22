@@ -9,8 +9,8 @@ import br.com.mind5.stats.statsCustomerProfile.customerProfileMonthAggr.info.Cut
 final class CutefilonMergerVisiCutefilonagr extends InfoMergerVisitorTemplate<CutefilonInfo, CutefilonagrInfo> {
 
 	@Override public boolean shouldMerge(CutefilonInfo baseInfo, CutefilonagrInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner &&
-				baseInfo.codStore == selectedInfo.codStore &&
+		return (baseInfo.codOwner    == selectedInfo.codOwner    &&
+				baseInfo.codCustomer == selectedInfo.codCustomer &&
 				baseInfo.calmonth.equals(selectedInfo.calmonth));
 	}
 	
