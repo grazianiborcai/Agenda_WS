@@ -74,11 +74,7 @@ public final class CustamonagrDaoSelectSingle extends DaoStmtTemplate<Custamonag
 					dataInfo.countScheduleWaitingMonth = DaoFormatter.sqlToInt(stmtResult, CustamonagrDaoDbTableColumn.COL_COUNT_SCHEDULE_WAITING_MONTH);
 					dataInfo.countScheduleTotalMonth = DaoFormatter.sqlToInt(stmtResult, CustamonagrDaoDbTableColumn.COL_COUNT_SCHEDULE_TOTAL_MONTH);
 					dataInfo.countScheduleConfirmedMonth = DaoFormatter.sqlToInt(stmtResult, CustamonagrDaoDbTableColumn.COL_COUNT_SCHEDULE_CONFIRMED_MONTH);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CustamonagrDaoDbTableColumn.COL_LAST_CHANGED);					
-					dataInfo.countScheduleCancelledLastYear = DaoFormatter.sqlToInt(stmtResult, CustamonagrDaoDbTableColumn.COL_COUNT_SCHEDULE_CANCELLED_MONTH_LAST_YEAR);
-					dataInfo.countScheduleWaitingLastYear = DaoFormatter.sqlToInt(stmtResult, CustamonagrDaoDbTableColumn.COL_COUNT_SCHEDULE_WAITING_MONTH_LAST_YEAR);
-					dataInfo.countScheduleTotalLastYear = DaoFormatter.sqlToInt(stmtResult, CustamonagrDaoDbTableColumn.COL_COUNT_SCHEDULE_TOTAL_MONTH_LAST_YEAR);
-					dataInfo.countScheduleConfirmedLastYear = DaoFormatter.sqlToInt(stmtResult, CustamonagrDaoDbTableColumn.COL_COUNT_SCHEDULE_CONFIRMED_MONTH_LAST_YEAR);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CustamonagrDaoDbTableColumn.COL_LAST_CHANGED);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

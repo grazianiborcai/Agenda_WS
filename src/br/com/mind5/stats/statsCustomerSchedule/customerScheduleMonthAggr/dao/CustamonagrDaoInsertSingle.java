@@ -52,10 +52,6 @@ public final class CustamonagrDaoInsertSingle extends DaoStmtTemplate<Custamonag
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countScheduleTotalMonth);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countScheduleConfirmedMonth);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countScheduleCancelledLastYear);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countScheduleWaitingLastYear);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countScheduleTotalLastYear);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.countScheduleConfirmedLastYear);
 	
 				return stmt;
 			}		
