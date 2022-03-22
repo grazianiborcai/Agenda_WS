@@ -4,20 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.business.customerSearch.model.action.LazyCusarchMergePersolis;
-import br.com.mind5.business.customerSearch.model.action.LazyCusarchMergeToSelect;
+import br.com.mind5.business.customerSearch.model.action.CusarchVisiMergePersolis;
+import br.com.mind5.business.customerSearch.model.action.CusarchVisiMergeToSelect;
 import br.com.mind5.business.customerSearch.model.checker.CusarchCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCusarchSelect extends DeciTreeTemplateRead<CusarchInfo> {
+public final class CusarchRootSelect extends DeciTreeTemplateRead<CusarchInfo> {
 	
-	public RootCusarchSelect(DeciTreeOption<CusarchInfo> option) {
+	public CusarchRootSelect(DeciTreeOption<CusarchInfo> option) {
 		super(option);
 	}
 	
@@ -43,9 +44,9 @@ public final class RootCusarchSelect extends DeciTreeTemplateRead<CusarchInfo> {
 	@Override protected List<ActionStd<CusarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CusarchInfo> option) {
 		List<ActionStd<CusarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusarchInfo> nodePerson = new NodeCusarchPerson(option).toAction();
-		ActionLazy<CusarchInfo> select = new LazyCusarchMergeToSelect(option.conn, option.schemaName);
-		ActionLazy<CusarchInfo> mergePersolis = new LazyCusarchMergePersolis(option.conn, option.schemaName);
+		ActionStd<CusarchInfo> nodePerson = new CusarchNodePerson(option).toAction();
+		ActionLazy<CusarchInfo> select = new ActionLazyCommom<CusarchInfo>(option, CusarchVisiMergeToSelect.class);
+		ActionLazy<CusarchInfo> mergePersolis = new ActionLazyCommom<CusarchInfo>(option, CusarchVisiMergePersolis.class);
 		
 		nodePerson.addPostAction(select);
 		select.addPostAction(mergePersolis);

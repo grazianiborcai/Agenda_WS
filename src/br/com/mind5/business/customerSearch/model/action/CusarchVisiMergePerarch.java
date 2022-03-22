@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusarchMergePerarch extends ActionVisitorTemplateMerge<CusarchInfo, PerarchInfo> {
+public final class CusarchVisiMergePerarch extends ActionVisitorTemplateMerge<CusarchInfo, PerarchInfo> {
 	
-	public VisiCusarchMergePerarch(DeciTreeOption<CusarchInfo> option) {
+	public CusarchVisiMergePerarch(DeciTreeOption<CusarchInfo> option) {
 		super(option, PerarchInfo.class);
 	}
 	

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class CusarchVisiMergeToSelect extends InfoMergerVisitorTemplate<CusarchInfo, CusarchInfo> {
+final class CusarchMergerVisiToSelect extends InfoMergerVisitorTemplate<CusarchInfo, CusarchInfo> {
 
 	@Override public boolean shouldMerge(CusarchInfo baseInfo, CusarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);

@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.customerSearch.info.CusarchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusarchMergeToSelect extends ActionVisitorTemplateMerge<CusarchInfo, CusarchInfo> {
+public final class CusarchVisiMergeToSelect extends ActionVisitorTemplateMerge<CusarchInfo, CusarchInfo> {
 	
-	public VisiCusarchMergeToSelect(DeciTreeOption<CusarchInfo> option) {
+	public CusarchVisiMergeToSelect(DeciTreeOption<CusarchInfo> option) {
 		super(option, CusarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<CusarchInfo>> getActionClassHook() {
-		return StdCusarchDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<CusarchInfo>> getVisitorClassHook() {
+		return CusarchVisiDaoSelect.class;
 	}
 	
 	

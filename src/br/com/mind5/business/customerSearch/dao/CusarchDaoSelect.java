@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoCusarchSelect implements DaoStmtExec<CusarchInfo> {
+public final class CusarchDaoSelect implements DaoStmtExec<CusarchInfo> {
 	private DaoStmtExec<CusarchInfo> helper;
 	
 	
-	public DaoCusarchSelect(List<DaoStmtExecOption<CusarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCusarchSelectSingle.class, CusarchInfo.class);
+	public CusarchDaoSelect(List<DaoStmtExecOption<CusarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CusarchDaoSelectSingle.class, CusarchInfo.class);
 	}
 	
 	

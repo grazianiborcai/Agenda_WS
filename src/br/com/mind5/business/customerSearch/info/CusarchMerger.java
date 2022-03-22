@@ -15,7 +15,7 @@ public final class CusarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusarchVisiMergePersolis());
+		builder.addVisitor(new CusarchMergerVisiPersolis());
 		InfoMerger<CusarchInfo, PersolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class CusarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusarchVisiMergeUsername());
+		builder.addVisitor(new CusarchMergerVisiUsername());
 		InfoMerger<CusarchInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class CusarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusarchVisiMergePerarch());
+		builder.addVisitor(new CusarchMergerVisiPerarch());
 		InfoMerger<CusarchInfo, PerarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -53,7 +53,7 @@ public final class CusarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusarchVisiMergeSytotauh());
+		builder.addVisitor(new CusarchMergerVisiSytotauh());
 		InfoMerger<CusarchInfo, SytotauhInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -66,7 +66,7 @@ public final class CusarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusarchVisiMergeToSelect());
+		builder.addVisitor(new CusarchMergerVisiToSelect());
 		InfoMerger<CusarchInfo, CusarchInfo> merger = builder.build();		
 	
 		return merger.merge();

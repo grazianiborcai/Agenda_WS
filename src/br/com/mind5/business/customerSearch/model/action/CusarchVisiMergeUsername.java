@@ -11,9 +11,9 @@ import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiCusarchMergeUsername extends ActionVisitorTemplateMerge<CusarchInfo, UsernameInfo> {
+public final class CusarchVisiMergeUsername extends ActionVisitorTemplateMerge<CusarchInfo, UsernameInfo> {
 	
-	public VisiCusarchMergeUsername(DeciTreeOption<CusarchInfo> option) {
+	public CusarchVisiMergeUsername(DeciTreeOption<CusarchInfo> option) {
 		super(option, UsernameInfo.class);
 	}
 	

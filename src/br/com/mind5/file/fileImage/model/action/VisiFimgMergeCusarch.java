@@ -3,7 +3,7 @@ package br.com.mind5.file.fileImage.model.action;
 import java.util.List;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.business.customerSearch.model.decisionTree.RootCusarchSelectUser;
+import br.com.mind5.business.customerSearch.model.decisionTree.CusarchRootSelectUser;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.info.FimgMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiFimgMergeCusarch extends ActionVisitorTemplateMerge<FimgInfo, Cu
 	
 	
 	@Override protected Class<? extends DeciTree<CusarchInfo>> getTreeClassHook() {
-		return RootCusarchSelectUser.class;
+		return CusarchRootSelectUser.class;
 	}
 	
 	

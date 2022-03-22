@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusarchEnforceUsernameKey extends ActionVisitorTemplateEnforce<CusarchInfo> {
+public final class CusarchVisiEnforceUsernameKey extends ActionVisitorTemplateEnforce<CusarchInfo> {
 	
-	public VisiCusarchEnforceUsernameKey(DeciTreeOption<CusarchInfo> option) {
+	public CusarchVisiEnforceUsernameKey(DeciTreeOption<CusarchInfo> option) {
 		super(option);
 	}
 	

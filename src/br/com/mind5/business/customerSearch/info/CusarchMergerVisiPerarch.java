@@ -7,7 +7,7 @@ import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.info.InfoMergerCardinality;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class CusarchVisiMergePerarch extends InfoMergerVisitorTemplate<CusarchInfo, PerarchInfo> {
+final class CusarchMergerVisiPerarch extends InfoMergerVisitorTemplate<CusarchInfo, PerarchInfo> {
 
 	@Override public boolean shouldMerge(CusarchInfo baseInfo, PerarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);

@@ -20,15 +20,6 @@ public final class CusarchCheckRead extends ModelCheckerTemplateSimple<CusarchIn
 			recordInfo.codLanguage 	== null	||
 			recordInfo.username 	== null		)	
 			
-			return super.FAILED;		
-		
-		
-		
-		if (recordInfo.codCustomer 	<= 0 	&&
-			recordInfo.codUser 		<= 0 	&&
-			recordInfo.codStore		<= 0 	&&
-			recordInfo.persolisData	== null		)
-			
 			return super.FAILED;
 	
 		

@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusarchEnforceStore extends ActionVisitorTemplateEnforce<CusarchInfo> {
+public final class CusarchVisiEnforceStore extends ActionVisitorTemplateEnforce<CusarchInfo> {
 	
-	public VisiCusarchEnforceStore(DeciTreeOption<CusarchInfo> option) {
+	public CusarchVisiEnforceStore(DeciTreeOption<CusarchInfo> option) {
 		super(option);
 	}
 	

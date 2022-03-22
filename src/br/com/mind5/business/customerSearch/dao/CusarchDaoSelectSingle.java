@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoCusarchSelectSingle extends DaoStmtTemplate<CusarchInfo> {
+public final class CusarchDaoSelectSingle extends DaoStmtTemplate<CusarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CUS_TABLE;
 	
 	
-	public DaoCusarchSelectSingle(Connection conn, CusarchInfo recordInfo, String schemaName) {
+	public CusarchDaoSelectSingle(Connection conn, CusarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoCusarchSelectSingle extends DaoStmtTemplate<CusarchInfo> {
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		
-		DaoStmtWhere whereClause = new DaoCusarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new CusarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,12 +67,12 @@ public final class DaoCusarchSelectSingle extends DaoStmtTemplate<CusarchInfo> {
 				do {				
 					CusarchInfo dataInfo = new CusarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoCusarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCustomer = stmtResult.getLong(DaoCusarchDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codStore = stmtResult.getLong(DaoCusarchDbTableColumn.COL_COD_STORE);
-					dataInfo.recordMode = stmtResult.getString(DaoCusarchDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoCusarchDbTableColumn.COL_COD_USER);
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoCusarchDbTableColumn.COL_COD_PERSON);
+					dataInfo.codOwner = stmtResult.getLong(CusarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCustomer = stmtResult.getLong(CusarchDaoDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codStore = stmtResult.getLong(CusarchDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.recordMode = stmtResult.getString(CusarchDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, CusarchDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, CusarchDaoDbTableColumn.COL_COD_PERSON);
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());
