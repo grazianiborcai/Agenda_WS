@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cartItem.info.CartemCopier;
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.business.cartItem.model.decisionTree.RootCartemUpsert;
+import br.com.mind5.business.cartItem.model.decisionTree.CartemRootUpsert;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class CartVisiCartemUpsert extends ActionVisitorTemplateAction<Cart
 	
 	
 	@Override protected Class<? extends DeciTree<CartemInfo>> getTreeClassHook() {
-		return RootCartemUpsert.class;
+		return CartemRootUpsert.class;
 	}
 	
 	

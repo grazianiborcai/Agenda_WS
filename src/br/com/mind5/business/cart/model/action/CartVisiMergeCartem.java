@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.info.CartMerger;
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.business.cartItem.model.decisionTree.RootCartemSearchUser;
+import br.com.mind5.business.cartItem.model.decisionTree.CartemRootSearchUser;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class CartVisiMergeCartem extends ActionVisitorTemplateMerge<CartIn
 	
 	
 	@Override protected Class<? extends DeciTree<CartemInfo>> getTreeClassHook() {
-		return RootCartemSearchUser.class;
+		return CartemRootSearchUser.class;
 	}
 	
 	

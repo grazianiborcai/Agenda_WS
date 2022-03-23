@@ -19,7 +19,7 @@ public final class CartemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartemVisiMergeSymsg());
+		builder.addVisitor(new CartemMergerVisiSymsg());
 		InfoMerger<CartemInfo, SymsgInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -32,7 +32,7 @@ public final class CartemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartemVisiMergeCartemarch());
+		builder.addVisitor(new CartemMergerVisiCartemarch());
 		InfoMerger<CartemInfo, CartemarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -45,7 +45,7 @@ public final class CartemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartemVisiMergeMatlis());
+		builder.addVisitor(new CartemMergerVisiMatlis());
 		InfoMerger<CartemInfo, MatlisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -58,7 +58,7 @@ public final class CartemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartemVisiMergeEmplres());
+		builder.addVisitor(new CartemMergerVisiEmplres());
 		InfoMerger<CartemInfo, EmplresInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -71,7 +71,7 @@ public final class CartemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartemVisiMergeStolis());
+		builder.addVisitor(new CartemMergerVisiStolis());
 		InfoMerger<CartemInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -84,7 +84,7 @@ public final class CartemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartemVisiMergeUsername());
+		builder.addVisitor(new CartemMergerVisiUsername());
 		InfoMerger<CartemInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -97,7 +97,7 @@ public final class CartemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartemVisiMergeMatice());
+		builder.addVisitor(new CartemMergerVisiMatice());
 		InfoMerger<CartemInfo, MaticeInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -110,7 +110,7 @@ public final class CartemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartemVisiMergeWeekday());
+		builder.addVisitor(new CartemMergerVisiWeekday());
 		InfoMerger<CartemInfo, WeekdayInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -123,7 +123,7 @@ public final class CartemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartemVisiMergeToUpdate());
+		builder.addVisitor(new CartemMergerVisiToUpdate());
 		InfoMerger<CartemInfo, CartemInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -136,7 +136,7 @@ public final class CartemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartemVisiMergeToSelect());
+		builder.addVisitor(new CartemMergerVisiToSelect());
 		InfoMerger<CartemInfo, CartemInfo> merger = builder.build();		
 	
 		return merger.merge();

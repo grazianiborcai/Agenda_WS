@@ -3,7 +3,7 @@ package br.com.mind5.discount.discountCalculatorItem.model.action;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.business.cartItem.model.decisionTree.RootCartemSearchUser;
+import br.com.mind5.business.cartItem.model.decisionTree.CartemRootSearchUser;
 import br.com.mind5.discount.discountCalculatorItem.info.DisalcemInfo;
 import br.com.mind5.discount.discountCalculatorItem.info.DisalcemMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiDisalcemMergeCartem extends ActionVisitorTemplateMerge<DisalcemI
 	
 	
 	@Override protected Class<? extends DeciTree<CartemInfo>> getTreeClassHook() {
-		return RootCartemSearchUser.class;
+		return CartemRootSearchUser.class;
 	}
 	
 	
