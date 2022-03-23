@@ -23,7 +23,7 @@ public final class SchedineMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergePetlis());
+		builder.addVisitor(new SchedineMergerVisiPetlis());
 		InfoMerger<SchedineInfo, PetlisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -36,7 +36,7 @@ public final class SchedineMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeSchedauth());
+		builder.addVisitor(new SchedineMergerVisiSchedauth());
 		InfoMerger<SchedineInfo, SchedauthInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -49,7 +49,7 @@ public final class SchedineMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeCalate());
+		builder.addVisitor(new SchedineMergerVisiCalate());
 		InfoMerger<SchedineInfo, CalateInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -62,7 +62,7 @@ public final class SchedineMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeWeekday());
+		builder.addVisitor(new SchedineMergerVisiWeekday());
 		InfoMerger<SchedineInfo, WeekdayInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -75,7 +75,7 @@ public final class SchedineMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeEmplres());
+		builder.addVisitor(new SchedineMergerVisiEmplres());
 		InfoMerger<SchedineInfo, EmplresInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -88,7 +88,7 @@ public final class SchedineMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeSchedatus());
+		builder.addVisitor(new SchedineMergerVisiSchedatus());
 		InfoMerger<SchedineInfo, SchedatusInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -101,7 +101,7 @@ public final class SchedineMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeStolis());
+		builder.addVisitor(new SchedineMergerVisiStolis());
 		InfoMerger<SchedineInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -114,7 +114,7 @@ public final class SchedineMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeOrdemist());
+		builder.addVisitor(new SchedineMergerVisiOrdemist());
 		InfoMerger<SchedineInfo, OrdemistInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -127,7 +127,7 @@ public final class SchedineMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeCuslis());
+		builder.addVisitor(new SchedineMergerVisiCuslis());
 		InfoMerger<SchedineInfo, CuslisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -140,7 +140,7 @@ public final class SchedineMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeSchedinap());
+		builder.addVisitor(new SchedineMergerVisiSchedinap());
 		InfoMerger<SchedineInfo, SchedinapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -153,7 +153,7 @@ public final class SchedineMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeUsername());
+		builder.addVisitor(new SchedineMergerVisiUsername());
 		InfoMerger<SchedineInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -166,7 +166,7 @@ public final class SchedineMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeMatlis());
+		builder.addVisitor(new SchedineMergerVisiMatlis());
 		InfoMerger<SchedineInfo, MatlisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -179,7 +179,7 @@ public final class SchedineMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeToSelect());
+		builder.addVisitor(new SchedineMergerVisiToSelect());
 		InfoMerger<SchedineInfo, SchedineInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -192,7 +192,7 @@ public final class SchedineMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeToUpdate());
+		builder.addVisitor(new SchedineMergerVisiToUpdate());
 		InfoMerger<SchedineInfo, SchedineInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -205,7 +205,7 @@ public final class SchedineMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeToMove());
+		builder.addVisitor(new SchedineMergerVisiToMove());
 		InfoMerger<SchedineInfo, SchedineInfo> merger = builder.build();		
 	
 		return merger.merge();

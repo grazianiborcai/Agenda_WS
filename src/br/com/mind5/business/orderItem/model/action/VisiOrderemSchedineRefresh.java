@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineCopier;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.business.scheduleLine.model.decisionTree.RootSchedineRefresh;
+import br.com.mind5.business.scheduleLine.model.decisionTree.SchedineRootRefresh;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiOrderemSchedineRefresh extends ActionVisitorTemplateAction<Order
 	
 	
 	@Override protected Class<? extends DeciTree<SchedineInfo>> getTreeClassHook() {
-		return RootSchedineRefresh.class;
+		return SchedineRootRefresh.class;
 	}
 	
 	
