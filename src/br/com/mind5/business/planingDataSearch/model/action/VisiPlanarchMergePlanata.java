@@ -3,7 +3,7 @@ package br.com.mind5.business.planingDataSearch.model.action;
 import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
-import br.com.mind5.business.planingData.model.decisionTree.RootPlanataSelectNoReserve;
+import br.com.mind5.business.planingData.model.decisionTree.PlanataRootSelectNoReserve;
 import br.com.mind5.business.planingDataSearch.info.PlanarchInfo;
 import br.com.mind5.business.planingDataSearch.info.PlanarchMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiPlanarchMergePlanata extends ActionVisitorTemplateMerge<Planarch
 	
 	
 	@Override protected Class<? extends DeciTree<PlanataInfo>> getTreeClassHook() {
-		return RootPlanataSelectNoReserve.class;
+		return PlanataRootSelectNoReserve.class;
 	}
 	
 	

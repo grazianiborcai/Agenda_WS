@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.calendarCatalogueData.info.CalguataInfo;
 import br.com.mind5.business.calendarCatalogueData.info.CalguataPruner;
 import br.com.mind5.business.planingData.info.PlanataInfo;
-import br.com.mind5.business.planingData.model.decisionTree.RootPlanataSelect;
+import br.com.mind5.business.planingData.model.decisionTree.PlanataRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplatePrune;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiCalguataPrunePlanata extends ActionVisitorTemplatePrune<Calguata
 	
 	
 	@Override protected Class<? extends DeciTree<PlanataInfo>> getTreeClassHook() {
-		return RootPlanataSelect.class;
+		return PlanataRootSelect.class;
 	}
 	
 	

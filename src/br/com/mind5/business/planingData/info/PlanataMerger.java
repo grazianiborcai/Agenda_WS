@@ -14,7 +14,7 @@ public final class PlanataMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanataVisiMergeMatice());
+		builder.addVisitor(new PlanataMergerVisiMatice());
 		InfoMerger<PlanataInfo, MaticeInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class PlanataMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanataVisiMergeMooncal());
+		builder.addVisitor(new PlanataMergerVisiMooncal());
 		InfoMerger<PlanataInfo, MooncalInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class PlanataMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanataVisiMergeMatlis());
+		builder.addVisitor(new PlanataMergerVisiMatlis());
 		InfoMerger<PlanataInfo, MatlisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -53,7 +53,7 @@ public final class PlanataMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanataVisiMergeToSelect());
+		builder.addVisitor(new PlanataMergerVisiToSelect());
 		InfoMerger<PlanataInfo, PlanataInfo> merger = builder.build();		
 	
 		return merger.merge();

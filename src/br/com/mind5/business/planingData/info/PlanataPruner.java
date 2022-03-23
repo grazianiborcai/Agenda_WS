@@ -17,7 +17,7 @@ public final class PlanataPruner {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanataVisiPruneStoplis());
+		builder.addVisitor(new PlanataPrunerVisiStoplis());
 		InfoPruner<PlanataInfo, StoplisInfo> pruner = builder.build();		
 	
 		return pruner.prune();
@@ -30,7 +30,7 @@ public final class PlanataPruner {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanataVisiPruneSchederve());
+		builder.addVisitor(new PlanataPrunerVisiSchederve());
 		InfoPruner<PlanataInfo, SchederveInfo> pruner = builder.build();		
 	
 		return pruner.prune();
@@ -43,7 +43,7 @@ public final class PlanataPruner {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanataVisiPruneEmplate());
+		builder.addVisitor(new PlanataPrunerVisiEmplate());
 		InfoPruner<PlanataInfo, EmplateInfo> pruner = builder.build();		
 	
 		return pruner.prune();
@@ -56,7 +56,7 @@ public final class PlanataPruner {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanataVisiPruneStolate());
+		builder.addVisitor(new PlanataPrunerVisiStolate());
 		InfoPruner<PlanataInfo, StolateInfo> pruner = builder.build();		
 	
 		return pruner.prune();
@@ -69,7 +69,7 @@ public final class PlanataPruner {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(baseInfos);
-		builder.addVisitor(new PlanataVisiPruneAged());
+		builder.addVisitor(new PlanataPrunerVisiAged());
 		InfoPruner<PlanataInfo, PlanataInfo> pruner = builder.build();		
 	
 		return pruner.prune();
@@ -82,7 +82,7 @@ public final class PlanataPruner {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanataVisiPruneCarterve());
+		builder.addVisitor(new PlanataPrunerVisiCarterve());
 		InfoPruner<PlanataInfo, CarterveInfo> pruner = builder.build();		
 	
 		return pruner.prune();
@@ -95,7 +95,7 @@ public final class PlanataPruner {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanataVisiPruneOrderve());
+		builder.addVisitor(new PlanataPrunerVisiOrderve());
 		InfoPruner<PlanataInfo, OrderveInfo> pruner = builder.build();		
 	
 		return pruner.prune();
