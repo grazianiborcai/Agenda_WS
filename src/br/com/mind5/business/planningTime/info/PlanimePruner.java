@@ -11,7 +11,7 @@ public final class PlanimePruner {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(baseInfos);
-		builder.addVisitor(new PlanimeVisiPruneDaypart());
+		builder.addVisitor(new PlanimePrunerVisiDaypart());
 		InfoPruner<PlanimeInfo, PlanimeInfo> pruner = builder.build();		
 	
 		return pruner.prune();

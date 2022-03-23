@@ -5,13 +5,13 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
+import br.com.mind5.masterData.dayParting.info.DaypartInfo;
 
-final class PlanimeVisiMergeMoonase extends InfoMergerVisitorTemplate<PlanimeInfo, MoonaseInfo> {
+final class PlanimeMergerVisiDaypart extends InfoMergerVisitorTemplate<PlanimeInfo, DaypartInfo> {
 	
 	@Override public List<PlanimeInfo> beforeMerge(List<PlanimeInfo> baseInfos) {
 		for (PlanimeInfo eachBase : baseInfos) {
-			eachBase.moonases = new ArrayList<>();
+			eachBase.dayparts = new ArrayList<>();
 		}
 		
 		return baseInfos;
@@ -19,16 +19,16 @@ final class PlanimeVisiMergeMoonase extends InfoMergerVisitorTemplate<PlanimeInf
 	
 	
 	
-	@Override public boolean shouldMerge(PlanimeInfo baseInfo, MoonaseInfo selectedInfo) {
+	@Override public boolean shouldMerge(PlanimeInfo baseInfo, DaypartInfo selectedInfo) {
 		return true;
 	}
 	
 	
 	
-	@Override public List<PlanimeInfo> merge(PlanimeInfo baseInfo, MoonaseInfo selectedInfo) {
+	@Override public List<PlanimeInfo> merge(PlanimeInfo baseInfo, DaypartInfo selectedInfo) {
 		List<PlanimeInfo> results = new ArrayList<>();
 		
-		baseInfo.moonases.add(selectedInfo);
+		baseInfo.dayparts.add(selectedInfo);
 		
 		results.add(baseInfo);
 		return results;

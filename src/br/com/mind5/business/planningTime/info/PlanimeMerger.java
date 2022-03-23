@@ -18,7 +18,7 @@ public final class PlanimeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanimeVisiMergeMoonase());
+		builder.addVisitor(new PlanimeMergerVisiMoonase());
 		InfoMerger<PlanimeInfo, MoonaseInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -31,7 +31,7 @@ public final class PlanimeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanimeVisiMergeEmplres());
+		builder.addVisitor(new PlanimeMergerVisiEmplres());
 		InfoMerger<PlanimeInfo, EmplresInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -44,7 +44,7 @@ public final class PlanimeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanimeVisiMergeDaypart());
+		builder.addVisitor(new PlanimeMergerVisiDaypart());
 		InfoMerger<PlanimeInfo, DaypartInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -57,7 +57,7 @@ public final class PlanimeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanimeVisiMergeMatlis());
+		builder.addVisitor(new PlanimeMergerVisiMatlis());
 		InfoMerger<PlanimeInfo, MatlisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -70,7 +70,7 @@ public final class PlanimeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanimeVisiMergeStolis());
+		builder.addVisitor(new PlanimeMergerVisiStolis());
 		InfoMerger<PlanimeInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -83,7 +83,7 @@ public final class PlanimeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanimeVisiMergeWeekday());
+		builder.addVisitor(new PlanimeMergerVisiWeekday());
 		InfoMerger<PlanimeInfo, WeekdayInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -96,7 +96,7 @@ public final class PlanimeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanimeVisiMergePlanata());
+		builder.addVisitor(new PlanimeMergerVisiPlanata());
 		InfoMerger<PlanimeInfo, PlanataInfo> merger = builder.build();		
 	
 		return merger.merge();

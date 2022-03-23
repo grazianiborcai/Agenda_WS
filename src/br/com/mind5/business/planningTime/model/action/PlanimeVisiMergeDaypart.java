@@ -12,9 +12,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanimeMergeDaypart extends ActionVisitorTemplateMerge<PlanimeInfo, DaypartInfo> {
+public final class PlanimeVisiMergeDaypart extends ActionVisitorTemplateMerge<PlanimeInfo, DaypartInfo> {
 	
-	public VisiPlanimeMergeDaypart(DeciTreeOption<PlanimeInfo> option) {
+	public PlanimeVisiMergeDaypart(DeciTreeOption<PlanimeInfo> option) {
 		super(option, DaypartInfo.class);
 	}
 	

@@ -12,9 +12,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanimeMergeMoonase extends ActionVisitorTemplateMerge<PlanimeInfo, MoonaseInfo> {
+public final class PlanimeVisiMergeMoonase extends ActionVisitorTemplateMerge<PlanimeInfo, MoonaseInfo> {
 	
-	public VisiPlanimeMergeMoonase(DeciTreeOption<PlanimeInfo> option) {
+	public PlanimeVisiMergeMoonase(DeciTreeOption<PlanimeInfo> option) {
 		super(option, MoonaseInfo.class);
 	}
 	

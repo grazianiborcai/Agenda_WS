@@ -7,7 +7,7 @@ import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.info.InfoPrunerListVisitor;
 import br.com.mind5.masterData.dayParting.info.DaypartInfo;
 
-final class PlanimeVisiPruneDaypart implements InfoPrunerListVisitor<PlanimeInfo, PlanimeInfo> {
+final class PlanimePrunerVisiDaypart implements InfoPrunerListVisitor<PlanimeInfo, PlanimeInfo> {
 	
 	@Override public List<PlanimeInfo> pruneRecord(List<PlanimeInfo> baseInfos, List<PlanimeInfo> selectedInfos) {
 		List<PlanimeInfo> results = new ArrayList<>();

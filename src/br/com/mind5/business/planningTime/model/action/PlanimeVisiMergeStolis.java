@@ -12,9 +12,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanimeMergeStolis extends ActionVisitorTemplateMerge<PlanimeInfo, StolisInfo> {
+public final class PlanimeVisiMergeStolis extends ActionVisitorTemplateMerge<PlanimeInfo, StolisInfo> {
 	
-	public VisiPlanimeMergeStolis(DeciTreeOption<PlanimeInfo> option) {
+	public PlanimeVisiMergeStolis(DeciTreeOption<PlanimeInfo> option) {
 		super(option, StolisInfo.class);
 	}
 	

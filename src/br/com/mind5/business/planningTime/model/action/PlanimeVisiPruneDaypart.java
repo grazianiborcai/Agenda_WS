@@ -7,9 +7,9 @@ import br.com.mind5.business.planningTime.info.PlanimePruner;
 import br.com.mind5.model.action.ActionVisitorTemplatePruneSelf;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanimePruneDaypart extends ActionVisitorTemplatePruneSelf<PlanimeInfo> {
+public final class PlanimeVisiPruneDaypart extends ActionVisitorTemplatePruneSelf<PlanimeInfo> {
 	
-	public VisiPlanimePruneDaypart(DeciTreeOption<PlanimeInfo> option) {
+	public PlanimeVisiPruneDaypart(DeciTreeOption<PlanimeInfo> option) {
 		super(option);
 	}
 	

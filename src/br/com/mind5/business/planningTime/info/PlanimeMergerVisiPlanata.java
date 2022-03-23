@@ -6,7 +6,7 @@ import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class PlanimeVisiMergePlanata extends InfoMergerVisitorTemplate<PlanimeInfo, PlanataInfo> {
+final class PlanimeMergerVisiPlanata extends InfoMergerVisitorTemplate<PlanimeInfo, PlanataInfo> {
 	
 	@Override public List<PlanimeInfo> beforeMerge(List<PlanimeInfo> baseInfos) {
 		for (PlanimeInfo eachBase : baseInfos) {
