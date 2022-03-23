@@ -16,7 +16,7 @@ public final class CartMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartVisiMergeOrder());
+		builder.addVisitor(new CartMergerVisiOrder());
 		InfoMerger<CartInfo, OrderInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -29,7 +29,7 @@ public final class CartMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartVisiMergeFeewner());
+		builder.addVisitor(new CartMergerVisiFeewner());
 		InfoMerger<CartInfo, FeewnerInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -42,7 +42,7 @@ public final class CartMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartVisiMergeCurrency());
+		builder.addVisitor(new CartMergerVisiCurrency());
 		InfoMerger<CartInfo, CurrencyInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -55,7 +55,7 @@ public final class CartMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartVisiMergeCartem());
+		builder.addVisitor(new CartMergerVisiCartem());
 		InfoMerger<CartInfo, CartemInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -68,7 +68,7 @@ public final class CartMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartVisiMergeUsername());
+		builder.addVisitor(new CartMergerVisiUsername());
 		InfoMerger<CartInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -81,7 +81,7 @@ public final class CartMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartVisiMergeToSelect());
+		builder.addVisitor(new CartMergerVisiToSelect());
 		InfoMerger<CartInfo, CartInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -94,7 +94,7 @@ public final class CartMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartVisiMergeToUpdate());
+		builder.addVisitor(new CartMergerVisiToUpdate());
 		InfoMerger<CartInfo, CartInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -107,7 +107,7 @@ public final class CartMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartVisiMergeToEmptfy());
+		builder.addVisitor(new CartMergerVisiToEmptfy());
 		InfoMerger<CartInfo, CartInfo> merger = builder.build();		
 	
 		return merger.merge();
