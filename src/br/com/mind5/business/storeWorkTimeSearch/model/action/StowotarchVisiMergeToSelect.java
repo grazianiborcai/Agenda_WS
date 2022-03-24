@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStowotarchMergeToSelect extends ActionVisitorTemplateMerge<StowotarchInfo, StowotarchInfo> {
+public final class StowotarchVisiMergeToSelect extends ActionVisitorTemplateMerge<StowotarchInfo, StowotarchInfo> {
 	
-	public VisiStowotarchMergeToSelect(DeciTreeOption<StowotarchInfo> option) {
+	public StowotarchVisiMergeToSelect(DeciTreeOption<StowotarchInfo> option) {
 		super(option, StowotarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<StowotarchInfo>> getActionClassHook() {
-		return StdStowotarchDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<StowotarchInfo>> getVisitorClassHook() {
+		return StowotarchVisiDaoSelect.class;
 	}
 	
 	

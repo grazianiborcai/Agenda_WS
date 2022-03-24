@@ -11,7 +11,7 @@ public final class StowotarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StowotarchVisiMergeToSelect());
+		builder.addVisitor(new StowotarchMergerVisiToSelect());
 		InfoMerger<StowotarchInfo, StowotarchInfo> merger = builder.build();		
 	
 		return merger.merge();

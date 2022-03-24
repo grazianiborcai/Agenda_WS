@@ -4,21 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
-import br.com.mind5.business.storeWorkTimeSearch.model.action.StdStowotarchMergeToSelect;
+import br.com.mind5.business.storeWorkTimeSearch.model.action.StowotarchVisiMergeToSelect;
 import br.com.mind5.business.storeWorkTimeSearch.model.checker.StowotarchCheckLangu;
 import br.com.mind5.business.storeWorkTimeSearch.model.checker.StowotarchCheckOwner;
 import br.com.mind5.business.storeWorkTimeSearch.model.checker.StowotarchCheckRead;
 import br.com.mind5.business.storeWorkTimeSearch.model.checker.StowotarchCheckStore;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootStowotarchSelect extends DeciTreeTemplateRead<StowotarchInfo> {
+public final class StowotarchRootSelect extends DeciTreeTemplateRead<StowotarchInfo> {
 	
-	public RootStowotarchSelect(DeciTreeOption<StowotarchInfo> option) {
+	public StowotarchRootSelect(DeciTreeOption<StowotarchInfo> option) {
 		super(option);
 	}
 	
@@ -65,7 +66,7 @@ public final class RootStowotarchSelect extends DeciTreeTemplateRead<StowotarchI
 	@Override protected List<ActionStd<StowotarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotarchInfo> option) {
 		List<ActionStd<StowotarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StowotarchInfo> select = new StdStowotarchMergeToSelect(option);
+		ActionStd<StowotarchInfo> select = new ActionStdCommom<StowotarchInfo>(option, StowotarchVisiMergeToSelect.class);
 		
 		actions.add(select);		
 		return actions; 

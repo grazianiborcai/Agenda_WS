@@ -6,7 +6,7 @@ import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmMerger;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchCopier;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
-import br.com.mind5.business.storeWorkTimeSearch.model.decisionTree.RootStowotarchSelect;
+import br.com.mind5.business.storeWorkTimeSearch.model.decisionTree.StowotarchRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ final class VisiEmpwotmMergeStowotarch extends ActionVisitorTemplateMerge<Empwot
 	
 	
 	@Override protected Class<? extends DeciTree<StowotarchInfo>> getTreeClassHook() {
-		return RootStowotarchSelect.class;
+		return StowotarchRootSelect.class;
 	}
 	
 	

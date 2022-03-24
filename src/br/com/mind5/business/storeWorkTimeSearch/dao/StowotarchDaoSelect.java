@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoStowotarchSelect implements DaoStmtExec<StowotarchInfo> {
+public final class StowotarchDaoSelect implements DaoStmtExec<StowotarchInfo> {
 	private DaoStmtExec<StowotarchInfo> helper;
 	
 	
-	public DaoStowotarchSelect(List<DaoStmtExecOption<StowotarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoStowotarchSelectSingle.class, StowotarchInfo.class);
+	public StowotarchDaoSelect(List<DaoStmtExecOption<StowotarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, StowotarchDaoSelectSingle.class, StowotarchInfo.class);
 	}
 	
 	

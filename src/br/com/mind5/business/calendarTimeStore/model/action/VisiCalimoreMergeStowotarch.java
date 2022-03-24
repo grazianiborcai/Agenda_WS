@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.calendarTimeStore.info.CalimoreInfo;
 import br.com.mind5.business.calendarTimeStore.info.CalimoreMerger;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
-import br.com.mind5.business.storeWorkTimeSearch.model.decisionTree.RootStowotarchSelect;
+import br.com.mind5.business.storeWorkTimeSearch.model.decisionTree.StowotarchRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiCalimoreMergeStowotarch extends ActionVisitorTemplateMerge<Calim
 	
 	
 	@Override protected Class<? extends DeciTree<StowotarchInfo>> getTreeClassHook() {
-		return RootStowotarchSelect.class;
+		return StowotarchRootSelect.class;
 	}
 	
 	
