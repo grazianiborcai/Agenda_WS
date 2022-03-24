@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrderItem.model.action;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.business.orderItem.model.decisionTree.RootOrderemRefresh;
+import br.com.mind5.business.orderItem.model.decisionTree.OrderemRootRefresh;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -18,7 +18,7 @@ final class VisiPayordemOrderemRefresh extends ActionVisitorTemplateAction<Payor
 	
 	
 	@Override protected Class<? extends DeciTree<OrderemInfo>> getTreeClassHook() {
-		return RootOrderemRefresh.class;
+		return OrderemRootRefresh.class;
 	}
 	
 	

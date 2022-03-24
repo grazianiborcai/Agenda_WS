@@ -3,7 +3,7 @@ package br.com.mind5.business.refundPolicy.model.action;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.business.orderItem.model.decisionTree.RootOrderemSelect;
+import br.com.mind5.business.orderItem.model.decisionTree.OrderemRootSelect;
 import br.com.mind5.business.refundPolicy.info.RefupolInfo;
 import br.com.mind5.business.refundPolicy.info.RefupolMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiRefupolMergeOrderem extends ActionVisitorTemplateMerge<RefupolIn
 	
 	
 	@Override protected Class<? extends DeciTree<OrderemInfo>> getTreeClassHook() {
-		return RootOrderemSelect.class;
+		return OrderemRootSelect.class;
 	}
 	
 	
