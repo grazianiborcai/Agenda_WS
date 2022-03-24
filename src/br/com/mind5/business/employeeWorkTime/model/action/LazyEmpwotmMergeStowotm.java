@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmpwotmMergeStowotarch extends ActionLazyTemplate<EmpwotmInfo, EmpwotmInfo> {
+public final class LazyEmpwotmMergeStowotm extends ActionLazyTemplate<EmpwotmInfo, EmpwotmInfo> {
 	
-	public LazyEmpwotmMergeStowotarch(Connection conn, String schemaName) {
+	public LazyEmpwotmMergeStowotm(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyEmpwotmMergeStowotarch extends ActionLazyTemplate<Empwotm
 	
 	
 	@Override protected ActionStd<EmpwotmInfo> getInstanceOfActionHook(DeciTreeOption<EmpwotmInfo> option) {
-		return new StdEmpwotmMergeStowotarch(option);
+		return new StdEmpwotmMergeStowotm(option);
 	}
 	
 	

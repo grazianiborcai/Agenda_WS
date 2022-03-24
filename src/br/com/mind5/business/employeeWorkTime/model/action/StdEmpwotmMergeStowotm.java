@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplate;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpwotmMergeStowotarch extends ActionStdTemplate<EmpwotmInfo> {
+public final class StdEmpwotmMergeStowotm extends ActionStdTemplate<EmpwotmInfo> {
 
-	public StdEmpwotmMergeStowotarch(DeciTreeOption<EmpwotmInfo> option) {
+	public StdEmpwotmMergeStowotm(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitor<EmpwotmInfo> buildVisitorHook(DeciTreeOption<EmpwotmInfo> option) {
-		return new VisiEmpwotmMergeStowotarch(option);
+		return new VisiEmpwotmMergeStowotm(option);
 	}
 }

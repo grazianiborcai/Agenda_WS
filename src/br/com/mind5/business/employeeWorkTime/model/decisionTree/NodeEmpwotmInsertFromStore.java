@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmMergeStowotarch;
+import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmMergeStowotm;
 import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmRootInsert;
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmEnforceEmposKey;
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmSuccess;
@@ -55,11 +55,11 @@ public final class NodeEmpwotmInsertFromStore extends DeciTreeTemplateWrite<Empw
 		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
 		
 		ActionStd<EmpwotmInfo> enforceEmposKey = new StdEmpwotmEnforceEmposKey(option);
-		ActionLazy<EmpwotmInfo> mergeStowotarch = new LazyEmpwotmMergeStowotarch(option.conn, option.schemaName);
+		ActionLazy<EmpwotmInfo> mergeStowotm = new LazyEmpwotmMergeStowotm(option.conn, option.schemaName);
 		ActionLazy<EmpwotmInfo> insert = new LazyEmpwotmRootInsert(option.conn, option.schemaName);
 		
-		enforceEmposKey.addPostAction(mergeStowotarch);
-		mergeStowotarch.addPostAction(insert);
+		enforceEmposKey.addPostAction(mergeStowotm);
+		mergeStowotm.addPostAction(insert);
 		
 		actions.add(enforceEmposKey);
 		return actions;
