@@ -17,7 +17,7 @@ public final class OrdemrapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdemrapVisiMergeCuslis());
+		builder.addVisitor(new OrdemrapMergerVisiCuslis());
 		InfoMerger<OrdemrapInfo, CuslisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -30,7 +30,7 @@ public final class OrdemrapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdemrapVisiMergeMat());
+		builder.addVisitor(new OrdemrapMergerVisiMat());
 		InfoMerger<OrdemrapInfo, MatInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -43,7 +43,7 @@ public final class OrdemrapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdemrapVisiMergeMatsnap());
+		builder.addVisitor(new OrdemrapMergerVisiMatsnap());
 		InfoMerger<OrdemrapInfo, MatsnapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -56,7 +56,7 @@ public final class OrdemrapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdemrapVisiMergeEmplres());
+		builder.addVisitor(new OrdemrapMergerVisiEmplres());
 		InfoMerger<OrdemrapInfo, EmplresInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -69,7 +69,7 @@ public final class OrdemrapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdemrapVisiMergeStolis());
+		builder.addVisitor(new OrdemrapMergerVisiStolis());
 		InfoMerger<OrdemrapInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -82,7 +82,7 @@ public final class OrdemrapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdemrapVisiMergeWeekday());
+		builder.addVisitor(new OrdemrapMergerVisiWeekday());
 		InfoMerger<OrdemrapInfo, WeekdayInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -95,7 +95,7 @@ public final class OrdemrapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdemrapVisiMergeToSelect());
+		builder.addVisitor(new OrdemrapMergerVisiToSelect());
 		InfoMerger<OrdemrapInfo, OrdemrapInfo> merger = builder.build();		
 	
 		return merger.merge();

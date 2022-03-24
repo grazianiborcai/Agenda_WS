@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.info.OrderemMerger;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
-import br.com.mind5.business.orderItemSnapshot.model.decisionTree.RootOrdemrapInsert;
+import br.com.mind5.business.orderItemSnapshot.model.decisionTree.OrdemrapRootInsert;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class OrderemVisiInsertOrdemrap extends ActionVisitorTemplateAction
 	
 	
 	@Override protected Class<? extends DeciTree<OrdemrapInfo>> getTreeClassHook() {
-		return RootOrdemrapInsert.class;
+		return OrdemrapRootInsert.class;
 	}
 	
 	
