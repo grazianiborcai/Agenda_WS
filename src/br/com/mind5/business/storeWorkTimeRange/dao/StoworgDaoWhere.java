@@ -11,11 +11,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.DaoWhereCondition;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class DaoStoworgWhere implements DaoStmtWhere {
+final class StoworgDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoStoworgWhere(DaoWhereBuilderOption whereOption, String tableName, StoworgInfo recordInfo) {
+	public StoworgDaoWhere(DaoWhereBuilderOption whereOption, String tableName, StoworgInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -28,27 +28,27 @@ final class DaoStoworgWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoStoworgDbTableColumn.COL_COD_OWNER :
+				case StoworgDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoStoworgDbTableColumn.COL_COD_STORE :
+				case StoworgDaoDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case DaoStoworgDbTableColumn.COL_COD_WEEKDAY :
+				case StoworgDaoDbTableColumn.COL_COD_WEEKDAY :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codWeekday));
 					break;
 					
-				case DaoStoworgDbTableColumn.COL_BEGIN_TIME :
+				case StoworgDaoDbTableColumn.COL_BEGIN_TIME :
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.LESS_OR_EQUAL);
 					break;
 					
-				case DaoStoworgDbTableColumn.COL_END_TIME :
+				case StoworgDaoDbTableColumn.COL_END_TIME :
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.GREATER_OR_EQUAL);
 					break;
 					
-				case DaoStoworgDbTableColumn.COL_RECORD_MODE :
+				case StoworgDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn,recordInfo.recordMode);
 					break;
 			}

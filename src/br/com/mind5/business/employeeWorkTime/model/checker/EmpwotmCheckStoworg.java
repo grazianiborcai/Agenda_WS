@@ -2,7 +2,7 @@ package br.com.mind5.business.employeeWorkTime.model.checker;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.storeWorkTimeRange.info.StoworgInfo;
-import br.com.mind5.business.storeWorkTimeRange.model.decisionTree.RootStoworgSelect;
+import br.com.mind5.business.storeWorkTimeRange.model.decisionTree.StoworgRootSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -18,7 +18,7 @@ public final class EmpwotmCheckStoworg extends ModelCheckerTemplateAction<Empwot
 	
 	
 	@Override protected ActionStd<StoworgInfo> buildActionHook(DeciTreeOption<StoworgInfo> option) {
-		ActionStd<StoworgInfo> select = new RootStoworgSelect(option).toAction();
+		ActionStd<StoworgInfo> select = new StoworgRootSelect(option).toAction();
 		
 		return select;
 	}

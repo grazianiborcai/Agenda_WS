@@ -11,7 +11,7 @@ public final class StoworgMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoworgVisiMergeToSelect());
+		builder.addVisitor(new StoworgMergerVisiToSelect());
 		InfoMerger<StoworgInfo, StoworgInfo> merger = builder.build();		
 	
 		return merger.merge();
