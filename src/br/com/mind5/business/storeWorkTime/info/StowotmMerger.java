@@ -16,7 +16,7 @@ public final class StowotmMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StowotmVisiMergeSytotauh());
+		builder.addVisitor(new StowotmMergerVisiSytotauh());
 		InfoMerger<StowotmInfo, SytotauhInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -29,7 +29,7 @@ public final class StowotmMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StowotmVisiMergeStowotarch());
+		builder.addVisitor(new StowotmMergerVisiStowotarch());
 		InfoMerger<StowotmInfo, StowotarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -42,7 +42,7 @@ public final class StowotmMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StowotmVisiMergeWeekday());
+		builder.addVisitor(new StowotmMergerVisiWeekday());
 		InfoMerger<StowotmInfo, WeekdayInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -55,7 +55,7 @@ public final class StowotmMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StowotmVisiMergeStolis());
+		builder.addVisitor(new StowotmMergerVisiStolis());
 		InfoMerger<StowotmInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -68,7 +68,7 @@ public final class StowotmMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StowotmVisiMergeUsername());
+		builder.addVisitor(new StowotmMergerVisiUsername());
 		InfoMerger<StowotmInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -81,7 +81,7 @@ public final class StowotmMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StowotmVisiMergeToSelect());
+		builder.addVisitor(new StowotmMergerVisiToSelect());
 		InfoMerger<StowotmInfo, StowotmInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -94,7 +94,7 @@ public final class StowotmMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StowotmVisiMergeToDelete());
+		builder.addVisitor(new StowotmMergerVisiToDelete());
 		InfoMerger<StowotmInfo, StowotmInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -107,7 +107,7 @@ public final class StowotmMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StowotmVisiMergeToUpdate());
+		builder.addVisitor(new StowotmMergerVisiToUpdate());
 		InfoMerger<StowotmInfo, StowotmInfo> merger = builder.build();		
 	
 		return merger.merge();

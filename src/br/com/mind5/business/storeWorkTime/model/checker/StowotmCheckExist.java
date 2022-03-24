@@ -1,9 +1,10 @@
 package br.com.mind5.business.storeWorkTime.model.checker;
 
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
-import br.com.mind5.business.storeWorkTime.model.action.StdStowotmDaoSelect;
+import br.com.mind5.business.storeWorkTime.model.action.StowotmVisiDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class StowotmCheckExist extends ModelCheckerTemplateAction<StowotmI
 	
 	
 	@Override protected ActionStd<StowotmInfo> buildActionHook(DeciTreeOption<StowotmInfo> option) {
-		ActionStd<StowotmInfo> select = new StdStowotmDaoSelect(option);
+		ActionStd<StowotmInfo> select = new  ActionStdCommom<StowotmInfo>(option, StowotmVisiDaoSelect.class);
 		return select;
 	}
 	
