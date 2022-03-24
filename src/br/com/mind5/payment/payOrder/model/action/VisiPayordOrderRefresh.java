@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.order.info.OrderCopier;
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.decisionTree.RootOrderRefresh;
+import br.com.mind5.business.order.model.decisionTree.OrderRootRefresh;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiPayordOrderRefresh extends ActionVisitorTemplateAction<PayordInf
 	
 	
 	@Override protected Class<? extends DeciTree<OrderInfo>> getTreeClassHook() {
-		return RootOrderRefresh.class;
+		return OrderRootRefresh.class;
 	}
 	
 	

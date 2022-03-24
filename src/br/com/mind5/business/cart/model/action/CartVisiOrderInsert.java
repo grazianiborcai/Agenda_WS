@@ -6,7 +6,7 @@ import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.info.CartMerger;
 import br.com.mind5.business.order.info.OrderCopier;
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.decisionTree.RootOrderInsert;
+import br.com.mind5.business.order.model.decisionTree.OrderRootInsert;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class CartVisiOrderInsert extends ActionVisitorTemplateAction<CartI
 	
 	
 	@Override protected Class<? extends DeciTree<OrderInfo>> getTreeClassHook() {
-		return RootOrderInsert.class;
+		return OrderRootInsert.class;
 	}
 	
 	

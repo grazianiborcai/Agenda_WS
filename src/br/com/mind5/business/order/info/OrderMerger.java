@@ -22,7 +22,7 @@ public final class OrderMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderVisiMergeOrduge());
+		builder.addVisitor(new OrderMergerVisiOrduge());
 		InfoMerger<OrderInfo, OrdugeInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -35,7 +35,7 @@ public final class OrderMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderVisiMergeRefupown());
+		builder.addVisitor(new OrderMergerVisiRefupown());
 		InfoMerger<OrderInfo, RefupownInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -48,7 +48,7 @@ public final class OrderMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderVisiMergeRefugroup());
+		builder.addVisitor(new OrderMergerVisiRefugroup());
 		InfoMerger<OrderInfo, RefugroupInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -61,7 +61,7 @@ public final class OrderMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderVisiMergeOrdarch());
+		builder.addVisitor(new OrderMergerVisiOrdarch());
 		InfoMerger<OrderInfo, OrdarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -74,7 +74,7 @@ public final class OrderMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderVisiMergeOrdnap());
+		builder.addVisitor(new OrderMergerVisiOrdnap());
 		InfoMerger<OrderInfo, OrdnapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -87,7 +87,7 @@ public final class OrderMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderVisiMergePayord());
+		builder.addVisitor(new OrderMergerVisiPayord());
 		InfoMerger<OrderInfo, PayordInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -100,7 +100,7 @@ public final class OrderMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderVisiMergeFeecat());
+		builder.addVisitor(new OrderMergerVisiFeecat());
 		InfoMerger<OrderInfo, FeecatInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -113,7 +113,7 @@ public final class OrderMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderVisiMergeCurrency());
+		builder.addVisitor(new OrderMergerVisiCurrency());
 		InfoMerger<OrderInfo, CurrencyInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -126,7 +126,7 @@ public final class OrderMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderVisiMergeOrderem());
+		builder.addVisitor(new OrderMergerVisiOrderem());
 		InfoMerger<OrderInfo, OrderemInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -139,7 +139,7 @@ public final class OrderMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderVisiMergeOrderatus());
+		builder.addVisitor(new OrderMergerVisiOrderatus());
 		InfoMerger<OrderInfo, OrderatusInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -152,7 +152,7 @@ public final class OrderMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderVisiMergeUsername());
+		builder.addVisitor(new OrderMergerVisiUsername());
 		InfoMerger<OrderInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -165,7 +165,7 @@ public final class OrderMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderVisiMergeToSelect());
+		builder.addVisitor(new OrderMergerVisiToSelect());
 		InfoMerger<OrderInfo, OrderInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -178,7 +178,7 @@ public final class OrderMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderVisiMergeToUpdate());
+		builder.addVisitor(new OrderMergerVisiToUpdate());
 		InfoMerger<OrderInfo, OrderInfo> merger = builder.build();		
 	
 		return merger.merge();

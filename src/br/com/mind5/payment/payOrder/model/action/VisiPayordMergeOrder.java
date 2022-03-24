@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.order.info.OrderCopier;
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.decisionTree.RootOrderSelect;
+import br.com.mind5.business.order.model.decisionTree.OrderRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ final class VisiPayordMergeOrder extends ActionVisitorTemplateMerge<PayordInfo, 
 	
 	
 	@Override protected Class<? extends DeciTree<OrderInfo>> getTreeClassHook() {
-		return RootOrderSelect.class;
+		return OrderRootSelect.class;
 	}
 	
 	
