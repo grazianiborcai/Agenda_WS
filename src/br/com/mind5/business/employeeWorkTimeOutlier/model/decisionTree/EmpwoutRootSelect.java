@@ -4,21 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
-import br.com.mind5.business.employeeWorkTimeOutlier.model.action.StdEmpwoutMergeToSelect;
+import br.com.mind5.business.employeeWorkTimeOutlier.model.action.EmpwoutVisiMergeToSelect;
 import br.com.mind5.business.employeeWorkTimeOutlier.model.checker.EmpwoutCheckLangu;
 import br.com.mind5.business.employeeWorkTimeOutlier.model.checker.EmpwoutCheckOwner;
 import br.com.mind5.business.employeeWorkTimeOutlier.model.checker.EmpwoutCheckRead;
 import br.com.mind5.business.employeeWorkTimeOutlier.model.checker.EmpwoutCheckStore;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEmpwoutSelect extends DeciTreeTemplateRead<EmpwoutInfo> {
+public final class EmpwoutRootSelect extends DeciTreeTemplateRead<EmpwoutInfo> {
 	
-	public RootEmpwoutSelect(DeciTreeOption<EmpwoutInfo> option) {
+	public EmpwoutRootSelect(DeciTreeOption<EmpwoutInfo> option) {
 		super(option);
 	}
 	
@@ -65,7 +66,7 @@ public final class RootEmpwoutSelect extends DeciTreeTemplateRead<EmpwoutInfo> {
 	@Override protected List<ActionStd<EmpwoutInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwoutInfo> option) {
 		List<ActionStd<EmpwoutInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpwoutInfo> mergeToSelect = new StdEmpwoutMergeToSelect(option);
+		ActionStd<EmpwoutInfo> mergeToSelect = new ActionStdCommom<EmpwoutInfo>(option, EmpwoutVisiMergeToSelect.class);
 		
 		actions.add(mergeToSelect);		
 		return actions; 

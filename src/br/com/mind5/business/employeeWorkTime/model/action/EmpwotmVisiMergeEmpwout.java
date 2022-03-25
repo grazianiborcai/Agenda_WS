@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmMerger;
 import br.com.mind5.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
-import br.com.mind5.business.employeeWorkTimeOutlier.model.decisionTree.RootEmpwoutSelect;
+import br.com.mind5.business.employeeWorkTimeOutlier.model.decisionTree.EmpwoutRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class EmpwotmVisiMergeEmpwout extends ActionVisitorTemplateMerge<Em
 	
 	
 	@Override protected Class<? extends DeciTree<EmpwoutInfo>> getTreeClassHook() {
-		return RootEmpwoutSelect.class;
+		return EmpwoutRootSelect.class;
 	}
 	
 	

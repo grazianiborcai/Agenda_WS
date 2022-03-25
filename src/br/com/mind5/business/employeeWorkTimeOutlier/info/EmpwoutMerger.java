@@ -11,7 +11,7 @@ public final class EmpwoutMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpwoutVisiMergeToSelect());
+		builder.addVisitor(new EmpwoutMergerVisiToSelect());
 		InfoMerger<EmpwoutInfo, EmpwoutInfo> merger = builder.build();		
 	
 		return merger.merge();
