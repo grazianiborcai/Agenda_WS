@@ -4,22 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoInfo;
-import br.com.mind5.business.employeeWorkTimeConflict.model.action.StdEmpwocoMergeToSelect;
+import br.com.mind5.business.employeeWorkTimeConflict.model.action.EmpwocoVisiMergeToSelect;
 import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckEmp;
 import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckLangu;
 import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckOwner;
 import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckRead;
 import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckStore;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEmpwocoSelect extends DeciTreeTemplateRead<EmpwocoInfo> {
+public final class EmpwocoRootSelect extends DeciTreeTemplateRead<EmpwocoInfo> {
 	
-	public RootEmpwocoSelect(DeciTreeOption<EmpwocoInfo> option) {
+	public EmpwocoRootSelect(DeciTreeOption<EmpwocoInfo> option) {
 		super(option);
 	}
 	
@@ -73,7 +74,7 @@ public final class RootEmpwocoSelect extends DeciTreeTemplateRead<EmpwocoInfo> {
 	@Override protected List<ActionStd<EmpwocoInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwocoInfo> option) {
 		List<ActionStd<EmpwocoInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpwocoInfo> select = new StdEmpwocoMergeToSelect(option);
+		ActionStd<EmpwocoInfo> select = new ActionStdCommom<EmpwocoInfo>(option, EmpwocoVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

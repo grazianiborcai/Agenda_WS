@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoInfo;
 import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpwocoMergeToSelect extends ActionVisitorTemplateMerge<EmpwocoInfo, EmpwocoInfo> {
+public final class EmpwocoVisiMergeToSelect extends ActionVisitorTemplateMerge<EmpwocoInfo, EmpwocoInfo> {
 	
-	public VisiEmpwocoMergeToSelect(DeciTreeOption<EmpwocoInfo> option) {
+	public EmpwocoVisiMergeToSelect(DeciTreeOption<EmpwocoInfo> option) {
 		super(option, EmpwocoInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<EmpwocoInfo>> getActionClassHook() {
-		return StdEmpwocoDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<EmpwocoInfo>> getVisitorClassHook() {
+		return EmpwocoVisiDaoSelect.class;
 	}
 	
 	

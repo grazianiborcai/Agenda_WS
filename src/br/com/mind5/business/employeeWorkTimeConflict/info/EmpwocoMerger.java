@@ -11,7 +11,7 @@ public final class EmpwocoMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpwocoVisiMergeToSelect());
+		builder.addVisitor(new EmpwocoMergeRVisiToSelect());
 		InfoMerger<EmpwocoInfo, EmpwocoInfo> merger = builder.build();		
 	
 		return merger.merge();

@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoEmpwocoSelect implements DaoStmtExec<EmpwocoInfo> {
+public final class EmpwocoDaoSelect implements DaoStmtExec<EmpwocoInfo> {
 	private DaoStmtExec<EmpwocoInfo> helper;
 	
 	
-	public DaoEmpwocoSelect(List<DaoStmtExecOption<EmpwocoInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoEmpwocoSelectSingle.class, EmpwocoInfo.class);
+	public EmpwocoDaoSelect(List<DaoStmtExecOption<EmpwocoInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, EmpwocoDaoSelectSingle.class, EmpwocoInfo.class);
 	}
 	
 	
