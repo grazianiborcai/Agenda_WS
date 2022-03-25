@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
-import br.com.mind5.business.storeWorkTime.model.decisionTree.StowotmRootDeleteStore;
+import br.com.mind5.business.storeWorkTime.model.decisionTree.StowotmRootDeleteFromStore;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -18,7 +18,7 @@ public final class StoreVisiStowotmDelete extends ActionVisitorTemplateAction<St
 	
 	
 	@Override protected Class<? extends DeciTree<StowotmInfo>> getTreeClassHook() {
-		return StowotmRootDeleteStore.class;
+		return StowotmRootDeleteFromStore.class;
 	}
 	
 	

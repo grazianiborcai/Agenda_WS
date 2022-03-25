@@ -7,7 +7,7 @@ import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.model.action.StowotmVisiRootDelete;
 import br.com.mind5.business.storeWorkTime.model.action.StowotmVisiEnforceStoreKey;
 import br.com.mind5.business.storeWorkTime.model.action.StowotmVisiMergeStowotarch;
-import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckDeleteByStore;
+import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckDeleteFromStore;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -18,9 +18,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class StowotmRootDeleteStore extends DeciTreeTemplateWrite<StowotmInfo> {
+public final class StowotmRootDeleteFromStore extends DeciTreeTemplateWrite<StowotmInfo> {
 	
-	public StowotmRootDeleteStore(DeciTreeOption<StowotmInfo> option) {
+	public StowotmRootDeleteFromStore(DeciTreeOption<StowotmInfo> option) {
 		super(option);
 	}
 	
@@ -35,7 +35,7 @@ public final class StowotmRootDeleteStore extends DeciTreeTemplateWrite<StowotmI
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new StowotmCheckDeleteByStore(checkerOption);
+		checker = new StowotmCheckDeleteFromStore(checkerOption);
 		queue.add(checker);
 		
 		 return new ModelCheckerHelperQueue<StowotmInfo>(queue);
