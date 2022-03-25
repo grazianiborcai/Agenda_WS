@@ -4,20 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchInfo;
-import br.com.mind5.business.employeeWorkTimeSearch.model.action.StdEmpwotarchMergeToSelect;
+import br.com.mind5.business.employeeWorkTimeSearch.model.action.EmpwotarchVisiMergeToSelect;
 import br.com.mind5.business.employeeWorkTimeSearch.model.checker.EmpwotarchCheckLangu;
 import br.com.mind5.business.employeeWorkTimeSearch.model.checker.EmpwotarchCheckOwner;
 import br.com.mind5.business.employeeWorkTimeSearch.model.checker.EmpwotarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEmpwotarchSelect extends DeciTreeTemplateRead<EmpwotarchInfo> {
+public final class EmpwotarchRootSelect extends DeciTreeTemplateRead<EmpwotarchInfo> {
 	
-	public RootEmpwotarchSelect(DeciTreeOption<EmpwotarchInfo> option) {
+	public EmpwotarchRootSelect(DeciTreeOption<EmpwotarchInfo> option) {
 		super(option);
 	}
 	
@@ -57,7 +58,7 @@ public final class RootEmpwotarchSelect extends DeciTreeTemplateRead<EmpwotarchI
 	@Override protected List<ActionStd<EmpwotarchInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotarchInfo> option) {
 		List<ActionStd<EmpwotarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpwotarchInfo> select = new StdEmpwotarchMergeToSelect(option);
+		ActionStd<EmpwotarchInfo> select = new ActionStdCommom<EmpwotarchInfo>(option, EmpwotarchVisiMergeToSelect.class);
 
 		actions.add(select);
 		return actions;
