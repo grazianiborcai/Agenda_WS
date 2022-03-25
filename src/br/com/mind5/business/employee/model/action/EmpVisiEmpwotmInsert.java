@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.business.employeeWorkTime.model.decisionTree.RootEmpwotmInsertFromStore;
+import br.com.mind5.business.employeeWorkTime.model.decisionTree.EmpwotmRootInsertFromStore;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -18,7 +18,7 @@ public final class EmpVisiEmpwotmInsert extends ActionVisitorTemplateAction<EmpI
 	
 	
 	@Override protected Class<? extends DeciTree<EmpwotmInfo>> getTreeClassHook() {
-		return RootEmpwotmInsertFromStore.class;
+		return EmpwotmRootInsertFromStore.class;
 	}
 	
 	

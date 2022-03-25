@@ -18,7 +18,7 @@ public final class EmpwotmMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpwotmVisiMergeStowotm());
+		builder.addVisitor(new EmpwotmMergerVisiStowotm());
 		InfoMerger<EmpwotmInfo, StowotmInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -31,7 +31,7 @@ public final class EmpwotmMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpwotmVisiMergeEmpwout());
+		builder.addVisitor(new EmpwotmMergerVisiEmpwout());
 		InfoMerger<EmpwotmInfo, EmpwoutInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -44,7 +44,7 @@ public final class EmpwotmMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpwotmVisiMergeEmpwoco());
+		builder.addVisitor(new EmpwotmMergerVisiEmpwoco());
 		InfoMerger<EmpwotmInfo, EmpwocoInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -57,7 +57,7 @@ public final class EmpwotmMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpwotmVisiMergeEmpwotarch());
+		builder.addVisitor(new EmpwotmMergerVisiEmpwotarch());
 		InfoMerger<EmpwotmInfo, EmpwotarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -70,7 +70,7 @@ public final class EmpwotmMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpwotmVisiMergeStolis());
+		builder.addVisitor(new EmpwotmMergerVisiStolis());
 		InfoMerger<EmpwotmInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -83,7 +83,7 @@ public final class EmpwotmMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpwotmVisiMergeUsername());
+		builder.addVisitor(new EmpwotmMergerVisiUsername());
 		InfoMerger<EmpwotmInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -96,7 +96,7 @@ public final class EmpwotmMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpwotmVisiMergeWeekday());
+		builder.addVisitor(new EmpwotmMergerVisiWeekday());
 		InfoMerger<EmpwotmInfo, WeekdayInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -109,7 +109,7 @@ public final class EmpwotmMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpwotmVisiMergeToDelete());
+		builder.addVisitor(new EmpwotmMergerVisiToDelete());
 		InfoMerger<EmpwotmInfo, EmpwotmInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -122,7 +122,7 @@ public final class EmpwotmMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpwotmVisiMergeToSelect());
+		builder.addVisitor(new EmpwotmMergerVisiToSelect());
 		InfoMerger<EmpwotmInfo, EmpwotmInfo> merger = builder.build();		
 	
 		return merger.merge();
