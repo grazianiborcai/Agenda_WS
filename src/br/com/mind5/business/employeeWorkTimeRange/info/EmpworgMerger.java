@@ -11,7 +11,7 @@ public final class EmpworgMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpworgVisiMergeToSelect());
+		builder.addVisitor(new EmpworgMergeRVisiToSelect());
 		InfoMerger<EmpworgInfo, EmpworgInfo> merger = builder.build();		
 	
 		return merger.merge();

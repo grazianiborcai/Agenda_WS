@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoEmpworgSelectSingle extends DaoStmtTemplate<EmpworgInfo> {
+public final class EmpworgDaoSelectSingle extends DaoStmtTemplate<EmpworgInfo> {
 	private final String MAIN_TABLE = DaoDbTable.EMP_WT_TABLE;
 	
 	
-	public DaoEmpworgSelectSingle(Connection conn, EmpworgInfo recordInfo, String schemaName) {
+	public EmpworgDaoSelectSingle(Connection conn, EmpworgInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoEmpworgSelectSingle extends DaoStmtTemplate<EmpworgInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoEmpworgWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new EmpworgDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,13 +67,13 @@ public final class DaoEmpworgSelectSingle extends DaoStmtTemplate<EmpworgInfo> {
 				do {
 					EmpworgInfo dataInfo = new EmpworgInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoEmpworgDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(DaoEmpworgDbTableColumn.COL_COD_STORE);
-					dataInfo.codEmployee = stmtResult.getLong(DaoEmpworgDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codWeekday = stmtResult.getInt(DaoEmpworgDbTableColumn.COL_COD_WEEKDAY);
-					dataInfo.recordMode = stmtResult.getString(DaoEmpworgDbTableColumn.COL_RECORD_MODE);	
-					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoEmpworgDbTableColumn.COL_BEGIN_TIME);
-					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoEmpworgDbTableColumn.COL_END_TIME);
+					dataInfo.codOwner = stmtResult.getLong(EmpworgDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(EmpworgDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codEmployee = stmtResult.getLong(EmpworgDaoDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codWeekday = stmtResult.getInt(EmpworgDaoDbTableColumn.COL_COD_WEEKDAY);
+					dataInfo.recordMode = stmtResult.getString(EmpworgDaoDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, EmpworgDaoDbTableColumn.COL_BEGIN_TIME);
+					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, EmpworgDaoDbTableColumn.COL_END_TIME);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
