@@ -6,8 +6,11 @@ import java.util.List;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiDaoInsert;
 import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiDaoUpdate;
+import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiNodeSnapshot;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckSoftDelete;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -43,6 +46,9 @@ public final class EmpwotmNodeInsert extends DeciTreeTemplateWrite<EmpwotmInfo> 
 		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
 		
 		ActionStd<EmpwotmInfo> insert = new ActionStdCommom<EmpwotmInfo>(option, EmpwotmVisiDaoInsert.class);
+		ActionLazy<EmpwotmInfo> snapshot = new ActionLazyCommom<EmpwotmInfo>(option, EmpwotmVisiNodeSnapshot.class);
+		
+		insert.addPostAction(snapshot);
 		
 		actions.add(insert);
 		return actions;
@@ -54,6 +60,9 @@ public final class EmpwotmNodeInsert extends DeciTreeTemplateWrite<EmpwotmInfo> 
 		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
 		
 		ActionStd<EmpwotmInfo> update = new ActionStdCommom<EmpwotmInfo>(option, EmpwotmVisiDaoUpdate.class);
+		ActionLazy<EmpwotmInfo> snapshot = new ActionLazyCommom<EmpwotmInfo>(option, EmpwotmVisiNodeSnapshot.class);
+		
+		update.addPostAction(snapshot);
 		
 		actions.add(update);
 		return actions;

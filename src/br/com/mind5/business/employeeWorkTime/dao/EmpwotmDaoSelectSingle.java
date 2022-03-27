@@ -65,11 +65,12 @@ public final class EmpwotmDaoSelectSingle extends DaoStmtTemplate<EmpwotmInfo> {
 					dataInfo.codStore = stmtResult.getLong(EmpwotmDaoDbTableColumn.COL_COD_STORE);
 					dataInfo.codEmployee = stmtResult.getLong(EmpwotmDaoDbTableColumn.COL_COD_EMPLOYEE);
 					dataInfo.codWeekday = stmtResult.getInt(EmpwotmDaoDbTableColumn.COL_COD_WEEKDAY);
-					dataInfo.recordMode = stmtResult.getString(EmpwotmDaoDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.recordMode = stmtResult.getString(EmpwotmDaoDbTableColumn.COL_RECORD_MODE);
 					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, EmpwotmDaoDbTableColumn.COL_BEGIN_TIME);
 					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, EmpwotmDaoDbTableColumn.COL_END_TIME);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, EmpwotmDaoDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, EmpwotmDaoDbTableColumn.COL_LAST_CHANGED_BY);				
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, EmpwotmDaoDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, EmpwotmDaoDbTableColumn.COL_COD_SNAPSHOT);
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

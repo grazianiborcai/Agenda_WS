@@ -7,6 +7,7 @@ import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiDaoUpdate;
 import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiEnforceLChanged;
 import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiMergeUsername;
+import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiNodeSnapshot;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmp;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmposarch;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmpwoco;
@@ -145,10 +146,12 @@ public final class EmpwotmRootUpdate extends DeciTreeTemplateWrite<EmpwotmInfo> 
 		ActionStd<EmpwotmInfo> enforceLChanged = new ActionStdCommom<EmpwotmInfo>(option, EmpwotmVisiEnforceLChanged.class);
 		ActionLazy<EmpwotmInfo> enforceLChangedBy = new ActionLazyCommom<EmpwotmInfo>(option, EmpwotmVisiMergeUsername.class);
 		ActionLazy<EmpwotmInfo> update = new ActionLazyCommom<EmpwotmInfo>(option, EmpwotmVisiDaoUpdate.class);
+		ActionLazy<EmpwotmInfo> snapshot = new ActionLazyCommom<EmpwotmInfo>(option, EmpwotmVisiNodeSnapshot.class);
 		ActionStd<EmpwotmInfo> select = new EmpwotmRootSelect(option).toAction();
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(update);
+		enforceLChangedBy.addPostAction(snapshot);
+		snapshot.addPostAction(update);
 		
 		actions.add(enforceLChanged);
 		actions.add(select);

@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoInfo;
 import br.com.mind5.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
 import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchInfo;
+import br.com.mind5.business.employeeWorkTimeSnapshot.info.EmpwotmapInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.info.InfoMerger;
@@ -13,6 +14,19 @@ import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmpwotmMerger {	
+	public static List<EmpwotmInfo> mergeWithEmpwotmap(List<EmpwotmInfo> baseInfos, List<EmpwotmapInfo> selectedInfos) {
+		InfoMergerBuilder<EmpwotmInfo, EmpwotmapInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpwotmMergerVisiEmpwotmap());
+		InfoMerger<EmpwotmInfo, EmpwotmapInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<EmpwotmInfo> mergeWithStowotm(List<EmpwotmInfo> baseInfos, List<StowotmInfo> selectedInfos) {
 		InfoMergerBuilder<EmpwotmInfo, StowotmInfo> builder = new InfoMergerBuilder<>();
 		
@@ -22,7 +36,7 @@ public final class EmpwotmMerger {
 		InfoMerger<EmpwotmInfo, StowotmInfo> merger = builder.build();		
 	
 		return merger.merge();
-	}	
+	}
 	
 	
 	

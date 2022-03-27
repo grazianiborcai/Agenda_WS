@@ -3,6 +3,7 @@ package br.com.mind5.business.employeeWorkTime.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
@@ -46,6 +47,7 @@ public final class EmpwotmDaoInsertSingle extends DaoStmtTemplate<EmpwotmInfo> {
 				stmt.setString(i++, recordInfo.recordMode);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
 				
 				return stmt;
 			}		
