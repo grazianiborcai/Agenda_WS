@@ -127,6 +127,7 @@ import br.com.mind5.business.storeTextSnapshot.dao.DaoStorextsnapDbTableColumn;
 import br.com.mind5.business.storeWorkTime.dao.StowotmDaoDbTableColumn;
 import br.com.mind5.business.storeWorkTimeRange.dao.StoworgDaoDbTableColumn;
 import br.com.mind5.business.storeWorkTimeSearch.dao.StowotarchDaoDbTableColumn;
+import br.com.mind5.business.storeWorkTimeSnapshot.dao.StowotmapDaoDbTableColumn;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.config.sysDistrictSearch.dao.DaoSysdistrDbTableColumn;
@@ -584,6 +585,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CustamonagrDaoDbTableColumn());
 		addTable(new CutefiloniveDaoDbTableColumn());
 		addTable(new CutefilonagrDaoDbTableColumn());
+		addTable(new StowotmapDaoDbTableColumn());
 	}
 	
 	

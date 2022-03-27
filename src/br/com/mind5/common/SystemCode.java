@@ -1887,4 +1887,7 @@ public final class SystemCode {
 	
 	// Statistics - Customer-Profile-Month
 	public static final int STAT_CUS_PRF_MTH_MANDATORY_FIELD_EMPTY		= 19100;
+	
+	// Store Work Time-Snaphot
+	public static final int STORE_WTIME_SNAPHOT_MANDATORY_FIELD_EMPTY 	= 19150;
 }

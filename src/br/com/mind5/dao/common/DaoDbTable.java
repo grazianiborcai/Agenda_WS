@@ -179,6 +179,7 @@ public final class DaoDbTable {
 	public static final String STORE_TEXT_SNAPSHOT_TABLE = "store_text_snapshot";
 	public static final String STORE_LD_TABLE = "store_leave_time";
 	public static final String STORE_WT_TABLE = "store_working_time";
+	public static final String STORE_WT_SNAPSHOT_TABLE = "store_working_time_snapshot";
 	public static final String SYS_EMAIL_TABLE = "sys_email";
 	public static final String SYS_EMAIL_BODY_TABLE = "sys_email_body";
 	public static final String SYS_FILE_IMG_TABLE = "sys_file_image";
