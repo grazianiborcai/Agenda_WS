@@ -16,7 +16,7 @@ public final class StolisDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
 	public static final String COL_COD_TIMEZONE = DaoDbField.COL_COD_TIMEZONE;
-	public static final String COL_IS_ACTIVE = DaoDbField.COL_IS_ACTIVE;	
+	public static final String COL_IS_LOCKED = DaoDbField.COL_IS_LOCKED;	
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 
 	
@@ -90,7 +90,7 @@ public final class StolisDaoDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_IS_ACTIVE;
+		oneColumn.columnName = COL_IS_LOCKED;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

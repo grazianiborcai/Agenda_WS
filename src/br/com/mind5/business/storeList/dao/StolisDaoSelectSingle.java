@@ -74,7 +74,7 @@ public final class StolisDaoSelectSingle extends DaoStmtTemplate<StolisInfo> {
 					dataInfo.recordMode = stmtResult.getString(StolisDaoDbTableColumn.COL_RECORD_MODE);	
 					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, StolisDaoDbTableColumn.COL_COD_COMPANY);
 					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, StolisDaoDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.isActive = DaoFormatter.sqlToBoole(stmtResult, StolisDaoDbTableColumn.COL_IS_ACTIVE);
+					dataInfo.isLocked = DaoFormatter.sqlToBoole(stmtResult, StolisDaoDbTableColumn.COL_IS_LOCKED);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
