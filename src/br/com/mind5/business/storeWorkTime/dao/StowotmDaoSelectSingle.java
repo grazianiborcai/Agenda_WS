@@ -71,6 +71,7 @@ public final class StowotmDaoSelectSingle extends DaoStmtTemplate<StowotmInfo> {
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, StowotmDaoDbTableColumn.COL_LAST_CHANGED_BY);				
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, StowotmDaoDbTableColumn.COL_CREATED_ON);
 					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, StowotmDaoDbTableColumn.COL_CREATED_BY);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, StowotmDaoDbTableColumn.COL_COD_SNAPSHOT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

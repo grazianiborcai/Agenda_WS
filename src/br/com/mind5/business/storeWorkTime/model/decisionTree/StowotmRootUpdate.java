@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
-import br.com.mind5.business.storeWorkTime.model.action.StowotmVisiRootSelect;
 import br.com.mind5.business.storeWorkTime.model.action.StowotmVisiDaoUpdate;
 import br.com.mind5.business.storeWorkTime.model.action.StowotmVisiEnforceLChanged;
 import br.com.mind5.business.storeWorkTime.model.action.StowotmVisiMergeToUpdate;
 import br.com.mind5.business.storeWorkTime.model.action.StowotmVisiMergeUsername;
+import br.com.mind5.business.storeWorkTime.model.action.StowotmVisiNodeSnapshot;
+import br.com.mind5.business.storeWorkTime.model.action.StowotmVisiRootSelect;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckEmpwout;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckExist;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckLangu;
@@ -116,12 +117,14 @@ public final class StowotmRootUpdate extends DeciTreeTemplateWrite<StowotmInfo> 
 		ActionLazy<StowotmInfo> enforceLChanged = new ActionLazyCommom<StowotmInfo>(option, StowotmVisiEnforceLChanged.class);
 		ActionLazy<StowotmInfo> enforceLChangedBy = new ActionLazyCommom<StowotmInfo>(option, StowotmVisiMergeUsername.class);
 		ActionLazy<StowotmInfo> update = new ActionLazyCommom<StowotmInfo>(option, StowotmVisiDaoUpdate.class);
+		ActionLazy<StowotmInfo> snapshot = new ActionLazyCommom<StowotmInfo>(option, StowotmVisiNodeSnapshot.class);
 		ActionLazy<StowotmInfo> select = new ActionLazyCommom<StowotmInfo>(option, StowotmVisiRootSelect.class);
 		
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);
-		update.addPostAction(select);
+		update.addPostAction(snapshot);
+		snapshot.addPostAction(select);
 		
 		actions.add(mergeToUpdate);				
 		return actions;

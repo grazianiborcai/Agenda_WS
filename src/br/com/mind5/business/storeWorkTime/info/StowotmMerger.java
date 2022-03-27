@@ -5,12 +5,26 @@ import java.util.List;
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
-import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.business.storeWorkTimeSnapshot.info.StowotmapInfo;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class StowotmMerger {
+	public static List<StowotmInfo> mergeWithStowotmap(List<StowotmInfo> baseInfos, List<StowotmapInfo> selectedInfos) {
+		InfoMergerBuilder<StowotmInfo, StowotmapInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StowotmMergerVisiStowotmap());
+		InfoMerger<StowotmInfo, StowotmapInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<StowotmInfo> mergeWithSytotauh(List<StowotmInfo> baseInfos, List<SytotauhInfo> selectedInfos) {
 		InfoMergerBuilder<StowotmInfo, SytotauhInfo> builder = new InfoMergerBuilder<>();
 		

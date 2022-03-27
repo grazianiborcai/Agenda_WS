@@ -15,6 +15,7 @@ public final class StowotmInfo extends InfoRecord implements Cloneable {
 	public LocalTime beginTime;
 	public LocalTime endTime;
 	public String codTimezone;
+	public long codSnapshot;
 	public LocalDateTime createdOn;
 	public long createdBy;
 	public LocalDateTime lastChanged;
@@ -29,8 +30,13 @@ public final class StowotmInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codWeekday = DefaultValue.number();
+		codSnapshot = DefaultValue.number();
 		createdBy = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
+		beginTime = DefaultValue.object();
+		endTime = DefaultValue.object();
+		createdOn = DefaultValue.object();
+		lastChanged = DefaultValue.object();
 		recordMode = DefaultValue.recordMode();
 	}
 	
