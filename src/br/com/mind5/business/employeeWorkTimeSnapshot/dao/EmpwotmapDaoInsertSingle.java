@@ -51,7 +51,6 @@ public final class EmpwotmapDaoInsertSingle extends DaoStmtTemplate<EmpwotmapInf
 				stmt.setString(i++, recordInfo.recordMode);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
 				
 				return stmt;
 			}		
