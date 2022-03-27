@@ -77,8 +77,9 @@ public final class StowotmapInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner ^ (codOwner >>> 32));
-		result = result * 31 + (int) (codStore ^ (codStore >>> 32));
+		result = result * 31 + (int) (codSnapshot ^ (codSnapshot >>> 32));
+		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
+		result = result * 31 + (int) (codStore    ^ (codStore    >>> 32));
 		result = result * 31 + codWeekday;
 		
 		return result;
@@ -96,7 +97,8 @@ public final class StowotmapInfo extends InfoRecord implements Cloneable {
 		
 		
 		StowotmapInfo obj = (StowotmapInfo) o;		
-		return (codOwner 	== obj.codOwner 	&& 
+		return (codSnapshot == obj.codSnapshot 	&& 
+				codOwner 	== obj.codOwner 	&& 
 				codStore 	== obj.codStore 	&&
 				codWeekday 	== obj.codWeekday);
 	}	
