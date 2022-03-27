@@ -46,6 +46,7 @@ import br.com.mind5.business.employeeWorkTimeConflict.dao.EmpwocoDaoDbTableColum
 import br.com.mind5.business.employeeWorkTimeOutlier.dao.EmpwoutDaoDbTableColumn;
 import br.com.mind5.business.employeeWorkTimeRange.dao.EmpworgDaoDbTableColumn;
 import br.com.mind5.business.employeeWorkTimeSearch.dao.EmpwotarchDaoDbTableColumn;
+import br.com.mind5.business.employeeWorkTimeSnapshot.dao.EmpwotmapDaoDbTableColumn;
 import br.com.mind5.business.feeDefault.dao.DaoFeedefDbTableColumn;
 import br.com.mind5.business.feeOwner.dao.DaoFeewnerDbTableColumn;
 import br.com.mind5.business.material.dao.MatDaoDbTableColumn;
@@ -586,6 +587,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CutefiloniveDaoDbTableColumn());
 		addTable(new CutefilonagrDaoDbTableColumn());
 		addTable(new StowotmapDaoDbTableColumn());
+		addTable(new EmpwotmapDaoDbTableColumn());
 	}
 	
 	
