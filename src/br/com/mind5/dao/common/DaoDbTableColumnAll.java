@@ -88,7 +88,7 @@ import br.com.mind5.business.personSnapshot.dao.DaoPersonapDbTableColumn;
 import br.com.mind5.business.pet.dao.PetDaoDbTableColumn;
 import br.com.mind5.business.petDefault.dao.PetaultDaoDbTableColumn;
 import br.com.mind5.business.petSearch.dao.PetarchDaoDbTableColumn;
-import br.com.mind5.business.petSnapshot.dao.DaoPetsnapDbTableColumn;
+import br.com.mind5.business.petSnapshot.dao.PetsnapDaoDbTableColumn;
 import br.com.mind5.business.phone.dao.DaoPhoneDbTableColumn;
 import br.com.mind5.business.phoneDefault.dao.DaoPhonaultDbTableColumn;
 import br.com.mind5.business.phoneSearch.dao.DaoPhonarchDbTableColumn;
@@ -550,7 +550,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoPeteightDbTableColumn());
 		addTable(new DaoPeteightarchDbTableColumn());
 		addTable(new PetDaoDbTableColumn());
-		addTable(new DaoPetsnapDbTableColumn());
+		addTable(new PetsnapDaoDbTableColumn());
 		addTable(new PetarchDaoDbTableColumn());
 		addTable(new DaoPerbioDbTableColumn());
 		addTable(new DaoPerbionapDbTableColumn());

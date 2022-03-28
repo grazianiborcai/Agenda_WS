@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPetsnapMergePetype extends ActionVisitorTemplateMerge<PetsnapInfo, PetypeInfo> {
+public final class PetsnapVisiMergePetype extends ActionVisitorTemplateMerge<PetsnapInfo, PetypeInfo> {
 	
-	public VisiPetsnapMergePetype(DeciTreeOption<PetsnapInfo> option) {
+	public PetsnapVisiMergePetype(DeciTreeOption<PetsnapInfo> option) {
 		super(option, PetypeInfo.class);
 	}
 	

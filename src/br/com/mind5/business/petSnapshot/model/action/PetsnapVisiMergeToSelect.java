@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.petSnapshot.info.PetsnapInfo;
 import br.com.mind5.business.petSnapshot.info.PetsnapMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPetsnapMergeToSelect extends ActionVisitorTemplateMerge<PetsnapInfo, PetsnapInfo> {
+public final class PetsnapVisiMergeToSelect extends ActionVisitorTemplateMerge<PetsnapInfo, PetsnapInfo> {
 	
-	public VisiPetsnapMergeToSelect(DeciTreeOption<PetsnapInfo> option) {
+	public PetsnapVisiMergeToSelect(DeciTreeOption<PetsnapInfo> option) {
 		super(option, PetsnapInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<PetsnapInfo>> getActionClassHook() {
-		return StdPetsnapDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<PetsnapInfo>> getVisitorClassHook() {
+		return PetsnapVisiDaoSelect.class;
 	}
 	
 	

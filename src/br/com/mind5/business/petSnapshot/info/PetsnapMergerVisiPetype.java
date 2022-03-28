@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.petType.info.PetypeInfo;
 
-final class PetsnapVisiMergePetype extends InfoMergerVisitorTemplate<PetsnapInfo, PetypeInfo> {
+final class PetsnapMergerVisiPetype extends InfoMergerVisitorTemplate<PetsnapInfo, PetypeInfo> {
 
 	@Override public boolean shouldMerge(PetsnapInfo baseInfo, PetypeInfo selectedInfo) {
 		return (baseInfo.codPetype == selectedInfo.codPetype);

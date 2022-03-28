@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class DaoPetsnapWhere implements DaoStmtWhere {
+public final class PetsnapDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoPetsnapWhere(DaoWhereBuilderOption whereOption, String tableName, PetsnapInfo recordInfo) {
+	public PetsnapDaoWhere(DaoWhereBuilderOption whereOption, String tableName, PetsnapInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class DaoPetsnapWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoPetsnapDbTableColumn.COL_COD_OWNER :
+				case PetsnapDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoPetsnapDbTableColumn.COL_COD_SNAPSHOT :
+				case PetsnapDaoDbTableColumn.COL_COD_SNAPSHOT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSnapshot));
 					break;
 					
-				case DaoPetsnapDbTableColumn.COL_RECORD_MODE :
+				case PetsnapDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

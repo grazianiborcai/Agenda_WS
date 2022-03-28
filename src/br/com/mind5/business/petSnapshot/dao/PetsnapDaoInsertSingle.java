@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoPetsnapInsertSingle extends DaoStmtTemplate<PetsnapInfo> {
+public final class PetsnapDaoInsertSingle extends DaoStmtTemplate<PetsnapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PET_SNAPSHOT_TABLE;	
 	
 	
-	public DaoPetsnapInsertSingle(Connection conn, PetsnapInfo recordInfo, String schemaName) {
+	public PetsnapDaoInsertSingle(Connection conn, PetsnapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);		
 	}
 	

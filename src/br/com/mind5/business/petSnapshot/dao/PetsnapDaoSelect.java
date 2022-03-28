@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoPetsnapSelect implements DaoStmtExec<PetsnapInfo> {
+public final class PetsnapDaoSelect implements DaoStmtExec<PetsnapInfo> {
 	private DaoStmtExec<PetsnapInfo> helper;
 	
 	
-	public DaoPetsnapSelect(List<DaoStmtExecOption<PetsnapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoPetsnapSelectSingle.class, PetsnapInfo.class);
+	public PetsnapDaoSelect(List<DaoStmtExecOption<PetsnapInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, PetsnapDaoSelectSingle.class, PetsnapInfo.class);
 	}
 	
 	

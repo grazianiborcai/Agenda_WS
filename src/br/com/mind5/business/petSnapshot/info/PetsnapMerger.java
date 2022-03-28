@@ -13,7 +13,7 @@ public final class PetsnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetsnapVisiMergePetype());
+		builder.addVisitor(new PetsnapMergerVisiPetype());
 		InfoMerger<PetsnapInfo, PetypeInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class PetsnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetsnapVisiMergePeteight());
+		builder.addVisitor(new PetsnapMergerVisiPeteight());
 		InfoMerger<PetsnapInfo, PeteightInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -39,7 +39,7 @@ public final class PetsnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetsnapVisiMergeToSelect());
+		builder.addVisitor(new PetsnapMergerVisiToSelect());
 		InfoMerger<PetsnapInfo, PetsnapInfo> merger = builder.build();		
 	
 		return merger.merge();
