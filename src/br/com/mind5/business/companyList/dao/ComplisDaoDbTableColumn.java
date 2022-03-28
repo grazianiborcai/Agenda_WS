@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoComplisDbTableColumn extends DaoDbTableColumnTemplate {
+public final class ComplisDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_COMPANY = DaoDbField.COL_COD_COMPANY;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
@@ -21,7 +21,7 @@ public final class DaoComplisDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 	
 	
-	public DaoComplisDbTableColumn() {
+	public ComplisDaoDbTableColumn() {
 		super();
 	}
 	

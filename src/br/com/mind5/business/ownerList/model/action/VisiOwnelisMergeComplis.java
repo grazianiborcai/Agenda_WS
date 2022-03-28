@@ -3,7 +3,7 @@ package br.com.mind5.business.ownerList.model.action;
 import java.util.List;
 
 import br.com.mind5.business.companyList.info.ComplisInfo;
-import br.com.mind5.business.companyList.model.decisionTree.RootComplisSelect;
+import br.com.mind5.business.companyList.model.decisionTree.ComplisRootSelect;
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
 import br.com.mind5.business.ownerList.info.OwnelisMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiOwnelisMergeComplis extends ActionVisitorTemplateMerge<OwnelisIn
 	
 	
 	@Override protected Class<? extends DeciTree<ComplisInfo>> getTreeClassHook() {
-		return RootComplisSelect.class;
+		return ComplisRootSelect.class;
 	}
 	
 	

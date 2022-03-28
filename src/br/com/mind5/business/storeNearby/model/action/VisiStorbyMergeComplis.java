@@ -3,7 +3,7 @@ package br.com.mind5.business.storeNearby.model.action;
 import java.util.List;
 
 import br.com.mind5.business.companyList.info.ComplisInfo;
-import br.com.mind5.business.companyList.model.decisionTree.RootComplisSelect;
+import br.com.mind5.business.companyList.model.decisionTree.ComplisRootSelect;
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.business.storeNearby.info.StorbyMerger;
 
@@ -20,7 +20,7 @@ final class VisiStorbyMergeComplis extends ActionVisitorTemplateMerge<StorbyInfo
 	
 	
 	@Override protected Class<? extends DeciTree<ComplisInfo>> getTreeClassHook() {
-		return RootComplisSelect.class;
+		return ComplisRootSelect.class;
 	}
 	
 	

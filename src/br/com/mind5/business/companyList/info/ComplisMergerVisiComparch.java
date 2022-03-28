@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.companySearch.info.ComparchInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class ComplisVisiMergeComparch extends InfoMergerVisitorTemplate<ComplisInfo, ComparchInfo> {
+final class ComplisMergerVisiComparch extends InfoMergerVisitorTemplate<ComplisInfo, ComparchInfo> {
 
 	@Override public boolean shouldMerge(ComplisInfo baseInfo, ComparchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);

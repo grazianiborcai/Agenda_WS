@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.companyList.info.ComplisInfo;
-import br.com.mind5.business.companyList.model.action.StdComplisMergeToSelect;
+import br.com.mind5.business.companyList.model.action.ComplisVisiMergeToSelect;
 import br.com.mind5.business.companyList.model.checker.ComplisCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootComplisSelect extends DeciTreeTemplateRead<ComplisInfo> {
+public final class ComplisRootSelect extends DeciTreeTemplateRead<ComplisInfo> {
 	
-	public RootComplisSelect(DeciTreeOption<ComplisInfo> option) {
+	public ComplisRootSelect(DeciTreeOption<ComplisInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootComplisSelect extends DeciTreeTemplateRead<ComplisInfo> {
 	@Override protected List<ActionStd<ComplisInfo>> buildActionsOnPassedHook(DeciTreeOption<ComplisInfo> option) {
 		List<ActionStd<ComplisInfo>> actions = new ArrayList<>();
 		
-		ActionStd<ComplisInfo> select = new StdComplisMergeToSelect(option);	
+		ActionStd<ComplisInfo> select = new ActionStdCommom<ComplisInfo>(option, ComplisVisiMergeToSelect.class);	
 		actions.add(select);
 		
 		return actions;

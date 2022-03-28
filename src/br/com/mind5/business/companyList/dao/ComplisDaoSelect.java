@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoComplisSelect implements DaoStmtExec<ComplisInfo> {
+public final class ComplisDaoSelect implements DaoStmtExec<ComplisInfo> {
 	private DaoStmtExec<ComplisInfo> helper;
 	
 	
-	public DaoComplisSelect(List<DaoStmtExecOption<ComplisInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoComplisSelectSingle.class, ComplisInfo.class);
+	public ComplisDaoSelect(List<DaoStmtExecOption<ComplisInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, ComplisDaoSelectSingle.class, ComplisInfo.class);
 	}
 	
 	

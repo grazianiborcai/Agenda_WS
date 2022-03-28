@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiComplisMergeComparch extends ActionVisitorTemplateMerge<ComplisInfo, ComparchInfo> {
+public final class ComplisVisiMergeComparch extends ActionVisitorTemplateMerge<ComplisInfo, ComparchInfo> {
 	
-	public VisiComplisMergeComparch(DeciTreeOption<ComplisInfo> option) {
+	public ComplisVisiMergeComparch(DeciTreeOption<ComplisInfo> option) {
 		super(option, ComparchInfo.class);
 	}
 	

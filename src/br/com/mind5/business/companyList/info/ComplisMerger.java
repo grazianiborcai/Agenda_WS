@@ -12,7 +12,7 @@ public final class ComplisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new ComplisVisiMergeComparch());
+		builder.addVisitor(new ComplisMergerVisiComparch());
 		InfoMerger<ComplisInfo, ComparchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class ComplisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new ComplisVisiMergeToSelect());
+		builder.addVisitor(new ComplisMergerVisiToSelect());
 		InfoMerger<ComplisInfo, ComplisInfo> merger = builder.build();		
 	
 		return merger.merge();
