@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.petList.info.PetlisInfo;
-import br.com.mind5.business.petList.model.action.StdPetlisMergePetSearchAuth;
-import br.com.mind5.business.petList.model.checker.PetlisCheckSearch;
+import br.com.mind5.business.petList.model.action.VisiPetlisMergePetSelectAuth;
+import br.com.mind5.business.petList.model.checker.PetlisCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootPetlisSearchAuth extends DeciTreeTemplateWrite<PetlisInfo> {
+public final class PetlisRootSelectAuth extends DeciTreeTemplateWrite<PetlisInfo> {
 	
-	public RootPetlisSearchAuth(DeciTreeOption<PetlisInfo> option) {
+	public PetlisRootSelectAuth(DeciTreeOption<PetlisInfo> option) {
 		super(option);
 	}
 	
@@ -30,7 +31,7 @@ public final class RootPetlisSearchAuth extends DeciTreeTemplateWrite<PetlisInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PetlisCheckSearch(checkerOption);
+		checker = new PetlisCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -41,7 +42,7 @@ public final class RootPetlisSearchAuth extends DeciTreeTemplateWrite<PetlisInfo
 	@Override protected List<ActionStd<PetlisInfo>> buildActionsOnPassedHook(DeciTreeOption<PetlisInfo> option) {
 		List<ActionStd<PetlisInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PetlisInfo> mergePet = new StdPetlisMergePetSearchAuth(option);
+		ActionStd<PetlisInfo> mergePet = new ActionStdCommom<PetlisInfo>(option, VisiPetlisMergePetSelectAuth.class);
 		
 		actions.add(mergePet);
 		return actions;

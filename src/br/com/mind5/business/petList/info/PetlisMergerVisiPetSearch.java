@@ -7,7 +7,7 @@ import br.com.mind5.business.pet.info.PetInfo;
 import br.com.mind5.info.InfoMergerCardinality;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class PetlisVisiMergePetSearch extends InfoMergerVisitorTemplate<PetlisInfo, PetInfo> {
+final class PetlisMergerVisiPetSearch extends InfoMergerVisitorTemplate<PetlisInfo, PetInfo> {
 
 	@Override public boolean shouldMerge(PetlisInfo baseInfo, PetInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);

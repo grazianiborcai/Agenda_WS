@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.petList.info.PetlisInfo;
-import br.com.mind5.business.petList.model.action.StdPetlisMergePetSearch;
+import br.com.mind5.business.petList.model.action.VisiPetlisMergePetSearchAuth;
 import br.com.mind5.business.petList.model.checker.PetlisCheckSearch;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootPetlisSearch extends DeciTreeTemplateWrite<PetlisInfo> {
+public final class PetlisRootSearchAuth extends DeciTreeTemplateWrite<PetlisInfo> {
 	
-	public RootPetlisSearch(DeciTreeOption<PetlisInfo> option) {
+	public PetlisRootSearchAuth(DeciTreeOption<PetlisInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootPetlisSearch extends DeciTreeTemplateWrite<PetlisInfo> {
 	@Override protected List<ActionStd<PetlisInfo>> buildActionsOnPassedHook(DeciTreeOption<PetlisInfo> option) {
 		List<ActionStd<PetlisInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PetlisInfo> mergePet = new StdPetlisMergePetSearch(option);
+		ActionStd<PetlisInfo> mergePet = new ActionStdCommom<PetlisInfo>(option, VisiPetlisMergePetSearchAuth.class);
 		
 		actions.add(mergePet);
 		return actions;

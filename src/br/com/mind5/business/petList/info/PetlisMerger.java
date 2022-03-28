@@ -12,7 +12,7 @@ public final class PetlisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetlisVisiMergePet());
+		builder.addVisitor(new PetlisMergerVisiPet());
 		InfoMerger<PetlisInfo, PetInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class PetlisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetlisVisiMergePetSearch());
+		builder.addVisitor(new PetlisMergerVisiPetSearch());
 		InfoMerger<PetlisInfo, PetInfo> merger = builder.build();		
 	
 		return merger.merge();

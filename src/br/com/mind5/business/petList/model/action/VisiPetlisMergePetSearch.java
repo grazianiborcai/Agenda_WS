@@ -10,7 +10,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPetlisMergePetSearch extends ActionVisitorTemplateMerge<PetlisInfo, PetInfo> {
+public final class VisiPetlisMergePetSearch extends ActionVisitorTemplateMerge<PetlisInfo, PetInfo> {
 	
 	public VisiPetlisMergePetSearch(DeciTreeOption<PetlisInfo> option) {
 		super(option, PetInfo.class);

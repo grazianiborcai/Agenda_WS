@@ -3,7 +3,7 @@ package br.com.mind5.business.scheduleLine.model.action;
 import java.util.List;
 
 import br.com.mind5.business.petList.info.PetlisInfo;
-import br.com.mind5.business.petList.model.decisionTree.RootPetlisSelect;
+import br.com.mind5.business.petList.model.decisionTree.PetlisRootSelect;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class SchedineVisiMergePetlis extends ActionVisitorTemplateMerge<Sc
 	
 	
 	@Override protected Class<? extends DeciTree<PetlisInfo>> getTreeClassHook() {
-		return RootPetlisSelect.class;
+		return PetlisRootSelect.class;
 	}
 	
 	
