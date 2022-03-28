@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisCopier;
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.business.materialList.model.decisionTree.RootMatlisSelect;
+import br.com.mind5.business.materialList.model.decisionTree.MatlisRootSelect;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.planningTime.info.PlanimeMerger;
 
@@ -21,7 +21,7 @@ public final class PlanimeVisiMergeMatlis extends ActionVisitorTemplateMerge<Pla
 	
 	
 	@Override protected Class<? extends DeciTree<MatlisInfo>> getTreeClassHook() {
-		return RootMatlisSelect.class;
+		return MatlisRootSelect.class;
 	}
 	
 	

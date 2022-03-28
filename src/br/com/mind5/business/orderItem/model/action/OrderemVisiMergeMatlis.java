@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisCopier;
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.business.materialList.model.decisionTree.RootMatlisSelect;
+import br.com.mind5.business.materialList.model.decisionTree.MatlisRootSelect;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.info.OrderemMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -20,7 +20,7 @@ public final class OrderemVisiMergeMatlis extends ActionVisitorTemplateMerge<Ord
 	
 	
 	@Override protected Class<? extends DeciTree<MatlisInfo>> getTreeClassHook() {
-		return RootMatlisSelect.class;
+		return MatlisRootSelect.class;
 	}
 	
 	

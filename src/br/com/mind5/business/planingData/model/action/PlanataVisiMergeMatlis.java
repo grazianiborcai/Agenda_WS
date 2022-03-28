@@ -3,7 +3,7 @@ package br.com.mind5.business.planingData.model.action;
 import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.business.materialList.model.decisionTree.RootMatlisSelect;
+import br.com.mind5.business.materialList.model.decisionTree.MatlisRootSelect;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataMerger;
 
@@ -20,7 +20,7 @@ public final class PlanataVisiMergeMatlis extends ActionVisitorTemplateMerge<Pla
 	
 	
 	@Override protected Class<? extends DeciTree<MatlisInfo>> getTreeClassHook() {
-		return RootMatlisSelect.class;
+		return MatlisRootSelect.class;
 	}
 	
 	

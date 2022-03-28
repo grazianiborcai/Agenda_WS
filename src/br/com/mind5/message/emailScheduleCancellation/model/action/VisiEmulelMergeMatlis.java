@@ -3,7 +3,7 @@ package br.com.mind5.message.emailScheduleCancellation.model.action;
 import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.business.materialList.model.decisionTree.RootMatlisSelect;
+import br.com.mind5.business.materialList.model.decisionTree.MatlisRootSelect;
 import br.com.mind5.message.emailScheduleCancellation.info.EmulelInfo;
 import br.com.mind5.message.emailScheduleCancellation.info.EmulelMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiEmulelMergeMatlis extends ActionVisitorTemplateMerge<EmulelInfo,
 	
 	
 	@Override protected Class<? extends DeciTree<MatlisInfo>> getTreeClassHook() {
-		return RootMatlisSelect.class;
+		return MatlisRootSelect.class;
 	}
 	
 	
