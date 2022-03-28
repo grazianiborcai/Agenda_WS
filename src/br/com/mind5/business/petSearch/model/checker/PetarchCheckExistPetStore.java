@@ -1,7 +1,7 @@
 package br.com.mind5.business.petSearch.model.checker;
 
 import br.com.mind5.business.petSearch.info.PetarchInfo;
-import br.com.mind5.business.petSearch.model.decisionTree.RootPetarchSelectPetStore;
+import br.com.mind5.business.petSearch.model.decisionTree.PetarchRootSelectPetStore;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class PetarchCheckExistPetStore extends ModelCheckerTemplateAction<
 
 	
 	@Override protected ActionStd<PetarchInfo> buildActionHook(DeciTreeOption<PetarchInfo> option) {		
-		ActionStd<PetarchInfo> select = new RootPetarchSelectPetStore(option).toAction();			
+		ActionStd<PetarchInfo> select = new PetarchRootSelectPetStore(option).toAction();			
 		return select;
 	}
 	

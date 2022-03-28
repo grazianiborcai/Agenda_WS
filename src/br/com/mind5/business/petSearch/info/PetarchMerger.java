@@ -13,7 +13,7 @@ public final class PetarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetarchVisiMergeToSelect());
+		builder.addVisitor(new PetarchMergerVisiToSelect());
 		InfoMerger<PetarchInfo, PetarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class PetarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetarchVisiMergeCuslis());
+		builder.addVisitor(new PetarchMergerVisiCuslis());
 		InfoMerger<PetarchInfo, CuslisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -39,7 +39,7 @@ public final class PetarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetarchVisiMergeUsername());
+		builder.addVisitor(new PetarchMergerVisiUsername());
 		InfoMerger<PetarchInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
