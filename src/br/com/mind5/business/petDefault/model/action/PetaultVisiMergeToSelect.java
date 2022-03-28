@@ -8,16 +8,16 @@ import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class VisiPetaultMergeToSelect extends ActionVisitorTemplateMerge<PetaultInfo, PetaultInfo> {
+public final class PetaultVisiMergeToSelect extends ActionVisitorTemplateMerge<PetaultInfo, PetaultInfo> {
 	
-	public VisiPetaultMergeToSelect(DeciTreeOption<PetaultInfo> option) {
+	public PetaultVisiMergeToSelect(DeciTreeOption<PetaultInfo> option) {
 		super(option, PetaultInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends ActionVisitor<PetaultInfo>> getVisitorClassHook() {
-		return VisiPetaultDaoSelect.class;
+		return PetaultVisiDaoSelect.class;
 	}
 	
 	

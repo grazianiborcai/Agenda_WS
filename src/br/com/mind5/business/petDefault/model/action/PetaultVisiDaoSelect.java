@@ -9,9 +9,9 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class VisiPetaultDaoSelect extends ActionVisitorTemplateStmt<PetaultInfo> {
+public final class PetaultVisiDaoSelect extends ActionVisitorTemplateStmt<PetaultInfo> {
 
-	public VisiPetaultDaoSelect(DeciTreeOption<PetaultInfo> option) {
+	public PetaultVisiDaoSelect(DeciTreeOption<PetaultInfo> option) {
 		super(option);
 	}
 	
