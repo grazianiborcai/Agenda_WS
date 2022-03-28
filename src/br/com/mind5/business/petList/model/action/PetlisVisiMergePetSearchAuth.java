@@ -3,29 +3,29 @@ package br.com.mind5.business.petList.model.action;
 import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
-import br.com.mind5.business.pet.model.decisionTree.PetRootSelectAuth;
+import br.com.mind5.business.pet.model.decisionTree.PetRootSearchAuth;
 import br.com.mind5.business.petList.info.PetlisInfo;
 import br.com.mind5.business.petList.info.PetlisMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class VisiPetlisMergePetSelectAuth extends ActionVisitorTemplateMerge<PetlisInfo, PetInfo> {
+public final class PetlisVisiMergePetSearchAuth extends ActionVisitorTemplateMerge<PetlisInfo, PetInfo> {
 	
-	public VisiPetlisMergePetSelectAuth(DeciTreeOption<PetlisInfo> option) {
+	public PetlisVisiMergePetSearchAuth(DeciTreeOption<PetlisInfo> option) {
 		super(option, PetInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<PetInfo>> getTreeClassHook() {
-		return PetRootSelectAuth.class;
+		return PetRootSearchAuth.class;
 	}
 	
 	
 	
 	@Override protected List<PetlisInfo> mergeHook(List<PetlisInfo> baseInfos, List<PetInfo> selectedInfos) {	
-		return PetlisMerger.mergeWithPet(baseInfos, selectedInfos);
+		return PetlisMerger.mergeWithPetSearch(baseInfos, selectedInfos);
 	}
 	
 	

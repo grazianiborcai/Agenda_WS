@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.petList.info.PetlisInfo;
-import br.com.mind5.business.petList.model.action.VisiPetlisMergePetSearch;
+import br.com.mind5.business.petList.model.action.PetlisVisiMergePetSearch;
 import br.com.mind5.business.petList.model.checker.PetlisCheckSearch;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionStdCommom;
@@ -42,7 +42,7 @@ public final class PetlisRootSearch extends DeciTreeTemplateWrite<PetlisInfo> {
 	@Override protected List<ActionStd<PetlisInfo>> buildActionsOnPassedHook(DeciTreeOption<PetlisInfo> option) {
 		List<ActionStd<PetlisInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PetlisInfo> mergePet = new ActionStdCommom<PetlisInfo>(option, VisiPetlisMergePetSearch.class);
+		ActionStd<PetlisInfo> mergePet = new ActionStdCommom<PetlisInfo>(option, PetlisVisiMergePetSearch.class);
 		
 		actions.add(mergePet);
 		return actions;
