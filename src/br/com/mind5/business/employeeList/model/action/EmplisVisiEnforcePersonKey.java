@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmplisEnforcePersonKey extends ActionVisitorTemplateEnforce<EmplisInfo> {
+public final class EmplisVisiEnforcePersonKey extends ActionVisitorTemplateEnforce<EmplisInfo> {
 	
-	public VisiEmplisEnforcePersonKey(DeciTreeOption<EmplisInfo> option) {
+	public EmplisVisiEnforcePersonKey(DeciTreeOption<EmplisInfo> option) {
 		super(option);
 	}
 	

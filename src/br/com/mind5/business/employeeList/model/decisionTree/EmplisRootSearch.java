@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.employeeList.model.action.LazyEmplisMergeFimist;
-import br.com.mind5.business.employeeList.model.action.LazyEmplisMergePersolis;
-import br.com.mind5.business.employeeList.model.action.StdEmplisMergeToSelect;
+import br.com.mind5.business.employeeList.model.action.EmplisVisiRootSelect;
+import br.com.mind5.business.employeeList.model.action.EmplisVisiMergeEmparch;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckLangu;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckOwner;
-import br.com.mind5.business.employeeList.model.checker.EmplisCheckRead;
+import br.com.mind5.business.employeeList.model.checker.EmplisCheckSearch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEmplisSelect extends DeciTreeTemplateRead<EmplisInfo> {
+public final class EmplisRootSearch extends DeciTreeTemplateRead<EmplisInfo> {
 	
-	public RootEmplisSelect(DeciTreeOption<EmplisInfo> option) {
+	public EmplisRootSearch(DeciTreeOption<EmplisInfo> option) {
 		super(option);
 	}
 	
@@ -35,7 +35,7 @@ public final class RootEmplisSelect extends DeciTreeTemplateRead<EmplisInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new EmplisCheckRead(checkerOption);
+		checker = new EmplisCheckSearch(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -60,14 +60,14 @@ public final class RootEmplisSelect extends DeciTreeTemplateRead<EmplisInfo> {
 	@Override protected List<ActionStd<EmplisInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplisInfo> option) {
 		List<ActionStd<EmplisInfo>> actions = new ArrayList<>();
 
-		ActionStd<EmplisInfo> select = new StdEmplisMergeToSelect(option);
-		ActionLazy<EmplisInfo> mergePersolis = new LazyEmplisMergePersolis(option.conn, option.schemaName);
-		ActionLazy<EmplisInfo> mergeFimist = new LazyEmplisMergeFimist(option.conn, option.schemaName);
+		ActionStd<EmplisInfo> nodePerson = new EmplisNodePerson(option).toAction();
+		ActionLazy<EmplisInfo> mergeEmparch = new ActionLazyCommom<EmplisInfo>(option, EmplisVisiMergeEmparch.class);
+		ActionLazy<EmplisInfo> select = new ActionLazyCommom<EmplisInfo>(option, EmplisVisiRootSelect.class);
 		
-		select.addPostAction(mergePersolis);
-		mergePersolis.addPostAction(mergeFimist);
+		nodePerson.addPostAction(mergeEmparch);
+		mergeEmparch.addPostAction(select);
 		
-		actions.add(select);
+		actions.add(nodePerson);
 		return actions;
 	}
 }

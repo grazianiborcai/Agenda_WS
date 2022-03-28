@@ -16,7 +16,7 @@ public final class EmplisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmplisVisiMergeSytotauh());
+		builder.addVisitor(new EmplisMergerVisiSytotauh());
 		InfoMerger<EmplisInfo, SytotauhInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -29,7 +29,7 @@ public final class EmplisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmplisVisiMergeEmparch());
+		builder.addVisitor(new EmplisMergerVisiEmparch());
 		InfoMerger<EmplisInfo, EmparchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -42,7 +42,7 @@ public final class EmplisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmplisVisiMergePerarch());
+		builder.addVisitor(new EmplisMergerVisiPerarch());
 		InfoMerger<EmplisInfo, PerarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -55,7 +55,7 @@ public final class EmplisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmplisVisiMergeFimist());
+		builder.addVisitor(new EmplisMergerVisiFimist());
 		InfoMerger<EmplisInfo, FimistInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -68,7 +68,7 @@ public final class EmplisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmplisVisiMergePersolis());
+		builder.addVisitor(new EmplisMergerVisiPersolis());
 		InfoMerger<EmplisInfo, PersolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -81,7 +81,7 @@ public final class EmplisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmplisVisiMergeToSelect());
+		builder.addVisitor(new EmplisMergerVisiToSelect());
 		InfoMerger<EmplisInfo, EmplisInfo> merger = builder.build();		
 	
 		return merger.merge();

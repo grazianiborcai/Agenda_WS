@@ -6,7 +6,7 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.info.AddresnapMerger;
 import br.com.mind5.business.employeeList.info.EmplisCopier;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.employeeList.model.decisionTree.RootEmplisSelect;
+import br.com.mind5.business.employeeList.model.decisionTree.EmplisRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ final class VisiAddresnapMergeEmplis extends ActionVisitorTemplateMerge<Addresna
 	
 	
 	@Override protected Class<? extends DeciTree<EmplisInfo>> getTreeClassHook() {
-		return RootEmplisSelect.class;
+		return EmplisRootSelect.class;
 	}
 
 	

@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoEmplisSelectSingle extends DaoStmtTemplate<EmplisInfo> {
+public final class EmplisDaoSelectSingle extends DaoStmtTemplate<EmplisInfo> {
 	private final String MAIN_TABLE = DaoDbTable.EMP_TABLE;
 	
 	
-	public DaoEmplisSelectSingle(Connection conn, EmplisInfo recordInfo, String schemaName) {
+	public EmplisDaoSelectSingle(Connection conn, EmplisInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoEmplisSelectSingle extends DaoStmtTemplate<EmplisInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoEmplisWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new EmplisDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -70,12 +70,12 @@ public final class DaoEmplisSelectSingle extends DaoStmtTemplate<EmplisInfo> {
 				do {
 					EmplisInfo dataInfo = new EmplisInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoEmplisDbTableColumn.COL_COD_OWNER);
-					dataInfo.codEmployee = stmtResult.getLong(DaoEmplisDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codStore = stmtResult.getLong(DaoEmplisDbTableColumn.COL_COD_STORE);
-					dataInfo.recordMode = stmtResult.getString(DaoEmplisDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoEmplisDbTableColumn.COL_COD_PERSON);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoEmplisDbTableColumn.COL_COD_SNAPSHOT);				
+					dataInfo.codOwner = stmtResult.getLong(EmplisDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codEmployee = stmtResult.getLong(EmplisDaoDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codStore = stmtResult.getLong(EmplisDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.recordMode = stmtResult.getString(EmplisDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, EmplisDaoDbTableColumn.COL_COD_PERSON);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, EmplisDaoDbTableColumn.COL_COD_SNAPSHOT);				
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

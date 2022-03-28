@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisCopier;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.employeeList.model.decisionTree.RootEmplisSelect;
+import br.com.mind5.business.employeeList.model.decisionTree.EmplisRootSelect;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapMerger;
 
@@ -21,7 +21,7 @@ final class VisiPhonapMergeEmplis extends ActionVisitorTemplateMerge<PhonapInfo,
 	
 	
 	@Override protected Class<? extends DeciTree<EmplisInfo>> getTreeClassHook() {
-		return RootEmplisSelect.class;
+		return EmplisRootSelect.class;
 	}
 
 	

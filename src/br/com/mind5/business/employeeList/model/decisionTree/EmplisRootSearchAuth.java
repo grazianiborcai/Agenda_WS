@@ -4,22 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.employeeList.model.action.LazyEmplisMergeEmparch;
-import br.com.mind5.business.employeeList.model.action.LazyEmplisRootSelect;
+import br.com.mind5.business.employeeList.model.action.EmplisVisiRootSearch;
+import br.com.mind5.business.employeeList.model.action.EmplisVisiMergeSytotauh;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckLangu;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckOwner;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckSearch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEmplisSearch extends DeciTreeTemplateRead<EmplisInfo> {
+public final class EmplisRootSearchAuth extends DeciTreeTemplateRead<EmplisInfo> {
 	
-	public RootEmplisSearch(DeciTreeOption<EmplisInfo> option) {
+	public EmplisRootSearchAuth(DeciTreeOption<EmplisInfo> option) {
 		super(option);
 	}
 	
@@ -59,14 +61,12 @@ public final class RootEmplisSearch extends DeciTreeTemplateRead<EmplisInfo> {
 	@Override protected List<ActionStd<EmplisInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplisInfo> option) {
 		List<ActionStd<EmplisInfo>> actions = new ArrayList<>();
 
-		ActionStd<EmplisInfo> nodePerson = new NodeEmplisPerson(option).toAction();
-		ActionLazy<EmplisInfo> mergeEmparch = new LazyEmplisMergeEmparch(option.conn, option.schemaName);
-		ActionLazy<EmplisInfo> select = new LazyEmplisRootSelect(option.conn, option.schemaName);
+		ActionStd<EmplisInfo> mergeSytotauh = new ActionStdCommom<EmplisInfo>(option, EmplisVisiMergeSytotauh.class);
+		ActionLazy<EmplisInfo> search = new ActionLazyCommom<EmplisInfo>(option, EmplisVisiRootSearch.class);
 		
-		nodePerson.addPostAction(mergeEmparch);
-		mergeEmparch.addPostAction(select);
+		mergeSytotauh.addPostAction(search);
 		
-		actions.add(nodePerson);
+		actions.add(mergeSytotauh);
 		return actions;
 	}
 }
