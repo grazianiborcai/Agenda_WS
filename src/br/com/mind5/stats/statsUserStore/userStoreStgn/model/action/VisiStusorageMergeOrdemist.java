@@ -3,7 +3,7 @@ package br.com.mind5.stats.statsUserStore.userStoreStgn.model.action;
 import java.util.List;
 
 import br.com.mind5.business.orderItemList.info.OrdemistInfo;
-import br.com.mind5.business.orderItemList.model.decisionTree.RootOrdemistSelect;
+import br.com.mind5.business.orderItemList.model.decisionTree.OrdemistRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiStusorageMergeOrdemist extends ActionVisitorTemplateMerge<Stusor
 	
 	
 	@Override protected Class<? extends DeciTree<OrdemistInfo>> getTreeClassHook() {
-		return RootOrdemistSelect.class;
+		return OrdemistRootSelect.class;
 	}
 	
 	

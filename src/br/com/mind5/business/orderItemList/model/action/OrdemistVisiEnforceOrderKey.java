@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdemistEnforceOrderKey extends ActionVisitorTemplateEnforce<OrdemistInfo> {
+public final class OrdemistVisiEnforceOrderKey extends ActionVisitorTemplateEnforce<OrdemistInfo> {
 	
-	public VisiOrdemistEnforceOrderKey(DeciTreeOption<OrdemistInfo> option) {
+	public OrdemistVisiEnforceOrderKey(DeciTreeOption<OrdemistInfo> option) {
 		super(option);
 	}
 	

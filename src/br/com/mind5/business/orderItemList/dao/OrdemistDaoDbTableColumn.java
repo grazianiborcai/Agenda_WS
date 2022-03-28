@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoOrdemistDbTableColumn extends DaoDbTableColumnTemplate {
+public final class OrdemistDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;	
 	public static final String COL_COD_CURRENCY = DaoDbField.COL_COD_CURRENCY;
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
@@ -32,7 +32,7 @@ public final class DaoOrdemistDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_TOTAL_ITEM = DaoDbField.COL_TOTAL_ITEM;
 	
 	
-	public DaoOrdemistDbTableColumn() {
+	public OrdemistDaoDbTableColumn() {
 		super();
 	}
 	

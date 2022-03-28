@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.orderItemList.info.OrdemistInfo;
 import br.com.mind5.business.orderItemList.info.OrdemistMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdemistMergeToSelect extends ActionVisitorTemplateMerge<OrdemistInfo, OrdemistInfo> {
+public final class OrdemistVisiMergeToSelect extends ActionVisitorTemplateMerge<OrdemistInfo, OrdemistInfo> {
 	
-	public VisiOrdemistMergeToSelect(DeciTreeOption<OrdemistInfo> option) {
+	public OrdemistVisiMergeToSelect(DeciTreeOption<OrdemistInfo> option) {
 		super(option, OrdemistInfo.class); 
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<OrdemistInfo>> getActionClassHook() {
-		return StdOrdemistDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<OrdemistInfo>> getVisitorClassHook() {
+		return OrdemistVisiDaoSelect.class;
 	}
 	
 	

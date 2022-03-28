@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoOrdemistSelect implements DaoStmtExec<OrdemistInfo> {
+public final class OrdemistDaoSelect implements DaoStmtExec<OrdemistInfo> {
 	private DaoStmtExec<OrdemistInfo> helper;
 	
 	
-	public DaoOrdemistSelect(List<DaoStmtExecOption<OrdemistInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoOrdemistSelectSingle.class, OrdemistInfo.class);
+	public OrdemistDaoSelect(List<DaoStmtExecOption<OrdemistInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, OrdemistDaoSelectSingle.class, OrdemistInfo.class);
 	}
 	
 	

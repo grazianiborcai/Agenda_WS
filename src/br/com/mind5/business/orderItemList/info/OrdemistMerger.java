@@ -14,7 +14,7 @@ public final class OrdemistMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdemistVisiMergeMatlis());
+		builder.addVisitor(new OrdemistMergerVisiMatlis());
 		InfoMerger<OrdemistInfo, MatlisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class OrdemistMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdemistVisiMergeOrdemarch());
+		builder.addVisitor(new OrdemistMergerVisiOrdemarch());
 		InfoMerger<OrdemistInfo, OrdemarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class OrdemistMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdemistVisiMergeOrdist());
+		builder.addVisitor(new OrdemistMergerVisiOrdist());
 		InfoMerger<OrdemistInfo, OrdistInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -53,7 +53,7 @@ public final class OrdemistMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdemistVisiMergeToSelect());
+		builder.addVisitor(new OrdemistMergerVisiToSelect());
 		InfoMerger<OrdemistInfo, OrdemistInfo> merger = builder.build();		
 	
 		return merger.merge();
