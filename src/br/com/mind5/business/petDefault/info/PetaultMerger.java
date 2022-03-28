@@ -11,7 +11,7 @@ public final class PetaultMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PetaultVisiMergeToSelect());
+		builder.addVisitor(new PetaultMergerVisiToSelect());
 		InfoMerger<PetaultInfo, PetaultInfo> merger = builder.build();		
 	
 		return merger.merge();

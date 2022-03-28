@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class DaoPetaultWhere implements DaoStmtWhere {	
+final class PetaultDaoWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public DaoPetaultWhere(DaoWhereBuilderOption whereOption, String tableName, PetaultInfo recordInfo) {
+	public PetaultDaoWhere(DaoWhereBuilderOption whereOption, String tableName, PetaultInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,19 +27,19 @@ final class DaoPetaultWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoPetaultDbTableColumn.COL_COD_OWNER :
+				case PetaultDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;					
 					
-				case DaoPetaultDbTableColumn.COL_COD_USER :
+				case PetaultDaoDbTableColumn.COL_COD_USER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 					
-				case DaoPetaultDbTableColumn.COL_IS_DEFAULT :
+				case PetaultDaoDbTableColumn.COL_IS_DEFAULT :
 					builder.addClauseEqualAnd(eachColumn, "1");
 					break;
 					
-				case DaoPetaultDbTableColumn.COL_RECORD_MODE :
+				case PetaultDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

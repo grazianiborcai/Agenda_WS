@@ -4,20 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.petDefault.info.PetaultInfo;
-import br.com.mind5.business.petDefault.model.action.StdPetaultMergeToSelect;
+import br.com.mind5.business.petDefault.model.action.VisiPetaultMergeToSelect;
 import br.com.mind5.business.petDefault.model.checker.PetaultCheckLangu;
 import br.com.mind5.business.petDefault.model.checker.PetaultCheckOwner;
 import br.com.mind5.business.petDefault.model.checker.PetaultCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootPetaultSelect extends DeciTreeTemplateWrite<PetaultInfo> {
+public final class PetaultRootSelect extends DeciTreeTemplateWrite<PetaultInfo> {
 	
-	public RootPetaultSelect(DeciTreeOption<PetaultInfo> option) {
+	public PetaultRootSelect(DeciTreeOption<PetaultInfo> option) {
 		super(option);
 	}
 	
@@ -57,7 +58,7 @@ public final class RootPetaultSelect extends DeciTreeTemplateWrite<PetaultInfo> 
 	@Override protected List<ActionStd<PetaultInfo>> buildActionsOnPassedHook(DeciTreeOption<PetaultInfo> option) {
 		List<ActionStd<PetaultInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PetaultInfo> select = new StdPetaultMergeToSelect(option);
+		ActionStd<PetaultInfo> select = new ActionStdCommom<PetaultInfo>(option, VisiPetaultMergeToSelect.class);
 		
 		actions.add(select);			
 		return actions;

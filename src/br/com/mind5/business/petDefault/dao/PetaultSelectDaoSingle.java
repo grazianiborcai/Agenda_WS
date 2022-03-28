@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoPetaultSelectSingle extends DaoStmtTemplate<PetaultInfo> {
+public final class PetaultSelectDaoSingle extends DaoStmtTemplate<PetaultInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PET_TABLE;	
 	
 	
-	public DaoPetaultSelectSingle(Connection conn, PetaultInfo recordInfo, String schemaName) {
+	public PetaultSelectDaoSingle(Connection conn, PetaultInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoPetaultSelectSingle extends DaoStmtTemplate<PetaultInfo> {
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoPetaultWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new PetaultDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,16 +67,16 @@ public final class DaoPetaultSelectSingle extends DaoStmtTemplate<PetaultInfo> {
 				do {
 					PetaultInfo dataInfo = new PetaultInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoPetaultDbTableColumn.COL_COD_OWNER);
-					dataInfo.codPet = DaoFormatter.sqlToLong(stmtResult, DaoPetaultDbTableColumn.COL_COD_PET);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoPetaultDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.petName = stmtResult.getString(DaoPetaultDbTableColumn.COL_PET_NAME);				
-					dataInfo.recordMode = stmtResult.getString(DaoPetaultDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoPetaultDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.petBirthDate = DaoFormatter.sqlToLocalDate(stmtResult, DaoPetaultDbTableColumn.COL_PET_BIRTH_DATE);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoPetaultDbTableColumn.COL_COD_USER);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoPetaultDbTableColumn.COL_COD_STORE);
-					dataInfo.isDefault = stmtResult.getBoolean(DaoPetaultDbTableColumn.COL_IS_DEFAULT);			
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, PetaultDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codPet = DaoFormatter.sqlToLong(stmtResult, PetaultDaoDbTableColumn.COL_COD_PET);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, PetaultDaoDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.petName = stmtResult.getString(PetaultDaoDbTableColumn.COL_PET_NAME);				
+					dataInfo.recordMode = stmtResult.getString(PetaultDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, PetaultDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.petBirthDate = DaoFormatter.sqlToLocalDate(stmtResult, PetaultDaoDbTableColumn.COL_PET_BIRTH_DATE);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, PetaultDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, PetaultDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.isDefault = stmtResult.getBoolean(PetaultDaoDbTableColumn.COL_IS_DEFAULT);			
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

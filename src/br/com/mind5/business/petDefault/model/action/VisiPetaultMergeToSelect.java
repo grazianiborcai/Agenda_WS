@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.petDefault.info.PetaultInfo;
 import br.com.mind5.business.petDefault.info.PetaultMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPetaultMergeToSelect extends ActionVisitorTemplateMerge<PetaultInfo, PetaultInfo> {
+public final class VisiPetaultMergeToSelect extends ActionVisitorTemplateMerge<PetaultInfo, PetaultInfo> {
 	
 	public VisiPetaultMergeToSelect(DeciTreeOption<PetaultInfo> option) {
 		super(option, PetaultInfo.class);
@@ -16,8 +16,8 @@ final class VisiPetaultMergeToSelect extends ActionVisitorTemplateMerge<PetaultI
 	
 	
 	
-	@Override protected Class<? extends ActionStd<PetaultInfo>> getActionClassHook() {
-		return StdPetaultDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<PetaultInfo>> getVisitorClassHook() {
+		return VisiPetaultDaoSelect.class;
 	}
 	
 	

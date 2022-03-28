@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoPetaultSelect implements DaoStmtExec<PetaultInfo> {
+public final class PetaultDaoSelect implements DaoStmtExec<PetaultInfo> {
 	private DaoStmtExec<PetaultInfo> helper;
 	
 	
-	public DaoPetaultSelect(List<DaoStmtExecOption<PetaultInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoPetaultSelectSingle.class, PetaultInfo.class);
+	public PetaultDaoSelect(List<DaoStmtExecOption<PetaultInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, PetaultSelectDaoSingle.class, PetaultInfo.class);
 	}
 	
 	

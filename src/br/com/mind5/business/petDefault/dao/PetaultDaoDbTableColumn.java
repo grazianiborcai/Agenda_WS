@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoPetaultDbTableColumn extends DaoDbTableColumnTemplate {
+public final class PetaultDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_PET = DaoDbField.COL_COD_PET;
@@ -22,7 +22,7 @@ public final class DaoPetaultDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
-	public DaoPetaultDbTableColumn() {
+	public PetaultDaoDbTableColumn() {
 		super();
 	}
 	
