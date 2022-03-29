@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.ownerSearch.info.OwnarchInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class OwnelisVisiMergeOwnarch extends InfoMergerVisitorTemplate<OwnelisInfo, OwnarchInfo> {
+final class OwnelisMergerVisiOwnarch extends InfoMergerVisitorTemplate<OwnelisInfo, OwnarchInfo> {
 
 	@Override public boolean shouldMerge(OwnelisInfo baseInfo, OwnarchInfo selectedInfo) {
 		return true;

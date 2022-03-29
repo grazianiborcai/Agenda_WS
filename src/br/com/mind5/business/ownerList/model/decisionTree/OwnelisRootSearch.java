@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
-import br.com.mind5.business.ownerList.model.action.LazyOwnelisRootSelect;
-import br.com.mind5.business.ownerList.model.action.StdOwnelisMergeOwnarch;
+import br.com.mind5.business.ownerList.model.action.OwnelisVisiRootSelect;
+import br.com.mind5.business.ownerList.model.action.OwnelisVisiMergeOwnarch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOwnelisSearch extends DeciTreeTemplateRead<OwnelisInfo> {
+public final class OwnelisRootSearch extends DeciTreeTemplateRead<OwnelisInfo> {
 
-	public RootOwnelisSearch(DeciTreeOption<OwnelisInfo> option) {
+	public OwnelisRootSearch(DeciTreeOption<OwnelisInfo> option) {
 		super(option);
 	}
 	
@@ -37,8 +39,8 @@ public final class RootOwnelisSearch extends DeciTreeTemplateRead<OwnelisInfo> {
 	@Override protected List<ActionStd<OwnelisInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnelisInfo> option) {
 		List<ActionStd<OwnelisInfo>> actions = new ArrayList<>();
 
-		ActionStd<OwnelisInfo> mergeOwnarch = new StdOwnelisMergeOwnarch(option);
-		ActionLazy<OwnelisInfo> select = new LazyOwnelisRootSelect(option.conn, option.schemaName);
+		ActionStd<OwnelisInfo> mergeOwnarch = new ActionStdCommom<OwnelisInfo>(option, OwnelisVisiMergeOwnarch.class);
+		ActionLazy<OwnelisInfo> select = new ActionLazyCommom<OwnelisInfo>(option, OwnelisVisiRootSelect.class);
 		
 		mergeOwnarch.addPostAction(select);
 		

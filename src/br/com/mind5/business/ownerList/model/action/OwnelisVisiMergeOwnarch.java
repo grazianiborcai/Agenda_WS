@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnelisMergeOwnarch extends ActionVisitorTemplateMerge<OwnelisInfo, OwnarchInfo> {
+public final class OwnelisVisiMergeOwnarch extends ActionVisitorTemplateMerge<OwnelisInfo, OwnarchInfo> {
 	
-	public VisiOwnelisMergeOwnarch(DeciTreeOption<OwnelisInfo> option) {
+	public OwnelisVisiMergeOwnarch(DeciTreeOption<OwnelisInfo> option) {
 		super(option, OwnarchInfo.class);
 	}
 	

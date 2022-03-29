@@ -3,7 +3,7 @@ package br.com.mind5.message.emailWelcome.model.action;
 import java.util.List;
 
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
-import br.com.mind5.business.ownerList.model.decisionTree.RootOwnelisSelect;
+import br.com.mind5.business.ownerList.model.decisionTree.OwnelisRootSelect;
 import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
 import br.com.mind5.message.emailWelcome.info.EmacomeMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiEmacomeMergeOwnelis extends ActionVisitorTemplateMerge<EmacomeIn
 	
 	
 	@Override protected Class<? extends DeciTree<OwnelisInfo>> getTreeClassHook() {
-		return RootOwnelisSelect.class;
+		return OwnelisRootSelect.class;
 	}
 	
 	

@@ -9,14 +9,14 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoOwnelisDbTableColumn extends DaoDbTableColumnTemplate {
+public final class OwnelisDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_BUSINESS = DaoDbField.COL_COD_BUSINESS;
 	public static final String COL_COD_COMPANY = DaoDbField.COL_COD_COMPANY;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
-	public DaoOwnelisDbTableColumn() {
+	public OwnelisDaoDbTableColumn() {
 		super();
 	}
 	

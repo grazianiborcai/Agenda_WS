@@ -4,22 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
-import br.com.mind5.business.ownerList.model.action.LazyOwnelisMergeBusarea;
-import br.com.mind5.business.ownerList.model.action.LazyOwnelisMergeComplis;
-import br.com.mind5.business.ownerList.model.action.LazyOwnelisMergeFimist;
-import br.com.mind5.business.ownerList.model.action.StdOwnelisMergeToSelect;
+import br.com.mind5.business.ownerList.model.action.OwnelisVisiMergeBusarea;
+import br.com.mind5.business.ownerList.model.action.OwnelisVisiMergeComplis;
+import br.com.mind5.business.ownerList.model.action.OwnelisVisiMergeFimist;
+import br.com.mind5.business.ownerList.model.action.OwnelisVisiMergeToSelect;
 import br.com.mind5.business.ownerList.model.checker.OwnelisCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOwnelisSelect extends DeciTreeTemplateRead<OwnelisInfo> {
+public final class OwnelisRootSelect extends DeciTreeTemplateRead<OwnelisInfo> {
 
-	public RootOwnelisSelect(DeciTreeOption<OwnelisInfo> option) {
+	public OwnelisRootSelect(DeciTreeOption<OwnelisInfo> option) {
 		super(option);
 	}
 	
@@ -45,10 +47,10 @@ public final class RootOwnelisSelect extends DeciTreeTemplateRead<OwnelisInfo> {
 	@Override protected List<ActionStd<OwnelisInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnelisInfo> option) {
 		List<ActionStd<OwnelisInfo>> actions = new ArrayList<>();
 
-		ActionStd<OwnelisInfo> select = new StdOwnelisMergeToSelect(option);
-		ActionLazy<OwnelisInfo> mergeComplis = new LazyOwnelisMergeComplis(option.conn, option.schemaName);
-		ActionLazy<OwnelisInfo> mergeBusarea = new LazyOwnelisMergeBusarea(option.conn, option.schemaName);
-		ActionLazy<OwnelisInfo> mergeFimist = new LazyOwnelisMergeFimist(option.conn, option.schemaName);
+		ActionStd<OwnelisInfo> select = new ActionStdCommom<OwnelisInfo>(option, OwnelisVisiMergeToSelect.class);
+		ActionLazy<OwnelisInfo> mergeComplis = new ActionLazyCommom<OwnelisInfo>(option, OwnelisVisiMergeComplis.class);
+		ActionLazy<OwnelisInfo> mergeBusarea = new ActionLazyCommom<OwnelisInfo>(option, OwnelisVisiMergeBusarea.class);
+		ActionLazy<OwnelisInfo> mergeFimist = new ActionLazyCommom<OwnelisInfo>(option, OwnelisVisiMergeFimist.class);
 		
 		select.addPostAction(mergeComplis);
 		mergeComplis.addPostAction(mergeBusarea);

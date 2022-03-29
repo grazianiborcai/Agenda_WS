@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoOwnelisSelect implements DaoStmtExec<OwnelisInfo> {
+public final class OwnelisDaoSelect implements DaoStmtExec<OwnelisInfo> {
 	private DaoStmtExec<OwnelisInfo> helper;
 	
 	
-	public DaoOwnelisSelect(List<DaoStmtExecOption<OwnelisInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoOwnelisSelectSingle.class, OwnelisInfo.class);
+	public OwnelisDaoSelect(List<DaoStmtExecOption<OwnelisInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, OwnelisDaoSelectSingle.class, OwnelisInfo.class);
 	}
 	
 	

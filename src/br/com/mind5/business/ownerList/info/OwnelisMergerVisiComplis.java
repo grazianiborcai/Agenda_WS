@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class OwnelisVisiMergeComplis extends InfoMergerVisitorTemplate<OwnelisInfo, ComplisInfo> {
+final class OwnelisMergerVisiComplis extends InfoMergerVisitorTemplate<OwnelisInfo, ComplisInfo> {
 
 	@Override public boolean shouldMerge(OwnelisInfo baseInfo, ComplisInfo selectedInfo) {
 		return (baseInfo.codOwner   == selectedInfo.codOwner &&

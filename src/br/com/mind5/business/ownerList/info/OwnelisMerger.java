@@ -15,7 +15,7 @@ public final class OwnelisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnelisVisiMergeFimist());
+		builder.addVisitor(new OwnelisMergerVisiFimist());
 		InfoMerger<OwnelisInfo, FimistInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -28,7 +28,7 @@ public final class OwnelisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnelisVisiMergeBusarea());
+		builder.addVisitor(new OwnelisMergerVisiBusarea());
 		InfoMerger<OwnelisInfo, BusareaInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -41,7 +41,7 @@ public final class OwnelisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnelisVisiMergeComplis());
+		builder.addVisitor(new OwnelisMergerVisiComplis());
 		InfoMerger<OwnelisInfo, ComplisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -54,7 +54,7 @@ public final class OwnelisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnelisVisiMergeOwnarch());
+		builder.addVisitor(new OwnelisMergerVisiOwnarch());
 		InfoMerger<OwnelisInfo, OwnarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -67,7 +67,7 @@ public final class OwnelisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnelisVisiMergeToSelect());
+		builder.addVisitor(new OwnelisMergerVisiToSelect());
 		InfoMerger<OwnelisInfo, OwnelisInfo> merger = builder.build();		
 	
 		return merger.merge();

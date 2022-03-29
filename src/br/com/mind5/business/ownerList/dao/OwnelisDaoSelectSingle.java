@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoOwnelisSelectSingle extends DaoStmtTemplate<OwnelisInfo> {
+public final class OwnelisDaoSelectSingle extends DaoStmtTemplate<OwnelisInfo> {
 	private final String MAIN_TABLE = DaoDbTable.OWNER_TABLE;	
 	
 	
-	public DaoOwnelisSelectSingle(Connection conn, OwnelisInfo recordInfo, String schemaName) {
+	public OwnelisDaoSelectSingle(Connection conn, OwnelisInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoOwnelisSelectSingle extends DaoStmtTemplate<OwnelisInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoOwnelisWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new OwnelisDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,11 +67,11 @@ public final class DaoOwnelisSelectSingle extends DaoStmtTemplate<OwnelisInfo> {
 				do {
 					OwnelisInfo dataInfo = new OwnelisInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoOwnelisDbTableColumn.COL_COD_OWNER);
-					dataInfo.recordMode = stmtResult.getString(DaoOwnelisDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, DaoOwnelisDbTableColumn.COL_COD_COMPANY);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoOwnelisDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codBusiness = DaoFormatter.sqlToInt(stmtResult, DaoOwnelisDbTableColumn.COL_COD_BUSINESS);	
+					dataInfo.codOwner = stmtResult.getLong(OwnelisDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.recordMode = stmtResult.getString(OwnelisDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, OwnelisDaoDbTableColumn.COL_COD_COMPANY);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, OwnelisDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codBusiness = DaoFormatter.sqlToInt(stmtResult, OwnelisDaoDbTableColumn.COL_COD_BUSINESS);	
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
