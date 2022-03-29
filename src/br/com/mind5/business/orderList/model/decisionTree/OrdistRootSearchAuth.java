@@ -4,21 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderList.info.OrdistInfo;
-import br.com.mind5.business.orderList.model.action.LazyOrdistRootSearch;
-import br.com.mind5.business.orderList.model.action.StdOrdistMergeUsername;
+import br.com.mind5.business.orderList.model.action.OrdistVisiRootSearch;
+import br.com.mind5.business.orderList.model.action.OrdistVisiMergeUsername;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckSearchAuth;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckUsername;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOrdistSearchAuth extends DeciTreeTemplateRead<OrdistInfo> {
+public final class OrdistRootSearchAuth extends DeciTreeTemplateRead<OrdistInfo> {
 	
-	public RootOrdistSearchAuth(DeciTreeOption<OrdistInfo> option) {
+	public OrdistRootSearchAuth(DeciTreeOption<OrdistInfo> option) {
 		super(option);
 	}
 	
@@ -51,8 +53,8 @@ public final class RootOrdistSearchAuth extends DeciTreeTemplateRead<OrdistInfo>
 	@Override protected List<ActionStd<OrdistInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdistInfo> option) {
 		List<ActionStd<OrdistInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrdistInfo> mergeUsername = new StdOrdistMergeUsername(option);
-		ActionLazy<OrdistInfo> search = new LazyOrdistRootSearch(option.conn, option.schemaName);
+		ActionStd<OrdistInfo> mergeUsername = new ActionStdCommom<OrdistInfo>(option, OrdistVisiMergeUsername.class);
+		ActionLazy<OrdistInfo> search = new ActionLazyCommom<OrdistInfo>(option, OrdistVisiRootSearch.class);
 		
 		mergeUsername.addPostAction(search);
 		

@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.orderItemList.info.OrdemistInfo;
 import br.com.mind5.business.orderItemList.info.OrdemistMerger;
 import br.com.mind5.business.orderList.info.OrdistInfo;
-import br.com.mind5.business.orderList.model.decisionTree.RootOrdistSelect;
+import br.com.mind5.business.orderList.model.decisionTree.OrdistRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class OrdemistVisiMergeOrdist extends ActionVisitorTemplateMerge<Or
 	
 	
 	@Override protected Class<? extends DeciTree<OrdistInfo>> getTreeClassHook() {
-		return RootOrdistSelect.class;
+		return OrdistRootSelect.class;
 	}
 	
 	

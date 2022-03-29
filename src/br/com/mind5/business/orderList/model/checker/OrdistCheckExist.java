@@ -1,9 +1,10 @@
 package br.com.mind5.business.orderList.model.checker;
 
 import br.com.mind5.business.orderList.info.OrdistInfo;
-import br.com.mind5.business.orderList.model.action.StdOrdistDaoSelect;
+import br.com.mind5.business.orderList.model.action.OrdistVisiDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class OrdistCheckExist extends ModelCheckerTemplateAction<OrdistInf
 
 	
 	@Override protected ActionStd<OrdistInfo> buildActionHook(DeciTreeOption<OrdistInfo> option) {		
-		ActionStd<OrdistInfo> select = new StdOrdistDaoSelect(option);			
+		ActionStd<OrdistInfo> select = new ActionStdCommom<OrdistInfo>(option, OrdistVisiDaoSelect.class);			
 		return select;
 	}
 	

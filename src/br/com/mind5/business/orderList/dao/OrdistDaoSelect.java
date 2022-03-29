@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoOrdistSelect implements DaoStmtExec<OrdistInfo> {
+public final class OrdistDaoSelect implements DaoStmtExec<OrdistInfo> {
 	private DaoStmtExec<OrdistInfo> helper;
 	
 	
-	public DaoOrdistSelect(List<DaoStmtExecOption<OrdistInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoOrdistSelectSingle.class, OrdistInfo.class);
+	public OrdistDaoSelect(List<DaoStmtExecOption<OrdistInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, OrdistDaoSelectSingle.class, OrdistInfo.class);
 	}
 	
 	

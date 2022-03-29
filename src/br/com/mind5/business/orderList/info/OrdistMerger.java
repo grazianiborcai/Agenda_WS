@@ -16,7 +16,7 @@ public final class OrdistMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdistVisiMergeOrdereou());
+		builder.addVisitor(new OrdistMergerVisiOrdereou());
 		InfoMerger<OrdistInfo, OrdereouInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -29,7 +29,7 @@ public final class OrdistMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdistVisiMergeUsername());
+		builder.addVisitor(new OrdistMergerVisiUsername());
 		InfoMerger<OrdistInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -42,7 +42,7 @@ public final class OrdistMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdistVisiMergeOrdarch());
+		builder.addVisitor(new OrdistMergerVisiOrdarch());
 		InfoMerger<OrdistInfo, OrdarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -55,7 +55,7 @@ public final class OrdistMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdistVisiMergeCurrency());
+		builder.addVisitor(new OrdistMergerVisiCurrency());
 		InfoMerger<OrdistInfo, CurrencyInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -68,7 +68,7 @@ public final class OrdistMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdistVisiMergeOrderatus());
+		builder.addVisitor(new OrdistMergeVisiOrderatus());
 		InfoMerger<OrdistInfo, OrderatusInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -81,7 +81,7 @@ public final class OrdistMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdistVisiMergeToSelect());
+		builder.addVisitor(new OrdistMergerVisiToSelect());
 		InfoMerger<OrdistInfo, OrdistInfo> merger = builder.build();		
 	
 		return merger.merge();

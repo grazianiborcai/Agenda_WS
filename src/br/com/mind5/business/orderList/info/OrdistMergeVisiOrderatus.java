@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.orderStatus.info.OrderatusInfo;
 
-final class OrdistVisiMergeOrderatus extends InfoMergerVisitorTemplate<OrdistInfo, OrderatusInfo> {
+final class OrdistMergeVisiOrderatus extends InfoMergerVisitorTemplate<OrdistInfo, OrderatusInfo> {
 
 	@Override public boolean shouldMerge(OrdistInfo baseInfo, OrderatusInfo selectedInfo) {
 		return (baseInfo.codOrderStatus.equals(selectedInfo.codOrderStatus));

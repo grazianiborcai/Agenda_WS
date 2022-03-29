@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdistMergeCurrency extends ActionVisitorTemplateMerge<OrdistInfo, CurrencyInfo> {
+public final class OrdistVisiMergeCurrency extends ActionVisitorTemplateMerge<OrdistInfo, CurrencyInfo> {
 	
-	public VisiOrdistMergeCurrency(DeciTreeOption<OrdistInfo> option) {
+	public OrdistVisiMergeCurrency(DeciTreeOption<OrdistInfo> option) {
 		super(option, CurrencyInfo.class); 
 	}
 	

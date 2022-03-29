@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 
-final class OrdistVisiMergeCurrency extends InfoMergerVisitorTemplate<OrdistInfo, CurrencyInfo> {
+final class OrdistMergerVisiCurrency extends InfoMergerVisitorTemplate<OrdistInfo, CurrencyInfo> {
 
 	@Override public boolean shouldMerge(OrdistInfo baseInfo, CurrencyInfo selectedInfo) {
 		return (baseInfo.codCurr.equals(selectedInfo.codCurr));

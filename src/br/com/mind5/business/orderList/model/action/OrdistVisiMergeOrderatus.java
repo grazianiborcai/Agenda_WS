@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdistMergeOrderatus extends ActionVisitorTemplateMerge<OrdistInfo, OrderatusInfo> {
+public final class OrdistVisiMergeOrderatus extends ActionVisitorTemplateMerge<OrdistInfo, OrderatusInfo> {
 	
-	public VisiOrdistMergeOrderatus(DeciTreeOption<OrdistInfo> option) {
+	public OrdistVisiMergeOrderatus(DeciTreeOption<OrdistInfo> option) {
 		super(option, OrderatusInfo.class); 
 	}
 	

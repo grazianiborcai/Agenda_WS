@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderList.info.OrdistInfo;
-import br.com.mind5.business.orderList.model.action.LazyOrdistRootSelect;
-import br.com.mind5.business.orderList.model.action.StdOrdistMergeOrdarch;
+import br.com.mind5.business.orderList.model.action.OrdistVisiRootSelect;
+import br.com.mind5.business.orderList.model.action.OrdistVisiMergeOrdarch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOrdistSearch extends DeciTreeTemplateRead<OrdistInfo> {
+public final class OrdistRootSearch extends DeciTreeTemplateRead<OrdistInfo> {
 	
-	public RootOrdistSearch(DeciTreeOption<OrdistInfo> option) {
+	public OrdistRootSearch(DeciTreeOption<OrdistInfo> option) {
 		super(option);
 	}
 	
@@ -37,8 +39,8 @@ public final class RootOrdistSearch extends DeciTreeTemplateRead<OrdistInfo> {
 	@Override protected List<ActionStd<OrdistInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdistInfo> option) {
 		List<ActionStd<OrdistInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrdistInfo> mergeOrdarch = new StdOrdistMergeOrdarch(option);
-		ActionLazy<OrdistInfo> select = new LazyOrdistRootSelect(option.conn, option.schemaName);
+		ActionStd<OrdistInfo> mergeOrdarch = new ActionStdCommom<OrdistInfo>(option, OrdistVisiMergeOrdarch.class);
+		ActionLazy<OrdistInfo> select = new ActionLazyCommom<OrdistInfo>(option, OrdistVisiRootSelect.class);
 		
 		mergeOrdarch.addPostAction(select);
 		
