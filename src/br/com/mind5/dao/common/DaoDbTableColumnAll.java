@@ -20,7 +20,7 @@ import br.com.mind5.business.calendarWeekYear.dao.DaoCaleekyDbTableColumn;
 import br.com.mind5.business.cart.dao.CartDaoDbTableColumn;
 import br.com.mind5.business.cartItem.dao.CartemDaoDbTableColumn;
 import br.com.mind5.business.cartItemSearch.dao.DaoCartemarchDbTableColumn;
-import br.com.mind5.business.cartReserve.dao.DaoCarterveDbTableColumn;
+import br.com.mind5.business.cartReserve.dao.CarterveDaoDbTableColumn;
 import br.com.mind5.business.company.dao.DaoCompDbTableColumn;
 import br.com.mind5.business.companyConflict.dao.DaoCompcoDbTableColumn;
 import br.com.mind5.business.companyList.dao.ComplisDaoDbTableColumn;
@@ -325,7 +325,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CartDaoDbTableColumn());
 		addTable(new DaoFeewnerDbTableColumn());
 		addTable(new DaoFeedefDbTableColumn());
-		addTable(new DaoCarterveDbTableColumn());
+		addTable(new CarterveDaoDbTableColumn());
 		addTable(new OrderemDaoDbTableColumn());
 		addTable(new OrderDaoDbTableColumn());
 		addTable(new AddressDaoDbTableColumn());

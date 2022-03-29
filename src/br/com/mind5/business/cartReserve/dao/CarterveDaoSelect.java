@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoCarterveSelect implements DaoStmtExec<CarterveInfo> {
+public final class CarterveDaoSelect implements DaoStmtExec<CarterveInfo> {
 	private DaoStmtExec<CarterveInfo> helper;
 	
 	
-	public DaoCarterveSelect(List<DaoStmtExecOption<CarterveInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCarterveSelectSingle.class, CarterveInfo.class);
+	public CarterveDaoSelect(List<DaoStmtExecOption<CarterveInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CarterveDaoSelectSingle.class, CarterveInfo.class);
 	}
 	
 	

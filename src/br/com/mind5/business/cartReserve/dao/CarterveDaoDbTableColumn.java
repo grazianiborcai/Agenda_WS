@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoCarterveDbTableColumn extends DaoDbTableColumnTemplate {	
+public final class CarterveDaoDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
@@ -21,7 +21,7 @@ public final class DaoCarterveDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	
 	
-	public DaoCarterveDbTableColumn() {
+	public CarterveDaoDbTableColumn() {
 		super();
 	}
 	

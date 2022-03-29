@@ -3,7 +3,7 @@ package br.com.mind5.business.planingData.model.action;
 import java.util.List;
 
 import br.com.mind5.business.cartReserve.info.CarterveInfo;
-import br.com.mind5.business.cartReserve.model.decisionTree.RootCarterveSelect;
+import br.com.mind5.business.cartReserve.model.decisionTree.CarterveRootSelect;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataPruner;
 import br.com.mind5.model.action.ActionVisitorTemplatePrune;
@@ -19,7 +19,7 @@ public final class PlanataVisiPruneCarterve extends ActionVisitorTemplatePrune<P
 	
 	
 	@Override protected Class<? extends DeciTree<CarterveInfo>> getTreeClassHook() {
-		return RootCarterveSelect.class;
+		return CarterveRootSelect.class;
 	}
 	
 	

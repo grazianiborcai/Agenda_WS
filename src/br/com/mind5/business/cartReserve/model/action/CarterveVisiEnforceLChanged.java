@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCarterveEnforceLChanged extends ActionVisitorTemplateEnforce<CarterveInfo> {
+public final class CarterveVisiEnforceLChanged extends ActionVisitorTemplateEnforce<CarterveInfo> {
 	
-	public VisiCarterveEnforceLChanged(DeciTreeOption<CarterveInfo> option) {
+	public CarterveVisiEnforceLChanged(DeciTreeOption<CarterveInfo> option) {
 		super(option);
 	}
 	

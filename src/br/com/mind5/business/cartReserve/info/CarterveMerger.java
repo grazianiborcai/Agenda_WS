@@ -11,7 +11,7 @@ public final class CarterveMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CarterveVisiMergeToSelect());
+		builder.addVisitor(new CarterveMergerVisiToSelect());
 		InfoMerger<CarterveInfo, CarterveInfo> merger = builder.build();		
 	
 		return merger.merge();

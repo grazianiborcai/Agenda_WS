@@ -3,7 +3,7 @@ package br.com.mind5.business.cartReserveConflict.model.action;
 import java.util.List;
 
 import br.com.mind5.business.cartReserve.info.CarterveInfo;
-import br.com.mind5.business.cartReserve.model.decisionTree.RootCarterveSelect;
+import br.com.mind5.business.cartReserve.model.decisionTree.CarterveRootSelect;
 import br.com.mind5.business.cartReserveConflict.info.CartercoInfo;
 import br.com.mind5.business.cartReserveConflict.info.CartercoMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiCartercoMergeCarterve extends ActionVisitorTemplateMerge<Carterc
 	
 	
 	@Override protected Class<? extends DeciTree<CarterveInfo>> getTreeClassHook() {
-		return RootCarterveSelect.class;
+		return CarterveRootSelect.class;
 	}
 	
 	
