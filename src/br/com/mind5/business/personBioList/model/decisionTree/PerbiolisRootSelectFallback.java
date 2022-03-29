@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.personBioList.info.PerbiolisInfo;
-import br.com.mind5.business.personBioList.model.action.StdPerbiolisMergePerbioSelectFallback;
+import br.com.mind5.business.personBioList.model.action.PerbiolisVisiMergePerbioSelectFallback;
 import br.com.mind5.business.personBioList.model.checker.PerbiolisCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootPerbiolisSelectFallback extends DeciTreeTemplateWrite<PerbiolisInfo> {
+public final class PerbiolisRootSelectFallback extends DeciTreeTemplateWrite<PerbiolisInfo> {
 	
-	public RootPerbiolisSelectFallback(DeciTreeOption<PerbiolisInfo> option) {
+	public PerbiolisRootSelectFallback(DeciTreeOption<PerbiolisInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootPerbiolisSelectFallback extends DeciTreeTemplateWrite<Per
 	@Override protected List<ActionStd<PerbiolisInfo>> buildActionsOnPassedHook(DeciTreeOption<PerbiolisInfo> option) {
 		List<ActionStd<PerbiolisInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PerbiolisInfo> mergePet = new StdPerbiolisMergePerbioSelectFallback(option);
+		ActionStd<PerbiolisInfo> mergePet = new ActionStdCommom<PerbiolisInfo>(option, PerbiolisVisiMergePerbioSelectFallback.class);
 		
 		actions.add(mergePet);
 		return actions;

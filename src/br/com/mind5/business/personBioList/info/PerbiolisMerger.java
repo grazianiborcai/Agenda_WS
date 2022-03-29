@@ -12,7 +12,7 @@ public final class PerbiolisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PerbiolisVisiMergePet());
+		builder.addVisitor(new PerbiolisMergerVisiPet());
 		InfoMerger<PerbiolisInfo, PerbioInfo> merger = builder.build();		
 	
 		return merger.merge();
