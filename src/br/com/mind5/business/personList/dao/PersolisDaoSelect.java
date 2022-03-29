@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoPersolisSelect implements DaoStmtExec<PersolisInfo> {
+public final class PersolisDaoSelect implements DaoStmtExec<PersolisInfo> {
 	private DaoStmtExec<PersolisInfo> helper;
 	
 	
-	public DaoPersolisSelect(List<DaoStmtExecOption<PersolisInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoPersolisSelectSingle.class, PersolisInfo.class);
+	public PersolisDaoSelect(List<DaoStmtExecOption<PersolisInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, PersolisDaoSelectSingle.class, PersolisInfo.class);
 	}
 	
 	

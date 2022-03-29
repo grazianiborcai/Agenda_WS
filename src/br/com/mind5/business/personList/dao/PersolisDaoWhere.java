@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class DaoPersolisWhere implements DaoStmtWhere {	
+public final class PersolisDaoWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public DaoPersolisWhere(DaoWhereBuilderOption whereOption, String tableName, PersolisInfo recordInfo) {
+	public PersolisDaoWhere(DaoWhereBuilderOption whereOption, String tableName, PersolisInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class DaoPersolisWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoPersolisDbTableColumn.COL_COD_OWNER :
+				case PersolisDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoPersolisDbTableColumn.COL_COD_PERSON :
+				case PersolisDaoDbTableColumn.COL_COD_PERSON :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPerson));
 					break;
 					
-				case DaoPersolisDbTableColumn.COL_RECORD_MODE :
+				case PersolisDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

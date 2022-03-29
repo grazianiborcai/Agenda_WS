@@ -12,7 +12,7 @@ public final class PersolisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PersolisVisiMergePerbiolis());
+		builder.addVisitor(new PersolisMergerVisiPerbiolis());
 		InfoMerger<PersolisInfo, PerbiolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class PersolisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PersolisVisiMergeToSelect());
+		builder.addVisitor(new PersolisMergerVisiToSelect());
 		InfoMerger<PersolisInfo, PersolisInfo> merger = builder.build();		
 	
 		return merger.merge();

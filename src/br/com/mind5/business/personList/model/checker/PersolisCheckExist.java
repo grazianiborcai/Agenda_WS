@@ -1,7 +1,7 @@
 package br.com.mind5.business.personList.model.checker;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
-import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelect;
+import br.com.mind5.business.personList.model.decisionTree.PersolisRootSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class PersolisCheckExist extends ModelCheckerTemplateAction<Persoli
 	
 	
 	@Override protected ActionStd<PersolisInfo> buildActionHook(DeciTreeOption<PersolisInfo> option) {
-		ActionStd<PersolisInfo> select = new RootPersolisSelect(option).toAction();
+		ActionStd<PersolisInfo> select = new PersolisRootSelect(option).toAction();
 		return select;
 	}
 	

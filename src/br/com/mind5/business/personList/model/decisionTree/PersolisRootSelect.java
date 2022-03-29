@@ -4,22 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
-import br.com.mind5.business.personList.model.action.LazyPersolisMergePerbiolis;
-import br.com.mind5.business.personList.model.action.StdPersolisMergeToSelect;
+import br.com.mind5.business.personList.model.action.PersolisVisiMergePerbiolis;
+import br.com.mind5.business.personList.model.action.PersolisVisiMergeToSelect;
 import br.com.mind5.business.personList.model.checker.PersolisCheckLangu;
 import br.com.mind5.business.personList.model.checker.PersolisCheckOwner;
 import br.com.mind5.business.personList.model.checker.PersolisCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootPersolisSelect extends DeciTreeTemplateWrite<PersolisInfo> {
+public final class PersolisRootSelect extends DeciTreeTemplateWrite<PersolisInfo> {
 	
-	public RootPersolisSelect(DeciTreeOption<PersolisInfo> option) {
+	public PersolisRootSelect(DeciTreeOption<PersolisInfo> option) {
 		super(option);
 	}
 	
@@ -59,8 +61,8 @@ public final class RootPersolisSelect extends DeciTreeTemplateWrite<PersolisInfo
 	@Override protected List<ActionStd<PersolisInfo>> buildActionsOnPassedHook(DeciTreeOption<PersolisInfo> option) {
 		List<ActionStd<PersolisInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersolisInfo> select = new StdPersolisMergeToSelect(option);
-		ActionLazy<PersolisInfo> mergePerbiolis = new LazyPersolisMergePerbiolis(option.conn, option.schemaName);
+		ActionStd<PersolisInfo> select = new ActionStdCommom<PersolisInfo>(option, PersolisVisiMergeToSelect.class);
+		ActionLazy<PersolisInfo> mergePerbiolis = new ActionLazyCommom<PersolisInfo>(option, PersolisVisiMergePerbiolis.class);
 		
 		select.addPostAction(mergePerbiolis);
 		

@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPersolisMergePerbiolis extends ActionVisitorTemplateMerge<PersolisInfo, PerbiolisInfo> {
+public final class PersolisVisiMergePerbiolis extends ActionVisitorTemplateMerge<PersolisInfo, PerbiolisInfo> {
 	
-	public VisiPersolisMergePerbiolis(DeciTreeOption<PersolisInfo> option) {
+	public PersolisVisiMergePerbiolis(DeciTreeOption<PersolisInfo> option) {
 		super(option, PerbiolisInfo.class);
 	}
 	

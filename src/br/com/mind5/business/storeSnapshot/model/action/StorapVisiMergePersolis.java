@@ -3,7 +3,7 @@ package br.com.mind5.business.storeSnapshot.model.action;
 import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
-import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelect;
+import br.com.mind5.business.personList.model.decisionTree.PersolisRootSelect;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class StorapVisiMergePersolis extends ActionVisitorTemplateMerge<St
 	
 	
 	@Override protected Class<? extends DeciTree<PersolisInfo>> getTreeClassHook() {
-		return RootPersolisSelect.class;
+		return PersolisRootSelect.class;
 	}
 	
 	

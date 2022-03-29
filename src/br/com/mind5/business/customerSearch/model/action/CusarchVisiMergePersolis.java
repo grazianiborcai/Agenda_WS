@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.customerSearch.info.CusarchMerger;
 import br.com.mind5.business.personList.info.PersolisInfo;
-import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelect;
+import br.com.mind5.business.personList.model.decisionTree.PersolisRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class CusarchVisiMergePersolis extends ActionVisitorTemplateMerge<C
 	
 	
 	@Override protected Class<? extends DeciTree<PersolisInfo>> getTreeClassHook() {
-		return RootPersolisSelect.class;
+		return PersolisRootSelect.class;
 	}
 	
 	
