@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class PersoresVisiMergePersolis extends InfoMergerVisitorTemplate<PersoresInfo, PersolisInfo> {
+final class PersoresMergerVisiPersolis extends InfoMergerVisitorTemplate<PersoresInfo, PersolisInfo> {
 
 	@Override public boolean shouldMerge(PersoresInfo baseInfo, PersolisInfo selectedInfo) {
 		return (baseInfo.codOwner  == selectedInfo.codOwner		&&

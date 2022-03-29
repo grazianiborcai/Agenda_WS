@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.personRestricted.info.PersoresInfo;
-import br.com.mind5.business.personRestricted.model.action.StdPersoresMergePersolis;
+import br.com.mind5.business.personRestricted.model.action.PersoresVisiMergePersolis;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPersoresSelect extends DeciTreeTemplateRead<PersoresInfo> {
+public final class PersoresRootSelect extends DeciTreeTemplateRead<PersoresInfo> {
 	
-	public RootPersoresSelect(DeciTreeOption<PersoresInfo> option) {
+	public PersoresRootSelect(DeciTreeOption<PersoresInfo> option) {
 		super(option);
 	}
 	
@@ -35,7 +36,7 @@ public final class RootPersoresSelect extends DeciTreeTemplateRead<PersoresInfo>
 	@Override protected List<ActionStd<PersoresInfo>> buildActionsOnPassedHook(DeciTreeOption<PersoresInfo> option) {
 		List<ActionStd<PersoresInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersoresInfo> mergePersolis = new StdPersoresMergePersolis(option);	
+		ActionStd<PersoresInfo> mergePersolis = new ActionStdCommom<PersoresInfo>(option, PersoresVisiMergePersolis.class);	
 		
 		actions.add(mergePersolis);		
 		return actions;
