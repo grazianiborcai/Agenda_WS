@@ -4,20 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleList.info.SchedistInfo;
-import br.com.mind5.business.scheduleList.model.action.StdSchedistMergeToSelect;
+import br.com.mind5.business.scheduleList.model.action.SchedistVisiMergeToSelect;
 import br.com.mind5.business.scheduleList.model.checker.SchedistCheckLangu;
 import br.com.mind5.business.scheduleList.model.checker.SchedistCheckOwner;
 import br.com.mind5.business.scheduleList.model.checker.SchedistCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSchedistSelect extends DeciTreeTemplateWrite<SchedistInfo> {
+public final class SchedistRootSelect extends DeciTreeTemplateWrite<SchedistInfo> {
 	
-	public RootSchedistSelect(DeciTreeOption<SchedistInfo> option) {
+	public SchedistRootSelect(DeciTreeOption<SchedistInfo> option) {
 		super(option);
 	}
 	
@@ -57,7 +58,7 @@ public final class RootSchedistSelect extends DeciTreeTemplateWrite<SchedistInfo
 	@Override protected List<ActionStd<SchedistInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedistInfo> option) {
 		List<ActionStd<SchedistInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedistInfo> select = new StdSchedistMergeToSelect(option);
+		ActionStd<SchedistInfo> select = new ActionStdCommom<SchedistInfo>(option, SchedistVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

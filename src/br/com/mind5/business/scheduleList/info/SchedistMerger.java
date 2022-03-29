@@ -11,7 +11,7 @@ public final class SchedistMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedistVisiMergeToSelect());
+		builder.addVisitor(new SchedistMergerVisiToSelect());
 		InfoMerger<SchedistInfo, SchedistInfo> merger = builder.build();		
 	
 		return merger.merge();
