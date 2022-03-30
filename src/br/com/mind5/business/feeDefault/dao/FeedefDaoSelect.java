@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoFeedefSelect implements DaoStmtExec<FeedefInfo> {
+public final class FeedefDaoSelect implements DaoStmtExec<FeedefInfo> {
 	private DaoStmtExec<FeedefInfo> helper;
 	
 	
-	public DaoFeedefSelect(List<DaoStmtExecOption<FeedefInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoFeedefSelectSingle.class, FeedefInfo.class);
+	public FeedefDaoSelect(List<DaoStmtExecOption<FeedefInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, FeedefDaoSelectSingle.class, FeedefInfo.class);
 	}
 	
 	

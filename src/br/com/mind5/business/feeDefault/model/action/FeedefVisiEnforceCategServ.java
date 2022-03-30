@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFeedefEnforceCategServ extends ActionVisitorTemplateEnforce<FeedefInfo> {
+public final class FeedefVisiEnforceCategServ extends ActionVisitorTemplateEnforce<FeedefInfo> {
 	
-	public VisiFeedefEnforceCategServ(DeciTreeOption<FeedefInfo> option) {
+	public FeedefVisiEnforceCategServ(DeciTreeOption<FeedefInfo> option) {
 		super(option);
 	}
 	

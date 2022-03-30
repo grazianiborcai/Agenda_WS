@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class DaoFeedefWhere implements DaoStmtWhere {
+final class FeedefDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoFeedefWhere(DaoWhereBuilderOption whereOption, String tableName, FeedefInfo recordInfo) {
+	public FeedefDaoWhere(DaoWhereBuilderOption whereOption, String tableName, FeedefInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,11 +27,11 @@ final class DaoFeedefWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {					
-				case DaoFeedefDbTableColumn.COL_COD_FEE_CATEG :
+				case FeedefDaoDbTableColumn.COL_COD_FEE_CATEG :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.charToString(recordInfo.codFeeCateg));
 					break;
 					
-				case DaoFeedefDbTableColumn.COL_COD_CURRENCY :
+				case FeedefDaoDbTableColumn.COL_COD_CURRENCY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codCurr);
 					break;
 			}

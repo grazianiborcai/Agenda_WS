@@ -9,13 +9,13 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoFeedefDbTableColumn extends DaoDbTableColumnTemplate {
+public final class FeedefDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_FEE_CATEG = DaoDbField.COL_COD_FEE_CATEG;
 	public static final String COL_COD_CURRENCY = DaoDbField.COL_COD_CURRENCY;
 	public static final String COL_VALUE = DaoDbField.COL_VALUE;
 	
 	
-	public DaoFeedefDbTableColumn() {
+	public FeedefDaoDbTableColumn() {
 		super();
 	}
 	

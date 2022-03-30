@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoFeedefSelectSingle extends DaoStmtTemplate<FeedefInfo> {
+public final class FeedefDaoSelectSingle extends DaoStmtTemplate<FeedefInfo> {
 	private final String MAIN_TABLE = DaoDbTable.FEE_DEFAULT_TABLE;
 		
 	
-	public DaoFeedefSelectSingle(Connection conn, FeedefInfo recordInfo, String schemaName) {
+	public FeedefDaoSelectSingle(Connection conn, FeedefInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoFeedefSelectSingle extends DaoStmtTemplate<FeedefInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoFeedefWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new FeedefDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -61,9 +61,9 @@ public final class DaoFeedefSelectSingle extends DaoStmtTemplate<FeedefInfo> {
 				do {
 					FeedefInfo dataInfo = new FeedefInfo();
 					
-					dataInfo.codFeeCateg = DaoFormatter.sqlToChar(stmtResult, DaoFeedefDbTableColumn.COL_COD_FEE_CATEG);
-					dataInfo.codCurr = stmtResult.getString(DaoFeedefDbTableColumn.COL_COD_CURRENCY);
-					dataInfo.price = DaoFormatter.sqlToDouble(stmtResult, DaoFeedefDbTableColumn.COL_VALUE);
+					dataInfo.codFeeCateg = DaoFormatter.sqlToChar(stmtResult, FeedefDaoDbTableColumn.COL_COD_FEE_CATEG);
+					dataInfo.codCurr = stmtResult.getString(FeedefDaoDbTableColumn.COL_COD_CURRENCY);
+					dataInfo.price = DaoFormatter.sqlToDouble(stmtResult, FeedefDaoDbTableColumn.COL_VALUE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

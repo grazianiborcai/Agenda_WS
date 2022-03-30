@@ -3,7 +3,7 @@ package br.com.mind5.business.feeOwner.model.action;
 import java.util.List;
 
 import br.com.mind5.business.feeDefault.info.FeedefInfo;
-import br.com.mind5.business.feeDefault.model.decisionTree.RootFeedefSelectService;
+import br.com.mind5.business.feeDefault.model.decisionTree.FeedefRootSelectService;
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.business.feeOwner.info.FeewnerMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class FeewnerVisiMergeFeedef extends ActionVisitorTemplateMerge<Fee
 	
 	
 	@Override protected Class<? extends DeciTree<FeedefInfo>> getTreeClassHook() {
-		return RootFeedefSelectService.class;
+		return FeedefRootSelectService.class;
 	}
 	
 	
