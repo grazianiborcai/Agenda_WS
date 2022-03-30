@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartercoMergeCarterve extends ActionVisitorTemplateMerge<CartercoInfo, CarterveInfo> {
+public final class CartercoVisiMergeCarterve extends ActionVisitorTemplateMerge<CartercoInfo, CarterveInfo> {
 	
-	public VisiCartercoMergeCarterve(DeciTreeOption<CartercoInfo> option) {
+	public CartercoVisiMergeCarterve(DeciTreeOption<CartercoInfo> option) {
 		super(option, CarterveInfo.class);
 	}
 	

@@ -11,9 +11,9 @@ import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiCartercoPruneUsername extends ActionVisitorTemplatePrune<CartercoInfo, UsernameInfo> {
+public final class CartercoVisiPruneUsername extends ActionVisitorTemplatePrune<CartercoInfo, UsernameInfo> {
 	
-	public VisiCartercoPruneUsername(DeciTreeOption<CartercoInfo> option) {
+	public CartercoVisiPruneUsername(DeciTreeOption<CartercoInfo> option) {
 		super(option, UsernameInfo.class);
 	}
 	

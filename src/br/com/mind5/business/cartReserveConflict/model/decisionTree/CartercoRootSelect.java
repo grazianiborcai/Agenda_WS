@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cartReserveConflict.info.CartercoInfo;
-import br.com.mind5.business.cartReserveConflict.model.action.LazyCartercoPruneUsername;
-import br.com.mind5.business.cartReserveConflict.model.action.StdCartercoMergeCarterve;
+import br.com.mind5.business.cartReserveConflict.model.action.CartercoVisiMergeCarterve;
+import br.com.mind5.business.cartReserveConflict.model.action.CartercoVisiPruneUsername;
 import br.com.mind5.business.cartReserveConflict.model.checker.CartercoCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCartercoSelect extends DeciTreeTemplateRead<CartercoInfo> {
+public final class CartercoRootSelect extends DeciTreeTemplateRead<CartercoInfo> {
 	
-	public RootCartercoSelect(DeciTreeOption<CartercoInfo> option) {
+	public CartercoRootSelect(DeciTreeOption<CartercoInfo> option) {
 		super(option);
 	}
 	
@@ -43,8 +45,8 @@ public final class RootCartercoSelect extends DeciTreeTemplateRead<CartercoInfo>
 	@Override protected List<ActionStd<CartercoInfo>> buildActionsOnPassedHook(DeciTreeOption<CartercoInfo> option) {
 		List<ActionStd<CartercoInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<CartercoInfo> mergeCarterve = new StdCartercoMergeCarterve(option);
-		ActionLazy<CartercoInfo> pruneUsername = new LazyCartercoPruneUsername(option.conn, option.schemaName);
+		ActionStd<CartercoInfo> mergeCarterve = new ActionStdCommom<CartercoInfo>(option, CartercoVisiMergeCarterve.class);
+		ActionLazy<CartercoInfo> pruneUsername = new ActionLazyCommom<CartercoInfo>(option, CartercoVisiPruneUsername.class);
 		
 		mergeCarterve.addPostAction(pruneUsername);
 		

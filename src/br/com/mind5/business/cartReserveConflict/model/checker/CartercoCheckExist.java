@@ -1,7 +1,7 @@
 package br.com.mind5.business.cartReserveConflict.model.checker;
 
 import br.com.mind5.business.cartReserveConflict.info.CartercoInfo;
-import br.com.mind5.business.cartReserveConflict.model.decisionTree.RootCartercoSelect;
+import br.com.mind5.business.cartReserveConflict.model.decisionTree.CartercoRootSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class CartercoCheckExist extends ModelCheckerTemplateAction<Carterc
 
 	
 	@Override protected ActionStd<CartercoInfo> buildActionHook(DeciTreeOption<CartercoInfo> option) {
-		ActionStd<CartercoInfo> select = new RootCartercoSelect(option).toAction();
+		ActionStd<CartercoInfo> select = new CartercoRootSelect(option).toAction();
 		return select;
 	}
 	

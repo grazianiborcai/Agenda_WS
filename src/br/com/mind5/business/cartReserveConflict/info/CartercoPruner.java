@@ -13,7 +13,7 @@ public final class CartercoPruner {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartercoVisiPruneUsername());
+		builder.addVisitor(new CartercoPrunerVisiUsername());
 		InfoPruner<CartercoInfo, UsernameInfo> pruner = builder.build();		
 	
 		return pruner.prune();

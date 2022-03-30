@@ -12,7 +12,7 @@ public final class CartercoMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartercoVisiMergeCarterve());
+		builder.addVisitor(new CartercoMergerVisiCarterve());
 		InfoMerger<CartercoInfo, CarterveInfo> merger = builder.build();		
 	
 		return merger.merge();
