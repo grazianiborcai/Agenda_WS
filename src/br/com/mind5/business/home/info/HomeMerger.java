@@ -14,7 +14,7 @@ public final class HomeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new HomeVisiMergeUsome());
+		builder.addVisitor(new HomeMergerVisiUsome());
 		InfoMerger<HomeInfo, UsomeInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class HomeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new HomeVisiMergeCartou());
+		builder.addVisitor(new HomeMergerVisiCartou());
 		InfoMerger<HomeInfo, CartouInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class HomeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new HomeVisiMergeUsername());
+		builder.addVisitor(new HomeMergerVisiUsername());
 		InfoMerger<HomeInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();

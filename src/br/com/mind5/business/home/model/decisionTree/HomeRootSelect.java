@@ -4,23 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.home.info.HomeInfo;
-import br.com.mind5.business.home.model.action.LazyHomeMergeCartou;
-import br.com.mind5.business.home.model.action.LazyHomeMergeUsome;
-import br.com.mind5.business.home.model.action.StdHomeMergeUsername;
+import br.com.mind5.business.home.model.action.HomeVisiMergeCartou;
+import br.com.mind5.business.home.model.action.HomeVisiMergeUsername;
+import br.com.mind5.business.home.model.action.HomeVisiMergeUsome;
 import br.com.mind5.business.home.model.checker.HomeCheckLangu;
 import br.com.mind5.business.home.model.checker.HomeCheckOwner;
 import br.com.mind5.business.home.model.checker.HomeCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootHomeSelect extends DeciTreeTemplateRead<HomeInfo> {
+public final class HomeRootSelect extends DeciTreeTemplateRead<HomeInfo> {
 	
-	public RootHomeSelect(DeciTreeOption<HomeInfo> option) {
+	public HomeRootSelect(DeciTreeOption<HomeInfo> option) {
 		super(option);
 	}
 	
@@ -60,9 +62,9 @@ public final class RootHomeSelect extends DeciTreeTemplateRead<HomeInfo> {
 	@Override protected List<ActionStd<HomeInfo>> buildActionsOnPassedHook(DeciTreeOption<HomeInfo> option) {
 		List<ActionStd<HomeInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<HomeInfo> mergeUser = new StdHomeMergeUsername(option);
-		ActionLazy<HomeInfo> mergeCartou = new LazyHomeMergeCartou(option.conn, option.schemaName);
-		ActionLazy<HomeInfo> mergeUsome = new LazyHomeMergeUsome(option.conn, option.schemaName);
+		ActionStd<HomeInfo> mergeUser = new ActionStdCommom<HomeInfo>(option, HomeVisiMergeUsername.class);
+		ActionLazy<HomeInfo> mergeCartou = new ActionLazyCommom<HomeInfo>(option, HomeVisiMergeCartou.class);
+		ActionLazy<HomeInfo> mergeUsome = new ActionLazyCommom<HomeInfo>(option, HomeVisiMergeUsome.class);
 		
 		mergeUser.addPostAction(mergeCartou);
 		mergeCartou.addPostAction(mergeUsome);

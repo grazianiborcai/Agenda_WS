@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userHome.info.UsomeInfo;
 import br.com.mind5.security.userHome.model.decisionTree.RootUsomeSelect;
 
-final class VisiHomeMergeUsome extends ActionVisitorTemplateMerge<HomeInfo, UsomeInfo> {
+public final class HomeVisiMergeUsome extends ActionVisitorTemplateMerge<HomeInfo, UsomeInfo> {
 	
-	public VisiHomeMergeUsome(DeciTreeOption<HomeInfo> option) {
+	public HomeVisiMergeUsome(DeciTreeOption<HomeInfo> option) {
 		super(option, UsomeInfo.class);
 	}
 	

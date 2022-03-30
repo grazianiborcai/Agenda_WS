@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiHomeMergeCartou extends ActionVisitorTemplateMerge<HomeInfo, CartouInfo> {
+public final class HomeVisiMergeCartou extends ActionVisitorTemplateMerge<HomeInfo, CartouInfo> {
 	
-	public VisiHomeMergeCartou(DeciTreeOption<HomeInfo> option) {
+	public HomeVisiMergeCartou(DeciTreeOption<HomeInfo> option) {
 		super(option, CartouInfo.class);
 	}
 	

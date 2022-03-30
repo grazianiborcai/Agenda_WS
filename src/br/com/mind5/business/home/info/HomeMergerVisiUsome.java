@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.security.userHome.info.UsomeInfo;
 
-final class HomeVisiMergeUsome extends InfoMergerVisitorTemplate<HomeInfo, UsomeInfo> {
+final class HomeMergerVisiUsome extends InfoMergerVisitorTemplate<HomeInfo, UsomeInfo> {
 
 	@Override public boolean shouldMerge(HomeInfo baseInfo, UsomeInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner	&&
