@@ -3,7 +3,7 @@ package br.com.mind5.business.orderHistoryDecorated.model.action;
 import java.util.List;
 
 import br.com.mind5.business.orderHistory.info.OrdoryInfo;
-import br.com.mind5.business.orderHistory.model.decisionTree.RootOrdorySearchAuth;
+import br.com.mind5.business.orderHistory.model.decisionTree.OrdoryRootSearchAuth;
 import br.com.mind5.business.orderHistoryDecorated.info.OrdorycoInfo;
 import br.com.mind5.business.orderHistoryDecorated.info.OrdorycoMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiOrdorycoMergeOrdorySearchAuth extends ActionVisitorTemplateMerge
 	
 	
 	@Override protected Class<? extends DeciTree<OrdoryInfo>> getTreeClassHook() {
-		return RootOrdorySearchAuth.class;
+		return OrdoryRootSearchAuth.class;
 	}
 	
 	

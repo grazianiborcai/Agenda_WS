@@ -13,7 +13,7 @@ public final class OrdoryMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdoryVisiMergeOrdist());
+		builder.addVisitor(new OrdoryMergerVisiOrdist());
 		InfoMerger<OrdoryInfo, OrdistInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class OrdoryMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdoryVisiMergeOrdemist());
+		builder.addVisitor(new OrdoryMergerVisiOrdemist());
 		InfoMerger<OrdoryInfo, OrdemistInfo> merger = builder.build();		
 	
 		return merger.merge();

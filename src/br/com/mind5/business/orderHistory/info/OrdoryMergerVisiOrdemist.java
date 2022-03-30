@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.orderItemList.info.OrdemistInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class OrdoryVisiMergeOrdemist extends InfoMergerVisitorTemplate<OrdoryInfo, OrdemistInfo> {
+final class OrdoryMergerVisiOrdemist extends InfoMergerVisitorTemplate<OrdoryInfo, OrdemistInfo> {
 
 	@Override public boolean shouldMerge(OrdoryInfo baseInfo, OrdemistInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner &&
