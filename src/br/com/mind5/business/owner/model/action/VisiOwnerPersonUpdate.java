@@ -7,7 +7,7 @@ import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
 import br.com.mind5.business.person.info.PersonCopier;
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.person.model.decisionTree.RootPersonUpdate;
+import br.com.mind5.business.person.model.decisionTree.PersonRootUpdate;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -21,7 +21,7 @@ final class VisiOwnerPersonUpdate extends ActionVisitorTemplateAction<OwnerInfo,
 	
 	
 	@Override protected Class<? extends DeciTree<PersonInfo>> getTreeClassHook() {
-		return RootPersonUpdate.class;
+		return PersonRootUpdate.class;
 	}
 	
 	

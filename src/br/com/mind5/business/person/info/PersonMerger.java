@@ -16,7 +16,7 @@ public final class PersonMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PersonVisiMergePerbio());
+		builder.addVisitor(new PersonMergerVisiPerbio());
 		InfoMerger<PersonInfo, PerbioInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -29,7 +29,7 @@ public final class PersonMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PersonVisiMergeSytotauh());
+		builder.addVisitor(new PersonMergerVisiSytotauh());
 		InfoMerger<PersonInfo, SytotauhInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -42,7 +42,7 @@ public final class PersonMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PersonVisiMergePersonap());
+		builder.addVisitor(new PersonMergerVisiPersonap());
 		InfoMerger<PersonInfo, PersonapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -55,7 +55,7 @@ public final class PersonMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PersonVisiMergeGender());
+		builder.addVisitor(new PersonMergerVisiGender());
 		InfoMerger<PersonInfo, GenderInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -68,7 +68,7 @@ public final class PersonMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PersonVisiMergeUsername());
+		builder.addVisitor(new PersonMergerVisiUsername());
 		InfoMerger<PersonInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -81,7 +81,7 @@ public final class PersonMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PersonVisiMergeToSelect());
+		builder.addVisitor(new PersonMergerVisiToSelect());
 		InfoMerger<PersonInfo, PersonInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -94,7 +94,7 @@ public final class PersonMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PersonVisiMergeToUpdate());
+		builder.addVisitor(new PersonMergerVisiToUpdate());
 		InfoMerger<PersonInfo, PersonInfo> merger = builder.build();		
 	
 		return merger.merge();

@@ -6,7 +6,7 @@ import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.info.EmpMerger;
 import br.com.mind5.business.person.info.PersonCopier;
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.person.model.decisionTree.RootPersonUpdateEmp;
+import br.com.mind5.business.person.model.decisionTree.PersonRootUpdateEmp;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class EmpVisiPersonUpdate extends ActionVisitorTemplateAction<EmpIn
 	
 	
 	@Override protected Class<? extends DeciTree<PersonInfo>> getTreeClassHook() {
-		return RootPersonUpdateEmp.class;
+		return PersonRootUpdateEmp.class;
 	}
 	
 	

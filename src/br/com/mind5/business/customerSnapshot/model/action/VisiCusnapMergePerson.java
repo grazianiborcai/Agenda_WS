@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
 import br.com.mind5.business.customerSnapshot.info.CusnapMerger;
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.person.model.decisionTree.RootPersonSelect;
+import br.com.mind5.business.person.model.decisionTree.PersonRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiCusnapMergePerson extends ActionVisitorTemplateMerge<CusnapInfo,
 	
 	
 	@Override protected Class<? extends DeciTree<PersonInfo>> getTreeClassHook() {
-		return RootPersonSelect.class;
+		return PersonRootSelect.class;
 	}
 	
 	

@@ -3,7 +3,7 @@ package br.com.mind5.business.store.model.action;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.person.model.decisionTree.RootPersonDelete;
+import br.com.mind5.business.person.model.decisionTree.PersonRootDelete;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -18,7 +18,7 @@ public final class StoreVisiPersonDelete extends ActionVisitorTemplateAction<Sto
 	
 	
 	@Override protected Class<? extends DeciTree<PersonInfo>> getTreeClassHook() {
-		return RootPersonDelete.class;
+		return PersonRootDelete.class;
 	}
 	
 	

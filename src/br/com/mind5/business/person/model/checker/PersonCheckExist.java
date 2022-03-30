@@ -1,9 +1,10 @@
 package br.com.mind5.business.person.model.checker;
 
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.person.model.action.StdPersonDaoSelect;
+import br.com.mind5.business.person.model.action.PersonVisiDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class PersonCheckExist extends ModelCheckerTemplateAction<PersonInf
 	
 	
 	@Override protected ActionStd<PersonInfo> buildActionHook(DeciTreeOption<PersonInfo> option) {
-		ActionStd<PersonInfo> select = new StdPersonDaoSelect(option);
+		ActionStd<PersonInfo> select = new ActionStdCommom<PersonInfo>(option, PersonVisiDaoSelect.class);
 		return select;
 	}
 	

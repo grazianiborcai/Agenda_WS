@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.person.info.PersonCopier;
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.person.model.decisionTree.RootPersonInsertStore;
+import br.com.mind5.business.person.model.decisionTree.PersonRootInsertStore;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
@@ -20,7 +20,7 @@ public final class StoreVisiPersonInsert extends ActionVisitorTemplateAction<Sto
 	
 	
 	@Override protected Class<? extends DeciTree<PersonInfo>> getTreeClassHook() {
-		return RootPersonInsertStore.class;
+		return PersonRootInsertStore.class;
 	}
 	
 	

@@ -3,7 +3,7 @@ package br.com.mind5.business.store.model.action;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.person.model.decisionTree.RootPersonSelect;
+import br.com.mind5.business.person.model.decisionTree.PersonRootSelect;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class StoreVisiMergePerson extends ActionVisitorTemplateMerge<Store
 	
 	
 	@Override protected Class<? extends DeciTree<PersonInfo>> getTreeClassHook() {
-		return RootPersonSelect.class;
+		return PersonRootSelect.class;
 	}
 	
 	
