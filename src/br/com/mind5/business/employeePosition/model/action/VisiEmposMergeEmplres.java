@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.info.EmposMerger;
 import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
-import br.com.mind5.business.employeeRestricted.model.decisionTree.RootEmplresSelect;
+import br.com.mind5.business.employeeRestricted.model.decisionTree.EmplresRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiEmposMergeEmplres extends ActionVisitorTemplateMerge<EmposInfo, 
 	
 	
 	@Override protected Class<? extends DeciTree<EmplresInfo>> getTreeClassHook() {
-		return RootEmplresSelect.class;
+		return EmplresRootSelect.class;
 	}
 	
 	

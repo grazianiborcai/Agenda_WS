@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeRestricted.info.EmplresCopier;
 import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
-import br.com.mind5.business.employeeRestricted.model.decisionTree.RootEmplresSelect;
+import br.com.mind5.business.employeeRestricted.model.decisionTree.EmplresRootSelect;
 import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleDay.info.SchedayMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -20,7 +20,7 @@ final class VisiSchedayMergeEmplres extends ActionVisitorTemplateMerge<SchedayIn
 	
 	
 	@Override protected Class<? extends DeciTree<EmplresInfo>> getTreeClassHook() {
-		return RootEmplresSelect.class;
+		return EmplresRootSelect.class;
 	}
 	
 	

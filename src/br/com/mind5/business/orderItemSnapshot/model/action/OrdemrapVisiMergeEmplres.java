@@ -3,7 +3,7 @@ package br.com.mind5.business.orderItemSnapshot.model.action;
 import java.util.List;
 
 import br.com.mind5.business.employeeRestricted.info.EmplresInfo;
-import br.com.mind5.business.employeeRestricted.model.decisionTree.RootEmplresSelect;
+import br.com.mind5.business.employeeRestricted.model.decisionTree.EmplresRootSelect;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class OrdemrapVisiMergeEmplres extends ActionVisitorTemplateMerge<O
 	
 	
 	@Override protected Class<? extends DeciTree<EmplresInfo>> getTreeClassHook() {
-		return RootEmplresSelect.class;
+		return EmplresRootSelect.class;
 	}
 	
 	

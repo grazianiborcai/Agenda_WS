@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmplresMergeEmplis extends ActionVisitorTemplateMerge<EmplresInfo, EmplisInfo> {
+public final class EmplresVisiMergeEmplis extends ActionVisitorTemplateMerge<EmplresInfo, EmplisInfo> {
 	
-	public VisiEmplresMergeEmplis(DeciTreeOption<EmplresInfo> option) {
+	public EmplresVisiMergeEmplis(DeciTreeOption<EmplresInfo> option) {
 		super(option, EmplisInfo.class);
 	}
 	

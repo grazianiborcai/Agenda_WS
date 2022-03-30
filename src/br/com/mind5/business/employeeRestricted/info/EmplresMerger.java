@@ -12,7 +12,7 @@ public final class EmplresMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmplresVisiMergeEmplis());
+		builder.addVisitor(new EmplresMergerVisiEmplis());
 		InfoMerger<EmplresInfo, EmplisInfo> merger = builder.build();		
 	
 		return merger.merge();
