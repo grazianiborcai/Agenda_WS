@@ -3,7 +3,7 @@ package br.com.mind5.security.user.model.action;
 import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.business.phone.model.decisionTree.RootPhoneSearch;
+import br.com.mind5.business.phone.model.decisionTree.PhoneRootSearch;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiUserMergePhone extends ActionVisitorTemplateMerge<UserInfo, Phon
 	
 	
 	@Override protected Class<? extends DeciTree<PhoneInfo>> getTreeClassHook() {
-		return RootPhoneSearch.class;
+		return PhoneRootSearch.class;
 	}
 	
 	

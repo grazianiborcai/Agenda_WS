@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.business.phone.model.decisionTree.RootPhoneDelete;
+import br.com.mind5.business.phone.model.decisionTree.PhoneRootDelete;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiUserPhoneDelete extends ActionVisitorTemplateAction<UserInfo, Ph
 	
 	
 	@Override protected Class<? extends DeciTree<PhoneInfo>> getTreeClassHook() {
-		return RootPhoneDelete.class;
+		return PhoneRootDelete.class;
 	}
 	
 	

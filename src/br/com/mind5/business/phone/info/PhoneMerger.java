@@ -17,7 +17,7 @@ public final class PhoneMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhoneVisiMergePhonault());
+		builder.addVisitor(new PhoneMergerVisiPhonault());
 		InfoMerger<PhoneInfo, PhonaultInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -30,7 +30,7 @@ public final class PhoneMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhoneVisiMergePhonarch());
+		builder.addVisitor(new PhoneMergerVisiPhonarch());
 		InfoMerger<PhoneInfo, PhonarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -43,7 +43,7 @@ public final class PhoneMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhoneVisiMergeUsername());
+		builder.addVisitor(new PhoneMergerVisiUsername());
 		InfoMerger<PhoneInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -56,7 +56,7 @@ public final class PhoneMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhoneVisiMergeCountrone());
+		builder.addVisitor(new PhoneMergerVisiCountrone());
 		InfoMerger<PhoneInfo, CountroneInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -69,7 +69,7 @@ public final class PhoneMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhoneVisiMergeFormone());
+		builder.addVisitor(new PhoneMergerVisiFormone());
 		InfoMerger<PhoneInfo, FormoneInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -82,7 +82,7 @@ public final class PhoneMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhoneVisiMergePhonap());
+		builder.addVisitor(new PhoneMergerVisiPhonap());
 		InfoMerger<PhoneInfo, PhonapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -95,7 +95,7 @@ public final class PhoneMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhoneVisiMergeToDelete());
+		builder.addVisitor(new PhoneMergerVisiToDelete());
 		InfoMerger<PhoneInfo, PhoneInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -108,7 +108,7 @@ public final class PhoneMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhoneVisiMergeToSelect());
+		builder.addVisitor(new PhoneMergerVisiToSelect());
 		InfoMerger<PhoneInfo, PhoneInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -121,7 +121,7 @@ public final class PhoneMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhoneVisiMergeToUpdate());
+		builder.addVisitor(new PhoneMergerVisiToUpdate());
 		InfoMerger<PhoneInfo, PhoneInfo> merger = builder.build();		
 	
 		return merger.merge();

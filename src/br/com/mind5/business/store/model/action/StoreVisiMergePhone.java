@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneCopier;
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.business.phone.model.decisionTree.RootPhoneSearch;
+import br.com.mind5.business.phone.model.decisionTree.PhoneRootSearch;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -20,7 +20,7 @@ public final class StoreVisiMergePhone extends ActionVisitorTemplateMerge<StoreI
 	
 	
 	@Override protected Class<? extends DeciTree<PhoneInfo>> getTreeClassHook() {
-		return RootPhoneSearch.class;
+		return PhoneRootSearch.class;
 	}
 	
 	

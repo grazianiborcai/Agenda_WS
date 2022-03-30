@@ -6,7 +6,7 @@ import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.info.CusMerger;
 import br.com.mind5.business.phone.info.PhoneCopier;
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.business.phone.model.decisionTree.RootPhoneUpsertdel;
+import br.com.mind5.business.phone.model.decisionTree.PhoneRootUpsertdel;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class CusVisiPhoneUpsert extends ActionVisitorTemplateAction<CusInf
 	
 	
 	@Override protected Class<? extends DeciTree<PhoneInfo>> getTreeClassHook() {
-		return RootPhoneUpsertdel.class;
+		return PhoneRootUpsertdel.class;
 	}
 	
 	
