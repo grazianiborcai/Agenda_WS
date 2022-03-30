@@ -14,7 +14,7 @@ public final class OrdorycoMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdorycoVisiMergeStusory());
+		builder.addVisitor(new OrdorycoMergerVisiStusory());
 		InfoMerger<OrdorycoInfo, StusoryInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class OrdorycoMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdorycoVisiMergeOrdory());
+		builder.addVisitor(new OrdorycoMergerVisiOrdory());
 		InfoMerger<OrdorycoInfo, OrdoryInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class OrdorycoMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdorycoVisiMergeUsername());
+		builder.addVisitor(new OrdorycoMergerVisiUsername());
 		InfoMerger<OrdorycoInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();

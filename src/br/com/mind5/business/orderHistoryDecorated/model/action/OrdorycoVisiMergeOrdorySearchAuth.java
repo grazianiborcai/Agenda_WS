@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdorycoMergeOrdorySearchAuth extends ActionVisitorTemplateMerge<OrdorycoInfo, OrdoryInfo> {
+public final class OrdorycoVisiMergeOrdorySearchAuth extends ActionVisitorTemplateMerge<OrdorycoInfo, OrdoryInfo> {
 	
-	public VisiOrdorycoMergeOrdorySearchAuth(DeciTreeOption<OrdorycoInfo> option) {
+	public OrdorycoVisiMergeOrdorySearchAuth(DeciTreeOption<OrdorycoInfo> option) {
 		super(option, OrdoryInfo.class); 
 	}
 	

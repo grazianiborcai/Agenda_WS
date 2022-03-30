@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiOrdorycoMergeUsername extends ActionVisitorTemplateMerge<OrdorycoInfo, UsernameInfo> {
+public final class OrdorycoVisiMergeUsername extends ActionVisitorTemplateMerge<OrdorycoInfo, UsernameInfo> {
 	
-	public VisiOrdorycoMergeUsername(DeciTreeOption<OrdorycoInfo> option) {
+	public OrdorycoVisiMergeUsername(DeciTreeOption<OrdorycoInfo> option) {
 		super(option, UsernameInfo.class); 
 	}
 	

@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderHistoryDecorated.info.OrdorycoInfo;
-import br.com.mind5.business.orderHistoryDecorated.model.action.LazyOrdorycoMergeOrdorySearchAuth;
-import br.com.mind5.business.orderHistoryDecorated.model.action.LazyOrdorycoMergeStusory;
-import br.com.mind5.business.orderHistoryDecorated.model.action.StdOrdorycoMergeUsername;
+import br.com.mind5.business.orderHistoryDecorated.model.action.OrdorycoVisiMergeOrdorySearchAuth;
+import br.com.mind5.business.orderHistoryDecorated.model.action.OrdorycoVisiMergeStusory;
+import br.com.mind5.business.orderHistoryDecorated.model.action.OrdorycoVisiMergeUsername;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOrdorycoSearchAuth extends DeciTreeTemplateRead<OrdorycoInfo> {
+public final class OrdorycoRootSearchAuth extends DeciTreeTemplateRead<OrdorycoInfo> {
 	
-	public RootOrdorycoSearchAuth(DeciTreeOption<OrdorycoInfo> option) {
+	public OrdorycoRootSearchAuth(DeciTreeOption<OrdorycoInfo> option) {
 		super(option);
 	}
 	
@@ -38,9 +40,9 @@ public final class RootOrdorycoSearchAuth extends DeciTreeTemplateRead<OrdorycoI
 	@Override protected List<ActionStd<OrdorycoInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdorycoInfo> option) {
 		List<ActionStd<OrdorycoInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrdorycoInfo> mergeUsername = new StdOrdorycoMergeUsername(option);
-		ActionLazy<OrdorycoInfo> mergeOrdory = new LazyOrdorycoMergeOrdorySearchAuth(option.conn, option.schemaName);
-		ActionLazy<OrdorycoInfo> mergeStusory = new LazyOrdorycoMergeStusory(option.conn, option.schemaName);
+		ActionStd<OrdorycoInfo> mergeUsername = new ActionStdCommom<OrdorycoInfo>(option, OrdorycoVisiMergeUsername.class);
+		ActionLazy<OrdorycoInfo> mergeOrdory = new ActionLazyCommom<OrdorycoInfo>(option, OrdorycoVisiMergeOrdorySearchAuth.class);
+		ActionLazy<OrdorycoInfo> mergeStusory = new ActionLazyCommom<OrdorycoInfo>(option, OrdorycoVisiMergeStusory.class);
 		
 		mergeUsername.addPostAction(mergeOrdory);
 		mergeOrdory.addPostAction(mergeStusory);

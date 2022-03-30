@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.orderHistory.info.OrdoryInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class OrdorycoVisiMergeOrdory extends InfoMergerVisitorTemplate<OrdorycoInfo, OrdoryInfo> {
+final class OrdorycoMergerVisiOrdory extends InfoMergerVisitorTemplate<OrdorycoInfo, OrdoryInfo> {
 
 	@Override public boolean shouldMerge(OrdorycoInfo baseInfo, OrdoryInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner	&&
