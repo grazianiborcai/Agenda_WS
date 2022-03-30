@@ -48,7 +48,7 @@ import br.com.mind5.business.employeeWorkTimeRange.dao.EmpworgDaoDbTableColumn;
 import br.com.mind5.business.employeeWorkTimeSearch.dao.EmpwotarchDaoDbTableColumn;
 import br.com.mind5.business.employeeWorkTimeSnapshot.dao.EmpwotmapDaoDbTableColumn;
 import br.com.mind5.business.feeDefault.dao.DaoFeedefDbTableColumn;
-import br.com.mind5.business.feeOwner.dao.DaoFeewnerDbTableColumn;
+import br.com.mind5.business.feeOwner.dao.FeewnerDaoDbTableColumn;
 import br.com.mind5.business.material.dao.MatDaoDbTableColumn;
 import br.com.mind5.business.materialList.dao.MatlisDaoDbTableColumn;
 import br.com.mind5.business.materialMovement.dao.DaoMatmovDbTableColumn;
@@ -323,7 +323,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoOwnerDbTableColumn());
 		addTable(new DaoMatoreDbTableColumn());
 		addTable(new CartDaoDbTableColumn());
-		addTable(new DaoFeewnerDbTableColumn());
+		addTable(new FeewnerDaoDbTableColumn());
 		addTable(new DaoFeedefDbTableColumn());
 		addTable(new CarterveDaoDbTableColumn());
 		addTable(new OrderemDaoDbTableColumn());

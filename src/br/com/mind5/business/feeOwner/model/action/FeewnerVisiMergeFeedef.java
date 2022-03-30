@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFeewnerMergeFeedef extends ActionVisitorTemplateMerge<FeewnerInfo, FeedefInfo> {
+public final class FeewnerVisiMergeFeedef extends ActionVisitorTemplateMerge<FeewnerInfo, FeedefInfo> {
 	
-	public VisiFeewnerMergeFeedef(DeciTreeOption<FeewnerInfo> option) {
+	public FeewnerVisiMergeFeedef(DeciTreeOption<FeewnerInfo> option) {
 		super(option, FeedefInfo.class);
 	}
 	

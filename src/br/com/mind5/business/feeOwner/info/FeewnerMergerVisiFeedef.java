@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.feeDefault.info.FeedefInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class FeewnerVisiMergeFeedef extends InfoMergerVisitorTemplate<FeewnerInfo, FeedefInfo> {
+final class FeewnerMergerVisiFeedef extends InfoMergerVisitorTemplate<FeewnerInfo, FeedefInfo> {
 
 	@Override public boolean shouldMerge(FeewnerInfo baseInfo, FeedefInfo selectedInfo) {
 		return (baseInfo.codCurr.equals(selectedInfo.codCurr));

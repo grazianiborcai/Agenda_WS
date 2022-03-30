@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.info.CartMerger;
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
-import br.com.mind5.business.feeOwner.model.decisionTree.RootFeewnerSelectService;
+import br.com.mind5.business.feeOwner.model.decisionTree.FeewnerRootSelectService;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class CartVisiMergeFeewner extends ActionVisitorTemplateMerge<CartI
 	
 	
 	@Override protected Class<? extends DeciTree<FeewnerInfo>> getTreeClassHook() {
-		return RootFeewnerSelectService.class;
+		return FeewnerRootSelectService.class;
 	}
 	
 	

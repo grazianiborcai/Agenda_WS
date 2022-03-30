@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class DaoFeewnerWhere implements DaoStmtWhere {
+final class FeewnerDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoFeewnerWhere(DaoWhereBuilderOption whereOption, String tableName, FeewnerInfo recordInfo) {
+	public FeewnerDaoWhere(DaoWhereBuilderOption whereOption, String tableName, FeewnerInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ final class DaoFeewnerWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoFeewnerDbTableColumn.COL_COD_OWNER :
+				case FeewnerDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoFeewnerDbTableColumn.COL_COD_CURRENCY :
+				case FeewnerDaoDbTableColumn.COL_COD_CURRENCY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codCurr);
 					break;
 					
-				case DaoFeewnerDbTableColumn.COL_COD_FEE_CATEG :
+				case FeewnerDaoDbTableColumn.COL_COD_FEE_CATEG :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.charToString(recordInfo.codFeeCateg));
 					break;
 			}

@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoFeewnerSelect implements DaoStmtExec<FeewnerInfo> {
+public final class FeewnerDaoSelect implements DaoStmtExec<FeewnerInfo> {
 	private DaoStmtExec<FeewnerInfo> helper;
 	
 	
-	public DaoFeewnerSelect(List<DaoStmtExecOption<FeewnerInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoFeewnerSelectSingle.class, FeewnerInfo.class);
+	public FeewnerDaoSelect(List<DaoStmtExecOption<FeewnerInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, FeewnerDaoSelectSingle.class, FeewnerInfo.class);
 	}
 	
 	

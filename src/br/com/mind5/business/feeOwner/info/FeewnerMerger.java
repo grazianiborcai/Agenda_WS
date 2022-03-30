@@ -12,7 +12,7 @@ public final class FeewnerMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FeewnerVisiMergeFeedef());
+		builder.addVisitor(new FeewnerMergerVisiFeedef());
 		InfoMerger<FeewnerInfo, FeedefInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class FeewnerMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FeewnerVisiMergeToSelect());
+		builder.addVisitor(new FeewnerMergerVisiToSelect());
 		InfoMerger<FeewnerInfo, FeewnerInfo> merger = builder.build();		
 	
 		return merger.merge();

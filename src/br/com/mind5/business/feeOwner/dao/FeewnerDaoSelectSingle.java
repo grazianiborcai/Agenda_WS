@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoFeewnerSelectSingle extends DaoStmtTemplate<FeewnerInfo> {
+public final class FeewnerDaoSelectSingle extends DaoStmtTemplate<FeewnerInfo> {
 	private final String MAIN_TABLE = DaoDbTable.FEE_OWNER_TABLE;
 	
 	
-	public DaoFeewnerSelectSingle(Connection conn, FeewnerInfo recordInfo, String schemaName) {
+	public FeewnerDaoSelectSingle(Connection conn, FeewnerInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoFeewnerSelectSingle extends DaoStmtTemplate<FeewnerInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoFeewnerWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new FeewnerDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,10 +61,10 @@ public final class DaoFeewnerSelectSingle extends DaoStmtTemplate<FeewnerInfo> {
 				do {
 					FeewnerInfo dataInfo = new FeewnerInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoFeewnerDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCurr = stmtResult.getString(DaoFeewnerDbTableColumn.COL_COD_CURRENCY);
-					dataInfo.codFeeCateg = DaoFormatter.sqlToChar(stmtResult, DaoFeewnerDbTableColumn.COL_COD_FEE_CATEG);
-					dataInfo.price = DaoFormatter.sqlToDouble(stmtResult, DaoFeewnerDbTableColumn.COL_VALUE);
+					dataInfo.codOwner = stmtResult.getLong(FeewnerDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCurr = stmtResult.getString(FeewnerDaoDbTableColumn.COL_COD_CURRENCY);
+					dataInfo.codFeeCateg = DaoFormatter.sqlToChar(stmtResult, FeewnerDaoDbTableColumn.COL_COD_FEE_CATEG);
+					dataInfo.price = DaoFormatter.sqlToDouble(stmtResult, FeewnerDaoDbTableColumn.COL_VALUE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

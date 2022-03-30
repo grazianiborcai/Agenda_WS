@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFeewnerEnforceCategServ extends ActionVisitorTemplateEnforce<FeewnerInfo> {
+public final class FeewnerVisiEnforceCategServ extends ActionVisitorTemplateEnforce<FeewnerInfo> {
 	
-	public VisiFeewnerEnforceCategServ(DeciTreeOption<FeewnerInfo> option) {
+	public FeewnerVisiEnforceCategServ(DeciTreeOption<FeewnerInfo> option) {
 		super(option);
 	}
 	
