@@ -11,7 +11,7 @@ public final class SchedyeratMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedyeratVisiMergeToSelect());
+		builder.addVisitor(new SchedyeratMergerVisiToSelect());
 		InfoMerger<SchedyeratInfo, SchedyeratInfo> merger = builder.build();		
 	
 		return merger.merge();

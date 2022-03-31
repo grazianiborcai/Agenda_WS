@@ -6,7 +6,7 @@ import br.com.mind5.business.scheduleYear.info.SchedyearInfo;
 import br.com.mind5.business.scheduleYear.info.SchedyearMerger;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratCopier;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
-import br.com.mind5.business.scheduleYearData.model.decisionTree.RootSchedyeratSelect;
+import br.com.mind5.business.scheduleYearData.model.decisionTree.SchedyeratRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class SchedyearVisiMergeSchedyerat extends ActionVisitorTemplateMer
 	
 	
 	@Override protected Class<? extends DeciTree<SchedyeratInfo>> getTreeClassHook() {
-		return RootSchedyeratSelect.class;
+		return SchedyeratRootSelect.class;
 	}
 	
 	
