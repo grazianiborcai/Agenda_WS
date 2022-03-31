@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class DaoAddresnaparchWhere implements DaoStmtWhere {	
+final class AddresnaparchDaoWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public DaoAddresnaparchWhere(DaoWhereBuilderOption whereOption, String tableName, AddresnaparchInfo recordInfo) {
+	public AddresnaparchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, AddresnaparchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,19 +27,19 @@ final class DaoAddresnaparchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoAddresnaparchDbTableColumn.COL_COD_OWNER :
+				case AddresnaparchDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoAddresnaparchDbTableColumn.COL_COD_SNAPSHOT :
+				case AddresnaparchDaoDbTableColumn.COL_COD_SNAPSHOT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSnapshot));
 					break;
 					
-				case DaoAddresnaparchDbTableColumn.COL_COD_USER :
+				case AddresnaparchDaoDbTableColumn.COL_COD_USER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 					
-				case DaoAddresnaparchDbTableColumn.COL_COD_USER_SNAPSHOT :
+				case AddresnaparchDaoDbTableColumn.COL_COD_USER_SNAPSHOT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUserSnapshot));
 					break;
 			}

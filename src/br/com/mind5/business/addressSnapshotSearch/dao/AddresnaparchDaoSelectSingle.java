@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoAddresnaparchSelectSingle extends DaoStmtTemplate<AddresnaparchInfo> {
+public final class AddresnaparchDaoSelectSingle extends DaoStmtTemplate<AddresnaparchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.ADDRESS_SNAPSHOT_TABLE;	
 	
 	
-	public DaoAddresnaparchSelectSingle(Connection conn, AddresnaparchInfo recordInfo, String schemaName) {
+	public AddresnaparchDaoSelectSingle(Connection conn, AddresnaparchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoAddresnaparchSelectSingle extends DaoStmtTemplate<Addresna
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoAddresnaparchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new AddresnaparchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,21 +67,21 @@ public final class DaoAddresnaparchSelectSingle extends DaoStmtTemplate<Addresna
 				do {
 					AddresnaparchInfo dataInfo = new AddresnaparchInfo();
 					
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoAddresnaparchDbTableColumn.COL_COD_SNAPSHOT);	
-					dataInfo.codAddress = stmtResult.getLong(DaoAddresnaparchDbTableColumn.COL_COD_ADDRESS);
-					dataInfo.codOwner = stmtResult.getLong(DaoAddresnaparchDbTableColumn.COL_COD_OWNER);
-					dataInfo.recordMode = stmtResult.getString(DaoAddresnaparchDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoAddresnaparchDbTableColumn.COL_COD_STORE);
-					dataInfo.codStoreSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoAddresnaparchDbTableColumn.COL_COD_STORE_SNAPSHOT);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoAddresnaparchDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoAddresnaparchDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
-					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, DaoAddresnaparchDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codEmployeeSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoAddresnaparchDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoAddresnaparchDbTableColumn.COL_COD_USER);
-					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoAddresnaparchDbTableColumn.COL_COD_USER_SNAPSHOT);
-					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, DaoAddresnaparchDbTableColumn.COL_COD_OWNER_REF);
-					dataInfo.codOwnerRefSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoAddresnaparchDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
-					dataInfo.isDefault = stmtResult.getBoolean(DaoAddresnaparchDbTableColumn.COL_IS_DEFAULT);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, AddresnaparchDaoDbTableColumn.COL_COD_SNAPSHOT);	
+					dataInfo.codAddress = stmtResult.getLong(AddresnaparchDaoDbTableColumn.COL_COD_ADDRESS);
+					dataInfo.codOwner = stmtResult.getLong(AddresnaparchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.recordMode = stmtResult.getString(AddresnaparchDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, AddresnaparchDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codStoreSnapshot = DaoFormatter.sqlToLong(stmtResult, AddresnaparchDaoDbTableColumn.COL_COD_STORE_SNAPSHOT);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, AddresnaparchDaoDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, AddresnaparchDaoDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
+					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, AddresnaparchDaoDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codEmployeeSnapshot = DaoFormatter.sqlToLong(stmtResult, AddresnaparchDaoDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, AddresnaparchDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, AddresnaparchDaoDbTableColumn.COL_COD_USER_SNAPSHOT);
+					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, AddresnaparchDaoDbTableColumn.COL_COD_OWNER_REF);
+					dataInfo.codOwnerRefSnapshot = DaoFormatter.sqlToLong(stmtResult, AddresnaparchDaoDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
+					dataInfo.isDefault = stmtResult.getBoolean(AddresnaparchDaoDbTableColumn.COL_IS_DEFAULT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

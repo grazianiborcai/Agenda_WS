@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.info.AddresnapMerger;
 import br.com.mind5.business.addressSnapshotSearch.info.AddresnaparchInfo;
-import br.com.mind5.business.addressSnapshotSearch.model.decisionTree.RootAddresnaparchSelect;
+import br.com.mind5.business.addressSnapshotSearch.model.decisionTree.AddresnaparchRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class AddresnapVisiMergeAddresnaparch extends ActionVisitorTemplate
 	
 	
 	@Override protected Class<? extends DeciTree<AddresnaparchInfo>> getTreeClassHook() {
-		return RootAddresnaparchSelect.class;
+		return AddresnaparchRootSelect.class;
 	}	
 	
 	

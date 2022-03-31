@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoAddresnaparchSelect implements DaoStmtExec<AddresnaparchInfo> {
+public final class AddresnaparchDaoSelect implements DaoStmtExec<AddresnaparchInfo> {
 	private DaoStmtExec<AddresnaparchInfo> helper;
 	
 	
-	public DaoAddresnaparchSelect(List<DaoStmtExecOption<AddresnaparchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoAddresnaparchSelectSingle.class, AddresnaparchInfo.class);
+	public AddresnaparchDaoSelect(List<DaoStmtExecOption<AddresnaparchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, AddresnaparchDaoSelectSingle.class, AddresnaparchInfo.class);
 	}
 	
 	

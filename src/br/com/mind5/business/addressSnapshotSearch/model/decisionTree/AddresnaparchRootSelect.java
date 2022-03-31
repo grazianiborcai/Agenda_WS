@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.addressSnapshotSearch.info.AddresnaparchInfo;
-import br.com.mind5.business.addressSnapshotSearch.model.action.StdAddresnaparchMergeToSelect;
+import br.com.mind5.business.addressSnapshotSearch.model.action.AddresnaparchVisiMergeToSelect;
 import br.com.mind5.business.addressSnapshotSearch.model.checker.AddresnaparchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootAddresnaparchSelect extends DeciTreeTemplateWrite<AddresnaparchInfo> {
+public final class AddresnaparchRootSelect extends DeciTreeTemplateWrite<AddresnaparchInfo> {
 	
-	public RootAddresnaparchSelect(DeciTreeOption<AddresnaparchInfo> option) {
+	public AddresnaparchRootSelect(DeciTreeOption<AddresnaparchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootAddresnaparchSelect extends DeciTreeTemplateWrite<Addresn
 	@Override protected List<ActionStd<AddresnaparchInfo>> buildActionsOnPassedHook(DeciTreeOption<AddresnaparchInfo> option) {
 		List<ActionStd<AddresnaparchInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddresnaparchInfo> select = new StdAddresnaparchMergeToSelect(option);
+		ActionStd<AddresnaparchInfo> select = new ActionStdCommom<AddresnaparchInfo>(option, AddresnaparchVisiMergeToSelect.class);
 		
 		actions.add(select);			
 		return actions;

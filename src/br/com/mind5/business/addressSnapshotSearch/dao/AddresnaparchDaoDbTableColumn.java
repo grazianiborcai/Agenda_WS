@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoAddresnaparchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class AddresnaparchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
 	public static final String COL_COD_ADDRESS = DaoDbField.COL_COD_ADDRESS;
 	public static final String COL_COD_CUSTOMER_SNAPSHOT = DaoDbField.COL_COD_CUSTOMER_SNAPSHOT;
@@ -27,7 +27,7 @@ public final class DaoAddresnaparchDbTableColumn extends DaoDbTableColumnTemplat
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 	
 	
-	public DaoAddresnaparchDbTableColumn() {
+	public AddresnaparchDaoDbTableColumn() {
 		super();
 	}
 	

@@ -11,7 +11,7 @@ public final class AddresnaparchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddresnaparchVisiMergeToSelect());
+		builder.addVisitor(new AddresnaparchMergerVisiToSelect());
 		InfoMerger<AddresnaparchInfo, AddresnaparchInfo> merger = builder.build();		
 	
 		return merger.merge();
