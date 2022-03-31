@@ -105,7 +105,7 @@ import br.com.mind5.business.scheduleList.dao.SchedistDaoDbTableColumn;
 import br.com.mind5.business.scheduleMonthData.dao.SchedonthatDaoDbTableColumn;
 import br.com.mind5.business.scheduleMoviment.dao.DaoSchedovmDbTableColumn;
 import br.com.mind5.business.scheduleRange.dao.DaoSchedageDbTableColumn;
-import br.com.mind5.business.scheduleReserve.dao.DaoSchederveDbTableColumn;
+import br.com.mind5.business.scheduleReserve.dao.SchederveDaoDbTableColumn;
 import br.com.mind5.business.scheduleSearch.dao.DaoSchedarchDbTableColumn;
 import br.com.mind5.business.scheduleWeekData.dao.DaoSchedeekdatDbTableColumn;
 import br.com.mind5.business.scheduleYearData.dao.DaoSchedyeratDbTableColumn;
@@ -477,7 +477,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoPaymenusDbTableColumn());
 		addTable(new DaoPaymenusarchDbTableColumn());
 		addTable(new OrdemistDaoDbTableColumn());
-		addTable(new DaoSchederveDbTableColumn());
+		addTable(new SchederveDaoDbTableColumn());
 		addTable(new DaoRefugrarchDbTableColumn());
 		addTable(new DaoRefuporarchDbTableColumn());
 		addTable(new DaoAuthgroupDbTableColumn());

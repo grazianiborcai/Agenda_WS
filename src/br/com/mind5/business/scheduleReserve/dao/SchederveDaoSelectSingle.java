@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoSchederveSelectSingle extends DaoStmtTemplate<SchederveInfo> {
+public final class SchederveDaoSelectSingle extends DaoStmtTemplate<SchederveInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SCHEDULE_TABLE;
 	
 	
-	public DaoSchederveSelectSingle(Connection conn, SchederveInfo recordInfo, String schemaName) {
+	public SchederveDaoSelectSingle(Connection conn, SchederveInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoSchederveSelectSingle extends DaoStmtTemplate<SchederveInf
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoSchederveWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new SchederveDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,16 +67,16 @@ public final class DaoSchederveSelectSingle extends DaoStmtTemplate<SchederveInf
 				do {
 					SchederveInfo dataInfo = new SchederveInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoSchederveDbTableColumn.COL_COD_OWNER);
-					dataInfo.codSchedule = DaoFormatter.sqlToLong(stmtResult, DaoSchederveDbTableColumn.COL_COD_SCHEDULE);	
-					dataInfo.codUser = stmtResult.getLong(DaoSchederveDbTableColumn.COL_COD_USER);
-					dataInfo.codStore = stmtResult.getLong(DaoSchederveDbTableColumn.COL_COD_STORE);
-					dataInfo.codEmployee = stmtResult.getLong(DaoSchederveDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codMat = stmtResult.getLong(DaoSchederveDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, DaoSchederveDbTableColumn.COL_DATE);
-					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoSchederveDbTableColumn.COL_BEGIN_TIME);
-					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoSchederveDbTableColumn.COL_END_TIME);		
-					dataInfo.recordMode = stmtResult.getString(DaoSchederveDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codOwner = stmtResult.getLong(SchederveDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codSchedule = DaoFormatter.sqlToLong(stmtResult, SchederveDaoDbTableColumn.COL_COD_SCHEDULE);	
+					dataInfo.codUser = stmtResult.getLong(SchederveDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codStore = stmtResult.getLong(SchederveDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codEmployee = stmtResult.getLong(SchederveDaoDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codMat = stmtResult.getLong(SchederveDaoDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, SchederveDaoDbTableColumn.COL_DATE);
+					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, SchederveDaoDbTableColumn.COL_BEGIN_TIME);
+					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, SchederveDaoDbTableColumn.COL_END_TIME);		
+					dataInfo.recordMode = stmtResult.getString(SchederveDaoDbTableColumn.COL_RECORD_MODE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

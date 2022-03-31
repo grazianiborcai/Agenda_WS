@@ -1,7 +1,7 @@
 package br.com.mind5.business.scheduleReserve.model.checker;
 
 import br.com.mind5.business.scheduleReserve.info.SchederveInfo;
-import br.com.mind5.business.scheduleReserve.model.decisionTree.RootSchederveSelect;
+import br.com.mind5.business.scheduleReserve.model.decisionTree.SchederveRootSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class SchederveCheckExist extends ModelCheckerTemplateAction<Schede
 
 	
 	@Override protected ActionStd<SchederveInfo> buildActionHook(DeciTreeOption<SchederveInfo> option) {
-		ActionStd<SchederveInfo> select = new RootSchederveSelect(option).toAction();
+		ActionStd<SchederveInfo> select = new SchederveRootSelect(option).toAction();
 		return select;
 	}
 	

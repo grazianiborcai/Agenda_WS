@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoSchederveSelect implements DaoStmtExec<SchederveInfo> {
+public final class SchederveDaoSelect implements DaoStmtExec<SchederveInfo> {
 	private DaoStmtExec<SchederveInfo> helper;
 	
 	
-	public DaoSchederveSelect(List<DaoStmtExecOption<SchederveInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoSchederveSelectSingle.class, SchederveInfo.class);
+	public SchederveDaoSelect(List<DaoStmtExecOption<SchederveInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, SchederveDaoSelectSingle.class, SchederveInfo.class);
 	}
 	
 	

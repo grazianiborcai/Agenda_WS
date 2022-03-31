@@ -12,11 +12,11 @@ import br.com.mind5.dao.DaoWhereCondition;
 import br.com.mind5.dao.DaoWhereOperator;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class DaoSchederveWhere implements DaoStmtWhere {
+final class SchederveDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoSchederveWhere(DaoWhereBuilderOption whereOption, String tableName, SchederveInfo recordInfo) {
+	public SchederveDaoWhere(DaoWhereBuilderOption whereOption, String tableName, SchederveInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -43,27 +43,27 @@ final class DaoSchederveWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoSchederveDbTableColumn.COL_COD_OWNER :
+				case SchederveDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoSchederveDbTableColumn.COL_COD_MATERIAL :
+				case SchederveDaoDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
 					
-				case DaoSchederveDbTableColumn.COL_COD_EMPLOYEE :
+				case SchederveDaoDbTableColumn.COL_COD_EMPLOYEE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 					break;
 					
-				case DaoSchederveDbTableColumn.COL_COD_STORE :
+				case SchederveDaoDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case DaoSchederveDbTableColumn.COL_DATE :
+				case SchederveDaoDbTableColumn.COL_DATE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.date));
 					break;
 					
-				case DaoSchederveDbTableColumn.COL_RECORD_MODE :
+				case SchederveDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}
@@ -81,7 +81,7 @@ final class DaoSchederveWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoSchederveDbTableColumn.COL_BEGIN_TIME :
+				case SchederveDaoDbTableColumn.COL_BEGIN_TIME :
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.GREATER);					
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.LESS);
 					break;
@@ -100,7 +100,7 @@ final class DaoSchederveWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoSchederveDbTableColumn.COL_END_TIME :
+				case SchederveDaoDbTableColumn.COL_END_TIME :
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.GREATER);					
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.LESS);
 					break;
@@ -119,11 +119,11 @@ final class DaoSchederveWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoSchederveDbTableColumn.COL_BEGIN_TIME :
+				case SchederveDaoDbTableColumn.COL_BEGIN_TIME :
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.LESS_OR_EQUAL);	
 					break;
 					
-				case DaoSchederveDbTableColumn.COL_END_TIME :
+				case SchederveDaoDbTableColumn.COL_END_TIME :
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.GREATER_OR_EQUAL);	
 					break;
 			}

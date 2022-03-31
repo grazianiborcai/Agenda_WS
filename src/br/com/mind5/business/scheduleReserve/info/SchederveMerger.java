@@ -11,7 +11,7 @@ public final class SchederveMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchederveVisiMergeToSelect());
+		builder.addVisitor(new SchederveMergerVisiToSelect());
 		InfoMerger<SchederveInfo, SchederveInfo> merger = builder.build();		
 	
 		return merger.merge();

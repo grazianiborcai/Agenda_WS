@@ -4,21 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleReserve.info.SchederveInfo;
 import br.com.mind5.business.scheduleReserve.info.SchederveMerger;
-import br.com.mind5.model.action.ActionStd;
-
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchederveMergeToSelect extends ActionVisitorTemplateMerge<SchederveInfo, SchederveInfo> {
+public final class SchederveVisiMergeToSelect extends ActionVisitorTemplateMerge<SchederveInfo, SchederveInfo> {
 	
-	public VisiSchederveMergeToSelect(DeciTreeOption<SchederveInfo> option) {
+	public SchederveVisiMergeToSelect(DeciTreeOption<SchederveInfo> option) {
 		super(option, SchederveInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<SchederveInfo>> getActionClassHook() {
-		return StdSchederveDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<SchederveInfo>> getVisitorClassHook() {
+		return SchederveVisiDaoSelect.class;
 	}
 	
 	
