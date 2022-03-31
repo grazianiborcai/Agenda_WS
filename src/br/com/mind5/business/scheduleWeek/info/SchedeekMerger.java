@@ -20,7 +20,7 @@ public final class SchedeekMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedeekVisiMergeCalimemp());
+		builder.addVisitor(new SchedeekMergerVisiCalimemp());
 		InfoMerger<SchedeekInfo, CalimempInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -33,7 +33,7 @@ public final class SchedeekMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedeekVisiMergeCalimore());
+		builder.addVisitor(new SchedeekMergerVisiCalimore());
 		InfoMerger<SchedeekInfo, CalimoreInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -46,7 +46,7 @@ public final class SchedeekMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedeekVisiMergeCalate());
+		builder.addVisitor(new SchedeekMergerVisiCalate());
 		InfoMerger<SchedeekInfo, CalateInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -59,7 +59,7 @@ public final class SchedeekMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedeekVisiMergeCaleeky());
+		builder.addVisitor(new SchedeekMergerVisiCaleeky());
 		InfoMerger<SchedeekInfo, CaleekyInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -72,7 +72,7 @@ public final class SchedeekMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedeekVisiMergeCuslis());
+		builder.addVisitor(new SchedeekMergerVisiCuslis());
 		InfoMerger<SchedeekInfo, CuslisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -85,7 +85,7 @@ public final class SchedeekMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedeekVisiMergeEmplres());
+		builder.addVisitor(new SchedeekMergerVisiEmplres());
 		InfoMerger<SchedeekInfo, EmplresInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -98,7 +98,7 @@ public final class SchedeekMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedeekVisiMergeMatlis());
+		builder.addVisitor(new SchedeekMergerVisiMatlis());
 		InfoMerger<SchedeekInfo, MatlisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -111,7 +111,7 @@ public final class SchedeekMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedeekVisiMergeStolis());
+		builder.addVisitor(new SchedeekMergerVisiStolis());
 		InfoMerger<SchedeekInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -124,7 +124,7 @@ public final class SchedeekMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedeekVisiMergeSchedeekdat());
+		builder.addVisitor(new SchedeekMergerVisiSchedeekdat());
 		InfoMerger<SchedeekInfo, SchedeekdatInfo> merger = builder.build();		
 	
 		return merger.merge();
