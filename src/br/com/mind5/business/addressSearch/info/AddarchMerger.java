@@ -11,7 +11,7 @@ public final class AddarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddarchVisiMergeToSelect());
+		builder.addVisitor(new AddarchMergerVisiToSelect());
 		InfoMerger<AddarchInfo, AddarchInfo> merger = builder.build();		
 	
 		return merger.merge();

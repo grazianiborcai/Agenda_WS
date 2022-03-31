@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddarchEnforceStore extends ActionVisitorTemplateEnforce<AddarchInfo> {
+public final class AddarchVisiEnforceStore extends ActionVisitorTemplateEnforce<AddarchInfo> {
 	
-	public VisiAddarchEnforceStore(DeciTreeOption<AddarchInfo> option) {
+	public AddarchVisiEnforceStore(DeciTreeOption<AddarchInfo> option) {
 		super(option);
 	}
 	

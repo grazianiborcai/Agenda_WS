@@ -8,7 +8,7 @@ import br.com.mind5.authorization.scheduleAuthorization.dao.DaoSchedauthDbTableC
 import br.com.mind5.authorization.storeAuthorization.dao.DaoStorauthDbTableColumn;
 import br.com.mind5.business.address.dao.AddressDaoDbTableColumn;
 import br.com.mind5.business.addressDefault.dao.AddaultDaoDbTableColumn;
-import br.com.mind5.business.addressSearch.dao.DaoAddarchDbTableColumn;
+import br.com.mind5.business.addressSearch.dao.AddarchDaoDbTableColumn;
 import br.com.mind5.business.addressSnapshot.dao.DaoAddresnapDbTableColumn;
 import br.com.mind5.business.addressSnapshotSearch.dao.DaoAddresnaparchDbTableColumn;
 import br.com.mind5.business.calendarDate.dao.DaoCalateDbTableColumn;
@@ -388,7 +388,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoSymsgDbTableColumn());
 		addTable(new DaoOwnerapDbTableColumn());
 		addTable(new ComplisDaoDbTableColumn());
-		addTable(new DaoAddarchDbTableColumn());
+		addTable(new AddarchDaoDbTableColumn());
 		addTable(new DaoPhonarchDbTableColumn());
 		addTable(new DaoSotarchDbTableColumn());
 		addTable(new DaoComparchDbTableColumn());

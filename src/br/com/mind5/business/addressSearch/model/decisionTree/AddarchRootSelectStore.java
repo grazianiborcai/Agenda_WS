@@ -4,19 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
-import br.com.mind5.business.addressSearch.model.action.StdAddarchMergeToSelect;
+import br.com.mind5.business.addressSearch.model.action.AddarchVisiRootSelect;
+import br.com.mind5.business.addressSearch.model.action.AddarchVisiEnforceStore;
 import br.com.mind5.business.addressSearch.model.checker.AddarchCheckLangu;
-import br.com.mind5.business.addressSearch.model.checker.AddarchCheckRead;
+import br.com.mind5.business.addressSearch.model.checker.AddarchCheckReadStore;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootAddarchSelect extends DeciTreeTemplateWrite<AddarchInfo> {
+public final class AddarchRootSelectStore extends DeciTreeTemplateWrite<AddarchInfo> {
 	
-	public RootAddarchSelect(DeciTreeOption<AddarchInfo> option) {
+	public AddarchRootSelectStore(DeciTreeOption<AddarchInfo> option) {
 		super(option);
 	}
 	
@@ -31,7 +35,7 @@ public final class RootAddarchSelect extends DeciTreeTemplateWrite<AddarchInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new AddarchCheckRead(checkerOption);
+		checker = new AddarchCheckReadStore(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -47,11 +51,14 @@ public final class RootAddarchSelect extends DeciTreeTemplateWrite<AddarchInfo> 
 	
 	
 	@Override protected List<ActionStd<AddarchInfo>> buildActionsOnPassedHook(DeciTreeOption<AddarchInfo> option) {
-		List<ActionStd<AddarchInfo>> actions = new ArrayList<>();		
+		List<ActionStd<AddarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<AddarchInfo> select = new StdAddarchMergeToSelect(option);
+		ActionStd<AddarchInfo> enforceStore = new ActionStdCommom<AddarchInfo>(option, AddarchVisiEnforceStore.class);
+		ActionLazy<AddarchInfo> select = new ActionLazyCommom<AddarchInfo>(option, AddarchVisiRootSelect.class);
 		
-		actions.add(select);			
+		enforceStore.addPostAction(select);
+		
+		actions.add(enforceStore);
 		return actions;
 	}
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.addressSearch.info.AddarchCopier;
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
-import br.com.mind5.business.addressSearch.model.decisionTree.RootAddarchSelect;
+import br.com.mind5.business.addressSearch.model.decisionTree.AddarchRootSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -21,7 +21,7 @@ public final class CrecardCheckAddarch extends ModelCheckerTemplateAction<Crecar
 	
 	
 	@Override protected ActionStd<AddarchInfo> buildActionHook(DeciTreeOption<AddarchInfo> option) {
-		ActionStd<AddarchInfo> select = new RootAddarchSelect(option).toAction();
+		ActionStd<AddarchInfo> select = new AddarchRootSelect(option).toAction();
 		return select;
 	}
 	

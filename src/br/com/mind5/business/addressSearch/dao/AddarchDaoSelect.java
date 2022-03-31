@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoAddarchSelect implements DaoStmtExec<AddarchInfo> {
+public final class AddarchDaoSelect implements DaoStmtExec<AddarchInfo> {
 	private DaoStmtExec<AddarchInfo> helper;
 	
 	
-	public DaoAddarchSelect(List<DaoStmtExecOption<AddarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoAddarchSelectSingle.class, AddarchInfo.class);
+	public AddarchDaoSelect(List<DaoStmtExecOption<AddarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, AddarchDaoSelectSingle.class, AddarchInfo.class);
 	}
 	
 	

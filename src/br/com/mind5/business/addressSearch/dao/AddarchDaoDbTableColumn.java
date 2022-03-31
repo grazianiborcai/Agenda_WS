@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoAddarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class AddarchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CITY = DaoDbField.COL_CITY; 
 	public static final String COL_COD_ADDRESS = DaoDbField.COL_COD_ADDRESS;
 	public static final String COL_COUNTRY = DaoDbField.COL_COUNTRY;
@@ -24,7 +24,7 @@ public final class DaoAddarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_STATE_PROVINCE = DaoDbField.COL_STATE_PROVINCE; 
 	
 	
-	public DaoAddarchDbTableColumn() {
+	public AddarchDaoDbTableColumn() {
 		super();
 	}
 	

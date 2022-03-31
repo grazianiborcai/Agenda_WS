@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoAddarchSelectSingle extends DaoStmtTemplate<AddarchInfo> {
+public final class AddarchDaoSelectSingle extends DaoStmtTemplate<AddarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.ADDRESS_TABLE;	
 	
 	
-	public DaoAddarchSelectSingle(Connection conn, AddarchInfo recordInfo, String schemaName) {
+	public AddarchDaoSelectSingle(Connection conn, AddarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoAddarchSelectSingle extends DaoStmtTemplate<AddarchInfo> {
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoAddarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new AddarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,18 +67,18 @@ public final class DaoAddarchSelectSingle extends DaoStmtTemplate<AddarchInfo> {
 				do {
 					AddarchInfo dataInfo = new AddarchInfo();
 					
-					dataInfo.codAddress = stmtResult.getLong(DaoAddarchDbTableColumn.COL_COD_ADDRESS);
-					dataInfo.codOwner = stmtResult.getLong(DaoAddarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCountry = stmtResult.getString(DaoAddarchDbTableColumn.COL_COUNTRY);
-					dataInfo.codState = stmtResult.getString(DaoAddarchDbTableColumn.COL_STATE_PROVINCE);
-					dataInfo.city = stmtResult.getString(DaoAddarchDbTableColumn.COL_CITY);
-					dataInfo.recordMode = stmtResult.getString(DaoAddarchDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoAddarchDbTableColumn.COL_COD_STORE);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoAddarchDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, DaoAddarchDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoAddarchDbTableColumn.COL_COD_USER);
-					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, DaoAddarchDbTableColumn.COL_COD_OWNER_REF);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoAddarchDbTableColumn.COL_COD_SNAPSHOT);				
+					dataInfo.codAddress = stmtResult.getLong(AddarchDaoDbTableColumn.COL_COD_ADDRESS);
+					dataInfo.codOwner = stmtResult.getLong(AddarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCountry = stmtResult.getString(AddarchDaoDbTableColumn.COL_COUNTRY);
+					dataInfo.codState = stmtResult.getString(AddarchDaoDbTableColumn.COL_STATE_PROVINCE);
+					dataInfo.city = stmtResult.getString(AddarchDaoDbTableColumn.COL_CITY);
+					dataInfo.recordMode = stmtResult.getString(AddarchDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_OWNER_REF);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_SNAPSHOT);				
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

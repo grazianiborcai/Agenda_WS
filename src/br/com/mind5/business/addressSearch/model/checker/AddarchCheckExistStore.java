@@ -1,7 +1,7 @@
 package br.com.mind5.business.addressSearch.model.checker;
 
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
-import br.com.mind5.business.addressSearch.model.decisionTree.RootAddarchSelectStore;
+import br.com.mind5.business.addressSearch.model.decisionTree.AddarchRootSelectStore;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class AddarchCheckExistStore extends ModelCheckerTemplateAction<Add
 	
 	
 	@Override protected ActionStd<AddarchInfo> buildActionHook(DeciTreeOption<AddarchInfo> option) {
-		ActionStd<AddarchInfo> select = new RootAddarchSelectStore(option).toAction();
+		ActionStd<AddarchInfo> select = new AddarchRootSelectStore(option).toAction();
 		return select;
 	}
 	
