@@ -13,7 +13,7 @@ public final class StoprosMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoprosVisiMergeStoprarch());
+		builder.addVisitor(new StoprosMergerVisiStoprarch());
 		InfoMerger<StoprosInfo, StoprarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class StoprosMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoprosVisiMergeProstus());
+		builder.addVisitor(new StoprosMergerVisiProstus());
 		InfoMerger<StoprosInfo, ProstusInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -39,7 +39,7 @@ public final class StoprosMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoprosVisiMergeToSelect());
+		builder.addVisitor(new StoprosMergerVisiToSelect());
 		InfoMerger<StoprosInfo, StoprosInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -52,7 +52,7 @@ public final class StoprosMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoprosVisiMergeToUpdate());
+		builder.addVisitor(new StoprosMergerVisiToUpdate());
 		InfoMerger<StoprosInfo, StoprosInfo> merger = builder.build();		
 	
 		return merger.merge();
