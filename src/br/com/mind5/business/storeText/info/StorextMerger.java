@@ -14,7 +14,7 @@ public final class StorextMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorextVisiMergeStorextarch());
+		builder.addVisitor(new StorextMergerVisiStorextarch());
 		InfoMerger<StorextInfo, StorextarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class StorextMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorextVisiMergeStorextault());
+		builder.addVisitor(new StorextMergerVisiStorextault());
 		InfoMerger<StorextInfo, StorextaultInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class StorextMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorextVisiMergeUsername());
+		builder.addVisitor(new StorextMergerVisiUsername());
 		InfoMerger<StorextInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -53,7 +53,7 @@ public final class StorextMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorextVisiMergeToSelect());
+		builder.addVisitor(new StorextMergerVisiToSelect());
 		InfoMerger<StorextInfo, StorextInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -66,7 +66,7 @@ public final class StorextMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorextVisiMergeToDelete());
+		builder.addVisitor(new StorextMergerVisiToDelete());
 		InfoMerger<StorextInfo, StorextInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -79,7 +79,7 @@ public final class StorextMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorextVisiMergeToUpdate());
+		builder.addVisitor(new StorextMergerVisiToUpdate());
 		InfoMerger<StorextInfo, StorextInfo> merger = builder.build();		
 	
 		return merger.merge();

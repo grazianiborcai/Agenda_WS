@@ -121,7 +121,7 @@ import br.com.mind5.business.storeProspect.dao.StoprosDaoDbTableColumn;
 import br.com.mind5.business.storeProspectSearch.dao.DaoStoprarchDbTableColumn;
 import br.com.mind5.business.storeSearch.dao.DaoSotarchDbTableColumn;
 import br.com.mind5.business.storeSnapshot.dao.StorapDaoDbTableColumn;
-import br.com.mind5.business.storeText.dao.DaoStorextDbTableColumn;
+import br.com.mind5.business.storeText.dao.StorextDaoDbTableColumn;
 import br.com.mind5.business.storeTextDefault.dao.DaoStorextaultDbTableColumn;
 import br.com.mind5.business.storeTextSearch.dao.DaoStorextarchDbTableColumn;
 import br.com.mind5.business.storeTextSnapshot.dao.DaoStorextsnapDbTableColumn;
@@ -515,7 +515,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoPhonaultDbTableColumn());
 		addTable(new StoriteDaoDbTableColumn());
 		addTable(new DaoStoritarchDbTableColumn());
-		addTable(new DaoStorextDbTableColumn());
+		addTable(new StorextDaoDbTableColumn());
 		addTable(new DaoStorextaultDbTableColumn());
 		addTable(new DaoStorextarchDbTableColumn());
 		addTable(new DaoStorextsnapDbTableColumn());

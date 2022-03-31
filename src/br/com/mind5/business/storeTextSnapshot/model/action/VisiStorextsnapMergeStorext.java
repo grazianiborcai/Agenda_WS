@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.storeText.info.StorextCopier;
 import br.com.mind5.business.storeText.info.StorextInfo;
-import br.com.mind5.business.storeText.model.decisionTree.RootStorextSearch;
+import br.com.mind5.business.storeText.model.decisionTree.StorextRootSearch;
 import br.com.mind5.business.storeTextSnapshot.info.StorextsnapInfo;
 import br.com.mind5.business.storeTextSnapshot.info.StorextsnapMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -20,7 +20,7 @@ final class VisiStorextsnapMergeStorext extends ActionVisitorTemplateMerge<Store
 	
 	
 	@Override protected Class<? extends DeciTree<StorextInfo>> getTreeClassHook() {
-		return RootStorextSearch.class;
+		return StorextRootSearch.class;
 	}
 	
 	

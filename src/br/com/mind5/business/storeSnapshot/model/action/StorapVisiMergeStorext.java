@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
 import br.com.mind5.business.storeText.info.StorextInfo;
-import br.com.mind5.business.storeText.model.decisionTree.RootStorextSearch;
+import br.com.mind5.business.storeText.model.decisionTree.StorextRootSearch;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class StorapVisiMergeStorext extends ActionVisitorTemplateMerge<Sto
 	
 	
 	@Override protected Class<? extends DeciTree<StorextInfo>> getTreeClassHook() {
-		return RootStorextSearch.class;
+		return StorextRootSearch.class;
 	}
 	
 	
