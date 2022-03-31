@@ -3,7 +3,7 @@ package br.com.mind5.business.storeNearby.model.action;
 import java.util.List;
 
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
-import br.com.mind5.business.storeFavorite.model.decisionTree.RootStoriteSelectAuth;
+import br.com.mind5.business.storeFavorite.model.decisionTree.StoriteRootSelectAuth;
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.business.storeNearby.info.StorbyMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiStorbyMergeStorite extends ActionVisitorTemplateMerge<StorbyInfo
 	
 	
 	@Override protected Class<? extends DeciTree<StoriteInfo>> getTreeClassHook() {
-		return RootStoriteSelectAuth.class;
+		return StoriteRootSelectAuth.class;
 	}
 	
 	

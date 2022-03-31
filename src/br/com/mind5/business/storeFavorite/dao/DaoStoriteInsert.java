@@ -13,7 +13,7 @@ public final class DaoStoriteInsert implements DaoStmtExec<StoriteInfo> {
 	
 	
 	public DaoStoriteInsert(List<DaoStmtExecOption<StoriteInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoStoriteInsertSingle.class, StoriteInfo.class);
+		helper = new DaoStmtExecHelper<>(options, StoriteDaoInsertSingle.class, StoriteInfo.class);
 	}
 	
 	
