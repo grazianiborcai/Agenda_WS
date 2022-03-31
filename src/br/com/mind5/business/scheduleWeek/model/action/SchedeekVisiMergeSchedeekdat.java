@@ -6,7 +6,7 @@ import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.business.scheduleWeek.info.SchedeekMerger;
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatCopier;
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
-import br.com.mind5.business.scheduleWeekData.model.decisionTree.RootSchedeekdatSelect;
+import br.com.mind5.business.scheduleWeekData.model.decisionTree.SchedeekdatRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class SchedeekVisiMergeSchedeekdat extends ActionVisitorTemplateMer
 	
 	
 	@Override protected Class<? extends DeciTree<SchedeekdatInfo>> getTreeClassHook() {
-		return RootSchedeekdatSelect.class;
+		return SchedeekdatRootSelect.class;
 	}
 	
 	

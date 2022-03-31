@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public class DaoSchedeekdatSelectSingle extends DaoStmtTemplate<SchedeekdatInfo> {
+public class SchedeekdatDaoSelectSingle extends DaoStmtTemplate<SchedeekdatInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SCHEDULE_WEEK_TABLE;
 	
 	
-	public DaoSchedeekdatSelectSingle(Connection conn, SchedeekdatInfo recordInfo, String schemaName) {
+	public SchedeekdatDaoSelectSingle(Connection conn, SchedeekdatInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public class DaoSchedeekdatSelectSingle extends DaoStmtTemplate<SchedeekdatInfo>
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoSchedeekdatWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new SchedeekdatDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,20 +61,20 @@ public class DaoSchedeekdatSelectSingle extends DaoStmtTemplate<SchedeekdatInfo>
 				do {
 					SchedeekdatInfo dataInfo = new SchedeekdatInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSchedeekdatDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoSchedeekdatDbTableColumn.COL_COD_STORE);				
-					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, DaoSchedeekdatDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoSchedeekdatDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, DaoSchedeekdatDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, DaoSchedeekdatDbTableColumn.COL_DATE);	
-					dataInfo.day = DaoFormatter.sqlToInt(stmtResult, DaoSchedeekdatDbTableColumn.COL_DAY);
-					dataInfo.month = DaoFormatter.sqlToInt(stmtResult, DaoSchedeekdatDbTableColumn.COL_MONTH);
-					dataInfo.weekMonth = DaoFormatter.sqlToInt(stmtResult, DaoSchedeekdatDbTableColumn.COL_WEEK_MONTH);
-					dataInfo.weekYear = DaoFormatter.sqlToInt(stmtResult, DaoSchedeekdatDbTableColumn.COL_WEEK_YEAR);
-					dataInfo.year = DaoFormatter.sqlToInt(stmtResult, DaoSchedeekdatDbTableColumn.COL_YEAR);
-					dataInfo.confirmed = stmtResult.getInt(DaoSchedeekdatDbTableColumn.COL_CONFIRMED);
-					dataInfo.waiting = stmtResult.getInt(DaoSchedeekdatDbTableColumn.COL_WAITING);
-					dataInfo.counter = stmtResult.getInt(DaoSchedeekdatDbTableColumn.COL_COUNTER);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, SchedeekdatDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, SchedeekdatDaoDbTableColumn.COL_COD_STORE);				
+					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, SchedeekdatDaoDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, SchedeekdatDaoDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, SchedeekdatDaoDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, SchedeekdatDaoDbTableColumn.COL_DATE);	
+					dataInfo.day = DaoFormatter.sqlToInt(stmtResult, SchedeekdatDaoDbTableColumn.COL_DAY);
+					dataInfo.month = DaoFormatter.sqlToInt(stmtResult, SchedeekdatDaoDbTableColumn.COL_MONTH);
+					dataInfo.weekMonth = DaoFormatter.sqlToInt(stmtResult, SchedeekdatDaoDbTableColumn.COL_WEEK_MONTH);
+					dataInfo.weekYear = DaoFormatter.sqlToInt(stmtResult, SchedeekdatDaoDbTableColumn.COL_WEEK_YEAR);
+					dataInfo.year = DaoFormatter.sqlToInt(stmtResult, SchedeekdatDaoDbTableColumn.COL_YEAR);
+					dataInfo.confirmed = stmtResult.getInt(SchedeekdatDaoDbTableColumn.COL_CONFIRMED);
+					dataInfo.waiting = stmtResult.getInt(SchedeekdatDaoDbTableColumn.COL_WAITING);
+					dataInfo.counter = stmtResult.getInt(SchedeekdatDaoDbTableColumn.COL_COUNTER);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

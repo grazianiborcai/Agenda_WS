@@ -11,7 +11,7 @@ public final class SchedeekdatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedeekdatVisiMergeToSelect());
+		builder.addVisitor(new SchedeekdatMergerVisiToSelect());
 		InfoMerger<SchedeekdatInfo, SchedeekdatInfo> merger = builder.build();		
 	
 		return merger.merge();
