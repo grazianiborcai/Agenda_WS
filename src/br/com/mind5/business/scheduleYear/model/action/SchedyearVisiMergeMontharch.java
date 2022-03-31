@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedyearMergeMontharch extends ActionVisitorTemplateMerge<SchedyearInfo, MontharchInfo> {
+public final class SchedyearVisiMergeMontharch extends ActionVisitorTemplateMerge<SchedyearInfo, MontharchInfo> {
 	
-	public VisiSchedyearMergeMontharch(DeciTreeOption<SchedyearInfo> option) {
+	public SchedyearVisiMergeMontharch(DeciTreeOption<SchedyearInfo> option) {
 		super(option, MontharchInfo.class);
 	}
 	

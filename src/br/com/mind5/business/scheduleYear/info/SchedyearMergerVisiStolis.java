@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class SchedyearVisiMergeStolis extends InfoMergerVisitorTemplate<SchedyearInfo, StolisInfo> {
+final class SchedyearMergerVisiStolis extends InfoMergerVisitorTemplate<SchedyearInfo, StolisInfo> {
 
 	@Override public boolean shouldMerge(SchedyearInfo baseInfo, StolisInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner	&&

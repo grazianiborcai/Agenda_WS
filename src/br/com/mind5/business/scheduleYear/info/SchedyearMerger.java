@@ -14,7 +14,7 @@ public final class SchedyearMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedyearVisiMergeStolis());
+		builder.addVisitor(new SchedyearMergerVisiStolis());
 		InfoMerger<SchedyearInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class SchedyearMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedyearVisiMergeMontharch());
+		builder.addVisitor(new SchedyearMergerVisiMontharch());
 		InfoMerger<SchedyearInfo, MontharchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class SchedyearMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedyearVisiMergeSchedyerat());
+		builder.addVisitor(new SchedyearMergerVisiSchedyerat());
 		InfoMerger<SchedyearInfo, SchedyeratInfo> merger = builder.build();		
 	
 		return merger.merge();

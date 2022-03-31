@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedyearMergeStolis extends ActionVisitorTemplateMerge<SchedyearInfo, StolisInfo> {
+public final class SchedyearVisiMergeStolis extends ActionVisitorTemplateMerge<SchedyearInfo, StolisInfo> {
 	
-	public VisiSchedyearMergeStolis(DeciTreeOption<SchedyearInfo> option) {
+	public SchedyearVisiMergeStolis(DeciTreeOption<SchedyearInfo> option) {
 		super(option, StolisInfo.class);
 	}
 	

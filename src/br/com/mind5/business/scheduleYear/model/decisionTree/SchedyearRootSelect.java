@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSchedyearSelect extends DeciTreeTemplateWrite<SchedyearInfo> {
+public final class SchedyearRootSelect extends DeciTreeTemplateWrite<SchedyearInfo> {
 	
-	public RootSchedyearSelect(DeciTreeOption<SchedyearInfo> option) {
+	public SchedyearRootSelect(DeciTreeOption<SchedyearInfo> option) {
 		super(option);
 	}
 	
@@ -56,7 +56,7 @@ public final class RootSchedyearSelect extends DeciTreeTemplateWrite<SchedyearIn
 	@Override protected List<ActionStd<SchedyearInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedyearInfo> option) {
 		List<ActionStd<SchedyearInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedyearInfo> select = new NodeSchedyearSelect(option).toAction();
+		ActionStd<SchedyearInfo> select = new SchedyearNodeSelect(option).toAction();
 		
 		actions.add(select);
 		return actions;

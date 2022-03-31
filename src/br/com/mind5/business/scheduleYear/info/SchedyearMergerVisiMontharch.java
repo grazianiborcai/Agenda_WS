@@ -7,7 +7,7 @@ import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.month.info.MonthInfo;
 import br.com.mind5.masterData.monthSearch.info.MontharchInfo;
 
-final class SchedyearVisiMergeMontharch extends InfoMergerVisitorTemplate<SchedyearInfo, MontharchInfo> {
+final class SchedyearMergerVisiMontharch extends InfoMergerVisitorTemplate<SchedyearInfo, MontharchInfo> {
 
 	@Override public boolean shouldMerge(SchedyearInfo baseInfo, MontharchInfo selectedInfo) {
 		return true;
