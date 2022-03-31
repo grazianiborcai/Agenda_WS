@@ -19,7 +19,7 @@ public final class StorbyMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorbyVisiMergeSysdistr());
+		builder.addVisitor(new StorbyMergerVisiSysdistr());
 		InfoMerger<StorbyInfo, SysdistrInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -32,7 +32,7 @@ public final class StorbyMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorbyVisiMergeStorext());
+		builder.addVisitor(new StorbyMergerVisiStorext());
 		InfoMerger<StorbyInfo, StorextInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -45,7 +45,7 @@ public final class StorbyMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorbyVisiMergeStorite());
+		builder.addVisitor(new StorbyMergerVisiStorite());
 		InfoMerger<StorbyInfo, StoriteInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -58,7 +58,7 @@ public final class StorbyMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorbyVisiMergeMatopore());
+		builder.addVisitor(new StorbyMergerVisiMatopore());
 		InfoMerger<StorbyInfo, MatoporeInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -71,7 +71,7 @@ public final class StorbyMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorbyVisiMergeFimeco());
+		builder.addVisitor(new StorbyMergerVisiFimeco());
 		InfoMerger<StorbyInfo, FimecoInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -84,7 +84,7 @@ public final class StorbyMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorbyVisiMergeComplis());
+		builder.addVisitor(new StorbyMergerVisiComplis());
 		InfoMerger<StorbyInfo, ComplisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -97,7 +97,7 @@ public final class StorbyMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorbyVisiMergeAddress());
+		builder.addVisitor(new StorbyMergerVisiAddress());
 		InfoMerger<StorbyInfo, AddressInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -110,7 +110,7 @@ public final class StorbyMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorbyVisiMergeGeosh());
+		builder.addVisitor(new StorbyMergerVisiGeosh());
 		InfoMerger<StorbyInfo, GeoshInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -123,7 +123,7 @@ public final class StorbyMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorbyVisiMergeToSelect());
+		builder.addVisitor(new StorbyMergerVisiToSelect());
 		InfoMerger<StorbyInfo, StorbyInfo> merger = builder.build();		
 	
 		return merger.merge();

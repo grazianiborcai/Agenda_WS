@@ -1,7 +1,7 @@
 package br.com.mind5.business.storeNearby.model.checker;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
-import br.com.mind5.business.storeNearby.model.decisionTree.RootStorbySelect50km;
+import br.com.mind5.business.storeNearby.model.decisionTree.StorbyRootSelect50km;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class StorbyCheckExist50km extends ModelCheckerTemplateAction<Storb
 	
 	
 	@Override protected ActionStd<StorbyInfo> buildActionHook(DeciTreeOption<StorbyInfo> option) {
-		ActionStd<StorbyInfo> select50km = new RootStorbySelect50km(option).toAction();
+		ActionStd<StorbyInfo> select50km = new StorbyRootSelect50km(option).toAction();
 		return select50km;
 	}
 	

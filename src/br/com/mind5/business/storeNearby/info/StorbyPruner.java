@@ -11,7 +11,7 @@ public final class StorbyPruner {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(baseInfos);
-		builder.addVisitor(new StorbyVisiPruneEmpty());
+		builder.addVisitor(new StorbyPrunerVisiEmpty());
 		InfoPruner<StorbyInfo, StorbyInfo> pruner = builder.build();		
 	
 		return pruner.prune();
@@ -24,7 +24,7 @@ public final class StorbyPruner {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(baseInfos);
-		builder.addVisitor(new StorbyVisiPruneDistance50());
+		builder.addVisitor(new StorbyPrunerVisiDistance50());
 		InfoPruner<StorbyInfo, StorbyInfo> pruner = builder.build();		
 	
 		return pruner.prune();

@@ -1,7 +1,7 @@
 package br.com.mind5.business.storeNearby.model.checker;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
-import br.com.mind5.business.storeNearby.model.decisionTree.RootStorbySelectHash02;
+import br.com.mind5.business.storeNearby.model.decisionTree.StorbyRootSelectHash02;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class StorbyCheckExistHash02 extends ModelCheckerTemplateAction<Sto
 	
 	
 	@Override protected ActionStd<StorbyInfo> buildActionHook(DeciTreeOption<StorbyInfo> option) {
-		ActionStd<StorbyInfo> selectHash02 = new RootStorbySelectHash02(option).toAction();
+		ActionStd<StorbyInfo> selectHash02 = new StorbyRootSelectHash02(option).toAction();
 		return selectHash02;
 	}
 	
