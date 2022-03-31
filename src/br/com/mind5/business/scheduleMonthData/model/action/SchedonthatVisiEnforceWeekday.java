@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedonthatEnforceWeekday extends ActionVisitorTemplateEnforce<SchedonthatInfo> {
+public final class SchedonthatVisiEnforceWeekday extends ActionVisitorTemplateEnforce<SchedonthatInfo> {
 	
-	public VisiSchedonthatEnforceWeekday(DeciTreeOption<SchedonthatInfo> option) {
+	public SchedonthatVisiEnforceWeekday(DeciTreeOption<SchedonthatInfo> option) {
 		super(option);
 	}
 	

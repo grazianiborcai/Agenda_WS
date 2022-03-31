@@ -6,7 +6,7 @@ import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
 import br.com.mind5.business.scheduleMonth.info.SchedmonMerger;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatCopier;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
-import br.com.mind5.business.scheduleMonthData.model.decisionTree.RootSchedonthatSelect;
+import br.com.mind5.business.scheduleMonthData.model.decisionTree.SchedonthatRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class SchedmonVisiMergeSchedonthat extends ActionVisitorTemplateMer
 	
 	
 	@Override protected Class<? extends DeciTree<SchedonthatInfo>> getTreeClassHook() {
-		return RootSchedonthatSelect.class;
+		return SchedonthatRootSelect.class;
 	}
 	
 	

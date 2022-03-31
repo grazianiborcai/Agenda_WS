@@ -11,7 +11,7 @@ public final class SchedonthatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedonthatVisiMergeToSelect());
+		builder.addVisitor(new SchedonthatMergerVisiToSelect());
 		InfoMerger<SchedonthatInfo, SchedonthatInfo> merger = builder.build();		
 	
 		return merger.merge();

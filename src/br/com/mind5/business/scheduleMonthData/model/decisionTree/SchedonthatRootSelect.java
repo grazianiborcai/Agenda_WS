@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
-import br.com.mind5.business.scheduleMonthData.model.action.LazySchedonthatEnforceWeekday;
-import br.com.mind5.business.scheduleMonthData.model.action.StdSchedonthatMergeToSelect;
+import br.com.mind5.business.scheduleMonthData.model.action.SchedonthatVisiEnforceWeekday;
+import br.com.mind5.business.scheduleMonthData.model.action.SchedonthatVisiMergeToSelect;
 import br.com.mind5.business.scheduleMonthData.model.checker.SchedonthatCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSchedonthatSelect extends DeciTreeTemplateWrite<SchedonthatInfo> {
+public final class SchedonthatRootSelect extends DeciTreeTemplateWrite<SchedonthatInfo> {
 	
-	public RootSchedonthatSelect(DeciTreeOption<SchedonthatInfo> option) {
+	public SchedonthatRootSelect(DeciTreeOption<SchedonthatInfo> option) {
 		super(option);
 	}
 	
@@ -43,8 +45,8 @@ public final class RootSchedonthatSelect extends DeciTreeTemplateWrite<Schedonth
 	@Override protected List<ActionStd<SchedonthatInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedonthatInfo> option) {
 		List<ActionStd<SchedonthatInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedonthatInfo> mergeToSelect = new StdSchedonthatMergeToSelect(option);
-		ActionLazy<SchedonthatInfo> enforceWeekday = new LazySchedonthatEnforceWeekday(option.conn, option.schemaName);
+		ActionStd<SchedonthatInfo> mergeToSelect = new ActionStdCommom<SchedonthatInfo>(option, SchedonthatVisiMergeToSelect.class);
+		ActionLazy<SchedonthatInfo> enforceWeekday = new ActionLazyCommom<SchedonthatInfo>(option, SchedonthatVisiEnforceWeekday.class);
 		
 		mergeToSelect.addPostAction(enforceWeekday);
 		

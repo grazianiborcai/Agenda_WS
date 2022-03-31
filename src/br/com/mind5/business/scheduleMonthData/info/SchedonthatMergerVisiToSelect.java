@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class SchedonthatVisiMergeToSelect extends InfoMergerVisitorTemplate<SchedonthatInfo, SchedonthatInfo> {
+final class SchedonthatMergerVisiToSelect extends InfoMergerVisitorTemplate<SchedonthatInfo, SchedonthatInfo> {
 
 	@Override public boolean shouldMerge(SchedonthatInfo baseInfo, SchedonthatInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);

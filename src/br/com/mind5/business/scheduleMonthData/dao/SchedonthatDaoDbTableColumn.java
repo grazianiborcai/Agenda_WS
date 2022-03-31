@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoSchedonthatDbTableColumn extends DaoDbTableColumnTemplate {
+public final class SchedonthatDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
@@ -23,7 +23,7 @@ public final class DaoSchedonthatDbTableColumn extends DaoDbTableColumnTemplate 
 	public static final String COL_YEAR = DaoDbField.COL_YEAR;
 	
 	
-	public DaoSchedonthatDbTableColumn() {
+	public SchedonthatDaoDbTableColumn() {
 		super();
 	}
 	
