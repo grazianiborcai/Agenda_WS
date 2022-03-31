@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedmonEnforceNow extends ActionVisitorTemplateEnforce<SchedmonInfo> {
+public final class SchedmonVisiEnforceNow extends ActionVisitorTemplateEnforce<SchedmonInfo> {
 	
-	public VisiSchedmonEnforceNow(DeciTreeOption<SchedmonInfo> option) {
+	public SchedmonVisiEnforceNow(DeciTreeOption<SchedmonInfo> option) {
 		super(option);
 	}
 

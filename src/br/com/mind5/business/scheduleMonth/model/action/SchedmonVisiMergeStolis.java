@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedmonMergeStolis extends ActionVisitorTemplateMerge<SchedmonInfo, StolisInfo> {
+public final class SchedmonVisiMergeStolis extends ActionVisitorTemplateMerge<SchedmonInfo, StolisInfo> {
 	
-	public VisiSchedmonMergeStolis(DeciTreeOption<SchedmonInfo> option) {
+	public SchedmonVisiMergeStolis(DeciTreeOption<SchedmonInfo> option) {
 		super(option, StolisInfo.class);
 	}
 	

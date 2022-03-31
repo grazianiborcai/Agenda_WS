@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedmonMergeCalate extends ActionVisitorTemplateMerge<SchedmonInfo, CalateInfo> {
+public final class SchedmonVisiMergeCalate extends ActionVisitorTemplateMerge<SchedmonInfo, CalateInfo> {
 	
-	public VisiSchedmonMergeCalate(DeciTreeOption<SchedmonInfo> option) {
+	public SchedmonVisiMergeCalate(DeciTreeOption<SchedmonInfo> option) {
 		super(option, CalateInfo.class);
 	}
 	

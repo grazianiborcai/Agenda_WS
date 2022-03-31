@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class SchedmonVisiMergeCalate extends InfoMergerVisitorTemplate<SchedmonInfo, CalateInfo> {
+final class SchedmonMergerVisiCalate extends InfoMergerVisitorTemplate<SchedmonInfo, CalateInfo> {
 
 	@Override public boolean shouldMerge(SchedmonInfo baseInfo, CalateInfo selectedInfo) {
 		return true;

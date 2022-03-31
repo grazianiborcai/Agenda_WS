@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedmonMergeSchedonthat extends ActionVisitorTemplateMerge<SchedmonInfo, SchedonthatInfo> {
+public final class SchedmonVisiMergeSchedonthat extends ActionVisitorTemplateMerge<SchedmonInfo, SchedonthatInfo> {
 	
-	public VisiSchedmonMergeSchedonthat(DeciTreeOption<SchedmonInfo> option) {
+	public SchedmonVisiMergeSchedonthat(DeciTreeOption<SchedmonInfo> option) {
 		super(option, SchedonthatInfo.class);
 	}
 	

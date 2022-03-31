@@ -16,7 +16,7 @@ public final class SchedmonMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedmonVisiMergeEmplres());
+		builder.addVisitor(new SchedmonMergerVisiEmplres());
 		InfoMerger<SchedmonInfo, EmplresInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -29,7 +29,7 @@ public final class SchedmonMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedmonVisiMergeCalate());
+		builder.addVisitor(new SchedmonMergerVisiCalate());
 		InfoMerger<SchedmonInfo, CalateInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -42,7 +42,7 @@ public final class SchedmonMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedmonVisiMergeMatlis());
+		builder.addVisitor(new SchedmonMergerVisiMatlis());
 		InfoMerger<SchedmonInfo, MatlisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -55,7 +55,7 @@ public final class SchedmonMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedmonVisiMergeStolis());
+		builder.addVisitor(new SchedmonMergerVisiStolis());
 		InfoMerger<SchedmonInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -68,7 +68,7 @@ public final class SchedmonMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedmonVisiMergeSchedonthat());
+		builder.addVisitor(new SchedmonMergerVisiSchedonthat());
 		InfoMerger<SchedmonInfo, SchedonthatInfo> merger = builder.build();		
 	
 		return merger.merge();
