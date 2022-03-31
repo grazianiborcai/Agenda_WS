@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStogueMergeMatoup extends ActionVisitorTemplateMerge<StogueInfo, MatoupInfo> {
+public final class StogueVisiMergeMatoup extends ActionVisitorTemplateMerge<StogueInfo, MatoupInfo> {
 	
-	public VisiStogueMergeMatoup(DeciTreeOption<StogueInfo> option) {
+	public StogueVisiMergeMatoup(DeciTreeOption<StogueInfo> option) {
 		super(option, MatoupInfo.class);
 	}
 	

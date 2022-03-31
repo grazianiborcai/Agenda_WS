@@ -14,7 +14,7 @@ public final class StogueMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StogueVisiMergeMatoup());
+		builder.addVisitor(new StogueMergerVisiMatoup());
 		InfoMerger<StogueInfo, MatoupInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class StogueMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StogueVisiMergeOwnelis());
+		builder.addVisitor(new StogueMergerVisiOwnelis());
 		InfoMerger<StogueInfo, OwnelisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class StogueMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StogueVisiMergeStorby());
+		builder.addVisitor(new StogueMergerVisiStorby());
 		InfoMerger<StogueInfo, StorbyInfo> merger = builder.build();		
 	
 		return merger.merge();

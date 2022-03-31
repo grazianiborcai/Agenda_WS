@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStogueMergeOwnelis extends ActionVisitorTemplateMerge<StogueInfo, OwnelisInfo> {
+public final class StogueVisiMergeOwnelis extends ActionVisitorTemplateMerge<StogueInfo, OwnelisInfo> {
 	
-	public VisiStogueMergeOwnelis(DeciTreeOption<StogueInfo> option) {
+	public StogueVisiMergeOwnelis(DeciTreeOption<StogueInfo> option) {
 		super(option, OwnelisInfo.class);
 	}
 	
