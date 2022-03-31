@@ -4,21 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleDayData.info.SchedaytaInfo;
-import br.com.mind5.business.scheduleDayData.model.action.StdSchedaytaMergeToSelect;
+import br.com.mind5.business.scheduleDayData.model.action.SchedaytaVisiMergeToSelect;
 import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckLangu;
 import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckOwner;
 import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckRead;
 import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckStore;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSchedaytaSelect extends DeciTreeTemplateWrite<SchedaytaInfo> {
+public final class SchedaytaRootSelect extends DeciTreeTemplateWrite<SchedaytaInfo> {
 	
-	public RootSchedaytaSelect(DeciTreeOption<SchedaytaInfo> option) {
+	public SchedaytaRootSelect(DeciTreeOption<SchedaytaInfo> option) {
 		super(option);
 	}
 	
@@ -65,7 +66,7 @@ public final class RootSchedaytaSelect extends DeciTreeTemplateWrite<SchedaytaIn
 	@Override protected List<ActionStd<SchedaytaInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedaytaInfo> option) {
 		List<ActionStd<SchedaytaInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedaytaInfo> select = new StdSchedaytaMergeToSelect(option);
+		ActionStd<SchedaytaInfo> select = new ActionStdCommom<SchedaytaInfo>(option, SchedaytaVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

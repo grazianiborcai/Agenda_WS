@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class DaoSchedaytaWhere implements DaoStmtWhere {	
+public final class SchedaytaDaoWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public DaoSchedaytaWhere(DaoWhereBuilderOption whereOption, String tableName, SchedaytaInfo recordInfo) {
+	public SchedaytaDaoWhere(DaoWhereBuilderOption whereOption, String tableName, SchedaytaInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,19 +27,19 @@ public final class DaoSchedaytaWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoSchedaytaDbTableColumn.COL_COD_OWNER :
+				case SchedaytaDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoSchedaytaDbTableColumn.COL_COD_STORE :
+				case SchedaytaDaoDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case DaoSchedaytaDbTableColumn.COL_DATE :
+				case SchedaytaDaoDbTableColumn.COL_DATE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.date));
 					break;
 					
-				case DaoSchedaytaDbTableColumn.COL_RECORD_MODE :
+				case SchedaytaDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

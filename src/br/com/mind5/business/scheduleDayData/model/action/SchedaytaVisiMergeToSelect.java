@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleDayData.info.SchedaytaInfo;
 import br.com.mind5.business.scheduleDayData.info.SchedaytaMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedaytaMergeToSelect extends ActionVisitorTemplateMerge<SchedaytaInfo, SchedaytaInfo> {
+public final class SchedaytaVisiMergeToSelect extends ActionVisitorTemplateMerge<SchedaytaInfo, SchedaytaInfo> {
 	
-	public VisiSchedaytaMergeToSelect(DeciTreeOption<SchedaytaInfo> option) {
+	public SchedaytaVisiMergeToSelect(DeciTreeOption<SchedaytaInfo> option) {
 		super(option, SchedaytaInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<SchedaytaInfo>> getActionClassHook() {
-		return StdSchedaytaDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<SchedaytaInfo>> getVisitorClassHook() {
+		return SchedaytaVisiDaoSelect.class;
 	}
 	
 	

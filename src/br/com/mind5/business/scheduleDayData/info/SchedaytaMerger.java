@@ -11,7 +11,7 @@ public final class SchedaytaMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedaytaVisiMergeToSelect());
+		builder.addVisitor(new SchedaytaMergerVisiToSelect());
 		InfoMerger<SchedaytaInfo, SchedaytaInfo> merger = builder.build();		
 	
 		return merger.merge();

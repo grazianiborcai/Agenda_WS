@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleDay.info.SchedayMerger;
 import br.com.mind5.business.scheduleDayData.info.SchedaytaInfo;
-import br.com.mind5.business.scheduleDayData.model.decisionTree.RootSchedaytaSelect;
+import br.com.mind5.business.scheduleDayData.model.decisionTree.SchedaytaRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class SchedayVisiMergeSchedayta extends ActionVisitorTemplateMerge<
 	
 	
 	@Override protected Class<? extends DeciTree<SchedaytaInfo>> getTreeClassHook() {
-		return RootSchedaytaSelect.class;
+		return SchedaytaRootSelect.class;
 	}
 	
 	
