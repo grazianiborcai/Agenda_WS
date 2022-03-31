@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapCopier;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
-import br.com.mind5.business.addressSnapshot.model.decisionTree.RootAddresnapSelect;
+import br.com.mind5.business.addressSnapshot.model.decisionTree.AddresnapRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ final class VisiCusmoipMergeAddresnap extends ActionVisitorTemplateMerge<Cusmoip
 	
 	
 	@Override protected Class<? extends DeciTree<AddresnapInfo>> getTreeClassHook() {
-		return RootAddresnapSelect.class;
+		return AddresnapRootSelect.class;
 	}
 	
 	

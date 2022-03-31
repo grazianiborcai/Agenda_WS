@@ -9,7 +9,7 @@ import br.com.mind5.authorization.storeAuthorization.dao.DaoStorauthDbTableColum
 import br.com.mind5.business.address.dao.AddressDaoDbTableColumn;
 import br.com.mind5.business.addressDefault.dao.AddaultDaoDbTableColumn;
 import br.com.mind5.business.addressSearch.dao.AddarchDaoDbTableColumn;
-import br.com.mind5.business.addressSnapshot.dao.DaoAddresnapDbTableColumn;
+import br.com.mind5.business.addressSnapshot.dao.AddresnapDaoDbTableColumn;
 import br.com.mind5.business.addressSnapshotSearch.dao.DaoAddresnaparchDbTableColumn;
 import br.com.mind5.business.calendarDate.dao.DaoCalateDbTableColumn;
 import br.com.mind5.business.calendarDateSearch.dao.DaoCalatarchDbTableColumn;
@@ -329,7 +329,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new OrderemDaoDbTableColumn());
 		addTable(new OrderDaoDbTableColumn());
 		addTable(new AddressDaoDbTableColumn());
-		addTable(new DaoAddresnapDbTableColumn());
+		addTable(new AddresnapDaoDbTableColumn());
 		addTable(new DaoFormessDbTableColumn());
 		addTable(new PhoneDaoDbTableColumn());
 		addTable(new DaoPhonapDbTableColumn());

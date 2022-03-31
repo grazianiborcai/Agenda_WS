@@ -19,7 +19,7 @@ public final class AddresnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddresnapVisiMergeAddresnaparch());
+		builder.addVisitor(new AddresnapMergerVisiAddresnaparch());
 		InfoMerger<AddresnapInfo, AddresnaparchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -32,7 +32,7 @@ public final class AddresnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddresnapVisiMergeStolis());
+		builder.addVisitor(new AddresnapMergerVisiStolis());
 		InfoMerger<AddresnapInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -45,7 +45,7 @@ public final class AddresnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddresnapVisiMergeCuslis());
+		builder.addVisitor(new AddresnapMergerVisiCuslis());
 		InfoMerger<AddresnapInfo, CuslisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -58,7 +58,7 @@ public final class AddresnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddresnapVisiMergeEmplis());
+		builder.addVisitor(new AddresnapMergerVisiEmplis());
 		InfoMerger<AddresnapInfo, EmplisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -71,7 +71,7 @@ public final class AddresnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddresnapVisiMergeUselis());
+		builder.addVisitor(new AddresnapMergerVisiUselis());
 		InfoMerger<AddresnapInfo, UselisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -84,7 +84,7 @@ public final class AddresnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddresnapVisiMergeFormess());
+		builder.addVisitor(new AddresnapMergerVisiFormess());
 		InfoMerger<AddresnapInfo, FormessInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -97,7 +97,7 @@ public final class AddresnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddresnapVisiMergeCountry());
+		builder.addVisitor(new AddresnapMergerVisiCountry());
 		InfoMerger<AddresnapInfo, CountryInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -110,7 +110,7 @@ public final class AddresnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddresnapVisiMergeState());
+		builder.addVisitor(new AddresnapMergerVisiState());
 		InfoMerger<AddresnapInfo, StateInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -123,7 +123,7 @@ public final class AddresnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddresnapVisiMergeToSelect());
+		builder.addVisitor(new AddresnapMergerVisiToSelect());
 		InfoMerger<AddresnapInfo, AddresnapInfo> merger = builder.build();		
 	
 		return merger.merge();
