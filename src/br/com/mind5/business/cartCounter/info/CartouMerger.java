@@ -13,7 +13,7 @@ public final class CartouMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartouVisiMergeCartem());
+		builder.addVisitor(new CartouMergerVisiCartem());
 		InfoMerger<CartouInfo, CartemInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class CartouMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartouVisiMergeUsername());
+		builder.addVisitor(new CartouMergerVisiUsername());
 		InfoMerger<CartouInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();

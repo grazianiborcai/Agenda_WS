@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartouEnforceItemCounter extends ActionVisitorTemplateEnforce<CartouInfo> {
+public final class CartouVisiEnforceItemCounter extends ActionVisitorTemplateEnforce<CartouInfo> {
 	
-	public VisiCartouEnforceItemCounter(DeciTreeOption<CartouInfo> option) {
+	public CartouVisiEnforceItemCounter(DeciTreeOption<CartouInfo> option) {
 		super(option);
 	}
 	

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class CartouVisiMergeUsername extends InfoMergerVisitorTemplate<CartouInfo, UsernameInfo> {
+final class CartouMergerVisiUsername extends InfoMergerVisitorTemplate<CartouInfo, UsernameInfo> {
 
 	@Override public boolean shouldMerge(CartouInfo baseInfo, UsernameInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner		&&

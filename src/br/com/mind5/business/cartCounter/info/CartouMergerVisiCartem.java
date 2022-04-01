@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class CartouVisiMergeCartem extends InfoMergerVisitorTemplate<CartouInfo, CartemInfo> {
+final class CartouMergerVisiCartem extends InfoMergerVisitorTemplate<CartouInfo, CartemInfo> {
 
 	@Override public boolean shouldMerge(CartouInfo baseInfo, CartemInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner	&&

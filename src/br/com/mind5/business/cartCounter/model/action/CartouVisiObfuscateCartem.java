@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartouObfuscateCartem extends ActionVisitorTemplateEnforce<CartouInfo> {
+public final class CartouVisiObfuscateCartem extends ActionVisitorTemplateEnforce<CartouInfo> {
 	
-	public VisiCartouObfuscateCartem(DeciTreeOption<CartouInfo> option) {
+	public CartouVisiObfuscateCartem(DeciTreeOption<CartouInfo> option) {
 		super(option);
 	}
 	

@@ -3,7 +3,7 @@ package br.com.mind5.business.home.model.action;
 import java.util.List;
 
 import br.com.mind5.business.cartCounter.info.CartouInfo;
-import br.com.mind5.business.cartCounter.model.decisionTree.RootCartouSelect;
+import br.com.mind5.business.cartCounter.model.decisionTree.CartouRootSelect;
 import br.com.mind5.business.home.info.HomeInfo;
 import br.com.mind5.business.home.info.HomeMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class HomeVisiMergeCartou extends ActionVisitorTemplateMerge<HomeIn
 	
 	
 	@Override protected Class<? extends DeciTree<CartouInfo>> getTreeClassHook() {
-		return RootCartouSelect.class;
+		return CartouRootSelect.class;
 	}
 	
 	

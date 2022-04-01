@@ -4,22 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cartCounter.info.CartouInfo;
-import br.com.mind5.business.cartCounter.model.action.LazyCartouNodeSelect;
-import br.com.mind5.business.cartCounter.model.action.StdCartouMergeUsername;
+import br.com.mind5.business.cartCounter.model.action.CartouVisiNodeSelect;
+import br.com.mind5.business.cartCounter.model.action.CartouVisiMergeUsername;
 import br.com.mind5.business.cartCounter.model.checker.CartouCheckLangu;
 import br.com.mind5.business.cartCounter.model.checker.CartouCheckOwner;
 import br.com.mind5.business.cartCounter.model.checker.CartouCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCartouSelect extends DeciTreeTemplateRead<CartouInfo> {
+public final class CartouRootSelect extends DeciTreeTemplateRead<CartouInfo> {
 	
-	public RootCartouSelect(DeciTreeOption<CartouInfo> option) {
+	public CartouRootSelect(DeciTreeOption<CartouInfo> option) {
 		super(option);
 	}
 	
@@ -59,8 +61,8 @@ public final class RootCartouSelect extends DeciTreeTemplateRead<CartouInfo> {
 	@Override protected List<ActionStd<CartouInfo>> buildActionsOnPassedHook(DeciTreeOption<CartouInfo> option) {
 		List<ActionStd<CartouInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CartouInfo> mergeUser = new StdCartouMergeUsername(option);
-		ActionLazy<CartouInfo> nodeL1 = new LazyCartouNodeSelect(option.conn, option.schemaName);
+		ActionStd<CartouInfo> mergeUser = new ActionStdCommom<CartouInfo>(option, CartouVisiMergeUsername.class);
+		ActionLazy<CartouInfo> nodeL1 = new ActionLazyCommom<CartouInfo>(option, CartouVisiNodeSelect.class);
 		
 		mergeUser.addPostAction(nodeL1);
 		

@@ -4,22 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cartCounter.info.CartouInfo;
-import br.com.mind5.business.cartCounter.model.action.LazyCartouEnforceItemCounter;
-import br.com.mind5.business.cartCounter.model.action.LazyCartouObfuscateCartem;
-import br.com.mind5.business.cartCounter.model.action.StdCartouEnforceItemCounter;
-import br.com.mind5.business.cartCounter.model.action.StdCartouMergeCartem;
+import br.com.mind5.business.cartCounter.model.action.CartouVisiEnforceItemCounter;
+import br.com.mind5.business.cartCounter.model.action.CartouVisiMergeCartem;
+import br.com.mind5.business.cartCounter.model.action.CartouVisiObfuscateCartem;
 import br.com.mind5.business.cartCounter.model.checker.CartouCheckCartem;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class NodeCartouSelect extends DeciTreeTemplateRead<CartouInfo> {
+public final class CartouNodeSelect extends DeciTreeTemplateRead<CartouInfo> {
 	
-	public NodeCartouSelect(DeciTreeOption<CartouInfo> option) {
+	public CartouNodeSelect(DeciTreeOption<CartouInfo> option) {
 		super(option);
 	}
 	
@@ -45,9 +46,9 @@ public final class NodeCartouSelect extends DeciTreeTemplateRead<CartouInfo> {
 	@Override protected List<ActionStd<CartouInfo>> buildActionsOnPassedHook(DeciTreeOption<CartouInfo> option) {
 		List<ActionStd<CartouInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CartouInfo> mergeCartem = new StdCartouMergeCartem(option);
-		ActionLazy<CartouInfo> enforceItemCounter = new LazyCartouEnforceItemCounter(option.conn, option.schemaName);
-		ActionLazy<CartouInfo> obfuscateCartem = new LazyCartouObfuscateCartem(option.conn, option.schemaName);
+		ActionStd<CartouInfo> mergeCartem = new ActionStdCommom<CartouInfo>(option, CartouVisiMergeCartem.class);
+		ActionLazy<CartouInfo> enforceItemCounter = new ActionLazyCommom<CartouInfo>(option, CartouVisiEnforceItemCounter.class);
+		ActionLazy<CartouInfo> obfuscateCartem = new ActionLazyCommom<CartouInfo>(option, CartouVisiObfuscateCartem.class);
 		
 		mergeCartem.addPostAction(enforceItemCounter);
 		enforceItemCounter.addPostAction(obfuscateCartem);
@@ -61,8 +62,8 @@ public final class NodeCartouSelect extends DeciTreeTemplateRead<CartouInfo> {
 	@Override protected List<ActionStd<CartouInfo>> buildActionsOnFailedHook(DeciTreeOption<CartouInfo> option) {
 		List<ActionStd<CartouInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CartouInfo> enforceItemCounter = new StdCartouEnforceItemCounter(option);
-		ActionLazy<CartouInfo> obfuscateCartem = new LazyCartouObfuscateCartem(option.conn, option.schemaName);
+		ActionStd<CartouInfo> enforceItemCounter = new ActionStdCommom<CartouInfo>(option, CartouVisiEnforceItemCounter.class);
+		ActionLazy<CartouInfo> obfuscateCartem = new ActionLazyCommom<CartouInfo>(option, CartouVisiObfuscateCartem.class);
 		
 		enforceItemCounter.addPostAction(obfuscateCartem);
 		
