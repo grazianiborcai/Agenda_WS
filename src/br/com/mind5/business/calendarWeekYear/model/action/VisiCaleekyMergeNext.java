@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.calendarDate.info.CalateCopier;
 import br.com.mind5.business.calendarDate.info.CalateInfo;
-import br.com.mind5.business.calendarDate.model.decisionTree.RootCalateSelectNext;
+import br.com.mind5.business.calendarDate.model.decisionTree.CalateRootSelectNext;
 import br.com.mind5.business.calendarWeekYear.info.CaleekyInfo;
 import br.com.mind5.business.calendarWeekYear.info.CaleekyMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -20,7 +20,7 @@ final class VisiCaleekyMergeNext extends ActionVisitorTemplateMerge<CaleekyInfo,
 	
 	
 	@Override protected Class<? extends DeciTree<CalateInfo>> getTreeClassHook() {
-		return RootCalateSelectNext.class;
+		return CalateRootSelectNext.class;
 	}
 	
 	

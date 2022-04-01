@@ -3,7 +3,7 @@ package br.com.mind5.business.scheduleDay.model.action;
 import java.util.List;
 
 import br.com.mind5.business.calendarDate.info.CalateInfo;
-import br.com.mind5.business.calendarDate.model.decisionTree.RootCalateSelect;
+import br.com.mind5.business.calendarDate.model.decisionTree.CalateRootSelect;
 import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleDay.info.SchedayMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class SchedayVisiMergeCalate extends ActionVisitorTemplateMerge<Sch
 	
 	
 	@Override protected Class<? extends DeciTree<CalateInfo>> getTreeClassHook() {
-		return RootCalateSelect.class;
+		return CalateRootSelect.class;
 	}
 	
 	

@@ -15,7 +15,7 @@ public final class CalateMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalateVisiMergeCalatarch());
+		builder.addVisitor(new CalateMergerVisiCalatarch());
 		InfoMerger<CalateInfo, CalatarchInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -28,7 +28,7 @@ public final class CalateMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalateVisiMergeMonth());
+		builder.addVisitor(new CalateMergerVisiMonth());
 		InfoMerger<CalateInfo, MonthInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -41,7 +41,7 @@ public final class CalateMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalateVisiMergeMooncal());
+		builder.addVisitor(new CalateMergerVisiMooncal());
 		InfoMerger<CalateInfo, MooncalInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -54,7 +54,7 @@ public final class CalateMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalateVisiMergeWeekday());
+		builder.addVisitor(new CalateMergerVisiWeekday());
 		InfoMerger<CalateInfo, WeekdayInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -67,7 +67,7 @@ public final class CalateMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalateVisiMergeToSelect());
+		builder.addVisitor(new CalateMergerVisiToSelect());
 		InfoMerger<CalateInfo, CalateInfo> merger = builder.build();
 	
 		return merger.merge();

@@ -3,7 +3,7 @@ package br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.model.action;
 import java.util.List;
 
 import br.com.mind5.business.calendarDate.info.CalateInfo;
-import br.com.mind5.business.calendarDate.model.decisionTree.RootCalateSelect;
+import br.com.mind5.business.calendarDate.model.decisionTree.CalateRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiStordagrMergeCalate extends ActionVisitorTemplateMerge<StordagrI
 	
 	
 	@Override protected Class<? extends DeciTree<CalateInfo>> getTreeClassHook() {
-		return RootCalateSelect.class;
+		return CalateRootSelect.class;
 	}
 	
 	
