@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplatePrune;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalguataPrunePlanata extends ActionVisitorTemplatePrune<CalguataInfo, PlanataInfo> {
+public final class CalguataVisiPrunePlanata extends ActionVisitorTemplatePrune<CalguataInfo, PlanataInfo> {
 	
-	public VisiCalguataPrunePlanata(DeciTreeOption<CalguataInfo> option) {
+	public CalguataVisiPrunePlanata(DeciTreeOption<CalguataInfo> option) {
 		super(option, PlanataInfo.class);
 	}
 	

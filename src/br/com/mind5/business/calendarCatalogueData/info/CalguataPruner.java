@@ -12,7 +12,7 @@ public final class CalguataPruner {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(baseInfos);
-		builder.addVisitor(new CalguataVisiPruneAged());
+		builder.addVisitor(new CalguataPrunerVisiAged());
 		InfoPruner<CalguataInfo, CalguataInfo> pruner = builder.build();		
 	
 		return pruner.prune();
@@ -25,7 +25,7 @@ public final class CalguataPruner {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalguataVisiPrunePlanata());
+		builder.addVisitor(new CalguataPrunerVisiPlanata());
 		InfoPruner<CalguataInfo, PlanataInfo> pruner = builder.build();		
 	
 		return pruner.prune();

@@ -4,22 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.calendarCatalogueData.info.CalguataInfo;
-import br.com.mind5.business.calendarCatalogueData.model.action.LazyCalguataPruneAged;
-import br.com.mind5.business.calendarCatalogueData.model.action.LazyCalguataPrunePlanata;
-import br.com.mind5.business.calendarCatalogueData.model.action.StdCalguataMergeCalate;
+import br.com.mind5.business.calendarCatalogueData.model.action.CalguataVisiMergeCalate;
+import br.com.mind5.business.calendarCatalogueData.model.action.CalguataVisiPruneAged;
+import br.com.mind5.business.calendarCatalogueData.model.action.CalguataVisiPrunePlanata;
 import br.com.mind5.business.calendarCatalogueData.model.checker.CalguataCheckRead;
 import br.com.mind5.business.calendarCatalogueData.model.checker.CalguataCheckYearMonth;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCalguataSelect extends DeciTreeTemplateRead<CalguataInfo> {
+public final class CalguataRootSelect extends DeciTreeTemplateRead<CalguataInfo> {
 	
-	public RootCalguataSelect(DeciTreeOption<CalguataInfo> option) {
+	public CalguataRootSelect(DeciTreeOption<CalguataInfo> option) {
 		super(option);
 	}
 	
@@ -52,9 +54,9 @@ public final class RootCalguataSelect extends DeciTreeTemplateRead<CalguataInfo>
 	@Override protected List<ActionStd<CalguataInfo>> buildActionsOnPassedHook(DeciTreeOption<CalguataInfo> option) {
 		List<ActionStd<CalguataInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CalguataInfo> mergeCalate = new StdCalguataMergeCalate(option);
-		ActionLazy<CalguataInfo> pruneAged = new LazyCalguataPruneAged(option.conn, option.schemaName);
-		ActionLazy<CalguataInfo> prunePlanata = new LazyCalguataPrunePlanata(option.conn, option.schemaName);
+		ActionStd<CalguataInfo> mergeCalate = new ActionStdCommom<CalguataInfo>(option, CalguataVisiMergeCalate.class);
+		ActionLazy<CalguataInfo> pruneAged = new ActionLazyCommom<CalguataInfo>(option, CalguataVisiPruneAged.class);
+		ActionLazy<CalguataInfo> prunePlanata = new ActionLazyCommom<CalguataInfo>(option, CalguataVisiPrunePlanata.class);
 		
 		mergeCalate.addPostAction(pruneAged);
 		pruneAged.addPostAction(prunePlanata);

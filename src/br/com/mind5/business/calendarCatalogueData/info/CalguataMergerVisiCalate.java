@@ -7,7 +7,7 @@ import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class CalguataVisiMergeCalate extends InfoMergerVisitorTemplate<CalguataInfo, CalateInfo> {
+final class CalguataMergerVisiCalate extends InfoMergerVisitorTemplate<CalguataInfo, CalateInfo> {
 
 	@Override public boolean shouldMerge(CalguataInfo baseInfo, CalateInfo selectedInfo) {
 		return (baseInfo.year  == selectedInfo.year && 

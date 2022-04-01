@@ -12,7 +12,7 @@ public final class CalguataMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalguataVisiMergeCalate());
+		builder.addVisitor(new CalguataMergerVisiCalate());
 		InfoMerger<CalguataInfo, CalateInfo> merger = builder.build();		
 	
 		return merger.merge();

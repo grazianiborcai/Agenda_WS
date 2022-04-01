@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoPrunerSingleVisitor;
 
-final class CalguataVisiPruneAged implements InfoPrunerSingleVisitor<CalguataInfo, CalguataInfo> {
+final class CalguataPrunerVisiAged implements InfoPrunerSingleVisitor<CalguataInfo, CalguataInfo> {
 	
 	@Override public boolean pruneRecord(CalguataInfo baseInfo, CalguataInfo selectedInfo) {
 		if (baseInfo.date == null)

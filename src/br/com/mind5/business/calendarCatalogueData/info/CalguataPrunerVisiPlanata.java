@@ -8,7 +8,7 @@ import java.util.Set;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.info.InfoPrunerListVisitor;
 
-final class CalguataVisiPrunePlanata implements InfoPrunerListVisitor<CalguataInfo, PlanataInfo> {
+final class CalguataPrunerVisiPlanata implements InfoPrunerListVisitor<CalguataInfo, PlanataInfo> {
 	
 	@Override public List<CalguataInfo> pruneRecord(List<CalguataInfo> baseInfos, List<PlanataInfo> selectedInfos) {
 		Set<CalguataInfo> results = new HashSet<>();

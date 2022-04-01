@@ -7,9 +7,9 @@ import br.com.mind5.business.calendarCatalogueData.info.CalguataPruner;
 import br.com.mind5.model.action.ActionVisitorTemplatePruneSelf;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalguataPruneAged extends ActionVisitorTemplatePruneSelf<CalguataInfo> {
+public final class CalguataVisiPruneAged extends ActionVisitorTemplatePruneSelf<CalguataInfo> {
 	
-	public VisiCalguataPruneAged(DeciTreeOption<CalguataInfo> option) {
+	public CalguataVisiPruneAged(DeciTreeOption<CalguataInfo> option) {
 		super(option);
 	}
 	
