@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateCopier;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
-import br.com.mind5.business.employeeLeaveDate.model.decisionTree.RootEmplateSelect;
+import br.com.mind5.business.employeeLeaveDate.model.decisionTree.EmplateRootSelect;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataPruner;
 import br.com.mind5.model.action.ActionVisitorTemplatePrune;
@@ -20,7 +20,7 @@ public final class PlanataVisiPruneEmplate extends ActionVisitorTemplatePrune<Pl
 	
 	
 	@Override protected Class<? extends DeciTree<EmplateInfo>> getTreeClassHook() {
-		return RootEmplateSelect.class;
+		return EmplateRootSelect.class;
 	}
 	
 	

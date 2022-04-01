@@ -14,7 +14,7 @@ public final class EmplateMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmplateVisiMergeEmplarch());
+		builder.addVisitor(new EmplateMergerVisiEmplarch());
 		InfoMerger<EmplateInfo, EmplarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class EmplateMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmplateVisiMergeTimezone());
+		builder.addVisitor(new EmplateMergerVisiTimezone());
 		InfoMerger<EmplateInfo, TimezoneInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class EmplateMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmplateVisiMergeUsername());
+		builder.addVisitor(new EmplateMergerVisiUsername());
 		InfoMerger<EmplateInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -53,7 +53,7 @@ public final class EmplateMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmplateVisiMergeToSelect());
+		builder.addVisitor(new EmplateMergerVisiToSelect());
 		InfoMerger<EmplateInfo, EmplateInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -66,7 +66,7 @@ public final class EmplateMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmplateVisiMergeToDelete());
+		builder.addVisitor(new EmplateMergerVisiToDelete());
 		InfoMerger<EmplateInfo, EmplateInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -79,7 +79,7 @@ public final class EmplateMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmplateVisiMergeToUpdate());
+		builder.addVisitor(new EmplateMergerVisiToUpdate());
 		InfoMerger<EmplateInfo, EmplateInfo> merger = builder.build();		
 	
 		return merger.merge();
