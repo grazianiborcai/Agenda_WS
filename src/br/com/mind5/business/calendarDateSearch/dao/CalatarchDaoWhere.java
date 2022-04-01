@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class DaoCalatarchWhere implements DaoStmtWhere {
+final class CalatarchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoCalatarchWhere(DaoWhereBuilderOption whereOption, String tableName, CalatarchInfo recordInfo) {
+	public CalatarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, CalatarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,19 +26,19 @@ final class DaoCalatarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoCalatarchDbTableColumn.COL_YEAR :
+				case CalatarchDaoDbTableColumn.COL_YEAR :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.year));
 					break;
 					
-				case DaoCalatarchDbTableColumn.COL_MONTH :
+				case CalatarchDaoDbTableColumn.COL_MONTH :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.month));
 					break;
 					
-				case DaoCalatarchDbTableColumn.COL_WEEK_MONTH :
+				case CalatarchDaoDbTableColumn.COL_WEEK_MONTH :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.weekMonth));
 					break;
 					
-				case DaoCalatarchDbTableColumn.COL_WEEK_YEAR :
+				case CalatarchDaoDbTableColumn.COL_WEEK_YEAR :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.weekYear));
 					break;
 			}

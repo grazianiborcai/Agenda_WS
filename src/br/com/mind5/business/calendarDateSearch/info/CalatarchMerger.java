@@ -11,7 +11,7 @@ public final class CalatarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalatarchVisiMergeToSelect());
+		builder.addVisitor(new CalatarchMergerVisiToSelect());
 		InfoMerger<CalatarchInfo, CalatarchInfo> merger = builder.build();		
 	
 		return merger.merge();

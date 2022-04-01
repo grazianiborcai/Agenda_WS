@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.calendarDateSearch.info.CalatarchInfo;
-import br.com.mind5.business.calendarDateSearch.model.action.StdCalatarchMergeToSelect;
+import br.com.mind5.business.calendarDateSearch.model.action.CalatarchVisiMergeToSelect;
 import br.com.mind5.business.calendarDateSearch.model.checker.CalatarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCalatarchSelect extends DeciTreeTemplateRead<CalatarchInfo> {
+public final class CalatarchRootSelect extends DeciTreeTemplateRead<CalatarchInfo> {
 	
-	public RootCalatarchSelect(DeciTreeOption<CalatarchInfo> option) {
+	public CalatarchRootSelect(DeciTreeOption<CalatarchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootCalatarchSelect extends DeciTreeTemplateRead<CalatarchInf
 	@Override protected List<ActionStd<CalatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CalatarchInfo> option) {
 		List<ActionStd<CalatarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CalatarchInfo> mergeToSelect = new StdCalatarchMergeToSelect(option);
+		ActionStd<CalatarchInfo> mergeToSelect = new ActionStdCommom<CalatarchInfo>(option, CalatarchVisiMergeToSelect.class);
 		
 		actions.add(mergeToSelect);
 		return actions;

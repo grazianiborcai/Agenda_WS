@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoCalatarchSelect implements DaoStmtExec<CalatarchInfo> {
+public final class CalatarchDaoSelect implements DaoStmtExec<CalatarchInfo> {
 	private DaoStmtExec<CalatarchInfo> helper;
 	
 	
-	public DaoCalatarchSelect(List<DaoStmtExecOption<CalatarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCalatarchSelectSingle.class, CalatarchInfo.class);
+	public CalatarchDaoSelect(List<DaoStmtExecOption<CalatarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CalatarchDaoSelectSingle.class, CalatarchInfo.class);
 	}
 	
 	

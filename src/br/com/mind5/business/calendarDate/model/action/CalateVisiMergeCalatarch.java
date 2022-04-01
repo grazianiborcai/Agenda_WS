@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.calendarDate.info.CalateMerger;
 import br.com.mind5.business.calendarDateSearch.info.CalatarchInfo;
-import br.com.mind5.business.calendarDateSearch.model.decisionTree.RootCalatarchSelect;
+import br.com.mind5.business.calendarDateSearch.model.decisionTree.CalatarchRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class CalateVisiMergeCalatarch extends ActionVisitorTemplateMerge<C
 	
 	
 	@Override protected Class<? extends DeciTree<CalatarchInfo>> getTreeClassHook() {
-		return RootCalatarchSelect.class;
+		return CalatarchRootSelect.class;
 	}
 	
 	

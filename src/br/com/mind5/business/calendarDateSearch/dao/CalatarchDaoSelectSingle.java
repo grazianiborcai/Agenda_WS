@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoCalatarchSelectSingle extends DaoStmtTemplate<CalatarchInfo> {
+public final class CalatarchDaoSelectSingle extends DaoStmtTemplate<CalatarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CALENDAR_DATE_TABLE;
 	
 	
-	public DaoCalatarchSelectSingle(Connection conn, CalatarchInfo recordInfo, String schemaName) {
+	public CalatarchDaoSelectSingle(Connection conn, CalatarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoCalatarchSelectSingle extends DaoStmtTemplate<CalatarchInf
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		
-		DaoStmtWhere whereClause = new DaoCalatarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new CalatarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,15 +67,15 @@ public final class DaoCalatarchSelectSingle extends DaoStmtTemplate<CalatarchInf
 				do {				
 					CalatarchInfo dataInfo = new CalatarchInfo();
 					
-					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, DaoCalatarchDbTableColumn.COL_DATE);
-					dataInfo.year = stmtResult.getInt(DaoCalatarchDbTableColumn.COL_YEAR);					
-					dataInfo.month = stmtResult.getInt(DaoCalatarchDbTableColumn.COL_MONTH);
-					dataInfo.day = stmtResult.getInt(DaoCalatarchDbTableColumn.COL_DAY);
-					dataInfo.codWeekday = stmtResult.getInt(DaoCalatarchDbTableColumn.COL_COD_WEEKDAY);
-					dataInfo.quarter = stmtResult.getInt(DaoCalatarchDbTableColumn.COL_QUARTER);
-					dataInfo.weekYear = stmtResult.getInt(DaoCalatarchDbTableColumn.COL_WEEK_YEAR);
-					dataInfo.weekMonth = stmtResult.getInt(DaoCalatarchDbTableColumn.COL_WEEK_MONTH);
-					dataInfo.isWeekend = stmtResult.getBoolean(DaoCalatarchDbTableColumn.COL_IS_WEEKEND);
+					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, CalatarchDaoDbTableColumn.COL_DATE);
+					dataInfo.year = stmtResult.getInt(CalatarchDaoDbTableColumn.COL_YEAR);					
+					dataInfo.month = stmtResult.getInt(CalatarchDaoDbTableColumn.COL_MONTH);
+					dataInfo.day = stmtResult.getInt(CalatarchDaoDbTableColumn.COL_DAY);
+					dataInfo.codWeekday = stmtResult.getInt(CalatarchDaoDbTableColumn.COL_COD_WEEKDAY);
+					dataInfo.quarter = stmtResult.getInt(CalatarchDaoDbTableColumn.COL_QUARTER);
+					dataInfo.weekYear = stmtResult.getInt(CalatarchDaoDbTableColumn.COL_WEEK_YEAR);
+					dataInfo.weekMonth = stmtResult.getInt(CalatarchDaoDbTableColumn.COL_WEEK_MONTH);
+					dataInfo.isWeekend = stmtResult.getBoolean(CalatarchDaoDbTableColumn.COL_IS_WEEKEND);
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());
