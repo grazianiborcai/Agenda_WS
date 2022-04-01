@@ -3,7 +3,7 @@ package br.com.mind5.business.scheduleDay.model.action;
 import java.util.List;
 
 import br.com.mind5.business.calendarTimeStore.info.CalimoreInfo;
-import br.com.mind5.business.calendarTimeStore.model.decisionTree.RootCalimoreSelect;
+import br.com.mind5.business.calendarTimeStore.model.decisionTree.CalimoreRootSelect;
 import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleDay.info.SchedayMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class SchedayVisiMergeCalimore extends ActionVisitorTemplateMerge<S
 	
 	
 	@Override protected Class<? extends DeciTree<CalimoreInfo>> getTreeClassHook() {
-		return RootCalimoreSelect.class;
+		return CalimoreRootSelect.class;
 	}
 	
 	

@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalimoreEnforceFallback extends ActionVisitorTemplateEnforce<CalimoreInfo> {
+public final class CalimoreVisiEnforceFallback extends ActionVisitorTemplateEnforce<CalimoreInfo> {
 	
-	public VisiCalimoreEnforceFallback(DeciTreeOption<CalimoreInfo> option) {
+	public CalimoreVisiEnforceFallback(DeciTreeOption<CalimoreInfo> option) {
 		super(option);
 	}
 

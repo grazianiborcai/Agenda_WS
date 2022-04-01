@@ -14,7 +14,7 @@ public final class CalimoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalimoreVisiMergeStolarg());
+		builder.addVisitor(new CalimoreMergeVisiStolarg());
 		InfoMerger<CalimoreInfo, StolargInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class CalimoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalimoreVisiMergeCalate());
+		builder.addVisitor(new CalimoreMergeVisiCalate());
 		InfoMerger<CalimoreInfo, CalateInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class CalimoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalimoreVisiMergeStowotarch());
+		builder.addVisitor(new CalimoreMergeVisiStowotarch());
 		InfoMerger<CalimoreInfo, StowotarchInfo> merger = builder.build();		
 	
 		return merger.merge();

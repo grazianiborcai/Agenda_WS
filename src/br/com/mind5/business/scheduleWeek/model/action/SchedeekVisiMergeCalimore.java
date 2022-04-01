@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.calendarTimeStore.info.CalimoreCopier;
 import br.com.mind5.business.calendarTimeStore.info.CalimoreInfo;
-import br.com.mind5.business.calendarTimeStore.model.decisionTree.RootCalimoreSelect;
+import br.com.mind5.business.calendarTimeStore.model.decisionTree.CalimoreRootSelect;
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.business.scheduleWeek.info.SchedeekMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -20,7 +20,7 @@ public final class SchedeekVisiMergeCalimore extends ActionVisitorTemplateMerge<
 	
 	
 	@Override protected Class<? extends DeciTree<CalimoreInfo>> getTreeClassHook() {
-		return RootCalimoreSelect.class;
+		return CalimoreRootSelect.class;
 	}
 	
 	

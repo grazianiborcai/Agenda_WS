@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalimoreMergeStolarg extends ActionVisitorTemplateMerge<CalimoreInfo, StolargInfo> {
+public final class CalimoreVisiMergeStolarg extends ActionVisitorTemplateMerge<CalimoreInfo, StolargInfo> {
 	
-	public VisiCalimoreMergeStolarg(DeciTreeOption<CalimoreInfo> option) {
+	public CalimoreVisiMergeStolarg(DeciTreeOption<CalimoreInfo> option) {
 		super(option, StolargInfo.class);
 	}
 	

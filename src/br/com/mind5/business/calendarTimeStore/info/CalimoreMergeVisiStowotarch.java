@@ -8,7 +8,7 @@ import br.com.mind5.business.calendarTime.info.CalimeInfo;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class CalimoreVisiMergeStowotarch extends InfoMergerVisitorTemplate<CalimoreInfo, StowotarchInfo> {
+final class CalimoreMergeVisiStowotarch extends InfoMergerVisitorTemplate<CalimoreInfo, StowotarchInfo> {
 	
 	@Override public List<CalimoreInfo> beforeMerge(List<CalimoreInfo> baseInfos) {
 		
