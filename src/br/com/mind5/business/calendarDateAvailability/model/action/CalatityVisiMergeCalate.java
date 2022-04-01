@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalatityMergeCalate extends ActionVisitorTemplateMerge<CalatityInfo, CalateInfo> {
+public final class CalatityVisiMergeCalate extends ActionVisitorTemplateMerge<CalatityInfo, CalateInfo> {
 	
-	public VisiCalatityMergeCalate(DeciTreeOption<CalatityInfo> option) {
+	public CalatityVisiMergeCalate(DeciTreeOption<CalatityInfo> option) {
 		super(option, CalateInfo.class);
 	}
 	

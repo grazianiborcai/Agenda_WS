@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.calendarDateAvailability.info.CalatityInfo;
-import br.com.mind5.business.calendarDateAvailability.model.action.StdCalatityMergeCalate;
+import br.com.mind5.business.calendarDateAvailability.model.action.CalatityVisiMergeCalate;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCalatitySearch extends DeciTreeTemplateRead<CalatityInfo> {
+public final class CalatityRootSearch extends DeciTreeTemplateRead<CalatityInfo> {
 	
-	public RootCalatitySearch(DeciTreeOption<CalatityInfo> option) {
+	public CalatityRootSearch(DeciTreeOption<CalatityInfo> option) {
 		super(option);
 	}
 	
@@ -35,7 +36,7 @@ public final class RootCalatitySearch extends DeciTreeTemplateRead<CalatityInfo>
 	@Override protected List<ActionStd<CalatityInfo>> buildActionsOnPassedHook(DeciTreeOption<CalatityInfo> option) {
 		List<ActionStd<CalatityInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CalatityInfo> mergeCalate = new StdCalatityMergeCalate(option);
+		ActionStd<CalatityInfo> mergeCalate = new ActionStdCommom<CalatityInfo>(option, CalatityVisiMergeCalate.class);
 		
 		actions.add(mergeCalate);
 		return actions;

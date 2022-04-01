@@ -12,7 +12,7 @@ public final class CalatityMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalatityVisiMergeCalate());
+		builder.addVisitor(new CalatityMergerVisiCalate());
 		InfoMerger<CalatityInfo, CalateInfo> merger = builder.build();		
 	
 		return merger.merge();

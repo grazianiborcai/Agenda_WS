@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.calendarCatalogue.info.CalgueInfo;
 import br.com.mind5.business.calendarCatalogue.info.CalgueMerger;
 import br.com.mind5.business.calendarDateAvailability.info.CalatityInfo;
-import br.com.mind5.business.calendarDateAvailability.model.decisionTree.RootCalatitySearch;
+import br.com.mind5.business.calendarDateAvailability.model.decisionTree.CalatityRootSearch;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class CalgueVisiMergeCalatity extends ActionVisitorTemplateMerge<Ca
 	
 	
 	@Override protected Class<? extends DeciTree<CalatityInfo>> getTreeClassHook() {
-		return RootCalatitySearch.class;
+		return CalatityRootSearch.class;
 	}
 	
 	
