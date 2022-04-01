@@ -15,7 +15,7 @@ public final class CalgueMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalgueVisiMergeStolis());
+		builder.addVisitor(new CalgueMergerVisiStolis());
 		InfoMerger<CalgueInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -28,7 +28,7 @@ public final class CalgueMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalgueVisiMergeMatlis());
+		builder.addVisitor(new CalgueMergerVisiMatlis());
 		InfoMerger<CalgueInfo, MatlisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -41,7 +41,7 @@ public final class CalgueMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalgueVisiMergeCalguata());
+		builder.addVisitor(new CalgueMergerVisiCalguata());
 		InfoMerger<CalgueInfo, CalguataInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -54,7 +54,7 @@ public final class CalgueMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalgueVisiMergeCalatity());
+		builder.addVisitor(new CalgueMergerVisiCalatity());
 		InfoMerger<CalgueInfo, CalatityInfo> merger = builder.build();		
 	
 		return merger.merge();

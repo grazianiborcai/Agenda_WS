@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalgueMergeMatlis extends ActionVisitorTemplateMerge<CalgueInfo, MatlisInfo> {
+public final class CalgueVisiMergeMatlis extends ActionVisitorTemplateMerge<CalgueInfo, MatlisInfo> {
 	
-	public VisiCalgueMergeMatlis(DeciTreeOption<CalgueInfo> option) {
+	public CalgueVisiMergeMatlis(DeciTreeOption<CalgueInfo> option) {
 		super(option, MatlisInfo.class);
 	}
 	

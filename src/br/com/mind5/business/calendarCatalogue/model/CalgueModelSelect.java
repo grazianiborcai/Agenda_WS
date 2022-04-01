@@ -3,7 +3,7 @@ package br.com.mind5.business.calendarCatalogue.model;
 import javax.servlet.http.HttpServletRequest;
 
 import br.com.mind5.business.calendarCatalogue.info.CalgueInfo;
-import br.com.mind5.business.calendarCatalogue.model.decisionTree.RootCalgueSelect;
+import br.com.mind5.business.calendarCatalogue.model.decisionTree.CalgueRootSelect;
 import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,6 +17,6 @@ public final class CalgueModelSelect extends ModelTemplate<CalgueInfo> {
 	
 	
 	@Override protected DeciTree<CalgueInfo> getDecisionTreeHook(DeciTreeOption<CalgueInfo> option) {
-		return new RootCalgueSelect(option);
+		return new CalgueRootSelect(option);
 	}
 }

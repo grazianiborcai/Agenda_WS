@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.calendarCatalogueData.info.CalguataInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class CalgueVisiMergeCalguata extends InfoMergerVisitorTemplate<CalgueInfo, CalguataInfo> {
+final class CalgueMergerVisiCalguata extends InfoMergerVisitorTemplate<CalgueInfo, CalguataInfo> {
 
 	@Override public boolean shouldMerge(CalgueInfo baseInfo, CalguataInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner 	&&

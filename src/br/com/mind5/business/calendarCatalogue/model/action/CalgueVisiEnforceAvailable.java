@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalgueEnforceAvailable extends ActionVisitorTemplateEnforce<CalgueInfo> {
+public final class CalgueVisiEnforceAvailable extends ActionVisitorTemplateEnforce<CalgueInfo> {
 	
-	public VisiCalgueEnforceAvailable(DeciTreeOption<CalgueInfo> option) {
+	public CalgueVisiEnforceAvailable(DeciTreeOption<CalgueInfo> option) {
 		super(option);
 	}
 

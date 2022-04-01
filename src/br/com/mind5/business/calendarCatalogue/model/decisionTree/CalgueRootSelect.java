@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.calendarCatalogue.info.CalgueInfo;
-import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueEnforceAvailable;
-import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeCalatity;
-import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeMatlis;
-import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeStolis;
-import br.com.mind5.business.calendarCatalogue.model.action.StdCalgueMergeCalguata;
+import br.com.mind5.business.calendarCatalogue.model.action.CalgueVisiEnforceAvailable;
+import br.com.mind5.business.calendarCatalogue.model.action.CalgueVisiMergeCalatity;
+import br.com.mind5.business.calendarCatalogue.model.action.CalgueVisiMergeCalguata;
+import br.com.mind5.business.calendarCatalogue.model.action.CalgueVisiMergeMatlis;
+import br.com.mind5.business.calendarCatalogue.model.action.CalgueVisiMergeStolis;
 import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckLangu;
 import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckMat;
 import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckMonth;
@@ -18,15 +18,17 @@ import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckStore;
 import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckYearMonth;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootCalgueSelect extends DeciTreeTemplateWrite<CalgueInfo> {
+public final class CalgueRootSelect extends DeciTreeTemplateWrite<CalgueInfo> {
 	
-	public RootCalgueSelect(DeciTreeOption<CalgueInfo> option) {
+	public CalgueRootSelect(DeciTreeOption<CalgueInfo> option) {
 		super(option);
 	}
 	
@@ -94,11 +96,11 @@ public final class RootCalgueSelect extends DeciTreeTemplateWrite<CalgueInfo> {
 	@Override protected List<ActionStd<CalgueInfo>> buildActionsOnPassedHook(DeciTreeOption<CalgueInfo> option) {
 		List<ActionStd<CalgueInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CalgueInfo> mergeCalguata = new StdCalgueMergeCalguata(option);
-		ActionLazy<CalgueInfo> mergeCalatity = new LazyCalgueMergeCalatity(option.conn, option.schemaName);		
-		ActionLazy<CalgueInfo> mergeMatlis = new LazyCalgueMergeMatlis(option.conn, option.schemaName);
-		ActionLazy<CalgueInfo> mergeStolis = new LazyCalgueMergeStolis(option.conn, option.schemaName);
-		ActionLazy<CalgueInfo> enforceAvailable = new LazyCalgueEnforceAvailable(option.conn, option.schemaName);
+		ActionStd<CalgueInfo> mergeCalguata = new ActionStdCommom<CalgueInfo>(option, CalgueVisiMergeCalguata.class);
+		ActionLazy<CalgueInfo> mergeCalatity = new  ActionLazyCommom<CalgueInfo>(option, CalgueVisiMergeCalatity.class);		
+		ActionLazy<CalgueInfo> mergeMatlis = new ActionLazyCommom<CalgueInfo>(option, CalgueVisiMergeMatlis.class);
+		ActionLazy<CalgueInfo> mergeStolis = new ActionLazyCommom<CalgueInfo>(option, CalgueVisiMergeStolis.class);
+		ActionLazy<CalgueInfo> enforceAvailable = new ActionLazyCommom<CalgueInfo>(option, CalgueVisiEnforceAvailable.class);
 		
 		mergeCalguata.addPostAction(mergeCalatity);
 		mergeCalatity.addPostAction(mergeMatlis);

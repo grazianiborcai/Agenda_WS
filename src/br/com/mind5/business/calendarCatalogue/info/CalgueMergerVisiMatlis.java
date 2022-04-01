@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class CalgueVisiMergeMatlis extends InfoMergerVisitorTemplate<CalgueInfo, MatlisInfo> {
+final class CalgueMergerVisiMatlis extends InfoMergerVisitorTemplate<CalgueInfo, MatlisInfo> {
 
 	@Override public boolean shouldMerge(CalgueInfo baseInfo, MatlisInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner	&&
