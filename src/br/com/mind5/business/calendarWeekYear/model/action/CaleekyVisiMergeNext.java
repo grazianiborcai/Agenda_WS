@@ -2,24 +2,31 @@ package br.com.mind5.business.calendarWeekYear.model.action;
 
 import java.util.List;
 
+import br.com.mind5.business.calendarDate.info.CalateCopier;
 import br.com.mind5.business.calendarDate.info.CalateInfo;
-import br.com.mind5.business.calendarDate.model.decisionTree.CalateRootSelectNow;
+import br.com.mind5.business.calendarDate.model.decisionTree.CalateRootSelectNext;
 import br.com.mind5.business.calendarWeekYear.info.CaleekyInfo;
 import br.com.mind5.business.calendarWeekYear.info.CaleekyMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCaleekyMergeNow extends ActionVisitorTemplateMerge<CaleekyInfo, CalateInfo> {
+public final class CaleekyVisiMergeNext extends ActionVisitorTemplateMerge<CaleekyInfo, CalateInfo> {
 	
-	public VisiCaleekyMergeNow(DeciTreeOption<CaleekyInfo> option) {
+	public CaleekyVisiMergeNext(DeciTreeOption<CaleekyInfo> option) {
 		super(option, CalateInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<CalateInfo>> getTreeClassHook() {
-		return CalateRootSelectNow.class;
+		return CalateRootSelectNext.class;
+	}
+	
+	
+	
+	@Override protected List<CalateInfo> toActionClassHook(List<CaleekyInfo> baseInfos) {
+		return CalateCopier.copyFromCaleekyNext(baseInfos);	
 	}
 	
 	

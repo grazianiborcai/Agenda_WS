@@ -16,7 +16,7 @@ import br.com.mind5.business.calendarDateSearch.dao.CalatarchDaoDbTableColumn;
 import br.com.mind5.business.calendarMonth.dao.CalonthDaoDbTableColumn;
 import br.com.mind5.business.calendarMonthSearch.dao.CalontharchDaoDbTableColumn;
 import br.com.mind5.business.calendarMoon.dao.MooncalDaoDbTableColumn;
-import br.com.mind5.business.calendarWeekYear.dao.DaoCaleekyDbTableColumn;
+import br.com.mind5.business.calendarWeekYear.dao.CaleekyDaoDbTableColumn;
 import br.com.mind5.business.cart.dao.CartDaoDbTableColumn;
 import br.com.mind5.business.cartItem.dao.CartemDaoDbTableColumn;
 import br.com.mind5.business.cartItemSearch.dao.DaoCartemarchDbTableColumn;
@@ -492,7 +492,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoMonthDbTableColumn());
 		addTable(new CalatarchDaoDbTableColumn());
 		addTable(new DaoMontharchDbTableColumn());
-		addTable(new DaoCaleekyDbTableColumn());
+		addTable(new CaleekyDaoDbTableColumn());
 		addTable(new DaoSysonupDbTableColumn());
 		addTable(new DaoOwnarchDbTableColumn());
 		addTable(new DaoFidoceDbTableColumn());

@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.calendarWeekYear.info.CaleekyInfo;
-import br.com.mind5.business.calendarWeekYear.model.action.StdCaleekyMergeToSelect;
+import br.com.mind5.business.calendarWeekYear.model.action.CaleekyVisiMergeToSelect;
 import br.com.mind5.business.calendarWeekYear.model.checker.CaleekyCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCaleekySelect extends DeciTreeTemplateRead<CaleekyInfo> {
+public final class CaleekyRootSelect extends DeciTreeTemplateRead<CaleekyInfo> {
 	
-	public RootCaleekySelect(DeciTreeOption<CaleekyInfo> option) {
+	public CaleekyRootSelect(DeciTreeOption<CaleekyInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootCaleekySelect extends DeciTreeTemplateRead<CaleekyInfo> {
 	@Override protected List<ActionStd<CaleekyInfo>> buildActionsOnPassedHook(DeciTreeOption<CaleekyInfo> option) {
 		List<ActionStd<CaleekyInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CaleekyInfo> mergeToSelect = new StdCaleekyMergeToSelect(option);
+		ActionStd<CaleekyInfo> mergeToSelect = new ActionStdCommom<CaleekyInfo>(option, CaleekyVisiMergeToSelect.class);
 		
 		actions.add(mergeToSelect);
 		return actions;

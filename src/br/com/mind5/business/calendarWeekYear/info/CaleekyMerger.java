@@ -12,7 +12,7 @@ public final class CaleekyMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CaleekyVisiMergeCalate());
+		builder.addVisitor(new CaleekyMergerVisiCalate());
 		InfoMerger<CaleekyInfo, CalateInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class CaleekyMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CaleekyVisiMergeToSelect());
+		builder.addVisitor(new CaleekyMergerVisiToSelect());
 		InfoMerger<CaleekyInfo, CaleekyInfo> merger = builder.build();		
 	
 		return merger.merge();

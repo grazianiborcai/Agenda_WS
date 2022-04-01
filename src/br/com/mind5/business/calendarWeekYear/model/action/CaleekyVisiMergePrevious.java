@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCaleekyMergePrevious extends ActionVisitorTemplateMerge<CaleekyInfo, CalateInfo> {
+public final class CaleekyVisiMergePrevious extends ActionVisitorTemplateMerge<CaleekyInfo, CalateInfo> {
 	
-	public VisiCaleekyMergePrevious(DeciTreeOption<CaleekyInfo> option) {
+	public CaleekyVisiMergePrevious(DeciTreeOption<CaleekyInfo> option) {
 		super(option, CalateInfo.class);
 	}
 	

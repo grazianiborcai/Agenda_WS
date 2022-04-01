@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class CaleekyVisiMergeToSelect extends InfoMergerVisitorTemplate<CaleekyInfo, CaleekyInfo> {
+final class CaleekyMergerVisiToSelect extends InfoMergerVisitorTemplate<CaleekyInfo, CaleekyInfo> {
 
 	@Override public boolean shouldMerge(CaleekyInfo baseInfo, CaleekyInfo selectedInfo) {
 		return true;

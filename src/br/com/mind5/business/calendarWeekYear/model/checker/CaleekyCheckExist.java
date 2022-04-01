@@ -1,9 +1,10 @@
 package br.com.mind5.business.calendarWeekYear.model.checker;
 
 import br.com.mind5.business.calendarWeekYear.info.CaleekyInfo;
-import br.com.mind5.business.calendarWeekYear.model.action.StdCaleekyDaoSelect;
+import br.com.mind5.business.calendarWeekYear.model.action.CaleekyVisiDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class CaleekyCheckExist extends ModelCheckerTemplateAction<CaleekyI
 	
 	
 	@Override protected ActionStd<CaleekyInfo> buildActionHook(DeciTreeOption<CaleekyInfo> option) {
-		ActionStd<CaleekyInfo> select = new StdCaleekyDaoSelect(option);
+		ActionStd<CaleekyInfo> select = new ActionStdCommom<CaleekyInfo>(option, CaleekyVisiDaoSelect.class);
 		return select;
 	}
 	

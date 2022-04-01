@@ -3,7 +3,7 @@ package br.com.mind5.business.scheduleWeek.model.action;
 import java.util.List;
 
 import br.com.mind5.business.calendarWeekYear.info.CaleekyInfo;
-import br.com.mind5.business.calendarWeekYear.model.decisionTree.RootCaleekySelectNext;
+import br.com.mind5.business.calendarWeekYear.model.decisionTree.CaleekyRootSelectNext;
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.business.scheduleWeek.info.SchedeekMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class SchedeekVisiMergeNext extends ActionVisitorTemplateMerge<Sche
 	
 	
 	@Override protected Class<? extends DeciTree<CaleekyInfo>> getTreeClassHook() {
-		return RootCaleekySelectNext.class;
+		return CaleekyRootSelectNext.class;
 	}
 	
 	

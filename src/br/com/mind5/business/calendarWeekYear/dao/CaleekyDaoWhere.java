@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class DaoCaleekyWhere implements DaoStmtWhere {
+final class CaleekyDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoCaleekyWhere(DaoWhereBuilderOption whereOption, String tableName, CaleekyInfo recordInfo) {
+	public CaleekyDaoWhere(DaoWhereBuilderOption whereOption, String tableName, CaleekyInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,7 +26,7 @@ final class DaoCaleekyWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoCaleekyDbTableColumn.COL_WEEK_YEAR :
+				case CaleekyDaoDbTableColumn.COL_WEEK_YEAR :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.weekYear));
 					break;
 			}

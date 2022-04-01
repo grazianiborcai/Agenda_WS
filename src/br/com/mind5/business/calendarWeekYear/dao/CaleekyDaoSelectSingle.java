@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoCaleekySelectSingle extends DaoStmtTemplate<CaleekyInfo> {
+public final class CaleekyDaoSelectSingle extends DaoStmtTemplate<CaleekyInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CALENDAR_WEEK_YEAR_TABLE;
 	
 	
-	public DaoCaleekySelectSingle(Connection conn, CaleekyInfo recordInfo, String schemaName) {
+	public CaleekyDaoSelectSingle(Connection conn, CaleekyInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoCaleekySelectSingle extends DaoStmtTemplate<CaleekyInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		
-		DaoStmtWhere whereClause = new DaoCaleekyWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new CaleekyDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,9 +61,9 @@ public final class DaoCaleekySelectSingle extends DaoStmtTemplate<CaleekyInfo> {
 				do {				
 					CaleekyInfo dataInfo = new CaleekyInfo();
 					
-					dataInfo.weekYear = stmtResult.getInt(DaoCaleekyDbTableColumn.COL_WEEK_YEAR);
-					dataInfo.dateWeekBegin = DaoFormatter.sqlToLocalDate(stmtResult, DaoCaleekyDbTableColumn.COL_DATE_WEEK_BEGIN);
-					dataInfo.dateWeekEnd = DaoFormatter.sqlToLocalDate(stmtResult, DaoCaleekyDbTableColumn.COL_DATE_WEEK_END);
+					dataInfo.weekYear = stmtResult.getInt(CaleekyDaoDbTableColumn.COL_WEEK_YEAR);
+					dataInfo.dateWeekBegin = DaoFormatter.sqlToLocalDate(stmtResult, CaleekyDaoDbTableColumn.COL_DATE_WEEK_BEGIN);
+					dataInfo.dateWeekEnd = DaoFormatter.sqlToLocalDate(stmtResult, CaleekyDaoDbTableColumn.COL_DATE_WEEK_END);
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

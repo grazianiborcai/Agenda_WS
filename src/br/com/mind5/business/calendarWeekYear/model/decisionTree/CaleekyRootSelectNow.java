@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.calendarWeekYear.info.CaleekyInfo;
-import br.com.mind5.business.calendarWeekYear.model.action.LazyCaleekyMergePrevious;
-import br.com.mind5.business.calendarWeekYear.model.action.LazyCaleekyRootSelect;
+import br.com.mind5.business.calendarWeekYear.model.action.CaleekyVisiRootSelect;
+import br.com.mind5.business.calendarWeekYear.model.action.CaleekyVisiMergeNow;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCaleekySelectPrevious extends DeciTreeTemplateRead<CaleekyInfo> {
+public final class CaleekyRootSelectNow extends DeciTreeTemplateRead<CaleekyInfo> {
 	
-	public RootCaleekySelectPrevious(DeciTreeOption<CaleekyInfo> option) {
+	public CaleekyRootSelectNow(DeciTreeOption<CaleekyInfo> option) {
 		super(option);
 	}
 	
@@ -37,14 +39,12 @@ public final class RootCaleekySelectPrevious extends DeciTreeTemplateRead<Caleek
 	@Override protected List<ActionStd<CaleekyInfo>> buildActionsOnPassedHook(DeciTreeOption<CaleekyInfo> option) {
 		List<ActionStd<CaleekyInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CaleekyInfo> selectBase = new RootCaleekySelect(option).toAction();
-		ActionLazy<CaleekyInfo> mergePrevious = new LazyCaleekyMergePrevious(option.conn, option.schemaName);
-		ActionLazy<CaleekyInfo> selectResult = new LazyCaleekyRootSelect(option.conn, option.schemaName);
+		ActionStd<CaleekyInfo> mergeNow = new ActionStdCommom<CaleekyInfo>(option, CaleekyVisiMergeNow.class);
+		ActionLazy<CaleekyInfo> select = new ActionLazyCommom<CaleekyInfo>(option, CaleekyVisiRootSelect.class);
 		
-		selectBase.addPostAction(mergePrevious);
-		mergePrevious.addPostAction(selectResult);
+		mergeNow.addPostAction(select);
 		
-		actions.add(selectBase);
+		actions.add(mergeNow);
 		return actions;
 	}
 }

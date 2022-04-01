@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoCaleekySelect implements DaoStmtExec<CaleekyInfo> {
+public final class CaleekyDaoSelect implements DaoStmtExec<CaleekyInfo> {
 	private DaoStmtExec<CaleekyInfo> helper;
 	
 	
-	public DaoCaleekySelect(List<DaoStmtExecOption<CaleekyInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCaleekySelectSingle.class, CaleekyInfo.class);
+	public CaleekyDaoSelect(List<DaoStmtExecOption<CaleekyInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CaleekyDaoSelectSingle.class, CaleekyInfo.class);
 	}
 	
 	
