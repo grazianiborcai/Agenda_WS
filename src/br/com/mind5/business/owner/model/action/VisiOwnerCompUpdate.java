@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.company.info.CompCopier;
 import br.com.mind5.business.company.info.CompInfo;
-import br.com.mind5.business.company.model.decisionTree.RootCompUpdate;
+import br.com.mind5.business.company.model.decisionTree.CompRootUpdate;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
@@ -21,7 +21,7 @@ final class VisiOwnerCompUpdate extends ActionVisitorTemplateAction<OwnerInfo, C
 	
 	
 	@Override protected Class<? extends DeciTree<CompInfo>> getTreeClassHook() {
-		return RootCompUpdate.class;
+		return CompRootUpdate.class;
 	}
 	
 	

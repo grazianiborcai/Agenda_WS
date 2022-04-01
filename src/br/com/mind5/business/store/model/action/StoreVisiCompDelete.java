@@ -3,7 +3,7 @@ package br.com.mind5.business.store.model.action;
 import java.util.List;
 
 import br.com.mind5.business.company.info.CompInfo;
-import br.com.mind5.business.company.model.decisionTree.RootCompDelete;
+import br.com.mind5.business.company.model.decisionTree.CompRootDelete;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -18,7 +18,7 @@ public final class StoreVisiCompDelete extends ActionVisitorTemplateAction<Store
 	
 	
 	@Override protected Class<? extends DeciTree<CompInfo>> getTreeClassHook() {
-		return RootCompDelete.class;
+		return CompRootDelete.class;
 	}
 	
 	

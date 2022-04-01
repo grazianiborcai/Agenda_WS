@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.company.info.CompCopier;
 import br.com.mind5.business.company.info.CompInfo;
-import br.com.mind5.business.company.model.decisionTree.RootCompInsertOwner;
+import br.com.mind5.business.company.model.decisionTree.CompRootOwnerInsert;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
@@ -20,7 +20,7 @@ final class VisiOwnerCompInsert extends ActionVisitorTemplateAction<OwnerInfo, C
 	
 	
 	@Override protected Class<? extends DeciTree<CompInfo>> getTreeClassHook() {
-		return RootCompInsertOwner.class;
+		return CompRootOwnerInsert.class;
 	}
 	
 	

@@ -13,7 +13,7 @@ public final class CompMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CompVisiMergeCompnap());
+		builder.addVisitor(new CompMergerVisiCompnap());
 		InfoMerger<CompInfo, CompnapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class CompMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CompVisiMergeUsername());
+		builder.addVisitor(new CompMergerVisiUsername());
 		InfoMerger<CompInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -39,7 +39,7 @@ public final class CompMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CompVisiMergeToDelete());
+		builder.addVisitor(new CompMergerVisiToDelete());
 		InfoMerger<CompInfo, CompInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -52,7 +52,7 @@ public final class CompMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CompVisiMergeToSelect());
+		builder.addVisitor(new CompMergerVisiToSelect());
 		InfoMerger<CompInfo, CompInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -65,7 +65,7 @@ public final class CompMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CompVisiMergeToUpdate());
+		builder.addVisitor(new CompMergerVisiToUpdate());
 		InfoMerger<CompInfo, CompInfo> merger = builder.build();		
 	
 		return merger.merge();

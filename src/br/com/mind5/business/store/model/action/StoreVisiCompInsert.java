@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.company.info.CompCopier;
 import br.com.mind5.business.company.info.CompInfo;
-import br.com.mind5.business.company.model.decisionTree.RootCompInsertStore;
+import br.com.mind5.business.company.model.decisionTree.CompRootStoreInsert;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
@@ -20,7 +20,7 @@ public final class StoreVisiCompInsert extends ActionVisitorTemplateAction<Store
 	
 	
 	@Override protected Class<? extends DeciTree<CompInfo>> getTreeClassHook() {
-		return RootCompInsertStore.class;
+		return CompRootStoreInsert.class;
 	}
 	
 	

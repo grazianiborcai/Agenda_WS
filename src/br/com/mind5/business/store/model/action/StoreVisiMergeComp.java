@@ -3,7 +3,7 @@ package br.com.mind5.business.store.model.action;
 import java.util.List;
 
 import br.com.mind5.business.company.info.CompInfo;
-import br.com.mind5.business.company.model.decisionTree.RootCompSelect;
+import br.com.mind5.business.company.model.decisionTree.CompRootSelect;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class StoreVisiMergeComp extends ActionVisitorTemplateMerge<StoreIn
 	
 	
 	@Override protected Class<? extends DeciTree<CompInfo>> getTreeClassHook() {
-		return RootCompSelect.class;
+		return CompRootSelect.class;
 	}
 	
 	
