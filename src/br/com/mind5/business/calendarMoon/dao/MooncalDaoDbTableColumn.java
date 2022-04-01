@@ -9,14 +9,14 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoMooncalDbTableColumn extends DaoDbTableColumnTemplate {
+public final class MooncalDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_MOON_PHASE = DaoDbField.COL_COD_MOON_PHASE;	
 	public static final String COL_MOON_DATE = DaoDbField.COL_MOON_DATE;		
 	public static final String COL_MOON_DATE_TIME = DaoDbField.COL_MOON_DATE_TIME;	
 	public static final String COL_MOON_TIME = DaoDbField.COL_MOON_TIME;	
 	
 	
-	public DaoMooncalDbTableColumn() {
+	public MooncalDaoDbTableColumn() {
 		super();
 	}
 	

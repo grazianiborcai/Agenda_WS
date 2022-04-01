@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class MooncalVisiMergeToSelect extends InfoMergerVisitorTemplate<MooncalInfo, MooncalInfo> {
+final class MooncalMergerVisiToSelect extends InfoMergerVisitorTemplate<MooncalInfo, MooncalInfo> {
 
 	@Override public boolean shouldMerge(MooncalInfo baseInfo, MooncalInfo selectedInfo) {
 		return true;

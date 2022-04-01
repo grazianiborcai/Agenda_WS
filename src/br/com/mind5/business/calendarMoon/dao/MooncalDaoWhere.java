@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class DaoMooncalWhere implements DaoStmtWhere {
+final class MooncalDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoMooncalWhere(DaoWhereBuilderOption whereOption, String tableName, MooncalInfo recordInfo) {
+	public MooncalDaoWhere(DaoWhereBuilderOption whereOption, String tableName, MooncalInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,7 +26,7 @@ final class DaoMooncalWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoMooncalDbTableColumn.COL_MOON_DATE :
+				case MooncalDaoDbTableColumn.COL_MOON_DATE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.moonDate));
 					break;
 			}

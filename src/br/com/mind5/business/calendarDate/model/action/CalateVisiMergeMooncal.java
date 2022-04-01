@@ -6,7 +6,7 @@ import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.calendarDate.info.CalateMerger;
 import br.com.mind5.business.calendarMoon.info.MooncalCopier;
 import br.com.mind5.business.calendarMoon.info.MooncalInfo;
-import br.com.mind5.business.calendarMoon.model.decisionTree.RootMooncalSelect;
+import br.com.mind5.business.calendarMoon.model.decisionTree.MooncalRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class CalateVisiMergeMooncal extends ActionVisitorTemplateMerge<Cal
 	
 	
 	@Override protected Class<? extends DeciTree<MooncalInfo>> getTreeClassHook() {
-		return RootMooncalSelect.class;
+		return MooncalRootSelect.class;
 	}
 	
 	

@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoMooncalSelectSingle extends DaoStmtTemplate<MooncalInfo> {
+public final class MooncalDaoSelectSingle extends DaoStmtTemplate<MooncalInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MOON_CALENDAR_TABLE;
 	
 	
-	public DaoMooncalSelectSingle(Connection conn, MooncalInfo recordInfo, String schemaName) {
+	public MooncalDaoSelectSingle(Connection conn, MooncalInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoMooncalSelectSingle extends DaoStmtTemplate<MooncalInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		
-		DaoStmtWhere whereClause = new DaoMooncalWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new MooncalDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,10 +61,10 @@ public final class DaoMooncalSelectSingle extends DaoStmtTemplate<MooncalInfo> {
 				do {				
 					MooncalInfo dataInfo = new MooncalInfo();
 					
-					dataInfo.moonDate = DaoFormatter.sqlToLocalDate(stmtResult, DaoMooncalDbTableColumn.COL_MOON_DATE);
-					dataInfo.moonDateTime = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoMooncalDbTableColumn.COL_MOON_DATE_TIME);
-					dataInfo.moonTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoMooncalDbTableColumn.COL_MOON_TIME);
-					dataInfo.codMoonPhase = stmtResult.getInt(DaoMooncalDbTableColumn.COL_COD_MOON_PHASE);
+					dataInfo.moonDate = DaoFormatter.sqlToLocalDate(stmtResult, MooncalDaoDbTableColumn.COL_MOON_DATE);
+					dataInfo.moonDateTime = DaoFormatter.sqlToLocalDateTime(stmtResult, MooncalDaoDbTableColumn.COL_MOON_DATE_TIME);
+					dataInfo.moonTime = DaoFormatter.sqlToLocalTime(stmtResult, MooncalDaoDbTableColumn.COL_MOON_TIME);
+					dataInfo.codMoonPhase = stmtResult.getInt(MooncalDaoDbTableColumn.COL_COD_MOON_PHASE);
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

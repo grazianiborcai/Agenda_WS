@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 
-final class MooncalVisiMergeMoonase extends InfoMergerVisitorTemplate<MooncalInfo, MoonaseInfo> {
+final class MooncalMergerVisiMoonase extends InfoMergerVisitorTemplate<MooncalInfo, MoonaseInfo> {
 
 	@Override public boolean shouldMerge(MooncalInfo baseInfo, MoonaseInfo selectedInfo) {
 		return (baseInfo.codMoonPhase == selectedInfo.codMoonPhase);

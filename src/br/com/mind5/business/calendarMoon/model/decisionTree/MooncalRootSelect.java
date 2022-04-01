@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.calendarMoon.info.MooncalInfo;
-import br.com.mind5.business.calendarMoon.model.action.LazyMooncalMergeMoonase;
-import br.com.mind5.business.calendarMoon.model.action.StdMooncalMergeToSelect;
+import br.com.mind5.business.calendarMoon.model.action.MooncalVisiMergeMoonase;
+import br.com.mind5.business.calendarMoon.model.action.MooncalVisiMergeToSelect;
 import br.com.mind5.business.calendarMoon.model.checker.MooncalCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMooncalSelect extends DeciTreeTemplateRead<MooncalInfo> {
+public final class MooncalRootSelect extends DeciTreeTemplateRead<MooncalInfo> {
 	
-	public RootMooncalSelect(DeciTreeOption<MooncalInfo> option) {
+	public MooncalRootSelect(DeciTreeOption<MooncalInfo> option) {
 		super(option);
 	}
 	
@@ -43,8 +45,8 @@ public final class RootMooncalSelect extends DeciTreeTemplateRead<MooncalInfo> {
 	@Override protected List<ActionStd<MooncalInfo>> buildActionsOnPassedHook(DeciTreeOption<MooncalInfo> option) {
 		List<ActionStd<MooncalInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MooncalInfo> mergeToSelect = new StdMooncalMergeToSelect(option);
-		ActionLazy<MooncalInfo>  mergeMoonase = new LazyMooncalMergeMoonase(option.conn, option.schemaName);
+		ActionStd<MooncalInfo> mergeToSelect = new ActionStdCommom<MooncalInfo>(option, MooncalVisiMergeToSelect.class);
+		ActionLazy<MooncalInfo>  mergeMoonase = new ActionLazyCommom<MooncalInfo>(option, MooncalVisiMergeMoonase.class);
 		
 		mergeToSelect.addPostAction(mergeMoonase);
 		

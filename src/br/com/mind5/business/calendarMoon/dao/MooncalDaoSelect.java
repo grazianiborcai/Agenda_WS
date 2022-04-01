@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoMooncalSelect implements DaoStmtExec<MooncalInfo> {
+public final class MooncalDaoSelect implements DaoStmtExec<MooncalInfo> {
 	private DaoStmtExec<MooncalInfo> helper;
 	
 	
-	public DaoMooncalSelect(List<DaoStmtExecOption<MooncalInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoMooncalSelectSingle.class, MooncalInfo.class);
+	public MooncalDaoSelect(List<DaoStmtExecOption<MooncalInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, MooncalDaoSelectSingle.class, MooncalInfo.class);
 	}
 	
 	

@@ -12,7 +12,7 @@ public final class MooncalMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MooncalVisiMergeMoonase());
+		builder.addVisitor(new MooncalMergerVisiMoonase());
 		InfoMerger<MooncalInfo, MoonaseInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class MooncalMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MooncalVisiMergeToSelect());
+		builder.addVisitor(new MooncalMergerVisiToSelect());
 		InfoMerger<MooncalInfo, MooncalInfo> merger = builder.build();		
 	
 		return merger.merge();

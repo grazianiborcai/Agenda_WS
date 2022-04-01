@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.calendarMoon.info.MooncalCopier;
 import br.com.mind5.business.calendarMoon.info.MooncalInfo;
-import br.com.mind5.business.calendarMoon.model.decisionTree.RootMooncalSelect;
+import br.com.mind5.business.calendarMoon.model.decisionTree.MooncalRootSelect;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataMerger;
 
@@ -21,7 +21,7 @@ public final class PlanataVisiMergeMooncal extends ActionVisitorTemplateMerge<Pl
 	
 	
 	@Override protected Class<? extends DeciTree<MooncalInfo>> getTreeClassHook() {
-		return RootMooncalSelect.class;
+		return MooncalRootSelect.class;
 	}
 	
 	
