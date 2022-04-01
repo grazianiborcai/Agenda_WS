@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoCompcoSelect implements DaoStmtExec<CompcoInfo> {
+public final class CompcoDaoSelect implements DaoStmtExec<CompcoInfo> {
 	private DaoStmtExec<CompcoInfo> helper;
 	
 	
-	public DaoCompcoSelect(List<DaoStmtExecOption<CompcoInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCompcoSelectSingle.class, CompcoInfo.class);
+	public CompcoDaoSelect(List<DaoStmtExecOption<CompcoInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CompcoDaoSelectSingle.class, CompcoInfo.class);
 	}
 	
 	

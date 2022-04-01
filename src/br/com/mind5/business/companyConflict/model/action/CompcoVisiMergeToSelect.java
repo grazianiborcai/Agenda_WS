@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.companyConflict.info.CompcoInfo;
 import br.com.mind5.business.companyConflict.info.CompcoMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCompcoMergeToSelect extends ActionVisitorTemplateMerge<CompcoInfo, CompcoInfo> {
+public final class CompcoVisiMergeToSelect extends ActionVisitorTemplateMerge<CompcoInfo, CompcoInfo> {
 	
-	public VisiCompcoMergeToSelect(DeciTreeOption<CompcoInfo> option) {
+	public CompcoVisiMergeToSelect(DeciTreeOption<CompcoInfo> option) {
 		super(option, CompcoInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<CompcoInfo>> getActionClassHook() {
-		return StdCompcoDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<CompcoInfo>> getVisitorClassHook() {
+		return CompcoVisiDaoSelect.class;
 	}
 	
 	

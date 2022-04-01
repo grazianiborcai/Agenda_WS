@@ -11,7 +11,7 @@ public final class CompcoMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CompcoVisiMergeToSelect());
+		builder.addVisitor(new CompcoMergerVisiToSelect());
 		InfoMerger<CompcoInfo, CompcoInfo> merger = builder.build();		
 	
 		return merger.merge();

@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoCompcoSelectSingle extends DaoStmtTemplate<CompcoInfo> {
+public final class CompcoDaoSelectSingle extends DaoStmtTemplate<CompcoInfo> {
 	private final String MAIN_TABLE = DaoDbTable.COMP_TABLE;
 	
 	
-	public DaoCompcoSelectSingle(Connection conn, CompcoInfo recordInfo, String schemaName) {
+	public CompcoDaoSelectSingle(Connection conn, CompcoInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -49,7 +49,7 @@ public final class DaoCompcoSelectSingle extends DaoStmtTemplate<CompcoInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoCompcoWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new CompcoDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -66,12 +66,12 @@ public final class DaoCompcoSelectSingle extends DaoStmtTemplate<CompcoInfo> {
 				do {
 					CompcoInfo dataInfo = new CompcoInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoCompcoDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCompany = stmtResult.getLong(DaoCompcoDbTableColumn.COL_COD_COMPANY);
-					dataInfo.cnpj = stmtResult.getString(DaoCompcoDbTableColumn.COL_CNPJ);		
-					dataInfo.email = stmtResult.getString(DaoCompcoDbTableColumn.COL_EMAIL);						
-					dataInfo.recordMode = stmtResult.getString(DaoCompcoDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codEntityCateg = stmtResult.getString(DaoCompcoDbTableColumn.COL_COD_ENTITY_CATEG);			
+					dataInfo.codOwner = stmtResult.getLong(CompcoDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCompany = stmtResult.getLong(CompcoDaoDbTableColumn.COL_COD_COMPANY);
+					dataInfo.cnpj = stmtResult.getString(CompcoDaoDbTableColumn.COL_CNPJ);		
+					dataInfo.email = stmtResult.getString(CompcoDaoDbTableColumn.COL_EMAIL);						
+					dataInfo.recordMode = stmtResult.getString(CompcoDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codEntityCateg = stmtResult.getString(CompcoDaoDbTableColumn.COL_COD_ENTITY_CATEG);			
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
