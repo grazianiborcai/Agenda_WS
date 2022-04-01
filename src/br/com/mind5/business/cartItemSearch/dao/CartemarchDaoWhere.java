@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class DaoCartemarchWhere implements DaoStmtWhere {	
+public final class CartemarchDaoWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public DaoCartemarchWhere(DaoWhereBuilderOption whereOption, String tableName, CartemarchInfo recordInfo) {
+	public CartemarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, CartemarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,31 +27,31 @@ public final class DaoCartemarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoCartemarchDbTableColumn.COL_COD_OWNER :
+				case CartemarchDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoCartemarchDbTableColumn.COL_COD_USER :
+				case CartemarchDaoDbTableColumn.COL_COD_USER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 					
-				case DaoCartemarchDbTableColumn.COL_COD_STORE :
+				case CartemarchDaoDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case DaoCartemarchDbTableColumn.COL_COD_MATERIAL :
+				case CartemarchDaoDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
 					
-				case DaoCartemarchDbTableColumn.COL_COD_EMPLOYEE :
+				case CartemarchDaoDbTableColumn.COL_COD_EMPLOYEE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 					break;
 					
-				case DaoCartemarchDbTableColumn.COL_DATE :
+				case CartemarchDaoDbTableColumn.COL_DATE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.date));
 					break;
 					
-				case DaoCartemarchDbTableColumn.COL_BEGIN_TIME :
+				case CartemarchDaoDbTableColumn.COL_BEGIN_TIME :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.timeToString(recordInfo.beginTime));
 					break;
 			}

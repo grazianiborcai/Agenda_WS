@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.cartItemSearch.info.CartemarchInfo;
 import br.com.mind5.business.cartItemSearch.info.CartemarchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartemarchMergeToSelect extends ActionVisitorTemplateMerge<CartemarchInfo, CartemarchInfo> {
+public final class CartemarchVisiMergeToSelect extends ActionVisitorTemplateMerge<CartemarchInfo, CartemarchInfo> {
 	
-	public VisiCartemarchMergeToSelect(DeciTreeOption<CartemarchInfo> option) {
+	public CartemarchVisiMergeToSelect(DeciTreeOption<CartemarchInfo> option) {
 		super(option, CartemarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<CartemarchInfo>> getActionClassHook() {
-		return StdCartemarchDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<CartemarchInfo>> getVisitorClassHook() {
+		return CartemarchVisiDaoSelect.class;
 	}
 	
 	

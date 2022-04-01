@@ -1,7 +1,7 @@
 package br.com.mind5.business.cartItemSearch.model.checker;
 
 import br.com.mind5.business.cartItemSearch.info.CartemarchInfo;
-import br.com.mind5.business.cartItemSearch.model.decisionTree.RootCartemarchSelect;
+import br.com.mind5.business.cartItemSearch.model.decisionTree.CartemarchRootSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class CartemarchCheckExist extends ModelCheckerTemplateAction<Carte
 	
 	
 	@Override protected ActionStd<CartemarchInfo> buildActionHook(DeciTreeOption<CartemarchInfo> option) {
-		ActionStd<CartemarchInfo> select = new RootCartemarchSelect(option).toAction();
+		ActionStd<CartemarchInfo> select = new CartemarchRootSelect(option).toAction();
 		return select;
 	}
 	

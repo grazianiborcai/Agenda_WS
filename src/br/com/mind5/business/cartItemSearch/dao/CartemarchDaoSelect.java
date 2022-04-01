@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoCartemarchSelect implements DaoStmtExec<CartemarchInfo> {
+public final class CartemarchDaoSelect implements DaoStmtExec<CartemarchInfo> {
 	private DaoStmtExec<CartemarchInfo> helper;
 	
 	
-	public DaoCartemarchSelect(List<DaoStmtExecOption<CartemarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCartemarchSelectSingle.class, CartemarchInfo.class);
+	public CartemarchDaoSelect(List<DaoStmtExecOption<CartemarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CartemarchDaoSelectSingle.class, CartemarchInfo.class);
 	}
 	
 	

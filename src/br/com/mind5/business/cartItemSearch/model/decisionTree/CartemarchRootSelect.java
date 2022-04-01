@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cartItemSearch.info.CartemarchInfo;
-import br.com.mind5.business.cartItemSearch.model.action.StdCartemarchMergeToSelect;
+import br.com.mind5.business.cartItemSearch.model.action.CartemarchVisiMergeToSelect;
 import br.com.mind5.business.cartItemSearch.model.checker.CartemarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootCartemarchSelect extends DeciTreeTemplateWrite<CartemarchInfo> {
+public final class CartemarchRootSelect extends DeciTreeTemplateWrite<CartemarchInfo> {
 	
-	public RootCartemarchSelect(DeciTreeOption<CartemarchInfo> option) {
+	public CartemarchRootSelect(DeciTreeOption<CartemarchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootCartemarchSelect extends DeciTreeTemplateWrite<Cartemarch
 	@Override protected List<ActionStd<CartemarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemarchInfo> option) {
 		List<ActionStd<CartemarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemarchInfo> select = new StdCartemarchMergeToSelect(option);
+		ActionStd<CartemarchInfo> select = new ActionStdCommom<CartemarchInfo>(option, CartemarchVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

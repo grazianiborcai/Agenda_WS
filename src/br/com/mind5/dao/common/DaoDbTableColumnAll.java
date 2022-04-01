@@ -19,7 +19,7 @@ import br.com.mind5.business.calendarMoon.dao.MooncalDaoDbTableColumn;
 import br.com.mind5.business.calendarWeekYear.dao.CaleekyDaoDbTableColumn;
 import br.com.mind5.business.cart.dao.CartDaoDbTableColumn;
 import br.com.mind5.business.cartItem.dao.CartemDaoDbTableColumn;
-import br.com.mind5.business.cartItemSearch.dao.DaoCartemarchDbTableColumn;
+import br.com.mind5.business.cartItemSearch.dao.CartemarchDaoDbTableColumn;
 import br.com.mind5.business.cartReserve.dao.CarterveDaoDbTableColumn;
 import br.com.mind5.business.company.dao.DaoCompDbTableColumn;
 import br.com.mind5.business.companyConflict.dao.DaoCompcoDbTableColumn;
@@ -416,7 +416,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoMatmarchDbTableColumn());
 		addTable(new DaoUserarchDbTableColumn());
 		addTable(new StoparchDaoDbTableColumn());
-		addTable(new DaoCartemarchDbTableColumn());
+		addTable(new CartemarchDaoDbTableColumn());
 		addTable(new EmpworgDaoDbTableColumn());
 		addTable(new DaoEmplargDbTableColumn());
 		addTable(new DaoStolargDbTableColumn());

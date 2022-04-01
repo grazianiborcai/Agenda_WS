@@ -11,7 +11,7 @@ public final class CartemarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartemarchVisiMergeToSelect());
+		builder.addVisitor(new CartemarchMergerVisiToSelect());
 		InfoMerger<CartemarchInfo, CartemarchInfo> merger = builder.build();		
 	
 		return merger.merge();
