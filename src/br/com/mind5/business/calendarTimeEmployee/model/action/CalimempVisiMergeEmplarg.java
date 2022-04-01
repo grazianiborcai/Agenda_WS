@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalimempMergeEmplarg extends ActionVisitorTemplateMerge<CalimempInfo, EmplargInfo> {
+public final class CalimempVisiMergeEmplarg extends ActionVisitorTemplateMerge<CalimempInfo, EmplargInfo> {
 	
-	public VisiCalimempMergeEmplarg(DeciTreeOption<CalimempInfo> option) {
+	public CalimempVisiMergeEmplarg(DeciTreeOption<CalimempInfo> option) {
 		super(option, EmplargInfo.class);
 	}
 	

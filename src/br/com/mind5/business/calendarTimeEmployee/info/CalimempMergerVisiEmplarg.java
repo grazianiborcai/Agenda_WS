@@ -9,7 +9,7 @@ import br.com.mind5.business.calendarTime.info.CalimeInfo;
 import br.com.mind5.business.employeeLeaveDateRange.info.EmplargInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class CalimempVisiMergeEmplarg extends InfoMergerVisitorTemplate<CalimempInfo, EmplargInfo> {
+final class CalimempMergerVisiEmplarg extends InfoMergerVisitorTemplate<CalimempInfo, EmplargInfo> {
 
 	@Override public boolean shouldMerge(CalimempInfo baseInfo, EmplargInfo selectedInfo) {
 		return (baseInfo.codOwner    == selectedInfo.codOwner 		&&

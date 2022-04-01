@@ -4,23 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.calendarTimeEmployee.info.CalimempInfo;
-import br.com.mind5.business.calendarTimeEmployee.model.action.LazyCalimempNodeSelect;
-import br.com.mind5.business.calendarTimeEmployee.model.action.StdCalimempMergeCalate;
+import br.com.mind5.business.calendarTimeEmployee.model.action.CalimempVisiNodeSelect;
+import br.com.mind5.business.calendarTimeEmployee.model.action.CalimempVisiMergeCalate;
 import br.com.mind5.business.calendarTimeEmployee.model.checker.CalimempCheckEmp;
 import br.com.mind5.business.calendarTimeEmployee.model.checker.CalimempCheckOwner;
 import br.com.mind5.business.calendarTimeEmployee.model.checker.CalimempCheckRead;
 import br.com.mind5.business.calendarTimeEmployee.model.checker.CalimempCheckStore;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootCalimempSelect extends DeciTreeTemplateWrite<CalimempInfo> {
+public final class CalimempRootSelect extends DeciTreeTemplateWrite<CalimempInfo> {
 	
-	public RootCalimempSelect(DeciTreeOption<CalimempInfo> option) {
+	public CalimempRootSelect(DeciTreeOption<CalimempInfo> option) {
 		super(option);
 	}
 	
@@ -67,8 +69,8 @@ public final class RootCalimempSelect extends DeciTreeTemplateWrite<CalimempInfo
 	@Override protected List<ActionStd<CalimempInfo>> buildActionsOnPassedHook(DeciTreeOption<CalimempInfo> option) {
 		List<ActionStd<CalimempInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CalimempInfo> mergeCalate = new StdCalimempMergeCalate(option);
-		ActionLazy<CalimempInfo> select = new LazyCalimempNodeSelect(option.conn, option.schemaName);
+		ActionStd<CalimempInfo> mergeCalate = new ActionStdCommom<CalimempInfo>(option, CalimempVisiMergeCalate.class);
+		ActionLazy<CalimempInfo> select = new ActionLazyCommom<CalimempInfo>(option, CalimempVisiNodeSelect.class);
 		
 		mergeCalate.addPostAction(select);
 		

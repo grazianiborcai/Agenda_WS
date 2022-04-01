@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalimempMergeEmpwotarch extends ActionVisitorTemplateMerge<CalimempInfo, EmpwotarchInfo> {
+public final class CalimempVisiMergeEmpwotarch extends ActionVisitorTemplateMerge<CalimempInfo, EmpwotarchInfo> {
 	
-	public VisiCalimempMergeEmpwotarch(DeciTreeOption<CalimempInfo> option) {
+	public CalimempVisiMergeEmpwotarch(DeciTreeOption<CalimempInfo> option) {
 		super(option, EmpwotarchInfo.class);
 	}
 	

@@ -14,7 +14,7 @@ public final class CalimempMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalimempVisiMergeEmplarg());
+		builder.addVisitor(new CalimempMergerVisiEmplarg());
 		InfoMerger<CalimempInfo, EmplargInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class CalimempMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalimempVisiMergeCalate());
+		builder.addVisitor(new CalimempMergerVisiCalate());
 		InfoMerger<CalimempInfo, CalateInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class CalimempMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalimempVisiMergeEmpwotarch());
+		builder.addVisitor(new CalimempMergerVisiEmpwotarch());
 		InfoMerger<CalimempInfo, EmpwotarchInfo> merger = builder.build();		
 	
 		return merger.merge();
