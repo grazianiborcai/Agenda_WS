@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class DaoComparchWhere implements DaoStmtWhere {	
+public final class ComparchDaoWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public DaoComparchWhere(DaoWhereBuilderOption whereOption, String tableName, ComparchInfo recordInfo) {
+	public ComparchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, ComparchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,23 +27,23 @@ public final class DaoComparchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoComparchDbTableColumn.COL_COD_OWNER :
+				case ComparchDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoComparchDbTableColumn.COL_COD_COMPANY :
+				case ComparchDaoDbTableColumn.COL_COD_COMPANY :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCompany));
 					break;
 					
-				case DaoComparchDbTableColumn.COL_CNPJ :
+				case ComparchDaoDbTableColumn.COL_CNPJ :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.cnpj);
 					break;
 					
-				case DaoComparchDbTableColumn.COL_COD_ENTITY_CATEG :
+				case ComparchDaoDbTableColumn.COL_COD_ENTITY_CATEG :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codEntityCateg);
 					break;
 					
-				case DaoComparchDbTableColumn.COL_RECORD_MODE :
+				case ComparchDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

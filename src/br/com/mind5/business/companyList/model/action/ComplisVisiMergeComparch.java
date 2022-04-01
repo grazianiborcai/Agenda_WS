@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.companyList.info.ComplisMerger;
 import br.com.mind5.business.companySearch.info.ComparchInfo;
-import br.com.mind5.business.companySearch.model.decisionTree.RootComparchSelect;
+import br.com.mind5.business.companySearch.model.decisionTree.ComparchRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class ComplisVisiMergeComparch extends ActionVisitorTemplateMerge<C
 	
 	
 	@Override protected Class<? extends DeciTree<ComparchInfo>> getTreeClassHook() {
-		return RootComparchSelect.class;
+		return ComparchRootSelect.class;
 	}
 	
 	

@@ -4,20 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.companySearch.info.ComparchInfo;
-import br.com.mind5.business.companySearch.model.action.StdComparchMergeToSelect;
+import br.com.mind5.business.companySearch.model.action.ComparchVisiMergeToSelect;
 import br.com.mind5.business.companySearch.model.checker.ComparchCheckLangu;
 import br.com.mind5.business.companySearch.model.checker.ComparchCheckOwner;
 import br.com.mind5.business.companySearch.model.checker.ComparchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootComparchSelect extends DeciTreeTemplateRead<ComparchInfo> {
+public final class ComparchRootSelect extends DeciTreeTemplateRead<ComparchInfo> {
 	
-	public RootComparchSelect(DeciTreeOption<ComparchInfo> option) {
+	public ComparchRootSelect(DeciTreeOption<ComparchInfo> option) {
 		super(option);
 	}
 	
@@ -57,7 +58,7 @@ public final class RootComparchSelect extends DeciTreeTemplateRead<ComparchInfo>
 	@Override protected List<ActionStd<ComparchInfo>> buildActionsOnPassedHook(DeciTreeOption<ComparchInfo> option) {
 		List<ActionStd<ComparchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<ComparchInfo> select = new StdComparchMergeToSelect(option);	
+		ActionStd<ComparchInfo> select = new ActionStdCommom<ComparchInfo>(option, ComparchVisiMergeToSelect.class);	
 		actions.add(select);
 		
 		return actions;

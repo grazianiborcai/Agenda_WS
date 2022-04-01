@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoComparchSelect implements DaoStmtExec<ComparchInfo> {
+public final class ComparchDaoSelect implements DaoStmtExec<ComparchInfo> {
 	private DaoStmtExec<ComparchInfo> helper;
 	
 	
-	public DaoComparchSelect(List<DaoStmtExecOption<ComparchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoComparchSelectSingle.class, ComparchInfo.class);
+	public ComparchDaoSelect(List<DaoStmtExecOption<ComparchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, ComparchDaoSelectSingle.class, ComparchInfo.class);
 	}
 	
 	

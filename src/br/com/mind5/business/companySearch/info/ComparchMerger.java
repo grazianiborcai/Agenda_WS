@@ -11,7 +11,7 @@ public final class ComparchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new ComparchVisiMergeToSelect());
+		builder.addVisitor(new ComparchMergerVisiToSelect());
 		InfoMerger<ComparchInfo, ComparchInfo> merger = builder.build();		
 	
 		return merger.merge();
