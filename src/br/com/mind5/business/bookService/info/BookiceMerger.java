@@ -13,7 +13,7 @@ public final class BookiceMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new BookiceVisiMergeUsername());
+		builder.addVisitor(new BookiceMergeVisiUsername());
 		InfoMerger<BookiceInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class BookiceMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new BookiceVisiMergeSymsg());
+		builder.addVisitor(new BookiceMergerVisiSymsg());
 		InfoMerger<BookiceInfo, SymsgInfo> merger = builder.build();		
 	
 		return merger.merge();

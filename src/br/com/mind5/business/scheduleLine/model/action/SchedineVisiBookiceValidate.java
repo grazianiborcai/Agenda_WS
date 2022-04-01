@@ -3,7 +3,7 @@ package br.com.mind5.business.scheduleLine.model.action;
 import java.util.List;
 
 import br.com.mind5.business.bookService.info.BookiceInfo;
-import br.com.mind5.business.bookService.model.decisionTree.RootBookiceSchedine;
+import br.com.mind5.business.bookService.model.decisionTree.BookiceRootSchedine;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -18,7 +18,7 @@ public final class SchedineVisiBookiceValidate extends ActionVisitorTemplateActi
 	
 	
 	@Override protected Class<? extends DeciTree<BookiceInfo>> getTreeClassHook() {
-		return RootBookiceSchedine.class;
+		return BookiceRootSchedine.class;
 	}
 	
 	
