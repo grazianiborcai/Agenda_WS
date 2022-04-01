@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoCusnapSelectSingle extends DaoStmtTemplate<CusnapInfo> {
+public final class CusnapDaoSelectSingle extends DaoStmtTemplate<CusnapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CUS_SNAPSHOT_TABLE;
 	
 	
-	public DaoCusnapSelectSingle(Connection conn, CusnapInfo recordInfo, String schemaName) {
+	public CusnapDaoSelectSingle(Connection conn, CusnapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoCusnapSelectSingle extends DaoStmtTemplate<CusnapInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoCusnapWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new CusnapDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -61,20 +61,20 @@ public final class DaoCusnapSelectSingle extends DaoStmtTemplate<CusnapInfo> {
 				do {
 					CusnapInfo dataInfo = new CusnapInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_STORE);
-					dataInfo.codStoreSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_STORE_SNAPSHOT);
-					dataInfo.recordMode = stmtResult.getString(DaoCusnapDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_PERSON);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_USER);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoCusnapDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_USER_SNAPSHOT);
-					dataInfo.codPersonSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoCusnapDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_CREATED_BY);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, CusnapDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, CusnapDaoDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, CusnapDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codStoreSnapshot = DaoFormatter.sqlToLong(stmtResult, CusnapDaoDbTableColumn.COL_COD_STORE_SNAPSHOT);
+					dataInfo.recordMode = stmtResult.getString(CusnapDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, CusnapDaoDbTableColumn.COL_COD_PERSON);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, CusnapDaoDbTableColumn.COL_COD_USER);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CusnapDaoDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, CusnapDaoDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, CusnapDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, CusnapDaoDbTableColumn.COL_COD_USER_SNAPSHOT);
+					dataInfo.codPersonSnapshot = DaoFormatter.sqlToLong(stmtResult, CusnapDaoDbTableColumn.COL_COD_PERSON_SNAPSHOT);
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, CusnapDaoDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, CusnapDaoDbTableColumn.COL_CREATED_BY);
 	
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusnapMergeStolis extends ActionVisitorTemplateMerge<CusnapInfo, StolisInfo> {
+public final class CusnapVisiMergeStolis extends ActionVisitorTemplateMerge<CusnapInfo, StolisInfo> {
 	
-	public VisiCusnapMergeStolis(DeciTreeOption<CusnapInfo> option) {
+	public CusnapVisiMergeStolis(DeciTreeOption<CusnapInfo> option) {
 		super(option, StolisInfo.class);
 	}
 	

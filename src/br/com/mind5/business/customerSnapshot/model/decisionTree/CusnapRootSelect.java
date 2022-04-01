@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
-import br.com.mind5.business.customerSnapshot.model.action.StdCusnapMergeStolis;
-import br.com.mind5.business.customerSnapshot.model.action.StdCusnapSuccess;
-import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckHasStore;
+import br.com.mind5.business.customerSnapshot.model.action.CusnapVisiMergeToSelect;
+import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckLangu;
+import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class NodeCusnapStore extends DeciTreeTemplateRead<CusnapInfo> {
+public final class CusnapRootSelect extends DeciTreeTemplateRead<CusnapInfo> {
 	
-	public NodeCusnapStore(DeciTreeOption<CusnapInfo> option) {
+	public CusnapRootSelect(DeciTreeOption<CusnapInfo> option) {
 		super(option);
 	}
 	
@@ -31,8 +32,15 @@ public final class NodeCusnapStore extends DeciTreeTemplateRead<CusnapInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CusnapCheckHasStore(checkerOption);
+		checker = new CusnapCheckRead(checkerOption);
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new CusnapCheckLangu(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
@@ -42,20 +50,9 @@ public final class NodeCusnapStore extends DeciTreeTemplateRead<CusnapInfo> {
 	@Override protected List<ActionStd<CusnapInfo>> buildActionsOnPassedHook(DeciTreeOption<CusnapInfo> option) {
 		List<ActionStd<CusnapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusnapInfo> mergeStolis = new StdCusnapMergeStolis(option);
+		ActionStd<CusnapInfo> select = new ActionStdCommom<CusnapInfo>(option, CusnapVisiMergeToSelect.class);
 		
-		actions.add(mergeStolis);
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<CusnapInfo>> buildActionsOnFailedHook(DeciTreeOption<CusnapInfo> option) {
-		List<ActionStd<CusnapInfo>> actions = new ArrayList<>();
-		
-		ActionStd<CusnapInfo> success = new StdCusnapSuccess(option);
-		
-		actions.add(success);
+		actions.add(select);
 		return actions;
 	}
 }

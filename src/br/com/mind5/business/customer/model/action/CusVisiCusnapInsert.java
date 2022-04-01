@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.info.CusMerger;
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
-import br.com.mind5.business.customerSnapshot.model.decisionTree.RootCusnapInsert;
+import br.com.mind5.business.customerSnapshot.model.decisionTree.CusnapRootInsert;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class CusVisiCusnapInsert extends ActionVisitorTemplateAction<CusIn
 	
 	
 	@Override protected Class<? extends DeciTree<CusnapInfo>> getTreeClassHook() {
-		return RootCusnapInsert.class;
+		return CusnapRootInsert.class;
 	}
 	
 	

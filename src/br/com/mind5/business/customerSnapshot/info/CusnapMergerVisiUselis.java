@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class CusnapVisiMergeUselis extends InfoMergerVisitorTemplate<CusnapInfo, UselisInfo> {
+final class CusnapMergerVisiUselis extends InfoMergerVisitorTemplate<CusnapInfo, UselisInfo> {
 
 	@Override public boolean shouldMerge(CusnapInfo baseInfo, UselisInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner &&

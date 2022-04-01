@@ -15,7 +15,7 @@ public final class CusnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusnapVisiMergeStolis());
+		builder.addVisitor(new CusnapMergerVisiStolis());
 		InfoMerger<CusnapInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -28,7 +28,7 @@ public final class CusnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusnapVisiMergeUselis());
+		builder.addVisitor(new CusnapMergerVisiUselis());
 		InfoMerger<CusnapInfo, UselisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -41,7 +41,7 @@ public final class CusnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusnapVisiMergePerson());
+		builder.addVisitor(new CusnapMergerVisiPerson());
 		InfoMerger<CusnapInfo, PersonInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -54,7 +54,7 @@ public final class CusnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusnapVisiMergeToSelect());
+		builder.addVisitor(new CusnapMergerVisiToSelect());
 		InfoMerger<CusnapInfo, CusnapInfo> merger = builder.build();		
 	
 		return merger.merge();

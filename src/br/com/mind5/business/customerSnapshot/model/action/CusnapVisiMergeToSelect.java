@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
 import br.com.mind5.business.customerSnapshot.info.CusnapMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusnapMergeToSelect extends ActionVisitorTemplateMerge<CusnapInfo, CusnapInfo> {
+public final class CusnapVisiMergeToSelect extends ActionVisitorTemplateMerge<CusnapInfo, CusnapInfo> {
 	
-	public VisiCusnapMergeToSelect(DeciTreeOption<CusnapInfo> option) {
+	public CusnapVisiMergeToSelect(DeciTreeOption<CusnapInfo> option) {
 		super(option, CusnapInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<CusnapInfo>> getActionClassHook() {
-		return StdCusnapDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<CusnapInfo>> getVisitorClassHook() {
+		return CusnapVisiDaoSelect.class;
 	}
 	
 	

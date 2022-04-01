@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class DaoCusnapWhere implements DaoStmtWhere {	
+public final class CusnapDaoWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public DaoCusnapWhere(DaoWhereBuilderOption whereOption, String tableName, CusnapInfo recordInfo) {
+	public CusnapDaoWhere(DaoWhereBuilderOption whereOption, String tableName, CusnapInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,11 +27,11 @@ public final class DaoCusnapWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoCusnapDbTableColumn.COL_COD_OWNER :
+				case CusnapDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoCusnapDbTableColumn.COL_COD_SNAPSHOT :
+				case CusnapDaoDbTableColumn.COL_COD_SNAPSHOT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSnapshot));
 					break;
 			}

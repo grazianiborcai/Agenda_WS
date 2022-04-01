@@ -4,24 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
-import br.com.mind5.business.customerSnapshot.model.action.LazyCusnapDaoInsert;
-import br.com.mind5.business.customerSnapshot.model.action.LazyCusnapNodeStore;
-import br.com.mind5.business.customerSnapshot.model.action.LazyCusnapNodeUser;
-import br.com.mind5.business.customerSnapshot.model.action.StdCusnapMergePerson;
+import br.com.mind5.business.customerSnapshot.model.action.CusnapVisiNodeStore;
+import br.com.mind5.business.customerSnapshot.model.action.CusnapVisiNodeUser;
+import br.com.mind5.business.customerSnapshot.model.action.CusnapVisiDaoInsert;
+import br.com.mind5.business.customerSnapshot.model.action.CusnapVisiMergePerson;
 import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckLangu;
 import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckOwner;
 import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootCusnapInsert extends DeciTreeTemplateWrite<CusnapInfo> {
+public final class CusnapRootInsert extends DeciTreeTemplateWrite<CusnapInfo> {
 
-	public RootCusnapInsert(DeciTreeOption<CusnapInfo> option) {
+	public CusnapRootInsert(DeciTreeOption<CusnapInfo> option) {
 		super(option);
 	}
 	
@@ -61,10 +63,10 @@ public final class RootCusnapInsert extends DeciTreeTemplateWrite<CusnapInfo> {
 	@Override protected List<ActionStd<CusnapInfo>> buildActionsOnPassedHook(DeciTreeOption<CusnapInfo> option) {
 		List<ActionStd<CusnapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusnapInfo> mergePerson = new StdCusnapMergePerson(option);
-		ActionLazy<CusnapInfo> nodeUser = new LazyCusnapNodeUser(option.conn, option.schemaName);
-		ActionLazy<CusnapInfo> nodeStore = new LazyCusnapNodeStore(option.conn, option.schemaName);
-		ActionLazy<CusnapInfo> insert = new LazyCusnapDaoInsert(option.conn, option.schemaName);
+		ActionStd<CusnapInfo> mergePerson = new ActionStdCommom<CusnapInfo>(option, CusnapVisiMergePerson.class);
+		ActionLazy<CusnapInfo> nodeUser = new ActionLazyCommom<CusnapInfo>(option, CusnapVisiNodeUser.class);
+		ActionLazy<CusnapInfo> nodeStore = new ActionLazyCommom<CusnapInfo>(option, CusnapVisiNodeStore.class);
+		ActionLazy<CusnapInfo> insert = new ActionLazyCommom<CusnapInfo>(option, CusnapVisiDaoInsert.class);
 		
 		mergePerson.addPostAction(nodeUser);
 		nodeUser.addPostAction(nodeStore);

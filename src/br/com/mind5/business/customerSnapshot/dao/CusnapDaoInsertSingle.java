@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoCusnapInsertSingle extends DaoStmtTemplate<CusnapInfo> {	
+public final class CusnapDaoInsertSingle extends DaoStmtTemplate<CusnapInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.CUS_SNAPSHOT_TABLE;
 		
 	
-	public DaoCusnapInsertSingle(Connection conn, CusnapInfo recordInfo, String schemaName) {
+	public CusnapDaoInsertSingle(Connection conn, CusnapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

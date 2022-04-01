@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoCusnapInsert implements DaoStmtExec<CusnapInfo> {
+public final class CusnapDaoInsert implements DaoStmtExec<CusnapInfo> {
 	private DaoStmtExec<CusnapInfo> helper;
 	
 	
-	public DaoCusnapInsert(List<DaoStmtExecOption<CusnapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCusnapInsertSingle.class, CusnapInfo.class);
+	public CusnapDaoInsert(List<DaoStmtExecOption<CusnapInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CusnapDaoInsertSingle.class, CusnapInfo.class);
 	}
 	
 	
