@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.info.CompMerger;
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
-import br.com.mind5.business.companySnapshot.model.decisionTree.RootCompnapInsert;
+import br.com.mind5.business.companySnapshot.model.decisionTree.CompnapRootInsert;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class CompVisiCompnapInsert extends ActionVisitorTemplateAction<Com
 	
 	
 	@Override protected Class<? extends DeciTree<CompnapInfo>> getTreeClassHook() {
-		return RootCompnapInsert.class;
+		return CompnapRootInsert.class;
 	}
 	
 	

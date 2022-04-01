@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
-import br.com.mind5.business.companySnapshot.model.action.StdCompnapMergeToSelect;
+import br.com.mind5.business.companySnapshot.model.action.CompnapVisiDaoInsert;
+import br.com.mind5.business.companySnapshot.model.checker.CompnapCheckComp;
 import br.com.mind5.business.companySnapshot.model.checker.CompnapCheckOwner;
-import br.com.mind5.business.companySnapshot.model.checker.CompnapCheckRead;
+import br.com.mind5.business.companySnapshot.model.checker.CompnapCheckWrite;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootCompnapSelect extends DeciTreeTemplateRead<CompnapInfo> {
+public final class CompnapRootInsert extends DeciTreeTemplateWrite<CompnapInfo> {
 	
-	public RootCompnapSelect(DeciTreeOption<CompnapInfo> option) {
+	public CompnapRootInsert(DeciTreeOption<CompnapInfo> option) {
 		super(option);
 	}
 	
@@ -31,7 +33,7 @@ public final class RootCompnapSelect extends DeciTreeTemplateRead<CompnapInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CompnapCheckRead(checkerOption);
+		checker = new CompnapCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -41,6 +43,13 @@ public final class RootCompnapSelect extends DeciTreeTemplateRead<CompnapInfo> {
 		checker = new CompnapCheckOwner(checkerOption);
 		queue.add(checker);	
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new CompnapCheckComp(checkerOption);
+		queue.add(checker);	
+			
 		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
@@ -49,9 +58,9 @@ public final class RootCompnapSelect extends DeciTreeTemplateRead<CompnapInfo> {
 	@Override protected List<ActionStd<CompnapInfo>> buildActionsOnPassedHook(DeciTreeOption<CompnapInfo> option) {
 		List<ActionStd<CompnapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CompnapInfo> select = new StdCompnapMergeToSelect(option);	
-		actions.add(select);
+		ActionStd<CompnapInfo> insert = new ActionStdCommom<CompnapInfo>(option, CompnapVisiDaoInsert.class);
 		
+		actions.add(insert);
 		return actions;
 	}
 }

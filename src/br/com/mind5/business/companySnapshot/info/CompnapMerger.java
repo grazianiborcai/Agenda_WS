@@ -11,7 +11,7 @@ public final class CompnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CompnapVisiMergeToSelect());
+		builder.addVisitor(new CompnapMergerVisiToSelect());
 		InfoMerger<CompnapInfo, CompnapInfo> merger = builder.build();		
 	
 		return merger.merge();

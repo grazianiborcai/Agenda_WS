@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoCompnapSelect implements DaoStmtExec<CompnapInfo> {
+public final class CompnapDaoInsert implements DaoStmtExec<CompnapInfo> {
 	private DaoStmtExec<CompnapInfo> helper;
 	
 	
-	public DaoCompnapSelect(List<DaoStmtExecOption<CompnapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCompnapSelectSingle.class, CompnapInfo.class);
+	public CompnapDaoInsert(List<DaoStmtExecOption<CompnapInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CompnapDaoInsertSingle.class, CompnapInfo.class);
 	}
 	
 	

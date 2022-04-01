@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.companySnapshot.info.CompnapCopier;
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
-import br.com.mind5.business.companySnapshot.model.decisionTree.RootCompnapSelect;
+import br.com.mind5.business.companySnapshot.model.decisionTree.CompnapRootSelect;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -20,7 +20,7 @@ public final class StorapVisiMergeCompnap extends ActionVisitorTemplateMerge<Sto
 	
 	
 	@Override protected Class<? extends DeciTree<CompnapInfo>> getTreeClassHook() {
-		return RootCompnapSelect.class;
+		return CompnapRootSelect.class;
 	}
 	
 	

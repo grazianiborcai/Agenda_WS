@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoCompnapDbTableColumn extends DaoDbTableColumnTemplate {
+public final class CompnapDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CNPJ = DaoDbField.COL_CNPJ;
 	public static final String COL_COD_COMPANY = DaoDbField.COL_COD_COMPANY;
 	public static final String COL_COD_ENTITY_CATEG = DaoDbField.COL_COD_ENTITY_CATEG;
@@ -29,7 +29,7 @@ public final class DaoCompnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;		
 	
 	
-	public DaoCompnapDbTableColumn() {
+	public CompnapDaoDbTableColumn() {
 		super();
 	}
 	
