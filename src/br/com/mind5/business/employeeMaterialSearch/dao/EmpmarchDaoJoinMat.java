@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoEmpmarchJoinMat implements DaoJoinBuilder {
+public final class EmpmarchDaoJoinMat implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public DaoEmpmarchJoinMat(String leftTableName) {
+	public EmpmarchDaoJoinMat(String leftTableName) {
 		leftTable = leftTableName;
 	}
 

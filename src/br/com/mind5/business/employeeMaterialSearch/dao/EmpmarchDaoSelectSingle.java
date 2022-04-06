@@ -17,11 +17,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoEmpmarchSelectSingle extends DaoStmtTemplate<EmpmarchInfo> {
+public final class EmpmarchDaoSelectSingle extends DaoStmtTemplate<EmpmarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.EMP_MAT_TABLE;
 	
 	
-	public DaoEmpmarchSelectSingle(Connection conn, EmpmarchInfo recordInfo, String schemaName) {
+	public EmpmarchDaoSelectSingle(Connection conn, EmpmarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -51,7 +51,7 @@ public final class DaoEmpmarchSelectSingle extends DaoStmtTemplate<EmpmarchInfo>
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoEmpmarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new EmpmarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -60,10 +60,10 @@ public final class DaoEmpmarchSelectSingle extends DaoStmtTemplate<EmpmarchInfo>
 	@Override protected List<DaoJoin> getJoinsHook(EmpmarchInfo recordInfo) {
 		List<DaoJoin> joins = new ArrayList<>();
 		
-		DaoJoinBuilder joinEmp = new DaoEmpmarchJoinEmp(MAIN_TABLE);		
+		DaoJoinBuilder joinEmp = new EmpmarchDaoJoinEmp(MAIN_TABLE);		
 		joins.add(joinEmp.build());
 		
-		DaoJoinBuilder joinMat = new DaoEmpmarchJoinMat(MAIN_TABLE);		
+		DaoJoinBuilder joinMat = new EmpmarchDaoJoinMat(MAIN_TABLE);		
 		joins.add(joinMat.build());
 		
 		return joins;
@@ -82,11 +82,11 @@ public final class DaoEmpmarchSelectSingle extends DaoStmtTemplate<EmpmarchInfo>
 				do {
 					EmpmarchInfo dataInfo = new EmpmarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoEmpmarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codEmployee = stmtResult.getLong(DaoEmpmarchDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codMat = stmtResult.getLong(DaoEmpmarchDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.codStore = stmtResult.getLong(DaoEmpmarchDbTableColumn.COL_COD_STORE);
-					dataInfo.recordMode = stmtResult.getString(DaoEmpmarchDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.codOwner = stmtResult.getLong(EmpmarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codEmployee = stmtResult.getLong(EmpmarchDaoDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codMat = stmtResult.getLong(EmpmarchDaoDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.codStore = stmtResult.getLong(EmpmarchDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.recordMode = stmtResult.getString(EmpmarchDaoDbTableColumn.COL_RECORD_MODE);	
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.employeeMaterialSearch.info.EmpmarchInfo;
 import br.com.mind5.business.employeeMaterialSearch.info.EmpmarchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpmarchMergeToSelect extends ActionVisitorTemplateMerge<EmpmarchInfo, EmpmarchInfo> {
+public final class EmpmarchVisiMergeToSelect extends ActionVisitorTemplateMerge<EmpmarchInfo, EmpmarchInfo> {
 	
-	public VisiEmpmarchMergeToSelect(DeciTreeOption<EmpmarchInfo> option) {
+	public EmpmarchVisiMergeToSelect(DeciTreeOption<EmpmarchInfo> option) {
 		super(option, EmpmarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<EmpmarchInfo>> getActionClassHook() {
-		return StdEmpmarchDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<EmpmarchInfo>> getVisitorClassHook() {
+		return EmpmarchVisiDaoSelect.class;
 	}
 	
 	

@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class DaoEmpmarchWhere implements DaoStmtWhere {
+public final class EmpmarchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoEmpmarchWhere(DaoWhereBuilderOption whereOption, String tableName, EmpmarchInfo recordInfo) {
+	public EmpmarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, EmpmarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,23 +27,23 @@ public final class DaoEmpmarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoEmpmarchDbTableColumn.COL_COD_OWNER :
+				case EmpmarchDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoEmpmarchDbTableColumn.COL_COD_EMPLOYEE :
+				case EmpmarchDaoDbTableColumn.COL_COD_EMPLOYEE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 					break;
 					
-				case DaoEmpmarchDbTableColumn.COL_COD_MATERIAL :
+				case EmpmarchDaoDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
 					
-				case DaoEmpmarchDbTableColumn.COL_COD_STORE :
+				case EmpmarchDaoDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case DaoEmpmarchDbTableColumn.COL_RECORD_MODE :
+				case EmpmarchDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}
