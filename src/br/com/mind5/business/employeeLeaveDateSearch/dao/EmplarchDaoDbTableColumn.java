@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoEmplarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class EmplarchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE; 
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER; 	
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE; 
@@ -18,7 +18,7 @@ public final class DaoEmplarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_TM_VALID_FROM = DaoDbField.COL_TM_VALID_FROM; 
 	
 	
-	public DaoEmplarchDbTableColumn() {
+	public EmplarchDaoDbTableColumn() {
 		super();
 	}
 	

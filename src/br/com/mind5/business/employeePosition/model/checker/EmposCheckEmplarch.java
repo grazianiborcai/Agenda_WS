@@ -1,7 +1,7 @@
 package br.com.mind5.business.employeePosition.model.checker;
 
 import br.com.mind5.business.employeeLeaveDateSearch.info.EmplarchInfo;
-import br.com.mind5.business.employeeLeaveDateSearch.model.decisionTree.RootEmplarchSelect;
+import br.com.mind5.business.employeeLeaveDateSearch.model.decisionTree.EmplarchRootSelect;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
@@ -18,7 +18,7 @@ public final class EmposCheckEmplarch extends ModelCheckerTemplateAction<EmposIn
 	
 	
 	@Override protected ActionStd<EmplarchInfo> buildActionHook(DeciTreeOption<EmplarchInfo> option) {
-		ActionStd<EmplarchInfo> select = new RootEmplarchSelect(option).toAction();
+		ActionStd<EmplarchInfo> select = new EmplarchRootSelect(option).toAction();
 		return select;
 	}	
 	
