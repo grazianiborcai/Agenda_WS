@@ -16,7 +16,7 @@ public final class EmpmatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpmatVisiMergeSytotauh());
+		builder.addVisitor(new EmpmatMergerVisiSytotauh());
 		InfoMerger<EmpmatInfo, SytotauhInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -29,7 +29,7 @@ public final class EmpmatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpmatVisiMergeEmpmarch());
+		builder.addVisitor(new EmpmatMergerVisiEmpmarch());
 		InfoMerger<EmpmatInfo, EmpmarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -42,7 +42,7 @@ public final class EmpmatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpmatVisiMergeEmplres());
+		builder.addVisitor(new EmpmatMergerVisiEmplres());
 		InfoMerger<EmpmatInfo, EmplresInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -55,7 +55,7 @@ public final class EmpmatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpmatVisiMergeMatlis());
+		builder.addVisitor(new EmpmatMergerVisiMatlis());
 		InfoMerger<EmpmatInfo, MatlisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -68,7 +68,7 @@ public final class EmpmatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpmatVisiMergeUsername());
+		builder.addVisitor(new EmpmatMergerVisiUsername());
 		InfoMerger<EmpmatInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -81,7 +81,7 @@ public final class EmpmatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpmatVisiMergeToDelete());
+		builder.addVisitor(new EmpmatMergerVisiToDelete());
 		InfoMerger<EmpmatInfo, EmpmatInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -94,7 +94,7 @@ public final class EmpmatMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpmatVisiMergeToSelect());
+		builder.addVisitor(new EmpmatMergerVisiToSelect());
 		InfoMerger<EmpmatInfo, EmpmatInfo> merger = builder.build();		
 	
 		return merger.merge();

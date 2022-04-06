@@ -1,11 +1,13 @@
 package br.com.mind5.business.employeeMaterial.model.checker;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
-import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatDaoSelect;
-import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatEnforceDel;
+import br.com.mind5.business.employeeMaterial.model.action.EmpmatVisiDaoSelect;
+import br.com.mind5.business.employeeMaterial.model.action.EmpmatVisiEnforceDel;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,8 +21,8 @@ public final class EmpmatCheckSoftDelete extends ModelCheckerTemplateAction<Empm
 	
 	
 	@Override protected ActionStd<EmpmatInfo> buildActionHook(DeciTreeOption<EmpmatInfo> option) {		
-		ActionStd<EmpmatInfo> enforceDel = new StdEmpmatEnforceDel(option);
-		ActionLazy<EmpmatInfo> select = new LazyEmpmatDaoSelect(option.conn, option.schemaName);
+		ActionStd<EmpmatInfo> enforceDel = new ActionStdCommom<EmpmatInfo>(option, EmpmatVisiEnforceDel.class);
+		ActionLazy<EmpmatInfo> select = new ActionLazyCommom<EmpmatInfo>(option, EmpmatVisiDaoSelect.class);
 		
 		enforceDel.addPostAction(select);
 		return enforceDel;
