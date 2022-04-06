@@ -1,7 +1,7 @@
 package br.com.mind5.business.employeePosition.model;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.business.employeePosition.model.decisionTree.RootEmposSelectProfessional;
+import br.com.mind5.business.employeePosition.model.decisionTree.EmposRootSelectProfessional;
 import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -15,6 +15,6 @@ public final class EmposModelSelectProfessional extends ModelTemplate<EmposInfo>
 	
 	
 	@Override protected DeciTree<EmposInfo> getDecisionTreeHook(DeciTreeOption<EmposInfo> option) {
-		return new RootEmposSelectProfessional(option);
+		return new EmposRootSelectProfessional(option);
 	}
 }

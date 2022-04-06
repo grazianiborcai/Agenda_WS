@@ -15,7 +15,7 @@ public final class EmposMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmposVisiMergeEmplres());
+		builder.addVisitor(new EmposMergerVisiEmplres());
 		InfoMerger<EmposInfo, EmplresInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -28,7 +28,7 @@ public final class EmposMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmposVisiMergeEmposarch());
+		builder.addVisitor(new EmposMergerVisiEmposarch());
 		InfoMerger<EmposInfo, EmposarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -41,7 +41,7 @@ public final class EmposMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmposVisiMergePosition());
+		builder.addVisitor(new EmposMergerVisiPosition());
 		InfoMerger<EmposInfo, PositionInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -54,7 +54,7 @@ public final class EmposMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmposVisiMergeUsername());
+		builder.addVisitor(new EmposMergerVisiUsername());
 		InfoMerger<EmposInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -67,7 +67,7 @@ public final class EmposMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmposVisiMergeToDelete());
+		builder.addVisitor(new EmposMergerVisiToDelete());
 		InfoMerger<EmposInfo, EmposInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -80,7 +80,7 @@ public final class EmposMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmposVisiMergeToSelect());
+		builder.addVisitor(new EmposMergerVisiToSelect());
 		InfoMerger<EmposInfo, EmposInfo> merger = builder.build();		
 	
 		return merger.merge();
