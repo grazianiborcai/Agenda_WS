@@ -1,7 +1,7 @@
 package br.com.mind5.business.employeeLeaveDateRange.model.checker;
 
 import br.com.mind5.business.employeeLeaveDateRange.info.EmplargInfo;
-import br.com.mind5.business.employeeLeaveDateRange.model.decisionTree.RootEmplargSelect;
+import br.com.mind5.business.employeeLeaveDateRange.model.decisionTree.EmplargRootSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class EmplargCheckExist extends ModelCheckerTemplateAction<EmplargI
 	
 	
 	@Override protected ActionStd<EmplargInfo> buildActionHook(DeciTreeOption<EmplargInfo> option) {
-		ActionStd<EmplargInfo> select = new RootEmplargSelect(option).toAction();
+		ActionStd<EmplargInfo> select = new EmplargRootSelect(option).toAction();
 		return select;
 	}
 	

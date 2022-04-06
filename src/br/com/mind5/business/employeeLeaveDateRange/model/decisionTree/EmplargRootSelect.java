@@ -4,22 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDateRange.info.EmplargInfo;
-import br.com.mind5.business.employeeLeaveDateRange.model.action.StdEmplargMergeToSelect;
+import br.com.mind5.business.employeeLeaveDateRange.model.action.EmplargVisiMergeToSelect;
 import br.com.mind5.business.employeeLeaveDateRange.model.checker.EmplargCheckEmp;
 import br.com.mind5.business.employeeLeaveDateRange.model.checker.EmplargCheckLangu;
 import br.com.mind5.business.employeeLeaveDateRange.model.checker.EmplargCheckOwner;
 import br.com.mind5.business.employeeLeaveDateRange.model.checker.EmplargCheckRead;
 import br.com.mind5.business.employeeLeaveDateRange.model.checker.EmplargCheckStore;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public class RootEmplargSelect extends DeciTreeTemplateRead<EmplargInfo> {
+public class EmplargRootSelect extends DeciTreeTemplateRead<EmplargInfo> {
 	
-	public RootEmplargSelect(DeciTreeOption<EmplargInfo> option) {
+	public EmplargRootSelect(DeciTreeOption<EmplargInfo> option) {
 		super(option);
 	}
 	
@@ -73,7 +74,7 @@ public class RootEmplargSelect extends DeciTreeTemplateRead<EmplargInfo> {
 	@Override protected List<ActionStd<EmplargInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplargInfo> option) {
 		List<ActionStd<EmplargInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmplargInfo> select = new StdEmplargMergeToSelect(option);
+		ActionStd<EmplargInfo> select = new ActionStdCommom<EmplargInfo>(option, EmplargVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;
