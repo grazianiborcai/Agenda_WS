@@ -17,7 +17,7 @@ public final class MatsnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatsnapVisiMergeMatubup());
+		builder.addVisitor(new MatsnapMergerVisiMatubup());
 		InfoMerger<MatsnapInfo, MatubupInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -30,7 +30,7 @@ public final class MatsnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatsnapVisiMergeMateg());
+		builder.addVisitor(new MatsnapMergerVisiMateg());
 		InfoMerger<MatsnapInfo, MategInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -43,7 +43,7 @@ public final class MatsnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatsnapVisiMergeMatoup());
+		builder.addVisitor(new MatsnapMergerVisiMatoup());
 		InfoMerger<MatsnapInfo, MatoupInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -56,7 +56,7 @@ public final class MatsnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatsnapVisiMergeMatype());
+		builder.addVisitor(new MatsnapMergerVisiMatype());
 		InfoMerger<MatsnapInfo, MatypeInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -69,7 +69,7 @@ public final class MatsnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatsnapVisiMergeMatunit());
+		builder.addVisitor(new MatsnapMergerVisiMatunit());
 		InfoMerger<MatsnapInfo, MatunitInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -82,7 +82,7 @@ public final class MatsnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatsnapVisiMergeMatextsnap());
+		builder.addVisitor(new MatsnapMergerVisiMatextsnap());
 		InfoMerger<MatsnapInfo, MatextsnapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -95,7 +95,7 @@ public final class MatsnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatsnapVisiMergeToSelect());
+		builder.addVisitor(new MatsnapMergerVisiToSelect());
 		InfoMerger<MatsnapInfo, MatsnapInfo> merger = builder.build();		
 	
 		return merger.merge();
