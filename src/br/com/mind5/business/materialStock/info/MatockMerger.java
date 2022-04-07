@@ -11,7 +11,7 @@ public final class MatockMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatockVisiMergeToSelect());
+		builder.addVisitor(new MatockMergerVisiToSelect());
 		InfoMerger<MatockInfo, MatockInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -24,7 +24,7 @@ public final class MatockMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatockVisiMergeToUpdate());
+		builder.addVisitor(new MatockMergerVisiToUpdate());
 		InfoMerger<MatockInfo, MatockInfo> merger = builder.build();		
 	
 		return merger.merge();

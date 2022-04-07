@@ -1,18 +1,17 @@
-package br.com.mind5.business.materialStore.model.action;
+package br.com.mind5.business.materialStock.model.action;
 
 import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
+import br.com.mind5.business.materialStock.info.MatockMerger;
 import br.com.mind5.business.materialStock.model.decisionTree.MatockRootSelect;
-import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.business.materialStore.info.MatoreMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatoreMergeMatock extends ActionVisitorTemplateMerge<MatoreInfo, MatockInfo> {
+public final class MatockVisiMergeToUpdate extends ActionVisitorTemplateMerge<MatockInfo, MatockInfo> {
 	
-	public VisiMatoreMergeMatock(DeciTreeOption<MatoreInfo> option) {
+	public MatockVisiMergeToUpdate(DeciTreeOption<MatockInfo> option) {
 		super(option, MatockInfo.class);
 	}
 	
@@ -24,13 +23,13 @@ final class VisiMatoreMergeMatock extends ActionVisitorTemplateMerge<MatoreInfo,
 	
 	
 	
-	@Override protected List<MatoreInfo> mergeHook(List<MatoreInfo> baseInfos, List<MatockInfo> selectedInfos) {	
-		return MatoreMerger.mergeWithMatock(baseInfos, selectedInfos);
+	@Override protected List<MatockInfo> mergeHook(List<MatockInfo> baseInfos, List<MatockInfo> selectedInfos) {	
+		return MatockMerger.mergeToUpdate(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return super.MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }
