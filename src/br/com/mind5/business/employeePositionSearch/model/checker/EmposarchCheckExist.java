@@ -1,7 +1,7 @@
 package br.com.mind5.business.employeePositionSearch.model.checker;
 
 import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
-import br.com.mind5.business.employeePositionSearch.model.decisionTree.RootEmposarchSelect;
+import br.com.mind5.business.employeePositionSearch.model.decisionTree.EmposarchRootSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class EmposarchCheckExist extends ModelCheckerTemplateAction<Emposa
 	
 	
 	@Override protected ActionStd<EmposarchInfo> buildActionHook(DeciTreeOption<EmposarchInfo> option) {
-		ActionStd<EmposarchInfo> select = new RootEmposarchSelect(option).toAction();
+		ActionStd<EmposarchInfo> select = new EmposarchRootSelect(option).toAction();
 		return select;
 	}
 	

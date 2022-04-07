@@ -11,7 +11,7 @@ public final class EmposarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmposarchVisiMergeToSelect());
+		builder.addVisitor(new EmposarchMergerVisiToSelect());
 		InfoMerger<EmposarchInfo, EmposarchInfo> merger = builder.build();		
 	
 		return merger.merge();
