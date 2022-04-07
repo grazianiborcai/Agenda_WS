@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeSearch.info.EmparchInfo;
-import br.com.mind5.business.employeeSearch.model.action.LazyEmparchRootSelect;
-import br.com.mind5.business.employeeSearch.model.action.StdEmparchEnforceUserKey;
-import br.com.mind5.business.employeeSearch.model.checker.EmparchCheckReadUser;
+import br.com.mind5.business.employeeSearch.model.action.EmparchVisiRootSelect;
+import br.com.mind5.business.employeeSearch.model.action.EmparchVisiEnforceEmailKey;
+import br.com.mind5.business.employeeSearch.model.checker.EmparchCheckReadEmail;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEmparchSelectUser extends DeciTreeTemplateRead<EmparchInfo> {
+public final class EmparchRootSelectEmail extends DeciTreeTemplateRead<EmparchInfo> {
 	
-	public RootEmparchSelectUser(DeciTreeOption<EmparchInfo> option) {
+	public EmparchRootSelectEmail(DeciTreeOption<EmparchInfo> option) {
 		super(option);
 	}
 	
@@ -32,7 +34,7 @@ public final class RootEmparchSelectUser extends DeciTreeTemplateRead<EmparchInf
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new EmparchCheckReadUser(checkerOption);
+		checker = new EmparchCheckReadEmail(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -43,12 +45,12 @@ public final class RootEmparchSelectUser extends DeciTreeTemplateRead<EmparchInf
 	@Override protected List<ActionStd<EmparchInfo>> buildActionsOnPassedHook(DeciTreeOption<EmparchInfo> option) {
 		List<ActionStd<EmparchInfo>> actions = new ArrayList<>();
 
-		ActionStd<EmparchInfo> enforceUserKey = new StdEmparchEnforceUserKey(option);
-		ActionLazy<EmparchInfo> select = new LazyEmparchRootSelect(option.conn, option.schemaName);
+		ActionStd<EmparchInfo> enforceEmailKey = new ActionStdCommom<EmparchInfo>(option, EmparchVisiEnforceEmailKey.class);
+		ActionLazy<EmparchInfo> select = new ActionLazyCommom<EmparchInfo>(option, EmparchVisiRootSelect.class);
 		
-		enforceUserKey.addPostAction(select);
+		enforceEmailKey.addPostAction(select);
 		
-		actions.add(enforceUserKey);
+		actions.add(enforceEmailKey);
 		return actions;
 	}
 }

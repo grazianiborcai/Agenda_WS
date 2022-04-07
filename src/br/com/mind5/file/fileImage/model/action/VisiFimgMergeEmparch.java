@@ -3,7 +3,7 @@ package br.com.mind5.file.fileImage.model.action;
 import java.util.List;
 
 import br.com.mind5.business.employeeSearch.info.EmparchInfo;
-import br.com.mind5.business.employeeSearch.model.decisionTree.RootEmparchSelectUser;
+import br.com.mind5.business.employeeSearch.model.decisionTree.EmparchRootSelectUser;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.info.FimgMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiFimgMergeEmparch extends ActionVisitorTemplateMerge<FimgInfo, Em
 	
 	
 	@Override protected Class<? extends DeciTree<EmparchInfo>> getTreeClassHook() {
-		return RootEmparchSelectUser.class;
+		return EmparchRootSelectUser.class;
 	}
 	
 	

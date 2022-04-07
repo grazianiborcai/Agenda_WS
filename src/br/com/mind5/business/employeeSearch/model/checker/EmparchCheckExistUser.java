@@ -1,7 +1,7 @@
 package br.com.mind5.business.employeeSearch.model.checker;
 
 import br.com.mind5.business.employeeSearch.info.EmparchInfo;
-import br.com.mind5.business.employeeSearch.model.decisionTree.RootEmparchSelectUser;
+import br.com.mind5.business.employeeSearch.model.decisionTree.EmparchRootSelectUser;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class EmparchCheckExistUser extends ModelCheckerTemplateAction<Empa
 	
 	
 	@Override protected ActionStd<EmparchInfo> buildActionHook(DeciTreeOption<EmparchInfo> option) {
-		ActionStd<EmparchInfo> select = new RootEmparchSelectUser(option).toAction();
+		ActionStd<EmparchInfo> select = new EmparchRootSelectUser(option).toAction();
 		return select;
 	}
 	

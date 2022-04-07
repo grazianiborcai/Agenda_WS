@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeSearch.info.EmparchInfo;
-import br.com.mind5.business.employeeSearch.model.action.StdEmparchMergeToSelect;
-import br.com.mind5.business.employeeSearch.model.checker.EmparchCheckLangu;
-import br.com.mind5.business.employeeSearch.model.checker.EmparchCheckOwner;
-import br.com.mind5.business.employeeSearch.model.checker.EmparchCheckRead;
+import br.com.mind5.business.employeeSearch.model.action.EmparchVisiRootSelect;
+import br.com.mind5.business.employeeSearch.model.action.EmparchVisiEnforceSytotauhKey;
+import br.com.mind5.business.employeeSearch.model.checker.EmparchCheckReadSytotauh;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEmparchSelect extends DeciTreeTemplateRead<EmparchInfo> {
+public final class EmparchRootSelectSytotauh extends DeciTreeTemplateRead<EmparchInfo> {
 	
-	public RootEmparchSelect(DeciTreeOption<EmparchInfo> option) {
+	public EmparchRootSelectSytotauh(DeciTreeOption<EmparchInfo> option) {
 		super(option);
 	}
 	
@@ -32,22 +34,8 @@ public final class RootEmparchSelect extends DeciTreeTemplateRead<EmparchInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new EmparchCheckRead(checkerOption);
+		checker = new EmparchCheckReadSytotauh(checkerOption);
 		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new EmparchCheckLangu(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new EmparchCheckOwner(checkerOption);
-		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
@@ -57,9 +45,12 @@ public final class RootEmparchSelect extends DeciTreeTemplateRead<EmparchInfo> {
 	@Override protected List<ActionStd<EmparchInfo>> buildActionsOnPassedHook(DeciTreeOption<EmparchInfo> option) {
 		List<ActionStd<EmparchInfo>> actions = new ArrayList<>();
 
-		ActionStd<EmparchInfo> select = new StdEmparchMergeToSelect(option);
+		ActionStd<EmparchInfo> enforceSytotauhKey = new ActionStdCommom<EmparchInfo>(option, EmparchVisiEnforceSytotauhKey.class);
+		ActionLazy<EmparchInfo> select = new ActionLazyCommom<EmparchInfo>(option, EmparchVisiRootSelect.class);
 		
-		actions.add(select);
+		enforceSytotauhKey.addPostAction(select);
+		
+		actions.add(enforceSytotauhKey);
 		return actions;
 	}
 }
