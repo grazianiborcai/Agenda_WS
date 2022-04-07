@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class MatocarchVisiMergeToSelect extends InfoMergerVisitorTemplate<MatocarchInfo, MatocarchInfo> {
+final class MatocarchMergerVisiToSelect extends InfoMergerVisitorTemplate<MatocarchInfo, MatocarchInfo> {
 
 	@Override public boolean shouldMerge(MatocarchInfo baseInfo, MatocarchInfo selectedInfo) {
 		return true;

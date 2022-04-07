@@ -4,21 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStockSearch.info.MatocarchInfo;
-import br.com.mind5.business.materialStockSearch.model.action.StdMatocarchMergeToSelect;
+import br.com.mind5.business.materialStockSearch.model.action.MatocarchVisiMergeToSelect;
 import br.com.mind5.business.materialStockSearch.model.checker.MatocarchCheckLangu;
 import br.com.mind5.business.materialStockSearch.model.checker.MatocarchCheckOwner;
 import br.com.mind5.business.materialStockSearch.model.checker.MatocarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
 
-public final class RootMatocarchSelect extends DeciTreeTemplateRead<MatocarchInfo> {
+public final class MatocarchRootSelect extends DeciTreeTemplateRead<MatocarchInfo> {
 	
-	public RootMatocarchSelect(DeciTreeOption<MatocarchInfo> option) {
+	public MatocarchRootSelect(DeciTreeOption<MatocarchInfo> option) {
 		super(option);
 	}
 	
@@ -58,7 +59,7 @@ public final class RootMatocarchSelect extends DeciTreeTemplateRead<MatocarchInf
 	@Override protected List<ActionStd<MatocarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatocarchInfo> option) {
 		List<ActionStd<MatocarchInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatocarchInfo> select = new StdMatocarchMergeToSelect(option);
+		ActionStd<MatocarchInfo> select = new ActionStdCommom<MatocarchInfo>(option, MatocarchVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

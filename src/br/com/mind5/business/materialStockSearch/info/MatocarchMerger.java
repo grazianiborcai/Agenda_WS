@@ -11,7 +11,7 @@ public final class MatocarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatocarchVisiMergeToSelect());
+		builder.addVisitor(new MatocarchMergerVisiToSelect());
 		InfoMerger<MatocarchInfo, MatocarchInfo> merger = builder.build();		
 	
 		return merger.merge();
