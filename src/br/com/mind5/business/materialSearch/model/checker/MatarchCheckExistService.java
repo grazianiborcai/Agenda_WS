@@ -1,7 +1,7 @@
 package br.com.mind5.business.materialSearch.model.checker;
 
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
-import br.com.mind5.business.materialSearch.model.decisionTree.RootMatarchSelectService;
+import br.com.mind5.business.materialSearch.model.decisionTree.MatarchRootSelectService;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class MatarchCheckExistService extends ModelCheckerTemplateAction<M
 	
 	
 	@Override protected ActionStd<MatarchInfo> buildActionHook(DeciTreeOption<MatarchInfo> option) {
-		ActionStd<MatarchInfo> selectService = new RootMatarchSelectService(option).toAction();		
+		ActionStd<MatarchInfo> selectService = new MatarchRootSelectService(option).toAction();		
 		return selectService;
 	}
 	

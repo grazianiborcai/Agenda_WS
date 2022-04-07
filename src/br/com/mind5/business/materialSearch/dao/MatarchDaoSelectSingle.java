@@ -19,11 +19,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoJoinMatext;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoMatarchSelectSingle extends DaoStmtTemplate<MatarchInfo> {
+public final class MatarchDaoSelectSingle extends DaoStmtTemplate<MatarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_TABLE;	
 	
 	
-	public DaoMatarchSelectSingle(Connection conn, MatarchInfo recordInfo, String schemaName) {
+	public MatarchDaoSelectSingle(Connection conn, MatarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -53,7 +53,7 @@ public final class DaoMatarchSelectSingle extends DaoStmtTemplate<MatarchInfo> {
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoMatarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new MatarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -76,15 +76,15 @@ public final class DaoMatarchSelectSingle extends DaoStmtTemplate<MatarchInfo> {
 				
 				do {
 					MatarchInfo dataInfo = new MatarchInfo();
-					dataInfo.codOwner = stmtResult.getLong(DaoMatarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codMat = stmtResult.getLong(DaoMatarchDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.codStore = stmtResult.getLong(DaoMatarchDbTableColumn.COL_COD_STORE);
-					dataInfo.codType = stmtResult.getInt(DaoMatarchDbTableColumn.COL_COD_TYPE);
-					dataInfo.codMatCateg = stmtResult.getInt(DaoMatarchDbTableColumn.COL_COD_CATEGORY);
-					dataInfo.codGroup = stmtResult.getInt(DaoMatarchDbTableColumn.COL_COD_GROUP);
-					dataInfo.isLocked = stmtResult.getBoolean(DaoMatarchDbTableColumn.COL_IS_LOCKED);	
-					dataInfo.recordMode = stmtResult.getString(DaoMatarchDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoMatarchDbTableColumn.COL_COD_SNAPSHOT);	
+					dataInfo.codOwner = stmtResult.getLong(MatarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codMat = stmtResult.getLong(MatarchDaoDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.codStore = stmtResult.getLong(MatarchDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codType = stmtResult.getInt(MatarchDaoDbTableColumn.COL_COD_TYPE);
+					dataInfo.codMatCateg = stmtResult.getInt(MatarchDaoDbTableColumn.COL_COD_CATEGORY);
+					dataInfo.codGroup = stmtResult.getInt(MatarchDaoDbTableColumn.COL_COD_GROUP);
+					dataInfo.isLocked = stmtResult.getBoolean(MatarchDaoDbTableColumn.COL_IS_LOCKED);	
+					dataInfo.recordMode = stmtResult.getString(MatarchDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, MatarchDaoDbTableColumn.COL_COD_SNAPSHOT);	
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

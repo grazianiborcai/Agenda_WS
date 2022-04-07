@@ -11,7 +11,7 @@ public final class MatarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatarchVisiMergeToSelect());
+		builder.addVisitor(new MatarchMergerVisiToSelect());
 		InfoMerger<MatarchInfo, MatarchInfo> merger = builder.build();		
 	
 		return merger.merge();

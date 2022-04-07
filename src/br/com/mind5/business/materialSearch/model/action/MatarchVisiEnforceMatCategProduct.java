@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatarchEnforceMatCategProduct extends ActionVisitorTemplateEnforce<MatarchInfo> {
+public final class MatarchVisiEnforceMatCategProduct extends ActionVisitorTemplateEnforce<MatarchInfo> {
 	
-	public VisiMatarchEnforceMatCategProduct(DeciTreeOption<MatarchInfo> option) {
+	public MatarchVisiEnforceMatCategProduct(DeciTreeOption<MatarchInfo> option) {
 		super(option);
 	}
 	

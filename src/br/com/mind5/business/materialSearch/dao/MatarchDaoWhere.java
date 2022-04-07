@@ -11,11 +11,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.DaoWhereCondition;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class DaoMatarchWhere implements DaoStmtWhere {
+public final class MatarchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoMatarchWhere(DaoWhereBuilderOption whereOption, String tableName, MatarchInfo recordInfo) {
+	public MatarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, MatarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -28,40 +28,40 @@ public final class DaoMatarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoMatarchDbTableColumn.COL_COD_OWNER :
+				case MatarchDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoMatarchDbTableColumn.COL_COD_MATERIAL :
+				case MatarchDaoDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
 					
-				case DaoMatarchDbTableColumn.COL_COD_STORE :
+				case MatarchDaoDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 
-				case DaoMatarchDbTableColumn.COL_COD_TYPE  :
+				case MatarchDaoDbTableColumn.COL_COD_TYPE  :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codType));
 					break;
 					
-				case DaoMatarchDbTableColumn.COL_COD_GROUP :
+				case MatarchDaoDbTableColumn.COL_COD_GROUP :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codGroup));
 					break;
 					
-				case DaoMatarchDbTableColumn.COL_COD_CATEGORY :
+				case MatarchDaoDbTableColumn.COL_COD_CATEGORY :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMatCateg));
 					break;
 					
-				case DaoMatarchDbTableColumn.COL_NAME_SEARCH :
+				case MatarchDaoDbTableColumn.COL_NAME_SEARCH :
 					builder.addClauseAnd(eachColumn, recordInfo.txtMatSearch, DaoWhereCondition.LIKE);
 					break;		
 					
-				case DaoMatarchDbTableColumn.COL_COD_LANGUAGE :
+				case MatarchDaoDbTableColumn.COL_COD_LANGUAGE :
 					if(recordInfo.txtMatSearch != null)
 						builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 
-				case DaoMatarchDbTableColumn.COL_RECORD_MODE :
+				case MatarchDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

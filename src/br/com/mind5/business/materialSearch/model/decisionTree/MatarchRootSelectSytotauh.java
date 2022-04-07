@@ -4,19 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
-import br.com.mind5.business.materialSearch.model.action.LazyMatarchRootSelect;
-import br.com.mind5.business.materialSearch.model.checker.MatarchCheckRead;
+import br.com.mind5.business.materialSearch.model.action.MatarchVisiRootSelect;
+import br.com.mind5.business.materialSearch.model.action.MatarchVisiEnforceSytotauhKey;
+import br.com.mind5.business.materialSearch.model.checker.MatarchCheckReadSytotauh;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatarchSelectAuth extends DeciTreeTemplateRead<MatarchInfo> {
+public final class MatarchRootSelectSytotauh extends DeciTreeTemplateRead<MatarchInfo> {
 	
-	public RootMatarchSelectAuth(DeciTreeOption<MatarchInfo> option) {
+	public MatarchRootSelectSytotauh(DeciTreeOption<MatarchInfo> option) {
 		super(option);
 	}
 	
@@ -31,7 +34,7 @@ public final class RootMatarchSelectAuth extends DeciTreeTemplateRead<MatarchInf
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new MatarchCheckRead(checkerOption);
+		checker = new MatarchCheckReadSytotauh(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -42,12 +45,12 @@ public final class RootMatarchSelectAuth extends DeciTreeTemplateRead<MatarchInf
 	@Override protected List<ActionStd<MatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatarchInfo> option) {
 		List<ActionStd<MatarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatarchInfo> nodeAuth = new NodeMatarchAuth(option).toAction();
-		ActionLazy<MatarchInfo> select = new LazyMatarchRootSelect(option.conn, option.schemaName);
+		ActionStd<MatarchInfo> enforceSytotauhKey = new ActionStdCommom<MatarchInfo>(option, MatarchVisiEnforceSytotauhKey.class);
+		ActionLazy<MatarchInfo> select = new ActionLazyCommom<MatarchInfo>(option, MatarchVisiRootSelect.class);
 		
-		nodeAuth.addPostAction(select);
+		enforceSytotauhKey.addPostAction(select);
 		
-		actions.add(nodeAuth);
+		actions.add(enforceSytotauhKey);
 		return actions;
 	}
 }

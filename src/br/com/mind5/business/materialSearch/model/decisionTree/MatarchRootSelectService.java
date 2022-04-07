@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
-import br.com.mind5.business.materialSearch.model.action.LazyMatarchRootSelectAuth;
-import br.com.mind5.business.materialSearch.model.action.StdMatarchEnforceMatCategProduct;
+import br.com.mind5.business.materialSearch.model.action.MatarchVisiRootSelectAuth;
+import br.com.mind5.business.materialSearch.model.action.MatarchVisiEnforceMatCategService;
 import br.com.mind5.business.materialSearch.model.checker.MatarchCheckReadMat;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatarchSelectProduct extends DeciTreeTemplateRead<MatarchInfo> {
+public final class MatarchRootSelectService extends DeciTreeTemplateRead<MatarchInfo> {
 	
-	public RootMatarchSelectProduct(DeciTreeOption<MatarchInfo> option) {
+	public MatarchRootSelectService(DeciTreeOption<MatarchInfo> option) {
 		super(option);
 	}
 	
@@ -43,12 +45,12 @@ public final class RootMatarchSelectProduct extends DeciTreeTemplateRead<Matarch
 	@Override protected List<ActionStd<MatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatarchInfo> option) {
 		List<ActionStd<MatarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatarchInfo> enforceMatCategProduct = new StdMatarchEnforceMatCategProduct(option);
-		ActionLazy<MatarchInfo> select = new LazyMatarchRootSelectAuth(option.conn, option.schemaName);
+		ActionStd<MatarchInfo> enforceMatCategService = new ActionStdCommom<MatarchInfo>(option, MatarchVisiEnforceMatCategService.class);
+		ActionLazy<MatarchInfo> select = new ActionLazyCommom<MatarchInfo>(option, MatarchVisiRootSelectAuth.class);
 		
-		enforceMatCategProduct.addPostAction(select);
+		enforceMatCategService.addPostAction(select);
 		
-		actions.add(enforceMatCategProduct);
+		actions.add(enforceMatCategService);
 		return actions;
 	}
 }
