@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMaticeEnforceWeekday extends ActionVisitorTemplateEnforce<MaticeInfo> {
+public final class MaticeVisiEnforceWeekday extends ActionVisitorTemplateEnforce<MaticeInfo> {
 	
-	public VisiMaticeEnforceWeekday(DeciTreeOption<MaticeInfo> option) {
+	public MaticeVisiEnforceWeekday(DeciTreeOption<MaticeInfo> option) {
 		super(option);
 	}
 	

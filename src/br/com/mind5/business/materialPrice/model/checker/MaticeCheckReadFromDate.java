@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class MaticeCheckReadByDate extends ModelCheckerTemplateSimple<MaticeInfo> {
+public final class MaticeCheckReadFromDate extends ModelCheckerTemplateSimple<MaticeInfo> {
 
-	public MaticeCheckReadByDate(ModelCheckerOption option) {
+	public MaticeCheckReadFromDate(ModelCheckerOption option) {
 		super(option);
 	}
 	

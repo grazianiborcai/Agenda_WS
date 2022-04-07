@@ -11,9 +11,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootMaticeSelectByWeekday extends DeciTreeTemplateWrite<MaticeInfo> {
+public final class MaticeRootSelectFromWeekday extends DeciTreeTemplateWrite<MaticeInfo> {
 	
-	public RootMaticeSelectByWeekday(DeciTreeOption<MaticeInfo> option) {
+	public MaticeRootSelectFromWeekday(DeciTreeOption<MaticeInfo> option) {
 		super(option);
 	}
 	
@@ -34,7 +34,7 @@ public final class RootMaticeSelectByWeekday extends DeciTreeTemplateWrite<Matic
 	@Override protected List<ActionStd<MaticeInfo>> buildActionsOnPassedHook(DeciTreeOption<MaticeInfo> option) {
 		List<ActionStd<MaticeInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MaticeInfo> select = new RootMaticeSelect(option).toAction();
+		ActionStd<MaticeInfo> select = new MaticeRootSelect(option).toAction();
 		
 		actions.add(select);
 		return actions;

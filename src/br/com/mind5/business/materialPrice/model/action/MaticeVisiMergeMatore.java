@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMaticeMergeMatore extends ActionVisitorTemplateMerge<MaticeInfo, MatoreInfo> {
+public final class MaticeVisiMergeMatore extends ActionVisitorTemplateMerge<MaticeInfo, MatoreInfo> {
 	
-	public VisiMaticeMergeMatore(DeciTreeOption<MaticeInfo> option) {
+	public MaticeVisiMergeMatore(DeciTreeOption<MaticeInfo> option) {
 		super(option, MatoreInfo.class);
 	}
 	

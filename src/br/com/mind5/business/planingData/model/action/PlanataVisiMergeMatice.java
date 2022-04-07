@@ -3,7 +3,7 @@ package br.com.mind5.business.planingData.model.action;
 import java.util.List;
 
 import br.com.mind5.business.materialPrice.info.MaticeInfo;
-import br.com.mind5.business.materialPrice.model.decisionTree.RootMaticeSelectByDate;
+import br.com.mind5.business.materialPrice.model.decisionTree.MaticeRootSelectFromDate;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class PlanataVisiMergeMatice extends ActionVisitorTemplateMerge<Pla
 	
 	
 	@Override protected Class<? extends DeciTree<MaticeInfo>> getTreeClassHook() {
-		return RootMaticeSelectByDate.class;
+		return MaticeRootSelectFromDate.class;
 	}
 	
 	

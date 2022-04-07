@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.info.CartemMerger;
 import br.com.mind5.business.materialPrice.info.MaticeInfo;
-import br.com.mind5.business.materialPrice.model.decisionTree.RootMaticeSelectByWeekday;
+import br.com.mind5.business.materialPrice.model.decisionTree.MaticeRootSelectFromWeekday;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class CartemVisiMergeMatice extends ActionVisitorTemplateMerge<Cart
 	
 	
 	@Override protected Class<? extends DeciTree<MaticeInfo>> getTreeClassHook() {
-		return RootMaticeSelectByWeekday.class;
+		return MaticeRootSelectFromWeekday.class;
 	}
 	
 	

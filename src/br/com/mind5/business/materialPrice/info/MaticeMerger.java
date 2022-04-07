@@ -12,7 +12,7 @@ public final class MaticeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MaticeVisiMergeMatore());
+		builder.addVisitor(new MaticeMergerVisiMatore());
 		InfoMerger<MaticeInfo, MatoreInfo> merger = builder.build();		
 	
 		return merger.merge();
