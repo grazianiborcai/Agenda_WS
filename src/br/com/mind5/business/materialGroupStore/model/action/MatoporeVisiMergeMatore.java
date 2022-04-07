@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatoporeMergeMatore extends ActionVisitorTemplateMerge<MatoporeInfo, MatoreInfo> {
+public final class MatoporeVisiMergeMatore extends ActionVisitorTemplateMerge<MatoporeInfo, MatoreInfo> {
 	
-	public VisiMatoporeMergeMatore(DeciTreeOption<MatoporeInfo> option) {
+	public MatoporeVisiMergeMatore(DeciTreeOption<MatoporeInfo> option) {
 		super(option, MatoreInfo.class);
 	}
 	

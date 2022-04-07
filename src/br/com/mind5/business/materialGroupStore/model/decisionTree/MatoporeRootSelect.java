@@ -4,21 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialGroupStore.info.MatoporeInfo;
-import br.com.mind5.business.materialGroupStore.model.action.StdMatoporeMergeMatore;
+import br.com.mind5.business.materialGroupStore.model.action.MatoporeVisiMergeMatore;
 import br.com.mind5.business.materialGroupStore.model.checker.MatoporeCheckLangu;
 import br.com.mind5.business.materialGroupStore.model.checker.MatoporeCheckOwner;
 import br.com.mind5.business.materialGroupStore.model.checker.MatoporeCheckRead;
 import br.com.mind5.business.materialGroupStore.model.checker.MatoporeCheckStore;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatoporeSelect extends DeciTreeTemplateRead<MatoporeInfo> {
+public final class MatoporeRootSelect extends DeciTreeTemplateRead<MatoporeInfo> {
 	
-	public RootMatoporeSelect(DeciTreeOption<MatoporeInfo> option) {
+	public MatoporeRootSelect(DeciTreeOption<MatoporeInfo> option) {
 		super(option);
 	}
 	
@@ -65,7 +66,7 @@ public final class RootMatoporeSelect extends DeciTreeTemplateRead<MatoporeInfo>
 	@Override protected List<ActionStd<MatoporeInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoporeInfo> option) {
 		List<ActionStd<MatoporeInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatoporeInfo> mergeMatore = new StdMatoporeMergeMatore(option);
+		ActionStd<MatoporeInfo> mergeMatore = new ActionStdCommom<MatoporeInfo>(option, MatoporeVisiMergeMatore.class);
 		
 		actions.add(mergeMatore);		
 		return actions;

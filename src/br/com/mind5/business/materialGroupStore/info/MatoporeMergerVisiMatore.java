@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class MatoporeVisiMergeMatore extends InfoMergerVisitorTemplate<MatoporeInfo, MatoreInfo> {
+final class MatoporeMergerVisiMatore extends InfoMergerVisitorTemplate<MatoporeInfo, MatoreInfo> {
 
 	@Override public boolean shouldMerge(MatoporeInfo baseInfo, MatoreInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner	&&

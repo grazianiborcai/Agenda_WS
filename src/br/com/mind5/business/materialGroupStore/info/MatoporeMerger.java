@@ -12,7 +12,7 @@ public final class MatoporeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatoporeVisiMergeMatore());
+		builder.addVisitor(new MatoporeMergerVisiMatore());
 		InfoMerger<MatoporeInfo, MatoreInfo> merger = builder.build();		
 	
 		return merger.merge();

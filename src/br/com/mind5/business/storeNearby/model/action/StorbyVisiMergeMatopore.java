@@ -3,7 +3,7 @@ package br.com.mind5.business.storeNearby.model.action;
 import java.util.List;
 
 import br.com.mind5.business.materialGroupStore.info.MatoporeInfo;
-import br.com.mind5.business.materialGroupStore.model.decisionTree.RootMatoporeSelect;
+import br.com.mind5.business.materialGroupStore.model.decisionTree.MatoporeRootSelect;
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.business.storeNearby.info.StorbyMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class StorbyVisiMergeMatopore extends ActionVisitorTemplateMerge<St
 	
 	
 	@Override protected Class<? extends DeciTree<MatoporeInfo>> getTreeClassHook() {
-		return RootMatoporeSelect.class;
+		return MatoporeRootSelect.class;
 	}
 	
 	
