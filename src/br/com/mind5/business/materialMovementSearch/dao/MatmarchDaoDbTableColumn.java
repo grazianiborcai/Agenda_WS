@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoMatmarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class MatmarchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_MAT_MOV = DaoDbField.COL_COD_MAT_MOV;
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
@@ -18,7 +18,7 @@ public final class DaoMatmarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_POSTING_YEAR_MONTH = DaoDbField.COL_POSTING_YEAR_MONTH;	
 
 	
-	public DaoMatmarchDbTableColumn() {
+	public MatmarchDaoDbTableColumn() {
 		super();
 	}
 	

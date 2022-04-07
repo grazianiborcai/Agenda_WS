@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoMatmarchSelectSingle extends DaoStmtTemplate<MatmarchInfo> {
+public final class MatmarchDaoSelectSingle extends DaoStmtTemplate<MatmarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_MOVEMENT_TABLE;	
 	
 	
-	public DaoMatmarchSelectSingle(Connection conn, MatmarchInfo recordInfo, String schemaName) {
+	public MatmarchDaoSelectSingle(Connection conn, MatmarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -49,7 +49,7 @@ public final class DaoMatmarchSelectSingle extends DaoStmtTemplate<MatmarchInfo>
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoMatmarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new MatmarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -66,12 +66,12 @@ public final class DaoMatmarchSelectSingle extends DaoStmtTemplate<MatmarchInfo>
 				do {
 					MatmarchInfo dataInfo = new MatmarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoMatmarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(DaoMatmarchDbTableColumn.COL_COD_STORE);
-					dataInfo.codMatmov = stmtResult.getLong(DaoMatmarchDbTableColumn.COL_COD_MAT_MOV);
-					dataInfo.codMat = stmtResult.getLong(DaoMatmarchDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.postingYear = stmtResult.getInt(DaoMatmarchDbTableColumn.COL_POSTING_YEAR);
-					dataInfo.postingYearMonth = stmtResult.getInt(DaoMatmarchDbTableColumn.COL_POSTING_YEAR_MONTH);
+					dataInfo.codOwner = stmtResult.getLong(MatmarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(MatmarchDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codMatmov = stmtResult.getLong(MatmarchDaoDbTableColumn.COL_COD_MAT_MOV);
+					dataInfo.codMat = stmtResult.getLong(MatmarchDaoDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.postingYear = stmtResult.getInt(MatmarchDaoDbTableColumn.COL_POSTING_YEAR);
+					dataInfo.postingYearMonth = stmtResult.getInt(MatmarchDaoDbTableColumn.COL_POSTING_YEAR_MONTH);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

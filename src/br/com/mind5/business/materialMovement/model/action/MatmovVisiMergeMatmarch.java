@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.info.MatmovMerger;
 import br.com.mind5.business.materialMovementSearch.info.MatmarchInfo;
-import br.com.mind5.business.materialMovementSearch.model.decisionTree.RootMatmarchSelect;
+import br.com.mind5.business.materialMovementSearch.model.decisionTree.MatmarchRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class MatmovVisiMergeMatmarch extends ActionVisitorTemplateMerge<Ma
 	
 	
 	@Override protected Class<? extends DeciTree<MatmarchInfo>> getTreeClassHook() {
-		return RootMatmarchSelect.class;
+		return MatmarchRootSelect.class;
 	}
 	
 	

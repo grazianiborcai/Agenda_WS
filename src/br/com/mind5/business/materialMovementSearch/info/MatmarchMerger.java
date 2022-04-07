@@ -11,7 +11,7 @@ public final class MatmarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatmarchVisiMergeToSelect());
+		builder.addVisitor(new MatmarchMergerVisiToSelect());
 		InfoMerger<MatmarchInfo, MatmarchInfo> merger = builder.build();		
 	
 		return merger.merge();
