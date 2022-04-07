@@ -51,7 +51,7 @@ import br.com.mind5.business.feeDefault.dao.FeedefDaoDbTableColumn;
 import br.com.mind5.business.feeOwner.dao.FeewnerDaoDbTableColumn;
 import br.com.mind5.business.material.dao.MatDaoDbTableColumn;
 import br.com.mind5.business.materialList.dao.MatlisDaoDbTableColumn;
-import br.com.mind5.business.materialMovement.dao.DaoMatmovDbTableColumn;
+import br.com.mind5.business.materialMovement.dao.MatmovDaoDbTableColumn;
 import br.com.mind5.business.materialMovementSearch.dao.DaoMatmarchDbTableColumn;
 import br.com.mind5.business.materialSearch.dao.DaoMatarchDbTableColumn;
 import br.com.mind5.business.materialSnapshot.dao.DaoMatsnapDbTableColumn;
@@ -344,7 +344,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CompDaoDbTableColumn());
 		addTable(new DaoUpswdDbTableColumn());
 		addTable(new DaoUsernameDbTableColumn());
-		addTable(new DaoMatmovDbTableColumn());
+		addTable(new MatmovDaoDbTableColumn());
 		addTable(new DaoMatockDbTableColumn());
 		addTable(new CusarchDaoDbTableColumn());
 		addTable(new PlanataDaoDbTableColumn());

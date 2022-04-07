@@ -15,7 +15,7 @@ public final class MatmovMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatmovVisiMergeMatmarch());
+		builder.addVisitor(new MatmovMergerVisiMatmarch());
 		InfoMerger<MatmovInfo, MatmarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -28,7 +28,7 @@ public final class MatmovMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatmovVisiMergeMatock());
+		builder.addVisitor(new MatmovMergerVisiMatock());
 		InfoMerger<MatmovInfo, MatockInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -41,7 +41,7 @@ public final class MatmovMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatmovVisiMergeMatlis());
+		builder.addVisitor(new MatmovMergerVisiMatlis());
 		InfoMerger<MatmovInfo, MatlisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -54,7 +54,7 @@ public final class MatmovMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatmovVisiMergeUsername());
+		builder.addVisitor(new MatmovMergerVisiUsername());
 		InfoMerger<MatmovInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -67,7 +67,7 @@ public final class MatmovMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatmovVisiMergeToSelect());
+		builder.addVisitor(new MatmovMergerVisiToSelect());
 		InfoMerger<MatmovInfo, MatmovInfo> merger = builder.build();		
 	
 		return merger.merge();
