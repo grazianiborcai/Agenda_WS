@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatogueEnforceMatubup extends ActionVisitorTemplateEnforce<MatogueInfo> {
+public final class MatogueVisiEnforceMatubup extends ActionVisitorTemplateEnforce<MatogueInfo> {
 	
-	public VisiMatogueEnforceMatubup(DeciTreeOption<MatogueInfo> option) {
+	public MatogueVisiEnforceMatubup(DeciTreeOption<MatogueInfo> option) {
 		super(option);
 	}
 	

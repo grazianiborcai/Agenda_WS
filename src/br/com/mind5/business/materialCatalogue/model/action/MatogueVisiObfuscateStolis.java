@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatogueEObfuscateStolis extends ActionVisitorTemplateEnforce<MatogueInfo> {
+public final class MatogueVisiObfuscateStolis extends ActionVisitorTemplateEnforce<MatogueInfo> {
 	
-	public VisiMatogueEObfuscateStolis(DeciTreeOption<MatogueInfo> option) {
+	public MatogueVisiObfuscateStolis(DeciTreeOption<MatogueInfo> option) {
 		super(option);
 	}
 	

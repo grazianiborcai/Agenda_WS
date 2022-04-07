@@ -4,24 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialCatalogue.info.MatogueInfo;
-import br.com.mind5.business.materialCatalogue.model.action.LazyMatogueEnforceMatubup;
-import br.com.mind5.business.materialCatalogue.model.action.LazyMatogueObfuscateStolis;
-import br.com.mind5.business.materialCatalogue.model.action.StdMatogueMergeMatore;
+import br.com.mind5.business.materialCatalogue.model.action.MatogueVisiEnforceMatubup;
+import br.com.mind5.business.materialCatalogue.model.action.MatogueVisiMergeMatore;
+import br.com.mind5.business.materialCatalogue.model.action.MatogueVisiObfuscateStolis;
 import br.com.mind5.business.materialCatalogue.model.checker.MatogueCheckLangu;
 import br.com.mind5.business.materialCatalogue.model.checker.MatogueCheckOwner;
 import br.com.mind5.business.materialCatalogue.model.checker.MatogueCheckRead;
 import br.com.mind5.business.materialCatalogue.model.checker.MatogueCheckStore;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatogueSelect extends DeciTreeTemplateRead<MatogueInfo> {
+public final class MatogueRootSelect extends DeciTreeTemplateRead<MatogueInfo> {
 	
-	public RootMatogueSelect(DeciTreeOption<MatogueInfo> option) {
+	public MatogueRootSelect(DeciTreeOption<MatogueInfo> option) {
 		super(option);
 	}
 	
@@ -68,9 +70,9 @@ public final class RootMatogueSelect extends DeciTreeTemplateRead<MatogueInfo> {
 	@Override protected List<ActionStd<MatogueInfo>> buildActionsOnPassedHook(DeciTreeOption<MatogueInfo> option) {
 		List<ActionStd<MatogueInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatogueInfo> mergeMatore = new StdMatogueMergeMatore(option);
-		ActionLazy<MatogueInfo> enforceMatubup = new LazyMatogueEnforceMatubup(option.conn, option.schemaName);
-		ActionLazy<MatogueInfo> obfuscateStolis = new LazyMatogueObfuscateStolis(option.conn, option.schemaName);
+		ActionStd<MatogueInfo> mergeMatore = new ActionStdCommom<MatogueInfo>(option, MatogueVisiMergeMatore.class);
+		ActionLazy<MatogueInfo> enforceMatubup = new ActionLazyCommom<MatogueInfo>(option, MatogueVisiEnforceMatubup.class);
+		ActionLazy<MatogueInfo> obfuscateStolis = new ActionLazyCommom<MatogueInfo>(option, MatogueVisiObfuscateStolis.class);
 		
 		mergeMatore.addPostAction(enforceMatubup);
 		enforceMatubup.addPostAction(obfuscateStolis);

@@ -12,7 +12,7 @@ public final class MatogueMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatogueVisiMergeMatore());
+		builder.addVisitor(new MatogueMergerVisiMatore());
 		InfoMerger<MatogueInfo, MatoreInfo> merger = builder.build();		
 	
 		return merger.merge();
