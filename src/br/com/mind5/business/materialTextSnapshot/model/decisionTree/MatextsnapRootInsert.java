@@ -4,22 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
-import br.com.mind5.business.materialTextSnapshot.model.action.LazyMatextsnapDaoInsert;
-import br.com.mind5.business.materialTextSnapshot.model.action.StdMatextsnapMergeMatext;
+import br.com.mind5.business.materialTextSnapshot.model.action.MatextsnapVisiDaoInsert;
+import br.com.mind5.business.materialTextSnapshot.model.action.MatextsnapVisiMergeMatext;
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckMat;
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckOwner;
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootMatextsnapInsert extends DeciTreeTemplateWrite<MatextsnapInfo> {
+public final class MatextsnapRootInsert extends DeciTreeTemplateWrite<MatextsnapInfo> {
 	
-	public RootMatextsnapInsert(DeciTreeOption<MatextsnapInfo> option) {
+	public MatextsnapRootInsert(DeciTreeOption<MatextsnapInfo> option) {
 		super(option);
 	}
 	
@@ -59,8 +61,8 @@ public final class RootMatextsnapInsert extends DeciTreeTemplateWrite<Matextsnap
 	@Override protected List<ActionStd<MatextsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextsnapInfo> option) {
 		List<ActionStd<MatextsnapInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<MatextsnapInfo> mergeMatext = new StdMatextsnapMergeMatext(option);	
-		ActionLazy<MatextsnapInfo> insert = new LazyMatextsnapDaoInsert(option.conn, option.schemaName);	
+		ActionStd<MatextsnapInfo> mergeMatext = new ActionStdCommom<MatextsnapInfo>(option, MatextsnapVisiMergeMatext.class);	
+		ActionLazy<MatextsnapInfo> insert = new ActionLazyCommom<MatextsnapInfo>(option, MatextsnapVisiDaoInsert.class);	
 		
 		mergeMatext.addPostAction(insert);
 		

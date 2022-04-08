@@ -12,7 +12,7 @@ public final class MatextsnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatextsnapVisiMergeMatext());
+		builder.addVisitor(new MatextsnapMergerVisiMatext());
 		InfoMerger<MatextsnapInfo, MatextInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class MatextsnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatextsnapVisiMergeToSelect());
+		builder.addVisitor(new MatextsnapMergerVisiToSelect());
 		InfoMerger<MatextsnapInfo, MatextsnapInfo> merger = builder.build();		
 	
 		return merger.merge();

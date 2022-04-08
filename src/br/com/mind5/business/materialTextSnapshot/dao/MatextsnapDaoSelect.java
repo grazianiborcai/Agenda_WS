@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoMatextsnapSelect implements DaoStmtExec<MatextsnapInfo> {
+public final class MatextsnapDaoSelect implements DaoStmtExec<MatextsnapInfo> {
 	private DaoStmtExec<MatextsnapInfo> helper;
 	
 	
-	public DaoMatextsnapSelect(List<DaoStmtExecOption<MatextsnapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoMatextsnapSelectSingle.class, MatextsnapInfo.class);
+	public MatextsnapDaoSelect(List<DaoStmtExecOption<MatextsnapInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, MatextsnapDaoSelectSingle.class, MatextsnapInfo.class);
 	}
 	
 	

@@ -4,20 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
-import br.com.mind5.business.materialTextSnapshot.model.action.StdMatextsnapMergeToSelect;
+import br.com.mind5.business.materialTextSnapshot.model.action.MatextsnapVisiMergeToSelect;
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckMat;
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckOwner;
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatextsnapSelect extends DeciTreeTemplateRead<MatextsnapInfo> {
+public final class MatextsnapRootSelect extends DeciTreeTemplateRead<MatextsnapInfo> {
 	
-	public RootMatextsnapSelect(DeciTreeOption<MatextsnapInfo> option) {
+	public MatextsnapRootSelect(DeciTreeOption<MatextsnapInfo> option) {
 		super(option);
 	}
 	
@@ -57,7 +58,7 @@ public final class RootMatextsnapSelect extends DeciTreeTemplateRead<MatextsnapI
 	@Override protected List<ActionStd<MatextsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextsnapInfo> option) {
 		List<ActionStd<MatextsnapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatextsnapInfo> select = new StdMatextsnapMergeToSelect(option);
+		ActionStd<MatextsnapInfo> select = new ActionStdCommom<MatextsnapInfo>(option, MatextsnapVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

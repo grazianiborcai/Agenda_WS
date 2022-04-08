@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class MatextsnapVisiMergeMatext extends InfoMergerVisitorTemplate<MatextsnapInfo, MatextInfo> {
+final class MatextsnapMergerVisiMatext extends InfoMergerVisitorTemplate<MatextsnapInfo, MatextInfo> {
 
 	@Override public boolean shouldMerge(MatextsnapInfo baseInfo, MatextInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner	&&

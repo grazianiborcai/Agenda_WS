@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoMatextsnapDbTableColumn extends DaoDbTableColumnTemplate {
+public final class MatextsnapDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
@@ -25,7 +25,7 @@ public final class DaoMatextsnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
-	public DaoMatextsnapDbTableColumn() {
+	public MatextsnapDaoDbTableColumn() {
 		super();
 	}
 	

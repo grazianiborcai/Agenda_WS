@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatextsnapMergeMatext extends ActionVisitorTemplateMerge<MatextsnapInfo, MatextInfo> {
+public final class MatextsnapVisiMergeMatext extends ActionVisitorTemplateMerge<MatextsnapInfo, MatextInfo> {
 	
-	public VisiMatextsnapMergeMatext(DeciTreeOption<MatextsnapInfo> option) {
+	public MatextsnapVisiMergeMatext(DeciTreeOption<MatextsnapInfo> option) {
 		super(option, MatextInfo.class);
 	}
 	
