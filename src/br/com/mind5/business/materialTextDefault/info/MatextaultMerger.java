@@ -11,7 +11,7 @@ public final class MatextaultMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatextaultVisiMergeToSelect());
+		builder.addVisitor(new MatextaultMergerVisiToSelect());
 		InfoMerger<MatextaultInfo, MatextaultInfo> merger = builder.build();		
 	
 		return merger.merge();

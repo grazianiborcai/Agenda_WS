@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
 import br.com.mind5.business.materialTextDefault.info.MatextaultMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatextaultMergeToSelect extends ActionVisitorTemplateMerge<MatextaultInfo, MatextaultInfo> {
+public final class MatextaultVisiMergeToSelect extends ActionVisitorTemplateMerge<MatextaultInfo, MatextaultInfo> {
 	
-	public VisiMatextaultMergeToSelect(DeciTreeOption<MatextaultInfo> option) {
+	public MatextaultVisiMergeToSelect(DeciTreeOption<MatextaultInfo> option) {
 		super(option, MatextaultInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<MatextaultInfo>> getActionClassHook() {
-		return StdMatextaultDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<MatextaultInfo>> getVisitorClassHook() {
+		return MatextaultVisiDaoSelect.class;
 	}
 	
 	

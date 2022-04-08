@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoMatextaultSelect implements DaoStmtExec<MatextaultInfo> {
+public final class MatextaultDaoSelect implements DaoStmtExec<MatextaultInfo> {
 	private DaoStmtExec<MatextaultInfo> helper;
 	
 	
-	public DaoMatextaultSelect(List<DaoStmtExecOption<MatextaultInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoMatextaultSelectSingle.class, MatextaultInfo.class);
+	public MatextaultDaoSelect(List<DaoStmtExecOption<MatextaultInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, MatextaultDaoSelectSingle.class, MatextaultInfo.class);
 	}
 	
 	

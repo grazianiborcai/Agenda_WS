@@ -4,20 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
-import br.com.mind5.business.materialTextDefault.model.action.StdMatextaultMergeToSelect;
+import br.com.mind5.business.materialTextDefault.model.action.MatextaultVisiMergeToSelect;
 import br.com.mind5.business.materialTextDefault.model.checker.MatextaultCheckMat;
 import br.com.mind5.business.materialTextDefault.model.checker.MatextaultCheckOwner;
 import br.com.mind5.business.materialTextDefault.model.checker.MatextaultCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatextaultSelect extends DeciTreeTemplateRead<MatextaultInfo> {
+public final class MatextaultRootSelect extends DeciTreeTemplateRead<MatextaultInfo> {
 	
-	public RootMatextaultSelect(DeciTreeOption<MatextaultInfo> option) {
+	public MatextaultRootSelect(DeciTreeOption<MatextaultInfo> option) {
 		super(option);
 	}
 	
@@ -57,7 +58,7 @@ public final class RootMatextaultSelect extends DeciTreeTemplateRead<MatextaultI
 	@Override protected List<ActionStd<MatextaultInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextaultInfo> option) {
 		List<ActionStd<MatextaultInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatextaultInfo> select = new StdMatextaultMergeToSelect(option);
+		ActionStd<MatextaultInfo> select = new ActionStdCommom<MatextaultInfo>(option, MatextaultVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

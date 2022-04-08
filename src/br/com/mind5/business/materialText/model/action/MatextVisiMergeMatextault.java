@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.info.MatextMerger;
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
-import br.com.mind5.business.materialTextDefault.model.decisionTree.RootMatextaultSelect;
+import br.com.mind5.business.materialTextDefault.model.decisionTree.MatextaultRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class MatextVisiMergeMatextault extends ActionVisitorTemplateMerge<
 	
 	
 	@Override protected Class<? extends DeciTree<MatextaultInfo>> getTreeClassHook() {
-		return RootMatextaultSelect.class;
+		return MatextaultRootSelect.class;
 	}
 	
 	
