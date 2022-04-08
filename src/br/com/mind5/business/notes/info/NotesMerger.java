@@ -12,7 +12,7 @@ public final class NotesMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new NotesVisiMergeUsername());
+		builder.addVisitor(new NotesMergerVisiUsername());
 		InfoMerger<NotesInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class NotesMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new NotesVisiMergeToSelect());
+		builder.addVisitor(new NotesMergerVisiToSelect());
 		InfoMerger<NotesInfo, NotesInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -38,7 +38,7 @@ public final class NotesMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new NotesVisiMergeToUpdate());
+		builder.addVisitor(new NotesMergerVisiToUpdate());
 		InfoMerger<NotesInfo, NotesInfo> merger = builder.build();		
 	
 		return merger.merge();

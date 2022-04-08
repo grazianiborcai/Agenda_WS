@@ -64,7 +64,7 @@ import br.com.mind5.business.materialText.dao.MatextDaoDbTableColumn;
 import br.com.mind5.business.materialTextDefault.dao.MatextaultDaoDbTableColumn;
 import br.com.mind5.business.materialTextSearch.dao.MatextarchDaoDbTableColumn;
 import br.com.mind5.business.materialTextSnapshot.dao.MatextsnapDaoDbTableColumn;
-import br.com.mind5.business.notes.dao.DaoNotesDbTableColumn;
+import br.com.mind5.business.notes.dao.NotesDaoDbTableColumn;
 import br.com.mind5.business.order.dao.OrderDaoDbTableColumn;
 import br.com.mind5.business.orderItem.dao.OrderemDaoDbTableColumn;
 import br.com.mind5.business.orderItemList.dao.OrdemistDaoDbTableColumn;
@@ -505,7 +505,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoOtperasDbTableColumn());
 		addTable(new DaoSchedauthDbTableColumn());
 		addTable(new StorbyDaoDbTableColumn());
-		addTable(new DaoNotesDbTableColumn());
+		addTable(new NotesDaoDbTableColumn());
 		addTable(new DaoSytotinDbTableColumn());
 		addTable(new DaoSysonfigDbTableColumn());
 		addTable(new DaoUpswdarchDbTableColumn());
