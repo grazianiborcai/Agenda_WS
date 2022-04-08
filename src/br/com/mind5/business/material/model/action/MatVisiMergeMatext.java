@@ -6,7 +6,7 @@ import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.info.MatMerger;
 import br.com.mind5.business.materialText.info.MatextCopier;
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.business.materialText.model.decisionTree.RootMatextSearch;
+import br.com.mind5.business.materialText.model.decisionTree.MatextRootSearch;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class MatVisiMergeMatext extends ActionVisitorTemplateMerge<MatInfo
 	
 	
 	@Override protected Class<? extends DeciTree<MatextInfo>> getTreeClassHook() {
-		return RootMatextSearch.class;
+		return MatextRootSearch.class;
 	}
 	
 	

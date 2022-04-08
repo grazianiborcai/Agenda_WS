@@ -14,7 +14,7 @@ public final class MatextMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatextVisiMergeMatextarch());
+		builder.addVisitor(new MatextMergerVisiMatextarch());
 		InfoMerger<MatextInfo, MatextarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class MatextMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatextVisiMergeMatextault());
+		builder.addVisitor(new MatextMergerVisiMatextault());
 		InfoMerger<MatextInfo, MatextaultInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class MatextMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatextVisiMergeUsername());
+		builder.addVisitor(new MatextMergerVisiUsername());
 		InfoMerger<MatextInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -53,7 +53,7 @@ public final class MatextMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatextVisiMergeToSelect());
+		builder.addVisitor(new MatextMergerVisiToSelect());
 		InfoMerger<MatextInfo, MatextInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -66,7 +66,7 @@ public final class MatextMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatextVisiMergeToDelete());
+		builder.addVisitor(new MatextMergerVisiToDelete());
 		InfoMerger<MatextInfo, MatextInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -79,7 +79,7 @@ public final class MatextMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatextVisiMergeToUpdate());
+		builder.addVisitor(new MatextMergerVisiToUpdate());
 		InfoMerger<MatextInfo, MatextInfo> merger = builder.build();		
 	
 		return merger.merge();

@@ -1,9 +1,10 @@
 package br.com.mind5.business.materialText.model.checker;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.business.materialText.model.action.StdMatextDaoSelect;
+import br.com.mind5.business.materialText.model.action.MatextVisiDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class MatextCheckExist extends ModelCheckerTemplateAction<MatextInf
 	
 	
 	@Override protected ActionStd<MatextInfo> buildActionHook(DeciTreeOption<MatextInfo> option) {
-		ActionStd<MatextInfo> select = new StdMatextDaoSelect(option);
+		ActionStd<MatextInfo> select = new ActionStdCommom<MatextInfo>(option, MatextVisiDaoSelect.class);
 		return select;
 	}
 	

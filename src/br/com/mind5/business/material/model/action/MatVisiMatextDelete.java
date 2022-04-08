@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.materialText.info.MatextCopier;
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.business.materialText.model.decisionTree.RootMatextDeleteByMat;
+import br.com.mind5.business.materialText.model.decisionTree.MatextRootDeleteFromMat;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class MatVisiMatextDelete extends ActionVisitorTemplateAction<MatIn
 	
 	
 	@Override protected Class<? extends DeciTree<MatextInfo>> getTreeClassHook() {
-		return RootMatextDeleteByMat.class;
+		return MatextRootDeleteFromMat.class;
 	}
 	
 	
