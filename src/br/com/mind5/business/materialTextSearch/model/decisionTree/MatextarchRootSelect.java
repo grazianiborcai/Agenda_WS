@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialTextSearch.info.MatextarchInfo;
-import br.com.mind5.business.materialTextSearch.model.action.StdMatextarchMergeToSelect;
+import br.com.mind5.business.materialTextSearch.model.action.MatextarchVisiMergeToSelect;
 import br.com.mind5.business.materialTextSearch.model.checker.MatextarchCheckOwner;
 import br.com.mind5.business.materialTextSearch.model.checker.MatextarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatextarchSelect extends DeciTreeTemplateRead<MatextarchInfo> {
+public final class MatextarchRootSelect extends DeciTreeTemplateRead<MatextarchInfo> {
 	
-	public RootMatextarchSelect(DeciTreeOption<MatextarchInfo> option) {
+	public MatextarchRootSelect(DeciTreeOption<MatextarchInfo> option) {
 		super(option);
 	}
 	
@@ -49,7 +50,7 @@ public final class RootMatextarchSelect extends DeciTreeTemplateRead<MatextarchI
 	@Override protected List<ActionStd<MatextarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextarchInfo> option) {
 		List<ActionStd<MatextarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatextarchInfo> select = new StdMatextarchMergeToSelect(option);
+		ActionStd<MatextarchInfo> select = new ActionStdCommom<MatextarchInfo>(option, MatextarchVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;
