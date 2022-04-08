@@ -20,11 +20,11 @@ import br.com.mind5.dao.common.DaoJoinMat;
 import br.com.mind5.dao.common.DaoJoinStore;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoMatorarchSelectSingle extends DaoStmtTemplate<MatorarchInfo> {
+public final class MatorarchDaoSelectSingle extends DaoStmtTemplate<MatorarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_STORE_TABLE;	
 	
 	
-	public DaoMatorarchSelectSingle(Connection conn, MatorarchInfo recordInfo, String schemaName) {
+	public MatorarchDaoSelectSingle(Connection conn, MatorarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -54,7 +54,7 @@ public final class DaoMatorarchSelectSingle extends DaoStmtTemplate<MatorarchInf
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoMatorarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new MatorarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -85,11 +85,11 @@ public final class DaoMatorarchSelectSingle extends DaoStmtTemplate<MatorarchInf
 				do {
 					MatorarchInfo dataInfo = new MatorarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoMatorarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(DaoMatorarchDbTableColumn.COL_COD_STORE);
-					dataInfo.codMat = stmtResult.getLong(DaoMatorarchDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.codGroup = DaoFormatter.sqlToInt(stmtResult, DaoMatorarchDbTableColumn.COL_COD_GROUP);
-					dataInfo.recordMode = stmtResult.getString(DaoMatorarchDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codOwner = stmtResult.getLong(MatorarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(MatorarchDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codMat = stmtResult.getLong(MatorarchDaoDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.codGroup = DaoFormatter.sqlToInt(stmtResult, MatorarchDaoDbTableColumn.COL_COD_GROUP);
+					dataInfo.recordMode = stmtResult.getString(MatorarchDaoDbTableColumn.COL_RECORD_MODE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoMatorarchSelect implements DaoStmtExec<MatorarchInfo> {
+public final class MatorarchDaoSelect implements DaoStmtExec<MatorarchInfo> {
 	private DaoStmtExec<MatorarchInfo> helper;
 	
 	
-	public DaoMatorarchSelect(List<DaoStmtExecOption<MatorarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoMatorarchSelectSingle.class, MatorarchInfo.class);
+	public MatorarchDaoSelect(List<DaoStmtExecOption<MatorarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, MatorarchDaoSelectSingle.class, MatorarchInfo.class);
 	}
 	
 	

@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public class DaoMatorarchDbTableColumn extends DaoDbTableColumnTemplate {
+public class MatorarchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_GROUP = DaoDbField.COL_COD_GROUP;
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
@@ -17,7 +17,7 @@ public class DaoMatorarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
-	public DaoMatorarchDbTableColumn() {
+	public MatorarchDaoDbTableColumn() {
 		super();
 	}
 	
