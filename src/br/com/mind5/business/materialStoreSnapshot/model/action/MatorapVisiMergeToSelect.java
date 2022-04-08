@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatorapMergeToSelect extends ActionVisitorTemplateMerge<MatorapInfo, MatorapInfo> {
+public final class MatorapVisiMergeToSelect extends ActionVisitorTemplateMerge<MatorapInfo, MatorapInfo> {
 	
-	public VisiMatorapMergeToSelect(DeciTreeOption<MatorapInfo> option) {
+	public MatorapVisiMergeToSelect(DeciTreeOption<MatorapInfo> option) {
 		super(option, MatorapInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<MatorapInfo>> getActionClassHook() {
-		return StdMatorapDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<MatorapInfo>> getVisitorClassHook() {
+		return MatorapVisiDaoSelect.class;
 	}
 	
 	

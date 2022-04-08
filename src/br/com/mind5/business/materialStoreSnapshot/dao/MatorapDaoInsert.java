@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoMatorapSelect implements DaoStmtExec<MatorapInfo> {
+public final class MatorapDaoInsert implements DaoStmtExec<MatorapInfo> {
 	private DaoStmtExec<MatorapInfo> helper;
 	
 	
-	public DaoMatorapSelect(List<DaoStmtExecOption<MatorapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoMatorapSelectSingle.class, MatorapInfo.class);
+	public MatorapDaoInsert(List<DaoStmtExecOption<MatorapInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, MatorapDaoInsertSingle.class, MatorapInfo.class);
 	}
 	
 	

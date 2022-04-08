@@ -4,21 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
-import br.com.mind5.business.materialStoreSnapshot.model.action.StdMatorapMergeToSelect;
+import br.com.mind5.business.materialStoreSnapshot.model.action.MatorapVisiMergeToSelect;
 import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckLangu;
 import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckMatore;
 import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckOwner;
 import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatorapSelect extends DeciTreeTemplateRead<MatorapInfo> {
+public final class MatorapRootSelect extends DeciTreeTemplateRead<MatorapInfo> {
 	
-	public RootMatorapSelect(DeciTreeOption<MatorapInfo> option) {
+	public MatorapRootSelect(DeciTreeOption<MatorapInfo> option) {
 		super(option);
 	}
 	
@@ -65,7 +66,7 @@ public final class RootMatorapSelect extends DeciTreeTemplateRead<MatorapInfo> {
 	@Override protected List<ActionStd<MatorapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatorapInfo> option) {
 		List<ActionStd<MatorapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatorapInfo> select = new StdMatorapMergeToSelect(option);
+		ActionStd<MatorapInfo> select = new ActionStdCommom<MatorapInfo>(option, MatorapVisiMergeToSelect.class);
 		
 		actions.add(select);		
 		return actions;

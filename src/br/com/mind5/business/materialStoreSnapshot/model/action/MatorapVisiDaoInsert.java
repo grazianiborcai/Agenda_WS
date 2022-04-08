@@ -2,22 +2,22 @@ package br.com.mind5.business.materialStoreSnapshot.model.action;
 
 import java.util.List;
 
-import br.com.mind5.business.materialStoreSnapshot.dao.DaoMatorapSelect;
+import br.com.mind5.business.materialStoreSnapshot.dao.MatorapDaoInsert;
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatorapDaoSelect extends ActionVisitorTemplateStmt<MatorapInfo> {
+public final class MatorapVisiDaoInsert extends ActionVisitorTemplateStmt<MatorapInfo> {
 
-	public VisiMatorapDaoSelect(DeciTreeOption<MatorapInfo> option) {
+	public MatorapVisiDaoInsert(DeciTreeOption<MatorapInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected DaoStmtExec<MatorapInfo> buildStmtExecHook(List<DaoStmtExecOption<MatorapInfo>> stmtOptions) {
-		return new DaoMatorapSelect(stmtOptions);
+		return new MatorapDaoInsert(stmtOptions);
 	}
 }

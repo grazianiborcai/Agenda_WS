@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoMatorapInsertSingle extends DaoStmtTemplate<MatorapInfo> {
+public final class MatorapDaoInsertSingle extends DaoStmtTemplate<MatorapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_STORE_SNAPSHOT_TABLE;
 	
 	
-	public DaoMatorapInsertSingle(Connection conn, MatorapInfo recordInfo, String schemaName) {
+	public MatorapDaoInsertSingle(Connection conn, MatorapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

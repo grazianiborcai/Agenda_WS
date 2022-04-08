@@ -11,7 +11,7 @@ public final class MatorapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatorapVisiMergeToSelect());
+		builder.addVisitor(new MatorapMergerVisiToSelect());
 		InfoMerger<MatorapInfo, MatorapInfo> merger = builder.build();		
 	
 		return merger.merge();

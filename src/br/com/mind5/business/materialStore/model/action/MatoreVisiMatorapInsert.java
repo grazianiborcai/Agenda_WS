@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.info.MatoreMerger;
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
-import br.com.mind5.business.materialStoreSnapshot.model.decisionTree.RootMatorapInsert;
+import br.com.mind5.business.materialStoreSnapshot.model.decisionTree.MatorapRootInsert;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class MatoreVisiMatorapInsert extends ActionVisitorTemplateAction<M
 	
 	
 	@Override protected Class<? extends DeciTree<MatorapInfo>> getTreeClassHook() {
-		return RootMatorapInsert.class;
+		return MatorapRootInsert.class;
 	}
 	
 	
