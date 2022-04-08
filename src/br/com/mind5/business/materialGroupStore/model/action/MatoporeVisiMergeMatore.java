@@ -6,7 +6,7 @@ import br.com.mind5.business.materialGroupStore.info.MatoporeInfo;
 import br.com.mind5.business.materialGroupStore.info.MatoporeMerger;
 import br.com.mind5.business.materialStore.info.MatoreCopier;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.business.materialStore.model.decisionTree.RootMatoreSearch;
+import br.com.mind5.business.materialStore.model.decisionTree.MatoreRootSearch;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class MatoporeVisiMergeMatore extends ActionVisitorTemplateMerge<Ma
 	
 	
 	@Override protected Class<? extends DeciTree<MatoreInfo>> getTreeClassHook() {
-		return RootMatoreSearch.class;
+		return MatoreRootSearch.class;
 	}
 	
 	

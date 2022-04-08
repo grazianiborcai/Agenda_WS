@@ -3,7 +3,7 @@ package br.com.mind5.business.orderItem.model.action;
 import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.business.materialStore.model.decisionTree.RootMatoreSelect;
+import br.com.mind5.business.materialStore.model.decisionTree.MatoreRootSelect;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.info.OrderemMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class OrderemVisiMergeMatore extends ActionVisitorTemplateMerge<Ord
 	
 	
 	@Override protected Class<? extends DeciTree<MatoreInfo>> getTreeClassHook() {
-		return RootMatoreSelect.class;
+		return MatoreRootSelect.class;
 	}
 	
 	

@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.materialCatalogue.info.MatogueInfo;
 import br.com.mind5.business.materialCatalogue.info.MatogueMerger;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.business.materialStore.model.decisionTree.RootMatoreSearch;
+import br.com.mind5.business.materialStore.model.decisionTree.MatoreRootSearch;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class MatogueVisiMergeMatore extends ActionVisitorTemplateMerge<Mat
 	
 	
 	@Override protected Class<? extends DeciTree<MatoreInfo>> getTreeClassHook() {
-		return RootMatoreSearch.class;
+		return MatoreRootSearch.class;
 	}
 	
 	

@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreCopier;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.business.materialStore.model.decisionTree.RootMatoreDeleteByStore;
+import br.com.mind5.business.materialStore.model.decisionTree.MatoreRootDeleteFromStore;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -19,7 +19,7 @@ public final class StoreVisiMatoreDelete extends ActionVisitorTemplateAction<Sto
 	
 	
 	@Override protected Class<? extends DeciTree<MatoreInfo>> getTreeClassHook() {
-		return RootMatoreDeleteByStore.class;
+		return MatoreRootDeleteFromStore.class;
 	}
 	
 	

@@ -1,18 +1,17 @@
-package br.com.mind5.business.materialPrice.model.action;
+package br.com.mind5.business.materialStore.model.action;
 
 import java.util.List;
 
-import br.com.mind5.business.materialPrice.info.MaticeInfo;
-import br.com.mind5.business.materialPrice.info.MaticeMerger;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
+import br.com.mind5.business.materialStore.info.MatoreMerger;
 import br.com.mind5.business.materialStore.model.decisionTree.MatoreRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MaticeVisiMergeMatore extends ActionVisitorTemplateMerge<MaticeInfo, MatoreInfo> {
+public final class MatoreVisiMergeToDelete extends ActionVisitorTemplateMerge<MatoreInfo, MatoreInfo> {
 	
-	public MaticeVisiMergeMatore(DeciTreeOption<MaticeInfo> option) {
+	public MatoreVisiMergeToDelete(DeciTreeOption<MatoreInfo> option) {
 		super(option, MatoreInfo.class);
 	}
 	
@@ -24,8 +23,8 @@ public final class MaticeVisiMergeMatore extends ActionVisitorTemplateMerge<Mati
 	
 	
 	
-	@Override protected List<MaticeInfo> mergeHook(List<MaticeInfo> baseInfos, List<MatoreInfo> selectedInfos) {	
-		return MaticeMerger.mergeWithMatore(baseInfos, selectedInfos);
+	@Override protected List<MatoreInfo> mergeHook(List<MatoreInfo> baseInfos, List<MatoreInfo> selectedInfos) {	
+		return MatoreMerger.mergeToDelete(baseInfos, selectedInfos);
 	}
 	
 	

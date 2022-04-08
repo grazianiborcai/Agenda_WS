@@ -1,9 +1,10 @@
 package br.com.mind5.business.materialStore.model.checker;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.business.materialStore.model.action.StdMatoreDaoSelect;
+import br.com.mind5.business.materialStore.model.action.MatoreVisiDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class MatoreCheckExist extends ModelCheckerTemplateAction<MatoreInf
 	
 	
 	@Override protected ActionStd<MatoreInfo> buildActionHook(DeciTreeOption<MatoreInfo> option) {		
-		ActionStd<MatoreInfo> select = new StdMatoreDaoSelect(option);
+		ActionStd<MatoreInfo> select = new ActionStdCommom<MatoreInfo>(option, MatoreVisiDaoSelect.class);
 		return select;
 	}
 	

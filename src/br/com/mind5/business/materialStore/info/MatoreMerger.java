@@ -17,7 +17,7 @@ public final class MatoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatoreVisiMergeMatorap());
+		builder.addVisitor(new MatoreMergerVisiMatorap());
 		InfoMerger<MatoreInfo, MatorapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -30,7 +30,7 @@ public final class MatoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatoreVisiMergeMatorarch());
+		builder.addVisitor(new MatoreMergerVisiMatorarch());
 		InfoMerger<MatoreInfo, MatorarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -43,7 +43,7 @@ public final class MatoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatoreVisiMergeMatlis());
+		builder.addVisitor(new MatoreMergerVisiMatlis());
 		InfoMerger<MatoreInfo, MatlisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -56,7 +56,7 @@ public final class MatoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatoreVisiMergeStolis());
+		builder.addVisitor(new MatoreMergerVisiStolis());
 		InfoMerger<MatoreInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -69,7 +69,7 @@ public final class MatoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatoreVisiMergeMatock());
+		builder.addVisitor(new MatoreMergerVisiMatock());
 		InfoMerger<MatoreInfo, MatockInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -82,7 +82,7 @@ public final class MatoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatoreVisiMergeUsername());
+		builder.addVisitor(new MatoreMergerVisiUsername());
 		InfoMerger<MatoreInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -95,7 +95,7 @@ public final class MatoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatoreVisiMergeToSelect());
+		builder.addVisitor(new MatoreMergerVisiToSelect());
 		InfoMerger<MatoreInfo, MatoreInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -108,7 +108,7 @@ public final class MatoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatoreVisiMergeToDelete());
+		builder.addVisitor(new MatoreMergerVisiToDelete());
 		InfoMerger<MatoreInfo, MatoreInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -121,7 +121,7 @@ public final class MatoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatoreVisiMergeToUpdate());
+		builder.addVisitor(new MatoreMergerVisiToUpdate());
 		InfoMerger<MatoreInfo, MatoreInfo> merger = builder.build();		
 	
 		return merger.merge();
