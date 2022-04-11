@@ -18,11 +18,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoOwnarchSelectSingle extends DaoStmtTemplate<OwnarchInfo> {
+public final class OwnarchDaoSelectSingle extends DaoStmtTemplate<OwnarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.OWNER_TABLE;	
 	
 	
-	public DaoOwnarchSelectSingle(Connection conn, OwnarchInfo recordInfo, String schemaName) {
+	public OwnarchDaoSelectSingle(Connection conn, OwnarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,14 +52,14 @@ public final class DaoOwnarchSelectSingle extends DaoStmtTemplate<OwnarchInfo> {
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoOwnarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new OwnarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(OwnarchInfo recordInfo) {
-		DaoJoinBuilder joinCompany = new DaoOwnarchJoinCompany(MAIN_TABLE);		
+		DaoJoinBuilder joinCompany = new OwnarchDaoJoinCompany(MAIN_TABLE);		
 		return joinCompany.build();
 	}
 	
@@ -76,10 +76,10 @@ public final class DaoOwnarchSelectSingle extends DaoStmtTemplate<OwnarchInfo> {
 				do {
 					OwnarchInfo dataInfo = new OwnarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoOwnarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.recordMode = stmtResult.getString(DaoOwnarchDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, DaoOwnarchDbTableColumn.COL_COD_COMPANY);		
-					dataInfo.name = stmtResult.getString(DaoOwnarchDbTableColumn.COL_NAME);
+					dataInfo.codOwner = stmtResult.getLong(OwnarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.recordMode = stmtResult.getString(OwnarchDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, OwnarchDaoDbTableColumn.COL_COD_COMPANY);		
+					dataInfo.name = stmtResult.getString(OwnarchDaoDbTableColumn.COL_NAME);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

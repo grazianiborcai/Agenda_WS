@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
 import br.com.mind5.business.ownerList.info.OwnelisMerger;
 import br.com.mind5.business.ownerSearch.info.OwnarchInfo;
-import br.com.mind5.business.ownerSearch.model.decisionTree.RootOwnarchSelect;
+import br.com.mind5.business.ownerSearch.model.decisionTree.OwnarchRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class OwnelisVisiMergeOwnarch extends ActionVisitorTemplateMerge<Ow
 	
 	
 	@Override protected Class<? extends DeciTree<OwnarchInfo>> getTreeClassHook() {
-		return RootOwnarchSelect.class;
+		return OwnarchRootSelect.class;
 	}
 	
 	

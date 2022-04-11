@@ -11,7 +11,7 @@ public final class OwnarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnarchVisiMergeToSelect());
+		builder.addVisitor(new OwnarchMergerVisiToSelect());
 		InfoMerger<OwnarchInfo, OwnarchInfo> merger = builder.build();		
 	
 		return merger.merge();

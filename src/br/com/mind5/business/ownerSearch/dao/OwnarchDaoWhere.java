@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class DaoOwnarchWhere implements DaoStmtWhere {
+public final class OwnarchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoOwnarchWhere(DaoWhereBuilderOption whereOption, String tableName, OwnarchInfo recordInfo) {
+	public OwnarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, OwnarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,11 +27,11 @@ public final class DaoOwnarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoOwnarchDbTableColumn.COL_COD_OWNER :
+				case OwnarchDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoOwnarchDbTableColumn.COL_RECORD_MODE :
+				case OwnarchDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

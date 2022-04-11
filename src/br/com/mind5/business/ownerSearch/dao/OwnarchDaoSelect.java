@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoOwnarchSelect implements DaoStmtExec<OwnarchInfo> {
+public final class OwnarchDaoSelect implements DaoStmtExec<OwnarchInfo> {
 	private DaoStmtExec<OwnarchInfo> helper;
 	
 	
-	public DaoOwnarchSelect(List<DaoStmtExecOption<OwnarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoOwnarchSelectSingle.class, OwnarchInfo.class);
+	public OwnarchDaoSelect(List<DaoStmtExecOption<OwnarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, OwnarchDaoSelectSingle.class, OwnarchInfo.class);
 	}
 	
 	

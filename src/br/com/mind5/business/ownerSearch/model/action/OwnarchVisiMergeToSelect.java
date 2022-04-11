@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.ownerSearch.info.OwnarchInfo;
 import br.com.mind5.business.ownerSearch.info.OwnarchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnarchMergeToSelect extends ActionVisitorTemplateMerge<OwnarchInfo, OwnarchInfo> {
+public final class OwnarchVisiMergeToSelect extends ActionVisitorTemplateMerge<OwnarchInfo, OwnarchInfo> {
 	
-	public VisiOwnarchMergeToSelect(DeciTreeOption<OwnarchInfo> option) {
+	public OwnarchVisiMergeToSelect(DeciTreeOption<OwnarchInfo> option) {
 		super(option, OwnarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<OwnarchInfo>> getActionClassHook() {
-		return StdOwnarchDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<OwnarchInfo>> getVisitorClassHook() {
+		return OwnarchVisiDaoSelect.class;
 	}
 	
 	

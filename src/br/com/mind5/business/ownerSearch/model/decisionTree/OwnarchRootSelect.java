@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.ownerSearch.info.OwnarchInfo;
-import br.com.mind5.business.ownerSearch.model.action.StdOwnarchMergeToSelect;
+import br.com.mind5.business.ownerSearch.model.action.OwnarchVisiMergeToSelect;
 import br.com.mind5.business.ownerSearch.model.checker.OwnarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOwnarchSelect extends DeciTreeTemplateRead<OwnarchInfo> {
+public final class OwnarchRootSelect extends DeciTreeTemplateRead<OwnarchInfo> {
 
-	public RootOwnarchSelect(DeciTreeOption<OwnarchInfo> option) {
+	public OwnarchRootSelect(DeciTreeOption<OwnarchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootOwnarchSelect extends DeciTreeTemplateRead<OwnarchInfo> {
 	@Override protected List<ActionStd<OwnarchInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnarchInfo> option) {
 		List<ActionStd<OwnarchInfo>> actions = new ArrayList<>();
 
-		ActionStd<OwnarchInfo> select = new StdOwnarchMergeToSelect(option);
+		ActionStd<OwnarchInfo> select = new ActionStdCommom<OwnarchInfo>(option, OwnarchVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;
