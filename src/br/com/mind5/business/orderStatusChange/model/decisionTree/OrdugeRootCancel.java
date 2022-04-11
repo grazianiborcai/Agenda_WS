@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderStatusChange.info.OrdugeInfo;
-import br.com.mind5.business.orderStatusChange.model.action.StdOrdugeEnforcePlaced;
-import br.com.mind5.business.orderStatusChange.model.checker.OrdugeCheckPlace;
+import br.com.mind5.business.orderStatusChange.model.checker.OrdugeCheckCancel;
 import br.com.mind5.business.orderStatusChange.model.checker.OrdugeCheckWrite;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -14,9 +13,9 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOrdugePlace extends DeciTreeTemplateRead<OrdugeInfo> {
+public final class OrdugeRootCancel extends DeciTreeTemplateRead<OrdugeInfo> {
 	
-	public RootOrdugePlace(DeciTreeOption<OrdugeInfo> option) {
+	public OrdugeRootCancel(DeciTreeOption<OrdugeInfo> option) {
 		super(option);
 	}
 	
@@ -38,7 +37,7 @@ public final class RootOrdugePlace extends DeciTreeTemplateRead<OrdugeInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new OrdugeCheckPlace(checkerOption);
+		checker = new OrdugeCheckCancel(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -49,9 +48,9 @@ public final class RootOrdugePlace extends DeciTreeTemplateRead<OrdugeInfo> {
 	@Override protected List<ActionStd<OrdugeInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdugeInfo> option) {
 		List<ActionStd<OrdugeInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrdugeInfo> enforceStatus = new StdOrdugeEnforcePlaced(option);
+		ActionStd<OrdugeInfo> nodeCancel = new NodeOrdugeCancel(option).toAction();
 		
-		actions.add(enforceStatus);			
+		actions.add(nodeCancel);			
 		return actions;
 	}
 }

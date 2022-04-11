@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderStatusChange.info.OrdugeInfo;
-import br.com.mind5.business.orderStatusChange.model.action.StdOrdugeEnforceMoip;
-import br.com.mind5.business.orderStatusChange.model.checker.OrdugeCheckPartner;
+import br.com.mind5.business.orderStatusChange.model.action.OrdugeVisiEnforcePlaced;
+import br.com.mind5.business.orderStatusChange.model.checker.OrdugeCheckPlace;
+import br.com.mind5.business.orderStatusChange.model.checker.OrdugeCheckWrite;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOrdugePartner extends DeciTreeTemplateRead<OrdugeInfo> {
+public final class OrdugeRootPlace extends DeciTreeTemplateRead<OrdugeInfo> {
 	
-	public RootOrdugePartner(DeciTreeOption<OrdugeInfo> option) {
+	public OrdugeRootPlace(DeciTreeOption<OrdugeInfo> option) {
 		super(option);
 	}
 	
@@ -30,7 +32,14 @@ public final class RootOrdugePartner extends DeciTreeTemplateRead<OrdugeInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new OrdugeCheckPartner(checkerOption);
+		checker = new OrdugeCheckWrite(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new OrdugeCheckPlace(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -41,7 +50,7 @@ public final class RootOrdugePartner extends DeciTreeTemplateRead<OrdugeInfo> {
 	@Override protected List<ActionStd<OrdugeInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdugeInfo> option) {
 		List<ActionStd<OrdugeInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrdugeInfo> enforceStatus = new StdOrdugeEnforceMoip(option);
+		ActionStd<OrdugeInfo> enforceStatus = new ActionStdCommom<OrdugeInfo>(option, OrdugeVisiEnforcePlaced.class);
 		
 		actions.add(enforceStatus);			
 		return actions;

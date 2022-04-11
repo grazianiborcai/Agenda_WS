@@ -6,7 +6,7 @@ import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.info.OrderemMerger;
 import br.com.mind5.business.orderStatusChange.info.OrdugeCopier;
 import br.com.mind5.business.orderStatusChange.info.OrdugeInfo;
-import br.com.mind5.business.orderStatusChange.model.decisionTree.RootOrdugePlace;
+import br.com.mind5.business.orderStatusChange.model.decisionTree.OrdugeRootPlace;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class OrderemVisiMergeOrdugePlace extends ActionVisitorTemplateMerg
 	
 	
 	@Override protected Class<? extends DeciTree<OrdugeInfo>> getTreeClassHook() {
-		return RootOrdugePlace.class;
+		return OrdugeRootPlace.class;
 	}
 	
 	

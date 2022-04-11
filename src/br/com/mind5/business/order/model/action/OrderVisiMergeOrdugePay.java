@@ -6,7 +6,7 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
 import br.com.mind5.business.orderStatusChange.info.OrdugeCopier;
 import br.com.mind5.business.orderStatusChange.info.OrdugeInfo;
-import br.com.mind5.business.orderStatusChange.model.decisionTree.RootOrdugePay;
+import br.com.mind5.business.orderStatusChange.model.decisionTree.OrdugeRootPay;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class OrderVisiMergeOrdugePay extends ActionVisitorTemplateMerge<Or
 	
 	
 	@Override protected Class<? extends DeciTree<OrdugeInfo>> getTreeClassHook() {
-		return RootOrdugePay.class;
+		return OrdugeRootPay.class;
 	}
 	
 	
