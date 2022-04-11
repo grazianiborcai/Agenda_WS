@@ -11,7 +11,7 @@ public final class OrdarchPruner {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(baseInfos);
-		builder.addVisitor(new OrdarchVisiPruneInactive());
+		builder.addVisitor(new OrdarchPrunerVisiInactive());
 		InfoPruner<OrdarchInfo, OrdarchInfo> pruner = builder.build();		
 	
 		return pruner.prune();

@@ -7,9 +7,9 @@ import br.com.mind5.business.orderSearch.info.OrdarchPruner;
 import br.com.mind5.model.action.ActionVisitorTemplatePruneSelf;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdarchPruneInactive extends ActionVisitorTemplatePruneSelf<OrdarchInfo> {
+public final class OrdarchVisiPruneInactive extends ActionVisitorTemplatePruneSelf<OrdarchInfo> {
 	
-	public VisiOrdarchPruneInactive(DeciTreeOption<OrdarchInfo> option) {
+	public OrdarchVisiPruneInactive(DeciTreeOption<OrdarchInfo> option) {
 		super(option);
 	}
 	

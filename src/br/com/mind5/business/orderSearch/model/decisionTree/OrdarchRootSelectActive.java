@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
-import br.com.mind5.business.orderSearch.model.action.LazyOrdarchPruneInactive;
+import br.com.mind5.business.orderSearch.model.action.OrdarchVisiPruneInactive;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOrdarchSelectActive extends DeciTreeTemplateRead<OrdarchInfo> {
+public final class OrdarchRootSelectActive extends DeciTreeTemplateRead<OrdarchInfo> {
 	
-	public RootOrdarchSelectActive(DeciTreeOption<OrdarchInfo> option) {
+	public OrdarchRootSelectActive(DeciTreeOption<OrdarchInfo> option) {
 		super(option);
 	}
 	
@@ -36,8 +37,8 @@ public final class RootOrdarchSelectActive extends DeciTreeTemplateRead<OrdarchI
 	@Override protected List<ActionStd<OrdarchInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdarchInfo> option) {
 		List<ActionStd<OrdarchInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrdarchInfo> select = new RootOrdarchSelect(option).toAction();
-		ActionLazy<OrdarchInfo> pruneInactive = new LazyOrdarchPruneInactive(option.conn, option.schemaName);
+		ActionStd<OrdarchInfo> select = new OrdarchRootSelect(option).toAction();
+		ActionLazy<OrdarchInfo> pruneInactive = new ActionLazyCommom<OrdarchInfo>(option, OrdarchVisiPruneInactive.class);
 		
 		select.addPostAction(pruneInactive);
 		

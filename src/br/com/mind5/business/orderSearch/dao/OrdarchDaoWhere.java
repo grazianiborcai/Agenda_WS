@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class DaoOrdarchWhere implements DaoStmtWhere {	
+public final class OrdarchDaoWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public DaoOrdarchWhere(DaoWhereBuilderOption whereOption, String tableName, OrdarchInfo recordInfo) {
+	public OrdarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, OrdarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,27 +27,27 @@ public final class DaoOrdarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoOrdarchDbTableColumn.COL_COD_OWNER :
+				case OrdarchDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoOrdarchDbTableColumn.COL_COD_ORDER :
+				case OrdarchDaoDbTableColumn.COL_COD_ORDER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOrder));
 					break;
 					
-				case DaoOrdarchDbTableColumn.COL_COD_USER :
+				case OrdarchDaoDbTableColumn.COL_COD_USER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 					
-				case DaoOrdarchDbTableColumn.COL_COD_ORDER_STATUS :
+				case OrdarchDaoDbTableColumn.COL_COD_ORDER_STATUS :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codOrderStatus);
 					break;
 					
-				case DaoOrdarchDbTableColumn.COL_POSTING_YEAR :
+				case OrdarchDaoDbTableColumn.COL_POSTING_YEAR :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.postingYear));
 					break;
 					
-				case DaoOrdarchDbTableColumn.COL_POSTING_YEAR_MONTH :
+				case OrdarchDaoDbTableColumn.COL_POSTING_YEAR_MONTH :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.postingYearMonth));
 					break;
 			}

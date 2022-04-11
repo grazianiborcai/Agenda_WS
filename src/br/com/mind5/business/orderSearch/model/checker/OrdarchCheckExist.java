@@ -1,7 +1,7 @@
 package br.com.mind5.business.orderSearch.model.checker;
 
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
-import br.com.mind5.business.orderSearch.model.decisionTree.RootOrdarchSelect;
+import br.com.mind5.business.orderSearch.model.decisionTree.OrdarchRootSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class OrdarchCheckExist extends ModelCheckerTemplateAction<OrdarchI
 
 	
 	@Override protected ActionStd<OrdarchInfo> buildActionHook(DeciTreeOption<OrdarchInfo> option) {		
-		ActionStd<OrdarchInfo> select = new RootOrdarchSelect(option).toAction();			
+		ActionStd<OrdarchInfo> select = new OrdarchRootSelect(option).toAction();			
 		return select;
 	}
 	

@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoOrdarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class OrdarchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_ORDER = DaoDbField.COL_COD_ORDER;
 	public static final String COL_COD_ORDER_EXTERNAL = DaoDbField.COL_COD_ORDER_EXTERNAL;
 	public static final String COL_COD_ORDER_STATUS = DaoDbField.COL_COD_ORDER_STATUS;
@@ -20,7 +20,7 @@ public final class DaoOrdarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_POSTING_YEAR_MONTH = DaoDbField.COL_POSTING_YEAR_MONTH;	
 	
 	
-	public DaoOrdarchDbTableColumn() {
+	public OrdarchDaoDbTableColumn() {
 		super();
 	}
 	

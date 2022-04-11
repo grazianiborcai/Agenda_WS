@@ -3,7 +3,7 @@ package br.com.mind5.business.orderSearch.info;
 import br.com.mind5.info.InfoPrunerSingleVisitor;
 import br.com.mind5.masterData.orderStatus.info.Orderatus;
 
-final class OrdarchVisiPruneInactive implements InfoPrunerSingleVisitor<OrdarchInfo, OrdarchInfo> {
+final class OrdarchPrunerVisiInactive implements InfoPrunerSingleVisitor<OrdarchInfo, OrdarchInfo> {
 	
 	@Override public boolean pruneRecord(OrdarchInfo baseInfo, OrdarchInfo selectedInfo) {		
 		if (baseInfo.codOrderStatus == null)
