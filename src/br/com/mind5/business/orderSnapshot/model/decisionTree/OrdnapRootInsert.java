@@ -4,20 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
-import br.com.mind5.business.orderSnapshot.model.action.StdOrdnapMergeToSelect;
+import br.com.mind5.business.orderSnapshot.model.action.OrdnapVisiDaoInsert;
+import br.com.mind5.business.orderSnapshot.model.action.OrdnapVisiMergeUselis;
 import br.com.mind5.business.orderSnapshot.model.checker.OrdnapCheckLangu;
+import br.com.mind5.business.orderSnapshot.model.checker.OrdnapCheckOrder;
 import br.com.mind5.business.orderSnapshot.model.checker.OrdnapCheckOwner;
-import br.com.mind5.business.orderSnapshot.model.checker.OrdnapCheckRead;
+import br.com.mind5.business.orderSnapshot.model.checker.OrdnapCheckWrite;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootOrdnapSelect extends DeciTreeTemplateRead<OrdnapInfo> {
+public final class OrdnapRootInsert extends DeciTreeTemplateWrite<OrdnapInfo> {
 	
-	public RootOrdnapSelect(DeciTreeOption<OrdnapInfo> option) {
+	public OrdnapRootInsert(DeciTreeOption<OrdnapInfo> option) {
 		super(option);
 	}
 	
@@ -31,8 +36,8 @@ public final class RootOrdnapSelect extends DeciTreeTemplateRead<OrdnapInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new OrdnapCheckRead(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new OrdnapCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,17 +54,27 @@ public final class RootOrdnapSelect extends DeciTreeTemplateRead<OrdnapInfo> {
 		checker = new OrdnapCheckOwner(checkerOption);
 		queue.add(checker);
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new OrdnapCheckOrder(checkerOption);
+		queue.add(checker);
+		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
 	@Override protected List<ActionStd<OrdnapInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdnapInfo> option) {
-		List<ActionStd<OrdnapInfo>> actions = new ArrayList<>();		
+		List<ActionStd<OrdnapInfo>> actions = new ArrayList<>();
+
+		ActionStd<OrdnapInfo> mergeUselis = new ActionStdCommom<OrdnapInfo>(option, OrdnapVisiMergeUselis.class);			
+		ActionLazy<OrdnapInfo> insert = new ActionLazyCommom<OrdnapInfo>(option, OrdnapVisiDaoInsert.class);
 		
-		ActionStd<OrdnapInfo> select = new StdOrdnapMergeToSelect(option);
+		mergeUselis.addPostAction(insert);
 		
-		actions.add(select);			
+		actions.add(mergeUselis);
 		return actions;
 	}
 }

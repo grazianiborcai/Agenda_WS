@@ -12,7 +12,7 @@ public final class OrdnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdnapVisiMergeUselis());
+		builder.addVisitor(new OrdnapMergerVisiUselis());
 		InfoMerger<OrdnapInfo, UselisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class OrdnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdnapVisiMergeToSelect());
+		builder.addVisitor(new OrdnapMergerVisiToSelect());
 		InfoMerger<OrdnapInfo, OrdnapInfo> merger = builder.build();		
 	
 		return merger.merge();

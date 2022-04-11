@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoOrdnapInsert implements DaoStmtExec<OrdnapInfo> {
+public final class OrdnapDaoSelect implements DaoStmtExec<OrdnapInfo> {
 	private DaoStmtExec<OrdnapInfo> helper;
 	
 	
-	public DaoOrdnapInsert(List<DaoStmtExecOption<OrdnapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoOrdnapInsertSingle.class, OrdnapInfo.class);
+	public OrdnapDaoSelect(List<DaoStmtExecOption<OrdnapInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, OrdnapDaoSelectSingle.class, OrdnapInfo.class);
 	}
 	
 	

@@ -73,7 +73,7 @@ import br.com.mind5.business.orderItemSnapshot.dao.OrdemrapDaoDbTableColumn;
 import br.com.mind5.business.orderList.dao.OrdistDaoDbTableColumn;
 import br.com.mind5.business.orderReserve.dao.OrderveDaoDbTableColumn;
 import br.com.mind5.business.orderSearch.dao.OrdarchDaoDbTableColumn;
-import br.com.mind5.business.orderSnapshot.dao.DaoOrdnapDbTableColumn;
+import br.com.mind5.business.orderSnapshot.dao.OrdnapDaoDbTableColumn;
 import br.com.mind5.business.owner.dao.DaoOwnerDbTableColumn;
 import br.com.mind5.business.ownerList.dao.OwnelisDaoDbTableColumn;
 import br.com.mind5.business.ownerSearch.dao.DaoOwnarchDbTableColumn;
@@ -375,7 +375,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new OrdarchDaoDbTableColumn());
 		addTable(new OrdistDaoDbTableColumn());
 		addTable(new DaoSchedarchDbTableColumn());
-		addTable(new DaoOrdnapDbTableColumn());
+		addTable(new OrdnapDaoDbTableColumn());
 		addTable(new OrdemrapDaoDbTableColumn());
 		addTable(new DaoPayordarchDbTableColumn());
 		addTable(new SchedistDaoDbTableColumn());

@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.model.decisionTree.RootUselisSelect;
 
-final class VisiOrdnapMergeUselis extends ActionVisitorTemplateMerge<OrdnapInfo, UselisInfo> {
+public final class OrdnapVisiMergeUselis extends ActionVisitorTemplateMerge<OrdnapInfo, UselisInfo> {
 	
-	public VisiOrdnapMergeUselis(DeciTreeOption<OrdnapInfo> option) {
+	public OrdnapVisiMergeUselis(DeciTreeOption<OrdnapInfo> option) {
 		super(option, UselisInfo.class); 
 	}
 	

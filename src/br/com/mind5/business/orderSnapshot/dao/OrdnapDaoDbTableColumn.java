@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoOrdnapDbTableColumn extends DaoDbTableColumnTemplate {
+public final class OrdnapDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_ADDRESS_SHIP = DaoDbField.COL_COD_ADDRESS_SHIP;
 	public static final String COL_COD_ADDRESS_SHIP_SNAPSHOT = DaoDbField.COL_COD_ADDRESS_SHIP_SNAPSHOT;
 	public static final String COL_COD_ADDRESS_INVOICE = DaoDbField.COL_COD_ADDRESS_INVOICE;
@@ -40,7 +40,7 @@ public final class DaoOrdnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_POSTING_YEAR_MONTH = DaoDbField.COL_POSTING_YEAR_MONTH;	
 	
 	
-	public DaoOrdnapDbTableColumn() {
+	public OrdnapDaoDbTableColumn() {
 		super();
 	}
 	

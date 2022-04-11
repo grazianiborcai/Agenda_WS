@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.business.orderSnapshot.info.OrdnapMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdnapMergeToSelect extends ActionVisitorTemplateMerge<OrdnapInfo, OrdnapInfo> {
+public final class OrdnapVisiMergeToSelect extends ActionVisitorTemplateMerge<OrdnapInfo, OrdnapInfo> {
 	
-	public VisiOrdnapMergeToSelect(DeciTreeOption<OrdnapInfo> option) {
+	public OrdnapVisiMergeToSelect(DeciTreeOption<OrdnapInfo> option) {
 		super(option, OrdnapInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<OrdnapInfo>> getActionClassHook() {
-		return StdOrdnapDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<OrdnapInfo>> getVisitorClassHook() {
+		return OrdnapVisiDaoSelect.class;
 	}
 	
 	
