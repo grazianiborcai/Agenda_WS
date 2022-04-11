@@ -1,7 +1,7 @@
 package br.com.mind5.business.orderReserve.model.checker;
 
 import br.com.mind5.business.orderReserve.info.OrderveInfo;
-import br.com.mind5.business.orderReserve.model.decisionTree.RootOrderveSelect;
+import br.com.mind5.business.orderReserve.model.decisionTree.OrderveRootSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class OrderveCheckExist extends ModelCheckerTemplateAction<OrderveI
 
 	
 	@Override protected ActionStd<OrderveInfo> buildActionHook(DeciTreeOption<OrderveInfo> option) {
-		ActionStd<OrderveInfo> select = new RootOrderveSelect(option).toAction();
+		ActionStd<OrderveInfo> select = new OrderveRootSelect(option).toAction();
 		return select;
 	}
 	

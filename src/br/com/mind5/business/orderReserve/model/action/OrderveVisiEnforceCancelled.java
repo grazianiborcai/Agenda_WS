@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderveEnforceCancelled extends ActionVisitorTemplateEnforce<OrderveInfo> {
+public final class OrderveVisiEnforceCancelled extends ActionVisitorTemplateEnforce<OrderveInfo> {
 	
-	public VisiOrderveEnforceCancelled(DeciTreeOption<OrderveInfo> option) {
+	public OrderveVisiEnforceCancelled(DeciTreeOption<OrderveInfo> option) {
 		super(option);
 	}
 	

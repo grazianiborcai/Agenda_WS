@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoOrderveJoinOrder implements DaoJoinBuilder {
+public final class OrderveDaoJoinOrder implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public DaoOrderveJoinOrder(String leftTableName) {
+	public OrderveDaoJoinOrder(String leftTableName) {
 		leftTable = leftTableName;
 	}
 

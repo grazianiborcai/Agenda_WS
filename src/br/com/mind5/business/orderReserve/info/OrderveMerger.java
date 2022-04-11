@@ -11,7 +11,7 @@ public final class OrderveMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderveVisiMergeToSelect());
+		builder.addVisitor(new OrderveMergerVisiToSelect());
 		InfoMerger<OrderveInfo, OrderveInfo> merger = builder.build();		
 	
 		return merger.merge();

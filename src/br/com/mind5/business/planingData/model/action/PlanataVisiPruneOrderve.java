@@ -3,7 +3,7 @@ package br.com.mind5.business.planingData.model.action;
 import java.util.List;
 
 import br.com.mind5.business.orderReserve.info.OrderveInfo;
-import br.com.mind5.business.orderReserve.model.decisionTree.RootOrderveSelect;
+import br.com.mind5.business.orderReserve.model.decisionTree.OrderveRootSelect;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataPruner;
 import br.com.mind5.model.action.ActionVisitorTemplatePrune;
@@ -19,7 +19,7 @@ public final class PlanataVisiPruneOrderve extends ActionVisitorTemplatePrune<Pl
 	
 	
 	@Override protected Class<? extends DeciTree<OrderveInfo>> getTreeClassHook() {
-		return RootOrderveSelect.class;
+		return OrderveRootSelect.class;
 	}
 	
 	
