@@ -4,7 +4,6 @@ package br.com.mind5.business.companySearch.info;
 import java.util.List;
 
 import br.com.mind5.business.company.info.CompInfo;
-import br.com.mind5.business.companySearch.info.ComparchInfo;
 import br.com.mind5.info.InfoCopier;
 
 public final class ComparchCopier {
