@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoOrdemarchSelectSingle extends DaoStmtTemplate<OrdemarchInfo> {	
+public final class OrdemarchDaoSelectSingle extends DaoStmtTemplate<OrdemarchInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.ORDER_ITM_TABLE;
 	
 	
-	public DaoOrdemarchSelectSingle(Connection conn, OrdemarchInfo recordInfo, String schemaName) {
+	public OrdemarchDaoSelectSingle(Connection conn, OrdemarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoOrdemarchSelectSingle extends DaoStmtTemplate<OrdemarchInf
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoOrdemarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new OrdemarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

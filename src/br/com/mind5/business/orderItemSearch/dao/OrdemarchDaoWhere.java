@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class DaoOrdemarchWhere implements DaoStmtWhere {	
+public final class OrdemarchDaoWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public DaoOrdemarchWhere(DaoWhereBuilderOption whereOption, String tableName, OrdemarchInfo recordInfo) {
+	public OrdemarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, OrdemarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	

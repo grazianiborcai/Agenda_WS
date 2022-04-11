@@ -13,7 +13,7 @@ public final class OrdemarchDaoSelect implements DaoStmtExec<OrdemarchInfo> {
 	
 	
 	public OrdemarchDaoSelect(List<DaoStmtExecOption<OrdemarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoOrdemarchSelectSingle.class, OrdemarchInfo.class);
+		helper = new DaoStmtExecHelper<>(options, OrdemarchDaoSelectSingle.class, OrdemarchInfo.class);
 	}
 	
 	
