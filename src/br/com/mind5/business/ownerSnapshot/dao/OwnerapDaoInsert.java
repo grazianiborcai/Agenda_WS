@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoOwnerapSelect implements DaoStmtExec<OwnerapInfo> {
+public final class OwnerapDaoInsert implements DaoStmtExec<OwnerapInfo> {
 	private DaoStmtExec<OwnerapInfo> helper;
 	
 	
-	public DaoOwnerapSelect(List<DaoStmtExecOption<OwnerapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoOwnerapSelectSingle.class, OwnerapInfo.class);
+	public OwnerapDaoInsert(List<DaoStmtExecOption<OwnerapInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, OwnerapDaoInsertSingle.class, OwnerapInfo.class);
 	}
 	
 	

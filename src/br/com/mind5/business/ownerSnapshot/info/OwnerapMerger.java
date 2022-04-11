@@ -14,7 +14,7 @@ public final class OwnerapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnerapVisiMergeComplis());
+		builder.addVisitor(new OwnerapMergerVisiComplis());
 		InfoMerger<OwnerapInfo, ComplisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class OwnerapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnerapVisiMergePersolis());
+		builder.addVisitor(new OwnerapMergerVisiPersolis());
 		InfoMerger<OwnerapInfo, PersolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class OwnerapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnerapVisiMergeUselis());
+		builder.addVisitor(new OwnerapMergerVisiUselis());
 		InfoMerger<OwnerapInfo, UselisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -53,7 +53,7 @@ public final class OwnerapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnerapVisiMergeToSelect());
+		builder.addVisitor(new OwnerapMergerVisiToSelect());
 		InfoMerger<OwnerapInfo, OwnerapInfo> merger = builder.build();		
 	
 		return merger.merge();

@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class DaoOwnerapWhere implements DaoStmtWhere {
+public final class OwnerapDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoOwnerapWhere(DaoWhereBuilderOption whereOption, String tableName, OwnerapInfo recordInfo) {
+	public OwnerapDaoWhere(DaoWhereBuilderOption whereOption, String tableName, OwnerapInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class DaoOwnerapWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoOwnerapDbTableColumn.COL_COD_OWNER :
+				case OwnerapDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoOwnerapDbTableColumn.COL_COD_SNAPSHOT :
+				case OwnerapDaoDbTableColumn.COL_COD_SNAPSHOT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSnapshot));
 					break;
 					
-				case DaoOwnerapDbTableColumn.COL_RECORD_MODE :
+				case OwnerapDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

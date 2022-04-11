@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoOwnerapSelectSingle extends DaoStmtTemplate<OwnerapInfo> {
+public final class OwnerapDaoSelectSingle extends DaoStmtTemplate<OwnerapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.OWNER_SNAPSHOT_TABLE;	
 	
 	
-	public DaoOwnerapSelectSingle(Connection conn, OwnerapInfo recordInfo, String schemaName) {
+	public OwnerapDaoSelectSingle(Connection conn, OwnerapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoOwnerapSelectSingle extends DaoStmtTemplate<OwnerapInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoOwnerapWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new OwnerapDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -61,20 +61,20 @@ public final class DaoOwnerapSelectSingle extends DaoStmtTemplate<OwnerapInfo> {
 				do {
 					OwnerapInfo dataInfo = new OwnerapInfo();
 					
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoOwnerapDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codOwner = stmtResult.getLong(DaoOwnerapDbTableColumn.COL_COD_OWNER);
-					dataInfo.recordMode = stmtResult.getString(DaoOwnerapDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoOwnerapDbTableColumn.COL_COD_PERSON);
-					dataInfo.codPersonSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoOwnerapDbTableColumn.COL_COD_PERSON_SNAPSHOT);				
-					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, DaoOwnerapDbTableColumn.COL_COD_COMPANY);
-					dataInfo.codCompanySnapshot = DaoFormatter.sqlToLong(stmtResult, DaoOwnerapDbTableColumn.COL_COD_COMPANY_SNAPSHOT);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoOwnerapDbTableColumn.COL_COD_USER);
-					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoOwnerapDbTableColumn.COL_COD_USER_SNAPSHOT);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoOwnerapDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoOwnerapDbTableColumn.COL_LAST_CHANGED);				
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoOwnerapDbTableColumn.COL_CREATED_BY);
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoOwnerapDbTableColumn.COL_CREATED_ON);	
-					dataInfo.codBusiness = DaoFormatter.sqlToInt(stmtResult, DaoOwnerapDbTableColumn.COL_COD_BUSINESS);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, OwnerapDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codOwner = stmtResult.getLong(OwnerapDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.recordMode = stmtResult.getString(OwnerapDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, OwnerapDaoDbTableColumn.COL_COD_PERSON);
+					dataInfo.codPersonSnapshot = DaoFormatter.sqlToLong(stmtResult, OwnerapDaoDbTableColumn.COL_COD_PERSON_SNAPSHOT);				
+					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, OwnerapDaoDbTableColumn.COL_COD_COMPANY);
+					dataInfo.codCompanySnapshot = DaoFormatter.sqlToLong(stmtResult, OwnerapDaoDbTableColumn.COL_COD_COMPANY_SNAPSHOT);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, OwnerapDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, OwnerapDaoDbTableColumn.COL_COD_USER_SNAPSHOT);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, OwnerapDaoDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, OwnerapDaoDbTableColumn.COL_LAST_CHANGED);				
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, OwnerapDaoDbTableColumn.COL_CREATED_BY);
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, OwnerapDaoDbTableColumn.COL_CREATED_ON);	
+					dataInfo.codBusiness = DaoFormatter.sqlToInt(stmtResult, OwnerapDaoDbTableColumn.COL_COD_BUSINESS);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
-import br.com.mind5.business.ownerSnapshot.model.action.StdOwnerapMergeToSelect;
+import br.com.mind5.business.ownerSnapshot.model.action.OwnerapVisiMergeToSelect;
 import br.com.mind5.business.ownerSnapshot.model.checker.OwnerapCheckLangu;
 import br.com.mind5.business.ownerSnapshot.model.checker.OwnerapCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOwnerapSelect extends DeciTreeTemplateRead<OwnerapInfo> {
+public final class OwnerapRootSelect extends DeciTreeTemplateRead<OwnerapInfo> {
 
-	public RootOwnerapSelect(DeciTreeOption<OwnerapInfo> option) {
+	public OwnerapRootSelect(DeciTreeOption<OwnerapInfo> option) {
 		super(option);
 	}
 	
@@ -49,7 +50,7 @@ public final class RootOwnerapSelect extends DeciTreeTemplateRead<OwnerapInfo> {
 	@Override protected List<ActionStd<OwnerapInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerapInfo> option) {
 		List<ActionStd<OwnerapInfo>> actions = new ArrayList<>();
 
-		ActionStd<OwnerapInfo> select = new StdOwnerapMergeToSelect(option);
+		ActionStd<OwnerapInfo> select = new ActionStdCommom<OwnerapInfo>(option, OwnerapVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

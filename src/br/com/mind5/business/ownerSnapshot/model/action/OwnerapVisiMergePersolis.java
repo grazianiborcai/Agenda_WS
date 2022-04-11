@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerapMergePersolis extends ActionVisitorTemplateMerge<OwnerapInfo, PersolisInfo> {
+public final class OwnerapVisiMergePersolis extends ActionVisitorTemplateMerge<OwnerapInfo, PersolisInfo> {
 	
-	public VisiOwnerapMergePersolis(DeciTreeOption<OwnerapInfo> option) {
+	public OwnerapVisiMergePersolis(DeciTreeOption<OwnerapInfo> option) {
 		super(option, PersolisInfo.class);
 	}
 	
