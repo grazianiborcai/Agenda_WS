@@ -4,19 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.personBioSearch.info.PerbiorchInfo;
-import br.com.mind5.business.personBioSearch.model.action.StdPerbiorchMergeToSelect;
+import br.com.mind5.business.personBioSearch.model.action.PerbiorchVisiRootSelect;
+import br.com.mind5.business.personBioSearch.model.action.PerbiorchVisiEnforceEn;
 import br.com.mind5.business.personBioSearch.model.checker.PerbiorchCheckRead;
-import br.com.mind5.business.personBioSearch.model.checker.PerbiorchCheckOwner;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPerbiorchSelect extends DeciTreeTemplateRead<PerbiorchInfo> {
+public final class PerbiorchRootSelectEn extends DeciTreeTemplateRead<PerbiorchInfo> {
 	
-	public RootPerbiorchSelect(DeciTreeOption<PerbiorchInfo> option) {
+	public PerbiorchRootSelectEn(DeciTreeOption<PerbiorchInfo> option) {
 		super(option);
 	}
 	
@@ -34,13 +37,6 @@ public final class RootPerbiorchSelect extends DeciTreeTemplateRead<PerbiorchInf
 		checker = new PerbiorchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new PerbiorchCheckOwner(checkerOption);
-		queue.add(checker);
-		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
@@ -49,9 +45,12 @@ public final class RootPerbiorchSelect extends DeciTreeTemplateRead<PerbiorchInf
 	@Override protected List<ActionStd<PerbiorchInfo>> buildActionsOnPassedHook(DeciTreeOption<PerbiorchInfo> option) {
 		List<ActionStd<PerbiorchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PerbiorchInfo> select = new StdPerbiorchMergeToSelect(option);
+		ActionStd<PerbiorchInfo> enforceEnglish = new ActionStdCommom<PerbiorchInfo>(option, PerbiorchVisiEnforceEn.class);
+		ActionLazy<PerbiorchInfo> select = new ActionLazyCommom<PerbiorchInfo>(option, PerbiorchVisiRootSelect.class);
+		
+		enforceEnglish.addPostAction(select);
 
-		actions.add(select);		
+		actions.add(enforceEnglish);		
 		return actions;
 	}
 }

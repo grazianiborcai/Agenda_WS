@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoPerbiorchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class PerbiorchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_PERSON = DaoDbField.COL_COD_PERSON;
@@ -17,7 +17,7 @@ public final class DaoPerbiorchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
-	public DaoPerbiorchDbTableColumn() {
+	public PerbiorchDaoDbTableColumn() {
 		super();
 	}
 	

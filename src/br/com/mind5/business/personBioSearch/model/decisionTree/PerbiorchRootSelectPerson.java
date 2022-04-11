@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.personBioSearch.info.PerbiorchInfo;
-import br.com.mind5.business.personBioSearch.model.action.LazyPerbiorchRootSelect;
-import br.com.mind5.business.personBioSearch.model.action.StdPerbiorchEnforcePersonKey;
+import br.com.mind5.business.personBioSearch.model.action.PerbiorchVisiRootSelect;
+import br.com.mind5.business.personBioSearch.model.action.PerbiorchVisiEnforcePersonKey;
 import br.com.mind5.business.personBioSearch.model.checker.PerbiorchCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPerbiorchSelectPerson extends DeciTreeTemplateRead<PerbiorchInfo> {
+public final class PerbiorchRootSelectPerson extends DeciTreeTemplateRead<PerbiorchInfo> {
 	
-	public RootPerbiorchSelectPerson(DeciTreeOption<PerbiorchInfo> option) {
+	public PerbiorchRootSelectPerson(DeciTreeOption<PerbiorchInfo> option) {
 		super(option);
 	}
 	
@@ -43,8 +45,8 @@ public final class RootPerbiorchSelectPerson extends DeciTreeTemplateRead<Perbio
 	@Override protected List<ActionStd<PerbiorchInfo>> buildActionsOnPassedHook(DeciTreeOption<PerbiorchInfo> option) {
 		List<ActionStd<PerbiorchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PerbiorchInfo> enforcePersonKey = new StdPerbiorchEnforcePersonKey(option);
-		ActionLazy<PerbiorchInfo> select = new LazyPerbiorchRootSelect(option.conn, option.schemaName);
+		ActionStd<PerbiorchInfo> enforcePersonKey = new ActionStdCommom<PerbiorchInfo>(option, PerbiorchVisiEnforcePersonKey.class);
+		ActionLazy<PerbiorchInfo> select = new ActionLazyCommom<PerbiorchInfo>(option, PerbiorchVisiRootSelect.class);
 		
 		enforcePersonKey.addPostAction(select);
 

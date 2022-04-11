@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.personBio.info.PerbioInfo;
 import br.com.mind5.business.personBio.info.PerbioMerger;
 import br.com.mind5.business.personBioSearch.info.PerbiorchInfo;
-import br.com.mind5.business.personBioSearch.model.decisionTree.RootPerbiorchSelect;
+import br.com.mind5.business.personBioSearch.model.decisionTree.PerbiorchRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class PerbioVisiMergePerbiorch extends ActionVisitorTemplateMerge<P
 	
 	
 	@Override protected Class<? extends DeciTree<PerbiorchInfo>> getTreeClassHook() {
-		return RootPerbiorchSelect.class;
+		return PerbiorchRootSelect.class;
 	}
 	
 	

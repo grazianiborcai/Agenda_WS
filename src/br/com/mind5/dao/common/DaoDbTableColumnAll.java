@@ -80,7 +80,7 @@ import br.com.mind5.business.ownerSearch.dao.OwnarchDaoDbTableColumn;
 import br.com.mind5.business.ownerSnapshot.dao.OwnerapDaoDbTableColumn;
 import br.com.mind5.business.person.dao.PersonDaoDbTableColumn;
 import br.com.mind5.business.personBio.dao.PerbioDaoDbTableColumn;
-import br.com.mind5.business.personBioSearch.dao.DaoPerbiorchDbTableColumn;
+import br.com.mind5.business.personBioSearch.dao.PerbiorchDaoDbTableColumn;
 import br.com.mind5.business.personBioSnapshot.dao.DaoPerbionapDbTableColumn;
 import br.com.mind5.business.personList.dao.PersolisDaoDbTableColumn;
 import br.com.mind5.business.personSearch.dao.DaoPerarchDbTableColumn;
@@ -554,7 +554,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new PetarchDaoDbTableColumn());
 		addTable(new PerbioDaoDbTableColumn());
 		addTable(new DaoPerbionapDbTableColumn());
-		addTable(new DaoPerbiorchDbTableColumn());
+		addTable(new PerbiorchDaoDbTableColumn());
 		addTable(new PetaultDaoDbTableColumn());
 		addTable(new SowotiveDaoDbTableColumn());
 		addTable(new CalonthDaoDbTableColumn());

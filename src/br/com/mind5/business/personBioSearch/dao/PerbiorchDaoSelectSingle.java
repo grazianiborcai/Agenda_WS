@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoPerbiorchSelectSingle extends DaoStmtTemplate<PerbiorchInfo> {
+public final class PerbiorchDaoSelectSingle extends DaoStmtTemplate<PerbiorchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PERSON_BIO_TABLE;
 	
 	
-	public DaoPerbiorchSelectSingle(Connection conn, PerbiorchInfo recordInfo, String schemaName) {
+	public PerbiorchDaoSelectSingle(Connection conn, PerbiorchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoPerbiorchSelectSingle extends DaoStmtTemplate<PerbiorchInf
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoPerbiorchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new PerbiorchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,11 +67,11 @@ public final class DaoPerbiorchSelectSingle extends DaoStmtTemplate<PerbiorchInf
 				do {
 					PerbiorchInfo dataInfo = new PerbiorchInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoPerbiorchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoPerbiorchDbTableColumn.COL_COD_PERSON);
-					dataInfo.codLanguage = stmtResult.getString(DaoPerbiorchDbTableColumn.COL_COD_LANGUAGE);									
-					dataInfo.recordMode = stmtResult.getString(DaoPerbiorchDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoPerbiorchDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, PerbiorchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, PerbiorchDaoDbTableColumn.COL_COD_PERSON);
+					dataInfo.codLanguage = stmtResult.getString(PerbiorchDaoDbTableColumn.COL_COD_LANGUAGE);									
+					dataInfo.recordMode = stmtResult.getString(PerbiorchDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, PerbiorchDaoDbTableColumn.COL_COD_SNAPSHOT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

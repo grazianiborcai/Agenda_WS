@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class DaoPerbiorchWhere implements DaoStmtWhere {	
+public final class PerbiorchDaoWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public DaoPerbiorchWhere(DaoWhereBuilderOption whereOption, String tableName, PerbiorchInfo recordInfo) {
+	public PerbiorchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, PerbiorchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,19 +27,19 @@ public final class DaoPerbiorchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoPerbiorchDbTableColumn.COL_COD_OWNER :
+				case PerbiorchDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoPerbiorchDbTableColumn.COL_COD_PERSON :
+				case PerbiorchDaoDbTableColumn.COL_COD_PERSON :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPerson));
 					break;
 					
-				case DaoPerbiorchDbTableColumn.COL_COD_LANGUAGE :
+				case PerbiorchDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 					
-				case DaoPerbiorchDbTableColumn.COL_RECORD_MODE :
+				case PerbiorchDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

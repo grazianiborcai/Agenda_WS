@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.personBioSearch.info.PerbiorchInfo;
-import br.com.mind5.business.personBioSearch.model.action.LazyPerbiorchRootSelect;
-import br.com.mind5.business.personBioSearch.model.action.StdPerbiorchEnforcePt;
+import br.com.mind5.business.personBioSearch.model.action.PerbiorchVisiRootSelect;
+import br.com.mind5.business.personBioSearch.model.action.PerbiorchVisiEnforcePt;
 import br.com.mind5.business.personBioSearch.model.checker.PerbiorchCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPerbiorchSelectPt extends DeciTreeTemplateRead<PerbiorchInfo> {
+public final class PerbiorchRootSelectPt extends DeciTreeTemplateRead<PerbiorchInfo> {
 	
-	public RootPerbiorchSelectPt(DeciTreeOption<PerbiorchInfo> option) {
+	public PerbiorchRootSelectPt(DeciTreeOption<PerbiorchInfo> option) {
 		super(option);
 	}
 	
@@ -43,8 +45,8 @@ public final class RootPerbiorchSelectPt extends DeciTreeTemplateRead<PerbiorchI
 	@Override protected List<ActionStd<PerbiorchInfo>> buildActionsOnPassedHook(DeciTreeOption<PerbiorchInfo> option) {
 		List<ActionStd<PerbiorchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PerbiorchInfo> enforcePortuguese = new StdPerbiorchEnforcePt(option);
-		ActionLazy<PerbiorchInfo> select = new LazyPerbiorchRootSelect(option.conn, option.schemaName);
+		ActionStd<PerbiorchInfo> enforcePortuguese = new ActionStdCommom<PerbiorchInfo>(option, PerbiorchVisiEnforcePt.class);
+		ActionLazy<PerbiorchInfo> select = new ActionLazyCommom<PerbiorchInfo>(option, PerbiorchVisiRootSelect.class);
 		
 		enforcePortuguese.addPostAction(select);
 

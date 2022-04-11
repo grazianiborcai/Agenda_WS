@@ -1,7 +1,7 @@
 package br.com.mind5.business.personBioSearch.model.checker;
 
 import br.com.mind5.business.personBioSearch.info.PerbiorchInfo;
-import br.com.mind5.business.personBioSearch.model.decisionTree.RootPerbiorchSelectPt;
+import br.com.mind5.business.personBioSearch.model.decisionTree.PerbiorchRootSelectPt;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class PerbiorchCheckExistPt extends ModelCheckerTemplateAction<Perb
 
 	
 	@Override protected ActionStd<PerbiorchInfo> buildActionHook(DeciTreeOption<PerbiorchInfo> option) {		
-		ActionStd<PerbiorchInfo> select = new RootPerbiorchSelectPt(option).toAction();			
+		ActionStd<PerbiorchInfo> select = new PerbiorchRootSelectPt(option).toAction();			
 		return select;
 	}
 	

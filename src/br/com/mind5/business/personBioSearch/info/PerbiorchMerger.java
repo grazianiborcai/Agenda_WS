@@ -11,7 +11,7 @@ public final class PerbiorchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PerbiorchVisiMergeToSelect());
+		builder.addVisitor(new PerbiorchMergerVisiToSelect());
 		InfoMerger<PerbiorchInfo, PerbiorchInfo> merger = builder.build();		
 	
 		return merger.merge();

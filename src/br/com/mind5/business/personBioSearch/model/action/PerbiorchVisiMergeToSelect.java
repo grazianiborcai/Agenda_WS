@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.personBioSearch.info.PerbiorchInfo;
 import br.com.mind5.business.personBioSearch.info.PerbiorchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPerbiorchMergeToSelect extends ActionVisitorTemplateMerge<PerbiorchInfo, PerbiorchInfo> {
+public final class PerbiorchVisiMergeToSelect extends ActionVisitorTemplateMerge<PerbiorchInfo, PerbiorchInfo> {
 	
-	public VisiPerbiorchMergeToSelect(DeciTreeOption<PerbiorchInfo> option) {
+	public PerbiorchVisiMergeToSelect(DeciTreeOption<PerbiorchInfo> option) {
 		super(option, PerbiorchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<PerbiorchInfo>> getActionClassHook() {
-		return StdPerbiorchDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<PerbiorchInfo>> getVisitorClassHook() {
+		return PerbiorchVisiDaoSelect.class;
 	}
 	
 	

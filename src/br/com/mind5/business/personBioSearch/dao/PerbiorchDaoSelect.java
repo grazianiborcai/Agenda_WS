@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoPerbiorchSelect implements DaoStmtExec<PerbiorchInfo> {
+public final class PerbiorchDaoSelect implements DaoStmtExec<PerbiorchInfo> {
 	private DaoStmtExec<PerbiorchInfo> helper;
 	
 	
-	public DaoPerbiorchSelect(List<DaoStmtExecOption<PerbiorchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoPerbiorchSelectSingle.class, PerbiorchInfo.class);
+	public PerbiorchDaoSelect(List<DaoStmtExecOption<PerbiorchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, PerbiorchDaoSelectSingle.class, PerbiorchInfo.class);
 	}
 	
 	
