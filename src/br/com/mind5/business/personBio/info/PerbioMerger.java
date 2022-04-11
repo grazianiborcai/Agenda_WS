@@ -14,7 +14,7 @@ public final class PerbioMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PerbioVisiMergeUsername());
+		builder.addVisitor(new PerbioMergerVisiUsername());
 		InfoMerger<PerbioInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class PerbioMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PerbioVisiMergePerbiorch());
+		builder.addVisitor(new PerbioMergerVisiPerbiorch());
 		InfoMerger<PerbioInfo, PerbiorchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class PerbioMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PerbioVisiMergePerbionap());
+		builder.addVisitor(new PerbioMergerVisiPerbionap());
 		InfoMerger<PerbioInfo, PerbionapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -53,7 +53,7 @@ public final class PerbioMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PerbioVisiMergeToSelect());
+		builder.addVisitor(new PerbioMergerVisiToSelect());
 		InfoMerger<PerbioInfo, PerbioInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -66,7 +66,7 @@ public final class PerbioMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PerbioVisiMergeToUpdate());
+		builder.addVisitor(new PerbioMergerVisiToUpdate());
 		InfoMerger<PerbioInfo, PerbioInfo> merger = builder.build();		
 	
 		return merger.merge();

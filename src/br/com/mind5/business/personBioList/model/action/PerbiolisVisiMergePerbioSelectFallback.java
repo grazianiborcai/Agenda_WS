@@ -3,7 +3,7 @@ package br.com.mind5.business.personBioList.model.action;
 import java.util.List;
 
 import br.com.mind5.business.personBio.info.PerbioInfo;
-import br.com.mind5.business.personBio.model.decisionTree.RootPerbioSelectFallback;
+import br.com.mind5.business.personBio.model.decisionTree.PerbioRootSelectFallback;
 import br.com.mind5.business.personBioList.info.PerbiolisInfo;
 import br.com.mind5.business.personBioList.info.PerbiolisMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class PerbiolisVisiMergePerbioSelectFallback extends ActionVisitorT
 	
 	
 	@Override protected Class<? extends DeciTree<PerbioInfo>> getTreeClassHook() {
-		return RootPerbioSelectFallback.class;
+		return PerbioRootSelectFallback.class;
 	}
 	
 	

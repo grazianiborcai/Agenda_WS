@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.personBio.info.PerbioInfo;
-import br.com.mind5.business.personBio.model.decisionTree.RootPerbioDeletePerson;
+import br.com.mind5.business.personBio.model.decisionTree.PerbioRootDeleteFromPerson;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -18,7 +18,7 @@ public final class PersonVisiPerbioDelete extends ActionVisitorTemplateAction<Pe
 	
 	
 	@Override protected Class<? extends DeciTree<PerbioInfo>> getTreeClassHook() {
-		return RootPerbioDeletePerson.class;
+		return PerbioRootDeleteFromPerson.class;
 	}
 	
 	

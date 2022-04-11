@@ -6,7 +6,7 @@ import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.info.PersonMerger;
 import br.com.mind5.business.personBio.info.PerbioCopier;
 import br.com.mind5.business.personBio.info.PerbioInfo;
-import br.com.mind5.business.personBio.model.decisionTree.RootPerbioUpsertdel;
+import br.com.mind5.business.personBio.model.decisionTree.PerbioRootUpsertdel;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class PersonVisiPerbioUpsertdel extends ActionVisitorTemplateAction
 	
 	
 	@Override protected Class<? extends DeciTree<PerbioInfo>> getTreeClassHook() {
-		return RootPerbioUpsertdel.class;
+		return PerbioRootUpsertdel.class;
 	}
 	
 	
