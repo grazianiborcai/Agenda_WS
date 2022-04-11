@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdereouEnforceItemCounter extends ActionVisitorTemplateEnforce<OrdereouInfo> {
+public final class OrdereouVisiEnforceItemCounter extends ActionVisitorTemplateEnforce<OrdereouInfo> {
 	
-	public VisiOrdereouEnforceItemCounter(DeciTreeOption<OrdereouInfo> option) {
+	public OrdereouVisiEnforceItemCounter(DeciTreeOption<OrdereouInfo> option) {
 		super(option);
 	}
 	

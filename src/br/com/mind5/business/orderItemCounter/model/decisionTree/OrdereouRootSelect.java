@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOrdereouSelect extends DeciTreeTemplateRead<OrdereouInfo> {
+public final class OrdereouRootSelect extends DeciTreeTemplateRead<OrdereouInfo> {
 	
-	public RootOrdereouSelect(DeciTreeOption<OrdereouInfo> option) {
+	public OrdereouRootSelect(DeciTreeOption<OrdereouInfo> option) {
 		super(option);
 	}
 	
@@ -56,7 +56,7 @@ public final class RootOrdereouSelect extends DeciTreeTemplateRead<OrdereouInfo>
 	@Override protected List<ActionStd<OrdereouInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdereouInfo> option) {
 		List<ActionStd<OrdereouInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrdereouInfo> nodeL1 = new NodeOrdereouSelect(option).toAction();
+		ActionStd<OrdereouInfo> nodeL1 = new OrdereouNodeSelect(option).toAction();
 		
 		actions.add(nodeL1);	
 		return actions;

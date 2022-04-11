@@ -3,7 +3,7 @@ package br.com.mind5.business.orderList.model.action;
 import java.util.List;
 
 import br.com.mind5.business.orderItemCounter.info.OrdereouInfo;
-import br.com.mind5.business.orderItemCounter.model.decisionTree.RootOrdereouSelect;
+import br.com.mind5.business.orderItemCounter.model.decisionTree.OrdereouRootSelect;
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.info.OrdistMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class OrdistVisiMergeOrdereou extends ActionVisitorTemplateMerge<Or
 	
 	
 	@Override protected Class<? extends DeciTree<OrdereouInfo>> getTreeClassHook() {
-		return RootOrdereouSelect.class;
+		return OrdereouRootSelect.class;
 	}
 	
 	

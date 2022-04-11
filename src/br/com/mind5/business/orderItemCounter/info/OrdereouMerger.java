@@ -12,7 +12,7 @@ public final class OrdereouMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdereouVisiMergeOrdemarch());
+		builder.addVisitor(new OrdereouMergerVisiOrdemarch());
 		InfoMerger<OrdereouInfo, OrdemarchInfo> merger = builder.build();		
 	
 		return merger.merge();

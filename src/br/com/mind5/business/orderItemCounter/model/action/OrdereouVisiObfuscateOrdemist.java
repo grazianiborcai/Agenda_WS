@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdereouObfuscateOrdemist extends ActionVisitorTemplateEnforce<OrdereouInfo> {
+public final class OrdereouVisiObfuscateOrdemist extends ActionVisitorTemplateEnforce<OrdereouInfo> {
 	
-	public VisiOrdereouObfuscateOrdemist(DeciTreeOption<OrdereouInfo> option) {
+	public OrdereouVisiObfuscateOrdemist(DeciTreeOption<OrdereouInfo> option) {
 		super(option);
 	}
 	
