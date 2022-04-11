@@ -20,7 +20,7 @@ public final class OwnerMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnerVisiMergeBusarea());
+		builder.addVisitor(new OwnerMergerVisiBusarea());
 		InfoMerger<OwnerInfo, BusareaInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -33,7 +33,7 @@ public final class OwnerMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnerVisiMergeDaemon());
+		builder.addVisitor(new OwnerMergerVisiDaemon());
 		InfoMerger<OwnerInfo, UserInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -46,7 +46,7 @@ public final class OwnerMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnerVisiMergeFimist());
+		builder.addVisitor(new OwnerMergerVisiFimist());
 		InfoMerger<OwnerInfo, FimistInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -59,7 +59,7 @@ public final class OwnerMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnerVisiMergeOwnerap());
+		builder.addVisitor(new OwnerMergerVisiOwnerap());
 		InfoMerger<OwnerInfo, OwnerapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -72,7 +72,7 @@ public final class OwnerMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnerVisiMergeAddress());
+		builder.addVisitor(new OwnerMergerVisiAddress());
 		InfoMerger<OwnerInfo, AddressInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -85,7 +85,7 @@ public final class OwnerMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnerVisiMergeComp());
+		builder.addVisitor(new OwnerMergerVisiComp());
 		InfoMerger<OwnerInfo, CompInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -98,7 +98,7 @@ public final class OwnerMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnerVisiMergePerson());
+		builder.addVisitor(new OwnerMergerVisiPerson());
 		InfoMerger<OwnerInfo, PersonInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -111,7 +111,7 @@ public final class OwnerMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnerVisiMergePhone());
+		builder.addVisitor(new OwnerMergerVisiPhone());
 		InfoMerger<OwnerInfo, PhoneInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -124,7 +124,7 @@ public final class OwnerMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnerVisiMergeUser());
+		builder.addVisitor(new OwnerMergerVisiUser());
 		InfoMerger<OwnerInfo, UserInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -137,7 +137,7 @@ public final class OwnerMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnerVisiMergeUsername());
+		builder.addVisitor(new OwnerMergerVisiUsername());
 		InfoMerger<OwnerInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -150,7 +150,7 @@ public final class OwnerMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnerVisiMergeToSelect());
+		builder.addVisitor(new OwnerMergerVisiToSelect());
 		InfoMerger<OwnerInfo, OwnerInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -163,7 +163,7 @@ public final class OwnerMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnerVisiMergeToDelete());
+		builder.addVisitor(new OwnerMergerVisiToDelete());
 		InfoMerger<OwnerInfo, OwnerInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -176,7 +176,7 @@ public final class OwnerMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnerVisiMergeToUpdate());
+		builder.addVisitor(new OwnerMergerVisiToUpdate());
 		InfoMerger<OwnerInfo, OwnerInfo> merger = builder.build();		
 	
 		return merger.merge();

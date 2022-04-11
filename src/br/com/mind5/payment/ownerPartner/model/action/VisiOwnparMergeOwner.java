@@ -3,7 +3,7 @@ package br.com.mind5.payment.ownerPartner.model.action;
 import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.business.owner.model.decisionTree.RootOwnerSelect;
+import br.com.mind5.business.owner.model.decisionTree.OwnerRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiOwnparMergeOwner extends ActionVisitorTemplateMerge<OwnparInfo, 
 	
 	
 	@Override protected Class<? extends DeciTree<OwnerInfo>> getTreeClassHook() {
-		return RootOwnerSelect.class;
+		return OwnerRootSelect.class;
 	}
 	
 	
