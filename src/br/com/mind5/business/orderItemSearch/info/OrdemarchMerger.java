@@ -11,7 +11,7 @@ public final class OrdemarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdemarchVisiMergeToSelect());
+		builder.addVisitor(new OrdemarchMergerVisiToSelect());
 		InfoMerger<OrdemarchInfo, OrdemarchInfo> merger = builder.build();		
 	
 		return merger.merge();

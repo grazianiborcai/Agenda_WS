@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
-import br.com.mind5.business.orderItemSearch.model.action.StdOrdemarchMergeToSelect;
+import br.com.mind5.business.orderItemSearch.model.action.OrdemarchVisiMergeToSelect;
 import br.com.mind5.business.orderItemSearch.model.checker.OrdemarchCheckOwner;
 import br.com.mind5.business.orderItemSearch.model.checker.OrdemarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootOrdemarchSelect extends DeciTreeTemplateWrite<OrdemarchInfo> {
+public final class OrdemarchRootSelect extends DeciTreeTemplateWrite<OrdemarchInfo> {
 	
-	public RootOrdemarchSelect(DeciTreeOption<OrdemarchInfo> option) {
+	public OrdemarchRootSelect(DeciTreeOption<OrdemarchInfo> option) {
 		super(option);
 	}
 	
@@ -49,7 +50,7 @@ public final class RootOrdemarchSelect extends DeciTreeTemplateWrite<OrdemarchIn
 	@Override protected List<ActionStd<OrdemarchInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdemarchInfo> option) {
 		List<ActionStd<OrdemarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrdemarchInfo> select = new StdOrdemarchMergeToSelect(option);
+		ActionStd<OrdemarchInfo> select = new ActionStdCommom<OrdemarchInfo>(option, OrdemarchVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

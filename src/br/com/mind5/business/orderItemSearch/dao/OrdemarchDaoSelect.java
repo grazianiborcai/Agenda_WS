@@ -8,11 +8,11 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoOrdemarchSelect implements DaoStmtExec<OrdemarchInfo> {
+public final class OrdemarchDaoSelect implements DaoStmtExec<OrdemarchInfo> {
 	private DaoStmtExec<OrdemarchInfo> helper;
 	
 	
-	public DaoOrdemarchSelect(List<DaoStmtExecOption<OrdemarchInfo>> options) {
+	public OrdemarchDaoSelect(List<DaoStmtExecOption<OrdemarchInfo>> options) {
 		helper = new DaoStmtExecHelper<>(options, DaoOrdemarchSelectSingle.class, OrdemarchInfo.class);
 	}
 	

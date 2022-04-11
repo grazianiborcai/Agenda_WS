@@ -27,15 +27,15 @@ public final class DaoOrdemarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoOrdemarchDbTableColumn.COL_COD_OWNER :
+				case OrdemarchDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoOrdemarchDbTableColumn.COL_COD_ORDER :
+				case OrdemarchDaoDbTableColumn.COL_COD_ORDER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOrder));
 					break;
 					
-				case DaoOrdemarchDbTableColumn.COL_COD_ORDER_ITEM :
+				case OrdemarchDaoDbTableColumn.COL_COD_ORDER_ITEM :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOrderItem));
 					break;
 			}

@@ -67,16 +67,16 @@ public final class DaoOrdemarchSelectSingle extends DaoStmtTemplate<OrdemarchInf
 				do {
 					OrdemarchInfo dataInfo = new OrdemarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoOrdemarchDbTableColumn.COL_COD_OWNER);	
-					dataInfo.codOrder = stmtResult.getLong(DaoOrdemarchDbTableColumn.COL_COD_ORDER);
-					dataInfo.codOrderItem = DaoFormatter.sqlToInt(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_ORDER_ITEM);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_STORE);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, DaoOrdemarchDbTableColumn.COL_DATE);
-					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoOrdemarchDbTableColumn.COL_BEGIN_TIME);
-					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoOrdemarchDbTableColumn.COL_END_TIME);			
+					dataInfo.codOwner = stmtResult.getLong(OrdemarchDaoDbTableColumn.COL_COD_OWNER);	
+					dataInfo.codOrder = stmtResult.getLong(OrdemarchDaoDbTableColumn.COL_COD_ORDER);
+					dataInfo.codOrderItem = DaoFormatter.sqlToInt(stmtResult, OrdemarchDaoDbTableColumn.COL_COD_ORDER_ITEM);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, OrdemarchDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, OrdemarchDaoDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, OrdemarchDaoDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, OrdemarchDaoDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, OrdemarchDaoDbTableColumn.COL_DATE);
+					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, OrdemarchDaoDbTableColumn.COL_BEGIN_TIME);
+					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, OrdemarchDaoDbTableColumn.COL_END_TIME);			
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
