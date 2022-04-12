@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoStolargDbTableColumn extends DaoDbTableColumnTemplate {
+public final class StolargDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER; 	
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;  
 	public static final String COL_DATE_TIME_VALID_FROM = DaoDbField.COL_DATE_TIME_VALID_FROM; 		
@@ -20,7 +20,7 @@ public final class DaoStolargDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_TM_VALID_FROM = DaoDbField.COL_TM_VALID_FROM; 
 	public static final String COL_TM_VALID_TO = DaoDbField.COL_TM_VALID_TO; 
 	
-	public DaoStolargDbTableColumn() {
+	public StolargDaoDbTableColumn() {
 		super();
 	}
 	

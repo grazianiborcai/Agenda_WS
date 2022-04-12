@@ -1,7 +1,7 @@
 package br.com.mind5.business.storeLeaveDateRange.model.checker;
 
 import br.com.mind5.business.storeLeaveDateRange.info.StolargInfo;
-import br.com.mind5.business.storeLeaveDateRange.model.decisionTree.RootStolargSelect;
+import br.com.mind5.business.storeLeaveDateRange.model.decisionTree.StolargRootSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class StolargCheckExist extends ModelCheckerTemplateAction<StolargI
 	
 	
 	@Override protected ActionStd<StolargInfo> buildActionHook(DeciTreeOption<StolargInfo> option) {
-		ActionStd<StolargInfo> select = new RootStolargSelect(option).toAction();
+		ActionStd<StolargInfo> select = new StolargRootSelect(option).toAction();
 		return select;
 	}
 	

@@ -6,7 +6,7 @@ import br.com.mind5.business.calendarTimeStore.info.CalimoreInfo;
 import br.com.mind5.business.calendarTimeStore.info.CalimoreMerger;
 import br.com.mind5.business.storeLeaveDateRange.info.StolargCopier;
 import br.com.mind5.business.storeLeaveDateRange.info.StolargInfo;
-import br.com.mind5.business.storeLeaveDateRange.model.decisionTree.RootStolargSelect;
+import br.com.mind5.business.storeLeaveDateRange.model.decisionTree.StolargRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class CalimoreVisiMergeStolarg extends ActionVisitorTemplateMerge<C
 	
 	
 	@Override protected Class<? extends DeciTree<StolargInfo>> getTreeClassHook() {
-		return RootStolargSelect.class;
+		return StolargRootSelect.class;
 	}
 	
 	

@@ -4,21 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeLeaveDateRange.info.StolargInfo;
-import br.com.mind5.business.storeLeaveDateRange.model.action.StdStolargMergeToSelect;
+import br.com.mind5.business.storeLeaveDateRange.model.action.StolargVisiMergeToSelect;
 import br.com.mind5.business.storeLeaveDateRange.model.checker.StolargCheckLangu;
 import br.com.mind5.business.storeLeaveDateRange.model.checker.StolargCheckOwner;
 import br.com.mind5.business.storeLeaveDateRange.model.checker.StolargCheckRead;
 import br.com.mind5.business.storeLeaveDateRange.model.checker.StolargCheckStore;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public class RootStolargSelect extends DeciTreeTemplateRead<StolargInfo> {
+public class StolargRootSelect extends DeciTreeTemplateRead<StolargInfo> {
 	
-	public RootStolargSelect(DeciTreeOption<StolargInfo> option) {
+	public StolargRootSelect(DeciTreeOption<StolargInfo> option) {
 		super(option);
 	}
 	
@@ -65,7 +66,7 @@ public class RootStolargSelect extends DeciTreeTemplateRead<StolargInfo> {
 	@Override protected List<ActionStd<StolargInfo>> buildActionsOnPassedHook(DeciTreeOption<StolargInfo> option) {
 		List<ActionStd<StolargInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StolargInfo> select = new StdStolargMergeToSelect(option);
+		ActionStd<StolargInfo> select = new ActionStdCommom<StolargInfo>(option, StolargVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

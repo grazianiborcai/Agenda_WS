@@ -12,11 +12,11 @@ import br.com.mind5.dao.DaoWhereCondition;
 import br.com.mind5.dao.DaoWhereOperator;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class DaoStolargWhere implements DaoStmtWhere {
+public final class StolargDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoStolargWhere(DaoWhereBuilderOption whereOption, String tableName, StolargInfo recordInfo) {
+	public StolargDaoWhere(DaoWhereBuilderOption whereOption, String tableName, StolargInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -48,15 +48,15 @@ public final class DaoStolargWhere implements DaoStmtWhere {
 	
 	private DaoWhereBuilder generateKey(DaoColumn column, StolargInfo recordInfo, DaoWhereBuilder builder) {
 		switch(column.columnName) {
-			case DaoStolargDbTableColumn.COL_COD_OWNER :
+			case StolargDaoDbTableColumn.COL_COD_OWNER :
 				builder.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codOwner));
 				break;
 			
-			case DaoStolargDbTableColumn.COL_COD_STORE :
+			case StolargDaoDbTableColumn.COL_COD_STORE :
 				builder.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codStore));
 				break;
 				
-			case DaoStolargDbTableColumn.COL_RECORD_MODE :
+			case StolargDaoDbTableColumn.COL_RECORD_MODE :
 				builder.addClauseEqualAnd(column, recordInfo.recordMode);
 				break;
 		}
@@ -68,11 +68,11 @@ public final class DaoStolargWhere implements DaoStmtWhere {
 	
 	private DaoWhereBuilder generateValidFrom(DaoColumn column, StolargInfo recordInfo, DaoWhereBuilder builder) {
 		switch(column.columnName) {
-			case DaoStolargDbTableColumn.COL_DATE_TIME_VALID_FROM :
+			case StolargDaoDbTableColumn.COL_DATE_TIME_VALID_FROM :
 				builder.addClauseAnd(column, DaoFormatter.dateTimeToString(recordInfo.validFrom), DaoWhereCondition.LESS_OR_EQUAL);
 				break;
 				
-			case DaoStolargDbTableColumn.COL_DATE_TIME_VALID_TO :
+			case StolargDaoDbTableColumn.COL_DATE_TIME_VALID_TO :
 				builder.addClauseAnd(column, DaoFormatter.dateTimeToString(recordInfo.validFrom), DaoWhereCondition.GREATER_OR_EQUAL);
 				break;
 		}
@@ -84,11 +84,11 @@ public final class DaoStolargWhere implements DaoStmtWhere {
 	
 	private DaoWhereBuilder generateValidTo(DaoColumn column, StolargInfo recordInfo, DaoWhereBuilder builder) {
 		switch(column.columnName) {
-			case DaoStolargDbTableColumn.COL_DATE_TIME_VALID_FROM :
+			case StolargDaoDbTableColumn.COL_DATE_TIME_VALID_FROM :
 				builder.addClauseAnd(column, DaoFormatter.dateTimeToString(recordInfo.validTo), DaoWhereCondition.LESS_OR_EQUAL);
 				break;
 				
-			case DaoStolargDbTableColumn.COL_DATE_TIME_VALID_TO :
+			case StolargDaoDbTableColumn.COL_DATE_TIME_VALID_TO :
 				builder.addClauseAnd(column, DaoFormatter.dateTimeToString(recordInfo.validTo), DaoWhereCondition.GREATER_OR_EQUAL);
 				break;
 		}
@@ -100,11 +100,11 @@ public final class DaoStolargWhere implements DaoStmtWhere {
 	
 	private DaoWhereBuilder generateBetween(DaoColumn column, StolargInfo recordInfo, DaoWhereBuilder builder) {
 		switch(column.columnName) {
-			case DaoStolargDbTableColumn.COL_DATE_TIME_VALID_FROM :
+			case StolargDaoDbTableColumn.COL_DATE_TIME_VALID_FROM :
 				builder.addClauseAnd(column, DaoFormatter.dateTimeToString(recordInfo.validFrom), DaoWhereCondition.GREATER_OR_EQUAL);
 				break;
 				
-			case DaoStolargDbTableColumn.COL_DATE_TIME_VALID_TO :
+			case StolargDaoDbTableColumn.COL_DATE_TIME_VALID_TO :
 				builder.addClauseAnd(column, DaoFormatter.dateTimeToString(recordInfo.validTo), DaoWhereCondition.LESS_OR_EQUAL);
 				break;
 		}

@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoStolargSelect implements DaoStmtExec<StolargInfo> {
+public final class StolargDaoSelect implements DaoStmtExec<StolargInfo> {
 	private DaoStmtExec<StolargInfo> helper;
 	
 	
-	public DaoStolargSelect(List<DaoStmtExecOption<StolargInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoStolargSelectSingle.class, StolargInfo.class);
+	public StolargDaoSelect(List<DaoStmtExecOption<StolargInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, StolargDaoSelectSingle.class, StolargInfo.class);
 	}
 	
 	

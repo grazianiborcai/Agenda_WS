@@ -11,7 +11,7 @@ public final class StolargMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StolargVisiMergeToSelect());
+		builder.addVisitor(new StolargMergerVisiToSelect());
 		InfoMerger<StolargInfo, StolargInfo> merger = builder.build();		
 	
 		return merger.merge();

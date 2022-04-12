@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.storeLeaveDateRange.info.StolargInfo;
 import br.com.mind5.business.storeLeaveDateRange.info.StolargMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStolargMergeToSelect extends ActionVisitorTemplateMerge<StolargInfo, StolargInfo> {
+public final class StolargVisiMergeToSelect extends ActionVisitorTemplateMerge<StolargInfo, StolargInfo> {
 	
-	public VisiStolargMergeToSelect(DeciTreeOption<StolargInfo> option) {
+	public StolargVisiMergeToSelect(DeciTreeOption<StolargInfo> option) {
 		super(option, StolargInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<StolargInfo>> getActionClassHook() {
-		return StdStolargDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<StolargInfo>> getVisitorClassHook() {
+		return StolargVisiDaoSelect.class;
 	}
 	
 	
