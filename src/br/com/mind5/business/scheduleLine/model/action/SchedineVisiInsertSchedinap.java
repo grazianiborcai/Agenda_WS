@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineMerger;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
-import br.com.mind5.business.scheduleLineSnapshot.model.decisionTree.RootSchedinapInsert;
+import br.com.mind5.business.scheduleLineSnapshot.model.decisionTree.SchedinapRootInsert;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class SchedineVisiInsertSchedinap extends ActionVisitorTemplateActi
 	
 	
 	@Override protected Class<? extends DeciTree<SchedinapInfo>> getTreeClassHook() {
-		return RootSchedinapInsert.class;
+		return SchedinapRootInsert.class;
 	}
 	
 	

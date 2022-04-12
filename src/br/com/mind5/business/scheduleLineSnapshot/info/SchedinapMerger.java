@@ -17,7 +17,7 @@ public final class SchedinapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedinapVisiMergePetlis());
+		builder.addVisitor(new SchedinapMergerVisiPetlis());
 		InfoMerger<SchedinapInfo, PetlisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -30,7 +30,7 @@ public final class SchedinapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedinapVisiMergeUselis());
+		builder.addVisitor(new SchedinapMergerVisiUselis());
 		InfoMerger<SchedinapInfo, UselisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -43,7 +43,7 @@ public final class SchedinapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedinapVisiMergeCuslis());
+		builder.addVisitor(new SchedinapMergerVisiCuslis());
 		InfoMerger<SchedinapInfo, CuslisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -56,7 +56,7 @@ public final class SchedinapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedinapVisiMergeEmplres());
+		builder.addVisitor(new SchedinapMergerVisiEmplres());
 		InfoMerger<SchedinapInfo, EmplresInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -69,7 +69,7 @@ public final class SchedinapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedinapVisiMergeStolis());
+		builder.addVisitor(new SchedinapMergerVisiStolis());
 		InfoMerger<SchedinapInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -82,7 +82,7 @@ public final class SchedinapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedinapVisiMergeMatlis());
+		builder.addVisitor(new SchedinapMergerVisiMatlis());
 		InfoMerger<SchedinapInfo, MatlisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -95,7 +95,7 @@ public final class SchedinapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedinapVisiMergeToSelect());
+		builder.addVisitor(new SchedinapMergerVisiToSelect());
 		InfoMerger<SchedinapInfo, SchedinapInfo> merger = builder.build();		
 	
 		return merger.merge();

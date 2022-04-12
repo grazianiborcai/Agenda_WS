@@ -100,7 +100,7 @@ import br.com.mind5.business.refundPolicyStore.dao.RefuporeDaoDbTableColumn;
 import br.com.mind5.business.refundPolicyStoreSearch.dao.RefuporarchDaoDbTableColumn;
 import br.com.mind5.business.scheduleDayData.dao.SchedaytaDaoDbTableColumn;
 import br.com.mind5.business.scheduleLine.dao.SchedineDaoDbTableColumn;
-import br.com.mind5.business.scheduleLineSnapshot.dao.DaoSchedinapDbTableColumn;
+import br.com.mind5.business.scheduleLineSnapshot.dao.SchedinapDaoDbTableColumn;
 import br.com.mind5.business.scheduleList.dao.SchedistDaoDbTableColumn;
 import br.com.mind5.business.scheduleMonthData.dao.SchedonthatDaoDbTableColumn;
 import br.com.mind5.business.scheduleMoviment.dao.DaoSchedovmDbTableColumn;
@@ -371,7 +371,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CusnapDaoDbTableColumn());
 		addTable(new CuslisDaoDbTableColumn());
 		addTable(new DaoUselisDbTableColumn());
-		addTable(new DaoSchedinapDbTableColumn());
+		addTable(new SchedinapDaoDbTableColumn());
 		addTable(new OrdarchDaoDbTableColumn());
 		addTable(new OrdistDaoDbTableColumn());
 		addTable(new DaoSchedarchDbTableColumn());
