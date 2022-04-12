@@ -11,7 +11,7 @@ public final class SchedageMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedageVisiMergeToSelect());
+		builder.addVisitor(new SchedageMergerVisiToSelect());
 		InfoMerger<SchedageInfo, SchedageInfo> merger = builder.build();		
 	
 		return merger.merge();

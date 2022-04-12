@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.scheduleRange.info.SchedageCopier;
 import br.com.mind5.business.scheduleRange.info.SchedageInfo;
-import br.com.mind5.business.scheduleRange.model.decisionTree.RootSchedageSelect;
+import br.com.mind5.business.scheduleRange.model.decisionTree.SchedageRootSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -21,7 +21,7 @@ public final class EmposCheckSchedage extends ModelCheckerTemplateAction<EmposIn
 	
 	
 	@Override protected ActionStd<SchedageInfo> buildActionHook(DeciTreeOption<SchedageInfo> option) {
-		ActionStd<SchedageInfo> select = new RootSchedageSelect(option).toAction();
+		ActionStd<SchedageInfo> select = new SchedageRootSelect(option).toAction();
 		return select;
 	}
 	
