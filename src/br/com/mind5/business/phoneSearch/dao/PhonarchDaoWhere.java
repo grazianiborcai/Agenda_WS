@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class DaoPhonarchWhere implements DaoStmtWhere {	
+final class PhonarchDaoWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public DaoPhonarchWhere(DaoWhereBuilderOption whereOption, String tableName, PhonarchInfo recordInfo) {
+	public PhonarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, PhonarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,35 +27,35 @@ final class DaoPhonarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoPhonarchDbTableColumn.COL_COD_OWNER :
+				case PhonarchDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoPhonarchDbTableColumn.COL_COD_PHONE :
+				case PhonarchDaoDbTableColumn.COL_COD_PHONE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPhone));
 					break;
 					
-				case DaoPhonarchDbTableColumn.COL_COD_CUSTOMER :
+				case PhonarchDaoDbTableColumn.COL_COD_CUSTOMER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCustomer));
 					break;
 					
-				case DaoPhonarchDbTableColumn.COL_COD_STORE :
+				case PhonarchDaoDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case DaoPhonarchDbTableColumn.COL_COD_EMPLOYEE :
+				case PhonarchDaoDbTableColumn.COL_COD_EMPLOYEE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 					break;
 					
-				case DaoPhonarchDbTableColumn.COL_COD_USER :
+				case PhonarchDaoDbTableColumn.COL_COD_USER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 					
-				case DaoPhonarchDbTableColumn.COL_COD_OWNER_REF :
+				case PhonarchDaoDbTableColumn.COL_COD_OWNER_REF :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwnerRef));
 					break;
 					
-				case DaoPhonarchDbTableColumn.COL_RECORD_MODE :
+				case PhonarchDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

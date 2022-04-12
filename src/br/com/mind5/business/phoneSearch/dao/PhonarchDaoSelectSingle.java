@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoPhonarchSelectSingle extends DaoStmtTemplate<PhonarchInfo> {
+public final class PhonarchDaoSelectSingle extends DaoStmtTemplate<PhonarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PHONE_TABLE;		
 	
 	
-	public DaoPhonarchSelectSingle(Connection conn, PhonarchInfo recordInfo, String schemaName) {
+	public PhonarchDaoSelectSingle(Connection conn, PhonarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoPhonarchSelectSingle extends DaoStmtTemplate<PhonarchInfo>
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoPhonarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new PhonarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,18 +67,18 @@ public final class DaoPhonarchSelectSingle extends DaoStmtTemplate<PhonarchInfo>
 				do {
 					PhonarchInfo dataInfo = new PhonarchInfo();
 					
-					dataInfo.codPhone = stmtResult.getLong(DaoPhonarchDbTableColumn.COL_COD_PHONE);
-					dataInfo.codOwner = stmtResult.getLong(DaoPhonarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCountryPhone = stmtResult.getInt(DaoPhonarchDbTableColumn.COL_COUNTRY_PHONE);
-					dataInfo.fullNumber = stmtResult.getString(DaoPhonarchDbTableColumn.COL_FULL_NUMBER);
-					dataInfo.recordMode = stmtResult.getString(DaoPhonarchDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codArea = stmtResult.getString(DaoPhonarchDbTableColumn.COL_COD_AREA);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoPhonarchDbTableColumn.COL_COD_STORE);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoPhonarchDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, DaoPhonarchDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoPhonarchDbTableColumn.COL_COD_USER);
-					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, DaoPhonarchDbTableColumn.COL_COD_OWNER_REF);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoPhonarchDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codPhone = stmtResult.getLong(PhonarchDaoDbTableColumn.COL_COD_PHONE);
+					dataInfo.codOwner = stmtResult.getLong(PhonarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCountryPhone = stmtResult.getInt(PhonarchDaoDbTableColumn.COL_COUNTRY_PHONE);
+					dataInfo.fullNumber = stmtResult.getString(PhonarchDaoDbTableColumn.COL_FULL_NUMBER);
+					dataInfo.recordMode = stmtResult.getString(PhonarchDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codArea = stmtResult.getString(PhonarchDaoDbTableColumn.COL_COD_AREA);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, PhonarchDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, PhonarchDaoDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, PhonarchDaoDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, PhonarchDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, PhonarchDaoDbTableColumn.COL_COD_OWNER_REF);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, PhonarchDaoDbTableColumn.COL_COD_SNAPSHOT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

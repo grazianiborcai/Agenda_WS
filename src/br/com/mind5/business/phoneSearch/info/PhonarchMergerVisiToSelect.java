@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class PhonarchVisiMergeToSelect extends InfoMergerVisitorTemplate<PhonarchInfo, PhonarchInfo> {
+final class PhonarchMergerVisiToSelect extends InfoMergerVisitorTemplate<PhonarchInfo, PhonarchInfo> {
 
 	@Override public boolean shouldMerge(PhonarchInfo baseInfo, PhonarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);

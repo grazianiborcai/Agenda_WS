@@ -4,21 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.business.phoneSearch.info.PhonarchMerger;
-import br.com.mind5.model.action.ActionStd;
-
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPhonarchMergeToSelect extends ActionVisitorTemplateMerge<PhonarchInfo, PhonarchInfo> {
+public final class PhonarchVisiMergeToSelect extends ActionVisitorTemplateMerge<PhonarchInfo, PhonarchInfo> {
 	
-	public VisiPhonarchMergeToSelect(DeciTreeOption<PhonarchInfo> option) {
+	public PhonarchVisiMergeToSelect(DeciTreeOption<PhonarchInfo> option) {
 		super(option, PhonarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<PhonarchInfo>> getActionClassHook() {
-		return StdPhonarchDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<PhonarchInfo>> getVisitorClassHook() {
+		return PhonarchVisiDaoSelect.class;
 	}
 	
 	

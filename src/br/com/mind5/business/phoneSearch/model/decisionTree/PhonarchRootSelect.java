@@ -4,20 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
-import br.com.mind5.business.phoneSearch.model.action.StdPhonarchMergeToSelect;
+import br.com.mind5.business.phoneSearch.model.action.PhonarchVisiMergeToSelect;
 import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckLangu;
 import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckOwner;
 import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootPhonarchSelect extends DeciTreeTemplateWrite<PhonarchInfo> {
+public final class PhonarchRootSelect extends DeciTreeTemplateWrite<PhonarchInfo> {
 	
-	public RootPhonarchSelect(DeciTreeOption<PhonarchInfo> option) {
+	public PhonarchRootSelect(DeciTreeOption<PhonarchInfo> option) {
 		super(option);
 	}
 	
@@ -57,7 +58,7 @@ public final class RootPhonarchSelect extends DeciTreeTemplateWrite<PhonarchInfo
 	@Override protected List<ActionStd<PhonarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonarchInfo> option) {
 		List<ActionStd<PhonarchInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhonarchInfo> select = new StdPhonarchMergeToSelect(option);	
+		ActionStd<PhonarchInfo> select = new ActionStdCommom<PhonarchInfo>(option, PhonarchVisiMergeToSelect.class);	
 		
 		actions.add(select);		
 		return actions;

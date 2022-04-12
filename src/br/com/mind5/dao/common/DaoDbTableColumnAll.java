@@ -91,7 +91,7 @@ import br.com.mind5.business.petSearch.dao.PetarchDaoDbTableColumn;
 import br.com.mind5.business.petSnapshot.dao.PetsnapDaoDbTableColumn;
 import br.com.mind5.business.phone.dao.PhoneDaoDbTableColumn;
 import br.com.mind5.business.phoneDefault.dao.PhonaultDaoDbTableColumn;
-import br.com.mind5.business.phoneSearch.dao.DaoPhonarchDbTableColumn;
+import br.com.mind5.business.phoneSearch.dao.PhonarchDaoDbTableColumn;
 import br.com.mind5.business.phoneSnapshot.dao.DaoPhonapDbTableColumn;
 import br.com.mind5.business.phoneSnapshotSearch.dao.DaoPhonaparchDbTableColumn;
 import br.com.mind5.business.planingData.dao.PlanataDaoDbTableColumn;
@@ -389,7 +389,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new OwnerapDaoDbTableColumn());
 		addTable(new ComplisDaoDbTableColumn());
 		addTable(new AddarchDaoDbTableColumn());
-		addTable(new DaoPhonarchDbTableColumn());
+		addTable(new PhonarchDaoDbTableColumn());
 		addTable(new DaoSotarchDbTableColumn());
 		addTable(new ComparchDaoDbTableColumn());
 		addTable(new PerarchDaoDbTableColumn());

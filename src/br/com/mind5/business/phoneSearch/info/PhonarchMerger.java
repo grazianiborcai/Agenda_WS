@@ -11,7 +11,7 @@ public final class PhonarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhonarchVisiMergeToSelect());
+		builder.addVisitor(new PhonarchMergerVisiToSelect());
 		InfoMerger<PhonarchInfo, PhonarchInfo> merger = builder.build();		
 	
 		return merger.merge();

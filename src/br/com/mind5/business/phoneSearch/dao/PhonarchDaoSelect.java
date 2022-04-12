@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoPhonarchSelect implements DaoStmtExec<PhonarchInfo> {
+public final class PhonarchDaoSelect implements DaoStmtExec<PhonarchInfo> {
 	private DaoStmtExec<PhonarchInfo> helper;
 	
 	
-	public DaoPhonarchSelect(List<DaoStmtExecOption<PhonarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoPhonarchSelectSingle.class, PhonarchInfo.class);
+	public PhonarchDaoSelect(List<DaoStmtExecOption<PhonarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, PhonarchDaoSelectSingle.class, PhonarchInfo.class);
 	}
 	
 	
