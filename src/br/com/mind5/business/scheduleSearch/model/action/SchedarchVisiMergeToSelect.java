@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleSearch.info.SchedarchInfo;
 import br.com.mind5.business.scheduleSearch.info.SchedarchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedarchMergeToSelect extends ActionVisitorTemplateMerge<SchedarchInfo, SchedarchInfo> {
+public final class SchedarchVisiMergeToSelect extends ActionVisitorTemplateMerge<SchedarchInfo, SchedarchInfo> {
 	
-	public VisiSchedarchMergeToSelect(DeciTreeOption<SchedarchInfo> option) {
+	public SchedarchVisiMergeToSelect(DeciTreeOption<SchedarchInfo> option) {
 		super(option, SchedarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<SchedarchInfo>> getActionClassHook() {
-		return StdSchedarchDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<SchedarchInfo>> getVisitorClassHook() {
+		return SchedarchVisiDaoSelect.class;
 	}
 	
 	

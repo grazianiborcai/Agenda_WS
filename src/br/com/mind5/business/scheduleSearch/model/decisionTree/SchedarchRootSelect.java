@@ -4,20 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleSearch.info.SchedarchInfo;
-import br.com.mind5.business.scheduleSearch.model.action.StdSchedarchMergeToSelect;
+import br.com.mind5.business.scheduleSearch.model.action.SchedarchVisiMergeToSelect;
 import br.com.mind5.business.scheduleSearch.model.checker.SchedarchCheckLangu;
 import br.com.mind5.business.scheduleSearch.model.checker.SchedarchCheckOwner;
 import br.com.mind5.business.scheduleSearch.model.checker.SchedarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSchedarchSelect extends DeciTreeTemplateWrite<SchedarchInfo> {
+public final class SchedarchRootSelect extends DeciTreeTemplateWrite<SchedarchInfo> {
 	
-	public RootSchedarchSelect(DeciTreeOption<SchedarchInfo> option) {
+	public SchedarchRootSelect(DeciTreeOption<SchedarchInfo> option) {
 		super(option);
 	}
 	
@@ -57,7 +58,7 @@ public final class RootSchedarchSelect extends DeciTreeTemplateWrite<SchedarchIn
 	@Override protected List<ActionStd<SchedarchInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedarchInfo> option) {
 		List<ActionStd<SchedarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedarchInfo> select = new StdSchedarchMergeToSelect(option);
+		ActionStd<SchedarchInfo> select = new ActionStdCommom<SchedarchInfo>(option, SchedarchVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

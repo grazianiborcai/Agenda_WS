@@ -11,7 +11,7 @@ public final class SchedarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedarchVisiMergeToSelect());
+		builder.addVisitor(new SchedarchMergerVisiToSelect());
 		InfoMerger<SchedarchInfo, SchedarchInfo> merger = builder.build();		
 	
 		return merger.merge();

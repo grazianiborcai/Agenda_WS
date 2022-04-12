@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoSchedarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class SchedarchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;	
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;	
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;	
@@ -34,7 +34,7 @@ public final class DaoSchedarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_WEEK_YEAR = DaoDbField.COL_WEEK_YEAR;
 	
 	
-	public DaoSchedarchDbTableColumn() {
+	public SchedarchDaoDbTableColumn() {
 		super();
 	}
 	
