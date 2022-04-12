@@ -11,7 +11,7 @@ public final class StorextaultMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorextaultVisiMergeToSelect());
+		builder.addVisitor(new StorextaultMergeVisiToSelect());
 		InfoMerger<StorextaultInfo, StorextaultInfo> merger = builder.build();		
 	
 		return merger.merge();

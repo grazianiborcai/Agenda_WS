@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class DaoStorextaultWhere implements DaoStmtWhere {
+public final class StorextaultDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoStorextaultWhere(DaoWhereBuilderOption whereOption, String tableName, StorextaultInfo recordInfo) {
+	public StorextaultDaoWhere(DaoWhereBuilderOption whereOption, String tableName, StorextaultInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,19 +27,19 @@ public final class DaoStorextaultWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoStorextaultDbTableColumn.COL_COD_OWNER :
+				case StorextaultDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoStorextaultDbTableColumn.COL_COD_STORE :
+				case StorextaultDaoDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case DaoStorextaultDbTableColumn.COL_IS_DEFAULT :
+				case StorextaultDaoDbTableColumn.COL_IS_DEFAULT :
 					builder.addClauseEqualAnd(eachColumn, "1");
 					break;
 					
-				case DaoStorextaultDbTableColumn.COL_RECORD_MODE :
+				case StorextaultDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

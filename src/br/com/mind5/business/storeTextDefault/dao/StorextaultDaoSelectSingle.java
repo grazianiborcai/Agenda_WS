@@ -15,10 +15,10 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoStorextaultSelectSingle extends DaoStmtTemplate<StorextaultInfo> {
+public final class StorextaultDaoSelectSingle extends DaoStmtTemplate<StorextaultInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STORE_TEXT_TABLE;	
 	
-	public DaoStorextaultSelectSingle(Connection conn, StorextaultInfo recordInfo, String schemaName) {
+	public StorextaultDaoSelectSingle(Connection conn, StorextaultInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -48,7 +48,7 @@ public final class DaoStorextaultSelectSingle extends DaoStmtTemplate<Storextaul
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoStorextaultWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new StorextaultDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -65,11 +65,11 @@ public final class DaoStorextaultSelectSingle extends DaoStmtTemplate<Storextaul
 				do {
 					StorextaultInfo dataInfo = new StorextaultInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoStorextaultDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(DaoStorextaultDbTableColumn.COL_COD_STORE);
-					dataInfo.codLanguage = stmtResult.getString(DaoStorextaultDbTableColumn.COL_COD_LANGUAGE);
-					dataInfo.recordMode = stmtResult.getString(DaoStorextaultDbTableColumn.COL_RECORD_MODE);			
-					dataInfo.isDefault = stmtResult.getBoolean(DaoStorextaultDbTableColumn.COL_IS_DEFAULT);
+					dataInfo.codOwner = stmtResult.getLong(StorextaultDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(StorextaultDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codLanguage = stmtResult.getString(StorextaultDaoDbTableColumn.COL_COD_LANGUAGE);
+					dataInfo.recordMode = stmtResult.getString(StorextaultDaoDbTableColumn.COL_RECORD_MODE);			
+					dataInfo.isDefault = stmtResult.getBoolean(StorextaultDaoDbTableColumn.COL_IS_DEFAULT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

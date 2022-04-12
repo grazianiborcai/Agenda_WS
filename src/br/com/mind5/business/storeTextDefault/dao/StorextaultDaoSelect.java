@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoStorextaultSelect implements DaoStmtExec<StorextaultInfo> {
+public final class StorextaultDaoSelect implements DaoStmtExec<StorextaultInfo> {
 	private DaoStmtExec<StorextaultInfo> helper;
 	
 	
-	public DaoStorextaultSelect(List<DaoStmtExecOption<StorextaultInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoStorextaultSelectSingle.class, StorextaultInfo.class);
+	public StorextaultDaoSelect(List<DaoStmtExecOption<StorextaultInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, StorextaultDaoSelectSingle.class, StorextaultInfo.class);
 	}
 	
 	

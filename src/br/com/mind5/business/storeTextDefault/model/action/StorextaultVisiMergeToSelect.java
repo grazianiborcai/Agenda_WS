@@ -4,21 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.storeTextDefault.info.StorextaultInfo;
 import br.com.mind5.business.storeTextDefault.info.StorextaultMerger;
-import br.com.mind5.model.action.ActionStd;
-
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorextaultMergeToSelect extends ActionVisitorTemplateMerge<StorextaultInfo, StorextaultInfo> {
+public final class StorextaultVisiMergeToSelect extends ActionVisitorTemplateMerge<StorextaultInfo, StorextaultInfo> {
 	
-	public VisiStorextaultMergeToSelect(DeciTreeOption<StorextaultInfo> option) {
+	public StorextaultVisiMergeToSelect(DeciTreeOption<StorextaultInfo> option) {
 		super(option, StorextaultInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<StorextaultInfo>> getActionClassHook() {
-		return StdStorextaultDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<StorextaultInfo>> getVisitorClassHook() {
+		return StorextaultVisiDaoSelect.class;
 	}
 	
 	

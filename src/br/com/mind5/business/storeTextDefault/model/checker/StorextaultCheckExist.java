@@ -1,9 +1,10 @@
 package br.com.mind5.business.storeTextDefault.model.checker;
 
 import br.com.mind5.business.storeTextDefault.info.StorextaultInfo;
-import br.com.mind5.business.storeTextDefault.model.action.StdStorextaultDaoSelect;
+import br.com.mind5.business.storeTextDefault.model.action.StorextaultVisiDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class StorextaultCheckExist extends ModelCheckerTemplateAction<Stor
 	
 	
 	@Override protected ActionStd<StorextaultInfo> buildActionHook(DeciTreeOption<StorextaultInfo> option) {
-		ActionStd<StorextaultInfo> select = new StdStorextaultDaoSelect(option);
+		ActionStd<StorextaultInfo> select = new ActionStdCommom<StorextaultInfo>(option, StorextaultVisiDaoSelect.class);
 		return select;
 	}
 	
