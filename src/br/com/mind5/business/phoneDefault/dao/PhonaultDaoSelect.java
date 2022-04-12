@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoPhonaultSelect implements DaoStmtExec<PhonaultInfo> {
+public final class PhonaultDaoSelect implements DaoStmtExec<PhonaultInfo> {
 	private DaoStmtExec<PhonaultInfo> helper;
 	
 	
-	public DaoPhonaultSelect(List<DaoStmtExecOption<PhonaultInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoPhonaultSelectSingle.class, PhonaultInfo.class);
+	public PhonaultDaoSelect(List<DaoStmtExecOption<PhonaultInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, PhonaultDaoSelectSingle.class, PhonaultInfo.class);
 	}
 	
 	

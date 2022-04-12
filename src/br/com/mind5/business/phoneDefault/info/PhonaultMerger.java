@@ -11,7 +11,7 @@ public final class PhonaultMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhonaultVisiMergeToSelect());
+		builder.addVisitor(new PhonaultMergerVisiToSelect());
 		InfoMerger<PhonaultInfo, PhonaultInfo> merger = builder.build();		
 	
 		return merger.merge();

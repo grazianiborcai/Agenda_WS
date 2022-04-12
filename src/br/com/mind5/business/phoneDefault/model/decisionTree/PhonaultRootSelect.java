@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.phoneDefault.info.PhonaultInfo;
-import br.com.mind5.business.phoneDefault.model.action.StdPhonaultMergeToSelect;
+import br.com.mind5.business.phoneDefault.model.action.PhonaultVisiMergeToSelect;
 import br.com.mind5.business.phoneDefault.model.checker.PhonaultCheckLangu;
 import br.com.mind5.business.phoneDefault.model.checker.PhonaultCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootPhonaultSelect extends DeciTreeTemplateWrite<PhonaultInfo> {
+public final class PhonaultRootSelect extends DeciTreeTemplateWrite<PhonaultInfo> {
 	
-	public RootPhonaultSelect(DeciTreeOption<PhonaultInfo> option) {
+	public PhonaultRootSelect(DeciTreeOption<PhonaultInfo> option) {
 		super(option);
 	}
 	
@@ -49,7 +50,7 @@ public final class RootPhonaultSelect extends DeciTreeTemplateWrite<PhonaultInfo
 	@Override protected List<ActionStd<PhonaultInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonaultInfo> option) {
 		List<ActionStd<PhonaultInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhonaultInfo> select = new StdPhonaultMergeToSelect(option);
+		ActionStd<PhonaultInfo> select = new ActionStdCommom<PhonaultInfo>(option, PhonaultVisiMergeToSelect.class);
 		
 		actions.add(select);			
 		return actions;
