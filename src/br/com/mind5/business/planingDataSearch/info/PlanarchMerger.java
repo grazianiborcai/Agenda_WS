@@ -12,7 +12,7 @@ public final class PlanarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanarchVisiMergePlanata());
+		builder.addVisitor(new PlanarchMergerVisiPlanata());
 		InfoMerger<PlanarchInfo, PlanataInfo> merger = builder.build();		
 	
 		return merger.merge();

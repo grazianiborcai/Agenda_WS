@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class PlanarchVisiMergePlanata extends InfoMergerVisitorTemplate<PlanarchInfo, PlanataInfo> {
+final class PlanarchMergerVisiPlanata extends InfoMergerVisitorTemplate<PlanarchInfo, PlanataInfo> {
 
 	@Override public boolean shouldMerge(PlanarchInfo baseInfo, PlanataInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner && 

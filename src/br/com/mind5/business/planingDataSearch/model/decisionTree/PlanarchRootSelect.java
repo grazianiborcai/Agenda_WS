@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.planingDataSearch.info.PlanarchInfo;
-import br.com.mind5.business.planingDataSearch.model.action.LazyPlanarchPruneSel;
-import br.com.mind5.business.planingDataSearch.model.action.StdPlanarchMergePlanata;
+import br.com.mind5.business.planingDataSearch.model.action.PlanarchVisiMergePlanata;
+import br.com.mind5.business.planingDataSearch.model.action.PlanarchVisiPruneSel;
 import br.com.mind5.business.planingDataSearch.model.checker.PlanarchCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public class RootPlanarchSelect extends DeciTreeTemplateRead<PlanarchInfo> {
+public class PlanarchRootSelect extends DeciTreeTemplateRead<PlanarchInfo> {
 	
-	public RootPlanarchSelect(DeciTreeOption<PlanarchInfo> option) {
+	public PlanarchRootSelect(DeciTreeOption<PlanarchInfo> option) {
 		super(option);
 	}
 	
@@ -43,8 +45,8 @@ public class RootPlanarchSelect extends DeciTreeTemplateRead<PlanarchInfo> {
 	@Override protected List<ActionStd<PlanarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PlanarchInfo> option) {
 		List<ActionStd<PlanarchInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PlanarchInfo> mergePlanata = new StdPlanarchMergePlanata(option);	
-		ActionLazy<PlanarchInfo> pruneSel = new LazyPlanarchPruneSel(option.conn, option.schemaName);
+		ActionStd<PlanarchInfo> mergePlanata = new ActionStdCommom<PlanarchInfo>(option, PlanarchVisiMergePlanata.class);	
+		ActionLazy<PlanarchInfo> pruneSel = new ActionLazyCommom<PlanarchInfo>(option, PlanarchVisiPruneSel.class);
 		
 		mergePlanata.addPostAction(pruneSel);
 		

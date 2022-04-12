@@ -12,7 +12,7 @@ public final class PlanarchPruner {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(baseInfos);
-		builder.addVisitor(new PlanarchVisiPruneSel());
+		builder.addVisitor(new PlanarchPrunerVisiSel());
 		InfoPruner<PlanarchInfo, PlanarchInfo> pruner = builder.build();		
 	
 		return pruner.prune();
