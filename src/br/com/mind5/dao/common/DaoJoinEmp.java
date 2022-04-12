@@ -7,7 +7,6 @@ import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoJoinColumn;
 import br.com.mind5.dao.DaoJoinType;
-import br.com.mind5.dao.common.DaoDbTable;
 
 public final class DaoJoinEmp implements DaoJoinBuilder {
 	private final String leftTable;
