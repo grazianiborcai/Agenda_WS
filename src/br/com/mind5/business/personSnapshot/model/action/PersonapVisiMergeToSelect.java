@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.business.personSnapshot.info.PersonapMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPersonapMergeToSelect extends ActionVisitorTemplateMerge<PersonapInfo, PersonapInfo> {
+public final class PersonapVisiMergeToSelect extends ActionVisitorTemplateMerge<PersonapInfo, PersonapInfo> {
 	
-	public VisiPersonapMergeToSelect(DeciTreeOption<PersonapInfo> option) {
+	public PersonapVisiMergeToSelect(DeciTreeOption<PersonapInfo> option) {
 		super(option, PersonapInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<PersonapInfo>> getActionClassHook() {
-		return StdPersonapDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<PersonapInfo>> getVisitorClassHook() {
+		return PersonapVisiDaoSelect.class;
 	}
 	
 	

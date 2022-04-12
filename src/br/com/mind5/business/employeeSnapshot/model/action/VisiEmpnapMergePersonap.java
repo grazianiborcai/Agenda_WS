@@ -6,7 +6,7 @@ import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapMerger;
 import br.com.mind5.business.personSnapshot.info.PersonapCopier;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
-import br.com.mind5.business.personSnapshot.model.decisionTree.RootPersonapSelect;
+import br.com.mind5.business.personSnapshot.model.decisionTree.PersonapRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class VisiEmpnapMergePersonap extends ActionVisitorTemplateMerge<Em
 	
 	
 	@Override protected Class<? extends DeciTree<PersonapInfo>> getTreeClassHook() {
-		return RootPersonapSelect.class;
+		return PersonapRootSelect.class;
 	}
 	
 	

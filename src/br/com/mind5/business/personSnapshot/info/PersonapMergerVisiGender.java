@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.gender.info.GenderInfo;
 
-final class PersonapVisiMergeGender extends InfoMergerVisitorTemplate<PersonapInfo, GenderInfo> {
+final class PersonapMergerVisiGender extends InfoMergerVisitorTemplate<PersonapInfo, GenderInfo> {
 
 	@Override public boolean shouldMerge(PersonapInfo baseInfo, GenderInfo selectedInfo) {
 		return (baseInfo.codGender == selectedInfo.codGender);

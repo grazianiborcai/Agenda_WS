@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoPersonapDbTableColumn extends DaoDbTableColumnTemplate {
+public final class PersonapDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_BIRTH_DATE = DaoDbField.COL_BIRTH_DATE;
 	public static final String COL_BIRTH_DAY = DaoDbField.COL_BIRTH_DAY;
 	public static final String COL_BIRTH_MONTH = DaoDbField.COL_BIRTH_MONTH;
@@ -31,7 +31,7 @@ public final class DaoPersonapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 	
 	
-	public DaoPersonapDbTableColumn() {
+	public PersonapDaoDbTableColumn() {
 		super();
 	}
 	

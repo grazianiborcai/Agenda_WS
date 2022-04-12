@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPersonapMergeGender extends ActionVisitorTemplateMerge<PersonapInfo, GenderInfo> {
+public final class PersonapVisiMergeGender extends ActionVisitorTemplateMerge<PersonapInfo, GenderInfo> {
 	
-	public VisiPersonapMergeGender(DeciTreeOption<PersonapInfo> option) {
+	public PersonapVisiMergeGender(DeciTreeOption<PersonapInfo> option) {
 		super(option, GenderInfo.class);
 	}
 	

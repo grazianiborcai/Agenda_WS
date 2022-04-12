@@ -12,7 +12,7 @@ public final class PersonapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PersonapVisiMergeGender());
+		builder.addVisitor(new PersonapMergerVisiGender());
 		InfoMerger<PersonapInfo, GenderInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class PersonapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PersonapVisiMergeToSelect());
+		builder.addVisitor(new PersonapMergerVisiToSelect());
 		InfoMerger<PersonapInfo, PersonapInfo> merger = builder.build();		
 	
 		return merger.merge();

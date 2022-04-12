@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.personSnapshot.info.PersonapCopier;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
-import br.com.mind5.business.personSnapshot.model.decisionTree.RootPersonapSelect;
+import br.com.mind5.business.personSnapshot.model.decisionTree.PersonapRootSelect;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -20,7 +20,7 @@ public final class StorapVisiMergePersonap extends ActionVisitorTemplateMerge<St
 	
 	
 	@Override protected Class<? extends DeciTree<PersonapInfo>> getTreeClassHook() {
-		return RootPersonapSelect.class;
+		return PersonapRootSelect.class;
 	}
 	
 	

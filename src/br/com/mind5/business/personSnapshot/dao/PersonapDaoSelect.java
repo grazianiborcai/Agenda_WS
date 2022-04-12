@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoPersonapInsert implements DaoStmtExec<PersonapInfo> {
+public final class PersonapDaoSelect implements DaoStmtExec<PersonapInfo> {
 	private DaoStmtExec<PersonapInfo> helper;
 	
 	
-	public DaoPersonapInsert(List<DaoStmtExecOption<PersonapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoPersonapInsertSingle.class, PersonapInfo.class);
+	public PersonapDaoSelect(List<DaoStmtExecOption<PersonapInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, PersonapDaoSelectSingle.class, PersonapInfo.class);
 	}
 	
 	
