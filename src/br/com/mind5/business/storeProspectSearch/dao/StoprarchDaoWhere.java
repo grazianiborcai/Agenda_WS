@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class DaoStoprarchWhere implements DaoStmtWhere {
+public final class StoprarchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoStoprarchWhere(DaoWhereBuilderOption whereOption, String tableName, StoprarchInfo recordInfo) {
+	public StoprarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, StoprarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,23 +27,23 @@ public final class DaoStoprarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoStoprarchDbTableColumn.COL_COD_OWNER :
+				case StoprarchDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoStoprarchDbTableColumn.COL_COD_STORE_PROSPECT :
+				case StoprarchDaoDbTableColumn.COL_COD_STORE_PROSPECT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStoreProspect));
 					break;
 					
-				case DaoStoprarchDbTableColumn.COL_PROSPECT_EMAIL :
+				case StoprarchDaoDbTableColumn.COL_PROSPECT_EMAIL :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.prospectEmail);
 					break;
 					
-				case DaoStoprarchDbTableColumn.COL_COD_PROSPECT_STATUS :
+				case StoprarchDaoDbTableColumn.COL_COD_PROSPECT_STATUS :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codProspectStatus);
 					break;
 					
-				case DaoStoprarchDbTableColumn.COL_RECORD_MODE :
+				case StoprarchDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

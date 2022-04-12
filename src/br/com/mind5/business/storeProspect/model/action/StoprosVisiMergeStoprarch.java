@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.storeProspect.info.StoprosInfo;
 import br.com.mind5.business.storeProspect.info.StoprosMerger;
 import br.com.mind5.business.storeProspectSearch.info.StoprarchInfo;
-import br.com.mind5.business.storeProspectSearch.model.decisionTree.RootStoprarchSelect;
+import br.com.mind5.business.storeProspectSearch.model.decisionTree.StoprarchRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class StoprosVisiMergeStoprarch extends ActionVisitorTemplateMerge<
 	
 	
 	protected Class<? extends DeciTree<StoprarchInfo>> getTreeClassHook() {
-		return RootStoprarchSelect.class;
+		return StoprarchRootSelect.class;
 	}
 	
 	

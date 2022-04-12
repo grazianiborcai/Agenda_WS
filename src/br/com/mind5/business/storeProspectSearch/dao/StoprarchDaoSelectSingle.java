@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoStoprarchSelectSingle extends DaoStmtTemplate<StoprarchInfo> {
+public final class StoprarchDaoSelectSingle extends DaoStmtTemplate<StoprarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STORE_PROSPECT_TABLE;	
 	
 	
-	public DaoStoprarchSelectSingle(Connection conn, StoprarchInfo recordInfo, String schemaName) {
+	public StoprarchDaoSelectSingle(Connection conn, StoprarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -49,7 +49,7 @@ public final class DaoStoprarchSelectSingle extends DaoStmtTemplate<StoprarchInf
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoStoprarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new StoprarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -66,13 +66,13 @@ public final class DaoStoprarchSelectSingle extends DaoStmtTemplate<StoprarchInf
 				do {
 					StoprarchInfo dataInfo = new StoprarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoStoprarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStoreProspect = stmtResult.getLong(DaoStoprarchDbTableColumn.COL_COD_STORE_PROSPECT);
-					dataInfo.recordMode = stmtResult.getString(DaoStoprarchDbTableColumn.COL_RECORD_MODE);	
-					dataInfo.prospectEmail = stmtResult.getString(DaoStoprarchDbTableColumn.COL_PROSPECT_EMAIL);
-					dataInfo.prospectName = stmtResult.getString(DaoStoprarchDbTableColumn.COL_PROSPECT_NAME);
-					dataInfo.prospectPhone = stmtResult.getString(DaoStoprarchDbTableColumn.COL_PROSPECT_PHONE);					
-					dataInfo.codProspectStatus = stmtResult.getString(DaoStoprarchDbTableColumn.COL_COD_PROSPECT_STATUS);
+					dataInfo.codOwner = stmtResult.getLong(StoprarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStoreProspect = stmtResult.getLong(StoprarchDaoDbTableColumn.COL_COD_STORE_PROSPECT);
+					dataInfo.recordMode = stmtResult.getString(StoprarchDaoDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.prospectEmail = stmtResult.getString(StoprarchDaoDbTableColumn.COL_PROSPECT_EMAIL);
+					dataInfo.prospectName = stmtResult.getString(StoprarchDaoDbTableColumn.COL_PROSPECT_NAME);
+					dataInfo.prospectPhone = stmtResult.getString(StoprarchDaoDbTableColumn.COL_PROSPECT_PHONE);					
+					dataInfo.codProspectStatus = stmtResult.getString(StoprarchDaoDbTableColumn.COL_COD_PROSPECT_STATUS);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeProspectSearch.info.StoprarchInfo;
-import br.com.mind5.business.storeProspectSearch.model.action.StdStoprarchMergeToSelect;
+import br.com.mind5.business.storeProspectSearch.model.action.StoprarchVisiMergeToSelect;
 import br.com.mind5.business.storeProspectSearch.model.checker.StoprarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
 
-public final class RootStoprarchSelect extends DeciTreeTemplateRead<StoprarchInfo> {
+public final class StoprarchRootSelect extends DeciTreeTemplateRead<StoprarchInfo> {
 	
-	public RootStoprarchSelect(DeciTreeOption<StoprarchInfo> option) {
+	public StoprarchRootSelect(DeciTreeOption<StoprarchInfo> option) {
 		super(option);
 	}
 	
@@ -42,7 +43,7 @@ public final class RootStoprarchSelect extends DeciTreeTemplateRead<StoprarchInf
 	@Override protected List<ActionStd<StoprarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StoprarchInfo> option) {
 		List<ActionStd<StoprarchInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoprarchInfo> select = new StdStoprarchMergeToSelect(option);
+		ActionStd<StoprarchInfo> select = new ActionStdCommom<StoprarchInfo>(option, StoprarchVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

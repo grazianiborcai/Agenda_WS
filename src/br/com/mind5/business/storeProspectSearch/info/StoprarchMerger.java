@@ -11,7 +11,7 @@ public final class StoprarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoprarchVisiMergeToSelect());
+		builder.addVisitor(new StoprarchMergerVisiToSelect());
 		InfoMerger<StoprarchInfo, StoprarchInfo> merger = builder.build();		
 	
 		return merger.merge();

@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoStoprarchSelect implements DaoStmtExec<StoprarchInfo> {
+public final class StoprarchDaoSelect implements DaoStmtExec<StoprarchInfo> {
 	private DaoStmtExec<StoprarchInfo> helper;
 	
 	
-	public DaoStoprarchSelect(List<DaoStmtExecOption<StoprarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoStoprarchSelectSingle.class, StoprarchInfo.class);
+	public StoprarchDaoSelect(List<DaoStmtExecOption<StoprarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, StoprarchDaoSelectSingle.class, StoprarchInfo.class);
 	}
 	
 	
