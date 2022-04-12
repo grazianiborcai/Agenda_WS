@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoSchedovmInsert implements DaoStmtExec<SchedovmInfo> {
+public final class SchedovmDaoInsert implements DaoStmtExec<SchedovmInfo> {
 	private DaoStmtExec<SchedovmInfo> helper;
 	
 	
-	public DaoSchedovmInsert(List<DaoStmtExecOption<SchedovmInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, SchedovmInsertSingle.class, SchedovmInfo.class);
+	public SchedovmDaoInsert(List<DaoStmtExecOption<SchedovmInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, SchedovmDaoInsertSingle.class, SchedovmInfo.class);
 	}
 	
 	

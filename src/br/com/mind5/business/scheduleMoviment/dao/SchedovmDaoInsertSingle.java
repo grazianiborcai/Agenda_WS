@@ -11,11 +11,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public class SchedovmInsertSingle extends DaoStmtTemplate<SchedovmInfo> {
+public class SchedovmDaoInsertSingle extends DaoStmtTemplate<SchedovmInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SCHEDULE_MOVIMENT_TABLE;
 	
 	
-	public SchedovmInsertSingle(Connection conn, SchedovmInfo recordInfo, String schemaName) {
+	public SchedovmDaoInsertSingle(Connection conn, SchedovmInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

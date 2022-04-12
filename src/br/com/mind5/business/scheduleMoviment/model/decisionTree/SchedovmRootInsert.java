@@ -4,23 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleMoviment.info.SchedovmInfo;
-import br.com.mind5.business.scheduleMoviment.model.action.LazySchedovmEnforceCancel;
-import br.com.mind5.business.scheduleMoviment.model.action.LazySchedovmEnforceReverse;
-import br.com.mind5.business.scheduleMoviment.model.action.LazySchedovmEnforceZero;
-import br.com.mind5.business.scheduleMoviment.model.action.LazySchedovmNodeInsert;
-import br.com.mind5.business.scheduleMoviment.model.action.StdSchedovmEnforceCounter;
+import br.com.mind5.business.scheduleMoviment.model.action.SchedovmVisiNodeInsert;
+import br.com.mind5.business.scheduleMoviment.model.action.SchedovmVisiEnforceCancel;
+import br.com.mind5.business.scheduleMoviment.model.action.SchedovmVisiEnforceCounter;
+import br.com.mind5.business.scheduleMoviment.model.action.SchedovmVisiEnforceReverse;
+import br.com.mind5.business.scheduleMoviment.model.action.SchedovmVisiEnforceZero;
 import br.com.mind5.business.scheduleMoviment.model.checker.SchedovmCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSchedovmInsert extends DeciTreeTemplateWrite<SchedovmInfo> {
+public final class SchedovmRootInsert extends DeciTreeTemplateWrite<SchedovmInfo> {
 	
-	public RootSchedovmInsert(DeciTreeOption<SchedovmInfo> option) {
+	public SchedovmRootInsert(DeciTreeOption<SchedovmInfo> option) {
 		super(option);
 	}
 	
@@ -46,11 +48,11 @@ public final class RootSchedovmInsert extends DeciTreeTemplateWrite<SchedovmInfo
 	@Override protected List<ActionStd<SchedovmInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedovmInfo> option) {
 		List<ActionStd<SchedovmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedovmInfo> enforceCounter = new StdSchedovmEnforceCounter(option);
-		ActionLazy<SchedovmInfo> enforceZero = new LazySchedovmEnforceZero(option.conn, option.schemaName);
-		ActionLazy<SchedovmInfo> enforceCancel = new LazySchedovmEnforceCancel(option.conn, option.schemaName);
-		ActionLazy<SchedovmInfo> enforceReverse = new LazySchedovmEnforceReverse(option.conn, option.schemaName);
-		ActionLazy<SchedovmInfo> nodeInsert = new LazySchedovmNodeInsert(option.conn, option.schemaName);
+		ActionStd<SchedovmInfo> enforceCounter = new ActionStdCommom<SchedovmInfo>(option, SchedovmVisiEnforceCounter.class);
+		ActionLazy<SchedovmInfo> enforceZero = new ActionLazyCommom<SchedovmInfo>(option, SchedovmVisiEnforceZero.class);
+		ActionLazy<SchedovmInfo> enforceCancel = new ActionLazyCommom<SchedovmInfo>(option, SchedovmVisiEnforceCancel.class);
+		ActionLazy<SchedovmInfo> enforceReverse = new ActionLazyCommom<SchedovmInfo>(option, SchedovmVisiEnforceReverse.class);
+		ActionLazy<SchedovmInfo> nodeInsert = new ActionLazyCommom<SchedovmInfo>(option, SchedovmVisiNodeInsert.class);
 		
 		enforceCounter.addPostAction(enforceZero);
 		enforceZero.addPostAction(enforceCancel);
