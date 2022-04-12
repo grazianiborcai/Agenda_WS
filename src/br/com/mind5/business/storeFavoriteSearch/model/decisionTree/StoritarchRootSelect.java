@@ -4,20 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeFavoriteSearch.info.StoritarchInfo;
-import br.com.mind5.business.storeFavoriteSearch.model.action.StdStoritarchMergeToSelect;
+import br.com.mind5.business.storeFavoriteSearch.model.action.StoritarchVisiMergeToSelect;
 import br.com.mind5.business.storeFavoriteSearch.model.checker.StoritarchCheckLangu;
 import br.com.mind5.business.storeFavoriteSearch.model.checker.StoritarchCheckOwner;
 import br.com.mind5.business.storeFavoriteSearch.model.checker.StoritarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootStoritarchSelect extends DeciTreeTemplateWrite<StoritarchInfo> {
+public final class StoritarchRootSelect extends DeciTreeTemplateWrite<StoritarchInfo> {
 	
-	public RootStoritarchSelect(DeciTreeOption<StoritarchInfo> option) {
+	public StoritarchRootSelect(DeciTreeOption<StoritarchInfo> option) {
 		super(option);
 	}
 	
@@ -57,7 +58,7 @@ public final class RootStoritarchSelect extends DeciTreeTemplateWrite<Storitarch
 	@Override protected List<ActionStd<StoritarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StoritarchInfo> option) {
 		List<ActionStd<StoritarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoritarchInfo> select = new StdStoritarchMergeToSelect(option);
+		ActionStd<StoritarchInfo> select = new ActionStdCommom<StoritarchInfo>(option, StoritarchVisiMergeToSelect.class);
 		
 		actions.add(select);	
 		return actions;

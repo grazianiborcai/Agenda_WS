@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.business.storeFavoriteSearch.info.StoritarchInfo;
 
-public class DaoStoritarchSelect implements DaoStmtExec<StoritarchInfo> {
+public class StoritarchDaoSelect implements DaoStmtExec<StoritarchInfo> {
 	private DaoStmtExec<StoritarchInfo> helper;
 	
 	
-	public DaoStoritarchSelect(List<DaoStmtExecOption<StoritarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoStoritarchSelectSingle.class, StoritarchInfo.class);
+	public StoritarchDaoSelect(List<DaoStmtExecOption<StoritarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, StoritarchDaoSelectSingle.class, StoritarchInfo.class);
 	}
 	
 	

@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoStoritarchSelectSingle extends DaoStmtTemplate<StoritarchInfo> {	
+public final class StoritarchDaoSelectSingle extends DaoStmtTemplate<StoritarchInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.STORE_FAVORITE_TABLE;
 	
 	
-	public DaoStoritarchSelectSingle(Connection conn, StoritarchInfo recordInfo, String schemaName) {
+	public StoritarchDaoSelectSingle(Connection conn, StoritarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -49,7 +49,7 @@ public final class DaoStoritarchSelectSingle extends DaoStmtTemplate<StoritarchI
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoStoritarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new StoritarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -66,9 +66,9 @@ public final class DaoStoritarchSelectSingle extends DaoStmtTemplate<StoritarchI
 				do {
 					StoritarchInfo dataInfo = new StoritarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoStoritarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(DaoStoritarchDbTableColumn.COL_COD_STORE);
-					dataInfo.codUser = stmtResult.getLong(DaoStoritarchDbTableColumn.COL_COD_USER);
+					dataInfo.codOwner = stmtResult.getLong(StoritarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(StoritarchDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codUser = stmtResult.getLong(StoritarchDaoDbTableColumn.COL_COD_USER);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

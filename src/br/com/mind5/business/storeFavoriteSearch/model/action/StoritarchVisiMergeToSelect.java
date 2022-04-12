@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.storeFavoriteSearch.info.StoritarchInfo;
 import br.com.mind5.business.storeFavoriteSearch.info.StoritarchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoritarchMergeToSelect extends ActionVisitorTemplateMerge<StoritarchInfo, StoritarchInfo> {
+public final class StoritarchVisiMergeToSelect extends ActionVisitorTemplateMerge<StoritarchInfo, StoritarchInfo> {
 	
-	public VisiStoritarchMergeToSelect(DeciTreeOption<StoritarchInfo> option) {
+	public StoritarchVisiMergeToSelect(DeciTreeOption<StoritarchInfo> option) {
 		super(option, StoritarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<StoritarchInfo>> getActionClassHook() {
-		return StdStoritarchDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<StoritarchInfo>> getVisitorClassHook() {
+		return StoritarchVisiDaoSelect.class;
 	}
 	
 	

@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
 import br.com.mind5.business.storeFavorite.info.StoriteMerger;
 import br.com.mind5.business.storeFavoriteSearch.info.StoritarchInfo;
-import br.com.mind5.business.storeFavoriteSearch.model.decisionTree.RootStoritarchSelect;
+import br.com.mind5.business.storeFavoriteSearch.model.decisionTree.StoritarchRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class StoriteVisiMergeStoritarch extends ActionVisitorTemplateMerge
 	
 	
 	@Override protected Class<? extends DeciTree<StoritarchInfo>> getTreeClassHook() {
-		return RootStoritarchSelect.class;
+		return StoritarchRootSelect.class;
 	}
 	
 	

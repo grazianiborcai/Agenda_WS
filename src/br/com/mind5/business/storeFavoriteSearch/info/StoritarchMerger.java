@@ -11,7 +11,7 @@ public final class StoritarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoritarchVisiMergeToSelect());
+		builder.addVisitor(new StoritarchMergerVisiToSelect());
 		InfoMerger<StoritarchInfo, StoritarchInfo> merger = builder.build();		
 	
 		return merger.merge();
