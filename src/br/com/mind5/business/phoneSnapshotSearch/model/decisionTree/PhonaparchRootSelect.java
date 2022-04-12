@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.phoneSnapshotSearch.info.PhonaparchInfo;
-import br.com.mind5.business.phoneSnapshotSearch.model.action.StdPhonaparchMergeToSelect;
+import br.com.mind5.business.phoneSnapshotSearch.model.action.PhonaparchVisiMergeToSelect;
 import br.com.mind5.business.phoneSnapshotSearch.model.checker.PhonaparchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPhonaparchSelect extends DeciTreeTemplateRead<PhonaparchInfo> {
+public final class PhonaparchRootSelect extends DeciTreeTemplateRead<PhonaparchInfo> {
 
-	public RootPhonaparchSelect(DeciTreeOption<PhonaparchInfo> option) {
+	public PhonaparchRootSelect(DeciTreeOption<PhonaparchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootPhonaparchSelect extends DeciTreeTemplateRead<PhonaparchI
 	@Override protected List<ActionStd<PhonaparchInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonaparchInfo> option) {
 		List<ActionStd<PhonaparchInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhonaparchInfo> mergeToSelect = new StdPhonaparchMergeToSelect(option);
+		ActionStd<PhonaparchInfo> mergeToSelect = new ActionStdCommom<PhonaparchInfo>(option, PhonaparchVisiMergeToSelect.class);
 		
 		actions.add(mergeToSelect);
 		

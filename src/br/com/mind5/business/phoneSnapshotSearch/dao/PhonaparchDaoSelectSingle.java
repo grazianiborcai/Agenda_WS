@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoPhonaparchSelectSingle extends DaoStmtTemplate<PhonaparchInfo> {
+public final class PhonaparchDaoSelectSingle extends DaoStmtTemplate<PhonaparchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PHONE_SNAPSHOT_TABLE;	
 	
 	
-	public DaoPhonaparchSelectSingle(Connection conn, PhonaparchInfo recordInfo, String schemaName) {
+	public PhonaparchDaoSelectSingle(Connection conn, PhonaparchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoPhonaparchSelectSingle extends DaoStmtTemplate<PhonaparchI
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoPhonaparchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new PhonaparchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,21 +67,21 @@ public final class DaoPhonaparchSelectSingle extends DaoStmtTemplate<PhonaparchI
 				do {
 					PhonaparchInfo dataInfo = new PhonaparchInfo();
 					
-					dataInfo.codPhone = stmtResult.getLong(DaoPhonaparchDbTableColumn.COL_COD_PHONE);
-					dataInfo.codSnapshot = stmtResult.getLong(DaoPhonaparchDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codOwner = stmtResult.getLong(DaoPhonaparchDbTableColumn.COL_COD_OWNER);
-					dataInfo.recordMode = stmtResult.getString(DaoPhonaparchDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoPhonaparchDbTableColumn.COL_COD_STORE);
-					dataInfo.codStoreSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoPhonaparchDbTableColumn.COL_COD_STORE_SNAPSHOT);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoPhonaparchDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoPhonaparchDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
-					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, DaoPhonaparchDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codEmployeeSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoPhonaparchDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoPhonaparchDbTableColumn.COL_COD_USER);
-					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoPhonaparchDbTableColumn.COL_COD_USER_SNAPSHOT);
-					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, DaoPhonaparchDbTableColumn.COL_COD_OWNER_REF);
-					dataInfo.codOwnerRefSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoPhonaparchDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
-					dataInfo.isDefault = stmtResult.getBoolean(DaoPhonaparchDbTableColumn.COL_IS_DEFAULT);
+					dataInfo.codPhone = stmtResult.getLong(PhonaparchDaoDbTableColumn.COL_COD_PHONE);
+					dataInfo.codSnapshot = stmtResult.getLong(PhonaparchDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codOwner = stmtResult.getLong(PhonaparchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.recordMode = stmtResult.getString(PhonaparchDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, PhonaparchDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codStoreSnapshot = DaoFormatter.sqlToLong(stmtResult, PhonaparchDaoDbTableColumn.COL_COD_STORE_SNAPSHOT);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, PhonaparchDaoDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, PhonaparchDaoDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
+					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, PhonaparchDaoDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codEmployeeSnapshot = DaoFormatter.sqlToLong(stmtResult, PhonaparchDaoDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, PhonaparchDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, PhonaparchDaoDbTableColumn.COL_COD_USER_SNAPSHOT);
+					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, PhonaparchDaoDbTableColumn.COL_COD_OWNER_REF);
+					dataInfo.codOwnerRefSnapshot = DaoFormatter.sqlToLong(stmtResult, PhonaparchDaoDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
+					dataInfo.isDefault = stmtResult.getBoolean(PhonaparchDaoDbTableColumn.COL_IS_DEFAULT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
