@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoStorextsnapSelect implements DaoStmtExec<StorextsnapInfo> {
+public final class StorextsnapDaoInsert implements DaoStmtExec<StorextsnapInfo> {
 	private DaoStmtExec<StorextsnapInfo> helper;
 	
 	
-	public DaoStorextsnapSelect(List<DaoStmtExecOption<StorextsnapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoStorextsnapSelectSingle.class, StorextsnapInfo.class);
+	public StorextsnapDaoInsert(List<DaoStmtExecOption<StorextsnapInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, StorextsnapDaoInsertSingle.class, StorextsnapInfo.class);
 	}
 	
 	

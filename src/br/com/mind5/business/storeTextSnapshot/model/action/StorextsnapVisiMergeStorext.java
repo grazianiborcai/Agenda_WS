@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorextsnapMergeStorext extends ActionVisitorTemplateMerge<StorextsnapInfo, StorextInfo> {
+public final class StorextsnapVisiMergeStorext extends ActionVisitorTemplateMerge<StorextsnapInfo, StorextInfo> {
 	
-	public VisiStorextsnapMergeStorext(DeciTreeOption<StorextsnapInfo> option) {
+	public StorextsnapVisiMergeStorext(DeciTreeOption<StorextsnapInfo> option) {
 		super(option, StorextInfo.class);
 	}
 	

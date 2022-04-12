@@ -11,11 +11,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoStorextsnapInsertSingle extends DaoStmtTemplate<StorextsnapInfo> {
+public final class StorextsnapDaoInsertSingle extends DaoStmtTemplate<StorextsnapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STORE_TEXT_SNAPSHOT_TABLE;	
 	
 	
-	public DaoStorextsnapInsertSingle(Connection conn, StorextsnapInfo recordInfo, String schemaName) {
+	public StorextsnapDaoInsertSingle(Connection conn, StorextsnapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);		
 	}
 	

@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeTextSnapshot.info.StorextsnapInfo;
-import br.com.mind5.business.storeTextSnapshot.model.decisionTree.RootStorextsnapInsert;
+import br.com.mind5.business.storeTextSnapshot.model.decisionTree.StorextsnapRootInsert;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -18,7 +18,7 @@ public final class StorapVisiStorextsnapInsert extends ActionVisitorTemplateActi
 	
 	
 	@Override protected Class<? extends DeciTree<StorextsnapInfo>> getTreeClassHook() {
-		return RootStorextsnapInsert.class;
+		return StorextsnapRootInsert.class;
 	}
 	
 	

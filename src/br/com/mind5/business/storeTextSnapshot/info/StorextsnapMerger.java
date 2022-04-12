@@ -12,7 +12,7 @@ public final class StorextsnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorextsnapVisiMergeStorext());
+		builder.addVisitor(new StorextsnapMergerVisiStorext());
 		InfoMerger<StorextsnapInfo, StorextInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class StorextsnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorextsnapVisiMergeToSelect());
+		builder.addVisitor(new StorextsnapMergerVisiToSelect());
 		InfoMerger<StorextsnapInfo, StorextsnapInfo> merger = builder.build();		
 	
 		return merger.merge();

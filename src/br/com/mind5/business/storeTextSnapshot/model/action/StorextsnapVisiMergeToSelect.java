@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.storeTextSnapshot.info.StorextsnapInfo;
 import br.com.mind5.business.storeTextSnapshot.info.StorextsnapMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorextsnapMergeToSelect extends ActionVisitorTemplateMerge<StorextsnapInfo, StorextsnapInfo> {
+public final class StorextsnapVisiMergeToSelect extends ActionVisitorTemplateMerge<StorextsnapInfo, StorextsnapInfo> {
 	
-	public VisiStorextsnapMergeToSelect(DeciTreeOption<StorextsnapInfo> option) {
+	public StorextsnapVisiMergeToSelect(DeciTreeOption<StorextsnapInfo> option) {
 		super(option, StorextsnapInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<StorextsnapInfo>> getActionClassHook() {
-		return StdStorextsnapDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<StorextsnapInfo>> getVisitorClassHook() {
+		return StorextsnapVisiDaoSelect.class;
 	}
 	
 	

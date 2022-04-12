@@ -4,26 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeTextSnapshot.info.StorextsnapInfo;
-import br.com.mind5.business.storeTextSnapshot.model.action.StdStorextsnapMergeToSelect;
-import br.com.mind5.business.storeTextSnapshot.model.checker.StorextsnapCheckStorext;
+import br.com.mind5.business.storeTextSnapshot.model.action.StorextsnapVisiDaoInsert;
+import br.com.mind5.business.storeTextSnapshot.model.action.StorextsnapVisiMergeStorext;
 import br.com.mind5.business.storeTextSnapshot.model.checker.StorextsnapCheckOwner;
-import br.com.mind5.business.storeTextSnapshot.model.checker.StorextsnapCheckRead;
+import br.com.mind5.business.storeTextSnapshot.model.checker.StorextsnapCheckStorext;
+import br.com.mind5.business.storeTextSnapshot.model.checker.StorextsnapCheckWrite;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootStorextsnapSelect extends DeciTreeTemplateRead<StorextsnapInfo> {
+public final class StorextsnapRootInsert extends DeciTreeTemplateWrite<StorextsnapInfo> {
 	
-	public RootStorextsnapSelect(DeciTreeOption<StorextsnapInfo> option) {
+	public StorextsnapRootInsert(DeciTreeOption<StorextsnapInfo> option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected ModelChecker<StorextsnapInfo> buildCheckerHook(DeciTreeOption<StorextsnapInfo> option) {
+	@Override protected ModelChecker<StorextsnapInfo> buildCheckerHook(DeciTreeOption<StorextsnapInfo> option) {		
 		List<ModelChecker<StorextsnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<StorextsnapInfo> checker;
 		ModelCheckerOption checkerOption;
@@ -32,22 +36,22 @@ public final class RootStorextsnapSelect extends DeciTreeTemplateRead<Storextsna
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new StorextsnapCheckRead(checkerOption);
-		queue.add(checker);	
+		checker = new StorextsnapCheckWrite(checkerOption);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new StorextsnapCheckOwner(checkerOption);
-		queue.add(checker);	
+		queue.add(checker);			
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new StorextsnapCheckStorext(checkerOption);
-		queue.add(checker);		
+		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
@@ -55,11 +59,14 @@ public final class RootStorextsnapSelect extends DeciTreeTemplateRead<Storextsna
 	
 	
 	@Override protected List<ActionStd<StorextsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextsnapInfo> option) {
-		List<ActionStd<StorextsnapInfo>> actions = new ArrayList<>();
+		List<ActionStd<StorextsnapInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<StorextsnapInfo> select = new StdStorextsnapMergeToSelect(option);
+		ActionStd<StorextsnapInfo> mergeStorext = new ActionStdCommom<StorextsnapInfo>(option, StorextsnapVisiMergeStorext.class);	
+		ActionLazy<StorextsnapInfo> insert = new ActionLazyCommom<StorextsnapInfo>(option, StorextsnapVisiDaoInsert.class);	
 		
-		actions.add(select);
+		mergeStorext.addPostAction(insert);
+		
+		actions.add(mergeStorext);
 		return actions;
 	}
 }
