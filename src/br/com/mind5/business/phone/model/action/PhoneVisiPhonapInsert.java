@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.info.PhoneMerger;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
-import br.com.mind5.business.phoneSnapshot.model.decisionTree.RootPhonapInsert;
+import br.com.mind5.business.phoneSnapshot.model.decisionTree.PhonapRootInsert;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class PhoneVisiPhonapInsert extends ActionVisitorTemplateAction<Pho
 	
 	
 	@Override protected Class<? extends DeciTree<PhonapInfo>> getTreeClassHook() {
-		return RootPhonapInsert.class;
+		return PhonapRootInsert.class;
 	}
 	
 	

@@ -18,7 +18,7 @@ public final class PhonapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhonapVisiMergePhonaparch());
+		builder.addVisitor(new PhonapMergerVisiPhonaparch());
 		InfoMerger<PhonapInfo, PhonaparchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -31,7 +31,7 @@ public final class PhonapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhonapVisiMergeStolis());
+		builder.addVisitor(new PhonapMergerVisiStolis());
 		InfoMerger<PhonapInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -44,7 +44,7 @@ public final class PhonapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhonapVisiMergeCuslis());
+		builder.addVisitor(new PhonapMergerVisiCuslis());
 		InfoMerger<PhonapInfo, CuslisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -57,7 +57,7 @@ public final class PhonapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhonapVisiMergeEmplis());
+		builder.addVisitor(new PhonapMergerVisiEmplis());
 		InfoMerger<PhonapInfo, EmplisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -70,7 +70,7 @@ public final class PhonapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhonapVisiMergeUselis());
+		builder.addVisitor(new PhonapMergerVisiUselis());
 		InfoMerger<PhonapInfo, UselisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -83,7 +83,7 @@ public final class PhonapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhonapVisiMergeCountrone());
+		builder.addVisitor(new PhonapMergerVisiCountrone());
 		InfoMerger<PhonapInfo, CountroneInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -96,7 +96,7 @@ public final class PhonapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhonapVisiMergeFormone());
+		builder.addVisitor(new PhonapMergerVisiFormone());
 		InfoMerger<PhonapInfo, FormoneInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -109,7 +109,7 @@ public final class PhonapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhonapVisiMergeToSelect());
+		builder.addVisitor(new PhonapMergerVisiToSelect());
 		InfoMerger<PhonapInfo, PhonapInfo> merger = builder.build();		
 	
 		return merger.merge();

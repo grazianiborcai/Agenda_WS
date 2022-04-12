@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.phoneSnapshot.info.PhonapCopier;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
-import br.com.mind5.business.phoneSnapshot.model.decisionTree.RootPhonapSearch;
+import br.com.mind5.business.phoneSnapshot.model.decisionTree.PhonapRootSearch;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ final class VisiUserapMergePhonap extends ActionVisitorTemplateMerge<UserapInfo,
 	
 	
 	@Override protected Class<? extends DeciTree<PhonapInfo>> getTreeClassHook() {
-		return RootPhonapSearch.class;
+		return PhonapRootSearch.class;
 	}
 	
 	

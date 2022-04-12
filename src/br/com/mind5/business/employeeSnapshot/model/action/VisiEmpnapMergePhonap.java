@@ -6,7 +6,7 @@ import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapMerger;
 import br.com.mind5.business.phoneSnapshot.info.PhonapCopier;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
-import br.com.mind5.business.phoneSnapshot.model.decisionTree.RootPhonapSelect;
+import br.com.mind5.business.phoneSnapshot.model.decisionTree.PhonapRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class VisiEmpnapMergePhonap extends ActionVisitorTemplateMerge<Empn
 	
 	
 	@Override protected Class<? extends DeciTree<PhonapInfo>> getTreeClassHook() {
-		return RootPhonapSelect.class;
+		return PhonapRootSelect.class;
 	}
 	
 	

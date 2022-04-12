@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.phoneSnapshot.info.PhonapCopier;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
-import br.com.mind5.business.phoneSnapshot.model.decisionTree.RootPhonapSelect;
+import br.com.mind5.business.phoneSnapshot.model.decisionTree.PhonapRootSelect;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -20,7 +20,7 @@ public final class StorapVisiMergePhonap extends ActionVisitorTemplateMerge<Stor
 	
 	
 	@Override protected Class<? extends DeciTree<PhonapInfo>> getTreeClassHook() {
-		return RootPhonapSelect.class;
+		return PhonapRootSelect.class;
 	}
 	
 	
