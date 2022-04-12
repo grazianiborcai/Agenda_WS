@@ -15,7 +15,7 @@ public final class RefuporeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefuporeVisiMergeRefuporarch());
+		builder.addVisitor(new RefuporeMergerVisiRefuporarch());
 		InfoMerger<RefuporeInfo, RefuporarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -28,7 +28,7 @@ public final class RefuporeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefuporeVisiMergeRefupown());
+		builder.addVisitor(new RefuporeMergerVisiRefupown());
 		InfoMerger<RefuporeInfo, RefupownInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -41,7 +41,7 @@ public final class RefuporeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefuporeVisiMergeRefugroup());
+		builder.addVisitor(new RefuporeMergerVisiRefugroup());
 		InfoMerger<RefuporeInfo, RefugroupInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -54,7 +54,7 @@ public final class RefuporeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefuporeVisiMergeUsername());
+		builder.addVisitor(new RefuporeMergerVisiUsername());
 		InfoMerger<RefuporeInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -67,7 +67,7 @@ public final class RefuporeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefuporeVisiMergeToSelect());
+		builder.addVisitor(new RefuporeMergerVisiToSelect());
 		InfoMerger<RefuporeInfo, RefuporeInfo> merger = builder.build();		
 	
 		return merger.merge();

@@ -1,9 +1,10 @@
 package br.com.mind5.business.refundPolicyStore.model.checker;
 
 import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
-import br.com.mind5.business.refundPolicyStore.model.action.StdRefuporeDaoSelect;
+import br.com.mind5.business.refundPolicyStore.model.action.RefuporeVisiDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class RefuporeCheckExist extends ModelCheckerTemplateAction<Refupor
 	
 	
 	@Override protected ActionStd<RefuporeInfo> buildActionHook(DeciTreeOption<RefuporeInfo> option) {
-		ActionStd<RefuporeInfo> select = new StdRefuporeDaoSelect(option);
+		ActionStd<RefuporeInfo> select = new ActionStdCommom<RefuporeInfo>(option, RefuporeVisiDaoSelect.class);
 		return select;
 	}
 	

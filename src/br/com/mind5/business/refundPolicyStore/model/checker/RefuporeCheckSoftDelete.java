@@ -1,11 +1,13 @@
 package br.com.mind5.business.refundPolicyStore.model.checker;
 
 import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
-import br.com.mind5.business.refundPolicyStore.model.action.LazyRefuporeDaoSelect;
-import br.com.mind5.business.refundPolicyStore.model.action.StdRefuporeEnforceDel;
+import br.com.mind5.business.refundPolicyStore.model.action.RefuporeVisiDaoSelect;
+import br.com.mind5.business.refundPolicyStore.model.action.RefuporeVisiEnforceDel;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,8 +21,8 @@ public final class RefuporeCheckSoftDelete extends ModelCheckerTemplateAction<Re
 	
 	
 	@Override protected ActionStd<RefuporeInfo> buildActionHook(DeciTreeOption<RefuporeInfo> option) {
-		ActionStd<RefuporeInfo> enforceDel = new StdRefuporeEnforceDel(option);
-		ActionLazy<RefuporeInfo> select = new LazyRefuporeDaoSelect(option.conn, option.schemaName);
+		ActionStd<RefuporeInfo> enforceDel = new ActionStdCommom<RefuporeInfo>(option, RefuporeVisiEnforceDel.class);
+		ActionLazy<RefuporeInfo> select = new ActionLazyCommom<RefuporeInfo>(option, RefuporeVisiDaoSelect.class);
 		
 		enforceDel.addPostAction(select);
 		
