@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoStolarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class StolarchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
 	public static final String COL_DT_VALID_FROM = DaoDbField.COL_DT_VALID_FROM;
@@ -23,8 +23,8 @@ public final class DaoStolarchDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
-	public DaoStolarchDbTableColumn() {
-		super(DaoStolarchDbTableColumn.class);
+	public StolarchDaoDbTableColumn() {
+		super(StolarchDaoDbTableColumn.class);
 	}
 	
 	

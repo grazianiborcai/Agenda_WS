@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoStolarchSelectSingle extends DaoStmtTemplate<StolarchInfo> {	
+public final class StolarchDaoSelectSingle extends DaoStmtTemplate<StolarchInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.STORE_LD_TABLE;
 	
 	
-	public DaoStolarchSelectSingle(Connection conn, StolarchInfo recordInfo, String schemaName) {
+	public StolarchDaoSelectSingle(Connection conn, StolarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoStolarchSelectSingle extends DaoStmtTemplate<StolarchInfo>
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoStolarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new StolarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,15 +67,15 @@ public final class DaoStolarchSelectSingle extends DaoStmtTemplate<StolarchInfo>
 				do {
 					StolarchInfo dataInfo = new StolarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoStolarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(DaoStolarchDbTableColumn.COL_COD_STORE);
-					dataInfo.recordMode = stmtResult.getString(DaoStolarchDbTableColumn.COL_RECORD_MODE);	
-					dataInfo.timeValidFrom = DaoFormatter.sqlToLocalTime(stmtResult, DaoStolarchDbTableColumn.COL_TM_VALID_FROM);
-					dataInfo.timeValidTo = DaoFormatter.sqlToLocalTime(stmtResult, DaoStolarchDbTableColumn.COL_TM_VALID_TO);
-					dataInfo.dateValidFrom = DaoFormatter.sqlToLocalDate(stmtResult, DaoStolarchDbTableColumn.COL_DT_VALID_FROM);
-					dataInfo.dateValidTo = DaoFormatter.sqlToLocalDate(stmtResult, DaoStolarchDbTableColumn.COL_DT_VALID_TO);		
-					dataInfo.monthValidFrom = DaoFormatter.sqlToInt(stmtResult, DaoStolarchDbTableColumn.COL_MONTH_VALID_FROM);		
-					dataInfo.yearValidFrom = DaoFormatter.sqlToInt(stmtResult, DaoStolarchDbTableColumn.COL_YEAR_VALID_FROM);	
+					dataInfo.codOwner = stmtResult.getLong(StolarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(StolarchDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.recordMode = stmtResult.getString(StolarchDaoDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.timeValidFrom = DaoFormatter.sqlToLocalTime(stmtResult, StolarchDaoDbTableColumn.COL_TM_VALID_FROM);
+					dataInfo.timeValidTo = DaoFormatter.sqlToLocalTime(stmtResult, StolarchDaoDbTableColumn.COL_TM_VALID_TO);
+					dataInfo.dateValidFrom = DaoFormatter.sqlToLocalDate(stmtResult, StolarchDaoDbTableColumn.COL_DT_VALID_FROM);
+					dataInfo.dateValidTo = DaoFormatter.sqlToLocalDate(stmtResult, StolarchDaoDbTableColumn.COL_DT_VALID_TO);		
+					dataInfo.monthValidFrom = DaoFormatter.sqlToInt(stmtResult, StolarchDaoDbTableColumn.COL_MONTH_VALID_FROM);		
+					dataInfo.yearValidFrom = DaoFormatter.sqlToInt(stmtResult, StolarchDaoDbTableColumn.COL_YEAR_VALID_FROM);	
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

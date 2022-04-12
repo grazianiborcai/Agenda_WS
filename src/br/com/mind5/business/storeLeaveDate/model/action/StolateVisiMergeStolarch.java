@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateMerger;
 import br.com.mind5.business.storeLeaveDateSearch.info.StolarchInfo;
-import br.com.mind5.business.storeLeaveDateSearch.model.decisionTree.RootStolarchSelect;
+import br.com.mind5.business.storeLeaveDateSearch.model.decisionTree.StolarchRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class StolateVisiMergeStolarch extends ActionVisitorTemplateMerge<S
 	
 	
 	@Override protected Class<? extends DeciTree<StolarchInfo>> getTreeClassHook() {
-		return RootStolarchSelect.class;
+		return StolarchRootSelect.class;
 	}
 	
 	

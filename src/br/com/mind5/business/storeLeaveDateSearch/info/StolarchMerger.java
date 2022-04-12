@@ -12,7 +12,7 @@ public final class StolarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StolarchVisiMergeToSelect());
+		builder.addVisitor(new StolarchMergerVisiToSelect());
 		InfoMerger<StolarchInfo, StolarchInfo> merger = builder.build();		
 	
 		return merger.merge();

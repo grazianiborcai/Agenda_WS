@@ -4,21 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeLeaveDateSearch.info.StolarchInfo;
-import br.com.mind5.business.storeLeaveDateSearch.model.action.StdStolarchMergeToSelect;
+import br.com.mind5.business.storeLeaveDateSearch.model.action.StolarchVisiMergeToSelect;
 import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckLangu;
 import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckOwner;
 import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckRead;
 import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckStore;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootStolarchSelect extends DeciTreeTemplateRead<StolarchInfo> {
+public final class StolarchRootSelect extends DeciTreeTemplateRead<StolarchInfo> {
 	
-	public RootStolarchSelect(DeciTreeOption<StolarchInfo> option) {
+	public StolarchRootSelect(DeciTreeOption<StolarchInfo> option) {
 		super(option);
 	}	
 	
@@ -64,7 +65,9 @@ public final class RootStolarchSelect extends DeciTreeTemplateRead<StolarchInfo>
 	@Override protected List<ActionStd<StolarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StolarchInfo> option) {
 		List<ActionStd<StolarchInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdStolarchMergeToSelect(option));
+		ActionStd<StolarchInfo> select = new ActionStdCommom<StolarchInfo>(option, StolarchVisiMergeToSelect.class);
+		
+		actions.add(select);
 		return actions;
 	}
 }
