@@ -6,7 +6,7 @@ import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.customerSearch.info.CusarchMerger;
 import br.com.mind5.business.personSearch.info.PerarchCopier;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
-import br.com.mind5.business.personSearch.model.decisionTree.RootPerarchSelectCus;
+import br.com.mind5.business.personSearch.model.decisionTree.PerarchRootSelectCus;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class CusarchVisiMergePerarch extends ActionVisitorTemplateMerge<Cu
 	
 	
 	@Override protected Class<? extends DeciTree<PerarchInfo>> getTreeClassHook() {
-		return RootPerarchSelectCus.class;
+		return PerarchRootSelectCus.class;
 	}
 	
 	

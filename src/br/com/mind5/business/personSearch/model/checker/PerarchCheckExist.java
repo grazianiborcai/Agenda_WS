@@ -1,7 +1,7 @@
 package br.com.mind5.business.personSearch.model.checker;
 
 import br.com.mind5.business.personSearch.info.PerarchInfo;
-import br.com.mind5.business.personSearch.model.decisionTree.RootPerarchSelectAuth;
+import br.com.mind5.business.personSearch.model.decisionTree.PerarchRootSelectAuth;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class PerarchCheckExist extends ModelCheckerTemplateAction<PerarchI
 
 	
 	@Override protected ActionStd<PerarchInfo> buildActionHook(DeciTreeOption<PerarchInfo> option) {		
-		ActionStd<PerarchInfo> select = new RootPerarchSelectAuth(option).toAction();			
+		ActionStd<PerarchInfo> select = new PerarchRootSelectAuth(option).toAction();			
 		return select;
 	}
 	
