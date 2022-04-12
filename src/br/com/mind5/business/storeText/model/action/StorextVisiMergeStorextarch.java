@@ -6,7 +6,7 @@ import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.business.storeText.info.StorextMerger;
 import br.com.mind5.business.storeTextSearch.info.StorextarchCopier;
 import br.com.mind5.business.storeTextSearch.info.StorextarchInfo;
-import br.com.mind5.business.storeTextSearch.model.decisionTree.RootStorextarchSelect;
+import br.com.mind5.business.storeTextSearch.model.decisionTree.StorextarchRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class StorextVisiMergeStorextarch extends ActionVisitorTemplateMerg
 	
 	
 	@Override protected Class<? extends DeciTree<StorextarchInfo>> getTreeClassHook() {
-		return RootStorextarchSelect.class;
+		return StorextarchRootSelect.class;
 	}
 	
 	

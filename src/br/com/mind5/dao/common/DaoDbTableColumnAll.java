@@ -123,7 +123,7 @@ import br.com.mind5.business.storeSearch.dao.SotarchDaoDbTableColumn;
 import br.com.mind5.business.storeSnapshot.dao.StorapDaoDbTableColumn;
 import br.com.mind5.business.storeText.dao.StorextDaoDbTableColumn;
 import br.com.mind5.business.storeTextDefault.dao.StorextaultDaoDbTableColumn;
-import br.com.mind5.business.storeTextSearch.dao.DaoStorextarchDbTableColumn;
+import br.com.mind5.business.storeTextSearch.dao.StorextarchDaoDbTableColumn;
 import br.com.mind5.business.storeTextSnapshot.dao.DaoStorextsnapDbTableColumn;
 import br.com.mind5.business.storeWorkTime.dao.StowotmDaoDbTableColumn;
 import br.com.mind5.business.storeWorkTimeRange.dao.StoworgDaoDbTableColumn;
@@ -517,7 +517,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new StoritarchDaoDbTableColumn());
 		addTable(new StorextDaoDbTableColumn());
 		addTable(new StorextaultDaoDbTableColumn());
-		addTable(new DaoStorextarchDbTableColumn());
+		addTable(new StorextarchDaoDbTableColumn());
 		addTable(new DaoStorextsnapDbTableColumn());
 		addTable(new DaoSysotupDbTableColumn());
 		addTable(new DaoSytorbcDbTableColumn());

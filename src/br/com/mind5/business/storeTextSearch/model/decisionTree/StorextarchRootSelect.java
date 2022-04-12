@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeTextSearch.info.StorextarchInfo;
-import br.com.mind5.business.storeTextSearch.model.action.StdStorextarchMergeToSelect;
+import br.com.mind5.business.storeTextSearch.model.action.StorextarchVisiMergeToSelect;
 import br.com.mind5.business.storeTextSearch.model.checker.StorextarchCheckOwner;
 import br.com.mind5.business.storeTextSearch.model.checker.StorextarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootStorextarchSelect extends DeciTreeTemplateRead<StorextarchInfo> {
+public final class StorextarchRootSelect extends DeciTreeTemplateRead<StorextarchInfo> {
 	
-	public RootStorextarchSelect(DeciTreeOption<StorextarchInfo> option) {
+	public StorextarchRootSelect(DeciTreeOption<StorextarchInfo> option) {
 		super(option);
 	}
 	
@@ -49,7 +50,7 @@ public final class RootStorextarchSelect extends DeciTreeTemplateRead<Storextarc
 	@Override protected List<ActionStd<StorextarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextarchInfo> option) {
 		List<ActionStd<StorextarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StorextarchInfo> select = new StdStorextarchMergeToSelect(option);
+		ActionStd<StorextarchInfo> select = new ActionStdCommom<StorextarchInfo>(option, StorextarchVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

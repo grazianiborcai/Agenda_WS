@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class DaoStorextarchWhere implements DaoStmtWhere {
+public final class StorextarchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoStorextarchWhere(DaoWhereBuilderOption whereOption, String tableName, StorextarchInfo recordInfo) {
+	public StorextarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, StorextarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,19 +27,19 @@ public final class DaoStorextarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoStorextarchDbTableColumn.COL_COD_OWNER :
+				case StorextarchDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoStorextarchDbTableColumn.COL_COD_STORE :
+				case StorextarchDaoDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case DaoStorextarchDbTableColumn.COL_COD_LANGUAGE :
+				case StorextarchDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 					
-				case DaoStorextarchDbTableColumn.COL_RECORD_MODE :
+				case StorextarchDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

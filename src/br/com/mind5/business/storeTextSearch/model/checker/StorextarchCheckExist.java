@@ -3,7 +3,7 @@ package br.com.mind5.business.storeTextSearch.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.storeTextSearch.info.StorextarchInfo;
-import br.com.mind5.business.storeTextSearch.model.decisionTree.RootStorextarchSelect;
+import br.com.mind5.business.storeTextSearch.model.decisionTree.StorextarchRootSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -19,7 +19,7 @@ public final class StorextarchCheckExist extends ModelCheckerTemplateAction<Stor
 	
 	
 	@Override protected ActionStd<StorextarchInfo> buildActionHook(DeciTreeOption<StorextarchInfo> option) {
-		ActionStd<StorextarchInfo> select = new RootStorextarchSelect(option).toAction();
+		ActionStd<StorextarchInfo> select = new StorextarchRootSelect(option).toAction();
 		return select;
 	}
 	

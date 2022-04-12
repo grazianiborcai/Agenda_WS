@@ -15,10 +15,10 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoStorextarchSelectSingle extends DaoStmtTemplate<StorextarchInfo> {
+public final class StorextarchDaoSelectSingle extends DaoStmtTemplate<StorextarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STORE_TEXT_TABLE;	
 	
-	public DaoStorextarchSelectSingle(Connection conn, StorextarchInfo recordInfo, String schemaName) {
+	public StorextarchDaoSelectSingle(Connection conn, StorextarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -48,7 +48,7 @@ public final class DaoStorextarchSelectSingle extends DaoStmtTemplate<Storextarc
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoStorextarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new StorextarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -65,10 +65,10 @@ public final class DaoStorextarchSelectSingle extends DaoStmtTemplate<Storextarc
 				do {
 					StorextarchInfo dataInfo = new StorextarchInfo();
 							
-					dataInfo.codOwner = stmtResult.getLong(DaoStorextarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(DaoStorextarchDbTableColumn.COL_COD_STORE);
-					dataInfo.codLanguage = stmtResult.getString(DaoStorextarchDbTableColumn.COL_COD_LANGUAGE);
-					dataInfo.recordMode = stmtResult.getString(DaoStorextarchDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codOwner = stmtResult.getLong(StorextarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(StorextarchDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codLanguage = stmtResult.getString(StorextarchDaoDbTableColumn.COL_COD_LANGUAGE);
+					dataInfo.recordMode = stmtResult.getString(StorextarchDaoDbTableColumn.COL_RECORD_MODE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
