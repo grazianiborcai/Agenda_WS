@@ -13,7 +13,7 @@ public final class RefupownMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefupownVisiMergeRefugroup());
+		builder.addVisitor(new RefupownMergerVisiRefugroup());
 		InfoMerger<RefupownInfo, RefugroupInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class RefupownMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefupownVisiMergeUsername());
+		builder.addVisitor(new RefupownMergerVisiUsername());
 		InfoMerger<RefupownInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -39,7 +39,7 @@ public final class RefupownMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefupownVisiMergeToSelect());
+		builder.addVisitor(new RefupownMergerVisiToSelect());
 		InfoMerger<RefupownInfo, RefupownInfo> merger = builder.build();		
 	
 		return merger.merge();

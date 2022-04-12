@@ -1,9 +1,10 @@
 package br.com.mind5.business.refundPolicyOwner.model.checker;
 
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
-import br.com.mind5.business.refundPolicyOwner.model.action.StdRefupownDaoSelect;
+import br.com.mind5.business.refundPolicyOwner.model.action.RefupownVisiDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class RefupownCheckExist extends ModelCheckerTemplateAction<Refupow
 	
 	
 	@Override protected ActionStd<RefupownInfo> buildActionHook(DeciTreeOption<RefupownInfo> option) {
-		ActionStd<RefupownInfo> select = new StdRefupownDaoSelect(option);
+		ActionStd<RefupownInfo> select = new ActionStdCommom<RefupownInfo>(option, RefupownVisiDaoSelect.class);
 		return select;
 	}
 	

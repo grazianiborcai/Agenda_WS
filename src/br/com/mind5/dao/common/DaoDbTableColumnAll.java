@@ -95,7 +95,7 @@ import br.com.mind5.business.phoneSearch.dao.PhonarchDaoDbTableColumn;
 import br.com.mind5.business.phoneSnapshot.dao.PhonapDaoDbTableColumn;
 import br.com.mind5.business.phoneSnapshotSearch.dao.PhonaparchDaoDbTableColumn;
 import br.com.mind5.business.planingData.dao.PlanataDaoDbTableColumn;
-import br.com.mind5.business.refundPolicyOwner.dao.DaoRefupownDbTableColumn;
+import br.com.mind5.business.refundPolicyOwner.dao.RefupownDaoDbTableColumn;
 import br.com.mind5.business.refundPolicyStore.dao.DaoRefuporeDbTableColumn;
 import br.com.mind5.business.refundPolicyStoreSearch.dao.DaoRefuporarchDbTableColumn;
 import br.com.mind5.business.scheduleDayData.dao.SchedaytaDaoDbTableColumn;
@@ -469,7 +469,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoFeecatDbTableColumn());
 		addTable(new DaoFeecatarchDbTableColumn());
 		addTable(new DaoRefupoDbTableColumn());
-		addTable(new DaoRefupownDbTableColumn());
+		addTable(new RefupownDaoDbTableColumn());
 		addTable(new DaoRefuporeDbTableColumn());
 		addTable(new DaoRefugroupDbTableColumn());
 		addTable(new DaoRefugritemDbTableColumn());
