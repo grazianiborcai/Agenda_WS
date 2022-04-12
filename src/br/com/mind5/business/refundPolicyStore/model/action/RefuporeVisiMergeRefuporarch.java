@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
 import br.com.mind5.business.refundPolicyStore.info.RefuporeMerger;
 import br.com.mind5.business.refundPolicyStoreSearch.info.RefuporarchInfo;
-import br.com.mind5.business.refundPolicyStoreSearch.model.decisionTree.RootRefuporarchSelect;
+import br.com.mind5.business.refundPolicyStoreSearch.model.decisionTree.RefuporarchRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class RefuporeVisiMergeRefuporarch extends ActionVisitorTemplateMer
 	
 	
 	@Override protected Class<? extends DeciTree<RefuporarchInfo>> getTreeClassHook() {
-		return RootRefuporarchSelect.class;
+		return RefuporarchRootSelect.class;
 	}
 	
 	

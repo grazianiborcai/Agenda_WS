@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.refundPolicyStoreSearch.info.RefuporarchInfo;
-import br.com.mind5.business.refundPolicyStoreSearch.model.action.StdRefupowarchMergeToSelect;
+import br.com.mind5.business.refundPolicyStoreSearch.model.action.RefuporarchVisiMergeToSelect;
 import br.com.mind5.business.refundPolicyStoreSearch.model.checker.RefuporarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootRefuporarchSelect extends DeciTreeTemplateRead<RefuporarchInfo> {
+public final class RefuporarchRootSelect extends DeciTreeTemplateRead<RefuporarchInfo> {
 	
-	public RootRefuporarchSelect(DeciTreeOption<RefuporarchInfo> option) {
+	public RefuporarchRootSelect(DeciTreeOption<RefuporarchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootRefuporarchSelect extends DeciTreeTemplateRead<Refuporarc
 	@Override protected List<ActionStd<RefuporarchInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuporarchInfo> option) {
 		List<ActionStd<RefuporarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<RefuporarchInfo> select = new StdRefupowarchMergeToSelect(option);
+		ActionStd<RefuporarchInfo> select = new ActionStdCommom<RefuporarchInfo>(option, RefuporarchVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

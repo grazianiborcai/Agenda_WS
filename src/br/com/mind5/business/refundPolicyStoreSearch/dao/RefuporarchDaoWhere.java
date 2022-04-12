@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class DaoRefuporarchWhere implements DaoStmtWhere {
+final class RefuporarchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoRefuporarchWhere(DaoWhereBuilderOption whereOption, String tableName, RefuporarchInfo recordInfo) {
+	public RefuporarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, RefuporarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,19 +26,19 @@ final class DaoRefuporarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {			
-				case DaoRefuporarchDbTableColumn.COL_COD_OWNER :
+				case RefuporarchDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoRefuporarchDbTableColumn.COL_COD_STORE :
+				case RefuporarchDaoDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case DaoRefuporarchDbTableColumn.COL_COD_REFUND_POLICY_GROUP :
+				case RefuporarchDaoDbTableColumn.COL_COD_REFUND_POLICY_GROUP :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codRefundPolicyGroup));
 					break;
 					
-				case DaoRefuporarchDbTableColumn.COL_RECORD_MODE :
+				case RefuporarchDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

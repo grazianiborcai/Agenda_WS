@@ -11,7 +11,7 @@ public final class RefuporarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefuporarchVisiMergeToSelect());
+		builder.addVisitor(new RefuporarchMergerVisiToSelect());
 		InfoMerger<RefuporarchInfo, RefuporarchInfo> merger = builder.build();		
 	
 		return merger.merge();

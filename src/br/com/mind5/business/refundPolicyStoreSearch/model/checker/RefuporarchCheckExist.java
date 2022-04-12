@@ -1,7 +1,7 @@
 package br.com.mind5.business.refundPolicyStoreSearch.model.checker;
 
 import br.com.mind5.business.refundPolicyStoreSearch.info.RefuporarchInfo;
-import br.com.mind5.business.refundPolicyStoreSearch.model.decisionTree.RootRefuporarchSelect;
+import br.com.mind5.business.refundPolicyStoreSearch.model.decisionTree.RefuporarchRootSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class RefuporarchCheckExist extends ModelCheckerTemplateAction<Refu
 
 	
 	@Override protected ActionStd<RefuporarchInfo> buildActionHook(DeciTreeOption<RefuporarchInfo> option) {		
-		ActionStd<RefuporarchInfo> select = new RootRefuporarchSelect(option).toAction();			
+		ActionStd<RefuporarchInfo> select = new RefuporarchRootSelect(option).toAction();			
 		return select;
 	}
 	

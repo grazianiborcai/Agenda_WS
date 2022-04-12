@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoRefuporarchSelect implements DaoStmtExec<RefuporarchInfo> {
+public final class RefuporarchDaoSelect implements DaoStmtExec<RefuporarchInfo> {
 	private DaoStmtExec<RefuporarchInfo> helper;
 	
 	
-	public DaoRefuporarchSelect(List<DaoStmtExecOption<RefuporarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoRefuporarchSelectSingle.class, RefuporarchInfo.class);
+	public RefuporarchDaoSelect(List<DaoStmtExecOption<RefuporarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, RefuporarchDaoSelectSingle.class, RefuporarchInfo.class);
 	}
 	
 	
