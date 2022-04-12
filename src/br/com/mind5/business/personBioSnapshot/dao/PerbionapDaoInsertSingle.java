@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoPerbionapInsertSingle extends DaoStmtTemplate<PerbionapInfo> {
+public final class PerbionapDaoInsertSingle extends DaoStmtTemplate<PerbionapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PERSON_BIO_SNAPSHOT_TABLE;	
 	
 	
-	public DaoPerbionapInsertSingle(Connection conn, PerbionapInfo recordInfo, String schemaName) {
+	public PerbionapDaoInsertSingle(Connection conn, PerbionapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);		
 	}
 	

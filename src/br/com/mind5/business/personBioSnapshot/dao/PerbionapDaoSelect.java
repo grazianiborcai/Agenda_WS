@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoPerbionapInsert implements DaoStmtExec<PerbionapInfo> {
+public final class PerbionapDaoSelect implements DaoStmtExec<PerbionapInfo> {
 	private DaoStmtExec<PerbionapInfo> helper;
 	
 	
-	public DaoPerbionapInsert(List<DaoStmtExecOption<PerbionapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoPerbionapInsertSingle.class, PerbionapInfo.class);
+	public PerbionapDaoSelect(List<DaoStmtExecOption<PerbionapInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, PerbionapDaoSelectSingle.class, PerbionapInfo.class);
 	}
 	
 	

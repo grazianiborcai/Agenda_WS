@@ -11,7 +11,7 @@ public final class PerbionapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PerbionapVisiMergeToSelect());
+		builder.addVisitor(new PerbionapMergerVisiToSelect());
 		InfoMerger<PerbionapInfo, PerbionapInfo> merger = builder.build();		
 	
 		return merger.merge();

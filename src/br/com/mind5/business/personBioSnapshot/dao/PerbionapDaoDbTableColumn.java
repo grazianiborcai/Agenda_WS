@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoPerbionapDbTableColumn extends DaoDbTableColumnTemplate {
+public final class PerbionapDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BIO_TEXT = DaoDbField.COL_BIO_TEXT;
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
@@ -22,7 +22,7 @@ public final class DaoPerbionapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
-	public DaoPerbionapDbTableColumn() {
+	public PerbionapDaoDbTableColumn() {
 		super();
 	}
 	

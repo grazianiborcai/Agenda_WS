@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoPerbionapSelectSingle extends DaoStmtTemplate<PerbionapInfo> {
+public final class PerbionapDaoSelectSingle extends DaoStmtTemplate<PerbionapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PERSON_BIO_SNAPSHOT_TABLE;
 	
 	
-	public DaoPerbionapSelectSingle(Connection conn, PerbionapInfo recordInfo, String schemaName) {
+	public PerbionapDaoSelectSingle(Connection conn, PerbionapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoPerbionapSelectSingle extends DaoStmtTemplate<PerbionapInf
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoPerbionapWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new PerbionapDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,16 +61,16 @@ public final class DaoPerbionapSelectSingle extends DaoStmtTemplate<PerbionapInf
 				do {
 					PerbionapInfo dataInfo = new PerbionapInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoPerbionapDbTableColumn.COL_COD_OWNER);
-					dataInfo.codPerson = stmtResult.getLong(DaoPerbionapDbTableColumn.COL_COD_PERSON);
-					dataInfo.codLanguage = stmtResult.getString(DaoPerbionapDbTableColumn.COL_COD_LANGUAGE);
-					dataInfo.txtBio = stmtResult.getString(DaoPerbionapDbTableColumn.COL_BIO_TEXT);
-					dataInfo.recordMode = stmtResult.getString(DaoPerbionapDbTableColumn.COL_RECORD_MODE);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoPerbionapDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoPerbionapDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoPerbionapDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoPerbionapDbTableColumn.COL_CREATED_BY);
-					dataInfo.codSnapshot = stmtResult.getLong(DaoPerbionapDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codOwner = stmtResult.getLong(PerbionapDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codPerson = stmtResult.getLong(PerbionapDaoDbTableColumn.COL_COD_PERSON);
+					dataInfo.codLanguage = stmtResult.getString(PerbionapDaoDbTableColumn.COL_COD_LANGUAGE);
+					dataInfo.txtBio = stmtResult.getString(PerbionapDaoDbTableColumn.COL_BIO_TEXT);
+					dataInfo.recordMode = stmtResult.getString(PerbionapDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PerbionapDaoDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, PerbionapDaoDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, PerbionapDaoDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, PerbionapDaoDbTableColumn.COL_CREATED_BY);
+					dataInfo.codSnapshot = stmtResult.getLong(PerbionapDaoDbTableColumn.COL_COD_SNAPSHOT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
