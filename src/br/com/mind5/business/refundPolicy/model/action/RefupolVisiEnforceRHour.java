@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefupolEnforceRHour extends ActionVisitorTemplateEnforce<RefupolInfo> {
+public final class RefupolVisiEnforceRHour extends ActionVisitorTemplateEnforce<RefupolInfo> {
 	
-	public VisiRefupolEnforceRHour(DeciTreeOption<RefupolInfo> option) {
+	public RefupolVisiEnforceRHour(DeciTreeOption<RefupolInfo> option) {
 		super(option);
 	}
 	

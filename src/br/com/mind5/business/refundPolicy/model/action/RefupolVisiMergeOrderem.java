@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefupolMergeOrderem extends ActionVisitorTemplateMerge<RefupolInfo, OrderemInfo> {
+public final class RefupolVisiMergeOrderem extends ActionVisitorTemplateMerge<RefupolInfo, OrderemInfo> {
 	
-	public VisiRefupolMergeOrderem(DeciTreeOption<RefupolInfo> option) {
+	public RefupolVisiMergeOrderem(DeciTreeOption<RefupolInfo> option) {
 		super(option, OrderemInfo.class); 
 	}
 	

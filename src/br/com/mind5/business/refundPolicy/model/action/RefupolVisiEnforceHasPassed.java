@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefupolEnforceHasPassed extends ActionVisitorTemplateEnforce<RefupolInfo> {
+public final class RefupolVisiEnforceHasPassed extends ActionVisitorTemplateEnforce<RefupolInfo> {
 	
-	public VisiRefupolEnforceHasPassed(DeciTreeOption<RefupolInfo> option) {
+	public RefupolVisiEnforceHasPassed(DeciTreeOption<RefupolInfo> option) {
 		super(option);
 	}
 	

@@ -4,22 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.refundPolicy.info.RefupolInfo;
-import br.com.mind5.business.refundPolicy.model.action.LazyRefupolEnforceHasPassed;
-import br.com.mind5.business.refundPolicy.model.action.LazyRefupolEnforceRHour;
-import br.com.mind5.business.refundPolicy.model.action.LazyRefupolNodeEvaluateL5;
-import br.com.mind5.business.refundPolicy.model.action.StdRefupolMergeRefupore;
-import br.com.mind5.business.refundPolicy.model.checker.RefupolCheckEvaluateService;
+import br.com.mind5.business.refundPolicy.model.action.RefupolVisiNodeEvaluateL1;
+import br.com.mind5.business.refundPolicy.model.action.RefupolVisiMergeOrderem;
+import br.com.mind5.business.refundPolicy.model.checker.RefupolCheckEvaluate;
+import br.com.mind5.business.refundPolicy.model.checker.RefupolCheckOrderem;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeRefupolEvaluateL4 extends DeciTreeTemplateWrite<RefupolInfo> {
+public final class RefupolRootEvaluate extends DeciTreeTemplateWrite<RefupolInfo> {
 	
-	public NodeRefupolEvaluateL4(DeciTreeOption<RefupolInfo> option) {
+	public RefupolRootEvaluate(DeciTreeOption<RefupolInfo> option) {
 		super(option);
 	}
 	
@@ -34,7 +35,14 @@ public final class NodeRefupolEvaluateL4 extends DeciTreeTemplateWrite<RefupolIn
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
-		checker = new RefupolCheckEvaluateService(checkerOption);
+		checker = new RefupolCheckEvaluate(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new RefupolCheckOrderem(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -45,16 +53,12 @@ public final class NodeRefupolEvaluateL4 extends DeciTreeTemplateWrite<RefupolIn
 	@Override protected List<ActionStd<RefupolInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupolInfo> option) {
 		List<ActionStd<RefupolInfo>> actions = new ArrayList<>();
 		
-		ActionStd<RefupolInfo> mergeRefupore = new StdRefupolMergeRefupore(option);
-		ActionLazy<RefupolInfo> enforceRHour = new LazyRefupolEnforceRHour(option.conn, option.schemaName);
-		ActionLazy<RefupolInfo> enfoerceHasPassed = new LazyRefupolEnforceHasPassed(option.conn, option.schemaName);
-		ActionLazy<RefupolInfo> nodeL5 = new LazyRefupolNodeEvaluateL5(option.conn, option.schemaName);
+		ActionStd<RefupolInfo> select = new ActionStdCommom<RefupolInfo>(option, RefupolVisiMergeOrderem.class);
+		ActionLazy<RefupolInfo> nodeL1 = new ActionLazyCommom<RefupolInfo>(option, RefupolVisiNodeEvaluateL1.class);
 		
-		mergeRefupore.addPostAction(enforceRHour);
-		enforceRHour.addPostAction(enfoerceHasPassed);
-		enfoerceHasPassed.addPostAction(nodeL5);
+		select.addPostAction(nodeL1);
 		
-		actions.add(mergeRefupore);
+		actions.add(select);
 		return actions;
 	}
 }

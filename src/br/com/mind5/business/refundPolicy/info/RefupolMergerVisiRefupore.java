@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class RefupolVisiMergeRefupore extends InfoMergerVisitorTemplate<RefupolInfo, RefuporeInfo> {
+final class RefupolMergerVisiRefupore extends InfoMergerVisitorTemplate<RefupolInfo, RefuporeInfo> {
 
 	@Override public boolean shouldMerge(RefupolInfo baseInfo, RefuporeInfo selectedInfo) {
 		return (baseInfo.codOwner 	== selectedInfo.codOwner &&

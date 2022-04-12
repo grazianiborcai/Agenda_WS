@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.refundPolicy.info.RefupolInfo;
-import br.com.mind5.business.refundPolicy.model.decisionTree.RootRefupolEvaluate;
+import br.com.mind5.business.refundPolicy.model.decisionTree.RefupolRootEvaluate;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -18,7 +18,7 @@ public final class OrderemVisiRefupolEvaluate extends ActionVisitorTemplateActio
 	
 	
 	@Override protected Class<? extends DeciTree<RefupolInfo>> getTreeClassHook() {
-		return RootRefupolEvaluate.class;
+		return RefupolRootEvaluate.class;
 	}
 	
 	

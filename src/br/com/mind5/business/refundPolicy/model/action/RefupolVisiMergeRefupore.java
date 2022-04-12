@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefupolMergeRefupore extends ActionVisitorTemplateMerge<RefupolInfo, RefuporeInfo> {
+public final class RefupolVisiMergeRefupore extends ActionVisitorTemplateMerge<RefupolInfo, RefuporeInfo> {
 	
-	public VisiRefupolMergeRefupore(DeciTreeOption<RefupolInfo> option) {
+	public RefupolVisiMergeRefupore(DeciTreeOption<RefupolInfo> option) {
 		super(option, RefuporeInfo.class); 
 	}
 	

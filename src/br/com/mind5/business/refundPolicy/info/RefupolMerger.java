@@ -13,7 +13,7 @@ public final class RefupolMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefupolVisiMergeRefupore());
+		builder.addVisitor(new RefupolMergerVisiRefupore());
 		InfoMerger<RefupolInfo, RefuporeInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class RefupolMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefupolVisiMergeOrderem());
+		builder.addVisitor(new RefupolMergerVisiOrderem());
 		InfoMerger<RefupolInfo, OrderemInfo> merger = builder.build();		
 	
 		return merger.merge();
