@@ -8,11 +8,11 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
 
-public class DaoStoriteSelect implements DaoStmtExec<StoriteInfo> {
+public class StoriteDaoSelect implements DaoStmtExec<StoriteInfo> {
 	private DaoStmtExec<StoriteInfo> helper;
 	
 	
-	public DaoStoriteSelect(List<DaoStmtExecOption<StoriteInfo>> options) {
+	public StoriteDaoSelect(List<DaoStmtExecOption<StoriteInfo>> options) {
 		helper = new DaoStmtExecHelper<>(options, StoriteDaoSelectSingle.class, StoriteInfo.class);
 	}
 	
