@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
-import br.com.mind5.business.storeLeaveDate.model.decisionTree.RootStolateDeleteByStore;
+import br.com.mind5.business.storeLeaveDate.model.decisionTree.StolateRootDeleteFromStore;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -18,7 +18,7 @@ public final class StoreVisiStolateDelete extends ActionVisitorTemplateAction<St
 	
 	
 	@Override protected Class<? extends DeciTree<StolateInfo>> getTreeClassHook() {
-		return RootStolateDeleteByStore.class;
+		return StolateRootDeleteFromStore.class;
 	}
 	
 	

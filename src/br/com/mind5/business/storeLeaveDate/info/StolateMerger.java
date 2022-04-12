@@ -14,7 +14,7 @@ public final class StolateMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StolateVisiMergeStolis());
+		builder.addVisitor(new StolateMergerVisiStolis());
 		InfoMerger<StolateInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class StolateMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StolateVisiMergeStolarch());
+		builder.addVisitor(new StolateMergerVisiStolarch());
 		InfoMerger<StolateInfo, StolarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class StolateMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StolateVisiMergeUsername());
+		builder.addVisitor(new StolateMergerVisiUsername());
 		InfoMerger<StolateInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -53,7 +53,7 @@ public final class StolateMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StolateVisiMergeToSelect());
+		builder.addVisitor(new StolateMergerVisioSelect());
 		InfoMerger<StolateInfo, StolateInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -66,7 +66,7 @@ public final class StolateMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StolateVisiMergeToDelete());
+		builder.addVisitor(new StolateMergerVisiToDelete());
 		InfoMerger<StolateInfo, StolateInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -79,7 +79,7 @@ public final class StolateMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StolateVisiMergeToUpdate());
+		builder.addVisitor(new StolateMergerVisiToUpdate());
 		InfoMerger<StolateInfo, StolateInfo> merger = builder.build();		
 	
 		return merger.merge();
