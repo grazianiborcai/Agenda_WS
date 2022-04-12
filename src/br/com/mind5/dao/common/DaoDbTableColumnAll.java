@@ -119,7 +119,7 @@ import br.com.mind5.business.storeList.dao.StolisDaoDbTableColumn;
 import br.com.mind5.business.storeNearby.dao.StorbyDaoDbTableColumn;
 import br.com.mind5.business.storeProspect.dao.StoprosDaoDbTableColumn;
 import br.com.mind5.business.storeProspectSearch.dao.StoprarchDaoDbTableColumn;
-import br.com.mind5.business.storeSearch.dao.DaoSotarchDbTableColumn;
+import br.com.mind5.business.storeSearch.dao.SotarchDaoDbTableColumn;
 import br.com.mind5.business.storeSnapshot.dao.StorapDaoDbTableColumn;
 import br.com.mind5.business.storeText.dao.StorextDaoDbTableColumn;
 import br.com.mind5.business.storeTextDefault.dao.DaoStorextaultDbTableColumn;
@@ -390,7 +390,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new ComplisDaoDbTableColumn());
 		addTable(new AddarchDaoDbTableColumn());
 		addTable(new PhonarchDaoDbTableColumn());
-		addTable(new DaoSotarchDbTableColumn());
+		addTable(new SotarchDaoDbTableColumn());
 		addTable(new ComparchDaoDbTableColumn());
 		addTable(new PerarchDaoDbTableColumn());
 		addTable(new DaoFimarchDbTableColumn());

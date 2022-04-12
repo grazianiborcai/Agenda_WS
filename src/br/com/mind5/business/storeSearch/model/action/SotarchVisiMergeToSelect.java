@@ -4,21 +4,20 @@ import java.util.List;
 
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.business.storeSearch.info.SotarchMerger;
-import br.com.mind5.model.action.ActionStd;
-
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSotarchMergeToSelect extends ActionVisitorTemplateMerge<SotarchInfo, SotarchInfo> {
+public final class SotarchVisiMergeToSelect extends ActionVisitorTemplateMerge<SotarchInfo, SotarchInfo> {
 	
-	public VisiSotarchMergeToSelect(DeciTreeOption<SotarchInfo> option) {
+	public SotarchVisiMergeToSelect(DeciTreeOption<SotarchInfo> option) {
 		super(option, SotarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<SotarchInfo>> getActionClassHook() {
-		return StdSotarchDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<SotarchInfo>> getVisitorClassHook() {
+		return SotarchVisiDaoSelect.class;
 	}
 	
 	

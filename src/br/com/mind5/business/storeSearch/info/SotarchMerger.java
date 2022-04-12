@@ -12,7 +12,7 @@ public final class SotarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SotarchVisiMergeUsername());
+		builder.addVisitor(new SotarchMergerVisiUsername());
 		InfoMerger<SotarchInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class SotarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SotarchVisiMergeToSelect());
+		builder.addVisitor(new SotarchMergerVisiToSelect());
 		InfoMerger<SotarchInfo, SotarchInfo> merger = builder.build();		
 	
 		return merger.merge();

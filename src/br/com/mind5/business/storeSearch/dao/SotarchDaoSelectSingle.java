@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoSotarchSelectSingle extends DaoStmtTemplate<SotarchInfo> {
+public final class SotarchDaoSelectSingle extends DaoStmtTemplate<SotarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STORE_TABLE;	
 	
 	
-	public DaoSotarchSelectSingle(Connection conn, SotarchInfo recordInfo, String schemaName) {
+	public SotarchDaoSelectSingle(Connection conn, SotarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoSotarchSelectSingle extends DaoStmtTemplate<SotarchInfo> {
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoSotarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new SotarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,11 +67,11 @@ public final class DaoSotarchSelectSingle extends DaoStmtTemplate<SotarchInfo> {
 				do {
 					SotarchInfo dataInfo = new SotarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoSotarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(DaoSotarchDbTableColumn.COL_COD_STORE);
-					dataInfo.recordMode = stmtResult.getString(DaoSotarchDbTableColumn.COL_RECORD_MODE);	
-					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, DaoSotarchDbTableColumn.COL_COD_COMPANY);		
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoSotarchDbTableColumn.COL_COD_USER);	
+					dataInfo.codOwner = stmtResult.getLong(SotarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(SotarchDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.recordMode = stmtResult.getString(SotarchDaoDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, SotarchDaoDbTableColumn.COL_COD_COMPANY);		
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, SotarchDaoDbTableColumn.COL_COD_USER);	
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
