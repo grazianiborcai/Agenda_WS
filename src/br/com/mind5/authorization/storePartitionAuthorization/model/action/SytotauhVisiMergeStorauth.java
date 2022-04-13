@@ -3,7 +3,7 @@ package br.com.mind5.authorization.storePartitionAuthorization.model.action;
 import java.util.List;
 
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.authorization.storeAuthorization.model.decisionTree.RootStorauthSelect;
+import br.com.mind5.authorization.storeAuthorization.model.decisionTree.StorauthRootSelect;
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class SytotauhVisiMergeStorauth extends ActionVisitorTemplateMerge<
 	
 	
 	@Override protected Class<? extends DeciTree<StorauthInfo>> getTreeClassHook() {
-		return RootStorauthSelect.class;
+		return StorauthRootSelect.class;
 	}
 	
 	

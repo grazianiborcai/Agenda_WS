@@ -19,9 +19,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootStorauthAuthorization extends DeciTreeTemplateWrite<StorauthInfo> {
+public final class StorauthRootAuthorization extends DeciTreeTemplateWrite<StorauthInfo> {
 	
-	public RootStorauthAuthorization(DeciTreeOption<StorauthInfo> option) {
+	public StorauthRootAuthorization(DeciTreeOption<StorauthInfo> option) {
 		super(option);
 	}
 	

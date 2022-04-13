@@ -3,7 +3,7 @@ package br.com.mind5.authorization.storeAuthorization.model.action;
 import java.util.List;
 
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.authorization.storeAuthorization.model.decisionTree.NodeStorauthSelectL1;
+import br.com.mind5.authorization.storeAuthorization.model.decisionTree.StorauthNodeSelectL1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +17,7 @@ public final class StorauthVisiNodeSelectL1 extends ActionVisitorTemplateAction<
 	
 	
 	@Override protected Class<? extends DeciTree<StorauthInfo>> getTreeClassHook() {
-		return NodeStorauthSelectL1.class;
+		return StorauthNodeSelectL1.class;
 	}
 	
 	

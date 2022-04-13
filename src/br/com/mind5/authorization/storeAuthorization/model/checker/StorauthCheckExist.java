@@ -1,7 +1,7 @@
 package br.com.mind5.authorization.storeAuthorization.model.checker;
 
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.authorization.storeAuthorization.model.decisionTree.RootStorauthAuthorization;
+import br.com.mind5.authorization.storeAuthorization.model.decisionTree.StorauthRootAuthorization;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class StorauthCheckExist extends ModelCheckerTemplateAction<Storaut
 	
 	
 	@Override protected ActionStd<StorauthInfo> buildActionHook(DeciTreeOption<StorauthInfo> option) {
-		ActionStd<StorauthInfo> select = new RootStorauthAuthorization(option).toAction();		
+		ActionStd<StorauthInfo> select = new StorauthRootAuthorization(option).toAction();		
 		return select;
 	}
 	
