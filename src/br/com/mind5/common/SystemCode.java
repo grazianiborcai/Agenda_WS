@@ -1896,4 +1896,9 @@ public final class SystemCode {
 	
 	// Store Lunch Time-Snaphot
 	public static final int STORE_LTIME_SNAPHOT_MANDATORY_FIELD_EMPTY 	= 19250;
+	
+	// Store Lunch Search
+	public static final int STORE_LTIME_SEARCH_MANDATORY_FIELD_EMPTY 	= 19300;
+	public static final int STORE_LTIME_SEARCH_ALREADY_EXIST 			= 19301;
+	public static final int STORE_LTIME_SEARCH_NOT_FOUND 				= 19302;
 }

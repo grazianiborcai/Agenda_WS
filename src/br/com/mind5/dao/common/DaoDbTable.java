@@ -179,6 +179,7 @@ public final class DaoDbTable {
 	public static final String STORE_TEXT_TABLE = "store_text";
 	public static final String STORE_TEXT_SNAPSHOT_TABLE = "store_text_snapshot";
 	public static final String STORE_LD_TABLE = "store_leave_time";
+	public static final String STORE_LT_TABLE = "store_lunch_time";
 	public static final String STORE_WT_TABLE = "store_working_time";
 	public static final String STORE_LT_SNAPSHOT_TABLE = "store_lunch_time_snapshot";
 	public static final String STORE_WT_SNAPSHOT_TABLE = "store_working_time_snapshot";
@@ -317,6 +318,7 @@ public final class DaoDbTable {
 	public static final String STORE_TEXT_DEFAULT_VIEW = "view_store_text_default";
 	public static final String STORE_TEXT_SEARCH_VIEW = "view_store_text_search";
 	public static final String STORE_WTIME_RANGE_VIEW = "view_store_wtime_range";
+	public static final String STORE_LTIME_SEARCH_VIEW = "view_store_ltime_search";
 	public static final String STORE_WTIME_SEARCH_VIEW = "view_store_wtime_search";
 	public static final String SYS_DISTRICT_SEARCH_DEFAULT_VIEW = "view_owner_district_search";
 	public static final String SYS_FILE_IMG_SEARCH_VIEW = "view_sys_file_image_search";
