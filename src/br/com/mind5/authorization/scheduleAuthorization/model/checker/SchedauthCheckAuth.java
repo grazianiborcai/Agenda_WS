@@ -1,7 +1,7 @@
 package br.com.mind5.authorization.scheduleAuthorization.model.checker;
 
 import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
-import br.com.mind5.authorization.scheduleAuthorization.model.decisionTree.RootSchedauthMove;
+import br.com.mind5.authorization.scheduleAuthorization.model.decisionTree.SchedauthRootMove;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class SchedauthCheckAuth extends ModelCheckerTemplateAction<Schedau
 
 	
 	@Override protected ActionStd<SchedauthInfo> buildActionHook(DeciTreeOption<SchedauthInfo> option) {
-		ActionStd<SchedauthInfo> select = new RootSchedauthMove(option).toAction();
+		ActionStd<SchedauthInfo> select = new SchedauthRootMove(option).toAction();
 		return select;
 	}
 	

@@ -18,9 +18,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeSchedauthSearchL2 extends DeciTreeTemplateWrite<SchedauthInfo> {
+public final class SchedauthNodeSearchL2 extends DeciTreeTemplateWrite<SchedauthInfo> {
 	
-	public NodeSchedauthSearchL2(DeciTreeOption<SchedauthInfo> option) {
+	public SchedauthNodeSearchL2(DeciTreeOption<SchedauthInfo> option) {
 		super(option);
 	}
 	
@@ -62,7 +62,7 @@ public final class NodeSchedauthSearchL2 extends DeciTreeTemplateWrite<Schedauth
 	@Override protected List<ActionStd<SchedauthInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedauthInfo> option) {
 		List<ActionStd<SchedauthInfo>> actions = new ArrayList<>();		
 	
-		ActionStd<SchedauthInfo> nodeL3 = new NodeSchedauthSearchL3(option).toAction();	
+		ActionStd<SchedauthInfo> nodeL3 = new SchedauthNodeSearchL3(option).toAction();	
 		
 		actions.add(nodeL3);		
 		return actions;

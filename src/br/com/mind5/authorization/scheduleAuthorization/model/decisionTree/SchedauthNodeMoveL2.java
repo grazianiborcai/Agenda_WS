@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
-import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckAuthOwner;
+import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckAuthManager;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeSchedauthSearchL1 extends DeciTreeTemplateWrite<SchedauthInfo> {
+public final class SchedauthNodeMoveL2 extends DeciTreeTemplateWrite<SchedauthInfo> {
 	
-	public NodeSchedauthSearchL1(DeciTreeOption<SchedauthInfo> option) {
+	public SchedauthNodeMoveL2(DeciTreeOption<SchedauthInfo> option) {
 		super(option);
 	}
 	
@@ -30,7 +29,7 @@ public final class NodeSchedauthSearchL1 extends DeciTreeTemplateWrite<Schedauth
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new SchedauthCheckAuthOwner(checkerOption);
+		checker = new SchedauthCheckAuthManager(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -41,9 +40,9 @@ public final class NodeSchedauthSearchL1 extends DeciTreeTemplateWrite<Schedauth
 	@Override protected List<ActionStd<SchedauthInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedauthInfo> option) {
 		List<ActionStd<SchedauthInfo>> actions = new ArrayList<>();		
 
-		ActionStd<SchedauthInfo> success = new ActionStdSuccessCommom<SchedauthInfo>(option);
+		ActionStd<SchedauthInfo> nodeL4 = new SchedauthNodeMoveL4(option).toAction();
 		
-		actions.add(success);		
+		actions.add(nodeL4);		
 		return actions;
 	}
 	
@@ -52,9 +51,9 @@ public final class NodeSchedauthSearchL1 extends DeciTreeTemplateWrite<Schedauth
 	@Override protected List<ActionStd<SchedauthInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedauthInfo> option) {
 		List<ActionStd<SchedauthInfo>> actions = new ArrayList<>();		
 	
-		ActionStd<SchedauthInfo> nodeL2 = new NodeSchedauthSearchL2(option).toAction();	
+		ActionStd<SchedauthInfo> nodeL3 = new SchedauthNodeMoveL3(option).toAction();	
 		
-		actions.add(nodeL2);		
+		actions.add(nodeL3);		
 		return actions;
 	}
 }

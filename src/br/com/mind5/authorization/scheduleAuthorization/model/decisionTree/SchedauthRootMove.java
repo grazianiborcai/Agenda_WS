@@ -5,8 +5,10 @@ import java.util.List;
 
 import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
 import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckLangu;
+import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckMove;
 import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckOwner;
-import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckSearch;
+import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckSchedine;
+import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckStore;
 import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckUsername;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -15,9 +17,9 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSchedauthSearch extends DeciTreeTemplateWrite<SchedauthInfo> {
+public final class SchedauthRootMove extends DeciTreeTemplateWrite<SchedauthInfo> {
 	
-	public RootSchedauthSearch(DeciTreeOption<SchedauthInfo> option) {
+	public SchedauthRootMove(DeciTreeOption<SchedauthInfo> option) {
 		super(option);
 	}
 	
@@ -32,7 +34,7 @@ public final class RootSchedauthSearch extends DeciTreeTemplateWrite<SchedauthIn
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new SchedauthCheckSearch(checkerOption);
+		checker = new SchedauthCheckMove(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -53,6 +55,20 @@ public final class RootSchedauthSearch extends DeciTreeTemplateWrite<SchedauthIn
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new SchedauthCheckStore(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new SchedauthCheckSchedine(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new SchedauthCheckUsername(checkerOption);
 		queue.add(checker);
 		
@@ -64,7 +80,7 @@ public final class RootSchedauthSearch extends DeciTreeTemplateWrite<SchedauthIn
 	@Override protected List<ActionStd<SchedauthInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedauthInfo> option) {
 		List<ActionStd<SchedauthInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedauthInfo> nodeL1 = new NodeSchedauthSearchL1(option).toAction();
+		ActionStd<SchedauthInfo> nodeL1 = new SchedauthNodeMoveL1(option).toAction();
 		
 		actions.add(nodeL1);
 		return actions;

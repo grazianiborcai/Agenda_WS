@@ -3,7 +3,7 @@ package br.com.mind5.business.scheduleLine.model.action;
 import java.util.List;
 
 import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
-import br.com.mind5.authorization.scheduleAuthorization.model.decisionTree.RootSchedauthSearch;
+import br.com.mind5.authorization.scheduleAuthorization.model.decisionTree.SchedauthRootSearch;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class SchedineVisiMergeSchedauth extends ActionVisitorTemplateMerge
 	
 	
 	@Override protected Class<? extends DeciTree<SchedauthInfo>> getTreeClassHook() {
-		return RootSchedauthSearch.class;
+		return SchedauthRootSearch.class;
 	}
 	
 	
