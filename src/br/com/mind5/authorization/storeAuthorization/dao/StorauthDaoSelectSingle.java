@@ -19,11 +19,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoJoinOwner;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoStorauthSelectSingle extends DaoStmtTemplate<StorauthInfo> {
+public final class StorauthDaoSelectSingle extends DaoStmtTemplate<StorauthInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STORE_TABLE;	
 	
 	
-	public DaoStorauthSelectSingle(Connection conn, StorauthInfo recordInfo, String schemaName) {
+	public StorauthDaoSelectSingle(Connection conn, StorauthInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -53,7 +53,7 @@ public final class DaoStorauthSelectSingle extends DaoStmtTemplate<StorauthInfo>
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoStorauthWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new StorauthDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -77,10 +77,10 @@ public final class DaoStorauthSelectSingle extends DaoStmtTemplate<StorauthInfo>
 				do {
 					StorauthInfo dataInfo = new StorauthInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoStorauthDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(DaoStorauthDbTableColumn.COL_COD_STORE);
-					dataInfo.recordMode = stmtResult.getString(DaoStorauthDbTableColumn.COL_RECORD_MODE);	
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoStorauthDbTableColumn.COL_COD_USER);			
+					dataInfo.codOwner = stmtResult.getLong(StorauthDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(StorauthDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.recordMode = stmtResult.getString(StorauthDaoDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, StorauthDaoDbTableColumn.COL_COD_USER);			
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

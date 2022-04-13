@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.authorization.storeAuthorization.model.action.StdStorauthMergeSotarch;
+import br.com.mind5.authorization.storeAuthorization.model.action.StorauthVisiMergeSotarch;
 import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckAuthManager;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -41,7 +42,7 @@ public final class NodeStorauthSelectL3 extends DeciTreeTemplateWrite<StorauthIn
 	@Override protected List<ActionStd<StorauthInfo>> buildActionsOnPassedHook(DeciTreeOption<StorauthInfo> option) {
 		List<ActionStd<StorauthInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StorauthInfo> mergeSotarch = new StdStorauthMergeSotarch(option);			
+		ActionStd<StorauthInfo> mergeSotarch = new ActionStdCommom<StorauthInfo>(option, StorauthVisiMergeSotarch.class);			
 		actions.add(mergeSotarch);		
 		
 		return actions;

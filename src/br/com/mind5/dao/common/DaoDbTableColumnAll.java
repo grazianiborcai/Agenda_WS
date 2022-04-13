@@ -5,7 +5,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import br.com.mind5.authorization.scheduleAuthorization.dao.SchedauthDaoDbTableColumn;
-import br.com.mind5.authorization.storeAuthorization.dao.DaoStorauthDbTableColumn;
+import br.com.mind5.authorization.storeAuthorization.dao.StorauthDaoDbTableColumn;
 import br.com.mind5.business.address.dao.AddressDaoDbTableColumn;
 import br.com.mind5.business.addressDefault.dao.AddaultDaoDbTableColumn;
 import br.com.mind5.business.addressSearch.dao.AddarchDaoDbTableColumn;
@@ -395,7 +395,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new PerarchDaoDbTableColumn());
 		addTable(new DaoFimarchDbTableColumn());
 		addTable(new DaoFimistDbTableColumn());
-		addTable(new DaoStorauthDbTableColumn());
+		addTable(new StorauthDaoDbTableColumn());
 		addTable(new StolarchDaoDbTableColumn());
 		addTable(new SchedageDaoDbTableColumn());
 		addTable(new StoplisDaoDbTableColumn());

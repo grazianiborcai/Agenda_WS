@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.authorization.storeAuthorization.model.action.StdStorauthMergeToSelect;
-import br.com.mind5.authorization.storeAuthorization.model.action.StdStorauthSuccess;
+import br.com.mind5.authorization.storeAuthorization.model.action.StorauthVisiMergeToSelect;
 import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckAuthDaemon;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -42,7 +43,7 @@ public final class NodeStorauthAuthorizationL3 extends DeciTreeTemplateWrite<Sto
 	@Override protected List<ActionStd<StorauthInfo>> buildActionsOnPassedHook(DeciTreeOption<StorauthInfo> option) {
 		List<ActionStd<StorauthInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StorauthInfo> success = new StdStorauthSuccess(option);			
+		ActionStd<StorauthInfo> success = new ActionStdSuccessCommom<StorauthInfo>(option);		
 		actions.add(success);		
 		
 		return actions;
@@ -53,7 +54,7 @@ public final class NodeStorauthAuthorizationL3 extends DeciTreeTemplateWrite<Sto
 	@Override protected List<ActionStd<StorauthInfo>> buildActionsOnFailedHook(DeciTreeOption<StorauthInfo> option) {
 		List<ActionStd<StorauthInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StorauthInfo> select = new StdStorauthMergeToSelect(option);
+		ActionStd<StorauthInfo> select = new ActionStdCommom<StorauthInfo>(option, StorauthVisiMergeToSelect.class);
 			
 		actions.add(select);		
 		return actions;

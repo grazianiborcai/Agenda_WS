@@ -13,7 +13,7 @@ public final class StorauthMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorauthVisiMergeSotarch());
+		builder.addVisitor(new StorauthMergerVisiSotarch());
 		InfoMerger<StorauthInfo, SotarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class StorauthMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorauthVisiMergeUsername());
+		builder.addVisitor(new StorauthMergerVisiUsername());
 		InfoMerger<StorauthInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -39,7 +39,7 @@ public final class StorauthMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorauthVisiMergeToSelect());
+		builder.addVisitor(new StorauthMergerVisiToSelect());
 		InfoMerger<StorauthInfo, StorauthInfo> merger = builder.build();		
 	
 		return merger.merge();

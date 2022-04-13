@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorauthMergeSotarch extends ActionVisitorTemplateMerge<StorauthInfo, SotarchInfo> {
+public final class StorauthVisiMergeSotarch extends ActionVisitorTemplateMerge<StorauthInfo, SotarchInfo> {
 	
-	public VisiStorauthMergeSotarch(DeciTreeOption<StorauthInfo> option) {
+	public StorauthVisiMergeSotarch(DeciTreeOption<StorauthInfo> option) {
 		super(option, SotarchInfo.class);
 	}
 	
