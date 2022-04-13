@@ -3,7 +3,7 @@ package br.com.mind5.business.employeeList.model.action;
 import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
-import br.com.mind5.authorization.storePartitionAuthorization.model.decisionTree.RootSytotauhSelect;
+import br.com.mind5.authorization.storePartitionAuthorization.model.decisionTree.SytotauhRootSelect;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeList.info.EmplisMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class EmplisVisiMergeSytotauh extends ActionVisitorTemplateMerge<Em
 	
 	
 	@Override protected Class<? extends DeciTree<SytotauhInfo>> getTreeClassHook() {
-		return RootSytotauhSelect.class;
+		return SytotauhRootSelect.class;
 	}
 	
 	

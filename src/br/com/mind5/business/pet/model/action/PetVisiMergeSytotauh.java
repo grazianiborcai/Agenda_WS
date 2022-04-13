@@ -3,7 +3,7 @@ package br.com.mind5.business.pet.model.action;
 import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
-import br.com.mind5.authorization.storePartitionAuthorization.model.decisionTree.RootSytotauhSelect;
+import br.com.mind5.authorization.storePartitionAuthorization.model.decisionTree.SytotauhRootSelect;
 import br.com.mind5.business.pet.info.PetInfo;
 import br.com.mind5.business.pet.info.PetMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class PetVisiMergeSytotauh extends ActionVisitorTemplateMerge<PetIn
 	
 	
 	@Override protected Class<? extends DeciTree<SytotauhInfo>> getTreeClassHook() {
-		return RootSytotauhSelect.class;
+		return SytotauhRootSelect.class;
 	}
 	
 	

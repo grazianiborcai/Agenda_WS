@@ -4,19 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
-import br.com.mind5.authorization.storePartitionAuthorization.model.action.SytotauhVisiEnforceStore;
-import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckSytotin;
+import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckAuthOwner;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeSytotauhSelectL1 extends DeciTreeTemplateWrite<SytotauhInfo> {
+public final class SytotauhNodeSelectL2 extends DeciTreeTemplateWrite<SytotauhInfo> {
 	
-	public NodeSytotauhSelectL1(DeciTreeOption<SytotauhInfo> option) {
+	public SytotauhNodeSelectL2(DeciTreeOption<SytotauhInfo> option) {
 		super(option);
 	}
 	
@@ -31,7 +29,7 @@ public final class NodeSytotauhSelectL1 extends DeciTreeTemplateWrite<SytotauhIn
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;			
-		checker = new SytotauhCheckSytotin(checkerOption);
+		checker = new SytotauhCheckAuthOwner(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -42,9 +40,9 @@ public final class NodeSytotauhSelectL1 extends DeciTreeTemplateWrite<SytotauhIn
 	@Override protected List<ActionStd<SytotauhInfo>> buildActionsOnPassedHook(DeciTreeOption<SytotauhInfo> option) {
 		List<ActionStd<SytotauhInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SytotauhInfo> nodeL2 = new NodeSytotauhSelectL2(option).toAction();
+		ActionStd<SytotauhInfo> nodeStore = new SytotauhNodeStore(option).toAction();
 		
-		actions.add(nodeL2);
+		actions.add(nodeStore);
 		return actions;
 	}
 	
@@ -53,9 +51,9 @@ public final class NodeSytotauhSelectL1 extends DeciTreeTemplateWrite<SytotauhIn
 	@Override protected List<ActionStd<SytotauhInfo>> buildActionsOnFailedHook(DeciTreeOption<SytotauhInfo> option) {
 		List<ActionStd<SytotauhInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SytotauhInfo> obfuscateStore = new ActionStdCommom<SytotauhInfo>(option, SytotauhVisiEnforceStore.class);
+		ActionStd<SytotauhInfo> nodeL3 = new SytotauhNodeSelectL3(option).toAction();
 		
-		actions.add(obfuscateStore);
+		actions.add(nodeL3);
 		return actions;
 	}
 }

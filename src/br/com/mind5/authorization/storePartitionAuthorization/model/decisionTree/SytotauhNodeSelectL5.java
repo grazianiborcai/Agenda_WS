@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
-import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckRead;
+import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckAuthDaemon;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSytotauhSelect extends DeciTreeTemplateWrite<SytotauhInfo> {
+public final class SytotauhNodeSelectL5 extends DeciTreeTemplateWrite<SytotauhInfo> {
 	
-	public RootSytotauhSelect(DeciTreeOption<SytotauhInfo> option) {
+	public SytotauhNodeSelectL5(DeciTreeOption<SytotauhInfo> option) {
 		super(option);
 	}
 	
@@ -28,8 +28,8 @@ public final class RootSytotauhSelect extends DeciTreeTemplateWrite<SytotauhInfo
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;			
-		checker = new SytotauhCheckRead(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;			
+		checker = new SytotauhCheckAuthDaemon(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -40,9 +40,9 @@ public final class RootSytotauhSelect extends DeciTreeTemplateWrite<SytotauhInfo
 	@Override protected List<ActionStd<SytotauhInfo>> buildActionsOnPassedHook(DeciTreeOption<SytotauhInfo> option) {
 		List<ActionStd<SytotauhInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SytotauhInfo> nodeL1 = new NodeSytotauhSelectL1(option).toAction();
+		ActionStd<SytotauhInfo> nodeStore = new SytotauhNodeStore(option).toAction();
 		
-		actions.add(nodeL1);
+		actions.add(nodeStore);
 		return actions;
 	}
 }

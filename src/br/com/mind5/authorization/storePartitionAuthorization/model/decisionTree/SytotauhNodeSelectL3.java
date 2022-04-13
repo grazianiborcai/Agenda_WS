@@ -12,9 +12,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeSytotauhSelectL3 extends DeciTreeTemplateWrite<SytotauhInfo> {
+public final class SytotauhNodeSelectL3 extends DeciTreeTemplateWrite<SytotauhInfo> {
 	
-	public NodeSytotauhSelectL3(DeciTreeOption<SytotauhInfo> option) {
+	public SytotauhNodeSelectL3(DeciTreeOption<SytotauhInfo> option) {
 		super(option);
 	}
 	
@@ -40,7 +40,7 @@ public final class NodeSytotauhSelectL3 extends DeciTreeTemplateWrite<SytotauhIn
 	@Override protected List<ActionStd<SytotauhInfo>> buildActionsOnPassedHook(DeciTreeOption<SytotauhInfo> option) {
 		List<ActionStd<SytotauhInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SytotauhInfo> nodeStore = new NodeSytotauhStore(option).toAction();
+		ActionStd<SytotauhInfo> nodeStore = new SytotauhNodeStore(option).toAction();
 		
 		actions.add(nodeStore);
 		return actions;
@@ -51,7 +51,7 @@ public final class NodeSytotauhSelectL3 extends DeciTreeTemplateWrite<SytotauhIn
 	@Override protected List<ActionStd<SytotauhInfo>> buildActionsOnFailedHook(DeciTreeOption<SytotauhInfo> option) {
 		List<ActionStd<SytotauhInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SytotauhInfo> nodeL4 = new NodeSytotauhSelectL4(option).toAction();
+		ActionStd<SytotauhInfo> nodeL4 = new SytotauhNodeSelectL4(option).toAction();
 		
 		actions.add(nodeL4);
 		return actions;

@@ -3,7 +3,7 @@ package br.com.mind5.stats.statsStoreProfile.storeProfileMonthLive.model.action;
 import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
-import br.com.mind5.authorization.storePartitionAuthorization.model.decisionTree.RootSytotauhSelect;
+import br.com.mind5.authorization.storePartitionAuthorization.model.decisionTree.SytotauhRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class StefiloniveVisiMergeSytotauh extends ActionVisitorTemplateMer
 	
 	
 	@Override protected Class<? extends DeciTree<SytotauhInfo>> getTreeClassHook() {
-		return RootSytotauhSelect.class;
+		return SytotauhRootSelect.class;
 	}
 	
 	

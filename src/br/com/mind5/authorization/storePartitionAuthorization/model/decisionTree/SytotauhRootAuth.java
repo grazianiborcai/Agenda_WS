@@ -4,19 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
-import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckHasStore;
-import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckStorauth;
+import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckRead;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeSytotauhAuthL2 extends DeciTreeTemplateWrite<SytotauhInfo> {
+public final class SytotauhRootAuth extends DeciTreeTemplateWrite<SytotauhInfo> {
 	
-	public NodeSytotauhAuthL2(DeciTreeOption<SytotauhInfo> option) {
+	public SytotauhRootAuth(DeciTreeOption<SytotauhInfo> option) {
 		super(option);
 	}
 	
@@ -31,14 +29,7 @@ public final class NodeSytotauhAuthL2 extends DeciTreeTemplateWrite<SytotauhInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;			
-		checker = new SytotauhCheckHasStore(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;			
-		checker = new SytotauhCheckStorauth(checkerOption);
+		checker = new SytotauhCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -49,9 +40,9 @@ public final class NodeSytotauhAuthL2 extends DeciTreeTemplateWrite<SytotauhInfo
 	@Override protected List<ActionStd<SytotauhInfo>> buildActionsOnPassedHook(DeciTreeOption<SytotauhInfo> option) {
 		List<ActionStd<SytotauhInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SytotauhInfo> success = new ActionStdSuccessCommom<SytotauhInfo>(option);
+		ActionStd<SytotauhInfo> nodeL1 = new SytotauhNodeAuthL1(option).toAction();
 		
-		actions.add(success);
+		actions.add(nodeL1);
 		return actions;
 	}
 }
