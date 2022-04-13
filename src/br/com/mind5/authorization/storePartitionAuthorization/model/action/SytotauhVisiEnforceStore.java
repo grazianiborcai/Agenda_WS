@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSytotauhEnforceStore extends ActionVisitorTemplateEnforce<SytotauhInfo> {
+public final class SytotauhVisiEnforceStore extends ActionVisitorTemplateEnforce<SytotauhInfo> {
 	
-	public VisiSytotauhEnforceStore(DeciTreeOption<SytotauhInfo> option) {
+	public SytotauhVisiEnforceStore(DeciTreeOption<SytotauhInfo> option) {
 		super(option);	
 	}
 	
