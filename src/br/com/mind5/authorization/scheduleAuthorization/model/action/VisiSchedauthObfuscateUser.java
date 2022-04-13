@@ -6,7 +6,7 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedauthObfuscateUser extends ActionVisitorTemplateEnforce<SchedauthInfo> {
+public final class VisiSchedauthObfuscateUser extends ActionVisitorTemplateEnforce<SchedauthInfo> {
 	
 	public VisiSchedauthObfuscateUser(DeciTreeOption<SchedauthInfo> option) {
 		super(option);

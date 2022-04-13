@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoSchedauthSelectSingle extends DaoStmtTemplate<SchedauthInfo> {	
+public final class SchedauthDaoSelectSingle extends DaoStmtTemplate<SchedauthInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.SCHEDULE_TABLE;
 	
 	
-	public DaoSchedauthSelectSingle(Connection conn, SchedauthInfo recordInfo, String schemaName) {
+	public SchedauthDaoSelectSingle(Connection conn, SchedauthInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoSchedauthSelectSingle extends DaoStmtTemplate<SchedauthInf
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoSchedauthWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new SchedauthDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,11 +67,11 @@ public final class DaoSchedauthSelectSingle extends DaoStmtTemplate<SchedauthInf
 				do {
 					SchedauthInfo dataInfo = new SchedauthInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoSchedauthDbTableColumn.COL_COD_OWNER);	
-					dataInfo.codSchedule = stmtResult.getLong(DaoSchedauthDbTableColumn.COL_COD_SCHEDULE);
-					dataInfo.recordMode = stmtResult.getString(DaoSchedauthDbTableColumn.COL_RECORD_MODE);	
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoSchedauthDbTableColumn.COL_COD_USER);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoSchedauthDbTableColumn.COL_COD_STORE);
+					dataInfo.codOwner = stmtResult.getLong(SchedauthDaoDbTableColumn.COL_COD_OWNER);	
+					dataInfo.codSchedule = stmtResult.getLong(SchedauthDaoDbTableColumn.COL_COD_SCHEDULE);
+					dataInfo.recordMode = stmtResult.getString(SchedauthDaoDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, SchedauthDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, SchedauthDaoDbTableColumn.COL_COD_STORE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

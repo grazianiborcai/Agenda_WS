@@ -10,7 +10,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiSchedauthMergeUsername extends ActionVisitorTemplateMerge<SchedauthInfo, UsernameInfo> {
+public final class VisiSchedauthMergeUsername extends ActionVisitorTemplateMerge<SchedauthInfo, UsernameInfo> {
 	
 	public VisiSchedauthMergeUsername(DeciTreeOption<SchedauthInfo> option) {
 		super(option, UsernameInfo.class);

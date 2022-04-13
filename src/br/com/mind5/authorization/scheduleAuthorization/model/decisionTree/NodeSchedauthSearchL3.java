@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
-import br.com.mind5.authorization.scheduleAuthorization.model.action.StdSchedauthMergeUsername;
+import br.com.mind5.authorization.scheduleAuthorization.model.action.VisiSchedauthMergeUsername;
 import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckAuthCustomer;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -41,7 +42,7 @@ public final class NodeSchedauthSearchL3 extends DeciTreeTemplateWrite<Schedauth
 	@Override protected List<ActionStd<SchedauthInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedauthInfo> option) {
 		List<ActionStd<SchedauthInfo>> actions = new ArrayList<>();		
 
-		ActionStd<SchedauthInfo> mergeUsername = new StdSchedauthMergeUsername(option);
+		ActionStd<SchedauthInfo> mergeUsername = new ActionStdCommom<SchedauthInfo>(option, VisiSchedauthMergeUsername.class);
 		
 		actions.add(mergeUsername);		
 		return actions;

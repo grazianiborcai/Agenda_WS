@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoSchedauthDbTableColumn extends DaoDbTableColumnTemplate {
+public final class SchedauthDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;	
 	public static final String COL_COD_SCHEDULE = DaoDbField.COL_COD_SCHEDULE;
@@ -17,7 +17,7 @@ public final class DaoSchedauthDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
-	public DaoSchedauthDbTableColumn() {
+	public SchedauthDaoDbTableColumn() {
 		super();
 	}
 	

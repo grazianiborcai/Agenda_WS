@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class SchedauthVisiMergeSotarch extends InfoMergerVisitorTemplate<SchedauthInfo, SotarchInfo> {
+final class SchedauthMergerVisiSotarch extends InfoMergerVisitorTemplate<SchedauthInfo, SotarchInfo> {
 
 	@Override public boolean shouldMerge(SchedauthInfo baseInfo, SotarchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);

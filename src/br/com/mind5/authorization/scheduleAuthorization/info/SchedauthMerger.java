@@ -13,7 +13,7 @@ public final class SchedauthMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedauthVisiMergeSotarch());
+		builder.addVisitor(new SchedauthMergerVisiSotarch());
 		InfoMerger<SchedauthInfo, SotarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class SchedauthMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedauthVisiMergeUsername());
+		builder.addVisitor(new SchedauthMergerVisiUsername());
 		InfoMerger<SchedauthInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -39,7 +39,7 @@ public final class SchedauthMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedauthVisiMergeToSelect());
+		builder.addVisitor(new SchedauthMergerVisiToSelect());
 		InfoMerger<SchedauthInfo, SchedauthInfo> merger = builder.build();		
 	
 		return merger.merge();

@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class DaoSchedauthWhere implements DaoStmtWhere {	
+public final class SchedauthDaoWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public DaoSchedauthWhere(DaoWhereBuilderOption whereOption, String tableName, SchedauthInfo recordInfo) {
+	public SchedauthDaoWhere(DaoWhereBuilderOption whereOption, String tableName, SchedauthInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,23 +27,23 @@ public final class DaoSchedauthWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoSchedauthDbTableColumn.COL_COD_OWNER :
+				case SchedauthDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoSchedauthDbTableColumn.COL_COD_SCHEDULE :
+				case SchedauthDaoDbTableColumn.COL_COD_SCHEDULE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSchedule));
 					break;
 					
-				case DaoSchedauthDbTableColumn.COL_COD_USER :
+				case SchedauthDaoDbTableColumn.COL_COD_USER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 					
-				case DaoSchedauthDbTableColumn.COL_COD_STORE :
+				case SchedauthDaoDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case DaoSchedauthDbTableColumn.COL_RECORD_MODE :
+				case SchedauthDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}
