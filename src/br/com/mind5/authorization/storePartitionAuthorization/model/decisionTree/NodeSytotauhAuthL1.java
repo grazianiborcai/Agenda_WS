@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
-import br.com.mind5.authorization.storePartitionAuthorization.model.action.StdSytotauhSuccess;
 import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckSytotin;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -52,7 +52,7 @@ public final class NodeSytotauhAuthL1 extends DeciTreeTemplateWrite<SytotauhInfo
 	@Override protected List<ActionStd<SytotauhInfo>> buildActionsOnFailedHook(DeciTreeOption<SytotauhInfo> option) {
 		List<ActionStd<SytotauhInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SytotauhInfo> success = new StdSytotauhSuccess(option);
+		ActionStd<SytotauhInfo> success = new ActionStdSuccessCommom<SytotauhInfo>(option);
 		
 		actions.add(success);
 		return actions;

@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
-import br.com.mind5.authorization.storePartitionAuthorization.model.action.StdSytotauhEnforceStore;
+import br.com.mind5.authorization.storePartitionAuthorization.model.action.SytotauhVisiEnforceStore;
 import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckSytotin;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -52,7 +53,7 @@ public final class NodeSytotauhSelectL1 extends DeciTreeTemplateWrite<SytotauhIn
 	@Override protected List<ActionStd<SytotauhInfo>> buildActionsOnFailedHook(DeciTreeOption<SytotauhInfo> option) {
 		List<ActionStd<SytotauhInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SytotauhInfo> obfuscateStore = new StdSytotauhEnforceStore(option);
+		ActionStd<SytotauhInfo> obfuscateStore = new ActionStdCommom<SytotauhInfo>(option, SytotauhVisiEnforceStore.class);
 		
 		actions.add(obfuscateStore);
 		return actions;

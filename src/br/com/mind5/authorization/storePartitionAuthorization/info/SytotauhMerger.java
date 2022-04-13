@@ -13,7 +13,7 @@ public final class SytotauhMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SytotauhVisiMergeStorauth());
+		builder.addVisitor(new SytotauhMergerVisiStorauth());
 		InfoMerger<SytotauhInfo, StorauthInfo> merger = builder.build();		
 	
 		return merger.merge();
