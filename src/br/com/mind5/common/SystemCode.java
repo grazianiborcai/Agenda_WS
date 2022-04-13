@@ -1893,4 +1893,7 @@ public final class SystemCode {
 	
 	// Employee Working Time-Snaphot
 	public static final int EMP_WTIME_SNAPHOT_MANDATORY_FIELD_EMPTY 	= 19200;
+	
+	// Store Lunch Time-Snaphot
+	public static final int STORE_LTIME_SNAPHOT_MANDATORY_FIELD_EMPTY 	= 19250;
 }
