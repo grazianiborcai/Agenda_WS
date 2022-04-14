@@ -1901,4 +1901,11 @@ public final class SystemCode {
 	public static final int STORE_LTIME_SEARCH_MANDATORY_FIELD_EMPTY 	= 19300;
 	public static final int STORE_LTIME_SEARCH_ALREADY_EXIST 			= 19301;
 	public static final int STORE_LTIME_SEARCH_NOT_FOUND 				= 19302;
+	
+	// Store Lunch Time
+	public static final int STORE_LTIME_NOT_FOUND 						= 19350;
+	public static final int STORE_LTIME_ALREADY_EXIST					= 19351;
+	public static final int STORE_LTIME_FLAGGED_AS_DELETED 				= 19352;
+	public static final int STORE_LTIME_MANDATORY_FIELD_EMPTY 			= 19353;
+	public static final int STORE_LTIME_BAD_TIME_RANGE 					= 19354;
 }

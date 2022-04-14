@@ -36,6 +36,12 @@ import br.com.mind5.business.storeLeaveDate.model.StolateModelSearch;
 import br.com.mind5.business.storeLeaveDate.model.StolateModelSelect;
 import br.com.mind5.business.storeLeaveDate.model.StolateModelUpdate;
 import br.com.mind5.business.storeList.model.StolisModelSearch;
+import br.com.mind5.business.storeLunchTime.info.StuntmInfo;
+import br.com.mind5.business.storeLunchTime.model.StuntmModelDelete;
+import br.com.mind5.business.storeLunchTime.model.StuntmModelInsert;
+import br.com.mind5.business.storeLunchTime.model.StuntmModelSearchAuth;
+import br.com.mind5.business.storeLunchTime.model.StuntmModelSelect;
+import br.com.mind5.business.storeLunchTime.model.StuntmModelUpdate;
 import br.com.mind5.business.storeNearby.model.StorbyModelSelect;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.model.StowotmModelDelete;
@@ -66,6 +72,13 @@ public class StoreResource {
 	private static final String INSERT_STORE_WTIME = "/insertStoreWorkTime";
 	private static final String DELETE_STORE_WTIME = "/deleteStoreWorkTime";
 	private static final String UPDATE_STORE_WTIME = "/updateStoreWorkTime";
+	
+	private static final String SELECT_STORE_LTIME = "/selectStoreLunchTime";
+	private static final String SEARCH_STORE_LTIME = "/searchStoreLunchTime";
+	private static final String INSERT_STORE_LTIME = "/insertStoreLunchTime";
+	private static final String DELETE_STORE_LTIME = "/deleteStoreLunchTime";
+	private static final String UPDATE_STORE_LTIME = "/updateStoreLunchTime";
+	
 	private static final String SELECT_STORE_LDATE = "/selectStoreLeaveDate";
 	private static final String SEARCH_STORE_LDATE = "/searchStoreLeaveDate";
 	private static final String INSERT_STORE_LDATE = "/insertStoreLeaveDate";
@@ -345,6 +358,105 @@ public class StoreResource {
 	public Response updateStoreWTime(@Context HttpServletRequest request, String incomingData) {
 
 		Model model = new StowotmModelUpdate(incomingData, request);
+		model.executeRequest();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_STORE_LTIME)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectStoreLTime(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner, 
+			                         @HeaderParam("codStore")    @DefaultValue("-1") int codStore,
+			                         @HeaderParam("codWeekday")  @DefaultValue("-1") int codWeekday,			                         
+			                         @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
+			                         @HeaderParam("TOKEN_USERNAME") String username) {
+
+		StuntmInfo recordInfo = new StuntmInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codWeekday = codWeekday;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		Model model = new StuntmModelSelect(recordInfo);
+		model.executeRequest();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
+	}
+	
+	
+	
+	@POST
+	@Path(SEARCH_STORE_LTIME)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response searchStoreLTime(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new StuntmModelSearchAuth(incomingData, request);
+		model.executeRequest();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
+	}
+	
+	
+	
+	@POST
+	@Path(INSERT_STORE_LTIME)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response insertStoreLTime(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new StuntmModelInsert(incomingData, request);
+		model.executeRequest();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
+	}
+	
+	
+	
+	@DELETE
+	@Path(DELETE_STORE_LTIME)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteStoreLTime(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner, 
+			                         @HeaderParam("codStore")    @DefaultValue("-1") int codStore,
+			                         @HeaderParam("codWeekday")  @DefaultValue("-1") int codWeekday,
+			                         @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
+			                         @HeaderParam("TOKEN_USERNAME") String username) {
+		
+		StuntmInfo recordInfo = new StuntmInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codWeekday = codWeekday;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		Model model = new StuntmModelDelete(recordInfo);
+		model.executeRequest();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
+	}
+	
+	
+	
+	@POST
+	@Path(UPDATE_STORE_LTIME)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateStoreLTime(@Context HttpServletRequest request, String incomingData) {
+
+		Model model = new StuntmModelUpdate(incomingData, request);
 		model.executeRequest();
 		Response response = model.getResponse();
 		

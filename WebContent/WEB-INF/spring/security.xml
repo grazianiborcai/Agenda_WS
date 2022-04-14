@@ -61,7 +61,12 @@
     	<security:intercept-url pattern="/**/Store/insertStoreWorkTime" 			access="hasAuthority('STORE_UPDATE')" 				/>
     	<security:intercept-url pattern="/**/Store/deleteStoreWorkTime" 			access="hasAuthority('STORE_UPDATE')" 				/>
     	<security:intercept-url pattern="/**/Store/selectStoreWorkTime" 			access="hasAuthority('STORE_READ')" 				/> 
-    	<security:intercept-url pattern="/**/Store/searchStoreWorkTime" 			access="hasAuthority('STORE_READ')" 				/> 
+    	<security:intercept-url pattern="/**/Store/searchStoreWorkTime" 			access="hasAuthority('STORE_READ')" 				/>    	
+   		<security:intercept-url pattern="/**/Store/updateStoreLunchTime" 			access="hasAuthority('STORE_UPDATE')" 				/>
+    	<security:intercept-url pattern="/**/Store/insertStoreLunchTime" 			access="hasAuthority('STORE_UPDATE')" 				/>
+    	<security:intercept-url pattern="/**/Store/deleteStoreLunchTime" 			access="hasAuthority('STORE_UPDATE')" 				/>
+    	<security:intercept-url pattern="/**/Store/selectStoreLunchTime" 			access="hasAuthority('STORE_READ')" 				/> 
+    	<security:intercept-url pattern="/**/Store/searchStoreLunchTime" 			access="hasAuthority('STORE_READ')" 				/>    	
     	<security:intercept-url pattern="/**/Store/updateStoreLeaveDate" 			access="hasAuthority('STORE_UPDATE')" 				/>
     	<security:intercept-url pattern="/**/Store/insertStoreLeaveDate" 			access="hasAuthority('STORE_UPDATE')" 				/>
     	<security:intercept-url pattern="/**/Store/deleteStoreLeaveDate" 			access="hasAuthority('STORE_UPDATE')" 				/>

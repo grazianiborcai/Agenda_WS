@@ -116,6 +116,7 @@ import br.com.mind5.business.storeLeaveDate.dao.StolateDaoDbTableColumn;
 import br.com.mind5.business.storeLeaveDateRange.dao.StolargDaoDbTableColumn;
 import br.com.mind5.business.storeLeaveDateSearch.dao.StolarchDaoDbTableColumn;
 import br.com.mind5.business.storeList.dao.StolisDaoDbTableColumn;
+import br.com.mind5.business.storeLunchTime.dao.StuntmDaoDbTableColumn;
 import br.com.mind5.business.storeLunchTimeSearch.dao.StuntmarchDaoDbTableColumn;
 import br.com.mind5.business.storeLunchTimeSnapshot.dao.StuntmapDaoDbTableColumn;
 import br.com.mind5.business.storeNearby.dao.StorbyDaoDbTableColumn;
@@ -592,6 +593,8 @@ public final class DaoDbTableColumnAll {
 		addTable(new EmpwotmapDaoDbTableColumn());
 		addTable(new StuntmapDaoDbTableColumn());
 		addTable(new StuntmarchDaoDbTableColumn());
+		addTable(new StowotmDaoDbTableColumn());
+		addTable(new StuntmDaoDbTableColumn());
 	}
 	
 	
