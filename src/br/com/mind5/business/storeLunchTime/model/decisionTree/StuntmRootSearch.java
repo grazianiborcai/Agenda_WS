@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.storeLunchTime.info.StuntmInfo;
 import br.com.mind5.business.storeLunchTime.model.action.StuntmVisiRootSelect;
-import br.com.mind5.business.storeLunchTime.model.action.StuntmVisiMergeStuntmarch_;
+import br.com.mind5.business.storeLunchTime.model.action.StuntmVisiMergeStuntmarch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -39,7 +39,7 @@ public final class StuntmRootSearch extends DeciTreeTemplateRead<StuntmInfo> {
 	@Override protected List<ActionStd<StuntmInfo>> buildActionsOnPassedHook(DeciTreeOption<StuntmInfo> option) {
 		List<ActionStd<StuntmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StuntmInfo> mergeStuntmarch = new ActionStdCommom<StuntmInfo>(option, StuntmVisiMergeStuntmarch_.class);
+		ActionStd<StuntmInfo> mergeStuntmarch = new ActionStdCommom<StuntmInfo>(option, StuntmVisiMergeStuntmarch.class);
 		ActionLazy<StuntmInfo> select = new ActionLazyCommom<StuntmInfo>(option, StuntmVisiRootSelect.class);
 		
 		mergeStuntmarch.addPostAction(select);

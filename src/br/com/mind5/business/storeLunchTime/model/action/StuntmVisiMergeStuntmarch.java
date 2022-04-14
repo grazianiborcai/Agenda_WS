@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StuntmVisiMergeStuntmarch_ extends ActionVisitorTemplateMerge<StuntmInfo, StuntmarchInfo> {
+public final class StuntmVisiMergeStuntmarch extends ActionVisitorTemplateMerge<StuntmInfo, StuntmarchInfo> {
 	
-	public StuntmVisiMergeStuntmarch_(DeciTreeOption<StuntmInfo> option) {
+	public StuntmVisiMergeStuntmarch(DeciTreeOption<StuntmInfo> option) {
 		super(option, StuntmarchInfo.class);
 	}
 	

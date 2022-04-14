@@ -37,11 +37,11 @@ import br.com.mind5.business.storeLeaveDate.model.StolateModelSelect;
 import br.com.mind5.business.storeLeaveDate.model.StolateModelUpdate;
 import br.com.mind5.business.storeList.model.StolisModelSearch;
 import br.com.mind5.business.storeLunchTime.info.StuntmInfo;
-import br.com.mind5.business.storeLunchTime.model.StuntmModelDelete;
-import br.com.mind5.business.storeLunchTime.model.StuntmModelInsert;
+import br.com.mind5.business.storeLunchTime.model.StuntmModelDeleteAuth;
+import br.com.mind5.business.storeLunchTime.model.StuntmModelInsertAuth;
 import br.com.mind5.business.storeLunchTime.model.StuntmModelSearchAuth;
 import br.com.mind5.business.storeLunchTime.model.StuntmModelSelect;
-import br.com.mind5.business.storeLunchTime.model.StuntmModelUpdate;
+import br.com.mind5.business.storeLunchTime.model.StuntmModelUpdateAuth;
 import br.com.mind5.business.storeNearby.model.StorbyModelSelect;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.model.StowotmModelDelete;
@@ -414,7 +414,7 @@ public class StoreResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertStoreLTime(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new StuntmModelInsert(incomingData, request);
+		Model model = new StuntmModelInsertAuth(incomingData, request);
 		model.executeRequest();
 		Response response = model.getResponse();
 		
@@ -440,7 +440,7 @@ public class StoreResource {
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.username = username;
 		
-		Model model = new StuntmModelDelete(recordInfo);
+		Model model = new StuntmModelDeleteAuth(recordInfo);
 		model.executeRequest();
 		Response response = model.getResponse();
 		
@@ -456,7 +456,7 @@ public class StoreResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateStoreLTime(@Context HttpServletRequest request, String incomingData) {
 
-		Model model = new StuntmModelUpdate(incomingData, request);
+		Model model = new StuntmModelUpdateAuth(incomingData, request);
 		model.executeRequest();
 		Response response = model.getResponse();
 		

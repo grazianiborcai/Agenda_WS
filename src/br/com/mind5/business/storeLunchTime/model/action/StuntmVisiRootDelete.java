@@ -3,7 +3,7 @@ package br.com.mind5.business.storeLunchTime.model.action;
 import java.util.List;
 
 import br.com.mind5.business.storeLunchTime.info.StuntmInfo;
-import br.com.mind5.business.storeLunchTime.model.decisionTree.StuntmRootDelete;
+import br.com.mind5.business.storeLunchTime.model.decisionTree.StuntmRootDeleteAuth;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +17,7 @@ public final class StuntmVisiRootDelete extends ActionVisitorTemplateAction<Stun
 	
 	
 	@Override protected Class<? extends DeciTree<StuntmInfo>> getTreeClassHook() {
-		return StuntmRootDelete.class;
+		return StuntmRootDeleteAuth.class;
 	}
 	
 	

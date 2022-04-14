@@ -12,7 +12,6 @@ import br.com.mind5.business.storeLunchTime.model.action.StuntmVisiMergeUsername
 import br.com.mind5.business.storeLunchTime.model.checker.StuntmCheckDelete;
 import br.com.mind5.business.storeLunchTime.model.checker.StuntmCheckEmpwotarch;
 import br.com.mind5.business.storeLunchTime.model.checker.StuntmCheckExist;
-import br.com.mind5.business.storeLunchTime.model.checker.StuntmCheckStorauth;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -55,13 +54,6 @@ public final class StuntmRootDelete extends DeciTreeTemplateWrite<StuntmInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
 		checker = new StuntmCheckEmpwotarch(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new StuntmCheckStorauth(checkerOption);
 		queue.add(checker);
 		
 		 return new ModelCheckerHelperQueue<StuntmInfo>(queue);
