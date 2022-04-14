@@ -10,7 +10,6 @@ import br.com.mind5.business.storeLunchTime.model.action.StuntmVisiMergeToUpdate
 import br.com.mind5.business.storeLunchTime.model.action.StuntmVisiMergeUsername;
 import br.com.mind5.business.storeLunchTime.model.action.StuntmVisiNodeSnapshot;
 import br.com.mind5.business.storeLunchTime.model.action.StuntmVisiRootSelect;
-import br.com.mind5.business.storeLunchTime.model.checker.StuntmCheckEmpwout;
 import br.com.mind5.business.storeLunchTime.model.checker.StuntmCheckExist;
 import br.com.mind5.business.storeLunchTime.model.checker.StuntmCheckLangu;
 import br.com.mind5.business.storeLunchTime.model.checker.StuntmCheckOwner;
@@ -96,13 +95,6 @@ public final class StuntmRootUpdate extends DeciTreeTemplateWrite<StuntmInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StuntmCheckStoworg(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
-		checker = new StuntmCheckEmpwout(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
