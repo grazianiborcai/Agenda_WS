@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeLunchTime.info.StuntmInfo;
-import br.com.mind5.business.storeLunchTime.model.action.StuntmVisiEnforceStoreKey;
-import br.com.mind5.business.storeLunchTime.model.action.StuntmVisiRootSearch;
+import br.com.mind5.business.storeLunchTime.model.action.StuntmVisiMergeStuntmarchStore;
+import br.com.mind5.business.storeLunchTime.model.action.StuntmVisiRootSelect;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -39,12 +39,12 @@ public final class StuntmRootSearchStore extends DeciTreeTemplateRead<StuntmInfo
 	@Override protected List<ActionStd<StuntmInfo>> buildActionsOnPassedHook(DeciTreeOption<StuntmInfo> option) {
 		List<ActionStd<StuntmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StuntmInfo> enforceStoreKey = new ActionStdCommom<StuntmInfo>(option, StuntmVisiEnforceStoreKey.class);
-		ActionLazy<StuntmInfo> search = new ActionLazyCommom<StuntmInfo>(option, StuntmVisiRootSearch.class);
+		ActionStd<StuntmInfo> searchStore = new ActionStdCommom<StuntmInfo>(option, StuntmVisiMergeStuntmarchStore.class);
+		ActionLazy<StuntmInfo> select = new ActionLazyCommom<StuntmInfo>(option, StuntmVisiRootSelect.class);
 		
-		enforceStoreKey.addPostAction(search);
+		searchStore.addPostAction(select);
 		
-		actions.add(enforceStoreKey);		
+		actions.add(searchStore);		
 		return actions; 
 	}
 }

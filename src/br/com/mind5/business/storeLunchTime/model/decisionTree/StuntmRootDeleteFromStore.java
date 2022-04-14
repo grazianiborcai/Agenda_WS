@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeLunchTime.info.StuntmInfo;
+import br.com.mind5.business.storeLunchTime.model.action.StuntmVisiMergeStuntmarchStore;
 import br.com.mind5.business.storeLunchTime.model.action.StuntmVisiRootDelete;
-import br.com.mind5.business.storeLunchTime.model.action.StuntmVisiEnforceStoreKey;
-import br.com.mind5.business.storeLunchTime.model.action.StuntmVisiMergeStuntmarch;
 import br.com.mind5.business.storeLunchTime.model.checker.StuntmCheckDeleteFromStore;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -46,14 +45,12 @@ public final class StuntmRootDeleteFromStore extends DeciTreeTemplateWrite<Stunt
 	@Override protected List<ActionStd<StuntmInfo>> buildActionsOnPassedHook(DeciTreeOption<StuntmInfo> option) {
 		List<ActionStd<StuntmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StuntmInfo> enforceStoreKey = new ActionStdCommom<StuntmInfo>(option, StuntmVisiEnforceStoreKey.class);
-		ActionLazy<StuntmInfo> mergeStuntmarch = new ActionLazyCommom<StuntmInfo>(option, StuntmVisiMergeStuntmarch.class);
+		ActionStd<StuntmInfo> mergeStuntmarch = new ActionStdCommom<StuntmInfo>(option, StuntmVisiMergeStuntmarchStore.class);
 		ActionLazy<StuntmInfo> delete = new ActionLazyCommom<StuntmInfo>(option, StuntmVisiRootDelete.class);
 		
-		enforceStoreKey.addPostAction(mergeStuntmarch);
 		mergeStuntmarch.addPostAction(delete);
 		
-		actions.add(enforceStoreKey);
+		actions.add(mergeStuntmarch);
 		return actions;
 	}
 }
