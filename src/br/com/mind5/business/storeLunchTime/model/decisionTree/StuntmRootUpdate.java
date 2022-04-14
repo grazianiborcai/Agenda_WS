@@ -16,6 +16,7 @@ import br.com.mind5.business.storeLunchTime.model.checker.StuntmCheckLangu;
 import br.com.mind5.business.storeLunchTime.model.checker.StuntmCheckOwner;
 import br.com.mind5.business.storeLunchTime.model.checker.StuntmCheckRange;
 import br.com.mind5.business.storeLunchTime.model.checker.StuntmCheckStore;
+import br.com.mind5.business.storeLunchTime.model.checker.StuntmCheckStoworg;
 import br.com.mind5.business.storeLunchTime.model.checker.StuntmCheckWeekday;
 import br.com.mind5.business.storeLunchTime.model.checker.StuntmCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
@@ -88,7 +89,14 @@ public final class StuntmRootUpdate extends DeciTreeTemplateWrite<StuntmInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StuntmCheckExist(checkerOption);
-		queue.add(checker);	
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StuntmCheckStoworg(checkerOption);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
