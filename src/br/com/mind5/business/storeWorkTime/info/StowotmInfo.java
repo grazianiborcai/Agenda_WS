@@ -16,6 +16,7 @@ public final class StowotmInfo extends InfoRecord implements Cloneable {
 	public LocalTime endTime;
 	public String codTimezone;
 	public long codSnapshot;
+	public boolean isDeleted;
 	public LocalDateTime createdOn;
 	public long createdBy;
 	public LocalDateTime lastChanged;
@@ -35,6 +36,7 @@ public final class StowotmInfo extends InfoRecord implements Cloneable {
 		lastChangedBy = DefaultValue.number();
 		beginTime = DefaultValue.object();
 		endTime = DefaultValue.object();
+		isDeleted = DefaultValue.boole();
 		createdOn = DefaultValue.object();
 		lastChanged = DefaultValue.object();
 		recordMode = DefaultValue.recordMode();

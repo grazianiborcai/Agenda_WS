@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
-import br.com.mind5.business.storeWorkTime.model.action.StowotmVisiEnforceStoreKey;
-import br.com.mind5.business.storeWorkTime.model.action.StowotmVisiRootSearch;
+import br.com.mind5.business.storeWorkTime.model.action.StowotmVisiMergeStowotarchStore;
+import br.com.mind5.business.storeWorkTime.model.action.StowotmVisiRootSelect;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -39,12 +39,12 @@ public final class StowotmRootSearchStore extends DeciTreeTemplateRead<StowotmIn
 	@Override protected List<ActionStd<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
 		List<ActionStd<StowotmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StowotmInfo> enforceStoreKey = new ActionStdCommom<StowotmInfo>(option, StowotmVisiEnforceStoreKey.class);
-		ActionLazy<StowotmInfo> search = new ActionLazyCommom<StowotmInfo>(option, StowotmVisiRootSearch.class);
+		ActionStd<StowotmInfo> search = new ActionStdCommom<StowotmInfo>(option, StowotmVisiMergeStowotarchStore.class);
+		ActionLazy<StowotmInfo> select = new ActionLazyCommom<StowotmInfo>(option, StowotmVisiRootSelect.class);
 		
-		enforceStoreKey.addPostAction(search);
+		search.addPostAction(select);
 		
-		actions.add(enforceStoreKey);		
+		actions.add(search);		
 		return actions; 
 	}
 }
