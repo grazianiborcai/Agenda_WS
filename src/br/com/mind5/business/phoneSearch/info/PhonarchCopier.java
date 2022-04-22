@@ -8,39 +8,10 @@ import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.security.user.info.UserInfo;
 
 public final class PhonarchCopier {	
-	public static PhonarchInfo copyFromUser(UserInfo source) {
-		InfoCopier<PhonarchInfo, UserInfo> copier = new PhonarchCopyUser();
-		return copier.makeCopy(source);
-	}
-	
-	
-	
-	public static List<PhonarchInfo> copyFromUser(List<UserInfo> sources) {
-		InfoCopier<PhonarchInfo, UserInfo> copier = new PhonarchCopyUser();
-		return copier.makeCopy(sources);
-	}
-	
-	
-	
 	public static PhonarchInfo copyFromStore(StoreInfo source) {
 		InfoCopier<PhonarchInfo, StoreInfo> copier = new PhonarchCopyStore();
-		return copier.makeCopy(source);
-	}
-	
-	
-	
-	public static List<PhonarchInfo> copyFromStore(List<StoreInfo> sources) {
-		InfoCopier<PhonarchInfo, StoreInfo> copier = new PhonarchCopyStore();
-		return copier.makeCopy(sources);
-	}
-	
-	
-	
-	public static PhonarchInfo copyFromPhoneRef(PhoneInfo source) {
-		InfoCopier<PhonarchInfo, PhoneInfo> copier = new PhonarchCopyPhoneRef();
 		return copier.makeCopy(source);
 	}
 	
