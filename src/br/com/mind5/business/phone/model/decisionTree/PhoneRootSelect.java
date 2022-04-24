@@ -69,8 +69,7 @@ public final class PhoneRootSelect extends DeciTreeTemplateWrite<PhoneInfo> {
 		select.addPostAction(mergeCountrone);	
 		mergeCountrone.addPostAction(mergeFormone);
 		
-		actions.add(select);
-		
+		actions.add(select);		
 		return actions;
 	}
 }
