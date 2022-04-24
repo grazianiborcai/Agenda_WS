@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.StoreVisiNodeInsertComp;
-import br.com.mind5.business.store.model.action.StoreVisiNodeInsertPerson;
-import br.com.mind5.business.store.model.action.StoreVisiNodeInsertPhone;
-import br.com.mind5.business.store.model.action.StoreVisiNodeInsertStorext;
-import br.com.mind5.business.store.model.action.StoreVisiNodeSnapshot;
-import br.com.mind5.business.store.model.action.StoreVisiNodeUpsertAddress;
-import br.com.mind5.business.store.model.action.StoreVisiRootSelect;
 import br.com.mind5.business.store.model.action.StoreVisiMatbcinInsert;
+import br.com.mind5.business.store.model.action.StoreVisiNodeAddressUpsert;
+import br.com.mind5.business.store.model.action.StoreVisiNodeCompInsert;
+import br.com.mind5.business.store.model.action.StoreVisiNodePersonInsert;
+import br.com.mind5.business.store.model.action.StoreVisiNodePhoneInsert;
+import br.com.mind5.business.store.model.action.StoreVisiNodeSnapshot;
+import br.com.mind5.business.store.model.action.StoreVisiNodeStorextInsert;
+import br.com.mind5.business.store.model.action.StoreVisiNodeStowotmInsert;
+import br.com.mind5.business.store.model.action.StoreVisiNodeStuntmInsert;
+import br.com.mind5.business.store.model.action.StoreVisiRootSelect;
 import br.com.mind5.business.store.model.action.StoreVisiUserInsert;
 import br.com.mind5.business.store.model.checker.StoreCheckCurrency;
 import br.com.mind5.business.store.model.checker.StoreCheckHasAddress;
@@ -93,14 +95,16 @@ public final class StoreRootInsert extends DeciTreeTemplateWrite<StoreInfo> {
 		//TODO: permitir que outro usuario seja associado ou inves de sempre criar um novo ?
 		//TODO: O que fazer se o CPF/e-mail ja tiver associado a um customer/owner/store manager ?
 		ActionStd<StoreInfo> insertStore = new StoreNodeInsert(option).toAction();
-		ActionLazy<StoreInfo> insertPerson = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeInsertPerson.class);	
-		ActionLazy<StoreInfo> insertComp = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeInsertComp.class);
+		ActionLazy<StoreInfo> insertPerson = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodePersonInsert.class);	
+		ActionLazy<StoreInfo> insertComp = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeCompInsert.class);
 		ActionLazy<StoreInfo> insertUser = new ActionLazyCommom<StoreInfo>(option, StoreVisiUserInsert.class);
 		ActionLazy<StoreInfo> snapshot = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeSnapshot.class);
-		ActionLazy<StoreInfo> upsertAddress = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeUpsertAddress.class);		
-		ActionLazy<StoreInfo> insertPhone = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeInsertPhone.class);
-		ActionLazy<StoreInfo> insertStorext = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeInsertStorext.class);			
-		ActionLazy<StoreInfo> matbcinInsert = new ActionLazyCommom<StoreInfo>(option, StoreVisiMatbcinInsert.class);		
+		ActionLazy<StoreInfo> upsertAddress = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeAddressUpsert.class);		
+		ActionLazy<StoreInfo> insertPhone = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodePhoneInsert.class);
+		ActionLazy<StoreInfo> insertStorext = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeStorextInsert.class);			
+		ActionLazy<StoreInfo> insertMatbcin = new ActionLazyCommom<StoreInfo>(option, StoreVisiMatbcinInsert.class);
+		ActionLazy<StoreInfo> insertStowotm = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeStowotmInsert.class);
+		ActionLazy<StoreInfo> insertStuntm = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeStuntmInsert.class);
 		ActionLazy<StoreInfo> selectStore = new ActionLazyCommom<StoreInfo>(option, StoreVisiRootSelect.class);	
 		
 		insertStore.addPostAction(insertPerson);		
@@ -110,8 +114,10 @@ public final class StoreRootInsert extends DeciTreeTemplateWrite<StoreInfo> {
 		snapshot.addPostAction(upsertAddress);			
 		snapshot.addPostAction(insertPhone);
 		snapshot.addPostAction(insertStorext);
-		snapshot.addPostAction(matbcinInsert);
-		snapshot.addPostAction(selectStore);
+		snapshot.addPostAction(insertMatbcin);
+		snapshot.addPostAction(insertStowotm);
+		snapshot.addPostAction(insertStuntm);
+		insertStuntm.addPostAction(selectStore);
 		
 		actions.add(insertStore);	
 		return actions;

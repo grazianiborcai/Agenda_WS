@@ -7,9 +7,11 @@ import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.storeAccount.info.StoracInfo;
+import br.com.mind5.business.storeLunchTime.info.StuntmInfo;
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeText.info.StorextInfo;
+import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.file.fileImageDecorated.info.FimecoInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
@@ -20,6 +22,32 @@ import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.stats.statsStoreProfile.storeProfileMonth.info.StefilonInfo;
 
 public final class StoreMerger {
+	public static List<StoreInfo> mergeWithStuntm(List<StoreInfo> baseInfos, List<StuntmInfo> selectedInfos) {
+		InfoMergerBuilder<StoreInfo, StuntmInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StoreMergerVisiStuntm());
+		InfoMerger<StoreInfo, StuntmInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<StoreInfo> mergeWithStowotm(List<StoreInfo> baseInfos, List<StowotmInfo> selectedInfos) {
+		InfoMergerBuilder<StoreInfo, StowotmInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StoreMergerVisiStowotm());
+		InfoMerger<StoreInfo, StowotmInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<StoreInfo> mergeWithStefilon(List<StoreInfo> baseInfos, List<StefilonInfo> selectedInfos) {
 		InfoMergerBuilder<StoreInfo, StefilonInfo> builder = new InfoMergerBuilder<>();
 		

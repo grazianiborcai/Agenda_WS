@@ -36,17 +36,19 @@ public final class StoreNodeDeleteCascade extends DeciTreeTemplateWrite<StoreInf
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> deleteStowotm = new StoreNodeDeleteStowotm(option).toAction();
-		ActionStd<StoreInfo> deleteStolate = new StoreNodeDeleteStolate(option).toAction();
-		ActionStd<StoreInfo> deleteMatore = new StoreNodeDeleteMatore(option).toAction();
-		ActionStd<StoreInfo> deleteAddress = new StoreNodeDeleteAddress(option).toAction();
-		ActionStd<StoreInfo> deletePhone = new StoreNodeDeletePhone(option).toAction();
-		ActionStd<StoreInfo> deletePerson = new StoreNodeDeletePerson(option).toAction();
-		ActionStd<StoreInfo> deleteCompany = new StoreNodeDeleteComp(option).toAction();
-		ActionStd<StoreInfo> deleteUser = new StoreNodeDeleteUser(option).toAction();
+		ActionStd<StoreInfo> deleteStowotm = new StoreNodeStowotmDelete(option).toAction();
+		ActionStd<StoreInfo> deleteStuntm = new StoreNodeStuntmDelete(option).toAction();
+		ActionStd<StoreInfo> deleteStolate = new StoreNodeStolateDelete(option).toAction();
+		ActionStd<StoreInfo> deleteMatore = new StoreNodeMatoreDelete(option).toAction();
+		ActionStd<StoreInfo> deleteAddress = new StoreNodeAddressDelete(option).toAction();
+		ActionStd<StoreInfo> deletePhone = new StoreNodePhoneDelete(option).toAction();
+		ActionStd<StoreInfo> deletePerson = new StoreNodePersonDelete(option).toAction();
+		ActionStd<StoreInfo> deleteCompany = new StoreNodeCompDelete(option).toAction();
+		ActionStd<StoreInfo> deleteUser = new StoreNodeUserDelete(option).toAction();
 		ActionStd<StoreInfo> deleteStore = new ActionStdCommom<StoreInfo>(option, StoreVisiDaoDelete.class);
 
-		actions.add(deleteStowotm);		
+		actions.add(deleteStowotm);
+		actions.add(deleteStuntm);
 		actions.add(deleteStolate);			
 		actions.add(deleteMatore);	
 		actions.add(deleteAddress);	

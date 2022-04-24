@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.StoreVisiEnforceLockedOff;
 import br.com.mind5.business.store.model.action.StoreVisiMergeToSelect;
-import br.com.mind5.business.store.model.action.StoreVisiNodeUpdateLock;
+import br.com.mind5.business.store.model.action.StoreVisiNodeLockUpdate;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.business.store.model.checker.StoreCheckLangu;
 import br.com.mind5.business.store.model.checker.StoreCheckOwner;
@@ -80,7 +80,7 @@ public final class StoreRootActivate extends DeciTreeTemplateWrite<StoreInfo> {
 
 		ActionStd<StoreInfo> mergeToSelect = new ActionStdCommom<StoreInfo>(option, StoreVisiMergeToSelect.class);
 		ActionLazy<StoreInfo> enforceLockedOff = new ActionLazyCommom<StoreInfo>(option, StoreVisiEnforceLockedOff.class);
-		ActionLazy<StoreInfo> update = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeUpdateLock.class);
+		ActionLazy<StoreInfo> update = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeLockUpdate.class);
 			
 		mergeToSelect.addPostAction(enforceLockedOff);
 		enforceLockedOff.addPostAction(update);

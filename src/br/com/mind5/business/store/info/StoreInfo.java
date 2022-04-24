@@ -8,7 +8,9 @@ import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.storeAccount.info.StoracInfo;
+import br.com.mind5.business.storeLunchTime.info.StuntmInfo;
 import br.com.mind5.business.storeText.info.StorextInfo;
+import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.file.fileImageDecorated.info.FimecoInfo;
@@ -35,6 +37,8 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public PersonInfo personData;
 	public StoracInfo storacData;
 	public StefilonInfo stefilonData;
+	public List<StowotmInfo> stowotmes;
+	public List<StuntmInfo> stuntmes;	
 	public LocalDateTime createdOn;
 	public long createdBy;
 	public LocalDateTime lastChanged;
@@ -58,6 +62,8 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		personData = DefaultValue.object();
 		storacData = DefaultValue.object();
 		stefilonData = DefaultValue.object();
+		stowotmes = DefaultValue.list();
+		stuntmes = DefaultValue.list();
 		isLocked = DefaultValue.boole();
 		addressData = DefaultValue.object();
 		phones = DefaultValue.list();
@@ -83,14 +89,16 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		StoreInfo deepCopy = (StoreInfo) super.clone();
 		
-		deepCopy.storextes = CloneUtil.cloneRecords(deepCopy.storextes, this.getClass());
-		deepCopy.fimecoData = CloneUtil.cloneRecord(deepCopy.fimecoData, this.getClass());
-		deepCopy.addressData = CloneUtil.cloneRecord(deepCopy.addressData, this.getClass());
-		deepCopy.phones = CloneUtil.cloneRecords(deepCopy.phones, this.getClass());
-		deepCopy.personData = CloneUtil.cloneRecord(deepCopy.personData, this.getClass());
-		deepCopy.companyData = CloneUtil.cloneRecord(deepCopy.companyData, this.getClass());
-		deepCopy.storacData = CloneUtil.cloneRecord(deepCopy.storacData, this.getClass());
+		deepCopy.storextes    = CloneUtil.cloneRecords(deepCopy.storextes  , this.getClass());
+		deepCopy.fimecoData   = CloneUtil.cloneRecord(deepCopy.fimecoData  , this.getClass());
+		deepCopy.addressData  = CloneUtil.cloneRecord(deepCopy.addressData , this.getClass());
+		deepCopy.phones       = CloneUtil.cloneRecords(deepCopy.phones     , this.getClass());
+		deepCopy.personData   = CloneUtil.cloneRecord(deepCopy.personData  , this.getClass());
+		deepCopy.companyData  = CloneUtil.cloneRecord(deepCopy.companyData , this.getClass());
+		deepCopy.storacData   = CloneUtil.cloneRecord(deepCopy.storacData  , this.getClass());
 		deepCopy.stefilonData = CloneUtil.cloneRecord(deepCopy.stefilonData, this.getClass());
+		deepCopy.stowotmes    = CloneUtil.cloneRecords(deepCopy.stowotmes  , this.getClass());
+		deepCopy.stuntmes     = CloneUtil.cloneRecords(deepCopy.stuntmes   , this.getClass());
 		
 		return deepCopy;
 	}
