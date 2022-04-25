@@ -1911,4 +1911,9 @@ public final class SystemCode {
 	
 	// Employee Lunch Time-Snaphot
 	public static final int EMP_LTIME_SNAPHOT_MANDATORY_FIELD_EMPTY 	= 19400;
+	
+	// Employee Lunch Search
+	public static final int EMP_LTIME_SEARCH_MANDATORY_FIELD_EMPTY 		= 19450;
+	public static final int EMP_LTIME_SEARCH_ALREADY_EXIST 				= 19451;
+	public static final int EMP_LTIME_SEARCH_NOT_FOUND 					= 19452;
 }

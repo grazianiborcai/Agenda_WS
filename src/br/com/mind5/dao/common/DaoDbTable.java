@@ -40,6 +40,7 @@ public final class DaoDbTable {
 	public static final String EMP_TABLE = "employee";
 	public static final String EMP_MAT_TABLE = "employee_material";
 	public static final String EMP_SNAPSHOT_TABLE = "employee_snapshot";
+	public static final String EMP_LT_TABLE = "employee_lunch_time";
 	public static final String EMP_WT_TABLE = "employee_working_time";
 	public static final String EMP_LT_SNAPSHOT_TABLE = "employee_lunch_time_snapshot";
 	public static final String EMP_WT_SNAPSHOT_TABLE = "employee_working_time_snapshot";
@@ -237,6 +238,7 @@ public final class DaoDbTable {
 	public static final String EMP_WT_CONFLICT_VIEW = "view_employee_working_time";
 	public static final String EMP_WT_OUTLIER_VIEW = "view_employee_working_time_outlier";
 	public static final String EMP_WTIME_RANGE_VIEW = "view_employee_wtime_range";
+	public static final String EMP_LT_SEARCH_VIEW = "view_employee_lunch_time_search";
 	public static final String EMP_WT_SEARCH_VIEW = "view_employee_working_time_search";
 	public static final String EMPOS_LIST_VIEW = "view_employee_position_list";
 	public static final String EMPOS_SEARCH_VIEW = "view_employee_position_search";
