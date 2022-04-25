@@ -31,6 +31,12 @@ import br.com.mind5.business.employeeLeaveDate.model.EmplateModelSearch;
 import br.com.mind5.business.employeeLeaveDate.model.EmplateModelSelect;
 import br.com.mind5.business.employeeLeaveDate.model.EmplateModelUpdate;
 import br.com.mind5.business.employeeList.model.EmplisModelSearchAuth;
+import br.com.mind5.business.employeeLunchTime.info.EmplutmInfo;
+import br.com.mind5.business.employeeLunchTime.model.EmplutmModelDelete;
+import br.com.mind5.business.employeeLunchTime.model.EmplutmModelInsert;
+import br.com.mind5.business.employeeLunchTime.model.EmplutmModelSearch;
+import br.com.mind5.business.employeeLunchTime.model.EmplutmModelSelect;
+import br.com.mind5.business.employeeLunchTime.model.EmplutmModelUpdate;
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.EmpmatModelDelete;
 import br.com.mind5.business.employeeMaterial.model.EmpmatModelInsert;
@@ -62,12 +68,17 @@ public class EmployeeResource {
 	private static final String SELECT_EMP = "/selectEmployee";
 	private static final String SEARCH_EMP = "/searchEmployee";
 	private static final String INSERT_WORK_TIME = "/insertWorkTime";
-	private static final String INSERT_WORK_TIME_FROM_STORE = "/insertWorkTimeFromStore";
+	private static final String INSERT_WORK_TIME_FROM_STORE = "/insertWorkTimeFromStore";	//todo: REVER
 	private static final String UPDATE_WORK_TIME = "/updateWorkTime";
 	private static final String SELECT_WORK_TIME = "/selectWorkTime";
 	private static final String SEARCH_WORK_TIME = "/searchWorkTime";
 	private static final String DELETE_WORK_TIME = "/deleteWorkTime";	
-	private static final String SELECT_WT_CONFLICT = "/selectWorkTimeConflict";		//todo: REVER
+	private static final String SELECT_WT_CONFLICT = "/selectWorkTimeConflict";				//todo: REVER	
+	private static final String INSERT_LUNCH_TIME = "/insertLunchTime";
+	private static final String UPDATE_LUNCH_TIME = "/updateLunchTime";
+	private static final String SELECT_LUNCH_TIME = "/selectLunchTime";
+	private static final String SEARCH_LUNCH_TIME = "/searchLunchTime";
+	private static final String DELETE_LUNCH_TIME = "/deleteLunchTime";	
 	private static final String INSERT_LEAVE_DATE = "/insertLeaveDate";
 	private static final String UPDATE_LEAVE_DATE = "/updateLeaveDate";
 	private static final String SELECT_LEAVE_DATE = "/selectLeaveDate";
@@ -82,6 +93,109 @@ public class EmployeeResource {
 	private static final String INSERT_EMP_MATERIAL = "/insertMaterial";
 	private static final String DELETE_EMP_MATERIAL = "/deleteMaterial";
 	private static final String SELECT_EMP_WT_OUTLIER = "/selectWorkTimeOutlier";
+	
+	
+	
+	@POST
+	@Path(INSERT_LUNCH_TIME)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response insertEmplutm(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new EmplutmModelInsert(incomingData, request);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@POST
+	@Path(UPDATE_LUNCH_TIME)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateEmplutm(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new EmplutmModelUpdate(incomingData, request);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_LUNCH_TIME)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectEmplutm(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner,
+								  @HeaderParam("codStore")    		@DefaultValue("-1") long codStore,
+								  @HeaderParam("codEmployee") 		@DefaultValue("-1") int codEmployee,
+								  @HeaderParam("codWeekday") 		@DefaultValue("-1") int codWeekday,
+								  @HeaderParam("TOKEN_USERNAME") 	String username,
+								  @HeaderParam("codLanguage")    	@DefaultValue("EN") String codLanguage) {
+		
+		EmplutmInfo recordInfo = new EmplutmInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codWeekday = codWeekday;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;
+		
+		Model model = new EmplutmModelSelect(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@POST
+	@Path(SEARCH_LUNCH_TIME)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response searchEmplutm(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new EmplutmModelSearch(incomingData, request);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@DELETE
+	@Path(DELETE_LUNCH_TIME)
+	@Produces(MediaType.APPLICATION_JSON)	
+	public Response deleteEmplutm(@HeaderParam("TOKEN_OWNER") 		@DefaultValue("-1") long codOwner,
+								  @HeaderParam("codStore")    		@DefaultValue("-1") long codStore,
+								  @HeaderParam("codEmployee") 		@DefaultValue("-1") int codEmployee,
+								  @HeaderParam("codWeekday")  		@DefaultValue("-1") int codWeekday,
+								  @HeaderParam("TOKEN_USERNAME") 	String username,
+								  @HeaderParam("codLanguage")    	@DefaultValue("EN") String codLanguage) {
+		
+		EmplutmInfo recordInfo = new EmplutmInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codWeekday = codWeekday;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;
+		
+		Model model = new EmplutmModelDelete(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}
 	
 	
 	

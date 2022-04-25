@@ -1919,4 +1919,14 @@ public final class SystemCode {
 	
 	// Employee Lunch Time-Conflict
 	public static final int EMP_LTIME_CONFLICT_MANDATORY_FIELD_EMPTY 	= 19500;
+	
+	// Employee Lunchtime
+	public static final int EMP_LTIME_ALREADY_EXIST 					= 19550;
+	public static final int EMP_LTIME_NOT_FOUND 						= 19551;
+	public static final int EMP_LTIME_FLAGGED_AS_DELETED 				= 19552;
+	public static final int EMP_LTIME_RANGE_CONFLICT 					= 19553;
+	public static final int EMP_LTIME_INVALID_RANGE						= 19554;
+	public static final int EMP_LTIME_RANGE_TOO_SHORT					= 19555;
+	public static final int EMP_LTIME_MANDATORY_FIELD_EMPTY 			= 19556;
+	public static final int EMP_LTIME_RANGE_OK 							= 19557;
 }
