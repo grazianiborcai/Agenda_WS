@@ -18,9 +18,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class StoworgRootSelect extends DeciTreeTemplateRead<EmpworgInfo> {
+public final class EmpworgRootSelect extends DeciTreeTemplateRead<EmpworgInfo> {
 	
-	public StoworgRootSelect(DeciTreeOption<EmpworgInfo> option) {
+	public EmpworgRootSelect(DeciTreeOption<EmpworgInfo> option) {
 		super(option);
 	}
 	
