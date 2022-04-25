@@ -2,14 +2,14 @@ package br.com.mind5.business.employeeLunchTimeConflict.model.checker;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.checker.EmpCheckExist;
-import br.com.mind5.business.employeeLunchTimeConflict.info.EmpulocoInfo;
+import br.com.mind5.business.employeeLunchTimeConflict.info.EmpulranInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
 import br.com.mind5.model.checker.ModelChecker;
 
-public final class EmpulocoCheckEmp extends ModelCheckerTemplateForward<EmpulocoInfo, EmpInfo> {
+public final class EmpulranCheckEmp extends ModelCheckerTemplateForward<EmpulranInfo, EmpInfo> {
 	
-	public EmpulocoCheckEmp(ModelCheckerOption option) {
+	public EmpulranCheckEmp(ModelCheckerOption option) {
 		super(option);
 	}
 
@@ -21,7 +21,7 @@ public final class EmpulocoCheckEmp extends ModelCheckerTemplateForward<Empuloco
 	
 	
 	
-	@Override protected EmpInfo toForwardClass(EmpulocoInfo baseRecord) {
+	@Override protected EmpInfo toForwardClass(EmpulranInfo baseRecord) {
 		return EmpInfo.copyFrom(baseRecord);
 	}
 }

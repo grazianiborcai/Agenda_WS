@@ -1917,8 +1917,8 @@ public final class SystemCode {
 	public static final int EMP_LTIME_SEARCH_ALREADY_EXIST 				= 19451;
 	public static final int EMP_LTIME_SEARCH_NOT_FOUND 					= 19452;
 	
-	// Employee Lunch Time-Conflict
-	public static final int EMP_LTIME_CONFLICT_MANDATORY_FIELD_EMPTY 	= 19500;
+	// Employee Lunch Time-Range
+	public static final int EMP_LTIME_RANGE_MANDATORY_FIELD_EMPTY 		= 19500;
 	
 	// Employee Lunchtime
 	public static final int EMP_LTIME_ALREADY_EXIST 					= 19550;

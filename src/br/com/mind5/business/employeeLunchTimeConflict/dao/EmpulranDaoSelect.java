@@ -3,17 +3,17 @@ package br.com.mind5.business.employeeLunchTimeConflict.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.business.employeeLunchTimeConflict.info.EmpulocoInfo;
+import br.com.mind5.business.employeeLunchTimeConflict.info.EmpulranInfo;
 import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class EmpulocoDaoSelect implements DaoStmtExec<EmpulocoInfo> {
-	private DaoStmtExec<EmpulocoInfo> helper;
+public final class EmpulranDaoSelect implements DaoStmtExec<EmpulranInfo> {
+	private DaoStmtExec<EmpulranInfo> helper;
 	
 	
-	public EmpulocoDaoSelect(List<DaoStmtExecOption<EmpulocoInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, EmpulocoDaoSelectSingle.class, EmpulocoInfo.class);
+	public EmpulranDaoSelect(List<DaoStmtExecOption<EmpulranInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, EmpulranDaoSelectSingle.class, EmpulranInfo.class);
 	}
 	
 	
@@ -24,7 +24,7 @@ public final class EmpulocoDaoSelect implements DaoStmtExec<EmpulocoInfo> {
 
 	
 	
-	@Override public List<EmpulocoInfo> getResultset() {
+	@Override public List<EmpulranInfo> getResultset() {
 		return helper.getResultset();
 	}
 	

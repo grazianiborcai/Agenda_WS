@@ -1,15 +1,15 @@
 package br.com.mind5.business.employeeLunchTimeConflict.model.checker;
 
-import br.com.mind5.business.employeeLunchTimeConflict.info.EmpulocoInfo;
+import br.com.mind5.business.employeeLunchTimeConflict.info.EmpulranInfo;
 import br.com.mind5.masterData.language.info.LanguInfo;
 import br.com.mind5.masterData.language.model.checker.LanguCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
 import br.com.mind5.model.checker.ModelChecker;
 
-public final class EmpulocoCheckLangu extends ModelCheckerTemplateForward<EmpulocoInfo, LanguInfo> {
+public final class EmpulranCheckLangu extends ModelCheckerTemplateForward<EmpulranInfo, LanguInfo> {
 	
-	public EmpulocoCheckLangu(ModelCheckerOption option) {
+	public EmpulranCheckLangu(ModelCheckerOption option) {
 		super(option);
 	}
 
@@ -21,7 +21,7 @@ public final class EmpulocoCheckLangu extends ModelCheckerTemplateForward<Empulo
 	
 	
 	
-	@Override protected LanguInfo toForwardClass(EmpulocoInfo baseRecord) {
+	@Override protected LanguInfo toForwardClass(EmpulranInfo baseRecord) {
 		return LanguInfo.copyFrom(baseRecord);
 	}
 }

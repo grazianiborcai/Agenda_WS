@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class EmpulocoDaoDbTableColumn extends DaoDbTableColumnTemplate {
+public final class EmpulranDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
@@ -19,7 +19,7 @@ public final class EmpulocoDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
-	public EmpulocoDaoDbTableColumn() {
+	public EmpulranDaoDbTableColumn() {
 		super();
 	}
 	
@@ -88,7 +88,7 @@ public final class EmpulocoDaoDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
-		results.put(DaoDbTable.EMP_LT_CONFLICT_VIEW, columns);
+		results.put(DaoDbTable.EMP_LT_RANGE_VIEW, columns);
 		return results;
 	}
 }

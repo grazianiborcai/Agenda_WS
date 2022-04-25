@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
-public final class EmpulocoInfo extends InfoRecord implements Cloneable {
+public final class EmpulranInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public long codEmployee;
@@ -17,7 +17,7 @@ public final class EmpulocoInfo extends InfoRecord implements Cloneable {
 	public String username;
 	
 	
-	public EmpulocoInfo() {
+	public EmpulranInfo() {
 		super();
 		
 		codOwner = DefaultValue.number();
@@ -29,20 +29,20 @@ public final class EmpulocoInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	public static EmpulocoInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, EmpulocoInfo.class);
+	public static EmpulranInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, EmpulranInfo.class);
 	}
 	
 	
 	
-	public static List<EmpulocoInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, EmpulocoInfo.class);
+	public static List<EmpulranInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, EmpulranInfo.class);
 	}
 	
 	
 	
 	@Override public Object clone()throws CloneNotSupportedException {  
-		EmpulocoInfo deepCopy = (EmpulocoInfo) super.clone();  		
+		EmpulranInfo deepCopy = (EmpulranInfo) super.clone();  		
 		
 		LocalTime cloneBeginTime = null;		
 		if (beginTime != null) 
@@ -79,11 +79,11 @@ public final class EmpulocoInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof EmpulocoInfo))
+		if (!(o instanceof EmpulranInfo))
 			return false;
 		
 		
-		EmpulocoInfo obj = (EmpulocoInfo) o;		
+		EmpulranInfo obj = (EmpulranInfo) o;		
 		return (codOwner 	== obj.codOwner 	&& 
 				codStore 	== obj.codStore 	&&
 				codEmployee == obj.codEmployee 	&&
