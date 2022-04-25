@@ -1,4 +1,4 @@
-package br.com.mind5.business.employeeLunchTimeConflict.dao;
+package br.com.mind5.business.employeeLunchTimeRange.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.employeeLunchTimeConflict.info.EmpulranInfo;
+import br.com.mind5.business.employeeLunchTimeRange.info.EmpulranInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;

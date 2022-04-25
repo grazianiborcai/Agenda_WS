@@ -1,4 +1,4 @@
-package br.com.mind5.business.employeeLunchTimeConflict.dao;
+package br.com.mind5.business.employeeLunchTimeRange.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;

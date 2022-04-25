@@ -1,15 +1,15 @@
-package br.com.mind5.business.employeeLunchTimeConflict.model.decisionTree;
+package br.com.mind5.business.employeeLunchTimeRange.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.employeeLunchTimeConflict.info.EmpulranInfo;
-import br.com.mind5.business.employeeLunchTimeConflict.model.action.EmpulranVisiMergeToSelect;
-import br.com.mind5.business.employeeLunchTimeConflict.model.checker.EmpulranCheckEmp;
-import br.com.mind5.business.employeeLunchTimeConflict.model.checker.EmpulranCheckLangu;
-import br.com.mind5.business.employeeLunchTimeConflict.model.checker.EmpulranCheckOwner;
-import br.com.mind5.business.employeeLunchTimeConflict.model.checker.EmpulranCheckRead;
-import br.com.mind5.business.employeeLunchTimeConflict.model.checker.EmpulranCheckStore;
+import br.com.mind5.business.employeeLunchTimeRange.info.EmpulranInfo;
+import br.com.mind5.business.employeeLunchTimeRange.model.action.EmpulranVisiMergeToSelect;
+import br.com.mind5.business.employeeLunchTimeRange.model.checker.EmpulranCheckEmp;
+import br.com.mind5.business.employeeLunchTimeRange.model.checker.EmpulranCheckLangu;
+import br.com.mind5.business.employeeLunchTimeRange.model.checker.EmpulranCheckOwner;
+import br.com.mind5.business.employeeLunchTimeRange.model.checker.EmpulranCheckRead;
+import br.com.mind5.business.employeeLunchTimeRange.model.checker.EmpulranCheckStore;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;

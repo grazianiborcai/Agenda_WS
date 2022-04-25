@@ -1,4 +1,4 @@
-package br.com.mind5.business.employeeLunchTimeConflict.info;
+package br.com.mind5.business.employeeLunchTimeRange.info;
 
 import java.util.ArrayList;
 import java.util.List;

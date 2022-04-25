@@ -1,11 +1,11 @@
-package br.com.mind5.business.employeeLunchTimeConflict.dao;
+package br.com.mind5.business.employeeLunchTimeRange.dao;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.business.employeeLunchTimeConflict.info.EmpulranInfo;
 import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.business.employeeLunchTimeRange.info.EmpulranInfo;
 import br.com.mind5.dao.DaoStmtExec;
 
 public final class EmpulranDaoSelect implements DaoStmtExec<EmpulranInfo> {

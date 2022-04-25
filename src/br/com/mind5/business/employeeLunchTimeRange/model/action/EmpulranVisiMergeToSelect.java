@@ -1,9 +1,9 @@
-package br.com.mind5.business.employeeLunchTimeConflict.model.action;
+package br.com.mind5.business.employeeLunchTimeRange.model.action;
 
 import java.util.List;
 
-import br.com.mind5.business.employeeLunchTimeConflict.info.EmpulranInfo;
-import br.com.mind5.business.employeeLunchTimeConflict.info.EmpulranMerger;
+import br.com.mind5.business.employeeLunchTimeRange.info.EmpulranInfo;
+import br.com.mind5.business.employeeLunchTimeRange.info.EmpulranMerger;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;

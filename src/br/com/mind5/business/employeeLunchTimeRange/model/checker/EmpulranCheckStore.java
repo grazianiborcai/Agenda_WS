@@ -1,6 +1,6 @@
-package br.com.mind5.business.employeeLunchTimeConflict.model.checker;
+package br.com.mind5.business.employeeLunchTimeRange.model.checker;
 
-import br.com.mind5.business.employeeLunchTimeConflict.info.EmpulranInfo;
+import br.com.mind5.business.employeeLunchTimeRange.info.EmpulranInfo;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;

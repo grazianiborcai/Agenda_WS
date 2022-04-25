@@ -1,9 +1,9 @@
-package br.com.mind5.business.employeeLunchTimeConflict.model.action;
+package br.com.mind5.business.employeeLunchTimeRange.model.action;
 
 import java.util.List;
 
-import br.com.mind5.business.employeeLunchTimeConflict.dao.EmpulranDaoSelect;
-import br.com.mind5.business.employeeLunchTimeConflict.info.EmpulranInfo;
+import br.com.mind5.business.employeeLunchTimeRange.dao.EmpulranDaoSelect;
+import br.com.mind5.business.employeeLunchTimeRange.info.EmpulranInfo;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;

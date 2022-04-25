@@ -1,8 +1,8 @@
-package br.com.mind5.business.employeeLunchTimeConflict.dao;
+package br.com.mind5.business.employeeLunchTimeRange.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.employeeLunchTimeConflict.info.EmpulranInfo;
+import br.com.mind5.business.employeeLunchTimeRange.info.EmpulranInfo;
 import br.com.mind5.business.employeeWorkTimeRange.dao.EmpworgDaoDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoFormatter;
