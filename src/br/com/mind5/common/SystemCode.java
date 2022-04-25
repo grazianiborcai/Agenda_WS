@@ -1908,4 +1908,7 @@ public final class SystemCode {
 	public static final int STORE_LTIME_FLAGGED_AS_DELETED 				= 19352;
 	public static final int STORE_LTIME_MANDATORY_FIELD_EMPTY 			= 19353;
 	public static final int STORE_LTIME_BAD_TIME_RANGE 					= 19354;
+	
+	// Employee Lunch Time-Snaphot
+	public static final int EMP_LTIME_SNAPHOT_MANDATORY_FIELD_EMPTY 	= 19400;
 }
