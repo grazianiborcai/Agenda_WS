@@ -45,12 +45,12 @@ public final class EmpwotarchRootSelectEmpos extends DeciTreeTemplateRead<Empwot
 	@Override protected List<ActionStd<EmpwotarchInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotarchInfo> option) {
 		List<ActionStd<EmpwotarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpwotarchInfo> enforceEmpKey = new ActionStdCommom<EmpwotarchInfo>(option, EmpwotarchVisiEnforceEmposKey.class);
+		ActionStd<EmpwotarchInfo> enforceEmposKey = new ActionStdCommom<EmpwotarchInfo>(option, EmpwotarchVisiEnforceEmposKey.class);
 		ActionLazy<EmpwotarchInfo> select = new ActionLazyCommom<EmpwotarchInfo>(option, EmpwotarchVisiRootSelect.class);
 		
-		enforceEmpKey.addPostAction(select);
+		enforceEmposKey.addPostAction(select);
 		
-		actions.add(enforceEmpKey);		
+		actions.add(enforceEmposKey);		
 		return actions; 
 	}
 }
