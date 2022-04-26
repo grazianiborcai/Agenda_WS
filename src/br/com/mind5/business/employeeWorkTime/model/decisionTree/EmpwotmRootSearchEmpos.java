@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiMergeEmpwotarchEmp;
+import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiMergeEmpwotarchEmpos;
 import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiRootSelect;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -16,9 +16,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class EmpwotmRootSearchEmp extends DeciTreeTemplateRead<EmpwotmInfo> {
+public final class EmpwotmRootSearchEmpos extends DeciTreeTemplateRead<EmpwotmInfo> {
 	
-	public EmpwotmRootSearchEmp(DeciTreeOption<EmpwotmInfo> option) {
+	public EmpwotmRootSearchEmpos(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);
 	}
 	
@@ -39,7 +39,7 @@ public final class EmpwotmRootSearchEmp extends DeciTreeTemplateRead<EmpwotmInfo
 	@Override protected List<ActionStd<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
 		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpwotmInfo> mergeEmpwotarch = new ActionStdCommom<EmpwotmInfo>(option, EmpwotmVisiMergeEmpwotarchEmp.class);
+		ActionStd<EmpwotmInfo> mergeEmpwotarch = new ActionStdCommom<EmpwotmInfo>(option, EmpwotmVisiMergeEmpwotarchEmpos.class);
 		ActionLazy<EmpwotmInfo> select = new ActionLazyCommom<EmpwotmInfo>(option, EmpwotmVisiRootSelect.class);
 		
 		mergeEmpwotarch.addPostAction(select);
