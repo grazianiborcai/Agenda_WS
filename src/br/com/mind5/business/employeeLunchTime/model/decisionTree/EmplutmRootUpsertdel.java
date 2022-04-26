@@ -12,9 +12,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class EmpwotmRootUpsertdel extends DeciTreeTemplateWrite<EmplutmInfo> {
+public final class EmplutmRootUpsertdel extends DeciTreeTemplateWrite<EmplutmInfo> {
 	
-	public EmpwotmRootUpsertdel(DeciTreeOption<EmplutmInfo> option) {
+	public EmplutmRootUpsertdel(DeciTreeOption<EmplutmInfo> option) {
 		super(option);
 	}
 	
