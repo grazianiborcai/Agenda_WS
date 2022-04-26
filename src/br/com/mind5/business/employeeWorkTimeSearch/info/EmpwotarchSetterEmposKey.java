@@ -2,7 +2,7 @@ package br.com.mind5.business.employeeWorkTimeSearch.info;
 
 import br.com.mind5.info.InfoSetterTemplate;
 
-public final class EmpwotarchSetterEmpKey extends InfoSetterTemplate<EmpwotarchInfo> {
+public final class EmpwotarchSetterEmposKey extends InfoSetterTemplate<EmpwotarchInfo> {
 	
 	@Override protected EmpwotarchInfo setAttrHook(EmpwotarchInfo recordInfo) {
 		EmpwotarchInfo result = new EmpwotarchInfo();

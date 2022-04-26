@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchInfo;
-import br.com.mind5.business.employeeWorkTimeSearch.model.action.EmpwotarchVisiEnforceEmpKey;
+import br.com.mind5.business.employeeWorkTimeSearch.model.action.EmpwotarchVisiEnforceEmposKey;
 import br.com.mind5.business.employeeWorkTimeSearch.model.action.EmpwotarchVisiRootSelect;
-import br.com.mind5.business.employeeWorkTimeSearch.model.checker.EmpwotarchCheckReadEmp;
+import br.com.mind5.business.employeeWorkTimeSearch.model.checker.EmpwotarchCheckReadEmpos;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -17,9 +17,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class EmpwotarchRootSelectEmp extends DeciTreeTemplateRead<EmpwotarchInfo> {
+public final class EmpwotarchRootSelectEmpos extends DeciTreeTemplateRead<EmpwotarchInfo> {
 	
-	public EmpwotarchRootSelectEmp(DeciTreeOption<EmpwotarchInfo> option) {
+	public EmpwotarchRootSelectEmpos(DeciTreeOption<EmpwotarchInfo> option) {
 		super(option);
 	}
 	
@@ -34,7 +34,7 @@ public final class EmpwotarchRootSelectEmp extends DeciTreeTemplateRead<Empwotar
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new EmpwotarchCheckReadEmp(checkerOption);
+		checker = new EmpwotarchCheckReadEmpos(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -45,7 +45,7 @@ public final class EmpwotarchRootSelectEmp extends DeciTreeTemplateRead<Empwotar
 	@Override protected List<ActionStd<EmpwotarchInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotarchInfo> option) {
 		List<ActionStd<EmpwotarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpwotarchInfo> enforceEmpKey = new ActionStdCommom<EmpwotarchInfo>(option, EmpwotarchVisiEnforceEmpKey.class);
+		ActionStd<EmpwotarchInfo> enforceEmpKey = new ActionStdCommom<EmpwotarchInfo>(option, EmpwotarchVisiEnforceEmposKey.class);
 		ActionLazy<EmpwotarchInfo> select = new ActionLazyCommom<EmpwotarchInfo>(option, EmpwotarchVisiRootSelect.class);
 		
 		enforceEmpKey.addPostAction(select);

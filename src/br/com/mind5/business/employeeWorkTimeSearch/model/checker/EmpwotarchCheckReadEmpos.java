@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmpwotarchCheckReadEmp extends ModelCheckerTemplateSimple<EmpwotarchInfo> {
+public final class EmpwotarchCheckReadEmpos extends ModelCheckerTemplateSimple<EmpwotarchInfo> {
 
-	public EmpwotarchCheckReadEmp(ModelCheckerOption option) {
+	public EmpwotarchCheckReadEmpos(ModelCheckerOption option) {
 		super(option);
 	}
 	
