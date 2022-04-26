@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.business.employee.model.action.EmpVisiEmposInsert;
-import br.com.mind5.business.employee.model.action.EmpVisiEmpwotmInsert;
-import br.com.mind5.business.employee.model.checker.EmpCheckSytotin;
-import br.com.mind5.model.action.ActionLazy;
+import br.com.mind5.business.employee.model.action.EmpVisiEmpwotmDelete;
+import br.com.mind5.business.employee.model.checker.EmpCheckEmpwotarch;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
 import br.com.mind5.model.checker.ModelChecker;
@@ -18,25 +15,25 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class EmpNodeInsertExtra extends DeciTreeTemplateWrite<EmpInfo> {	
+public final class EmpNodeEmpwotmDelete extends DeciTreeTemplateWrite<EmpInfo> {
 	
-	public EmpNodeInsertExtra(DeciTreeOption<EmpInfo> option) {
+	public EmpNodeEmpwotmDelete(DeciTreeOption<EmpInfo> option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected ModelChecker<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {		
+	@Override protected ModelChecker<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {
 		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
-		ModelCheckerOption checkerOption;		
+		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new EmpCheckSytotin(checkerOption);
-		queue.add(checker);
+		checker = new EmpCheckEmpwotarch(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
@@ -44,14 +41,11 @@ public final class EmpNodeInsertExtra extends DeciTreeTemplateWrite<EmpInfo> {
 	
 	
 	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStd<EmpInfo>> actions = new ArrayList<>();		
+		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpInfo> insertEmpos = new ActionStdCommom<EmpInfo>(option, EmpVisiEmposInsert.class);
-		ActionLazy<EmpInfo> insertEmpwotm = new ActionLazyCommom<EmpInfo>(option, EmpVisiEmpwotmInsert.class);
+		ActionStd<EmpInfo> deleteEmpwotm = new ActionStdCommom<EmpInfo>(option, EmpVisiEmpwotmDelete.class);
 		
-		insertEmpos.addPostAction(insertEmpwotm);
-		
-		actions.add(insertEmpos);	
+		actions.add(deleteEmpwotm);		
 		return actions;
 	}
 	

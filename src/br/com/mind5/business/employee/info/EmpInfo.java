@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
+import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.CloneUtil;
@@ -26,7 +27,8 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 	public List<AddressInfo> addresses;
 	public List<AddressInfo> addressesUser;
 	public List<PhoneInfo> phones;
-	public List<PhoneInfo> phonesUser;	
+	public List<PhoneInfo> phonesUser;
+	public List<EmpwotmInfo> empwotmes;
 	public String recordMode;
 	public String username;
 	public LocalDateTime lastChanged;
@@ -38,24 +40,25 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 	public EmpInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();
-		codEmployee = DefaultValue.number();
-		codStore = DefaultValue.number();
-		codSnapshot = DefaultValue.number();
-		codPerson = DefaultValue.number();
-		personDataUser = DefaultValue.object();
-		isLocked = DefaultValue.boole();
-		codUser = DefaultValue.number();
-		recordMode = DefaultValue.recordMode();
-		personData = DefaultValue.object();
-		fimistData = DefaultValue.object();
-		fimistDataUser = DefaultValue.object();
-		addresses = DefaultValue.list();
-		addressesUser = DefaultValue.list();
-		phones = DefaultValue.list();
-		phonesUser = DefaultValue.list();
-		lastChangedBy = DefaultValue.number();
-		createdBy = DefaultValue.number();
+		codOwner 		= DefaultValue.number();
+		codEmployee 	= DefaultValue.number();
+		codStore 		= DefaultValue.number();
+		codSnapshot 	= DefaultValue.number();
+		codPerson 		= DefaultValue.number();
+		personDataUser 	= DefaultValue.object();
+		isLocked 		= DefaultValue.boole();
+		codUser 		= DefaultValue.number();
+		recordMode 		= DefaultValue.recordMode();
+		personData 		= DefaultValue.object();
+		fimistData 		= DefaultValue.object();
+		fimistDataUser 	= DefaultValue.object();
+		addresses 		= DefaultValue.list();
+		addressesUser 	= DefaultValue.list();
+		phones 			= DefaultValue.list();
+		phonesUser 		= DefaultValue.list();
+		empwotmes 		= DefaultValue.list();
+		lastChangedBy 	= DefaultValue.number();
+		createdBy 		= DefaultValue.number();
 	}
 	
 	
@@ -73,16 +76,17 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {  
-		EmpInfo deepCopy = (EmpInfo) super.clone(); 
-		
-		deepCopy.addresses = CloneUtil.cloneRecords(deepCopy.addresses, this.getClass());
-		deepCopy.addressesUser = CloneUtil.cloneRecords(deepCopy.addressesUser, this.getClass());
-		deepCopy.phones = CloneUtil.cloneRecords(deepCopy.phones, this.getClass());
-		deepCopy.phonesUser = CloneUtil.cloneRecords(deepCopy.phonesUser, this.getClass());
-		deepCopy.personData = CloneUtil.cloneRecord(deepCopy.personData, this.getClass());
-		deepCopy.personDataUser = CloneUtil.cloneRecord(deepCopy.personDataUser, this.getClass());
-		deepCopy.fimistData = CloneUtil.cloneRecord(deepCopy.fimistData, this.getClass());
-		deepCopy.fimistDataUser = CloneUtil.cloneRecord(deepCopy.fimistDataUser, this.getClass());
+		EmpInfo deepCopy = (EmpInfo) super.clone();		
+
+		deepCopy.personData 	= CloneUtil.cloneRecord (deepCopy.personData	, this.getClass());
+		deepCopy.personDataUser = CloneUtil.cloneRecord (deepCopy.personDataUser, this.getClass());
+		deepCopy.fimistData 	= CloneUtil.cloneRecord (deepCopy.fimistData	, this.getClass());
+		deepCopy.fimistDataUser = CloneUtil.cloneRecord (deepCopy.fimistDataUser, this.getClass());
+		deepCopy.addresses 		= CloneUtil.cloneRecords(deepCopy.addresses		, this.getClass());
+		deepCopy.addressesUser 	= CloneUtil.cloneRecords(deepCopy.addressesUser	, this.getClass());
+		deepCopy.phones 		= CloneUtil.cloneRecords(deepCopy.phones		, this.getClass());
+		deepCopy.phonesUser 	= CloneUtil.cloneRecords(deepCopy.phonesUser	, this.getClass());
+		deepCopy.empwotmes 		= CloneUtil.cloneRecords(deepCopy.empwotmes		, this.getClass());
 
 		return deepCopy;	
 	}

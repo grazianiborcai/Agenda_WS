@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.action.EmpVisiNodeAddressUpsert;
+import br.com.mind5.business.employee.model.action.EmpVisiNodeEmpwotmUpsertdel;
 import br.com.mind5.business.employee.model.action.EmpVisiNodePersonUpdate;
 import br.com.mind5.business.employee.model.action.EmpVisiNodePhoneUpsert;
 import br.com.mind5.business.employee.model.action.EmpVisiNodeSnapshot;
-import br.com.mind5.business.employee.model.action.EmpVisiRootSelect;
 import br.com.mind5.business.employee.model.checker.EmpCheckExist;
 import br.com.mind5.business.employee.model.checker.EmpCheckLangu;
 import br.com.mind5.business.employee.model.checker.EmpCheckOwner;
@@ -75,16 +75,18 @@ public final class EmpRootUpdate extends DeciTreeTemplateWrite<EmpInfo> {
 		ActionLazy<EmpInfo> snapshot = new ActionLazyCommom<EmpInfo>(option, EmpVisiNodeSnapshot.class);
 		ActionLazy<EmpInfo> updatePerson = new ActionLazyCommom<EmpInfo>(option, EmpVisiNodePersonUpdate.class);
 		ActionLazy<EmpInfo> upsertAddress = new ActionLazyCommom<EmpInfo>(option, EmpVisiNodeAddressUpsert.class);
-		ActionLazy<EmpInfo> upsertPhone = new ActionLazyCommom<EmpInfo>(option, EmpVisiNodePhoneUpsert.class);				
-		ActionLazy<EmpInfo> select = new ActionLazyCommom<EmpInfo>(option, EmpVisiRootSelect.class);		
+		ActionLazy<EmpInfo> upsertPhone = new ActionLazyCommom<EmpInfo>(option, EmpVisiNodePhoneUpsert.class);
+		ActionLazy<EmpInfo> upsertdelEmpwotm = new ActionLazyCommom<EmpInfo>(option, EmpVisiNodeEmpwotmUpsertdel.class);
+		ActionStd<EmpInfo> select = new EmpRootSelect(option).toAction();	
 		
 		updateEmployee.addPostAction(snapshot);	
 		snapshot.addPostAction(updatePerson);
 		snapshot.addPostAction(upsertAddress);		
 		snapshot.addPostAction(upsertPhone);
-		snapshot.addPostAction(select);
+		snapshot.addPostAction(upsertdelEmpwotm);
 		
 		actions.add(updateEmployee);
+		actions.add(select);
 		return actions;
 	}
 }
