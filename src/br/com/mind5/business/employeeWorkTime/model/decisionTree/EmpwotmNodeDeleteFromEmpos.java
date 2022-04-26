@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
+import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiMergeEmpwotarchEmpos;
 import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiRootDelete;
-import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiMergeEmpwotarch;
-import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmpwotarch;
+import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmpwotarchEmpos;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -35,7 +35,7 @@ public final class EmpwotmNodeDeleteFromEmpos extends DeciTreeTemplateWrite<Empw
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new EmpwotmCheckEmpwotarch(checkerOption);
+		checker = new EmpwotmCheckEmpwotarchEmpos(checkerOption);
 		queue.add(checker);		
 		
 		 return new ModelCheckerHelperQueue<EmpwotmInfo>(queue);
@@ -46,7 +46,7 @@ public final class EmpwotmNodeDeleteFromEmpos extends DeciTreeTemplateWrite<Empw
 	@Override protected List<ActionStd<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
 		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpwotmInfo> mergeEmpwotarch = new ActionStdCommom<EmpwotmInfo>(option, EmpwotmVisiMergeEmpwotarch.class);
+		ActionStd<EmpwotmInfo> mergeEmpwotarch = new ActionStdCommom<EmpwotmInfo>(option, EmpwotmVisiMergeEmpwotarchEmpos.class);
 		ActionLazy<EmpwotmInfo> delete = new ActionLazyCommom<EmpwotmInfo>(option, EmpwotmVisiRootDelete.class);
 		
 		mergeEmpwotarch.addPostAction(delete);

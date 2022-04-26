@@ -4,17 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiNodeDeleteFromEmpos;
-import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiEnforceEmposKey;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckDeleteFromEmpos;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmp;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckLangu;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckOwner;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStore;
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.commom.ActionLazyCommom;
-import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -77,12 +72,9 @@ public final class EmpwotmRootDeleteFromEmpos extends DeciTreeTemplateWrite<Empw
 	@Override protected List<ActionStd<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
 		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpwotmInfo> enforceEmposKey = new ActionStdCommom<EmpwotmInfo>(option, EmpwotmVisiEnforceEmposKey.class);
-		ActionLazy<EmpwotmInfo> delete = new ActionLazyCommom<EmpwotmInfo>(option, EmpwotmVisiNodeDeleteFromEmpos.class);
+		ActionStd<EmpwotmInfo> nodeDelete = new EmpwotmNodeDeleteFromEmpos(option).toAction();
 		
-		enforceEmposKey.addPostAction(delete);
-		
-		actions.add(enforceEmposKey);
+		actions.add(nodeDelete);
 		return actions;
 	}
 }

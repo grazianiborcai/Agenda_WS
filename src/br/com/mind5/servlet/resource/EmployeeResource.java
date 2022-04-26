@@ -51,7 +51,6 @@ import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelConflict;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelDelete;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelInsert;
-import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelInsertFromStore;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelOutlier;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelSearch;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelSelect;
@@ -68,7 +67,6 @@ public class EmployeeResource {
 	private static final String SELECT_EMP = "/selectEmployee";
 	private static final String SEARCH_EMP = "/searchEmployee";
 	private static final String INSERT_WORK_TIME = "/insertWorkTime";
-	private static final String INSERT_WORK_TIME_FROM_STORE = "/insertWorkTimeFromStore";	//todo: REVER
 	private static final String UPDATE_WORK_TIME = "/updateWorkTime";
 	private static final String SELECT_WORK_TIME = "/selectWorkTime";
 	private static final String SEARCH_WORK_TIME = "/searchWorkTime";
@@ -303,22 +301,6 @@ public class EmployeeResource {
 		
 		return result;
 	}
-	
-	
-	
-	@POST
-	@Path(INSERT_WORK_TIME_FROM_STORE)
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertWorkTimeFromStore(@Context HttpServletRequest request, String incomingData) {
-		
-		Model model = new EmpwotmModelInsertFromStore(incomingData, request);
-		model.executeRequest();
-		Response result = model.getResponse();	
-		model.close();
-		
-		return result;
-	}	
 	
 	
 	
