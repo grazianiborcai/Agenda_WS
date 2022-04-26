@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
+import br.com.mind5.business.employeeLunchTime.info.EmplutmInfo;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
@@ -29,6 +30,7 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 	public List<PhoneInfo> phones;
 	public List<PhoneInfo> phonesUser;
 	public List<EmpwotmInfo> empwotmes;
+	public List<EmplutmInfo> emplutmes;
 	public String recordMode;
 	public String username;
 	public LocalDateTime lastChanged;
@@ -57,6 +59,7 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 		phones 			= DefaultValue.list();
 		phonesUser 		= DefaultValue.list();
 		empwotmes 		= DefaultValue.list();
+		emplutmes 		= DefaultValue.list();
 		lastChangedBy 	= DefaultValue.number();
 		createdBy 		= DefaultValue.number();
 	}
@@ -87,6 +90,7 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 		deepCopy.phones 		= CloneUtil.cloneRecords(deepCopy.phones		, this.getClass());
 		deepCopy.phonesUser 	= CloneUtil.cloneRecords(deepCopy.phonesUser	, this.getClass());
 		deepCopy.empwotmes 		= CloneUtil.cloneRecords(deepCopy.empwotmes		, this.getClass());
+		deepCopy.emplutmes 		= CloneUtil.cloneRecords(deepCopy.emplutmes		, this.getClass());
 
 		return deepCopy;	
 	}

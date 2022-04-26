@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.action.EmpVisiNodeAddressInsert;
+import br.com.mind5.business.employee.model.action.EmpVisiNodeEmplutmInsert;
 import br.com.mind5.business.employee.model.action.EmpVisiNodeEmposInsert;
 import br.com.mind5.business.employee.model.action.EmpVisiNodeEmpwotmInsert;
 import br.com.mind5.business.employee.model.action.EmpVisiNodePersonInsert;
@@ -74,6 +75,7 @@ public final class EmpRootInsert extends DeciTreeTemplateWrite<EmpInfo> {
 		ActionLazy<EmpInfo> insertPhone = new ActionLazyCommom<EmpInfo>(option, EmpVisiNodePhoneInsert.class);
 		ActionLazy<EmpInfo> insertEmpos = new ActionLazyCommom<EmpInfo>(option, EmpVisiNodeEmposInsert.class);
 		ActionLazy<EmpInfo> insertEmpwotm = new ActionLazyCommom<EmpInfo>(option, EmpVisiNodeEmpwotmInsert.class);
+		ActionLazy<EmpInfo> insertEmplutm = new ActionLazyCommom<EmpInfo>(option, EmpVisiNodeEmplutmInsert.class);
 		ActionLazy<EmpInfo> select = new ActionLazyCommom<EmpInfo>(option, EmpVisiRootSelect.class);	
 		
 		insertEmployee.addPostAction(insertPerson);		
@@ -83,7 +85,8 @@ public final class EmpRootInsert extends DeciTreeTemplateWrite<EmpInfo> {
 		snapshot.addPostAction(insertPhone);			
 		snapshot.addPostAction(insertEmpos);
 		snapshot.addPostAction(insertEmpwotm);
-		insertEmpwotm.addPostAction(select);		
+		snapshot.addPostAction(insertEmplutm);
+		insertEmplutm.addPostAction(select);		
 		
 		actions.add(insertEmployee);	
 		return actions;

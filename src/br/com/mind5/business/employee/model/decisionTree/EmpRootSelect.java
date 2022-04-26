@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.action.EmpVisiMergeAddress;
+import br.com.mind5.business.employee.model.action.EmpVisiMergeEmplutm;
 import br.com.mind5.business.employee.model.action.EmpVisiMergeEmpwotm;
 import br.com.mind5.business.employee.model.action.EmpVisiMergeFimist;
 import br.com.mind5.business.employee.model.action.EmpVisiMergePerson;
@@ -75,6 +76,7 @@ public final class EmpRootSelect extends DeciTreeTemplateRead<EmpInfo> {
 		ActionLazy<EmpInfo> mergeUser = new ActionLazyCommom<EmpInfo>(option, EmpVisiMergeUser.class);
 		ActionLazy<EmpInfo> mergeFimist = new ActionLazyCommom<EmpInfo>(option, EmpVisiMergeFimist.class);
 		ActionLazy<EmpInfo> mergeEmpwotm = new ActionLazyCommom<EmpInfo>(option, EmpVisiMergeEmpwotm.class);
+		ActionLazy<EmpInfo> mergeEmplutm = new ActionLazyCommom<EmpInfo>(option, EmpVisiMergeEmplutm.class);
 		
 		select.addPostAction(nodeSytotauh);
 		nodeSytotauh.addPostAction(mergePerson);
@@ -83,6 +85,7 @@ public final class EmpRootSelect extends DeciTreeTemplateRead<EmpInfo> {
 		mergePhone.addPostAction(mergeUser);
 		mergeUser.addPostAction(mergeFimist);
 		mergeFimist.addPostAction(mergeEmpwotm);
+		mergeEmpwotm.addPostAction(mergeEmplutm);
 		
 		actions.add(select);
 		return actions;

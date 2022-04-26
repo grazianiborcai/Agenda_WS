@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.business.address.info.AddressInfo;
+import br.com.mind5.business.employeeLunchTime.info.EmplutmInfo;
 import br.com.mind5.business.employeeSearch.info.EmparchInfo;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
@@ -19,6 +20,19 @@ import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmpMerger {
+	public static List<EmpInfo> mergeWithEmplutm(List<EmpInfo> baseInfos, List<EmplutmInfo> selectedInfos) {
+		InfoMergerBuilder<EmpInfo, EmplutmInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpMergerVisiEmplutm());
+		InfoMerger<EmpInfo, EmplutmInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<EmpInfo> mergeWithEmpwotm(List<EmpInfo> baseInfos, List<EmpwotmInfo> selectedInfos) {
 		InfoMergerBuilder<EmpInfo, EmpwotmInfo> builder = new InfoMergerBuilder<>();
 		

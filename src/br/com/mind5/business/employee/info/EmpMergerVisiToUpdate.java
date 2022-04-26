@@ -31,6 +31,9 @@ final class EmpMergerVisiToUpdate extends InfoMergerVisitorTemplate<EmpInfo, Emp
 		if (baseInfo.empwotmes != null)
 			selectedInfo.empwotmes = baseInfo.empwotmes;
 		
+		if (baseInfo.emplutmes != null)
+			selectedInfo.emplutmes = baseInfo.emplutmes;
+		
 		results.add(selectedInfo);
 		return results;
 	}

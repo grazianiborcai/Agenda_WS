@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
+import br.com.mind5.business.employee.model.action.EmpVisiEmplutmDelete;
+import br.com.mind5.business.employee.model.action.EmpVisiEmpwotmDelete;
 import br.com.mind5.business.employee.model.action.EmpVisiNodeDeleteL2;
 import br.com.mind5.business.employee.model.action.EmpVisiNodeEmposDelete;
-import br.com.mind5.business.employee.model.action.EmpVisiEmpwotmDelete;
 import br.com.mind5.business.employee.model.checker.EmpCheckSytotin;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -47,10 +48,12 @@ public final class EmpNodeDeleteL1 extends DeciTreeTemplateWrite<EmpInfo> {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<EmpInfo> deleteEmpwotm = new ActionStdCommom<EmpInfo>(option, EmpVisiEmpwotmDelete.class);
+		ActionLazy<EmpInfo> deleteEmplutm = new ActionLazyCommom<EmpInfo>(option, EmpVisiEmplutmDelete.class);
 		ActionLazy<EmpInfo> deleteEmpos = new ActionLazyCommom<EmpInfo>(option, EmpVisiNodeEmposDelete.class);
 		ActionLazy<EmpInfo> nodeL2 = new ActionLazyCommom<EmpInfo>(option, EmpVisiNodeDeleteL2.class);
 		
-		deleteEmpwotm.addPostAction(deleteEmpos);
+		deleteEmpwotm.addPostAction(deleteEmplutm);
+		deleteEmplutm.addPostAction(deleteEmpos);
 		deleteEmpos.addPostAction(nodeL2);
 		
 		actions.add(deleteEmpwotm);	
