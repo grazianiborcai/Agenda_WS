@@ -47,6 +47,7 @@
     	<security:intercept-url pattern="/**" access="isAuthenticated()" />
         <security:http-basic />
         <csrf disabled="true"/>
+        <cors configuration-source-ref="corsSource"/>
         <custom-filter before="BASIC_AUTH_FILTER" ref="authFilterPwrd" />
     </security:http>
     
@@ -217,6 +218,7 @@
         <security:intercept-url pattern="/**" 										access="denyAll" 									/>
         <security:http-basic />
         <csrf disabled="true"/>
+        <cors configuration-source-ref="corsSource"/>
         <custom-filter after="SECURITY_CONTEXT_FILTER" ref="tokenParamFilter" />
         <custom-filter before="BASIC_AUTH_FILTER" ref="authFilterJwtoken" />
     </security:http>
@@ -253,6 +255,11 @@
 	<beans:bean id="authFilterLocalhost"
 		class="br.com.mind5.servlet.filter.authentication.AuthFilterLocalhost">
 		<beans:constructor-arg ref="authenticationManagerLocalhost"/>
+	</beans:bean>	
+	
+	
+	<beans:bean id="corsSource" 
+		class="br.com.mind5.servlet.filter.cors.CorsConfigurationSource">
 	</beans:bean>
 
 
