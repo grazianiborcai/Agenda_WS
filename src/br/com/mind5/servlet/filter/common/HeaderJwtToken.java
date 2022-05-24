@@ -13,6 +13,7 @@ import br.com.mind5.servlet.filter.authentication.AuthToken;
 
 public final class HeaderJwtToken {
 	static private String HEADER_AUTH = "Authorization";
+	static private String HEADER_EXPOSE = "Access-Control-Expose-Headers";
 	static private String TOKEN_PREFIX = "Bearer";
 	
 	
@@ -29,6 +30,7 @@ public final class HeaderJwtToken {
 		String jwtToken = customGenerateJwtToken(jwtoken);
 		
 		response.addHeader(HEADER_AUTH, TOKEN_PREFIX + " " + jwtToken);
+		response.addHeader(HEADER_EXPOSE, HEADER_AUTH);
 		
 		return response;
 	}
