@@ -29,6 +29,7 @@ public final class StomanDaoWhere implements DaoStmtWhere {
 			switch(eachColumn.columnName) {
 				case StomanDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
+					break;
 					
 				case StomanDaoDbTableColumn.COL_COD_USER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
