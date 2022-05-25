@@ -123,6 +123,7 @@ import br.com.mind5.business.storeList.dao.StolisDaoDbTableColumn;
 import br.com.mind5.business.storeLunchTime.dao.StuntmDaoDbTableColumn;
 import br.com.mind5.business.storeLunchTimeSearch.dao.StuntmarchDaoDbTableColumn;
 import br.com.mind5.business.storeLunchTimeSnapshot.dao.StuntmapDaoDbTableColumn;
+import br.com.mind5.business.storeManager.dao.StomanDaoDbTableColumn;
 import br.com.mind5.business.storeNearby.dao.StorbyDaoDbTableColumn;
 import br.com.mind5.business.storeProspect.dao.StoprosDaoDbTableColumn;
 import br.com.mind5.business.storeProspectSearch.dao.StoprarchDaoDbTableColumn;
@@ -603,6 +604,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new EmplutmarchDaoDbTableColumn());
 		addTable(new EmpulranDaoDbTableColumn());
 		addTable(new EmplutmDaoDbTableColumn());
+		addTable(new StomanDaoDbTableColumn());
 	}
 	
 	

@@ -1929,4 +1929,7 @@ public final class SystemCode {
 	public static final int EMP_LTIME_RANGE_TOO_SHORT					= 19555;
 	public static final int EMP_LTIME_MANDATORY_FIELD_EMPTY 			= 19556;
 	public static final int EMP_LTIME_RANGE_OK 							= 19557;
+	
+	// Store Manager
+	public static final int STORE_MANAGER_MANDATORY_FIELD_EMPTY 		= 19600;
 }

@@ -316,6 +316,7 @@ public final class DaoDbTable {
 	public static final String STORE_LD_RANGE_VIEW = "store_leave_time_range_view";
 	public static final String STORE_LD_SEARCH_VIEW = "view_store_leave_time_search";
 	public static final String STORE_LIST_VIEW = "view_store_list";
+	public static final String STORE_MANAGER_VIEW = "view_store_manager";
 	public static final String STORE_NEARBY_VIEW = "view_nearby_list";
 	public static final String STORE_PROSPECT_SEARCH_VIEW = "view_store_prospect";
 	public static final String STORE_SEARCH_VIEW = "view_store_search";
