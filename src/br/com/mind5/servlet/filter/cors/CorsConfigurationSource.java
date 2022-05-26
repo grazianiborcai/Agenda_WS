@@ -20,7 +20,7 @@ public final class CorsConfigurationSource extends UrlBasedCorsConfigurationSour
 		
 		config.addAllowedHeader("*"); 					// Exemplo: Origin, X-Requested-With, Content-Type, Accept, Key, Authorization
 		config.addAllowedMethod(HttpMethod.GET);
-		config.addAllowedMethod(HttpMethod.PUT);
+		config.addAllowedMethod(HttpMethod.POST);
 		config.addAllowedMethod(HttpMethod.DELETE);
 		config.addAllowedOrigin("*");					// Exemplo: http://localhost:3000
 		config.setAllowCredentials(true);
