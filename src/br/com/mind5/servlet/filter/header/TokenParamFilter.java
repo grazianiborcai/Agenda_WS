@@ -68,7 +68,7 @@ public final class TokenParamFilter extends GenericFilterBean {
 	
 	
 	private ServletResponse onError(ServletResponse response) throws IOException {
-		((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED);	//TODO: melhorar resposta
+		((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "banana");
 		return response;
 	}
 }

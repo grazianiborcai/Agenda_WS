@@ -3,6 +3,7 @@ package br.com.mind5.servlet.filter.authentication;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -69,11 +70,11 @@ public final class AuthFilterJwtoken extends BasicAuthenticationFilter {
     
     private String getTokenHeader(HttpServletRequest request) {
     	String tokenHeader = request.getHeader(HEADER_STRING);  
-    	
+
         if (tokenHeader == null || tokenHeader.startsWith(TOKEN_PREFIX) == false) 
     		return null;
         
-        return tokenHeader.replace(TOKEN_PREFIX, "");
+        return tokenHeader.replace(TOKEN_PREFIX, "").trim();
     }
     
     
