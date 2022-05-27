@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.cartCounter.info.CartouInfo;
 import br.com.mind5.business.storeManager.info.StomanInfo;
+import br.com.mind5.business.storeProspectCounter.info.StoprosouInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.security.userHome.info.UsomeInfo;
@@ -43,6 +44,19 @@ public final class HomeMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new HomeMergerVisiCartou());
 		InfoMerger<HomeInfo, CartouInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<HomeInfo> mergeWithStoprosou(List<HomeInfo> baseInfos, List<StoprosouInfo> selectedInfos) {
+		InfoMergerBuilder<HomeInfo, StoprosouInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new HomeMergerVisiStoprosou());
+		InfoMerger<HomeInfo, StoprosouInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

@@ -8,6 +8,7 @@ import br.com.mind5.business.home.model.action.HomeVisiMergeCartou;
 import br.com.mind5.business.home.model.action.HomeVisiMergeUsername;
 import br.com.mind5.business.home.model.action.HomeVisiMergeUsome;
 import br.com.mind5.business.home.model.action.HomeVisiNodeManager;
+import br.com.mind5.business.home.model.action.HomeVisiNodeOwner;
 import br.com.mind5.business.home.model.checker.HomeCheckLangu;
 import br.com.mind5.business.home.model.checker.HomeCheckOwner;
 import br.com.mind5.business.home.model.checker.HomeCheckRead;
@@ -67,10 +68,12 @@ public final class HomeRootSelect extends DeciTreeTemplateRead<HomeInfo> {
 		ActionLazy<HomeInfo> mergeCartou = new ActionLazyCommom<HomeInfo>(option, HomeVisiMergeCartou.class);
 		ActionLazy<HomeInfo> mergeUsome = new ActionLazyCommom<HomeInfo>(option, HomeVisiMergeUsome.class);
 		ActionLazy<HomeInfo> nodeManager = new ActionLazyCommom<HomeInfo>(option, HomeVisiNodeManager.class);
+		ActionLazy<HomeInfo> nodeOwner = new ActionLazyCommom<HomeInfo>(option, HomeVisiNodeOwner.class);
 		
 		mergeUser.addPostAction(mergeCartou);
 		mergeCartou.addPostAction(mergeUsome);
 		mergeUsome.addPostAction(nodeManager);
+		nodeManager.addPostAction(nodeOwner);
 		
 		actions.add(mergeUser);	
 		return actions;
