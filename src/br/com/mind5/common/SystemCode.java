@@ -1934,4 +1934,7 @@ public final class SystemCode {
 	
 	// Store Manager
 	public static final int STORE_MANAGER_MANDATORY_FIELD_EMPTY 		= 19600;
+	
+	// Store Prospect Counter
+	public static final int STORE_PROSPECT_COUNT_MANDATORY_FIELD_EMPTY	= 19601;
 }
