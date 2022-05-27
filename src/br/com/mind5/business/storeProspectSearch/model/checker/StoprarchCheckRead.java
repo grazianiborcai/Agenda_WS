@@ -26,7 +26,7 @@ public final class StoprarchCheckRead extends ModelCheckerTemplateSimple<Stoprar
 			recordInfo.prospectEmail 		== null	&&
 			recordInfo.codProspectStatus 	== null		)	
 				
-				return super.FAILED;
+			return super.FAILED;
 		
 		
 		return super.SUCCESS;
