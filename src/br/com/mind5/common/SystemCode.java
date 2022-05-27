@@ -1366,6 +1366,8 @@ public final class SystemCode {
 	
 	// Store Prospect Search
 	public static final int STORE_PROSPECT_SEARCH_MANDATORY_FIELD_EMPTY	= 13000;
+	public static final int STORE_PROSPECT_SEARCH_NOT_FOUND				= 13001;
+	public static final int STORE_PROSPECT_SEARCH_ALREADY_EXIST			= 13002;
 	
 	// OTP User Password
 	public static final int OTP_USER_PASSWORD_MANDATORY_FIELD_EMPTY		= 13050;
