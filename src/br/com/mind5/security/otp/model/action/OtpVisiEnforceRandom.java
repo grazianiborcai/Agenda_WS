@@ -4,18 +4,18 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.otp.info.OtpInfo;
-import br.com.mind5.security.otp.info.OtpSetterHashToMatch;
+import br.com.mind5.security.otp.info.OtpSetterRandom;
 
-final class VisiOtpEnforceHashToMatch extends ActionVisitorTemplateEnforce<OtpInfo> {
+public final class OtpVisiEnforceRandom extends ActionVisitorTemplateEnforce<OtpInfo> {
 	
-	public VisiOtpEnforceHashToMatch(DeciTreeOption<OtpInfo> option) {
+	public OtpVisiEnforceRandom(DeciTreeOption<OtpInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected OtpInfo enforceHook(OtpInfo recordInfo) {
-		InfoSetter<OtpInfo> attrSetter = new OtpSetterHashToMatch();
+		InfoSetter<OtpInfo> attrSetter = new OtpSetterRandom();
 		return attrSetter.setAttr(recordInfo);
 	}
 }

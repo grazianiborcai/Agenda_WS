@@ -6,7 +6,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.otp.info.OtpInfo;
-import br.com.mind5.security.otp.model.decisionTree.RootOtpGenerate;
+import br.com.mind5.security.otp.model.decisionTree.OtpRootGenerate;
 import br.com.mind5.security.otpProspectStore.info.OtporeInfo;
 import br.com.mind5.security.otpProspectStore.info.OtporeMerger;
 
@@ -19,7 +19,7 @@ final class VisiOtporeOtpGenerate extends ActionVisitorTemplateAction<OtporeInfo
 	
 	
 	@Override protected Class<? extends DeciTree<OtpInfo>> getTreeClassHook() {
-		return RootOtpGenerate.class;
+		return OtpRootGenerate.class;
 	}
 	
 	

@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.otp.info.OtpInfo;
-import br.com.mind5.security.otp.model.action.StdOtpSuccess;
 import br.com.mind5.security.otp.model.checker.OtpCheckHashToMatch;
 
-public final class NodeOtpMatch extends DeciTreeTemplateWrite<OtpInfo> {
+public final class OtpNodeMatch extends DeciTreeTemplateWrite<OtpInfo> {
 	
-	public NodeOtpMatch(DeciTreeOption<OtpInfo> option) {
+	public OtpNodeMatch(DeciTreeOption<OtpInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +41,7 @@ public final class NodeOtpMatch extends DeciTreeTemplateWrite<OtpInfo> {
 	@Override protected List<ActionStd<OtpInfo>> buildActionsOnPassedHook(DeciTreeOption<OtpInfo> option) {
 		List<ActionStd<OtpInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OtpInfo> success = new StdOtpSuccess(option);
+		ActionStd<OtpInfo> success = new ActionStdSuccessCommom<OtpInfo>(option);
 		actions.add(success);
 		
 		return actions;

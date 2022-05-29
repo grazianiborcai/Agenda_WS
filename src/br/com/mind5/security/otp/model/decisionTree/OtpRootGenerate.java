@@ -5,20 +5,22 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.otp.info.OtpInfo;
-import br.com.mind5.security.otp.model.action.LazyOtpEnforceHash;
-import br.com.mind5.security.otp.model.action.LazyOtpEnforceLength;
-import br.com.mind5.security.otp.model.action.LazyOtpEnforceSalt;
-import br.com.mind5.security.otp.model.action.StdOtpEnforceRandom;
+import br.com.mind5.security.otp.model.action.OtpVisiEnforceHash;
+import br.com.mind5.security.otp.model.action.OtpVisiEnforceLength;
+import br.com.mind5.security.otp.model.action.OtpVisiEnforceRandom;
+import br.com.mind5.security.otp.model.action.OtpVisiEnforceSalt;
 
-public final class RootOtpGenerate extends DeciTreeTemplateWrite<OtpInfo> {
+public final class OtpRootGenerate extends DeciTreeTemplateWrite<OtpInfo> {
 	
-	public RootOtpGenerate(DeciTreeOption<OtpInfo> option) {
+	public OtpRootGenerate(DeciTreeOption<OtpInfo> option) {
 		super(option);
 	}
 	
@@ -39,10 +41,10 @@ public final class RootOtpGenerate extends DeciTreeTemplateWrite<OtpInfo> {
 	@Override protected List<ActionStd<OtpInfo>> buildActionsOnPassedHook(DeciTreeOption<OtpInfo> option) {
 		List<ActionStd<OtpInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OtpInfo> enforceRandom = new StdOtpEnforceRandom(option);
-		ActionLazy<OtpInfo> enforceLength = new LazyOtpEnforceLength(option.conn, option.schemaName);
-		ActionLazy<OtpInfo> enforceSalt = new LazyOtpEnforceSalt(option.conn, option.schemaName);
-		ActionLazy<OtpInfo> enforceHash = new LazyOtpEnforceHash(option.conn, option.schemaName);
+		ActionStd<OtpInfo> enforceRandom = new ActionStdCommom<OtpInfo>(option, OtpVisiEnforceRandom.class);
+		ActionLazy<OtpInfo> enforceLength = new ActionLazyCommom<OtpInfo>(option, OtpVisiEnforceLength.class);
+		ActionLazy<OtpInfo> enforceSalt = new ActionLazyCommom<OtpInfo>(option, OtpVisiEnforceSalt.class);
+		ActionLazy<OtpInfo> enforceHash = new ActionLazyCommom<OtpInfo>(option, OtpVisiEnforceHash.class);
 		
 		enforceRandom.addPostAction(enforceLength);
 		enforceLength.addPostAction(enforceSalt);

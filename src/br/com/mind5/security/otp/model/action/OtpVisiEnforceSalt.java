@@ -4,18 +4,18 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.otp.info.OtpInfo;
-import br.com.mind5.security.otp.info.OtpSetterRandom;
+import br.com.mind5.security.otp.info.OtpSetterSalt;
 
-final class VisiOtpEnforceRandom extends ActionVisitorTemplateEnforce<OtpInfo> {
+public final class OtpVisiEnforceSalt extends ActionVisitorTemplateEnforce<OtpInfo> {
 	
-	public VisiOtpEnforceRandom(DeciTreeOption<OtpInfo> option) {
+	public OtpVisiEnforceSalt(DeciTreeOption<OtpInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected OtpInfo enforceHook(OtpInfo recordInfo) {
-		InfoSetter<OtpInfo> attrSetter = new OtpSetterRandom();
+		InfoSetter<OtpInfo> attrSetter = new OtpSetterSalt();
 		return attrSetter.setAttr(recordInfo);
 	}
 }
