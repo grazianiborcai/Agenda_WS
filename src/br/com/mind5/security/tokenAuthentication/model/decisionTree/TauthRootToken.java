@@ -5,20 +5,22 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.tokenAuthentication.info.TauthInfo;
-import br.com.mind5.security.tokenAuthentication.model.action.LazyTauthMergeUsername;
-import br.com.mind5.security.tokenAuthentication.model.action.StdTauthMergeJwtoken;
-import br.com.mind5.security.tokenAuthentication.model.action.StdTauthValidateJwtoken;
+import br.com.mind5.security.tokenAuthentication.model.action.TauthVisiMergeJwtoken;
+import br.com.mind5.security.tokenAuthentication.model.action.TauthVisiMergeUsername;
+import br.com.mind5.security.tokenAuthentication.model.action.TauthVisiValidateJwtoken;
 import br.com.mind5.security.tokenAuthentication.model.checker.TauthCheckRead;
 
-public final class RootTauthToken extends DeciTreeTemplateWrite<TauthInfo> {
+public final class TauthRootToken extends DeciTreeTemplateWrite<TauthInfo> {
 	
-	public RootTauthToken(DeciTreeOption<TauthInfo> option) {
+	public TauthRootToken(DeciTreeOption<TauthInfo> option) {
 		super(option);
 	}
 	
@@ -44,9 +46,9 @@ public final class RootTauthToken extends DeciTreeTemplateWrite<TauthInfo> {
 	@Override protected List<ActionStd<TauthInfo>> buildActionsOnPassedHook(DeciTreeOption<TauthInfo> option) {
 		List<ActionStd<TauthInfo>> actions = new ArrayList<>();
 		
-		ActionStd<TauthInfo> validateJwtoken = new StdTauthValidateJwtoken(option);
-		ActionStd<TauthInfo> mergeJwtoken = new StdTauthMergeJwtoken(option);
-		ActionLazy<TauthInfo> mergeUsername = new LazyTauthMergeUsername(option.conn, option.schemaName);
+		ActionStd<TauthInfo> validateJwtoken = new ActionStdCommom<TauthInfo>(option, TauthVisiValidateJwtoken.class);
+		ActionStd<TauthInfo> mergeJwtoken = new ActionStdCommom<TauthInfo>(option, TauthVisiMergeJwtoken.class);
+		ActionLazy<TauthInfo> mergeUsername = new ActionLazyCommom<TauthInfo>(option, TauthVisiMergeUsername.class);
 		
 		mergeJwtoken.addPostAction(mergeUsername);
 		

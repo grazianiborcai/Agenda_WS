@@ -13,7 +13,7 @@ public final class TauthMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new TauthVisiMergeJwtoken());
+		builder.addVisitor(new TauthMergerVisiJwtoken());
 		InfoMerger<TauthInfo, JwtokenInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class TauthMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new TauthVisiMergeUsername());
+		builder.addVisitor(new TauthMergerVisiUsername());
 		InfoMerger<TauthInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();

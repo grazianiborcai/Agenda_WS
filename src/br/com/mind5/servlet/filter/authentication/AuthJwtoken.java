@@ -6,7 +6,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.common.DeciTreeOneCallTemplate;
 import br.com.mind5.security.tokenAuthentication.info.TauthInfo;
-import br.com.mind5.security.tokenAuthentication.model.decisionTree.RootTauthToken;
+import br.com.mind5.security.tokenAuthentication.model.decisionTree.TauthRootToken;
 
 final class AuthJwtoken extends DeciTreeOneCallTemplate<TauthInfo> {
 
@@ -23,6 +23,6 @@ final class AuthJwtoken extends DeciTreeOneCallTemplate<TauthInfo> {
 	
 	
 	@Override protected DeciTree<TauthInfo> getTreeHook(DeciTreeOption<TauthInfo> optionTree) {
-		return new RootTauthToken(optionTree);
+		return new TauthRootToken(optionTree);
 	}
 }

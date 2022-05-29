@@ -11,9 +11,9 @@ import br.com.mind5.security.jwtToken.model.decisionTree.JwtokenRootParse;
 import br.com.mind5.security.tokenAuthentication.info.TauthInfo;
 import br.com.mind5.security.tokenAuthentication.info.TauthMerger;
 
-final class VisiTauthMergeJwtoken extends ActionVisitorTemplateMerge<TauthInfo, JwtokenInfo> {
+public final class TauthVisiMergeJwtoken extends ActionVisitorTemplateMerge<TauthInfo, JwtokenInfo> {
 	
-	public VisiTauthMergeJwtoken(DeciTreeOption<TauthInfo> option) {
+	public TauthVisiMergeJwtoken(DeciTreeOption<TauthInfo> option) {
 		super(option, JwtokenInfo.class);
 	}
 	

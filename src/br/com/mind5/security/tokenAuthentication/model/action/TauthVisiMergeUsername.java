@@ -10,9 +10,9 @@ import br.com.mind5.security.tokenAuthentication.info.TauthMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiTauthMergeUsername extends ActionVisitorTemplateMerge<TauthInfo, UsernameInfo> {
+public final class TauthVisiMergeUsername extends ActionVisitorTemplateMerge<TauthInfo, UsernameInfo> {
 	
-	public VisiTauthMergeUsername(DeciTreeOption<TauthInfo> option) {
+	public TauthVisiMergeUsername(DeciTreeOption<TauthInfo> option) {
 		super(option, UsernameInfo.class);
 	}
 	
