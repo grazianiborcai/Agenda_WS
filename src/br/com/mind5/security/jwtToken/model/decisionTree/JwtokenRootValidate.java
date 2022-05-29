@@ -3,20 +3,24 @@ package br.com.mind5.security.jwtToken.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
-import br.com.mind5.security.jwtToken.model.action.StdJwtokenEnforcePlatform;
-import br.com.mind5.security.jwtToken.model.action.StdJwtokenSuccess;
-import br.com.mind5.security.jwtToken.model.checker.JwtokenCheckHasPlatform;
+import br.com.mind5.security.jwtToken.model.action.JwtokenVisiNodeValidateL1;
+import br.com.mind5.security.jwtToken.model.action.JwtokenVisiEnforceAlgo;
+import br.com.mind5.security.jwtToken.model.action.JwtokenVisiEnforceSecret;
+import br.com.mind5.security.jwtToken.model.checker.JwtokenCheckValidate;
 
-public final class NodeJwtokenPlatform extends DeciTreeTemplateWrite<JwtokenInfo> {
+public final class JwtokenRootValidate extends DeciTreeTemplateWrite<JwtokenInfo> {
 	
-	public NodeJwtokenPlatform(DeciTreeOption<JwtokenInfo> option) {
+	public JwtokenRootValidate(DeciTreeOption<JwtokenInfo> option) {
 		super(option);
 	}
 	
@@ -31,7 +35,7 @@ public final class NodeJwtokenPlatform extends DeciTreeTemplateWrite<JwtokenInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new JwtokenCheckHasPlatform(checkerOption);
+		checker = new JwtokenCheckValidate(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -42,20 +46,14 @@ public final class NodeJwtokenPlatform extends DeciTreeTemplateWrite<JwtokenInfo
 	@Override protected List<ActionStd<JwtokenInfo>> buildActionsOnPassedHook(DeciTreeOption<JwtokenInfo> option) {
 		List<ActionStd<JwtokenInfo>> actions = new ArrayList<>();
 		
-		ActionStd<JwtokenInfo> success = new StdJwtokenSuccess(option);
+		ActionStd<JwtokenInfo> enforceSecret = new ActionStdCommom<JwtokenInfo>(option, JwtokenVisiEnforceSecret.class);
+		ActionLazy<JwtokenInfo> enforceAlgo = new ActionLazyCommom<JwtokenInfo>(option, JwtokenVisiEnforceAlgo.class);
+		ActionLazy<JwtokenInfo> nodeL1 = new ActionLazyCommom<JwtokenInfo>(option, JwtokenVisiNodeValidateL1.class);
 		
-		actions.add(success);
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<JwtokenInfo>> buildActionsOnFailedHook(DeciTreeOption<JwtokenInfo> option) {
-		List<ActionStd<JwtokenInfo>> actions = new ArrayList<>();
+		enforceSecret.addPostAction(enforceAlgo);
+		enforceAlgo.addPostAction(nodeL1);
 		
-		ActionStd<JwtokenInfo> enforcePlatform = new StdJwtokenEnforcePlatform(option);
-		
-		actions.add(enforcePlatform);
+		actions.add(enforceSecret);
 		return actions;
 	}
 }

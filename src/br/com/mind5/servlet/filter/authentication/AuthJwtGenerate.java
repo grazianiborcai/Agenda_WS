@@ -6,7 +6,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.common.DeciTreeOneCallTemplate;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
-import br.com.mind5.security.jwtToken.model.decisionTree.RootJwtokenGenerate;
+import br.com.mind5.security.jwtToken.model.decisionTree.JwtokenRootGenerate;
 
 public final class AuthJwtGenerate extends DeciTreeOneCallTemplate<JwtokenInfo> {
 
@@ -23,6 +23,6 @@ public final class AuthJwtGenerate extends DeciTreeOneCallTemplate<JwtokenInfo> 
 	
 	
 	@Override protected DeciTree<JwtokenInfo> getTreeHook(DeciTreeOption<JwtokenInfo> optionTree) {
-		return new RootJwtokenGenerate(optionTree);
+		return new JwtokenRootGenerate(optionTree);
 	}
 }

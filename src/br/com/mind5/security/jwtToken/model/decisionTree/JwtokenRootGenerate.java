@@ -5,22 +5,23 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
-import br.com.mind5.security.jwtToken.model.action.LazyJwtokenEnforceAlgo;
-import br.com.mind5.security.jwtToken.model.action.LazyJwtokenEnforceCreatedOn;
-import br.com.mind5.security.jwtToken.model.action.LazyJwtokenEnforceExpiration;
-import br.com.mind5.security.jwtToken.model.action.LazyJwtokenEnforceSecret;
-import br.com.mind5.security.jwtToken.model.action.LazyJwtokenEnforceToken;
+import br.com.mind5.security.jwtToken.model.action.JwtokenVisiEnforceAlgo;
+import br.com.mind5.security.jwtToken.model.action.JwtokenVisiEnforceCreatedOn;
+import br.com.mind5.security.jwtToken.model.action.JwtokenVisiEnforceExpiration;
+import br.com.mind5.security.jwtToken.model.action.JwtokenVisiEnforceSecret;
+import br.com.mind5.security.jwtToken.model.action.JwtokenVisiEnforceToken;
 import br.com.mind5.security.jwtToken.model.checker.JwtokenCheckGenerate;
 
-public final class RootJwtokenGenerate extends DeciTreeTemplateWrite<JwtokenInfo> {
+public final class JwtokenRootGenerate extends DeciTreeTemplateWrite<JwtokenInfo> {
 	
-	public RootJwtokenGenerate(DeciTreeOption<JwtokenInfo> option) {
+	public JwtokenRootGenerate(DeciTreeOption<JwtokenInfo> option) {
 		super(option);
 	}
 	
@@ -46,12 +47,12 @@ public final class RootJwtokenGenerate extends DeciTreeTemplateWrite<JwtokenInfo
 	@Override protected List<ActionStd<JwtokenInfo>> buildActionsOnPassedHook(DeciTreeOption<JwtokenInfo> option) {
 		List<ActionStd<JwtokenInfo>> actions = new ArrayList<>();
 		
-		ActionStd<JwtokenInfo> nodePlatform = new  NodeJwtokenPlatform(option).toAction();
-		ActionLazy<JwtokenInfo> enforceCreatedOn = new LazyJwtokenEnforceCreatedOn(option.conn, option.schemaName);
-		ActionLazy<JwtokenInfo> enforceSecret = new LazyJwtokenEnforceSecret(option.conn, option.schemaName);
-		ActionLazy<JwtokenInfo> enforceExpiration = new LazyJwtokenEnforceExpiration(option.conn, option.schemaName);
-		ActionLazy<JwtokenInfo> enforceAlgo = new LazyJwtokenEnforceAlgo(option.conn, option.schemaName);
-		ActionLazy<JwtokenInfo> enforceToken = new LazyJwtokenEnforceToken(option.conn, option.schemaName);
+		ActionStd<JwtokenInfo> nodePlatform = new  JwtokenNodePlatform(option).toAction();
+		ActionLazy<JwtokenInfo> enforceCreatedOn = new ActionLazyCommom<JwtokenInfo>(option, JwtokenVisiEnforceCreatedOn.class);
+		ActionLazy<JwtokenInfo> enforceSecret = new ActionLazyCommom<JwtokenInfo>(option, JwtokenVisiEnforceSecret.class);
+		ActionLazy<JwtokenInfo> enforceExpiration = new ActionLazyCommom<JwtokenInfo>(option, JwtokenVisiEnforceExpiration.class);
+		ActionLazy<JwtokenInfo> enforceAlgo = new ActionLazyCommom<JwtokenInfo>(option, JwtokenVisiEnforceAlgo.class);
+		ActionLazy<JwtokenInfo> enforceToken = new ActionLazyCommom<JwtokenInfo>(option, JwtokenVisiEnforceToken.class);
 		
 		nodePlatform.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(enforceSecret);

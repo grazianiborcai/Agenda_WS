@@ -4,18 +4,18 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
-import br.com.mind5.security.jwtToken.info.JwtokenSetterObfuscate;
+import br.com.mind5.security.jwtToken.info.JwtokenSetterAlgo;
 
-final class VisiJwtokenObfuscate extends ActionVisitorTemplateEnforce<JwtokenInfo> {
+public final class JwtokenVisiEnforceAlgo extends ActionVisitorTemplateEnforce<JwtokenInfo> {
 	
-	public VisiJwtokenObfuscate(DeciTreeOption<JwtokenInfo> option) {
+	public JwtokenVisiEnforceAlgo(DeciTreeOption<JwtokenInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected JwtokenInfo enforceHook(JwtokenInfo recordInfo) {
-		InfoSetter<JwtokenInfo> attrSetter = new JwtokenSetterObfuscate();
+		InfoSetter<JwtokenInfo> attrSetter = new JwtokenSetterAlgo();
 		return attrSetter.setAttr(recordInfo);
 	}
 }

@@ -6,7 +6,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
-import br.com.mind5.security.jwtToken.model.decisionTree.RootJwtokenGenerate;
+import br.com.mind5.security.jwtToken.model.decisionTree.JwtokenRootGenerate;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
 final class VisiUpswdJwtokenGenerate extends ActionVisitorTemplateAction<UpswdInfo, JwtokenInfo> {
@@ -18,7 +18,7 @@ final class VisiUpswdJwtokenGenerate extends ActionVisitorTemplateAction<UpswdIn
 	
 	
 	@Override protected Class<? extends DeciTree<JwtokenInfo>> getTreeClassHook() {
-		return RootJwtokenGenerate.class;
+		return JwtokenRootGenerate.class;
 	}
 	
 	

@@ -7,7 +7,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.jwtToken.info.JwtokenCopier;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
-import br.com.mind5.security.jwtToken.model.decisionTree.RootJwtokenParse;
+import br.com.mind5.security.jwtToken.model.decisionTree.JwtokenRootParse;
 import br.com.mind5.security.tokenAuthentication.info.TauthInfo;
 import br.com.mind5.security.tokenAuthentication.info.TauthMerger;
 
@@ -20,7 +20,7 @@ final class VisiTauthMergeJwtoken extends ActionVisitorTemplateMerge<TauthInfo, 
 	
 	
 	@Override protected Class<? extends DeciTree<JwtokenInfo>> getTreeClassHook() {
-		return RootJwtokenParse.class;
+		return JwtokenRootParse.class;
 	}
 	
 	

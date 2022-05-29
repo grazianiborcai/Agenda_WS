@@ -3,22 +3,20 @@ package br.com.mind5.security.jwtToken.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
-import br.com.mind5.security.jwtToken.model.action.LazyJwtokenEnforceAlgo;
-import br.com.mind5.security.jwtToken.model.action.LazyJwtokenNodeValidateL1;
-import br.com.mind5.security.jwtToken.model.action.StdJwtokenEnforceSecret;
-import br.com.mind5.security.jwtToken.model.checker.JwtokenCheckValidate;
+import br.com.mind5.security.jwtToken.model.action.JwtokenVisiObfuscate;
+import br.com.mind5.security.jwtToken.model.checker.JwtokenCheckUpswdarch;
 
-public final class RootJwtokenValidate extends DeciTreeTemplateWrite<JwtokenInfo> {
+public final class JwtokenNodeValidateL2 extends DeciTreeTemplateWrite<JwtokenInfo> {
 	
-	public RootJwtokenValidate(DeciTreeOption<JwtokenInfo> option) {
+	public JwtokenNodeValidateL2(DeciTreeOption<JwtokenInfo> option) {
 		super(option);
 	}
 	
@@ -32,8 +30,8 @@ public final class RootJwtokenValidate extends DeciTreeTemplateWrite<JwtokenInfo
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new JwtokenCheckValidate(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new JwtokenCheckUpswdarch(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -44,14 +42,9 @@ public final class RootJwtokenValidate extends DeciTreeTemplateWrite<JwtokenInfo
 	@Override protected List<ActionStd<JwtokenInfo>> buildActionsOnPassedHook(DeciTreeOption<JwtokenInfo> option) {
 		List<ActionStd<JwtokenInfo>> actions = new ArrayList<>();
 		
-		ActionStd<JwtokenInfo> enforceSecret = new StdJwtokenEnforceSecret(option);
-		ActionLazy<JwtokenInfo> enforceAlgo = new LazyJwtokenEnforceAlgo(option.conn, option.schemaName);
-		ActionLazy<JwtokenInfo> nodeL1 = new LazyJwtokenNodeValidateL1(option.conn, option.schemaName);
+		ActionStd<JwtokenInfo> obfuscate = new ActionStdCommom<JwtokenInfo>(option, JwtokenVisiObfuscate.class);
 		
-		enforceSecret.addPostAction(enforceAlgo);
-		enforceAlgo.addPostAction(nodeL1);
-		
-		actions.add(enforceSecret);
+		actions.add(obfuscate);
 		return actions;
 	}
 }

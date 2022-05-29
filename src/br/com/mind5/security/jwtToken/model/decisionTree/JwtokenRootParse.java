@@ -5,18 +5,22 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
-import br.com.mind5.security.jwtToken.model.action.LazyJwtokenNodeValidateL2;
-import br.com.mind5.security.jwtToken.model.checker.JwtokenCheckToken;
+import br.com.mind5.security.jwtToken.model.action.JwtokenVisiEnforceAlgo;
+import br.com.mind5.security.jwtToken.model.action.JwtokenVisiEnforceSecret;
+import br.com.mind5.security.jwtToken.model.action.JwtokenVisiParse;
+import br.com.mind5.security.jwtToken.model.checker.JwtokenCheckValidate;
 
-public final class NodeJwtokenValidateL1 extends DeciTreeTemplateWrite<JwtokenInfo> {
+public final class JwtokenRootParse extends DeciTreeTemplateWrite<JwtokenInfo> {
 	
-	public NodeJwtokenValidateL1(DeciTreeOption<JwtokenInfo> option) {
+	public JwtokenRootParse(DeciTreeOption<JwtokenInfo> option) {
 		super(option);
 	}
 	
@@ -31,23 +35,25 @@ public final class NodeJwtokenValidateL1 extends DeciTreeTemplateWrite<JwtokenIn
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new JwtokenCheckToken(checkerOption);
+		checker = new JwtokenCheckValidate(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
-	}
+	}		
 	
 	
 	
 	@Override protected List<ActionStd<JwtokenInfo>> buildActionsOnPassedHook(DeciTreeOption<JwtokenInfo> option) {
 		List<ActionStd<JwtokenInfo>> actions = new ArrayList<>();
 		
-		ActionStd<JwtokenInfo> parse = new RootJwtokenParse(option).toAction();
-		ActionLazy<JwtokenInfo> nodeL2 = new LazyJwtokenNodeValidateL2(option.conn, option.schemaName);
+		ActionStd<JwtokenInfo> enforceSecret = new ActionStdCommom<JwtokenInfo>(option, JwtokenVisiEnforceSecret.class);
+		ActionLazy<JwtokenInfo> enforceAlgo = new ActionLazyCommom<JwtokenInfo>(option, JwtokenVisiEnforceAlgo.class);
+		ActionLazy<JwtokenInfo> parse = new ActionLazyCommom<JwtokenInfo>(option, JwtokenVisiParse.class);
 		
-		parse.addPostAction(nodeL2);
+		enforceSecret.addPostAction(enforceAlgo);
+		enforceAlgo.addPostAction(parse);
 		
-		actions.add(parse);
+		actions.add(enforceSecret);
 		return actions;
 	}
 }

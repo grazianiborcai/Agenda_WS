@@ -4,18 +4,18 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
-import br.com.mind5.security.jwtToken.info.JwtokenSetterToken;
+import br.com.mind5.security.jwtToken.info.JwtokenSetterCreatedOn;
 
-final class VisiJwtokenEnforceToken extends ActionVisitorTemplateEnforce<JwtokenInfo> {
+public final class JwtokenVisiEnforceCreatedOn extends ActionVisitorTemplateEnforce<JwtokenInfo> {
 	
-	public VisiJwtokenEnforceToken(DeciTreeOption<JwtokenInfo> option) {
+	public JwtokenVisiEnforceCreatedOn(DeciTreeOption<JwtokenInfo> option) {
 		super(option);
 	}
-	
+
 	
 	
 	@Override protected JwtokenInfo enforceHook(JwtokenInfo recordInfo) {
-		InfoSetter<JwtokenInfo> attrSetter = new JwtokenSetterToken();
+		InfoSetter<JwtokenInfo> attrSetter = new JwtokenSetterCreatedOn();
 		return attrSetter.setAttr(recordInfo);
 	}
 }

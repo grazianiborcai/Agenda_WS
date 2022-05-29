@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
 import br.com.mind5.security.jwtToken.info.JwtokenSetterPlatform;
 
-final class VisiJwtokenEnforcePlatform extends ActionVisitorTemplateEnforce<JwtokenInfo> {
+public final class JwtokenVisiEnforcePlatform extends ActionVisitorTemplateEnforce<JwtokenInfo> {
 	
-	public VisiJwtokenEnforcePlatform(DeciTreeOption<JwtokenInfo> option) {
+	public JwtokenVisiEnforcePlatform(DeciTreeOption<JwtokenInfo> option) {
 		super(option);
 	}
 	

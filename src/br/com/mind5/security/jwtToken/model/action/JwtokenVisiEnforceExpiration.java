@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
 import br.com.mind5.security.jwtToken.info.JwtokenSetterExpiration;
 
-final class VisiJwtokenEnforceExpiration extends ActionVisitorTemplateEnforce<JwtokenInfo> {
+public final class JwtokenVisiEnforceExpiration extends ActionVisitorTemplateEnforce<JwtokenInfo> {
 	
-	public VisiJwtokenEnforceExpiration(DeciTreeOption<JwtokenInfo> option) {
+	public JwtokenVisiEnforceExpiration(DeciTreeOption<JwtokenInfo> option) {
 		super(option);
 	}
 	
