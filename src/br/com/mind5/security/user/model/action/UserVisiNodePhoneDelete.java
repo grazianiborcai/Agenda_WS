@@ -1,0 +1,28 @@
+package br.com.mind5.security.user.model.action;
+
+import java.util.List;
+
+import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
+import br.com.mind5.security.user.info.UserInfo;
+import br.com.mind5.security.user.model.decisionTree.UserNodePhoneDelete;
+
+public final class UserVisiNodePhoneDelete extends ActionVisitorTemplateAction<UserInfo, UserInfo> {
+
+	public UserVisiNodePhoneDelete(DeciTreeOption<UserInfo> option) {
+		super(option, UserInfo.class, UserInfo.class);
+	}
+	
+	
+	
+	@Override protected Class<? extends DeciTree<UserInfo>> getTreeClassHook() {
+		return UserNodePhoneDelete.class;
+	}
+	
+	
+	
+	@Override protected List<UserInfo> toBaseClassHook(List<UserInfo> baseInfos, List<UserInfo> results) {
+		return results;
+	}
+}

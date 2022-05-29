@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.decisionTree.RootUserInsertDaemon;
+import br.com.mind5.security.user.model.decisionTree.UserRootInsertDaemon;
 
 public final class OwnerVisiUserInsertDaemon extends ActionVisitorTemplateAction<OwnerInfo, UserInfo> {
 	
@@ -20,7 +20,7 @@ public final class OwnerVisiUserInsertDaemon extends ActionVisitorTemplateAction
 	
 	
 	@Override protected Class<? extends DeciTree<UserInfo>> getTreeClassHook() {
-		return RootUserInsertDaemon.class;
+		return UserRootInsertDaemon.class;
 	}
 	
 	

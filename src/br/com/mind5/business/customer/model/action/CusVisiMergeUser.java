@@ -8,7 +8,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.decisionTree.RootUserSelect;
+import br.com.mind5.security.user.model.decisionTree.UserRootSelect;
 
 public final class CusVisiMergeUser extends ActionVisitorTemplateMerge<CusInfo, UserInfo> {
 	
@@ -19,7 +19,7 @@ public final class CusVisiMergeUser extends ActionVisitorTemplateMerge<CusInfo, 
 	
 	
 	@Override protected Class<? extends DeciTree<UserInfo>> getTreeClassHook() {
-		return RootUserSelect.class;
+		return UserRootSelect.class;
 	}
 	
 	

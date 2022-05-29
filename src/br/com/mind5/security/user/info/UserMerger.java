@@ -20,7 +20,7 @@ public final class UserMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserVisiMergeFimist());
+		builder.addVisitor(new UserMergerVisiFimist());
 		InfoMerger<UserInfo, FimistInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -33,7 +33,7 @@ public final class UserMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserVisiMergeUserarch());
+		builder.addVisitor(new UserMergerVisiUserarch());
 		InfoMerger<UserInfo, UserarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -46,7 +46,7 @@ public final class UserMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserVisiMergeAddress());
+		builder.addVisitor(new UserMergerVisiAddress());
 		InfoMerger<UserInfo, AddressInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -59,7 +59,7 @@ public final class UserMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserVisiMergeCuspar());
+		builder.addVisitor(new UserMergerVisiCuspar());
 		InfoMerger<UserInfo, CusparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -72,7 +72,7 @@ public final class UserMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserVisiMergeAuthgrole());
+		builder.addVisitor(new UserMergerVisiAuthgrole());
 		InfoMerger<UserInfo, AuthgroleInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -85,7 +85,7 @@ public final class UserMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserVisiMergePerson());
+		builder.addVisitor(new UserMergerVisiPerson());
 		InfoMerger<UserInfo, PersonInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -98,7 +98,7 @@ public final class UserMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserVisiMergePhone());
+		builder.addVisitor(new UserMergerVisiPhone());
 		InfoMerger<UserInfo, PhoneInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -111,7 +111,7 @@ public final class UserMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserVisiMergeUsername());
+		builder.addVisitor(new UserMergerVisiUsername());
 		InfoMerger<UserInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -124,7 +124,7 @@ public final class UserMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserVisiMergeUserap());
+		builder.addVisitor(new UserMergerVisiUserap());
 		InfoMerger<UserInfo, UserapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -137,7 +137,7 @@ public final class UserMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserVisiMergeToDelete());
+		builder.addVisitor(new UserMergerVisiToDelete());
 		InfoMerger<UserInfo, UserInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -150,7 +150,7 @@ public final class UserMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserVisiMergeToSelect());
+		builder.addVisitor(new UserMergerVisiToSelect());
 		InfoMerger<UserInfo, UserInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -163,7 +163,7 @@ public final class UserMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserVisiMergeToUpdate());
+		builder.addVisitor(new UserMergerVisiToUpdate());
 		InfoMerger<UserInfo, UserInfo> merger = builder.build();		
 	
 		return merger.merge();

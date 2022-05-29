@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.decisionTree.RootUserInsertCus;
+import br.com.mind5.security.user.model.decisionTree.UserRootInsertCus;
 
 public final class CusVisiUserInsert extends ActionVisitorTemplateAction<CusInfo, UserInfo> {
 	public CusVisiUserInsert(DeciTreeOption<CusInfo> option) {
@@ -19,7 +19,7 @@ public final class CusVisiUserInsert extends ActionVisitorTemplateAction<CusInfo
 	
 	
 	@Override protected Class<? extends DeciTree<UserInfo>> getTreeClassHook() {
-		return RootUserInsertCus.class;
+		return UserRootInsertCus.class;
 	}
 	
 	

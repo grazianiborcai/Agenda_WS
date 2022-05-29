@@ -6,7 +6,7 @@ import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.decisionTree.RootUserUpdateAuth;
+import br.com.mind5.security.user.model.decisionTree.UserRootUpdateAuth;
 
 public final class UserModelUpdateAuth extends ModelTemplate<UserInfo> {
 
@@ -17,6 +17,6 @@ public final class UserModelUpdateAuth extends ModelTemplate<UserInfo> {
 	
 	
 	@Override protected DeciTree<UserInfo> getDecisionTreeHook(DeciTreeOption<UserInfo> option) {
-		return new RootUserUpdateAuth(option);
+		return new UserRootUpdateAuth(option);
 	}
 }

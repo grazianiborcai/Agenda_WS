@@ -2,11 +2,12 @@ package br.com.mind5.security.user.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.StdUserDaoSelect;
+import br.com.mind5.security.user.model.action.UserVisiDaoSelect;
 
 public final class UserCheckExist extends ModelCheckerTemplateAction<UserInfo, UserInfo> {
 	
@@ -17,7 +18,7 @@ public final class UserCheckExist extends ModelCheckerTemplateAction<UserInfo, U
 
 	
 	@Override protected ActionStd<UserInfo> buildActionHook(DeciTreeOption<UserInfo> option) {
-		ActionStd<UserInfo> select = new StdUserDaoSelect(option);
+		ActionStd<UserInfo> select = new ActionStdCommom<UserInfo>(option, UserVisiDaoSelect.class);
 		return select;
 	}
 	

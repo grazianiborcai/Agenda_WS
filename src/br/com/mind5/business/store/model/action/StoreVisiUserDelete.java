@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.decisionTree.RootUserDelete;
+import br.com.mind5.security.user.model.decisionTree.UserRootDelete;
 
 public final class StoreVisiUserDelete extends ActionVisitorTemplateAction<StoreInfo, UserInfo> {
 	
@@ -19,7 +19,7 @@ public final class StoreVisiUserDelete extends ActionVisitorTemplateAction<Store
 	
 	
 	@Override protected Class<? extends DeciTree<UserInfo>> getTreeClassHook() {
-		return RootUserDelete.class;
+		return UserRootDelete.class;
 	}
 	
 	

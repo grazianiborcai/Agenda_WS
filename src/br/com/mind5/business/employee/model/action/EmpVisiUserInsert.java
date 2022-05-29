@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.decisionTree.RootUserInsertEmp;
+import br.com.mind5.security.user.model.decisionTree.UserRootInsertEmp;
 
 public final class EmpVisiUserInsert extends ActionVisitorTemplateAction<EmpInfo, UserInfo> {
 	
@@ -20,7 +20,7 @@ public final class EmpVisiUserInsert extends ActionVisitorTemplateAction<EmpInfo
 	
 	
 	@Override protected Class<? extends DeciTree<UserInfo>> getTreeClassHook() {
-		return RootUserInsertEmp.class;
+		return UserRootInsertEmp.class;
 	}
 	
 	

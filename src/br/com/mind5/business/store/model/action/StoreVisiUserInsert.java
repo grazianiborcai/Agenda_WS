@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.decisionTree.RootUserInsertStore;
+import br.com.mind5.security.user.model.decisionTree.UserRootInsertStore;
 
 public final class StoreVisiUserInsert extends ActionVisitorTemplateAction<StoreInfo, UserInfo> {
 	
@@ -20,7 +20,7 @@ public final class StoreVisiUserInsert extends ActionVisitorTemplateAction<Store
 	
 	
 	@Override protected Class<? extends DeciTree<UserInfo>> getTreeClassHook() {
-		return RootUserInsertStore.class;
+		return UserRootInsertStore.class;
 	}
 	
 	

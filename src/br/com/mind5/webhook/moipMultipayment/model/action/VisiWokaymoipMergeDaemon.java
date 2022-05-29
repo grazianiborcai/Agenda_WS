@@ -7,7 +7,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.decisionTree.RootUserSelectDaemon;
+import br.com.mind5.security.user.model.decisionTree.UserRootSelectDaemon;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipMerger;
 
@@ -20,7 +20,7 @@ final class VisiWokaymoipMergeDaemon extends ActionVisitorTemplateMerge<Wokaymoi
 	
 	
 	@Override protected Class<? extends DeciTree<UserInfo>> getTreeClassHook() {
-		return RootUserSelectDaemon.class;
+		return UserRootSelectDaemon.class;
 	}
 	
 	
