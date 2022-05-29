@@ -255,7 +255,7 @@ import br.com.mind5.payment.systemPartner.dao.DaoSysparDbTableColumn;
 import br.com.mind5.payment.systemPartnerSearch.dao.DaoSysparchDbTableColumn;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.dao.DaoPeresmoipDbTableColumn;
 import br.com.mind5.security.otpProspectStore.dao.OtporeDaoDbTableColumn;
-import br.com.mind5.security.otpUserPassword.dao.DaoOtperasDbTableColumn;
+import br.com.mind5.security.otpUserPassword.dao.OtperasDaoDbTableColumn;
 import br.com.mind5.security.user.dao.DaoUserDbTableColumn;
 import br.com.mind5.security.userList.dao.DaoUselisDbTableColumn;
 import br.com.mind5.security.userPassword.dao.DaoUpswdDbTableColumn;
@@ -510,7 +510,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoProstusDbTableColumn());
 		addTable(new DaoProstarchDbTableColumn());
 		addTable(new StoprarchDaoDbTableColumn());
-		addTable(new DaoOtperasDbTableColumn());
+		addTable(new OtperasDaoDbTableColumn());
 		addTable(new SchedauthDaoDbTableColumn());
 		addTable(new StorbyDaoDbTableColumn());
 		addTable(new NotesDaoDbTableColumn());

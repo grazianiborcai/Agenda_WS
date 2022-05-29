@@ -6,7 +6,7 @@ import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.otpUserPassword.info.OtperasInfo;
-import br.com.mind5.security.otpUserPassword.model.decisionTree.RootOtperasInsert;
+import br.com.mind5.security.otpUserPassword.model.decisionTree.OtperasRootInsert;
 
 public final class OtperasModelInsert extends ModelTemplate<OtperasInfo> {
 
@@ -17,6 +17,6 @@ public final class OtperasModelInsert extends ModelTemplate<OtperasInfo> {
 	
 	
 	@Override protected DeciTree<OtperasInfo> getDecisionTreeHook(DeciTreeOption<OtperasInfo> option) {
-		return new RootOtperasInsert(option);
+		return new OtperasRootInsert(option);
 	}
 }

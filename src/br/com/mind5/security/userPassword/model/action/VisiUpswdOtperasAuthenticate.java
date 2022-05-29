@@ -7,7 +7,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.otpUserPassword.info.OtperasCopier;
 import br.com.mind5.security.otpUserPassword.info.OtperasInfo;
-import br.com.mind5.security.otpUserPassword.model.decisionTree.RootOtperasAuthenticate;
+import br.com.mind5.security.otpUserPassword.model.decisionTree.OtperasRootAuthenticate;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
 final class VisiUpswdOtperasAuthenticate extends ActionVisitorTemplateAction<UpswdInfo, OtperasInfo> {
@@ -19,7 +19,7 @@ final class VisiUpswdOtperasAuthenticate extends ActionVisitorTemplateAction<Ups
 	
 	
 	@Override protected Class<? extends DeciTree<OtperasInfo>> getTreeClassHook() {
-		return RootOtperasAuthenticate.class;
+		return OtperasRootAuthenticate.class;
 	}
 	
 	

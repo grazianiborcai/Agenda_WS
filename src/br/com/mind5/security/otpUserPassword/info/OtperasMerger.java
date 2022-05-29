@@ -14,7 +14,7 @@ public final class OtperasMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OtperasVisiMergeUsername());
+		builder.addVisitor(new OtperasMergerVisiUsername());
 		InfoMerger<OtperasInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class OtperasMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OtperasVisiMergeUselis());
+		builder.addVisitor(new OtperasMergerVisiUselis());
 		InfoMerger<OtperasInfo, UselisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class OtperasMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OtperasVisiMergeOtp());
+		builder.addVisitor(new OtperasMergerVisiOtp());
 		InfoMerger<OtperasInfo, OtpInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -53,7 +53,7 @@ public final class OtperasMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OtperasVisiMergeToAuthenticate());
+		builder.addVisitor(new OtperasMergerVisiToAuthenticate());
 		InfoMerger<OtperasInfo, OtperasInfo> merger = builder.build();		
 	
 		return merger.merge();
