@@ -12,7 +12,7 @@ public final class OtporeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OtporeVisiMergeOtp());
+		builder.addVisitor(new OtporeMergerVisiOtp());
 		InfoMerger<OtporeInfo, OtpInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class OtporeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OtporeVisiMergeToAuthenticate());
+		builder.addVisitor(new OtporeMergerVisiToAuthenticate());
 		InfoMerger<OtporeInfo, OtporeInfo> merger = builder.build();		
 	
 		return merger.merge();
