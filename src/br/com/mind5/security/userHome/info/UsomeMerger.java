@@ -12,7 +12,7 @@ public final class UsomeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UsomeVisiMergeUsername());
+		builder.addVisitor(new UsomeMergerVisiUsername());
 		InfoMerger<UsomeInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
