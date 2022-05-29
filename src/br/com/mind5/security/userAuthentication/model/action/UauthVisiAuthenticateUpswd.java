@@ -9,9 +9,9 @@ import br.com.mind5.security.userAuthentication.info.UauthInfo;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 import br.com.mind5.security.userPassword.model.decisionTree.RootUpswdAuthUsername;
 
-final class VisiUauthAuthenticateUpswd extends ActionVisitorTemplateAction<UauthInfo, UpswdInfo> {
+public final class UauthVisiAuthenticateUpswd extends ActionVisitorTemplateAction<UauthInfo, UpswdInfo> {
 	
-	public VisiUauthAuthenticateUpswd(DeciTreeOption<UauthInfo> option) {
+	public UauthVisiAuthenticateUpswd(DeciTreeOption<UauthInfo> option) {
 		super(option, UauthInfo.class, UpswdInfo.class);
 	}
 	

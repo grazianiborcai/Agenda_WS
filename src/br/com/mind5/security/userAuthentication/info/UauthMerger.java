@@ -12,7 +12,7 @@ public final class UauthMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UauthVisiMergeUselis());
+		builder.addVisitor(new UauthMergerVisiUselis());
 		InfoMerger<UauthInfo, UselisInfo> merger = builder.build();		
 	
 		return merger.merge();

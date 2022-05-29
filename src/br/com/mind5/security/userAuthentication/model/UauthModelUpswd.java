@@ -4,7 +4,7 @@ import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userAuthentication.info.UauthInfo;
-import br.com.mind5.security.userAuthentication.model.decisionTree.RootUauthUpswd;
+import br.com.mind5.security.userAuthentication.model.decisionTree.UauthRootUpswd;
 
 public final class UauthModelUpswd extends ModelTemplate<UauthInfo> {
 	
@@ -15,6 +15,6 @@ public final class UauthModelUpswd extends ModelTemplate<UauthInfo> {
 	
 	
 	@Override protected DeciTree<UauthInfo> getDecisionTreeHook(DeciTreeOption<UauthInfo> option) {
-		return new RootUauthUpswd(option);
+		return new UauthRootUpswd(option);
 	}
 }

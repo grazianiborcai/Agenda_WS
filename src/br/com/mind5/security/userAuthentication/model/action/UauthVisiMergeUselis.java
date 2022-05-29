@@ -11,9 +11,9 @@ import br.com.mind5.security.userList.info.UselisCopier;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.model.decisionTree.RootUselisSearch;
 
-final class VisiUauthMergeUselis extends ActionVisitorTemplateMerge<UauthInfo, UselisInfo> {
+public final class UauthVisiMergeUselis extends ActionVisitorTemplateMerge<UauthInfo, UselisInfo> {
 	
-	public VisiUauthMergeUselis(DeciTreeOption<UauthInfo> option) {
+	public UauthVisiMergeUselis(DeciTreeOption<UauthInfo> option) {
 		super(option, UselisInfo.class);
 	}
 	
