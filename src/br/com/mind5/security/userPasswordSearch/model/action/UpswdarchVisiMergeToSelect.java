@@ -2,22 +2,22 @@ package br.com.mind5.security.userPasswordSearch.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPasswordSearch.info.UpswdarchInfo;
 import br.com.mind5.security.userPasswordSearch.info.UpswdarchMerger;
 
-final class VisiUpswdarchMergeToSelect extends ActionVisitorTemplateMerge<UpswdarchInfo, UpswdarchInfo> {
+public final class UpswdarchVisiMergeToSelect extends ActionVisitorTemplateMerge<UpswdarchInfo, UpswdarchInfo> {
 	
-	public VisiUpswdarchMergeToSelect(DeciTreeOption<UpswdarchInfo> option) {
+	public UpswdarchVisiMergeToSelect(DeciTreeOption<UpswdarchInfo> option) {
 		super(option, UpswdarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<UpswdarchInfo>> getActionClassHook() {
-		return StdUpswdarchDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<UpswdarchInfo>> getVisitorClassHook() {
+		return UpswdarchVisiDaoSelect.class;
 	}
 	
 	

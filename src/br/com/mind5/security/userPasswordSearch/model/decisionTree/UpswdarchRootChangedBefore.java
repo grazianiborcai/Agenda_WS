@@ -5,21 +5,23 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.userPasswordSearch.info.UpswdarchInfo;
-import br.com.mind5.security.userPasswordSearch.model.action.LazyUpswdarchMergeToSelect;
-import br.com.mind5.security.userPasswordSearch.model.action.StdUpswdarchMergeUsername;
+import br.com.mind5.security.userPasswordSearch.model.action.UpswdarchVisiMergeToSelect;
+import br.com.mind5.security.userPasswordSearch.model.action.UpswdarchVisiMergeUsername;
 import br.com.mind5.security.userPasswordSearch.model.checker.UpswdarchCheckOwner;
 import br.com.mind5.security.userPasswordSearch.model.checker.UpswdarchCheckRead;
 import br.com.mind5.security.userPasswordSearch.model.checker.UpswdarchCheckUsername;
 
-public final class RootUpswdarchChangedBefore extends DeciTreeTemplateWrite<UpswdarchInfo> {
+public final class UpswdarchRootChangedBefore extends DeciTreeTemplateWrite<UpswdarchInfo> {
 	
-	public RootUpswdarchChangedBefore(DeciTreeOption<UpswdarchInfo> option) {
+	public UpswdarchRootChangedBefore(DeciTreeOption<UpswdarchInfo> option) {
 		super(option);
 	}
 	
@@ -59,8 +61,8 @@ public final class RootUpswdarchChangedBefore extends DeciTreeTemplateWrite<Upsw
 	@Override protected List<ActionStd<UpswdarchInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdarchInfo> option) {
 		List<ActionStd<UpswdarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UpswdarchInfo> mergeUsername = new StdUpswdarchMergeUsername(option);	
-		ActionLazy<UpswdarchInfo> select = new LazyUpswdarchMergeToSelect(option.conn, option.schemaName);
+		ActionStd<UpswdarchInfo> mergeUsername = new ActionStdCommom<UpswdarchInfo>(option, UpswdarchVisiMergeUsername.class);	
+		ActionLazy<UpswdarchInfo> select = new ActionLazyCommom<UpswdarchInfo>(option, UpswdarchVisiMergeToSelect.class);
 		
 		mergeUsername.addPostAction(select);
 		

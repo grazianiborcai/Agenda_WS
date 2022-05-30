@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.security.userPasswordSearch.info.UpswdarchInfo;
 
-public final class DaoUpswdarchSelectSingle extends DaoStmtTemplate<UpswdarchInfo> {	
+public final class UpswdarchDaoSelectSingle extends DaoStmtTemplate<UpswdarchInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.USER_PASSWORD_TABLE;
 	
 	
-	public DaoUpswdarchSelectSingle(Connection conn, UpswdarchInfo recordInfo, String schemaName) {
+	public UpswdarchDaoSelectSingle(Connection conn, UpswdarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoUpswdarchSelectSingle extends DaoStmtTemplate<UpswdarchInf
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoUpswdarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new UpswdarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,9 +67,9 @@ public final class DaoUpswdarchSelectSingle extends DaoStmtTemplate<UpswdarchInf
 				do {
 					UpswdarchInfo dataInfo = new UpswdarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoUpswdarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codUser = stmtResult.getLong(DaoUpswdarchDbTableColumn.COL_COD_USER);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoUpswdarchDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.codOwner = stmtResult.getLong(UpswdarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codUser = stmtResult.getLong(UpswdarchDaoDbTableColumn.COL_COD_USER);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, UpswdarchDaoDbTableColumn.COL_LAST_CHANGED);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

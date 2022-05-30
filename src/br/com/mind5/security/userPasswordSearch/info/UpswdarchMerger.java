@@ -12,7 +12,7 @@ public final class UpswdarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UpswdarchVisiMergeUsername());
+		builder.addVisitor(new UpswdarchMergerVisiUsername());
 		InfoMerger<UpswdarchInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class UpswdarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UpswdarchVisiMergeToSelect());
+		builder.addVisitor(new UpswdarchMergerVisiToSelect());
 		InfoMerger<UpswdarchInfo, UpswdarchInfo> merger = builder.build();		
 	
 		return merger.merge();

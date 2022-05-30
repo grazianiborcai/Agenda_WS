@@ -10,9 +10,9 @@ import br.com.mind5.security.userPasswordSearch.info.UpswdarchMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.UsernameRootSelect;
 
-final class VisiUpswdarchMergeUsername extends ActionVisitorTemplateMerge<UpswdarchInfo, UsernameInfo> {
+public final class UpswdarchVisiMergeUsername extends ActionVisitorTemplateMerge<UpswdarchInfo, UsernameInfo> {
 	
-	public VisiUpswdarchMergeUsername(DeciTreeOption<UpswdarchInfo> option) {
+	public UpswdarchVisiMergeUsername(DeciTreeOption<UpswdarchInfo> option) {
 		super(option, UsernameInfo.class);
 	}
 	

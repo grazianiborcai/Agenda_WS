@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.security.userPasswordSearch.info.UpswdarchInfo;
 
-public class DaoUpswdarchSelect implements DaoStmtExec<UpswdarchInfo> {
+public class UpswdarchDaoSelect implements DaoStmtExec<UpswdarchInfo> {
 	private DaoStmtExec<UpswdarchInfo> helper;
 	
 	
-	public DaoUpswdarchSelect(List<DaoStmtExecOption<UpswdarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoUpswdarchSelectSingle.class, UpswdarchInfo.class);
+	public UpswdarchDaoSelect(List<DaoStmtExecOption<UpswdarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, UpswdarchDaoSelectSingle.class, UpswdarchInfo.class);
 	}
 	
 	
