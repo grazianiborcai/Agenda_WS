@@ -5,18 +5,20 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.security.userList.info.UselisInfo;
-import br.com.mind5.security.userList.model.action.LazyUselisRootSelect;
-import br.com.mind5.security.userList.model.action.StdUselisMergeUserarch;
+import br.com.mind5.security.userList.model.action.UselisVisiRootSelect;
+import br.com.mind5.security.userList.model.action.UselisVisiMergeUserarch;
 
-public final class RootUselisSearch extends DeciTreeTemplateRead<UselisInfo> {
+public final class UselisRootSearch extends DeciTreeTemplateRead<UselisInfo> {
 	
-	public RootUselisSearch(DeciTreeOption<UselisInfo> option) {
+	public UselisRootSearch(DeciTreeOption<UselisInfo> option) {
 		super(option);
 	}
 	
@@ -37,8 +39,8 @@ public final class RootUselisSearch extends DeciTreeTemplateRead<UselisInfo> {
 	@Override protected List<ActionStd<UselisInfo>> buildActionsOnPassedHook(DeciTreeOption<UselisInfo> option) {
 		List<ActionStd<UselisInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UselisInfo> mergeUserarch = new StdUselisMergeUserarch(option);
-		ActionLazy<UselisInfo> select = new LazyUselisRootSelect(option.conn, option.schemaName);
+		ActionStd<UselisInfo> mergeUserarch = new ActionStdCommom<UselisInfo>(option, UselisVisiMergeUserarch.class);
+		ActionLazy<UselisInfo> select = new ActionLazyCommom<UselisInfo>(option, UselisVisiRootSelect.class);
 		
 		mergeUserarch.addPostAction(select);
 		

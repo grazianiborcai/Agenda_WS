@@ -11,9 +11,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.info.UselisMerger;
 
-final class VisiUselisMergeFimist extends ActionVisitorTemplateMerge<UselisInfo, FimistInfo> {
+public final class UselisVisiMergeFimist extends ActionVisitorTemplateMerge<UselisInfo, FimistInfo> {
 	
-	public VisiUselisMergeFimist(DeciTreeOption<UselisInfo> option) {
+	public UselisVisiMergeFimist(DeciTreeOption<UselisInfo> option) {
 		super(option, FimistInfo.class); 
 	}
 	

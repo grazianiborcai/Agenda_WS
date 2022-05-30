@@ -257,7 +257,7 @@ import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.dao.DaoPeresmoipDb
 import br.com.mind5.security.otpProspectStore.dao.OtporeDaoDbTableColumn;
 import br.com.mind5.security.otpUserPassword.dao.OtperasDaoDbTableColumn;
 import br.com.mind5.security.user.dao.UserDaoDbTableColumn;
-import br.com.mind5.security.userList.dao.DaoUselisDbTableColumn;
+import br.com.mind5.security.userList.dao.UselisDaoDbTableColumn;
 import br.com.mind5.security.userPassword.dao.DaoUpswdDbTableColumn;
 import br.com.mind5.security.userPasswordSearch.dao.DaoUpswdarchDbTableColumn;
 import br.com.mind5.security.userSearch.dao.DaoUserarchDbTableColumn;
@@ -378,7 +378,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CompnapDaoDbTableColumn());
 		addTable(new CusnapDaoDbTableColumn());
 		addTable(new CuslisDaoDbTableColumn());
-		addTable(new DaoUselisDbTableColumn());
+		addTable(new UselisDaoDbTableColumn());
 		addTable(new SchedinapDaoDbTableColumn());
 		addTable(new OrdarchDaoDbTableColumn());
 		addTable(new OrdistDaoDbTableColumn());

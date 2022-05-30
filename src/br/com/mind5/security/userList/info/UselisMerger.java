@@ -14,7 +14,7 @@ public final class UselisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UselisVisiMergeFimist());
+		builder.addVisitor(new UselisMergerVisiFimist());
 		InfoMerger<UselisInfo, FimistInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class UselisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UselisVisiMergeUserarch());
+		builder.addVisitor(new UselisMergerVisiUserarch());
 		InfoMerger<UselisInfo, UserarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class UselisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UselisVisiMergePersolis());
+		builder.addVisitor(new UselisMergerVisiPersolis());
 		InfoMerger<UselisInfo, PersolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -53,7 +53,7 @@ public final class UselisMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UselisVisiMergeToSelect());
+		builder.addVisitor(new UselisMergerVisiToSelect());
 		InfoMerger<UselisInfo, UselisInfo> merger = builder.build();		
 	
 		return merger.merge();

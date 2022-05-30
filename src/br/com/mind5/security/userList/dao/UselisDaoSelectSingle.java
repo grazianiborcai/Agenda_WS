@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-public final class DaoUselisSelectSingle extends DaoStmtTemplate<UselisInfo> {
+public final class UselisDaoSelectSingle extends DaoStmtTemplate<UselisInfo> {
 	private final String MAIN_TABLE = DaoDbTable.USER_TABLE;
 	
 	
-	public DaoUselisSelectSingle(Connection conn, UselisInfo recordInfo, String schemaName) {
+	public UselisDaoSelectSingle(Connection conn, UselisInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoUselisSelectSingle extends DaoStmtTemplate<UselisInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoUselisWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new UselisDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,16 +67,16 @@ public final class DaoUselisSelectSingle extends DaoStmtTemplate<UselisInfo> {
 				do {
 					UselisInfo dataInfo = new UselisInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoUselisDbTableColumn.COL_COD_OWNER);
-					dataInfo.codUser = stmtResult.getLong(DaoUselisDbTableColumn.COL_COD_USER);									
-					dataInfo.recordMode = stmtResult.getString(DaoUselisDbTableColumn.COL_RECORD_MODE);
-					dataInfo.username = stmtResult.getString(DaoUselisDbTableColumn.COL_USERNAME);
-					dataInfo.codAuthGroup = stmtResult.getString(DaoUselisDbTableColumn.COL_COD_AUTH_GROUP);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoUselisDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoUselisDbTableColumn.COL_COD_PERSON);
-					dataInfo.codUserCategory = DaoFormatter.sqlToChar(stmtResult, DaoUselisDbTableColumn.COL_COD_USER_CATEG);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoUselisDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoUselisDbTableColumn.COL_LAST_CHANGED);	
+					dataInfo.codOwner = stmtResult.getLong(UselisDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codUser = stmtResult.getLong(UselisDaoDbTableColumn.COL_COD_USER);									
+					dataInfo.recordMode = stmtResult.getString(UselisDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.username = stmtResult.getString(UselisDaoDbTableColumn.COL_USERNAME);
+					dataInfo.codAuthGroup = stmtResult.getString(UselisDaoDbTableColumn.COL_COD_AUTH_GROUP);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, UselisDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, UselisDaoDbTableColumn.COL_COD_PERSON);
+					dataInfo.codUserCategory = DaoFormatter.sqlToChar(stmtResult, UselisDaoDbTableColumn.COL_COD_USER_CATEG);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, UselisDaoDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, UselisDaoDbTableColumn.COL_LAST_CHANGED);	
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

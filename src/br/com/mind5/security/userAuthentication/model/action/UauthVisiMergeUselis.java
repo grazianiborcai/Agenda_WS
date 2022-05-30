@@ -9,7 +9,7 @@ import br.com.mind5.security.userAuthentication.info.UauthInfo;
 import br.com.mind5.security.userAuthentication.info.UauthMerger;
 import br.com.mind5.security.userList.info.UselisCopier;
 import br.com.mind5.security.userList.info.UselisInfo;
-import br.com.mind5.security.userList.model.decisionTree.RootUselisSearch;
+import br.com.mind5.security.userList.model.decisionTree.UselisRootSearch;
 
 public final class UauthVisiMergeUselis extends ActionVisitorTemplateMerge<UauthInfo, UselisInfo> {
 	
@@ -20,7 +20,7 @@ public final class UauthVisiMergeUselis extends ActionVisitorTemplateMerge<Uauth
 	
 	
 	@Override protected Class<? extends DeciTree<UselisInfo>> getTreeClassHook() {
-		return RootUselisSearch.class;
+		return UselisRootSearch.class;
 	}
 	
 	

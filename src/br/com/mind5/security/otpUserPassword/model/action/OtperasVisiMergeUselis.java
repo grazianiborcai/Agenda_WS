@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.otpUserPassword.info.OtperasInfo;
 import br.com.mind5.security.otpUserPassword.info.OtperasMerger;
 import br.com.mind5.security.userList.info.UselisInfo;
-import br.com.mind5.security.userList.model.decisionTree.RootUselisSelect;
+import br.com.mind5.security.userList.model.decisionTree.UselisRootSelect;
 
 public final class OtperasVisiMergeUselis extends ActionVisitorTemplateMerge<OtperasInfo, UselisInfo> {
 	
@@ -19,7 +19,7 @@ public final class OtperasVisiMergeUselis extends ActionVisitorTemplateMerge<Otp
 	
 	
 	protected Class<? extends DeciTree<UselisInfo>> getTreeClassHook() {
-		return RootUselisSelect.class;
+		return UselisRootSelect.class;
 	}
 	
 	

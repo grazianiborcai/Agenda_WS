@@ -10,9 +10,9 @@ import br.com.mind5.security.userList.info.UselisMerger;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.userSearch.model.decisionTree.RootUserarchSelect;
 
-final class VisiUselisMergeUserarch extends ActionVisitorTemplateMerge<UselisInfo, UserarchInfo> {
+public final class UselisVisiMergeUserarch extends ActionVisitorTemplateMerge<UselisInfo, UserarchInfo> {
 	
-	public VisiUselisMergeUserarch(DeciTreeOption<UselisInfo> option) {
+	public UselisVisiMergeUserarch(DeciTreeOption<UselisInfo> option) {
 		super(option, UserarchInfo.class);
 	}
 	

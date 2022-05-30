@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.security.userList.info.UselisInfo;
-import br.com.mind5.security.userList.model.action.StdUselisMergePersolis;
-import br.com.mind5.security.userList.model.action.StdUselisSuccess;
+import br.com.mind5.security.userList.model.action.UselisVisiMergePersolis;
 import br.com.mind5.security.userList.model.checker.UselisCheckHasPerson;
 
-public final class NodeUselisPerson extends DeciTreeTemplateRead<UselisInfo> {
+public final class UselisNodePerson extends DeciTreeTemplateRead<UselisInfo> {
 	
-	public NodeUselisPerson(DeciTreeOption<UselisInfo> option) {
+	public UselisNodePerson(DeciTreeOption<UselisInfo> option) {
 		super(option);
 	}
 	
@@ -42,7 +43,7 @@ public final class NodeUselisPerson extends DeciTreeTemplateRead<UselisInfo> {
 	@Override protected List<ActionStd<UselisInfo>> buildActionsOnPassedHook(DeciTreeOption<UselisInfo> option) {
 		List<ActionStd<UselisInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UselisInfo> mergePersolis = new StdUselisMergePersolis(option);
+		ActionStd<UselisInfo> mergePersolis = new ActionStdCommom<UselisInfo>(option, UselisVisiMergePersolis.class);
 		
 		actions.add(mergePersolis);
 		return actions;
@@ -53,7 +54,7 @@ public final class NodeUselisPerson extends DeciTreeTemplateRead<UselisInfo> {
 	@Override protected List<ActionStd<UselisInfo>> buildActionsOnFailedHook(DeciTreeOption<UselisInfo> option) {
 		List<ActionStd<UselisInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UselisInfo> success = new StdUselisSuccess(option);
+		ActionStd<UselisInfo> success = new ActionStdSuccessCommom<UselisInfo>(option);
 		
 		actions.add(success);
 		return actions;

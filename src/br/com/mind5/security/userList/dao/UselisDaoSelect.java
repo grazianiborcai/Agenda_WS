@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-public final class DaoUselisSelect implements DaoStmtExec<UselisInfo> {
+public final class UselisDaoSelect implements DaoStmtExec<UselisInfo> {
 	private DaoStmtExec<UselisInfo> helper;
 	
 	
-	public DaoUselisSelect(List<DaoStmtExecOption<UselisInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoUselisSelectSingle.class, UselisInfo.class);
+	public UselisDaoSelect(List<DaoStmtExecOption<UselisInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, UselisDaoSelectSingle.class, UselisInfo.class);
 	}
 	
 	

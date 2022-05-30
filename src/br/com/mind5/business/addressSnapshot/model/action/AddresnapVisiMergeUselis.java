@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userList.info.UselisCopier;
 import br.com.mind5.security.userList.info.UselisInfo;
-import br.com.mind5.security.userList.model.decisionTree.RootUselisSelect;
+import br.com.mind5.security.userList.model.decisionTree.UselisRootSelect;
 
 public final class AddresnapVisiMergeUselis extends ActionVisitorTemplateMerge<AddresnapInfo, UselisInfo> {
 	
@@ -20,7 +20,7 @@ public final class AddresnapVisiMergeUselis extends ActionVisitorTemplateMerge<A
 	
 	
 	@Override protected Class<? extends DeciTree<UselisInfo>> getTreeClassHook() {
-		return RootUselisSelect.class;
+		return UselisRootSelect.class;
 	}
 
 	
