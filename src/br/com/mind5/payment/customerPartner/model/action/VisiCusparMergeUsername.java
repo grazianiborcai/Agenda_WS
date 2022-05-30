@@ -9,7 +9,7 @@ import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.info.CusparMerger;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
-import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
+import br.com.mind5.security.username.model.decisionTree.UsernameRootSelect;
 
 final class VisiCusparMergeUsername extends ActionVisitorTemplateMerge<CusparInfo, UsernameInfo> {
 	
@@ -20,7 +20,7 @@ final class VisiCusparMergeUsername extends ActionVisitorTemplateMerge<CusparInf
 	
 	
 	@Override protected Class<? extends DeciTree<UsernameInfo>> getTreeClassHook() {
-		return RootUsernameSelect.class;
+		return UsernameRootSelect.class;
 	}
 	
 	

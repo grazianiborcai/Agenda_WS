@@ -5,19 +5,21 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.security.username.info.UsernameInfo;
-import br.com.mind5.security.username.model.action.LazyUsernameMergeAuthgrole;
-import br.com.mind5.security.username.model.action.StdUsernameMergeToSelect;
+import br.com.mind5.security.username.model.action.UsernameVisiMergeAuthgrole;
+import br.com.mind5.security.username.model.action.UsernameVisiMergeToSelect;
 import br.com.mind5.security.username.model.checker.UsernameCheckRead;
 
-public final class RootUsernameSelect extends DeciTreeTemplateRead<UsernameInfo> {
+public final class UsernameRootSelect extends DeciTreeTemplateRead<UsernameInfo> {
 	
-	public RootUsernameSelect(DeciTreeOption<UsernameInfo> option) {
+	public UsernameRootSelect(DeciTreeOption<UsernameInfo> option) {
 		super(option);
 	}
 	
@@ -43,8 +45,8 @@ public final class RootUsernameSelect extends DeciTreeTemplateRead<UsernameInfo>
 	@Override protected List<ActionStd<UsernameInfo>> buildActionsOnPassedHook(DeciTreeOption<UsernameInfo> option) {
 		List<ActionStd<UsernameInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UsernameInfo> select = new StdUsernameMergeToSelect(option);
-		ActionLazy<UsernameInfo> mergeAuthgrole = new LazyUsernameMergeAuthgrole(option.conn, option.schemaName);
+		ActionStd<UsernameInfo> select = new ActionStdCommom<UsernameInfo>(option, UsernameVisiMergeToSelect.class);
+		ActionLazy<UsernameInfo> mergeAuthgrole = new ActionLazyCommom<UsernameInfo>(option, UsernameVisiMergeAuthgrole.class);
 		
 		select.addPostAction(mergeAuthgrole);
 		

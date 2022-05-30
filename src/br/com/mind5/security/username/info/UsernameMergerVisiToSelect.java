@@ -5,22 +5,21 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 
-final class UsernameVisiMergeAuthgrole extends InfoMergerVisitorTemplate<UsernameInfo, AuthgroleInfo> {
+final class UsernameMergerVisiToSelect extends InfoMergerVisitorTemplate<UsernameInfo, UsernameInfo> {
 
-	@Override public boolean shouldMerge(UsernameInfo baseInfo, AuthgroleInfo selectedInfo) {
-		return true;
+	@Override public boolean shouldMerge(UsernameInfo baseInfo, UsernameInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	@Override public List<UsernameInfo> merge(UsernameInfo baseInfo, AuthgroleInfo selectedInfo) {
+	@Override public List<UsernameInfo> merge(UsernameInfo baseInfo, UsernameInfo selectedInfo) {
 		List<UsernameInfo> results = new ArrayList<>();
 		
-		baseInfo.authgroles.add(selectedInfo);
+		selectedInfo.codLanguage = baseInfo.codLanguage;
 		
-		results.add(baseInfo);
+		results.add(selectedInfo);
 		return results;
 	}
 	

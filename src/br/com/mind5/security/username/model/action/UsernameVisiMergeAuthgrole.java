@@ -11,9 +11,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.info.UsernameMerger;
 
-final class VisiUsernameMergeAuthgrole extends ActionVisitorTemplateMerge<UsernameInfo, AuthgroleInfo> {
+public final class UsernameVisiMergeAuthgrole extends ActionVisitorTemplateMerge<UsernameInfo, AuthgroleInfo> {
 	
-	public VisiUsernameMergeAuthgrole(DeciTreeOption<UsernameInfo> option) {
+	public UsernameVisiMergeAuthgrole(DeciTreeOption<UsernameInfo> option) {
 		super(option, AuthgroleInfo.class);
 	}
 	

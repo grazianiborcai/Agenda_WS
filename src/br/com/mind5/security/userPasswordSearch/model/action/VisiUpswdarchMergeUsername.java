@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPasswordSearch.info.UpswdarchInfo;
 import br.com.mind5.security.userPasswordSearch.info.UpswdarchMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
-import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
+import br.com.mind5.security.username.model.decisionTree.UsernameRootSelect;
 
 final class VisiUpswdarchMergeUsername extends ActionVisitorTemplateMerge<UpswdarchInfo, UsernameInfo> {
 	
@@ -19,7 +19,7 @@ final class VisiUpswdarchMergeUsername extends ActionVisitorTemplateMerge<Upswda
 	
 	
 	@Override protected Class<? extends DeciTree<UsernameInfo>> getTreeClassHook() {
-		return RootUsernameSelect.class;
+		return UsernameRootSelect.class;
 	}
 	
 	

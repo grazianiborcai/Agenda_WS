@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
-import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
+import br.com.mind5.security.username.model.decisionTree.UsernameRootSelect;
 
 public final class EmpwotmVisiMergeUsername extends ActionVisitorTemplateMerge<EmpwotmInfo, UsernameInfo> {
 	
@@ -20,7 +20,7 @@ public final class EmpwotmVisiMergeUsername extends ActionVisitorTemplateMerge<E
 	
 	
 	@Override protected Class<? extends DeciTree<UsernameInfo>> getTreeClassHook() {
-		return RootUsernameSelect.class;
+		return UsernameRootSelect.class;
 	}
 	
 	

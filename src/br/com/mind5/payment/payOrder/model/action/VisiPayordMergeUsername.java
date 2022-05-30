@@ -9,7 +9,7 @@ import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.info.PayordMerger;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
-import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
+import br.com.mind5.security.username.model.decisionTree.UsernameRootSelect;
 
 final class VisiPayordMergeUsername extends ActionVisitorTemplateMerge<PayordInfo, UsernameInfo> {
 	
@@ -20,7 +20,7 @@ final class VisiPayordMergeUsername extends ActionVisitorTemplateMerge<PayordInf
 	
 	
 	@Override protected Class<? extends DeciTree<UsernameInfo>> getTreeClassHook() {
-		return RootUsernameSelect.class;
+		return UsernameRootSelect.class;
 	}
 	
 	

@@ -7,7 +7,7 @@ import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
-import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
+import br.com.mind5.security.username.model.decisionTree.UsernameRootSelect;
 
 public final class StoriteCheckUsername extends ModelCheckerTemplateAction<StoriteInfo, UsernameInfo> {
 	
@@ -18,7 +18,7 @@ public final class StoriteCheckUsername extends ModelCheckerTemplateAction<Stori
 	
 	
 	@Override protected ActionStd<UsernameInfo> buildActionHook(DeciTreeOption<UsernameInfo> option) {
-		ActionStd<UsernameInfo> select = new RootUsernameSelect(option).toAction();
+		ActionStd<UsernameInfo> select = new UsernameRootSelect(option).toAction();
 		return select;
 	}
 	

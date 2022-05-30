@@ -12,7 +12,7 @@ public final class UsernameMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UsernameVisiMergeAuthgrole());
+		builder.addVisitor(new UsernameMergerVisiAuthgrole());
 		InfoMerger<UsernameInfo, AuthgroleInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class UsernameMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UsernameVisiMergeToSelect());
+		builder.addVisitor(new UsernameMergerVisiToSelect());
 		InfoMerger<UsernameInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();

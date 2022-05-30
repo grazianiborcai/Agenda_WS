@@ -9,7 +9,7 @@ import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.info.RefemMerger;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
-import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
+import br.com.mind5.security.username.model.decisionTree.UsernameRootSelect;
 
 final class VisiRefemMergeUsername extends ActionVisitorTemplateMerge<RefemInfo, UsernameInfo> {
 	
@@ -20,7 +20,7 @@ final class VisiRefemMergeUsername extends ActionVisitorTemplateMerge<RefemInfo,
 	
 	
 	@Override protected Class<? extends DeciTree<UsernameInfo>> getTreeClassHook() {
-		return RootUsernameSelect.class;
+		return UsernameRootSelect.class;
 	}
 	
 	
