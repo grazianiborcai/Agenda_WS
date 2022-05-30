@@ -11,7 +11,7 @@ public final class UserarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserarchVisiMergeToSelect());
+		builder.addVisitor(new UserarchMergerVisiToSelect());
 		InfoMerger<UserarchInfo, UserarchInfo> merger = builder.build();		
 	
 		return merger.merge();

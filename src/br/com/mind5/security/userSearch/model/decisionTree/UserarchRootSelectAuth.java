@@ -5,19 +5,21 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
-import br.com.mind5.security.userSearch.model.action.LazyUserarchRootSelect;
-import br.com.mind5.security.userSearch.model.action.StdUserarchEnforceAuth;
+import br.com.mind5.security.userSearch.model.action.UserarchVisiRootSelect;
+import br.com.mind5.security.userSearch.model.action.UserarchVisiEnforceAuth;
 import br.com.mind5.security.userSearch.model.checker.UserarchCheckReadAuth;
 
-public final class RootUserarchSelectAuth extends DeciTreeTemplateRead<UserarchInfo> {
+public final class UserarchRootSelectAuth extends DeciTreeTemplateRead<UserarchInfo> {
 	
-	public RootUserarchSelectAuth(DeciTreeOption<UserarchInfo> option) {
+	public UserarchRootSelectAuth(DeciTreeOption<UserarchInfo> option) {
 		super(option);
 	}
 	
@@ -43,8 +45,8 @@ public final class RootUserarchSelectAuth extends DeciTreeTemplateRead<UserarchI
 	@Override protected List<ActionStd<UserarchInfo>> buildActionsOnPassedHook(DeciTreeOption<UserarchInfo> option) {
 		List<ActionStd<UserarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserarchInfo> enforceAuth = new StdUserarchEnforceAuth(option);
-		ActionLazy<UserarchInfo> select = new LazyUserarchRootSelect(option.conn, option.schemaName);
+		ActionStd<UserarchInfo> enforceAuth = new ActionStdCommom<UserarchInfo>(option, UserarchVisiEnforceAuth.class);
+		ActionLazy<UserarchInfo> select = new ActionLazyCommom<UserarchInfo>(option, UserarchVisiRootSelect.class);
 		
 		enforceAuth.addPostAction(select);
 		

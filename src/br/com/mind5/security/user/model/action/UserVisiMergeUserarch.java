@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.info.UserMerger;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
-import br.com.mind5.security.userSearch.model.decisionTree.RootUserarchSelect;
+import br.com.mind5.security.userSearch.model.decisionTree.UserarchRootSelect;
 
 public final class UserVisiMergeUserarch extends ActionVisitorTemplateMerge<UserInfo, UserarchInfo> {
 	
@@ -19,7 +19,7 @@ public final class UserVisiMergeUserarch extends ActionVisitorTemplateMerge<User
 	
 	
 	@Override protected Class<? extends DeciTree<UserarchInfo>> getTreeClassHook() {
-		return RootUserarchSelect.class;
+		return UserarchRootSelect.class;
 	}
 	
 	

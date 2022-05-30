@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 
-public final class DaoUserarchSelect implements DaoStmtExec<UserarchInfo> {
+public final class UserarchDaoSelect implements DaoStmtExec<UserarchInfo> {
 	private DaoStmtExec<UserarchInfo> helper;
 	
 	
-	public DaoUserarchSelect(List<DaoStmtExecOption<UserarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoUserarchSelectSingle.class, UserarchInfo.class);
+	public UserarchDaoSelect(List<DaoStmtExecOption<UserarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, UserarchDaoSelectSingle.class, UserarchInfo.class);
 	}
 	
 	

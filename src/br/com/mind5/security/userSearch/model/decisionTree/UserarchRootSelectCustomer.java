@@ -5,18 +5,20 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
-import br.com.mind5.security.userSearch.model.action.LazyUserarchRootSelectAuth;
-import br.com.mind5.security.userSearch.model.action.StdUserarchEnforceManager;
+import br.com.mind5.security.userSearch.model.action.UserarchVisiRootSelectAuth;
+import br.com.mind5.security.userSearch.model.action.UserarchVisiEnforceCustomer;
 
-public final class RootUserarchSelectManager extends DeciTreeTemplateRead<UserarchInfo> {
+public final class UserarchRootSelectCustomer extends DeciTreeTemplateRead<UserarchInfo> {
 	
-	public RootUserarchSelectManager(DeciTreeOption<UserarchInfo> option) {
+	public UserarchRootSelectCustomer(DeciTreeOption<UserarchInfo> option) {
 		super(option);
 	}
 	
@@ -37,12 +39,12 @@ public final class RootUserarchSelectManager extends DeciTreeTemplateRead<Userar
 	@Override protected List<ActionStd<UserarchInfo>> buildActionsOnPassedHook(DeciTreeOption<UserarchInfo> option) {
 		List<ActionStd<UserarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserarchInfo> enforceManager = new StdUserarchEnforceManager(option);
-		ActionLazy<UserarchInfo> select = new LazyUserarchRootSelectAuth(option.conn, option.schemaName);
+		ActionStd<UserarchInfo> enforceCustomer = new ActionStdCommom<UserarchInfo>(option, UserarchVisiEnforceCustomer.class);
+		ActionLazy<UserarchInfo> select = new ActionLazyCommom<UserarchInfo>(option, UserarchVisiRootSelectAuth.class);
 		
-		enforceManager.addPostAction(select);
+		enforceCustomer.addPostAction(select);
 		
-		actions.add(enforceManager);
+		actions.add(enforceCustomer);
 		return actions;
 	}
 }

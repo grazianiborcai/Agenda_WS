@@ -4,18 +4,18 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
-import br.com.mind5.security.userSearch.info.UserarchSetterDaemon;
+import br.com.mind5.security.userSearch.info.UserarchSetterAuth;
 
-final class VisiUserarchEnforceDaemon extends ActionVisitorTemplateEnforce<UserarchInfo> {
+public final class UserarchVisiEnforceAuth extends ActionVisitorTemplateEnforce<UserarchInfo> {
 	
-	public VisiUserarchEnforceDaemon(DeciTreeOption<UserarchInfo> option) {
+	public UserarchVisiEnforceAuth(DeciTreeOption<UserarchInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected UserarchInfo enforceHook(UserarchInfo recordInfo) {
-		InfoSetter<UserarchInfo> attrSetter = new UserarchSetterDaemon();
+		InfoSetter<UserarchInfo> attrSetter = new UserarchSetterAuth();
 		return attrSetter.setAttr(recordInfo);
 	}
 }

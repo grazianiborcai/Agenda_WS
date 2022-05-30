@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.userSearch.info.UserarchSetterCustomer;
 
-final class VisiUserarchEnforceCustomer extends ActionVisitorTemplateEnforce<UserarchInfo> {
+public final class UserarchVisiEnforceCustomer extends ActionVisitorTemplateEnforce<UserarchInfo> {
 	
-	public VisiUserarchEnforceCustomer(DeciTreeOption<UserarchInfo> option) {
+	public UserarchVisiEnforceCustomer(DeciTreeOption<UserarchInfo> option) {
 		super(option);
 	}
 	

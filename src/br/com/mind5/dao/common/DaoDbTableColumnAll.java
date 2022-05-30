@@ -260,7 +260,7 @@ import br.com.mind5.security.user.dao.UserDaoDbTableColumn;
 import br.com.mind5.security.userList.dao.UselisDaoDbTableColumn;
 import br.com.mind5.security.userPassword.dao.UpswdDaoDbTableColumn;
 import br.com.mind5.security.userPasswordSearch.dao.UpswdarchDaoDbTableColumn;
-import br.com.mind5.security.userSearch.dao.DaoUserarchDbTableColumn;
+import br.com.mind5.security.userSearch.dao.UserarchDaoDbTableColumn;
 import br.com.mind5.security.userSnapshot.dao.DaoUserapDbTableColumn;
 import br.com.mind5.security.username.dao.UsernameDaoDbTableColumn;
 import br.com.mind5.stats.statsCustomerProfile.customerProfileMonthAggr.dao.CutefilonagrDaoDbTableColumn;
@@ -422,7 +422,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new MatorapDaoDbTableColumn());
 		addTable(new MatocarchDaoDbTableColumn());
 		addTable(new MatmarchDaoDbTableColumn());
-		addTable(new DaoUserarchDbTableColumn());
+		addTable(new UserarchDaoDbTableColumn());
 		addTable(new StoparchDaoDbTableColumn());
 		addTable(new CartemarchDaoDbTableColumn());
 		addTable(new EmpworgDaoDbTableColumn());

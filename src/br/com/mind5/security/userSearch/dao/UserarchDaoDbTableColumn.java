@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoUserarchDbTableColumn extends DaoDbTableColumnTemplate {	
+public final class UserarchDaoDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_AUTH_GROUP = DaoDbField.COL_COD_AUTH_GROUP;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_PERSON = DaoDbField.COL_COD_PERSON;
@@ -20,7 +20,7 @@ public final class DaoUserarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_USERNAME = DaoDbField.COL_USERNAME;
 	
 	
-	public DaoUserarchDbTableColumn() {
+	public UserarchDaoDbTableColumn() {
 		super();
 	}
 	
