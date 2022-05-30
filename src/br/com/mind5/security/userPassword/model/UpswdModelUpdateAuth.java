@@ -8,7 +8,7 @@ import br.com.mind5.model.common.ModelResponseJwt;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.decisionTree.RootUpswdUpdateAuth;
+import br.com.mind5.security.userPassword.model.decisionTree.UpswdRootUpdateAuth;
 
 public final class UpswdModelUpdateAuth extends ModelTemplate<UpswdInfo> {
 
@@ -19,7 +19,7 @@ public final class UpswdModelUpdateAuth extends ModelTemplate<UpswdInfo> {
 	
 	
 	@Override protected DeciTree<UpswdInfo> getDecisionTreeHook(DeciTreeOption<UpswdInfo> option) {
-		return new RootUpswdUpdateAuth(option);
+		return new UpswdRootUpdateAuth(option);
 	}
 	
 	

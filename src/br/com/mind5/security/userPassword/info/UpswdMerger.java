@@ -13,7 +13,7 @@ public final class UpswdMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UpswdVisiMergeUsername());
+		builder.addVisitor(new UpswdMergerVisiUsername());
 		InfoMerger<UpswdInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class UpswdMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UpswdVisiMergeUselis());
+		builder.addVisitor(new UpswdMergerVisiUselis());
 		InfoMerger<UpswdInfo, UselisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -39,7 +39,7 @@ public final class UpswdMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UpswdVisiMergeToAuth());
+		builder.addVisitor(new UpswdMergerVisiToAuth());
 		InfoMerger<UpswdInfo, UpswdInfo> merger = builder.build();		
 	
 		return merger.merge();

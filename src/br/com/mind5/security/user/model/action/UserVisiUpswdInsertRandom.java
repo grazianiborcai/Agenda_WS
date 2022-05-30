@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.userPassword.info.UpswdCopier;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.decisionTree.RootUpswdInsertRandom;
+import br.com.mind5.security.userPassword.model.decisionTree.UpswdRootInsertRandom;
 
 public final class UserVisiUpswdInsertRandom extends ActionVisitorTemplateAction<UserInfo, UpswdInfo> {
 	
@@ -19,7 +19,7 @@ public final class UserVisiUpswdInsertRandom extends ActionVisitorTemplateAction
 	
 	
 	@Override protected Class<? extends DeciTree<UpswdInfo>> getTreeClassHook() {
-		return RootUpswdInsertRandom.class;
+		return UpswdRootInsertRandom.class;
 	}
 	
 	

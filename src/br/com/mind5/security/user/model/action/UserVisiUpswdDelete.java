@@ -7,7 +7,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.decisionTree.RootUpswdDelete;
+import br.com.mind5.security.userPassword.model.decisionTree.UpswdRootDelete;
 
 public final class UserVisiUpswdDelete extends ActionVisitorTemplateAction<UserInfo, UpswdInfo> {
 	
@@ -18,7 +18,7 @@ public final class UserVisiUpswdDelete extends ActionVisitorTemplateAction<UserI
 	
 	
 	@Override protected Class<? extends DeciTree<UpswdInfo>> getTreeClassHook() {
-		return RootUpswdDelete.class;
+		return UpswdRootDelete.class;
 	}
 	
 	

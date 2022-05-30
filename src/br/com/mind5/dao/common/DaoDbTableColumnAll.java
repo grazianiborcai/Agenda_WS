@@ -258,7 +258,7 @@ import br.com.mind5.security.otpProspectStore.dao.OtporeDaoDbTableColumn;
 import br.com.mind5.security.otpUserPassword.dao.OtperasDaoDbTableColumn;
 import br.com.mind5.security.user.dao.UserDaoDbTableColumn;
 import br.com.mind5.security.userList.dao.UselisDaoDbTableColumn;
-import br.com.mind5.security.userPassword.dao.DaoUpswdDbTableColumn;
+import br.com.mind5.security.userPassword.dao.UpswdDaoDbTableColumn;
 import br.com.mind5.security.userPasswordSearch.dao.DaoUpswdarchDbTableColumn;
 import br.com.mind5.security.userSearch.dao.DaoUserarchDbTableColumn;
 import br.com.mind5.security.userSnapshot.dao.DaoUserapDbTableColumn;
@@ -350,7 +350,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new StoparDaoDbTableColumn());
 		addTable(new DaoCounparDbTableColumn());
 		addTable(new CompDaoDbTableColumn());
-		addTable(new DaoUpswdDbTableColumn());
+		addTable(new UpswdDaoDbTableColumn());
 		addTable(new UsernameDaoDbTableColumn());
 		addTable(new MatmovDaoDbTableColumn());
 		addTable(new MatockDaoDbTableColumn());

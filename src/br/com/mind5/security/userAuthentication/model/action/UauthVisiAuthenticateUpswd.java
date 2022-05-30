@@ -7,7 +7,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userAuthentication.info.UauthInfo;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.decisionTree.RootUpswdAuthUsername;
+import br.com.mind5.security.userPassword.model.decisionTree.UpswdRootAuthUsername;
 
 public final class UauthVisiAuthenticateUpswd extends ActionVisitorTemplateAction<UauthInfo, UpswdInfo> {
 	
@@ -18,7 +18,7 @@ public final class UauthVisiAuthenticateUpswd extends ActionVisitorTemplateActio
 	
 	
 	@Override protected Class<? extends DeciTree<UpswdInfo>> getTreeClassHook() {
-		return RootUpswdAuthUsername.class;
+		return UpswdRootAuthUsername.class;
 	}
 	
 	
