@@ -7,7 +7,7 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class UserapVisiMergeAddresnap extends InfoMergerVisitorTemplate<UserapInfo, AddresnapInfo> {
+final class UserapMergerVisiAddresnap extends InfoMergerVisitorTemplate<UserapInfo, AddresnapInfo> {
 
 	@Override public boolean shouldMerge(UserapInfo baseInfo, AddresnapInfo selectedInfo) {
 		return (baseInfo.codOwner 	 == selectedInfo.codOwner 		&& 

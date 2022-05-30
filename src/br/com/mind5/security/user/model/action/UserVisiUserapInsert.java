@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.info.UserMerger;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
-import br.com.mind5.security.userSnapshot.model.decisionTree.RootUserapInsert;
+import br.com.mind5.security.userSnapshot.model.decisionTree.UserapRootInsert;
 
 public final class UserVisiUserapInsert extends ActionVisitorTemplateAction<UserInfo, UserapInfo> {
 	
@@ -19,7 +19,7 @@ public final class UserVisiUserapInsert extends ActionVisitorTemplateAction<User
 	
 	
 	@Override protected Class<? extends DeciTree<UserapInfo>> getTreeClassHook() {
-		return RootUserapInsert.class;
+		return UserapRootInsert.class;
 	}
 	
 	

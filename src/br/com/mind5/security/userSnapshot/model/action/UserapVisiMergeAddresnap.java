@@ -11,9 +11,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.userSnapshot.info.UserapMerger;
 
-final class VisiUserapMergeAddresnap extends ActionVisitorTemplateMerge<UserapInfo, AddresnapInfo> {
+public final class UserapVisiMergeAddresnap extends ActionVisitorTemplateMerge<UserapInfo, AddresnapInfo> {
 	
-	public VisiUserapMergeAddresnap(DeciTreeOption<UserapInfo> option) {
+	public UserapVisiMergeAddresnap(DeciTreeOption<UserapInfo> option) {
 		super(option, AddresnapInfo.class);
 	}
 	

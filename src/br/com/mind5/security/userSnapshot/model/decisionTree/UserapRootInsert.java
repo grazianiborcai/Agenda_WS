@@ -5,20 +5,21 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
-import br.com.mind5.security.userSnapshot.model.action.LazyUserapDaoInsert;
+import br.com.mind5.security.userSnapshot.model.action.UserapVisiDaoInsert;
 import br.com.mind5.security.userSnapshot.model.checker.UserapCheckOwner;
 import br.com.mind5.security.userSnapshot.model.checker.UserapCheckUser;
 import br.com.mind5.security.userSnapshot.model.checker.UserapCheckWrite;
 
-public final class RootUserapInsert extends DeciTreeTemplateWrite<UserapInfo> {
+public final class UserapRootInsert extends DeciTreeTemplateWrite<UserapInfo> {
 	
-	public RootUserapInsert(DeciTreeOption<UserapInfo> option) {
+	public UserapRootInsert(DeciTreeOption<UserapInfo> option) {
 		super(option);
 	}
 	
@@ -58,8 +59,8 @@ public final class RootUserapInsert extends DeciTreeTemplateWrite<UserapInfo> {
 	@Override protected List<ActionStd<UserapInfo>> buildActionsOnPassedHook(DeciTreeOption<UserapInfo> option) {
 		List<ActionStd<UserapInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<UserapInfo> nodePerson = new NodeUserapPerson(option).toAction();
-		ActionLazy<UserapInfo> insert = new LazyUserapDaoInsert(option.conn, option.schemaName);
+		ActionStd<UserapInfo> nodePerson = new UserapNodePerson(option).toAction();
+		ActionLazy<UserapInfo> insert = new ActionLazyCommom<UserapInfo>(option, UserapVisiDaoInsert.class);
 		
 		nodePerson.addPostAction(insert);
 		

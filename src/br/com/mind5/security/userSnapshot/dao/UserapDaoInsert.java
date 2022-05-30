@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
-public final class DaoUserapSelect implements DaoStmtExec<UserapInfo> {
+public final class UserapDaoInsert implements DaoStmtExec<UserapInfo> {
 	private DaoStmtExec<UserapInfo> helper;
 	
 	
-	public DaoUserapSelect(List<DaoStmtExecOption<UserapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoUserapSelectSingle.class, UserapInfo.class);
+	public UserapDaoInsert(List<DaoStmtExecOption<UserapInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, UserapDaoInsertSingle.class, UserapInfo.class);
 	}
 	
 	

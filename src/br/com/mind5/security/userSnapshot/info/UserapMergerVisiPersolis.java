@@ -3,23 +3,22 @@ package br.com.mind5.security.userSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.personSnapshot.info.PersonapInfo;
+import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 
-final class UserapVisiMergePersonap extends InfoMergerVisitorTemplate<UserapInfo, PersonapInfo> {
+final class UserapMergerVisiPersolis extends InfoMergerVisitorTemplate<UserapInfo, PersolisInfo> {
 
-	@Override public boolean shouldMerge(UserapInfo baseInfo, PersonapInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner);
+	@Override public boolean shouldMerge(UserapInfo baseInfo, PersolisInfo selectedInfo) {
+		return (baseInfo.codOwner  == selectedInfo.codOwner 	&& 
+				baseInfo.codPerson == selectedInfo.codPerson		);
 	}
 	
 	
 
-	@Override public List<UserapInfo> merge(UserapInfo baseInfo, PersonapInfo selectedInfo) {
+	@Override public List<UserapInfo> merge(UserapInfo baseInfo, PersolisInfo selectedInfo) {
 		List<UserapInfo> results = new ArrayList<>();
 		
-		baseInfo.personData = selectedInfo;
-		baseInfo.codPerson = selectedInfo.codPerson;
 		baseInfo.codPersonSnapshot = selectedInfo.codSnapshot;
 		
 		results.add(baseInfo);

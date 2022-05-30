@@ -9,7 +9,7 @@ import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipMerger;
 import br.com.mind5.security.userSnapshot.info.UserapCopier;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
-import br.com.mind5.security.userSnapshot.model.decisionTree.RootUserapSelect;
+import br.com.mind5.security.userSnapshot.model.decisionTree.UserapRootSelect;
 
 final class VisiCusmoipMergeUserap extends ActionVisitorTemplateMerge<CusmoipInfo, UserapInfo> {
 	
@@ -20,7 +20,7 @@ final class VisiCusmoipMergeUserap extends ActionVisitorTemplateMerge<CusmoipInf
 	
 	
 	@Override protected Class<? extends DeciTree<UserapInfo>> getTreeClassHook() {
-		return RootUserapSelect.class;
+		return UserapRootSelect.class;
 	}
 	
 	

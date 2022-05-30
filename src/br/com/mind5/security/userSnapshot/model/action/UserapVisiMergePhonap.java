@@ -11,9 +11,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.userSnapshot.info.UserapMerger;
 
-final class VisiUserapMergePhonap extends ActionVisitorTemplateMerge<UserapInfo, PhonapInfo> {
+public final class UserapVisiMergePhonap extends ActionVisitorTemplateMerge<UserapInfo, PhonapInfo> {
 	
-	public VisiUserapMergePhonap(DeciTreeOption<UserapInfo> option) {
+	public UserapVisiMergePhonap(DeciTreeOption<UserapInfo> option) {
 		super(option, PhonapInfo.class);
 	}
 	

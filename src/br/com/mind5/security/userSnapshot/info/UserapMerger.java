@@ -15,7 +15,7 @@ public final class UserapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserapVisiMergePersolis());
+		builder.addVisitor(new UserapMergerVisiPersolis());
 		InfoMerger<UserapInfo, PersolisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -28,7 +28,7 @@ public final class UserapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserapVisiMergeAddresnap());
+		builder.addVisitor(new UserapMergerVisiAddresnap());
 		InfoMerger<UserapInfo, AddresnapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -41,7 +41,7 @@ public final class UserapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserapVisiMergePersonap());
+		builder.addVisitor(new UserapMergerVisiPersonap());
 		InfoMerger<UserapInfo, PersonapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -54,7 +54,7 @@ public final class UserapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserapVisiMergePhonap());
+		builder.addVisitor(new UserapMergerVisiPhonap());
 		InfoMerger<UserapInfo, PhonapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -67,7 +67,7 @@ public final class UserapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserapVisiMergeToSelect());
+		builder.addVisitor(new UserapMergerVisiToSelect());
 		InfoMerger<UserapInfo, UserapInfo> merger = builder.build();		
 	
 		return merger.merge();
