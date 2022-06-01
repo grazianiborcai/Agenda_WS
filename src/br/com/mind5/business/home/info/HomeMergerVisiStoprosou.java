@@ -17,7 +17,7 @@ final class HomeMergerVisiStoprosou extends InfoMergerVisitorTemplate<HomeInfo, 
 	@Override public List<HomeInfo> merge(HomeInfo baseInfo, StoprosouInfo selectedInfo) {
 		List<HomeInfo> results = new ArrayList<>();
 		
-		baseInfo.stoprosou = selectedInfo;
+		baseInfo.stoprosouData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;

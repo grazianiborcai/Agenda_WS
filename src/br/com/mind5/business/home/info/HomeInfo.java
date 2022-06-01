@@ -9,14 +9,16 @@ import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.security.userHome.info.UsomeInfo;
+import br.com.mind5.stats.statsOwnerDashboard.info.SowashInfo;
 
 public final class HomeInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
 	public long codUser;
-	public CartouInfo cartou;
-	public StoprosouInfo stoprosou;
-	public UsomeInfo usome;
+	public CartouInfo cartouData;
+	public StoprosouInfo stoprosouData;
+	public UsomeInfo usomeData;
 	public List<StomanInfo> stomanes;
+	public SowashInfo sowashData;
 	public String username;
 	
 	
@@ -25,9 +27,10 @@ public final class HomeInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();	
 		codUser = DefaultValue.number();
-		cartou = DefaultValue.object();
-		stoprosou = DefaultValue.object();
-		usome = DefaultValue.object();
+		cartouData = DefaultValue.object();
+		stoprosouData = DefaultValue.object();
+		usomeData = DefaultValue.object();
+		sowashData = DefaultValue.object();
 		stomanes = DefaultValue.list();
 	}
 	
@@ -48,10 +51,11 @@ public final class HomeInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		HomeInfo deepCopy = (HomeInfo) super.clone();
 		
-		deepCopy.cartou    = CloneUtil.cloneRecord (cartou   , this.getClass());
-		deepCopy.stoprosou = CloneUtil.cloneRecord (stoprosou, this.getClass());
-		deepCopy.usome     = CloneUtil.cloneRecord (usome    , this.getClass());
-		deepCopy.stomanes  = CloneUtil.cloneRecords(stomanes , this.getClass());
+		deepCopy.cartouData    = CloneUtil.cloneRecord (cartouData   , this.getClass());
+		deepCopy.stoprosouData = CloneUtil.cloneRecord (stoprosouData, this.getClass());
+		deepCopy.usomeData     = CloneUtil.cloneRecord (usomeData    , this.getClass());
+		deepCopy.sowashData    = CloneUtil.cloneRecord (sowashData   , this.getClass());
+		deepCopy.stomanes      = CloneUtil.cloneRecords(stomanes     , this.getClass());
 		
 		return deepCopy;
 	}

@@ -18,7 +18,7 @@ final class HomeMergerVisiCartou extends InfoMergerVisitorTemplate<HomeInfo, Car
 	@Override public List<HomeInfo> merge(HomeInfo baseInfo, CartouInfo selectedInfo) {
 		List<HomeInfo> results = new ArrayList<>();
 		
-		baseInfo.cartou = selectedInfo;
+		baseInfo.cartouData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;

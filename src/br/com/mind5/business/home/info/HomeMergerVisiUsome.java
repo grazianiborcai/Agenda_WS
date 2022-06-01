@@ -18,7 +18,7 @@ final class HomeMergerVisiUsome extends InfoMergerVisitorTemplate<HomeInfo, Usom
 	@Override public List<HomeInfo> merge(HomeInfo baseInfo, UsomeInfo selectedInfo) {
 		List<HomeInfo> results = new ArrayList<>();
 		
-		baseInfo.usome = selectedInfo;
+		baseInfo.usomeData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;
