@@ -2,6 +2,7 @@ package br.com.mind5.stats.statsOwnerDashboard.info;
 
 import java.util.List;
 
+import br.com.mind5.business.calendarMonth.info.CalonthInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.stats.statsOwnerOrder.ownerOrderMonth.info.SowordInfo;
@@ -11,6 +12,19 @@ import br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.info.SowotInfo;
 import br.com.mind5.stats.statsOwnerUser.ownerUserMonth.info.SowusInfo;
 
 public final class SowashMerger {
+	public static List<SowashInfo> mergeWithCalonth(List<SowashInfo> baseInfos, List<CalonthInfo> selectedInfos) {
+		InfoMergerBuilder<SowashInfo, CalonthInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SowashMergerVisiCalonth());
+		InfoMerger<SowashInfo, CalonthInfo> merger = builder.build();
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<SowashInfo> mergeWithSowedul(List<SowashInfo> baseInfos, List<SowedulInfo> selectedInfos) {
 		InfoMergerBuilder<SowashInfo, SowedulInfo> builder = new InfoMergerBuilder<>();
 		
