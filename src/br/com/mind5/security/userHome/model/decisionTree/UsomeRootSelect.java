@@ -3,7 +3,9 @@ package br.com.mind5.security.userHome.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -11,6 +13,7 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.security.userHome.info.UsomeInfo;
+import br.com.mind5.security.userHome.model.action.UsomeVisiMergeUselis;
 import br.com.mind5.security.userHome.model.action.UsomeVisiMergeUsername;
 
 public final class UsomeRootSelect extends DeciTreeTemplateRead<UsomeInfo> {
@@ -37,6 +40,9 @@ public final class UsomeRootSelect extends DeciTreeTemplateRead<UsomeInfo> {
 		List<ActionStd<UsomeInfo>> actions = new ArrayList<>();
 		
 		ActionStd<UsomeInfo> mergeUsername = new ActionStdCommom<UsomeInfo>(option, UsomeVisiMergeUsername.class);
+		ActionLazy<UsomeInfo> mergeUselis = new ActionLazyCommom<UsomeInfo>(option, UsomeVisiMergeUselis.class);
+		
+		mergeUsername.addPostAction(mergeUselis);
 		
 		actions.add(mergeUsername);
 		return actions;

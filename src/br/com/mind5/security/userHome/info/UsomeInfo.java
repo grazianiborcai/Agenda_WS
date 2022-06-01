@@ -2,13 +2,20 @@ package br.com.mind5.security.userHome.info;
 
 import java.util.List;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
+import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
 
 public final class UsomeInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
-	public String username;
+	public long codUser;
+	public long codPerson;
+	public String name;
+	public String nameDisplay;
 	public String codAuthGroup;
+	public FimistInfo fimistData;
+	public String username;
 	public String recordMode;
 
 	
@@ -16,6 +23,8 @@ public final class UsomeInfo extends InfoRecord implements Cloneable {
 		super();
 		
 		codOwner = DefaultValue.number();
+		codUser = DefaultValue.number();
+		fimistData = DefaultValue.object();
 		recordMode = DefaultValue.recordMode();
 	}
 	
@@ -34,7 +43,11 @@ public final class UsomeInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		UsomeInfo deepCopy = (UsomeInfo) super.clone();
+		
+		deepCopy.fimistData = CloneUtil.cloneRecord(deepCopy.fimistData, this.getClass());
+		
+		return deepCopy;
 	}
 	
 	
