@@ -15,20 +15,85 @@
 	
 	
 	
-	<!-- Free of authentication --> 
-	<http pattern="/**/Signup/**"   					security="none"/>
-	<http pattern="/**/Signin/**" 						security="none"/>
-	<http pattern="/**/Webhook/**"     					security="none"/>
-	<http pattern="/**/Payment/permissionCodeMoip"		security="none"/>
-	<http pattern="/**/Webhook/insertMultipaymentMoip"	security="none"/>
-	<http pattern="/**/Webhook/insertRefundMoip"		security="none"/>
-	<http pattern="/**/Owner/listOwner"					security="none"/>
-	<http pattern="/**/Prospect/insertProspectStore"	security="none"/>
-	<http pattern="/**/Prospect/insertOtpProspectStore"	security="none"/>
-	<http pattern="/**/insertOtpUserPassword"			security="none"/>
-	<http pattern="/**/updateUserPassword"				security="none"/>
-	<http pattern="/**/MoipApp/**"  					security="none"/>	<!-- TODO: Somente para teste -->
+	<!-- Free of authentication -->
+	<security:http create-session="stateless" pattern="/**/Owner/listOwner" use-expressions="true">
+    	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
+    	<security:anonymous enabled="true"/>   
+    	<security:http-basic />
+    	<csrf disabled="true"/>
+    	<cors configuration-source-ref="corsSource"/>
+    	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
+    </security:http>
+    
+	<security:http create-session="stateless" pattern="**/Signup/**" use-expressions="true">
+    	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
+    	<security:anonymous enabled="true"/>   
+    	<security:http-basic />
+    	<csrf disabled="true"/>
+    	<cors configuration-source-ref="corsSource"/>
+    	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
+    </security:http>
+    
+	<security:http create-session="stateless" pattern="**/Webhook/**" use-expressions="true">
+    	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
+    	<security:anonymous enabled="true"/>   
+    	<security:http-basic />
+    	<csrf disabled="true"/>
+    	<cors configuration-source-ref="corsSource"/>
+    	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
+    </security:http>
+    
+    <security:http create-session="stateless" pattern="/**/Payment/permissionCodeMoip" use-expressions="true">
+    	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
+    	<security:anonymous enabled="true"/>   
+    	<security:http-basic />
+    	<csrf disabled="true"/>
+    	<cors configuration-source-ref="corsSource"/>
+    	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
+    </security:http>
+    
+    <security:http create-session="stateless" pattern="/**/Prospect/insertProspectStore" use-expressions="true">
+    	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
+    	<security:anonymous enabled="true"/>   
+    	<security:http-basic />
+    	<csrf disabled="true"/>
+    	<cors configuration-source-ref="corsSource"/>
+    	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
+    </security:http>
+    
+    <security:http create-session="stateless" pattern="/**/Prospect/insertOtpProspectStore" use-expressions="true">
+    	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
+    	<security:anonymous enabled="true"/>   
+    	<security:http-basic />
+    	<csrf disabled="true"/>
+    	<cors configuration-source-ref="corsSource"/>
+    	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
+    </security:http>
+    
+    <security:http create-session="stateless" pattern="/**/insertOtpUserPassword" use-expressions="true">
+    	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
+    	<security:anonymous enabled="true"/>   
+    	<security:http-basic />
+    	<csrf disabled="true"/>
+    	<cors configuration-source-ref="corsSource"/>
+    	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
+    </security:http>
+    
+    <security:http create-session="stateless" pattern="/**/updateUserPassword" use-expressions="true">
+    	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
+    	<security:anonymous enabled="true"/>   
+    	<security:http-basic />
+    	<csrf disabled="true"/>
+    	<cors configuration-source-ref="corsSource"/>
+    	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
+    </security:http>
 	
+	
+	
+	<!-- Teste -->
+	<http pattern="/**/MoipApp/**" security="none"/>	<!-- TODO: Somente para teste -->
+	
+
 
 	<!-- Localhost hasIpAddress('127.0.0.1') -->
 	<security:http create-session="stateless" pattern="/**/Bot/**" use-expressions="true">
@@ -218,6 +283,7 @@
         <security:intercept-url pattern="/**" 										access="denyAll" 									/>
         <security:http-basic />
         <csrf disabled="true"/>
+ 
         <cors configuration-source-ref="corsSource"/>
         <custom-filter after="SECURITY_CONTEXT_FILTER" ref="tokenParamFilter" />
         <custom-filter before="BASIC_AUTH_FILTER" ref="authFilterJwtoken" />
@@ -255,8 +321,14 @@
 	<beans:bean id="authFilterLocalhost"
 		class="br.com.mind5.servlet.filter.authentication.AuthFilterLocalhost">
 		<beans:constructor-arg ref="authenticationManagerLocalhost"/>
-	</beans:bean>	
+	</beans:bean>
 	
+ 
+	<beans:bean id="authFilterAnonymous"
+		class="br.com.mind5.servlet.filter.authentication.authFilterAnonymous">
+		<beans:constructor-arg ref="authenticationManagerAnonymous"/>
+	</beans:bean>
+
 	
 	<beans:bean id="corsSource" 
 		class="br.com.mind5.servlet.filter.cors.CorsConfigurationSource">
@@ -291,4 +363,14 @@
     </security:authentication-manager>     
     
     <beans:bean id="authProviderLocalhost" class="br.com.mind5.servlet.filter.authentication.AuthProviderLocalhost"/>
+    
+    
+    
+	<!-- Authentication Provider - Free of authentication -->
+    <security:authentication-manager alias="authenticationManagerAnonymous" id="authenticationManagerAnonymous">
+        <authentication-provider ref="authProviderAnonymous" >
+        </authentication-provider>
+    </security:authentication-manager>     
+    
+    <beans:bean id="authProviderAnonymous" class="br.com.mind5.servlet.filter.authentication.authProviderAnonymous"/>
 </beans:beans>
