@@ -5,21 +5,28 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreDashboard.info.StorashInfo;
-import br.com.mind5.stats.statsStoreDashboard.model.action.LazyStorashRootSelect;
+import br.com.mind5.stats.statsStoreDashboard.model.action.StorashVisiMergeSteddMonth;
+import br.com.mind5.stats.statsStoreDashboard.model.action.StorashVisiMergeStedmon;
+import br.com.mind5.stats.statsStoreDashboard.model.action.StorashVisiMergeStedmonLtm;
+import br.com.mind5.stats.statsStoreDashboard.model.action.StorashVisiMergeStordMonth;
+import br.com.mind5.stats.statsStoreDashboard.model.action.StorashVisiMergeStoronLtm;
 import br.com.mind5.stats.statsStoreDashboard.model.checker.StorashCheckLangu;
 import br.com.mind5.stats.statsStoreDashboard.model.checker.StorashCheckOwner;
-import br.com.mind5.stats.statsStoreDashboard.model.checker.StorashCheckReadAuth;
+import br.com.mind5.stats.statsStoreDashboard.model.checker.StorashCheckRead;
+import br.com.mind5.stats.statsStoreDashboard.model.checker.StorashCheckStore;
 
 
-public final class RootStorashSelectAuth extends DeciTreeTemplateWrite<StorashInfo> {
+public final class StorashRootSelect extends DeciTreeTemplateWrite<StorashInfo> {
 	
-	public RootStorashSelectAuth(DeciTreeOption<StorashInfo> option) {
+	public StorashRootSelect(DeciTreeOption<StorashInfo> option) {
 		super(option);
 	}
 	
@@ -34,7 +41,7 @@ public final class RootStorashSelectAuth extends DeciTreeTemplateWrite<StorashIn
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StorashCheckReadAuth(checkerOption);
+		checker = new StorashCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -51,6 +58,13 @@ public final class RootStorashSelectAuth extends DeciTreeTemplateWrite<StorashIn
 		checker = new StorashCheckOwner(checkerOption);
 		queue.add(checker);
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StorashCheckStore(checkerOption);
+		queue.add(checker);
+		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
@@ -59,12 +73,18 @@ public final class RootStorashSelectAuth extends DeciTreeTemplateWrite<StorashIn
 	@Override protected List<ActionStd<StorashInfo>> buildActionsOnPassedHook(DeciTreeOption<StorashInfo> option) {
 		List<ActionStd<StorashInfo>> actions = new ArrayList<>();
 
-		ActionStd<StorashInfo> nodeAuth = new NodeStorashAuthL1(option).toAction();
-		ActionLazy<StorashInfo> select = new LazyStorashRootSelect(option.conn, option.schemaName);
+		ActionStd<StorashInfo> mergeStedd = new ActionStdCommom<StorashInfo>(option, StorashVisiMergeSteddMonth.class);
+		ActionLazy<StorashInfo> mergeStedmon = new ActionLazyCommom<StorashInfo>(option, StorashVisiMergeStedmon.class);
+		ActionLazy<StorashInfo> mergeStedmonLtm = new ActionLazyCommom<StorashInfo>(option, StorashVisiMergeStedmonLtm.class);
+		ActionLazy<StorashInfo> mergeStord = new ActionLazyCommom<StorashInfo>(option, StorashVisiMergeStordMonth.class);
+		ActionLazy<StorashInfo> mergeStoronLtm = new ActionLazyCommom<StorashInfo>(option, StorashVisiMergeStoronLtm.class);
 		
-		nodeAuth.addPostAction(select);
+		mergeStedd.addPostAction(mergeStedmon);
+		mergeStedmon.addPostAction(mergeStedmonLtm);
+		mergeStedmonLtm.addPostAction(mergeStord);
+		mergeStord.addPostAction(mergeStoronLtm);
 		
-		actions.add(nodeAuth);
+		actions.add(mergeStedd);
 		return actions;
 	}
 }

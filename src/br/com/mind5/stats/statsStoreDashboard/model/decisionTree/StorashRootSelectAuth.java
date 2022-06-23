@@ -5,26 +5,22 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreDashboard.info.StorashInfo;
-import br.com.mind5.stats.statsStoreDashboard.model.action.LazyStorashMergeStedmon;
-import br.com.mind5.stats.statsStoreDashboard.model.action.LazyStorashMergeStedmonLtm;
-import br.com.mind5.stats.statsStoreDashboard.model.action.LazyStorashMergeStordMonth;
-import br.com.mind5.stats.statsStoreDashboard.model.action.LazyStorashMergeStoronLtm;
-import br.com.mind5.stats.statsStoreDashboard.model.action.StdStorashMergeSteddMonth;
+import br.com.mind5.stats.statsStoreDashboard.model.action.StorashVisiRootSelect;
 import br.com.mind5.stats.statsStoreDashboard.model.checker.StorashCheckLangu;
 import br.com.mind5.stats.statsStoreDashboard.model.checker.StorashCheckOwner;
-import br.com.mind5.stats.statsStoreDashboard.model.checker.StorashCheckRead;
-import br.com.mind5.stats.statsStoreDashboard.model.checker.StorashCheckStore;
+import br.com.mind5.stats.statsStoreDashboard.model.checker.StorashCheckReadAuth;
 
 
-public final class RootStorashSelect extends DeciTreeTemplateWrite<StorashInfo> {
+public final class StorashRootSelectAuth extends DeciTreeTemplateWrite<StorashInfo> {
 	
-	public RootStorashSelect(DeciTreeOption<StorashInfo> option) {
+	public StorashRootSelectAuth(DeciTreeOption<StorashInfo> option) {
 		super(option);
 	}
 	
@@ -39,7 +35,7 @@ public final class RootStorashSelect extends DeciTreeTemplateWrite<StorashInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StorashCheckRead(checkerOption);
+		checker = new StorashCheckReadAuth(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -56,13 +52,6 @@ public final class RootStorashSelect extends DeciTreeTemplateWrite<StorashInfo> 
 		checker = new StorashCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new StorashCheckStore(checkerOption);
-		queue.add(checker);
-		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
@@ -71,18 +60,12 @@ public final class RootStorashSelect extends DeciTreeTemplateWrite<StorashInfo> 
 	@Override protected List<ActionStd<StorashInfo>> buildActionsOnPassedHook(DeciTreeOption<StorashInfo> option) {
 		List<ActionStd<StorashInfo>> actions = new ArrayList<>();
 
-		ActionStd<StorashInfo> mergeStedd = new StdStorashMergeSteddMonth(option);
-		ActionLazy<StorashInfo> mergeStedmon = new LazyStorashMergeStedmon(option.conn, option.schemaName);
-		ActionLazy<StorashInfo> mergeStedmonLtm = new LazyStorashMergeStedmonLtm(option.conn, option.schemaName);
-		ActionLazy<StorashInfo> mergeStord = new LazyStorashMergeStordMonth(option.conn, option.schemaName);
-		ActionLazy<StorashInfo> mergeStoronLtm = new LazyStorashMergeStoronLtm(option.conn, option.schemaName);
+		ActionStd<StorashInfo> nodeAuth = new StorashNodeAuthL1(option).toAction();
+		ActionLazy<StorashInfo> select = new ActionLazyCommom<StorashInfo>(option, StorashVisiRootSelect.class);
 		
-		mergeStedd.addPostAction(mergeStedmon);
-		mergeStedmon.addPostAction(mergeStedmonLtm);
-		mergeStedmonLtm.addPostAction(mergeStord);
-		mergeStord.addPostAction(mergeStoronLtm);
+		nodeAuth.addPostAction(select);
 		
-		actions.add(mergeStedd);
+		actions.add(nodeAuth);
 		return actions;
 	}
 }

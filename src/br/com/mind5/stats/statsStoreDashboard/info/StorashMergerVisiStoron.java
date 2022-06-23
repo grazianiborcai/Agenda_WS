@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonth.info.StoronInfo;
 
-final class StorashVisiMergeStoron extends InfoMergerVisitorTemplate<StorashInfo, StoronInfo> {
+final class StorashMergerVisiStoron extends InfoMergerVisitorTemplate<StorashInfo, StoronInfo> {
 
 	@Override public boolean shouldMerge(StorashInfo baseInfo, StoronInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner &&

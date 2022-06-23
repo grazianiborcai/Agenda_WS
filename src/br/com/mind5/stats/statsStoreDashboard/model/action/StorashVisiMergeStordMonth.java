@@ -10,9 +10,9 @@ import br.com.mind5.stats.statsStoreDashboard.info.StorashMerger;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.decisionTree.RootStordSelectMonth;
 
-final class VisiStorashMergeStordMonth extends ActionVisitorTemplateMerge<StorashInfo, StordInfo> {
+public final class StorashVisiMergeStordMonth extends ActionVisitorTemplateMerge<StorashInfo, StordInfo> {
 	
-	public VisiStorashMergeStordMonth(DeciTreeOption<StorashInfo> option) {
+	public StorashVisiMergeStordMonth(DeciTreeOption<StorashInfo> option) {
 		super(option, StordInfo.class);
 	}
 	

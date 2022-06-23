@@ -3,6 +3,7 @@ package br.com.mind5.stats.statsStoreDashboard.info;
 import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
+import br.com.mind5.business.calendarMonth.info.CalonthInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordInfo;
@@ -11,16 +12,30 @@ import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleMonth.info.StedmonInfo;
 
 public final class StorashMerger {
+	public static List<StorashInfo> mergeWithCalonth(List<StorashInfo> baseInfos, List<CalonthInfo> selectedInfos) {
+		InfoMergerBuilder<StorashInfo, CalonthInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StorashMergerVisiCalonth());
+		InfoMerger<StorashInfo, CalonthInfo> merger = builder.build();
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<StorashInfo> mergeWithStoron(List<StorashInfo> baseInfos, List<StoronInfo> selectedInfos) {
 		InfoMergerBuilder<StorashInfo, StoronInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorashVisiMergeStoron());
+		builder.addVisitor(new StorashMergerVisiStoron());
 		InfoMerger<StorashInfo, StoronInfo> merger = builder.build();
 	
 		return merger.merge();
 	}
+	
 	
 	
 	public static List<StorashInfo> mergeWithStord(List<StorashInfo> baseInfos, List<StordInfo> selectedInfos) {
@@ -28,11 +43,12 @@ public final class StorashMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorashVisiMergeStord());
+		builder.addVisitor(new StorashMergerVisiStord());
 		InfoMerger<StorashInfo, StordInfo> merger = builder.build();
 	
 		return merger.merge();
 	}
+	
 	
 	
 	public static List<StorashInfo> mergeWithStedmonLtm(List<StorashInfo> baseInfos, List<StedmonInfo> selectedInfos) {
@@ -40,7 +56,7 @@ public final class StorashMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorashVisiMergeStedmonLtm());
+		builder.addVisitor(new StorashMergerVisiStedmonLtm());
 		InfoMerger<StorashInfo, StedmonInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -53,7 +69,7 @@ public final class StorashMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorashVisiMergeStedmon());
+		builder.addVisitor(new StorashMergerVisiStedmon());
 		InfoMerger<StorashInfo, StedmonInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -66,7 +82,7 @@ public final class StorashMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorashVisiMergeStedd());
+		builder.addVisitor(new StorashMergerVisiStedd());
 		InfoMerger<StorashInfo, SteddInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -79,7 +95,7 @@ public final class StorashMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorashVisiMergeSytotauh());
+		builder.addVisitor(new StorashMergerVisiSytotauh());
 		InfoMerger<StorashInfo, SytotauhInfo> merger = builder.build();
 	
 		return merger.merge();

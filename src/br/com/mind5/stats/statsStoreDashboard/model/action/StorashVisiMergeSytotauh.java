@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreDashboard.info.StorashInfo;
 import br.com.mind5.stats.statsStoreDashboard.info.StorashMerger;
 
-final class VisiStorashMergeSytotauh extends ActionVisitorTemplateMerge<StorashInfo, SytotauhInfo> {
+public final class StorashVisiMergeSytotauh extends ActionVisitorTemplateMerge<StorashInfo, SytotauhInfo> {
 	
-	public VisiStorashMergeSytotauh(DeciTreeOption<StorashInfo> option) {
+	public StorashVisiMergeSytotauh(DeciTreeOption<StorashInfo> option) {
 		super(option, SytotauhInfo.class);
 	}
 	

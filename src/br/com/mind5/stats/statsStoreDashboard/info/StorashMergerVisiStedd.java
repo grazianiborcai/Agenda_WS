@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordInfo;
+import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
 
-final class StorashVisiMergeStord extends InfoMergerVisitorTemplate<StorashInfo, StordInfo> {
+final class StorashMergerVisiStedd extends InfoMergerVisitorTemplate<StorashInfo, SteddInfo> {
 
-	@Override public boolean shouldMerge(StorashInfo baseInfo, StordInfo selectedInfo) {
+	@Override public boolean shouldMerge(StorashInfo baseInfo, SteddInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner &&
 				baseInfo.codStore == selectedInfo.codStore &&
 				baseInfo.calmonth.equals(selectedInfo.calmonth));
@@ -16,10 +16,10 @@ final class StorashVisiMergeStord extends InfoMergerVisitorTemplate<StorashInfo,
 	
 	
 	
-	@Override public List<StorashInfo> merge(StorashInfo baseInfo, StordInfo selectedInfo) {
+	@Override public List<StorashInfo> merge(StorashInfo baseInfo, SteddInfo selectedInfo) {
 		List<StorashInfo> results = new ArrayList<>();
 		
-		baseInfo.stordes.add(selectedInfo);
+		baseInfo.steddes.add(selectedInfo);
 		
 		results.add(baseInfo);
 		return results;

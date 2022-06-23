@@ -4,19 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreDashboard.info.StorashInfo;
-import br.com.mind5.stats.statsStoreDashboard.model.action.StdStorashMergeSytotauh;
-import br.com.mind5.stats.statsStoreDashboard.model.action.StdStorashSuccess;
-import br.com.mind5.stats.statsStoreDashboard.model.checker.StorashCheckSytotin;
+import br.com.mind5.stats.statsStoreDashboard.model.checker.StorashCheckAuthOwner;
 
-public final class NodeStorashAuthL2 extends DeciTreeTemplateWrite<StorashInfo> {
+public final class StorashNodeAuthL1 extends DeciTreeTemplateWrite<StorashInfo> {
 	
-	public NodeStorashAuthL2(DeciTreeOption<StorashInfo> option) {
+	public StorashNodeAuthL1(DeciTreeOption<StorashInfo> option) {
 		super(option);
 	}
 	
@@ -31,7 +30,7 @@ public final class NodeStorashAuthL2 extends DeciTreeTemplateWrite<StorashInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new StorashCheckSytotin(checkerOption);
+		checker = new StorashCheckAuthOwner(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -42,9 +41,9 @@ public final class NodeStorashAuthL2 extends DeciTreeTemplateWrite<StorashInfo> 
 	@Override protected List<ActionStd<StorashInfo>> buildActionsOnPassedHook(DeciTreeOption<StorashInfo> option) {
 		List<ActionStd<StorashInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StorashInfo> mergeSytotauh = new StdStorashMergeSytotauh(option);		
+		ActionStd<StorashInfo> success = new ActionStdSuccessCommom<StorashInfo>(option);
 		
-		actions.add(mergeSytotauh);
+		actions.add(success);
 		return actions;
 	}
 	
@@ -53,9 +52,9 @@ public final class NodeStorashAuthL2 extends DeciTreeTemplateWrite<StorashInfo> 
 	@Override protected List<ActionStd<StorashInfo>> buildActionsOnFailedHook(DeciTreeOption<StorashInfo> option) {
 		List<ActionStd<StorashInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StorashInfo> success = new StdStorashSuccess(option);
+		ActionStd<StorashInfo> nodeL2 = new StorashNodeAuthL2(option).toAction();
 		
-		actions.add(success);
+		actions.add(nodeL2);
 		return actions;
 	}
 }

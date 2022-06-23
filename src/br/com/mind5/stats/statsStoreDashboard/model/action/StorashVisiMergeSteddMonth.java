@@ -10,9 +10,9 @@ import br.com.mind5.stats.statsStoreDashboard.info.StorashMerger;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.info.SteddInfo;
 import br.com.mind5.stats.statsStoreSchedule.storeScheduleDay.model.decisionTree.SteddRootSelectMonth;
 
-final class VisiStorashMergeSteddMonth extends ActionVisitorTemplateMerge<StorashInfo, SteddInfo> {
+public final class StorashVisiMergeSteddMonth extends ActionVisitorTemplateMerge<StorashInfo, SteddInfo> {
 	
-	public VisiStorashMergeSteddMonth(DeciTreeOption<StorashInfo> option) {
+	public StorashVisiMergeSteddMonth(DeciTreeOption<StorashInfo> option) {
 		super(option, SteddInfo.class);
 	}
 	
