@@ -5,8 +5,11 @@ import java.util.List;
 
 import br.com.mind5.business.home.info.HomeInfo;
 import br.com.mind5.business.home.model.action.HomeVisiMergeStoman;
+import br.com.mind5.business.home.model.action.HomeVisiMergeStorash;
 import br.com.mind5.business.home.model.checker.HomeCheckAuthManager;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
 import br.com.mind5.model.checker.ModelChecker;
@@ -44,6 +47,9 @@ public final class HomeNodeManager extends DeciTreeTemplateRead<HomeInfo> {
 		List<ActionStd<HomeInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<HomeInfo> mergeStoman = new ActionStdCommom<HomeInfo>(option, HomeVisiMergeStoman.class);
+		ActionLazy<HomeInfo> mergeStorash = new ActionLazyCommom<HomeInfo>(option, HomeVisiMergeStorash.class);
+		
+		mergeStoman.addPostAction(mergeStorash);
 		
 		actions.add(mergeStoman);	
 		return actions;

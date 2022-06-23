@@ -10,6 +10,7 @@ import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.security.userHome.info.UsomeInfo;
 import br.com.mind5.stats.statsOwnerDashboard.info.SowashInfo;
+import br.com.mind5.stats.statsStoreDashboard.info.StorashInfo;
 
 public final class HomeInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
@@ -19,6 +20,7 @@ public final class HomeInfo extends InfoRecord implements Cloneable {
 	public UsomeInfo usomeData;
 	public List<StomanInfo> stomanes;
 	public SowashInfo sowashData;
+	public StorashInfo storashData;
 	public String username;
 	
 	
@@ -31,6 +33,7 @@ public final class HomeInfo extends InfoRecord implements Cloneable {
 		stoprosouData = DefaultValue.object();
 		usomeData = DefaultValue.object();
 		sowashData = DefaultValue.object();
+		storashData = DefaultValue.object();
 		stomanes = DefaultValue.list();
 	}
 	
@@ -55,6 +58,7 @@ public final class HomeInfo extends InfoRecord implements Cloneable {
 		deepCopy.stoprosouData = CloneUtil.cloneRecord (stoprosouData, this.getClass());
 		deepCopy.usomeData     = CloneUtil.cloneRecord (usomeData    , this.getClass());
 		deepCopy.sowashData    = CloneUtil.cloneRecord (sowashData   , this.getClass());
+		deepCopy.storashData   = CloneUtil.cloneRecord (storashData  , this.getClass());
 		deepCopy.stomanes      = CloneUtil.cloneRecords(stomanes     , this.getClass());
 		
 		return deepCopy;

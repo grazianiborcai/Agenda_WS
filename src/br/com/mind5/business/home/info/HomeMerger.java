@@ -10,8 +10,22 @@ import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.security.userHome.info.UsomeInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.stats.statsOwnerDashboard.info.SowashInfo;
+import br.com.mind5.stats.statsStoreDashboard.info.StorashInfo;
 
 public final class HomeMerger {	
+	public static List<HomeInfo> mergeWithStorash(List<HomeInfo> baseInfos, List<StorashInfo> selectedInfos) {
+		InfoMergerBuilder<HomeInfo, StorashInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new HomeMergerVisiStorash());
+		InfoMerger<HomeInfo, StorashInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<HomeInfo> mergeWithSowash(List<HomeInfo> baseInfos, List<SowashInfo> selectedInfos) {
 		InfoMergerBuilder<HomeInfo, SowashInfo> builder = new InfoMergerBuilder<>();
 		
