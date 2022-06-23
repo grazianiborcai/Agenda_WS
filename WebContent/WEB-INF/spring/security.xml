@@ -325,7 +325,7 @@
 	
  
 	<beans:bean id="authFilterAnonymous"
-		class="br.com.mind5.servlet.filter.authentication.authFilterAnonymous">
+		class="br.com.mind5.servlet.filter.authentication.AuthFilterAnonymous">
 		<beans:constructor-arg ref="authenticationManagerAnonymous"/>
 	</beans:bean>
 
@@ -372,5 +372,5 @@
         </authentication-provider>
     </security:authentication-manager>     
     
-    <beans:bean id="authProviderAnonymous" class="br.com.mind5.servlet.filter.authentication.authProviderAnonymous"/>
+    <beans:bean id="authProviderAnonymous" class="br.com.mind5.servlet.filter.authentication.AuthProviderAnonymous"/>
 </beans:beans>

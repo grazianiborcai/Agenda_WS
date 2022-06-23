@@ -8,7 +8,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreDashboard.info.StorashInfo;
-import br.com.mind5.stats.statsStoreDashboard.model.decisionTree.StorashRootSelectNow;
+import br.com.mind5.stats.statsStoreDashboard.model.decisionTree.StorashRootSelectAuthNow;
 
 public final class HomeVisiMergeStorash extends ActionVisitorTemplateMerge<HomeInfo, StorashInfo> {
 	
@@ -19,7 +19,7 @@ public final class HomeVisiMergeStorash extends ActionVisitorTemplateMerge<HomeI
 	
 	
 	@Override protected Class<? extends DeciTree<StorashInfo>> getTreeClassHook() {
-		return StorashRootSelectNow.class;
+		return StorashRootSelectAuthNow.class;
 	}
 	
 	

@@ -14,12 +14,12 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreDashboard.info.StorashInfo;
 import br.com.mind5.stats.statsStoreDashboard.model.action.StorashVisiMergeCalonthNow;
-import br.com.mind5.stats.statsStoreDashboard.model.action.StorashVisiRootSelect;
+import br.com.mind5.stats.statsStoreDashboard.model.action.StorashVisiRootSelectAuth;
 
 
-public final class StorashRootSelectNow extends DeciTreeTemplateWrite<StorashInfo> {
+public final class StorashRootSelectAuthNow extends DeciTreeTemplateWrite<StorashInfo> {
 	
-	public StorashRootSelectNow(DeciTreeOption<StorashInfo> option) {
+	public StorashRootSelectAuthNow(DeciTreeOption<StorashInfo> option) {
 		super(option);
 	}
 	
@@ -41,10 +41,10 @@ public final class StorashRootSelectNow extends DeciTreeTemplateWrite<StorashInf
 		List<ActionStd<StorashInfo>> actions = new ArrayList<>();
 
 		ActionStd<StorashInfo> mergeCalonthNow = new ActionStdCommom<StorashInfo>(option, StorashVisiMergeCalonthNow.class);
-		ActionLazy<StorashInfo> select = new ActionLazyCommom<StorashInfo>(option, StorashVisiRootSelect.class);
+		ActionLazy<StorashInfo> selectAuth = new ActionLazyCommom<StorashInfo>(option, StorashVisiRootSelectAuth.class);
 		
 		
-		mergeCalonthNow.addPostAction(select);
+		mergeCalonthNow.addPostAction(selectAuth);
 		
 		actions.add(mergeCalonthNow);
 		return actions;
