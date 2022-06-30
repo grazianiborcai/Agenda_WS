@@ -1,5 +1,6 @@
 package br.com.mind5.business.storeList.info;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
@@ -28,6 +29,7 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 	public List<PhoneInfo> phones;
 	public ComplisInfo complisData;
 	public FimecoInfo fimecoData;
+	public LocalDateTime createdOn;
 	public String username;
 	public String recordMode;
 	
