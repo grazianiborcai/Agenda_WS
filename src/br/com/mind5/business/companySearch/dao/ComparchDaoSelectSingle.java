@@ -73,7 +73,8 @@ public final class ComparchDaoSelectSingle extends DaoStmtTemplate<ComparchInfo>
 					dataInfo.email = stmtResult.getString(ComparchDaoDbTableColumn.COL_EMAIL);						
 					dataInfo.recordMode = stmtResult.getString(ComparchDaoDbTableColumn.COL_RECORD_MODE);
 					dataInfo.codEntityCateg = stmtResult.getString(ComparchDaoDbTableColumn.COL_COD_ENTITY_CATEG);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, ComparchDaoDbTableColumn.COL_COD_SNAPSHOT);				
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, ComparchDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.nameSearch = stmtResult.getString(ComparchDaoDbTableColumn.COL_NAME_SEARCH);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

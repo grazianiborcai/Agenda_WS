@@ -23,7 +23,8 @@ public final class ComparchCheckRead extends ModelCheckerTemplateSimple<Comparch
 		
 		
 		if ( recordInfo.cnpj  			== null &&
-			 recordInfo.codEntityCateg	== null		)			
+			 recordInfo.codEntityCateg	== null	&&
+			 recordInfo.nameSearch		== null)			
 			return super.FAILED;	
 		
 		

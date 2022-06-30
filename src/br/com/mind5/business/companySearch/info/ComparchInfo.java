@@ -9,6 +9,7 @@ public final class ComparchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codCompany;
 	public long codSnapshot;
+	public String nameSearch;
 	public String cnpj;
 	public String codEntityCateg;
 	public String email;

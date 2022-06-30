@@ -8,6 +8,7 @@ import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
+import br.com.mind5.dao.DaoWhereCondition;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
 public final class ComparchDaoWhere implements DaoStmtWhere {	
@@ -41,6 +42,10 @@ public final class ComparchDaoWhere implements DaoStmtWhere {
 					
 				case ComparchDaoDbTableColumn.COL_COD_ENTITY_CATEG :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codEntityCateg);
+					break;
+					
+				case ComparchDaoDbTableColumn.COL_NAME_SEARCH :
+					builder.addClauseAnd(eachColumn, recordInfo.nameSearch, DaoWhereCondition.LIKE);
 					break;
 					
 				case ComparchDaoDbTableColumn.COL_RECORD_MODE :
