@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
-import br.com.mind5.business.storeSearch.model.action.SotarchVisiMergeToSelect;
+import br.com.mind5.business.storeSearch.model.action.SotarchVisiMergeComplis;
 import br.com.mind5.business.storeSearch.model.checker.SotarchCheckHasName;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionStdCommom;
@@ -44,9 +44,9 @@ public final class SotarchNodeCompany extends DeciTreeTemplateRead<SotarchInfo> 
 	@Override protected List<ActionStd<SotarchInfo>> buildActionsOnPassedHook(DeciTreeOption<SotarchInfo> option) {
 		List<ActionStd<SotarchInfo>> actions = new ArrayList<>();
 
-		ActionStd<SotarchInfo> select = new ActionStdCommom<SotarchInfo>(option, SotarchVisiMergeToSelect.class);
+		ActionStd<SotarchInfo> mergeComplis = new ActionStdCommom<SotarchInfo>(option, SotarchVisiMergeComplis.class);
 		
-		actions.add(select);
+		actions.add(mergeComplis);
 		return actions;
 	}
 	
