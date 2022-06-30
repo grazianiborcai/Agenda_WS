@@ -18,6 +18,7 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codSnapshot;
 	public long codCompany;
+	public String nameSearch;
 	public String codCurr;
 	public String txtCurr;
 	public String codTimezone;
