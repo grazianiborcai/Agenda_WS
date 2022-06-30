@@ -8,8 +8,9 @@ import br.com.mind5.business.companySearch.model.action.ComparchVisiMergeToSelec
 import br.com.mind5.business.companySearch.model.checker.ComparchCheckLangu;
 import br.com.mind5.business.companySearch.model.checker.ComparchCheckOwner;
 import br.com.mind5.business.companySearch.model.checker.ComparchCheckRead;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -58,9 +59,12 @@ public final class ComparchRootSelect extends DeciTreeTemplateRead<ComparchInfo>
 	@Override protected List<ActionStd<ComparchInfo>> buildActionsOnPassedHook(DeciTreeOption<ComparchInfo> option) {
 		List<ActionStd<ComparchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<ComparchInfo> select = new ActionStdCommom<ComparchInfo>(option, ComparchVisiMergeToSelect.class);	
-		actions.add(select);
+		ActionStd<ComparchInfo> nodeNameSearch = new ComparchNodeNameSearch(option).toAction();	
+		ActionLazy<ComparchInfo> select = new ActionLazyCommom<ComparchInfo>(option, ComparchVisiMergeToSelect.class);
 		
+		nodeNameSearch.addPostAction(select);
+		
+		actions.add(nodeNameSearch);		
 		return actions;
 	}
 }
