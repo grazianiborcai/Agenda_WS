@@ -69,7 +69,8 @@ public final class ComplisDaoSelectSingle extends DaoStmtTemplate<ComplisInfo> {
 					
 					dataInfo.codOwner = stmtResult.getLong(ComplisDaoDbTableColumn.COL_COD_OWNER);
 					dataInfo.codCompany = stmtResult.getLong(ComplisDaoDbTableColumn.COL_COD_COMPANY);
-					dataInfo.name = stmtResult.getString(ComplisDaoDbTableColumn.COL_NAME);			
+					dataInfo.name = stmtResult.getString(ComplisDaoDbTableColumn.COL_NAME);
+					dataInfo.nameSearch = stmtResult.getString(ComplisDaoDbTableColumn.COL_NAME_SEARCH);
 					dataInfo.email = stmtResult.getString(ComplisDaoDbTableColumn.COL_EMAIL);						
 					dataInfo.recordMode = stmtResult.getString(ComplisDaoDbTableColumn.COL_RECORD_MODE);
 					dataInfo.razaoSocial = stmtResult.getString(ComplisDaoDbTableColumn.COL_RAZAO_SOCIAL);

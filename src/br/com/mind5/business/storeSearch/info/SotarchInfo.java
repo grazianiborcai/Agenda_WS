@@ -10,6 +10,7 @@ public final class SotarchInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codCompany;
 	public long codUser;
+	public String nameSearch;
 	public String username;
 	public String recordMode;
 	
