@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.company.info.CompInfo;
+import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.storeAccount.info.StoracInfo;
@@ -38,7 +39,8 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public StoracInfo storacData;
 	public StefilonInfo stefilonData;
 	public List<StowotmInfo> stowotmes;
-	public List<StuntmInfo> stuntmes;	
+	public List<StuntmInfo> stuntmes;
+	public List<MatoreInfo> matores;
 	public LocalDateTime createdOn;
 	public long createdBy;
 	public LocalDateTime lastChanged;
@@ -64,6 +66,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		stefilonData = DefaultValue.object();
 		stowotmes = DefaultValue.list();
 		stuntmes = DefaultValue.list();
+		matores = DefaultValue.list();
 		isLocked = DefaultValue.boole();
 		addressData = DefaultValue.object();
 		phones = DefaultValue.list();
@@ -99,6 +102,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		deepCopy.stefilonData = CloneUtil.cloneRecord(deepCopy.stefilonData, this.getClass());
 		deepCopy.stowotmes    = CloneUtil.cloneRecords(deepCopy.stowotmes  , this.getClass());
 		deepCopy.stuntmes     = CloneUtil.cloneRecords(deepCopy.stuntmes   , this.getClass());
+		deepCopy.matores      = CloneUtil.cloneRecords(deepCopy.matores    , this.getClass());
 		
 		return deepCopy;
 	}
