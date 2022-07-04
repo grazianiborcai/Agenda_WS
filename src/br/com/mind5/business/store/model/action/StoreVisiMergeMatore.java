@@ -3,7 +3,7 @@ package br.com.mind5.business.store.model.action;
 import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.business.materialStore.model.decisionTree.MatoreRootSearch;
+import br.com.mind5.business.materialStore.model.decisionTree.MatoreRootSearchStore;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ public final class StoreVisiMergeMatore extends ActionVisitorTemplateMerge<Store
 	
 	
 	@Override protected Class<? extends DeciTree<MatoreInfo>> getTreeClassHook() {
-		return MatoreRootSearch.class;
+		return MatoreRootSearchStore.class;
 	}
 	
 	
