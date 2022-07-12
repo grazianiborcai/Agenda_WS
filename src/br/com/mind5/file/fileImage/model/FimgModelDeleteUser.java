@@ -1,7 +1,7 @@
 package br.com.mind5.file.fileImage.model;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
-import br.com.mind5.file.fileImage.model.decisionTree.RootFimgDeleteUser;
+import br.com.mind5.file.fileImage.model.decisionTree.FimgRootDeleteUser;
 import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -15,6 +15,6 @@ public final class FimgModelDeleteUser extends ModelTemplate<FimgInfo> {
 	
 	
 	@Override protected DeciTree<FimgInfo> getDecisionTreeHook(DeciTreeOption<FimgInfo> option) {
-		return new RootFimgDeleteUser(option);
+		return new FimgRootDeleteUser(option);
 	}
 }

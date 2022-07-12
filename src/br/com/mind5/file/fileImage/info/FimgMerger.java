@@ -18,7 +18,7 @@ public final class FimgMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgVisiMergeCusarch());
+		builder.addVisitor(new FimgMergerVisiCusarch());
 		InfoMerger<FimgInfo, CusarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -31,7 +31,7 @@ public final class FimgMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgVisiMergeFimgnap());
+		builder.addVisitor(new FimgMergerVisiFimgnap());
 		InfoMerger<FimgInfo, FimgnapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -44,7 +44,7 @@ public final class FimgMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgVisiMergeFread());
+		builder.addVisitor(new FimgMergerVisiFread());
 		InfoMerger<FimgInfo, FreadInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -57,7 +57,7 @@ public final class FimgMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgVisiMergeEmparch());
+		builder.addVisitor(new FimgMergerVisiEmparch());
 		InfoMerger<FimgInfo, EmparchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -70,7 +70,7 @@ public final class FimgMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgVisiMergeFimarch());
+		builder.addVisitor(new FimgMergerVisiFimarch());
 		InfoMerger<FimgInfo, FimarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -83,7 +83,7 @@ public final class FimgMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgVisiMergeFath());
+		builder.addVisitor(new FimgMergerVisiFath());
 		InfoMerger<FimgInfo, FathInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -96,7 +96,7 @@ public final class FimgMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgVisiMergeUsername());
+		builder.addVisitor(new FimgMergerVisiUsername());
 		InfoMerger<FimgInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -109,7 +109,7 @@ public final class FimgMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgVisiMergeToReplace());
+		builder.addVisitor(new FimgMergerVisiToReplace());
 		InfoMerger<FimgInfo, FimgInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -122,7 +122,7 @@ public final class FimgMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgVisiMergeToSelect());
+		builder.addVisitor(new FimgMergerVisiToSelect());
 		InfoMerger<FimgInfo, FimgInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -135,7 +135,7 @@ public final class FimgMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgVisiMergeToDelete());
+		builder.addVisitor(new FimgMergerVisiToDelete());
 		InfoMerger<FimgInfo, FimgInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -148,7 +148,7 @@ public final class FimgMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgVisiMergeToUpdate());
+		builder.addVisitor(new FimgMergerVisiToUpdate());
 		InfoMerger<FimgInfo, FimgInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -161,7 +161,7 @@ public final class FimgMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgVisiMergeToCopy());
+		builder.addVisitor(new FimgMergerVisiToCopy());
 		InfoMerger<FimgInfo, FimgInfo> merger = builder.build();		
 	
 		return merger.merge();

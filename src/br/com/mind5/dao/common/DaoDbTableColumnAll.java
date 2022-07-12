@@ -151,7 +151,7 @@ import br.com.mind5.discount.discountCouponItem.dao.DaoDisoupemDbTableColumn;
 import br.com.mind5.discount.discountStore.dao.DaoDisoreDbTableColumn;
 import br.com.mind5.discount.discountStoreSearch.dao.DaoDisorarchDbTableColumn;
 import br.com.mind5.discount.discountStoreSnapshot.dao.DaoDisorapDbTableColumn;
-import br.com.mind5.file.fileImage.dao.DaoFimgDbTableColumn;
+import br.com.mind5.file.fileImage.dao.FimgDaoDbTableColumn;
 import br.com.mind5.file.fileImageList.dao.DaoFimistDbTableColumn;
 import br.com.mind5.file.fileImageSearch.dao.DaoFimarchDbTableColumn;
 import br.com.mind5.file.fileImageSnapshot.dao.DaoFimgnapDbTableColumn;
@@ -391,7 +391,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new SchedyeratDaoDbTableColumn());
 		addTable(new SchedonthatDaoDbTableColumn());
 		addTable(new SchedeekdatDaoDbTableColumn());
-		addTable(new DaoFimgDbTableColumn());
+		addTable(new FimgDaoDbTableColumn());
 		addTable(new DaoFathDbTableColumn());
 		addTable(new DaoSymsgDbTableColumn());
 		addTable(new OwnerapDaoDbTableColumn());

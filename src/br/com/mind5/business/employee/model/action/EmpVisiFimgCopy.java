@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.file.fileImage.info.FimgCopier;
 import br.com.mind5.file.fileImage.info.FimgInfo;
-import br.com.mind5.file.fileImage.model.decisionTree.RootFimgCopyToEmp;
+import br.com.mind5.file.fileImage.model.decisionTree.FimgRootCopyToEmp;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class EmpVisiFimgCopy extends ActionVisitorTemplateAction<EmpInfo, 
 	
 	
 	@Override protected Class<? extends DeciTree<FimgInfo>> getTreeClassHook() {
-		return RootFimgCopyToEmp.class;
+		return FimgRootCopyToEmp.class;
 	}
 	
 	
