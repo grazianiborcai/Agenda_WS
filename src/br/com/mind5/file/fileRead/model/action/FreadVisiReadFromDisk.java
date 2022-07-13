@@ -10,9 +10,9 @@ import br.com.mind5.file.fileRead.info.FreadInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateSimple;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFreadReadFromDisk extends ActionVisitorTemplateSimple<FreadInfo> {
+public final class FreadVisiReadFromDisk extends ActionVisitorTemplateSimple<FreadInfo> {
 	
-	public VisiFreadReadFromDisk(DeciTreeOption<FreadInfo> option) {
+	public FreadVisiReadFromDisk(DeciTreeOption<FreadInfo> option) {
 		super(option);
 	}
 	
