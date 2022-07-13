@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFimarchEnforceCus extends ActionVisitorTemplateEnforce<FimarchInfo> {
+public final class FimarchVisiEnforceCus extends ActionVisitorTemplateEnforce<FimarchInfo> {
 	
-	public VisiFimarchEnforceCus(DeciTreeOption<FimarchInfo> option) {
+	public FimarchVisiEnforceCus(DeciTreeOption<FimarchInfo> option) {
 		super(option);
 	}
 	

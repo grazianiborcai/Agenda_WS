@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
-import br.com.mind5.file.fileImageSearch.model.action.StdFimarchMergeToSelect;
-import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckLangu;
-import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckOwner;
-import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckRead;
+import br.com.mind5.file.fileImageSearch.model.action.FimarchVisiRootSelect;
+import br.com.mind5.file.fileImageSearch.model.action.FimarchVisiEnforceMat;
+import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckReadMat;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFimarchSelect extends DeciTreeTemplateRead<FimarchInfo> {
+public final class FimarchRootSelectMat extends DeciTreeTemplateRead<FimarchInfo> {
 	
-	public RootFimarchSelect(DeciTreeOption<FimarchInfo> option) {
+	public FimarchRootSelectMat(DeciTreeOption<FimarchInfo> option) {
 		super(option);
 	}
 	
@@ -32,21 +34,7 @@ public final class RootFimarchSelect extends DeciTreeTemplateRead<FimarchInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new FimarchCheckRead(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new FimarchCheckLangu(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new FimarchCheckOwner(checkerOption);
+		checker = new FimarchCheckReadMat(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -57,9 +45,12 @@ public final class RootFimarchSelect extends DeciTreeTemplateRead<FimarchInfo> {
 	@Override protected List<ActionStd<FimarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FimarchInfo> option) {
 		List<ActionStd<FimarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FimarchInfo> select = new StdFimarchMergeToSelect(option);
+		ActionStd<FimarchInfo> enforceMat = new ActionStdCommom<FimarchInfo>(option, FimarchVisiEnforceMat.class);
+		ActionLazy<FimarchInfo> select = new ActionLazyCommom<FimarchInfo>(option, FimarchVisiRootSelect.class);
 		
-		actions.add(select);
+		enforceMat.addPostAction(select);
+		
+		actions.add(enforceMat);
 		return actions;
 	}
 }

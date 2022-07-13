@@ -4,21 +4,20 @@ import java.util.List;
 
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.file.fileImageSearch.info.FimarchMerger;
-import br.com.mind5.model.action.ActionStd;
-
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFimarchMergeToSelect extends ActionVisitorTemplateMerge<FimarchInfo, FimarchInfo> {
+public final class FimarchVisiMergeToSelect extends ActionVisitorTemplateMerge<FimarchInfo, FimarchInfo> {
 	
-	public VisiFimarchMergeToSelect(DeciTreeOption<FimarchInfo> option) {
+	public FimarchVisiMergeToSelect(DeciTreeOption<FimarchInfo> option) {
 		super(option, FimarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<FimarchInfo>> getActionClassHook() {
-		return StdFimarchDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<FimarchInfo>> getVisitorClassHook() {
+		return FimarchVisiDaoSelect.class;
 	}
 	
 	

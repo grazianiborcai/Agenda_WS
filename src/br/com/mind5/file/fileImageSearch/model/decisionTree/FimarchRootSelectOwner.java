@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
-import br.com.mind5.file.fileImageSearch.model.action.LazyFimarchRootSelect;
-import br.com.mind5.file.fileImageSearch.model.action.StdFimarchEnforceOwner;
+import br.com.mind5.file.fileImageSearch.model.action.FimarchVisiRootSelect;
+import br.com.mind5.file.fileImageSearch.model.action.FimarchVisiEnforceOwner;
 import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckReadOwner;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFimarchSelectOwner extends DeciTreeTemplateRead<FimarchInfo> {
+public final class FimarchRootSelectOwner extends DeciTreeTemplateRead<FimarchInfo> {
 	
-	public RootFimarchSelectOwner(DeciTreeOption<FimarchInfo> option) {
+	public FimarchRootSelectOwner(DeciTreeOption<FimarchInfo> option) {
 		super(option);
 	}
 	
@@ -43,8 +45,8 @@ public final class RootFimarchSelectOwner extends DeciTreeTemplateRead<FimarchIn
 	@Override protected List<ActionStd<FimarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FimarchInfo> option) {
 		List<ActionStd<FimarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FimarchInfo> enforceOwner = new StdFimarchEnforceOwner(option);
-		ActionLazy<FimarchInfo> select = new LazyFimarchRootSelect(option.conn, option.schemaName);
+		ActionStd<FimarchInfo> enforceOwner = new ActionStdCommom<FimarchInfo>(option, FimarchVisiEnforceOwner.class);
+		ActionLazy<FimarchInfo> select = new ActionLazyCommom<FimarchInfo>(option, FimarchVisiRootSelect.class);
 		
 		enforceOwner.addPostAction(select);
 		

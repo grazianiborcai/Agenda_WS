@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 
-public final class DaoFimarchSelectSingle extends DaoStmtTemplate<FimarchInfo> {
+public final class FimarchDaoSelectSingle extends DaoStmtTemplate<FimarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.FILE_IMG_TABLE;
 	
 	
-	public DaoFimarchSelectSingle(Connection conn, FimarchInfo recordInfo, String schemaName) {
+	public FimarchDaoSelectSingle(Connection conn, FimarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoFimarchSelectSingle extends DaoStmtTemplate<FimarchInfo> {
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoFimarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new FimarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,15 +67,15 @@ public final class DaoFimarchSelectSingle extends DaoStmtTemplate<FimarchInfo> {
 				do {
 					FimarchInfo dataInfo = new FimarchInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoFimarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, DaoFimarchDbTableColumn.COL_COD_FILE_IMG);
-					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, DaoFimarchDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoFimarchDbTableColumn.COL_COD_PERSON);
-					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, DaoFimarchDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoFimarchDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoFimarchDbTableColumn.COL_COD_USER);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoFimarchDbTableColumn.COL_COD_STORE);
-					dataInfo.recordMode = stmtResult.getString(DaoFimarchDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, FimarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, FimarchDaoDbTableColumn.COL_COD_FILE_IMG);
+					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, FimarchDaoDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, FimarchDaoDbTableColumn.COL_COD_PERSON);
+					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, FimarchDaoDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, FimarchDaoDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, FimarchDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, FimarchDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.recordMode = stmtResult.getString(FimarchDaoDbTableColumn.COL_RECORD_MODE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

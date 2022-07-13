@@ -11,7 +11,7 @@ public final class FimarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimarchVisiMergeToSelect());
+		builder.addVisitor(new FimarchMergerVisiToSelect());
 		InfoMerger<FimarchInfo, FimarchInfo> merger = builder.build();		
 	
 		return merger.merge();

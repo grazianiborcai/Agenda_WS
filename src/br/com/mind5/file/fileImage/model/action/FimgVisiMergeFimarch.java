@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.info.FimgMerger;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
-import br.com.mind5.file.fileImageSearch.model.decisionTree.RootFimarchSelect;
+import br.com.mind5.file.fileImageSearch.model.decisionTree.FimarchRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class FimgVisiMergeFimarch extends ActionVisitorTemplateMerge<FimgI
 	
 	
 	@Override protected Class<? extends DeciTree<FimarchInfo>> getTreeClassHook() {
-		return RootFimarchSelect.class;
+		return FimarchRootSelect.class;
 	}
 	
 	

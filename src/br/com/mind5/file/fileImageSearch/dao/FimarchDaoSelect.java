@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 
-public final class DaoFimarchSelect implements DaoStmtExec<FimarchInfo> {
+public final class FimarchDaoSelect implements DaoStmtExec<FimarchInfo> {
 	private DaoStmtExec<FimarchInfo> helper;
 	
 	
-	public DaoFimarchSelect(List<DaoStmtExecOption<FimarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoFimarchSelectSingle.class, FimarchInfo.class);
+	public FimarchDaoSelect(List<DaoStmtExecOption<FimarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, FimarchDaoSelectSingle.class, FimarchInfo.class);
 	}
 	
 	

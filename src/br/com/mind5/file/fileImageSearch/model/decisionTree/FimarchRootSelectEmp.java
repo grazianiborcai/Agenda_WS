@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
-import br.com.mind5.file.fileImageSearch.model.action.LazyFimarchRootSelect;
-import br.com.mind5.file.fileImageSearch.model.action.StdFimarchEnforceUser;
-import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckReadUser;
+import br.com.mind5.file.fileImageSearch.model.action.FimarchVisiRootSelect;
+import br.com.mind5.file.fileImageSearch.model.action.FimarchVisiEnforceEmp;
+import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckReadEmp;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFimarchSelectUser extends DeciTreeTemplateRead<FimarchInfo> {
+public final class FimarchRootSelectEmp extends DeciTreeTemplateRead<FimarchInfo> {
 	
-	public RootFimarchSelectUser(DeciTreeOption<FimarchInfo> option) {
+	public FimarchRootSelectEmp(DeciTreeOption<FimarchInfo> option) {
 		super(option);
 	}
 	
@@ -32,7 +34,7 @@ public final class RootFimarchSelectUser extends DeciTreeTemplateRead<FimarchInf
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new FimarchCheckReadUser(checkerOption);
+		checker = new FimarchCheckReadEmp(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -43,12 +45,12 @@ public final class RootFimarchSelectUser extends DeciTreeTemplateRead<FimarchInf
 	@Override protected List<ActionStd<FimarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FimarchInfo> option) {
 		List<ActionStd<FimarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FimarchInfo> enforceUser = new StdFimarchEnforceUser(option);
-		ActionLazy<FimarchInfo> select = new LazyFimarchRootSelect(option.conn, option.schemaName);
+		ActionStd<FimarchInfo> enforceEmp = new ActionStdCommom<FimarchInfo>(option, FimarchVisiEnforceEmp.class);
+		ActionLazy<FimarchInfo> select = new ActionLazyCommom<FimarchInfo>(option, FimarchVisiRootSelect.class);
 		
-		enforceUser.addPostAction(select);
+		enforceEmp.addPostAction(select);
 		
-		actions.add(enforceUser);
+		actions.add(enforceEmp);
 		return actions;
 	}
 }

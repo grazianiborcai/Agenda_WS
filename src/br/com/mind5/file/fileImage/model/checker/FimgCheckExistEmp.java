@@ -3,7 +3,7 @@ package br.com.mind5.file.fileImage.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
-import br.com.mind5.file.fileImageSearch.model.decisionTree.RootFimarchSelectEmp;
+import br.com.mind5.file.fileImageSearch.model.decisionTree.FimarchRootSelectEmp;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
@@ -18,7 +18,7 @@ public final class FimgCheckExistEmp extends ModelCheckerTemplateAction<FimgInfo
 	
 	
 	@Override protected ActionStd<FimarchInfo> buildActionHook(DeciTreeOption<FimarchInfo> option) {
-		ActionStd<FimarchInfo> select = new RootFimarchSelectEmp(option).toAction();
+		ActionStd<FimarchInfo> select = new FimarchRootSelectEmp(option).toAction();
 		return select;
 	}
 	
