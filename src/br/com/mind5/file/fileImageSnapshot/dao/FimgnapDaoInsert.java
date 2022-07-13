@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.file.fileImageSnapshot.info.FimgnapInfo;
 
-public final class DaoFimgnapInsert implements DaoStmtExec<FimgnapInfo> {
+public final class FimgnapDaoInsert implements DaoStmtExec<FimgnapInfo> {
 	private DaoStmtExec<FimgnapInfo> helper;
 	
 	
-	public DaoFimgnapInsert(List<DaoStmtExecOption<FimgnapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoFimgnapInsertSingle.class, FimgnapInfo.class);
+	public FimgnapDaoInsert(List<DaoStmtExecOption<FimgnapInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, FimgnapDaoInsertSingle.class, FimgnapInfo.class);
 	}
 	
 	

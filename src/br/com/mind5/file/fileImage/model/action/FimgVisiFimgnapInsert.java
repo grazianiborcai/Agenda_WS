@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.info.FimgMerger;
 import br.com.mind5.file.fileImageSnapshot.info.FimgnapInfo;
-import br.com.mind5.file.fileImageSnapshot.model.decisionTree.RootFimgnapInsert;
+import br.com.mind5.file.fileImageSnapshot.model.decisionTree.FimgnapRootInsert;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class FimgVisiFimgnapInsert extends ActionVisitorTemplateAction<Fim
 	
 	
 	@Override protected Class<? extends DeciTree<FimgnapInfo>> getTreeClassHook() {
-		return RootFimgnapInsert.class;
+		return FimgnapRootInsert.class;
 	}
 	
 	

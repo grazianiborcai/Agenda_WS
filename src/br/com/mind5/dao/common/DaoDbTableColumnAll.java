@@ -154,7 +154,7 @@ import br.com.mind5.discount.discountStoreSnapshot.dao.DaoDisorapDbTableColumn;
 import br.com.mind5.file.fileImage.dao.FimgDaoDbTableColumn;
 import br.com.mind5.file.fileImageList.dao.FimistDaoDbTableColumn;
 import br.com.mind5.file.fileImageSearch.dao.FimarchDaoDbTableColumn;
-import br.com.mind5.file.fileImageSnapshot.dao.DaoFimgnapDbTableColumn;
+import br.com.mind5.file.fileImageSnapshot.dao.FimgnapDaoDbTableColumn;
 import br.com.mind5.file.filePath.dao.DaoFathDbTableColumn;
 import br.com.mind5.file.sysFileImage.dao.DaoFimgysDbTableColumn;
 import br.com.mind5.file.sysFileImageSearch.dao.DaoFimgysarchDbTableColumn;
@@ -532,7 +532,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoCountralDbTableColumn());
 		addTable(new DaoCountrarchDbTableColumn());
 		addTable(new DaoCaritegarchDbTableColumn());
-		addTable(new DaoFimgnapDbTableColumn());
+		addTable(new FimgnapDaoDbTableColumn());
 		addTable(new AddresnaparchDaoDbTableColumn());
 		addTable(new PhonaparchDaoDbTableColumn());
 		addTable(new DaoDisegyDbTableColumn());

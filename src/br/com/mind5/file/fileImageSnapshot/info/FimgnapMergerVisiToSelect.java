@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class FimgnapVisiMergeToSelect extends InfoMergerVisitorTemplate<FimgnapInfo, FimgnapInfo> {
+final class FimgnapMergerVisiToSelect extends InfoMergerVisitorTemplate<FimgnapInfo, FimgnapInfo> {
 	
 	@Override public boolean shouldMerge(FimgnapInfo baseInfo, FimgnapInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);

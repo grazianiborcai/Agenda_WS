@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.fileImageSnapshot.info.FimgnapInfo;
-import br.com.mind5.file.fileImageSnapshot.model.action.StdFimgnapMergeToSelect;
+import br.com.mind5.file.fileImageSnapshot.model.action.FimgnapVisiMergeToSelect;
 import br.com.mind5.file.fileImageSnapshot.model.checker.FimgnapCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFimgnapSelect extends DeciTreeTemplateRead<FimgnapInfo> {
+public final class FimgnapRootSelect extends DeciTreeTemplateRead<FimgnapInfo> {
 	
-	public RootFimgnapSelect(DeciTreeOption<FimgnapInfo> option) {
+	public FimgnapRootSelect(DeciTreeOption<FimgnapInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootFimgnapSelect extends DeciTreeTemplateRead<FimgnapInfo> {
 	@Override protected List<ActionStd<FimgnapInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgnapInfo> option) {
 		List<ActionStd<FimgnapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FimgnapInfo> select = new StdFimgnapMergeToSelect(option);
+		ActionStd<FimgnapInfo> select = new ActionStdCommom<FimgnapInfo>(option, FimgnapVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

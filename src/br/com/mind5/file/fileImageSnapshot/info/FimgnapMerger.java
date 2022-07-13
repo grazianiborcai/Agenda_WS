@@ -11,7 +11,7 @@ public final class FimgnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgnapVisiMergeToSelect());
+		builder.addVisitor(new FimgnapMergerVisiToSelect());
 		InfoMerger<FimgnapInfo, FimgnapInfo> merger = builder.build();		
 	
 		return merger.merge();

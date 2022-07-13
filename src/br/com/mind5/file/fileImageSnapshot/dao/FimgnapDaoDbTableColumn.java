@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoFimgnapDbTableColumn extends DaoDbTableColumnTemplate {
+public final class FimgnapDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;	
 	public static final String COL_COD_FILE_IMG = DaoDbField.COL_COD_FILE_IMG;
@@ -34,7 +34,7 @@ public final class DaoFimgnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 			
 	
-	public DaoFimgnapDbTableColumn() {
+	public FimgnapDaoDbTableColumn() {
 		super();
 	}
 	

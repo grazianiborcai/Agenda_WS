@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.file.fileImageSnapshot.info.FimgnapInfo;
 
-public final class DaoFimgnapWhere implements DaoStmtWhere {
+public final class FimgnapDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoFimgnapWhere(DaoWhereBuilderOption whereOption, String tableName, FimgnapInfo recordInfo) {
+	public FimgnapDaoWhere(DaoWhereBuilderOption whereOption, String tableName, FimgnapInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class DaoFimgnapWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoFimgnapDbTableColumn.COL_COD_OWNER :
+				case FimgnapDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoFimgnapDbTableColumn.COL_COD_SNAPSHOT :
+				case FimgnapDaoDbTableColumn.COL_COD_SNAPSHOT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSnapshot));
 					break;
 					
-				case DaoFimgnapDbTableColumn.COL_RECORD_MODE :
+				case FimgnapDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

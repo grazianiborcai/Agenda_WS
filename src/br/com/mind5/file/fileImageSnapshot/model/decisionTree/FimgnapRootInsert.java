@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.fileImageSnapshot.info.FimgnapInfo;
-import br.com.mind5.file.fileImageSnapshot.model.action.LazyFimgnapRootSelect;
-import br.com.mind5.file.fileImageSnapshot.model.action.StdFimgnapDaoInsert;
+import br.com.mind5.file.fileImageSnapshot.model.action.FimgnapVisiRootSelect;
+import br.com.mind5.file.fileImageSnapshot.model.action.FimgnapVisiDaoInsert;
 import br.com.mind5.file.fileImageSnapshot.model.checker.FimgnapCheckInsert;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootFimgnapInsert extends DeciTreeTemplateWrite<FimgnapInfo> {
+public final class FimgnapRootInsert extends DeciTreeTemplateWrite<FimgnapInfo> {
 	
-	public RootFimgnapInsert(DeciTreeOption<FimgnapInfo> option) {
+	public FimgnapRootInsert(DeciTreeOption<FimgnapInfo> option) {
 		super(option);
 	}
 	
@@ -43,8 +45,8 @@ public final class RootFimgnapInsert extends DeciTreeTemplateWrite<FimgnapInfo> 
 	@Override protected List<ActionStd<FimgnapInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgnapInfo> option) {
 		List<ActionStd<FimgnapInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<FimgnapInfo> insert = new StdFimgnapDaoInsert(option);
-		ActionLazy<FimgnapInfo> select = new LazyFimgnapRootSelect(option.conn, option.schemaName);
+		ActionStd<FimgnapInfo> insert = new ActionStdCommom<FimgnapInfo>(option, FimgnapVisiDaoInsert.class);
+		ActionLazy<FimgnapInfo> select = new ActionLazyCommom<FimgnapInfo>(option, FimgnapVisiRootSelect.class);
 		
 		insert.addPostAction(select);
 

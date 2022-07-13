@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.file.fileImageSnapshot.info.FimgnapInfo;
 
-public final class DaoFimgnapInsertSingle extends DaoStmtTemplate<FimgnapInfo> {
+public final class FimgnapDaoInsertSingle extends DaoStmtTemplate<FimgnapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.FILE_IMG_SNAPSHOT_TABLE;		
 	
 	
-	public DaoFimgnapInsertSingle(Connection conn, FimgnapInfo recordInfo, String schemaName) {
+	public FimgnapDaoInsertSingle(Connection conn, FimgnapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);		
 	}
 	

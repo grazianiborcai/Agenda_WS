@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.file.fileImageSnapshot.info.FimgnapInfo;
 import br.com.mind5.file.fileImageSnapshot.info.FimgnapMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFimgnapMergeToSelect extends ActionVisitorTemplateMerge<FimgnapInfo, FimgnapInfo> {
+public final class FimgnapVisiMergeToSelect extends ActionVisitorTemplateMerge<FimgnapInfo, FimgnapInfo> {
 	
-	public VisiFimgnapMergeToSelect(DeciTreeOption<FimgnapInfo> option) {
+	public FimgnapVisiMergeToSelect(DeciTreeOption<FimgnapInfo> option) {
 		super(option, FimgnapInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<FimgnapInfo>> getActionClassHook() {
-		return StdFimgnapDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<FimgnapInfo>> getVisitorClassHook() {
+		return FimgnapVisiDaoSelect.class;
 	}
 	
 	
