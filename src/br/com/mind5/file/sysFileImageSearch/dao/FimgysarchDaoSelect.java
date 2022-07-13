@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.file.sysFileImageSearch.info.FimgysarchInfo;
 
-public final class DaoFimgysarchSelect implements DaoStmtExec<FimgysarchInfo> {
+public final class FimgysarchDaoSelect implements DaoStmtExec<FimgysarchInfo> {
 	private DaoStmtExec<FimgysarchInfo> helper;
 	
 	
-	public DaoFimgysarchSelect(List<DaoStmtExecOption<FimgysarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoFimgysarchSelectSingle.class, FimgysarchInfo.class);
+	public FimgysarchDaoSelect(List<DaoStmtExecOption<FimgysarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, FimgysarchDaoSelectSingle.class, FimgysarchInfo.class);
 	}
 	
 	

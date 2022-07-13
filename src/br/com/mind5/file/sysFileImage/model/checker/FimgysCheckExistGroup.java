@@ -3,7 +3,7 @@ package br.com.mind5.file.sysFileImage.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.file.sysFileImage.info.FimgysInfo;
 import br.com.mind5.file.sysFileImageSearch.info.FimgysarchInfo;
-import br.com.mind5.file.sysFileImageSearch.model.decisionTree.RootFimgysarchSelectGroup;
+import br.com.mind5.file.sysFileImageSearch.model.decisionTree.FimgysarchRootSelectGroup;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
@@ -18,7 +18,7 @@ public final class FimgysCheckExistGroup extends ModelCheckerTemplateAction<Fimg
 	
 	
 	@Override protected ActionStd<FimgysarchInfo> buildActionHook(DeciTreeOption<FimgysarchInfo> option) {
-		ActionStd<FimgysarchInfo> select = new RootFimgysarchSelectGroup(option).toAction();
+		ActionStd<FimgysarchInfo> select = new FimgysarchRootSelectGroup(option).toAction();
 		return select;
 	}
 	

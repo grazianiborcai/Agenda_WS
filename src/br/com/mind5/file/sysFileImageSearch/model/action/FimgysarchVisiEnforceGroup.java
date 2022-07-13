@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFimgysarchEnforceGroup extends ActionVisitorTemplateEnforce<FimgysarchInfo> {
+public final class FimgysarchVisiEnforceGroup extends ActionVisitorTemplateEnforce<FimgysarchInfo> {
 	
-	public VisiFimgysarchEnforceGroup(DeciTreeOption<FimgysarchInfo> option) {
+	public FimgysarchVisiEnforceGroup(DeciTreeOption<FimgysarchInfo> option) {
 		super(option);
 	}
 	

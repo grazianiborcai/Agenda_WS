@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.file.sysFileImageSearch.info.FimgysarchInfo;
 
-public final class DaoFimgysarchSelectSingle extends DaoStmtTemplate<FimgysarchInfo> {
+public final class FimgysarchDaoSelectSingle extends DaoStmtTemplate<FimgysarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SYS_FILE_IMG_TABLE;
 	
 	
-	public DaoFimgysarchSelectSingle(Connection conn, FimgysarchInfo recordInfo, String schemaName) {
+	public FimgysarchDaoSelectSingle(Connection conn, FimgysarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoFimgysarchSelectSingle extends DaoStmtTemplate<FimgysarchI
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoFimgysarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new FimgysarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,8 +67,8 @@ public final class DaoFimgysarchSelectSingle extends DaoStmtTemplate<FimgysarchI
 				do {
 					FimgysarchInfo dataInfo = new FimgysarchInfo();
 					
-					dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, DaoFimgysarchDbTableColumn.COL_COD_FILE_IMG);
-					dataInfo.recordMode = stmtResult.getString(DaoFimgysarchDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, FimgysarchDaoDbTableColumn.COL_COD_FILE_IMG);
+					dataInfo.recordMode = stmtResult.getString(FimgysarchDaoDbTableColumn.COL_RECORD_MODE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

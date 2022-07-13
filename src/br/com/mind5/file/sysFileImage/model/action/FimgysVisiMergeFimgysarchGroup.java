@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.file.sysFileImage.info.FimgysInfo;
 import br.com.mind5.file.sysFileImage.info.FimgysMerger;
 import br.com.mind5.file.sysFileImageSearch.info.FimgysarchInfo;
-import br.com.mind5.file.sysFileImageSearch.model.decisionTree.RootFimgysarchSelectGroup;
+import br.com.mind5.file.sysFileImageSearch.model.decisionTree.FimgysarchRootSelectGroup;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class FimgysVisiMergeFimgysarchGroup extends ActionVisitorTemplateM
 	
 	
 	@Override protected Class<? extends DeciTree<FimgysarchInfo>> getTreeClassHook() {
-		return RootFimgysarchSelectGroup.class;
+		return FimgysarchRootSelectGroup.class;
 	}
 	
 	

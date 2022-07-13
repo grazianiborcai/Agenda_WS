@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.sysFileImageSearch.info.FimgysarchInfo;
-import br.com.mind5.file.sysFileImageSearch.model.action.LazyFimgysarchRootSelect;
-import br.com.mind5.file.sysFileImageSearch.model.action.StdFimgysarchEnforceGroup;
-import br.com.mind5.file.sysFileImageSearch.model.checker.FimgysarchCheckReadGroup;
-import br.com.mind5.model.action.ActionLazy;
+import br.com.mind5.file.sysFileImageSearch.model.action.FimgysarchVisiMergeToSelect;
+import br.com.mind5.file.sysFileImageSearch.model.checker.FimgysarchCheckLangu;
+import br.com.mind5.file.sysFileImageSearch.model.checker.FimgysarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFimgysarchSelectGroup extends DeciTreeTemplateRead<FimgysarchInfo> {
+public final class FimgysarchRootSelect extends DeciTreeTemplateRead<FimgysarchInfo> {
 	
-	public RootFimgysarchSelectGroup(DeciTreeOption<FimgysarchInfo> option) {
+	public FimgysarchRootSelect(DeciTreeOption<FimgysarchInfo> option) {
 		super(option);
 	}
 	
@@ -32,7 +32,14 @@ public final class RootFimgysarchSelectGroup extends DeciTreeTemplateRead<Fimgys
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new FimgysarchCheckReadGroup(checkerOption);
+		checker = new FimgysarchCheckRead(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new FimgysarchCheckLangu(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -43,12 +50,9 @@ public final class RootFimgysarchSelectGroup extends DeciTreeTemplateRead<Fimgys
 	@Override protected List<ActionStd<FimgysarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgysarchInfo> option) {
 		List<ActionStd<FimgysarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FimgysarchInfo> enforceGroup = new StdFimgysarchEnforceGroup(option);
-		ActionLazy<FimgysarchInfo> select = new LazyFimgysarchRootSelect(option.conn, option.schemaName);
+		ActionStd<FimgysarchInfo> select = new ActionStdCommom<FimgysarchInfo>(option, FimgysarchVisiMergeToSelect.class);
 		
-		enforceGroup.addPostAction(select);
-		
-		actions.add(enforceGroup);
+		actions.add(select);
 		return actions;
 	}
 }

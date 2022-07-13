@@ -2,7 +2,7 @@ package br.com.mind5.file.sysFileImageSearch.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.file.sysFileImageSearch.info.FimgysarchInfo;
-import br.com.mind5.file.sysFileImageSearch.model.decisionTree.RootFimgysarchSelect;
+import br.com.mind5.file.sysFileImageSearch.model.decisionTree.FimgysarchRootSelect;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
@@ -17,7 +17,7 @@ public final class FimgysarchCheckExist extends ModelCheckerTemplateAction<Fimgy
 	
 	
 	@Override protected ActionStd<FimgysarchInfo> buildActionHook(DeciTreeOption<FimgysarchInfo> option) {
-		ActionStd<FimgysarchInfo> select = new RootFimgysarchSelect(option).toAction();
+		ActionStd<FimgysarchInfo> select = new FimgysarchRootSelect(option).toAction();
 		return select;
 	}
 	

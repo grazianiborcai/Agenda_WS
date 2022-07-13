@@ -9,14 +9,14 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoFimgysarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class FimgysarchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_FILE_IMG = DaoDbField.COL_COD_FILE_IMG;
 	public static final String COL_COD_MAT_GROUP = DaoDbField.COL_COD_MAT_GROUP;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 		
 	
 	
-	public DaoFimgysarchDbTableColumn() {
+	public FimgysarchDaoDbTableColumn() {
 		super();
 	}
 	
