@@ -2,8 +2,9 @@ package br.com.mind5.file.sysFileImage.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.file.sysFileImage.info.FimgysInfo;
-import br.com.mind5.file.sysFileImage.model.action.StdFimgysDaoSelect;
+import br.com.mind5.file.sysFileImage.model.action.FimgysVisiDaoSelect;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class FimgysCheckExist extends ModelCheckerTemplateAction<FimgysInf
 	
 	
 	@Override protected ActionStd<FimgysInfo> buildActionHook(DeciTreeOption<FimgysInfo> option) {
-		ActionStd<FimgysInfo> select = new StdFimgysDaoSelect(option);
+		ActionStd<FimgysInfo> select = new ActionStdCommom<FimgysInfo>(option, FimgysVisiDaoSelect.class);
 		return select;
 	}
 	

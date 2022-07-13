@@ -15,7 +15,7 @@ public final class FimgysMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgysVisiMergeFimgysap());
+		builder.addVisitor(new FimgysMergerVisiFimgysap());
 		InfoMerger<FimgysInfo, FimgysapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -28,7 +28,7 @@ public final class FimgysMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgysVisiMergeFread());
+		builder.addVisitor(new FimgysMergerVisiFread());
 		InfoMerger<FimgysInfo, FreadInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -41,7 +41,7 @@ public final class FimgysMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgysVisiMergeFimgysarch());
+		builder.addVisitor(new FimgysMergerVisiFimgysarch());
 		InfoMerger<FimgysInfo, FimgysarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -54,7 +54,7 @@ public final class FimgysMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgysVisiMergeFath());
+		builder.addVisitor(new FimgysMergerVisiFath());
 		InfoMerger<FimgysInfo, FathInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -67,7 +67,7 @@ public final class FimgysMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgysVisiMergeToReplace());
+		builder.addVisitor(new FimgysMergerVisiToReplace());
 		InfoMerger<FimgysInfo, FimgysInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -80,7 +80,7 @@ public final class FimgysMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgysVisiMergeToSelect());
+		builder.addVisitor(new FimgysMergerVisiToSelect());
 		InfoMerger<FimgysInfo, FimgysInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -93,7 +93,7 @@ public final class FimgysMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgysVisiMergeToUpdate());
+		builder.addVisitor(new FimgysMergerVisiToUpdate());
 		InfoMerger<FimgysInfo, FimgysInfo> merger = builder.build();		
 	
 		return merger.merge();

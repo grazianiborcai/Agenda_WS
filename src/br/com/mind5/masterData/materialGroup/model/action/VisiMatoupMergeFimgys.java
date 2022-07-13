@@ -3,7 +3,7 @@ package br.com.mind5.masterData.materialGroup.model.action;
 import java.util.List;
 
 import br.com.mind5.file.sysFileImage.info.FimgysInfo;
-import br.com.mind5.file.sysFileImage.model.decisionTree.RootFimgysSelectGroup;
+import br.com.mind5.file.sysFileImage.model.decisionTree.FimgysRootSelectGroup;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.masterData.materialGroup.info.MatoupMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiMatoupMergeFimgys extends ActionVisitorTemplateMerge<MatoupInfo,
 	
 	
 	@Override protected Class<? extends DeciTree<FimgysInfo>> getTreeClassHook() {
-		return RootFimgysSelectGroup.class;
+		return FimgysRootSelectGroup.class;
 	}
 	
 	
