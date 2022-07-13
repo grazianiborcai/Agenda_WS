@@ -12,7 +12,7 @@ public final class FimistMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimistVisiMergeFimarch());
+		builder.addVisitor(new FimistMergerVisiFimarch());
 		InfoMerger<FimistInfo, FimarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class FimistMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimistVisiMergeToSelect());
+		builder.addVisitor(new FimistMergerVisioSelect());
 		InfoMerger<FimistInfo, FimistInfo> merger = builder.build();		
 	
 		return merger.merge();

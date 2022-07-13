@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.file.fileImageDecorated.info.FimecoInfo;
 import br.com.mind5.file.fileImageDecorated.info.FimecoMerger;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.file.fileImageList.model.decisionTree.RootFimistSearch;
+import br.com.mind5.file.fileImageList.model.decisionTree.FimistRootSearch;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class FimecoVisiMergeFimist extends ActionVisitorTemplateMerge<Fime
 	
 	
 	@Override protected Class<? extends DeciTree<FimistInfo>> getTreeClassHook() {
-		return RootFimistSearch.class;
+		return FimistRootSearch.class;
 	}
 	
 	

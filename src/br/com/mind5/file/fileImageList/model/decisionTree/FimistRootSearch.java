@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.file.fileImageList.model.action.LazyFimistRootSelect;
-import br.com.mind5.file.fileImageList.model.action.StdFimistMergeFimarch;
+import br.com.mind5.file.fileImageList.model.action.FimistVisiRootSelect;
+import br.com.mind5.file.fileImageList.model.action.FimistVisiMergeFimarch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFimistSearch extends DeciTreeTemplateRead<FimistInfo> {
+public final class FimistRootSearch extends DeciTreeTemplateRead<FimistInfo> {
 	
-	public RootFimistSearch(DeciTreeOption<FimistInfo> option) {
+	public FimistRootSearch(DeciTreeOption<FimistInfo> option) {
 		super(option);
 	}
 	
@@ -37,8 +39,8 @@ public final class RootFimistSearch extends DeciTreeTemplateRead<FimistInfo> {
 	@Override protected List<ActionStd<FimistInfo>> buildActionsOnPassedHook(DeciTreeOption<FimistInfo> option) {
 		List<ActionStd<FimistInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FimistInfo> mergeFimarch = new StdFimistMergeFimarch(option);
-		ActionLazy<FimistInfo> select = new LazyFimistRootSelect(option.conn, option.schemaName);
+		ActionStd<FimistInfo> mergeFimarch = new ActionStdCommom<FimistInfo>(option, FimistVisiMergeFimarch.class);
+		ActionLazy<FimistInfo> select = new ActionLazyCommom<FimistInfo>(option, FimistVisiRootSelect.class);
 		
 		mergeFimarch.addPostAction(select);
 		

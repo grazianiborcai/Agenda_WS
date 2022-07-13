@@ -4,21 +4,20 @@ import java.util.List;
 
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.file.fileImageList.info.FimistMerger;
-import br.com.mind5.model.action.ActionStd;
-
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFimistMergeToSelect extends ActionVisitorTemplateMerge<FimistInfo, FimistInfo> {
+public final class FimistVisiMergeToSelect extends ActionVisitorTemplateMerge<FimistInfo, FimistInfo> {
 	
-	public VisiFimistMergeToSelect(DeciTreeOption<FimistInfo> option) {
+	public FimistVisiMergeToSelect(DeciTreeOption<FimistInfo> option) {
 		super(option, FimistInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<FimistInfo>> getActionClassHook() {
-		return StdFimistDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<FimistInfo>> getVisitorClassHook() {
+		return FimistVisiDaoSelect.class;
 	}
 	
 	

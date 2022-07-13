@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.file.fileImageList.info.FimistCopier;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.file.fileImageList.model.decisionTree.RootFimistSearch;
+import br.com.mind5.file.fileImageList.model.decisionTree.FimistRootSearch;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class UselisVisiMergeFimist extends ActionVisitorTemplateMerge<Usel
 	
 	
 	@Override protected Class<? extends DeciTree<FimistInfo>> getTreeClassHook() {
-		return RootFimistSearch.class;
+		return FimistRootSearch.class;
 	}
 	
 	

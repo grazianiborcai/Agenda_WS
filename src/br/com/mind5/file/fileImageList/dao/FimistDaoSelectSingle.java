@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 
-public final class DaoFimistSelectSingle extends DaoStmtTemplate<FimistInfo> {
+public final class FimistDaoSelectSingle extends DaoStmtTemplate<FimistInfo> {
 	private final String MAIN_TABLE = DaoDbTable.FILE_IMG_TABLE;
 	
 	
-	public DaoFimistSelectSingle(Connection conn, FimistInfo recordInfo, String schemaName) {
+	public FimistDaoSelectSingle(Connection conn, FimistInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoFimistSelectSingle extends DaoStmtTemplate<FimistInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoFimistWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new FimistDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 		
@@ -67,19 +67,19 @@ public final class DaoFimistSelectSingle extends DaoStmtTemplate<FimistInfo> {
 				do {
 					FimistInfo dataInfo = new FimistInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoFimistDbTableColumn.COL_COD_OWNER);
-					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, DaoFimistDbTableColumn.COL_COD_OWNER_REF);
-					dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, DaoFimistDbTableColumn.COL_COD_FILE_IMG);				
-					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, DaoFimistDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoFimistDbTableColumn.COL_COD_PERSON);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoFimistDbTableColumn.COL_COD_STORE);
-					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, DaoFimistDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoFimistDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoFimistDbTableColumn.COL_COD_USER);
-					dataInfo.recordMode = stmtResult.getString(DaoFimistDbTableColumn.COL_RECORD_MODE);	
-					dataInfo.fileImgExtension = stmtResult.getString(DaoFimistDbTableColumn.COL_FILE_IMG_EXTENSION);
-					dataInfo.fileImgUriExternal = stmtResult.getString(DaoFimistDbTableColumn.COL_FILE_URI_EXTERNAL);
-					dataInfo.isCover = DaoFormatter.sqlToBoole(stmtResult, DaoFimistDbTableColumn.COL_IS_COVER);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, FimistDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, FimistDaoDbTableColumn.COL_COD_OWNER_REF);
+					dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, FimistDaoDbTableColumn.COL_COD_FILE_IMG);				
+					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, FimistDaoDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, FimistDaoDbTableColumn.COL_COD_PERSON);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, FimistDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, FimistDaoDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, FimistDaoDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, FimistDaoDbTableColumn.COL_COD_USER);
+					dataInfo.recordMode = stmtResult.getString(FimistDaoDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.fileImgExtension = stmtResult.getString(FimistDaoDbTableColumn.COL_FILE_IMG_EXTENSION);
+					dataInfo.fileImgUriExternal = stmtResult.getString(FimistDaoDbTableColumn.COL_FILE_URI_EXTERNAL);
+					dataInfo.isCover = DaoFormatter.sqlToBoole(stmtResult, FimistDaoDbTableColumn.COL_IS_COVER);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

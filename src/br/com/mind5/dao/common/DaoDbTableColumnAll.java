@@ -152,7 +152,7 @@ import br.com.mind5.discount.discountStore.dao.DaoDisoreDbTableColumn;
 import br.com.mind5.discount.discountStoreSearch.dao.DaoDisorarchDbTableColumn;
 import br.com.mind5.discount.discountStoreSnapshot.dao.DaoDisorapDbTableColumn;
 import br.com.mind5.file.fileImage.dao.FimgDaoDbTableColumn;
-import br.com.mind5.file.fileImageList.dao.DaoFimistDbTableColumn;
+import br.com.mind5.file.fileImageList.dao.FimistDaoDbTableColumn;
 import br.com.mind5.file.fileImageSearch.dao.DaoFimarchDbTableColumn;
 import br.com.mind5.file.fileImageSnapshot.dao.DaoFimgnapDbTableColumn;
 import br.com.mind5.file.filePath.dao.DaoFathDbTableColumn;
@@ -402,7 +402,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new ComparchDaoDbTableColumn());
 		addTable(new PerarchDaoDbTableColumn());
 		addTable(new DaoFimarchDbTableColumn());
-		addTable(new DaoFimistDbTableColumn());
+		addTable(new FimistDaoDbTableColumn());
 		addTable(new StorauthDaoDbTableColumn());
 		addTable(new StolarchDaoDbTableColumn());
 		addTable(new SchedageDaoDbTableColumn());

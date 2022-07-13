@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 
-public final class DaoFimistSelect implements DaoStmtExec<FimistInfo> {
+public final class FimistDaoSelect implements DaoStmtExec<FimistInfo> {
 	private DaoStmtExec<FimistInfo> helper;
 	
 	
-	public DaoFimistSelect(List<DaoStmtExecOption<FimistInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoFimistSelectSingle.class, FimistInfo.class);
+	public FimistDaoSelect(List<DaoStmtExecOption<FimistInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, FimistDaoSelectSingle.class, FimistInfo.class);
 	}
 	
 	
