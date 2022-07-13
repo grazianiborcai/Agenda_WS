@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.fileWrite.info.FriteInfo;
-import br.com.mind5.file.fileWrite.model.action.StdFriteWriteOnDisk;
+import br.com.mind5.file.fileWrite.model.action.FriteVisiWriteOnDisk;
 import br.com.mind5.file.fileWrite.model.checker.FriteCheckWrite;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootFriteWriteOnDisk extends DeciTreeTemplateWrite<FriteInfo> {
+public final class FriteRootWriteOnDisk extends DeciTreeTemplateWrite<FriteInfo> {
 	
-	public RootFriteWriteOnDisk(DeciTreeOption<FriteInfo> option) {
+	public FriteRootWriteOnDisk(DeciTreeOption<FriteInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootFriteWriteOnDisk extends DeciTreeTemplateWrite<FriteInfo>
 	@Override protected List<ActionStd<FriteInfo>> buildActionsOnPassedHook(DeciTreeOption<FriteInfo> option) {
 		List<ActionStd<FriteInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<FriteInfo> writeOnDisk = new StdFriteWriteOnDisk(option);	
+		ActionStd<FriteInfo> writeOnDisk = new ActionStdCommom<FriteInfo>(option, FriteVisiWriteOnDisk.class);	
 		
 		actions.add(writeOnDisk);		
 		return actions;

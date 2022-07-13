@@ -11,9 +11,9 @@ import br.com.mind5.file.fileWrite.info.FriteInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateSimple;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFriteWriteOnDisk extends ActionVisitorTemplateSimple<FriteInfo> {
+public final class FriteVisiWriteOnDisk extends ActionVisitorTemplateSimple<FriteInfo> {
 	
-	public VisiFriteWriteOnDisk(DeciTreeOption<FriteInfo> option) {
+	public FriteVisiWriteOnDisk(DeciTreeOption<FriteInfo> option) {
 		super(option);
 	}
 	

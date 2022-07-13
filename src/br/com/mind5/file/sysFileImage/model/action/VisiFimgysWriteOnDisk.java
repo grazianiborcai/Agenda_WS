@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.file.fileWrite.info.FriteCopier;
 import br.com.mind5.file.fileWrite.info.FriteInfo;
-import br.com.mind5.file.fileWrite.model.decisionTree.RootFriteWriteOnDisk;
+import br.com.mind5.file.fileWrite.model.decisionTree.FriteRootWriteOnDisk;
 import br.com.mind5.file.sysFileImage.info.FimgysInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -19,7 +19,7 @@ final class VisiFimgysWriteOnDisk extends ActionVisitorTemplateAction<FimgysInfo
 	
 	
 	@Override protected Class<? extends DeciTree<FriteInfo>> getTreeClassHook() {
-		return RootFriteWriteOnDisk.class;
+		return FriteRootWriteOnDisk.class;
 	}
 	
 	
