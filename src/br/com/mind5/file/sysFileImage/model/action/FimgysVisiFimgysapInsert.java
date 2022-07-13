@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.file.sysFileImage.info.FimgysInfo;
 import br.com.mind5.file.sysFileImage.info.FimgysMerger;
 import br.com.mind5.file.sysFileImageSnapshot.info.FimgysapInfo;
-import br.com.mind5.file.sysFileImageSnapshot.model.decisionTree.RootFimgysapInsert;
+import br.com.mind5.file.sysFileImageSnapshot.model.decisionTree.FimgysapRootInsert;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class FimgysVisiFimgysapInsert extends ActionVisitorTemplateAction<
 	
 	
 	@Override protected Class<? extends DeciTree<FimgysapInfo>> getTreeClassHook() {
-		return RootFimgysapInsert.class;
+		return FimgysapRootInsert.class;
 	}
 	
 	

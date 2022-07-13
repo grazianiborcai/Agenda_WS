@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.sysFileImageSnapshot.info.FimgysapInfo;
-import br.com.mind5.file.sysFileImageSnapshot.model.action.StdFimgysapMergeToSelect;
+import br.com.mind5.file.sysFileImageSnapshot.model.action.FimgysapVisiMergeToSelect;
 import br.com.mind5.file.sysFileImageSnapshot.model.checker.FimgysapCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFimgysapSelect extends DeciTreeTemplateRead<FimgysapInfo> {
+public final class FimgysapRootSelect extends DeciTreeTemplateRead<FimgysapInfo> {
 	
-	public RootFimgysapSelect(DeciTreeOption<FimgysapInfo> option) {
+	public FimgysapRootSelect(DeciTreeOption<FimgysapInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootFimgysapSelect extends DeciTreeTemplateRead<FimgysapInfo>
 	@Override protected List<ActionStd<FimgysapInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgysapInfo> option) {
 		List<ActionStd<FimgysapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FimgysapInfo> select = new StdFimgysapMergeToSelect(option);
+		ActionStd<FimgysapInfo> select = new ActionStdCommom<FimgysapInfo>(option, FimgysapVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

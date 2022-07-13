@@ -11,7 +11,7 @@ public final class FimgysapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimgysapVisiMergeToSelect());
+		builder.addVisitor(new FimgysapMergerVisiToSelect());
 		InfoMerger<FimgysapInfo, FimgysapInfo> merger = builder.build();		
 	
 		return merger.merge();

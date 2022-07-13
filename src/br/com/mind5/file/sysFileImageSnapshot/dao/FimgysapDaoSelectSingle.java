@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.file.sysFileImageSnapshot.info.FimgysapInfo;
 
-public final class DaoFimgysapSelectSingle extends DaoStmtTemplate<FimgysapInfo> {
+public final class FimgysapDaoSelectSingle extends DaoStmtTemplate<FimgysapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SYS_FILE_IMG_SNAPSHOT_TABLE;		
 	
 	
-	public DaoFimgysapSelectSingle(Connection conn, FimgysapInfo recordInfo, String schemaName) {
+	public FimgysapDaoSelectSingle(Connection conn, FimgysapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoFimgysapSelectSingle extends DaoStmtTemplate<FimgysapInfo>
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoFimgysapWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new FimgysapDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,19 +61,19 @@ public final class DaoFimgysapSelectSingle extends DaoStmtTemplate<FimgysapInfo>
 				do {
 					FimgysapInfo dataInfo = new FimgysapInfo();
 					
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoFimgysapDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codGroup = DaoFormatter.sqlToInt(stmtResult, DaoFimgysapDbTableColumn.COL_COD_MAT_GROUP);
-					dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, DaoFimgysapDbTableColumn.COL_COD_FILE_IMG);
-					dataInfo.recordMode = stmtResult.getString(DaoFimgysapDbTableColumn.COL_RECORD_MODE);
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoFimgysapDbTableColumn.COL_CREATED_ON);		
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoFimgysapDbTableColumn.COL_LAST_CHANGED);	
-					dataInfo.fileImgName = stmtResult.getString(DaoFimgysapDbTableColumn.COL_FILE_IMG_NAME);
-					dataInfo.fileImgExtension = stmtResult.getString(DaoFimgysapDbTableColumn.COL_FILE_IMG_EXTENSION);
-					dataInfo.fileImgUri = stmtResult.getString(DaoFimgysapDbTableColumn.COL_FILE_URI);
-					dataInfo.fileImgUriExternal = stmtResult.getString(DaoFimgysapDbTableColumn.COL_FILE_URI_EXTERNAL);
-					dataInfo.fileImgPath = stmtResult.getString(DaoFimgysapDbTableColumn.COL_IMG_FILE_PATH);
-					dataInfo.fileImgPathExternal = stmtResult.getString(DaoFimgysapDbTableColumn.COL_IMG_FILE_PATH_EXTERNAL);
-					dataInfo.isCover = DaoFormatter.sqlToBoole(stmtResult, DaoFimgysapDbTableColumn.COL_IS_COVER);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, FimgysapDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codGroup = DaoFormatter.sqlToInt(stmtResult, FimgysapDaoDbTableColumn.COL_COD_MAT_GROUP);
+					dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, FimgysapDaoDbTableColumn.COL_COD_FILE_IMG);
+					dataInfo.recordMode = stmtResult.getString(FimgysapDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, FimgysapDaoDbTableColumn.COL_CREATED_ON);		
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, FimgysapDaoDbTableColumn.COL_LAST_CHANGED);	
+					dataInfo.fileImgName = stmtResult.getString(FimgysapDaoDbTableColumn.COL_FILE_IMG_NAME);
+					dataInfo.fileImgExtension = stmtResult.getString(FimgysapDaoDbTableColumn.COL_FILE_IMG_EXTENSION);
+					dataInfo.fileImgUri = stmtResult.getString(FimgysapDaoDbTableColumn.COL_FILE_URI);
+					dataInfo.fileImgUriExternal = stmtResult.getString(FimgysapDaoDbTableColumn.COL_FILE_URI_EXTERNAL);
+					dataInfo.fileImgPath = stmtResult.getString(FimgysapDaoDbTableColumn.COL_IMG_FILE_PATH);
+					dataInfo.fileImgPathExternal = stmtResult.getString(FimgysapDaoDbTableColumn.COL_IMG_FILE_PATH_EXTERNAL);
+					dataInfo.isCover = DaoFormatter.sqlToBoole(stmtResult, FimgysapDaoDbTableColumn.COL_IS_COVER);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

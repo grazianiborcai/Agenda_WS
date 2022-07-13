@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.file.sysFileImageSnapshot.info.FimgysapInfo;
 
-public final class DaoFimgysapInsertSingle extends DaoStmtTemplate<FimgysapInfo> {
+public final class FimgysapDaoInsertSingle extends DaoStmtTemplate<FimgysapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SYS_FILE_IMG_SNAPSHOT_TABLE;		
 	
 	
-	public DaoFimgysapInsertSingle(Connection conn, FimgysapInfo recordInfo, String schemaName) {
+	public FimgysapDaoInsertSingle(Connection conn, FimgysapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);		
 	}
 	

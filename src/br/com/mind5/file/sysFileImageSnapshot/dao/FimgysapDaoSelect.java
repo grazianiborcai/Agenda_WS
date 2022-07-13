@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.file.sysFileImageSnapshot.info.FimgysapInfo;
 
-public final class DaoFimgysapInsert implements DaoStmtExec<FimgysapInfo> {
+public final class FimgysapDaoSelect implements DaoStmtExec<FimgysapInfo> {
 	private DaoStmtExec<FimgysapInfo> helper;
 	
 	
-	public DaoFimgysapInsert(List<DaoStmtExecOption<FimgysapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoFimgysapInsertSingle.class, FimgysapInfo.class);
+	public FimgysapDaoSelect(List<DaoStmtExecOption<FimgysapInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, FimgysapDaoSelectSingle.class, FimgysapInfo.class);
 	}
 	
 	
@@ -27,7 +27,7 @@ public final class DaoFimgysapInsert implements DaoStmtExec<FimgysapInfo> {
 	@Override public List<FimgysapInfo> getResultset() {
 		return helper.getResultset();
 	}
-
+	
 
 	
 	@Override public void close() {

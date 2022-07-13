@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.file.sysFileImageSnapshot.info.FimgysapInfo;
 import br.com.mind5.file.sysFileImageSnapshot.info.FimgysapMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFimgysapMergeToSelect extends ActionVisitorTemplateMerge<FimgysapInfo, FimgysapInfo> {
+public final class FimgysapVisiMergeToSelect extends ActionVisitorTemplateMerge<FimgysapInfo, FimgysapInfo> {
 	
-	public VisiFimgysapMergeToSelect(DeciTreeOption<FimgysapInfo> option) {
+	public FimgysapVisiMergeToSelect(DeciTreeOption<FimgysapInfo> option) {
 		super(option, FimgysapInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<FimgysapInfo>> getActionClassHook() {
-		return StdFimgysapDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<FimgysapInfo>> getVisitorClassHook() {
+		return FimgysapVisiDaoSelect.class;
 	}
 	
 	
