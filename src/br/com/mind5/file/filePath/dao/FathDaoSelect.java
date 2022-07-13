@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.file.filePath.info.FathInfo;
 
-public final class DaoFathSelect implements DaoStmtExec<FathInfo> {
+public final class FathDaoSelect implements DaoStmtExec<FathInfo> {
 	private DaoStmtExec<FathInfo> helper;
 	
 	
-	public DaoFathSelect(List<DaoStmtExecOption<FathInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoFathSelectSingle.class, FathInfo.class);
+	public FathDaoSelect(List<DaoStmtExecOption<FathInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, FathDaoSelectSingle.class, FathInfo.class);
 	}
 	
 	

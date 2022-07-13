@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.file.filePath.info.FathInfo;
 
-public final class DaoFathSelectSingle extends DaoStmtTemplate<FathInfo> {
+public final class FathDaoSelectSingle extends DaoStmtTemplate<FathInfo> {
 	private final String MAIN_TABLE = DaoDbTable.FILE_PATH_TABLE;	
 	
 	
-	public DaoFathSelectSingle(Connection conn, FathInfo recordInfo, String schemaName) {
+	public FathDaoSelectSingle(Connection conn, FathInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -43,7 +43,7 @@ public final class DaoFathSelectSingle extends DaoStmtTemplate<FathInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoFathWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new FathDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -60,9 +60,9 @@ public final class DaoFathSelectSingle extends DaoStmtTemplate<FathInfo> {
 				do {
 					FathInfo dataInfo = new FathInfo();
 					
-					dataInfo.codFilePath = stmtResult.getString(DaoFathDbTableColumn.COL_COD_FILE_PATH);
-					dataInfo.filePath = stmtResult.getString(DaoFathDbTableColumn.COL_FILE_PATH);
-					dataInfo.filePathExternal = stmtResult.getString(DaoFathDbTableColumn.COL_FILE_PATH_EXTERNAL);
+					dataInfo.codFilePath = stmtResult.getString(FathDaoDbTableColumn.COL_COD_FILE_PATH);
+					dataInfo.filePath = stmtResult.getString(FathDaoDbTableColumn.COL_FILE_PATH);
+					dataInfo.filePathExternal = stmtResult.getString(FathDaoDbTableColumn.COL_FILE_PATH_EXTERNAL);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

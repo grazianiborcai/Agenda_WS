@@ -3,7 +3,7 @@ package br.com.mind5.file.sysFileImage.model.action;
 import java.util.List;
 
 import br.com.mind5.file.filePath.info.FathInfo;
-import br.com.mind5.file.filePath.model.decisionTree.RootFathSelectImage;
+import br.com.mind5.file.filePath.model.decisionTree.FathRootSelectImage;
 import br.com.mind5.file.sysFileImage.info.FimgysInfo;
 import br.com.mind5.file.sysFileImage.info.FimgysMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiFimgysMergeFath extends ActionVisitorTemplateMerge<FimgysInfo, F
 	
 	
 	@Override protected Class<? extends DeciTree<FathInfo>> getTreeClassHook() {
-		return RootFathSelectImage.class;
+		return FathRootSelectImage.class;
 	}
 	
 	

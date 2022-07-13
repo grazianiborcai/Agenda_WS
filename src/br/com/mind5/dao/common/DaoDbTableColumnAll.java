@@ -155,7 +155,7 @@ import br.com.mind5.file.fileImage.dao.FimgDaoDbTableColumn;
 import br.com.mind5.file.fileImageList.dao.FimistDaoDbTableColumn;
 import br.com.mind5.file.fileImageSearch.dao.FimarchDaoDbTableColumn;
 import br.com.mind5.file.fileImageSnapshot.dao.FimgnapDaoDbTableColumn;
-import br.com.mind5.file.filePath.dao.DaoFathDbTableColumn;
+import br.com.mind5.file.filePath.dao.FathDaoDbTableColumn;
 import br.com.mind5.file.sysFileImage.dao.DaoFimgysDbTableColumn;
 import br.com.mind5.file.sysFileImageSearch.dao.DaoFimgysarchDbTableColumn;
 import br.com.mind5.file.sysFileImageSnapshot.dao.DaoFimgysapDbTableColumn;
@@ -392,7 +392,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new SchedonthatDaoDbTableColumn());
 		addTable(new SchedeekdatDaoDbTableColumn());
 		addTable(new FimgDaoDbTableColumn());
-		addTable(new DaoFathDbTableColumn());
+		addTable(new FathDaoDbTableColumn());
 		addTable(new DaoSymsgDbTableColumn());
 		addTable(new OwnerapDaoDbTableColumn());
 		addTable(new ComplisDaoDbTableColumn());

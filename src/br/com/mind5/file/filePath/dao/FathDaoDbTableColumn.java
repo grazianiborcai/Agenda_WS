@@ -9,13 +9,13 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoFathDbTableColumn extends DaoDbTableColumnTemplate {
+public final class FathDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_FILE_PATH = DaoDbField.COL_COD_FILE_PATH;
 	public static final String COL_FILE_PATH = DaoDbField.COL_FILE_PATH;	
 	public static final String COL_FILE_PATH_EXTERNAL = DaoDbField.COL_FILE_PATH_EXTERNAL;	
 		
 	
-	public DaoFathDbTableColumn() {
+	public FathDaoDbTableColumn() {
 		super();
 	}
 	

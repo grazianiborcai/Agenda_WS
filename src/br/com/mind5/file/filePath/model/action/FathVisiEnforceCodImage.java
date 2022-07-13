@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFathEnforceCodImage extends ActionVisitorTemplateEnforce<FathInfo> {
+public final class FathVisiEnforceCodImage extends ActionVisitorTemplateEnforce<FathInfo> {
 	
-	public VisiFathEnforceCodImage(DeciTreeOption<FathInfo> option) {
+	public FathVisiEnforceCodImage(DeciTreeOption<FathInfo> option) {
 		super(option);	
 	}
 	
