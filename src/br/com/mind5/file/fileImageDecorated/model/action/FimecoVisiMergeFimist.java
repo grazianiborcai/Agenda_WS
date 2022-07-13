@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFimecoMergeFimist extends ActionVisitorTemplateMerge<FimecoInfo, FimistInfo> {
+public final class FimecoVisiMergeFimist extends ActionVisitorTemplateMerge<FimecoInfo, FimistInfo> {
 	
-	public VisiFimecoMergeFimist(DeciTreeOption<FimecoInfo> option) {
+	public FimecoVisiMergeFimist(DeciTreeOption<FimecoInfo> option) {
 		super(option, FimistInfo.class);
 	}
 	

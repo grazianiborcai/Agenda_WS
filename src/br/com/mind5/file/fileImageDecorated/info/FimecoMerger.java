@@ -12,7 +12,7 @@ public final class FimecoMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FimecoVisiMergeFimist());
+		builder.addVisitor(new FimecoMergerVisiFimist());
 		InfoMerger<FimecoInfo, FimistInfo> merger = builder.build();		
 	
 		return merger.merge();

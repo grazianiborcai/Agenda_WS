@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
 import br.com.mind5.file.fileImageDecorated.info.FimecoInfo;
-import br.com.mind5.file.fileImageDecorated.model.decisionTree.RootFimecoSelectByStore;
+import br.com.mind5.file.fileImageDecorated.model.decisionTree.FimecoRootSelectByStore;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class StoreVisiMergeFimeco extends ActionVisitorTemplateMerge<Store
 	
 	
 	@Override protected Class<? extends DeciTree<FimecoInfo>> getTreeClassHook() {
-		return RootFimecoSelectByStore.class;
+		return FimecoRootSelectByStore.class;
 	}
 	
 	

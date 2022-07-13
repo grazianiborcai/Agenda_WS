@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.info.MatlisMerger;
 import br.com.mind5.file.fileImageDecorated.info.FimecoInfo;
-import br.com.mind5.file.fileImageDecorated.model.decisionTree.RootFimecoSelectByMat;
+import br.com.mind5.file.fileImageDecorated.model.decisionTree.FimecoRootSelectByMat;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class MatlisVisiMergeFimeco extends ActionVisitorTemplateMerge<Matl
 	
 	
 	@Override protected Class<? extends DeciTree<FimecoInfo>> getTreeClassHook() {
-		return RootFimecoSelectByMat.class;
+		return FimecoRootSelectByMat.class;
 	}
 	
 	

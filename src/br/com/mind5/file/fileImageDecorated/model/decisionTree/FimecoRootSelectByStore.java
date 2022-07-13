@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.fileImageDecorated.info.FimecoInfo;
-import br.com.mind5.file.fileImageDecorated.model.action.LazyFimecoRootSelect;
-import br.com.mind5.file.fileImageDecorated.model.action.StdFimecoEnforceStoreKey;
+import br.com.mind5.file.fileImageDecorated.model.action.FimecoVisiRootSelect;
+import br.com.mind5.file.fileImageDecorated.model.action.FimecoVisiEnforceStoreKey;
 import br.com.mind5.file.fileImageDecorated.model.checker.FimecoCheckReadByStore;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFimecoSelectByStore extends DeciTreeTemplateRead<FimecoInfo> {
+public final class FimecoRootSelectByStore extends DeciTreeTemplateRead<FimecoInfo> {
 	
-	public RootFimecoSelectByStore(DeciTreeOption<FimecoInfo> option) {
+	public FimecoRootSelectByStore(DeciTreeOption<FimecoInfo> option) {
 		super(option);
 	}
 	
@@ -43,8 +45,8 @@ public final class RootFimecoSelectByStore extends DeciTreeTemplateRead<FimecoIn
 	@Override protected List<ActionStd<FimecoInfo>> buildActionsOnPassedHook(DeciTreeOption<FimecoInfo> option) {
 		List<ActionStd<FimecoInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FimecoInfo> enforceStoreKey = new StdFimecoEnforceStoreKey(option);
-		ActionLazy<FimecoInfo> select = new LazyFimecoRootSelect(option.conn, option.schemaName);
+		ActionStd<FimecoInfo> enforceStoreKey = new ActionStdCommom<FimecoInfo>(option, FimecoVisiEnforceStoreKey.class);
+		ActionLazy<FimecoInfo> select = new ActionLazyCommom<FimecoInfo>(option, FimecoVisiRootSelect.class);
 		
 		enforceStoreKey.addPostAction(select);
 		
