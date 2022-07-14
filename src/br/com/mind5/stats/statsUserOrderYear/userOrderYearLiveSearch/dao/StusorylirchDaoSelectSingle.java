@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.info.StusorylirchInfo;
 
-public final class DaoStusorylirchSelectSingle extends DaoStmtTemplate<StusorylirchInfo> {
+public final class StusorylirchDaoSelectSingle extends DaoStmtTemplate<StusorylirchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STAT_USER_ORDER_YEAR_LIVE_TABLE;	
 	
 	
-	public DaoStusorylirchSelectSingle(Connection conn, StusorylirchInfo recordInfo, String schemaName) {
+	public StusorylirchDaoSelectSingle(Connection conn, StusorylirchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoStusorylirchSelectSingle extends DaoStmtTemplate<Stusoryli
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoStusorylirchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new StusorylirchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,9 +67,9 @@ public final class DaoStusorylirchSelectSingle extends DaoStmtTemplate<Stusoryli
 				do {
 					StusorylirchInfo dataInfo = new StusorylirchInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoStusorylirchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoStusorylirchDbTableColumn.COL_COD_USER);
-					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, DaoStusorylirchDbTableColumn.COL_POSTING_YEAR);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, StusorylirchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, StusorylirchDaoDbTableColumn.COL_COD_USER);
+					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, StusorylirchDaoDbTableColumn.COL_POSTING_YEAR);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

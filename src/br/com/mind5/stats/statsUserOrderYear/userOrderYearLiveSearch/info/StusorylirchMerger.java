@@ -11,7 +11,7 @@ public final class StusorylirchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StusorylirchVisiMergeToSelect());
+		builder.addVisitor(new StusorylirchMergerVisiToSelect());
 		InfoMerger<StusorylirchInfo, StusorylirchInfo> merger = builder.build();		
 	
 		return merger.merge();

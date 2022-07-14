@@ -2,11 +2,12 @@ package br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.model.chec
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.info.StusorylirchInfo;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.model.action.StdStusorylirchDaoSelect;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.model.action.StusorylirchVisiDaoSelect;
 
 public final class StusorylirchCheckExist extends ModelCheckerTemplateAction<StusorylirchInfo, StusorylirchInfo> {
 	
@@ -17,7 +18,7 @@ public final class StusorylirchCheckExist extends ModelCheckerTemplateAction<Stu
 	
 	
 	@Override protected ActionStd<StusorylirchInfo> buildActionHook(DeciTreeOption<StusorylirchInfo> option) {
-		ActionStd<StusorylirchInfo> select = new StdStusorylirchDaoSelect(option);
+		ActionStd<StusorylirchInfo> select = new ActionStdCommom<StusorylirchInfo>(option, StusorylirchVisiDaoSelect.class);
 		return select;
 	}
 	

@@ -3,20 +3,23 @@ package br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.model.deci
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
-import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.info.StusorylirchInfo;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.model.action.StdStusorylirchMergeToSelect;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.model.checker.StusorylirchCheckRead;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.model.action.StusorylirchVisiRootSelect;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.model.action.StusorylirchVisiEnforceUserKey;
 
 
-public final class RootStusorylirchSelect extends DeciTreeTemplateWrite<StusorylirchInfo> {
+public final class StusorylirchRootSelectByUser extends DeciTreeTemplateWrite<StusorylirchInfo> {
 	
-	public RootStusorylirchSelect(DeciTreeOption<StusorylirchInfo> option) {
+	public StusorylirchRootSelectByUser(DeciTreeOption<StusorylirchInfo> option) {
 		super(option);
 	}
 	
@@ -25,13 +28,8 @@ public final class RootStusorylirchSelect extends DeciTreeTemplateWrite<Stusoryl
 	@Override protected ModelChecker<StusorylirchInfo> buildCheckerHook(DeciTreeOption<StusorylirchInfo> option) {
 		List<ModelChecker<StusorylirchInfo>> queue = new ArrayList<>();		
 		ModelChecker<StusorylirchInfo> checker;
-		ModelCheckerOption checkerOption;
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StusorylirchCheckRead(checkerOption);
+
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -42,9 +40,12 @@ public final class RootStusorylirchSelect extends DeciTreeTemplateWrite<Stusoryl
 	@Override protected List<ActionStd<StusorylirchInfo>> buildActionsOnPassedHook(DeciTreeOption<StusorylirchInfo> option) {
 		List<ActionStd<StusorylirchInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusorylirchInfo> select = new StdStusorylirchMergeToSelect(option);
+		ActionStd<StusorylirchInfo> enforceUserKey = new ActionStdCommom<StusorylirchInfo>(option, StusorylirchVisiEnforceUserKey.class);
+		ActionLazy<StusorylirchInfo> select = new ActionLazyCommom<StusorylirchInfo>(option, StusorylirchVisiRootSelect.class);
 		
-		actions.add(select);
+		enforceUserKey.addPostAction(select);
+		
+		actions.add(enforceUserKey);
 		return actions;
 	}
 }

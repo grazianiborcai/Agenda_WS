@@ -6,7 +6,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.info.StusorylirchInfo;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.model.decisionTree.RootStusorylirchSelectByUser;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.model.decisionTree.StusorylirchRootSelectByUser;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearSearch.info.StusoryrchInfo;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearSearch.info.StusoryrchMerger;
 
@@ -19,7 +19,7 @@ final class VisiStusoryrchMergeStusorylirch extends ActionVisitorTemplateMerge<S
 	
 	
 	@Override protected Class<? extends DeciTree<StusorylirchInfo>> getTreeClassHook() {
-		return RootStusorylirchSelectByUser.class;
+		return StusorylirchRootSelectByUser.class;
 	}
 	
 	

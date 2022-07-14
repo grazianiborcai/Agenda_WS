@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.info.StusorylirchInfo;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.info.StusorylirchSetterUserKey;
 
-final class VisiStusorylirchEnforceUserKey extends ActionVisitorTemplateEnforce<StusorylirchInfo> {
+public final class StusorylirchVisiEnforceUserKey extends ActionVisitorTemplateEnforce<StusorylirchInfo> {
 	
-	public VisiStusorylirchEnforceUserKey(DeciTreeOption<StusorylirchInfo> option) {
+	public StusorylirchVisiEnforceUserKey(DeciTreeOption<StusorylirchInfo> option) {
 		super(option);
 	}
 
