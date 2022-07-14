@@ -11,11 +11,11 @@ import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.info.StusorygeInfo;
 
-public final class DaoStusorygeInsertSingle extends DaoStmtTemplate<StusorygeInfo> {
+public final class StusorygeDaoInsertSingle extends DaoStmtTemplate<StusorygeInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STAT_USER_ORDER_YEAR_STGN_TABLE;
 	
 	
-	public DaoStusorygeInsertSingle(Connection conn, StusorygeInfo recordInfo, String schemaName) {
+	public StusorygeDaoInsertSingle(Connection conn, StusorygeInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

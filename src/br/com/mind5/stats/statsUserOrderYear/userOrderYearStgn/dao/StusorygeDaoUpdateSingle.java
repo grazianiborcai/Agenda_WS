@@ -14,11 +14,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.info.StusorygeInfo;
 
-public final class DaoStusorygeUpdateSingle extends DaoStmtTemplate<StusorygeInfo> {
+public final class StusorygeDaoUpdateSingle extends DaoStmtTemplate<StusorygeInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STAT_USER_ORDER_YEAR_STGN_TABLE;
 	
 	
-	public DaoStusorygeUpdateSingle(Connection conn, StusorygeInfo recordInfo, String schemaName) {
+	public StusorygeDaoUpdateSingle(Connection conn, StusorygeInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -43,7 +43,7 @@ public final class DaoStusorygeUpdateSingle extends DaoStmtTemplate<StusorygeInf
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
 		
-		DaoStmtWhere whereClause = new DaoStusorygeWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new StusorygeDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.info.StusorygeInfo;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.info.StusorygeMerger;
 
-final class VisiStusorygeMergeOrdist extends ActionVisitorTemplateMerge<StusorygeInfo, OrdistInfo> {
+public final class StusorygeVisiMergeOrdist extends ActionVisitorTemplateMerge<StusorygeInfo, OrdistInfo> {
 	
-	public VisiStusorygeMergeOrdist(DeciTreeOption<StusorygeInfo> option) {
+	public StusorygeVisiMergeOrdist(DeciTreeOption<StusorygeInfo> option) {
 		super(option, OrdistInfo.class);
 	}
 	

@@ -3,23 +3,21 @@ package br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.model.decisionTr
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.info.StusorygeInfo;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.model.action.LazyStusorygeDaoInsert;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.model.action.StdStusorygeEnforceLChanged;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.model.checker.StusorygeCheckExist;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.model.action.StusorygeVisiMergeToSelect;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.model.checker.StusorygeCheckRead;
 
 
-public final class RootStusorygeInsert extends DeciTreeTemplateWrite<StusorygeInfo> {
+public final class StusorygeRootSelect extends DeciTreeTemplateWrite<StusorygeInfo> {
 	
-	public RootStusorygeInsert(DeciTreeOption<StusorygeInfo> option) {
+	public StusorygeRootSelect(DeciTreeOption<StusorygeInfo> option) {
 		super(option);
 	}
 	
@@ -37,13 +35,6 @@ public final class RootStusorygeInsert extends DeciTreeTemplateWrite<StusorygeIn
 		checker = new StusorygeCheckRead(checkerOption);
 		queue.add(checker);
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
-		checker = new StusorygeCheckExist(checkerOption);
-		queue.add(checker);
-		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
@@ -52,12 +43,9 @@ public final class RootStusorygeInsert extends DeciTreeTemplateWrite<StusorygeIn
 	@Override protected List<ActionStd<StusorygeInfo>> buildActionsOnPassedHook(DeciTreeOption<StusorygeInfo> option) {
 		List<ActionStd<StusorygeInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusorygeInfo> enforceLChanged = new StdStusorygeEnforceLChanged(option);
-		ActionLazy<StusorygeInfo> insert = new LazyStusorygeDaoInsert(option.conn, option.schemaName);
+		ActionStd<StusorygeInfo> select = new ActionStdCommom<StusorygeInfo>(option, StusorygeVisiMergeToSelect.class);
 		
-		enforceLChanged.addPostAction(insert);
-		
-		actions.add(enforceLChanged);
+		actions.add(select);
 		return actions;
 	}
 }

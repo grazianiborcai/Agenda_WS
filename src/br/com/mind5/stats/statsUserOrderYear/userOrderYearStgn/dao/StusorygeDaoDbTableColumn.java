@@ -9,14 +9,14 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoStusorygeDbTableColumn extends DaoDbTableColumnTemplate {	
+public final class StusorygeDaoDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_POSTING_YEAR = DaoDbField.COL_POSTING_YEAR;
 	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 
 	
-	public DaoStusorygeDbTableColumn() {
+	public StusorygeDaoDbTableColumn() {
 		super();
 	}
 	

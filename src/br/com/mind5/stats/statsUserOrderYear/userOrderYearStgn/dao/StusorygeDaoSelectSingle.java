@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.info.StusorygeInfo;
 
-public final class DaoStusorygeSelectSingle extends DaoStmtTemplate<StusorygeInfo> {
+public final class StusorygeDaoSelectSingle extends DaoStmtTemplate<StusorygeInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STAT_USER_ORDER_YEAR_STGN_TABLE;	
 	
 	
-	public DaoStusorygeSelectSingle(Connection conn, StusorygeInfo recordInfo, String schemaName) {
+	public StusorygeDaoSelectSingle(Connection conn, StusorygeInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoStusorygeSelectSingle extends DaoStmtTemplate<StusorygeInf
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoStusorygeWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new StusorygeDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -61,10 +61,10 @@ public final class DaoStusorygeSelectSingle extends DaoStmtTemplate<StusorygeInf
 				do {
 					StusorygeInfo dataInfo = new StusorygeInfo();
 					
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoStusorygeDbTableColumn.COL_COD_USER);
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoStusorygeDbTableColumn.COL_COD_OWNER);
-					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, DaoStusorygeDbTableColumn.COL_POSTING_YEAR);					
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoStusorygeDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, StusorygeDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, StusorygeDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, StusorygeDaoDbTableColumn.COL_POSTING_YEAR);					
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StusorygeDaoDbTableColumn.COL_LAST_CHANGED);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

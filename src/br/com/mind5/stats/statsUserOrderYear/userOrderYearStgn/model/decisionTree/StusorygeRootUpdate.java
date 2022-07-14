@@ -5,21 +5,23 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.info.StusorygeInfo;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.model.action.LazyStusorygeRootUpsert;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.model.action.StdStusorygeMergeOrdist;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.model.checker.StusorygeCheckOrdist;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.model.checker.StusorygeCheckWriteOrdist;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.model.action.StusorygeVisiDaoUpdate;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.model.action.StusorygeVisiEnforceLChanged;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.model.checker.StusorygeCheckExist;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.model.checker.StusorygeCheckRead;
 
 
-public final class RootStusorygeUpsertOrderem extends DeciTreeTemplateWrite<StusorygeInfo> {
+public final class StusorygeRootUpdate extends DeciTreeTemplateWrite<StusorygeInfo> {
 	
-	public RootStusorygeUpsertOrderem(DeciTreeOption<StusorygeInfo> option) {
+	public StusorygeRootUpdate(DeciTreeOption<StusorygeInfo> option) {
 		super(option);
 	}
 	
@@ -34,14 +36,14 @@ public final class RootStusorygeUpsertOrderem extends DeciTreeTemplateWrite<Stus
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StusorygeCheckWriteOrdist(checkerOption);
+		checker = new StusorygeCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new StusorygeCheckOrdist(checkerOption);
+		checker = new StusorygeCheckExist(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -52,12 +54,12 @@ public final class RootStusorygeUpsertOrderem extends DeciTreeTemplateWrite<Stus
 	@Override protected List<ActionStd<StusorygeInfo>> buildActionsOnPassedHook(DeciTreeOption<StusorygeInfo> option) {
 		List<ActionStd<StusorygeInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusorygeInfo> mergeOrdist = new StdStusorygeMergeOrdist(option);
-		ActionLazy<StusorygeInfo> upsert = new LazyStusorygeRootUpsert(option.conn, option.schemaName);
+		ActionStd<StusorygeInfo> enforceLChanged = new ActionStdCommom<StusorygeInfo>(option, StusorygeVisiEnforceLChanged.class);
+		ActionLazy<StusorygeInfo> update = new ActionLazyCommom<StusorygeInfo>(option, StusorygeVisiDaoUpdate.class);
 		
-		mergeOrdist.addPostAction(upsert);
+		enforceLChanged.addPostAction(update);
 		
-		actions.add(mergeOrdist);
+		actions.add(enforceLChanged);
 		return actions;
 	}
 }

@@ -7,7 +7,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.info.StusorygeInfo;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.model.decisionTree.RootStusorygeUpsertOrderem;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.model.decisionTree.StusorygeRootUpsertOrderem;
 
 public final class OrderemVisiStusorygeUpsert extends ActionVisitorTemplateAction<OrderemInfo, StusorygeInfo> {
 	
@@ -18,7 +18,7 @@ public final class OrderemVisiStusorygeUpsert extends ActionVisitorTemplateActio
 	
 	
 	@Override protected Class<? extends DeciTree<StusorygeInfo>> getTreeClassHook() {
-		return RootStusorygeUpsertOrderem.class;
+		return StusorygeRootUpsertOrderem.class;
 	}
 	
 	

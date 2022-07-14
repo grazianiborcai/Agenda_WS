@@ -10,12 +10,12 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.info.StusorygeInfo;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.model.checker.StusorygeCheckExist;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.model.checker.StusorygeCheckRead;
 
 
-public final class NodeStusorygeUpsert extends DeciTreeTemplateWrite<StusorygeInfo> {
+public final class StusorygeRootUpsert extends DeciTreeTemplateWrite<StusorygeInfo> {
 	
-	public NodeStusorygeUpsert(DeciTreeOption<StusorygeInfo> option) {
+	public StusorygeRootUpsert(DeciTreeOption<StusorygeInfo> option) {
 		super(option);
 	}
 	
@@ -29,8 +29,8 @@ public final class NodeStusorygeUpsert extends DeciTreeTemplateWrite<StusorygeIn
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new StusorygeCheckExist(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new StusorygeCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -41,20 +41,9 @@ public final class NodeStusorygeUpsert extends DeciTreeTemplateWrite<StusorygeIn
 	@Override protected List<ActionStd<StusorygeInfo>> buildActionsOnPassedHook(DeciTreeOption<StusorygeInfo> option) {
 		List<ActionStd<StusorygeInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusorygeInfo> update = new RootStusorygeUpdate(option).toAction();
+		ActionStd<StusorygeInfo> nodeL1 = new StusorygeNodeUpsert(option).toAction();
 		
-		actions.add(update);
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<StusorygeInfo>> buildActionsOnFailedHook(DeciTreeOption<StusorygeInfo> option) {
-		List<ActionStd<StusorygeInfo>> actions = new ArrayList<>();
-
-		ActionStd<StusorygeInfo> insert = new RootStusorygeInsert(option).toAction();
-		
-		actions.add(insert);
+		actions.add(nodeL1);
 		return actions;
 	}
 }

@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.info.StusorygeInfo;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.info.StusorygeSetterLChanged;
 
-final class VisiStusorygeEnforceLChanged extends ActionVisitorTemplateEnforce<StusorygeInfo> {
+public final class StusorygeVisiEnforceLChanged extends ActionVisitorTemplateEnforce<StusorygeInfo> {
 	
-	public VisiStusorygeEnforceLChanged(DeciTreeOption<StusorygeInfo> option) {
+	public StusorygeVisiEnforceLChanged(DeciTreeOption<StusorygeInfo> option) {
 		super(option);
 	}
 
