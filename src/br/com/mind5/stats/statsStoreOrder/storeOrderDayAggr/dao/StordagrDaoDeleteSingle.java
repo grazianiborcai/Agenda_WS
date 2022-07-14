@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.info.StordagrInfo;
 
-public final class DaoStordagrDeleteSingle extends DaoStmtTemplate<StordagrInfo> {
+public final class StordagrDaoDeleteSingle extends DaoStmtTemplate<StordagrInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STAT_STORE_ORDER_DAY_TABLE;
 	
 	
-	public DaoStordagrDeleteSingle(Connection conn, StordagrInfo recordInfo, String schemaName) {
+	public StordagrDaoDeleteSingle(Connection conn, StordagrInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoStordagrDeleteSingle extends DaoStmtTemplate<StordagrInfo>
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
 		
-		DaoStmtWhere whereClause = new DaoStordagrWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new StordagrDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

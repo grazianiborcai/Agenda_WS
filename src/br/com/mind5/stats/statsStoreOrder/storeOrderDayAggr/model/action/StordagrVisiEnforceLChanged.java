@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.info.StordagrInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.info.StordagrSetterLChanged;
 
-final class VisiStordagrEnforceLChanged extends ActionVisitorTemplateEnforce<StordagrInfo> {
+public final class StordagrVisiEnforceLChanged extends ActionVisitorTemplateEnforce<StordagrInfo> {
 	
-	public VisiStordagrEnforceLChanged(DeciTreeOption<StordagrInfo> option) {
+	public StordagrVisiEnforceLChanged(DeciTreeOption<StordagrInfo> option) {
 		super(option);
 	}
 

@@ -13,7 +13,7 @@ public final class StordagrMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StordagrVisiMergeCalate());
+		builder.addVisitor(new StordagrMergerVisiCalate());
 		InfoMerger<StordagrInfo, CalateInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class StordagrMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StordagrVisiMergeState());
+		builder.addVisitor(new StordagrMergerVisiState());
 		InfoMerger<StordagrInfo, StateInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -39,7 +39,7 @@ public final class StordagrMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StordagrVisiMergeToSelect());
+		builder.addVisitor(new StordagrMergerVisiToSelect());
 		InfoMerger<StordagrInfo, StordagrInfo> merger = builder.build();
 	
 		return merger.merge();

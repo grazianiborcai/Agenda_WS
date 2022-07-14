@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordMerger;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.info.StordagrInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.model.decisionTree.RootStordagrUpsert;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.model.decisionTree.StordagrRootUpsert;
 
 public final class StordVisiStordagrUpsert extends ActionVisitorTemplateAction<StordInfo, StordagrInfo> {
 
@@ -19,7 +19,7 @@ public final class StordVisiStordagrUpsert extends ActionVisitorTemplateAction<S
 	
 	
 	@Override protected Class<? extends DeciTree<StordagrInfo>> getTreeClassHook() {
-		return RootStordagrUpsert.class;
+		return StordagrRootUpsert.class;
 	}
 	
 	

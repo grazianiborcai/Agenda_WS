@@ -2,22 +2,22 @@ package br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.info.StordagrInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.info.StordagrMerger;
 
-final class VisiStordagrMergeToSelect extends ActionVisitorTemplateMerge<StordagrInfo, StordagrInfo> {
+public final class StordagrVisiMergeToSelect extends ActionVisitorTemplateMerge<StordagrInfo, StordagrInfo> {
 	
-	public VisiStordagrMergeToSelect(DeciTreeOption<StordagrInfo> option) {
+	public StordagrVisiMergeToSelect(DeciTreeOption<StordagrInfo> option) {
 		super(option, StordagrInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<StordagrInfo>> getActionClassHook() {
-		return StdStordagrDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<StordagrInfo>> getVisitorClassHook() {
+		return StordagrVisiDaoSelect.class;
 	}
 	
 	

@@ -2,11 +2,12 @@ package br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.info.StordagrInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.model.action.StdStordagrDaoSelect;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.model.action.StordagrVisiDaoSelect;
 
 public final class StordagrCheckExist extends ModelCheckerTemplateAction<StordagrInfo, StordagrInfo> {
 	
@@ -17,7 +18,7 @@ public final class StordagrCheckExist extends ModelCheckerTemplateAction<Stordag
 	
 	
 	@Override protected ActionStd<StordagrInfo> buildActionHook(DeciTreeOption<StordagrInfo> option) {
-		ActionStd<StordagrInfo> select = new StdStordagrDaoSelect(option);
+		ActionStd<StordagrInfo> select = new ActionStdCommom<StordagrInfo>(option, StordagrVisiDaoSelect.class);
 		return select;
 	}
 	

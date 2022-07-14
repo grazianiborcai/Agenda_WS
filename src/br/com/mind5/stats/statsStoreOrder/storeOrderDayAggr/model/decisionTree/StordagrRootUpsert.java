@@ -10,22 +10,21 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.info.StordagrInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.model.action.StdStordagrDaoDelete;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.model.checker.StordagrCheckExist;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.model.checker.StordagrCheckLangu;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.model.checker.StordagrCheckOwner;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.model.checker.StordagrCheckStore;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.model.checker.StordagrCheckWrite;
 
-public final class RootStordagrDelete extends DeciTreeTemplateWrite<StordagrInfo> {
+
+public final class StordagrRootUpsert extends DeciTreeTemplateWrite<StordagrInfo> {
 	
-	public RootStordagrDelete(DeciTreeOption<StordagrInfo> option) {
+	public StordagrRootUpsert(DeciTreeOption<StordagrInfo> option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected ModelChecker<StordagrInfo> buildCheckerHook(DeciTreeOption<StordagrInfo> option) {	
+	@Override protected ModelChecker<StordagrInfo> buildCheckerHook(DeciTreeOption<StordagrInfo> option) {
 		List<ModelChecker<StordagrInfo>> queue = new ArrayList<>();
 		ModelChecker<StordagrInfo> checker;
 		ModelCheckerOption checkerOption;
@@ -40,29 +39,22 @@ public final class RootStordagrDelete extends DeciTreeTemplateWrite<StordagrInfo
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;
 		checker = new StordagrCheckLangu(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;
 		checker = new StordagrCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
-		checker = new StordagrCheckStore(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;
-		checker = new StordagrCheckExist(checkerOption);
+		checker = new StordagrCheckStore(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -72,11 +64,10 @@ public final class RootStordagrDelete extends DeciTreeTemplateWrite<StordagrInfo
 	
 	@Override protected List<ActionStd<StordagrInfo>> buildActionsOnPassedHook(DeciTreeOption<StordagrInfo> option) {
 		List<ActionStd<StordagrInfo>> actions = new ArrayList<>();
+
+		ActionStd<StordagrInfo> nodeL1 = new StordagrNodeUpsert(option).toAction();
 		
-		ActionStd<StordagrInfo> delete = new StdStordagrDaoDelete(option);
-		
-		actions.add(delete);
-		
+		actions.add(nodeL1);
 		return actions;
 	}
 }

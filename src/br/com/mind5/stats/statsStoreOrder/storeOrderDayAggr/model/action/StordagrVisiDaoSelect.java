@@ -6,18 +6,18 @@ import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.dao.DaoStordagrInsert;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.dao.StordagrDaoSelect;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.info.StordagrInfo;
 
-final class VisiStordagrDaoInsert extends ActionVisitorTemplateStmt<StordagrInfo> {
+public final class StordagrVisiDaoSelect extends ActionVisitorTemplateStmt<StordagrInfo> {
 
-	public VisiStordagrDaoInsert(DeciTreeOption<StordagrInfo> option) {
+	public StordagrVisiDaoSelect(DeciTreeOption<StordagrInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected DaoStmtExec<StordagrInfo> buildStmtExecHook(List<DaoStmtExecOption<StordagrInfo>> stmtOptions) {
-		return new DaoStordagrInsert(stmtOptions);
+		return new StordagrDaoSelect(stmtOptions);
 	}
 }

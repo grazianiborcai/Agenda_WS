@@ -13,9 +13,9 @@ import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.info.StordagrInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.model.checker.StordagrCheckExist;
 
 
-public final class NodeStordagrUpsert extends DeciTreeTemplateWrite<StordagrInfo> {
+public final class StordagrNodeUpsert extends DeciTreeTemplateWrite<StordagrInfo> {
 	
-	public NodeStordagrUpsert(DeciTreeOption<StordagrInfo> option) {
+	public StordagrNodeUpsert(DeciTreeOption<StordagrInfo> option) {
 		super(option);
 	}
 	
@@ -41,8 +41,8 @@ public final class NodeStordagrUpsert extends DeciTreeTemplateWrite<StordagrInfo
 	@Override protected List<ActionStd<StordagrInfo>> buildActionsOnPassedHook(DeciTreeOption<StordagrInfo> option) {
 		List<ActionStd<StordagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<StordagrInfo> delete = new RootStordagrDelete(option).toAction();
-		ActionStd<StordagrInfo> insert = new RootStordagrInsert(option).toAction();
+		ActionStd<StordagrInfo> delete = new StordagrRootDelete(option).toAction();
+		ActionStd<StordagrInfo> insert = new StordagrRootInsert(option).toAction();
 		
 		actions.add(delete);
 		actions.add(insert);
@@ -55,7 +55,7 @@ public final class NodeStordagrUpsert extends DeciTreeTemplateWrite<StordagrInfo
 	@Override protected List<ActionStd<StordagrInfo>> buildActionsOnFailedHook(DeciTreeOption<StordagrInfo> option) {
 		List<ActionStd<StordagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<StordagrInfo> insert = new RootStordagrInsert(option).toAction();
+		ActionStd<StordagrInfo> insert = new StordagrRootInsert(option).toAction();
 		
 		actions.add(insert);
 		return actions;
