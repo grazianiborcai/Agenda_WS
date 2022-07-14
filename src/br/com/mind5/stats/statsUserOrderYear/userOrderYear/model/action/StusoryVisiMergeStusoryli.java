@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYear.info.StusoryInfo;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYear.info.StusoryMerger;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearLive.info.StusoryliInfo;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearLive.model.decisionTree.RootStusoryliSelect;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearLive.model.decisionTree.StusoryliRootSelect;
 
 public final class StusoryVisiMergeStusoryli extends ActionVisitorTemplateMerge<StusoryInfo, StusoryliInfo> {
 	
@@ -19,7 +19,7 @@ public final class StusoryVisiMergeStusoryli extends ActionVisitorTemplateMerge<
 	
 	
 	@Override protected Class<? extends DeciTree<StusoryliInfo>> getTreeClassHook() {
-		return RootStusoryliSelect.class;
+		return StusoryliRootSelect.class;
 	}
 	
 	

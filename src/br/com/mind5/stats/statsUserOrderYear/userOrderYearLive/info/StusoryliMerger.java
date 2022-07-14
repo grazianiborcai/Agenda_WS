@@ -11,7 +11,7 @@ public final class StusoryliMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StusoryliVisiMergeToSelect());
+		builder.addVisitor(new StusoryliMergerVisiToSelect());
 		InfoMerger<StusoryliInfo, StusoryliInfo> merger = builder.build();		
 	
 		return merger.merge();
