@@ -2,11 +2,12 @@ package br.com.mind5.stats.statsUserOrderYear.userOrderYearAggr.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggr.info.StusorygrInfo;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggr.model.action.StdStusorygrDaoSelect;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggr.model.action.StusorygrVisiDaoSelect;
 
 public final class StusorygrCheckExist extends ModelCheckerTemplateAction<StusorygrInfo, StusorygrInfo> {
 	
@@ -17,7 +18,7 @@ public final class StusorygrCheckExist extends ModelCheckerTemplateAction<Stusor
 	
 	
 	@Override protected ActionStd<StusorygrInfo> buildActionHook(DeciTreeOption<StusorygrInfo> option) {
-		ActionStd<StusorygrInfo> select = new StdStusorygrDaoSelect(option);
+		ActionStd<StusorygrInfo> select = new ActionStdCommom<StusorygrInfo>(option, StusorygrVisiDaoSelect.class);
 		return select;
 	}
 	

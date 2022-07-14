@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggr.info.StusorygrInfo;
 
-public final class DaoStusorygrSelectSingle extends DaoStmtTemplate<StusorygrInfo> {
+public final class StusorygrDaoSelectSingle extends DaoStmtTemplate<StusorygrInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STAT_USER_ORDER_YEAR_AGGR_TABLE;	
 	
 	
-	public DaoStusorygrSelectSingle(Connection conn, StusorygrInfo recordInfo, String schemaName) {
+	public StusorygrDaoSelectSingle(Connection conn, StusorygrInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoStusorygrSelectSingle extends DaoStmtTemplate<StusorygrInf
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoStusorygrWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new StusorygrDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -61,16 +61,16 @@ public final class DaoStusorygrSelectSingle extends DaoStmtTemplate<StusorygrInf
 				do {
 					StusorygrInfo dataInfo = new StusorygrInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoStusorygrDbTableColumn.COL_COD_OWNER);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoStusorygrDbTableColumn.COL_COD_USER);
-					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, DaoStusorygrDbTableColumn.COL_POSTING_YEAR);
-					dataInfo.countYearCancelled = DaoFormatter.sqlToInt(stmtResult, DaoStusorygrDbTableColumn.COL_COUNT_YEAR_CANCELLED);
-					dataInfo.countYearCreated = DaoFormatter.sqlToInt(stmtResult, DaoStusorygrDbTableColumn.COL_COUNT_YEAR_CREATED);
-					dataInfo.countYearPaid = DaoFormatter.sqlToInt(stmtResult, DaoStusorygrDbTableColumn.COL_COUNT_YEAR_PAID);
-					dataInfo.countYearPlaced = DaoFormatter.sqlToInt(stmtResult, DaoStusorygrDbTableColumn.COL_COUNT_YEAR_PLACED);				
-					dataInfo.countYearTotal = DaoFormatter.sqlToInt(stmtResult, DaoStusorygrDbTableColumn.COL_COUNT_YEAR_TOTAL);					
-					dataInfo.countYearWaiting = DaoFormatter.sqlToInt(stmtResult, DaoStusorygrDbTableColumn.COL_COUNT_YEAR_WAITING);					
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoStusorygrDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, StusorygrDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, StusorygrDaoDbTableColumn.COL_COD_USER);
+					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, StusorygrDaoDbTableColumn.COL_POSTING_YEAR);
+					dataInfo.countYearCancelled = DaoFormatter.sqlToInt(stmtResult, StusorygrDaoDbTableColumn.COL_COUNT_YEAR_CANCELLED);
+					dataInfo.countYearCreated = DaoFormatter.sqlToInt(stmtResult, StusorygrDaoDbTableColumn.COL_COUNT_YEAR_CREATED);
+					dataInfo.countYearPaid = DaoFormatter.sqlToInt(stmtResult, StusorygrDaoDbTableColumn.COL_COUNT_YEAR_PAID);
+					dataInfo.countYearPlaced = DaoFormatter.sqlToInt(stmtResult, StusorygrDaoDbTableColumn.COL_COUNT_YEAR_PLACED);				
+					dataInfo.countYearTotal = DaoFormatter.sqlToInt(stmtResult, StusorygrDaoDbTableColumn.COL_COUNT_YEAR_TOTAL);					
+					dataInfo.countYearWaiting = DaoFormatter.sqlToInt(stmtResult, StusorygrDaoDbTableColumn.COL_COUNT_YEAR_WAITING);					
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StusorygrDaoDbTableColumn.COL_LAST_CHANGED);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

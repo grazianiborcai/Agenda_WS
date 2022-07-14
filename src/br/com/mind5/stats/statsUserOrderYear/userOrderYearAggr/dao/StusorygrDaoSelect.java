@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggr.info.StusorygrInfo;
 
-public final class DaoStusorygrSelect implements DaoStmtExec<StusorygrInfo> {
+public final class StusorygrDaoSelect implements DaoStmtExec<StusorygrInfo> {
 	private DaoStmtExec<StusorygrInfo> helper;
 	
 	
-	public DaoStusorygrSelect(List<DaoStmtExecOption<StusorygrInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoStusorygrSelectSingle.class, StusorygrInfo.class);
+	public StusorygrDaoSelect(List<DaoStmtExecOption<StusorygrInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, StusorygrDaoSelectSingle.class, StusorygrInfo.class);
 	}
 	
 	

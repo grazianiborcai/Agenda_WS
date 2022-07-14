@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggr.info.StusorygrInfo;
 
-public final class DaoStusorygrWhere implements DaoStmtWhere {
+public final class StusorygrDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoStusorygrWhere(DaoWhereBuilderOption whereOption, String tableName, StusorygrInfo recordInfo) {
+	public StusorygrDaoWhere(DaoWhereBuilderOption whereOption, String tableName, StusorygrInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class DaoStusorygrWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {					
-				case DaoStusorygrDbTableColumn.COL_COD_USER :
+				case StusorygrDaoDbTableColumn.COL_COD_USER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 					
-				case DaoStusorygrDbTableColumn.COL_COD_OWNER :
+				case StusorygrDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoStusorygrDbTableColumn.COL_POSTING_YEAR :
+				case StusorygrDaoDbTableColumn.COL_POSTING_YEAR :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.postingYear));
 					break;
 			}

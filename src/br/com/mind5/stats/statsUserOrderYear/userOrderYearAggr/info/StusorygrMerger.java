@@ -11,7 +11,7 @@ public final class StusorygrMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StusorygrVisiMergeToSelect());
+		builder.addVisitor(new StusorygrMergerVisiToSelect());
 		InfoMerger<StusorygrInfo, StusorygrInfo> merger = builder.build();		
 	
 		return merger.merge();
