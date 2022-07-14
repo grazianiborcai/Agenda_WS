@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggrSearch.info.StusorygrarchInfo;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggrSearch.info.StusorygrarchSetterUserKey;
 
-final class VisiStusorygrarchEnforceUserKey extends ActionVisitorTemplateEnforce<StusorygrarchInfo> {
+public final class StusorygrarchVisiEnforceUserKey extends ActionVisitorTemplateEnforce<StusorygrarchInfo> {
 	
-	public VisiStusorygrarchEnforceUserKey(DeciTreeOption<StusorygrarchInfo> option) {
+	public StusorygrarchVisiEnforceUserKey(DeciTreeOption<StusorygrarchInfo> option) {
 		super(option);
 	}
 

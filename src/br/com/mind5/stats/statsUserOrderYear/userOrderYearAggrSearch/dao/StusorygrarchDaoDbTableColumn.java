@@ -9,13 +9,13 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoStusorygrarchDbTableColumn extends DaoDbTableColumnTemplate {	
+public final class StusorygrarchDaoDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_POSTING_YEAR = DaoDbField.COL_POSTING_YEAR;
 
 	
-	public DaoStusorygrarchDbTableColumn() {
+	public StusorygrarchDaoDbTableColumn() {
 		super();
 	}
 	

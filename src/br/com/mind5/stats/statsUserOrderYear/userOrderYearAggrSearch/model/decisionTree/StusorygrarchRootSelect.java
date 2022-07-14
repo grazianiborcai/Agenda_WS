@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggrSearch.info.StusorygrarchInfo;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggrSearch.model.action.StdStusorygrarchMergeToSelect;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggrSearch.model.action.StusorygrarchVisiMergeToSelect;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggrSearch.model.checker.StusorygrarchCheckRead;
 
 
-public final class RootStusorygrarchSelect extends DeciTreeTemplateWrite<StusorygrarchInfo> {
+public final class StusorygrarchRootSelect extends DeciTreeTemplateWrite<StusorygrarchInfo> {
 	
-	public RootStusorygrarchSelect(DeciTreeOption<StusorygrarchInfo> option) {
+	public StusorygrarchRootSelect(DeciTreeOption<StusorygrarchInfo> option) {
 		super(option);
 	}
 	
@@ -42,7 +43,7 @@ public final class RootStusorygrarchSelect extends DeciTreeTemplateWrite<Stusory
 	@Override protected List<ActionStd<StusorygrarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StusorygrarchInfo> option) {
 		List<ActionStd<StusorygrarchInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusorygrarchInfo> select = new StdStusorygrarchMergeToSelect(option);
+		ActionStd<StusorygrarchInfo> select = new ActionStdCommom<StusorygrarchInfo>(option, StusorygrarchVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

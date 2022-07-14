@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggrSearch.info.StusorygrarchInfo;
 
-public final class DaoStusorygrarchSelectSingle extends DaoStmtTemplate<StusorygrarchInfo> {
+public final class StusorygrarchDaoSelectSingle extends DaoStmtTemplate<StusorygrarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STAT_USER_ORDER_YEAR_AGGR_TABLE;	
 	
 	
-	public DaoStusorygrarchSelectSingle(Connection conn, StusorygrarchInfo recordInfo, String schemaName) {
+	public StusorygrarchDaoSelectSingle(Connection conn, StusorygrarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoStusorygrarchSelectSingle extends DaoStmtTemplate<Stusoryg
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoStusorygrarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new StusorygrarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,9 +67,9 @@ public final class DaoStusorygrarchSelectSingle extends DaoStmtTemplate<Stusoryg
 				do {
 					StusorygrarchInfo dataInfo = new StusorygrarchInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoStusorygrarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoStusorygrarchDbTableColumn.COL_COD_USER);
-					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, DaoStusorygrarchDbTableColumn.COL_POSTING_YEAR);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, StusorygrarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, StusorygrarchDaoDbTableColumn.COL_COD_USER);
+					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, StusorygrarchDaoDbTableColumn.COL_POSTING_YEAR);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

@@ -6,7 +6,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggrSearch.info.StusorygrarchInfo;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggrSearch.model.decisionTree.RootStusorygrarchSelectByUser;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearAggrSearch.model.decisionTree.StusorygrarchRootSelectByUser;
 
 public final class StusorygrarchCheckExistUser extends ModelCheckerTemplateAction<StusorygrarchInfo, StusorygrarchInfo> {
 	
@@ -17,7 +17,7 @@ public final class StusorygrarchCheckExistUser extends ModelCheckerTemplateActio
 	
 	
 	@Override protected ActionStd<StusorygrarchInfo> buildActionHook(DeciTreeOption<StusorygrarchInfo> option) {
-		ActionStd<StusorygrarchInfo> select = new RootStusorygrarchSelectByUser(option).toAction();
+		ActionStd<StusorygrarchInfo> select = new StusorygrarchRootSelectByUser(option).toAction();
 		return select;
 	}
 	
