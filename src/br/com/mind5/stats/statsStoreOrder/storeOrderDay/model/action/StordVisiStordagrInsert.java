@@ -10,9 +10,9 @@ import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordMerger;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.info.StordagrInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayAggr.model.decisionTree.RootStordagrInsert;
 
-final class VisiStordStordagrInsert extends ActionVisitorTemplateAction<StordInfo, StordagrInfo> {
+public final class StordVisiStordagrInsert extends ActionVisitorTemplateAction<StordInfo, StordagrInfo> {
 
-	public VisiStordStordagrInsert(DeciTreeOption<StordInfo> option) {
+	public StordVisiStordagrInsert(DeciTreeOption<StordInfo> option) {
 		super(option, StordInfo.class, StordagrInfo.class);
 	}
 	

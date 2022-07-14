@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordMerger;
 
-final class VisiStordMergeStolis extends ActionVisitorTemplateMerge<StordInfo, StolisInfo> {
+public final class StordVisiMergeStolis extends ActionVisitorTemplateMerge<StordInfo, StolisInfo> {
 	
-	public VisiStordMergeStolis(DeciTreeOption<StordInfo> option) {
+	public StordVisiMergeStolis(DeciTreeOption<StordInfo> option) {
 		super(option, StolisInfo.class);
 	}
 	

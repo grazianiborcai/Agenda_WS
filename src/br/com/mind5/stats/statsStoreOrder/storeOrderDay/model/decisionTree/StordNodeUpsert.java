@@ -5,22 +5,24 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.LazySteddMergeStolis;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.LazyStordStordagrUpsert;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.StdStordEnforceZerofy;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.StdStordMergeStordive;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.StordVisiEnforceZerofy;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.StordVisiMergeStolis;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.StordVisiMergeStordive;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.StordVisiStordagrUpsert;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.checker.StordCheckStordive;
 
 
-public final class NodeStordUpsert extends DeciTreeTemplateWrite<StordInfo> {
+public final class StordNodeUpsert extends DeciTreeTemplateWrite<StordInfo> {
 	
-	public NodeStordUpsert(DeciTreeOption<StordInfo> option) {
+	public StordNodeUpsert(DeciTreeOption<StordInfo> option) {
 		super(option);
 	}
 	
@@ -46,8 +48,8 @@ public final class NodeStordUpsert extends DeciTreeTemplateWrite<StordInfo> {
 	@Override protected List<ActionStd<StordInfo>> buildActionsOnPassedHook(DeciTreeOption<StordInfo> option) {
 		List<ActionStd<StordInfo>> actions = new ArrayList<>();
 
-		ActionStd<StordInfo> mergeSteddive = new StdStordMergeStordive(option);
-		ActionLazy<StordInfo> upsertSteddagr = new LazyStordStordagrUpsert(option.conn, option.schemaName);
+		ActionStd<StordInfo> mergeSteddive = new ActionStdCommom<StordInfo>(option, StordVisiMergeStordive.class);
+		ActionLazy<StordInfo> upsertSteddagr = new ActionLazyCommom<StordInfo>(option, StordVisiStordagrUpsert.class);
 		
 		mergeSteddive.addPostAction(upsertSteddagr);
 		
@@ -61,9 +63,9 @@ public final class NodeStordUpsert extends DeciTreeTemplateWrite<StordInfo> {
 	@Override protected List<ActionStd<StordInfo>> buildActionsOnFailedHook(DeciTreeOption<StordInfo> option) {
 		List<ActionStd<StordInfo>> actions = new ArrayList<>();
 
-		ActionStd<StordInfo> zerofy = new StdStordEnforceZerofy(option);
-		ActionLazy<StordInfo> mergeStolis = new LazySteddMergeStolis(option.conn, option.schemaName);
-		ActionLazy<StordInfo> upsertSteddagr = new LazyStordStordagrUpsert(option.conn, option.schemaName);
+		ActionStd<StordInfo> zerofy = new ActionStdCommom<StordInfo>(option, StordVisiEnforceZerofy.class);
+		ActionLazy<StordInfo> mergeStolis = new ActionLazyCommom<StordInfo>(option, StordVisiMergeStolis.class);
+		ActionLazy<StordInfo> upsertSteddagr = new ActionLazyCommom<StordInfo>(option, StordVisiStordagrUpsert.class);
 		
 		zerofy.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(upsertSteddagr);

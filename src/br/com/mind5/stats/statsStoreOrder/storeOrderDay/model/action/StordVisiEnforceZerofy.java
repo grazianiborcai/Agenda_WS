@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordSetterZerofy;
 
-final class VisiStordEnforceZerofy extends ActionVisitorTemplateEnforce<StordInfo> {
+public final class StordVisiEnforceZerofy extends ActionVisitorTemplateEnforce<StordInfo> {
 	
-	public VisiStordEnforceZerofy(DeciTreeOption<StordInfo> option) {
+	public StordVisiEnforceZerofy(DeciTreeOption<StordInfo> option) {
 		super(option);
 	}
 

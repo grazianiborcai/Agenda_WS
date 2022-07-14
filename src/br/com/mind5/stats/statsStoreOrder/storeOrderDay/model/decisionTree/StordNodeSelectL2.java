@@ -5,22 +5,24 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.LazySteddMergeStolis;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.LazyStordStordagrInsert;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.StdStordEnforceZerofy;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.StdStordMergeStordive;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.StordVisiEnforceZerofy;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.StordVisiMergeStolis;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.StordVisiMergeStordive;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.StordVisiStordagrInsert;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.checker.StordCheckStordive;
 
 
-public final class NodeStordSelectL2 extends DeciTreeTemplateWrite<StordInfo> {
+public final class StordNodeSelectL2 extends DeciTreeTemplateWrite<StordInfo> {
 	
-	public NodeStordSelectL2(DeciTreeOption<StordInfo> option) {
+	public StordNodeSelectL2(DeciTreeOption<StordInfo> option) {
 		super(option);
 	}
 	
@@ -46,8 +48,8 @@ public final class NodeStordSelectL2 extends DeciTreeTemplateWrite<StordInfo> {
 	@Override protected List<ActionStd<StordInfo>> buildActionsOnPassedHook(DeciTreeOption<StordInfo> option) {
 		List<ActionStd<StordInfo>> actions = new ArrayList<>();
 
-		ActionStd<StordInfo> mergeStordive = new StdStordMergeStordive(option);
-		ActionLazy<StordInfo> insertStordagr = new LazyStordStordagrInsert(option.conn, option.schemaName);
+		ActionStd<StordInfo> mergeStordive = new ActionStdCommom<StordInfo>(option, StordVisiMergeStordive.class);
+		ActionLazy<StordInfo> insertStordagr = new ActionLazyCommom<StordInfo>(option, StordVisiStordagrInsert.class);
 		
 		mergeStordive.addPostAction(insertStordagr);		
 		
@@ -60,9 +62,9 @@ public final class NodeStordSelectL2 extends DeciTreeTemplateWrite<StordInfo> {
 	@Override protected List<ActionStd<StordInfo>> buildActionsOnFailedHook(DeciTreeOption<StordInfo> option) {
 		List<ActionStd<StordInfo>> actions = new ArrayList<>();
 
-		ActionStd<StordInfo> zerofy = new StdStordEnforceZerofy(option);
-		ActionLazy<StordInfo> mergeStolis = new LazySteddMergeStolis(option.conn, option.schemaName);
-		ActionLazy<StordInfo> insertStordagr = new LazyStordStordagrInsert(option.conn, option.schemaName);
+		ActionStd<StordInfo> zerofy = new ActionStdCommom<StordInfo>(option, StordVisiEnforceZerofy.class);
+		ActionLazy<StordInfo> mergeStolis = new ActionLazyCommom<StordInfo>(option, StordVisiMergeStolis.class);
+		ActionLazy<StordInfo> insertStordagr = new ActionLazyCommom<StordInfo>(option, StordVisiStordagrInsert.class);
 		
 		zerofy.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(insertStordagr);

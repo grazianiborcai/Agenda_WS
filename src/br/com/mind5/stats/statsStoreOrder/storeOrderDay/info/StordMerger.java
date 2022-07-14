@@ -15,7 +15,7 @@ public final class StordMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StordVisiMergeStordagr());
+		builder.addVisitor(new StordMergerVisiStordagr());
 		InfoMerger<StordInfo, StordagrInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -28,7 +28,7 @@ public final class StordMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StordVisiMergeStolis());
+		builder.addVisitor(new StordMergerVisiStolis());
 		InfoMerger<StordInfo, StolisInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -41,7 +41,7 @@ public final class StordMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StordVisiMergeStordive());
+		builder.addVisitor(new StordMergerVisiStordive());
 		InfoMerger<StordInfo, StordiveInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -54,7 +54,7 @@ public final class StordMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StordVisiMergeCalate());
+		builder.addVisitor(new StordMergerVisiCalate());
 		InfoMerger<StordInfo, CalateInfo> merger = builder.build();
 	
 		return merger.merge();

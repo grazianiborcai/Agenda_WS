@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordMerger;
 
-final class VisiStordMergeCalateMonth extends ActionVisitorTemplateMerge<StordInfo, CalateInfo> {
+public final class StordVisiMergeCalateMonth extends ActionVisitorTemplateMerge<StordInfo, CalateInfo> {
 	
-	public VisiStordMergeCalateMonth(DeciTreeOption<StordInfo> option) {
+	public StordVisiMergeCalateMonth(DeciTreeOption<StordInfo> option) {
 		super(option, CalateInfo.class);
 	}
 	

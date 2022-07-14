@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordSetterYearMonth;
 
-final class VisiStordEnforceYearMonth extends ActionVisitorTemplateEnforce<StordInfo> {
+public final class StordVisiEnforceYearMonth extends ActionVisitorTemplateEnforce<StordInfo> {
 	
-	public VisiStordEnforceYearMonth(DeciTreeOption<StordInfo> option) {
+	public StordVisiEnforceYearMonth(DeciTreeOption<StordInfo> option) {
 		super(option);
 	}
 

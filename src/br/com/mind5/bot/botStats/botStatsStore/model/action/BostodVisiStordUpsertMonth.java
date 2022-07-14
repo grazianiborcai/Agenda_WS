@@ -7,7 +7,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.decisionTree.RootStordUpsertMonth;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.decisionTree.StordRootUpsertMonth;
 
 public final class BostodVisiStordUpsertMonth extends ActionVisitorTemplateAction<BostodInfo, StordInfo> {
 
@@ -18,7 +18,7 @@ public final class BostodVisiStordUpsertMonth extends ActionVisitorTemplateActio
 	
 	
 	@Override protected Class<? extends DeciTree<StordInfo>> getTreeClassHook() {
-		return RootStordUpsertMonth.class;
+		return StordRootUpsertMonth.class;
 	}
 	
 	

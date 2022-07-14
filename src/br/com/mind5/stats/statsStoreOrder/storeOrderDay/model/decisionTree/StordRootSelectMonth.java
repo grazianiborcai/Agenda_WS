@@ -5,21 +5,23 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.LazySteddMergeCalateMonth;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.LazySteddRootUpsert;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.StdStordEnforceYearMonth;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.checker.StordCheckWriteMonth;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.StordVisiRootSelect;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.StordVisiEnforceYearMonth;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.StordVisiMergeCalateMonth;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.checker.StordCheckReadMonth;
 
 
-public final class RootStordUpsertMonth extends DeciTreeTemplateWrite<StordInfo> {
+public final class StordRootSelectMonth extends DeciTreeTemplateWrite<StordInfo> {
 	
-	public RootStordUpsertMonth(DeciTreeOption<StordInfo> option) {
+	public StordRootSelectMonth(DeciTreeOption<StordInfo> option) {
 		super(option);
 	}
 	
@@ -34,7 +36,7 @@ public final class RootStordUpsertMonth extends DeciTreeTemplateWrite<StordInfo>
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
-		checker = new StordCheckWriteMonth(checkerOption);
+		checker = new StordCheckReadMonth(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -46,12 +48,12 @@ public final class RootStordUpsertMonth extends DeciTreeTemplateWrite<StordInfo>
 		List<ActionStd<StordInfo>> actions = new ArrayList<>();
 
 
-		ActionStd<StordInfo> enforceYearMonth = new StdStordEnforceYearMonth(option);
-		ActionLazy<StordInfo> mergeCalateMonth = new LazySteddMergeCalateMonth(option.conn, option.schemaName);
-		ActionLazy<StordInfo> upsert = new LazySteddRootUpsert(option.conn, option.schemaName);
+		ActionStd<StordInfo> enforceYearMonth = new ActionStdCommom<StordInfo>(option, StordVisiEnforceYearMonth.class);
+		ActionLazy<StordInfo> mergeCalateMonth = new ActionLazyCommom<StordInfo>(option, StordVisiMergeCalateMonth.class);
+		ActionLazy<StordInfo> select = new ActionLazyCommom<StordInfo>(option, StordVisiRootSelect.class);
 		
 		enforceYearMonth.addPostAction(mergeCalateMonth);
-		mergeCalateMonth.addPostAction(upsert);
+		mergeCalateMonth.addPostAction(select);
 		
 		actions.add(enforceYearMonth);
 		return actions;

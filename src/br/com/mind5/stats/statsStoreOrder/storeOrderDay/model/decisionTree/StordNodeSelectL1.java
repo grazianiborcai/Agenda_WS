@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.checker.StordCheckRead;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.action.StordVisiMergeStordagr;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.checker.StordCheckStordagr;
 
 
-public final class RootStordSelect extends DeciTreeTemplateWrite<StordInfo> {
+public final class StordNodeSelectL1 extends DeciTreeTemplateWrite<StordInfo> {
 	
-	public RootStordSelect(DeciTreeOption<StordInfo> option) {
+	public StordNodeSelectL1(DeciTreeOption<StordInfo> option) {
 		super(option);
 	}
 	
@@ -29,8 +31,8 @@ public final class RootStordSelect extends DeciTreeTemplateWrite<StordInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
-		checker = new StordCheckRead(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;
+		checker = new StordCheckStordagr(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -41,9 +43,20 @@ public final class RootStordSelect extends DeciTreeTemplateWrite<StordInfo> {
 	@Override protected List<ActionStd<StordInfo>> buildActionsOnPassedHook(DeciTreeOption<StordInfo> option) {
 		List<ActionStd<StordInfo>> actions = new ArrayList<>();
 
-		ActionStd<StordInfo> nodeL1 = new NodeStordSelectL1(option).toAction();
+		ActionStd<StordInfo> mergeStordagr = new ActionStdCommom<StordInfo>(option, StordVisiMergeStordagr.class);
 		
-		actions.add(nodeL1);
+		actions.add(mergeStordagr);
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<StordInfo>> buildActionsOnFailedHook(DeciTreeOption<StordInfo> option) {
+		List<ActionStd<StordInfo>> actions = new ArrayList<>();
+
+		ActionStd<StordInfo> nodeL2 = new StordNodeSelectL2(option).toAction();
+		
+		actions.add(nodeL2);
 		return actions;
 	}
 }

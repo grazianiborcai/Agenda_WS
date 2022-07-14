@@ -13,9 +13,9 @@ import br.com.mind5.stats.statsStoreOrder.storeOrderDay.info.StordInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDay.model.checker.StordCheckWrite;
 
 
-public final class RootStordUpsert extends DeciTreeTemplateWrite<StordInfo> {
+public final class StordRootUpsert extends DeciTreeTemplateWrite<StordInfo> {
 	
-	public RootStordUpsert(DeciTreeOption<StordInfo> option) {
+	public StordRootUpsert(DeciTreeOption<StordInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +41,7 @@ public final class RootStordUpsert extends DeciTreeTemplateWrite<StordInfo> {
 	@Override protected List<ActionStd<StordInfo>> buildActionsOnPassedHook(DeciTreeOption<StordInfo> option) {
 		List<ActionStd<StordInfo>> actions = new ArrayList<>();
 
-		ActionStd<StordInfo> nodeL1 = new NodeStordUpsert(option).toAction();
+		ActionStd<StordInfo> nodeL1 = new StordNodeUpsert(option).toAction();
 		
 		actions.add(nodeL1);
 		return actions;
