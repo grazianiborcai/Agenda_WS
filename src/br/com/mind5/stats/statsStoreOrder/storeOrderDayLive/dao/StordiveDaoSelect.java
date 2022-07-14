@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.info.StordiveInfo;
 
-public final class DaoStordiveSelect implements DaoStmtExec<StordiveInfo> {
+public final class StordiveDaoSelect implements DaoStmtExec<StordiveInfo> {
 	private DaoStmtExec<StordiveInfo> helper;
 	
 	
-	public DaoStordiveSelect(List<DaoStmtExecOption<StordiveInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoStordiveSelectSingle.class, StordiveInfo.class);
+	public StordiveDaoSelect(List<DaoStmtExecOption<StordiveInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, StordiveDaoSelectSingle.class, StordiveInfo.class);
 	}
 	
 	

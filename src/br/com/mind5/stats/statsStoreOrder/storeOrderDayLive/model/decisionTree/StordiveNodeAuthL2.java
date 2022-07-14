@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.info.StordiveInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.action.StdStordiveSuccess;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.checker.StordiveCheckAuthOwner;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.action.StordiveVisiMergeSytotauh;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.checker.StordiveCheckSytotin;
 
-public final class NodeStordiveAuthL1 extends DeciTreeTemplateWrite<StordiveInfo> {
+public final class StordiveNodeAuthL2 extends DeciTreeTemplateWrite<StordiveInfo> {
 	
-	public NodeStordiveAuthL1(DeciTreeOption<StordiveInfo> option) {
+	public StordiveNodeAuthL2(DeciTreeOption<StordiveInfo> option) {
 		super(option);
 	}
 	
@@ -30,7 +32,7 @@ public final class NodeStordiveAuthL1 extends DeciTreeTemplateWrite<StordiveInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
-		checker = new StordiveCheckAuthOwner(checkerOption);
+		checker = new StordiveCheckSytotin(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -41,9 +43,9 @@ public final class NodeStordiveAuthL1 extends DeciTreeTemplateWrite<StordiveInfo
 	@Override protected List<ActionStd<StordiveInfo>> buildActionsOnPassedHook(DeciTreeOption<StordiveInfo> option) {
 		List<ActionStd<StordiveInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StordiveInfo> success = new StdStordiveSuccess(option);
+		ActionStd<StordiveInfo> mergeSytotauh = new ActionStdCommom<StordiveInfo>(option, StordiveVisiMergeSytotauh.class);
 		
-		actions.add(success);
+		actions.add(mergeSytotauh);
 		return actions;
 	}
 	
@@ -52,9 +54,9 @@ public final class NodeStordiveAuthL1 extends DeciTreeTemplateWrite<StordiveInfo
 	@Override protected List<ActionStd<StordiveInfo>> buildActionsOnFailedHook(DeciTreeOption<StordiveInfo> option) {
 		List<ActionStd<StordiveInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StordiveInfo> nodeL2 = new NodeStordiveAuthL2(option).toAction();
+		ActionStd<StordiveInfo> success = new ActionStdSuccessCommom<StordiveInfo>(option);
 		
-		actions.add(nodeL2);
+		actions.add(success);
 		return actions;
 	}
 }

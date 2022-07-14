@@ -5,22 +5,23 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.info.StordiveInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.action.LazyStordiveRootSelect;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.action.StordiveVisiRootSelect;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.checker.StordiveCheckLangu;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.checker.StordiveCheckOwner;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.checker.StordiveCheckRead;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.checker.StordiveCheckStore;
 
 
-public final class RootStordiveSelectAuth extends DeciTreeTemplateWrite<StordiveInfo> {
+public final class StordiveRootSelectAuth extends DeciTreeTemplateWrite<StordiveInfo> {
 	
-	public RootStordiveSelectAuth(DeciTreeOption<StordiveInfo> option) {
+	public StordiveRootSelectAuth(DeciTreeOption<StordiveInfo> option) {
 		super(option);
 	}
 	
@@ -67,8 +68,8 @@ public final class RootStordiveSelectAuth extends DeciTreeTemplateWrite<Stordive
 	@Override protected List<ActionStd<StordiveInfo>> buildActionsOnPassedHook(DeciTreeOption<StordiveInfo> option) {
 		List<ActionStd<StordiveInfo>> actions = new ArrayList<>();
 
-		ActionStd<StordiveInfo> auth = new NodeStordiveAuthL1(option).toAction();
-		ActionLazy<StordiveInfo> select = new LazyStordiveRootSelect(option.conn, option.schemaName);
+		ActionStd<StordiveInfo> auth = new StordiveNodeAuthL1(option).toAction();
+		ActionLazy<StordiveInfo> select = new ActionLazyCommom<StordiveInfo>(option, StordiveVisiRootSelect.class);
 		
 		auth.addPostAction(select);
 		

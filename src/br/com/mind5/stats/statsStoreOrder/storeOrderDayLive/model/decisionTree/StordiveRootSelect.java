@@ -5,25 +5,27 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.info.StordiveInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.action.LazyStordiveEnforceLChanged;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.action.LazyStordiveMergeCalate;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.action.LazyStordiveMergeState;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.action.StdStordiveMergeToSelect;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.action.StordiveVisiEnforceLChanged;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.action.StordiveVisiMergeCalate;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.action.StordiveVisiMergeState;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.action.StordiveVisiMergeToSelect;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.checker.StordiveCheckLangu;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.checker.StordiveCheckOwner;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.checker.StordiveCheckRead;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.checker.StordiveCheckStore;
 
 
-public final class RootStordiveSelect extends DeciTreeTemplateWrite<StordiveInfo> {
+public final class StordiveRootSelect extends DeciTreeTemplateWrite<StordiveInfo> {
 	
-	public RootStordiveSelect(DeciTreeOption<StordiveInfo> option) {
+	public StordiveRootSelect(DeciTreeOption<StordiveInfo> option) {
 		super(option);
 	}
 	
@@ -70,10 +72,10 @@ public final class RootStordiveSelect extends DeciTreeTemplateWrite<StordiveInfo
 	@Override protected List<ActionStd<StordiveInfo>> buildActionsOnPassedHook(DeciTreeOption<StordiveInfo> option) {
 		List<ActionStd<StordiveInfo>> actions = new ArrayList<>();
 
-		ActionStd<StordiveInfo> select = new StdStordiveMergeToSelect(option);
-		ActionLazy<StordiveInfo> enforceLChanged = new LazyStordiveEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<StordiveInfo> mergeState = new LazyStordiveMergeState(option.conn, option.schemaName);
-		ActionLazy<StordiveInfo> mergeCalate = new LazyStordiveMergeCalate(option.conn, option.schemaName);
+		ActionStd<StordiveInfo> select = new ActionStdCommom<StordiveInfo>(option, StordiveVisiMergeToSelect.class);
+		ActionLazy<StordiveInfo> enforceLChanged = new ActionLazyCommom<StordiveInfo>(option, StordiveVisiEnforceLChanged.class);
+		ActionLazy<StordiveInfo> mergeState = new ActionLazyCommom<StordiveInfo>(option, StordiveVisiMergeState.class);
+		ActionLazy<StordiveInfo> mergeCalate = new ActionLazyCommom<StordiveInfo>(option, StordiveVisiMergeCalate.class);
 		
 		select.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeState);

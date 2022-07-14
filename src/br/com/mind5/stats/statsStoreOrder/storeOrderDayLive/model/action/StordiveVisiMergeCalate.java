@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.info.StordiveInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.info.StordiveMerger;
 
-final class VisiStordiveMergeCalate extends ActionVisitorTemplateMerge<StordiveInfo, CalateInfo> {
+public final class StordiveVisiMergeCalate extends ActionVisitorTemplateMerge<StordiveInfo, CalateInfo> {
 	
-	public VisiStordiveMergeCalate(DeciTreeOption<StordiveInfo> option) {
+	public StordiveVisiMergeCalate(DeciTreeOption<StordiveInfo> option) {
 		super(option, CalateInfo.class);
 	}
 	

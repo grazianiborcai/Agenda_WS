@@ -2,11 +2,12 @@ package br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.info.StordiveInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.action.StdStordiveDaoSelect;
+import br.com.mind5.stats.statsStoreOrder.storeOrderDayLive.model.action.StordiveVisiDaoSelect;
 
 public final class StordiveCheckExist extends ModelCheckerTemplateAction<StordiveInfo, StordiveInfo> {
 	
@@ -17,7 +18,7 @@ public final class StordiveCheckExist extends ModelCheckerTemplateAction<Stordiv
 	
 	
 	@Override protected ActionStd<StordiveInfo> buildActionHook(DeciTreeOption<StordiveInfo> option) {
-		ActionStd<StordiveInfo> select = new StdStordiveDaoSelect(option);
+		ActionStd<StordiveInfo> select = new ActionStdCommom<StordiveInfo>(option, StordiveVisiDaoSelect.class);
 		return select;
 	}
 	
