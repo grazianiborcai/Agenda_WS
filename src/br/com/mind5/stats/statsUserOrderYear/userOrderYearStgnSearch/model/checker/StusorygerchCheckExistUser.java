@@ -6,7 +6,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgnSearch.info.StusorygerchInfo;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgnSearch.model.decisionTree.RootStusorygerchSelectByUser;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgnSearch.model.decisionTree.StusorygerchRootSelectByUser;
 
 public final class StusorygerchCheckExistUser extends ModelCheckerTemplateAction<StusorygerchInfo, StusorygerchInfo> {
 	
@@ -17,7 +17,7 @@ public final class StusorygerchCheckExistUser extends ModelCheckerTemplateAction
 	
 	
 	@Override protected ActionStd<StusorygerchInfo> buildActionHook(DeciTreeOption<StusorygerchInfo> option) {
-		ActionStd<StusorygerchInfo> select = new RootStusorygerchSelectByUser(option).toAction();
+		ActionStd<StusorygerchInfo> select = new StusorygerchRootSelectByUser(option).toAction();
 		return select;
 	}
 	

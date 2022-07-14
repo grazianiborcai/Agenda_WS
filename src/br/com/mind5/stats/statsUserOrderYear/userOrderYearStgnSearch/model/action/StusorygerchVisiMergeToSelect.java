@@ -2,22 +2,22 @@ package br.com.mind5.stats.statsUserOrderYear.userOrderYearStgnSearch.model.acti
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgnSearch.info.StusorygerchInfo;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgnSearch.info.StusorygerchMerger;
 
-final class VisiStusorygerchMergeToSelect extends ActionVisitorTemplateMerge<StusorygerchInfo, StusorygerchInfo> {
+public final class StusorygerchVisiMergeToSelect extends ActionVisitorTemplateMerge<StusorygerchInfo, StusorygerchInfo> {
 	
-	public VisiStusorygerchMergeToSelect(DeciTreeOption<StusorygerchInfo> option) {
+	public StusorygerchVisiMergeToSelect(DeciTreeOption<StusorygerchInfo> option) {
 		super(option, StusorygerchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<StusorygerchInfo>> getActionClassHook() {
-		return StdStusorygerchDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<StusorygerchInfo>> getVisitorClassHook() {
+		return StusorygerchVisiDaoSelect.class;
 	}
 	
 	

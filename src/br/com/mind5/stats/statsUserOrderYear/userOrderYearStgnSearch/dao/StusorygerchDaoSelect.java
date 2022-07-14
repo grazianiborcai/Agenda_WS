@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgnSearch.info.StusorygerchInfo;
 
-public final class DaoStusorygerchSelect implements DaoStmtExec<StusorygerchInfo> {
+public final class StusorygerchDaoSelect implements DaoStmtExec<StusorygerchInfo> {
 	private DaoStmtExec<StusorygerchInfo> helper;
 	
 	
-	public DaoStusorygerchSelect(List<DaoStmtExecOption<StusorygerchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoStusorygerchSelectSingle.class, StusorygerchInfo.class);
+	public StusorygerchDaoSelect(List<DaoStmtExecOption<StusorygerchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, StusorygerchDaoSelectSingle.class, StusorygerchInfo.class);
 	}
 	
 	
