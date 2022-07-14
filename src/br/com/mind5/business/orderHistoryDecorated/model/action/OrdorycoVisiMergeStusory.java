@@ -8,7 +8,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYear.info.StusoryInfo;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYear.model.decisionTree.RootStusorySearchByUser;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYear.model.decisionTree.StusoryRootSearchByUser;
 
 public final class OrdorycoVisiMergeStusory extends ActionVisitorTemplateMerge<OrdorycoInfo, StusoryInfo> {
 	
@@ -19,7 +19,7 @@ public final class OrdorycoVisiMergeStusory extends ActionVisitorTemplateMerge<O
 	
 	
 	@Override protected Class<? extends DeciTree<StusoryInfo>> getTreeClassHook() {
-		return RootStusorySearchByUser.class;
+		return StusoryRootSearchByUser.class;
 	}
 	
 	

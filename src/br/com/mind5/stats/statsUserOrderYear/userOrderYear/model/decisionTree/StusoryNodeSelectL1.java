@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYear.info.StusoryInfo;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYear.model.action.StdStusoryMergeStusoryli;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYear.model.action.StusoryVisiMergeStusoryli;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYear.model.checker.StusoryCheckStusoryge;
 
 
-public final class NodeStusorySelectL1 extends DeciTreeTemplateWrite<StusoryInfo> {
+public final class StusoryNodeSelectL1 extends DeciTreeTemplateWrite<StusoryInfo> {
 	
-	public NodeStusorySelectL1(DeciTreeOption<StusoryInfo> option) {
+	public StusoryNodeSelectL1(DeciTreeOption<StusoryInfo> option) {
 		super(option);
 	}
 	
@@ -42,7 +43,7 @@ public final class NodeStusorySelectL1 extends DeciTreeTemplateWrite<StusoryInfo
 	@Override protected List<ActionStd<StusoryInfo>> buildActionsOnPassedHook(DeciTreeOption<StusoryInfo> option) {
 		List<ActionStd<StusoryInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusoryInfo> selectLive = new StdStusoryMergeStusoryli(option);
+		ActionStd<StusoryInfo> selectLive = new ActionStdCommom<StusoryInfo>(option, StusoryVisiMergeStusoryli.class);
 		
 		actions.add(selectLive);
 		return actions;
@@ -53,7 +54,7 @@ public final class NodeStusorySelectL1 extends DeciTreeTemplateWrite<StusoryInfo
 	@Override protected List<ActionStd<StusoryInfo>> buildActionsOnFailedHook(DeciTreeOption<StusoryInfo> option) {
 		List<ActionStd<StusoryInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusoryInfo> nodeL2 = new NodeStusorySelectL2(option).toAction();
+		ActionStd<StusoryInfo> nodeL2 = new StusoryNodeSelectL2(option).toAction();
 		
 		actions.add(nodeL2);
 		return actions;

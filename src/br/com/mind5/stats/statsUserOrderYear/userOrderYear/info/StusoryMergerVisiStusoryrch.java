@@ -10,7 +10,7 @@ import br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.info.Stusor
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearSearch.info.StusoryrchInfo;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgnSearch.info.StusorygerchInfo;
 
-final class StusoryVisiMergeStusoryrch extends InfoMergerVisitorTemplate<StusoryInfo, StusoryrchInfo> {
+final class StusoryMergerVisiStusoryrch extends InfoMergerVisitorTemplate<StusoryInfo, StusoryrchInfo> {
 
 	@Override public boolean shouldMerge(StusoryInfo baseInfo, StusoryrchInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);

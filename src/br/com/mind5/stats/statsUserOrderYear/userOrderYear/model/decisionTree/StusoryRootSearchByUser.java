@@ -3,19 +3,23 @@ package br.com.mind5.stats.statsUserOrderYear.userOrderYear.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
-import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYear.info.StusoryInfo;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYear.model.checker.StusoryCheckRead;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYear.model.action.StusoryVisiRootSelect;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYear.model.action.StusoryVisiMergeStusoryrchByUser;
 
 
-public final class RootStusorySelect extends DeciTreeTemplateWrite<StusoryInfo> {
+public final class StusoryRootSearchByUser extends DeciTreeTemplateWrite<StusoryInfo> {
 	
-	public RootStusorySelect(DeciTreeOption<StusoryInfo> option) {
+	public StusoryRootSearchByUser(DeciTreeOption<StusoryInfo> option) {
 		super(option);
 	}
 	
@@ -24,13 +28,8 @@ public final class RootStusorySelect extends DeciTreeTemplateWrite<StusoryInfo> 
 	@Override protected ModelChecker<StusoryInfo> buildCheckerHook(DeciTreeOption<StusoryInfo> option) {
 		List<ModelChecker<StusoryInfo>> queue = new ArrayList<>();		
 		ModelChecker<StusoryInfo> checker;
-		ModelCheckerOption checkerOption;
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StusoryCheckRead(checkerOption);
+
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -41,9 +40,12 @@ public final class RootStusorySelect extends DeciTreeTemplateWrite<StusoryInfo> 
 	@Override protected List<ActionStd<StusoryInfo>> buildActionsOnPassedHook(DeciTreeOption<StusoryInfo> option) {
 		List<ActionStd<StusoryInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusoryInfo> nodeL1 = new NodeStusorySelectL1(option).toAction();
+		ActionStd<StusoryInfo> search = new ActionStdCommom<StusoryInfo>(option, StusoryVisiMergeStusoryrchByUser.class);
+		ActionLazy<StusoryInfo> select = new ActionLazyCommom<StusoryInfo>(option, StusoryVisiRootSelect.class);
 		
-		actions.add(nodeL1);
+		search.addPostAction(select);
+		
+		actions.add(search);
 		return actions;
 	}
 }
