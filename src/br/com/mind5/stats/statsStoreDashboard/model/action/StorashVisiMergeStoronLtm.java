@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreDashboard.info.StorashInfo;
 import br.com.mind5.stats.statsStoreDashboard.info.StorashMerger;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonth.info.StoronInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderMonth.model.decisionTree.RootStoronSelectLtm;
+import br.com.mind5.stats.statsStoreOrder.storeOrderMonth.model.decisionTree.StoronRootSelectLtm;
 
 public final class StorashVisiMergeStoronLtm extends ActionVisitorTemplateMerge<StorashInfo, StoronInfo> {
 	
@@ -19,7 +19,7 @@ public final class StorashVisiMergeStoronLtm extends ActionVisitorTemplateMerge<
 	
 	
 	@Override protected Class<? extends DeciTree<StoronInfo>> getTreeClassHook() {
-		return RootStoronSelectLtm.class;
+		return StoronRootSelectLtm.class;
 	}
 	
 	

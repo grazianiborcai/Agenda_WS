@@ -15,7 +15,7 @@ public final class StoronMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoronVisiMergeCalonth());
+		builder.addVisitor(new StoronMergerVisiCalonth());
 		InfoMerger<StoronInfo, CalonthInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -28,7 +28,7 @@ public final class StoronMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoronVisiMergeStoronagr());
+		builder.addVisitor(new StoronMergerVisiStoronagr());
 		InfoMerger<StoronInfo, StoronagrInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -41,7 +41,7 @@ public final class StoronMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoronVisiMergeStolis());
+		builder.addVisitor(new StoronMergerVisiStolis());
 		InfoMerger<StoronInfo, StolisInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -54,7 +54,7 @@ public final class StoronMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoronVisiMergeStoronive());
+		builder.addVisitor(new StoronMergerVisiStoronive());
 		InfoMerger<StoronInfo, StoroniveInfo> merger = builder.build();
 	
 		return merger.merge();

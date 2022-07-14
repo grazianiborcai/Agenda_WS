@@ -3,21 +3,19 @@ package br.com.mind5.stats.statsStoreOrder.storeOrderMonth.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
-import br.com.mind5.model.checker.common.ModelCheckerDummy;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonth.info.StoronInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderMonth.model.action.LazyStoronRootSelect;
-import br.com.mind5.stats.statsStoreOrder.storeOrderMonth.model.action.StdStoronMergeCalonthLtm;
+import br.com.mind5.stats.statsStoreOrder.storeOrderMonth.model.checker.StoronCheckRead;
 
 
-public final class RootStoronSelectLtm extends DeciTreeTemplateWrite<StoronInfo> {
+public final class StoronRootSelect extends DeciTreeTemplateWrite<StoronInfo> {
 	
-	public RootStoronSelectLtm(DeciTreeOption<StoronInfo> option) {
+	public StoronRootSelect(DeciTreeOption<StoronInfo> option) {
 		super(option);
 	}
 	
@@ -26,8 +24,13 @@ public final class RootStoronSelectLtm extends DeciTreeTemplateWrite<StoronInfo>
 	@Override protected ModelChecker<StoronInfo> buildCheckerHook(DeciTreeOption<StoronInfo> option) {
 		List<ModelChecker<StoronInfo>> queue = new ArrayList<>();
 		ModelChecker<StoronInfo> checker;
-
-		checker = new ModelCheckerDummy<StoronInfo>();
+		ModelCheckerOption checkerOption;
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new StoronCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -38,12 +41,9 @@ public final class RootStoronSelectLtm extends DeciTreeTemplateWrite<StoronInfo>
 	@Override protected List<ActionStd<StoronInfo>> buildActionsOnPassedHook(DeciTreeOption<StoronInfo> option) {
 		List<ActionStd<StoronInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoronInfo> mergeCalonthLtm = new StdStoronMergeCalonthLtm(option);
-		ActionLazy<StoronInfo> select = new LazyStoronRootSelect(option.conn, option.schemaName);
+		ActionStd<StoronInfo> nodeL1 = new StoronNodeSelectL1(option).toAction();
 		
-		mergeCalonthLtm.addPostAction(select);
-		
-		actions.add(mergeCalonthLtm);
+		actions.add(nodeL1);
 		return actions;
 	}
 }

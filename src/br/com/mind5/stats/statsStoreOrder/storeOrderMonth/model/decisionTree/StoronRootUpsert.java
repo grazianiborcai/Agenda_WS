@@ -10,13 +10,12 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonth.info.StoronInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderMonth.model.action.StdStoronMergeStoronagr;
-import br.com.mind5.stats.statsStoreOrder.storeOrderMonth.model.checker.StoronCheckStoronagr;
+import br.com.mind5.stats.statsStoreOrder.storeOrderMonth.model.checker.StoronCheckWrite;
 
 
-public final class NodeStoronSelectL1 extends DeciTreeTemplateWrite<StoronInfo> {
+public final class StoronRootUpsert extends DeciTreeTemplateWrite<StoronInfo> {
 	
-	public NodeStoronSelectL1(DeciTreeOption<StoronInfo> option) {
+	public StoronRootUpsert(DeciTreeOption<StoronInfo> option) {
 		super(option);
 	}
 	
@@ -30,8 +29,8 @@ public final class NodeStoronSelectL1 extends DeciTreeTemplateWrite<StoronInfo> 
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;
-		checker = new StoronCheckStoronagr(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new StoronCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -42,20 +41,9 @@ public final class NodeStoronSelectL1 extends DeciTreeTemplateWrite<StoronInfo> 
 	@Override protected List<ActionStd<StoronInfo>> buildActionsOnPassedHook(DeciTreeOption<StoronInfo> option) {
 		List<ActionStd<StoronInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoronInfo> mergeSteddagr = new StdStoronMergeStoronagr(option);
+		ActionStd<StoronInfo> nodeL1 = new StoronNodeUpsert(option).toAction();
 		
-		actions.add(mergeSteddagr);
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<StoronInfo>> buildActionsOnFailedHook(DeciTreeOption<StoronInfo> option) {
-		List<ActionStd<StoronInfo>> actions = new ArrayList<>();
-
-		ActionStd<StoronInfo> nodeL2 = new NodeStoronSelectL2(option).toAction();
-		
-		actions.add(nodeL2);
+		actions.add(nodeL1);
 		return actions;
 	}
 }

@@ -10,9 +10,9 @@ import br.com.mind5.stats.statsStoreOrder.storeOrderMonth.info.StoronMerger;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.info.StoronagrInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.decisionTree.RootStoronagrUpsert;
 
-final class VisiStoronStoronagrUpsert extends ActionVisitorTemplateAction<StoronInfo, StoronagrInfo> {
+public final class StoronVisiStoronagrUpsert extends ActionVisitorTemplateAction<StoronInfo, StoronagrInfo> {
 
-	public VisiStoronStoronagrUpsert(DeciTreeOption<StoronInfo> option) {
+	public StoronVisiStoronagrUpsert(DeciTreeOption<StoronInfo> option) {
 		super(option, StoronInfo.class, StoronagrInfo.class);
 	}
 	
