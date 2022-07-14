@@ -2,11 +2,12 @@ package br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.info.StoroniveInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.model.action.StdStoroniveDaoSelect;
+import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.model.action.StoroniveVisiDaoSelect;
 
 public final class StoroniveCheckExist extends ModelCheckerTemplateAction<StoroniveInfo, StoroniveInfo> {
 	
@@ -17,7 +18,7 @@ public final class StoroniveCheckExist extends ModelCheckerTemplateAction<Storon
 	
 	
 	@Override protected ActionStd<StoroniveInfo> buildActionHook(DeciTreeOption<StoroniveInfo> option) {
-		ActionStd<StoroniveInfo> select = new StdStoroniveDaoSelect(option);
+		ActionStd<StoroniveInfo> select = new ActionStdCommom<StoroniveInfo>(option, StoroniveVisiDaoSelect.class);
 		return select;
 	}
 	

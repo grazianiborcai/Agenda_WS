@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.info.StoroniveInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.info.StoroniveMerger;
 
-final class VisiStoroniveMergeCalonth extends ActionVisitorTemplateMerge<StoroniveInfo, CalonthInfo> {
+public final class StoroniveVisiMergeCalonth extends ActionVisitorTemplateMerge<StoroniveInfo, CalonthInfo> {
 	
-	public VisiStoroniveMergeCalonth(DeciTreeOption<StoroniveInfo> option) {
+	public StoroniveVisiMergeCalonth(DeciTreeOption<StoroniveInfo> option) {
 		super(option, CalonthInfo.class);
 	}
 	

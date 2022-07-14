@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.info.StoroniveInfo;
 
-public final class DaoStoroniveWhere implements DaoStmtWhere {
+public final class StoroniveDaoWhere implements DaoStmtWhere {
 	private String whereClause;
 	
 	
-	public DaoStoroniveWhere(DaoWhereBuilderOption whereOption, String tableName, StoroniveInfo recordInfo) {
+	public StoroniveDaoWhere(DaoWhereBuilderOption whereOption, String tableName, StoroniveInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class DaoStoroniveWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoStoroniveDbTableColumn.COL_COD_OWNER :
+				case StoroniveDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoStoroniveDbTableColumn.COL_COD_STORE :
+				case StoroniveDaoDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case DaoStoroniveDbTableColumn.COL_CALMONTH :
+				case StoroniveDaoDbTableColumn.COL_CALMONTH :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.calmonth);
 					break;
 			}

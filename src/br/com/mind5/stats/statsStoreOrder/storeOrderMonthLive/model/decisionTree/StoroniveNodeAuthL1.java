@@ -4,19 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.info.StoroniveInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.model.action.StdStoroniveMergeSytotauh;
-import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.model.action.StdStoroniveSuccess;
-import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.model.checker.StoroniveCheckSytotin;
+import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.model.checker.StoroniveCheckAuthOwner;
 
-public final class NodeStoroniveAuthL2 extends DeciTreeTemplateWrite<StoroniveInfo> {
+public final class StoroniveNodeAuthL1 extends DeciTreeTemplateWrite<StoroniveInfo> {
 	
-	public NodeStoroniveAuthL2(DeciTreeOption<StoroniveInfo> option) {
+	public StoroniveNodeAuthL1(DeciTreeOption<StoroniveInfo> option) {
 		super(option);
 	}
 	
@@ -31,7 +30,7 @@ public final class NodeStoroniveAuthL2 extends DeciTreeTemplateWrite<StoroniveIn
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
-		checker = new StoroniveCheckSytotin(checkerOption);
+		checker = new StoroniveCheckAuthOwner(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -42,9 +41,9 @@ public final class NodeStoroniveAuthL2 extends DeciTreeTemplateWrite<StoroniveIn
 	@Override protected List<ActionStd<StoroniveInfo>> buildActionsOnPassedHook(DeciTreeOption<StoroniveInfo> option) {
 		List<ActionStd<StoroniveInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoroniveInfo> mergeSytotauh = new StdStoroniveMergeSytotauh(option);
+		ActionStd<StoroniveInfo> success = new ActionStdSuccessCommom<StoroniveInfo>(option);
 		
-		actions.add(mergeSytotauh);
+		actions.add(success);
 		return actions;
 	}
 	
@@ -53,9 +52,9 @@ public final class NodeStoroniveAuthL2 extends DeciTreeTemplateWrite<StoroniveIn
 	@Override protected List<ActionStd<StoroniveInfo>> buildActionsOnFailedHook(DeciTreeOption<StoroniveInfo> option) {
 		List<ActionStd<StoroniveInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoroniveInfo> success = new StdStoroniveSuccess(option);
+		ActionStd<StoroniveInfo> nodeL2 = new StoroniveNodeAuthL2(option).toAction();
 		
-		actions.add(success);
+		actions.add(nodeL2);
 		return actions;
 	}
 }

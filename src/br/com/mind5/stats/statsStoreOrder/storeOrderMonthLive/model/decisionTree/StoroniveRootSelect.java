@@ -5,22 +5,27 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.info.StoroniveInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.model.action.LazyStoroniveRootSelect;
+import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.model.action.StoroniveVisiEnforceLChanged;
+import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.model.action.StoroniveVisiMergeCalonth;
+import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.model.action.StoroniveVisiMergeState;
+import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.model.action.StoroniveVisiMergeToSelect;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.model.checker.StoroniveCheckLangu;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.model.checker.StoroniveCheckOwner;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.model.checker.StoroniveCheckRead;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.model.checker.StoroniveCheckStore;
 
 
-public final class RootStoroniveSelectAuth extends DeciTreeTemplateWrite<StoroniveInfo> {
+public final class StoroniveRootSelect extends DeciTreeTemplateWrite<StoroniveInfo> {
 	
-	public RootStoroniveSelectAuth(DeciTreeOption<StoroniveInfo> option) {
+	public StoroniveRootSelect(DeciTreeOption<StoroniveInfo> option) {
 		super(option);
 	}
 	
@@ -67,12 +72,16 @@ public final class RootStoroniveSelectAuth extends DeciTreeTemplateWrite<Storoni
 	@Override protected List<ActionStd<StoroniveInfo>> buildActionsOnPassedHook(DeciTreeOption<StoroniveInfo> option) {
 		List<ActionStd<StoroniveInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoroniveInfo> auth = new NodeStoroniveAuthL1(option).toAction();
-		ActionLazy<StoroniveInfo> select = new LazyStoroniveRootSelect(option.conn, option.schemaName);
+		ActionStd<StoroniveInfo> select = new ActionStdCommom<StoroniveInfo>(option, StoroniveVisiMergeToSelect.class);
+		ActionLazy<StoroniveInfo> enforceLChanged = new ActionLazyCommom<StoroniveInfo>(option, StoroniveVisiEnforceLChanged.class);
+		ActionLazy<StoroniveInfo> mergeState = new ActionLazyCommom<StoroniveInfo>(option, StoroniveVisiMergeState.class);
+		ActionLazy<StoroniveInfo> mergeCalonth = new ActionLazyCommom<StoroniveInfo>(option, StoroniveVisiMergeCalonth.class);
 		
-		auth.addPostAction(select);
+		select.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(mergeState);
+		mergeState.addPostAction(mergeCalonth);
 		
-		actions.add(auth);
+		actions.add(select);
 		return actions;
 	}
 }

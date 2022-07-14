@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.info.StoroniveInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthLive.info.StoroniveSetterLChanged;
 
-final class VisiStoroniveEnforceLChanged extends ActionVisitorTemplateEnforce<StoroniveInfo> {
+public final class StoroniveVisiEnforceLChanged extends ActionVisitorTemplateEnforce<StoroniveInfo> {
 	
-	public VisiStoroniveEnforceLChanged(DeciTreeOption<StoroniveInfo> option) {
+	public StoroniveVisiEnforceLChanged(DeciTreeOption<StoroniveInfo> option) {
 		super(option);
 	}
 
