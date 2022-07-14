@@ -14,7 +14,7 @@ public final class StusoryrchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StusoryrchVisiMergeStusorygerch());
+		builder.addVisitor(new StusoryrchMergerVisiStusorygerch());
 		InfoMerger<StusoryrchInfo, StusorygerchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class StusoryrchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StusoryrchVisiMergeStusorygrarch());
+		builder.addVisitor(new StusoryrchMergerVisiStusorygrarch());
 		InfoMerger<StusoryrchInfo, StusorygrarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class StusoryrchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StusoryrchVisiMergeStusorylirch());
+		builder.addVisitor(new StusoryrchMergerVisiStusorylirch());
 		InfoMerger<StusoryrchInfo, StusorylirchInfo> merger = builder.build();		
 	
 		return merger.merge();

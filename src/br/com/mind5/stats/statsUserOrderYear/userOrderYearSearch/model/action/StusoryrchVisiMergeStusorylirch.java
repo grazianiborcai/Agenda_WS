@@ -10,9 +10,9 @@ import br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.model.decis
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearSearch.info.StusoryrchInfo;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearSearch.info.StusoryrchMerger;
 
-final class VisiStusoryrchMergeStusorylirch extends ActionVisitorTemplateMerge<StusoryrchInfo, StusorylirchInfo> {
+public final class StusoryrchVisiMergeStusorylirch extends ActionVisitorTemplateMerge<StusoryrchInfo, StusorylirchInfo> {
 	
-	public VisiStusoryrchMergeStusorylirch(DeciTreeOption<StusoryrchInfo> option) {
+	public StusoryrchVisiMergeStusorylirch(DeciTreeOption<StusoryrchInfo> option) {
 		super(option, StusorylirchInfo.class);
 	}
 	

@@ -13,9 +13,9 @@ import br.com.mind5.stats.statsUserOrderYear.userOrderYearSearch.info.Stusoryrch
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearSearch.model.checker.StusoryrchCheckRead;
 
 
-public final class RootStusoryrchSelectByUser extends DeciTreeTemplateWrite<StusoryrchInfo> {
+public final class StusoryrchRootSelectByUser extends DeciTreeTemplateWrite<StusoryrchInfo> {
 	
-	public RootStusoryrchSelectByUser(DeciTreeOption<StusoryrchInfo> option) {
+	public StusoryrchRootSelectByUser(DeciTreeOption<StusoryrchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +41,7 @@ public final class RootStusoryrchSelectByUser extends DeciTreeTemplateWrite<Stus
 	@Override protected List<ActionStd<StusoryrchInfo>> buildActionsOnPassedHook(DeciTreeOption<StusoryrchInfo> option) {
 		List<ActionStd<StusoryrchInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusoryrchInfo> nodeL1 = new NodeStusoryrchSelectByUser(option).toAction();
+		ActionStd<StusoryrchInfo> nodeL1 = new StusoryrchNodeSelectByUser(option).toAction();
 		
 		actions.add(nodeL1);
 		return actions;

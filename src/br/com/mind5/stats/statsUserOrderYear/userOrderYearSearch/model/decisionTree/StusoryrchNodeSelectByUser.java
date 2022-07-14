@@ -5,21 +5,23 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearSearch.info.StusoryrchInfo;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearSearch.model.action.LazyStusoryrchMergeStusorygerch;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearSearch.model.action.StdStusoryrchMergeStusorygrarch;
-import br.com.mind5.stats.statsUserOrderYear.userOrderYearSearch.model.action.StdStusoryrchMergeStusorylirch;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearSearch.model.action.StusoryrchVisiMergeStusorygerch;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearSearch.model.action.StusoryrchVisiMergeStusorygrarch;
+import br.com.mind5.stats.statsUserOrderYear.userOrderYearSearch.model.action.StusoryrchVisiMergeStusorylirch;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearSearch.model.checker.StusoryrchCheckStusorygrarch;
 
 
-public final class NodeStusoryrchSelectByUser extends DeciTreeTemplateWrite<StusoryrchInfo> {
+public final class StusoryrchNodeSelectByUser extends DeciTreeTemplateWrite<StusoryrchInfo> {
 	
-	public NodeStusoryrchSelectByUser(DeciTreeOption<StusoryrchInfo> option) {
+	public StusoryrchNodeSelectByUser(DeciTreeOption<StusoryrchInfo> option) {
 		super(option);
 	}
 	
@@ -45,8 +47,8 @@ public final class NodeStusoryrchSelectByUser extends DeciTreeTemplateWrite<Stus
 	@Override protected List<ActionStd<StusoryrchInfo>> buildActionsOnPassedHook(DeciTreeOption<StusoryrchInfo> option) {
 		List<ActionStd<StusoryrchInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusoryrchInfo> mergeAggregated = new StdStusoryrchMergeStusorygrarch(option);
-		ActionLazy<StusoryrchInfo> mergeStaging = new LazyStusoryrchMergeStusorygerch(option.conn, option.schemaName);
+		ActionStd<StusoryrchInfo> mergeAggregated = new ActionStdCommom<StusoryrchInfo>(option, StusoryrchVisiMergeStusorygrarch.class);
+		ActionLazy<StusoryrchInfo> mergeStaging = new ActionLazyCommom<StusoryrchInfo>(option, StusoryrchVisiMergeStusorygerch.class);
 		
 		mergeAggregated.addPostAction(mergeStaging);
 		
@@ -59,7 +61,7 @@ public final class NodeStusoryrchSelectByUser extends DeciTreeTemplateWrite<Stus
 	@Override protected List<ActionStd<StusoryrchInfo>> buildActionsOnFailedHook(DeciTreeOption<StusoryrchInfo> option) {
 		List<ActionStd<StusoryrchInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusoryrchInfo> mergeLive = new StdStusoryrchMergeStusorylirch(option);
+		ActionStd<StusoryrchInfo> mergeLive = new ActionStdCommom<StusoryrchInfo>(option, StusoryrchVisiMergeStusorylirch.class);
 		
 		actions.add(mergeLive);
 		return actions;
