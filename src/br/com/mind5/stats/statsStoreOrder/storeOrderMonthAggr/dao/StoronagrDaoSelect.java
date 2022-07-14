@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.info.StoronagrInfo;
 
-public final class DaoStoronagrDelete implements DaoStmtExec<StoronagrInfo> {
+public final class StoronagrDaoSelect implements DaoStmtExec<StoronagrInfo> {
 	private DaoStmtExec<StoronagrInfo> helper;
 	
 	
-	public DaoStoronagrDelete(List<DaoStmtExecOption<StoronagrInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoStoronagrDeleteSingle.class, StoronagrInfo.class);
+	public StoronagrDaoSelect(List<DaoStmtExecOption<StoronagrInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, StoronagrDaoSelectSingle.class, StoronagrInfo.class);
 	}
 	
 	

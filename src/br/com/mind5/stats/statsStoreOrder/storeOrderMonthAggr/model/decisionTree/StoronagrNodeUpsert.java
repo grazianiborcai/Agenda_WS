@@ -13,9 +13,9 @@ import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.info.StoronagrInfo
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.checker.StoronagrCheckExist;
 
 
-public final class NodeStoronagrUpsert extends DeciTreeTemplateWrite<StoronagrInfo> {
+public final class StoronagrNodeUpsert extends DeciTreeTemplateWrite<StoronagrInfo> {
 	
-	public NodeStoronagrUpsert(DeciTreeOption<StoronagrInfo> option) {
+	public StoronagrNodeUpsert(DeciTreeOption<StoronagrInfo> option) {
 		super(option);
 	}
 	
@@ -41,8 +41,8 @@ public final class NodeStoronagrUpsert extends DeciTreeTemplateWrite<StoronagrIn
 	@Override protected List<ActionStd<StoronagrInfo>> buildActionsOnPassedHook(DeciTreeOption<StoronagrInfo> option) {
 		List<ActionStd<StoronagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoronagrInfo> delete = new RootStoronagrDelete(option).toAction();
-		ActionStd<StoronagrInfo> insert = new RootStoronagrInsert(option).toAction();
+		ActionStd<StoronagrInfo> delete = new StoronagrRootDelete(option).toAction();
+		ActionStd<StoronagrInfo> insert = new StoronagrRootInsert(option).toAction();
 		
 		actions.add(delete);
 		actions.add(insert);
@@ -55,7 +55,7 @@ public final class NodeStoronagrUpsert extends DeciTreeTemplateWrite<StoronagrIn
 	@Override protected List<ActionStd<StoronagrInfo>> buildActionsOnFailedHook(DeciTreeOption<StoronagrInfo> option) {
 		List<ActionStd<StoronagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoronagrInfo> insert = new RootStoronagrInsert(option).toAction();
+		ActionStd<StoronagrInfo> insert = new StoronagrRootInsert(option).toAction();
 		
 		actions.add(insert);
 		return actions;

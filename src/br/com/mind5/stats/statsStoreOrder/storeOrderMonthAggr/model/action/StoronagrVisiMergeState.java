@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.info.StoronagrInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.info.StoronagrMerger;
 
-final class VisiStoronagrMergeState extends ActionVisitorTemplateMerge<StoronagrInfo, StateInfo> {
+public final class StoronagrVisiMergeState extends ActionVisitorTemplateMerge<StoronagrInfo, StateInfo> {
 	
-	public VisiStoronagrMergeState(DeciTreeOption<StoronagrInfo> option) {
+	public StoronagrVisiMergeState(DeciTreeOption<StoronagrInfo> option) {
 		super(option, StateInfo.class);
 	}
 	

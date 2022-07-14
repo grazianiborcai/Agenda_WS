@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.info.StoronagrInfo;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.info.StoronagrSetterLChanged;
 
-final class VisiStoronagrEnforceLChanged extends ActionVisitorTemplateEnforce<StoronagrInfo> {
+public final class StoronagrVisiEnforceLChanged extends ActionVisitorTemplateEnforce<StoronagrInfo> {
 	
-	public VisiStoronagrEnforceLChanged(DeciTreeOption<StoronagrInfo> option) {
+	public StoronagrVisiEnforceLChanged(DeciTreeOption<StoronagrInfo> option) {
 		super(option);
 	}
 

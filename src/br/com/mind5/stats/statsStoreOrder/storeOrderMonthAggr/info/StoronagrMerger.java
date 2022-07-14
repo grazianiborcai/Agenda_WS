@@ -13,7 +13,7 @@ public final class StoronagrMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoronagrVisiMergeCalonth());
+		builder.addVisitor(new StoronagrMergerVisiCalonth());
 		InfoMerger<StoronagrInfo, CalonthInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class StoronagrMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoronagrVisiMergeState());
+		builder.addVisitor(new StoronagrMergerVisiState());
 		InfoMerger<StoronagrInfo, StateInfo> merger = builder.build();
 	
 		return merger.merge();
@@ -39,7 +39,7 @@ public final class StoronagrMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoronagrVisiMergeToSelect());
+		builder.addVisitor(new StoronagrMergerVisiToSelect());
 		InfoMerger<StoronagrInfo, StoronagrInfo> merger = builder.build();
 	
 		return merger.merge();

@@ -16,9 +16,9 @@ import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.checker.Stor
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.checker.StoronagrCheckWrite;
 
 
-public final class RootStoronagrUpsert extends DeciTreeTemplateWrite<StoronagrInfo> {
+public final class StoronagrRootUpsert extends DeciTreeTemplateWrite<StoronagrInfo> {
 	
-	public RootStoronagrUpsert(DeciTreeOption<StoronagrInfo> option) {
+	public StoronagrRootUpsert(DeciTreeOption<StoronagrInfo> option) {
 		super(option);
 	}
 	
@@ -65,7 +65,7 @@ public final class RootStoronagrUpsert extends DeciTreeTemplateWrite<StoronagrIn
 	@Override protected List<ActionStd<StoronagrInfo>> buildActionsOnPassedHook(DeciTreeOption<StoronagrInfo> option) {
 		List<ActionStd<StoronagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoronagrInfo> nodeL1 = new NodeStoronagrUpsert(option).toAction();
+		ActionStd<StoronagrInfo> nodeL1 = new StoronagrNodeUpsert(option).toAction();
 		
 		actions.add(nodeL1);
 		return actions;

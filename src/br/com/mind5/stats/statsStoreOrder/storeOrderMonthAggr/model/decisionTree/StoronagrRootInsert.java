@@ -5,14 +5,16 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.info.StoronagrInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.action.LazyStoronagrDaoInsert;
-import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.action.StdStoronagrEnforceLChanged;
+import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.action.StoronagrVisiDaoInsert;
+import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.action.StoronagrVisiEnforceLChanged;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.checker.StoronagrCheckExist;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.checker.StoronagrCheckLangu;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.checker.StoronagrCheckOwner;
@@ -20,9 +22,9 @@ import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.checker.Stor
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.checker.StoronagrCheckWrite;
 
 
-public final class RootStoronagrInsert extends DeciTreeTemplateWrite<StoronagrInfo> {
+public final class StoronagrRootInsert extends DeciTreeTemplateWrite<StoronagrInfo> {
 	
-	public RootStoronagrInsert(DeciTreeOption<StoronagrInfo> option) {
+	public StoronagrRootInsert(DeciTreeOption<StoronagrInfo> option) {
 		super(option);
 	}
 	
@@ -76,8 +78,8 @@ public final class RootStoronagrInsert extends DeciTreeTemplateWrite<StoronagrIn
 	@Override protected List<ActionStd<StoronagrInfo>> buildActionsOnPassedHook(DeciTreeOption<StoronagrInfo> option) {
 		List<ActionStd<StoronagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoronagrInfo> enforceLChanged = new StdStoronagrEnforceLChanged(option);
-		ActionLazy<StoronagrInfo> insert = new LazyStoronagrDaoInsert(option.conn, option.schemaName);
+		ActionStd<StoronagrInfo> enforceLChanged = new ActionStdCommom<StoronagrInfo>(option, StoronagrVisiEnforceLChanged.class);
+		ActionLazy<StoronagrInfo> insert = new ActionLazyCommom<StoronagrInfo>(option, StoronagrVisiDaoInsert.class);
 		
 		enforceLChanged.addPostAction(insert);
 		

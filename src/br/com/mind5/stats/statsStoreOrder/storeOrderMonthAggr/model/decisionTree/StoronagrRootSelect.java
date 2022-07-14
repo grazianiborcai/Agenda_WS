@@ -5,24 +5,26 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.info.StoronagrInfo;
-import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.action.LazyStoronagrMergeCalonth;
-import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.action.LazyStoronagrMergeState;
-import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.action.StdStoronagrMergeToSelect;
+import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.action.StoronagrVisiMergeCalonth;
+import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.action.StoronagrVisiMergeState;
+import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.action.StoronagrVisiMergeToSelect;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.checker.StoronagrCheckLangu;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.checker.StoronagrCheckOwner;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.checker.StoronagrCheckRead;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.model.checker.StoronagrCheckStore;
 
 
-public final class RootStoronagrSelect extends DeciTreeTemplateWrite<StoronagrInfo> {
+public final class StoronagrRootSelect extends DeciTreeTemplateWrite<StoronagrInfo> {
 	
-	public RootStoronagrSelect(DeciTreeOption<StoronagrInfo> option) {
+	public StoronagrRootSelect(DeciTreeOption<StoronagrInfo> option) {
 		super(option);
 	}
 	
@@ -69,9 +71,9 @@ public final class RootStoronagrSelect extends DeciTreeTemplateWrite<StoronagrIn
 	@Override protected List<ActionStd<StoronagrInfo>> buildActionsOnPassedHook(DeciTreeOption<StoronagrInfo> option) {
 		List<ActionStd<StoronagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoronagrInfo> select = new StdStoronagrMergeToSelect(option);
-		ActionLazy<StoronagrInfo> mergeState = new LazyStoronagrMergeState(option.conn, option.schemaName);
-		ActionLazy<StoronagrInfo> mergeCalonth = new LazyStoronagrMergeCalonth(option.conn, option.schemaName);
+		ActionStd<StoronagrInfo> select = new ActionStdCommom<StoronagrInfo>(option, StoronagrVisiMergeToSelect.class);
+		ActionLazy<StoronagrInfo> mergeState = new ActionLazyCommom<StoronagrInfo>(option, StoronagrVisiMergeState.class);
+		ActionLazy<StoronagrInfo> mergeCalonth = new ActionLazyCommom<StoronagrInfo>(option, StoronagrVisiMergeCalonth.class);
 		
 		select.addPostAction(mergeState);
 		mergeState.addPostAction(mergeCalonth);

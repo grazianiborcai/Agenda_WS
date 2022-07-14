@@ -11,11 +11,11 @@ import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.stats.statsStoreOrder.storeOrderMonthAggr.info.StoronagrInfo;
 
-public final class DaoStoronagrInsertSingle extends DaoStmtTemplate<StoronagrInfo> {
+public final class StoronagrDaoInsertSingle extends DaoStmtTemplate<StoronagrInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STAT_STORE_ORDER_MONTH_TABLE;
 	
 	
-	public DaoStoronagrInsertSingle(Connection conn, StoronagrInfo recordInfo, String schemaName) {
+	public StoronagrDaoInsertSingle(Connection conn, StoronagrInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
