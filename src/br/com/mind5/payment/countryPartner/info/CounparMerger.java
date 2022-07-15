@@ -13,7 +13,7 @@ public final class CounparMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CounparVisiMergePaypar());
+		builder.addVisitor(new CounparMergerVisiPaypar());
 		InfoMerger<CounparInfo, PayparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class CounparMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CounparVisiMergeCounparch());
+		builder.addVisitor(new CounparMergerVisiCounparch());
 		InfoMerger<CounparInfo, CounparchInfo> merger = builder.build();		
 	
 		return merger.merge();

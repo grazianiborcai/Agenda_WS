@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 import br.com.mind5.payment.countryPartner.info.CounparMerger;
 
-final class VisiCounparMergePaypar extends ActionVisitorTemplateMerge<CounparInfo, PayparInfo> {
+public final class CounparVisiMergePaypar extends ActionVisitorTemplateMerge<CounparInfo, PayparInfo> {
 	
-	public VisiCounparMergePaypar(DeciTreeOption<CounparInfo> option) {
+	public CounparVisiMergePaypar(DeciTreeOption<CounparInfo> option) {
 		super(option, PayparInfo.class);
 	}
 	

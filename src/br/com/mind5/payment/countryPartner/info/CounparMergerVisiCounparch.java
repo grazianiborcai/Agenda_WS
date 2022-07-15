@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.payment.countryPartnerSearch.info.CounparchInfo;
 
-final class CounparVisiMergeCounparch extends InfoMergerVisitorTemplate<CounparInfo, CounparchInfo> {
+final class CounparMergerVisiCounparch extends InfoMergerVisitorTemplate<CounparInfo, CounparchInfo> {
 
 	@Override public boolean shouldMerge(CounparInfo baseInfo, CounparchInfo selectedInfo) {
 		return true;

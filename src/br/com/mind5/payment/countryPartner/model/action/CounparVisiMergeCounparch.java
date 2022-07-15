@@ -10,9 +10,9 @@ import br.com.mind5.payment.countryPartner.info.CounparMerger;
 import br.com.mind5.payment.countryPartnerSearch.info.CounparchInfo;
 import br.com.mind5.payment.countryPartnerSearch.model.decisionTree.RootCounparchSelect;
 
-final class VisiCounparMergeCounparch extends ActionVisitorTemplateMerge<CounparInfo, CounparchInfo> {
+public final class CounparVisiMergeCounparch extends ActionVisitorTemplateMerge<CounparInfo, CounparchInfo> {
 	
-	public VisiCounparMergeCounparch(DeciTreeOption<CounparInfo> option) {
+	public CounparVisiMergeCounparch(DeciTreeOption<CounparInfo> option) {
 		super(option, CounparchInfo.class);
 	}
 	

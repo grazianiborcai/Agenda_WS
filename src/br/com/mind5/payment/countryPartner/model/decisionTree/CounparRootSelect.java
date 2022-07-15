@@ -5,20 +5,21 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
-import br.com.mind5.payment.countryPartner.model.action.LazyCounparMergeCounparch;
-import br.com.mind5.payment.countryPartner.model.action.LazyCounparRootSelect;
-import br.com.mind5.payment.countryPartner.model.action.StdCounparEnforceDefault;
-import br.com.mind5.payment.countryPartner.model.checker.CounparCheckDefault;
+import br.com.mind5.payment.countryPartner.model.action.CounparVisiDaoSelect;
+import br.com.mind5.payment.countryPartner.model.action.CounparVisiMergePaypar;
+import br.com.mind5.payment.countryPartner.model.checker.CounparCheckRead;
 
-public final class RootCounparSelectDefault extends DeciTreeTemplateRead<CounparInfo> {
+public final class CounparRootSelect extends DeciTreeTemplateRead<CounparInfo> {
 	
-	public RootCounparSelectDefault(DeciTreeOption<CounparInfo> option) {
+	public CounparRootSelect(DeciTreeOption<CounparInfo> option) {
 		super(option);
 	}
 	
@@ -33,7 +34,7 @@ public final class RootCounparSelectDefault extends DeciTreeTemplateRead<Counpar
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CounparCheckDefault(checkerOption);
+		checker = new CounparCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -44,14 +45,12 @@ public final class RootCounparSelectDefault extends DeciTreeTemplateRead<Counpar
 	@Override protected List<ActionStd<CounparInfo>> buildActionsOnPassedHook(DeciTreeOption<CounparInfo> option) {
 		List<ActionStd<CounparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CounparInfo> enforceDefault = new StdCounparEnforceDefault(option);
-		ActionLazy<CounparInfo> mergeCounparch = new LazyCounparMergeCounparch(option.conn, option.schemaName);
-		ActionLazy<CounparInfo> select = new LazyCounparRootSelect(option.conn, option.schemaName);
+		ActionStd<CounparInfo> select = new ActionStdCommom<CounparInfo>(option, CounparVisiDaoSelect.class);
+		ActionLazy<CounparInfo> mergePayPartner = new ActionLazyCommom<CounparInfo>(option, CounparVisiMergePaypar.class);
 		
-		enforceDefault.addPostAction(mergeCounparch);
-		mergeCounparch.addPostAction(select);
+		select.addPostAction(mergePayPartner);
 		
-		actions.add(enforceDefault);
+		actions.add(select);
 		return actions;
 	}
 }

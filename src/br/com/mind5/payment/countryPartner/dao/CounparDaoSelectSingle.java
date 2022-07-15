@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 
-public final class DaoCounparSelectSingle extends DaoStmtTemplate<CounparInfo> {
+public final class CounparDaoSelectSingle extends DaoStmtTemplate<CounparInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_PARTNER_COUNTRY_TABLE;
 	
 	
-	public DaoCounparSelectSingle(Connection conn, CounparInfo recordInfo, String schemaName) {
+	public CounparDaoSelectSingle(Connection conn, CounparInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoCounparSelectSingle extends DaoStmtTemplate<CounparInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoCounparWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new CounparDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -61,9 +61,9 @@ public final class DaoCounparSelectSingle extends DaoStmtTemplate<CounparInfo> {
 				do {
 					CounparInfo dataInfo = new CounparInfo();
 					
-					dataInfo.codCountry = stmtResult.getString(DaoCounparDbTableColumn.COL_COD_COUNTRY);
-					dataInfo.codPayPartner = stmtResult.getInt(DaoCounparDbTableColumn.COL_COD_PAY_PARTNER);
-					dataInfo.isDefault = DaoFormatter.sqlToBoole(stmtResult, DaoCounparDbTableColumn.COL_IS_DEFAULT);					
+					dataInfo.codCountry = stmtResult.getString(CounparDaoDbTableColumn.COL_COD_COUNTRY);
+					dataInfo.codPayPartner = stmtResult.getInt(CounparDaoDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.isDefault = DaoFormatter.sqlToBoole(stmtResult, CounparDaoDbTableColumn.COL_IS_DEFAULT);					
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

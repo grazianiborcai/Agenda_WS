@@ -6,7 +6,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
-import br.com.mind5.payment.countryPartner.model.decisionTree.RootCounparSelect;
+import br.com.mind5.payment.countryPartner.model.decisionTree.CounparRootSelect;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 import br.com.mind5.payment.ownerPartner.info.OwnparMerger;
 
@@ -19,7 +19,7 @@ final class VisiOwnparMergeCounpar extends ActionVisitorTemplateMerge<OwnparInfo
 	
 	
 	@Override protected Class<? extends DeciTree<CounparInfo>> getTreeClassHook() {
-		return RootCounparSelect.class;
+		return CounparRootSelect.class;
 	}
 	
 	

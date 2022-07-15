@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 import br.com.mind5.payment.countryPartner.info.CounparSetterDefault;
 
-final class VisiCounparEnforceDefault extends ActionVisitorTemplateEnforce<CounparInfo> {
+public final class CounparVisiEnforceDefault extends ActionVisitorTemplateEnforce<CounparInfo> {
 	
-	public VisiCounparEnforceDefault(DeciTreeOption<CounparInfo> option) {
+	public CounparVisiEnforceDefault(DeciTreeOption<CounparInfo> option) {
 		super(option);
 	}
 	
