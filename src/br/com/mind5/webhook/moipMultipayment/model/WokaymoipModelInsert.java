@@ -8,7 +8,7 @@ import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
-import br.com.mind5.webhook.moipMultipayment.model.decisionTree.RootWokaymoipInsert;
+import br.com.mind5.webhook.moipMultipayment.model.decisionTree.WokaymoipRootInsert;
 
 public final class WokaymoipModelInsert extends ModelTemplate<WokaymoipInfo> {
 
@@ -19,7 +19,7 @@ public final class WokaymoipModelInsert extends ModelTemplate<WokaymoipInfo> {
 	
 	
 	@Override protected DeciTree<WokaymoipInfo> getDecisionTreeHook(DeciTreeOption<WokaymoipInfo> option) {
-		return new RootWokaymoipInsert(option);
+		return new WokaymoipRootInsert(option);
 	}
 	
 	

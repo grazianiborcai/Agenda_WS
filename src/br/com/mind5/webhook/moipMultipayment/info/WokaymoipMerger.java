@@ -12,7 +12,7 @@ public final class WokaymoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new WokaymoipVisiMergeDaemon());
+		builder.addVisitor(new WokaymoipMergerVisiDaemon());
 		InfoMerger<WokaymoipInfo, UserInfo> merger = builder.build();		
 	
 		return merger.merge();

@@ -5,22 +5,24 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.action.commom.ActionStdEmptifyCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
-import br.com.mind5.webhook.moipMultipayment.model.action.LazyWokaymoipMergeDaemon;
-import br.com.mind5.webhook.moipMultipayment.model.action.LazyWokaymoipPaytusRefresh;
-import br.com.mind5.webhook.moipMultipayment.model.action.LazyWokaymoipDaoSelect;
-import br.com.mind5.webhook.moipMultipayment.model.action.LazyWokaymoipSuccess;
-import br.com.mind5.webhook.moipMultipayment.model.action.StdWokaymoipEnforceIdPayment;
+import br.com.mind5.webhook.moipMultipayment.model.action.WokaymoipVisiDaoSelect;
+import br.com.mind5.webhook.moipMultipayment.model.action.WokaymoipVisiEnforceIdPayment;
+import br.com.mind5.webhook.moipMultipayment.model.action.WokaymoipVisiMergeDaemon;
+import br.com.mind5.webhook.moipMultipayment.model.action.WokaymoipVisiPaytusRefresh;
 import br.com.mind5.webhook.moipMultipayment.model.checker.WokaymoipCheckInsert;
 
-public final class RootWokaymoipInsert extends DeciTreeTemplateWrite<WokaymoipInfo> {
+public final class WokaymoipRootInsert extends DeciTreeTemplateWrite<WokaymoipInfo> {
 	
-	public RootWokaymoipInsert(DeciTreeOption<WokaymoipInfo> option) {
+	public WokaymoipRootInsert(DeciTreeOption<WokaymoipInfo> option) {
 		super(option);
 	}
 	
@@ -46,18 +48,19 @@ public final class RootWokaymoipInsert extends DeciTreeTemplateWrite<WokaymoipIn
 	@Override protected List<ActionStd<WokaymoipInfo>> buildActionsOnPassedHook(DeciTreeOption<WokaymoipInfo> option) {
 		List<ActionStd<WokaymoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<WokaymoipInfo> enforceIdPayment = new StdWokaymoipEnforceIdPayment(option);
-		ActionLazy<WokaymoipInfo> select = new LazyWokaymoipDaoSelect(option.conn, option.schemaName);
-		ActionLazy<WokaymoipInfo> mergeDaemon = new LazyWokaymoipMergeDaemon(option.conn, option.schemaName);
-		ActionLazy<WokaymoipInfo> paytusRefresh = new LazyWokaymoipPaytusRefresh(option.conn, option.schemaName);
-		ActionLazy<WokaymoipInfo> success = new LazyWokaymoipSuccess(option.conn, option.schemaName);
+		ActionStd<WokaymoipInfo> enforceIdPayment = new ActionStdCommom<WokaymoipInfo>(option, WokaymoipVisiEnforceIdPayment.class);
+		ActionLazy<WokaymoipInfo> select = new ActionLazyCommom<WokaymoipInfo>(option, WokaymoipVisiDaoSelect.class);
+		ActionLazy<WokaymoipInfo> mergeDaemon = new ActionLazyCommom<WokaymoipInfo>(option, WokaymoipVisiMergeDaemon.class);
+		ActionLazy<WokaymoipInfo> paytusRefresh = new ActionLazyCommom<WokaymoipInfo>(option, WokaymoipVisiPaytusRefresh.class);
+		ActionStd<WokaymoipInfo> emptify = new ActionStdEmptifyCommom<WokaymoipInfo>(WokaymoipInfo.class);
 		
 		enforceIdPayment.addPostAction(select);
 		select.addPostAction(mergeDaemon);
 		mergeDaemon.addPostAction(paytusRefresh);
-		paytusRefresh.addPostAction(success);
 		
-		actions.add(enforceIdPayment);		
+		actions.add(enforceIdPayment);
+		actions.add(emptify);
+		
 		return actions;
 	}
 }

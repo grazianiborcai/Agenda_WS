@@ -300,7 +300,7 @@ import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgnSearch.dao.Stusory
 import br.com.mind5.stats.statsUserStore.userStoreAggr.dao.DaoStusoraggDbTableColumn;
 import br.com.mind5.stats.statsUserStore.userStoreLive.dao.DaoStusoreveDbTableColumn;
 import br.com.mind5.stats.statsUserStore.userStoreStgn.dao.DaoStusorageDbTableColumn;
-import br.com.mind5.webhook.moipMultipayment.dao.DaoWokaymoipDbTableColumn;
+import br.com.mind5.webhook.moipMultipayment.dao.WokaymoipDaoDbTableColumn;
 import br.com.mind5.webhook.moipRefund.dao.DaoWokefumoipDbTableColumn;
 
 public final class DaoDbTableColumnAll {
@@ -371,7 +371,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoSysparDbTableColumn());
 		addTable(new DaoPayordemDbTableColumn());
 		addTable(new DaoPeresmoipDbTableColumn());
-		addTable(new DaoWokaymoipDbTableColumn());
+		addTable(new WokaymoipDaoDbTableColumn());
 		addTable(new DaoWokefumoipDbTableColumn());
 		addTable(new SchedineDaoDbTableColumn());
 		addTable(new StorapDaoDbTableColumn());

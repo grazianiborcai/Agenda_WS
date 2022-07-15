@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
 
-public final class DaoWokaymoipSelect implements DaoStmtExec<WokaymoipInfo> {
+public final class WokaymoipDaoSelect implements DaoStmtExec<WokaymoipInfo> {
 	private DaoStmtExec<WokaymoipInfo> helper;
 	
 	
-	public DaoWokaymoipSelect(List<DaoStmtExecOption<WokaymoipInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoWokaymoipSelectSingle.class, WokaymoipInfo.class);
+	public WokaymoipDaoSelect(List<DaoStmtExecOption<WokaymoipInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, WokaymoipDaoSelectSingle.class, WokaymoipInfo.class);
 	}
 	
 	

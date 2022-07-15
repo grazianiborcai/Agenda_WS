@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
 
-final class DaoWokaymoipWhere implements DaoStmtWhere {
+final class WokaymoipDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoWokaymoipWhere(DaoWhereBuilderOption whereOption, String tableName, WokaymoipInfo recordInfo) {
+	public WokaymoipDaoWhere(DaoWhereBuilderOption whereOption, String tableName, WokaymoipInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,7 +26,7 @@ final class DaoWokaymoipWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoWokaymoipDbTableColumn.COL_ID_PAYMENT_PARTNER :
+				case WokaymoipDaoDbTableColumn.COL_ID_PAYMENT_PARTNER :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.idPaymentPartner);
 					break;
 			}

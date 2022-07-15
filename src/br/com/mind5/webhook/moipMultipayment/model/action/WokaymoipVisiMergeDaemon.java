@@ -11,9 +11,9 @@ import br.com.mind5.security.user.model.decisionTree.UserRootSelectDaemon;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipMerger;
 
-final class VisiWokaymoipMergeDaemon extends ActionVisitorTemplateMerge<WokaymoipInfo, UserInfo> {
+public final class WokaymoipVisiMergeDaemon extends ActionVisitorTemplateMerge<WokaymoipInfo, UserInfo> {
 	
-	public VisiWokaymoipMergeDaemon(DeciTreeOption<WokaymoipInfo> option) {
+	public WokaymoipVisiMergeDaemon(DeciTreeOption<WokaymoipInfo> option) {
 		super(option, UserInfo.class);
 	}
 	
