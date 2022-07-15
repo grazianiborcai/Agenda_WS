@@ -11,9 +11,9 @@ import br.com.mind5.security.user.model.decisionTree.UserRootSelectDaemon;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipInfo;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipMerger;
 
-final class VisiWokefumoipMergeDaemon extends ActionVisitorTemplateMerge<WokefumoipInfo, UserInfo> {
+public final class WokefumoipVisiMergeDaemon extends ActionVisitorTemplateMerge<WokefumoipInfo, UserInfo> {
 	
-	public VisiWokefumoipMergeDaemon(DeciTreeOption<WokefumoipInfo> option) {
+	public WokefumoipVisiMergeDaemon(DeciTreeOption<WokefumoipInfo> option) {
 		super(option, UserInfo.class);
 	}
 	

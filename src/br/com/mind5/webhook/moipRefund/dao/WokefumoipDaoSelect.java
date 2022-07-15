@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipInfo;
 
-public final class DaoWokefumoipSelect implements DaoStmtExec<WokefumoipInfo> {
+public final class WokefumoipDaoSelect implements DaoStmtExec<WokefumoipInfo> {
 	private DaoStmtExec<WokefumoipInfo> helper;
 	
 	
-	public DaoWokefumoipSelect(List<DaoStmtExecOption<WokefumoipInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoWokefumoipSelectSingle.class, WokefumoipInfo.class);
+	public WokefumoipDaoSelect(List<DaoStmtExecOption<WokefumoipInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, WokefumoipDaoSelectSingle.class, WokefumoipInfo.class);
 	}
 	
 	

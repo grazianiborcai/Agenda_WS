@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipInfo;
 
-public final class DaoWokefumoipSelectSingle extends DaoStmtTemplate<WokefumoipInfo> {
+public final class WokefumoipDaoSelectSingle extends DaoStmtTemplate<WokefumoipInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_ORDER_ITM_TABLE;
 	
 	
-	public DaoWokefumoipSelectSingle(Connection conn, WokefumoipInfo recordInfo, String schemaName) {
+	public WokefumoipDaoSelectSingle(Connection conn, WokefumoipInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -49,7 +49,7 @@ public final class DaoWokefumoipSelectSingle extends DaoStmtTemplate<WokefumoipI
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoWokefumoipWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new WokefumoipDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -66,9 +66,9 @@ public final class DaoWokefumoipSelectSingle extends DaoStmtTemplate<WokefumoipI
 				do {
 					WokefumoipInfo dataInfo = new WokefumoipInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoWokefumoipDbTableColumn.COL_COD_OWNER);
-					dataInfo.codPayOrder = stmtResult.getLong(DaoWokefumoipDbTableColumn.COL_COD_PAY_ORDER);	
-					dataInfo.idPaymentPartner = stmtResult.getString(DaoWokefumoipDbTableColumn.COL_ID_PAYMENT_PARTNER);				
+					dataInfo.codOwner = stmtResult.getLong(WokefumoipDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codPayOrder = stmtResult.getLong(WokefumoipDaoDbTableColumn.COL_COD_PAY_ORDER);	
+					dataInfo.idPaymentPartner = stmtResult.getString(WokefumoipDaoDbTableColumn.COL_ID_PAYMENT_PARTNER);				
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

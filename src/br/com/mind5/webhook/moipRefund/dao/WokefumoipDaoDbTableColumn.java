@@ -9,13 +9,13 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoWokefumoipDbTableColumn extends DaoDbTableColumnTemplate {
+public final class WokefumoipDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_PAY_ORDER = DaoDbField.COL_COD_PAY_ORDER; 
 	public static final String COL_ID_PAYMENT_PARTNER = DaoDbField.COL_ID_PAYMENT_PARTNER; 
 	
 	
-	public DaoWokefumoipDbTableColumn() {
+	public WokefumoipDaoDbTableColumn() {
 		super();
 	}
 	

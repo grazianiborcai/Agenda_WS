@@ -9,9 +9,9 @@ import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.model.decisionTree.RootPaytusRefresh;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipInfo;
 
-final class VisiWokefumoipPaytusRefresh extends ActionVisitorTemplateAction<WokefumoipInfo, PaytusInfo> {
+public final class WokefumoipVisiPaytusRefresh extends ActionVisitorTemplateAction<WokefumoipInfo, PaytusInfo> {
 	
-	public VisiWokefumoipPaytusRefresh(DeciTreeOption<WokefumoipInfo> option) {
+	public WokefumoipVisiPaytusRefresh(DeciTreeOption<WokefumoipInfo> option) {
 		super(option, WokefumoipInfo.class, PaytusInfo.class);
 	}
 	

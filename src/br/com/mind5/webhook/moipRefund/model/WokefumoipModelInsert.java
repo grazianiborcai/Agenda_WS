@@ -8,7 +8,7 @@ import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipInfo;
-import br.com.mind5.webhook.moipRefund.model.decisionTree.RootWokefumoipInsert;
+import br.com.mind5.webhook.moipRefund.model.decisionTree.WokefumoipRootInsert;
 
 public final class WokefumoipModelInsert extends ModelTemplate<WokefumoipInfo> {
 
@@ -19,7 +19,7 @@ public final class WokefumoipModelInsert extends ModelTemplate<WokefumoipInfo> {
 	
 	
 	@Override protected DeciTree<WokefumoipInfo> getDecisionTreeHook(DeciTreeOption<WokefumoipInfo> option) {
-		return new RootWokefumoipInsert(option);
+		return new WokefumoipRootInsert(option);
 	}
 	
 	

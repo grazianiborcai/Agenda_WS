@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipInfo;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipSetterIdPayment;
 
-final class VisiWokefumoipEnforceIdPayment extends ActionVisitorTemplateEnforce<WokefumoipInfo> {
+public final class WokefumoipVisiEnforceIdPayment extends ActionVisitorTemplateEnforce<WokefumoipInfo> {
 	
-	public VisiWokefumoipEnforceIdPayment(DeciTreeOption<WokefumoipInfo> option) {
+	public WokefumoipVisiEnforceIdPayment(DeciTreeOption<WokefumoipInfo> option) {
 		super(option);
 	}
 	

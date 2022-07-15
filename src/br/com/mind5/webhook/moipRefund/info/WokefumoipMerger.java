@@ -12,7 +12,7 @@ public final class WokefumoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new WokefumoipVisiMergeDaemon());
+		builder.addVisitor(new WokefumoipMergerVisiDaemon());
 		InfoMerger<WokefumoipInfo, UserInfo> merger = builder.build();		
 	
 		return merger.merge();

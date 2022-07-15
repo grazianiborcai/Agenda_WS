@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class WokefumoipVisiMergeDaemon extends InfoMergerVisitorTemplate<WokefumoipInfo, UserInfo> {
+final class WokefumoipMergerVisiDaemon extends InfoMergerVisitorTemplate<WokefumoipInfo, UserInfo> {
 
 	@Override public boolean shouldMerge(WokefumoipInfo baseInfo, UserInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
