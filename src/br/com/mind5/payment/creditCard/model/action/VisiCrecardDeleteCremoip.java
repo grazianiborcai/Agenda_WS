@@ -7,7 +7,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.decisionTree.RootCremoipDelete;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.decisionTree.CremoipRootDelete;
 
 
 final class VisiCrecardDeleteCremoip extends ActionVisitorTemplateAction<CrecardInfo, CremoipInfo> {
@@ -19,7 +19,7 @@ final class VisiCrecardDeleteCremoip extends ActionVisitorTemplateAction<Crecard
 	
 	
 	@Override protected Class<? extends DeciTree<CremoipInfo>> getTreeClassHook() {
-		return RootCremoipDelete.class;
+		return CremoipRootDelete.class;
 	}
 	
 	

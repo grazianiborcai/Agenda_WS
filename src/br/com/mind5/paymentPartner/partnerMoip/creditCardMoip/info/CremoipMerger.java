@@ -16,7 +16,7 @@ public final class CremoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CremoipVisiMergeCuspar());
+		builder.addVisitor(new CremoipMergerVisiCuspar());
 		InfoMerger<CremoipInfo, CusparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -29,7 +29,7 @@ public final class CremoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CremoipVisiMergeSysenv());
+		builder.addVisitor(new CremoipMergerVisiSysenv());
 		InfoMerger<CremoipInfo, SysenvInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -42,7 +42,7 @@ public final class CremoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CremoipVisiMergeSetupar());
+		builder.addVisitor(new CremoipMergerVisiSetupar());
 		InfoMerger<CremoipInfo, SetuparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -55,7 +55,7 @@ public final class CremoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CremoipVisiMergeAddresnap());
+		builder.addVisitor(new CremoipMergerVisiAddresnap());
 		InfoMerger<CremoipInfo, AddresnapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -68,7 +68,7 @@ public final class CremoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CremoipVisiMergePhonap());
+		builder.addVisitor(new CremoipMergerVisiPhonap());
 		InfoMerger<CremoipInfo, PhonapInfo> merger = builder.build();		
 	
 		return merger.merge();

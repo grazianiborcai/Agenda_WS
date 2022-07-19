@@ -9,7 +9,7 @@ import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.info.CrecardMerger;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipCopier;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.decisionTree.RootCremoipAdd;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.decisionTree.CremoipRootAdd;
 
 
 final class VisiCrecardAddCremoip extends ActionVisitorTemplateAction<CrecardInfo, CremoipInfo> {
@@ -21,7 +21,7 @@ final class VisiCrecardAddCremoip extends ActionVisitorTemplateAction<CrecardInf
 	
 	
 	@Override protected Class<? extends DeciTree<CremoipInfo>> getTreeClassHook() {
-		return RootCremoipAdd.class;
+		return CremoipRootAdd.class;
 	}
 	
 	
