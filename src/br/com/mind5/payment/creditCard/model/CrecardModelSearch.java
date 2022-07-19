@@ -6,7 +6,7 @@ import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.decisionTree.RootCrecardSearch;
+import br.com.mind5.payment.creditCard.model.decisionTree.CrecardRootSearch;
 
 
 public final class CrecardModelSearch extends ModelTemplate<CrecardInfo> {
@@ -18,6 +18,6 @@ public final class CrecardModelSearch extends ModelTemplate<CrecardInfo> {
 	
 	
 	@Override protected DeciTree<CrecardInfo> getDecisionTreeHook(DeciTreeOption<CrecardInfo> option) {
-		return new RootCrecardSearch(option);
+		return new CrecardRootSearch(option);
 	}
 }

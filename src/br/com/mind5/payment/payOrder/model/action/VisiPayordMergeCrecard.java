@@ -7,7 +7,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardCopier;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.decisionTree.RootCrecardSelect;
+import br.com.mind5.payment.creditCard.model.decisionTree.CrecardRootSelect;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.info.PayordMerger;
 
@@ -20,7 +20,7 @@ final class VisiPayordMergeCrecard extends ActionVisitorTemplateMerge<PayordInfo
 	
 	
 	@Override protected Class<? extends DeciTree<CrecardInfo>> getTreeClassHook() {
-		return RootCrecardSelect.class;
+		return CrecardRootSelect.class;
 	}
 	
 	

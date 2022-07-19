@@ -18,7 +18,7 @@ public final class CrecardMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CrecardVisiMergeCusparch());
+		builder.addVisitor(new CrecardMergerVisiCusparch());
 		InfoMerger<CrecardInfo, CusparchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -31,7 +31,7 @@ public final class CrecardMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CrecardVisiMergeCrecarch());
+		builder.addVisitor(new CrecardMergerVisiCrecarch());
 		InfoMerger<CrecardInfo, CrecarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -44,7 +44,7 @@ public final class CrecardMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CrecardVisiMergeCremoip());
+		builder.addVisitor(new CrecardMergerVisiCremoip());
 		InfoMerger<CrecardInfo, CremoipInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -57,7 +57,7 @@ public final class CrecardMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CrecardVisiMergePhone());
+		builder.addVisitor(new CrecardMergerVisiPhone());
 		InfoMerger<CrecardInfo, PhoneInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -69,7 +69,7 @@ public final class CrecardMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CrecardVisiMergeAddress());
+		builder.addVisitor(new CrecardMergerVisiAddress());
 		InfoMerger<CrecardInfo, AddressInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -82,7 +82,7 @@ public final class CrecardMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CrecardVisiMergeCuspar());
+		builder.addVisitor(new CrecardMergerVisiCuspar());
 		InfoMerger<CrecardInfo, CusparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -95,7 +95,7 @@ public final class CrecardMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CrecardVisiMergeCusparInsert());
+		builder.addVisitor(new CrecardMergerVisiCusparInsert());
 		InfoMerger<CrecardInfo, CusparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -108,7 +108,7 @@ public final class CrecardMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CrecardVisiMergeUsername());
+		builder.addVisitor(new CrecardMergerVisiUsername());
 		InfoMerger<CrecardInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -121,7 +121,7 @@ public final class CrecardMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CrecardVisiMergeToSelect());
+		builder.addVisitor(new CrecardMergerVisiToSelect());
 		InfoMerger<CrecardInfo, CrecardInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -134,7 +134,7 @@ public final class CrecardMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CrecardVisiMergeToDelete());
+		builder.addVisitor(new CrecardMergerVisiToDelete());
 		InfoMerger<CrecardInfo, CrecardInfo> merger = builder.build();		
 	
 		return merger.merge();
