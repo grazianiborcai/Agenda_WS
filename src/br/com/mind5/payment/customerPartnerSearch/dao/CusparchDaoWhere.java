@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 
-public final class DaoCusparchWhere implements DaoStmtWhere {	
+public final class CusparchDaoWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public DaoCusparchWhere(DaoWhereBuilderOption whereOption, String tableName, CusparchInfo recordInfo) {
+	public CusparchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, CusparchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,23 +27,23 @@ public final class DaoCusparchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoCusparchDbTableColumn.COL_COD_OWNER :
+				case CusparchDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoCusparchDbTableColumn.COL_COD_PAYCUS :
+				case CusparchDaoDbTableColumn.COL_COD_PAYCUS :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayCustomer));
 					break;
 					
-				case DaoCusparchDbTableColumn.COL_COD_USER :
+				case CusparchDaoDbTableColumn.COL_COD_USER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 					
-				case DaoCusparchDbTableColumn.COL_COD_PAY_PARTNER :
+				case CusparchDaoDbTableColumn.COL_COD_PAY_PARTNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayPartner));
 					break;
 					
-				case DaoCusparchDbTableColumn.COL_RECORD_MODE :
+				case CusparchDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

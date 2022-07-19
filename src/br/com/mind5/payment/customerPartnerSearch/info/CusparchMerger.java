@@ -11,7 +11,7 @@ public final class CusparchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusparchVisiMergeToSelect());
+		builder.addVisitor(new CusparchMergerVisiToSelect());
 		InfoMerger<CusparchInfo, CusparchInfo> merger = builder.build();		
 	
 		return merger.merge();

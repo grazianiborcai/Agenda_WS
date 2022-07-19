@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoCusparchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class CusparchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
 	public static final String COL_COD_PAYCUS = DaoDbField.COL_COD_PAYCUS; 
 	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER; 
@@ -20,7 +20,7 @@ public final class DaoCusparchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
-	public DaoCusparchDbTableColumn() {
+	public CusparchDaoDbTableColumn() {
 		super();
 	}
 	

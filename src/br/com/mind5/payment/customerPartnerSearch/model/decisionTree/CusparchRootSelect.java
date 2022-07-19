@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
-import br.com.mind5.payment.customerPartnerSearch.model.action.StdCusparchMergeToSelect;
+import br.com.mind5.payment.customerPartnerSearch.model.action.CusparchVisiMergeToSelect;
 import br.com.mind5.payment.customerPartnerSearch.model.checker.CusparchCheckOwner;
 import br.com.mind5.payment.customerPartnerSearch.model.checker.CusparchCheckRead;
 
-public final class RootCusparchSelect extends DeciTreeTemplateRead<CusparchInfo> {
+public final class CusparchRootSelect extends DeciTreeTemplateRead<CusparchInfo> {
 	
-	public RootCusparchSelect(DeciTreeOption<CusparchInfo> option) {
+	public CusparchRootSelect(DeciTreeOption<CusparchInfo> option) {
 		super(option);
 	}
 	
@@ -50,7 +51,7 @@ public final class RootCusparchSelect extends DeciTreeTemplateRead<CusparchInfo>
 	@Override protected List<ActionStd<CusparchInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparchInfo> option) {
 		List<ActionStd<CusparchInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CusparchInfo> select = new StdCusparchMergeToSelect(option);
+		ActionStd<CusparchInfo> select = new ActionStdCommom<CusparchInfo>(option, CusparchVisiMergeToSelect.class);
 		
 		actions.add(select);			
 		return actions;

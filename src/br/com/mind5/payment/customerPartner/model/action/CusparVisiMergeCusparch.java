@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.info.CusparMerger;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
-import br.com.mind5.payment.customerPartnerSearch.model.decisionTree.RootCusparchSelect;
+import br.com.mind5.payment.customerPartnerSearch.model.decisionTree.CusparchRootSelect;
 
 public final class CusparVisiMergeCusparch extends ActionVisitorTemplateMerge<CusparInfo, CusparchInfo> {
 	
@@ -19,7 +19,7 @@ public final class CusparVisiMergeCusparch extends ActionVisitorTemplateMerge<Cu
 	
 	
 	@Override protected Class<? extends DeciTree<CusparchInfo>> getTreeClassHook() {
-		return RootCusparchSelect.class;
+		return CusparchRootSelect.class;
 	}
 	
 	

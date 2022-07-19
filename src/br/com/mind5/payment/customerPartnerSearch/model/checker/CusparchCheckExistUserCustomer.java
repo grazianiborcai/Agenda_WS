@@ -6,7 +6,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
-import br.com.mind5.payment.customerPartnerSearch.model.decisionTree.RootCusparchSelectUserCustomer;
+import br.com.mind5.payment.customerPartnerSearch.model.decisionTree.CusparchRootSelectUserCustomer;
 
 public final class CusparchCheckExistUserCustomer extends ModelCheckerTemplateAction<CusparchInfo, CusparchInfo> {
 	
@@ -17,7 +17,7 @@ public final class CusparchCheckExistUserCustomer extends ModelCheckerTemplateAc
 
 	
 	@Override protected ActionStd<CusparchInfo> buildActionHook(DeciTreeOption<CusparchInfo> option) {
-		ActionStd<CusparchInfo> select = new RootCusparchSelectUserCustomer(option).toAction();
+		ActionStd<CusparchInfo> select = new CusparchRootSelectUserCustomer(option).toAction();
 
 		return select;
 	}

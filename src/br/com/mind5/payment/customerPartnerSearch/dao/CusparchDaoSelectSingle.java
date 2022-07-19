@@ -16,12 +16,12 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 
-public final class DaoCusparchSelectSingle extends DaoStmtTemplate<CusparchInfo> {
+public final class CusparchDaoSelectSingle extends DaoStmtTemplate<CusparchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_CUS_TABLE;
 	
 	
 	
-	public DaoCusparchSelectSingle(Connection conn, CusparchInfo recordInfo, String schemaName) {
+	public CusparchDaoSelectSingle(Connection conn, CusparchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -51,7 +51,7 @@ public final class DaoCusparchSelectSingle extends DaoStmtTemplate<CusparchInfo>
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoCusparchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new CusparchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -68,14 +68,14 @@ public final class DaoCusparchSelectSingle extends DaoStmtTemplate<CusparchInfo>
 				do {
 					CusparchInfo dataInfo = new CusparchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoCusparchDbTableColumn.COL_COD_OWNER);	
-					dataInfo.codPayCustomer = stmtResult.getLong(DaoCusparchDbTableColumn.COL_COD_PAYCUS);
-					dataInfo.codUser = stmtResult.getLong(DaoCusparchDbTableColumn.COL_COD_USER);
-					dataInfo.recordMode = stmtResult.getString(DaoCusparchDbTableColumn.COL_RECORD_MODE);				
-					dataInfo.compoundId = stmtResult.getString(DaoCusparchDbTableColumn.COL_COMPOUND_ID);
-					dataInfo.customerId = stmtResult.getString(DaoCusparchDbTableColumn.COL_CUSTOMER_ID);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoCusparchDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codPayPartner = DaoFormatter.sqlToInt(stmtResult, DaoCusparchDbTableColumn.COL_COD_PAY_PARTNER);				
+					dataInfo.codOwner = stmtResult.getLong(CusparchDaoDbTableColumn.COL_COD_OWNER);	
+					dataInfo.codPayCustomer = stmtResult.getLong(CusparchDaoDbTableColumn.COL_COD_PAYCUS);
+					dataInfo.codUser = stmtResult.getLong(CusparchDaoDbTableColumn.COL_COD_USER);
+					dataInfo.recordMode = stmtResult.getString(CusparchDaoDbTableColumn.COL_RECORD_MODE);				
+					dataInfo.compoundId = stmtResult.getString(CusparchDaoDbTableColumn.COL_COMPOUND_ID);
+					dataInfo.customerId = stmtResult.getString(CusparchDaoDbTableColumn.COL_CUSTOMER_ID);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, CusparchDaoDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codPayPartner = DaoFormatter.sqlToInt(stmtResult, CusparchDaoDbTableColumn.COL_COD_PAY_PARTNER);				
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

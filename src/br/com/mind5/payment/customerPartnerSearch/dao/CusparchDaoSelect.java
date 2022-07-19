@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 
-public final class DaoCusparchSelect implements DaoStmtExec<CusparchInfo> {
+public final class CusparchDaoSelect implements DaoStmtExec<CusparchInfo> {
 	private DaoStmtExec<CusparchInfo> helper;
 	
 	
-	public DaoCusparchSelect(List<DaoStmtExecOption<CusparchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCusparchSelectSingle.class, CusparchInfo.class);
+	public CusparchDaoSelect(List<DaoStmtExecOption<CusparchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CusparchDaoSelectSingle.class, CusparchInfo.class);
 	}
 	
 	
