@@ -17,7 +17,7 @@ public final class CusparMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusparVisiMergePhone());
+		builder.addVisitor(new CusparMergerVisiPhone());
 		InfoMerger<CusparInfo, PhoneInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -30,7 +30,7 @@ public final class CusparMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusparVisiMergeCusparch());
+		builder.addVisitor(new CusparMergerVisiCusparch());
 		InfoMerger<CusparInfo, CusparchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -43,7 +43,7 @@ public final class CusparMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusparVisiMergeAddress());
+		builder.addVisitor(new CusparMergerVisiAddress());
 		InfoMerger<CusparInfo, AddressInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -56,7 +56,7 @@ public final class CusparMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusparVisiMergeCusmoip());
+		builder.addVisitor(new CusparMergerVisiCusmoip());
 		InfoMerger<CusparInfo, CusmoipInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -69,7 +69,7 @@ public final class CusparMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusparVisiMergeUsername());
+		builder.addVisitor(new CusparMergerVisiUsername());
 		InfoMerger<CusparInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -82,7 +82,7 @@ public final class CusparMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusparVisiMergeUselis());
+		builder.addVisitor(new CusparMergerVisiUselis());
 		InfoMerger<CusparInfo, UselisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -95,7 +95,7 @@ public final class CusparMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusparVisiMergeToSelect());
+		builder.addVisitor(new CusparMergerVisiToSelect());
 		InfoMerger<CusparInfo, CusparInfo> merger = builder.build();		
 	
 		return merger.merge();

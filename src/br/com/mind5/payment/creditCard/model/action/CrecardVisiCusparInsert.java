@@ -9,7 +9,7 @@ import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.info.CrecardMerger;
 import br.com.mind5.payment.customerPartner.info.CusparCopier;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.decisionTree.RootCusparInsertAuth;
+import br.com.mind5.payment.customerPartner.model.decisionTree.CusparRootInsertAuth;
 
 public final class CrecardVisiCusparInsert extends ActionVisitorTemplateAction<CrecardInfo, CusparInfo> {
 	
@@ -20,7 +20,7 @@ public final class CrecardVisiCusparInsert extends ActionVisitorTemplateAction<C
 	
 	
 	@Override protected Class<? extends DeciTree<CusparInfo>> getTreeClassHook() {
-		return RootCusparInsertAuth.class;
+		return CusparRootInsertAuth.class;
 	}
 	
 	

@@ -6,7 +6,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.decisionTree.RootCusparSelect;
+import br.com.mind5.payment.customerPartner.model.decisionTree.CusparRootSelect;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.info.RefemMerger;
 
@@ -19,7 +19,7 @@ final class VisiRefemMergeCuspar extends ActionVisitorTemplateMerge<RefemInfo, C
 	
 	
 	@Override protected Class<? extends DeciTree<CusparInfo>> getTreeClassHook() {
-		return RootCusparSelect.class;
+		return CusparRootSelect.class;
 	}
 	
 	

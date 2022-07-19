@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.info.CrecardMerger;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.decisionTree.RootCusparSelect;
+import br.com.mind5.payment.customerPartner.model.decisionTree.CusparRootSelect;
 
 public final class CrecardVisiMergeCuspar extends ActionVisitorTemplateMerge<CrecardInfo, CusparInfo> {
 	
@@ -19,7 +19,7 @@ public final class CrecardVisiMergeCuspar extends ActionVisitorTemplateMerge<Cre
 	
 	
 	@Override protected Class<? extends DeciTree<CusparInfo>> getTreeClassHook() {
-		return RootCusparSelect.class;
+		return CusparRootSelect.class;
 	}
 	
 	

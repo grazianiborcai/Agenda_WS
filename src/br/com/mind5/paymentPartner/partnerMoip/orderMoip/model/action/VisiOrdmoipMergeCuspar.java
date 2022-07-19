@@ -7,7 +7,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparCopier;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.decisionTree.RootCusparSelect;
+import br.com.mind5.payment.customerPartner.model.decisionTree.CusparRootSelect;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipMerger;
 
@@ -20,7 +20,7 @@ final class VisiOrdmoipMergeCuspar extends ActionVisitorTemplateMerge<OrdmoipInf
 	
 	
 	@Override protected Class<? extends DeciTree<CusparInfo>> getTreeClassHook() {
-		return RootCusparSelect.class;
+		return CusparRootSelect.class;
 	}
 	
 	

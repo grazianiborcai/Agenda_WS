@@ -6,7 +6,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.decisionTree.RootCusparSearch;
+import br.com.mind5.payment.customerPartner.model.decisionTree.CusparRootSearch;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.info.UserMerger;
 
@@ -19,7 +19,7 @@ public final class UserVisiMergeCuspar extends ActionVisitorTemplateMerge<UserIn
 	
 	
 	@Override protected Class<? extends DeciTree<CusparInfo>> getTreeClassHook() {
-		return RootCusparSearch.class;
+		return CusparRootSearch.class;
 	}
 	
 	
