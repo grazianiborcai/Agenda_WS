@@ -11,7 +11,7 @@ public final class CrecarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CrecarchVisiMergeToSelect());
+		builder.addVisitor(new CrecarchMergerVisiToSelect());
 		InfoMerger<CrecarchInfo, CrecarchInfo> merger = builder.build();		
 	
 		return merger.merge();

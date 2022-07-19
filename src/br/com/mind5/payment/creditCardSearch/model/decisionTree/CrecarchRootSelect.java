@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
-import br.com.mind5.payment.creditCardSearch.model.action.StdCrecarchMergeToSelect;
+import br.com.mind5.payment.creditCardSearch.model.action.CrecarchVisiMergeToSelect;
 import br.com.mind5.payment.creditCardSearch.model.checker.CrecarchCheckRead;
 
-public final class RootCrecarchSelect extends DeciTreeTemplateRead<CrecarchInfo> {
+public final class CrecarchRootSelect extends DeciTreeTemplateRead<CrecarchInfo> {
 	
-	public RootCrecarchSelect(DeciTreeOption<CrecarchInfo> option) {
+	public CrecarchRootSelect(DeciTreeOption<CrecarchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootCrecarchSelect extends DeciTreeTemplateRead<CrecarchInfo>
 	@Override protected List<ActionStd<CrecarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecarchInfo> option) {
 		List<ActionStd<CrecarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CrecarchInfo> mergeToSelect = new StdCrecarchMergeToSelect(option);
+		ActionStd<CrecarchInfo> mergeToSelect = new ActionStdCommom<CrecarchInfo>(option, CrecarchVisiMergeToSelect.class);
 		
 		actions.add(mergeToSelect);
 		return actions;

@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoCrecarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class CrecarchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CREDIT_CARD = DaoDbField.COL_COD_CREDIT_CARD;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
 	public static final String COL_COD_PAY_CUSTOMER = DaoDbField.COL_COD_PAY_CUSTOMER;
@@ -21,7 +21,7 @@ public final class DaoCrecarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
-	public DaoCrecarchDbTableColumn() {
+	public CrecarchDaoDbTableColumn() {
 		super();
 	}
 	

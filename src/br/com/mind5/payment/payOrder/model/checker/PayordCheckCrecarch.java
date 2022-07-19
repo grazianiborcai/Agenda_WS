@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchCopier;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
-import br.com.mind5.payment.creditCardSearch.model.decisionTree.RootCrecarchSelect;
+import br.com.mind5.payment.creditCardSearch.model.decisionTree.CrecarchRootSelect;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
 public final class PayordCheckCrecarch extends ModelCheckerTemplateAction<PayordInfo, CrecarchInfo> {
@@ -21,7 +21,7 @@ public final class PayordCheckCrecarch extends ModelCheckerTemplateAction<Payord
 
 	
 	@Override protected ActionStd<CrecarchInfo> buildActionHook(DeciTreeOption<CrecarchInfo> option) {
-		ActionStd<CrecarchInfo> select = new RootCrecarchSelect(option).toAction();
+		ActionStd<CrecarchInfo> select = new CrecarchRootSelect(option).toAction();
 		return select;
 	}
 	

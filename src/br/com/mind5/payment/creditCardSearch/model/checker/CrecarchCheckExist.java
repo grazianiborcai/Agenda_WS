@@ -6,7 +6,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
-import br.com.mind5.payment.creditCardSearch.model.decisionTree.RootCrecarchSelect;
+import br.com.mind5.payment.creditCardSearch.model.decisionTree.CrecarchRootSelect;
 
 public final class CrecarchCheckExist extends ModelCheckerTemplateAction<CrecarchInfo, CrecarchInfo> {	
 	
@@ -17,7 +17,7 @@ public final class CrecarchCheckExist extends ModelCheckerTemplateAction<Crecarc
 	
 	
 	@Override protected ActionStd<CrecarchInfo> buildActionHook(DeciTreeOption<CrecarchInfo> option) {
-		ActionStd<CrecarchInfo> select = new RootCrecarchSelect(option).toAction();
+		ActionStd<CrecarchInfo> select = new CrecarchRootSelect(option).toAction();
 		return select;
 	}
 	

@@ -2,22 +2,22 @@ package br.com.mind5.payment.creditCardSearch.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchMerger;
 
-final class VisiCrecarchMergeToSelect extends ActionVisitorTemplateMerge<CrecarchInfo, CrecarchInfo> {
+public final class CrecarchVisiMergeToSelect extends ActionVisitorTemplateMerge<CrecarchInfo, CrecarchInfo> {
 	
-	public VisiCrecarchMergeToSelect(DeciTreeOption<CrecarchInfo> option) {
+	public CrecarchVisiMergeToSelect(DeciTreeOption<CrecarchInfo> option) {
 		super(option, CrecarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<CrecarchInfo>> getActionClassHook() {
-		return StdCrecarchDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<CrecarchInfo>> getVisitorClassHook() {
+		return CrecarchVisiDaoSelect.class;
 	}
 	
 	

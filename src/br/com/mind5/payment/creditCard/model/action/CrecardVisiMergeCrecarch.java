@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.info.CrecardMerger;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
-import br.com.mind5.payment.creditCardSearch.model.decisionTree.RootCrecarchSelect;
+import br.com.mind5.payment.creditCardSearch.model.decisionTree.CrecarchRootSelect;
 
 public final class CrecardVisiMergeCrecarch extends ActionVisitorTemplateMerge<CrecardInfo, CrecarchInfo> {
 	
@@ -19,7 +19,7 @@ public final class CrecardVisiMergeCrecarch extends ActionVisitorTemplateMerge<C
 	
 	
 	@Override protected Class<? extends DeciTree<CrecarchInfo>> getTreeClassHook() {
-		return RootCrecarchSelect.class;
+		return CrecarchRootSelect.class;
 	}
 	
 	

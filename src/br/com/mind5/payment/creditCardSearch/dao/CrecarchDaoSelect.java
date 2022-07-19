@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
 
-public final class DaoCrecarchSelect implements DaoStmtExec<CrecarchInfo> {
+public final class CrecarchDaoSelect implements DaoStmtExec<CrecarchInfo> {
 	private DaoStmtExec<CrecarchInfo> helper;
 	
 	
-	public DaoCrecarchSelect(List<DaoStmtExecOption<CrecarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCrecarchSelectSingle.class, CrecarchInfo.class);
+	public CrecarchDaoSelect(List<DaoStmtExecOption<CrecarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CrecarchDaoSelectSingle.class, CrecarchInfo.class);
 	}
 	
 	
