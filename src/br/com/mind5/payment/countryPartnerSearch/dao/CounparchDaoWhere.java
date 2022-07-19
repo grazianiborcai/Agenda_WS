@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.payment.countryPartnerSearch.info.CounparchInfo;
 
-final class DaoCounparchWhere implements DaoStmtWhere {
+final class CounparchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoCounparchWhere(DaoWhereBuilderOption whereOption, String tableName, CounparchInfo recordInfo) {
+	public CounparchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, CounparchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ final class DaoCounparchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoCounparchDbTableColumn.COL_COD_COUNTRY :
+				case CounparchDaoDbTableColumn.COL_COD_COUNTRY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codCountry);
 					break;
 					
-				case DaoCounparchDbTableColumn.COL_COD_PAY_PARTNER :
+				case CounparchDaoDbTableColumn.COL_COD_PAY_PARTNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayPartner));
 					break;
 					
-				case DaoCounparchDbTableColumn.COL_IS_DEFAULT :
+				case CounparchDaoDbTableColumn.COL_IS_DEFAULT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.booleanTrueToString(recordInfo.isDefault));
 					break;
 			}

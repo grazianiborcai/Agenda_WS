@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 import br.com.mind5.payment.countryPartner.info.CounparMerger;
 import br.com.mind5.payment.countryPartnerSearch.info.CounparchInfo;
-import br.com.mind5.payment.countryPartnerSearch.model.decisionTree.RootCounparchSelect;
+import br.com.mind5.payment.countryPartnerSearch.model.decisionTree.CounparchRootSelect;
 
 public final class CounparVisiMergeCounparch extends ActionVisitorTemplateMerge<CounparInfo, CounparchInfo> {
 	
@@ -19,7 +19,7 @@ public final class CounparVisiMergeCounparch extends ActionVisitorTemplateMerge<
 	
 	
 	@Override protected Class<? extends DeciTree<CounparchInfo>> getTreeClassHook() {
-		return RootCounparchSelect.class;
+		return CounparchRootSelect.class;
 	}
 	
 	

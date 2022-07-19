@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.countryPartnerSearch.info.CounparchInfo;
 
-public final class DaoCounparchSelectSingle extends DaoStmtTemplate<CounparchInfo> {
+public final class CounparchDaoSelectSingle extends DaoStmtTemplate<CounparchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_PARTNER_COUNTRY_TABLE;
 	
 	
-	public DaoCounparchSelectSingle(Connection conn, CounparchInfo recordInfo, String schemaName) {
+	public CounparchDaoSelectSingle(Connection conn, CounparchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoCounparchSelectSingle extends DaoStmtTemplate<CounparchInf
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoCounparchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new CounparchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,9 +67,9 @@ public final class DaoCounparchSelectSingle extends DaoStmtTemplate<CounparchInf
 				do {
 					CounparchInfo dataInfo = new CounparchInfo();
 					
-					dataInfo.codCountry = stmtResult.getString(DaoCounparchDbTableColumn.COL_COD_COUNTRY);
-					dataInfo.codPayPartner = stmtResult.getInt(DaoCounparchDbTableColumn.COL_COD_PAY_PARTNER);
-					dataInfo.isDefault = DaoFormatter.sqlToBoole(stmtResult, DaoCounparchDbTableColumn.COL_IS_DEFAULT);					
+					dataInfo.codCountry = stmtResult.getString(CounparchDaoDbTableColumn.COL_COD_COUNTRY);
+					dataInfo.codPayPartner = stmtResult.getInt(CounparchDaoDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.isDefault = DaoFormatter.sqlToBoole(stmtResult, CounparchDaoDbTableColumn.COL_IS_DEFAULT);					
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

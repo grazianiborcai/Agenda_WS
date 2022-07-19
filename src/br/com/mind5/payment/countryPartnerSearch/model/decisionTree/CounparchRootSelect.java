@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.countryPartnerSearch.info.CounparchInfo;
-import br.com.mind5.payment.countryPartnerSearch.model.action.StdCounparchDaoSelect;
+import br.com.mind5.payment.countryPartnerSearch.model.action.CounparchVisiDaoSelect;
 import br.com.mind5.payment.countryPartnerSearch.model.checker.CounparchCheckRead;
 
-public final class RootCounparchSelect extends DeciTreeTemplateRead<CounparchInfo> {
+public final class CounparchRootSelect extends DeciTreeTemplateRead<CounparchInfo> {
 	
-	public RootCounparchSelect(DeciTreeOption<CounparchInfo> option) {
+	public CounparchRootSelect(DeciTreeOption<CounparchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootCounparchSelect extends DeciTreeTemplateRead<CounparchInf
 	@Override protected List<ActionStd<CounparchInfo>> buildActionsOnPassedHook(DeciTreeOption<CounparchInfo> option) {
 		List<ActionStd<CounparchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CounparchInfo> select = new StdCounparchDaoSelect(option);
+		ActionStd<CounparchInfo> select = new ActionStdCommom<CounparchInfo>(option, CounparchVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

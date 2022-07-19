@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.payment.countryPartnerSearch.info.CounparchInfo;
 
-public final class DaoCounparchSelect implements DaoStmtExec<CounparchInfo> {
+public final class CounparchDaoSelect implements DaoStmtExec<CounparchInfo> {
 	private DaoStmtExec<CounparchInfo> helper;
 	
 	
-	public DaoCounparchSelect(List<DaoStmtExecOption<CounparchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCounparchSelectSingle.class, CounparchInfo.class);
+	public CounparchDaoSelect(List<DaoStmtExecOption<CounparchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CounparchDaoSelectSingle.class, CounparchInfo.class);
 	}
 	
 	
