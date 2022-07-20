@@ -6,7 +6,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.payment.payOrderItem.model.decisionTree.RootPayordemUpdateStatus;
+import br.com.mind5.payment.payOrderItem.model.decisionTree.PayordemRootUpdateStatus;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemMerger;
 
@@ -19,7 +19,7 @@ final class VisiPaytusemPayordemUpdate extends ActionVisitorTemplateMerge<Paytus
 	
 	
 	@Override protected Class<? extends DeciTree<PayordemInfo>> getTreeClassHook() {
-		return RootPayordemUpdateStatus.class;
+		return PayordemRootUpdateStatus.class;
 	}
 	
 	

@@ -14,7 +14,7 @@ public final class PayordemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordemVisiMergePayormarch());
+		builder.addVisitor(new PayordemMergerVisiPayormarch());
 		InfoMerger<PayordemInfo, PayormarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class PayordemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordemVisiMergeMatlis());
+		builder.addVisitor(new PayordemMergerVisiMatlis());
 		InfoMerger<PayordemInfo, MatlisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class PayordemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordemVisiMergeFeecat());
+		builder.addVisitor(new PayordemMergerVisiFeecat());
 		InfoMerger<PayordemInfo, FeecatInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -53,7 +53,7 @@ public final class PayordemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordemVisiMergeToSelect());
+		builder.addVisitor(new PayordemMergerVisiToSelect());
 		InfoMerger<PayordemInfo, PayordemInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -66,7 +66,7 @@ public final class PayordemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordemVisiMergeToUpdate());
+		builder.addVisitor(new PayordemMergerVisiToUpdate());
 		InfoMerger<PayordemInfo, PayordemInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -79,7 +79,7 @@ public final class PayordemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordemVisiMergeToUpdateStatus());
+		builder.addVisitor(new PayordemMergerVisiToUpdateStatus());
 		InfoMerger<PayordemInfo, PayordemInfo> merger = builder.build();		
 	
 		return merger.merge();

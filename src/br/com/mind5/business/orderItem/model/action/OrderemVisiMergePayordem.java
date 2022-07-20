@@ -8,7 +8,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.payment.payOrderItem.model.decisionTree.RootPayordemSelect;
+import br.com.mind5.payment.payOrderItem.model.decisionTree.PayordemRootSelect;
 
 public final class OrderemVisiMergePayordem extends ActionVisitorTemplateMerge<OrderemInfo, PayordemInfo> {
 	
@@ -19,7 +19,7 @@ public final class OrderemVisiMergePayordem extends ActionVisitorTemplateMerge<O
 	
 	
 	@Override protected Class<? extends DeciTree<PayordemInfo>> getTreeClassHook() {
-		return RootPayordemSelect.class;
+		return PayordemRootSelect.class;
 	}
 	
 	

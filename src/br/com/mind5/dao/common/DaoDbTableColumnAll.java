@@ -241,7 +241,7 @@ import br.com.mind5.payment.customerPartner.dao.CusparDaoDbTableColumn;
 import br.com.mind5.payment.customerPartnerSearch.dao.CusparchDaoDbTableColumn;
 import br.com.mind5.payment.ownerPartner.dao.OwnparDaoDbTableColumn;
 import br.com.mind5.payment.payOrder.dao.PayordDaoDbTableColumn;
-import br.com.mind5.payment.payOrderItem.dao.DaoPayordemDbTableColumn;
+import br.com.mind5.payment.payOrderItem.dao.PayordemDaoDbTableColumn;
 import br.com.mind5.payment.payOrderItemList.dao.DaoPayordemistDbTableColumn;
 import br.com.mind5.payment.payOrderItemSearch.dao.DaoPayormarchDbTableColumn;
 import br.com.mind5.payment.payOrderList.dao.DaoPayordistDbTableColumn;
@@ -369,7 +369,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CrecardDaoDbTableColumn());
 		addTable(new DaoSysparchDbTableColumn());
 		addTable(new DaoSysparDbTableColumn());
-		addTable(new DaoPayordemDbTableColumn());
+		addTable(new PayordemDaoDbTableColumn());
 		addTable(new DaoPeresmoipDbTableColumn());
 		addTable(new WokaymoipDaoDbTableColumn());
 		addTable(new WokefumoipDaoDbTableColumn());
