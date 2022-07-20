@@ -6,7 +6,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItemList.info.PayordemistInfo;
-import br.com.mind5.payment.payOrderItemList.model.decisionTree.RootPayordemistSearch;
+import br.com.mind5.payment.payOrderItemList.model.decisionTree.PayordemistRootSearch;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipMerger;
 
@@ -19,7 +19,7 @@ final class VisiMultmoipMergePayordemist extends ActionVisitorTemplateMerge<Mult
 	
 	
 	@Override protected Class<? extends DeciTree<PayordemistInfo>> getTreeClassHook() {
-		return RootPayordemistSearch.class;
+		return PayordemistRootSearch.class;
 	}
 	
 	

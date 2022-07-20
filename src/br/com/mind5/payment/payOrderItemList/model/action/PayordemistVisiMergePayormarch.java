@@ -10,9 +10,9 @@ import br.com.mind5.payment.payOrderItemList.info.PayordemistMerger;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 import br.com.mind5.payment.payOrderItemSearch.model.decisionTree.RootPayormarchSelect;
 
-final class VisiPayordemistMergePayormarch extends ActionVisitorTemplateMerge<PayordemistInfo, PayormarchInfo> {
+public final class PayordemistVisiMergePayormarch extends ActionVisitorTemplateMerge<PayordemistInfo, PayormarchInfo> {
 	
-	public VisiPayordemistMergePayormarch(DeciTreeOption<PayordemistInfo> option) {
+	public PayordemistVisiMergePayormarch(DeciTreeOption<PayordemistInfo> option) {
 		super(option, PayormarchInfo.class);
 	}
 	

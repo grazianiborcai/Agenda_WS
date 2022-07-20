@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.payment.payOrderItemList.info.PayordemistInfo;
 
-public final class DaoPayordemistWhere implements DaoStmtWhere {	
+public final class PayordemistDaoWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public DaoPayordemistWhere(DaoWhereBuilderOption whereOption, String tableName, PayordemistInfo recordInfo) {
+	public PayordemistDaoWhere(DaoWhereBuilderOption whereOption, String tableName, PayordemistInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class DaoPayordemistWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoPayordemistDbTableColumn.COL_COD_OWNER :
+				case PayordemistDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoPayordemistDbTableColumn.COL_COD_PAY_ORDER :
+				case PayordemistDaoDbTableColumn.COL_COD_PAY_ORDER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayOrder));
 					break;
 					
-				case DaoPayordemistDbTableColumn.COL_COD_PAY_ORDER_ITEM :
+				case PayordemistDaoDbTableColumn.COL_COD_PAY_ORDER_ITEM :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayOrderItem));
 					break;
 			}

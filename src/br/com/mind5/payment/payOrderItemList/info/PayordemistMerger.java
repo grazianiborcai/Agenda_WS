@@ -12,7 +12,7 @@ public final class PayordemistMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordemistVisiMergePayormarch());
+		builder.addVisitor(new PayordemistMergerVisiPayormarch());
 		InfoMerger<PayordemistInfo, PayormarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class PayordemistMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordemistVisiMergeToSelect());
+		builder.addVisitor(new PayordemistMergerVisiToSelect());
 		InfoMerger<PayordemistInfo, PayordemistInfo> merger = builder.build();		
 	
 		return merger.merge();

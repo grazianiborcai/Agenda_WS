@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.payOrderItemList.info.PayordemistInfo;
 
-public final class DaoPayordemistSelectSingle extends DaoStmtTemplate<PayordemistInfo> {	
+public final class PayordemistDaoSelectSingle extends DaoStmtTemplate<PayordemistInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.PAY_ORDER_ITM_TABLE;	
 	
 	
-	public DaoPayordemistSelectSingle(Connection conn, PayordemistInfo recordInfo, String schemaName) {
+	public PayordemistDaoSelectSingle(Connection conn, PayordemistInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -49,7 +49,7 @@ public final class DaoPayordemistSelectSingle extends DaoStmtTemplate<Payordemis
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoPayordemistWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new PayordemistDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -66,18 +66,18 @@ public final class DaoPayordemistSelectSingle extends DaoStmtTemplate<Payordemis
 				do {
 					PayordemistInfo dataInfo = new PayordemistInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoPayordemistDbTableColumn.COL_COD_OWNER);	
-					dataInfo.codPayOrder = stmtResult.getLong(DaoPayordemistDbTableColumn.COL_COD_PAY_ORDER);
-					dataInfo.codPayOrderItem = stmtResult.getInt(DaoPayordemistDbTableColumn.COL_COD_PAY_ORDER_ITEM);
-					dataInfo.ownId = stmtResult.getString(DaoPayordemistDbTableColumn.COL_OWN_ID);
-					dataInfo.idOrderPartner = stmtResult.getString(DaoPayordemistDbTableColumn.COL_ID_ORDER_PARTNER);
-					dataInfo.statusOrderPartner = stmtResult.getString(DaoPayordemistDbTableColumn.COL_STATUS_ORDER_PARTNER);
-					dataInfo.idPaymentPartner = stmtResult.getString(DaoPayordemistDbTableColumn.COL_ID_PAYMENT_PARTNER);
-					dataInfo.statusPaymentPartner = stmtResult.getString(DaoPayordemistDbTableColumn.COL_STATUS_PAYMENT_PARTNER);
-					dataInfo.idRefundPartner = stmtResult.getString(DaoPayordemistDbTableColumn.COL_ID_REFUND_PARTNER);
-					dataInfo.statusRefundPartner = stmtResult.getString(DaoPayordemistDbTableColumn.COL_STATUS_REFUND_PARTNER);	
-					dataInfo.itemReceiver = stmtResult.getString(DaoPayordemistDbTableColumn.COL_ITEM_RECEIVER);	
-					dataInfo.codStore = stmtResult.getLong(DaoPayordemistDbTableColumn.COL_COD_STORE);	
+					dataInfo.codOwner = stmtResult.getLong(PayordemistDaoDbTableColumn.COL_COD_OWNER);	
+					dataInfo.codPayOrder = stmtResult.getLong(PayordemistDaoDbTableColumn.COL_COD_PAY_ORDER);
+					dataInfo.codPayOrderItem = stmtResult.getInt(PayordemistDaoDbTableColumn.COL_COD_PAY_ORDER_ITEM);
+					dataInfo.ownId = stmtResult.getString(PayordemistDaoDbTableColumn.COL_OWN_ID);
+					dataInfo.idOrderPartner = stmtResult.getString(PayordemistDaoDbTableColumn.COL_ID_ORDER_PARTNER);
+					dataInfo.statusOrderPartner = stmtResult.getString(PayordemistDaoDbTableColumn.COL_STATUS_ORDER_PARTNER);
+					dataInfo.idPaymentPartner = stmtResult.getString(PayordemistDaoDbTableColumn.COL_ID_PAYMENT_PARTNER);
+					dataInfo.statusPaymentPartner = stmtResult.getString(PayordemistDaoDbTableColumn.COL_STATUS_PAYMENT_PARTNER);
+					dataInfo.idRefundPartner = stmtResult.getString(PayordemistDaoDbTableColumn.COL_ID_REFUND_PARTNER);
+					dataInfo.statusRefundPartner = stmtResult.getString(PayordemistDaoDbTableColumn.COL_STATUS_REFUND_PARTNER);	
+					dataInfo.itemReceiver = stmtResult.getString(PayordemistDaoDbTableColumn.COL_ITEM_RECEIVER);	
+					dataInfo.codStore = stmtResult.getLong(PayordemistDaoDbTableColumn.COL_COD_STORE);	
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
