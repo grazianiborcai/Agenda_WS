@@ -17,7 +17,7 @@ public final class PayordMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordVisiMergeMultmoip());
+		builder.addVisitor(new PayordMergerVisiMultmoip());
 		InfoMerger<PayordInfo, MultmoipInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -30,7 +30,7 @@ public final class PayordMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordVisiMergePayordem());
+		builder.addVisitor(new PayordMergerVisiPayordem());
 		InfoMerger<PayordInfo, PayordemInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -43,7 +43,7 @@ public final class PayordMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordVisiMergeCrecard());
+		builder.addVisitor(new PayordMergerVisiCrecard());
 		InfoMerger<PayordInfo, CrecardInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -56,7 +56,7 @@ public final class PayordMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordVisiMergePaypar());
+		builder.addVisitor(new PayordMergerVisiPaypar());
 		InfoMerger<PayordInfo, PayparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -69,7 +69,7 @@ public final class PayordMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordVisiMergeOrder());
+		builder.addVisitor(new PayordMergerVisiOrder());
 		InfoMerger<PayordInfo, OrderInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -82,7 +82,7 @@ public final class PayordMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordVisiMergeUsername());
+		builder.addVisitor(new PayordMergerVisiUsername());
 		InfoMerger<PayordInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -95,7 +95,7 @@ public final class PayordMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordVisiMergeToSelect());
+		builder.addVisitor(new PayordMergerVisiToSelect());
 		InfoMerger<PayordInfo, PayordInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -108,7 +108,7 @@ public final class PayordMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordVisiMergeToUpdate());
+		builder.addVisitor(new PayordMergerVisiToUpdate());
 		InfoMerger<PayordInfo, PayordInfo> merger = builder.build();		
 	
 		return merger.merge();
