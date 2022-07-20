@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 import br.com.mind5.payment.ownerPartner.info.OwnparMerger;
 
-final class VisiOwnparMergeOwner extends ActionVisitorTemplateMerge<OwnparInfo, OwnerInfo> {
+public final class OwnparVisiMergeOwner extends ActionVisitorTemplateMerge<OwnparInfo, OwnerInfo> {
 	
-	public VisiOwnparMergeOwner(DeciTreeOption<OwnparInfo> option) {
+	public OwnparVisiMergeOwner(DeciTreeOption<OwnparInfo> option) {
 		super(option, OwnerInfo.class);
 	}
 	

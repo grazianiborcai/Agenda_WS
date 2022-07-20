@@ -5,19 +5,21 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
-import br.com.mind5.payment.ownerPartner.model.action.LazyOwnparRootSelect;
-import br.com.mind5.payment.ownerPartner.model.action.StdOwnparEnforceDefault;
+import br.com.mind5.payment.ownerPartner.model.action.OwnparVisiRootSelect;
+import br.com.mind5.payment.ownerPartner.model.action.OwnparVisiEnforceDefault;
 import br.com.mind5.payment.ownerPartner.model.checker.OwnparCheckRead;
 
-public final class RootOwnparSelectDefault extends DeciTreeTemplateRead<OwnparInfo> {
+public final class OwnparRootSelectDefault extends DeciTreeTemplateRead<OwnparInfo> {
 	
-	public RootOwnparSelectDefault(DeciTreeOption<OwnparInfo> option) {
+	public OwnparRootSelectDefault(DeciTreeOption<OwnparInfo> option) {
 		super(option);
 	}
 	
@@ -43,8 +45,8 @@ public final class RootOwnparSelectDefault extends DeciTreeTemplateRead<OwnparIn
 	@Override protected List<ActionStd<OwnparInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnparInfo> option) {
 		List<ActionStd<OwnparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnparInfo> enforceDefault = new StdOwnparEnforceDefault(option);
-		ActionLazy<OwnparInfo> rootSelect = new LazyOwnparRootSelect(option.conn, option.schemaName);
+		ActionStd<OwnparInfo> enforceDefault = new ActionStdCommom<OwnparInfo>(option, OwnparVisiEnforceDefault.class);
+		ActionLazy<OwnparInfo> rootSelect = new ActionLazyCommom<OwnparInfo>(option, OwnparVisiRootSelect.class);
 		
 		enforceDefault.addPostAction(rootSelect);
 		

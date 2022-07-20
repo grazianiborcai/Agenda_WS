@@ -2,22 +2,22 @@ package br.com.mind5.payment.ownerPartner.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 import br.com.mind5.payment.ownerPartner.info.OwnparMerger;
 
-final class VisiOwnparMergeToSelect extends ActionVisitorTemplateMerge<OwnparInfo, OwnparInfo> {
+public final class OwnparVisiMergeToSelect extends ActionVisitorTemplateMerge<OwnparInfo, OwnparInfo> {
 	
-	public VisiOwnparMergeToSelect(DeciTreeOption<OwnparInfo> option) {
+	public OwnparVisiMergeToSelect(DeciTreeOption<OwnparInfo> option) {
 		super(option, OwnparInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<OwnparInfo>> getActionClassHook() {
-		return StdOwnparDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<OwnparInfo>> getVisitorClassHook() {
+		return OwnparVisiDaoSelect.class;
 	}
 	
 	

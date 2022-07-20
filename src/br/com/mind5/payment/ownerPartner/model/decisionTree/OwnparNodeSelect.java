@@ -12,9 +12,9 @@ import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 import br.com.mind5.payment.ownerPartner.model.checker.OwnparCheckExist;
 
-public final class NodeOwnparSelect extends DeciTreeTemplateRead<OwnparInfo> {
+public final class OwnparNodeSelect extends DeciTreeTemplateRead<OwnparInfo> {
 	
-	public NodeOwnparSelect(DeciTreeOption<OwnparInfo> option) {
+	public OwnparNodeSelect(DeciTreeOption<OwnparInfo> option) {
 		super(option);
 	}
 	
@@ -40,7 +40,7 @@ public final class NodeOwnparSelect extends DeciTreeTemplateRead<OwnparInfo> {
 	@Override protected List<ActionStd<OwnparInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnparInfo> option) {
 		List<ActionStd<OwnparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnparInfo> nodeSelectOwnpar = new NodeOwnparSelectOwnpar(option).toAction();
+		ActionStd<OwnparInfo> nodeSelectOwnpar = new OwnparNodeSelectOwnpar(option).toAction();
 		
 		actions.add(nodeSelectOwnpar);
 		return actions;
@@ -51,7 +51,7 @@ public final class NodeOwnparSelect extends DeciTreeTemplateRead<OwnparInfo> {
 	@Override protected List<ActionStd<OwnparInfo>> buildActionsOnFailedHook(DeciTreeOption<OwnparInfo> option) {
 		List<ActionStd<OwnparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnparInfo> nodeSelectCounpar = new NodeOwnparSelectCounparL1(option).toAction();
+		ActionStd<OwnparInfo> nodeSelectCounpar = new OwnparNodeSelectCounparL1(option).toAction();
 		
 		actions.add(nodeSelectCounpar);
 		return actions;

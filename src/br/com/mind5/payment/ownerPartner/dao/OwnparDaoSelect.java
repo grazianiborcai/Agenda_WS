@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 
-public final class DaoOwnparSelect implements DaoStmtExec<OwnparInfo> {
+public final class OwnparDaoSelect implements DaoStmtExec<OwnparInfo> {
 	private DaoStmtExec<OwnparInfo> helper;
 	
 	
-	public DaoOwnparSelect(List<DaoStmtExecOption<OwnparInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoOwnparSelectSingle.class, OwnparInfo.class);
+	public OwnparDaoSelect(List<DaoStmtExecOption<OwnparInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, OwnparDaoSelectSingle.class, OwnparInfo.class);
 	}
 	
 	

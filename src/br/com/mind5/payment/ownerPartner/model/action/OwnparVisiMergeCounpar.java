@@ -10,9 +10,9 @@ import br.com.mind5.payment.countryPartner.model.decisionTree.CounparRootSelect;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 import br.com.mind5.payment.ownerPartner.info.OwnparMerger;
 
-final class VisiOwnparMergeCounpar extends ActionVisitorTemplateMerge<OwnparInfo, CounparInfo> {
+public final class OwnparVisiMergeCounpar extends ActionVisitorTemplateMerge<OwnparInfo, CounparInfo> {
 	
-	public VisiOwnparMergeCounpar(DeciTreeOption<OwnparInfo> option) {
+	public OwnparVisiMergeCounpar(DeciTreeOption<OwnparInfo> option) {
 		super(option, CounparInfo.class);
 	}
 	

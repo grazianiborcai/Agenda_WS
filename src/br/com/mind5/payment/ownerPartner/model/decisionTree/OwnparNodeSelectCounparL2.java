@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
-import br.com.mind5.payment.ownerPartner.model.checker.OwnparCheckOwner;
-import br.com.mind5.payment.ownerPartner.model.checker.OwnparCheckRead;
+import br.com.mind5.payment.ownerPartner.model.action.OwnparVisiMergeCounpar;
+import br.com.mind5.payment.ownerPartner.model.checker.OwnparCheckCounpar;
+import br.com.mind5.payment.ownerPartner.model.checker.OwnparCheckHasCountry;
 
-public final class RootOwnparSelect extends DeciTreeTemplateRead<OwnparInfo> {
+public final class OwnparNodeSelectCounparL2 extends DeciTreeTemplateRead<OwnparInfo> {
 	
-	public RootOwnparSelect(DeciTreeOption<OwnparInfo> option) {
+	public OwnparNodeSelectCounparL2(DeciTreeOption<OwnparInfo> option) {
 		super(option);
 	}
 	
@@ -29,15 +31,15 @@ public final class RootOwnparSelect extends DeciTreeTemplateRead<OwnparInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new OwnparCheckRead(checkerOption);
-		queue.add(checker);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new OwnparCheckHasCountry(checkerOption);
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new OwnparCheckOwner(checkerOption);
+		checker = new OwnparCheckCounpar(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -48,9 +50,9 @@ public final class RootOwnparSelect extends DeciTreeTemplateRead<OwnparInfo> {
 	@Override protected List<ActionStd<OwnparInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnparInfo> option) {
 		List<ActionStd<OwnparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnparInfo> nodeSelect = new NodeOwnparSelect(option).toAction();
+		ActionStd<OwnparInfo> mergeCountry = new ActionStdCommom<OwnparInfo>(option, OwnparVisiMergeCounpar.class);
 		
-		actions.add(nodeSelect);
+		actions.add(mergeCountry);
 		return actions;
 	}
 }

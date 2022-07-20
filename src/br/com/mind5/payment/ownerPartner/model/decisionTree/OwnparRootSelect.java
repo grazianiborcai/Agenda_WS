@@ -3,7 +3,6 @@ package br.com.mind5.payment.ownerPartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -11,13 +10,12 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
-import br.com.mind5.payment.ownerPartner.model.action.LazyOwnparMergeOwner;
-import br.com.mind5.payment.ownerPartner.model.action.StdOwnparMergeToSelect;
+import br.com.mind5.payment.ownerPartner.model.checker.OwnparCheckOwner;
 import br.com.mind5.payment.ownerPartner.model.checker.OwnparCheckRead;
 
-public final class NodeOwnparSelectOwnpar extends DeciTreeTemplateRead<OwnparInfo> {
+public final class OwnparRootSelect extends DeciTreeTemplateRead<OwnparInfo> {
 	
-	public NodeOwnparSelectOwnpar(DeciTreeOption<OwnparInfo> option) {
+	public OwnparRootSelect(DeciTreeOption<OwnparInfo> option) {
 		super(option);
 	}
 	
@@ -35,6 +33,13 @@ public final class NodeOwnparSelectOwnpar extends DeciTreeTemplateRead<OwnparInf
 		checker = new OwnparCheckRead(checkerOption);
 		queue.add(checker);
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new OwnparCheckOwner(checkerOption);
+		queue.add(checker);	
+		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
@@ -43,12 +48,9 @@ public final class NodeOwnparSelectOwnpar extends DeciTreeTemplateRead<OwnparInf
 	@Override protected List<ActionStd<OwnparInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnparInfo> option) {
 		List<ActionStd<OwnparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnparInfo> mergeToSelect = new StdOwnparMergeToSelect(option);
-		ActionLazy<OwnparInfo> mergeOwner = new LazyOwnparMergeOwner(option.conn, option.schemaName);
+		ActionStd<OwnparInfo> nodeSelect = new OwnparNodeSelect(option).toAction();
 		
-		mergeToSelect.addPostAction(mergeOwner);
-		
-		actions.add(mergeToSelect);
+		actions.add(nodeSelect);
 		return actions;
 	}
 }

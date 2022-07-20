@@ -13,7 +13,7 @@ public final class OwnparMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnparVisiMergeCounpar());
+		builder.addVisitor(new OwnparMergerVisiCounpar());
 		InfoMerger<OwnparInfo, CounparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class OwnparMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnparVisiMergeOwner());
+		builder.addVisitor(new OwnparMergerVisiOwner());
 		InfoMerger<OwnparInfo, OwnerInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -39,7 +39,7 @@ public final class OwnparMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OwnparVisiMergeToSelect());
+		builder.addVisitor(new OwnparMergerVisiToSelect());
 		InfoMerger<OwnparInfo, OwnparInfo> merger = builder.build();		
 	
 		return merger.merge();

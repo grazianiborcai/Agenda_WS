@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 import br.com.mind5.payment.ownerPartner.info.OwnparSetterDefault;
 
-final class VisiOwnparEnforceDefault extends ActionVisitorTemplateEnforce<OwnparInfo> {
+public final class OwnparVisiEnforceDefault extends ActionVisitorTemplateEnforce<OwnparInfo> {
 	
-	public VisiOwnparEnforceDefault(DeciTreeOption<OwnparInfo> option) {
+	public OwnparVisiEnforceDefault(DeciTreeOption<OwnparInfo> option) {
 		super(option);
 	}
 	
