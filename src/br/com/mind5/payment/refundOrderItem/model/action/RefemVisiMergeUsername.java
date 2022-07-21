@@ -11,9 +11,9 @@ import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.UsernameRootSelect;
 
-final class VisiRefemMergeUsername extends ActionVisitorTemplateMerge<RefemInfo, UsernameInfo> {
+public final class RefemVisiMergeUsername extends ActionVisitorTemplateMerge<RefemInfo, UsernameInfo> {
 	
-	public VisiRefemMergeUsername(DeciTreeOption<RefemInfo> option) {
+	public RefemVisiMergeUsername(DeciTreeOption<RefemInfo> option) {
 		super(option, UsernameInfo.class); 
 	}
 	

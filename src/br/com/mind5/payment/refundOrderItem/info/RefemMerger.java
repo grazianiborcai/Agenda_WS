@@ -17,7 +17,7 @@ public final class RefemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefemVisiMergeUsername());
+		builder.addVisitor(new RefemMergerVisiUsername());
 		InfoMerger<RefemInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -30,7 +30,7 @@ public final class RefemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefemVisiMergePayormarch());
+		builder.addVisitor(new RefemMergerVisiPayormarch());
 		InfoMerger<RefemInfo, PayormarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -43,7 +43,7 @@ public final class RefemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefemVisiMergeRefumoip());
+		builder.addVisitor(new RefemMergerVisiRefumoip());
 		InfoMerger<RefemInfo, RefumoipInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -56,7 +56,7 @@ public final class RefemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefemVisiMergePayord());
+		builder.addVisitor(new RefemMergerVisiPayord());
 		InfoMerger<RefemInfo, PayordInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -69,7 +69,7 @@ public final class RefemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefemVisiMergePayordem());
+		builder.addVisitor(new RefemMergerVisiPayordem());
 		InfoMerger<RefemInfo, PayordemInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -82,7 +82,7 @@ public final class RefemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefemVisiMergeCuspar());
+		builder.addVisitor(new RefemMergerVisiCuspar());
 		InfoMerger<RefemInfo, CusparInfo> merger = builder.build();		
 	
 		return merger.merge();

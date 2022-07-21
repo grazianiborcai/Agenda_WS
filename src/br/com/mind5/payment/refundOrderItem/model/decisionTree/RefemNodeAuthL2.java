@@ -10,12 +10,11 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
-import br.com.mind5.payment.refundOrderItem.model.action.StdRefemSuccess;
-import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckOrdarch;
+import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckAuthManager;
 
-public final class NodeRefemAuthL3 extends DeciTreeTemplateWrite<RefemInfo> {
+public final class RefemNodeAuthL2 extends DeciTreeTemplateWrite<RefemInfo> {
 	
-	public NodeRefemAuthL3(DeciTreeOption<RefemInfo> option) {
+	public RefemNodeAuthL2(DeciTreeOption<RefemInfo> option) {
 		super(option);
 	}
 	
@@ -30,7 +29,7 @@ public final class NodeRefemAuthL3 extends DeciTreeTemplateWrite<RefemInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new RefemCheckOrdarch(checkerOption);
+		checker = new RefemCheckAuthManager(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -41,9 +40,20 @@ public final class NodeRefemAuthL3 extends DeciTreeTemplateWrite<RefemInfo> {
 	@Override protected List<ActionStd<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
 		List<ActionStd<RefemInfo>> actions = new ArrayList<>();		
 
-		ActionStd<RefemInfo> success = new StdRefemSuccess(option);	
+		ActionStd<RefemInfo> nodeL4 = new RefemNodeAuthL4(option).toAction();
 		
-		actions.add(success);		
+		actions.add(nodeL4);		
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<RefemInfo>> buildActionsOnFailedHook(DeciTreeOption<RefemInfo> option) {
+		List<ActionStd<RefemInfo>> actions = new ArrayList<>();		
+	
+		ActionStd<RefemInfo> nodeL3 = new RefemNodeAuthL3(option).toAction();	
+		
+		actions.add(nodeL3);		
 		return actions;
 	}
 }

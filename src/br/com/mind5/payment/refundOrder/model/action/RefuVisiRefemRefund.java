@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 import br.com.mind5.payment.refundOrderItem.info.RefemCopier;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
-import br.com.mind5.payment.refundOrderItem.model.decisionTree.RootRefemRefund;
+import br.com.mind5.payment.refundOrderItem.model.decisionTree.RefemRootRefund;
 
 public final class RefuVisiRefemRefund extends ActionVisitorTemplateAction<RefuInfo, RefemInfo> {
 	
@@ -19,7 +19,7 @@ public final class RefuVisiRefemRefund extends ActionVisitorTemplateAction<RefuI
 	
 	
 	@Override protected Class<? extends DeciTree<RefemInfo>> getTreeClassHook() {
-		return RootRefemRefund.class;
+		return RefemRootRefund.class;
 	}
 	
 	

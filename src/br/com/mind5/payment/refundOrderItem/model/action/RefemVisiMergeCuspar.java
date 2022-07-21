@@ -10,9 +10,9 @@ import br.com.mind5.payment.customerPartner.model.decisionTree.CusparRootSelect;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.info.RefemMerger;
 
-final class VisiRefemMergeCuspar extends ActionVisitorTemplateMerge<RefemInfo, CusparInfo> {
+public final class RefemVisiMergeCuspar extends ActionVisitorTemplateMerge<RefemInfo, CusparInfo> {
 	
-	public VisiRefemMergeCuspar(DeciTreeOption<RefemInfo> option) {
+	public RefemVisiMergeCuspar(DeciTreeOption<RefemInfo> option) {
 		super(option, CusparInfo.class);
 	} 
 	

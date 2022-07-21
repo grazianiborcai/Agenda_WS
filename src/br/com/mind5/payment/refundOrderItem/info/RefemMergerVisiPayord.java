@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-final class RefemVisiMergePayord extends InfoMergerVisitorTemplate<RefemInfo, PayordInfo> {
+final class RefemMergerVisiPayord extends InfoMergerVisitorTemplate<RefemInfo, PayordInfo> {
 
 	@Override public boolean shouldMerge(RefemInfo baseInfo, PayordInfo selectedInfo) {
 		return (baseInfo.codOwner 	 == selectedInfo.codOwner	&&

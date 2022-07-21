@@ -10,9 +10,9 @@ import br.com.mind5.payment.refundOrderItem.info.RefemMerger;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.decisionTree.RootRefumoipRefund;
 
-final class VisiRefemRefumoipRefund extends ActionVisitorTemplateAction<RefemInfo, RefumoipInfo> {
+public final class RefemVisiRefumoipRefund extends ActionVisitorTemplateAction<RefemInfo, RefumoipInfo> {
 	
-	public VisiRefemRefumoipRefund(DeciTreeOption<RefemInfo> option) {
+	public RefemVisiRefumoipRefund(DeciTreeOption<RefemInfo> option) {
 		super(option, RefemInfo.class, RefumoipInfo.class);
 	}
 	

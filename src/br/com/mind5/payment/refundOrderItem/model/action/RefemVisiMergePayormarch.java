@@ -11,9 +11,9 @@ import br.com.mind5.payment.payOrderItemSearch.model.decisionTree.PayormarchRoot
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.info.RefemMerger;
 
-final class VisiRefemMergePayormarch extends ActionVisitorTemplateMerge<RefemInfo, PayormarchInfo> {
+public final class RefemVisiMergePayormarch extends ActionVisitorTemplateMerge<RefemInfo, PayormarchInfo> {
 	
-	public VisiRefemMergePayormarch(DeciTreeOption<RefemInfo> option) {
+	public RefemVisiMergePayormarch(DeciTreeOption<RefemInfo> option) {
 		super(option, PayormarchInfo.class); 
 	}
 	

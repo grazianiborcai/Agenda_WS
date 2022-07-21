@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 
-final class VisiRefemOrderemRefunding extends ActionVisitorTemplateAction<RefemInfo, OrderemInfo> {
+public final class RefemVisiOrderemRefunding extends ActionVisitorTemplateAction<RefemInfo, OrderemInfo> {
 	
-	public VisiRefemOrderemRefunding(DeciTreeOption<RefemInfo> option) {
+	public RefemVisiOrderemRefunding(DeciTreeOption<RefemInfo> option) {
 		super(option, RefemInfo.class, OrderemInfo.class);
 	}
 	

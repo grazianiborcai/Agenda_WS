@@ -10,9 +10,9 @@ import br.com.mind5.payment.payOrderItem.model.decisionTree.PayordemRootSelect;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.info.RefemMerger;
 
-final class VisiRefemMergePayordem extends ActionVisitorTemplateMerge<RefemInfo, PayordemInfo> {
+public final class RefemVisiMergePayordem extends ActionVisitorTemplateMerge<RefemInfo, PayordemInfo> {
 	
-	public VisiRefemMergePayordem(DeciTreeOption<RefemInfo> option) {
+	public RefemVisiMergePayordem(DeciTreeOption<RefemInfo> option) {
 		super(option, PayordemInfo.class); 
 	}
 	

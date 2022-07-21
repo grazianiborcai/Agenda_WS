@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
-import br.com.mind5.payment.refundOrderItem.model.action.StdRefemSuccess;
-import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckAuthOwner;
+import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckOrdarch;
 
-public final class NodeRefemAuthL1 extends DeciTreeTemplateWrite<RefemInfo> {
+public final class RefemNodeAuthL3 extends DeciTreeTemplateWrite<RefemInfo> {
 	
-	public NodeRefemAuthL1(DeciTreeOption<RefemInfo> option) {
+	public RefemNodeAuthL3(DeciTreeOption<RefemInfo> option) {
 		super(option);
 	}
 	
@@ -30,7 +30,7 @@ public final class NodeRefemAuthL1 extends DeciTreeTemplateWrite<RefemInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new RefemCheckAuthOwner(checkerOption);
+		checker = new RefemCheckOrdarch(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -41,20 +41,9 @@ public final class NodeRefemAuthL1 extends DeciTreeTemplateWrite<RefemInfo> {
 	@Override protected List<ActionStd<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
 		List<ActionStd<RefemInfo>> actions = new ArrayList<>();		
 
-		ActionStd<RefemInfo> success = new StdRefemSuccess(option);
+		ActionStd<RefemInfo> success = new ActionStdSuccessCommom<RefemInfo>(option);
 		
 		actions.add(success);		
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<RefemInfo>> buildActionsOnFailedHook(DeciTreeOption<RefemInfo> option) {
-		List<ActionStd<RefemInfo>> actions = new ArrayList<>();		
-	
-		ActionStd<RefemInfo> nodeL2 = new NodeRefemAuthL2(option).toAction();	
-		
-		actions.add(nodeL2);		
 		return actions;
 	}
 }
