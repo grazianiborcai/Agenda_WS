@@ -4,7 +4,7 @@ import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
-import br.com.mind5.payment.refundOrder.model.decisionTree.RootRefuRefund;
+import br.com.mind5.payment.refundOrder.model.decisionTree.RefuRootRefund;
 
 
 public final class RefuModelRefund extends ModelTemplate<RefuInfo> {
@@ -16,6 +16,6 @@ public final class RefuModelRefund extends ModelTemplate<RefuInfo> {
 	
 	
 	@Override protected DeciTree<RefuInfo> getDecisionTreeHook(DeciTreeOption<RefuInfo> option) {
-		return new RootRefuRefund(option);
+		return new RefuRootRefund(option);
 	}
 }

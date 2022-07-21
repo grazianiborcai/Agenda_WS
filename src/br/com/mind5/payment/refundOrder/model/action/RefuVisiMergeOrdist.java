@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 import br.com.mind5.payment.refundOrder.info.RefuMerger;
 
-final class VisiRefuMergeOrdist extends ActionVisitorTemplateMerge<RefuInfo, OrdistInfo> {
+public final class RefuVisiMergeOrdist extends ActionVisitorTemplateMerge<RefuInfo, OrdistInfo> {
 	
-	public VisiRefuMergeOrdist(DeciTreeOption<RefuInfo> option) {
+	public RefuVisiMergeOrdist(DeciTreeOption<RefuInfo> option) {
 		super(option, OrdistInfo.class); 
 	}
 	

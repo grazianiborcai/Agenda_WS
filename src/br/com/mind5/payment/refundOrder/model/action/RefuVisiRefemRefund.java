@@ -10,9 +10,9 @@ import br.com.mind5.payment.refundOrderItem.info.RefemCopier;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.model.decisionTree.RootRefemRefund;
 
-final class VisiRefuRefundRefem extends ActionVisitorTemplateAction<RefuInfo, RefemInfo> {
+public final class RefuVisiRefemRefund extends ActionVisitorTemplateAction<RefuInfo, RefemInfo> {
 	
-	public VisiRefuRefundRefem(DeciTreeOption<RefuInfo> option) {
+	public RefuVisiRefemRefund(DeciTreeOption<RefuInfo> option) {
 		super(option, RefuInfo.class, RefemInfo.class);
 	}
 	

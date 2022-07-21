@@ -5,22 +5,23 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
-import br.com.mind5.payment.refundOrder.model.action.LazyRefuNodeRefund;
+import br.com.mind5.payment.refundOrder.model.action.RefuVisiNodeRefund;
 import br.com.mind5.payment.refundOrder.model.checker.RefuCheckLangu;
 import br.com.mind5.payment.refundOrder.model.checker.RefuCheckOrder;
 import br.com.mind5.payment.refundOrder.model.checker.RefuCheckOwner;
 import br.com.mind5.payment.refundOrder.model.checker.RefuCheckRefund;
 import br.com.mind5.payment.refundOrder.model.checker.RefuCheckUsername;
 
-public final class RootRefuRefund extends DeciTreeTemplateWrite<RefuInfo> {
+public final class RefuRootRefund extends DeciTreeTemplateWrite<RefuInfo> {
 	
-	public RootRefuRefund(DeciTreeOption<RefuInfo> option) {
+	public RefuRootRefund(DeciTreeOption<RefuInfo> option) {
 		super(option);
 	}
 	
@@ -74,8 +75,8 @@ public final class RootRefuRefund extends DeciTreeTemplateWrite<RefuInfo> {
 	@Override protected List<ActionStd<RefuInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuInfo> option) {
 		List<ActionStd<RefuInfo>> actions = new ArrayList<>();		
 
-		ActionStd<RefuInfo> nodeOrder = new NodeRefuOrder(option).toAction();
-		ActionLazy<RefuInfo> nodeRefund = new LazyRefuNodeRefund(option.conn, option.schemaName);
+		ActionStd<RefuInfo> nodeOrder = new RefuNodeOrder(option).toAction();
+		ActionLazy<RefuInfo> nodeRefund = new ActionLazyCommom<RefuInfo>(option, RefuVisiNodeRefund.class);
 		
 		nodeOrder.addPostAction(nodeRefund);
 		

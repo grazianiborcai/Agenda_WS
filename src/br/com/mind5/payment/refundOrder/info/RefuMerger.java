@@ -13,7 +13,7 @@ public final class RefuMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefuVisiMergePayormarch());
+		builder.addVisitor(new RefuMergerVisiPayormarch());
 		InfoMerger<RefuInfo, PayormarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class RefuMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefuVisiMergeOrdist());
+		builder.addVisitor(new RefuMergerVisiOrdist());
 		InfoMerger<RefuInfo, OrdistInfo> merger = builder.build();		
 	
 		return merger.merge();
