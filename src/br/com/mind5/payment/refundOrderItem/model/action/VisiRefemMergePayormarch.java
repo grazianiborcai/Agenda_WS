@@ -7,7 +7,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchCopier;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
-import br.com.mind5.payment.payOrderItemSearch.model.decisionTree.RootPayormarchSelect;
+import br.com.mind5.payment.payOrderItemSearch.model.decisionTree.PayormarchRootSelect;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.info.RefemMerger;
 
@@ -20,7 +20,7 @@ final class VisiRefemMergePayormarch extends ActionVisitorTemplateMerge<RefemInf
 	
 	
 	@Override protected Class<? extends DeciTree<PayormarchInfo>> getTreeClassHook() {
-		return RootPayormarchSelect.class;
+		return PayormarchRootSelect.class;
 	}
 	
 	

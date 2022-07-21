@@ -11,7 +11,7 @@ public final class PayormarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayormarchVisiMergeToSelect());
+		builder.addVisitor(new PayormarchMergerVisiToSelect());
 		InfoMerger<PayormarchInfo, PayormarchInfo> merger = builder.build();		
 	
 		return merger.merge();

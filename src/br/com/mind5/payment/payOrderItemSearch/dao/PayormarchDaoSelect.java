@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 
-public final class DaoPayormarchSelect implements DaoStmtExec<PayormarchInfo> {
+public final class PayormarchDaoSelect implements DaoStmtExec<PayormarchInfo> {
 	private DaoStmtExec<PayormarchInfo> helper;
 	
 	
-	public DaoPayormarchSelect(List<DaoStmtExecOption<PayormarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoPayormarchSelectSingle.class, PayormarchInfo.class);
+	public PayormarchDaoSelect(List<DaoStmtExecOption<PayormarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, PayormarchDaoSelectSingle.class, PayormarchInfo.class);
 	}
 	
 	

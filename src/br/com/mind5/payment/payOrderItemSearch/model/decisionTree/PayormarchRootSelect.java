@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
-import br.com.mind5.payment.payOrderItemSearch.model.action.StdPayormarchMergeToSelect;
+import br.com.mind5.payment.payOrderItemSearch.model.action.PayormarchVisiMergeToSelect;
 import br.com.mind5.payment.payOrderItemSearch.model.checker.PayormarchCheckRead;
 
-public final class RootPayormarchSelect extends DeciTreeTemplateWrite<PayormarchInfo> {
+public final class PayormarchRootSelect extends DeciTreeTemplateWrite<PayormarchInfo> {
 	
-	public RootPayormarchSelect(DeciTreeOption<PayormarchInfo> option) {
+	public PayormarchRootSelect(DeciTreeOption<PayormarchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootPayormarchSelect extends DeciTreeTemplateWrite<Payormarch
 	@Override protected List<ActionStd<PayormarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PayormarchInfo> option) {
 		List<ActionStd<PayormarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayormarchInfo> select = new StdPayormarchMergeToSelect(option);
+		ActionStd<PayormarchInfo> select = new ActionStdCommom<PayormarchInfo>(option, PayormarchVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

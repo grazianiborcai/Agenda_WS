@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchSetterReverted;
 
-final class VisiPayormarchEnforceReverted extends ActionVisitorTemplateEnforce<PayormarchInfo> {
+public final class PayormarchVisiEnforceReverted extends ActionVisitorTemplateEnforce<PayormarchInfo> {
 	
-	public VisiPayormarchEnforceReverted(DeciTreeOption<PayormarchInfo> option) {
+	public PayormarchVisiEnforceReverted(DeciTreeOption<PayormarchInfo> option) {
 		super(option);
 	}
 	

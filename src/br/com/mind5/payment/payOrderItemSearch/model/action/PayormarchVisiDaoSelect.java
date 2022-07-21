@@ -6,18 +6,18 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.payment.payOrderItemSearch.dao.DaoPayormarchSelect;
+import br.com.mind5.payment.payOrderItemSearch.dao.PayormarchDaoSelect;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 
-final class VisiPayormarchDaoSelect extends ActionVisitorTemplateStmt<PayormarchInfo> {
+public final class PayormarchVisiDaoSelect extends ActionVisitorTemplateStmt<PayormarchInfo> {
 
-	public VisiPayormarchDaoSelect(DeciTreeOption<PayormarchInfo> option) {
+	public PayormarchVisiDaoSelect(DeciTreeOption<PayormarchInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected DaoStmtExec<PayormarchInfo> buildStmtExecHook(List<DaoStmtExecOption<PayormarchInfo>> stmtOptions) {
-		return new DaoPayormarchSelect(stmtOptions);
+		return new PayormarchDaoSelect(stmtOptions);
 	}
 }

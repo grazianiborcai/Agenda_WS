@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoPayormarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class PayormarchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PAY_ORDER = DaoDbField.COL_COD_PAY_ORDER;	
 	public static final String COL_COD_PAY_ORDER_ITEM = DaoDbField.COL_COD_PAY_ORDER_ITEM;
 	public static final String COL_COD_ORDER = DaoDbField.COL_COD_ORDER;
@@ -25,7 +25,7 @@ public final class DaoPayormarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_STATUS_REFUND_PARTNER = DaoDbField.COL_STATUS_REFUND_PARTNER;
 	
 	
-	public DaoPayormarchDbTableColumn() {
+	public PayormarchDaoDbTableColumn() {
 		super();
 	}
 	
