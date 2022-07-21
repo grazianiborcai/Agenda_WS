@@ -5,19 +5,21 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
-import br.com.mind5.payment.setupPartner.model.action.LazySetuparMergePaypar;
-import br.com.mind5.payment.setupPartner.model.action.StdSetuparDaoSelect;
+import br.com.mind5.payment.setupPartner.model.action.SetuparVisiDaoSelect;
+import br.com.mind5.payment.setupPartner.model.action.SetuparVisiMergePaypar;
 import br.com.mind5.payment.setupPartner.model.checker.SetuparCheckRead;
 
-public final class RootSetuparSelect extends DeciTreeTemplateRead<SetuparInfo> {
+public final class SetuparRootSelect extends DeciTreeTemplateRead<SetuparInfo> {
 	
-	public RootSetuparSelect(DeciTreeOption<SetuparInfo> option) {
+	public SetuparRootSelect(DeciTreeOption<SetuparInfo> option) {
 		super(option);
 	}
 	
@@ -43,8 +45,8 @@ public final class RootSetuparSelect extends DeciTreeTemplateRead<SetuparInfo> {
 	@Override protected List<ActionStd<SetuparInfo>> buildActionsOnPassedHook(DeciTreeOption<SetuparInfo> option) {
 		List<ActionStd<SetuparInfo>> actions = new ArrayList<>();
 		//TODO: esses dados devem ser movidos para outro lugar mais seguro
-		ActionStd<SetuparInfo> select = new StdSetuparDaoSelect(option);
-		ActionLazy<SetuparInfo> mergePayPartner = new LazySetuparMergePaypar(option.conn, option.schemaName);
+		ActionStd<SetuparInfo> select = new ActionStdCommom<SetuparInfo>(option, SetuparVisiDaoSelect.class);
+		ActionLazy<SetuparInfo> mergePayPartner = new ActionLazyCommom<SetuparInfo>(option, SetuparVisiMergePaypar.class);
 		
 		select.addPostAction(mergePayPartner);
 		

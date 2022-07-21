@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoSetuparDbTableColumn extends DaoDbTableColumnTemplate {
+public final class SetuparDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BASIC_KEY = DaoDbField.COL_BASIC_KEY;
 	public static final String COL_BASIC_TOKEN = DaoDbField.COL_BASIC_TOKEN;	
 	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;	
@@ -17,7 +17,7 @@ public final class DaoSetuparDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_SECRET = DaoDbField.COL_SECRET;	
 	
 	
-	public DaoSetuparDbTableColumn() {
+	public SetuparDaoDbTableColumn() {
 		super();
 	}
 	

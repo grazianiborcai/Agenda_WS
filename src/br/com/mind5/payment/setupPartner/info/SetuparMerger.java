@@ -12,7 +12,7 @@ public final class SetuparMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SetuparVisiMergePaypar());
+		builder.addVisitor(new SetuparMergerVisiPaypar());
 		InfoMerger<SetuparInfo, PayparInfo> merger = builder.build();		
 	
 		return merger.merge();

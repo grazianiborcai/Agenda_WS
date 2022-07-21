@@ -11,9 +11,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparMerger;
 
-final class VisiSetuparMergePaypar extends ActionVisitorTemplateMerge<SetuparInfo, PayparInfo> {
+public final class SetuparVisiMergePaypar extends ActionVisitorTemplateMerge<SetuparInfo, PayparInfo> {
 	
-	public VisiSetuparMergePaypar(DeciTreeOption<SetuparInfo> option) {
+	public SetuparVisiMergePaypar(DeciTreeOption<SetuparInfo> option) {
 		super(option, PayparInfo.class);
 	}
 	

@@ -7,7 +7,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.setupPartner.info.SetuparCopier;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
-import br.com.mind5.payment.setupPartner.model.decisionTree.RootSetuparSelect;
+import br.com.mind5.payment.setupPartner.model.decisionTree.SetuparRootSelect;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipMerger;
 
@@ -20,7 +20,7 @@ final class VisiPaymoipMergeSetupar extends ActionVisitorTemplateMerge<PaymoipIn
 	
 	
 	@Override protected Class<? extends DeciTree<SetuparInfo>> getTreeClassHook() {
-		return RootSetuparSelect.class;
+		return SetuparRootSelect.class;
 	}
 	
 	

@@ -6,7 +6,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
-import br.com.mind5.payment.setupPartner.model.decisionTree.RootSetuparSelect;
+import br.com.mind5.payment.setupPartner.model.decisionTree.SetuparRootSelect;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipMerger;
 
@@ -19,7 +19,7 @@ final class VisiOrdmoipMergeSetupar extends ActionVisitorTemplateMerge<OrdmoipIn
 	
 	
 	@Override protected Class<? extends DeciTree<SetuparInfo>> getTreeClassHook() {
-		return RootSetuparSelect.class;
+		return SetuparRootSelect.class;
 	}
 	
 	
