@@ -11,7 +11,7 @@ public final class PayordarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordarchVisiMergeToSelect());
+		builder.addVisitor(new PayordarchMergerVisiToSelect());
 		InfoMerger<PayordarchInfo, PayordarchInfo> merger = builder.build();		
 	
 		return merger.merge();

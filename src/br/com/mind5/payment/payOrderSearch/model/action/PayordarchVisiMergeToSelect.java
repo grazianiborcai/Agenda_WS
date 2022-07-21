@@ -2,22 +2,22 @@ package br.com.mind5.payment.payOrderSearch.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderSearch.info.PayordarchInfo;
 import br.com.mind5.payment.payOrderSearch.info.PayordarchMerger;
 
-final class VisiPayordarchMergeToSelect extends ActionVisitorTemplateMerge<PayordarchInfo, PayordarchInfo> {
+public final class PayordarchVisiMergeToSelect extends ActionVisitorTemplateMerge<PayordarchInfo, PayordarchInfo> {
 	
-	public VisiPayordarchMergeToSelect(DeciTreeOption<PayordarchInfo> option) {
+	public PayordarchVisiMergeToSelect(DeciTreeOption<PayordarchInfo> option) {
 		super(option, PayordarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<PayordarchInfo>> getActionClassHook() {
-		return StdPayordarchDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<PayordarchInfo>> getVisitorClassHook() {
+		return PayordarchVisiDaoSelect.class;
 	}
 	
 	

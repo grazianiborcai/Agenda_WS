@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoPayordarchJoinCuspar implements DaoJoinBuilder {
+public final class PayordarchDaoJoinCuspar implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public DaoPayordarchJoinCuspar(String leftTableName) {
+	public PayordarchDaoJoinCuspar(String leftTableName) {
 		leftTable = leftTableName;
 	}
 

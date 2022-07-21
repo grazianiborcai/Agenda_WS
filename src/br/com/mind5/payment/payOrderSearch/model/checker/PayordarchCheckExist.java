@@ -6,7 +6,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderSearch.info.PayordarchInfo;
-import br.com.mind5.payment.payOrderSearch.model.decisionTree.RootPayordarchSelect;
+import br.com.mind5.payment.payOrderSearch.model.decisionTree.PayordarchRootSelect;
 
 public final class PayordarchCheckExist extends ModelCheckerTemplateAction<PayordarchInfo, PayordarchInfo> {
 	
@@ -17,7 +17,7 @@ public final class PayordarchCheckExist extends ModelCheckerTemplateAction<Payor
 
 	
 	@Override protected ActionStd<PayordarchInfo> buildActionHook(DeciTreeOption<PayordarchInfo> option) {
-		ActionStd<PayordarchInfo> select = new RootPayordarchSelect(option).toAction();
+		ActionStd<PayordarchInfo> select = new PayordarchRootSelect(option).toAction();
 		return select;
 	}
 	

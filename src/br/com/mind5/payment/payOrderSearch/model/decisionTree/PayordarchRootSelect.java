@@ -4,20 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.payOrderSearch.info.PayordarchInfo;
-import br.com.mind5.payment.payOrderSearch.model.action.StdPayordarchMergeToSelect;
+import br.com.mind5.payment.payOrderSearch.model.action.PayordarchVisiMergeToSelect;
 import br.com.mind5.payment.payOrderSearch.model.checker.PayordarchCheckLangu;
 import br.com.mind5.payment.payOrderSearch.model.checker.PayordarchCheckOwner;
 import br.com.mind5.payment.payOrderSearch.model.checker.PayordarchCheckRead;
 
-public final class RootPayordarchSelect extends DeciTreeTemplateRead<PayordarchInfo> {
+public final class PayordarchRootSelect extends DeciTreeTemplateRead<PayordarchInfo> {
 	
-	public RootPayordarchSelect(DeciTreeOption<PayordarchInfo> option) {
+	public PayordarchRootSelect(DeciTreeOption<PayordarchInfo> option) {
 		super(option);
 	}
 	
@@ -57,7 +58,7 @@ public final class RootPayordarchSelect extends DeciTreeTemplateRead<PayordarchI
 	@Override protected List<ActionStd<PayordarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordarchInfo> option) {
 		List<ActionStd<PayordarchInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PayordarchInfo> mergeToSelect = new StdPayordarchMergeToSelect(option);
+		ActionStd<PayordarchInfo> mergeToSelect = new ActionStdCommom<PayordarchInfo>(option, PayordarchVisiMergeToSelect.class);
 		
 		actions.add(mergeToSelect);		
 		return actions;
