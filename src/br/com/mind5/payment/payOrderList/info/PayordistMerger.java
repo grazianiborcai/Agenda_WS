@@ -11,7 +11,7 @@ public final class PayordistMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordistVisiMergeToSelect());
+		builder.addVisitor(new PayordistMergerVisiToSelect());
 		InfoMerger<PayordistInfo, PayordistInfo> merger = builder.build();		
 	
 		return merger.merge();
