@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 
-public final class DaoSysparSelect implements DaoStmtExec<SysparInfo> {
+public final class SysparDaoSelect implements DaoStmtExec<SysparInfo> {
 	private DaoStmtExec<SysparInfo> helper;
 	
 	
-	public DaoSysparSelect(List<DaoStmtExecOption<SysparInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoSysparSelectSingle.class, SysparInfo.class);
+	public SysparDaoSelect(List<DaoStmtExecOption<SysparInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, SysparDaoSelectSingle.class, SysparInfo.class);
 	}
 	
 	

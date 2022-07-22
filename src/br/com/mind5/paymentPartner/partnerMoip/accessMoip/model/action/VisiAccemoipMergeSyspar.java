@@ -6,7 +6,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
-import br.com.mind5.payment.systemPartner.model.decisionTree.RootSysparSelect;
+import br.com.mind5.payment.systemPartner.model.decisionTree.SysparRootSelect;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipMerger;
 
@@ -19,7 +19,7 @@ final class VisiAccemoipMergeSyspar extends ActionVisitorTemplateMerge<AccemoipI
 	
 	
 	@Override protected Class<? extends DeciTree<SysparInfo>> getTreeClassHook() {
-		return RootSysparSelect.class;
+		return SysparRootSelect.class;
 	}
 	
 	

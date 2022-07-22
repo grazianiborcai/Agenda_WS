@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 
-final class DaoSysparWhere implements DaoStmtWhere {
+final class SysparDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoSysparWhere(DaoWhereBuilderOption whereOption, String tableName, SysparInfo recordInfo) {
+	public SysparDaoWhere(DaoWhereBuilderOption whereOption, String tableName, SysparInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,7 +27,7 @@ final class DaoSysparWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoSysparDbTableColumn.COL_COD_PAY_PARTNER:
+				case SysparDaoDbTableColumn.COL_COD_PAY_PARTNER:
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayPartner));
 					break;
 			}

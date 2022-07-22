@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoSysparDbTableColumn extends DaoDbTableColumnTemplate {
+public final class SysparDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;
 	public static final String COL_ID_PAY_PARTNER_APP = DaoDbField.COL_ID_PAY_PARTNER_APP;	
 	public static final String COL_ID_PAY_PARTNER_SYSTEM = DaoDbField.COL_ID_PAY_PARTNER_SYSTEM;	
@@ -17,7 +17,7 @@ public final class DaoSysparDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_URL_RETURN = DaoDbField.COL_URL_RETURN;
 	
 	
-	public DaoSysparDbTableColumn() {
+	public SysparDaoDbTableColumn() {
 		super();
 	}
 	

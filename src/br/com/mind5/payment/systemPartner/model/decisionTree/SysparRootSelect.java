@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
-import br.com.mind5.payment.systemPartner.model.action.StdSysparDaoSelect;
+import br.com.mind5.payment.systemPartner.model.action.SysparVisiDaoSelect;
 import br.com.mind5.payment.systemPartner.model.checker.SysparCheckRead;
 
-public final class RootSysparSelect extends DeciTreeTemplateRead<SysparInfo> {
+public final class SysparRootSelect extends DeciTreeTemplateRead<SysparInfo> {
 	
-	public RootSysparSelect(DeciTreeOption<SysparInfo> option) {
+	public SysparRootSelect(DeciTreeOption<SysparInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootSysparSelect extends DeciTreeTemplateRead<SysparInfo> {
 	@Override protected List<ActionStd<SysparInfo>> buildActionsOnPassedHook(DeciTreeOption<SysparInfo> option) {
 		List<ActionStd<SysparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SysparInfo> select = new StdSysparDaoSelect(option);
+		ActionStd<SysparInfo> select = new ActionStdCommom<SysparInfo>(option, SysparVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

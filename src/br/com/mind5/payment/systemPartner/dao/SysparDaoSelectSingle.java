@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 
-public final class DaoSysparSelectSingle extends DaoStmtTemplate<SysparInfo> {
+public final class SysparDaoSelectSingle extends DaoStmtTemplate<SysparInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SYS_PAY_PARTNER_TABLE;
 	
 	
-	public DaoSysparSelectSingle(Connection conn, SysparInfo recordInfo, String schemaName) {
+	public SysparDaoSelectSingle(Connection conn, SysparInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -43,7 +43,7 @@ public final class DaoSysparSelectSingle extends DaoStmtTemplate<SysparInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoSysparWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new SysparDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -60,11 +60,11 @@ public final class DaoSysparSelectSingle extends DaoStmtTemplate<SysparInfo> {
 				do {
 					SysparInfo dataInfo = new SysparInfo();
 					
-					dataInfo.idPayPartnerSystem = stmtResult.getString(DaoSysparDbTableColumn.COL_ID_PAY_PARTNER_SYSTEM);
-					dataInfo.idPayPartnerApp = stmtResult.getString(DaoSysparDbTableColumn.COL_ID_PAY_PARTNER_APP);
-					dataInfo.codPayPartner = stmtResult.getInt(DaoSysparDbTableColumn.COL_COD_PAY_PARTNER);
-					dataInfo.payPartnerName = stmtResult.getString(DaoSysparDbTableColumn.COL_PAY_PARTNER_NAME);	
-					dataInfo.urlReturn = stmtResult.getString(DaoSysparDbTableColumn.COL_URL_RETURN);				
+					dataInfo.idPayPartnerSystem = stmtResult.getString(SysparDaoDbTableColumn.COL_ID_PAY_PARTNER_SYSTEM);
+					dataInfo.idPayPartnerApp = stmtResult.getString(SysparDaoDbTableColumn.COL_ID_PAY_PARTNER_APP);
+					dataInfo.codPayPartner = stmtResult.getInt(SysparDaoDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.payPartnerName = stmtResult.getString(SysparDaoDbTableColumn.COL_PAY_PARTNER_NAME);	
+					dataInfo.urlReturn = stmtResult.getString(SysparDaoDbTableColumn.COL_URL_RETURN);				
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
