@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapMerger;
 
-final class VisiStoparnapMergePaypar extends ActionVisitorTemplateMerge<StoparnapInfo, PayparInfo> {
+public final class StoparnapVisiMergePaypar extends ActionVisitorTemplateMerge<StoparnapInfo, PayparInfo> {
 	
-	public VisiStoparnapMergePaypar(DeciTreeOption<StoparnapInfo> option) {
+	public StoparnapVisiMergePaypar(DeciTreeOption<StoparnapInfo> option) {
 		super(option, PayparInfo.class);
 	}
 	

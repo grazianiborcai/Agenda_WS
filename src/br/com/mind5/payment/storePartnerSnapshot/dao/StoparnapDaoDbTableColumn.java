@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoStoparnapDbTableColumn extends DaoDbTableColumnTemplate {
+public final class StoparnapDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_ACCESS_TOKEN = DaoDbField.COL_ACCESS_TOKEN;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;	
@@ -25,7 +25,7 @@ public final class DaoStoparnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_TOKEN_EXPIRES_IN = DaoDbField.COL_TOKEN_EXPIRES_IN;
 	
 	
-	public DaoStoparnapDbTableColumn() {
+	public StoparnapDaoDbTableColumn() {
 		super();
 	}
 	

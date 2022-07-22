@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 
-public final class DaoStoparnapInsert implements DaoStmtExec<StoparnapInfo> {
+public final class StoparnapDaoSelect implements DaoStmtExec<StoparnapInfo> {
 	private DaoStmtExec<StoparnapInfo> helper;
 	
 	
-	public DaoStoparnapInsert(List<DaoStmtExecOption<StoparnapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoStoparnapInsertSingle.class, StoparnapInfo.class);
+	public StoparnapDaoSelect(List<DaoStmtExecOption<StoparnapInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, StoparnapDaoSelectSingle.class, StoparnapInfo.class);
 	}
 	
 	

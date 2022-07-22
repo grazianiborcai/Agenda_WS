@@ -5,21 +5,23 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
-import br.com.mind5.payment.storePartnerSnapshot.model.action.LazyStoparnapRootSelect;
-import br.com.mind5.payment.storePartnerSnapshot.model.action.StdStoparnapDaoInsert;
+import br.com.mind5.payment.storePartnerSnapshot.model.action.StoparnapVisiRootSelect;
+import br.com.mind5.payment.storePartnerSnapshot.model.action.StoparnapVisiDaoInsert;
 import br.com.mind5.payment.storePartnerSnapshot.model.checker.StoparnapCheckLangu;
 import br.com.mind5.payment.storePartnerSnapshot.model.checker.StoparnapCheckOwner;
 import br.com.mind5.payment.storePartnerSnapshot.model.checker.StoparnapCheckWrite;
 
-public final class RootStoparnapInsert extends DeciTreeTemplateWrite<StoparnapInfo> {
+public final class StoparnapRootInsert extends DeciTreeTemplateWrite<StoparnapInfo> {
 	
-	public RootStoparnapInsert(DeciTreeOption<StoparnapInfo> option) {
+	public StoparnapRootInsert(DeciTreeOption<StoparnapInfo> option) {
 		super(option);
 	}
 	
@@ -59,8 +61,8 @@ public final class RootStoparnapInsert extends DeciTreeTemplateWrite<StoparnapIn
 	@Override protected List<ActionStd<StoparnapInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparnapInfo> option) {
 		List<ActionStd<StoparnapInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<StoparnapInfo> insert = new StdStoparnapDaoInsert(option);	
-		ActionLazy<StoparnapInfo> select = new LazyStoparnapRootSelect(option.conn, option.schemaName);	
+		ActionStd<StoparnapInfo> insert = new ActionStdCommom<StoparnapInfo>(option, StoparnapVisiDaoInsert.class);	
+		ActionLazy<StoparnapInfo> select = new ActionLazyCommom<StoparnapInfo>(option, StoparnapVisiRootSelect.class);	
 		
 		insert.addPostAction(select);
 		

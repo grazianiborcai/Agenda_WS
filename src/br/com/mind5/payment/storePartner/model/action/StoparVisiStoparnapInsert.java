@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.storePartner.info.StoparMerger;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
-import br.com.mind5.payment.storePartnerSnapshot.model.decisionTree.RootStoparnapInsert;
+import br.com.mind5.payment.storePartnerSnapshot.model.decisionTree.StoparnapRootInsert;
 
 public final class StoparVisiStoparnapInsert extends ActionVisitorTemplateAction<StoparInfo, StoparnapInfo> {
 
@@ -19,7 +19,7 @@ public final class StoparVisiStoparnapInsert extends ActionVisitorTemplateAction
 	
 	
 	@Override protected Class<? extends DeciTree<StoparnapInfo>> getTreeClassHook() {
-		return RootStoparnapInsert.class;
+		return StoparnapRootInsert.class;
 	}
 	
 	

@@ -12,7 +12,7 @@ public final class StoparnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoparnapVisiMergePaypar());
+		builder.addVisitor(new StoparnapMergerVisiPaypar());
 		InfoMerger<StoparnapInfo, PayparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class StoparnapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoparnapVisiMergeToSelect());
+		builder.addVisitor(new StoparnapMergerVisiToSelect());
 		InfoMerger<StoparnapInfo, StoparnapInfo> merger = builder.build();		
 	
 		return merger.merge();

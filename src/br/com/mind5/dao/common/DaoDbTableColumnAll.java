@@ -250,7 +250,7 @@ import br.com.mind5.payment.setupPartner.dao.SetuparDaoDbTableColumn;
 import br.com.mind5.payment.storePartner.dao.StoparDaoDbTableColumn;
 import br.com.mind5.payment.storePartnerList.dao.StoplisDaoDbTableColumn;
 import br.com.mind5.payment.storePartnerSearch.dao.StoparchDaoDbTableColumn;
-import br.com.mind5.payment.storePartnerSnapshot.dao.DaoStoparnapDbTableColumn;
+import br.com.mind5.payment.storePartnerSnapshot.dao.StoparnapDaoDbTableColumn;
 import br.com.mind5.payment.systemPartner.dao.DaoSysparDbTableColumn;
 import br.com.mind5.payment.systemPartnerSearch.dao.DaoSysparchDbTableColumn;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.dao.DaoPeresmoipDbTableColumn;
@@ -362,7 +362,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoEmailDbTableColumn());
 		addTable(new DaoEmabodyDbTableColumn());
 		addTable(new OwnparDaoDbTableColumn());
-		addTable(new DaoStoparnapDbTableColumn());
+		addTable(new StoparnapDaoDbTableColumn());
 		addTable(new SetuparDaoDbTableColumn());
 		addTable(new PayordDaoDbTableColumn());
 		addTable(new CusparDaoDbTableColumn());

@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 
-final class DaoStoparnapWhere implements DaoStmtWhere {
+final class StoparnapDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoStoparnapWhere(DaoWhereBuilderOption whereOption, String tableName, StoparnapInfo recordInfo) {
+	public StoparnapDaoWhere(DaoWhereBuilderOption whereOption, String tableName, StoparnapInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,11 +27,11 @@ final class DaoStoparnapWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoStoparnapDbTableColumn.COL_COD_OWNER :
+				case StoparnapDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoStoparnapDbTableColumn.COL_COD_SNAPSHOT :
+				case StoparnapDaoDbTableColumn.COL_COD_SNAPSHOT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSnapshot));
 					break;
 			}

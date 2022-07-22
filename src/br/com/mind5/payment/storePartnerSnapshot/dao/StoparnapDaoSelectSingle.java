@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 
-public final class DaoStoparnapSelectSingle extends DaoStmtTemplate<StoparnapInfo> {
+public final class StoparnapDaoSelectSingle extends DaoStmtTemplate<StoparnapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_PARTNER_STORE_SNAPSHOT_TABLE;
 	
 	
-	public DaoStoparnapSelectSingle(Connection conn, StoparnapInfo recordInfo, String schemaName) {
+	public StoparnapDaoSelectSingle(Connection conn, StoparnapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoStoparnapSelectSingle extends DaoStmtTemplate<StoparnapInf
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoStoparnapWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new StoparnapDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,20 +61,20 @@ public final class DaoStoparnapSelectSingle extends DaoStmtTemplate<StoparnapInf
 				do {
 					StoparnapInfo dataInfo = new StoparnapInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoStoparnapDbTableColumn.COL_COD_OWNER);
-					dataInfo.codSnapshot = stmtResult.getLong(DaoStoparnapDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codStore = stmtResult.getLong(DaoStoparnapDbTableColumn.COL_COD_STORE);
-					dataInfo.codPayPartner = stmtResult.getInt(DaoStoparnapDbTableColumn.COL_COD_PAY_PARTNER);
-					dataInfo.recordMode = stmtResult.getString(DaoStoparnapDbTableColumn.COL_RECORD_MODE);
-					dataInfo.lastChangedBy = stmtResult.getLong(DaoStoparnapDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.idPayPartnerStore = stmtResult.getString(DaoStoparnapDbTableColumn.COL_ID_PAY_PARTNER_STORE);
-					dataInfo.codePayPartnerStore = stmtResult.getString(DaoStoparnapDbTableColumn.COL_CODE_PAY_PARTNER_STORE);
-					dataInfo.accessToken = stmtResult.getString(DaoStoparnapDbTableColumn.COL_ACCESS_TOKEN);
-					dataInfo.refreshToken = stmtResult.getString(DaoStoparnapDbTableColumn.COL_REFRESH_TOKEN);
-					dataInfo.scope = stmtResult.getString(DaoStoparnapDbTableColumn.COL_SCOPE);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoStoparnapDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoStoparnapDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.tokenExpiresIn = DaoFormatter.sqlToLocalDate(stmtResult, DaoStoparnapDbTableColumn.COL_TOKEN_EXPIRES_IN);
+					dataInfo.codOwner = stmtResult.getLong(StoparnapDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codSnapshot = stmtResult.getLong(StoparnapDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codStore = stmtResult.getLong(StoparnapDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codPayPartner = stmtResult.getInt(StoparnapDaoDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.recordMode = stmtResult.getString(StoparnapDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.lastChangedBy = stmtResult.getLong(StoparnapDaoDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.idPayPartnerStore = stmtResult.getString(StoparnapDaoDbTableColumn.COL_ID_PAY_PARTNER_STORE);
+					dataInfo.codePayPartnerStore = stmtResult.getString(StoparnapDaoDbTableColumn.COL_CODE_PAY_PARTNER_STORE);
+					dataInfo.accessToken = stmtResult.getString(StoparnapDaoDbTableColumn.COL_ACCESS_TOKEN);
+					dataInfo.refreshToken = stmtResult.getString(StoparnapDaoDbTableColumn.COL_REFRESH_TOKEN);
+					dataInfo.scope = stmtResult.getString(StoparnapDaoDbTableColumn.COL_SCOPE);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, StoparnapDaoDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StoparnapDaoDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.tokenExpiresIn = DaoFormatter.sqlToLocalDate(stmtResult, StoparnapDaoDbTableColumn.COL_TOKEN_EXPIRES_IN);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

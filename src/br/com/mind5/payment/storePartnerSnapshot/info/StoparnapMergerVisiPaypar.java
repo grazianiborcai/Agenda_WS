@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 
-final class StoparnapVisiMergePaypar extends InfoMergerVisitorTemplate<StoparnapInfo, PayparInfo> {
+final class StoparnapMergerVisiPaypar extends InfoMergerVisitorTemplate<StoparnapInfo, PayparInfo> {
 	@Override public boolean shouldMerge(StoparnapInfo baseInfo, PayparInfo selectedInfo) {
 		return (baseInfo.codPayPartner == selectedInfo.codPayPartner);
 	}
