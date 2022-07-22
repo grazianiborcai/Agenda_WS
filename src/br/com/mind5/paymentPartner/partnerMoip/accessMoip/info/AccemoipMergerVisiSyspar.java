@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 
-final class AccemoipVisiMergeSyspar extends InfoMergerVisitorTemplate<AccemoipInfo, SysparInfo> {
+final class AccemoipMergerVisiSyspar extends InfoMergerVisitorTemplate<AccemoipInfo, SysparInfo> {
 
 	@Override public boolean shouldMerge(AccemoipInfo baseInfo, SysparInfo selectedInfo) {
 		return (baseInfo.codPayPartner == selectedInfo.codPayPartner);

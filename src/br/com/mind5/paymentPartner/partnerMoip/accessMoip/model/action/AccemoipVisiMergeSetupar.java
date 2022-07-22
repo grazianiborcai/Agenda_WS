@@ -10,9 +10,9 @@ import br.com.mind5.payment.setupPartner.model.decisionTree.SetuparRootSelect;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipMerger;
 
-final class VisiAccemoipMergeSetupar extends ActionVisitorTemplateMerge<AccemoipInfo, SetuparInfo> {
+public final class AccemoipVisiMergeSetupar extends ActionVisitorTemplateMerge<AccemoipInfo, SetuparInfo> {
 	
-	public VisiAccemoipMergeSetupar(DeciTreeOption<AccemoipInfo> option) {
+	public AccemoipVisiMergeSetupar(DeciTreeOption<AccemoipInfo> option) {
 		super(option, SetuparInfo.class);
 	}
 	

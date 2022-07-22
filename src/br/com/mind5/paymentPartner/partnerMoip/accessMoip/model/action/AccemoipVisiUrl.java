@@ -13,9 +13,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.moip.Moip;
 
-final class VisiAccemoipUrl extends ActionVisitorTemplateSimple<AccemoipInfo> {
+public final class AccemoipVisiUrl extends ActionVisitorTemplateSimple<AccemoipInfo> {
 	
-	public VisiAccemoipUrl(DeciTreeOption<AccemoipInfo> option) {
+	public AccemoipVisiUrl(DeciTreeOption<AccemoipInfo> option) {
 		super(option);
 	}
 	

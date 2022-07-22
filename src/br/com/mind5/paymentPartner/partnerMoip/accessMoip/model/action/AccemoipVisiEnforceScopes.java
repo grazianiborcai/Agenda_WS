@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipSetterScopes;
 
-final class VisiAccemoipEnforceScopes extends ActionVisitorTemplateEnforce<AccemoipInfo> {
+public final class AccemoipVisiEnforceScopes extends ActionVisitorTemplateEnforce<AccemoipInfo> {
 	
-	public VisiAccemoipEnforceScopes(DeciTreeOption<AccemoipInfo> option) {
+	public AccemoipVisiEnforceScopes(DeciTreeOption<AccemoipInfo> option) {
 		super(option);
 	}
 	

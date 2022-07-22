@@ -10,9 +10,9 @@ import br.com.mind5.payment.systemPartner.model.decisionTree.SysparRootSelect;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipMerger;
 
-final class VisiAccemoipMergeSyspar extends ActionVisitorTemplateMerge<AccemoipInfo, SysparInfo> {
+public final class AccemoipVisiMergeSyspar extends ActionVisitorTemplateMerge<AccemoipInfo, SysparInfo> {
 	
-	public VisiAccemoipMergeSyspar(DeciTreeOption<AccemoipInfo> option) {
+	public AccemoipVisiMergeSyspar(DeciTreeOption<AccemoipInfo> option) {
 		super(option, SysparInfo.class);
 	}
 	

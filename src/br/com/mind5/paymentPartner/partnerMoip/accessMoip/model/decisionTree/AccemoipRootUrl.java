@@ -5,14 +5,16 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipNodeUrl;
-import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.StdAccemoipEnforcePayPartner;
+import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.AccemoipVisiNodeUrl;
+import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.AccemoipVisiEnforcePayPartner;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.AccemoipCheckLangu;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.AccemoipCheckOwner;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.AccemoipCheckStorauth;
@@ -20,9 +22,9 @@ import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.Accemoip
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.AccemoipCheckUsername;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.AccemoipCheckWrite;
 
-public final class RootAccemoipUrl extends DeciTreeTemplateWrite<AccemoipInfo> {
+public final class AccemoipRootUrl extends DeciTreeTemplateWrite<AccemoipInfo> {
 	
-	public RootAccemoipUrl(DeciTreeOption<AccemoipInfo> option) {
+	public AccemoipRootUrl(DeciTreeOption<AccemoipInfo> option) {
 		super(option);
 	}
 	
@@ -83,8 +85,8 @@ public final class RootAccemoipUrl extends DeciTreeTemplateWrite<AccemoipInfo> {
 	@Override protected List<ActionStd<AccemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<AccemoipInfo> option) {
 		List<ActionStd<AccemoipInfo>> actions = new ArrayList<>();		
 
-		ActionStd<AccemoipInfo> enforcePayPartner = new StdAccemoipEnforcePayPartner(option);	
-		ActionLazy<AccemoipInfo> nodeUrl = new LazyAccemoipNodeUrl(option.conn, option.schemaName);
+		ActionStd<AccemoipInfo> enforcePayPartner = new ActionStdCommom<AccemoipInfo>(option, AccemoipVisiEnforcePayPartner.class);	
+		ActionLazy<AccemoipInfo> nodeUrl = new ActionLazyCommom<AccemoipInfo>(option, AccemoipVisiNodeUrl.class);
 		
 		enforcePayPartner.addPostAction(nodeUrl);
 		

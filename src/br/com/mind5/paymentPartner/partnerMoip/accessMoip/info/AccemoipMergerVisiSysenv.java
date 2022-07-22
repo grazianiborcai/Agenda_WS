@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 
-final class AccemoipVisiMergeSysenv extends InfoMergerVisitorTemplate<AccemoipInfo, SysenvInfo> {
+final class AccemoipMergerVisiSysenv extends InfoMergerVisitorTemplate<AccemoipInfo, SysenvInfo> {
 
 	@Override public boolean shouldMerge(AccemoipInfo baseInfo, SysenvInfo selectedInfo) {
 		return true;

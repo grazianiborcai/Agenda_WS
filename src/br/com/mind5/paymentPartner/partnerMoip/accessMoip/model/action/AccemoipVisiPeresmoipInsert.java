@@ -9,9 +9,9 @@ import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.decisionTree.RootPeresmoipInsert;
 
-final class VisiAccemoipPeresmoipInsert extends ActionVisitorTemplateAction<AccemoipInfo, PeresmoipInfo> {
+public final class AccemoipVisiPeresmoipInsert extends ActionVisitorTemplateAction<AccemoipInfo, PeresmoipInfo> {
 	
-	public VisiAccemoipPeresmoipInsert(DeciTreeOption<AccemoipInfo> option) {
+	public AccemoipVisiPeresmoipInsert(DeciTreeOption<AccemoipInfo> option) {
 		super(option, AccemoipInfo.class, PeresmoipInfo.class);
 	}
 	

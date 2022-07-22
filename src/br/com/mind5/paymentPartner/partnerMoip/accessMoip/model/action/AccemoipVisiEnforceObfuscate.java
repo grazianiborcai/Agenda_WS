@@ -4,18 +4,18 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipSetterCodPayPartner;
+import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipSetterObfuscate;
 
-final class VisiAccemoipEnforcePayPartner extends ActionVisitorTemplateEnforce<AccemoipInfo> {
+public final class AccemoipVisiEnforceObfuscate extends ActionVisitorTemplateEnforce<AccemoipInfo> {
 	
-	public VisiAccemoipEnforcePayPartner(DeciTreeOption<AccemoipInfo> option) {
+	public AccemoipVisiEnforceObfuscate(DeciTreeOption<AccemoipInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected AccemoipInfo enforceHook(AccemoipInfo recordInfo) {
-		InfoSetter<AccemoipInfo> attrSetter = new AccemoipSetterCodPayPartner();
+		InfoSetter<AccemoipInfo> attrSetter = new AccemoipSetterObfuscate();
 		return attrSetter.setAttr(recordInfo);
 	}
 }

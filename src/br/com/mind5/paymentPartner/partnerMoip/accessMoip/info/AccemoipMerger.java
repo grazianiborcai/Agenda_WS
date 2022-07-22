@@ -14,7 +14,7 @@ public final class AccemoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AccemoipVisiMergeSysenv());
+		builder.addVisitor(new AccemoipMergerVisiSysenv());
 		InfoMerger<AccemoipInfo, SysenvInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class AccemoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AccemoipVisiMergeSetupar());
+		builder.addVisitor(new AccemoipMergerVisiSetupar());
 		InfoMerger<AccemoipInfo, SetuparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class AccemoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AccemoipVisiMergeSyspar());
+		builder.addVisitor(new AccemoipMergerVisiSyspar());
 		InfoMerger<AccemoipInfo, SysparInfo> merger = builder.build();		
 	
 		return merger.merge();

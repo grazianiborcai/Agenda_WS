@@ -5,26 +5,28 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipEnforceObfuscate;
-import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipEnforceScopes;
-import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipEnforceSetup;
-import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipMergeSetupar;
-import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipMergeSysenv;
-import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipPeresmoipInsert;
-import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipUrl;
-import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.StdAccemoipMergeSyspar;
+import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.AccemoipVisiEnforceObfuscate;
+import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.AccemoipVisiEnforceScopes;
+import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.AccemoipVisiEnforceSetup;
+import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.AccemoipVisiMergeSetupar;
+import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.AccemoipVisiMergeSysenv;
+import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.AccemoipVisiMergeSyspar;
+import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.AccemoipVisiPeresmoipInsert;
+import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.AccemoipVisiUrl;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.AccemoipCheckSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.AccemoipCheckSyspar;
 
-public final class NodeAccemoipUrl extends DeciTreeTemplateWrite<AccemoipInfo> {
+public final class AccemoipNodeUrl extends DeciTreeTemplateWrite<AccemoipInfo> {
 	
-	public NodeAccemoipUrl(DeciTreeOption<AccemoipInfo> option) {
+	public AccemoipNodeUrl(DeciTreeOption<AccemoipInfo> option) {
 		super(option);
 	}
 	
@@ -57,14 +59,14 @@ public final class NodeAccemoipUrl extends DeciTreeTemplateWrite<AccemoipInfo> {
 	@Override protected List<ActionStd<AccemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<AccemoipInfo> option) {
 		List<ActionStd<AccemoipInfo>> actions = new ArrayList<>();		
 
-		ActionStd<AccemoipInfo> mergeSyspar = new StdAccemoipMergeSyspar(option);	
-		ActionLazy<AccemoipInfo> mergeSetupar = new LazyAccemoipMergeSetupar(option.conn, option.schemaName);
-		ActionLazy<AccemoipInfo> mergeSysenv = new LazyAccemoipMergeSysenv(option.conn, option.schemaName);
-		ActionLazy<AccemoipInfo> enforceSetup = new LazyAccemoipEnforceSetup(option.conn, option.schemaName);		
-		ActionLazy<AccemoipInfo> enforceScopes = new LazyAccemoipEnforceScopes(option.conn, option.schemaName);
-		ActionLazy<AccemoipInfo> enforceUrl = new LazyAccemoipUrl(option.conn, option.schemaName);
-		ActionLazy<AccemoipInfo> insertPeresmoip = new LazyAccemoipPeresmoipInsert(option.conn, option.schemaName);
-		ActionLazy<AccemoipInfo> obfuscate = new LazyAccemoipEnforceObfuscate(option.conn, option.schemaName);
+		ActionStd<AccemoipInfo> mergeSyspar = new ActionStdCommom<AccemoipInfo>(option, AccemoipVisiMergeSyspar.class);	
+		ActionLazy<AccemoipInfo> mergeSetupar = new ActionLazyCommom<AccemoipInfo>(option, AccemoipVisiMergeSetupar.class);
+		ActionLazy<AccemoipInfo> mergeSysenv = new ActionLazyCommom<AccemoipInfo>(option, AccemoipVisiMergeSysenv.class);
+		ActionLazy<AccemoipInfo> enforceSetup = new ActionLazyCommom<AccemoipInfo>(option, AccemoipVisiEnforceSetup.class);		
+		ActionLazy<AccemoipInfo> enforceScopes = new ActionLazyCommom<AccemoipInfo>(option, AccemoipVisiEnforceScopes.class);
+		ActionLazy<AccemoipInfo> enforceUrl = new ActionLazyCommom<AccemoipInfo>(option, AccemoipVisiUrl.class);
+		ActionLazy<AccemoipInfo> insertPeresmoip = new ActionLazyCommom<AccemoipInfo>(option, AccemoipVisiPeresmoipInsert.class);
+		ActionLazy<AccemoipInfo> obfuscate = new ActionLazyCommom<AccemoipInfo>(option, AccemoipVisiEnforceObfuscate.class);
 		
 		mergeSyspar.addPostAction(mergeSetupar);
 		mergeSetupar.addPostAction(mergeSysenv);
