@@ -5,18 +5,20 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
-import br.com.mind5.payment.statusPayOrder.model.action.LazyPaytusNodeAuthL2;
-import br.com.mind5.payment.statusPayOrder.model.action.StdPaytusMergeUsername;
+import br.com.mind5.payment.statusPayOrder.model.action.PaytusVisiNodeAuthL2;
+import br.com.mind5.payment.statusPayOrder.model.action.PaytusVisiMergeUsername;
 
-public final class NodePaytusAuthL1 extends DeciTreeTemplateWrite<PaytusInfo> {
+public final class PaytusNodeAuthL1 extends DeciTreeTemplateWrite<PaytusInfo> {
 	
-	public NodePaytusAuthL1(DeciTreeOption<PaytusInfo> option) {
+	public PaytusNodeAuthL1(DeciTreeOption<PaytusInfo> option) {
 		super(option);
 	}
 	
@@ -37,8 +39,8 @@ public final class NodePaytusAuthL1 extends DeciTreeTemplateWrite<PaytusInfo> {
 	@Override protected List<ActionStd<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
 		List<ActionStd<PaytusInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusInfo> mergeUsername = new StdPaytusMergeUsername(option);
-		ActionLazy<PaytusInfo> nodeL2 = new LazyPaytusNodeAuthL2(option.conn, option.schemaName);
+		ActionStd<PaytusInfo> mergeUsername = new ActionStdCommom<PaytusInfo>(option, PaytusVisiMergeUsername.class);
+		ActionLazy<PaytusInfo> nodeL2 = new ActionLazyCommom<PaytusInfo>(option, PaytusVisiNodeAuthL2.class);
 		
 		mergeUsername.addPostAction(nodeL2);
 		

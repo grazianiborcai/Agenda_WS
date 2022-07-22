@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
-import br.com.mind5.payment.statusPayOrder.model.action.StdPaytusSuccess;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckPayordarch;
 
-public final class NodePaytusAuthL2 extends DeciTreeTemplateWrite<PaytusInfo> {
+public final class PaytusNodeAuthL2 extends DeciTreeTemplateWrite<PaytusInfo> {
 	
-	public NodePaytusAuthL2(DeciTreeOption<PaytusInfo> option) {
+	public PaytusNodeAuthL2(DeciTreeOption<PaytusInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +41,7 @@ public final class NodePaytusAuthL2 extends DeciTreeTemplateWrite<PaytusInfo> {
 	@Override protected List<ActionStd<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
 		List<ActionStd<PaytusInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusInfo> success = new StdPaytusSuccess(option);
+		ActionStd<PaytusInfo> success = new ActionStdSuccessCommom<PaytusInfo>(option);
 		
 		actions.add(success);		
 		return actions;

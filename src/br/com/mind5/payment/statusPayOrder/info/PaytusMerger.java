@@ -16,7 +16,7 @@ public final class PaytusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PaytusVisiMergeUsername());
+		builder.addVisitor(new PaytusMergerVisiUsername());
 		InfoMerger<PaytusInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -29,7 +29,7 @@ public final class PaytusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PaytusVisiMergePaymoip());
+		builder.addVisitor(new PaytusMergerVisiPaymoip());
 		InfoMerger<PaytusInfo, PaymoipInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -42,7 +42,7 @@ public final class PaytusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PaytusVisiMergePayord());
+		builder.addVisitor(new PaytusMergerVisiPayord());
 		InfoMerger<PaytusInfo, PayordInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -55,7 +55,7 @@ public final class PaytusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PaytusVisiMergePaytusem());
+		builder.addVisitor(new PaytusMergerVisiPaytusem());
 		InfoMerger<PaytusInfo, PaytusemInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -68,7 +68,7 @@ public final class PaytusMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PaytusVisiMergeMultmoip());
+		builder.addVisitor(new PaytusMergerVisiMultmoip());
 		InfoMerger<PaytusInfo, MultmoipInfo> merger = builder.build();		
 	
 		return merger.merge();

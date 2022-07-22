@@ -11,9 +11,9 @@ import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.UsernameRootSelect;
 
-final class VisiPaytusMergeUsername extends ActionVisitorTemplateMerge<PaytusInfo, UsernameInfo> {
+public final class PaytusVisiMergeUsername extends ActionVisitorTemplateMerge<PaytusInfo, UsernameInfo> {
 	
-	public VisiPaytusMergeUsername(DeciTreeOption<PaytusInfo> option) {
+	public PaytusVisiMergeUsername(DeciTreeOption<PaytusInfo> option) {
 		super(option, UsernameInfo.class); 
 	}
 	

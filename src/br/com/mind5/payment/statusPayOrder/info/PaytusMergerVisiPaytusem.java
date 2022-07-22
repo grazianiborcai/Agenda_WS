@@ -7,7 +7,7 @@ import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 
-final class PaytusVisiMergePaytusem extends InfoMergerVisitorTemplate<PaytusInfo, PaytusemInfo> {
+final class PaytusMergerVisiPaytusem extends InfoMergerVisitorTemplate<PaytusInfo, PaytusemInfo> {
 	
 	@Override public List<PaytusInfo> beforeMerge(List<PaytusInfo> baseInfos) {
 		for (PaytusInfo eachBase : baseInfos) {

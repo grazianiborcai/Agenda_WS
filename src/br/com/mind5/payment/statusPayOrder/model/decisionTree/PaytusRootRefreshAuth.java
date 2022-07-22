@@ -5,21 +5,22 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
-import br.com.mind5.payment.statusPayOrder.model.action.LazyPaytusRootRefresh;
+import br.com.mind5.payment.statusPayOrder.model.action.PaytusVisiRootRefresh;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckOwner;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckPayord;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckRefresh;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckUsername;
 
-public final class RootPaytusRefreshAuth extends DeciTreeTemplateWrite<PaytusInfo> {
+public final class PaytusRootRefreshAuth extends DeciTreeTemplateWrite<PaytusInfo> {
 	
-	public RootPaytusRefreshAuth(DeciTreeOption<PaytusInfo> option) {
+	public PaytusRootRefreshAuth(DeciTreeOption<PaytusInfo> option) {
 		super(option);
 	}
 	
@@ -66,8 +67,8 @@ public final class RootPaytusRefreshAuth extends DeciTreeTemplateWrite<PaytusInf
 	@Override protected List<ActionStd<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
 		List<ActionStd<PaytusInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusInfo> nodeAuth = new NodePaytusAuthL1(option).toAction();
-		ActionLazy<PaytusInfo> nodeRefresh = new LazyPaytusRootRefresh(option.conn, option.schemaName);	
+		ActionStd<PaytusInfo> nodeAuth = new PaytusNodeAuthL1(option).toAction();
+		ActionLazy<PaytusInfo> nodeRefresh = new ActionLazyCommom<PaytusInfo>(option, PaytusVisiRootRefresh.class);	
 		
 		nodeAuth.addPostAction(nodeRefresh);
 		

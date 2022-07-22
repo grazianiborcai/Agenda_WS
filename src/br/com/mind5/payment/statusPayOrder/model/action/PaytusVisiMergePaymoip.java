@@ -10,9 +10,9 @@ import br.com.mind5.payment.statusPayOrder.info.PaytusMerger;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.decisionTree.RootPaymoipRead;
 
-final class VisiPaytusMergePaymoip extends ActionVisitorTemplateMerge<PaytusInfo, PaymoipInfo> {
+public final class PaytusVisiMergePaymoip extends ActionVisitorTemplateMerge<PaytusInfo, PaymoipInfo> {
 	
-	public VisiPaytusMergePaymoip(DeciTreeOption<PaytusInfo> option) {
+	public PaytusVisiMergePaymoip(DeciTreeOption<PaytusInfo> option) {
 		super(option, PaymoipInfo.class); 
 	}
 	

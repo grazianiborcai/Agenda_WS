@@ -4,7 +4,7 @@ import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
-import br.com.mind5.payment.statusPayOrder.model.decisionTree.RootPaytusRefreshAuth;
+import br.com.mind5.payment.statusPayOrder.model.decisionTree.PaytusRootRefreshAuth;
 
 public final class PaytusModelRefreshAuth extends ModelTemplate<PaytusInfo> {
 	
@@ -15,6 +15,6 @@ public final class PaytusModelRefreshAuth extends ModelTemplate<PaytusInfo> {
 	
 	
 	@Override protected DeciTree<PaytusInfo> getDecisionTreeHook(DeciTreeOption<PaytusInfo> option) {
-		return new RootPaytusRefreshAuth(option);
+		return new PaytusRootRefreshAuth(option);
 	}
 }

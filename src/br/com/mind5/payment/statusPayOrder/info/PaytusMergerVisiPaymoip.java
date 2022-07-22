@@ -7,7 +7,7 @@ import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 
-final class PaytusVisiMergePaymoip extends InfoMergerVisitorTemplate<PaytusInfo, PaymoipInfo> {
+final class PaytusMergerVisiPaymoip extends InfoMergerVisitorTemplate<PaytusInfo, PaymoipInfo> {
 
 	@Override public boolean shouldMerge(PaytusInfo baseInfo, PaymoipInfo selectedInfo) {
 		return (baseInfo.idOrderPartner.equals(selectedInfo.idOrderPartner));

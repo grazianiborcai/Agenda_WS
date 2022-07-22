@@ -10,9 +10,9 @@ import br.com.mind5.payment.statusPayOrder.info.PaytusMerger;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 import br.com.mind5.payment.statusPayOrderItem.model.decisionTree.RootPaytusemSelect;
 
-final class VisiPaytusMergePaytusem extends ActionVisitorTemplateMerge<PaytusInfo, PaytusemInfo> {
+public final class PaytusVisiMergePaytusem extends ActionVisitorTemplateMerge<PaytusInfo, PaytusemInfo> {
 	
-	public VisiPaytusMergePaytusem(DeciTreeOption<PaytusInfo> option) {
+	public PaytusVisiMergePaytusem(DeciTreeOption<PaytusInfo> option) {
 		super(option, PaytusemInfo.class); 
 	}
 	

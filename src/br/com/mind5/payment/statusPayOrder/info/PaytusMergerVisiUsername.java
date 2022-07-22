@@ -7,7 +7,7 @@ import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class PaytusVisiMergeUsername extends InfoMergerVisitorTemplate<PaytusInfo, UsernameInfo> {
+final class PaytusMergerVisiUsername extends InfoMergerVisitorTemplate<PaytusInfo, UsernameInfo> {
 
 	@Override public boolean shouldMerge(PaytusInfo baseInfo, UsernameInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner		&&

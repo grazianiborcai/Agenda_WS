@@ -7,7 +7,7 @@ import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-final class PaytusVisiMergePayord extends InfoMergerVisitorTemplate<PaytusInfo, PayordInfo> {
+final class PaytusMergerVisiPayord extends InfoMergerVisitorTemplate<PaytusInfo, PayordInfo> {
 
 	@Override public boolean shouldMerge(PaytusInfo baseInfo, PayordInfo selectedInfo) {
 		return (baseInfo.codOwner 	 == selectedInfo.codOwner 	&&

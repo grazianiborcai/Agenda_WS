@@ -5,21 +5,22 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
-import br.com.mind5.payment.statusPayOrder.model.action.LazyPaytusNodeRefresh;
-import br.com.mind5.payment.statusPayOrder.model.action.LazyPaytusPaytusemRefresh;
+import br.com.mind5.payment.statusPayOrder.model.action.PaytusVisiNodeRefresh;
+import br.com.mind5.payment.statusPayOrder.model.action.PaytusVisiPaytusemRefresh;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckOwner;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckPayord;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckRefresh;
 
-public final class RootPaytusRefresh extends DeciTreeTemplateWrite<PaytusInfo> {
+public final class PaytusRootRefresh extends DeciTreeTemplateWrite<PaytusInfo> {
 	
-	public RootPaytusRefresh(DeciTreeOption<PaytusInfo> option) {
+	public PaytusRootRefresh(DeciTreeOption<PaytusInfo> option) {
 		super(option);
 	}
 	
@@ -59,10 +60,10 @@ public final class RootPaytusRefresh extends DeciTreeTemplateWrite<PaytusInfo> {
 	@Override protected List<ActionStd<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
 		List<ActionStd<PaytusInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusInfo> selectToRefresh = new RootPaytusSelect(option).toAction();
-		ActionLazy<PaytusInfo> nodeRefresh = new LazyPaytusNodeRefresh(option.conn, option.schemaName);	
-		ActionLazy<PaytusInfo> paytusemRefresh = new LazyPaytusPaytusemRefresh(option.conn, option.schemaName);		
-		ActionStd<PaytusInfo> selectOutput = new RootPaytusSelect(option).toAction();	
+		ActionStd<PaytusInfo> selectToRefresh = new PaytusRootSelect(option).toAction();
+		ActionLazy<PaytusInfo> nodeRefresh = new ActionLazyCommom<PaytusInfo>(option, PaytusVisiNodeRefresh.class);	
+		ActionLazy<PaytusInfo> paytusemRefresh = new ActionLazyCommom<PaytusInfo>(option, PaytusVisiPaytusemRefresh.class);		
+		ActionStd<PaytusInfo> selectOutput = new PaytusRootSelect(option).toAction();	
 		
 		selectToRefresh.addPostAction(nodeRefresh);
 		nodeRefresh.addPostAction(paytusemRefresh);
