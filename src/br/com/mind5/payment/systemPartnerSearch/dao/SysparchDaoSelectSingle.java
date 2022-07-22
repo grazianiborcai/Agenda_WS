@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.systemPartnerSearch.info.SysparchInfo;
 
-public final class DaoSysparchSelectSingle extends DaoStmtTemplate<SysparchInfo> {
+public final class SysparchDaoSelectSingle extends DaoStmtTemplate<SysparchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SYS_PAY_PARTNER_TABLE;
 	
 	
-	public DaoSysparchSelectSingle(Connection conn, SysparchInfo recordInfo, String schemaName) {
+	public SysparchDaoSelectSingle(Connection conn, SysparchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -49,7 +49,7 @@ public final class DaoSysparchSelectSingle extends DaoStmtTemplate<SysparchInfo>
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoSysparchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new SysparchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -66,9 +66,9 @@ public final class DaoSysparchSelectSingle extends DaoStmtTemplate<SysparchInfo>
 				do {
 					SysparchInfo dataInfo = new SysparchInfo();
 					
-					dataInfo.idPayPartnerSystem = stmtResult.getString(DaoSysparchDbTableColumn.COL_ID_PAY_PARTNER_SYSTEM);
-					dataInfo.idPayPartnerApp = stmtResult.getString(DaoSysparchDbTableColumn.COL_ID_PAY_PARTNER_APP);
-					dataInfo.codPayPartner = stmtResult.getInt(DaoSysparchDbTableColumn.COL_COD_PAY_PARTNER);		
+					dataInfo.idPayPartnerSystem = stmtResult.getString(SysparchDaoDbTableColumn.COL_ID_PAY_PARTNER_SYSTEM);
+					dataInfo.idPayPartnerApp = stmtResult.getString(SysparchDaoDbTableColumn.COL_ID_PAY_PARTNER_APP);
+					dataInfo.codPayPartner = stmtResult.getInt(SysparchDaoDbTableColumn.COL_COD_PAY_PARTNER);		
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

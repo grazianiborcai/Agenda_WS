@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.systemPartnerSearch.info.SysparchInfo;
-import br.com.mind5.payment.systemPartnerSearch.model.action.StdSysparchDaoSelect;
+import br.com.mind5.payment.systemPartnerSearch.model.action.SysparchVisiDaoSelect;
 import br.com.mind5.payment.systemPartnerSearch.model.checker.SysparchCheckRead;
 
-public final class RootSysparchSelect extends DeciTreeTemplateRead<SysparchInfo> {
+public final class SysparchRootSelect extends DeciTreeTemplateRead<SysparchInfo> {
 	
-	public RootSysparchSelect(DeciTreeOption<SysparchInfo> option) {
+	public SysparchRootSelect(DeciTreeOption<SysparchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootSysparchSelect extends DeciTreeTemplateRead<SysparchInfo>
 	@Override protected List<ActionStd<SysparchInfo>> buildActionsOnPassedHook(DeciTreeOption<SysparchInfo> option) {
 		List<ActionStd<SysparchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SysparchInfo> select = new StdSysparchDaoSelect(option);
+		ActionStd<SysparchInfo> select = new ActionStdCommom<SysparchInfo>(option, SysparchVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

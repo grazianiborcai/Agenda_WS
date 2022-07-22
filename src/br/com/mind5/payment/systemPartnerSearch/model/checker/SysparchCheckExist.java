@@ -6,7 +6,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.systemPartnerSearch.info.SysparchInfo;
-import br.com.mind5.payment.systemPartnerSearch.model.decisionTree.RootSysparchSelect;
+import br.com.mind5.payment.systemPartnerSearch.model.decisionTree.SysparchRootSelect;
 
 public final class SysparchCheckExist extends ModelCheckerTemplateAction<SysparchInfo, SysparchInfo> {
 	
@@ -17,7 +17,7 @@ public final class SysparchCheckExist extends ModelCheckerTemplateAction<Sysparc
 
 	
 	@Override protected ActionStd<SysparchInfo> buildActionHook(DeciTreeOption<SysparchInfo> option) {
-		ActionStd<SysparchInfo> select = new RootSysparchSelect(option).toAction();
+		ActionStd<SysparchInfo> select = new SysparchRootSelect(option).toAction();
 		return select;
 	}
 	

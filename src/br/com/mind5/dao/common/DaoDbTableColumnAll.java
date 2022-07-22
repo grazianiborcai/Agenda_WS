@@ -252,7 +252,7 @@ import br.com.mind5.payment.storePartnerList.dao.StoplisDaoDbTableColumn;
 import br.com.mind5.payment.storePartnerSearch.dao.StoparchDaoDbTableColumn;
 import br.com.mind5.payment.storePartnerSnapshot.dao.StoparnapDaoDbTableColumn;
 import br.com.mind5.payment.systemPartner.dao.SysparDaoDbTableColumn;
-import br.com.mind5.payment.systemPartnerSearch.dao.DaoSysparchDbTableColumn;
+import br.com.mind5.payment.systemPartnerSearch.dao.SysparchDaoDbTableColumn;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.dao.DaoPeresmoipDbTableColumn;
 import br.com.mind5.security.otpProspectStore.dao.OtporeDaoDbTableColumn;
 import br.com.mind5.security.otpUserPassword.dao.OtperasDaoDbTableColumn;
@@ -367,7 +367,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new PayordDaoDbTableColumn());
 		addTable(new CusparDaoDbTableColumn());
 		addTable(new CrecardDaoDbTableColumn());
-		addTable(new DaoSysparchDbTableColumn());
+		addTable(new SysparchDaoDbTableColumn());
 		addTable(new SysparDaoDbTableColumn());
 		addTable(new PayordemDaoDbTableColumn());
 		addTable(new DaoPeresmoipDbTableColumn());

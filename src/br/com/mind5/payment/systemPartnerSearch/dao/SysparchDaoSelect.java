@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.payment.systemPartnerSearch.info.SysparchInfo;
 
-public final class DaoSysparchSelect implements DaoStmtExec<SysparchInfo> {
+public final class SysparchDaoSelect implements DaoStmtExec<SysparchInfo> {
 	private DaoStmtExec<SysparchInfo> helper;
 	
 	
-	public DaoSysparchSelect(List<DaoStmtExecOption<SysparchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoSysparchSelectSingle.class, SysparchInfo.class);
+	public SysparchDaoSelect(List<DaoStmtExecOption<SysparchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, SysparchDaoSelectSingle.class, SysparchInfo.class);
 	}
 	
 	
