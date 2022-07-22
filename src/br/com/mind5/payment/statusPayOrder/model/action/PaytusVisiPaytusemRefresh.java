@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.info.PaytusMerger;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
-import br.com.mind5.payment.statusPayOrderItem.model.decisionTree.RootPaytusemRefresh;
+import br.com.mind5.payment.statusPayOrderItem.model.decisionTree.PaytusemRootRefresh;
 
 public final class PaytusVisiPaytusemRefresh extends ActionVisitorTemplateAction<PaytusInfo, PaytusemInfo> {
 	
@@ -19,7 +19,7 @@ public final class PaytusVisiPaytusemRefresh extends ActionVisitorTemplateAction
 	
 	
 	@Override protected Class<? extends DeciTree<PaytusemInfo>> getTreeClassHook() {
-		return RootPaytusemRefresh.class;
+		return PaytusemRootRefresh.class;
 	}
 	
 	

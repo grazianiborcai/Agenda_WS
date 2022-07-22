@@ -5,19 +5,20 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
-import br.com.mind5.payment.statusPayOrderItem.model.action.LazyPaytusemNodeRefresh;
+import br.com.mind5.payment.statusPayOrderItem.model.action.PaytusemVisiNodeRefresh;
 import br.com.mind5.payment.statusPayOrderItem.model.checker.PaytusemCheckOwner;
 import br.com.mind5.payment.statusPayOrderItem.model.checker.PaytusemCheckRefresh;
 
-public final class RootPaytusemRefresh extends DeciTreeTemplateWrite<PaytusemInfo> {
+public final class PaytusemRootRefresh extends DeciTreeTemplateWrite<PaytusemInfo> {
 	
-	public RootPaytusemRefresh(DeciTreeOption<PaytusemInfo> option) {
+	public PaytusemRootRefresh(DeciTreeOption<PaytusemInfo> option) {
 		super(option);
 	}
 	
@@ -50,8 +51,8 @@ public final class RootPaytusemRefresh extends DeciTreeTemplateWrite<PaytusemInf
 	@Override protected List<ActionStd<PaytusemInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusemInfo> option) {
 		List<ActionStd<PaytusemInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusemInfo> select = new RootPaytusemSelect(option).toAction();	
-		ActionLazy<PaytusemInfo> nodeRefresh = new LazyPaytusemNodeRefresh(option.conn, option.schemaName);
+		ActionStd<PaytusemInfo> select = new PaytusemRootSelect(option).toAction();	
+		ActionLazy<PaytusemInfo> nodeRefresh = new ActionLazyCommom<PaytusemInfo>(option, PaytusemVisiNodeRefresh.class);
 		
 		select.addPostAction(nodeRefresh);
 		

@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
-import br.com.mind5.payment.statusPayOrderItem.model.action.StdPaytusemMergePayordem;
+import br.com.mind5.payment.statusPayOrderItem.model.action.PaytusemVisiMergePayordem;
 import br.com.mind5.payment.statusPayOrderItem.model.checker.PaytusemCheckLangu;
 import br.com.mind5.payment.statusPayOrderItem.model.checker.PaytusemCheckRead;
 
-public final class RootPaytusemSelect extends DeciTreeTemplateRead<PaytusemInfo> {
+public final class PaytusemRootSelect extends DeciTreeTemplateRead<PaytusemInfo> {
 	
-	public RootPaytusemSelect(DeciTreeOption<PaytusemInfo> option) {
+	public PaytusemRootSelect(DeciTreeOption<PaytusemInfo> option) {
 		super(option);
 	}
 	
@@ -49,7 +50,7 @@ public final class RootPaytusemSelect extends DeciTreeTemplateRead<PaytusemInfo>
 	@Override protected List<ActionStd<PaytusemInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusemInfo> option) {
 		List<ActionStd<PaytusemInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusemInfo> mergePayordem = new StdPaytusemMergePayordem(option);	
+		ActionStd<PaytusemInfo> mergePayordem = new ActionStdCommom<PaytusemInfo>(option, PaytusemVisiMergePayordem.class);	
 		
 		actions.add(mergePayordem);		
 		return actions;

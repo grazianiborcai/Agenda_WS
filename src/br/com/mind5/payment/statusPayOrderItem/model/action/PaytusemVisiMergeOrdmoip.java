@@ -11,9 +11,9 @@ import br.com.mind5.payment.statusPayOrderItem.info.PaytusemMerger;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.decsionTree.RootOrdmoipRead;
 
-final class VisiPaytusemMergeOrdmoip extends ActionVisitorTemplateMerge<PaytusemInfo, OrdmoipInfo> {
+public final class PaytusemVisiMergeOrdmoip extends ActionVisitorTemplateMerge<PaytusemInfo, OrdmoipInfo> {
 	
-	public VisiPaytusemMergeOrdmoip(DeciTreeOption<PaytusemInfo> option) {
+	public PaytusemVisiMergeOrdmoip(DeciTreeOption<PaytusemInfo> option) {
 		super(option, OrdmoipInfo.class);
 	}
 	

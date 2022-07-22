@@ -2,24 +2,32 @@ package br.com.mind5.payment.statusPayOrderItem.model.action;
 
 import java.util.List;
 
+
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
+import br.com.mind5.payment.payOrderItem.info.PayordemCopier;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.payment.payOrderItem.model.decisionTree.PayordemRootUpdateStatus;
+import br.com.mind5.payment.payOrderItem.model.decisionTree.PayordemRootSearch;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemMerger;
 
-final class VisiPaytusemPayordemUpdate extends ActionVisitorTemplateMerge<PaytusemInfo, PayordemInfo> {
+public final class PaytusemVisiMergePayordem extends ActionVisitorTemplateMerge<PaytusemInfo, PayordemInfo> {
 	
-	public VisiPaytusemPayordemUpdate(DeciTreeOption<PaytusemInfo> option) {
+	public PaytusemVisiMergePayordem(DeciTreeOption<PaytusemInfo> option) {
 		super(option, PayordemInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<PayordemInfo>> getTreeClassHook() {
-		return PayordemRootUpdateStatus.class;
+		return PayordemRootSearch.class;
+	}
+	
+	
+	
+	@Override protected List<PayordemInfo> toActionClassHook(List<PaytusemInfo> baseInfos) {
+		return PayordemCopier.copyFromPaytusem(baseInfos);	
 	}
 	
 	

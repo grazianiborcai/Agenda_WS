@@ -13,7 +13,7 @@ public final class PaytusemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PaytusemVisiMergePayordem());
+		builder.addVisitor(new PaytusemMergerVisiPayordem());
 		InfoMerger<PaytusemInfo, PayordemInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class PaytusemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PaytusemVisiMergeOrdmoip());
+		builder.addVisitor(new PaytusemMergerVisiOrdmoip());
 		InfoMerger<PaytusemInfo, OrdmoipInfo> merger = builder.build();		
 	
 		return merger.merge();
