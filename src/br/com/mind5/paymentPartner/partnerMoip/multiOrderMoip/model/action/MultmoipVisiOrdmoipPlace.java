@@ -9,7 +9,7 @@ import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipMerger;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipCopier;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.decsionTree.RootOrdmoipPlace;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.decsionTree.OrdmoipRootPlace;
 
 public final class MultmoipVisiOrdmoipPlace extends ActionVisitorTemplateAction<MultmoipInfo, OrdmoipInfo> {
 	
@@ -20,7 +20,7 @@ public final class MultmoipVisiOrdmoipPlace extends ActionVisitorTemplateAction<
 	
 	
 	@Override protected Class<? extends DeciTree<OrdmoipInfo>> getTreeClassHook() {
-		return RootOrdmoipPlace.class;
+		return OrdmoipRootPlace.class;
 	}
 	
 	

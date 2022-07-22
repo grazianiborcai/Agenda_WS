@@ -18,7 +18,7 @@ public final class OrdmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdmoipVisiMergeStopar());
+		builder.addVisitor(new OrdmoipMergerVisiStopar());
 		InfoMerger<OrdmoipInfo, StoparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -31,7 +31,7 @@ public final class OrdmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdmoipVisiMergeSyspar());
+		builder.addVisitor(new OrdmoipMergerVisiSyspar());
 		InfoMerger<OrdmoipInfo, SysparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -44,7 +44,7 @@ public final class OrdmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdmoipVisiMergeSysenv());
+		builder.addVisitor(new OrdmoipMergerVisiSysenv());
 		InfoMerger<OrdmoipInfo, SysenvInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -57,7 +57,7 @@ public final class OrdmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdmoipVisiMergeSetupar());
+		builder.addVisitor(new OrdmoipMergerVisiSetupar());
 		InfoMerger<OrdmoipInfo, SetuparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -70,7 +70,7 @@ public final class OrdmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdmoipVisiMergePayordist());
+		builder.addVisitor(new OrdmoipMergerVisiPayordist());
 		InfoMerger<OrdmoipInfo, PayordistInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -83,7 +83,7 @@ public final class OrdmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdmoipVisiMergePayordem());
+		builder.addVisitor(new OrdmoipMergerVisiPayordem());
 		InfoMerger<OrdmoipInfo, PayordemInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -96,7 +96,7 @@ public final class OrdmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdmoipVisiMergeCuspar());
+		builder.addVisitor(new OrdmoipMergerVisiCuspar());
 		InfoMerger<OrdmoipInfo, CusparInfo> merger = builder.build();		
 	
 		return merger.merge();

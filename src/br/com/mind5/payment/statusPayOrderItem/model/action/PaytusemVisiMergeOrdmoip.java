@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemMerger;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.decsionTree.RootOrdmoipRead;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.decsionTree.OrdmoipRootRead;
 
 public final class PaytusemVisiMergeOrdmoip extends ActionVisitorTemplateMerge<PaytusemInfo, OrdmoipInfo> {
 	
@@ -20,7 +20,7 @@ public final class PaytusemVisiMergeOrdmoip extends ActionVisitorTemplateMerge<P
 	
 	
 	@Override protected Class<? extends DeciTree<OrdmoipInfo>> getTreeClassHook() {
-		return RootOrdmoipRead.class;
+		return OrdmoipRootRead.class;
 	}
 	
 	
