@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.info.PaytusMerger;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.decisionTree.RootMultmoipRead;
+import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.decisionTree.MultmoipRootRead;
 
 public final class PaytusVisiMergeMultmoip extends ActionVisitorTemplateMerge<PaytusInfo, MultmoipInfo> {
 	
@@ -19,7 +19,7 @@ public final class PaytusVisiMergeMultmoip extends ActionVisitorTemplateMerge<Pa
 	
 	
 	@Override protected Class<? extends DeciTree<MultmoipInfo>> getTreeClassHook() {
-		return RootMultmoipRead.class;
+		return MultmoipRootRead.class;
 	}
 	
 	

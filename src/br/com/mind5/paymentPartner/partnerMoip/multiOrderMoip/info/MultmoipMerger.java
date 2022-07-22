@@ -16,7 +16,7 @@ public final class MultmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MultmoipVisiMergePayordemist());
+		builder.addVisitor(new MultmoipMergerVisiPayordemist());
 		InfoMerger<MultmoipInfo, PayordemistInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -29,7 +29,7 @@ public final class MultmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MultmoipVisiMergeSysenv());
+		builder.addVisitor(new MultmoipMergerVisiSysenv());
 		InfoMerger<MultmoipInfo, SysenvInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -42,7 +42,7 @@ public final class MultmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MultmoipVisiMergeSetupar());
+		builder.addVisitor(new MultmoipMergerVisiSetupar());
 		InfoMerger<MultmoipInfo, SetuparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -55,7 +55,7 @@ public final class MultmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MultmoipVisiMergeOrdmoip());
+		builder.addVisitor(new MultmoipMergerVisiOrdmoip());
 		InfoMerger<MultmoipInfo, OrdmoipInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -68,7 +68,7 @@ public final class MultmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MultmoipVisiMergePaymoip());
+		builder.addVisitor(new MultmoipMergerVisiPaymoip());
 		InfoMerger<MultmoipInfo, PaymoipInfo> merger = builder.build();		
 	
 		return merger.merge();
