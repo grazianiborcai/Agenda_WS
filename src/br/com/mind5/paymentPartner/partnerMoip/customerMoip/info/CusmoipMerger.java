@@ -17,7 +17,7 @@ public final class CusmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusmoipVisiMergeUserap());
+		builder.addVisitor(new CusmoipMergerVisiUserap());
 		InfoMerger<CusmoipInfo, UserapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -30,7 +30,7 @@ public final class CusmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusmoipVisiMergeSysenv());
+		builder.addVisitor(new CusmoipMergerVisiSysenv());
 		InfoMerger<CusmoipInfo, SysenvInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -43,7 +43,7 @@ public final class CusmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusmoipVisiMergeSetupar());
+		builder.addVisitor(new CusmoipMergerVisiSetupar());
 		InfoMerger<CusmoipInfo, SetuparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -56,7 +56,7 @@ public final class CusmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusmoipVisiMergeAddresnap());
+		builder.addVisitor(new CusmoipMergerVisiAddresnap());
 		InfoMerger<CusmoipInfo, AddresnapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -69,7 +69,7 @@ public final class CusmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusmoipVisiMergePhonap());
+		builder.addVisitor(new CusmoipMergerVisiPhonap());
 		InfoMerger<CusmoipInfo, PhonapInfo> merger = builder.build();		
 	
 		return merger.merge();

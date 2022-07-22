@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.info.CusparMerger;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.decisionTree.RootCusmoipCreate;
+import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.decisionTree.CusmoipRootCreate;
 
 
 public final class CusparVisiCusmoipCreate extends ActionVisitorTemplateAction<CusparInfo, CusmoipInfo> {
@@ -20,7 +20,7 @@ public final class CusparVisiCusmoipCreate extends ActionVisitorTemplateAction<C
 	
 	
 	@Override protected Class<? extends DeciTree<CusmoipInfo>> getTreeClassHook() {
-		return RootCusmoipCreate.class;
+		return CusmoipRootCreate.class;
 	}
 	
 	
