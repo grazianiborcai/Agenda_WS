@@ -15,7 +15,7 @@ public final class PaymoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PaymoipVisiMergeSyspar());
+		builder.addVisitor(new PaymoipMergerVisiSyspar());
 		InfoMerger<PaymoipInfo, SysparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -28,7 +28,7 @@ public final class PaymoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PaymoipVisiMergeCrecard());
+		builder.addVisitor(new PaymoipMergerVisiCrecard());
 		InfoMerger<PaymoipInfo, CrecardInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -41,7 +41,7 @@ public final class PaymoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PaymoipVisiMergeSetupar());
+		builder.addVisitor(new PaymoipMergerVisiSetupar());
 		InfoMerger<PaymoipInfo, SetuparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -54,7 +54,7 @@ public final class PaymoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PaymoipVisiMergeSysenv());
+		builder.addVisitor(new PaymoipMergerVisiSysenv());
 		InfoMerger<PaymoipInfo, SysenvInfo> merger = builder.build();		
 	
 		return merger.merge();
