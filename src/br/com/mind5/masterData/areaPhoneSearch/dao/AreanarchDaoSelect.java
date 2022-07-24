@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
 
-public final class DaoAreanarchSelect implements DaoStmtExec<AreanarchInfo> {
+public final class AreanarchDaoSelect implements DaoStmtExec<AreanarchInfo> {
 	private DaoStmtExec<AreanarchInfo> helper;
 	
 	
-	public DaoAreanarchSelect(List<DaoStmtExecOption<AreanarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoAreanarchSelectSingle.class, AreanarchInfo.class);
+	public AreanarchDaoSelect(List<DaoStmtExecOption<AreanarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, AreanarchDaoSelectSingle.class, AreanarchInfo.class);
 	}
 	
 	

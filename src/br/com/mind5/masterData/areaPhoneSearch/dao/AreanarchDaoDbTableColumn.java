@@ -9,14 +9,14 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoAreanarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class AreanarchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_AREA_PHONE = DaoDbField.COL_COD_AREA_PHONE;
 	public static final String COL_COD_COUNTRY_PHONE = DaoDbField.COL_COD_COUNTRY_PHONE;
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_NAME = DaoDbField.COL_NAME;
 
 	
-	public DaoAreanarchDbTableColumn() {
+	public AreanarchDaoDbTableColumn() {
 		super();
 	}
 	

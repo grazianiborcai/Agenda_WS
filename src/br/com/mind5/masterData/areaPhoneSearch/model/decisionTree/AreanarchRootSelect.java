@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
-import br.com.mind5.masterData.areaPhoneSearch.model.action.StdAreanarchDaoSelect;
+import br.com.mind5.masterData.areaPhoneSearch.model.action.AreanarchVisiDaoSelect;
 import br.com.mind5.masterData.areaPhoneSearch.model.checker.AreanarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootAreanarchSelect extends DeciTreeTemplateRead<AreanarchInfo> {
+public final class AreanarchRootSelect extends DeciTreeTemplateRead<AreanarchInfo> {
 	
-	public RootAreanarchSelect(DeciTreeOption<AreanarchInfo> option) {
+	public AreanarchRootSelect(DeciTreeOption<AreanarchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootAreanarchSelect extends DeciTreeTemplateRead<AreanarchInf
 	@Override protected List<ActionStd<AreanarchInfo>> buildActionsOnPassedHook(DeciTreeOption<AreanarchInfo> option) {
 		List<ActionStd<AreanarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<AreanarchInfo> select = new StdAreanarchDaoSelect(option);
+		ActionStd<AreanarchInfo> select = new ActionStdCommom<AreanarchInfo>(option, AreanarchVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

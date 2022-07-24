@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
 
-final class DaoAreanarchWhere implements DaoStmtWhere {
+final class AreanarchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoAreanarchWhere(DaoWhereBuilderOption whereOption, String tableName, AreanarchInfo recordInfo) {
+	public AreanarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, AreanarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,15 +26,15 @@ final class DaoAreanarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoAreanarchDbTableColumn.COL_COD_COUNTRY_PHONE :
+				case AreanarchDaoDbTableColumn.COL_COD_COUNTRY_PHONE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCountryPhone));
 					break;
 					
-				case DaoAreanarchDbTableColumn.COL_COD_AREA_PHONE :
+				case AreanarchDaoDbTableColumn.COL_COD_AREA_PHONE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codArea);
 					break;
 					
-				case DaoAreanarchDbTableColumn.COL_COD_LANGUAGE :
+				case AreanarchDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

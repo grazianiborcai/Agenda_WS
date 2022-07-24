@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
 
-public final class DaoAreanarchSelectSingle extends DaoStmtTemplate<AreanarchInfo> {
+public final class AreanarchDaoSelectSingle extends DaoStmtTemplate<AreanarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.AREA_PHONE_TABLE;
 	
 	
-	public DaoAreanarchSelectSingle(Connection conn, AreanarchInfo recordInfo, String schemaName) {
+	public AreanarchDaoSelectSingle(Connection conn, AreanarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,14 +52,14 @@ public final class DaoAreanarchSelectSingle extends DaoStmtTemplate<AreanarchInf
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoAreanarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new AreanarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(AreanarchInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoAreanarchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new AreanarchDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -76,10 +76,10 @@ public final class DaoAreanarchSelectSingle extends DaoStmtTemplate<AreanarchInf
 				do {				
 					AreanarchInfo dataInfo = new AreanarchInfo();
 					
-					dataInfo.codCountryPhone = stmtResult.getInt(DaoAreanarchDbTableColumn.COL_COD_COUNTRY_PHONE);
-					dataInfo.codArea = stmtResult.getString(DaoAreanarchDbTableColumn.COL_COD_AREA_PHONE);
-					dataInfo.txtArea = stmtResult.getString(DaoAreanarchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoAreanarchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codCountryPhone = stmtResult.getInt(AreanarchDaoDbTableColumn.COL_COD_COUNTRY_PHONE);
+					dataInfo.codArea = stmtResult.getString(AreanarchDaoDbTableColumn.COL_COD_AREA_PHONE);
+					dataInfo.txtArea = stmtResult.getString(AreanarchDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(AreanarchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

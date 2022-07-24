@@ -1,7 +1,7 @@
 package br.com.mind5.masterData.areaPhoneSearch.model;
 
 import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
-import br.com.mind5.masterData.areaPhoneSearch.model.decisionTree.RootAreanarchSelect;
+import br.com.mind5.masterData.areaPhoneSearch.model.decisionTree.AreanarchRootSelect;
 import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -15,6 +15,6 @@ public final class AreanarchModelSelect extends ModelTemplate<AreanarchInfo> {
 	
 	
 	@Override protected DeciTree<AreanarchInfo> getDecisionTreeHook(DeciTreeOption<AreanarchInfo> option) {
-		return new RootAreanarchSelect(option);
+		return new AreanarchRootSelect(option);
 	}
 }
