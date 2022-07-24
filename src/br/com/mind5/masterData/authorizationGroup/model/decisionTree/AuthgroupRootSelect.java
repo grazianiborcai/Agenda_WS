@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.authorizationGroup.info.AuthgroupInfo;
-import br.com.mind5.masterData.authorizationGroup.model.action.StdAuthgroupDaoSelect;
+import br.com.mind5.masterData.authorizationGroup.model.action.AuthgroupVisiDaoSelect;
 import br.com.mind5.masterData.authorizationGroup.model.checker.AuthgroupCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootAuthgroupSelect extends DeciTreeTemplateRead<AuthgroupInfo> {
+public final class AuthgroupRootSelect extends DeciTreeTemplateRead<AuthgroupInfo> {
 	
-	public RootAuthgroupSelect(DeciTreeOption<AuthgroupInfo> option) {
+	public AuthgroupRootSelect(DeciTreeOption<AuthgroupInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootAuthgroupSelect extends DeciTreeTemplateRead<AuthgroupInf
 	@Override protected List<ActionStd<AuthgroupInfo>> buildActionsOnPassedHook(DeciTreeOption<AuthgroupInfo> option) {
 		List<ActionStd<AuthgroupInfo>> actions = new ArrayList<>();
 		
-		ActionStd<AuthgroupInfo> select = new StdAuthgroupDaoSelect(option);
+		ActionStd<AuthgroupInfo> select = new ActionStdCommom<AuthgroupInfo>(option, AuthgroupVisiDaoSelect.class);
 		
 		actions.add(select);		
 		return actions;

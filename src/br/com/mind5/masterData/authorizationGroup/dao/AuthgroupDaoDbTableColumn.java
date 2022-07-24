@@ -9,10 +9,10 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoAuthgroupDbTableColumn extends DaoDbTableColumnTemplate {
+public final class AuthgroupDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_AUTH_GROUP = DaoDbField.COL_COD_AUTH_GROUP;	
 	
-	public DaoAuthgroupDbTableColumn() {
+	public AuthgroupDaoDbTableColumn() {
 		super();
 	}
 	

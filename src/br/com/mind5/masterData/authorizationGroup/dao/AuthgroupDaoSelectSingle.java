@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.authorizationGroup.info.AuthgroupInfo;
 
-public final class DaoAuthgroupSelectSingle extends DaoStmtTemplate<AuthgroupInfo> {	
+public final class AuthgroupDaoSelectSingle extends DaoStmtTemplate<AuthgroupInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.AUTH_GROUP_TABLE;
 	
 	
-	public DaoAuthgroupSelectSingle(Connection conn, AuthgroupInfo recordInfo, String schemaName) {
+	public AuthgroupDaoSelectSingle(Connection conn, AuthgroupInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -43,7 +43,7 @@ public final class DaoAuthgroupSelectSingle extends DaoStmtTemplate<AuthgroupInf
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoAuthgroupWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new AuthgroupDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -59,7 +59,7 @@ public final class DaoAuthgroupSelectSingle extends DaoStmtTemplate<AuthgroupInf
 				
 				do {
 					AuthgroupInfo dataInfo = new AuthgroupInfo();					
-					dataInfo.codAuthGroup = stmtResult.getString(DaoAuthgroupDbTableColumn.COL_COD_AUTH_GROUP);
+					dataInfo.codAuthGroup = stmtResult.getString(AuthgroupDaoDbTableColumn.COL_COD_AUTH_GROUP);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

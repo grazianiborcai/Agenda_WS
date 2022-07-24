@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.authorizationGroup.info.AuthgroupInfo;
 
-public class DaoAuthgroupSelect implements DaoStmtExec<AuthgroupInfo> {
+public class AuthgroupDaoSelect implements DaoStmtExec<AuthgroupInfo> {
 	private DaoStmtExec<AuthgroupInfo> helper;
 	
 	
-	public DaoAuthgroupSelect(List<DaoStmtExecOption<AuthgroupInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoAuthgroupSelectSingle.class, AuthgroupInfo.class);
+	public AuthgroupDaoSelect(List<DaoStmtExecOption<AuthgroupInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, AuthgroupDaoSelectSingle.class, AuthgroupInfo.class);
 	}
 	
 	
