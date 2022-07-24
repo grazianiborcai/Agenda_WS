@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.countryPhoneSearch.info.CountronarchInfo;
 
-final class DaoCountronarchWhere implements DaoStmtWhere {
+final class CountronarchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoCountronarchWhere(DaoWhereBuilderOption whereOption, String tableName, CountronarchInfo recordInfo) {
+	public CountronarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, CountronarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,15 +26,15 @@ final class DaoCountronarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoCountronarchDbTableColumn.COL_COD_COUNTRY_PHONE :
+				case CountronarchDaoDbTableColumn.COL_COD_COUNTRY_PHONE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCountryPhone));
 					break;
 					
-				case DaoCountronarchDbTableColumn.COL_COD_COUNTRY :
+				case CountronarchDaoDbTableColumn.COL_COD_COUNTRY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codCountry);
 					break;
 					
-				case DaoCountronarchDbTableColumn.COL_COD_LANGUAGE :
+				case CountronarchDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
