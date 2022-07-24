@@ -1,7 +1,7 @@
 package br.com.mind5.masterData.countryLegal.model;
 
 import br.com.mind5.masterData.countryLegal.info.CountralInfo;
-import br.com.mind5.masterData.countryLegal.model.decisionTree.RootCountralSearch;
+import br.com.mind5.masterData.countryLegal.model.decisionTree.CountralRootSearch;
 import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -15,6 +15,6 @@ public final class CountralModelSearch extends ModelTemplate<CountralInfo> {
 	
 	
 	@Override protected DeciTree<CountralInfo> getDecisionTreeHook(DeciTreeOption<CountralInfo> option) {
-		return new RootCountralSearch(option);
+		return new CountralRootSearch(option);
 	}
 }

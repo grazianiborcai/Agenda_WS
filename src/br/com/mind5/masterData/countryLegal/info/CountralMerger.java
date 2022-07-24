@@ -13,7 +13,7 @@ public final class CountralMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CountralVisiMergeCountrarch());
+		builder.addVisitor(new CountralMergerVisiCountrarch());
 		InfoMerger<CountralInfo, CountrarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class CountralMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CountralVisiMergeCountry());
+		builder.addVisitor(new CountralMergerVisiCountry());
 		InfoMerger<CountralInfo, CountryInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -39,7 +39,7 @@ public final class CountralMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CountralVisiMergeToSelect());
+		builder.addVisitor(new CountralMergerVisiToSelect());
 		InfoMerger<CountralInfo, CountralInfo> merger = builder.build();		
 	
 		return merger.merge();

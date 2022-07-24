@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.countryLegal.info.CountralInfo;
 
-public final class DaoCountralSelect implements DaoStmtExec<CountralInfo> {
+public final class CountralDaoSelect implements DaoStmtExec<CountralInfo> {
 	private DaoStmtExec<CountralInfo> helper;
 	
 	
-	public DaoCountralSelect(List<DaoStmtExecOption<CountralInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCountralSelectSingle.class, CountralInfo.class);
+	public CountralDaoSelect(List<DaoStmtExecOption<CountralInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CountralDaoSelectSingle.class, CountralInfo.class);
 	}
 	
 	

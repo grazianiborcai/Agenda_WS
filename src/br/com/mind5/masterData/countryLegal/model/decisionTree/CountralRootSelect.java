@@ -4,21 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.countryLegal.info.CountralInfo;
-import br.com.mind5.masterData.countryLegal.model.action.LazyCountralMergeCountry;
-import br.com.mind5.masterData.countryLegal.model.action.StdCountralMergeToSelect;
+import br.com.mind5.masterData.countryLegal.model.action.CountralVisiMergeCountry;
+import br.com.mind5.masterData.countryLegal.model.action.CountralVisiMergeToSelect;
 import br.com.mind5.masterData.countryLegal.model.checker.CountralCheckLangu;
 import br.com.mind5.masterData.countryLegal.model.checker.CountralCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCountralSelect extends DeciTreeTemplateRead<CountralInfo> {
+public final class CountralRootSelect extends DeciTreeTemplateRead<CountralInfo> {
 	
-	public RootCountralSelect(DeciTreeOption<CountralInfo> option) {
+	public CountralRootSelect(DeciTreeOption<CountralInfo> option) {
 		super(option);
 	}
 	
@@ -51,8 +53,8 @@ public final class RootCountralSelect extends DeciTreeTemplateRead<CountralInfo>
 	@Override protected List<ActionStd<CountralInfo>> buildActionsOnPassedHook(DeciTreeOption<CountralInfo> option) {
 		List<ActionStd<CountralInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CountralInfo> select = new StdCountralMergeToSelect(option);
-		ActionLazy<CountralInfo> mergeCountry = new LazyCountralMergeCountry(option.conn, option.schemaName);
+		ActionStd<CountralInfo> select = new ActionStdCommom<CountralInfo>(option, CountralVisiMergeToSelect.class);
+		ActionLazy<CountralInfo> mergeCountry = new ActionLazyCommom<CountralInfo>(option, CountralVisiMergeCountry.class);
 		
 		select.addPostAction(mergeCountry);
 		

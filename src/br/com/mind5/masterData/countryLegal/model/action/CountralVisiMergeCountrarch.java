@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCountralMergeCountrarch extends ActionVisitorTemplateMerge<CountralInfo, CountrarchInfo> {
+public final class CountralVisiMergeCountrarch extends ActionVisitorTemplateMerge<CountralInfo, CountrarchInfo> {
 	
-	public VisiCountralMergeCountrarch(DeciTreeOption<CountralInfo> option) {
+	public CountralVisiMergeCountrarch(DeciTreeOption<CountralInfo> option) {
 		super(option, CountrarchInfo.class);
 	}
 	
