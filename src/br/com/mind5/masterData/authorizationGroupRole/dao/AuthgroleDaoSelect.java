@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 
-public class DaoAuthgroleSelect implements DaoStmtExec<AuthgroleInfo> {
+public class AuthgroleDaoSelect implements DaoStmtExec<AuthgroleInfo> {
 	private DaoStmtExec<AuthgroleInfo> helper;
 	
 	
-	public DaoAuthgroleSelect(List<DaoStmtExecOption<AuthgroleInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoAuthgroleSelectSingle.class, AuthgroleInfo.class);
+	public AuthgroleDaoSelect(List<DaoStmtExecOption<AuthgroleInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, AuthgroleDaoSelectSingle.class, AuthgroleInfo.class);
 	}
 	
 	

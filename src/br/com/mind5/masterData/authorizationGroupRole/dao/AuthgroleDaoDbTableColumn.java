@@ -9,12 +9,12 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoAuthgroleDbTableColumn extends DaoDbTableColumnTemplate {
+public final class AuthgroleDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_AUTH_GROUP = DaoDbField.COL_COD_AUTH_GROUP;
 	public static final String COL_COD_AUTH_ROLE = DaoDbField.COL_COD_AUTH_ROLE;
 
 	
-	public DaoAuthgroleDbTableColumn() {
+	public AuthgroleDaoDbTableColumn() {
 		super();
 	}
 	

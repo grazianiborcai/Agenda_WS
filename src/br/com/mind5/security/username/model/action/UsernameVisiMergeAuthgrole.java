@@ -3,7 +3,7 @@ package br.com.mind5.security.username.model.action;
 import java.util.List;
 
 import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
-import br.com.mind5.masterData.authorizationGroupRole.model.decisionTree.RootAuthgroleSelect;
+import br.com.mind5.masterData.authorizationGroupRole.model.decisionTree.AuthgroleRootSelect;
 
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -20,7 +20,7 @@ public final class UsernameVisiMergeAuthgrole extends ActionVisitorTemplateMerge
 	
 	
 	@Override protected Class<? extends DeciTree<AuthgroleInfo>> getTreeClassHook() {
-		return RootAuthgroleSelect.class;
+		return AuthgroleRootSelect.class;
 	}
 	
 	

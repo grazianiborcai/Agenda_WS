@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 
-public final class DaoAuthgroleWhere implements DaoStmtWhere {
+public final class AuthgroleDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoAuthgroleWhere(DaoWhereBuilderOption whereOption, String tableName, AuthgroleInfo recordInfo) {
+	public AuthgroleDaoWhere(DaoWhereBuilderOption whereOption, String tableName, AuthgroleInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ public final class DaoAuthgroleWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoAuthgroleDbTableColumn.COL_COD_AUTH_GROUP :
+				case AuthgroleDaoDbTableColumn.COL_COD_AUTH_GROUP :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codAuthGroup);
 					break;
 				
-				case DaoAuthgroleDbTableColumn.COL_COD_AUTH_ROLE :
+				case AuthgroleDaoDbTableColumn.COL_COD_AUTH_ROLE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codAuthRole);
 					break;
 			}
