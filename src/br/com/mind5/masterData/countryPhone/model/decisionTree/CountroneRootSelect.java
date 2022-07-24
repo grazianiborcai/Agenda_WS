@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.countryPhone.info.CountroneInfo;
-import br.com.mind5.masterData.countryPhone.model.action.StdCountroneDaoSelect;
+import br.com.mind5.masterData.countryPhone.model.action.CountroneVisiDaoSelect;
 import br.com.mind5.masterData.countryPhone.model.checker.CountroneCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCountroneSelect extends DeciTreeTemplateRead<CountroneInfo> {
+public final class CountroneRootSelect extends DeciTreeTemplateRead<CountroneInfo> {
 	
-	public RootCountroneSelect(DeciTreeOption<CountroneInfo> option) {
+	public CountroneRootSelect(DeciTreeOption<CountroneInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootCountroneSelect extends DeciTreeTemplateRead<CountroneInf
 	@Override protected List<ActionStd<CountroneInfo>> buildActionsOnPassedHook(DeciTreeOption<CountroneInfo> option) {
 		List<ActionStd<CountroneInfo>> actions = new ArrayList<>(); 
 		
-		ActionStd<CountroneInfo> select = new StdCountroneDaoSelect(option);
+		ActionStd<CountroneInfo> select = new ActionStdCommom<CountroneInfo>(option, CountroneVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

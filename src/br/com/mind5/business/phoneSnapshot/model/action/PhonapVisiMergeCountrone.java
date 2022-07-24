@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapMerger;
 import br.com.mind5.masterData.countryPhone.info.CountroneInfo;
-import br.com.mind5.masterData.countryPhone.model.decisionTree.RootCountroneSelect;
+import br.com.mind5.masterData.countryPhone.model.decisionTree.CountroneRootSelect;
 
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -20,7 +20,7 @@ public final class PhonapVisiMergeCountrone extends ActionVisitorTemplateMerge<P
 	
 	
 	@Override protected Class<? extends DeciTree<CountroneInfo>> getTreeClassHook() {
-		return RootCountroneSelect.class;
+		return CountroneRootSelect.class;
 	}
 	
 	

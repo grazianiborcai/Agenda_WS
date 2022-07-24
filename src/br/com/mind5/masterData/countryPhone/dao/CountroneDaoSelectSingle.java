@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.countryPhone.info.CountroneInfo;
 
-public final class DaoCountroneSelectSingle extends DaoStmtTemplate<CountroneInfo> {
+public final class CountroneDaoSelectSingle extends DaoStmtTemplate<CountroneInfo> {
 	private final String MAIN_TABLE = DaoDbTable.COUNTRY_PHONE_TABLE;
 	
 	
-	public DaoCountroneSelectSingle(Connection conn, CountroneInfo recordInfo, String schemaName) {
+	public CountroneDaoSelectSingle(Connection conn, CountroneInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,14 +45,14 @@ public final class DaoCountroneSelectSingle extends DaoStmtTemplate<CountroneInf
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoCountroneWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new CountroneDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(CountroneInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoCountroneJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new CountroneDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -69,10 +69,10 @@ public final class DaoCountroneSelectSingle extends DaoStmtTemplate<CountroneInf
 				do {				
 					CountroneInfo dataInfo = new CountroneInfo();
 					
-					dataInfo.codCountryPhone = stmtResult.getInt(DaoCountroneDbTableColumn.COL_COD_COUNTRY_PHONE);
-					dataInfo.codCountry = stmtResult.getString(DaoCountroneDbTableColumn.COL_COD_COUNTRY);
-					dataInfo.txtCountry = stmtResult.getString(DaoCountroneDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoCountroneDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codCountryPhone = stmtResult.getInt(CountroneDaoDbTableColumn.COL_COD_COUNTRY_PHONE);
+					dataInfo.codCountry = stmtResult.getString(CountroneDaoDbTableColumn.COL_COD_COUNTRY);
+					dataInfo.txtCountry = stmtResult.getString(CountroneDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(CountroneDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.countryPhone.info.CountroneInfo;
 
-public final class DaoCountroneSelect implements DaoStmtExec<CountroneInfo> {
+public final class CountroneDaoSelect implements DaoStmtExec<CountroneInfo> {
 	private DaoStmtExec<CountroneInfo> helper;
 	
 	
-	public DaoCountroneSelect(List<DaoStmtExecOption<CountroneInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCountroneSelectSingle.class, CountroneInfo.class);
+	public CountroneDaoSelect(List<DaoStmtExecOption<CountroneInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CountroneDaoSelectSingle.class, CountroneInfo.class);
 	}
 	
 	

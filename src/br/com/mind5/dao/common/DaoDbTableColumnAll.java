@@ -172,7 +172,7 @@ import br.com.mind5.masterData.cartItemCategorySearch.dao.CaritegarchDaoDbTableC
 import br.com.mind5.masterData.country.dao.CountryDaoDbTableColumn;
 import br.com.mind5.masterData.countryLegal.dao.CountralDaoDbTableColumn;
 import br.com.mind5.masterData.countryLegalSearch.dao.CountrarchDaoDbTableColumn;
-import br.com.mind5.masterData.countryPhone.dao.DaoCountroneDbTableColumn;
+import br.com.mind5.masterData.countryPhone.dao.CountroneDaoDbTableColumn;
 import br.com.mind5.masterData.countryPhoneSearch.dao.DaoCountronarchDbTableColumn;
 import br.com.mind5.masterData.countrySearch.dao.DaoCountarchDbTableColumn;
 import br.com.mind5.masterData.currency.dao.DaoCurrencyDbTableColumn;
@@ -449,7 +449,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoCurrarshDbTableColumn());
 		addTable(new DaoTimezoneDbTableColumn());
 		addTable(new DaoTimezonarchDbTableColumn());
-		addTable(new DaoCountroneDbTableColumn());
+		addTable(new CountroneDaoDbTableColumn());
 		addTable(new DaoCountronarchDbTableColumn());
 		addTable(new AreaneDaoDbTableColumn());
 		addTable(new AreanarchDaoDbTableColumn());

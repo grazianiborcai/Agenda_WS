@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.countryPhone.info.CountroneInfo;
 
-final class DaoCountroneWhere implements DaoStmtWhere {
+final class CountroneDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoCountroneWhere(DaoWhereBuilderOption whereOption, String tableName, CountroneInfo recordInfo) {
+	public CountroneDaoWhere(DaoWhereBuilderOption whereOption, String tableName, CountroneInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ final class DaoCountroneWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoCountroneDbTableColumn.COL_COD_COUNTRY_PHONE :
+				case CountroneDaoDbTableColumn.COL_COD_COUNTRY_PHONE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCountryPhone));
 					break;
 					
-				case DaoCountroneDbTableColumn.COL_COD_LANGUAGE :
+				case CountroneDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
