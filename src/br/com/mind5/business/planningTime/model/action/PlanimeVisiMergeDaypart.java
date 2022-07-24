@@ -6,7 +6,7 @@ import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.planningTime.info.PlanimeMerger;
 import br.com.mind5.masterData.dayParting.info.DaypartCopier;
 import br.com.mind5.masterData.dayParting.info.DaypartInfo;
-import br.com.mind5.masterData.dayParting.model.decisionTree.RootDaypartSelect;
+import br.com.mind5.masterData.dayParting.model.decisionTree.DaypartRootSelect;
 
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -21,7 +21,7 @@ public final class PlanimeVisiMergeDaypart extends ActionVisitorTemplateMerge<Pl
 	
 	
 	@Override protected Class<? extends DeciTree<DaypartInfo>> getTreeClassHook() {
-		return RootDaypartSelect.class;
+		return DaypartRootSelect.class;
 	}
 	
 	

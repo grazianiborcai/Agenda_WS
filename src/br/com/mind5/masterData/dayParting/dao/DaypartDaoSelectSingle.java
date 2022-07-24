@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.dayParting.info.DaypartInfo;
 
-public final class DaoDaypartSelectSingle extends DaoStmtTemplate<DaypartInfo> {
+public final class DaypartDaoSelectSingle extends DaoStmtTemplate<DaypartInfo> {
 	private final String MAIN_TABLE = DaoDbTable.DAYPART_TABLE;
 	
 	
-	public DaoDaypartSelectSingle(Connection conn, DaypartInfo recordInfo, String schemaName) {
+	public DaypartDaoSelectSingle(Connection conn, DaypartInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,14 +45,14 @@ public final class DaoDaypartSelectSingle extends DaoStmtTemplate<DaypartInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoDaypartWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaypartDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(DaypartInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoDaypartJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new DaypartDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -69,9 +69,9 @@ public final class DaoDaypartSelectSingle extends DaoStmtTemplate<DaypartInfo> {
 				do {				
 					DaypartInfo dataInfo = new DaypartInfo();
 					
-					dataInfo.codDaypart = stmtResult.getInt(DaoDaypartDbTableColumn.COL_COD_DAYPART);
-					dataInfo.txtDaypart = stmtResult.getString(DaoDaypartDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoDaypartDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codDaypart = stmtResult.getInt(DaypartDaoDbTableColumn.COL_COD_DAYPART);
+					dataInfo.txtDaypart = stmtResult.getString(DaypartDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(DaypartDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

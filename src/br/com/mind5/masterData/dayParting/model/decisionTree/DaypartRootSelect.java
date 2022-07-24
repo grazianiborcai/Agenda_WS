@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.dayParting.info.DaypartInfo;
-import br.com.mind5.masterData.dayParting.model.action.StdDaypartDaoSelect;
+import br.com.mind5.masterData.dayParting.model.action.DaypartVisiDaoSelect;
 import br.com.mind5.masterData.dayParting.model.checker.DaypartCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootDaypartSelect extends DeciTreeTemplateRead<DaypartInfo> {
+public final class DaypartRootSelect extends DeciTreeTemplateRead<DaypartInfo> {
 	
-	public RootDaypartSelect(DeciTreeOption<DaypartInfo> option) {
+	public DaypartRootSelect(DeciTreeOption<DaypartInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootDaypartSelect extends DeciTreeTemplateRead<DaypartInfo> {
 	@Override protected List<ActionStd<DaypartInfo>> buildActionsOnPassedHook(DeciTreeOption<DaypartInfo> option) {
 		List<ActionStd<DaypartInfo>> actions = new ArrayList<>();
 		
-		ActionStd<DaypartInfo> select = new StdDaypartDaoSelect(option);
+		ActionStd<DaypartInfo> select = new ActionStdCommom<DaypartInfo>(option, DaypartVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

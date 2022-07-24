@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiDaypartMergeDayparch extends ActionVisitorTemplateMerge<DaypartInfo, DayparchInfo> {
+public final class DaypartVisiMergeDayparch extends ActionVisitorTemplateMerge<DaypartInfo, DayparchInfo> {
 	
-	public VisiDaypartMergeDayparch(DeciTreeOption<DaypartInfo> option) {
+	public DaypartVisiMergeDayparch(DeciTreeOption<DaypartInfo> option) {
 		super(option, DayparchInfo.class);
 	}
 	

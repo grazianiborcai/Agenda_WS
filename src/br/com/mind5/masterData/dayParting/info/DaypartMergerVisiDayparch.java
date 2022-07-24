@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.dayPartingSearch.info.DayparchInfo;
 
-final class DaypartVisiMergeDayparch extends InfoMergerVisitorTemplate<DaypartInfo, DayparchInfo> {
+final class DaypartMergerVisiDayparch extends InfoMergerVisitorTemplate<DaypartInfo, DayparchInfo> {
 
 	@Override public boolean shouldMerge(DaypartInfo baseInfo, DayparchInfo selectedInfo) {
 		return true;

@@ -12,7 +12,7 @@ public final class DaypartMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new DaypartVisiMergeDayparch());
+		builder.addVisitor(new DaypartMergerVisiDayparch());
 		InfoMerger<DaypartInfo, DayparchInfo> merger = builder.build();		
 	
 		return merger.merge();
