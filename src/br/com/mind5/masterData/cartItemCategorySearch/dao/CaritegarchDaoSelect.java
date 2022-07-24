@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.cartItemCategorySearch.info.CaritegarchInfo;
 
-public final class DaoCaritegarchSelect implements DaoStmtExec<CaritegarchInfo> {
+public final class CaritegarchDaoSelect implements DaoStmtExec<CaritegarchInfo> {
 	private DaoStmtExec<CaritegarchInfo> helper;
 	
 	
-	public DaoCaritegarchSelect(List<DaoStmtExecOption<CaritegarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCaritegarchSelectSingle.class, CaritegarchInfo.class);
+	public CaritegarchDaoSelect(List<DaoStmtExecOption<CaritegarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CaritegarchDaoSelectSingle.class, CaritegarchInfo.class);
 	}
 	
 	

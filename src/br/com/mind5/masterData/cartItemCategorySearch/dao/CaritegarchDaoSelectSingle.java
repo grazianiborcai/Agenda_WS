@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.cartItemCategorySearch.info.CaritegarchInfo;
 
-public final class DaoCaritegarchSelectSingle extends DaoStmtTemplate<CaritegarchInfo> {
+public final class CaritegarchDaoSelectSingle extends DaoStmtTemplate<CaritegarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CART_ITM_CATEG_TABLE;
 	
 	
-	public DaoCaritegarchSelectSingle(Connection conn, CaritegarchInfo recordInfo, String schemaName) {
+	public CaritegarchDaoSelectSingle(Connection conn, CaritegarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -51,7 +51,7 @@ public final class DaoCaritegarchSelectSingle extends DaoStmtTemplate<Caritegarc
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoCaritegarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new CaritegarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -68,9 +68,9 @@ public final class DaoCaritegarchSelectSingle extends DaoStmtTemplate<Caritegarc
 				do {				
 					CaritegarchInfo dataInfo = new CaritegarchInfo();
 					
-					dataInfo.codItemCateg = DaoFormatter.sqlToChar(stmtResult, DaoCaritegarchDbTableColumn.COL_COD_ITEM_CATEG);
-					dataInfo.txtItemCateg = stmtResult.getString(DaoCaritegarchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoCaritegarchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codItemCateg = DaoFormatter.sqlToChar(stmtResult, CaritegarchDaoDbTableColumn.COL_COD_ITEM_CATEG);
+					dataInfo.txtItemCateg = stmtResult.getString(CaritegarchDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(CaritegarchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());
