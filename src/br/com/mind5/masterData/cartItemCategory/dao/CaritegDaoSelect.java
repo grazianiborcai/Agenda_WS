@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.cartItemCategory.info.CaritegInfo;
 
-public final class DaoCaritegSelect implements DaoStmtExec<CaritegInfo> {
+public final class CaritegDaoSelect implements DaoStmtExec<CaritegInfo> {
 	private DaoStmtExec<CaritegInfo> helper;
 	
 	
-	public DaoCaritegSelect(List<DaoStmtExecOption<CaritegInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCaritegSelectSingle.class, CaritegInfo.class);
+	public CaritegDaoSelect(List<DaoStmtExecOption<CaritegInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CaritegDaoSelectSingle.class, CaritegInfo.class);
 	}
 	
 	

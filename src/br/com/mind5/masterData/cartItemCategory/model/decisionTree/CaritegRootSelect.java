@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.cartItemCategory.info.CaritegInfo;
-import br.com.mind5.masterData.cartItemCategory.model.action.StdCaritegDaoSelect;
+import br.com.mind5.masterData.cartItemCategory.model.action.CaritegVisiDaoSelect;
 import br.com.mind5.masterData.cartItemCategory.model.checker.CaritegCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCaritegSelect extends DeciTreeTemplateRead<CaritegInfo> {
+public final class CaritegRootSelect extends DeciTreeTemplateRead<CaritegInfo> {
 	
-	public RootCaritegSelect(DeciTreeOption<CaritegInfo> option) {
+	public CaritegRootSelect(DeciTreeOption<CaritegInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootCaritegSelect extends DeciTreeTemplateRead<CaritegInfo> {
 	@Override protected List<ActionStd<CaritegInfo>> buildActionsOnPassedHook(DeciTreeOption<CaritegInfo> option) {
 		List<ActionStd<CaritegInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CaritegInfo> select = new StdCaritegDaoSelect(option);
+		ActionStd<CaritegInfo> select = new ActionStdCommom<CaritegInfo>(option, CaritegVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

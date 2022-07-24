@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.cartItemCategory.info.CaritegInfo;
 
-final class DaoCaritegWhere implements DaoStmtWhere {
+final class CaritegDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoCaritegWhere(DaoWhereBuilderOption whereOption, String tableName, CaritegInfo recordInfo) {
+	public CaritegDaoWhere(DaoWhereBuilderOption whereOption, String tableName, CaritegInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ final class DaoCaritegWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoCaritegDbTableColumn.COL_COD_ITEM_CATEG :
+				case CaritegDaoDbTableColumn.COL_COD_ITEM_CATEG :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.charToString(recordInfo.codItemCateg));
 					break;
 					
-				case DaoCaritegDbTableColumn.COL_COD_LANGUAGE :
+				case CaritegDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
