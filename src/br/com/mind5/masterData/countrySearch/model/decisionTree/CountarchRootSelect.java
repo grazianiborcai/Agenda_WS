@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.countrySearch.info.CountarchInfo;
-import br.com.mind5.masterData.countrySearch.model.action.StdCountarchDaoSelect;
+import br.com.mind5.masterData.countrySearch.model.action.CountarchVisiDaoSelect;
 import br.com.mind5.masterData.countrySearch.model.checker.CountarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCountarchSelect extends DeciTreeTemplateRead<CountarchInfo> {
+public final class CountarchRootSelect extends DeciTreeTemplateRead<CountarchInfo> {
 	
-	public RootCountarchSelect(DeciTreeOption<CountarchInfo> option) {
+	public CountarchRootSelect(DeciTreeOption<CountarchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootCountarchSelect extends DeciTreeTemplateRead<CountarchInf
 	@Override protected List<ActionStd<CountarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CountarchInfo> option) {
 		List<ActionStd<CountarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CountarchInfo> select = new StdCountarchDaoSelect(option);
+		ActionStd<CountarchInfo> select = new ActionStdCommom<CountarchInfo>(option, CountarchVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

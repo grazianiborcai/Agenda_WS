@@ -174,7 +174,7 @@ import br.com.mind5.masterData.countryLegal.dao.CountralDaoDbTableColumn;
 import br.com.mind5.masterData.countryLegalSearch.dao.CountrarchDaoDbTableColumn;
 import br.com.mind5.masterData.countryPhone.dao.CountroneDaoDbTableColumn;
 import br.com.mind5.masterData.countryPhoneSearch.dao.CountronarchDaoDbTableColumn;
-import br.com.mind5.masterData.countrySearch.dao.DaoCountarchDbTableColumn;
+import br.com.mind5.masterData.countrySearch.dao.CountarchDaoDbTableColumn;
 import br.com.mind5.masterData.currency.dao.DaoCurrencyDbTableColumn;
 import br.com.mind5.masterData.currencySearch.dao.DaoCurrarshDbTableColumn;
 import br.com.mind5.masterData.dayParting.dao.DaoDaypartDbTableColumn;
@@ -454,7 +454,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new AreaneDaoDbTableColumn());
 		addTable(new AreanarchDaoDbTableColumn());
 		addTable(new CountryDaoDbTableColumn());
-		addTable(new DaoCountarchDbTableColumn());
+		addTable(new CountarchDaoDbTableColumn());
 		addTable(new AuthgroleDaoDbTableColumn());
 		addTable(new DaoMategDbTableColumn());
 		addTable(new DaoMategarchDbTableColumn());

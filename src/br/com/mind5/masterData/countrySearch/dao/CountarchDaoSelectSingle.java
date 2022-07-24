@@ -18,11 +18,11 @@ import br.com.mind5.dao.common.DaoJoinCountryTxt;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.countrySearch.info.CountarchInfo;
 
-public final class DaoCountarchSelectSingle extends DaoStmtTemplate<CountarchInfo> {
+public final class CountarchDaoSelectSingle extends DaoStmtTemplate<CountarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.COUNTRY_TABLE;
 	
 	
-	public DaoCountarchSelectSingle(Connection conn, CountarchInfo recordInfo, String schemaName) {
+	public CountarchDaoSelectSingle(Connection conn, CountarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -53,7 +53,7 @@ public final class DaoCountarchSelectSingle extends DaoStmtTemplate<CountarchInf
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoCountarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new CountarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -77,10 +77,10 @@ public final class DaoCountarchSelectSingle extends DaoStmtTemplate<CountarchInf
 				do {				
 					CountarchInfo dataInfo = new CountarchInfo();
 					
-					dataInfo.codCountry = stmtResult.getString(DaoCountarchDbTableColumn.COL_COD_COUNTRY);
-					dataInfo.codCountryAlpha3 = stmtResult.getString(DaoCountarchDbTableColumn.COL_COD_COUNTRY_ALPHA3);
-					dataInfo.txtCountry = stmtResult.getString(DaoCountarchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoCountarchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codCountry = stmtResult.getString(CountarchDaoDbTableColumn.COL_COD_COUNTRY);
+					dataInfo.codCountryAlpha3 = stmtResult.getString(CountarchDaoDbTableColumn.COL_COD_COUNTRY_ALPHA3);
+					dataInfo.txtCountry = stmtResult.getString(CountarchDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(CountarchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());
