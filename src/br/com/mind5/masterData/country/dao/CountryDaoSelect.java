@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.country.info.CountryInfo;
 
-public final class DaoCountrySelect implements DaoStmtExec<CountryInfo> {
+public final class CountryDaoSelect implements DaoStmtExec<CountryInfo> {
 	private DaoStmtExec<CountryInfo> helper;
 	
 	
-	public DaoCountrySelect(List<DaoStmtExecOption<CountryInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCountrySelectSingle.class, CountryInfo.class);
+	public CountryDaoSelect(List<DaoStmtExecOption<CountryInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CountryDaoSelectSingle.class, CountryInfo.class);
 	}
 	
 	

@@ -18,11 +18,11 @@ import br.com.mind5.dao.common.DaoJoinCountryTxt;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.country.info.CountryInfo;
 
-public final class DaoCountrySelectSingle extends DaoStmtTemplate<CountryInfo> {
+public final class CountryDaoSelectSingle extends DaoStmtTemplate<CountryInfo> {
 	private final String MAIN_TABLE = DaoDbTable.COUNTRY_TABLE;
 	
 	
-	public DaoCountrySelectSingle(Connection conn, CountryInfo recordInfo, String schemaName) {
+	public CountryDaoSelectSingle(Connection conn, CountryInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -46,7 +46,7 @@ public final class DaoCountrySelectSingle extends DaoStmtTemplate<CountryInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoCountryWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new CountryDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -70,10 +70,10 @@ public final class DaoCountrySelectSingle extends DaoStmtTemplate<CountryInfo> {
 				do {				
 					CountryInfo dataInfo = new CountryInfo();
 					
-					dataInfo.codCountry = stmtResult.getString(DaoCountryDbTableColumn.COL_COD_COUNTRY);
-					dataInfo.codCountryAlpha3 = stmtResult.getString(DaoCountryDbTableColumn.COL_COD_COUNTRY_ALPHA3);
-					dataInfo.txtCountry = stmtResult.getString(DaoCountryDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoCountryDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codCountry = stmtResult.getString(CountryDaoDbTableColumn.COL_COD_COUNTRY);
+					dataInfo.codCountryAlpha3 = stmtResult.getString(CountryDaoDbTableColumn.COL_COD_COUNTRY_ALPHA3);
+					dataInfo.txtCountry = stmtResult.getString(CountryDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(CountryDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());
