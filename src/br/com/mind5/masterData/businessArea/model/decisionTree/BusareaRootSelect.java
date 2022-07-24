@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.businessArea.info.BusareaInfo;
-import br.com.mind5.masterData.businessArea.model.action.StdBusareaDaoSelect;
+import br.com.mind5.masterData.businessArea.model.action.BusareaVisiDaoSelect;
 import br.com.mind5.masterData.businessArea.model.checker.BusareaCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootBusareaSelect extends DeciTreeTemplateRead<BusareaInfo> {
+public final class BusareaRootSelect extends DeciTreeTemplateRead<BusareaInfo> {
 	
-	public RootBusareaSelect(DeciTreeOption<BusareaInfo> option) {
+	public BusareaRootSelect(DeciTreeOption<BusareaInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootBusareaSelect extends DeciTreeTemplateRead<BusareaInfo> {
 	@Override protected List<ActionStd<BusareaInfo>> buildActionsOnPassedHook(DeciTreeOption<BusareaInfo> option) {
 		List<ActionStd<BusareaInfo>> actions = new ArrayList<>();
 		
-		ActionStd<BusareaInfo> select = new StdBusareaDaoSelect(option);
+		ActionStd<BusareaInfo> select = new ActionStdCommom<BusareaInfo>(option, BusareaVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

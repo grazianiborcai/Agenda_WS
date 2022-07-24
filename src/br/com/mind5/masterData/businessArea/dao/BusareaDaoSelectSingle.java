@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.businessArea.info.BusareaInfo;
 
-public final class DaoBusareaSelectSingle extends DaoStmtTemplate<BusareaInfo> {
+public final class BusareaDaoSelectSingle extends DaoStmtTemplate<BusareaInfo> {
 	private final String MAIN_TABLE = DaoDbTable.BUSINESS_AREA_TABLE;
 	
 	
-	public DaoBusareaSelectSingle(Connection conn, BusareaInfo recordInfo, String schemaName) {
+	public BusareaDaoSelectSingle(Connection conn, BusareaInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,14 +45,14 @@ public final class DaoBusareaSelectSingle extends DaoStmtTemplate<BusareaInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoBusareaWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new BusareaDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(BusareaInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoBusareaJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new BusareaDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -69,9 +69,9 @@ public final class DaoBusareaSelectSingle extends DaoStmtTemplate<BusareaInfo> {
 				do {				
 					BusareaInfo dataInfo = new BusareaInfo();
 					
-					dataInfo.codBusiness = stmtResult.getInt(DaoBusareaDbTableColumn.COL_COD_BUSINESS);
-					dataInfo.txtBusiness = stmtResult.getString(DaoBusareaDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoBusareaDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codBusiness = stmtResult.getInt(BusareaDaoDaoDbTableColumn.COL_COD_BUSINESS);
+					dataInfo.txtBusiness = stmtResult.getString(BusareaDaoDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(BusareaDaoDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

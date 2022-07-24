@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.businessArea.info.BusareaInfo;
 
-final class DaoBusareaWhere implements DaoStmtWhere {
+final class BusareaDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoBusareaWhere(DaoWhereBuilderOption whereOption, String tableName, BusareaInfo recordInfo) {
+	public BusareaDaoWhere(DaoWhereBuilderOption whereOption, String tableName, BusareaInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ final class DaoBusareaWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoBusareaDbTableColumn.COL_COD_BUSINESS :
+				case BusareaDaoDaoDbTableColumn.COL_COD_BUSINESS :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codBusiness));
 					break;
 					
-				case DaoBusareaDbTableColumn.COL_COD_LANGUAGE :
+				case BusareaDaoDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

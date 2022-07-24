@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
 import br.com.mind5.business.ownerList.info.OwnelisMerger;
 import br.com.mind5.masterData.businessArea.info.BusareaInfo;
-import br.com.mind5.masterData.businessArea.model.decisionTree.RootBusareaSelect;
+import br.com.mind5.masterData.businessArea.model.decisionTree.BusareaRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class OwnelisVisiMergeBusarea extends ActionVisitorTemplateMerge<Ow
 	
 	
 	@Override protected Class<? extends DeciTree<BusareaInfo>> getTreeClassHook() {
-		return RootBusareaSelect.class;
+		return BusareaRootSelect.class;
 	}
 	
 	
