@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.areaPhone.info.AreaneInfo;
 
-public final class DaoAreaneSelect implements DaoStmtExec<AreaneInfo> {
+public final class AreaneDaoSelect implements DaoStmtExec<AreaneInfo> {
 	private DaoStmtExec<AreaneInfo> helper;
 	
 	
-	public DaoAreaneSelect(List<DaoStmtExecOption<AreaneInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoAreaneSelectSingle.class, AreaneInfo.class);
+	public AreaneDaoSelect(List<DaoStmtExecOption<AreaneInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, AreaneDaoSelectSingle.class, AreaneInfo.class);
 	}
 	
 	

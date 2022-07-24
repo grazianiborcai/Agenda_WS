@@ -161,7 +161,7 @@ import br.com.mind5.file.sysFileImageSearch.dao.FimgysarchDaoDbTableColumn;
 import br.com.mind5.file.sysFileImageSnapshot.dao.FimgysapDaoDbTableColumn;
 import br.com.mind5.form.formAddress.dao.DaoFormessDbTableColumn;
 import br.com.mind5.form.formPhone.dao.DaoFormoneDbTableColumn;
-import br.com.mind5.masterData.areaPhone.dao.DaoAreaneDbTableColumn;
+import br.com.mind5.masterData.areaPhone.dao.AreaneDaoDbTableColumn;
 import br.com.mind5.masterData.areaPhoneSearch.dao.DaoAreanarchDbTableColumn;
 import br.com.mind5.masterData.authorizationGroup.dao.DaoAuthgroupDbTableColumn;
 import br.com.mind5.masterData.authorizationGroupRole.dao.DaoAuthgroleDbTableColumn;
@@ -451,7 +451,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoTimezonarchDbTableColumn());
 		addTable(new DaoCountroneDbTableColumn());
 		addTable(new DaoCountronarchDbTableColumn());
-		addTable(new DaoAreaneDbTableColumn());
+		addTable(new AreaneDaoDbTableColumn());
 		addTable(new DaoAreanarchDbTableColumn());
 		addTable(new DaoCountryDbTableColumn());
 		addTable(new DaoCountarchDbTableColumn());

@@ -2,8 +2,9 @@ package br.com.mind5.masterData.areaPhone.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.areaPhone.info.AreaneInfo;
-import br.com.mind5.masterData.areaPhone.model.action.StdAreaneDaoSelect;
+import br.com.mind5.masterData.areaPhone.model.action.AreaneVisiDaoSelect;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class AreaneCheckExist extends ModelCheckerTemplateAction<AreaneInf
 	
 	
 	@Override protected ActionStd<AreaneInfo> buildActionHook(DeciTreeOption<AreaneInfo> option) {
-		ActionStd<AreaneInfo> select = new StdAreaneDaoSelect(option);
+		ActionStd<AreaneInfo> select = new ActionStdCommom<AreaneInfo>(option, AreaneVisiDaoSelect.class);
 		return select;
 	}
 	

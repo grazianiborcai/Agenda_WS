@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.areaPhone.info.AreaneInfo;
 
-public final class DaoAreaneSelectSingle extends DaoStmtTemplate<AreaneInfo> {
+public final class AreaneDaoSelectSingle extends DaoStmtTemplate<AreaneInfo> {
 	private final String MAIN_TABLE = DaoDbTable.AREA_PHONE_TABLE;
 	
 	
-	public DaoAreaneSelectSingle(Connection conn, AreaneInfo recordInfo, String schemaName) {
+	public AreaneDaoSelectSingle(Connection conn, AreaneInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,14 +45,14 @@ public final class DaoAreaneSelectSingle extends DaoStmtTemplate<AreaneInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoAreaneWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new AreaneDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(AreaneInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoAreaneJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new AreaneDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -69,10 +69,10 @@ public final class DaoAreaneSelectSingle extends DaoStmtTemplate<AreaneInfo> {
 				do {				
 					AreaneInfo dataInfo = new AreaneInfo();
 					
-					dataInfo.codCountryPhone = stmtResult.getInt(DaoAreaneDbTableColumn.COL_COD_COUNTRY_PHONE);
-					dataInfo.codArea = stmtResult.getString(DaoAreaneDbTableColumn.COL_COD_AREA_PHONE);
-					dataInfo.txtArea = stmtResult.getString(DaoAreaneDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoAreaneDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codCountryPhone = stmtResult.getInt(AreaneDaoDbTableColumn.COL_COD_COUNTRY_PHONE);
+					dataInfo.codArea = stmtResult.getString(AreaneDaoDbTableColumn.COL_COD_AREA_PHONE);
+					dataInfo.txtArea = stmtResult.getString(AreaneDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(AreaneDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.areaPhone.info.AreaneInfo;
-import br.com.mind5.masterData.areaPhone.model.action.StdAreaneDaoSelect;
+import br.com.mind5.masterData.areaPhone.model.action.AreaneVisiDaoSelect;
 import br.com.mind5.masterData.areaPhone.model.checker.AreaneCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootAreaneSelect extends DeciTreeTemplateRead<AreaneInfo> {
+public final class AreaneRootSelect extends DeciTreeTemplateRead<AreaneInfo> {
 	
-	public RootAreaneSelect(DeciTreeOption<AreaneInfo> option) {
+	public AreaneRootSelect(DeciTreeOption<AreaneInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootAreaneSelect extends DeciTreeTemplateRead<AreaneInfo> {
 	@Override protected List<ActionStd<AreaneInfo>> buildActionsOnPassedHook(DeciTreeOption<AreaneInfo> option) {
 		List<ActionStd<AreaneInfo>> actions = new ArrayList<>();
 		
-		ActionStd<AreaneInfo> select = new StdAreaneDaoSelect(option);
+		ActionStd<AreaneInfo> select = new ActionStdCommom<AreaneInfo>(option, AreaneVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;
