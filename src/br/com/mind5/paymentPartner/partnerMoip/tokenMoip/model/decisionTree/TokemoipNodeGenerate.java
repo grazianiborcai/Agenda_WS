@@ -5,23 +5,25 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.LazyTokemoipEnforceSetup;
-import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.LazyTokemoipGenerate;
-import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.LazyTokemoipMergeSetupar;
-import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.LazyTokemoipMergeSysenv;
-import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.StdTokemoipMergeSyspar;
+import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.TokemoipVisiEnforceSetup;
+import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.TokemoipVisiGenerate;
+import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.TokemoipVisiMergeSetupar;
+import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.TokemoipVisiMergeSysenv;
+import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.TokemoipVisiMergeSyspar;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker.TokemoipCheckSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker.TokemoipCheckSyspar;
 
-public final class NodeTokemoipGenerate extends DeciTreeTemplateWrite<TokemoipInfo> {
+public final class TokemoipNodeGenerate extends DeciTreeTemplateWrite<TokemoipInfo> {
 	
-	public NodeTokemoipGenerate(DeciTreeOption<TokemoipInfo> option) {
+	public TokemoipNodeGenerate(DeciTreeOption<TokemoipInfo> option) {
 		super(option);
 	}
 	
@@ -54,11 +56,11 @@ public final class NodeTokemoipGenerate extends DeciTreeTemplateWrite<TokemoipIn
 	@Override protected List<ActionStd<TokemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<TokemoipInfo> option) {
 		List<ActionStd<TokemoipInfo>> actions = new ArrayList<>();		
 
-		ActionStd<TokemoipInfo> mergeSyspar = new StdTokemoipMergeSyspar(option);	
-		ActionLazy<TokemoipInfo> mergeSetupar = new LazyTokemoipMergeSetupar(option.conn, option.schemaName);
-		ActionLazy<TokemoipInfo> mergeSysenv = new LazyTokemoipMergeSysenv(option.conn, option.schemaName);
-		ActionLazy<TokemoipInfo> enforceSetup = new LazyTokemoipEnforceSetup(option.conn, option.schemaName);
-		ActionLazy<TokemoipInfo> generateToken = new LazyTokemoipGenerate(option.conn, option.schemaName);
+		ActionStd<TokemoipInfo> mergeSyspar = new ActionStdCommom<TokemoipInfo>(option, TokemoipVisiMergeSyspar.class);	
+		ActionLazy<TokemoipInfo> mergeSetupar = new ActionLazyCommom<TokemoipInfo>(option, TokemoipVisiMergeSetupar.class);
+		ActionLazy<TokemoipInfo> mergeSysenv = new ActionLazyCommom<TokemoipInfo>(option, TokemoipVisiMergeSysenv.class);
+		ActionLazy<TokemoipInfo> enforceSetup = new ActionLazyCommom<TokemoipInfo>(option, TokemoipVisiEnforceSetup.class);
+		ActionLazy<TokemoipInfo> generateToken = new ActionLazyCommom<TokemoipInfo>(option, TokemoipVisiGenerate.class);
 		
 		mergeSyspar.addPostAction(mergeSetupar);
 		mergeSetupar.addPostAction(mergeSysenv);

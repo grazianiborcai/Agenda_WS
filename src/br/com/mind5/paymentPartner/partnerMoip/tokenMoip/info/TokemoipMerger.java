@@ -14,7 +14,7 @@ public final class TokemoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new TokemoipVisiMergeSysenv());
+		builder.addVisitor(new TokemoipMergerVisiSysenv());
 		InfoMerger<TokemoipInfo, SysenvInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class TokemoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new TokemoipVisiMergeSetupar());
+		builder.addVisitor(new TokemoipMergerVisiSetupar());
 		InfoMerger<TokemoipInfo, SetuparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class TokemoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new TokemoipVisiMergeSyspar());
+		builder.addVisitor(new TokemoipMergerVisiSyspar());
 		InfoMerger<TokemoipInfo, SysparInfo> merger = builder.build();		
 	
 		return merger.merge();

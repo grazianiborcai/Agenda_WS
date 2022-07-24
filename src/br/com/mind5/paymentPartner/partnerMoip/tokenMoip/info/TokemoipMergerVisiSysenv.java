@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 
-final class TokemoipVisiMergeSysenv extends InfoMergerVisitorTemplate<TokemoipInfo, SysenvInfo> {
+final class TokemoipMergerVisiSysenv extends InfoMergerVisitorTemplate<TokemoipInfo, SysenvInfo> {
 
 	@Override public boolean shouldMerge(TokemoipInfo baseInfo, SysenvInfo selectedInfo) {
 		return true;

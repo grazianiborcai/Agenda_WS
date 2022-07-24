@@ -10,9 +10,9 @@ import br.com.mind5.payment.systemPartner.model.decisionTree.SysparRootSelect;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipMerger;
 
-final class VisiTokemoipMergeSyspar extends ActionVisitorTemplateMerge<TokemoipInfo, SysparInfo> {
+public final class TokemoipVisiMergeSyspar extends ActionVisitorTemplateMerge<TokemoipInfo, SysparInfo> {
 	
-	public VisiTokemoipMergeSyspar(DeciTreeOption<TokemoipInfo> option) {
+	public TokemoipVisiMergeSyspar(DeciTreeOption<TokemoipInfo> option) {
 		super(option, SysparInfo.class);
 	}
 	

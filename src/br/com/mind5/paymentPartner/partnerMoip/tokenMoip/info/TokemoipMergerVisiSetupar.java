@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 
-final class TokemoipVisiMergeSetupar extends InfoMergerVisitorTemplate<TokemoipInfo, SetuparInfo> {
+final class TokemoipMergerVisiSetupar extends InfoMergerVisitorTemplate<TokemoipInfo, SetuparInfo> {
 
 	@Override public boolean shouldMerge(TokemoipInfo baseInfo, SetuparInfo selectedInfo) {
 		return (baseInfo.codPayPartner == selectedInfo.codPayPartner);

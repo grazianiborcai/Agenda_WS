@@ -17,9 +17,9 @@ import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.moip.Moip;
 import br.com.moip.models.Setup;
 
-final class VisiTokemoipGenerate extends ActionVisitorTemplateSimple<TokemoipInfo> {
+public final class TokemoipVisiGenerate extends ActionVisitorTemplateSimple<TokemoipInfo> {
 	
-	public VisiTokemoipGenerate(DeciTreeOption<TokemoipInfo> option) {
+	public TokemoipVisiGenerate(DeciTreeOption<TokemoipInfo> option) {
 		super(option);
 	}
 	

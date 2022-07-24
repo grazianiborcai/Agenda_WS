@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipMerger;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.decisionTree.RootTokemoipGenerate;
+import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.decisionTree.TokemoipRootGenerate;
 
 public final class PeresmoipVisiTokemoipGenerate extends ActionVisitorTemplateAction<PeresmoipInfo, TokemoipInfo> {
 	
@@ -19,7 +19,7 @@ public final class PeresmoipVisiTokemoipGenerate extends ActionVisitorTemplateAc
 	
 	
 	@Override protected Class<? extends DeciTree<TokemoipInfo>> getTreeClassHook() {
-		return RootTokemoipGenerate.class;
+		return TokemoipRootGenerate.class;
 	}
 	
 	

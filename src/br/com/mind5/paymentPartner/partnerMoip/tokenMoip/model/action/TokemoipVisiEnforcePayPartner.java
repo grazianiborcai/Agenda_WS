@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipSetterCodPayPartner;
 
-final class VisiTokemoipEnforcePayPartner extends ActionVisitorTemplateEnforce<TokemoipInfo> {
+public final class TokemoipVisiEnforcePayPartner extends ActionVisitorTemplateEnforce<TokemoipInfo> {
 	
-	public VisiTokemoipEnforcePayPartner(DeciTreeOption<TokemoipInfo> option) {
+	public TokemoipVisiEnforcePayPartner(DeciTreeOption<TokemoipInfo> option) {
 		super(option);
 	}
 	
