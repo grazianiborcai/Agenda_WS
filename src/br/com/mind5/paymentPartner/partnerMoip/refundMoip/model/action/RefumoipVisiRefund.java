@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.moip.Moip;
 
-final class VisiRefumoipRefund extends ActionVisitorTemplateSimple<RefumoipInfo> {
+public final class RefumoipVisiRefund extends ActionVisitorTemplateSimple<RefumoipInfo> {
 	
-	public VisiRefumoipRefund(DeciTreeOption<RefumoipInfo> option) {
+	public RefumoipVisiRefund(DeciTreeOption<RefumoipInfo> option) {
 		super(option);
 	}
 	

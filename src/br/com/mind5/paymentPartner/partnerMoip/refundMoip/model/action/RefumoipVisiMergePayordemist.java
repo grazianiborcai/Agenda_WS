@@ -10,9 +10,9 @@ import br.com.mind5.payment.payOrderItemList.model.decisionTree.PayordemistRootS
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipMerger;
 
-final class VisiRefumoipMergePayordemist extends ActionVisitorTemplateMerge<RefumoipInfo, PayordemistInfo> {
+public final class RefumoipVisiMergePayordemist extends ActionVisitorTemplateMerge<RefumoipInfo, PayordemistInfo> {
 	
-	public VisiRefumoipMergePayordemist(DeciTreeOption<RefumoipInfo> option) {
+	public RefumoipVisiMergePayordemist(DeciTreeOption<RefumoipInfo> option) {
 		super(option, PayordemistInfo.class);
 	}
 	

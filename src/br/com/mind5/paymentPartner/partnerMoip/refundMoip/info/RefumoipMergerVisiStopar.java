@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
-final class RefumoipVisiMergeStopar extends InfoMergerVisitorTemplate<RefumoipInfo, StoparInfo> {
+final class RefumoipMergerVisiStopar extends InfoMergerVisitorTemplate<RefumoipInfo, StoparInfo> {
 
 	@Override public boolean shouldMerge(RefumoipInfo baseInfo, StoparInfo selectedInfo) {
 		return (baseInfo.codOwner 	   == selectedInfo.codOwner	&&

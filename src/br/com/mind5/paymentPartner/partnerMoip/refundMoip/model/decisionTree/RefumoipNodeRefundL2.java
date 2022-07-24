@@ -10,11 +10,11 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.checker.RefumoipCheckPayormarch;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.checker.RefumoipCheckSysparch;
 
-public final class NodeRefumoipRefundL1 extends DeciTreeTemplateWrite<RefumoipInfo> {
+public final class RefumoipNodeRefundL2 extends DeciTreeTemplateWrite<RefumoipInfo> {
 	
-	public NodeRefumoipRefundL1(DeciTreeOption<RefumoipInfo> option) {
+	public RefumoipNodeRefundL2(DeciTreeOption<RefumoipInfo> option) {
 		super(option);
 	}
 	
@@ -29,7 +29,7 @@ public final class NodeRefumoipRefundL1 extends DeciTreeTemplateWrite<RefumoipIn
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new RefumoipCheckPayormarch(checkerOption);
+		checker = new RefumoipCheckSysparch(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerHelperQueue<>(queue);
@@ -40,9 +40,20 @@ public final class NodeRefumoipRefundL1 extends DeciTreeTemplateWrite<RefumoipIn
 	@Override protected List<ActionStd<RefumoipInfo>> buildActionsOnPassedHook(DeciTreeOption<RefumoipInfo> option) {
 		List<ActionStd<RefumoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<RefumoipInfo> nodeL2 = new NodeRefumoipRefundL2(option).toAction();
+		ActionStd<RefumoipInfo> nodeSystem = new RefumoipNodeSystem(option).toAction();
 		
-		actions.add(nodeL2);		
+		actions.add(nodeSystem);		
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<RefumoipInfo>> buildActionsOnFailedHook(DeciTreeOption<RefumoipInfo> option) {
+		List<ActionStd<RefumoipInfo>> actions = new ArrayList<>();	
+		
+		ActionStd<RefumoipInfo> nodeNonSystem = new RefumoipNodeNonSystem(option).toAction();
+		
+		actions.add(nodeNonSystem);		
 		return actions;
 	}
 }

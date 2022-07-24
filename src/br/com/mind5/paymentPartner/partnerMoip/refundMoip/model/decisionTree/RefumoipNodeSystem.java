@@ -5,20 +5,22 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefumoipEnforceSetupNonsys;
-import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefumoipMergeSysenv;
-import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.StdRefumoipMergeStopar;
-import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.checker.RefumoipCheckStopar;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.RefumoipVisiEnforceSetupSys;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.RefumoipVisiMergeSetupar;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.RefumoipVisiMergeSysenv;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.checker.RefumoipCheckSysparch;
 
-public final class NodeRefumoipNonSystem extends DeciTreeTemplateWrite<RefumoipInfo> {
+public final class RefumoipNodeSystem extends DeciTreeTemplateWrite<RefumoipInfo> {
 	
-	public NodeRefumoipNonSystem(DeciTreeOption<RefumoipInfo> option) {
+	public RefumoipNodeSystem(DeciTreeOption<RefumoipInfo> option) {
 		super(option);
 	}
 	
@@ -32,10 +34,10 @@ public final class NodeRefumoipNonSystem extends DeciTreeTemplateWrite<RefumoipI
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new RefumoipCheckStopar(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new RefumoipCheckSysparch(checkerOption);
 		queue.add(checker);
-		
+
 		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
@@ -44,14 +46,14 @@ public final class NodeRefumoipNonSystem extends DeciTreeTemplateWrite<RefumoipI
 	@Override protected List<ActionStd<RefumoipInfo>> buildActionsOnPassedHook(DeciTreeOption<RefumoipInfo> option) {
 		List<ActionStd<RefumoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<RefumoipInfo> mergeStopar = new StdRefumoipMergeStopar(option);	
-		ActionLazy<RefumoipInfo> mergeSysenv = new LazyRefumoipMergeSysenv(option.conn, option.schemaName);
-		ActionLazy<RefumoipInfo> enforceSetup = new LazyRefumoipEnforceSetupNonsys(option.conn, option.schemaName);	
+		ActionStd<RefumoipInfo> mergeSetupar = new ActionStdCommom<RefumoipInfo>(option, RefumoipVisiMergeSetupar.class);	
+		ActionLazy<RefumoipInfo> mergeSysenv = new ActionLazyCommom<RefumoipInfo>(option, RefumoipVisiMergeSysenv.class);
+		ActionLazy<RefumoipInfo> enforceSetup = new ActionLazyCommom<RefumoipInfo>(option, RefumoipVisiEnforceSetupSys.class);	
 		
-		mergeStopar.addPostAction(mergeSysenv);
+		mergeSetupar.addPostAction(mergeSysenv);
 		mergeSysenv.addPostAction(enforceSetup);
 		
-		actions.add(mergeStopar);		
+		actions.add(mergeSetupar);		
 		return actions;
 	}
 }

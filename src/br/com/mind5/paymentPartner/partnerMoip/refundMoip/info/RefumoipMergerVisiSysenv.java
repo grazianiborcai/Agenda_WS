@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 
-final class RefumoipVisiMergeSysenv extends InfoMergerVisitorTemplate<RefumoipInfo, SysenvInfo> {
+final class RefumoipMergerVisiSysenv extends InfoMergerVisitorTemplate<RefumoipInfo, SysenvInfo> {
 
 	@Override public boolean shouldMerge(RefumoipInfo baseInfo, SysenvInfo selectedInfo) {
 		return true;

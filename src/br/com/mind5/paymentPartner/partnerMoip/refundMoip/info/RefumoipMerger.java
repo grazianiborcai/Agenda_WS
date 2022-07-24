@@ -15,7 +15,7 @@ public final class RefumoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefumoipVisiMergePayordemist());
+		builder.addVisitor(new RefumoipMergerVisiPayordemist());
 		InfoMerger<RefumoipInfo, PayordemistInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -28,7 +28,7 @@ public final class RefumoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefumoipVisiMergeSysenv());
+		builder.addVisitor(new RefumoipMergerVisiSysenv());
 		InfoMerger<RefumoipInfo, SysenvInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -41,7 +41,7 @@ public final class RefumoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefumoipVisiMergeSetupar());
+		builder.addVisitor(new RefumoipMergerVisiSetupar());
 		InfoMerger<RefumoipInfo, SetuparInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -54,7 +54,7 @@ public final class RefumoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefumoipVisiMergeStopar());
+		builder.addVisitor(new RefumoipMergerVisiStopar());
 		InfoMerger<RefumoipInfo, StoparInfo> merger = builder.build();		
 	
 		return merger.merge();

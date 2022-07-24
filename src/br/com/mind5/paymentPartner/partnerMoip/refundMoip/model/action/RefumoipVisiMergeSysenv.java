@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipMerger;
 
-final class VisiRefumoipMergeSysenv extends ActionVisitorTemplateMerge<RefumoipInfo, SysenvInfo> {
+public final class RefumoipVisiMergeSysenv extends ActionVisitorTemplateMerge<RefumoipInfo, SysenvInfo> {
 	
-	public VisiRefumoipMergeSysenv(DeciTreeOption<RefumoipInfo> option) {
+	public RefumoipVisiMergeSysenv(DeciTreeOption<RefumoipInfo> option) {
 		super(option, SysenvInfo.class);
 	}
 	

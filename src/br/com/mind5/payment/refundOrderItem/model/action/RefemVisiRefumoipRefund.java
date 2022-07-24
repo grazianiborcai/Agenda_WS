@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.info.RefemMerger;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.decisionTree.RootRefumoipRefund;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.decisionTree.RefumoipRootRefund;
 
 public final class RefemVisiRefumoipRefund extends ActionVisitorTemplateAction<RefemInfo, RefumoipInfo> {
 	
@@ -19,7 +19,7 @@ public final class RefemVisiRefumoipRefund extends ActionVisitorTemplateAction<R
 	
 	
 	@Override protected Class<? extends DeciTree<RefumoipInfo>> getTreeClassHook() {
-		return RootRefumoipRefund.class;
+		return RefumoipRootRefund.class;
 	}
 	
 	

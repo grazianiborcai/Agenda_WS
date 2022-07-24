@@ -10,9 +10,9 @@ import br.com.mind5.payment.storePartner.model.decisionTree.StoparRootSelect;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipMerger;
 
-final class VisiRefumoipMergeStopar extends ActionVisitorTemplateMerge<RefumoipInfo, StoparInfo> {
+public final class RefumoipVisiMergeStopar extends ActionVisitorTemplateMerge<RefumoipInfo, StoparInfo> {
 	
-	public VisiRefumoipMergeStopar(DeciTreeOption<RefumoipInfo> option) {
+	public RefumoipVisiMergeStopar(DeciTreeOption<RefumoipInfo> option) {
 		super(option, StoparInfo.class);
 	}
 	

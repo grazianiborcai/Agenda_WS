@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipSetterSetupSys;
 
-final class VisiRefumoipEnforceSetupSys extends ActionVisitorTemplateEnforce<RefumoipInfo> {
+public final class RefumoipVisiEnforceSetupSys extends ActionVisitorTemplateEnforce<RefumoipInfo> {
 	
-	public VisiRefumoipEnforceSetupSys(DeciTreeOption<RefumoipInfo> option) {
+	public RefumoipVisiEnforceSetupSys(DeciTreeOption<RefumoipInfo> option) {
 		super(option);
 	}
 	

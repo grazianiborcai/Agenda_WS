@@ -4,18 +4,18 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipSetterPaypar;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipSetterSetupNonsys;
 
-final class VisiRefumoipEnforcePaypar extends ActionVisitorTemplateEnforce<RefumoipInfo> {
+public final class RefumoipVisiEnforceSetupNonsys extends ActionVisitorTemplateEnforce<RefumoipInfo> {
 	
-	public VisiRefumoipEnforcePaypar(DeciTreeOption<RefumoipInfo> option) {
+	public RefumoipVisiEnforceSetupNonsys(DeciTreeOption<RefumoipInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected RefumoipInfo enforceHook(RefumoipInfo recordInfo) {
-		InfoSetter<RefumoipInfo> setter = new RefumoipSetterPaypar();
+		InfoSetter<RefumoipInfo> setter = new RefumoipSetterSetupNonsys();
 		return setter.setAttr(recordInfo);
 	}
 }

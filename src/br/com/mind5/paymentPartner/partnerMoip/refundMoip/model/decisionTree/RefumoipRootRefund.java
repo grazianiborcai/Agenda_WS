@@ -5,22 +5,24 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefumoipEnforceResponseAttr;
-import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefumoipMergePayordemist;
-import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefumoipNodeRefundL1;
-import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefumoipRefund;
-import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.StdRefumoipEnforcePaypar;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.RefumoipVisiNodeRefundL1;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.RefumoipVisiEnforcePaypar;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.RefumoipVisiEnforceResponseAttr;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.RefumoipVisiMergePayordemist;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.RefumoipVisiRefund;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.checker.RefumoipCheckRefund;
 
-public final class RootRefumoipRefund extends DeciTreeTemplateWrite<RefumoipInfo> {
+public final class RefumoipRootRefund extends DeciTreeTemplateWrite<RefumoipInfo> {
 	
-	public RootRefumoipRefund(DeciTreeOption<RefumoipInfo> option) {
+	public RefumoipRootRefund(DeciTreeOption<RefumoipInfo> option) {
 		super(option);
 	}
 	
@@ -46,11 +48,11 @@ public final class RootRefumoipRefund extends DeciTreeTemplateWrite<RefumoipInfo
 	@Override protected List<ActionStd<RefumoipInfo>> buildActionsOnPassedHook(DeciTreeOption<RefumoipInfo> option) {
 		List<ActionStd<RefumoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<RefumoipInfo> enforcePaypar = new StdRefumoipEnforcePaypar(option);	
-		ActionLazy<RefumoipInfo> mergePayordemist = new LazyRefumoipMergePayordemist(option.conn, option.schemaName);	
-		ActionLazy<RefumoipInfo> nodeRefund = new LazyRefumoipNodeRefundL1(option.conn, option.schemaName);		
-		ActionLazy<RefumoipInfo> refund = new LazyRefumoipRefund(option.conn, option.schemaName);
-		ActionLazy<RefumoipInfo> enforceResponseAttr = new LazyRefumoipEnforceResponseAttr(option.conn, option.schemaName);
+		ActionStd<RefumoipInfo> enforcePaypar = new ActionStdCommom<RefumoipInfo>(option, RefumoipVisiEnforcePaypar.class);	
+		ActionLazy<RefumoipInfo> mergePayordemist = new ActionLazyCommom<RefumoipInfo>(option, RefumoipVisiMergePayordemist.class);	
+		ActionLazy<RefumoipInfo> nodeRefund = new ActionLazyCommom<RefumoipInfo>(option, RefumoipVisiNodeRefundL1.class);		
+		ActionLazy<RefumoipInfo> refund = new ActionLazyCommom<RefumoipInfo>(option, RefumoipVisiRefund.class);
+		ActionLazy<RefumoipInfo> enforceResponseAttr = new ActionLazyCommom<RefumoipInfo>(option, RefumoipVisiEnforceResponseAttr.class);
 		
 		enforcePaypar.addPostAction(mergePayordemist);
 		mergePayordemist.addPostAction(nodeRefund);
