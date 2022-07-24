@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.currencySearch.info.CurrarshInfo;
-import br.com.mind5.masterData.currencySearch.model.action.StdCurrarshDaoSelect;
+import br.com.mind5.masterData.currencySearch.model.action.CurrarshVisiDaoSelect;
 import br.com.mind5.masterData.currencySearch.model.checker.CurrarshCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCurrarshSelect extends DeciTreeTemplateRead<CurrarshInfo> {
+public final class CurrarshRootSelect extends DeciTreeTemplateRead<CurrarshInfo> {
 	
-	public RootCurrarshSelect(DeciTreeOption<CurrarshInfo> option) {
+	public CurrarshRootSelect(DeciTreeOption<CurrarshInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootCurrarshSelect extends DeciTreeTemplateRead<CurrarshInfo>
 	@Override protected List<ActionStd<CurrarshInfo>> buildActionsOnPassedHook(DeciTreeOption<CurrarshInfo> option) {
 		List<ActionStd<CurrarshInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CurrarshInfo> select = new StdCurrarshDaoSelect(option);
+		ActionStd<CurrarshInfo> select = new ActionStdCommom<CurrarshInfo>(option, CurrarshVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

@@ -9,14 +9,14 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoCurrarshDbTableColumn extends DaoDbTableColumnTemplate {
+public final class CurrarshDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CURRENCY = DaoDbField.COL_COD_CURRENCY;
 	public static final String COL_CURRENCY_SYMBOL = DaoDbField.COL_CURRENCY_SYMBOL;
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_NAME = DaoDbField.COL_NAME;
 
 	
-	public DaoCurrarshDbTableColumn() {
+	public CurrarshDaoDbTableColumn() {
 		super();
 	}
 	

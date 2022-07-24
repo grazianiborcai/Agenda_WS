@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.currencySearch.info.CurrarshInfo;
 
-public final class DaoCurrarshSelectSingle extends DaoStmtTemplate<CurrarshInfo> {
+public final class CurrarshDaoSelectSingle extends DaoStmtTemplate<CurrarshInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CURRENCY_TABLE;
 	
 	
-	public DaoCurrarshSelectSingle(Connection conn, CurrarshInfo recordInfo, String schemaName) {
+	public CurrarshDaoSelectSingle(Connection conn, CurrarshInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,14 +52,14 @@ public final class DaoCurrarshSelectSingle extends DaoStmtTemplate<CurrarshInfo>
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoCurrarshWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new CurrarshDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(CurrarshInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoCurrarshJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new CurrarshDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -76,10 +76,10 @@ public final class DaoCurrarshSelectSingle extends DaoStmtTemplate<CurrarshInfo>
 				do {				
 					CurrarshInfo dataInfo = new CurrarshInfo();
 					
-					dataInfo.codCurr = stmtResult.getString(DaoCurrarshDbTableColumn.COL_COD_CURRENCY);
-					dataInfo.symbolCurr = stmtResult.getString(DaoCurrarshDbTableColumn.COL_CURRENCY_SYMBOL);
-					dataInfo.txtCurr = stmtResult.getString(DaoCurrarshDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoCurrarshDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codCurr = stmtResult.getString(CurrarshDaoDbTableColumn.COL_COD_CURRENCY);
+					dataInfo.symbolCurr = stmtResult.getString(CurrarshDaoDbTableColumn.COL_CURRENCY_SYMBOL);
+					dataInfo.txtCurr = stmtResult.getString(CurrarshDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(CurrarshDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

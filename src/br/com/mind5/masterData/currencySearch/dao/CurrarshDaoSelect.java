@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.currencySearch.info.CurrarshInfo;
 
-public final class DaoCurrarshSelect implements DaoStmtExec<CurrarshInfo> {
+public final class CurrarshDaoSelect implements DaoStmtExec<CurrarshInfo> {
 	private DaoStmtExec<CurrarshInfo> helper;
 	
 	
-	public DaoCurrarshSelect(List<DaoStmtExecOption<CurrarshInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCurrarshSelectSingle.class, CurrarshInfo.class);
+	public CurrarshDaoSelect(List<DaoStmtExecOption<CurrarshInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CurrarshDaoSelectSingle.class, CurrarshInfo.class);
 	}
 	
 	

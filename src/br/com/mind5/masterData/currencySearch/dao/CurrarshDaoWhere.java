@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.currencySearch.info.CurrarshInfo;
 
-final class DaoCurrarshWhere implements DaoStmtWhere {
+final class CurrarshDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoCurrarshWhere(DaoWhereBuilderOption whereOption, String tableName, CurrarshInfo recordInfo) {
+	public CurrarshDaoWhere(DaoWhereBuilderOption whereOption, String tableName, CurrarshInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -25,11 +25,11 @@ final class DaoCurrarshWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoCurrarshDbTableColumn.COL_COD_CURRENCY :
+				case CurrarshDaoDbTableColumn.COL_COD_CURRENCY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codCurr);
 					break;
 					
-				case DaoCurrarshDbTableColumn.COL_COD_LANGUAGE :
+				case CurrarshDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
