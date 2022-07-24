@@ -12,7 +12,7 @@ public final class PeresmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PeresmoipVisiMergeTokemoip());
+		builder.addVisitor(new PeresmoipMergerVisiTokemoip());
 		InfoMerger<PeresmoipInfo, TokemoipInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class PeresmoipMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PeresmoipVisiMergeToSelect());
+		builder.addVisitor(new PeresmoipMergerVisiToSelect());
 		InfoMerger<PeresmoipInfo, PeresmoipInfo> merger = builder.build();		
 	
 		return merger.merge();

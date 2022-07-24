@@ -4,7 +4,7 @@ import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.decisionTree.RootPeresmoipCode;
+import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.decisionTree.PeresmoipRootCode;
 
 
 public final class PeresmoipModelCode extends ModelTemplate<PeresmoipInfo> {
@@ -15,6 +15,6 @@ public final class PeresmoipModelCode extends ModelTemplate<PeresmoipInfo> {
 	
 	
 	@Override protected DeciTree<PeresmoipInfo> getDecisionTreeHook(DeciTreeOption<PeresmoipInfo> option) {
-		return new RootPeresmoipCode(option);
+		return new PeresmoipRootCode(option);
 	}
 }

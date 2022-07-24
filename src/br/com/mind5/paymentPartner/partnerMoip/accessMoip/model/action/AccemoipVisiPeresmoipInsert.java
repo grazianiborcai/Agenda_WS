@@ -7,7 +7,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.decisionTree.RootPeresmoipInsert;
+import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.decisionTree.PeresmoipRootInsert;
 
 public final class AccemoipVisiPeresmoipInsert extends ActionVisitorTemplateAction<AccemoipInfo, PeresmoipInfo> {
 	
@@ -18,7 +18,7 @@ public final class AccemoipVisiPeresmoipInsert extends ActionVisitorTemplateActi
 	
 	
 	@Override protected Class<? extends DeciTree<PeresmoipInfo>> getTreeClassHook() {
-		return RootPeresmoipInsert.class;
+		return PeresmoipRootInsert.class;
 	}
 	
 	

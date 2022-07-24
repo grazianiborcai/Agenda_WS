@@ -2,11 +2,12 @@ package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.StdPeresmoipDaoSelect;
+import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.PeresmoipVisiDaoSelect;
 
 public final class PeresmoipCheckExist extends ModelCheckerTemplateAction<PeresmoipInfo, PeresmoipInfo> {
 	
@@ -17,7 +18,7 @@ public final class PeresmoipCheckExist extends ModelCheckerTemplateAction<Peresm
 
 	
 	@Override protected ActionStd<PeresmoipInfo> buildActionHook(DeciTreeOption<PeresmoipInfo> option) {
-		ActionStd<PeresmoipInfo> select = new StdPeresmoipDaoSelect(option);
+		ActionStd<PeresmoipInfo> select = new ActionStdCommom<PeresmoipInfo>(option, PeresmoipVisiDaoSelect.class);
 		return select;
 	}
 	
