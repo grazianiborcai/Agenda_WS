@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.masterData.countryLegal.info.CountralInfo;
 import br.com.mind5.masterData.countryLegal.info.CountralMerger;
 import br.com.mind5.masterData.countryLegalSearch.info.CountrarchInfo;
-import br.com.mind5.masterData.countryLegalSearch.model.decisionTree.RootCountrarchSelect;
+import br.com.mind5.masterData.countryLegalSearch.model.decisionTree.CountrarchRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class CountralVisiMergeCountrarch extends ActionVisitorTemplateMerg
 	
 	
 	@Override protected Class<? extends DeciTree<CountrarchInfo>> getTreeClassHook() {
-		return RootCountrarchSelect.class;
+		return CountrarchRootSelect.class;
 	}
 	
 	

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class CountrarchVisiMergeToSelect extends InfoMergerVisitorTemplate<CountrarchInfo, CountrarchInfo> {
+final class CountrarchMergerVisiToSelect extends InfoMergerVisitorTemplate<CountrarchInfo, CountrarchInfo> {
 
 	@Override public boolean shouldMerge(CountrarchInfo baseInfo, CountrarchInfo selectedInfo) {
 		return true;

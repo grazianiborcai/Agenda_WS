@@ -171,7 +171,7 @@ import br.com.mind5.masterData.cartItemCategory.dao.CaritegDaoDbTableColumn;
 import br.com.mind5.masterData.cartItemCategorySearch.dao.CaritegarchDaoDbTableColumn;
 import br.com.mind5.masterData.country.dao.CountryDaoDbTableColumn;
 import br.com.mind5.masterData.countryLegal.dao.CountralDaoDbTableColumn;
-import br.com.mind5.masterData.countryLegalSearch.dao.DaoCountrarchDbTableColumn;
+import br.com.mind5.masterData.countryLegalSearch.dao.CountrarchDaoDbTableColumn;
 import br.com.mind5.masterData.countryPhone.dao.DaoCountroneDbTableColumn;
 import br.com.mind5.masterData.countryPhoneSearch.dao.DaoCountronarchDbTableColumn;
 import br.com.mind5.masterData.countrySearch.dao.DaoCountarchDbTableColumn;
@@ -530,7 +530,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoSysotupDbTableColumn());
 		addTable(new DaoSytorbcDbTableColumn());
 		addTable(new CountralDaoDbTableColumn());
-		addTable(new DaoCountrarchDbTableColumn());
+		addTable(new CountrarchDaoDbTableColumn());
 		addTable(new CaritegarchDaoDbTableColumn());
 		addTable(new FimgnapDaoDbTableColumn());
 		addTable(new AddresnaparchDaoDbTableColumn());

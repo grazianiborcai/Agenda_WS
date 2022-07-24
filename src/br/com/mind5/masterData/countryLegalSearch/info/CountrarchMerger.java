@@ -11,7 +11,7 @@ public final class CountrarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CountrarchVisiMergeToSelect());
+		builder.addVisitor(new CountrarchMergerVisiToSelect());
 		InfoMerger<CountrarchInfo, CountrarchInfo> merger = builder.build();		
 	
 		return merger.merge();

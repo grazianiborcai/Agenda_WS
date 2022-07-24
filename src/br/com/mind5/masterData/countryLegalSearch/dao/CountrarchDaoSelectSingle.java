@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.countryLegalSearch.info.CountrarchInfo;
 
-public final class DaoCountrarchSelectSingle extends DaoStmtTemplate<CountrarchInfo> {
+public final class CountrarchDaoSelectSingle extends DaoStmtTemplate<CountrarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.COUNTRY_LEGAL_TABLE;
 	
 	
-	public DaoCountrarchSelectSingle(Connection conn, CountrarchInfo recordInfo, String schemaName) {
+	public CountrarchDaoSelectSingle(Connection conn, CountrarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoCountrarchSelectSingle extends DaoStmtTemplate<CountrarchI
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoCountrarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new CountrarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,8 +67,8 @@ public final class DaoCountrarchSelectSingle extends DaoStmtTemplate<CountrarchI
 				do {				
 					CountrarchInfo dataInfo = new CountrarchInfo();
 					
-					dataInfo.codCountry = stmtResult.getString(DaoCountrarchDbTableColumn.COL_COD_COUNTRY);
-					dataInfo.recordMode = stmtResult.getString(DaoCountrarchDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codCountry = stmtResult.getString(CountrarchDaoDbTableColumn.COL_COD_COUNTRY);
+					dataInfo.recordMode = stmtResult.getString(CountrarchDaoDbTableColumn.COL_RECORD_MODE);
 					
 					
 					finalResult.add(dataInfo);				
