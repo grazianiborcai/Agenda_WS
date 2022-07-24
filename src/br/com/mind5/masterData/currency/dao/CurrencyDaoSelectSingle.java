@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 
-public final class DaoCurrencySelectSingle extends DaoStmtTemplate<CurrencyInfo> {
+public final class CurrencyDaoSelectSingle extends DaoStmtTemplate<CurrencyInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CURRENCY_TABLE;
 	
 	
-	public DaoCurrencySelectSingle(Connection conn, CurrencyInfo recordInfo, String schemaName) {
+	public CurrencyDaoSelectSingle(Connection conn, CurrencyInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,14 +45,14 @@ public final class DaoCurrencySelectSingle extends DaoStmtTemplate<CurrencyInfo>
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoCurrencyWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new CurrencyDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(CurrencyInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoCurrencyJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new CurrencyDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -69,10 +69,10 @@ public final class DaoCurrencySelectSingle extends DaoStmtTemplate<CurrencyInfo>
 				do {				
 					CurrencyInfo dataInfo = new CurrencyInfo();
 					
-					dataInfo.codCurr = stmtResult.getString(DaoCurrencyDbTableColumn.COL_COD_CURRENCY);
-					dataInfo.symbolCurr = stmtResult.getString(DaoCurrencyDbTableColumn.COL_CURRENCY_SYMBOL);
-					dataInfo.txtCurr = stmtResult.getString(DaoCurrencyDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoCurrencyDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codCurr = stmtResult.getString(CurrencyDaoDbTableColumn.COL_COD_CURRENCY);
+					dataInfo.symbolCurr = stmtResult.getString(CurrencyDaoDbTableColumn.COL_CURRENCY_SYMBOL);
+					dataInfo.txtCurr = stmtResult.getString(CurrencyDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(CurrencyDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

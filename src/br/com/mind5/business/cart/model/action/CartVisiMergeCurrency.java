@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.info.CartMerger;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
-import br.com.mind5.masterData.currency.model.decisionTree.RootCurrencySelect;
+import br.com.mind5.masterData.currency.model.decisionTree.CurrencyRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class CartVisiMergeCurrency extends ActionVisitorTemplateMerge<Cart
 	
 	
 	@Override protected Class<? extends DeciTree<CurrencyInfo>> getTreeClassHook() {
-		return RootCurrencySelect.class;
+		return CurrencyRootSelect.class;
 	}
 	
 	

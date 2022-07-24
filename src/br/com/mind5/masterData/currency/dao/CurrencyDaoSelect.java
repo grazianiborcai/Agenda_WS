@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 
-public final class DaoCurrencySelect implements DaoStmtExec<CurrencyInfo> {
+public final class CurrencyDaoSelect implements DaoStmtExec<CurrencyInfo> {
 	private DaoStmtExec<CurrencyInfo> helper;
 	
 	
-	public DaoCurrencySelect(List<DaoStmtExecOption<CurrencyInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoCurrencySelectSingle.class, CurrencyInfo.class);
+	public CurrencyDaoSelect(List<DaoStmtExecOption<CurrencyInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CurrencyDaoSelectSingle.class, CurrencyInfo.class);
 	}
 	
 	

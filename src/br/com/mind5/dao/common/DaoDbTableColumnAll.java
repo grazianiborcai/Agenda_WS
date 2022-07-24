@@ -175,7 +175,7 @@ import br.com.mind5.masterData.countryLegalSearch.dao.CountrarchDaoDbTableColumn
 import br.com.mind5.masterData.countryPhone.dao.CountroneDaoDbTableColumn;
 import br.com.mind5.masterData.countryPhoneSearch.dao.CountronarchDaoDbTableColumn;
 import br.com.mind5.masterData.countrySearch.dao.CountarchDaoDbTableColumn;
-import br.com.mind5.masterData.currency.dao.DaoCurrencyDbTableColumn;
+import br.com.mind5.masterData.currency.dao.CurrencyDaoDbTableColumn;
 import br.com.mind5.masterData.currencySearch.dao.DaoCurrarshDbTableColumn;
 import br.com.mind5.masterData.dayParting.dao.DaoDaypartDbTableColumn;
 import br.com.mind5.masterData.dayPartingSearch.dao.DaoDayparchDbTableColumn;
@@ -445,7 +445,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoStatarchDbTableColumn());
 		addTable(new DaoLanguDbTableColumn());
 		addTable(new DaoLangarchDbTableColumn());
-		addTable(new DaoCurrencyDbTableColumn());
+		addTable(new CurrencyDaoDbTableColumn());
 		addTable(new DaoCurrarshDbTableColumn());
 		addTable(new DaoTimezoneDbTableColumn());
 		addTable(new DaoTimezonarchDbTableColumn());
