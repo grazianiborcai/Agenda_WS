@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.businessAreaSearch.info.BusarearchInfo;
 
-public final class DaoBusarearchSelectSingle extends DaoStmtTemplate<BusarearchInfo> {
+public final class BusarearchDaoSelectSingle extends DaoStmtTemplate<BusarearchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.BUSINESS_AREA_TABLE;
 	
 	
-	public DaoBusarearchSelectSingle(Connection conn, BusarearchInfo recordInfo, String schemaName) {
+	public BusarearchDaoSelectSingle(Connection conn, BusarearchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,14 +52,14 @@ public final class DaoBusarearchSelectSingle extends DaoStmtTemplate<BusarearchI
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoBusarearchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new BusarearchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(BusarearchInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoBusarearchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new BusarearchDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -76,9 +76,9 @@ public final class DaoBusarearchSelectSingle extends DaoStmtTemplate<BusarearchI
 				do {				
 					BusarearchInfo dataInfo = new BusarearchInfo();
 					
-					dataInfo.codBusiness = stmtResult.getInt(DaoBusarearchDbTableColumn.COL_COD_BUSINESS);
-					dataInfo.txtBusiness = stmtResult.getString(DaoBusarearchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoBusarearchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codBusiness = stmtResult.getInt(BusarearchDaoDbTableColumn.COL_COD_BUSINESS);
+					dataInfo.txtBusiness = stmtResult.getString(BusarearchDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(BusarearchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

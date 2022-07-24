@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.businessAreaSearch.info.BusarearchInfo;
 
-public final class DaoBusarearchSelect implements DaoStmtExec<BusarearchInfo> {
+public final class BusarearchDaoSelect implements DaoStmtExec<BusarearchInfo> {
 	private DaoStmtExec<BusarearchInfo> helper;
 	
 	
-	public DaoBusarearchSelect(List<DaoStmtExecOption<BusarearchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoBusarearchSelectSingle.class, BusarearchInfo.class);
+	public BusarearchDaoSelect(List<DaoStmtExecOption<BusarearchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, BusarearchDaoSelectSingle.class, BusarearchInfo.class);
 	}
 	
 	

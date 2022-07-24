@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.masterData.businessAreaSearch.dao.DaoBusarearchSelect;
+import br.com.mind5.masterData.businessAreaSearch.dao.BusarearchDaoSelect;
 import br.com.mind5.masterData.businessAreaSearch.info.BusarearchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiBusarearchDaoSelect extends ActionVisitorTemplateStmt<BusarearchInfo> {
+public final class BusarearchVisiDaoSelect extends ActionVisitorTemplateStmt<BusarearchInfo> {
 
-	public VisiBusarearchDaoSelect(DeciTreeOption<BusarearchInfo> option) {
+	public BusarearchVisiDaoSelect(DeciTreeOption<BusarearchInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected DaoStmtExec<BusarearchInfo> buildStmtExecHook(List<DaoStmtExecOption<BusarearchInfo>> stmtOptions) {
-		return new DaoBusarearchSelect(stmtOptions);
+		return new BusarearchDaoSelect(stmtOptions);
 	}
 }

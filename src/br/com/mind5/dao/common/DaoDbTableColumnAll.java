@@ -166,7 +166,7 @@ import br.com.mind5.masterData.areaPhoneSearch.dao.AreanarchDaoDbTableColumn;
 import br.com.mind5.masterData.authorizationGroup.dao.AuthgroupDaoDbTableColumn;
 import br.com.mind5.masterData.authorizationGroupRole.dao.AuthgroleDaoDbTableColumn;
 import br.com.mind5.masterData.businessArea.dao.BusareaDaoDaoDbTableColumn;
-import br.com.mind5.masterData.businessAreaSearch.dao.DaoBusarearchDbTableColumn;
+import br.com.mind5.masterData.businessAreaSearch.dao.BusarearchDaoDbTableColumn;
 import br.com.mind5.masterData.cartItemCategory.dao.CaritegDaoDbTableColumn;
 import br.com.mind5.masterData.cartItemCategorySearch.dao.DaoCaritegarchDbTableColumn;
 import br.com.mind5.masterData.country.dao.DaoCountryDbTableColumn;
@@ -463,7 +463,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoMatunitDbTableColumn());
 		addTable(new DaoMatunitarchDbTableColumn());
 		addTable(new BusareaDaoDaoDbTableColumn());
-		addTable(new DaoBusarearchDbTableColumn());
+		addTable(new BusarearchDaoDbTableColumn());
 		addTable(new DaoMatoupDbTableColumn());
 		addTable(new DaoMatouparchDbTableColumn());
 		addTable(new DaoGenderDbTableColumn());
