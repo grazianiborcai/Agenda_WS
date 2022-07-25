@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.prospectStatusSearch.info.ProstarchInfo;
 
-public final class DaoProstarchSelectSingle extends DaoStmtTemplate<ProstarchInfo> {
+public final class ProstarchDaoSelectSingle extends DaoStmtTemplate<ProstarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PROSPECT_STATUS_TABLE;
 	
 	
-	public DaoProstarchSelectSingle(Connection conn, ProstarchInfo recordInfo, String schemaName) {
+	public ProstarchDaoSelectSingle(Connection conn, ProstarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,14 +52,14 @@ public final class DaoProstarchSelectSingle extends DaoStmtTemplate<ProstarchInf
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoProstarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new ProstarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(ProstarchInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoProstarchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new ProstarchDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -76,9 +76,9 @@ public final class DaoProstarchSelectSingle extends DaoStmtTemplate<ProstarchInf
 				do {				
 					ProstarchInfo dataInfo = new ProstarchInfo();
 					
-					dataInfo.codProspectStatus = stmtResult.getString(DaoProstarchDbTableColumn.COL_COD_PROSPECT_STATUS);
-					dataInfo.txtProspectStatus = stmtResult.getString(DaoProstarchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoProstarchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codProspectStatus = stmtResult.getString(ProstarchDaoDbTableColumn.COL_COD_PROSPECT_STATUS);
+					dataInfo.txtProspectStatus = stmtResult.getString(ProstarchDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(ProstarchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

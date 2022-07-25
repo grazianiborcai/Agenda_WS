@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.prospectStatusSearch.info.ProstarchInfo;
 
-final class DaoProstarchWhere implements DaoStmtWhere {
+final class ProstarchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoProstarchWhere(DaoWhereBuilderOption whereOption, String tableName, ProstarchInfo recordInfo) {
+	public ProstarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, ProstarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -25,11 +25,11 @@ final class DaoProstarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoProstarchDbTableColumn.COL_COD_PROSPECT_STATUS :
+				case ProstarchDaoDbTableColumn.COL_COD_PROSPECT_STATUS :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codProspectStatus);
 					break;
 					
-				case DaoProstarchDbTableColumn.COL_COD_LANGUAGE :
+				case ProstarchDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;	
 			}

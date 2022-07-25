@@ -9,13 +9,13 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoProstarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class ProstarchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PROSPECT_STATUS = DaoDbField.COL_COD_PROSPECT_STATUS;
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE ;
 	public static final String COL_NAME = DaoDbField.COL_NAME;
 	
 	
-	public DaoProstarchDbTableColumn() {
+	public ProstarchDaoDbTableColumn() {
 		super();
 	}
 	

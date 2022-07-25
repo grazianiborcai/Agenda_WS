@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.prospectStatusSearch.info.ProstarchInfo;
 
-public final class DaoProstarchSelect implements DaoStmtExec<ProstarchInfo> {
+public final class ProstarchDaoSelect implements DaoStmtExec<ProstarchInfo> {
 	private DaoStmtExec<ProstarchInfo> helper;
 	
 	
-	public DaoProstarchSelect(List<DaoStmtExecOption<ProstarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoProstarchSelectSingle.class, ProstarchInfo.class);
+	public ProstarchDaoSelect(List<DaoStmtExecOption<ProstarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, ProstarchDaoSelectSingle.class, ProstarchInfo.class);
 	}
 	
 	

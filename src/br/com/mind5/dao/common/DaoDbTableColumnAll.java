@@ -215,7 +215,7 @@ import br.com.mind5.masterData.petWeight.dao.PeteightDaoDbTableColumn;
 import br.com.mind5.masterData.petWeightSearch.dao.PeteightarchDaoDbTableColumn;
 import br.com.mind5.masterData.position.dao.PositionDaoDbTableColumn;
 import br.com.mind5.masterData.prospectStatus.dao.ProstusDaoDbTableColumn;
-import br.com.mind5.masterData.prospectStatusSearch.dao.DaoProstarchDbTableColumn;
+import br.com.mind5.masterData.prospectStatusSearch.dao.ProstarchDaoDbTableColumn;
 import br.com.mind5.masterData.refundPolicy.dao.DaoRefupoDbTableColumn;
 import br.com.mind5.masterData.refundPolicyGroup.dao.DaoRefugroupDbTableColumn;
 import br.com.mind5.masterData.refundPolicyGroupItem.dao.DaoRefugritemDbTableColumn;
@@ -508,7 +508,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new OtporeDaoDbTableColumn());
 		addTable(new StoprosDaoDbTableColumn());
 		addTable(new ProstusDaoDbTableColumn());
-		addTable(new DaoProstarchDbTableColumn());
+		addTable(new ProstarchDaoDbTableColumn());
 		addTable(new StoprarchDaoDbTableColumn());
 		addTable(new OtperasDaoDbTableColumn());
 		addTable(new SchedauthDaoDbTableColumn());
