@@ -9,13 +9,13 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoPeteightarchDbTableColumn extends DaoDbTableColumnTemplate {	
+public final class PeteightarchDaoDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_COD_PET_WEIGHT = DaoDbField.COL_COD_PET_WEIGHT;
 	public static final String COL_NAME_KG = DaoDbField.COL_NAME_KG;
 	
 	
-	public DaoPeteightarchDbTableColumn() {
+	public PeteightarchDaoDbTableColumn() {
 		super();
 	}
 	

@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.masterData.petWeightSearch.info.PeteightarchInfo;
 
-public final class DaoPeteightarchSelect implements DaoStmtExec<PeteightarchInfo> {
+public final class PeteightarchDaoSelect implements DaoStmtExec<PeteightarchInfo> {
 	private DaoStmtExec<PeteightarchInfo> helper;
 	
 	
-	public DaoPeteightarchSelect(List<DaoStmtExecOption<PeteightarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoPeteightarchSelectSingle.class, PeteightarchInfo.class);
+	public PeteightarchDaoSelect(List<DaoStmtExecOption<PeteightarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, PeteightarchDaoSelectSingle.class, PeteightarchInfo.class);
 	}
 	
 	
