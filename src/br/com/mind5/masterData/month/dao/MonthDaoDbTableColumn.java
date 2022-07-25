@@ -9,13 +9,13 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoMonthDbTableColumn extends DaoDbTableColumnTemplate {
+public final class MonthDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_MONTH = DaoDbField.COL_MONTH;
 	public static final String COL_NAME = DaoDbField.COL_NAME;
 	
 	
-	public DaoMonthDbTableColumn() {
+	public MonthDaoDbTableColumn() {
 		super();
 	}
 	

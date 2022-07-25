@@ -3,7 +3,7 @@ package br.com.mind5.stats.statsOwnerSchedule.ownerScheduleMonthLive.model.actio
 import java.util.List;
 
 import br.com.mind5.masterData.month.info.MonthInfo;
-import br.com.mind5.masterData.month.model.decisionTree.RootMonthSelect;
+import br.com.mind5.masterData.month.model.decisionTree.MonthRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class SoweduliveVisiMergeMonth extends ActionVisitorTemplateMerge<S
 	
 	
 	@Override protected Class<? extends DeciTree<MonthInfo>> getTreeClassHook() {
-		return RootMonthSelect.class;
+		return MonthRootSelect.class;
 	}
 	
 	

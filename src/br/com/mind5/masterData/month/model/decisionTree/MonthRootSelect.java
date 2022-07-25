@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.month.info.MonthInfo;
-import br.com.mind5.masterData.month.model.action.StdMonthDaoSelect;
+import br.com.mind5.masterData.month.model.action.MonthVisiDaoSelect;
 import br.com.mind5.masterData.month.model.checker.MonthCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMonthSelect extends DeciTreeTemplateRead<MonthInfo> {
+public final class MonthRootSelect extends DeciTreeTemplateRead<MonthInfo> {
 	
-	public RootMonthSelect(DeciTreeOption<MonthInfo> option) {
+	public MonthRootSelect(DeciTreeOption<MonthInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootMonthSelect extends DeciTreeTemplateRead<MonthInfo> {
 	@Override protected List<ActionStd<MonthInfo>> buildActionsOnPassedHook(DeciTreeOption<MonthInfo> option) {
 		List<ActionStd<MonthInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MonthInfo> select = new StdMonthDaoSelect(option);
+		ActionStd<MonthInfo> select = new ActionStdCommom<MonthInfo>(option, MonthVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

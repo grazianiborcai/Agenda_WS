@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.month.info.MonthInfo;
 
-public final class DaoMonthSelectSingle extends DaoStmtTemplate<MonthInfo> {
+public final class MonthDaoSelectSingle extends DaoStmtTemplate<MonthInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MONTH_TEXT_TABLE;
 	
 	
-	public DaoMonthSelectSingle(Connection conn, MonthInfo recordInfo, String schemaName) {
+	public MonthDaoSelectSingle(Connection conn, MonthInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoMonthSelectSingle extends DaoStmtTemplate<MonthInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoMonthWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new MonthDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,9 +61,9 @@ public final class DaoMonthSelectSingle extends DaoStmtTemplate<MonthInfo> {
 				do {				
 					MonthInfo dataInfo = new MonthInfo();
 					
-					dataInfo.month = DaoFormatter.sqlToInt(stmtResult, DaoMonthDbTableColumn.COL_MONTH);
-					dataInfo.txtMonth = stmtResult.getString(DaoMonthDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoMonthDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.month = DaoFormatter.sqlToInt(stmtResult, MonthDaoDbTableColumn.COL_MONTH);
+					dataInfo.txtMonth = stmtResult.getString(MonthDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(MonthDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

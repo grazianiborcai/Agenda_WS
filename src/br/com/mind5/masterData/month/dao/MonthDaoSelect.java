@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.month.info.MonthInfo;
 
-public final class DaoMonthSelect implements DaoStmtExec<MonthInfo> {
+public final class MonthDaoSelect implements DaoStmtExec<MonthInfo> {
 	private DaoStmtExec<MonthInfo> helper;
 	
 	
-	public DaoMonthSelect(List<DaoStmtExecOption<MonthInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoMonthSelectSingle.class, MonthInfo.class);
+	public MonthDaoSelect(List<DaoStmtExecOption<MonthInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, MonthDaoSelectSingle.class, MonthInfo.class);
 	}
 	
 	

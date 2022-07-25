@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.month.info.MonthInfo;
 
-final class DaoMonthWhere implements DaoStmtWhere {
+final class MonthDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoMonthWhere(DaoWhereBuilderOption whereOption, String tableName, MonthInfo recordInfo) {
+	public MonthDaoWhere(DaoWhereBuilderOption whereOption, String tableName, MonthInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,12 +26,12 @@ final class DaoMonthWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoMonthDbTableColumn.COL_MONTH :
+				case MonthDaoDbTableColumn.COL_MONTH :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.month));
 					break;
 					
 					
-				case DaoMonthDbTableColumn.COL_COD_LANGUAGE :
+				case MonthDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
