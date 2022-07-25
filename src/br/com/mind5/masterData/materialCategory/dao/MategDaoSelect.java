@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.materialCategory.info.MategInfo;
 
-public final class DaoMategSelect implements DaoStmtExec<MategInfo> {
+public final class MategDaoSelect implements DaoStmtExec<MategInfo> {
 	private DaoStmtExec<MategInfo> helper;
 	
 	
-	public DaoMategSelect(List<DaoStmtExecOption<MategInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoMategSelectSingle.class, MategInfo.class);
+	public MategDaoSelect(List<DaoStmtExecOption<MategInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, MategDaoSelectSingle.class, MategInfo.class);
 	}
 	
 	

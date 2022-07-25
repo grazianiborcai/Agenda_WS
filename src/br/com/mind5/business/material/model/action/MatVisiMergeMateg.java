@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.info.MatMerger;
 import br.com.mind5.masterData.materialCategory.info.MategInfo;
-import br.com.mind5.masterData.materialCategory.model.decisionTree.RootMategSelect;
+import br.com.mind5.masterData.materialCategory.model.decisionTree.MategRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class MatVisiMergeMateg extends ActionVisitorTemplateMerge<MatInfo,
 	
 	
 	@Override protected Class<? extends DeciTree<MategInfo>> getTreeClassHook() {
-		return RootMategSelect.class;
+		return MategRootSelect.class;
 	}
 	
 	

@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.materialCategory.info.MategInfo;
-import br.com.mind5.masterData.materialCategory.model.action.StdMategDaoSelect;
+import br.com.mind5.masterData.materialCategory.model.action.MategVisiDaoSelect;
 import br.com.mind5.masterData.materialCategory.model.checker.MategCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMategSelect extends DeciTreeTemplateRead<MategInfo> {
+public final class MategRootSelect extends DeciTreeTemplateRead<MategInfo> {
 	
-	public RootMategSelect(DeciTreeOption<MategInfo> option) {
+	public MategRootSelect(DeciTreeOption<MategInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootMategSelect extends DeciTreeTemplateRead<MategInfo> {
 	@Override protected List<ActionStd<MategInfo>> buildActionsOnPassedHook(DeciTreeOption<MategInfo> option) {
 		List<ActionStd<MategInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MategInfo> select = new StdMategDaoSelect(option);
+		ActionStd<MategInfo> select = new ActionStdCommom<MategInfo>(option, MategVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

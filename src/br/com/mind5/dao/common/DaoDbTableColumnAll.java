@@ -189,7 +189,7 @@ import br.com.mind5.masterData.gender.dao.GenderDaoDbTableColumn;
 import br.com.mind5.masterData.genderSearch.dao.GendarchDaoDbTableColumn;
 import br.com.mind5.masterData.language.dao.LanguDaoDbTableColumn;
 import br.com.mind5.masterData.languageSearch.dao.LangarchDaoDbTableColumn;
-import br.com.mind5.masterData.materialCategory.dao.DaoMategDbTableColumn;
+import br.com.mind5.masterData.materialCategory.dao.MategDaoDbTableColumn;
 import br.com.mind5.masterData.materialCategorySearch.dao.DaoMategarchDbTableColumn;
 import br.com.mind5.masterData.materialGroup.dao.DaoMatoupDbTableColumn;
 import br.com.mind5.masterData.materialGroupSearch.dao.DaoMatouparchDbTableColumn;
@@ -456,7 +456,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CountryDaoDbTableColumn());
 		addTable(new CountarchDaoDbTableColumn());
 		addTable(new AuthgroleDaoDbTableColumn());
-		addTable(new DaoMategDbTableColumn());
+		addTable(new MategDaoDbTableColumn());
 		addTable(new DaoMategarchDbTableColumn());
 		addTable(new DaoMatypeDbTableColumn());
 		addTable(new DaoMatyparchDbTableColumn());
