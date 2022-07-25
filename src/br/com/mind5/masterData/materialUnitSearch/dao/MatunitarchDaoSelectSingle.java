@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.materialUnitSearch.info.MatunitarchInfo;
 
-public final class DaoMatunitarchSelectSingle extends DaoStmtTemplate<MatunitarchInfo> {
+public final class MatunitarchDaoSelectSingle extends DaoStmtTemplate<MatunitarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_UNIT_TABLE;
 	
 	
-	public DaoMatunitarchSelectSingle(Connection conn, MatunitarchInfo recordInfo, String schemaName) {
+	public MatunitarchDaoSelectSingle(Connection conn, MatunitarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,14 +52,14 @@ public final class DaoMatunitarchSelectSingle extends DaoStmtTemplate<Matunitarc
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoMatunitarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new MatunitarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(MatunitarchInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoMatunitarchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new MatunitarchDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -76,9 +76,9 @@ public final class DaoMatunitarchSelectSingle extends DaoStmtTemplate<Matunitarc
 				do {				
 					MatunitarchInfo dataInfo = new MatunitarchInfo();
 					
-					dataInfo.codUnit = stmtResult.getString(DaoMatunitarchDbTableColumn.COL_COD_UNIT);
-					dataInfo.txtUnit = stmtResult.getString(DaoMatunitarchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoMatunitarchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codUnit = stmtResult.getString(MatunitarchDaoDbTableColumn.COL_COD_UNIT);
+					dataInfo.txtUnit = stmtResult.getString(MatunitarchDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(MatunitarchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.materialUnitSearch.info.MatunitarchInfo;
 
-final class DaoMatunitarchWhere implements DaoStmtWhere {
+final class MatunitarchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoMatunitarchWhere(DaoWhereBuilderOption whereOption, String tableName, MatunitarchInfo recordInfo) {
+	public MatunitarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, MatunitarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -25,11 +25,11 @@ final class DaoMatunitarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoMatunitarchDbTableColumn.COL_COD_UNIT :
+				case MatunitarchDaoDbTableColumn.COL_COD_UNIT :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codUnit);
 					break;
 					
-				case DaoMatunitarchDbTableColumn.COL_COD_LANGUAGE :
+				case MatunitarchDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
