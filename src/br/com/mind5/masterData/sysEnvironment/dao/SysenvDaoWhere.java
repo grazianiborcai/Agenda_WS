@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 
-final class DaoSysenvWhere implements DaoStmtWhere {
+final class SysenvDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoSysenvWhere(DaoWhereBuilderOption whereOption, String tableName, SysenvInfo recordInfo) {
+	public SysenvDaoWhere(DaoWhereBuilderOption whereOption, String tableName, SysenvInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -25,7 +25,7 @@ final class DaoSysenvWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoSysenvDbTableColumn.COL_COD_SYS_ENVIRONMENT :
+				case SysenvDaoDbTableColumn.COL_COD_SYS_ENVIRONMENT :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codSysEnviron);
 					break;
 			}

@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoSysenvDbTableColumn extends DaoDbTableColumnTemplate {
+public final class SysenvDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_SYS_ENVIRONMENT = DaoDbField.COL_COD_SYS_ENVIRONMENT;
 
 	
-	public DaoSysenvDbTableColumn() {
+	public SysenvDaoDbTableColumn() {
 		super();
 	}
 	

@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action;
 import java.util.List;
 
 import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
-import br.com.mind5.masterData.sysEnvironment.model.decisionTree.RootSysenvSelect;
+import br.com.mind5.masterData.sysEnvironment.model.decisionTree.SysenvRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class RefumoipVisiMergeSysenv extends ActionVisitorTemplateMerge<Re
 	
 	
 	@Override protected Class<? extends DeciTree<SysenvInfo>> getTreeClassHook() {
-		return RootSysenvSelect.class;
+		return SysenvRootSelect.class;
 	}
 	
 	

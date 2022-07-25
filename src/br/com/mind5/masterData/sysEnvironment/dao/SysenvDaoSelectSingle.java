@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 
-public final class DaoSysenvSelectSingle extends DaoStmtTemplate<SysenvInfo> {
+public final class SysenvDaoSelectSingle extends DaoStmtTemplate<SysenvInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SYS_ENVIRONMENT_TABLE;
 	
 	
-	public DaoSysenvSelectSingle(Connection conn, SysenvInfo recordInfo, String schemaName) {
+	public SysenvDaoSelectSingle(Connection conn, SysenvInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoSysenvSelectSingle extends DaoStmtTemplate<SysenvInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoSysenvWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new SysenvDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -60,7 +60,7 @@ public final class DaoSysenvSelectSingle extends DaoStmtTemplate<SysenvInfo> {
 			
 				do {				
 					SysenvInfo dataInfo = new SysenvInfo();
-					dataInfo.codSysEnviron = stmtResult.getString(DaoSysenvDbTableColumn.COL_COD_SYS_ENVIRONMENT);
+					dataInfo.codSysEnviron = stmtResult.getString(SysenvDaoDbTableColumn.COL_COD_SYS_ENVIRONMENT);
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

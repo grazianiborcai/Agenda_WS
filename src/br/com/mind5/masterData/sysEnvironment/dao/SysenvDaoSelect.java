@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 
-public final class DaoSysenvSelect implements DaoStmtExec<SysenvInfo> {
+public final class SysenvDaoSelect implements DaoStmtExec<SysenvInfo> {
 	private DaoStmtExec<SysenvInfo> helper;
 	
 	
-	public DaoSysenvSelect(List<DaoStmtExecOption<SysenvInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoSysenvSelectSingle.class, SysenvInfo.class);
+	public SysenvDaoSelect(List<DaoStmtExecOption<SysenvInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, SysenvDaoSelectSingle.class, SysenvInfo.class);
 	}
 	
 	

@@ -224,7 +224,7 @@ import br.com.mind5.masterData.refundPolicyGroupSearch.dao.RefugrarchDaoDbTableC
 import br.com.mind5.masterData.scheduleStatus.dao.SchedatusDaoDbTableColumn;
 import br.com.mind5.masterData.state.dao.StateDaoDbTableColumn;
 import br.com.mind5.masterData.stateSearch.dao.StatarchDaoDbTableColumn;
-import br.com.mind5.masterData.sysEnvironment.dao.DaoSysenvDbTableColumn;
+import br.com.mind5.masterData.sysEnvironment.dao.SysenvDaoDbTableColumn;
 import br.com.mind5.masterData.timezone.dao.DaoTimezoneDbTableColumn;
 import br.com.mind5.masterData.timezoneSearch.dao.DaoTimezonarchDbTableColumn;
 import br.com.mind5.masterData.userCategory.dao.DaoUseregDbTableColumn;
@@ -490,7 +490,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new RefuporarchDaoDbTableColumn());
 		addTable(new AuthgroupDaoDbTableColumn());
 		addTable(new PayparDaoDbTableColumn());
-		addTable(new DaoSysenvDbTableColumn());
+		addTable(new SysenvDaoDbTableColumn());
 		addTable(new DaoUseregDbTableColumn());
 		addTable(new EntitegDaoDbTableColumn());
 		addTable(new PositionDaoDbTableColumn());
