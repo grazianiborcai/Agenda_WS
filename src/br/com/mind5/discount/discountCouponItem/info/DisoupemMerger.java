@@ -14,7 +14,7 @@ public final class DisoupemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new DisoupemVisiMergeDisore());
+		builder.addVisitor(new DisoupemMergerVisiDisore());
 		InfoMerger<DisoupemInfo, DisoreInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class DisoupemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new DisoupemVisiMergeDisorap());
+		builder.addVisitor(new DisoupemMergerVisiDisorap());
 		InfoMerger<DisoupemInfo, DisorapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class DisoupemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new DisoupemVisiMergeUsername());
+		builder.addVisitor(new DisoupemMergerVisiUsername());
 		InfoMerger<DisoupemInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -53,7 +53,7 @@ public final class DisoupemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new DisoupemVisiMergeToSelect());
+		builder.addVisitor(new DisoupemMergerVisiToSelect());
 		InfoMerger<DisoupemInfo, DisoupemInfo> merger = builder.build();		
 	
 		return merger.merge();

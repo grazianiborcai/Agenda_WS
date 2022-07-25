@@ -147,7 +147,7 @@ import br.com.mind5.config.sysStorePartitioning.dao.DaoSytotinDbTableColumn;
 import br.com.mind5.config.sysStoreSignup.dao.DaoSysotupDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumn;
-import br.com.mind5.discount.discountCouponItem.dao.DaoDisoupemDbTableColumn;
+import br.com.mind5.discount.discountCouponItem.dao.DisoupemDaoDbTableColumn;
 import br.com.mind5.discount.discountStore.dao.DisoreDaoDbTableColumn;
 import br.com.mind5.discount.discountStoreSearch.dao.DaoDisorarchDbTableColumn;
 import br.com.mind5.discount.discountStoreSnapshot.dao.DaoDisorapDbTableColumn;
@@ -538,7 +538,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DisegyDaoDbTableColumn());
 		addTable(new DisoreDaoDbTableColumn());
 		addTable(new DaoDisorarchDbTableColumn());
-		addTable(new DaoDisoupemDbTableColumn());
+		addTable(new DisoupemDaoDbTableColumn());
 		addTable(new DaoDisorapDbTableColumn());
 		addTable(new StusoreveDaoDbTableColumn());
 		addTable(new StusorageDaoDbTableColumn());

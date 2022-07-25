@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.discount.discountCalculatorItem.info.DisalcemInfo;
 import br.com.mind5.discount.discountCalculatorItem.info.DisalcemMerger;
 import br.com.mind5.discount.discountCouponItem.info.DisoupemInfo;
-import br.com.mind5.discount.discountCouponItem.model.decisionTree.RootDisoupemInsert;
+import br.com.mind5.discount.discountCouponItem.model.decisionTree.DisoupemRootInsert;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class DisalcemVisiDisoupemInsert extends ActionVisitorTemplateActio
 	
 	
 	@Override protected Class<? extends DeciTree<DisoupemInfo>> getTreeClassHook() {
-		return RootDisoupemInsert.class;
+		return DisoupemRootInsert.class;
 	}
 	
 	
