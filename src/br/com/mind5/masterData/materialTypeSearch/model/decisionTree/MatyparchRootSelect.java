@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.materialTypeSearch.info.MatyparchInfo;
-import br.com.mind5.masterData.materialTypeSearch.model.action.StdMatyparchDaoSelect;
+import br.com.mind5.masterData.materialTypeSearch.model.action.MatyparchVisiDaoSelect;
 import br.com.mind5.masterData.materialTypeSearch.model.checker.MatyparchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatyparchSelect extends DeciTreeTemplateRead<MatyparchInfo> {
+public final class MatyparchRootSelect extends DeciTreeTemplateRead<MatyparchInfo> {
 	
-	public RootMatyparchSelect(DeciTreeOption<MatyparchInfo> option) {
+	public MatyparchRootSelect(DeciTreeOption<MatyparchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootMatyparchSelect extends DeciTreeTemplateRead<MatyparchInf
 	@Override protected List<ActionStd<MatyparchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatyparchInfo> option) {
 		List<ActionStd<MatyparchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatyparchInfo> select = new StdMatyparchDaoSelect(option);
+		ActionStd<MatyparchInfo> select = new ActionStdCommom<MatyparchInfo>(option, MatyparchVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

@@ -1,7 +1,7 @@
 package br.com.mind5.masterData.materialTypeSearch.model;
 
 import br.com.mind5.masterData.materialTypeSearch.info.MatyparchInfo;
-import br.com.mind5.masterData.materialTypeSearch.model.decisionTree.RootMatyparchSelect;
+import br.com.mind5.masterData.materialTypeSearch.model.decisionTree.MatyparchRootSelect;
 import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -15,6 +15,6 @@ public final class MatyparchModelSelect extends ModelTemplate<MatyparchInfo> {
 	
 	
 	@Override protected DeciTree<MatyparchInfo> getDecisionTreeHook(DeciTreeOption<MatyparchInfo> option) {
-		return new RootMatyparchSelect(option);
+		return new MatyparchRootSelect(option);
 	}
 }

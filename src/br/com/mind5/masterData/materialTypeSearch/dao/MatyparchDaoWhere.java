@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.materialTypeSearch.info.MatyparchInfo;
 
-final class DaoMatyparchWhere implements DaoStmtWhere {
+final class MatyparchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoMatyparchWhere(DaoWhereBuilderOption whereOption, String tableName, MatyparchInfo recordInfo) {
+	public MatyparchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, MatyparchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ final class DaoMatyparchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoMatyparchDbTableColumn.COL_COD_MAT_TYPE :
+				case MatyparchDaoDbTableColumn.COL_COD_MAT_TYPE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codType));
 					break;
 					
-				case DaoMatyparchDbTableColumn.COL_COD_LANGUAGE :
+				case MatyparchDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

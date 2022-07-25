@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.materialTypeSearch.info.MatyparchInfo;
 
-public final class DaoMatyparchSelectSingle extends DaoStmtTemplate<MatyparchInfo> {
+public final class MatyparchDaoSelectSingle extends DaoStmtTemplate<MatyparchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_TYPE_TABLE;
 	
 	
-	public DaoMatyparchSelectSingle(Connection conn, MatyparchInfo recordInfo, String schemaName) {
+	public MatyparchDaoSelectSingle(Connection conn, MatyparchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,14 +52,14 @@ public final class DaoMatyparchSelectSingle extends DaoStmtTemplate<MatyparchInf
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoMatyparchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new MatyparchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(MatyparchInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoMatyparchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new MatyparchDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -76,9 +76,9 @@ public final class DaoMatyparchSelectSingle extends DaoStmtTemplate<MatyparchInf
 				do {				
 					MatyparchInfo dataInfo = new MatyparchInfo();
 					
-					dataInfo.codType = stmtResult.getInt(DaoMatyparchDbTableColumn.COL_COD_MAT_TYPE);
-					dataInfo.txtType = stmtResult.getString(DaoMatyparchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoMatyparchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codType = stmtResult.getInt(MatyparchDaoDbTableColumn.COL_COD_MAT_TYPE);
+					dataInfo.txtType = stmtResult.getString(MatyparchDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(MatyparchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

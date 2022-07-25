@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.materialTypeSearch.info.MatyparchInfo;
 
-public final class DaoMatyparchSelect implements DaoStmtExec<MatyparchInfo> {
+public final class MatyparchDaoSelect implements DaoStmtExec<MatyparchInfo> {
 	private DaoStmtExec<MatyparchInfo> helper;
 	
 	
-	public DaoMatyparchSelect(List<DaoStmtExecOption<MatyparchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoMatyparchSelectSingle.class, MatyparchInfo.class);
+	public MatyparchDaoSelect(List<DaoStmtExecOption<MatyparchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, MatyparchDaoSelectSingle.class, MatyparchInfo.class);
 	}
 	
 	
