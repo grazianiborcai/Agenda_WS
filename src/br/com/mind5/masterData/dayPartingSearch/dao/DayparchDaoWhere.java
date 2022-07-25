@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.dayPartingSearch.info.DayparchInfo;
 
-final class DaoDayparchWhere implements DaoStmtWhere {
+final class DayparchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoDayparchWhere(DaoWhereBuilderOption whereOption, String tableName, DayparchInfo recordInfo) {
+	public DayparchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, DayparchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ final class DaoDayparchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoDayparchDbTableColumn.COL_COD_DAYPART :
+				case DayparchDaoDbTableColumn.COL_COD_DAYPART :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codDaypart));
 					break;
 					
-				case DaoDayparchDbTableColumn.COL_COD_LANGUAGE :
+				case DayparchDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

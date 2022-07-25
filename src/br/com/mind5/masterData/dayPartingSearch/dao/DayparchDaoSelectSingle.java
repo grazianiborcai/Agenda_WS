@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.dayPartingSearch.info.DayparchInfo;
 
-public final class DaoDayparchSelectSingle extends DaoStmtTemplate<DayparchInfo> {
+public final class DayparchDaoSelectSingle extends DaoStmtTemplate<DayparchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.DAYPART_TABLE;
 	
 	
-	public DaoDayparchSelectSingle(Connection conn, DayparchInfo recordInfo, String schemaName) {
+	public DayparchDaoSelectSingle(Connection conn, DayparchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,14 +52,14 @@ public final class DaoDayparchSelectSingle extends DaoStmtTemplate<DayparchInfo>
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoDayparchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DayparchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(DayparchInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoDayparchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new DayparchDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -76,9 +76,9 @@ public final class DaoDayparchSelectSingle extends DaoStmtTemplate<DayparchInfo>
 				do {				
 					DayparchInfo dataInfo = new DayparchInfo();
 					
-					dataInfo.codDaypart = stmtResult.getInt(DaoDayparchDbTableColumn.COL_COD_DAYPART);
-					dataInfo.txtDaypart = stmtResult.getString(DaoDayparchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoDayparchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codDaypart = stmtResult.getInt(DayparchDaoDbTableColumn.COL_COD_DAYPART);
+					dataInfo.txtDaypart = stmtResult.getString(DayparchDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(DayparchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

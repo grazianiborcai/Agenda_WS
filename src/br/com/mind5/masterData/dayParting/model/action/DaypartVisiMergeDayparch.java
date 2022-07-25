@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.masterData.dayParting.info.DaypartInfo;
 import br.com.mind5.masterData.dayParting.info.DaypartMerger;
 import br.com.mind5.masterData.dayPartingSearch.info.DayparchInfo;
-import br.com.mind5.masterData.dayPartingSearch.model.decisionTree.RootDayparchSelect;
+import br.com.mind5.masterData.dayPartingSearch.model.decisionTree.DayparchRootSelect;
 
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -20,7 +20,7 @@ public final class DaypartVisiMergeDayparch extends ActionVisitorTemplateMerge<D
 	
 	
 	@Override protected Class<? extends DeciTree<DayparchInfo>> getTreeClassHook() {
-		return RootDayparchSelect.class;
+		return DayparchRootSelect.class;
 	}
 	
 	

@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.dayPartingSearch.info.DayparchInfo;
 
-public final class DaoDayparchSelect implements DaoStmtExec<DayparchInfo> {
+public final class DayparchDaoSelect implements DaoStmtExec<DayparchInfo> {
 	private DaoStmtExec<DayparchInfo> helper;
 	
 	
-	public DaoDayparchSelect(List<DaoStmtExecOption<DayparchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoDayparchSelectSingle.class, DayparchInfo.class);
+	public DayparchDaoSelect(List<DaoStmtExecOption<DayparchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, DayparchDaoSelectSingle.class, DayparchInfo.class);
 	}
 	
 	
