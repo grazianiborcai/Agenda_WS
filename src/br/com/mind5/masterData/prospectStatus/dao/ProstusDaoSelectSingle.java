@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.prospectStatus.info.ProstusInfo;
 
-public final class DaoProstusSelectSingle extends DaoStmtTemplate<ProstusInfo> {
+public final class ProstusDaoSelectSingle extends DaoStmtTemplate<ProstusInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PROSPECT_STATUS_TABLE;
 	
 	
-	public DaoProstusSelectSingle(Connection conn, ProstusInfo recordInfo, String schemaName) {
+	public ProstusDaoSelectSingle(Connection conn, ProstusInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,14 +45,14 @@ public final class DaoProstusSelectSingle extends DaoStmtTemplate<ProstusInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoProstusWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new ProstusDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(ProstusInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoProstusJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new ProstusDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -69,9 +69,9 @@ public final class DaoProstusSelectSingle extends DaoStmtTemplate<ProstusInfo> {
 				do {				
 					ProstusInfo dataInfo = new ProstusInfo();
 					
-					dataInfo.codProspectStatus = stmtResult.getString(DaoProstusDbTableColumn.COL_COD_PROSPECT_STATUS);
-					dataInfo.txtProspectStatus = stmtResult.getString(DaoProstusDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoProstusDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codProspectStatus = stmtResult.getString(ProstusDaoDbTableColumn.COL_COD_PROSPECT_STATUS);
+					dataInfo.txtProspectStatus = stmtResult.getString(ProstusDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(ProstusDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.prospectStatus.info.ProstusInfo;
 
-final class DaoProstusWhere implements DaoStmtWhere {
+final class ProstusDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoProstusWhere(DaoWhereBuilderOption whereOption, String tableName, ProstusInfo recordInfo) {
+	public ProstusDaoWhere(DaoWhereBuilderOption whereOption, String tableName, ProstusInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -25,11 +25,11 @@ final class DaoProstusWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoProstusDbTableColumn.COL_COD_PROSPECT_STATUS :
+				case ProstusDaoDbTableColumn.COL_COD_PROSPECT_STATUS :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codProspectStatus);
 					break;
 					
-				case DaoProstusDbTableColumn.COL_COD_LANGUAGE :
+				case ProstusDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;	
 			}

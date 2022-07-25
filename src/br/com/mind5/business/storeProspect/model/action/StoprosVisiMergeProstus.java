@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.storeProspect.info.StoprosInfo;
 import br.com.mind5.business.storeProspect.info.StoprosMerger;
 import br.com.mind5.masterData.prospectStatus.info.ProstusInfo;
-import br.com.mind5.masterData.prospectStatus.model.decisionTree.RootProstusSelect;
+import br.com.mind5.masterData.prospectStatus.model.decisionTree.ProstusRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class StoprosVisiMergeProstus extends ActionVisitorTemplateMerge<St
 	
 	
 	protected Class<? extends DeciTree<ProstusInfo>> getTreeClassHook() {
-		return RootProstusSelect.class;
+		return ProstusRootSelect.class;
 	}
 	
 	
