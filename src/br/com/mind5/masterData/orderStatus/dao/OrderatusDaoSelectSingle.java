@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.orderStatus.info.OrderatusInfo;
 
-public final class DaoOrderatusSelectSingle extends DaoStmtTemplate<OrderatusInfo> {
+public final class OrderatusDaoSelectSingle extends DaoStmtTemplate<OrderatusInfo> {
 	private final String MAIN_TABLE = DaoDbTable.ORDER_STATUS_TABLE;
 	
 	
-	public DaoOrderatusSelectSingle(Connection conn, OrderatusInfo recordInfo, String schemaName) {
+	public OrderatusDaoSelectSingle(Connection conn, OrderatusInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,14 +45,14 @@ public final class DaoOrderatusSelectSingle extends DaoStmtTemplate<OrderatusInf
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoOrderatusWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new OrderatusDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(OrderatusInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoOrderatusJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new OrderatusDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -69,9 +69,9 @@ public final class DaoOrderatusSelectSingle extends DaoStmtTemplate<OrderatusInf
 				do {				
 					OrderatusInfo dataInfo = new OrderatusInfo();
 					
-					dataInfo.codOrderStatus = stmtResult.getString(DaoOrderatusDbTableColumn.COL_COD_ORDER_STATUS);
-					dataInfo.txtOrderStatus = stmtResult.getString(DaoOrderatusDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoOrderatusDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codOrderStatus = stmtResult.getString(OrderatusDaoDbTableColumn.COL_COD_ORDER_STATUS);
+					dataInfo.txtOrderStatus = stmtResult.getString(OrderatusDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(OrderatusDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

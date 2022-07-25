@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
 import br.com.mind5.masterData.orderStatus.info.OrderatusInfo;
-import br.com.mind5.masterData.orderStatus.model.decisionTree.RootOrderatusSelect;
+import br.com.mind5.masterData.orderStatus.model.decisionTree.OrderatusRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class OrderVisiMergeOrderatus extends ActionVisitorTemplateMerge<Or
 	
 	
 	@Override protected Class<? extends DeciTree<OrderatusInfo>> getTreeClassHook() {
-		return RootOrderatusSelect.class;
+		return OrderatusRootSelect.class;
 	}
 	
 	

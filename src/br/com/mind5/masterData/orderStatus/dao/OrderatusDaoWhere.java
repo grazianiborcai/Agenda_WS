@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.orderStatus.info.OrderatusInfo;
 
-final class DaoOrderatusWhere implements DaoStmtWhere {
+final class OrderatusDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoOrderatusWhere(DaoWhereBuilderOption whereOption, String tableName, OrderatusInfo recordInfo) {
+	public OrderatusDaoWhere(DaoWhereBuilderOption whereOption, String tableName, OrderatusInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -25,11 +25,11 @@ final class DaoOrderatusWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoOrderatusDbTableColumn.COL_COD_ORDER_STATUS :
+				case OrderatusDaoDbTableColumn.COL_COD_ORDER_STATUS :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codOrderStatus);
 					break;
 					
-				case DaoOrderatusDbTableColumn.COL_COD_LANGUAGE :
+				case OrderatusDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
