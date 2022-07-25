@@ -18,11 +18,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 
-public final class DaoRefugroupSelectSingle extends DaoStmtTemplate<RefugroupInfo> {
+public final class RefugroupDaoSelectSingle extends DaoStmtTemplate<RefugroupInfo> {
 	private final String MAIN_TABLE = DaoDbTable.REFUND_POLICY_GROUP_HEADER_TABLE;
 	
 	
-	public DaoRefugroupSelectSingle(Connection conn, RefugroupInfo recordInfo, String schemaName) {
+	public RefugroupDaoSelectSingle(Connection conn, RefugroupInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -46,14 +46,14 @@ public final class DaoRefugroupSelectSingle extends DaoStmtTemplate<RefugroupInf
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoRefugroupWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new RefugroupDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(RefugroupInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoRefugroupJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new RefugroupDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -70,9 +70,9 @@ public final class DaoRefugroupSelectSingle extends DaoStmtTemplate<RefugroupInf
 				do {				
 					RefugroupInfo dataInfo = new RefugroupInfo();
 					
-					dataInfo.codRefundPolicyGroup = DaoFormatter.sqlToInt(stmtResult, DaoRefugroupDbTableColumn.COL_COD_REFUND_POLICY_GROUP);
-					dataInfo.txtRefundPolicyGroup = stmtResult.getString(DaoRefugroupDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoRefugroupDbTableColumn.COL_COD_LANGUAGE);	
+					dataInfo.codRefundPolicyGroup = DaoFormatter.sqlToInt(stmtResult, RefugroupDaoDbTableColumn.COL_COD_REFUND_POLICY_GROUP);
+					dataInfo.txtRefundPolicyGroup = stmtResult.getString(RefugroupDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(RefugroupDaoDbTableColumn.COL_COD_LANGUAGE);	
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

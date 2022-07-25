@@ -1,7 +1,7 @@
 package br.com.mind5.masterData.refundPolicyGroup.model;
 
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
-import br.com.mind5.masterData.refundPolicyGroup.model.decisionTree.RootRefugroupSearch;
+import br.com.mind5.masterData.refundPolicyGroup.model.decisionTree.RefugroupRootSearch;
 import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -15,6 +15,6 @@ public final class RefugroupModelSearch extends ModelTemplate<RefugroupInfo> {
 	
 	
 	@Override protected DeciTree<RefugroupInfo> getDecisionTreeHook(DeciTreeOption<RefugroupInfo> option) {
-		return new RootRefugroupSearch(option);
+		return new RefugroupRootSearch(option);
 	}
 }

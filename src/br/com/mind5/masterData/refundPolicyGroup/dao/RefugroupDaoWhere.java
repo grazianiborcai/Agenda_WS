@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 
-final class DaoRefugroupWhere implements DaoStmtWhere {
+final class RefugroupDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoRefugroupWhere(DaoWhereBuilderOption whereOption, String tableName, RefugroupInfo recordInfo) {
+	public RefugroupDaoWhere(DaoWhereBuilderOption whereOption, String tableName, RefugroupInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ final class DaoRefugroupWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {			
-				case DaoRefugroupDbTableColumn.COL_COD_REFUND_POLICY_GROUP :
+				case RefugroupDaoDbTableColumn.COL_COD_REFUND_POLICY_GROUP :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codRefundPolicyGroup));
 					break;
 					
-				case DaoRefugroupDbTableColumn.COL_COD_LANGUAGE :
+				case RefugroupDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

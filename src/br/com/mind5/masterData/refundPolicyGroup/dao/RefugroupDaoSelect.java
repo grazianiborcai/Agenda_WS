@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 
-public final class DaoRefugroupSelect implements DaoStmtExec<RefugroupInfo> {
+public final class RefugroupDaoSelect implements DaoStmtExec<RefugroupInfo> {
 	private DaoStmtExec<RefugroupInfo> helper;
 	
 	
-	public DaoRefugroupSelect(List<DaoStmtExecOption<RefugroupInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoRefugroupSelectSingle.class, RefugroupInfo.class);
+	public RefugroupDaoSelect(List<DaoStmtExecOption<RefugroupInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, RefugroupDaoSelectSingle.class, RefugroupInfo.class);
 	}
 	
 	

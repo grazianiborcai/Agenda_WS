@@ -6,9 +6,9 @@ import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupSetterDefault;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefugroupEnforceDefault extends ActionVisitorTemplateEnforce<RefugroupInfo> {
+public final class RefugroupVisiEnforceDefault extends ActionVisitorTemplateEnforce<RefugroupInfo> {
 	
-	public VisiRefugroupEnforceDefault(DeciTreeOption<RefugroupInfo> option) {
+	public RefugroupVisiEnforceDefault(DeciTreeOption<RefugroupInfo> option) {
 		super(option);
 	}
 
