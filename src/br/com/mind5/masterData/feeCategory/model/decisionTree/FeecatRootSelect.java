@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.feeCategory.info.FeecatInfo;
-import br.com.mind5.masterData.feeCategory.model.action.StdFeecatDaoSelect;
+import br.com.mind5.masterData.feeCategory.model.action.FeecatVisiDaoSelect;
 import br.com.mind5.masterData.feeCategory.model.checker.FeecatCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFeecatSelect extends DeciTreeTemplateRead<FeecatInfo> {
+public final class FeecatRootSelect extends DeciTreeTemplateRead<FeecatInfo> {
 	
-	public RootFeecatSelect(DeciTreeOption<FeecatInfo> option) {
+	public FeecatRootSelect(DeciTreeOption<FeecatInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootFeecatSelect extends DeciTreeTemplateRead<FeecatInfo> {
 	@Override protected List<ActionStd<FeecatInfo>> buildActionsOnPassedHook(DeciTreeOption<FeecatInfo> option) {
 		List<ActionStd<FeecatInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FeecatInfo> select = new StdFeecatDaoSelect(option);
+		ActionStd<FeecatInfo> select = new ActionStdCommom<FeecatInfo>(option, FeecatVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

@@ -18,11 +18,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.feeCategory.info.FeecatInfo;
 
-public final class DaoFeecatSelectSingle extends DaoStmtTemplate<FeecatInfo> {
+public final class FeecatDaoSelectSingle extends DaoStmtTemplate<FeecatInfo> {
 	private final String MAIN_TABLE = DaoDbTable.FEE_CATEG_TABLE;
 	
 	
-	public DaoFeecatSelectSingle(Connection conn, FeecatInfo recordInfo, String schemaName) {
+	public FeecatDaoSelectSingle(Connection conn, FeecatInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -46,14 +46,14 @@ public final class DaoFeecatSelectSingle extends DaoStmtTemplate<FeecatInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoFeecatWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new FeecatDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(FeecatInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoFeecatJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new FeecatDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -70,9 +70,9 @@ public final class DaoFeecatSelectSingle extends DaoStmtTemplate<FeecatInfo> {
 				do {				
 					FeecatInfo dataInfo = new FeecatInfo();
 					
-					dataInfo.codFeeCateg = DaoFormatter.sqlToChar(stmtResult, DaoFeecatDbTableColumn.COL_COD_FEE_CATEG);
-					dataInfo.txtFeeCateg = stmtResult.getString(DaoFeecatDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoFeecatDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codFeeCateg = DaoFormatter.sqlToChar(stmtResult, FeecatDaoDbTableColumn.COL_COD_FEE_CATEG);
+					dataInfo.txtFeeCateg = stmtResult.getString(FeecatDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(FeecatDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

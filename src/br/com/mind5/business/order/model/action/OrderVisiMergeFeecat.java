@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
 import br.com.mind5.masterData.feeCategory.info.FeecatInfo;
-import br.com.mind5.masterData.feeCategory.model.decisionTree.RootFeecatSelect;
+import br.com.mind5.masterData.feeCategory.model.decisionTree.FeecatRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class OrderVisiMergeFeecat extends ActionVisitorTemplateMerge<Order
 	
 	
 	@Override protected Class<? extends DeciTree<FeecatInfo>> getTreeClassHook() {
-		return RootFeecatSelect.class;
+		return FeecatRootSelect.class;
 	}
 	
 	

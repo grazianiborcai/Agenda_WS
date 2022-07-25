@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrderItem.model.action;
 import java.util.List;
 
 import br.com.mind5.masterData.feeCategory.info.FeecatInfo;
-import br.com.mind5.masterData.feeCategory.model.decisionTree.RootFeecatSelect;
+import br.com.mind5.masterData.feeCategory.model.decisionTree.FeecatRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class PayordemVisiMergeFeecat extends ActionVisitorTemplateMerge<Pa
 	
 	
 	@Override protected Class<? extends DeciTree<FeecatInfo>> getTreeClassHook() {
-		return RootFeecatSelect.class;
+		return FeecatRootSelect.class;
 	}
 	
 	
