@@ -10,9 +10,9 @@ import br.com.mind5.stats.statsUserStore.userStore.info.StusoreMerger;
 import br.com.mind5.stats.statsUserStore.userStoreLive.info.StusoreveInfo;
 import br.com.mind5.stats.statsUserStore.userStoreLive.model.decisionTree.StusoreveRootSelect;
 
-final class VisiStusoreMergeStusoreve extends ActionVisitorTemplateMerge<StusoreInfo, StusoreveInfo> {
+public final class StusoreVisiMergeStusoreve extends ActionVisitorTemplateMerge<StusoreInfo, StusoreveInfo> {
 	
-	public VisiStusoreMergeStusoreve(DeciTreeOption<StusoreInfo> option) {
+	public StusoreVisiMergeStusoreve(DeciTreeOption<StusoreInfo> option) {
 		super(option, StusoreveInfo.class);
 	}
 	

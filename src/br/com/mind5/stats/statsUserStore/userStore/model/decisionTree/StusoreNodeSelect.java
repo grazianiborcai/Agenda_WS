@@ -4,20 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsUserStore.userStore.info.StusoreInfo;
-import br.com.mind5.stats.statsUserStore.userStore.model.action.StdStusoreMergeStusoragg;
-import br.com.mind5.stats.statsUserStore.userStore.model.action.StdStusoreMergeStusoreve;
+import br.com.mind5.stats.statsUserStore.userStore.model.action.StusoreVisiMergeStusoragg;
+import br.com.mind5.stats.statsUserStore.userStore.model.action.StusoreVisiMergeStusoreve;
 import br.com.mind5.stats.statsUserStore.userStore.model.checker.StusoreCheckStusorage;
 
 
-public final class NodeStusoreSelect extends DeciTreeTemplateWrite<StusoreInfo> {
+public final class StusoreNodeSelect extends DeciTreeTemplateWrite<StusoreInfo> {
 	
-	public NodeStusoreSelect(DeciTreeOption<StusoreInfo> option) {
+	public StusoreNodeSelect(DeciTreeOption<StusoreInfo> option) {
 		super(option);
 	}
 	
@@ -43,7 +44,7 @@ public final class NodeStusoreSelect extends DeciTreeTemplateWrite<StusoreInfo> 
 	@Override protected List<ActionStd<StusoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StusoreInfo> option) {
 		List<ActionStd<StusoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusoreInfo> selectLive = new StdStusoreMergeStusoreve(option);
+		ActionStd<StusoreInfo> selectLive = new ActionStdCommom<StusoreInfo>(option, StusoreVisiMergeStusoreve.class);
 		
 		actions.add(selectLive);
 		return actions;
@@ -54,7 +55,7 @@ public final class NodeStusoreSelect extends DeciTreeTemplateWrite<StusoreInfo> 
 	@Override protected List<ActionStd<StusoreInfo>> buildActionsOnFailedHook(DeciTreeOption<StusoreInfo> option) {
 		List<ActionStd<StusoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusoreInfo> selectAggregated = new StdStusoreMergeStusoragg(option);
+		ActionStd<StusoreInfo> selectAggregated = new ActionStdCommom<StusoreInfo>(option, StusoreVisiMergeStusoragg.class);
 		
 		actions.add(selectAggregated);
 		return actions;

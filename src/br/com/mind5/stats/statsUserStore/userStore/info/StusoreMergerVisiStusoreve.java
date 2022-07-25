@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.stats.statsUserStore.userStoreLive.info.StusoreveInfo;
 
-final class StusoreVisiMergeStusoreve extends InfoMergerVisitorTemplate<StusoreInfo, StusoreveInfo> {
+final class StusoreMergerVisiStusoreve extends InfoMergerVisitorTemplate<StusoreInfo, StusoreveInfo> {
 
 	@Override public boolean shouldMerge(StusoreInfo baseInfo, StusoreveInfo selectedInfo) {
 		return true;

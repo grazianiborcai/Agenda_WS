@@ -6,7 +6,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserStore.userStore.info.StusoreInfo;
-import br.com.mind5.stats.statsUserStore.userStore.model.decisionTree.RootStusoreExist;
+import br.com.mind5.stats.statsUserStore.userStore.model.decisionTree.StusoreRootExist;
 
 public final class StusoreCheckExist extends ModelCheckerTemplateAction<StusoreInfo, StusoreInfo> {
 	
@@ -17,7 +17,7 @@ public final class StusoreCheckExist extends ModelCheckerTemplateAction<StusoreI
 	
 	
 	@Override protected ActionStd<StusoreInfo> buildActionHook(DeciTreeOption<StusoreInfo> option) {
-		ActionStd<StusoreInfo> select = new RootStusoreExist(option).toAction();
+		ActionStd<StusoreInfo> select = new StusoreRootExist(option).toAction();
 		return select;
 	}
 	

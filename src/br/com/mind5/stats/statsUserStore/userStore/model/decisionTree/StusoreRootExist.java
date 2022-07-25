@@ -13,9 +13,9 @@ import br.com.mind5.stats.statsUserStore.userStore.info.StusoreInfo;
 import br.com.mind5.stats.statsUserStore.userStore.model.checker.StusoreCheckRead;
 
 
-public final class RootStusoreExist extends DeciTreeTemplateWrite<StusoreInfo> {
+public final class StusoreRootExist extends DeciTreeTemplateWrite<StusoreInfo> {
 	
-	public RootStusoreExist(DeciTreeOption<StusoreInfo> option) {
+	public StusoreRootExist(DeciTreeOption<StusoreInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +41,7 @@ public final class RootStusoreExist extends DeciTreeTemplateWrite<StusoreInfo> {
 	@Override protected List<ActionStd<StusoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StusoreInfo> option) {
 		List<ActionStd<StusoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusoreInfo> nodeL1 = new NodeStusoreExistL1(option).toAction();
+		ActionStd<StusoreInfo> nodeL1 = new StusoreNodeExistL1(option).toAction();
 		
 		actions.add(nodeL1);
 		return actions;

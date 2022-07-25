@@ -10,9 +10,9 @@ import br.com.mind5.stats.statsUserStore.userStore.info.StusoreMerger;
 import br.com.mind5.stats.statsUserStore.userStoreAggr.info.StusoraggInfo;
 import br.com.mind5.stats.statsUserStore.userStoreAggr.model.decisionTree.StusoraggRootSelect;
 
-final class VisiStusoreMergeStusoragg extends ActionVisitorTemplateMerge<StusoreInfo, StusoraggInfo> {
+public final class StusoreVisiMergeStusoragg extends ActionVisitorTemplateMerge<StusoreInfo, StusoraggInfo> {
 	
-	public VisiStusoreMergeStusoragg(DeciTreeOption<StusoreInfo> option) {
+	public StusoreVisiMergeStusoragg(DeciTreeOption<StusoreInfo> option) {
 		super(option, StusoraggInfo.class);
 	}
 	

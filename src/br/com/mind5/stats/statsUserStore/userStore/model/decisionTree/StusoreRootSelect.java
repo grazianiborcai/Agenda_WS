@@ -10,13 +10,12 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsUserStore.userStore.info.StusoreInfo;
-import br.com.mind5.stats.statsUserStore.userStore.model.action.StdStusoreSuccess;
-import br.com.mind5.stats.statsUserStore.userStore.model.checker.StusoreCheckStusoragg;
+import br.com.mind5.stats.statsUserStore.userStore.model.checker.StusoreCheckRead;
 
 
-public final class NodeStusoreExistL2 extends DeciTreeTemplateWrite<StusoreInfo> {
+public final class StusoreRootSelect extends DeciTreeTemplateWrite<StusoreInfo> {
 	
-	public NodeStusoreExistL2(DeciTreeOption<StusoreInfo> option) {
+	public StusoreRootSelect(DeciTreeOption<StusoreInfo> option) {
 		super(option);
 	}
 	
@@ -30,8 +29,8 @@ public final class NodeStusoreExistL2 extends DeciTreeTemplateWrite<StusoreInfo>
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new StusoreCheckStusoragg(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new StusoreCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -42,9 +41,9 @@ public final class NodeStusoreExistL2 extends DeciTreeTemplateWrite<StusoreInfo>
 	@Override protected List<ActionStd<StusoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StusoreInfo> option) {
 		List<ActionStd<StusoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusoreInfo> success = new StdStusoreSuccess(option);
+		ActionStd<StusoreInfo> select = new StusoreNodeSelect(option).toAction();
 		
-		actions.add(success);
+		actions.add(select);
 		return actions;
 	}
 }
