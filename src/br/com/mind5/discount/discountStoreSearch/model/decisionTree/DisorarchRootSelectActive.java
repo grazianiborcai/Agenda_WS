@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.discount.discountStoreSearch.info.DisorarchInfo;
-import br.com.mind5.discount.discountStoreSearch.model.action.LazyDisorarchEnforceStrategyFirstTime;
-import br.com.mind5.discount.discountStoreSearch.model.action.LazyDisorarchRootSelect;
+import br.com.mind5.discount.discountStoreSearch.model.action.DisorarchVisiRootSelect;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootDisorarchSelectFirstTime extends DeciTreeTemplateRead<DisorarchInfo> {
+public final class DisorarchRootSelectActive extends DeciTreeTemplateRead<DisorarchInfo> {
 	
-	public RootDisorarchSelectFirstTime(DeciTreeOption<DisorarchInfo> option) {
+	public DisorarchRootSelectActive(DeciTreeOption<DisorarchInfo> option) {
 		super(option);
 	}
 	
@@ -37,12 +37,10 @@ public final class RootDisorarchSelectFirstTime extends DeciTreeTemplateRead<Dis
 	@Override protected List<ActionStd<DisorarchInfo>> buildActionsOnPassedHook(DeciTreeOption<DisorarchInfo> option) {
 		List<ActionStd<DisorarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<DisorarchInfo> nodeActive	= new NodeDisorarchActive(option).toAction();
-		ActionLazy<DisorarchInfo> enforceStrategy = new LazyDisorarchEnforceStrategyFirstTime(option.conn, option.schemaName);
-		ActionLazy<DisorarchInfo> select = new LazyDisorarchRootSelect(option.conn, option.schemaName);
+		ActionStd<DisorarchInfo> nodeActive	= new DisorarchNodeActive(option).toAction();
+		ActionLazy<DisorarchInfo> select = new ActionLazyCommom<DisorarchInfo>(option, DisorarchVisiRootSelect.class);
 		
-		nodeActive.addPostAction(enforceStrategy);
-		enforceStrategy.addPostAction(select);
+		nodeActive.addPostAction(select);
 		
 		actions.add(nodeActive);
 		return actions;

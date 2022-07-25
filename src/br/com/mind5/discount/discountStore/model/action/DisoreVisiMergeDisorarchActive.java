@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.discount.discountStore.info.DisoreInfo;
 import br.com.mind5.discount.discountStore.info.DisoreMerger;
 import br.com.mind5.discount.discountStoreSearch.info.DisorarchInfo;
-import br.com.mind5.discount.discountStoreSearch.model.decisionTree.RootDisorarchSelectActive;
+import br.com.mind5.discount.discountStoreSearch.model.decisionTree.DisorarchRootSelectActive;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class DisoreVisiMergeDisorarchActive extends ActionVisitorTemplateM
 	
 	
 	@Override protected Class<? extends DeciTree<DisorarchInfo>> getTreeClassHook() {
-		return RootDisorarchSelectActive.class;
+		return DisorarchRootSelectActive.class;
 	}
 	
 	

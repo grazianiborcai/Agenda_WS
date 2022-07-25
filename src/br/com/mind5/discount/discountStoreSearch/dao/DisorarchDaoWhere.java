@@ -11,11 +11,11 @@ import br.com.mind5.dao.DaoWhereCondition;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.discount.discountStoreSearch.info.DisorarchInfo;
 
-public final class DaoDisorarchWhere implements DaoStmtWhere {
+public final class DisorarchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoDisorarchWhere(DaoWhereBuilderOption whereOption, String tableName, DisorarchInfo recordInfo) {
+	public DisorarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, DisorarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -28,31 +28,31 @@ public final class DaoDisorarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoDisorarchDbTableColumn.COL_COD_OWNER :
+				case DisorarchDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoDisorarchDbTableColumn.COL_COD_STORE :
+				case DisorarchDaoDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case DaoDisorarchDbTableColumn.COL_COD_DISCOUNT :
+				case DisorarchDaoDbTableColumn.COL_COD_DISCOUNT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codDiscount));
 					break;
 					
-				case DaoDisorarchDbTableColumn.COL_COD_DISCOUNT_STRATEGY :
+				case DisorarchDaoDbTableColumn.COL_COD_DISCOUNT_STRATEGY :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codDiscountStrategy));
 					break;
 					
-				case DaoDisorarchDbTableColumn.COL_IS_ACTIVE :
+				case DisorarchDaoDbTableColumn.COL_IS_ACTIVE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.booleanToString(recordInfo.isActive));
 					break;
 					
-				case DaoDisorarchDbTableColumn.COL_VALID_FROM :
+				case DisorarchDaoDbTableColumn.COL_VALID_FROM :
 					builder.addClauseAnd(eachColumn, DaoFormatter.dateTimeToString(recordInfo.validFrom), DaoWhereCondition.LESS_OR_EQUAL);
 					break;
 					
-				case DaoDisorarchDbTableColumn.COL_VALID_TO :
+				case DisorarchDaoDbTableColumn.COL_VALID_TO :
 					builder.addClauseAnd(eachColumn, DaoFormatter.dateTimeToString(recordInfo.validFrom), DaoWhereCondition.GREATER_OR_EQUAL);
 					break;
 			}

@@ -16,12 +16,12 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.discount.discountStoreSearch.info.DisorarchInfo;
 
-public final class DaoDisorarchSelectSingle extends DaoStmtTemplate<DisorarchInfo> {	
+public final class DisorarchDaoSelectSingle extends DaoStmtTemplate<DisorarchInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.DISCOUNT_STORE_TABLE;	
 	
 	
 	
-	public DaoDisorarchSelectSingle(Connection conn, DisorarchInfo recordInfo, String schemaName) {
+	public DisorarchDaoSelectSingle(Connection conn, DisorarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -51,7 +51,7 @@ public final class DaoDisorarchSelectSingle extends DaoStmtTemplate<DisorarchInf
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoDisorarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DisorarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -68,14 +68,14 @@ public final class DaoDisorarchSelectSingle extends DaoStmtTemplate<DisorarchInf
 				do {
 					DisorarchInfo dataInfo = new DisorarchInfo();
 					
-					dataInfo.codDiscount = DaoFormatter.sqlToLong(stmtResult, DaoDisorarchDbTableColumn.COL_COD_DISCOUNT);
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoDisorarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoDisorarchDbTableColumn.COL_COD_STORE);		
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoDisorarchDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codDiscountStrategy = DaoFormatter.sqlToInt(stmtResult, DaoDisorarchDbTableColumn.COL_COD_DISCOUNT_STRATEGY);
-					dataInfo.isActive = DaoFormatter.sqlToBoole(stmtResult, DaoDisorarchDbTableColumn.COL_IS_ACTIVE);					
-					dataInfo.validFrom = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoDisorarchDbTableColumn.COL_VALID_FROM);
-					dataInfo.validTo = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoDisorarchDbTableColumn.COL_VALID_TO);
+					dataInfo.codDiscount = DaoFormatter.sqlToLong(stmtResult, DisorarchDaoDbTableColumn.COL_COD_DISCOUNT);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DisorarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DisorarchDaoDbTableColumn.COL_COD_STORE);		
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DisorarchDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codDiscountStrategy = DaoFormatter.sqlToInt(stmtResult, DisorarchDaoDbTableColumn.COL_COD_DISCOUNT_STRATEGY);
+					dataInfo.isActive = DaoFormatter.sqlToBoole(stmtResult, DisorarchDaoDbTableColumn.COL_IS_ACTIVE);					
+					dataInfo.validFrom = DaoFormatter.sqlToLocalDateTime(stmtResult, DisorarchDaoDbTableColumn.COL_VALID_FROM);
+					dataInfo.validTo = DaoFormatter.sqlToLocalDateTime(stmtResult, DisorarchDaoDbTableColumn.COL_VALID_TO);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

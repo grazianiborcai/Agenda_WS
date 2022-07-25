@@ -2,7 +2,7 @@ package br.com.mind5.discount.discountStoreSearch.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.discount.discountStoreSearch.info.DisorarchInfo;
-import br.com.mind5.discount.discountStoreSearch.model.decisionTree.RootDisorarchSelect;
+import br.com.mind5.discount.discountStoreSearch.model.decisionTree.DisorarchRootSelect;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
@@ -17,7 +17,7 @@ public final class DisorarchCheckExist extends ModelCheckerTemplateAction<Disora
 	
 	
 	@Override protected ActionStd<DisorarchInfo> buildActionHook(DeciTreeOption<DisorarchInfo> option) {
-		ActionStd<DisorarchInfo> select = new RootDisorarchSelect(option).toAction();
+		ActionStd<DisorarchInfo> select = new DisorarchRootSelect(option).toAction();
 		return select;
 	}
 	

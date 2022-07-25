@@ -11,7 +11,7 @@ public final class DisorarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new DisorarchVisiMergeToSelect());
+		builder.addVisitor(new DisorarchMergerVisiToSelect());
 		InfoMerger<DisorarchInfo, DisorarchInfo> merger = builder.build();		
 	
 		return merger.merge();

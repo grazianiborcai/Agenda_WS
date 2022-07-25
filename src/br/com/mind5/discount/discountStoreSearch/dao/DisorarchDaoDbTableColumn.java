@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoDisorarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DisorarchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_DISCOUNT = DaoDbField.COL_COD_DISCOUNT;
 	public static final String COL_COD_DISCOUNT_STRATEGY = DaoDbField.COL_COD_DISCOUNT_STRATEGY;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
@@ -20,7 +20,7 @@ public final class DaoDisorarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_VALID_TO = DaoDbField.COL_VALID_TO;
 	
 	
-	public DaoDisorarchDbTableColumn() {
+	public DisorarchDaoDbTableColumn() {
 		super();
 	}
 	

@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public class DaoDisorarchSelect implements DaoStmtExec<DisorarchInfo> {
+public class DisorarchDaoSelect implements DaoStmtExec<DisorarchInfo> {
 	private DaoStmtExec<DisorarchInfo> helper;
 	
 	
-	public DaoDisorarchSelect(List<DaoStmtExecOption<DisorarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoDisorarchSelectSingle.class, DisorarchInfo.class);
+	public DisorarchDaoSelect(List<DaoStmtExecOption<DisorarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, DisorarchDaoSelectSingle.class, DisorarchInfo.class);
 	}
 	
 	

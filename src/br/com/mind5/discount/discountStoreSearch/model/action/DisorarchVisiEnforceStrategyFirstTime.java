@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiDisorarchEnforceStrategyFirstTime extends ActionVisitorTemplateEnforce<DisorarchInfo> {
+public final class DisorarchVisiEnforceStrategyFirstTime extends ActionVisitorTemplateEnforce<DisorarchInfo> {
 	
-	public VisiDisorarchEnforceStrategyFirstTime(DeciTreeOption<DisorarchInfo> option) {
+	public DisorarchVisiEnforceStrategyFirstTime(DeciTreeOption<DisorarchInfo> option) {
 		super(option);	
 	}
 	
