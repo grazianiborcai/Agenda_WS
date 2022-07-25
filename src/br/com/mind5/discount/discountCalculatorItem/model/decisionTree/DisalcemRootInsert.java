@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.discount.discountCalculatorItem.info.DisalcemInfo;
-import br.com.mind5.discount.discountCalculatorItem.model.action.LazyDisalcemDisoupemInsert;
-import br.com.mind5.discount.discountCalculatorItem.model.action.LazyDisalcemEnforceDisoupem;
+import br.com.mind5.discount.discountCalculatorItem.model.action.DisalcemVisiDisoupemInsert;
+import br.com.mind5.discount.discountCalculatorItem.model.action.DisalcemVisiEnforceDisoupem;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootDisalcemInsert extends DeciTreeTemplateRead<DisalcemInfo> {
+public final class DisalcemRootInsert extends DeciTreeTemplateRead<DisalcemInfo> {
 	
-	public RootDisalcemInsert(DeciTreeOption<DisalcemInfo> option) {
+	public DisalcemRootInsert(DeciTreeOption<DisalcemInfo> option) {
 		super(option);
 	}
 	
@@ -37,9 +38,9 @@ public final class RootDisalcemInsert extends DeciTreeTemplateRead<DisalcemInfo>
 	@Override protected List<ActionStd<DisalcemInfo>> buildActionsOnPassedHook(DeciTreeOption<DisalcemInfo> option) {
 		List<ActionStd<DisalcemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<DisalcemInfo> select = new RootDisalcemSelect(option).toAction();
-		ActionLazy<DisalcemInfo> enforceDisoupem = new LazyDisalcemEnforceDisoupem(option.conn, option.schemaName);
-		ActionLazy<DisalcemInfo> disoupemInsert = new LazyDisalcemDisoupemInsert(option.conn, option.schemaName);
+		ActionStd<DisalcemInfo> select = new DisalcemRootSelect(option).toAction();
+		ActionLazy<DisalcemInfo> enforceDisoupem = new ActionLazyCommom<DisalcemInfo>(option, DisalcemVisiEnforceDisoupem.class);
+		ActionLazy<DisalcemInfo> disoupemInsert = new ActionLazyCommom<DisalcemInfo>(option, DisalcemVisiDisoupemInsert.class);
 		
 		select.addPostAction(enforceDisoupem);
 		enforceDisoupem.addPostAction(disoupemInsert);

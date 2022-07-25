@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiDisalcemDisoupemInsert extends ActionVisitorTemplateAction<DisalcemInfo, DisoupemInfo> {
+public final class DisalcemVisiDisoupemInsert extends ActionVisitorTemplateAction<DisalcemInfo, DisoupemInfo> {
 
-	public VisiDisalcemDisoupemInsert(DeciTreeOption<DisalcemInfo> option) {
+	public DisalcemVisiDisoupemInsert(DeciTreeOption<DisalcemInfo> option) {
 		super(option, DisalcemInfo.class, DisoupemInfo.class);
 	}
 	

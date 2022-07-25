@@ -14,7 +14,7 @@ public final class DisalcemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new DisalcemVisiMergeDisoupem());
+		builder.addVisitor(new DisalcemMergerVisiDisoupem());
 		InfoMerger<DisalcemInfo, DisoupemInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class DisalcemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new DisalcemVisiMergeCartem());
+		builder.addVisitor(new DisalcemMergerVisiCartem());
 		InfoMerger<DisalcemInfo, CartemInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class DisalcemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new DisalcemVisiMergeDisore());
+		builder.addVisitor(new DisalcemMergerVisiDisore());
 		InfoMerger<DisalcemInfo, DisoreInfo> merger = builder.build();		
 	
 		return merger.merge();

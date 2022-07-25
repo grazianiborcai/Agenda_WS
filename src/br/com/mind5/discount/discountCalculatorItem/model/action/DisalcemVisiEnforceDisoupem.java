@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiDisalcemEnforceDisoupem extends ActionVisitorTemplateEnforce<DisalcemInfo> {
+public final class DisalcemVisiEnforceDisoupem extends ActionVisitorTemplateEnforce<DisalcemInfo> {
 	
-	public VisiDisalcemEnforceDisoupem(DeciTreeOption<DisalcemInfo> option) {
+	public DisalcemVisiEnforceDisoupem(DeciTreeOption<DisalcemInfo> option) {
 		super(option);	
 	}
 	

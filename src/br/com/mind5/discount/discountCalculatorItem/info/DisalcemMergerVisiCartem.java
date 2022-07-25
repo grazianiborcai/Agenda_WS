@@ -7,7 +7,7 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.info.InfoMergerCardinality;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class DisalcemVisiMergeCartem extends InfoMergerVisitorTemplate<DisalcemInfo, CartemInfo> {
+final class DisalcemMergerVisiCartem extends InfoMergerVisitorTemplate<DisalcemInfo, CartemInfo> {
 
 	@Override public boolean shouldMerge(DisalcemInfo baseInfo, CartemInfo selectedInfo) {
 		return (baseInfo.codOwner 	== selectedInfo.codOwner	&&

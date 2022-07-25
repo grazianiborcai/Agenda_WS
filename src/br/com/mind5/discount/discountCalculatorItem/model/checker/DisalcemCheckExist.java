@@ -2,7 +2,7 @@ package br.com.mind5.discount.discountCalculatorItem.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.discount.discountCalculatorItem.info.DisalcemInfo;
-import br.com.mind5.discount.discountCalculatorItem.model.decisionTree.RootDisalcemSelect;
+import br.com.mind5.discount.discountCalculatorItem.model.decisionTree.DisalcemRootSelect;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
@@ -17,7 +17,7 @@ public final class DisalcemCheckExist extends ModelCheckerTemplateAction<Disalce
 	
 	
 	@Override protected ActionStd<DisalcemInfo> buildActionHook(DeciTreeOption<DisalcemInfo> option) {
-		ActionStd<DisalcemInfo> select = new RootDisalcemSelect(option).toAction();
+		ActionStd<DisalcemInfo> select = new DisalcemRootSelect(option).toAction();
 		return select;
 	}
 	

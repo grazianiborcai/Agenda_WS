@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiDisalcemMergeCartem extends ActionVisitorTemplateMerge<DisalcemInfo, CartemInfo> {
+public final class DisalcemVisiMergeCartem extends ActionVisitorTemplateMerge<DisalcemInfo, CartemInfo> {
 	
-	public VisiDisalcemMergeCartem(DeciTreeOption<DisalcemInfo> option) {
+	public DisalcemVisiMergeCartem(DeciTreeOption<DisalcemInfo> option) {
 		super(option, CartemInfo.class);
 	}
 	
