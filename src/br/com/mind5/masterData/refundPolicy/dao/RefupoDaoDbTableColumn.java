@@ -9,14 +9,14 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoRefupoDbTableColumn extends DaoDbTableColumnTemplate {
+public final class RefupoDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_COD_REFUND_POLICY = DaoDbField.COL_COD_REFUND_POLICY;
 	public static final String COL_HOUR_BEFORE = DaoDbField.COL_HOUR_BEFORE;
 	public static final String COL_NAME = DaoDbField.COL_NAME;
 	
 	
-	public DaoRefupoDbTableColumn() {
+	public RefupoDaoDbTableColumn() {
 		super();
 	}
 	

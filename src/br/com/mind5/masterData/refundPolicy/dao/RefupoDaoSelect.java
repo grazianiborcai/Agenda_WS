@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.refundPolicy.info.RefupoInfo;
 
-public final class DaoRefupoSelect implements DaoStmtExec<RefupoInfo> {
+public final class RefupoDaoSelect implements DaoStmtExec<RefupoInfo> {
 	private DaoStmtExec<RefupoInfo> helper;
 	
 	
-	public DaoRefupoSelect(List<DaoStmtExecOption<RefupoInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoRefupoSelectSingle.class, RefupoInfo.class);
+	public RefupoDaoSelect(List<DaoStmtExecOption<RefupoInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, RefupoDaoSelectSingle.class, RefupoInfo.class);
 	}
 	
 	

@@ -18,11 +18,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.refundPolicy.info.RefupoInfo;
 
-public final class DaoRefupoSelectSingle extends DaoStmtTemplate<RefupoInfo> {
+public final class RefupoDaoSelectSingle extends DaoStmtTemplate<RefupoInfo> {
 	private final String MAIN_TABLE = DaoDbTable.REFUND_POLICY_TABLE;
 	
 	
-	public DaoRefupoSelectSingle(Connection conn, RefupoInfo recordInfo, String schemaName) {
+	public RefupoDaoSelectSingle(Connection conn, RefupoInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -46,14 +46,14 @@ public final class DaoRefupoSelectSingle extends DaoStmtTemplate<RefupoInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoRefupoWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new RefupoDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(RefupoInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoRefupoJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new RefupoDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -70,10 +70,10 @@ public final class DaoRefupoSelectSingle extends DaoStmtTemplate<RefupoInfo> {
 				do {				
 					RefupoInfo dataInfo = new RefupoInfo();
 					
-					dataInfo.codRefundPolicy = DaoFormatter.sqlToInt(stmtResult, DaoRefupoDbTableColumn.COL_COD_REFUND_POLICY);
-					dataInfo.txtRefundPolicy = stmtResult.getString(DaoRefupoDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoRefupoDbTableColumn.COL_COD_LANGUAGE);		
-					dataInfo.hourBefore = DaoFormatter.sqlToInt(stmtResult, DaoRefupoDbTableColumn.COL_HOUR_BEFORE);
+					dataInfo.codRefundPolicy = DaoFormatter.sqlToInt(stmtResult, RefupoDaoDbTableColumn.COL_COD_REFUND_POLICY);
+					dataInfo.txtRefundPolicy = stmtResult.getString(RefupoDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(RefupoDaoDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.hourBefore = DaoFormatter.sqlToInt(stmtResult, RefupoDaoDbTableColumn.COL_HOUR_BEFORE);
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

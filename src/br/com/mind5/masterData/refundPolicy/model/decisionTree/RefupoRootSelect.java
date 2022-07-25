@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.refundPolicy.info.RefupoInfo;
-import br.com.mind5.masterData.refundPolicy.model.action.StdRefupoDaoSelect;
+import br.com.mind5.masterData.refundPolicy.model.action.RefupoVisiDaoSelect;
 import br.com.mind5.masterData.refundPolicy.model.checker.RefupoCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootRefupoSelect extends DeciTreeTemplateRead<RefupoInfo> {
+public final class RefupoRootSelect extends DeciTreeTemplateRead<RefupoInfo> {
 	
-	public RootRefupoSelect(DeciTreeOption<RefupoInfo> option) {
+	public RefupoRootSelect(DeciTreeOption<RefupoInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootRefupoSelect extends DeciTreeTemplateRead<RefupoInfo> {
 	@Override protected List<ActionStd<RefupoInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupoInfo> option) {
 		List<ActionStd<RefupoInfo>> actions = new ArrayList<>();
 		
-		ActionStd<RefupoInfo> select = new StdRefupoDaoSelect(option);
+		ActionStd<RefupoInfo> select = new ActionStdCommom<RefupoInfo>(option, RefupoVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;
