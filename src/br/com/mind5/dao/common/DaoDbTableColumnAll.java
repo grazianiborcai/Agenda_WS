@@ -298,7 +298,7 @@ import br.com.mind5.stats.statsUserOrderYear.userOrderYearLiveSearch.dao.Stusory
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgn.dao.StusorygeDaoDbTableColumn;
 import br.com.mind5.stats.statsUserOrderYear.userOrderYearStgnSearch.dao.StusorygerchDaoDbTableColumn;
 import br.com.mind5.stats.statsUserStore.userStoreAggr.dao.StusoraggDaoDbTableColumn;
-import br.com.mind5.stats.statsUserStore.userStoreLive.dao.DaoStusoreveDbTableColumn;
+import br.com.mind5.stats.statsUserStore.userStoreLive.dao.StusoreveDaoDbTableColumn;
 import br.com.mind5.stats.statsUserStore.userStoreStgn.dao.StusorageDaoDbTableColumn;
 import br.com.mind5.webhook.moipMultipayment.dao.WokaymoipDaoDbTableColumn;
 import br.com.mind5.webhook.moipRefund.dao.WokefumoipDaoDbTableColumn;
@@ -540,7 +540,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoDisorarchDbTableColumn());
 		addTable(new DaoDisoupemDbTableColumn());
 		addTable(new DaoDisorapDbTableColumn());
-		addTable(new DaoStusoreveDbTableColumn());
+		addTable(new StusoreveDaoDbTableColumn());
 		addTable(new StusorageDaoDbTableColumn());
 		addTable(new StusoraggDaoDbTableColumn());
 		addTable(new DaoSysdistrDbTableColumn());

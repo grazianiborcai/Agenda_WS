@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserStore.userStore.info.StusoreInfo;
 import br.com.mind5.stats.statsUserStore.userStore.info.StusoreMerger;
 import br.com.mind5.stats.statsUserStore.userStoreLive.info.StusoreveInfo;
-import br.com.mind5.stats.statsUserStore.userStoreLive.model.decisionTree.RootStusoreveSelect;
+import br.com.mind5.stats.statsUserStore.userStoreLive.model.decisionTree.StusoreveRootSelect;
 
 final class VisiStusoreMergeStusoreve extends ActionVisitorTemplateMerge<StusoreInfo, StusoreveInfo> {
 	
@@ -19,7 +19,7 @@ final class VisiStusoreMergeStusoreve extends ActionVisitorTemplateMerge<Stusore
 	
 	
 	@Override protected Class<? extends DeciTree<StusoreveInfo>> getTreeClassHook() {
-		return RootStusoreveSelect.class;
+		return StusoreveRootSelect.class;
 	}
 	
 	

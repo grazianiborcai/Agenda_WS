@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserStore.userStoreLive.info.StusoreveInfo;
 import br.com.mind5.stats.statsUserStore.userStoreLive.info.StusoreveMerger;
 
-final class VisiStusoreveMergeCurrency extends ActionVisitorTemplateMerge<StusoreveInfo, CurrencyInfo> {
+public final class StusoreveVisiMergeCurrency extends ActionVisitorTemplateMerge<StusoreveInfo, CurrencyInfo> {
 	
-	public VisiStusoreveMergeCurrency(DeciTreeOption<StusoreveInfo> option) {
+	public StusoreveVisiMergeCurrency(DeciTreeOption<StusoreveInfo> option) {
 		super(option, CurrencyInfo.class);
 	}
 	

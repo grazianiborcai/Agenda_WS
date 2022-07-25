@@ -12,7 +12,7 @@ public final class StusoreveMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StusoreveVisiMergeCurrency());
+		builder.addVisitor(new StusoreveMergerVisiCurrency());
 		InfoMerger<StusoreveInfo, CurrencyInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class StusoreveMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StusoreveVisiMergeToSelect());
+		builder.addVisitor(new StusoreveMergerVisiToSelect());
 		InfoMerger<StusoreveInfo, StusoreveInfo> merger = builder.build();		
 	
 		return merger.merge();
