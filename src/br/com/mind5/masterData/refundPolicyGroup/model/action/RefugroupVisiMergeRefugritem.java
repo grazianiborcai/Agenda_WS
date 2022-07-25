@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupMerger;
 import br.com.mind5.masterData.refundPolicyGroupItem.info.RefugritemInfo;
-import br.com.mind5.masterData.refundPolicyGroupItem.model.decisionTree.RootRefugritemSearch;
+import br.com.mind5.masterData.refundPolicyGroupItem.model.decisionTree.RefugritemRootSearch;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class RefugroupVisiMergeRefugritem extends ActionVisitorTemplateMer
 	
 	
 	@Override protected Class<? extends DeciTree<RefugritemInfo>> getTreeClassHook() {
-		return RootRefugritemSearch.class;
+		return RefugritemRootSearch.class;
 	}
 	
 	

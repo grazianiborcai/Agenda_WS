@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.refundPolicyGroupItem.info.RefugritemInfo;
-import br.com.mind5.masterData.refundPolicyGroupItem.model.action.LazyRefugritemRootSelect;
-import br.com.mind5.masterData.refundPolicyGroupItem.model.action.StdRefugritemMergeRefugritarch;
+import br.com.mind5.masterData.refundPolicyGroupItem.model.action.RefugritemVisiRootSelect;
+import br.com.mind5.masterData.refundPolicyGroupItem.model.action.RefugritemVisiMergeRefugritarch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootRefugritemSearch extends DeciTreeTemplateRead<RefugritemInfo> {
+public final class RefugritemRootSearch extends DeciTreeTemplateRead<RefugritemInfo> {
 	
-	public RootRefugritemSearch(DeciTreeOption<RefugritemInfo> option) {
+	public RefugritemRootSearch(DeciTreeOption<RefugritemInfo> option) {
 		super(option);
 	}
 	
@@ -37,8 +39,8 @@ public final class RootRefugritemSearch extends DeciTreeTemplateRead<RefugritemI
 	@Override protected List<ActionStd<RefugritemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefugritemInfo> option) {
 		List<ActionStd<RefugritemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<RefugritemInfo> mergeRefugritarch = new StdRefugritemMergeRefugritarch(option);
-		ActionLazy<RefugritemInfo> select = new LazyRefugritemRootSelect(option.conn, option.schemaName);
+		ActionStd<RefugritemInfo> mergeRefugritarch = new ActionStdCommom<RefugritemInfo>(option, RefugritemVisiMergeRefugritarch.class);
+		ActionLazy<RefugritemInfo> select = new ActionLazyCommom<RefugritemInfo>(option, RefugritemVisiRootSelect.class);
 		
 		mergeRefugritarch.addPostAction(select);
 		

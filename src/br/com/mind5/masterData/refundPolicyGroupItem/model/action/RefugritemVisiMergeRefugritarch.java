@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefugritemMergeRefugritarch extends ActionVisitorTemplateMerge<RefugritemInfo, RefugritarchInfo> {
+public final class RefugritemVisiMergeRefugritarch extends ActionVisitorTemplateMerge<RefugritemInfo, RefugritarchInfo> {
 	
-	public VisiRefugritemMergeRefugritarch(DeciTreeOption<RefugritemInfo> option) {
+	public RefugritemVisiMergeRefugritarch(DeciTreeOption<RefugritemInfo> option) {
 		super(option, RefugritarchInfo.class);
 	}
 	

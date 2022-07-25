@@ -3,23 +3,23 @@ package br.com.mind5.masterData.refundPolicyGroupItem.model.action;
 import java.util.List;
 
 import br.com.mind5.masterData.refundPolicy.info.RefupoInfo;
-import br.com.mind5.masterData.refundPolicy.model.decisionTree.RootRefupoSelect;
+import br.com.mind5.masterData.refundPolicy.model.decisionTree.RefupoRootSelect;
 import br.com.mind5.masterData.refundPolicyGroupItem.info.RefugritemInfo;
 import br.com.mind5.masterData.refundPolicyGroupItem.info.RefugritemMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefugritemMergeRefupo extends ActionVisitorTemplateMerge<RefugritemInfo, RefupoInfo> {
+public final class RefugritemVisiMergeRefupo extends ActionVisitorTemplateMerge<RefugritemInfo, RefupoInfo> {
 	
-	public VisiRefugritemMergeRefupo(DeciTreeOption<RefugritemInfo> option) {
+	public RefugritemVisiMergeRefupo(DeciTreeOption<RefugritemInfo> option) {
 		super(option, RefupoInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<RefupoInfo>> getTreeClassHook() {
-		return RootRefupoSelect.class;
+		return RefupoRootSelect.class;
 	}
 	
 	
