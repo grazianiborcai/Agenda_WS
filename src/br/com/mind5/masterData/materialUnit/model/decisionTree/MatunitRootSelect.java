@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.materialUnit.info.MatunitInfo;
-import br.com.mind5.masterData.materialUnit.model.action.StdMatunitDaoSelect;
+import br.com.mind5.masterData.materialUnit.model.action.MatunitVisiDaoSelect;
 import br.com.mind5.masterData.materialUnit.model.checker.MatunitCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatunitSelect extends DeciTreeTemplateRead<MatunitInfo> {
+public final class MatunitRootSelect extends DeciTreeTemplateRead<MatunitInfo> {
 	
-	public RootMatunitSelect(DeciTreeOption<MatunitInfo> option) {
+	public MatunitRootSelect(DeciTreeOption<MatunitInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootMatunitSelect extends DeciTreeTemplateRead<MatunitInfo> {
 	@Override protected List<ActionStd<MatunitInfo>> buildActionsOnPassedHook(DeciTreeOption<MatunitInfo> option) {
 		List<ActionStd<MatunitInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatunitInfo> select = new StdMatunitDaoSelect(option);
+		ActionStd<MatunitInfo> select = new ActionStdCommom<MatunitInfo>(option, MatunitVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

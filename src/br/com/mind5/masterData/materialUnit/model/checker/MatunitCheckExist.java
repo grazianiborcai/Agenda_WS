@@ -2,8 +2,9 @@ package br.com.mind5.masterData.materialUnit.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.materialUnit.info.MatunitInfo;
-import br.com.mind5.masterData.materialUnit.model.action.StdMatunitDaoSelect;
+import br.com.mind5.masterData.materialUnit.model.action.MatunitVisiDaoSelect;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class MatunitCheckExist extends ModelCheckerTemplateAction<MatunitI
 	
 	
 	@Override protected ActionStd<MatunitInfo> buildActionHook(DeciTreeOption<MatunitInfo> option) {
-		ActionStd<MatunitInfo> select = new StdMatunitDaoSelect(option);
+		ActionStd<MatunitInfo> select = new ActionStdCommom<MatunitInfo>(option, MatunitVisiDaoSelect.class);
 		return select;
 	}
 	

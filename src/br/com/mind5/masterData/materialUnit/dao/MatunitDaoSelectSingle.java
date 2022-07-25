@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.materialUnit.info.MatunitInfo;
 
-public final class DaoMatunitSelectSingle extends DaoStmtTemplate<MatunitInfo> {
+public final class MatunitDaoSelectSingle extends DaoStmtTemplate<MatunitInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_UNIT_TABLE;
 	
 	
-	public DaoMatunitSelectSingle(Connection conn, MatunitInfo recordInfo, String schemaName) {
+	public MatunitDaoSelectSingle(Connection conn, MatunitInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,14 +45,14 @@ public final class DaoMatunitSelectSingle extends DaoStmtTemplate<MatunitInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoMatunitWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new MatunitDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(MatunitInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoMatunitJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new MatunitDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -69,9 +69,9 @@ public final class DaoMatunitSelectSingle extends DaoStmtTemplate<MatunitInfo> {
 				do {				
 					MatunitInfo dataInfo = new MatunitInfo();
 					
-					dataInfo.codUnit = stmtResult.getString(DaoMatunitDbTableColumn.COL_COD_UNIT);
-					dataInfo.txtUnit = stmtResult.getString(DaoMatunitDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoMatunitDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codUnit = stmtResult.getString(MatunitDaoDbTableColumn.COL_COD_UNIT);
+					dataInfo.txtUnit = stmtResult.getString(MatunitDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(MatunitDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

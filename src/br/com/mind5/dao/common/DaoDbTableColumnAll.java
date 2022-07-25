@@ -197,7 +197,7 @@ import br.com.mind5.masterData.materialSubgroup.dao.MatubupDaoDbTableColumn;
 import br.com.mind5.masterData.materialSubgroupSearch.dao.MatubuparchDaoDbTableColumn;
 import br.com.mind5.masterData.materialType.dao.MatypeDaoDbTableColumn;
 import br.com.mind5.masterData.materialTypeSearch.dao.MatyparchDaoDbTableColumn;
-import br.com.mind5.masterData.materialUnit.dao.DaoMatunitDbTableColumn;
+import br.com.mind5.masterData.materialUnit.dao.MatunitDaoDbTableColumn;
 import br.com.mind5.masterData.materialUnitSearch.dao.DaoMatunitarchDbTableColumn;
 import br.com.mind5.masterData.month.dao.DaoMonthDbTableColumn;
 import br.com.mind5.masterData.monthSearch.dao.DaoMontharchDbTableColumn;
@@ -460,7 +460,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new MategarchDaoDbTableColumn());
 		addTable(new MatypeDaoDbTableColumn());
 		addTable(new MatyparchDaoDbTableColumn());
-		addTable(new DaoMatunitDbTableColumn());
+		addTable(new MatunitDaoDbTableColumn());
 		addTable(new DaoMatunitarchDbTableColumn());
 		addTable(new BusareaDaoDaoDbTableColumn());
 		addTable(new BusarearchDaoDbTableColumn());

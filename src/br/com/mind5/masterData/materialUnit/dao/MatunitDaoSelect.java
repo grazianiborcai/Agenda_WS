@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.materialUnit.info.MatunitInfo;
 
-public final class DaoMatunitSelect implements DaoStmtExec<MatunitInfo> {
+public final class MatunitDaoSelect implements DaoStmtExec<MatunitInfo> {
 	private DaoStmtExec<MatunitInfo> helper;
 	
 	
-	public DaoMatunitSelect(List<DaoStmtExecOption<MatunitInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoMatunitSelectSingle.class, MatunitInfo.class);
+	public MatunitDaoSelect(List<DaoStmtExecOption<MatunitInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, MatunitDaoSelectSingle.class, MatunitInfo.class);
 	}
 	
 	
