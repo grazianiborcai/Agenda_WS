@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.entityCategory.info.EntitegInfo;
 
-public final class DaoEntitegSelect implements DaoStmtExec<EntitegInfo> {
+public final class EntitegDaoSelect implements DaoStmtExec<EntitegInfo> {
 	private DaoStmtExec<EntitegInfo> helper;
 	
 	
-	public DaoEntitegSelect(List<DaoStmtExecOption<EntitegInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoEntitegSelectSingle.class, EntitegInfo.class);
+	public EntitegDaoSelect(List<DaoStmtExecOption<EntitegInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, EntitegDaoSelectSingle.class, EntitegInfo.class);
 	}
 	
 	

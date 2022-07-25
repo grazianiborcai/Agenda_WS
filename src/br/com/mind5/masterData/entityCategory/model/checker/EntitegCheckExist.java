@@ -2,8 +2,9 @@ package br.com.mind5.masterData.entityCategory.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.entityCategory.info.EntitegInfo;
-import br.com.mind5.masterData.entityCategory.model.action.StdEntitegDaoSelect;
+import br.com.mind5.masterData.entityCategory.model.action.EntitegVisiDaoSelect;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class EntitegCheckExist extends ModelCheckerTemplateAction<EntitegI
 	
 	
 	@Override protected ActionStd<EntitegInfo> buildActionHook(DeciTreeOption<EntitegInfo> option) {
-		ActionStd<EntitegInfo> select = new StdEntitegDaoSelect(option);
+		ActionStd<EntitegInfo> select = new ActionStdCommom<EntitegInfo>(option, EntitegVisiDaoSelect.class);
 		return select;
 	}
 	

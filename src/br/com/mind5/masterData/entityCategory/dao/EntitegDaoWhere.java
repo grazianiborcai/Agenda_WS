@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.entityCategory.info.EntitegInfo;
 
-final class DaoEntitegWhere implements DaoStmtWhere {
+final class EntitegDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoEntitegWhere(DaoWhereBuilderOption whereOption, String tableName, EntitegInfo recordInfo) {
+	public EntitegDaoWhere(DaoWhereBuilderOption whereOption, String tableName, EntitegInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -25,11 +25,11 @@ final class DaoEntitegWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoEntitegDbTableColumn.COL_COD_ENTITY_CATEG :
+				case EntitegDaoDbTableColumn.COL_COD_ENTITY_CATEG :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codEntityCateg);
 					break;
 					
-				case DaoEntitegDbTableColumn.COL_COD_LANGUAGE :
+				case EntitegDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.entityCategory.info.EntitegInfo;
-import br.com.mind5.masterData.entityCategory.model.action.StdEntitegDaoSelect;
+import br.com.mind5.masterData.entityCategory.model.action.EntitegVisiDaoSelect;
 import br.com.mind5.masterData.entityCategory.model.checker.EntitegCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEntitegSelect extends DeciTreeTemplateRead<EntitegInfo> {
+public final class EntitegRootSelect extends DeciTreeTemplateRead<EntitegInfo> {
 	
-	public RootEntitegSelect(DeciTreeOption<EntitegInfo> option) {
+	public EntitegRootSelect(DeciTreeOption<EntitegInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootEntitegSelect extends DeciTreeTemplateRead<EntitegInfo> {
 	@Override protected List<ActionStd<EntitegInfo>> buildActionsOnPassedHook(DeciTreeOption<EntitegInfo> option) {
 		List<ActionStd<EntitegInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EntitegInfo> select = new StdEntitegDaoSelect(option);
+		ActionStd<EntitegInfo> select = new ActionStdCommom<EntitegInfo>(option, EntitegVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;
