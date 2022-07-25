@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.state.info.StateInfo;
 
-final class DaoStateWhere implements DaoStmtWhere {
+final class StateDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoStateWhere(DaoWhereBuilderOption whereOption, String tableName, StateInfo recordInfo) {
+	public StateDaoWhere(DaoWhereBuilderOption whereOption, String tableName, StateInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -25,15 +25,15 @@ final class DaoStateWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoStateDbTableColumn.COL_COD_COUNTRY :
+				case StateDaoDbTableColumn.COL_COD_COUNTRY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codCountry);
 					break;
 					
-				case DaoStateDbTableColumn.COL_STATE_PROVINCE :
+				case StateDaoDbTableColumn.COL_STATE_PROVINCE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codState);
 					break;
 					
-				case DaoStateDbTableColumn.COL_COD_LANGUAGE :
+				case StateDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;	
 			}

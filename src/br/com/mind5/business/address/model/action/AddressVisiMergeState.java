@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
 import br.com.mind5.masterData.state.info.StateInfo;
-import br.com.mind5.masterData.state.model.decisionTree.RootStateSelect;
+import br.com.mind5.masterData.state.model.decisionTree.StateRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class AddressVisiMergeState extends ActionVisitorTemplateMerge<Addr
 	
 	
 	@Override protected Class<? extends DeciTree<StateInfo>> getTreeClassHook() {
-		return RootStateSelect.class;
+		return StateRootSelect.class;
 	}
 	
 	

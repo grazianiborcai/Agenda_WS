@@ -12,7 +12,7 @@ public final class StateMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StateVisiMergeCountry());
+		builder.addVisitor(new StateMergerVisiCountry());
 		InfoMerger<StateInfo, CountryInfo> merger = builder.build();		
 	
 		return merger.merge();
