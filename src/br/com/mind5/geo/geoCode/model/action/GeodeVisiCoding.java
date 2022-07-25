@@ -17,10 +17,10 @@ import br.com.mind5.geo.geoCode.info.GeodeInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateSimple;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiGeodeCoding extends ActionVisitorTemplateSimple<GeodeInfo> {
+public final class GeodeVisiCoding extends ActionVisitorTemplateSimple<GeodeInfo> {
 	private String REGEX_SPLIT = ",+(?=\")";
 	
-	public VisiGeodeCoding(DeciTreeOption<GeodeInfo> option) {
+	public GeodeVisiCoding(DeciTreeOption<GeodeInfo> option) {
 		super(option);
 	}
 	

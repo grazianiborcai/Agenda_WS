@@ -13,7 +13,7 @@ public final class GeodeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new GeodeVisiMergeCountry());
+		builder.addVisitor(new GeodeMergerVisiCountry());
 		InfoMerger<GeodeInfo, CountryInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class GeodeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new GeodeVisiMergeState());
+		builder.addVisitor(new GeodeMergerVisiState());
 		InfoMerger<GeodeInfo, StateInfo> merger = builder.build();		
 	
 		return merger.merge();

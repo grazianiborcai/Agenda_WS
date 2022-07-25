@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiGeodeEnforceLocation extends ActionVisitorTemplateEnforce<GeodeInfo> {
+public final class GeodeVisiEnforceLocation extends ActionVisitorTemplateEnforce<GeodeInfo> {
 	
-	public VisiGeodeEnforceLocation(DeciTreeOption<GeodeInfo> option) {
+	public GeodeVisiEnforceLocation(DeciTreeOption<GeodeInfo> option) {
 		super(option);
 	}
 

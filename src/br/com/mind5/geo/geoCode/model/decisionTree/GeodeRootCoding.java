@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.geo.geoCode.info.GeodeInfo;
-import br.com.mind5.geo.geoCode.model.action.LazyGeodeCoding;
-import br.com.mind5.geo.geoCode.model.action.LazyGeodeEnforceLocation;
-import br.com.mind5.geo.geoCode.model.action.LazyGeodeMergeCountry;
-import br.com.mind5.geo.geoCode.model.action.StdGeodeMergeState;
+import br.com.mind5.geo.geoCode.model.action.GeodeVisiCoding;
+import br.com.mind5.geo.geoCode.model.action.GeodeVisiEnforceLocation;
+import br.com.mind5.geo.geoCode.model.action.GeodeVisiMergeCountry;
+import br.com.mind5.geo.geoCode.model.action.GeodeVisiMergeState;
 import br.com.mind5.geo.geoCode.model.checker.GeodeCheckCoding;
 import br.com.mind5.geo.geoCode.model.checker.GeodeCheckCountry;
 import br.com.mind5.geo.geoCode.model.checker.GeodeCheckLangu;
@@ -15,15 +15,17 @@ import br.com.mind5.geo.geoCode.model.checker.GeodeCheckOwner;
 import br.com.mind5.geo.geoCode.model.checker.GeodeCheckState;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootGeodeCoding extends DeciTreeTemplateWrite<GeodeInfo> {
+public final class GeodeRootCoding extends DeciTreeTemplateWrite<GeodeInfo> {
 	
-	public RootGeodeCoding(DeciTreeOption<GeodeInfo> option) {
+	public GeodeRootCoding(DeciTreeOption<GeodeInfo> option) {
 		super(option);
 	}
 	
@@ -77,10 +79,10 @@ public final class RootGeodeCoding extends DeciTreeTemplateWrite<GeodeInfo> {
 	@Override protected List<ActionStd<GeodeInfo>> buildActionsOnPassedHook(DeciTreeOption<GeodeInfo> option) {
 		List<ActionStd<GeodeInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<GeodeInfo> mergeState = new StdGeodeMergeState(option);		
-		ActionLazy<GeodeInfo> mergeCountry = new LazyGeodeMergeCountry(option.conn, option.schemaName);
-		ActionLazy<GeodeInfo> enforceLocation = new LazyGeodeEnforceLocation(option.conn, option.schemaName);
-		ActionLazy<GeodeInfo> coding = new LazyGeodeCoding(option.conn, option.schemaName);	
+		ActionStd<GeodeInfo> mergeState = new ActionStdCommom<GeodeInfo>(option, GeodeVisiMergeState.class);		
+		ActionLazy<GeodeInfo> mergeCountry = new ActionLazyCommom<GeodeInfo>(option, GeodeVisiMergeCountry.class);
+		ActionLazy<GeodeInfo> enforceLocation = new ActionLazyCommom<GeodeInfo>(option, GeodeVisiEnforceLocation.class);
+		ActionLazy<GeodeInfo> coding = new ActionLazyCommom<GeodeInfo>(option, GeodeVisiCoding.class);	
 		
 		mergeState.addPostAction(mergeCountry);
 		mergeCountry.addPostAction(enforceLocation);

@@ -5,21 +5,21 @@ import java.util.List;
 import br.com.mind5.geo.geoCode.info.GeodeInfo;
 import br.com.mind5.geo.geoCode.info.GeodeMerger;
 import br.com.mind5.masterData.state.info.StateInfo;
-import br.com.mind5.masterData.state.model.decisionTree.RootStateSelect;
+import br.com.mind5.masterData.state.model.decisionTree.StateRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiGeodeMergeState extends ActionVisitorTemplateMerge<GeodeInfo, StateInfo> {
+public final class GeodeVisiMergeState extends ActionVisitorTemplateMerge<GeodeInfo, StateInfo> {
 	
-	public VisiGeodeMergeState(DeciTreeOption<GeodeInfo> option) {
+	public GeodeVisiMergeState(DeciTreeOption<GeodeInfo> option) {
 		super(option, StateInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<StateInfo>> getTreeClassHook() {
-		return RootStateSelect.class;
+		return StateRootSelect.class;
 	}
 	
 	

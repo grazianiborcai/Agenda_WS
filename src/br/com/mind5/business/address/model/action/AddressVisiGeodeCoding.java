@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
 import br.com.mind5.geo.geoCode.info.GeodeInfo;
-import br.com.mind5.geo.geoCode.model.decisionTree.RootGeodeCoding;
+import br.com.mind5.geo.geoCode.model.decisionTree.GeodeRootCoding;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class AddressVisiGeodeCoding extends ActionVisitorTemplateAction<Ad
 	
 	
 	@Override protected Class<? extends DeciTree<GeodeInfo>> getTreeClassHook() {
-		return RootGeodeCoding.class;
+		return GeodeRootCoding.class;
 	}
 	
 	

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.state.info.StateInfo;
 
-final class GeodeVisiMergeState extends InfoMergerVisitorTemplate<GeodeInfo, StateInfo> {
+final class GeodeMergerVisiState extends InfoMergerVisitorTemplate<GeodeInfo, StateInfo> {
 
 	@Override public boolean shouldMerge(GeodeInfo baseInfo, StateInfo selectedInfo) {
 		return baseInfo.codCountry.equals(selectedInfo.codCountry);
