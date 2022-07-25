@@ -18,11 +18,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.feeCategorySearch.info.FeecatarchInfo;
 
-public final class DaoFeecatarchSelectSingle extends DaoStmtTemplate<FeecatarchInfo> {
+public final class FeecatarchDaoSelectSingle extends DaoStmtTemplate<FeecatarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.FEE_CATEG_TABLE;
 	
 	
-	public DaoFeecatarchSelectSingle(Connection conn, FeecatarchInfo recordInfo, String schemaName) {
+	public FeecatarchDaoSelectSingle(Connection conn, FeecatarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -53,14 +53,14 @@ public final class DaoFeecatarchSelectSingle extends DaoStmtTemplate<FeecatarchI
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoFeecatarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new FeecatarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(FeecatarchInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoFeecatarchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new FeecatarchDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -77,9 +77,9 @@ public final class DaoFeecatarchSelectSingle extends DaoStmtTemplate<FeecatarchI
 				do {				
 					FeecatarchInfo dataInfo = new FeecatarchInfo();
 					
-					dataInfo.codFeeCateg = DaoFormatter.sqlToChar(stmtResult, DaoFeecatarchDbTableColumn.COL_COD_FEE_CATEG);
-					dataInfo.txtFeeCateg = stmtResult.getString(DaoFeecatarchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoFeecatarchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codFeeCateg = DaoFormatter.sqlToChar(stmtResult, FeecatarchDaoDbTableColumn.COL_COD_FEE_CATEG);
+					dataInfo.txtFeeCateg = stmtResult.getString(FeecatarchDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(FeecatarchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

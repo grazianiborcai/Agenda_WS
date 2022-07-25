@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.feeCategorySearch.info.FeecatarchInfo;
 
-final class DaoFeecatarchWhere implements DaoStmtWhere {
+final class FeecatarchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoFeecatarchWhere(DaoWhereBuilderOption whereOption, String tableName, FeecatarchInfo recordInfo) {
+	public FeecatarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, FeecatarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ final class DaoFeecatarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoFeecatarchDbTableColumn.COL_COD_FEE_CATEG :
+				case FeecatarchDaoDbTableColumn.COL_COD_FEE_CATEG :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.charToString(recordInfo.codFeeCateg));
 					break;
 					
-				case DaoFeecatarchDbTableColumn.COL_COD_LANGUAGE :
+				case FeecatarchDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.feeCategorySearch.info.FeecatarchInfo;
 
-public final class DaoFeecatarchSelect implements DaoStmtExec<FeecatarchInfo> {
+public final class FeecatarchDaoSelect implements DaoStmtExec<FeecatarchInfo> {
 	private DaoStmtExec<FeecatarchInfo> helper;
 	
 	
-	public DaoFeecatarchSelect(List<DaoStmtExecOption<FeecatarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoFeecatarchSelectSingle.class, FeecatarchInfo.class);
+	public FeecatarchDaoSelect(List<DaoStmtExecOption<FeecatarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, FeecatarchDaoSelectSingle.class, FeecatarchInfo.class);
 	}
 	
 	
