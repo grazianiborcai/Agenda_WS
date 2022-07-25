@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.fileDocTypeSearch.info.FidocarchInfo;
 
-public final class DaoFidocarchSelect implements DaoStmtExec<FidocarchInfo> {
+public final class FidocarchDaoSelect implements DaoStmtExec<FidocarchInfo> {
 	private DaoStmtExec<FidocarchInfo> helper;
 	
 	
-	public DaoFidocarchSelect(List<DaoStmtExecOption<FidocarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoFidocarchSelectSingle.class, FidocarchInfo.class);
+	public FidocarchDaoSelect(List<DaoStmtExecOption<FidocarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, FidocarchDaoSelectSingle.class, FidocarchInfo.class);
 	}
 	
 	

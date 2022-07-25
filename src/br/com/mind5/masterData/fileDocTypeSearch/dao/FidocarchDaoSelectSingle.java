@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.fileDocTypeSearch.info.FidocarchInfo;
 
-public final class DaoFidocarchSelectSingle extends DaoStmtTemplate<FidocarchInfo> {
+public final class FidocarchDaoSelectSingle extends DaoStmtTemplate<FidocarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.FILE_DOC_TYPE_TABLE;
 	
 	
-	public DaoFidocarchSelectSingle(Connection conn, FidocarchInfo recordInfo, String schemaName) {
+	public FidocarchDaoSelectSingle(Connection conn, FidocarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,14 +52,14 @@ public final class DaoFidocarchSelectSingle extends DaoStmtTemplate<FidocarchInf
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoFidocarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new FidocarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(FidocarchInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoFidocarchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new FidocarchDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -76,9 +76,9 @@ public final class DaoFidocarchSelectSingle extends DaoStmtTemplate<FidocarchInf
 				do {				
 					FidocarchInfo dataInfo = new FidocarchInfo();
 					
-					dataInfo.codFileDocType = stmtResult.getString(DaoFidocarchDbTableColumn.COL_COD_FILE_DOC_TYPE);
-					dataInfo.txtFileDocType = stmtResult.getString(DaoFidocarchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoFidocarchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codFileDocType = stmtResult.getString(FidocarchDaoDbTableColumn.COL_COD_FILE_DOC_TYPE);
+					dataInfo.txtFileDocType = stmtResult.getString(FidocarchDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(FidocarchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

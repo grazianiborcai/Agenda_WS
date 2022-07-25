@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.fileDocTypeSearch.info.FidocarchInfo;
 
-final class DaoFidocarchWhere implements DaoStmtWhere {
+final class FidocarchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoFidocarchWhere(DaoWhereBuilderOption whereOption, String tableName, FidocarchInfo recordInfo) {
+	public FidocarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, FidocarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -25,11 +25,11 @@ final class DaoFidocarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoFidocarchDbTableColumn.COL_COD_FILE_DOC_TYPE :
+				case FidocarchDaoDbTableColumn.COL_COD_FILE_DOC_TYPE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codFileDocType);
 					break;
 					
-				case DaoFidocarchDbTableColumn.COL_COD_LANGUAGE :
+				case FidocarchDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

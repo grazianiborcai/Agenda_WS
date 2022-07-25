@@ -184,7 +184,7 @@ import br.com.mind5.masterData.entityCategory.dao.EntitegDaoDbTableColumn;
 import br.com.mind5.masterData.feeCategory.dao.FeecatDaoDbTableColumn;
 import br.com.mind5.masterData.feeCategorySearch.dao.FeecatarchDaoDbTableColumn;
 import br.com.mind5.masterData.fileDocType.dao.FidoceDaoDbTableColumn;
-import br.com.mind5.masterData.fileDocTypeSearch.dao.DaoFidocarchDbTableColumn;
+import br.com.mind5.masterData.fileDocTypeSearch.dao.FidocarchDaoDbTableColumn;
 import br.com.mind5.masterData.gender.dao.DaoGenderDbTableColumn;
 import br.com.mind5.masterData.genderSearch.dao.DaoGendarchDbTableColumn;
 import br.com.mind5.masterData.language.dao.DaoLanguDbTableColumn;
@@ -504,7 +504,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoSysonupDbTableColumn());
 		addTable(new OwnarchDaoDbTableColumn());
 		addTable(new FidoceDaoDbTableColumn());
-		addTable(new DaoFidocarchDbTableColumn());
+		addTable(new FidocarchDaoDbTableColumn());
 		addTable(new OtporeDaoDbTableColumn());
 		addTable(new StoprosDaoDbTableColumn());
 		addTable(new DaoProstusDbTableColumn());
