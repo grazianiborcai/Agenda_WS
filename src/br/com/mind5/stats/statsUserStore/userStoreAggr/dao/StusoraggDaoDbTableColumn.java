@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoStusoraggDbTableColumn extends DaoDbTableColumnTemplate {	
+public final class StusoraggDaoDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_CURRENCY = DaoDbField.COL_COD_CURRENCY;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
@@ -29,7 +29,7 @@ public final class DaoStusoraggDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_TOTAL_QUANTITY_24M = DaoDbField.COL_TOTAL_QUANTITY_24M;
 
 	
-	public DaoStusoraggDbTableColumn() {
+	public StusoraggDaoDbTableColumn() {
 		super();
 	}
 	

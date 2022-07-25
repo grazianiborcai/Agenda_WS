@@ -5,20 +5,22 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsUserStore.userStoreAggr.info.StusoraggInfo;
-import br.com.mind5.stats.statsUserStore.userStoreAggr.model.action.LazyStusoraggMergeCurrency;
-import br.com.mind5.stats.statsUserStore.userStoreAggr.model.action.StdStusoraggMergeToSelect;
+import br.com.mind5.stats.statsUserStore.userStoreAggr.model.action.StusoraggVisiMergeCurrency;
+import br.com.mind5.stats.statsUserStore.userStoreAggr.model.action.StusoraggVisiMergeToSelect;
 import br.com.mind5.stats.statsUserStore.userStoreAggr.model.checker.StusoraggCheckRead;
 
 
-public final class RootStusoraggSelect extends DeciTreeTemplateWrite<StusoraggInfo> {
+public final class StusoraggRootSelect extends DeciTreeTemplateWrite<StusoraggInfo> {
 	
-	public RootStusoraggSelect(DeciTreeOption<StusoraggInfo> option) {
+	public StusoraggRootSelect(DeciTreeOption<StusoraggInfo> option) {
 		super(option);
 	}
 	
@@ -44,8 +46,8 @@ public final class RootStusoraggSelect extends DeciTreeTemplateWrite<StusoraggIn
 	@Override protected List<ActionStd<StusoraggInfo>> buildActionsOnPassedHook(DeciTreeOption<StusoraggInfo> option) {
 		List<ActionStd<StusoraggInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusoraggInfo> select = new StdStusoraggMergeToSelect(option);
-		ActionLazy<StusoraggInfo> mergeCurrency = new LazyStusoraggMergeCurrency(option.conn, option.schemaName);
+		ActionStd<StusoraggInfo> select = new ActionStdCommom<StusoraggInfo>(option, StusoraggVisiMergeToSelect.class);
+		ActionLazy<StusoraggInfo> mergeCurrency = new ActionLazyCommom<StusoraggInfo>(option, StusoraggVisiMergeCurrency.class);
 		
 		select.addPostAction(mergeCurrency);
 		

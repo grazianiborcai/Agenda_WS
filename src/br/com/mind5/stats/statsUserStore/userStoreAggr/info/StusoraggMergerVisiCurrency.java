@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 
-final class StusoraggVisiMergeCurrency extends InfoMergerVisitorTemplate<StusoraggInfo, CurrencyInfo> {
+final class StusoraggMergerVisiCurrency extends InfoMergerVisitorTemplate<StusoraggInfo, CurrencyInfo> {
 
 	@Override public boolean shouldMerge(StusoraggInfo baseInfo, CurrencyInfo selectedInfo) {
 		return (baseInfo.codCurr.equals(selectedInfo.codCurr)		);
