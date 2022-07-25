@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.language.info.LanguInfo;
 
-public final class DaoLanguSelectSingle extends DaoStmtTemplate<LanguInfo> {
+public final class LanguDaoSelectSingle extends DaoStmtTemplate<LanguInfo> {
 	private final String MAIN_TABLE = DaoDbTable.LANGUAGE_TABLE;	
 	
 	
-	public DaoLanguSelectSingle(Connection conn, LanguInfo recordInfo, String schemaName) {
+	public LanguDaoSelectSingle(Connection conn, LanguInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -43,7 +43,7 @@ public final class DaoLanguSelectSingle extends DaoStmtTemplate<LanguInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoLanguWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new LanguDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -60,8 +60,8 @@ public final class DaoLanguSelectSingle extends DaoStmtTemplate<LanguInfo> {
 				do {				
 					LanguInfo dataInfo = new LanguInfo();
 					
-					dataInfo.codLanguage = stmtResult.getString(DaoLanguDbTableColumn.COL_COD_LANGUAGE);
-					dataInfo.txtLanguage = stmtResult.getString(DaoLanguDbTableColumn.COL_NAME);	
+					dataInfo.codLanguage = stmtResult.getString(LanguDaoDbTableColumn.COL_COD_LANGUAGE);
+					dataInfo.txtLanguage = stmtResult.getString(LanguDaoDbTableColumn.COL_NAME);	
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

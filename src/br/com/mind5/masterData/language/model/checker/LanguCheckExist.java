@@ -2,8 +2,9 @@ package br.com.mind5.masterData.language.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.language.info.LanguInfo;
-import br.com.mind5.masterData.language.model.action.StdLanguDaoSelect;
+import br.com.mind5.masterData.language.model.action.LanguVisiDaoSelect;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class LanguCheckExist extends ModelCheckerTemplateAction<LanguInfo,
 	
 	
 	@Override protected ActionStd<LanguInfo> buildActionHook(DeciTreeOption<LanguInfo> option) {
-		ActionStd<LanguInfo> select = new StdLanguDaoSelect(option);
+		ActionStd<LanguInfo> select = new ActionStdCommom<LanguInfo>(option, LanguVisiDaoSelect.class);
 		return select;
 	}
 	

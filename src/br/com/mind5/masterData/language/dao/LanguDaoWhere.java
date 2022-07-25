@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.language.info.LanguInfo;
 
-final class DaoLanguWhere implements DaoStmtWhere {
+final class LanguDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoLanguWhere(DaoWhereBuilderOption whereOption, String tableName, LanguInfo recordInfo) {
+	public LanguDaoWhere(DaoWhereBuilderOption whereOption, String tableName, LanguInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -25,7 +25,7 @@ final class DaoLanguWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoLanguDbTableColumn.COL_COD_LANGUAGE :
+				case LanguDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

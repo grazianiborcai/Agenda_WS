@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.language.info.LanguInfo;
-import br.com.mind5.masterData.language.model.action.StdLanguDaoSelect;
+import br.com.mind5.masterData.language.model.action.LanguVisiDaoSelect;
 import br.com.mind5.masterData.language.model.checker.LanguCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootLanguSelect extends DeciTreeTemplateRead<LanguInfo> {
+public final class LanguRootSelect extends DeciTreeTemplateRead<LanguInfo> {
 	
-	public RootLanguSelect(DeciTreeOption<LanguInfo> option) {
+	public LanguRootSelect(DeciTreeOption<LanguInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootLanguSelect extends DeciTreeTemplateRead<LanguInfo> {
 	@Override protected List<ActionStd<LanguInfo>> buildActionsOnPassedHook(DeciTreeOption<LanguInfo> option) {
 		List<ActionStd<LanguInfo>> actions = new ArrayList<>();
 		
-		ActionStd<LanguInfo> select = new StdLanguDaoSelect(option);
+		ActionStd<LanguInfo> select = new ActionStdCommom<LanguInfo>(option, LanguVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.language.info.LanguInfo;
 
-public final class DaoLanguSelect implements DaoStmtExec<LanguInfo> {
+public final class LanguDaoSelect implements DaoStmtExec<LanguInfo> {
 	private DaoStmtExec<LanguInfo> helper;
 	
 	
-	public DaoLanguSelect(List<DaoStmtExecOption<LanguInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoLanguSelectSingle.class, LanguInfo.class);
+	public LanguDaoSelect(List<DaoStmtExecOption<LanguInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, LanguDaoSelectSingle.class, LanguInfo.class);
 	}
 	
 	
