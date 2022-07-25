@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.gender.info.GenderInfo;
 
-public final class DaoGenderSelect implements DaoStmtExec<GenderInfo> {
+public final class GenderDaoSelect implements DaoStmtExec<GenderInfo> {
 	private DaoStmtExec<GenderInfo> helper;
 	
 	
-	public DaoGenderSelect(List<DaoStmtExecOption<GenderInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoGenderSelectSingle.class, GenderInfo.class);
+	public GenderDaoSelect(List<DaoStmtExecOption<GenderInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, GenderDaoSelectSingle.class, GenderInfo.class);
 	}
 	
 	

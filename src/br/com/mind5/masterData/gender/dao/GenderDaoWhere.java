@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.gender.info.GenderInfo;
 
-final class DaoGenderWhere implements DaoStmtWhere {
+final class GenderDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoGenderWhere(DaoWhereBuilderOption whereOption, String tableName, GenderInfo recordInfo) {
+	public GenderDaoWhere(DaoWhereBuilderOption whereOption, String tableName, GenderInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ final class DaoGenderWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoGenderDbTableColumn.COL_COD_GENDER :
+				case GenderDaoDbTableColumn.COL_COD_GENDER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codGender));
 					break;
 					
-				case DaoGenderDbTableColumn.COL_COD_LANGUAGE :
+				case GenderDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.gender.info.GenderInfo;
 
-public final class DaoGenderSelectSingle extends DaoStmtTemplate<GenderInfo> {
+public final class GenderDaoSelectSingle extends DaoStmtTemplate<GenderInfo> {
 	private final String MAIN_TABLE = DaoDbTable.GENDER_TABLE;
 	
 	
-	public DaoGenderSelectSingle(Connection conn, GenderInfo recordInfo, String schemaName) {
+	public GenderDaoSelectSingle(Connection conn, GenderInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,14 +45,14 @@ public final class DaoGenderSelectSingle extends DaoStmtTemplate<GenderInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoGenderWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new GenderDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(GenderInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoGenderJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new GenderDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -69,9 +69,9 @@ public final class DaoGenderSelectSingle extends DaoStmtTemplate<GenderInfo> {
 				do {				
 					GenderInfo dataInfo = new GenderInfo();
 					
-					dataInfo.codGender = stmtResult.getInt(DaoGenderDbTableColumn.COL_COD_GENDER);
-					dataInfo.txtGender = stmtResult.getString(DaoGenderDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoGenderDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codGender = stmtResult.getInt(GenderDaoDbTableColumn.COL_COD_GENDER);
+					dataInfo.txtGender = stmtResult.getString(GenderDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(GenderDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

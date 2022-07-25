@@ -185,7 +185,7 @@ import br.com.mind5.masterData.feeCategory.dao.FeecatDaoDbTableColumn;
 import br.com.mind5.masterData.feeCategorySearch.dao.FeecatarchDaoDbTableColumn;
 import br.com.mind5.masterData.fileDocType.dao.FidoceDaoDbTableColumn;
 import br.com.mind5.masterData.fileDocTypeSearch.dao.FidocarchDaoDbTableColumn;
-import br.com.mind5.masterData.gender.dao.DaoGenderDbTableColumn;
+import br.com.mind5.masterData.gender.dao.GenderDaoDbTableColumn;
 import br.com.mind5.masterData.genderSearch.dao.DaoGendarchDbTableColumn;
 import br.com.mind5.masterData.language.dao.DaoLanguDbTableColumn;
 import br.com.mind5.masterData.languageSearch.dao.DaoLangarchDbTableColumn;
@@ -466,7 +466,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new BusarearchDaoDbTableColumn());
 		addTable(new DaoMatoupDbTableColumn());
 		addTable(new DaoMatouparchDbTableColumn());
-		addTable(new DaoGenderDbTableColumn());
+		addTable(new GenderDaoDbTableColumn());
 		addTable(new DaoGendarchDbTableColumn());
 		addTable(new DaoWeekdayDbTableColumn());
 		addTable(new DaoWeekdarchDbTableColumn());

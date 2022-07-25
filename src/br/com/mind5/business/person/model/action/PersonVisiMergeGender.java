@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.info.PersonMerger;
 import br.com.mind5.masterData.gender.info.GenderInfo;
-import br.com.mind5.masterData.gender.model.decisionTree.RootGenderSelect;
+import br.com.mind5.masterData.gender.model.decisionTree.GenderRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class PersonVisiMergeGender extends ActionVisitorTemplateMerge<Pers
 	
 	
 	@Override protected Class<? extends DeciTree<GenderInfo>> getTreeClassHook() {
-		return RootGenderSelect.class;
+		return GenderRootSelect.class;
 	}
 	
 	
