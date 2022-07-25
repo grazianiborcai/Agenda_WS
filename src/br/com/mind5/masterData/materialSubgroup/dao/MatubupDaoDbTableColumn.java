@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoMatubupDbTableColumn extends DaoDbTableColumnTemplate {	
+public final class MatubupDaoDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_MAT_SUBGROUP = DaoDbField.COL_COD_MAT_SUBGROUP;
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_COD_MAT_GROUP = DaoDbField.COL_COD_MAT_GROUP;
@@ -17,7 +17,7 @@ public final class DaoMatubupDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_SORT = DaoDbField.COL_SORT;
 	
 	
-	public DaoMatubupDbTableColumn() {
+	public MatubupDaoDbTableColumn() {
 		super();
 	}
 	

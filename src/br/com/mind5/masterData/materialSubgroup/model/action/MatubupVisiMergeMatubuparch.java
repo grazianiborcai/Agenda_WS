@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatubupMergeMatubuparch extends ActionVisitorTemplateMerge<MatubupInfo, MatubuparchInfo> {
+public final class MatubupVisiMergeMatubuparch extends ActionVisitorTemplateMerge<MatubupInfo, MatubuparchInfo> {
 	
-	public VisiMatubupMergeMatubuparch(DeciTreeOption<MatubupInfo> option) {
+	public MatubupVisiMergeMatubuparch(DeciTreeOption<MatubupInfo> option) {
 		super(option, MatubuparchInfo.class);
 	}
 	

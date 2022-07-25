@@ -13,7 +13,7 @@ public final class MatubupMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatubupVisiMergeMatubuparch());
+		builder.addVisitor(new MatubupMergerVisiMatubuparch());
 		InfoMerger<MatubupInfo, MatubuparchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class MatubupMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatubupVisiMergeMatoup());
+		builder.addVisitor(new MatubupMergerVisiMatoup());
 		InfoMerger<MatubupInfo, MatoupInfo> merger = builder.build();		
 	
 		return merger.merge();

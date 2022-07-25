@@ -193,7 +193,7 @@ import br.com.mind5.masterData.materialCategory.dao.MategDaoDbTableColumn;
 import br.com.mind5.masterData.materialCategorySearch.dao.MategarchDaoDbTableColumn;
 import br.com.mind5.masterData.materialGroup.dao.MatoupDaoDbTableColumn;
 import br.com.mind5.masterData.materialGroupSearch.dao.MatouparchDaoDbTableColumn;
-import br.com.mind5.masterData.materialSubgroup.dao.DaoMatubupDbTableColumn;
+import br.com.mind5.masterData.materialSubgroup.dao.MatubupDaoDbTableColumn;
 import br.com.mind5.masterData.materialSubgroupSearch.dao.DaoMatubuparchDbTableColumn;
 import br.com.mind5.masterData.materialType.dao.DaoMatypeDbTableColumn;
 import br.com.mind5.masterData.materialTypeSearch.dao.DaoMatyparchDbTableColumn;
@@ -517,7 +517,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoSytotinDbTableColumn());
 		addTable(new DaoSysonfigDbTableColumn());
 		addTable(new UpswdarchDaoDbTableColumn());
-		addTable(new DaoMatubupDbTableColumn());
+		addTable(new MatubupDaoDbTableColumn());
 		addTable(new DaoMatubuparchDbTableColumn());
 		addTable(new AddaultDaoDbTableColumn());
 		addTable(new PhonaultDaoDbTableColumn());

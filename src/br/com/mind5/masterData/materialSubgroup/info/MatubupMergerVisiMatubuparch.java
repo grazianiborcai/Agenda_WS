@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.materialSubgroupSearch.info.MatubuparchInfo;
 
-final class MatubupVisiMergeMatubuparch extends InfoMergerVisitorTemplate<MatubupInfo, MatubuparchInfo> {
+final class MatubupMergerVisiMatubuparch extends InfoMergerVisitorTemplate<MatubupInfo, MatubuparchInfo> {
 
 	@Override public boolean shouldMerge(MatubupInfo baseInfo, MatubuparchInfo selectedInfo) {
 		return true;

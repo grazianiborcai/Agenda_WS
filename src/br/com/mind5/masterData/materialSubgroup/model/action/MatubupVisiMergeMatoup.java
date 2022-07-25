@@ -3,7 +3,7 @@ package br.com.mind5.masterData.materialSubgroup.model.action;
 import java.util.List;
 
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
-import br.com.mind5.masterData.materialGroup.model.decisionTree.RootMatoupSelect;
+import br.com.mind5.masterData.materialGroup.model.decisionTree.MatoupRootSelect;
 import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
 import br.com.mind5.masterData.materialSubgroup.info.MatubupMerger;
 
@@ -11,16 +11,16 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatubupMergeMatoup extends ActionVisitorTemplateMerge<MatubupInfo, MatoupInfo> {
+public final class MatubupVisiMergeMatoup extends ActionVisitorTemplateMerge<MatubupInfo, MatoupInfo> {
 	
-	public VisiMatubupMergeMatoup(DeciTreeOption<MatubupInfo> option) {
+	public MatubupVisiMergeMatoup(DeciTreeOption<MatubupInfo> option) {
 		super(option, MatoupInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<MatoupInfo>> getTreeClassHook() {
-		return RootMatoupSelect.class;
+		return MatoupRootSelect.class;
 	}
 	
 	

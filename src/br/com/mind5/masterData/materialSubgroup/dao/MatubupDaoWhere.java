@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
 
-final class DaoMatubupWhere implements DaoStmtWhere {
+final class MatubupDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoMatubupWhere(DaoWhereBuilderOption whereOption, String tableName, MatubupInfo recordInfo) {
+	public MatubupDaoWhere(DaoWhereBuilderOption whereOption, String tableName, MatubupInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,15 +26,15 @@ final class DaoMatubupWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoMatubupDbTableColumn.COL_COD_MAT_SUBGROUP :
+				case MatubupDaoDbTableColumn.COL_COD_MAT_SUBGROUP :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSubgroup));
 					break;
 					
-				case DaoMatubupDbTableColumn.COL_COD_MAT_GROUP :
+				case MatubupDaoDbTableColumn.COL_COD_MAT_GROUP :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codGroup));
 					break;
 					
-				case DaoMatubupDbTableColumn.COL_COD_LANGUAGE :
+				case MatubupDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
