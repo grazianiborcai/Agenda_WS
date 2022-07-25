@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.fileDocType.info.FidoceInfo;
 
-final class DaoFidoceWhere implements DaoStmtWhere {
+final class FidoceDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoFidoceWhere(DaoWhereBuilderOption whereOption, String tableName, FidoceInfo recordInfo) {
+	public FidoceDaoWhere(DaoWhereBuilderOption whereOption, String tableName, FidoceInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -25,11 +25,11 @@ final class DaoFidoceWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoFidoceDbTableColumn.COL_COD_FILE_DOC_TYPE :
+				case FidoceDaoDbTableColumn.COL_COD_FILE_DOC_TYPE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codFileDocType);
 					break;
 					
-				case DaoFidoceDbTableColumn.COL_COD_LANGUAGE :
+				case FidoceDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

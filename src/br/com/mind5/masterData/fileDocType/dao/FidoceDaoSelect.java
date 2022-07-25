@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.fileDocType.info.FidoceInfo;
 
-public final class DaoFidoceSelect implements DaoStmtExec<FidoceInfo> {
+public final class FidoceDaoSelect implements DaoStmtExec<FidoceInfo> {
 	private DaoStmtExec<FidoceInfo> helper;
 	
 	
-	public DaoFidoceSelect(List<DaoStmtExecOption<FidoceInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoFidoceSelectSingle.class, FidoceInfo.class);
+	public FidoceDaoSelect(List<DaoStmtExecOption<FidoceInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, FidoceDaoSelectSingle.class, FidoceInfo.class);
 	}
 	
 	

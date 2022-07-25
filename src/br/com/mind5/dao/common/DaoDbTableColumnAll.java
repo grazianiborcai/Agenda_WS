@@ -183,7 +183,7 @@ import br.com.mind5.masterData.discountStrategy.dao.DisegyDaoDbTableColumn;
 import br.com.mind5.masterData.entityCategory.dao.EntitegDaoDbTableColumn;
 import br.com.mind5.masterData.feeCategory.dao.FeecatDaoDbTableColumn;
 import br.com.mind5.masterData.feeCategorySearch.dao.FeecatarchDaoDbTableColumn;
-import br.com.mind5.masterData.fileDocType.dao.DaoFidoceDbTableColumn;
+import br.com.mind5.masterData.fileDocType.dao.FidoceDaoDbTableColumn;
 import br.com.mind5.masterData.fileDocTypeSearch.dao.DaoFidocarchDbTableColumn;
 import br.com.mind5.masterData.gender.dao.DaoGenderDbTableColumn;
 import br.com.mind5.masterData.genderSearch.dao.DaoGendarchDbTableColumn;
@@ -503,7 +503,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CaleekyDaoDbTableColumn());
 		addTable(new DaoSysonupDbTableColumn());
 		addTable(new OwnarchDaoDbTableColumn());
-		addTable(new DaoFidoceDbTableColumn());
+		addTable(new FidoceDaoDbTableColumn());
 		addTable(new DaoFidocarchDbTableColumn());
 		addTable(new OtporeDaoDbTableColumn());
 		addTable(new StoprosDaoDbTableColumn());

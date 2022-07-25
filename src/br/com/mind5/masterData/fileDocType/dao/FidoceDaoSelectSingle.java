@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.fileDocType.info.FidoceInfo;
 
-public final class DaoFidoceSelectSingle extends DaoStmtTemplate<FidoceInfo> {
+public final class FidoceDaoSelectSingle extends DaoStmtTemplate<FidoceInfo> {
 	private final String MAIN_TABLE = DaoDbTable.FILE_DOC_TYPE_TABLE;
 	
 	
-	public DaoFidoceSelectSingle(Connection conn, FidoceInfo recordInfo, String schemaName) {
+	public FidoceDaoSelectSingle(Connection conn, FidoceInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,14 +45,14 @@ public final class DaoFidoceSelectSingle extends DaoStmtTemplate<FidoceInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoFidoceWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new FidoceDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(FidoceInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoFidoceJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new FidoceDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -69,9 +69,9 @@ public final class DaoFidoceSelectSingle extends DaoStmtTemplate<FidoceInfo> {
 				do {				
 					FidoceInfo dataInfo = new FidoceInfo();
 					
-					dataInfo.codFileDocType = stmtResult.getString(DaoFidoceDbTableColumn.COL_COD_FILE_DOC_TYPE);
-					dataInfo.txtFileDocType = stmtResult.getString(DaoFidoceDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoFidoceDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codFileDocType = stmtResult.getString(FidoceDaoDbTableColumn.COL_COD_FILE_DOC_TYPE);
+					dataInfo.txtFileDocType = stmtResult.getString(FidoceDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(FidoceDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());
