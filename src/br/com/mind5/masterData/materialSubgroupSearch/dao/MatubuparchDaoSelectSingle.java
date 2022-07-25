@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.materialSubgroupSearch.info.MatubuparchInfo;
 
-public final class DaoMatubuparchSelectSingle extends DaoStmtTemplate<MatubuparchInfo> {
+public final class MatubuparchDaoSelectSingle extends DaoStmtTemplate<MatubuparchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_SUBGROUP_TABLE;
 	
 	
-	public DaoMatubuparchSelectSingle(Connection conn, MatubuparchInfo recordInfo, String schemaName) {
+	public MatubuparchDaoSelectSingle(Connection conn, MatubuparchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,7 +52,7 @@ public final class DaoMatubuparchSelectSingle extends DaoStmtTemplate<Matubuparc
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoMatubuparchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new MatubuparchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,7 +61,7 @@ public final class DaoMatubuparchSelectSingle extends DaoStmtTemplate<Matubuparc
 	@Override protected List<DaoJoin> getJoinsHook(MatubuparchInfo recordInfo) {
 		List<DaoJoin> joins = new ArrayList<>();
 		
-		DaoJoinBuilder joinText = new DaoMatubuparchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new MatubuparchDaoJoinTxt(MAIN_TABLE);		
 		joins.add(joinText.build());
 		
 		return joins;
@@ -80,10 +80,10 @@ public final class DaoMatubuparchSelectSingle extends DaoStmtTemplate<Matubuparc
 				do {				
 					MatubuparchInfo dataInfo = new MatubuparchInfo();
 					
-					dataInfo.codSubgroup = stmtResult.getInt(DaoMatubuparchDbTableColumn.COL_COD_MAT_SUBGROUP);
-					dataInfo.codGroup = stmtResult.getInt(DaoMatubuparchDbTableColumn.COL_COD_MAT_GROUP);				
-					dataInfo.txtSubgroup = stmtResult.getString(DaoMatubuparchDbTableColumn.COL_NAME);					
-					dataInfo.codLanguage = stmtResult.getString(DaoMatubuparchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codSubgroup = stmtResult.getInt(MatubuparchDaoDbTableColumn.COL_COD_MAT_SUBGROUP);
+					dataInfo.codGroup = stmtResult.getInt(MatubuparchDaoDbTableColumn.COL_COD_MAT_GROUP);				
+					dataInfo.txtSubgroup = stmtResult.getString(MatubuparchDaoDbTableColumn.COL_NAME);					
+					dataInfo.codLanguage = stmtResult.getString(MatubuparchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());
