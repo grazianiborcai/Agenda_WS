@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.paymentStatusSearch.info.PaymenusarchInfo;
 
-final class DaoPaymenusarchWhere implements DaoStmtWhere {
+final class PaymenusarchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoPaymenusarchWhere(DaoWhereBuilderOption whereOption, String tableName, PaymenusarchInfo recordInfo) {
+	public PaymenusarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, PaymenusarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -25,11 +25,11 @@ final class DaoPaymenusarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoPaymenusarchDbTableColumn.COL_COD_PAYMENT_STATUS :
+				case PaymenusarchDaoDbTableColumn.COL_COD_PAYMENT_STATUS :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codPaymentStatus);
 					break;
 					
-				case DaoPaymenusarchDbTableColumn.COL_COD_LANGUAGE :
+				case PaymenusarchDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

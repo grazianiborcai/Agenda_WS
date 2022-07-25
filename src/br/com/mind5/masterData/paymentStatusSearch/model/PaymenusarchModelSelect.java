@@ -1,7 +1,7 @@
 package br.com.mind5.masterData.paymentStatusSearch.model;
 
 import br.com.mind5.masterData.paymentStatusSearch.info.PaymenusarchInfo;
-import br.com.mind5.masterData.paymentStatusSearch.model.decisionTree.RootPaymenusarchSelect;
+import br.com.mind5.masterData.paymentStatusSearch.model.decisionTree.PaymenusarchRootSelect;
 import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -15,6 +15,6 @@ public final class PaymenusarchModelSelect extends ModelTemplate<PaymenusarchInf
 	
 	
 	@Override protected DeciTree<PaymenusarchInfo> getDecisionTreeHook(DeciTreeOption<PaymenusarchInfo> option) {
-		return new RootPaymenusarchSelect(option);
+		return new PaymenusarchRootSelect(option);
 	}
 }
