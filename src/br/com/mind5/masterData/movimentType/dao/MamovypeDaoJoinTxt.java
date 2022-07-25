@@ -7,11 +7,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoMamovypeJoinTxt implements DaoJoinBuilder {
+public final class MamovypeDaoJoinTxt implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public DaoMamovypeJoinTxt(String leftTableName) {
+	public MamovypeDaoJoinTxt(String leftTableName) {
 		leftTable = leftTableName;
 	}
 

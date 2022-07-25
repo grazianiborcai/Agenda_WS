@@ -18,11 +18,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.movimentType.info.MamovypeInfo;
 
-public final class DaoMamovypeSelectSingle extends DaoStmtTemplate<MamovypeInfo> {
+public final class MamovypeDaoSelectSingle extends DaoStmtTemplate<MamovypeInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_MOV_TYPE_TABLE;
 	
 	
-	public DaoMamovypeSelectSingle(Connection conn, MamovypeInfo recordInfo, String schemaName) {
+	public MamovypeDaoSelectSingle(Connection conn, MamovypeInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -46,14 +46,14 @@ public final class DaoMamovypeSelectSingle extends DaoStmtTemplate<MamovypeInfo>
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoMamovypeWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new MamovypeDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(MamovypeInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoMamovypeJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new MamovypeDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -70,9 +70,9 @@ public final class DaoMamovypeSelectSingle extends DaoStmtTemplate<MamovypeInfo>
 				do {				
 					MamovypeInfo dataInfo = new MamovypeInfo();
 					
-					dataInfo.codMatmovType = DaoFormatter.sqlToChar(stmtResult, DaoMamovypeDbTableColumn.COL_COD_MAT_MOV_TYPE);
-					dataInfo.txtMatmovType = stmtResult.getString(DaoMamovypeDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoMamovypeDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codMatmovType = DaoFormatter.sqlToChar(stmtResult, MamovypeDaoDbTableColumn.COL_COD_MAT_MOV_TYPE);
+					dataInfo.txtMatmovType = stmtResult.getString(MamovypeDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(MamovypeDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

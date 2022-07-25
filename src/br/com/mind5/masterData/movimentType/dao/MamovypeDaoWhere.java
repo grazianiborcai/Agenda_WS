@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.movimentType.info.MamovypeInfo;
 
-final class DaoMamovypeWhere implements DaoStmtWhere {
+final class MamovypeDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoMamovypeWhere(DaoWhereBuilderOption whereOption, String tableName, MamovypeInfo recordInfo) {
+	public MamovypeDaoWhere(DaoWhereBuilderOption whereOption, String tableName, MamovypeInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ final class DaoMamovypeWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoMamovypeDbTableColumn.COL_COD_MAT_MOV_TYPE :
+				case MamovypeDaoDbTableColumn.COL_COD_MAT_MOV_TYPE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.charToString(recordInfo.codMatmovType));
 					break;
 					
-				case DaoMamovypeDbTableColumn.COL_COD_LANGUAGE :
+				case MamovypeDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.movimentType.info.MamovypeInfo;
 
-public final class DaoMamovypeSelect implements DaoStmtExec<MamovypeInfo> {
+public final class MamovypeDaoSelect implements DaoStmtExec<MamovypeInfo> {
 	private DaoStmtExec<MamovypeInfo> helper;
 	
 	
-	public DaoMamovypeSelect(List<DaoStmtExecOption<MamovypeInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoMamovypeSelectSingle.class, MamovypeInfo.class);
+	public MamovypeDaoSelect(List<DaoStmtExecOption<MamovypeInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, MamovypeDaoSelectSingle.class, MamovypeInfo.class);
 	}
 	
 	
