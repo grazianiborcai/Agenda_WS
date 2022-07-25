@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.discount.discountStoreSnapshot.info.DisorapInfo;
-import br.com.mind5.discount.discountStoreSnapshot.model.action.StdDisorapDaoInsert;
+import br.com.mind5.discount.discountStoreSnapshot.model.action.DisorapVisiDaoInsert;
 import br.com.mind5.discount.discountStoreSnapshot.model.checker.DisorapCheckDisore;
 import br.com.mind5.discount.discountStoreSnapshot.model.checker.DisorapCheckInsert;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootDisorapInsert extends DeciTreeTemplateWrite<DisorapInfo> {
+public final class DisorapRootInsert extends DeciTreeTemplateWrite<DisorapInfo> {
 	
-	public RootDisorapInsert(DeciTreeOption<DisorapInfo> option) {
+	public DisorapRootInsert(DeciTreeOption<DisorapInfo> option) {
 		super(option);
 	}
 	
@@ -49,7 +50,7 @@ public final class RootDisorapInsert extends DeciTreeTemplateWrite<DisorapInfo> 
 	@Override protected List<ActionStd<DisorapInfo>> buildActionsOnPassedHook(DeciTreeOption<DisorapInfo> option) {
 		List<ActionStd<DisorapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<DisorapInfo> insert = new StdDisorapDaoInsert(option);
+		ActionStd<DisorapInfo> insert = new ActionStdCommom<DisorapInfo>(option, DisorapVisiDaoInsert.class);
 		
 		actions.add(insert);
 		return actions;

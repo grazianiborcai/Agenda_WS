@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.discount.discountStoreSnapshot.info.DisorapInfo;
 
-public final class DaoDisorapInsertSingle extends DaoStmtTemplate<DisorapInfo> {
+public final class DisorapDaoInsertSingle extends DaoStmtTemplate<DisorapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.DISCOUNT_STORE_SNAPSHOT_TABLE;	
 	
 	
-	public DaoDisorapInsertSingle(Connection conn, DisorapInfo recordInfo, String schemaName) {
+	public DisorapDaoInsertSingle(Connection conn, DisorapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

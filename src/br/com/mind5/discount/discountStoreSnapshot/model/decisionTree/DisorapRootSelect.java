@@ -4,22 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.discount.discountStoreSnapshot.info.DisorapInfo;
-import br.com.mind5.discount.discountStoreSnapshot.model.action.LazyDisorapMergeDisegy;
-import br.com.mind5.discount.discountStoreSnapshot.model.action.StdDisorapMergeToSelect;
+import br.com.mind5.discount.discountStoreSnapshot.model.action.DisorapVisiMergeDisegy;
+import br.com.mind5.discount.discountStoreSnapshot.model.action.DisorapVisiMergeToSelect;
 import br.com.mind5.discount.discountStoreSnapshot.model.checker.DisorapCheckLangu;
 import br.com.mind5.discount.discountStoreSnapshot.model.checker.DisorapCheckOwner;
 import br.com.mind5.discount.discountStoreSnapshot.model.checker.DisorapCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootDisorapSelect extends DeciTreeTemplateRead<DisorapInfo> {
+public final class DisorapRootSelect extends DeciTreeTemplateRead<DisorapInfo> {
 	
-	public RootDisorapSelect(DeciTreeOption<DisorapInfo> option) {
+	public DisorapRootSelect(DeciTreeOption<DisorapInfo> option) {
 		super(option);
 	}
 	
@@ -59,8 +61,8 @@ public final class RootDisorapSelect extends DeciTreeTemplateRead<DisorapInfo> {
 	@Override protected List<ActionStd<DisorapInfo>> buildActionsOnPassedHook(DeciTreeOption<DisorapInfo> option) {
 		List<ActionStd<DisorapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<DisorapInfo> select = new StdDisorapMergeToSelect(option);
-		ActionLazy<DisorapInfo> mergeDisegy = new LazyDisorapMergeDisegy(option.conn, option.schemaName);
+		ActionStd<DisorapInfo> select = new ActionStdCommom<DisorapInfo>(option, DisorapVisiMergeToSelect.class);
+		ActionLazy<DisorapInfo> mergeDisegy = new ActionLazyCommom<DisorapInfo>(option, DisorapVisiMergeDisegy.class);
 		
 		select.addPostAction(mergeDisegy);
 		

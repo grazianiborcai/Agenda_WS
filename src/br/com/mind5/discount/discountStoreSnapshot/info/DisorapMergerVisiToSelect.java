@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class DisorapVisiMergeToSelect extends InfoMergerVisitorTemplate<DisorapInfo, DisorapInfo> {
+final class DisorapMergerVisiToSelect extends InfoMergerVisitorTemplate<DisorapInfo, DisorapInfo> {
 	@Override public boolean shouldMerge(DisorapInfo baseInfo, DisorapInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}

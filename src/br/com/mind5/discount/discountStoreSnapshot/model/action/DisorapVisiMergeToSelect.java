@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.discount.discountStoreSnapshot.info.DisorapInfo;
 import br.com.mind5.discount.discountStoreSnapshot.info.DisorapMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiDisorapMergeToSelect extends ActionVisitorTemplateMerge<DisorapInfo, DisorapInfo> {
+public final class DisorapVisiMergeToSelect extends ActionVisitorTemplateMerge<DisorapInfo, DisorapInfo> {
 	
-	public VisiDisorapMergeToSelect(DeciTreeOption<DisorapInfo> option) {
+	public DisorapVisiMergeToSelect(DeciTreeOption<DisorapInfo> option) {
 		super(option, DisorapInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<DisorapInfo>> getActionClassHook() {
-		return StdDisorapDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<DisorapInfo>> getVisitorClassHook() {
+		return DisorapVisiDaoSelect.class;
 	}
 	
 	

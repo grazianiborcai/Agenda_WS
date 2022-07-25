@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.discountStrategy.info.DisegyInfo;
 
-final class DisorapVisiMergeDisegy extends InfoMergerVisitorTemplate<DisorapInfo, DisegyInfo> {
+final class DisorapMergerVisiDisegy extends InfoMergerVisitorTemplate<DisorapInfo, DisegyInfo> {
 
 	@Override public boolean shouldMerge(DisorapInfo baseInfo, DisegyInfo selectedInfo) {
 		return (baseInfo.codDiscountStrategy == selectedInfo.codDiscountStrategy);

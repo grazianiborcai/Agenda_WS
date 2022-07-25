@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiDisorapMergeDisegy extends ActionVisitorTemplateMerge<DisorapInfo, DisegyInfo> {
+public final class DisorapVisiMergeDisegy extends ActionVisitorTemplateMerge<DisorapInfo, DisegyInfo> {
 	
-	public VisiDisorapMergeDisegy(DeciTreeOption<DisorapInfo> option) {
+	public DisorapVisiMergeDisegy(DeciTreeOption<DisorapInfo> option) {
 		super(option, DisegyInfo.class);
 	}
 	

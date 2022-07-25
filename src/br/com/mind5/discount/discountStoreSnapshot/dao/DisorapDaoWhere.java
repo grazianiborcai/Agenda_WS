@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.discount.discountStoreSnapshot.info.DisorapInfo;
 
-public final class DaoDisorapWhere implements DaoStmtWhere {
+public final class DisorapDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoDisorapWhere(DaoWhereBuilderOption whereOption, String tableName, DisorapInfo recordInfo) {
+	public DisorapDaoWhere(DaoWhereBuilderOption whereOption, String tableName, DisorapInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,11 +27,11 @@ public final class DaoDisorapWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoDisorapDbTableColumn.COL_COD_OWNER :
+				case DisorapDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoDisorapDbTableColumn.COL_COD_SNAPSHOT :
+				case DisorapDaoDbTableColumn.COL_COD_SNAPSHOT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSnapshot));
 					break;
 			}

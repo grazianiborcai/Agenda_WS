@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoDisorapInsert implements DaoStmtExec<DisorapInfo> {
+public class DisorapDaoSelect implements DaoStmtExec<DisorapInfo> {
 	private DaoStmtExec<DisorapInfo> helper;
 	
 	
-	public DaoDisorapInsert(List<DaoStmtExecOption<DisorapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoDisorapInsertSingle.class, DisorapInfo.class);
+	public DisorapDaoSelect(List<DaoStmtExecOption<DisorapInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, DisorapDaoSelectSingle.class, DisorapInfo.class);
 	}
 	
 	

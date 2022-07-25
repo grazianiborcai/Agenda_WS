@@ -12,7 +12,7 @@ public final class DisorapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new DisorapVisiMergeDisegy());
+		builder.addVisitor(new DisorapMergerVisiDisegy());
 		InfoMerger<DisorapInfo, DisegyInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class DisorapMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new DisorapVisiMergeToSelect());
+		builder.addVisitor(new DisorapMergerVisiToSelect());
 		InfoMerger<DisorapInfo, DisorapInfo> merger = builder.build();		
 	
 		return merger.merge();

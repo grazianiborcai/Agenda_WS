@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.discount.discountCouponItem.info.DisoupemInfo;
 import br.com.mind5.discount.discountCouponItem.info.DisoupemMerger;
 import br.com.mind5.discount.discountStoreSnapshot.info.DisorapInfo;
-import br.com.mind5.discount.discountStoreSnapshot.model.decisionTree.RootDisorapSelect;
+import br.com.mind5.discount.discountStoreSnapshot.model.decisionTree.DisorapRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class DisoupemVisiMergeDisorap extends ActionVisitorTemplateMerge<D
 	
 	
 	@Override protected Class<? extends DeciTree<DisorapInfo>> getTreeClassHook() {
-		return RootDisorapSelect.class;
+		return DisorapRootSelect.class;
 	}
 	
 	
