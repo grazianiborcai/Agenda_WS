@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.orderStatusSearch.info.OrderatarchInfo;
 
-public final class DaoOrderatarchSelectSingle extends DaoStmtTemplate<OrderatarchInfo> {
+public final class OrderatarchDaoSelectSingle extends DaoStmtTemplate<OrderatarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.ORDER_STATUS_TABLE;
 	
 	
-	public DaoOrderatarchSelectSingle(Connection conn, OrderatarchInfo recordInfo, String schemaName) {
+	public OrderatarchDaoSelectSingle(Connection conn, OrderatarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,14 +52,14 @@ public final class DaoOrderatarchSelectSingle extends DaoStmtTemplate<Orderatarc
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoOrderatarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new OrderatarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(OrderatarchInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoOrderatarchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new OrderatarchDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -76,9 +76,9 @@ public final class DaoOrderatarchSelectSingle extends DaoStmtTemplate<Orderatarc
 				do {				
 					OrderatarchInfo dataInfo = new OrderatarchInfo();
 					
-					dataInfo.codOrderStatus = stmtResult.getString(DaoOrderatarchDbTableColumn.COL_COD_ORDER_STATUS);
-					dataInfo.txtOrderStatus = stmtResult.getString(DaoOrderatarchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoOrderatarchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codOrderStatus = stmtResult.getString(OrderatarchDaoDbTableColumn.COL_COD_ORDER_STATUS);
+					dataInfo.txtOrderStatus = stmtResult.getString(OrderatarchDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(OrderatarchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

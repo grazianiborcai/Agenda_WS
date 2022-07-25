@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.orderStatusSearch.info.OrderatarchInfo;
-import br.com.mind5.masterData.orderStatusSearch.model.action.StdOrderatarchDaoSelect;
+import br.com.mind5.masterData.orderStatusSearch.model.action.OrderatarchVisiDaoSelect;
 import br.com.mind5.masterData.orderStatusSearch.model.checker.OrderatarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOrderatarchSelect extends DeciTreeTemplateRead<OrderatarchInfo> {
+public final class OrderatarchRootSelect extends DeciTreeTemplateRead<OrderatarchInfo> {
 	
-	public RootOrderatarchSelect(DeciTreeOption<OrderatarchInfo> option) {
+	public OrderatarchRootSelect(DeciTreeOption<OrderatarchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootOrderatarchSelect extends DeciTreeTemplateRead<Orderatarc
 	@Override protected List<ActionStd<OrderatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderatarchInfo> option) {
 		List<ActionStd<OrderatarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderatarchInfo> select = new StdOrderatarchDaoSelect(option);
+		ActionStd<OrderatarchInfo> select = new ActionStdCommom<OrderatarchInfo>(option, OrderatarchVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

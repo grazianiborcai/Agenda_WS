@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.orderStatusSearch.info.OrderatarchInfo;
 
-public final class DaoOrderatarchSelect implements DaoStmtExec<OrderatarchInfo> {
+public final class OrderatarchDaoSelect implements DaoStmtExec<OrderatarchInfo> {
 	private DaoStmtExec<OrderatarchInfo> helper;
 	
 	
-	public DaoOrderatarchSelect(List<DaoStmtExecOption<OrderatarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoOrderatarchSelectSingle.class, OrderatarchInfo.class);
+	public OrderatarchDaoSelect(List<DaoStmtExecOption<OrderatarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, OrderatarchDaoSelectSingle.class, OrderatarchInfo.class);
 	}
 	
 	
