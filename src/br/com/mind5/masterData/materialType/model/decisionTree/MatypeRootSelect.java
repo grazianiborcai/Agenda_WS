@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.materialType.info.MatypeInfo;
-import br.com.mind5.masterData.materialType.model.action.StdMatypeDaoSelect;
+import br.com.mind5.masterData.materialType.model.action.MatypeVisiDaoSelect;
 import br.com.mind5.masterData.materialType.model.checker.MatypeCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatypeSelect extends DeciTreeTemplateRead<MatypeInfo> {
+public final class MatypeRootSelect extends DeciTreeTemplateRead<MatypeInfo> {
 	
-	public RootMatypeSelect(DeciTreeOption<MatypeInfo> option) {
+	public MatypeRootSelect(DeciTreeOption<MatypeInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootMatypeSelect extends DeciTreeTemplateRead<MatypeInfo> {
 	@Override protected List<ActionStd<MatypeInfo>> buildActionsOnPassedHook(DeciTreeOption<MatypeInfo> option) {
 		List<ActionStd<MatypeInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatypeInfo> select = new StdMatypeDaoSelect(option);
+		ActionStd<MatypeInfo> select = new ActionStdCommom<MatypeInfo>(option, MatypeVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

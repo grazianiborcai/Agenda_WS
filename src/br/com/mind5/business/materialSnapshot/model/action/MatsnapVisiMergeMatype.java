@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialSnapshot.info.MatsnapMerger;
 import br.com.mind5.masterData.materialType.info.MatypeInfo;
-import br.com.mind5.masterData.materialType.model.decisionTree.RootMatypeSelect;
+import br.com.mind5.masterData.materialType.model.decisionTree.MatypeRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class MatsnapVisiMergeMatype extends ActionVisitorTemplateMerge<Mat
 	
 	
 	@Override protected Class<? extends DeciTree<MatypeInfo>> getTreeClassHook() {
-		return RootMatypeSelect.class;
+		return MatypeRootSelect.class;
 	}
 	
 	

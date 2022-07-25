@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.materialType.info.MatypeInfo;
 
-public final class DaoMatypeSelectSingle extends DaoStmtTemplate<MatypeInfo> {
+public final class MatypeDaoSelectSingle extends DaoStmtTemplate<MatypeInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_TYPE_TABLE;
 	
 	
-	public DaoMatypeSelectSingle(Connection conn, MatypeInfo recordInfo, String schemaName) {
+	public MatypeDaoSelectSingle(Connection conn, MatypeInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,14 +45,14 @@ public final class DaoMatypeSelectSingle extends DaoStmtTemplate<MatypeInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoMatypeWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new MatypeDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(MatypeInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoMatypeJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new MatypeDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -69,9 +69,9 @@ public final class DaoMatypeSelectSingle extends DaoStmtTemplate<MatypeInfo> {
 				do {				
 					MatypeInfo dataInfo = new MatypeInfo();
 					
-					dataInfo.codType = stmtResult.getInt(DaoMatypeDbTableColumn.COL_COD_MAT_TYPE);
-					dataInfo.txtType = stmtResult.getString(DaoMatypeDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoMatypeDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codType = stmtResult.getInt(MatypeDaoDbTableColumn.COL_COD_MAT_TYPE);
+					dataInfo.txtType = stmtResult.getString(MatypeDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(MatypeDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());
