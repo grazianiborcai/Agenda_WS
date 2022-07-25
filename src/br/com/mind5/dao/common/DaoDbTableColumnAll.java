@@ -202,7 +202,7 @@ import br.com.mind5.masterData.materialUnitSearch.dao.MatunitarchDaoDbTableColum
 import br.com.mind5.masterData.month.dao.MonthDaoDbTableColumn;
 import br.com.mind5.masterData.monthSearch.dao.MontharchDaoDbTableColumn;
 import br.com.mind5.masterData.moonPhase.dao.MoonaseDaoDbTableColumn;
-import br.com.mind5.masterData.moonPhaseSearch.dao.DaoMoonasarchDbTableColumn;
+import br.com.mind5.masterData.moonPhaseSearch.dao.MoonasarchDaoDbTableColumn;
 import br.com.mind5.masterData.movimentType.dao.DaoMamovypeDbTableColumn;
 import br.com.mind5.masterData.orderStatus.dao.DaoOrderatusDbTableColumn;
 import br.com.mind5.masterData.orderStatusSearch.dao.DaoOrderatarchDbTableColumn;
@@ -437,7 +437,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new PayormarchDaoDbTableColumn());
 		addTable(new PayordistDaoDbTableColumn());
 		addTable(new PayordemistDaoDbTableColumn());
-		addTable(new DaoMoonasarchDbTableColumn());
+		addTable(new MoonasarchDaoDbTableColumn());
 		addTable(new MoonaseDaoDbTableColumn());
 		addTable(new MooncalDaoDbTableColumn());
 		addTable(new CalateDaoDbTableColumn());

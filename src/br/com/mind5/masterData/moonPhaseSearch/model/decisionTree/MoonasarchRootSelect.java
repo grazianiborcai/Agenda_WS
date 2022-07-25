@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.moonPhaseSearch.info.MoonasarchInfo;
-import br.com.mind5.masterData.moonPhaseSearch.model.action.StdMoonasarchDaoSelect;
+import br.com.mind5.masterData.moonPhaseSearch.model.action.MoonasarchVisiDaoSelect;
 import br.com.mind5.masterData.moonPhaseSearch.model.checker.MoonasarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMoonasarchSelect extends DeciTreeTemplateRead<MoonasarchInfo> {
+public final class MoonasarchRootSelect extends DeciTreeTemplateRead<MoonasarchInfo> {
 	
-	public RootMoonasarchSelect(DeciTreeOption<MoonasarchInfo> option) {
+	public MoonasarchRootSelect(DeciTreeOption<MoonasarchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootMoonasarchSelect extends DeciTreeTemplateRead<MoonasarchI
 	@Override protected List<ActionStd<MoonasarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MoonasarchInfo> option) {
 		List<ActionStd<MoonasarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MoonasarchInfo> select = new StdMoonasarchDaoSelect(option);
+		ActionStd<MoonasarchInfo> select = new ActionStdCommom<MoonasarchInfo>(option, MoonasarchVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.moonPhase.info.MoonaseMerger;
 import br.com.mind5.masterData.moonPhaseSearch.info.MoonasarchInfo;
-import br.com.mind5.masterData.moonPhaseSearch.model.decisionTree.RootMoonasarchSelect;
+import br.com.mind5.masterData.moonPhaseSearch.model.decisionTree.MoonasarchRootSelect;
 
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -20,7 +20,7 @@ public final class MoonaseVisiMergeMoonasarch extends ActionVisitorTemplateMerge
 	
 	
 	@Override protected Class<? extends DeciTree<MoonasarchInfo>> getTreeClassHook() {
-		return RootMoonasarchSelect.class;
+		return MoonasarchRootSelect.class;
 	}
 	
 	
