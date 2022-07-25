@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.petSnapshot.info.PetsnapInfo;
 import br.com.mind5.business.petSnapshot.info.PetsnapMerger;
 import br.com.mind5.masterData.petWeight.info.PeteightInfo;
-import br.com.mind5.masterData.petWeight.model.decisionTree.RootPeteightSelect;
+import br.com.mind5.masterData.petWeight.model.decisionTree.PeteightRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class PetsnapVisiMergePeteight extends ActionVisitorTemplateMerge<P
 	
 	
 	@Override protected Class<? extends DeciTree<PeteightInfo>> getTreeClassHook() {
-		return RootPeteightSelect.class;
+		return PeteightRootSelect.class;
 	}
 	
 	

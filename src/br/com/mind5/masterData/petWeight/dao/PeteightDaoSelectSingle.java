@@ -18,11 +18,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.petWeight.info.PeteightInfo;
 
-public final class DaoPeteightSelectSingle extends DaoStmtTemplate<PeteightInfo> {
+public final class PeteightDaoSelectSingle extends DaoStmtTemplate<PeteightInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PET_WEIGHT_TABLE;
 	
 	
-	public DaoPeteightSelectSingle(Connection conn, PeteightInfo recordInfo, String schemaName) {
+	public PeteightDaoSelectSingle(Connection conn, PeteightInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -46,14 +46,14 @@ public final class DaoPeteightSelectSingle extends DaoStmtTemplate<PeteightInfo>
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoPeteightWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new PeteightDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(PeteightInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoPeteightJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new PeteightDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}	
 	
@@ -70,9 +70,9 @@ public final class DaoPeteightSelectSingle extends DaoStmtTemplate<PeteightInfo>
 				do {				
 					PeteightInfo dataInfo = new PeteightInfo();
 					
-					dataInfo.codPeteight = DaoFormatter.sqlToInt(stmtResult, DaoPeteightDbTableColumn.COL_COD_PET_WEIGHT);
-					dataInfo.txtPeteightKg = stmtResult.getString(DaoPeteightDbTableColumn.COL_NAME_KG);
-					dataInfo.codLanguage = stmtResult.getString(DaoPeteightDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codPeteight = DaoFormatter.sqlToInt(stmtResult, PeteightDaoDbTableColumn.COL_COD_PET_WEIGHT);
+					dataInfo.txtPeteightKg = stmtResult.getString(PeteightDaoDbTableColumn.COL_NAME_KG);
+					dataInfo.codLanguage = stmtResult.getString(PeteightDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

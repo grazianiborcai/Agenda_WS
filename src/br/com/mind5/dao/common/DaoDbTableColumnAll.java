@@ -211,7 +211,7 @@ import br.com.mind5.masterData.paymentStatus.dao.PaymenusDaoDbTableColumn;
 import br.com.mind5.masterData.paymentStatusSearch.dao.PaymenusarchDaoDbTableColumn;
 import br.com.mind5.masterData.petType.dao.PetypeDaoDbTableColumn;
 import br.com.mind5.masterData.petTypeSearch.dao.PetyparchDaoDbTableColumn;
-import br.com.mind5.masterData.petWeight.dao.DaoPeteightDbTableColumn;
+import br.com.mind5.masterData.petWeight.dao.PeteightDaoDbTableColumn;
 import br.com.mind5.masterData.petWeightSearch.dao.DaoPeteightarchDbTableColumn;
 import br.com.mind5.masterData.position.dao.DaoPositionDbTableColumn;
 import br.com.mind5.masterData.prospectStatus.dao.DaoProstusDbTableColumn;
@@ -555,7 +555,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new FimgysapDaoDbTableColumn());
 		addTable(new PetypeDaoDbTableColumn());
 		addTable(new PetyparchDaoDbTableColumn());
-		addTable(new DaoPeteightDbTableColumn());
+		addTable(new PeteightDaoDbTableColumn());
 		addTable(new DaoPeteightarchDbTableColumn());
 		addTable(new PetDaoDbTableColumn());
 		addTable(new PetsnapDaoDbTableColumn());
