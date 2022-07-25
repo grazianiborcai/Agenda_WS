@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.petType.info.PetypeInfo;
-import br.com.mind5.masterData.petType.model.action.StdPetypeDaoSelect;
+import br.com.mind5.masterData.petType.model.action.PetypeVisiDaoSelect;
 import br.com.mind5.masterData.petType.model.checker.PetypeCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPetypeSelect extends DeciTreeTemplateRead<PetypeInfo> {
+public final class PetypeRootSelect extends DeciTreeTemplateRead<PetypeInfo> {
 	
-	public RootPetypeSelect(DeciTreeOption<PetypeInfo> option) {
+	public PetypeRootSelect(DeciTreeOption<PetypeInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootPetypeSelect extends DeciTreeTemplateRead<PetypeInfo> {
 	@Override protected List<ActionStd<PetypeInfo>> buildActionsOnPassedHook(DeciTreeOption<PetypeInfo> option) {
 		List<ActionStd<PetypeInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PetypeInfo> select = new StdPetypeDaoSelect(option);
+		ActionStd<PetypeInfo> select = new ActionStdCommom<PetypeInfo>(option, PetypeVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

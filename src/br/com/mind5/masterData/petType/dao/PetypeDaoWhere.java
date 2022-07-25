@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.petType.info.PetypeInfo;
 
-final class DaoPetypeWhere implements DaoStmtWhere {
+final class PetypeDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoPetypeWhere(DaoWhereBuilderOption whereOption, String tableName, PetypeInfo recordInfo) {
+	public PetypeDaoWhere(DaoWhereBuilderOption whereOption, String tableName, PetypeInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,12 +26,12 @@ final class DaoPetypeWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoPetypeDbTableColumn.COL_COD_PET_TYPE :
+				case PetypeDaoDbTableColumn.COL_COD_PET_TYPE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPetype));
 					break;
 					
 					
-				case DaoPetypeDbTableColumn.COL_COD_LANGUAGE :
+				case PetypeDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
