@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiWeekdayMergeWeekdarch extends ActionVisitorTemplateMerge<WeekdayInfo, WeekdarchInfo> {
+public final class WeekdayVisiMergeWeekdarch extends ActionVisitorTemplateMerge<WeekdayInfo, WeekdarchInfo> {
 	
-	public VisiWeekdayMergeWeekdarch(DeciTreeOption<WeekdayInfo> option) {
+	public WeekdayVisiMergeWeekdarch(DeciTreeOption<WeekdayInfo> option) {
 		super(option, WeekdarchInfo.class);
 	}
 	

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.weekdaySearch.info.WeekdarchInfo;
 
-final class WeekdayVisiMergeWeekdarch extends InfoMergerVisitorTemplate<WeekdayInfo, WeekdarchInfo> {
+final class WeekdayMergerVisiWeekdarch extends InfoMergerVisitorTemplate<WeekdayInfo, WeekdarchInfo> {
 
 	@Override public boolean shouldMerge(WeekdayInfo baseInfo, WeekdarchInfo selectedInfo) {
 		return true;

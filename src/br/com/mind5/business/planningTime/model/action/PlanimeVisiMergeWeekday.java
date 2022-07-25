@@ -6,7 +6,7 @@ import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.planningTime.info.PlanimeMerger;
 import br.com.mind5.masterData.weekday.info.WeekdayCopier;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
-import br.com.mind5.masterData.weekday.model.decisionTree.RootWeekdaySelect;
+import br.com.mind5.masterData.weekday.model.decisionTree.WeekdayRootSelect;
 
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -21,7 +21,7 @@ public final class PlanimeVisiMergeWeekday extends ActionVisitorTemplateMerge<Pl
 	
 	
 	@Override protected Class<? extends DeciTree<WeekdayInfo>> getTreeClassHook() {
-		return RootWeekdaySelect.class;
+		return WeekdayRootSelect.class;
 	}
 	
 	

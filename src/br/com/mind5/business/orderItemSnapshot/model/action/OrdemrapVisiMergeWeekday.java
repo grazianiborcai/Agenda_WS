@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapMerger;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
-import br.com.mind5.masterData.weekday.model.decisionTree.RootWeekdaySelect;
+import br.com.mind5.masterData.weekday.model.decisionTree.WeekdayRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class OrdemrapVisiMergeWeekday extends ActionVisitorTemplateMerge<O
 	
 	
 	@Override protected Class<? extends DeciTree<WeekdayInfo>> getTreeClassHook() {
-		return RootWeekdaySelect.class;
+		return WeekdayRootSelect.class;
 	}
 	
 	

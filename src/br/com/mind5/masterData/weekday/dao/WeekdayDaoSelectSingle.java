@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
-public final class DaoWeekdaySelectSingle extends DaoStmtTemplate<WeekdayInfo> {
+public final class WeekdayDaoSelectSingle extends DaoStmtTemplate<WeekdayInfo> {
 	private final String MAIN_TABLE = DaoDbTable.WEEKDAY_TABLE;
 	
 	
-	public DaoWeekdaySelectSingle(Connection conn, WeekdayInfo recordInfo, String schemaName) {
+	public WeekdayDaoSelectSingle(Connection conn, WeekdayInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,14 +45,14 @@ public final class DaoWeekdaySelectSingle extends DaoStmtTemplate<WeekdayInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoWeekdayWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new WeekdayDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(WeekdayInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoWeekdayJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new WeekdayDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -69,11 +69,11 @@ public final class DaoWeekdaySelectSingle extends DaoStmtTemplate<WeekdayInfo> {
 				do {				
 					WeekdayInfo dataInfo = new WeekdayInfo();
 					
-					dataInfo.codWeekday = stmtResult.getInt(DaoWeekdayDbTableColumn.COL_COD_WEEKDAY);
-					dataInfo.sortSaturday = stmtResult.getInt(DaoWeekdayDbTableColumn.COL_SORT_SATURDAY);
-					dataInfo.sortSunday = stmtResult.getInt(DaoWeekdayDbTableColumn.COL_SORT_SUNDAY);
-					dataInfo.txtWeekday = stmtResult.getString(DaoWeekdayDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoWeekdayDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codWeekday = stmtResult.getInt(WeekdayDaoDbTableColumn.COL_COD_WEEKDAY);
+					dataInfo.sortSaturday = stmtResult.getInt(WeekdayDaoDbTableColumn.COL_SORT_SATURDAY);
+					dataInfo.sortSunday = stmtResult.getInt(WeekdayDaoDbTableColumn.COL_SORT_SUNDAY);
+					dataInfo.txtWeekday = stmtResult.getString(WeekdayDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(WeekdayDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

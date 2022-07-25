@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
-public final class DaoWeekdaySelect implements DaoStmtExec<WeekdayInfo> {
+public final class WeekdayDaoSelect implements DaoStmtExec<WeekdayInfo> {
 	private DaoStmtExec<WeekdayInfo> helper;
 	
 	
-	public DaoWeekdaySelect(List<DaoStmtExecOption<WeekdayInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoWeekdaySelectSingle.class, WeekdayInfo.class);
+	public WeekdayDaoSelect(List<DaoStmtExecOption<WeekdayInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, WeekdayDaoSelectSingle.class, WeekdayInfo.class);
 	}
 	
 	

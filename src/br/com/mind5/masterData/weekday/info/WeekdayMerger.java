@@ -12,7 +12,7 @@ public final class WeekdayMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new WeekdayVisiMergeWeekdarch());
+		builder.addVisitor(new WeekdayMergerVisiWeekdarch());
 		InfoMerger<WeekdayInfo, WeekdarchInfo> merger = builder.build();		
 	
 		return merger.merge();

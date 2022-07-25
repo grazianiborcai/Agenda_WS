@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
-import br.com.mind5.masterData.weekday.model.action.LazyWeekdayRootSelect;
-import br.com.mind5.masterData.weekday.model.action.StdWeekdayMergeWeekdarch;
+import br.com.mind5.masterData.weekday.model.action.WeekdayVisiMergeWeekdarch;
+import br.com.mind5.masterData.weekday.model.action.WeekdayVisiRootSelect;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootWeekdaySearch extends DeciTreeTemplateWrite<WeekdayInfo> {
+public final class WeekdayRootSearch extends DeciTreeTemplateWrite<WeekdayInfo> {
 	
-	public RootWeekdaySearch(DeciTreeOption<WeekdayInfo> option) {
+	public WeekdayRootSearch(DeciTreeOption<WeekdayInfo> option) {
 		super(option);
 	}
 	
@@ -37,8 +39,8 @@ public final class RootWeekdaySearch extends DeciTreeTemplateWrite<WeekdayInfo> 
 	@Override protected List<ActionStd<WeekdayInfo>> buildActionsOnPassedHook(DeciTreeOption<WeekdayInfo> option) {
 		List<ActionStd<WeekdayInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<WeekdayInfo> mergeWeekdarch = new StdWeekdayMergeWeekdarch(option);		
-		ActionLazy<WeekdayInfo> select = new LazyWeekdayRootSelect(option.conn, option.schemaName);
+		ActionStd<WeekdayInfo> mergeWeekdarch =  new ActionStdCommom<WeekdayInfo>(option, WeekdayVisiMergeWeekdarch.class);		
+		ActionLazy<WeekdayInfo> select = new ActionLazyCommom<WeekdayInfo>(option, WeekdayVisiRootSelect.class);
 		
 		mergeWeekdarch.addPostAction(select);
 		

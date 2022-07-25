@@ -228,7 +228,7 @@ import br.com.mind5.masterData.sysEnvironment.dao.SysenvDaoDbTableColumn;
 import br.com.mind5.masterData.timezone.dao.TimezoneDaoDbTableColumn;
 import br.com.mind5.masterData.timezoneSearch.dao.TimezonarchDaoDbTableColumn;
 import br.com.mind5.masterData.userCategory.dao.UseregDaoDbTableColumn;
-import br.com.mind5.masterData.weekday.dao.DaoWeekdayDbTableColumn;
+import br.com.mind5.masterData.weekday.dao.WeekdayDaoDbTableColumn;
 import br.com.mind5.masterData.weekdaySearch.dao.DaoWeekdarchDbTableColumn;
 import br.com.mind5.message.email.dao.DaoEmailDbTableColumn;
 import br.com.mind5.message.emailBody.dao.DaoEmabodyDbTableColumn;
@@ -468,7 +468,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new MatouparchDaoDbTableColumn());
 		addTable(new GenderDaoDbTableColumn());
 		addTable(new GendarchDaoDbTableColumn());
-		addTable(new DaoWeekdayDbTableColumn());
+		addTable(new WeekdayDaoDbTableColumn());
 		addTable(new DaoWeekdarchDbTableColumn());
 		addTable(new DaypartDaoDbTableColumn());
 		addTable(new DayparchDaoDbTableColumn());
