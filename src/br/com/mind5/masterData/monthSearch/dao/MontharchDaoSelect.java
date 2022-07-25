@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.monthSearch.info.MontharchInfo;
 
-public final class DaoMontharchSelect implements DaoStmtExec<MontharchInfo> {
+public final class MontharchDaoSelect implements DaoStmtExec<MontharchInfo> {
 	private DaoStmtExec<MontharchInfo> helper;
 	
 	
-	public DaoMontharchSelect(List<DaoStmtExecOption<MontharchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoMontharchSelectSingle.class, MontharchInfo.class);
+	public MontharchDaoSelect(List<DaoStmtExecOption<MontharchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, MontharchDaoSelectSingle.class, MontharchInfo.class);
 	}
 	
 	

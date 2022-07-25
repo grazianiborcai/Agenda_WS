@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.monthSearch.info.MontharchInfo;
-import br.com.mind5.masterData.monthSearch.model.action.StdMontharchDaoSelect;
+import br.com.mind5.masterData.monthSearch.model.action.MontharchVisiDaoSelect;
 import br.com.mind5.masterData.monthSearch.model.checker.MontharchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMontharchSelect extends DeciTreeTemplateRead<MontharchInfo> {
+public final class MontharchRootSelect extends DeciTreeTemplateRead<MontharchInfo> {
 	
-	public RootMontharchSelect(DeciTreeOption<MontharchInfo> option) {
+	public MontharchRootSelect(DeciTreeOption<MontharchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootMontharchSelect extends DeciTreeTemplateRead<MontharchInf
 	@Override protected List<ActionStd<MontharchInfo>> buildActionsOnPassedHook(DeciTreeOption<MontharchInfo> option) {
 		List<ActionStd<MontharchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MontharchInfo> select = new StdMontharchDaoSelect(option);
+		ActionStd<MontharchInfo> select = new ActionStdCommom<MontharchInfo>(option, MontharchVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;
