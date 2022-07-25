@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoWeekdarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class WeekdarchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_COD_WEEKDAY = DaoDbField.COL_COD_WEEKDAY;	
 	public static final String COL_NAME = DaoDbField.COL_NAME;
@@ -17,7 +17,7 @@ public final class DaoWeekdarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_SORT_SUNDAY = DaoDbField.COL_SORT_SUNDAY;	
 
 	
-	public DaoWeekdarchDbTableColumn() {
+	public WeekdarchDaoDbTableColumn() {
 		super();
 	}
 	

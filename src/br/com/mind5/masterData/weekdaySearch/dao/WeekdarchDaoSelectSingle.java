@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.weekdaySearch.info.WeekdarchInfo;
 
-public final class DaoWeekdarchSelectSingle extends DaoStmtTemplate<WeekdarchInfo> {
+public final class WeekdarchDaoSelectSingle extends DaoStmtTemplate<WeekdarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.WEEKDAY_TABLE;
 	
 	
-	public DaoWeekdarchSelectSingle(Connection conn, WeekdarchInfo recordInfo, String schemaName) {
+	public WeekdarchDaoSelectSingle(Connection conn, WeekdarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,14 +52,14 @@ public final class DaoWeekdarchSelectSingle extends DaoStmtTemplate<WeekdarchInf
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoWeekdarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new WeekdarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(WeekdarchInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoWeekdarchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new WeekdarchDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -76,11 +76,11 @@ public final class DaoWeekdarchSelectSingle extends DaoStmtTemplate<WeekdarchInf
 				do {				
 					WeekdarchInfo dataInfo = new WeekdarchInfo();
 					
-					dataInfo.codWeekday = stmtResult.getInt(DaoWeekdarchDbTableColumn.COL_COD_WEEKDAY);
-					dataInfo.sortSaturday = stmtResult.getInt(DaoWeekdarchDbTableColumn.COL_SORT_SATURDAY);
-					dataInfo.sortSunday = stmtResult.getInt(DaoWeekdarchDbTableColumn.COL_SORT_SUNDAY);
-					dataInfo.txtWeekday = stmtResult.getString(DaoWeekdarchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoWeekdarchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codWeekday = stmtResult.getInt(WeekdarchDaoDbTableColumn.COL_COD_WEEKDAY);
+					dataInfo.sortSaturday = stmtResult.getInt(WeekdarchDaoDbTableColumn.COL_SORT_SATURDAY);
+					dataInfo.sortSunday = stmtResult.getInt(WeekdarchDaoDbTableColumn.COL_SORT_SUNDAY);
+					dataInfo.txtWeekday = stmtResult.getString(WeekdarchDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(WeekdarchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

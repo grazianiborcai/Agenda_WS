@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.masterData.weekday.info.WeekdayMerger;
 import br.com.mind5.masterData.weekdaySearch.info.WeekdarchInfo;
-import br.com.mind5.masterData.weekdaySearch.model.decisionTree.RootWeekdarchSelect;
+import br.com.mind5.masterData.weekdaySearch.model.decisionTree.WeekdarchRootSelect;
 
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -20,7 +20,7 @@ public final class WeekdayVisiMergeWeekdarch extends ActionVisitorTemplateMerge<
 	
 	
 	@Override protected Class<? extends DeciTree<WeekdarchInfo>> getTreeClassHook() {
-		return RootWeekdarchSelect.class;
+		return WeekdarchRootSelect.class;
 	}
 	
 	

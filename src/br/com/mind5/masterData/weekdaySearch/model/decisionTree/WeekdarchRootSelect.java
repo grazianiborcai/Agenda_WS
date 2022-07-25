@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.weekdaySearch.info.WeekdarchInfo;
-import br.com.mind5.masterData.weekdaySearch.model.action.StdWeekdarchDaoSelect;
+import br.com.mind5.masterData.weekdaySearch.model.action.WeekdarchVisiDaoSelect;
 import br.com.mind5.masterData.weekdaySearch.model.checker.WeekdarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootWeekdarchSelect extends DeciTreeTemplateRead<WeekdarchInfo> {
+public final class WeekdarchRootSelect extends DeciTreeTemplateRead<WeekdarchInfo> {
 	
-	public RootWeekdarchSelect(DeciTreeOption<WeekdarchInfo> option) {
+	public WeekdarchRootSelect(DeciTreeOption<WeekdarchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootWeekdarchSelect extends DeciTreeTemplateRead<WeekdarchInf
 	@Override protected List<ActionStd<WeekdarchInfo>> buildActionsOnPassedHook(DeciTreeOption<WeekdarchInfo> option) {
 		List<ActionStd<WeekdarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<WeekdarchInfo> select = new StdWeekdarchDaoSelect(option);
+		ActionStd<WeekdarchInfo> select = new ActionStdCommom<WeekdarchInfo>(option, WeekdarchVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

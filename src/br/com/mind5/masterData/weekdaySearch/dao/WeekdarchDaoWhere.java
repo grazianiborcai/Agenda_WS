@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.weekdaySearch.info.WeekdarchInfo;
 
-final class DaoWeekdarchWhere implements DaoStmtWhere {
+final class WeekdarchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoWeekdarchWhere(DaoWhereBuilderOption whereOption, String tableName, WeekdarchInfo recordInfo) {
+	public WeekdarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, WeekdarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ final class DaoWeekdarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoWeekdarchDbTableColumn.COL_COD_WEEKDAY :
+				case WeekdarchDaoDbTableColumn.COL_COD_WEEKDAY :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codWeekday));
 					break;
 					
-				case DaoWeekdarchDbTableColumn.COL_COD_LANGUAGE :
+				case WeekdarchDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

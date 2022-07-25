@@ -7,11 +7,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoWeekdarchJoinTxt implements DaoJoinBuilder {
+public final class WeekdarchDaoJoinTxt implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public DaoWeekdarchJoinTxt(String leftTableName) {
+	public WeekdarchDaoJoinTxt(String leftTableName) {
 		leftTable = leftTableName;
 	}
 
