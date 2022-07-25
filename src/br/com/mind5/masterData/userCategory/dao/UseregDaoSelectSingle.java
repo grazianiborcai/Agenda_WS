@@ -18,11 +18,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.userCategory.info.UseregInfo;
 
-public final class DaoUseregSelectSingle extends DaoStmtTemplate<UseregInfo> {
+public final class UseregDaoSelectSingle extends DaoStmtTemplate<UseregInfo> {
 	private final String MAIN_TABLE = DaoDbTable.USER_CATEG_TABLE;
 	
 	
-	public DaoUseregSelectSingle(Connection conn, UseregInfo recordInfo, String schemaName) {
+	public UseregDaoSelectSingle(Connection conn, UseregInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -46,14 +46,14 @@ public final class DaoUseregSelectSingle extends DaoStmtTemplate<UseregInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoUseregWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new UseregDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(UseregInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoUseregJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new UseregDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -70,9 +70,9 @@ public final class DaoUseregSelectSingle extends DaoStmtTemplate<UseregInfo> {
 				do {				
 					UseregInfo dataInfo = new UseregInfo();
 					
-					dataInfo.codUserCategory = DaoFormatter.sqlToChar(stmtResult, DaoUseregDbTableColumn.COL_COD_USER_CATEG);
-					dataInfo.txtUserCategory = stmtResult.getString(DaoUseregDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoUseregDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codUserCategory = DaoFormatter.sqlToChar(stmtResult, UseregDaoDbTableColumn.COL_COD_USER_CATEG);
+					dataInfo.txtUserCategory = stmtResult.getString(UseregDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(UseregDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.userCategory.info.UseregInfo;
 
-public final class DaoUseregSelect implements DaoStmtExec<UseregInfo> {
+public final class UseregDaoSelect implements DaoStmtExec<UseregInfo> {
 	private DaoStmtExec<UseregInfo> helper;
 	
 	
-	public DaoUseregSelect(List<DaoStmtExecOption<UseregInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoUseregSelectSingle.class, UseregInfo.class);
+	public UseregDaoSelect(List<DaoStmtExecOption<UseregInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, UseregDaoSelectSingle.class, UseregInfo.class);
 	}
 	
 	

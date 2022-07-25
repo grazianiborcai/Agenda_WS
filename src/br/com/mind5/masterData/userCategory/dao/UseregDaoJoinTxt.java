@@ -7,11 +7,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoUseregJoinTxt implements DaoJoinBuilder {
+public final class UseregDaoJoinTxt implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public DaoUseregJoinTxt(String leftTableName) {
+	public UseregDaoJoinTxt(String leftTableName) {
 		leftTable = leftTableName;
 	}
 
