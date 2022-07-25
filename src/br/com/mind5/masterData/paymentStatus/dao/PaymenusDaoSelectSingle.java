@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.paymentStatus.info.PaymenusInfo;
 
-public final class DaoPaymenusSelectSingle extends DaoStmtTemplate<PaymenusInfo> {
+public final class PaymenusDaoSelectSingle extends DaoStmtTemplate<PaymenusInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAYMENT_STATUS_TABLE;
 	
 	
-	public DaoPaymenusSelectSingle(Connection conn, PaymenusInfo recordInfo, String schemaName) {
+	public PaymenusDaoSelectSingle(Connection conn, PaymenusInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,14 +45,14 @@ public final class DaoPaymenusSelectSingle extends DaoStmtTemplate<PaymenusInfo>
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoPaymenusWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new PaymenusDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(PaymenusInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoPaymenusJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new PaymenusDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -69,9 +69,9 @@ public final class DaoPaymenusSelectSingle extends DaoStmtTemplate<PaymenusInfo>
 				do {				
 					PaymenusInfo dataInfo = new PaymenusInfo();
 					
-					dataInfo.codPaymentStatus = stmtResult.getString(DaoPaymenusDbTableColumn.COL_COD_PAYMENT_STATUS);
-					dataInfo.txtPaymentStatus = stmtResult.getString(DaoPaymenusDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoPaymenusDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codPaymentStatus = stmtResult.getString(PaymenusDaoDbTableColumn.COL_COD_PAYMENT_STATUS);
+					dataInfo.txtPaymentStatus = stmtResult.getString(PaymenusDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(PaymenusDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

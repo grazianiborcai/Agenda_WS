@@ -207,7 +207,7 @@ import br.com.mind5.masterData.movimentType.dao.MamovypeDaoDbTableColumn;
 import br.com.mind5.masterData.orderStatus.dao.OrderatusDaoDbTableColumn;
 import br.com.mind5.masterData.orderStatusSearch.dao.OrderatarchDaoDbTableColumn;
 import br.com.mind5.masterData.paymentPartner.dao.PayparDaoDbTableColumn;
-import br.com.mind5.masterData.paymentStatus.dao.DaoPaymenusDbTableColumn;
+import br.com.mind5.masterData.paymentStatus.dao.PaymenusDaoDbTableColumn;
 import br.com.mind5.masterData.paymentStatusSearch.dao.DaoPaymenusarchDbTableColumn;
 import br.com.mind5.masterData.petType.dao.DaoPetypeDbTableColumn;
 import br.com.mind5.masterData.petTypeSearch.dao.DaoPetyparchDbTableColumn;
@@ -482,7 +482,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoRefugroupDbTableColumn());
 		addTable(new DaoRefugritemDbTableColumn());
 		addTable(new DaoRefugritarchDbTableColumn());
-		addTable(new DaoPaymenusDbTableColumn());
+		addTable(new PaymenusDaoDbTableColumn());
 		addTable(new DaoPaymenusarchDbTableColumn());
 		addTable(new OrdemistDaoDbTableColumn());
 		addTable(new SchederveDaoDbTableColumn());

@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.paymentStatus.info.PaymenusInfo;
 
-public final class DaoPaymenusSelect implements DaoStmtExec<PaymenusInfo> {
+public final class PaymenusDaoSelect implements DaoStmtExec<PaymenusInfo> {
 	private DaoStmtExec<PaymenusInfo> helper;
 	
 	
-	public DaoPaymenusSelect(List<DaoStmtExecOption<PaymenusInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoPaymenusSelectSingle.class, PaymenusInfo.class);
+	public PaymenusDaoSelect(List<DaoStmtExecOption<PaymenusInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, PaymenusDaoSelectSingle.class, PaymenusInfo.class);
 	}
 	
 	
