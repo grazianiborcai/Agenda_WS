@@ -18,11 +18,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.petTypeSearch.info.PetyparchInfo;
 
-public final class DaoPetyparchSelectSingle extends DaoStmtTemplate<PetyparchInfo> {
+public final class PetyparchDaoSelectSingle extends DaoStmtTemplate<PetyparchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PET_TYPE_TABLE;
 	
 	
-	public DaoPetyparchSelectSingle(Connection conn, PetyparchInfo recordInfo, String schemaName) {
+	public PetyparchDaoSelectSingle(Connection conn, PetyparchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -53,14 +53,14 @@ public final class DaoPetyparchSelectSingle extends DaoStmtTemplate<PetyparchInf
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoPetyparchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new PetyparchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(PetyparchInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoPetyparchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new PetyparchDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}	
 	
@@ -77,9 +77,9 @@ public final class DaoPetyparchSelectSingle extends DaoStmtTemplate<PetyparchInf
 				do {				
 					PetyparchInfo dataInfo = new PetyparchInfo();
 					
-					dataInfo.codPetype = DaoFormatter.sqlToInt(stmtResult, DaoPetyparchDbTableColumn.COL_COD_PET_TYPE);
-					dataInfo.txtPetype = stmtResult.getString(DaoPetyparchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoPetyparchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codPetype = DaoFormatter.sqlToInt(stmtResult, PetyparchDaoDbTableColumn.COL_COD_PET_TYPE);
+					dataInfo.txtPetype = stmtResult.getString(PetyparchDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(PetyparchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());
