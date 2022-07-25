@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.info.EmposMerger;
 import br.com.mind5.masterData.position.info.PositionInfo;
-import br.com.mind5.masterData.position.model.decisionTree.RootPositionSelect;
+import br.com.mind5.masterData.position.model.decisionTree.PositionRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class EmposVisiMergePosition extends ActionVisitorTemplateMerge<Emp
 	
 	
 	@Override protected Class<? extends DeciTree<PositionInfo>> getTreeClassHook() {
-		return RootPositionSelect.class;
+		return PositionRootSelect.class;
 	}
 	
 	

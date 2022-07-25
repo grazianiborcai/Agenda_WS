@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.position.info.PositionInfo;
 
-public final class DaoPositionSelect implements DaoStmtExec<PositionInfo> {
+public final class PositionDaoSelect implements DaoStmtExec<PositionInfo> {
 	private DaoStmtExec<PositionInfo> helper;
 	
 	
-	public DaoPositionSelect(List<DaoStmtExecOption<PositionInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoPositionSelectSingle.class, PositionInfo.class);
+	public PositionDaoSelect(List<DaoStmtExecOption<PositionInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, PositionDaoSelectSingle.class, PositionInfo.class);
 	}
 	
 	

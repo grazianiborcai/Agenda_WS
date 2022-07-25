@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.position.info.PositionInfo;
 
-public final class DaoPositionSelectSingle extends DaoStmtTemplate<PositionInfo> {
+public final class PositionDaoSelectSingle extends DaoStmtTemplate<PositionInfo> {
 	private final String MAIN_TABLE = DaoDbTable.POSITION_TABLE;
 	
 	
-	public DaoPositionSelectSingle(Connection conn, PositionInfo recordInfo, String schemaName) {
+	public PositionDaoSelectSingle(Connection conn, PositionInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,14 +45,14 @@ public final class DaoPositionSelectSingle extends DaoStmtTemplate<PositionInfo>
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoPositionWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new PositionDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(PositionInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoPositionJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new PositionDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -69,9 +69,9 @@ public final class DaoPositionSelectSingle extends DaoStmtTemplate<PositionInfo>
 				do {				
 					PositionInfo dataInfo = new PositionInfo();
 					
-					dataInfo.codPosition = stmtResult.getInt(DaoPositionDbTableColumn.COL_COD_POSITION);
-					dataInfo.txtPosition = stmtResult.getString(DaoPositionDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoPositionDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codPosition = stmtResult.getInt(PositionDaoDbTableColumn.COL_COD_POSITION);
+					dataInfo.txtPosition = stmtResult.getString(PositionDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(PositionDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

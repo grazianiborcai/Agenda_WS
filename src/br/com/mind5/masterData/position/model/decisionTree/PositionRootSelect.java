@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.position.info.PositionInfo;
-import br.com.mind5.masterData.position.model.action.StdPositionDaoSelect;
+import br.com.mind5.masterData.position.model.action.PositionVisiDaoSelect;
 import br.com.mind5.masterData.position.model.checker.PositionCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPositionSelect extends DeciTreeTemplateRead<PositionInfo> {
+public final class PositionRootSelect extends DeciTreeTemplateRead<PositionInfo> {
 	
-	public RootPositionSelect(DeciTreeOption<PositionInfo> option) {
+	public PositionRootSelect(DeciTreeOption<PositionInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootPositionSelect extends DeciTreeTemplateRead<PositionInfo>
 	@Override protected List<ActionStd<PositionInfo>> buildActionsOnPassedHook(DeciTreeOption<PositionInfo> option) {
 		List<ActionStd<PositionInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PositionInfo> select = new StdPositionDaoSelect(option);
+		ActionStd<PositionInfo> select = new ActionStdCommom<PositionInfo>(option, PositionVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;
