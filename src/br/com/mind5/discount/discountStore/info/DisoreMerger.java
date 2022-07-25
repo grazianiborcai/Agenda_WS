@@ -15,7 +15,7 @@ public final class DisoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new DisoreVisiMergeDisorap());
+		builder.addVisitor(new DisoreMergerVisiDisorap());
 		InfoMerger<DisoreInfo, DisorapInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -28,7 +28,7 @@ public final class DisoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new DisoreVisiMergeDisorarch());
+		builder.addVisitor(new DisoreMergerVisiDisorarch());
 		InfoMerger<DisoreInfo, DisorarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -41,7 +41,7 @@ public final class DisoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new DisoreVisiMergeDisegy());
+		builder.addVisitor(new DisoreMergerVisiDisegy());
 		InfoMerger<DisoreInfo, DisegyInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -54,7 +54,7 @@ public final class DisoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new DisoreVisiMergeUsername());
+		builder.addVisitor(new DisoreMergerVisiUsername());
 		InfoMerger<DisoreInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -67,7 +67,7 @@ public final class DisoreMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new DisoreVisiMergeToSelect());
+		builder.addVisitor(new DisoreMergerVisiToSelect());
 		InfoMerger<DisoreInfo, DisoreInfo> merger = builder.build();		
 	
 		return merger.merge();

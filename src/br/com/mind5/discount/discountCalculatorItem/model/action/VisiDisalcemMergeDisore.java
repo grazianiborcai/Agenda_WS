@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.discount.discountCalculatorItem.info.DisalcemInfo;
 import br.com.mind5.discount.discountCalculatorItem.info.DisalcemMerger;
 import br.com.mind5.discount.discountStore.info.DisoreInfo;
-import br.com.mind5.discount.discountStore.model.decisionTree.RootDisoreSelectActive;
+import br.com.mind5.discount.discountStore.model.decisionTree.DisoreRootSelectActive;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiDisalcemMergeDisore extends ActionVisitorTemplateMerge<DisalcemI
 	
 	
 	@Override protected Class<? extends DeciTree<DisoreInfo>> getTreeClassHook() {
-		return RootDisoreSelectActive.class;
+		return DisoreRootSelectActive.class;
 	}
 	
 	

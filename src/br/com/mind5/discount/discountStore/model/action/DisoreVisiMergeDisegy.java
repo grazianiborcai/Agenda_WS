@@ -1,18 +1,18 @@
-package br.com.mind5.discount.discountStoreSnapshot.model.action;
+package br.com.mind5.discount.discountStore.model.action;
 
 import java.util.List;
 
-import br.com.mind5.discount.discountStoreSnapshot.info.DisorapInfo;
-import br.com.mind5.discount.discountStoreSnapshot.info.DisorapMerger;
+import br.com.mind5.discount.discountStore.info.DisoreInfo;
+import br.com.mind5.discount.discountStore.info.DisoreMerger;
 import br.com.mind5.masterData.discountStrategy.info.DisegyInfo;
 import br.com.mind5.masterData.discountStrategy.model.decisionTree.DisegyRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiDisorapMergeDisegy extends ActionVisitorTemplateMerge<DisorapInfo, DisegyInfo> {
+public final class DisoreVisiMergeDisegy extends ActionVisitorTemplateMerge<DisoreInfo, DisegyInfo> {
 	
-	public VisiDisorapMergeDisegy(DeciTreeOption<DisorapInfo> option) {
+	public DisoreVisiMergeDisegy(DeciTreeOption<DisoreInfo> option) {
 		super(option, DisegyInfo.class);
 	}
 	
@@ -24,8 +24,8 @@ final class VisiDisorapMergeDisegy extends ActionVisitorTemplateMerge<DisorapInf
 	
 	
 	
-	@Override protected List<DisorapInfo> mergeHook(List<DisorapInfo> baseInfos, List<DisegyInfo> selectedInfos) {	
-		return DisorapMerger.mergeWithDisegy(baseInfos, selectedInfos);
+	@Override protected List<DisoreInfo> mergeHook(List<DisoreInfo> baseInfos, List<DisegyInfo> selectedInfos) {	
+		return DisoreMerger.mergeWithDisegy(baseInfos, selectedInfos);
 	}
 	
 	

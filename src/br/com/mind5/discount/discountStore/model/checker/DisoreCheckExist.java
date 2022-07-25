@@ -2,8 +2,9 @@ package br.com.mind5.discount.discountStore.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.discount.discountStore.info.DisoreInfo;
-import br.com.mind5.discount.discountStore.model.action.StdDisoreDaoSelect;
+import br.com.mind5.discount.discountStore.model.action.DisoreVisiDaoSelect;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class DisoreCheckExist extends ModelCheckerTemplateAction<DisoreInf
 	
 	
 	@Override protected ActionStd<DisoreInfo> buildActionHook(DeciTreeOption<DisoreInfo> option) {
-		ActionStd<DisoreInfo> select = new StdDisoreDaoSelect(option);
+		ActionStd<DisoreInfo> select = new ActionStdCommom<DisoreInfo>(option, DisoreVisiDaoSelect.class);
 		return select;
 	}
 	
