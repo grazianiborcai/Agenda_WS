@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.businessArea.info.BusareaInfo;
 
-final class MatoupVisiMergeBusarea extends InfoMergerVisitorTemplate<MatoupInfo, BusareaInfo> {
+final class MatoupMergerVisiBusarea extends InfoMergerVisitorTemplate<MatoupInfo, BusareaInfo> {
 
 	@Override public boolean shouldMerge(MatoupInfo baseInfo, BusareaInfo selectedInfo) {
 		return (baseInfo.codBusiness == selectedInfo.codBusiness);

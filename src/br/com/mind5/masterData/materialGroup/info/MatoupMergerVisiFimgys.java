@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.file.sysFileImage.info.FimgysInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class MatoupVisiMergeFimgys extends InfoMergerVisitorTemplate<MatoupInfo, FimgysInfo> {
+final class MatoupMergerVisiFimgys extends InfoMergerVisitorTemplate<MatoupInfo, FimgysInfo> {
 
 	@Override public boolean shouldMerge(MatoupInfo baseInfo, FimgysInfo selectedInfo) {
 		return (baseInfo.codGroup == selectedInfo.codGroup);

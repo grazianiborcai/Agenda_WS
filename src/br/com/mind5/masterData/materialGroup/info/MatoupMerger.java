@@ -14,7 +14,7 @@ public final class MatoupMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatoupVisiMergeFimgys());
+		builder.addVisitor(new MatoupMergerVisiFimgys());
 		InfoMerger<MatoupInfo, FimgysInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -27,7 +27,7 @@ public final class MatoupMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatoupVisiMergeMatouparch());
+		builder.addVisitor(new MatoupMergerVisiMatouparch());
 		InfoMerger<MatoupInfo, MatouparchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -40,7 +40,7 @@ public final class MatoupMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatoupVisiMergeBusarea());
+		builder.addVisitor(new MatoupMergerVisiBusarea());
 		InfoMerger<MatoupInfo, BusareaInfo> merger = builder.build();		
 	
 		return merger.merge();

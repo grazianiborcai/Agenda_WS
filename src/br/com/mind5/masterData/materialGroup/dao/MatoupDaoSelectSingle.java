@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 
-public final class DaoMatoupSelectSingle extends DaoStmtTemplate<MatoupInfo> {
+public final class MatoupDaoSelectSingle extends DaoStmtTemplate<MatoupInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_GROUP_TABLE;
 	
 	
-	public DaoMatoupSelectSingle(Connection conn, MatoupInfo recordInfo, String schemaName) {
+	public MatoupDaoSelectSingle(Connection conn, MatoupInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,7 +45,7 @@ public final class DaoMatoupSelectSingle extends DaoStmtTemplate<MatoupInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoMatoupWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new MatoupDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -54,7 +54,7 @@ public final class DaoMatoupSelectSingle extends DaoStmtTemplate<MatoupInfo> {
 	@Override protected List<DaoJoin> getJoinsHook(MatoupInfo recordInfo) {
 		List<DaoJoin> joins = new ArrayList<>();
 		
-		DaoJoinBuilder joinText = new DaoMatoupJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new MatoupDaoJoinTxt(MAIN_TABLE);		
 		joins.add(joinText.build());
 		
 		return joins;
@@ -73,10 +73,10 @@ public final class DaoMatoupSelectSingle extends DaoStmtTemplate<MatoupInfo> {
 				do {				
 					MatoupInfo dataInfo = new MatoupInfo();
 					
-					dataInfo.codGroup = stmtResult.getInt(DaoMatoupDbTableColumn.COL_COD_MAT_GROUP);				
-					dataInfo.txtGroup = stmtResult.getString(DaoMatoupDbTableColumn.COL_NAME);
-					dataInfo.codBusiness = stmtResult.getInt(DaoMatoupDbTableColumn.COL_COD_BUSINESS);
-					dataInfo.codLanguage = stmtResult.getString(DaoMatoupDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codGroup = stmtResult.getInt(MatoupDaoDbTableColumn.COL_COD_MAT_GROUP);				
+					dataInfo.txtGroup = stmtResult.getString(MatoupDaoDbTableColumn.COL_NAME);
+					dataInfo.codBusiness = stmtResult.getInt(MatoupDaoDbTableColumn.COL_COD_BUSINESS);
+					dataInfo.codLanguage = stmtResult.getString(MatoupDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatoupMergeFimgys extends ActionVisitorTemplateMerge<MatoupInfo, FimgysInfo> {
+public final class MatoupVisiMergeFimgys extends ActionVisitorTemplateMerge<MatoupInfo, FimgysInfo> {
 	
-	public VisiMatoupMergeFimgys(DeciTreeOption<MatoupInfo> option) {
+	public MatoupVisiMergeFimgys(DeciTreeOption<MatoupInfo> option) {
 		super(option, FimgysInfo.class);
 	}
 	

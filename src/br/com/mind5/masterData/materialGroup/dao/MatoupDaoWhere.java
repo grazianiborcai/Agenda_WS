@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 
-final class DaoMatoupWhere implements DaoStmtWhere {
+final class MatoupDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoMatoupWhere(DaoWhereBuilderOption whereOption, String tableName, MatoupInfo recordInfo) {
+	public MatoupDaoWhere(DaoWhereBuilderOption whereOption, String tableName, MatoupInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ final class DaoMatoupWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoMatoupDbTableColumn.COL_COD_MAT_GROUP :
+				case MatoupDaoDbTableColumn.COL_COD_MAT_GROUP :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codGroup));
 					break;
 					
-				case DaoMatoupDbTableColumn.COL_COD_LANGUAGE :
+				case MatoupDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

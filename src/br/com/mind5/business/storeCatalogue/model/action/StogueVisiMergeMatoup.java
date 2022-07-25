@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.storeCatalogue.info.StogueInfo;
 import br.com.mind5.business.storeCatalogue.info.StogueMerger;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
-import br.com.mind5.masterData.materialGroup.model.decisionTree.RootMatoupSearch;
+import br.com.mind5.masterData.materialGroup.model.decisionTree.MatoupRootSearch;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class StogueVisiMergeMatoup extends ActionVisitorTemplateMerge<Stog
 	
 	
 	@Override protected Class<? extends DeciTree<MatoupInfo>> getTreeClassHook() {
-		return RootMatoupSearch.class;
+		return MatoupRootSearch.class;
 	}
 	
 	

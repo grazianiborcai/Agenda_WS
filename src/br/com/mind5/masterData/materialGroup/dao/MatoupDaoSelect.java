@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 
-public final class DaoMatoupSelect implements DaoStmtExec<MatoupInfo> {
+public final class MatoupDaoSelect implements DaoStmtExec<MatoupInfo> {
 	private DaoStmtExec<MatoupInfo> helper;
 	
 	
-	public DaoMatoupSelect(List<DaoStmtExecOption<MatoupInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoMatoupSelectSingle.class, MatoupInfo.class);
+	public MatoupDaoSelect(List<DaoStmtExecOption<MatoupInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, MatoupDaoSelectSingle.class, MatoupInfo.class);
 	}
 	
 	

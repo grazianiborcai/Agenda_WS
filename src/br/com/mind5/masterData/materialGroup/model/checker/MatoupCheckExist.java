@@ -2,8 +2,9 @@ package br.com.mind5.masterData.materialGroup.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
-import br.com.mind5.masterData.materialGroup.model.action.StdMatoupDaoSelect;
+import br.com.mind5.masterData.materialGroup.model.action.MatoupVisiDaoSelect;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class MatoupCheckExist extends ModelCheckerTemplateAction<MatoupInf
 	
 	
 	@Override protected ActionStd<MatoupInfo> buildActionHook(DeciTreeOption<MatoupInfo> option) {
-		ActionStd<MatoupInfo> select = new StdMatoupDaoSelect(option);
+		ActionStd<MatoupInfo> select = new ActionStdCommom<MatoupInfo>(option, MatoupVisiDaoSelect.class);
 		return select;
 	}
 	
