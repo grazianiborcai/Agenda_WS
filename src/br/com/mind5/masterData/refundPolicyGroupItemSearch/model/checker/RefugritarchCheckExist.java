@@ -2,7 +2,7 @@ package br.com.mind5.masterData.refundPolicyGroupItemSearch.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.refundPolicyGroupItemSearch.info.RefugritarchInfo;
-import br.com.mind5.masterData.refundPolicyGroupItemSearch.model.decisionTree.RootRefugritarchSelect;
+import br.com.mind5.masterData.refundPolicyGroupItemSearch.model.decisionTree.RefugritarchRootSelect;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
@@ -17,7 +17,7 @@ public final class RefugritarchCheckExist extends ModelCheckerTemplateAction<Ref
 	
 	
 	@Override protected ActionStd<RefugritarchInfo> buildActionHook(DeciTreeOption<RefugritarchInfo> option) {
-		ActionStd<RefugritarchInfo> select = new RootRefugritarchSelect(option).toAction();
+		ActionStd<RefugritarchInfo> select = new RefugritarchRootSelect(option).toAction();
 		return select;
 	}
 	

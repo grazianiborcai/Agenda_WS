@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.refundPolicyGroupItemSearch.info.RefugritarchInfo;
-import br.com.mind5.masterData.refundPolicyGroupItemSearch.model.action.StdRefugritarchDaoSelect;
+import br.com.mind5.masterData.refundPolicyGroupItemSearch.model.action.RefugritarchVisiDaoSelect;
 import br.com.mind5.masterData.refundPolicyGroupItemSearch.model.checker.RefugritarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootRefugritarchSelect extends DeciTreeTemplateRead<RefugritarchInfo> {
+public final class RefugritarchRootSelect extends DeciTreeTemplateRead<RefugritarchInfo> {
 	
-	public RootRefugritarchSelect(DeciTreeOption<RefugritarchInfo> option) {
+	public RefugritarchRootSelect(DeciTreeOption<RefugritarchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootRefugritarchSelect extends DeciTreeTemplateRead<Refugrita
 	@Override protected List<ActionStd<RefugritarchInfo>> buildActionsOnPassedHook(DeciTreeOption<RefugritarchInfo> option) {
 		List<ActionStd<RefugritarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<RefugritarchInfo> select = new StdRefugritarchDaoSelect(option);
+		ActionStd<RefugritarchInfo> select = new ActionStdCommom<RefugritarchInfo>(option, RefugritarchVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;
