@@ -9,13 +9,13 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoPayparDbTableColumn extends DaoDbTableColumnTemplate {
+public final class PayparDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;
 	public static final String COL_DESCRIPTION = DaoDbField.COL_DESCRIPTION;
 	public static final String COL_NAME = DaoDbField.COL_NAME;
 	
 	
-	public DaoPayparDbTableColumn() {
+	public PayparDaoDbTableColumn() {
 		super();
 	}
 	

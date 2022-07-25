@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 
-public final class DaoPayparSelect implements DaoStmtExec<PayparInfo> {
+public final class PayparDaoSelect implements DaoStmtExec<PayparInfo> {
 	private DaoStmtExec<PayparInfo> helper;
 	
 	
-	public DaoPayparSelect(List<DaoStmtExecOption<PayparInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoPayparSelectSingle.class, PayparInfo.class);
+	public PayparDaoSelect(List<DaoStmtExecOption<PayparInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, PayparDaoSelectSingle.class, PayparInfo.class);
 	}
 	
 	

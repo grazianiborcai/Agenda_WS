@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 
-public final class DaoPayparSelectSingle extends DaoStmtTemplate<PayparInfo> {
+public final class PayparDaoSelectSingle extends DaoStmtTemplate<PayparInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_PARTNER_TABLE;
 	
 	
-	public DaoPayparSelectSingle(Connection conn, PayparInfo recordInfo, String schemaName) {
+	public PayparDaoSelectSingle(Connection conn, PayparInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -43,7 +43,7 @@ public final class DaoPayparSelectSingle extends DaoStmtTemplate<PayparInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoPayparWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new PayparDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -60,9 +60,9 @@ public final class DaoPayparSelectSingle extends DaoStmtTemplate<PayparInfo> {
 				do {				
 					PayparInfo dataInfo = new PayparInfo();
 					
-					dataInfo.codPayPartner = stmtResult.getInt(DaoPayparDbTableColumn.COL_COD_PAY_PARTNER);
-					dataInfo.txtPayPartner = stmtResult.getString(DaoPayparDbTableColumn.COL_NAME);
-					dataInfo.description = stmtResult.getString(DaoPayparDbTableColumn.COL_DESCRIPTION);	
+					dataInfo.codPayPartner = stmtResult.getInt(PayparDaoDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.txtPayPartner = stmtResult.getString(PayparDaoDbTableColumn.COL_NAME);
+					dataInfo.description = stmtResult.getString(PayparDaoDbTableColumn.COL_DESCRIPTION);	
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

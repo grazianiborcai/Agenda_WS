@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
-import br.com.mind5.masterData.paymentPartner.model.action.StdPayparDaoSelect;
+import br.com.mind5.masterData.paymentPartner.model.action.PayparVisiDaoSelect;
 import br.com.mind5.masterData.paymentPartner.model.checker.PayparCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPayparSelect extends DeciTreeTemplateRead<PayparInfo> {
+public final class PayparRootSelect extends DeciTreeTemplateRead<PayparInfo> {
 	
-	public RootPayparSelect(DeciTreeOption<PayparInfo> option) {
+	public PayparRootSelect(DeciTreeOption<PayparInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootPayparSelect extends DeciTreeTemplateRead<PayparInfo> {
 	@Override protected List<ActionStd<PayparInfo>> buildActionsOnPassedHook(DeciTreeOption<PayparInfo> option) {
 		List<ActionStd<PayparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayparInfo> select = new StdPayparDaoSelect(option);
+		ActionStd<PayparInfo> select = new ActionStdCommom<PayparInfo>(option, PayparVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;
