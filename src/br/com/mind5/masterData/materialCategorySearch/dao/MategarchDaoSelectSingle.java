@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.materialCategorySearch.info.MategarchInfo;
 
-public final class DaoMategarchSelectSingle extends DaoStmtTemplate<MategarchInfo> {
+public final class MategarchDaoSelectSingle extends DaoStmtTemplate<MategarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_CATEG_TABLE;
 	
 	
-	public DaoMategarchSelectSingle(Connection conn, MategarchInfo recordInfo, String schemaName) {
+	public MategarchDaoSelectSingle(Connection conn, MategarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,14 +52,14 @@ public final class DaoMategarchSelectSingle extends DaoStmtTemplate<MategarchInf
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoMategarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new MategarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(MategarchInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoMategarchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new MategarchDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -76,9 +76,9 @@ public final class DaoMategarchSelectSingle extends DaoStmtTemplate<MategarchInf
 				do {				
 					MategarchInfo dataInfo = new MategarchInfo();
 					
-					dataInfo.codMatCateg = stmtResult.getInt(DaoMategarchDbTableColumn.COL_COD_MAT_CATEG);
-					dataInfo.txtMatCateg = stmtResult.getString(DaoMategarchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoMategarchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codMatCateg = stmtResult.getInt(MategarchDaoDbTableColumn.COL_COD_MAT_CATEG);
+					dataInfo.txtMatCateg = stmtResult.getString(MategarchDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(MategarchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

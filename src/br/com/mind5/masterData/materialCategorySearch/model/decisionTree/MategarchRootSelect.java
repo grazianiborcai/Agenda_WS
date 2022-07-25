@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.materialCategorySearch.info.MategarchInfo;
-import br.com.mind5.masterData.materialCategorySearch.model.action.StdMategarchDaoSelect;
+import br.com.mind5.masterData.materialCategorySearch.model.action.MategarchVisiDaoSelect;
 import br.com.mind5.masterData.materialCategorySearch.model.checker.MategarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMategarchSelect extends DeciTreeTemplateRead<MategarchInfo> {
+public final class MategarchRootSelect extends DeciTreeTemplateRead<MategarchInfo> {
 	
-	public RootMategarchSelect(DeciTreeOption<MategarchInfo> option) {
+	public MategarchRootSelect(DeciTreeOption<MategarchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootMategarchSelect extends DeciTreeTemplateRead<MategarchInf
 	@Override protected List<ActionStd<MategarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MategarchInfo> option) {
 		List<ActionStd<MategarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MategarchInfo> select = new StdMategarchDaoSelect(option);
+		ActionStd<MategarchInfo> select = new ActionStdCommom<MategarchInfo>(option, MategarchVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

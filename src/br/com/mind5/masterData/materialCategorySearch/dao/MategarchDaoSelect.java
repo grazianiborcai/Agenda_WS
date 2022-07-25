@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.materialCategorySearch.info.MategarchInfo;
 
-public final class DaoMategarchSelect implements DaoStmtExec<MategarchInfo> {
+public final class MategarchDaoSelect implements DaoStmtExec<MategarchInfo> {
 	private DaoStmtExec<MategarchInfo> helper;
 	
 	
-	public DaoMategarchSelect(List<DaoStmtExecOption<MategarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoMategarchSelectSingle.class, MategarchInfo.class);
+	public MategarchDaoSelect(List<DaoStmtExecOption<MategarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, MategarchDaoSelectSingle.class, MategarchInfo.class);
 	}
 	
 	
