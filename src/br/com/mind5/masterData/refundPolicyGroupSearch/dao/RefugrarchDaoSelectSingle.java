@@ -18,11 +18,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.refundPolicyGroupSearch.info.RefugrarchInfo;
 
-public final class DaoRefugrarchSelectSingle extends DaoStmtTemplate<RefugrarchInfo> {
+public final class RefugrarchDaoSelectSingle extends DaoStmtTemplate<RefugrarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.REFUND_POLICY_GROUP_HEADER_TABLE;
 	
 	
-	public DaoRefugrarchSelectSingle(Connection conn, RefugrarchInfo recordInfo, String schemaName) {
+	public RefugrarchDaoSelectSingle(Connection conn, RefugrarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -53,14 +53,14 @@ public final class DaoRefugrarchSelectSingle extends DaoStmtTemplate<RefugrarchI
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoRefugrarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new RefugrarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(RefugrarchInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoRefugrarchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new RefugrarchDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -77,9 +77,9 @@ public final class DaoRefugrarchSelectSingle extends DaoStmtTemplate<RefugrarchI
 				do {				
 					RefugrarchInfo dataInfo = new RefugrarchInfo();
 					
-					dataInfo.codRefundPolicyGroup = DaoFormatter.sqlToInt(stmtResult, DaoRefugrarchDbTableColumn.COL_COD_REFUND_POLICY_GROUP);
-					dataInfo.txtRefundPolicyGroup = stmtResult.getString(DaoRefugrarchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoRefugrarchDbTableColumn.COL_COD_LANGUAGE);	
+					dataInfo.codRefundPolicyGroup = DaoFormatter.sqlToInt(stmtResult, RefugrarchDaoDbTableColumn.COL_COD_REFUND_POLICY_GROUP);
+					dataInfo.txtRefundPolicyGroup = stmtResult.getString(RefugrarchDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(RefugrarchDaoDbTableColumn.COL_COD_LANGUAGE);	
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());
