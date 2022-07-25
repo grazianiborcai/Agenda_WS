@@ -6,9 +6,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserStore.userStoreStgn.info.StusorageInfo;
 import br.com.mind5.stats.statsUserStore.userStoreStgn.info.StusorageSetterLChanged;
 
-final class VisiStusorageEnforceLChanged extends ActionVisitorTemplateEnforce<StusorageInfo> {
+public final class StusorageVisiEnforceLChanged extends ActionVisitorTemplateEnforce<StusorageInfo> {
 	
-	public VisiStusorageEnforceLChanged(DeciTreeOption<StusorageInfo> option) {
+	public StusorageVisiEnforceLChanged(DeciTreeOption<StusorageInfo> option) {
 		super(option);
 	}
 

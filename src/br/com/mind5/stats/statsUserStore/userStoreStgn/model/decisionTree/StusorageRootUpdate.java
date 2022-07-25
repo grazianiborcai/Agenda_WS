@@ -5,21 +5,23 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsUserStore.userStoreStgn.info.StusorageInfo;
-import br.com.mind5.stats.statsUserStore.userStoreStgn.model.action.LazyStusorageDaoInsert;
-import br.com.mind5.stats.statsUserStore.userStoreStgn.model.action.StdStusorageEnforceLChanged;
+import br.com.mind5.stats.statsUserStore.userStoreStgn.model.action.StusorageVisiDaoUpdate;
+import br.com.mind5.stats.statsUserStore.userStoreStgn.model.action.StusorageVisiEnforceLChanged;
 import br.com.mind5.stats.statsUserStore.userStoreStgn.model.checker.StusorageCheckExist;
 import br.com.mind5.stats.statsUserStore.userStoreStgn.model.checker.StusorageCheckRead;
 
 
-public final class RootStusorageInsert extends DeciTreeTemplateWrite<StusorageInfo> {
+public final class StusorageRootUpdate extends DeciTreeTemplateWrite<StusorageInfo> {
 	
-	public RootStusorageInsert(DeciTreeOption<StusorageInfo> option) {
+	public StusorageRootUpdate(DeciTreeOption<StusorageInfo> option) {
 		super(option);
 	}
 	
@@ -40,7 +42,7 @@ public final class RootStusorageInsert extends DeciTreeTemplateWrite<StusorageIn
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StusorageCheckExist(checkerOption);
 		queue.add(checker);
 		
@@ -52,10 +54,10 @@ public final class RootStusorageInsert extends DeciTreeTemplateWrite<StusorageIn
 	@Override protected List<ActionStd<StusorageInfo>> buildActionsOnPassedHook(DeciTreeOption<StusorageInfo> option) {
 		List<ActionStd<StusorageInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusorageInfo> enforceLChanged = new StdStusorageEnforceLChanged(option);
-		ActionLazy<StusorageInfo> insert = new LazyStusorageDaoInsert(option.conn, option.schemaName);
+		ActionStd<StusorageInfo> enforceLChanged = new ActionStdCommom<StusorageInfo>(option, StusorageVisiEnforceLChanged.class);
+		ActionLazy<StusorageInfo> update = new ActionLazyCommom<StusorageInfo>(option, StusorageVisiDaoUpdate.class);
 		
-		enforceLChanged.addPostAction(insert);
+		enforceLChanged.addPostAction(update);
 		
 		actions.add(enforceLChanged);
 		return actions;

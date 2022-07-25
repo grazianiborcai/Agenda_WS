@@ -5,21 +5,23 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsUserStore.userStoreStgn.info.StusorageInfo;
-import br.com.mind5.stats.statsUserStore.userStoreStgn.model.action.LazyStusorageDaoUpdate;
-import br.com.mind5.stats.statsUserStore.userStoreStgn.model.action.StdStusorageEnforceLChanged;
-import br.com.mind5.stats.statsUserStore.userStoreStgn.model.checker.StusorageCheckExist;
-import br.com.mind5.stats.statsUserStore.userStoreStgn.model.checker.StusorageCheckRead;
+import br.com.mind5.stats.statsUserStore.userStoreStgn.model.action.StusorageVisiNodeUpsertOrderem;
+import br.com.mind5.stats.statsUserStore.userStoreStgn.model.action.StusorageVisiMergeOrdemist;
+import br.com.mind5.stats.statsUserStore.userStoreStgn.model.checker.StusorageCheckOrderem;
+import br.com.mind5.stats.statsUserStore.userStoreStgn.model.checker.StusorageCheckWriteOrderem;
 
 
-public final class RootStusorageUpdate extends DeciTreeTemplateWrite<StusorageInfo> {
+public final class StusorageRootUpsertOrderem extends DeciTreeTemplateWrite<StusorageInfo> {
 	
-	public RootStusorageUpdate(DeciTreeOption<StusorageInfo> option) {
+	public StusorageRootUpsertOrderem(DeciTreeOption<StusorageInfo> option) {
 		super(option);
 	}
 	
@@ -34,14 +36,14 @@ public final class RootStusorageUpdate extends DeciTreeTemplateWrite<StusorageIn
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StusorageCheckRead(checkerOption);
+		checker = new StusorageCheckWriteOrderem(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new StusorageCheckExist(checkerOption);
+		checker = new StusorageCheckOrderem(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -52,12 +54,12 @@ public final class RootStusorageUpdate extends DeciTreeTemplateWrite<StusorageIn
 	@Override protected List<ActionStd<StusorageInfo>> buildActionsOnPassedHook(DeciTreeOption<StusorageInfo> option) {
 		List<ActionStd<StusorageInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusorageInfo> enforceLChanged = new StdStusorageEnforceLChanged(option);
-		ActionLazy<StusorageInfo> update = new LazyStusorageDaoUpdate(option.conn, option.schemaName);
+		ActionStd<StusorageInfo> mergeOrdemist = new ActionStdCommom<StusorageInfo>(option, StusorageVisiMergeOrdemist.class);
+		ActionLazy<StusorageInfo> nodeL1 = new ActionLazyCommom<StusorageInfo>(option, StusorageVisiNodeUpsertOrderem.class);
 		
-		enforceLChanged.addPostAction(update);
+		mergeOrdemist.addPostAction(nodeL1);
 		
-		actions.add(enforceLChanged);
+		actions.add(mergeOrdemist);
 		return actions;
 	}
 }

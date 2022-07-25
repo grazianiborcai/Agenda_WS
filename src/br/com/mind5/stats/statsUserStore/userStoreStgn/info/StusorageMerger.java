@@ -12,7 +12,7 @@ public final class StusorageMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StusorageVisiMergeOrdemist());
+		builder.addVisitor(new StusorageMergerVisiOrdemist());
 		InfoMerger<StusorageInfo, OrdemistInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class StusorageMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StusorageVisiMergeToSelect());
+		builder.addVisitor(new StusorageMergerVisiToSelect());
 		InfoMerger<StusorageInfo, StusorageInfo> merger = builder.build();		
 	
 		return merger.merge();

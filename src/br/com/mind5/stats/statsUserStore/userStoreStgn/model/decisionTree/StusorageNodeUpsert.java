@@ -10,13 +10,12 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsUserStore.userStoreStgn.info.StusorageInfo;
-import br.com.mind5.stats.statsUserStore.userStoreStgn.model.action.StdStusorageMergeToSelect;
-import br.com.mind5.stats.statsUserStore.userStoreStgn.model.checker.StusorageCheckRead;
+import br.com.mind5.stats.statsUserStore.userStoreStgn.model.checker.StusorageCheckExist;
 
 
-public final class RootStusorageSelect extends DeciTreeTemplateWrite<StusorageInfo> {
+public final class StusorageNodeUpsert extends DeciTreeTemplateWrite<StusorageInfo> {
 	
-	public RootStusorageSelect(DeciTreeOption<StusorageInfo> option) {
+	public StusorageNodeUpsert(DeciTreeOption<StusorageInfo> option) {
 		super(option);
 	}
 	
@@ -30,8 +29,8 @@ public final class RootStusorageSelect extends DeciTreeTemplateWrite<StusorageIn
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StusorageCheckRead(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StusorageCheckExist(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -42,9 +41,20 @@ public final class RootStusorageSelect extends DeciTreeTemplateWrite<StusorageIn
 	@Override protected List<ActionStd<StusorageInfo>> buildActionsOnPassedHook(DeciTreeOption<StusorageInfo> option) {
 		List<ActionStd<StusorageInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusorageInfo> select = new StdStusorageMergeToSelect(option);
+		ActionStd<StusorageInfo> update = new StusorageRootUpdate(option).toAction();
 		
-		actions.add(select);
+		actions.add(update);
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<StusorageInfo>> buildActionsOnFailedHook(DeciTreeOption<StusorageInfo> option) {
+		List<ActionStd<StusorageInfo>> actions = new ArrayList<>();
+
+		ActionStd<StusorageInfo> insert = new StusorageRootInsert(option).toAction();
+		
+		actions.add(insert);
 		return actions;
 	}
 }

@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsUserStore.userStoreStgn.info.StusorageInfo;
-import br.com.mind5.stats.statsUserStore.userStoreStgn.model.checker.StusorageCheckExist;
+import br.com.mind5.stats.statsUserStore.userStoreStgn.model.checker.StusorageCheckOrderStatus;
 
 
-public final class NodeStusorageUpsert extends DeciTreeTemplateWrite<StusorageInfo> {
+public final class StusorageNodeUpsertOrderem extends DeciTreeTemplateWrite<StusorageInfo> {
 	
-	public NodeStusorageUpsert(DeciTreeOption<StusorageInfo> option) {
+	public StusorageNodeUpsertOrderem(DeciTreeOption<StusorageInfo> option) {
 		super(option);
 	}
 	
@@ -29,8 +30,8 @@ public final class NodeStusorageUpsert extends DeciTreeTemplateWrite<StusorageIn
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new StusorageCheckExist(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new StusorageCheckOrderStatus(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -41,9 +42,9 @@ public final class NodeStusorageUpsert extends DeciTreeTemplateWrite<StusorageIn
 	@Override protected List<ActionStd<StusorageInfo>> buildActionsOnPassedHook(DeciTreeOption<StusorageInfo> option) {
 		List<ActionStd<StusorageInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusorageInfo> update = new RootStusorageUpdate(option).toAction();
+		ActionStd<StusorageInfo> upsert = new StusorageRootUpsert(option).toAction();
 		
-		actions.add(update);
+		actions.add(upsert);
 		return actions;
 	}
 	
@@ -52,9 +53,9 @@ public final class NodeStusorageUpsert extends DeciTreeTemplateWrite<StusorageIn
 	@Override protected List<ActionStd<StusorageInfo>> buildActionsOnFailedHook(DeciTreeOption<StusorageInfo> option) {
 		List<ActionStd<StusorageInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusorageInfo> insert = new RootStusorageInsert(option).toAction();
+		ActionStd<StusorageInfo> success = new ActionStdSuccessCommom<StusorageInfo>(option);
 		
-		actions.add(insert);
+		actions.add(success);
 		return actions;
 	}
 }

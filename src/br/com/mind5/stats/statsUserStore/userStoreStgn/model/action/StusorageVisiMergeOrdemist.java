@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserStore.userStoreStgn.info.StusorageInfo;
 import br.com.mind5.stats.statsUserStore.userStoreStgn.info.StusorageMerger;
 
-final class VisiStusorageMergeOrdemist extends ActionVisitorTemplateMerge<StusorageInfo, OrdemistInfo> {
+public final class StusorageVisiMergeOrdemist extends ActionVisitorTemplateMerge<StusorageInfo, OrdemistInfo> {
 	
-	public VisiStusorageMergeOrdemist(DeciTreeOption<StusorageInfo> option) {
+	public StusorageVisiMergeOrdemist(DeciTreeOption<StusorageInfo> option) {
 		super(option, OrdemistInfo.class);
 	}
 	

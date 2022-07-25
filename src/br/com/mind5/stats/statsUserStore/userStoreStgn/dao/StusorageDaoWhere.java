@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.stats.statsUserStore.userStoreStgn.info.StusorageInfo;
 
-public final class DaoStusorageWhere implements DaoStmtWhere {
+public final class StusorageDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoStusorageWhere(DaoWhereBuilderOption whereOption, String tableName, StusorageInfo recordInfo) {
+	public StusorageDaoWhere(DaoWhereBuilderOption whereOption, String tableName, StusorageInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class DaoStusorageWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoStusorageDbTableColumn.COL_COD_STORE :
+				case StusorageDaoDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 				
-				case DaoStusorageDbTableColumn.COL_COD_OWNER :
+				case StusorageDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoStusorageDbTableColumn.COL_COD_USER :
+				case StusorageDaoDbTableColumn.COL_COD_USER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 			}

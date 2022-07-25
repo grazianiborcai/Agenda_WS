@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
@@ -15,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.stats.statsUserStore.userStoreStgn.info.StusorageInfo;
 
-public final class DaoStusorageDeleteSingle extends DaoStmtTemplate<StusorageInfo> {
+public final class StusorageDaoSelectSingle extends DaoStmtTemplate<StusorageInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STAT_USER_STORE_STGN_TABLE;	
 	
 	
-	public DaoStusorageDeleteSingle(Connection conn, StusorageInfo recordInfo, String schemaName) {
+	public StusorageDaoSelectSingle(Connection conn, StusorageInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -32,7 +33,7 @@ public final class DaoStusorageDeleteSingle extends DaoStmtTemplate<StusorageInf
 	
 	
 	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.HARD_DELETE;
+		return DaoOperation.SELECT;
 	}
 	
 	
@@ -41,12 +42,11 @@ public final class DaoStusorageDeleteSingle extends DaoStmtTemplate<StusorageInf
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
-		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoStusorageWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new StusorageDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
-	}
+	}	
 	
 	
 	
@@ -54,8 +54,21 @@ public final class DaoStusorageDeleteSingle extends DaoStmtTemplate<StusorageInf
 		return new DaoResultParser<StusorageInfo>() {
 			@Override public List<StusorageInfo> parseResult(StusorageInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<StusorageInfo> finalResult = new ArrayList<>();
-				StusorageInfo emptyInfo = new StusorageInfo();
-				finalResult.add(emptyInfo);			
+				
+				if (stmtResult.next() == false)				
+					return finalResult;
+				
+				do {
+					StusorageInfo dataInfo = new StusorageInfo();
+					
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, StusorageDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, StusorageDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, StusorageDaoDbTableColumn.COL_COD_USER);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StusorageDaoDbTableColumn.COL_LAST_CHANGED);
+					
+					finalResult.add(dataInfo);
+				} while (stmtResult.next());
+				
 				return finalResult;
 			}
 		};

@@ -2,11 +2,12 @@ package br.com.mind5.stats.statsUserStore.userStoreStgn.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.stats.statsUserStore.userStoreStgn.info.StusorageInfo;
-import br.com.mind5.stats.statsUserStore.userStoreStgn.model.action.StdStusorageDaoSelect;
+import br.com.mind5.stats.statsUserStore.userStoreStgn.model.action.StusorageVisiDaoSelect;
 
 public final class StusorageCheckExist extends ModelCheckerTemplateAction<StusorageInfo, StusorageInfo> {
 	
@@ -17,7 +18,7 @@ public final class StusorageCheckExist extends ModelCheckerTemplateAction<Stusor
 	
 	
 	@Override protected ActionStd<StusorageInfo> buildActionHook(DeciTreeOption<StusorageInfo> option) {
-		ActionStd<StusorageInfo> select = new StdStusorageDaoSelect(option);
+		ActionStd<StusorageInfo> select = new ActionStdCommom<StusorageInfo>(option, StusorageVisiDaoSelect.class);
 		return select;
 	}
 	

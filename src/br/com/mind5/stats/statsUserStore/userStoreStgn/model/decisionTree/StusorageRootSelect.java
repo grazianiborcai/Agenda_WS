@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsUserStore.userStoreStgn.info.StusorageInfo;
-import br.com.mind5.stats.statsUserStore.userStoreStgn.model.action.StdStusorageSuccess;
-import br.com.mind5.stats.statsUserStore.userStoreStgn.model.checker.StusorageCheckOrderStatus;
+import br.com.mind5.stats.statsUserStore.userStoreStgn.model.action.StusorageVisiMergeToSelect;
+import br.com.mind5.stats.statsUserStore.userStoreStgn.model.checker.StusorageCheckRead;
 
 
-public final class NodeStusorageUpsertOrderem extends DeciTreeTemplateWrite<StusorageInfo> {
+public final class StusorageRootSelect extends DeciTreeTemplateWrite<StusorageInfo> {
 	
-	public NodeStusorageUpsertOrderem(DeciTreeOption<StusorageInfo> option) {
+	public StusorageRootSelect(DeciTreeOption<StusorageInfo> option) {
 		super(option);
 	}
 	
@@ -31,7 +32,7 @@ public final class NodeStusorageUpsertOrderem extends DeciTreeTemplateWrite<Stus
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StusorageCheckOrderStatus(checkerOption);
+		checker = new StusorageCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -42,20 +43,9 @@ public final class NodeStusorageUpsertOrderem extends DeciTreeTemplateWrite<Stus
 	@Override protected List<ActionStd<StusorageInfo>> buildActionsOnPassedHook(DeciTreeOption<StusorageInfo> option) {
 		List<ActionStd<StusorageInfo>> actions = new ArrayList<>();
 
-		ActionStd<StusorageInfo> upsert = new RootStusorageUpsert(option).toAction();
+		ActionStd<StusorageInfo> select = new ActionStdCommom<StusorageInfo>(option, StusorageVisiMergeToSelect.class);
 		
-		actions.add(upsert);
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<StusorageInfo>> buildActionsOnFailedHook(DeciTreeOption<StusorageInfo> option) {
-		List<ActionStd<StusorageInfo>> actions = new ArrayList<>();
-
-		ActionStd<StusorageInfo> success = new StdStusorageSuccess(option);
-		
-		actions.add(success);
+		actions.add(select);
 		return actions;
 	}
 }

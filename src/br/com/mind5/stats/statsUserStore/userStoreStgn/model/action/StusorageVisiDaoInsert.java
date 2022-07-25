@@ -6,18 +6,18 @@ import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.stats.statsUserStore.userStoreStgn.dao.DaoStusorageDelete;
+import br.com.mind5.stats.statsUserStore.userStoreStgn.dao.StusorageDaoInsert;
 import br.com.mind5.stats.statsUserStore.userStoreStgn.info.StusorageInfo;
 
-final class VisiStusorageDaoDelete extends ActionVisitorTemplateStmt<StusorageInfo> {
+public final class StusorageVisiDaoInsert extends ActionVisitorTemplateStmt<StusorageInfo> {
 
-	public VisiStusorageDaoDelete(DeciTreeOption<StusorageInfo> option) {
+	public StusorageVisiDaoInsert(DeciTreeOption<StusorageInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected DaoStmtExec<StusorageInfo> buildStmtExecHook(List<DaoStmtExecOption<StusorageInfo>> stmtOptions) {
-		return new DaoStusorageDelete(stmtOptions);
+		return new StusorageDaoInsert(stmtOptions);
 	}
 }

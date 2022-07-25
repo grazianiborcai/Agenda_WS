@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.stats.statsUserStore.userStoreStgn.info.StusorageInfo;
 
-public final class DaoStusorageUpdate implements DaoStmtExec<StusorageInfo> {
+public final class StusorageDaoUpdate implements DaoStmtExec<StusorageInfo> {
 	private DaoStmtExec<StusorageInfo> helper;
 	
 	
-	public DaoStusorageUpdate(List<DaoStmtExecOption<StusorageInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoStusorageUpdateSingle.class, StusorageInfo.class);
+	public StusorageDaoUpdate(List<DaoStmtExecOption<StusorageInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, StusorageDaoUpdateSingle.class, StusorageInfo.class);
 	}
 	
 	
