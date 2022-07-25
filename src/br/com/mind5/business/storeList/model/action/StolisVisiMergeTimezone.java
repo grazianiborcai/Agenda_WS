@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.info.StolisMerger;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
-import br.com.mind5.masterData.timezone.model.decisionTree.RootTimezoneSelect;
+import br.com.mind5.masterData.timezone.model.decisionTree.TimezoneRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class StolisVisiMergeTimezone extends ActionVisitorTemplateMerge<St
 	
 	
 	@Override protected Class<? extends DeciTree<TimezoneInfo>> getTreeClassHook() {
-		return RootTimezoneSelect.class;
+		return TimezoneRootSelect.class;
 	}
 	
 	

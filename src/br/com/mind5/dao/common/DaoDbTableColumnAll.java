@@ -225,7 +225,7 @@ import br.com.mind5.masterData.scheduleStatus.dao.SchedatusDaoDbTableColumn;
 import br.com.mind5.masterData.state.dao.StateDaoDbTableColumn;
 import br.com.mind5.masterData.stateSearch.dao.StatarchDaoDbTableColumn;
 import br.com.mind5.masterData.sysEnvironment.dao.SysenvDaoDbTableColumn;
-import br.com.mind5.masterData.timezone.dao.DaoTimezoneDbTableColumn;
+import br.com.mind5.masterData.timezone.dao.TimezoneDaoDbTableColumn;
 import br.com.mind5.masterData.timezoneSearch.dao.DaoTimezonarchDbTableColumn;
 import br.com.mind5.masterData.userCategory.dao.DaoUseregDbTableColumn;
 import br.com.mind5.masterData.weekday.dao.DaoWeekdayDbTableColumn;
@@ -447,7 +447,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new LangarchDaoDbTableColumn());
 		addTable(new CurrencyDaoDbTableColumn());
 		addTable(new CurrarshDaoDbTableColumn());
-		addTable(new DaoTimezoneDbTableColumn());
+		addTable(new TimezoneDaoDbTableColumn());
 		addTable(new DaoTimezonarchDbTableColumn());
 		addTable(new CountroneDaoDbTableColumn());
 		addTable(new CountronarchDaoDbTableColumn());

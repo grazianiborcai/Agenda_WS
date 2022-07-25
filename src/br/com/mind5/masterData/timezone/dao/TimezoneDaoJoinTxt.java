@@ -7,11 +7,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoTimezoneJoinTxt implements DaoJoinBuilder {
+public final class TimezoneDaoJoinTxt implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public DaoTimezoneJoinTxt(String leftTableName) {
+	public TimezoneDaoJoinTxt(String leftTableName) {
 		leftTable = leftTableName;
 	}
 

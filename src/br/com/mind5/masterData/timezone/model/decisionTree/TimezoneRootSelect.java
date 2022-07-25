@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
-import br.com.mind5.masterData.timezone.model.action.StdTimezoneDaoSelect;
+import br.com.mind5.masterData.timezone.model.action.TimezoneVisiDaoSelect;
 import br.com.mind5.masterData.timezone.model.checker.TimezoneCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootTimezoneSelect extends DeciTreeTemplateRead<TimezoneInfo> {
+public final class TimezoneRootSelect extends DeciTreeTemplateRead<TimezoneInfo> {
 	
-	public RootTimezoneSelect(DeciTreeOption<TimezoneInfo> option) {
+	public TimezoneRootSelect(DeciTreeOption<TimezoneInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootTimezoneSelect extends DeciTreeTemplateRead<TimezoneInfo>
 	@Override protected List<ActionStd<TimezoneInfo>> buildActionsOnPassedHook(DeciTreeOption<TimezoneInfo> option) {
 		List<ActionStd<TimezoneInfo>> actions = new ArrayList<>();
 		
-		ActionStd<TimezoneInfo> select = new StdTimezoneDaoSelect(option);
+		ActionStd<TimezoneInfo> select = new ActionStdCommom<TimezoneInfo>(option, TimezoneVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

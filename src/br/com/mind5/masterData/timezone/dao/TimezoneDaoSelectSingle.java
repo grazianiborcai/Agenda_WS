@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 
-public final class DaoTimezoneSelectSingle extends DaoStmtTemplate<TimezoneInfo> {
+public final class TimezoneDaoSelectSingle extends DaoStmtTemplate<TimezoneInfo> {
 	private final String MAIN_TABLE = DaoDbTable.TIMEZONE_TABLE;
 	
 	
-	public DaoTimezoneSelectSingle(Connection conn, TimezoneInfo recordInfo, String schemaName) {
+	public TimezoneDaoSelectSingle(Connection conn, TimezoneInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,14 +45,14 @@ public final class DaoTimezoneSelectSingle extends DaoStmtTemplate<TimezoneInfo>
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoTimezoneWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new TimezoneDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(TimezoneInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoTimezoneJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new TimezoneDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -69,9 +69,9 @@ public final class DaoTimezoneSelectSingle extends DaoStmtTemplate<TimezoneInfo>
 				do {				
 					TimezoneInfo dataInfo = new TimezoneInfo();
 					
-					dataInfo.codTimezone = stmtResult.getString(DaoTimezoneDbTableColumn.COL_COD_TIMEZONE);
-					dataInfo.txtTimezone = stmtResult.getString(DaoTimezoneDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoTimezoneDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codTimezone = stmtResult.getString(TimezoneDaoDbTableColumn.COL_COD_TIMEZONE);
+					dataInfo.txtTimezone = stmtResult.getString(TimezoneDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(TimezoneDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

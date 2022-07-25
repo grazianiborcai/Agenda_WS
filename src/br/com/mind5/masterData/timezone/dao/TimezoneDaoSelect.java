@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 
-public final class DaoTimezoneSelect implements DaoStmtExec<TimezoneInfo> {
+public final class TimezoneDaoSelect implements DaoStmtExec<TimezoneInfo> {
 	private DaoStmtExec<TimezoneInfo> helper;
 	
 	
-	public DaoTimezoneSelect(List<DaoStmtExecOption<TimezoneInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoTimezoneSelectSingle.class, TimezoneInfo.class);
+	public TimezoneDaoSelect(List<DaoStmtExecOption<TimezoneInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, TimezoneDaoSelectSingle.class, TimezoneInfo.class);
 	}
 	
 	
