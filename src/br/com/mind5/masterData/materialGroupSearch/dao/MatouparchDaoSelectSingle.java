@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.materialGroupSearch.info.MatouparchInfo;
 
-public final class DaoMatouparchSelectSingle extends DaoStmtTemplate<MatouparchInfo> {
+public final class MatouparchDaoSelectSingle extends DaoStmtTemplate<MatouparchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_GROUP_TABLE;
 	
 	
-	public DaoMatouparchSelectSingle(Connection conn, MatouparchInfo recordInfo, String schemaName) {
+	public MatouparchDaoSelectSingle(Connection conn, MatouparchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,7 +52,7 @@ public final class DaoMatouparchSelectSingle extends DaoStmtTemplate<MatouparchI
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoMatouparchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new MatouparchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,7 +61,7 @@ public final class DaoMatouparchSelectSingle extends DaoStmtTemplate<MatouparchI
 	@Override protected List<DaoJoin> getJoinsHook(MatouparchInfo recordInfo) {
 		List<DaoJoin> joins = new ArrayList<>();
 		
-		DaoJoinBuilder joinText = new DaoMatouparchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new MatouparchDaoJoinTxt(MAIN_TABLE);		
 		joins.add(joinText.build());
 		
 		return joins;
@@ -80,10 +80,10 @@ public final class DaoMatouparchSelectSingle extends DaoStmtTemplate<MatouparchI
 				do {				
 					MatouparchInfo dataInfo = new MatouparchInfo();
 					
-					dataInfo.codGroup = stmtResult.getInt(DaoMatouparchDbTableColumn.COL_COD_MAT_GROUP);				
-					dataInfo.txtGroup = stmtResult.getString(DaoMatouparchDbTableColumn.COL_NAME);
-					dataInfo.codBusiness = stmtResult.getInt(DaoMatouparchDbTableColumn.COL_COD_BUSINESS);
-					dataInfo.codLanguage = stmtResult.getString(DaoMatouparchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codGroup = stmtResult.getInt(MatouparchDaoDbTableColumn.COL_COD_MAT_GROUP);				
+					dataInfo.txtGroup = stmtResult.getString(MatouparchDaoDbTableColumn.COL_NAME);
+					dataInfo.codBusiness = stmtResult.getInt(MatouparchDaoDbTableColumn.COL_COD_BUSINESS);
+					dataInfo.codLanguage = stmtResult.getString(MatouparchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

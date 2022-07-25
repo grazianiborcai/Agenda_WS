@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.materialGroupSearch.info.MatouparchInfo;
 
-public final class DaoMatouparchSelect implements DaoStmtExec<MatouparchInfo> {
+public final class MatouparchDaoSelect implements DaoStmtExec<MatouparchInfo> {
 	private DaoStmtExec<MatouparchInfo> helper;
 	
 	
-	public DaoMatouparchSelect(List<DaoStmtExecOption<MatouparchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoMatouparchSelectSingle.class, MatouparchInfo.class);
+	public MatouparchDaoSelect(List<DaoStmtExecOption<MatouparchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, MatouparchDaoSelectSingle.class, MatouparchInfo.class);
 	}
 	
 	

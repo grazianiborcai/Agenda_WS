@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.masterData.materialGroup.info.MatoupMerger;
 import br.com.mind5.masterData.materialGroupSearch.info.MatouparchInfo;
-import br.com.mind5.masterData.materialGroupSearch.model.decisionTree.RootMatouparchSelect;
+import br.com.mind5.masterData.materialGroupSearch.model.decisionTree.MatouparchRootSelect;
 
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -20,7 +20,7 @@ public final class MatoupVisiMergeMatouparch extends ActionVisitorTemplateMerge<
 	
 	
 	@Override protected Class<? extends DeciTree<MatouparchInfo>> getTreeClassHook() {
-		return RootMatouparchSelect.class;
+		return MatouparchRootSelect.class;
 	}
 	
 	
