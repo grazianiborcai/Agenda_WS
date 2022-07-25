@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.genderSearch.info.GendarchInfo;
 
-public final class DaoGendarchSelectSingle extends DaoStmtTemplate<GendarchInfo> {
+public final class GendarchDaoSelectSingle extends DaoStmtTemplate<GendarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.GENDER_TABLE;
 	
 	
-	public DaoGendarchSelectSingle(Connection conn, GendarchInfo recordInfo, String schemaName) {
+	public GendarchDaoSelectSingle(Connection conn, GendarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,14 +52,14 @@ public final class DaoGendarchSelectSingle extends DaoStmtTemplate<GendarchInfo>
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoGendarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new GendarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(GendarchInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoGendarchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new GendarchDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -76,9 +76,9 @@ public final class DaoGendarchSelectSingle extends DaoStmtTemplate<GendarchInfo>
 				do {				
 					GendarchInfo dataInfo = new GendarchInfo();
 					
-					dataInfo.codGender = stmtResult.getInt(DaoGendarchDbTableColumn.COL_COD_GENDER);
-					dataInfo.txtGender = stmtResult.getString(DaoGendarchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoGendarchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codGender = stmtResult.getInt(GendarchDaoDbTableColumn.COL_COD_GENDER);
+					dataInfo.txtGender = stmtResult.getString(GendarchDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(GendarchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

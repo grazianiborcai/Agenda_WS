@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.genderSearch.info.GendarchInfo;
 
-public final class DaoGendarchSelect implements DaoStmtExec<GendarchInfo> {
+public final class GendarchDaoSelect implements DaoStmtExec<GendarchInfo> {
 	private DaoStmtExec<GendarchInfo> helper;
 	
 	
-	public DaoGendarchSelect(List<DaoStmtExecOption<GendarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoGendarchSelectSingle.class, GendarchInfo.class);
+	public GendarchDaoSelect(List<DaoStmtExecOption<GendarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, GendarchDaoSelectSingle.class, GendarchInfo.class);
 	}
 	
 	

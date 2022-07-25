@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.genderSearch.info.GendarchInfo;
 
-final class DaoGendarchWhere implements DaoStmtWhere {
+final class GendarchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoGendarchWhere(DaoWhereBuilderOption whereOption, String tableName, GendarchInfo recordInfo) {
+	public GendarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, GendarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ final class DaoGendarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoGendarchDbTableColumn.COL_COD_GENDER :
+				case GendarchDaoDbTableColumn.COL_COD_GENDER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codGender));
 					break;
 					
-				case DaoGendarchDbTableColumn.COL_COD_LANGUAGE :
+				case GendarchDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
