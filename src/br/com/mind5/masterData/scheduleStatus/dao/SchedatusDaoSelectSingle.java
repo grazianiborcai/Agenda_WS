@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
 
-public final class DaoSchedatusSelectSingle extends DaoStmtTemplate<SchedatusInfo> {
+public final class SchedatusDaoSelectSingle extends DaoStmtTemplate<SchedatusInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SCHEDULE_STATUS_TABLE;
 	
 	
-	public DaoSchedatusSelectSingle(Connection conn, SchedatusInfo recordInfo, String schemaName) {
+	public SchedatusDaoSelectSingle(Connection conn, SchedatusInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,14 +45,14 @@ public final class DaoSchedatusSelectSingle extends DaoStmtTemplate<SchedatusInf
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoSchedatusWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new SchedatusDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(SchedatusInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoSchedatusJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new SchedatusDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -69,9 +69,9 @@ public final class DaoSchedatusSelectSingle extends DaoStmtTemplate<SchedatusInf
 				do {				
 					SchedatusInfo dataInfo = new SchedatusInfo();
 					
-					dataInfo.codScheduleStatus = stmtResult.getString(DaoSchedatusDbTableColumn.COL_COD_SCHEDULE_STATUS);
-					dataInfo.txtScheduleStatus = stmtResult.getString(DaoSchedatusDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoSchedatusDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codScheduleStatus = stmtResult.getString(SchedatusDaoDbTableColumn.COL_COD_SCHEDULE_STATUS);
+					dataInfo.txtScheduleStatus = stmtResult.getString(SchedatusDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(SchedatusDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

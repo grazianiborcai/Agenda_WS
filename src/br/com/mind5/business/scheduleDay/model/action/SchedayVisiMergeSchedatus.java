@@ -6,7 +6,7 @@ import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleDay.info.SchedayMerger;
 import br.com.mind5.masterData.scheduleStatus.info.SchedatusCopier;
 import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
-import br.com.mind5.masterData.scheduleStatus.model.decisionTree.RootSchedatusSelect;
+import br.com.mind5.masterData.scheduleStatus.model.decisionTree.SchedatusRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class SchedayVisiMergeSchedatus extends ActionVisitorTemplateMerge<
 	
 	
 	@Override protected Class<? extends DeciTree<SchedatusInfo>> getTreeClassHook() {
-		return RootSchedatusSelect.class;
+		return SchedatusRootSelect.class;
 	}
 	
 	

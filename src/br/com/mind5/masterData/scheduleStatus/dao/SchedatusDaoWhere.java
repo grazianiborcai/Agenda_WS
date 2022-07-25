@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
 
-final class DaoSchedatusWhere implements DaoStmtWhere {
+final class SchedatusDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoSchedatusWhere(DaoWhereBuilderOption whereOption, String tableName, SchedatusInfo recordInfo) {
+	public SchedatusDaoWhere(DaoWhereBuilderOption whereOption, String tableName, SchedatusInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -25,11 +25,11 @@ final class DaoSchedatusWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoSchedatusDbTableColumn.COL_COD_SCHEDULE_STATUS :
+				case SchedatusDaoDbTableColumn.COL_COD_SCHEDULE_STATUS :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codScheduleStatus);
 					break;
 					
-				case DaoSchedatusDbTableColumn.COL_COD_LANGUAGE :
+				case SchedatusDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

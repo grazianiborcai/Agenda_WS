@@ -221,7 +221,7 @@ import br.com.mind5.masterData.refundPolicyGroup.dao.RefugroupDaoDbTableColumn;
 import br.com.mind5.masterData.refundPolicyGroupItem.dao.DaoRefugritemDbTableColumn;
 import br.com.mind5.masterData.refundPolicyGroupItemSearch.dao.RefugritarchDaoDbTableColumn;
 import br.com.mind5.masterData.refundPolicyGroupSearch.dao.RefugrarchDaoDbTableColumn;
-import br.com.mind5.masterData.scheduleStatus.dao.DaoSchedatusDbTableColumn;
+import br.com.mind5.masterData.scheduleStatus.dao.SchedatusDaoDbTableColumn;
 import br.com.mind5.masterData.state.dao.DaoStateDbTableColumn;
 import br.com.mind5.masterData.stateSearch.dao.DaoStatarchDbTableColumn;
 import br.com.mind5.masterData.sysEnvironment.dao.DaoSysenvDbTableColumn;
@@ -496,7 +496,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new PositionDaoDbTableColumn());
 		addTable(new MamovypeDaoDbTableColumn());
 		addTable(new SchedaytaDaoDbTableColumn());
-		addTable(new DaoSchedatusDbTableColumn());
+		addTable(new SchedatusDaoDbTableColumn());
 		addTable(new MonthDaoDbTableColumn());
 		addTable(new CalatarchDaoDbTableColumn());
 		addTable(new MontharchDaoDbTableColumn());

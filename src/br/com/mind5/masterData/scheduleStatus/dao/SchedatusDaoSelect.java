@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
 
-public final class DaoSchedatusSelect implements DaoStmtExec<SchedatusInfo> {
+public final class SchedatusDaoSelect implements DaoStmtExec<SchedatusInfo> {
 	private DaoStmtExec<SchedatusInfo> helper;
 	
 	
-	public DaoSchedatusSelect(List<DaoStmtExecOption<SchedatusInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoSchedatusSelectSingle.class, SchedatusInfo.class);
+	public SchedatusDaoSelect(List<DaoStmtExecOption<SchedatusInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, SchedatusDaoSelectSingle.class, SchedatusInfo.class);
 	}
 	
 	

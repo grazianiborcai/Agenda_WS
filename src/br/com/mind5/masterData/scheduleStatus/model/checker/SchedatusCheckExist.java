@@ -2,8 +2,9 @@ package br.com.mind5.masterData.scheduleStatus.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
-import br.com.mind5.masterData.scheduleStatus.model.action.StdSchedatusDaoSelect;
+import br.com.mind5.masterData.scheduleStatus.model.action.SchedatusVisiDaoSelect;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class SchedatusCheckExist extends ModelCheckerTemplateAction<Scheda
 	
 	
 	@Override protected ActionStd<SchedatusInfo> buildActionHook(DeciTreeOption<SchedatusInfo> option) {
-		ActionStd<SchedatusInfo> select = new StdSchedatusDaoSelect(option);
+		ActionStd<SchedatusInfo> select = new ActionStdCommom<SchedatusInfo>(option, SchedatusVisiDaoSelect.class);
 		return select;
 	}
 	

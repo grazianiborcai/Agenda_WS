@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
-import br.com.mind5.masterData.scheduleStatus.model.action.StdSchedatusDaoSelect;
+import br.com.mind5.masterData.scheduleStatus.model.action.SchedatusVisiDaoSelect;
 import br.com.mind5.masterData.scheduleStatus.model.checker.SchedatusCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootSchedatusSelect extends DeciTreeTemplateRead<SchedatusInfo> {
+public final class SchedatusRootSelect extends DeciTreeTemplateRead<SchedatusInfo> {
 	
-	public RootSchedatusSelect(DeciTreeOption<SchedatusInfo> option) {
+	public SchedatusRootSelect(DeciTreeOption<SchedatusInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootSchedatusSelect extends DeciTreeTemplateRead<SchedatusInf
 	@Override protected List<ActionStd<SchedatusInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedatusInfo> option) {
 		List<ActionStd<SchedatusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedatusInfo> select = new StdSchedatusDaoSelect(option);
+		ActionStd<SchedatusInfo> select = new ActionStdCommom<SchedatusInfo>(option, SchedatusVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;
