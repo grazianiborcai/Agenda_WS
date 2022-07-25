@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.country.info.CountryInfo;
 
-final class StatarchVisiMergeCountry extends InfoMergerVisitorTemplate<StatarchInfo, CountryInfo> {
+final class StatarchMergerVisiCountry extends InfoMergerVisitorTemplate<StatarchInfo, CountryInfo> {
 
 	@Override public boolean shouldMerge(StatarchInfo baseInfo, CountryInfo selectedInfo) {
 		return baseInfo.codCountry.equals(selectedInfo.codCountry);

@@ -12,7 +12,7 @@ public final class StatarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StatarchVisiMergeCountry());
+		builder.addVisitor(new StatarchMergerVisiCountry());
 		InfoMerger<StatarchInfo, CountryInfo> merger = builder.build();		
 	
 		return merger.merge();

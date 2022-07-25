@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.masterData.stateSearch.dao.DaoStatarchSelect;
+import br.com.mind5.masterData.stateSearch.dao.StatarchDaoSelect;
 import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStatarchDaoSelect extends ActionVisitorTemplateStmt<StatarchInfo> {
+public final class StatarchVisiDaoSelect extends ActionVisitorTemplateStmt<StatarchInfo> {
 
-	public VisiStatarchDaoSelect(DeciTreeOption<StatarchInfo> option) {
+	public StatarchVisiDaoSelect(DeciTreeOption<StatarchInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected DaoStmtExec<StatarchInfo> buildStmtExecHook(List<DaoStmtExecOption<StatarchInfo>> stmtOptions) {
-		return new DaoStatarchSelect(stmtOptions);
+		return new StatarchDaoSelect(stmtOptions);
 	}
 }

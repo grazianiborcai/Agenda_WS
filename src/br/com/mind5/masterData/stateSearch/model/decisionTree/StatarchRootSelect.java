@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
-import br.com.mind5.masterData.stateSearch.model.action.LazyStatarchMergeCountry;
-import br.com.mind5.masterData.stateSearch.model.action.StdStatarchDaoSelect;
+import br.com.mind5.masterData.stateSearch.model.action.StatarchVisiDaoSelect;
+import br.com.mind5.masterData.stateSearch.model.action.StatarchVisiMergeCountry;
 import br.com.mind5.masterData.stateSearch.model.checker.StatarchCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootStatarchSelect extends DeciTreeTemplateRead<StatarchInfo> {
+public final class StatarchRootSelect extends DeciTreeTemplateRead<StatarchInfo> {
 	
-	public RootStatarchSelect(DeciTreeOption<StatarchInfo> option) {
+	public StatarchRootSelect(DeciTreeOption<StatarchInfo> option) {
 		super(option);
 	}
 	
@@ -43,8 +45,8 @@ public final class RootStatarchSelect extends DeciTreeTemplateRead<StatarchInfo>
 	@Override protected List<ActionStd<StatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StatarchInfo> option) {
 		List<ActionStd<StatarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StatarchInfo> select = new StdStatarchDaoSelect(option);
-		ActionLazy<StatarchInfo> mergeCountry = new LazyStatarchMergeCountry(option.conn, option.schemaName);
+		ActionStd<StatarchInfo> select = new ActionStdCommom<StatarchInfo>(option, StatarchVisiDaoSelect.class);
+		ActionLazy<StatarchInfo> mergeCountry = new ActionLazyCommom<StatarchInfo>(option, StatarchVisiMergeCountry.class);
 		
 		select.addPostAction(mergeCountry);
 		

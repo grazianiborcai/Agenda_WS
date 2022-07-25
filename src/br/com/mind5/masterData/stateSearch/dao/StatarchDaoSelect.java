@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
 
-public final class DaoStatarchSelect implements DaoStmtExec<StatarchInfo> {
+public final class StatarchDaoSelect implements DaoStmtExec<StatarchInfo> {
 	private DaoStmtExec<StatarchInfo> helper;
 	
 	
-	public DaoStatarchSelect(List<DaoStmtExecOption<StatarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoStatarchSelectSingle.class, StatarchInfo.class);
+	public StatarchDaoSelect(List<DaoStmtExecOption<StatarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, StatarchDaoSelectSingle.class, StatarchInfo.class);
 	}
 	
 	

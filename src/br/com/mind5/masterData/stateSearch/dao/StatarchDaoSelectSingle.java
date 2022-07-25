@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
 
-public final class DaoStatarchSelectSingle extends DaoStmtTemplate<StatarchInfo> {
+public final class StatarchDaoSelectSingle extends DaoStmtTemplate<StatarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STATE_TABLE;
 	
 	
-	public DaoStatarchSelectSingle(Connection conn, StatarchInfo recordInfo, String schemaName) {
+	public StatarchDaoSelectSingle(Connection conn, StatarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,14 +52,14 @@ public final class DaoStatarchSelectSingle extends DaoStmtTemplate<StatarchInfo>
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoStatarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new StatarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(StatarchInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoStatarchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new StatarchDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -76,10 +76,10 @@ public final class DaoStatarchSelectSingle extends DaoStmtTemplate<StatarchInfo>
 				do {				
 					StatarchInfo dataInfo = new StatarchInfo();
 					
-					dataInfo.codCountry = stmtResult.getString(DaoStatarchDbTableColumn.COL_COD_COUNTRY);
-					dataInfo.codState = stmtResult.getString(DaoStatarchDbTableColumn.COL_STATE_PROVINCE);
-					dataInfo.txtState = stmtResult.getString(DaoStatarchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoStatarchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codCountry = stmtResult.getString(StatarchDaoDbTableColumn.COL_COD_COUNTRY);
+					dataInfo.codState = stmtResult.getString(StatarchDaoDbTableColumn.COL_STATE_PROVINCE);
+					dataInfo.txtState = stmtResult.getString(StatarchDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(StatarchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());
