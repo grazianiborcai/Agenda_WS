@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.discountStrategy.info.DisegyInfo;
-import br.com.mind5.masterData.discountStrategy.model.action.StdDisegyDaoSelect;
+import br.com.mind5.masterData.discountStrategy.model.action.DisegyVisiDaoSelect;
 import br.com.mind5.masterData.discountStrategy.model.checker.DisegyCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootDisegySelect extends DeciTreeTemplateRead<DisegyInfo> {
+public final class DisegyRootSelect extends DeciTreeTemplateRead<DisegyInfo> {
 	
-	public RootDisegySelect(DeciTreeOption<DisegyInfo> option) {
+	public DisegyRootSelect(DeciTreeOption<DisegyInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootDisegySelect extends DeciTreeTemplateRead<DisegyInfo> {
 	@Override protected List<ActionStd<DisegyInfo>> buildActionsOnPassedHook(DeciTreeOption<DisegyInfo> option) {
 		List<ActionStd<DisegyInfo>> actions = new ArrayList<>();
 		
-		ActionStd<DisegyInfo> select = new StdDisegyDaoSelect(option);
+		ActionStd<DisegyInfo> select = new ActionStdCommom<DisegyInfo>(option, DisegyVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

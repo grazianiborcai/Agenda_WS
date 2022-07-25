@@ -9,14 +9,14 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoDisegyDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DisegyDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_DISCOUNT_STRATEGY = DaoDbField.COL_COD_DISCOUNT_STRATEGY;
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_DESCRIPTION = DaoDbField.COL_DESCRIPTION;
 	public static final String COL_NAME = DaoDbField.COL_NAME;
 	
 	
-	public DaoDisegyDbTableColumn() {
+	public DisegyDaoDbTableColumn() {
 		super();
 	}
 	

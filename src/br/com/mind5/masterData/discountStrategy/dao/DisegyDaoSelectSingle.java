@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.discountStrategy.info.DisegyInfo;
 
-public final class DaoDisegySelectSingle extends DaoStmtTemplate<DisegyInfo> {
+public final class DisegyDaoSelectSingle extends DaoStmtTemplate<DisegyInfo> {
 	private final String MAIN_TABLE = DaoDbTable.DISCOUNT_STRATEGY_TABLE;
 	
 	
-	public DaoDisegySelectSingle(Connection conn, DisegyInfo recordInfo, String schemaName) {
+	public DisegyDaoSelectSingle(Connection conn, DisegyInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,14 +45,14 @@ public final class DaoDisegySelectSingle extends DaoStmtTemplate<DisegyInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoDisegyWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DisegyDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(DisegyInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoDisegyJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new DisegyDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -69,10 +69,10 @@ public final class DaoDisegySelectSingle extends DaoStmtTemplate<DisegyInfo> {
 				do {				
 					DisegyInfo dataInfo = new DisegyInfo();
 					
-					dataInfo.codDiscountStrategy = stmtResult.getInt(DaoDisegyDbTableColumn.COL_COD_DISCOUNT_STRATEGY);
-					dataInfo.txtDiscountStrategy = stmtResult.getString(DaoDisegyDbTableColumn.COL_NAME);
-					dataInfo.descriptionDiscountStrategy = stmtResult.getString(DaoDisegyDbTableColumn.COL_DESCRIPTION);
-					dataInfo.codLanguage = stmtResult.getString(DaoDisegyDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codDiscountStrategy = stmtResult.getInt(DisegyDaoDbTableColumn.COL_COD_DISCOUNT_STRATEGY);
+					dataInfo.txtDiscountStrategy = stmtResult.getString(DisegyDaoDbTableColumn.COL_NAME);
+					dataInfo.descriptionDiscountStrategy = stmtResult.getString(DisegyDaoDbTableColumn.COL_DESCRIPTION);
+					dataInfo.codLanguage = stmtResult.getString(DisegyDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

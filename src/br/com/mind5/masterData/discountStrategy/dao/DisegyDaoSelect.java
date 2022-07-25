@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.discountStrategy.info.DisegyInfo;
 
-public final class DaoDisegySelect implements DaoStmtExec<DisegyInfo> {
+public final class DisegyDaoSelect implements DaoStmtExec<DisegyInfo> {
 	private DaoStmtExec<DisegyInfo> helper;
 	
 	
-	public DaoDisegySelect(List<DaoStmtExecOption<DisegyInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoDisegySelectSingle.class, DisegyInfo.class);
+	public DisegyDaoSelect(List<DaoStmtExecOption<DisegyInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, DisegyDaoSelectSingle.class, DisegyInfo.class);
 	}
 	
 	

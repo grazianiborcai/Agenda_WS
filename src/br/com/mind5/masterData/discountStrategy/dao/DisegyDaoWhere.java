@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.discountStrategy.info.DisegyInfo;
 
-final class DaoDisegyWhere implements DaoStmtWhere {
+final class DisegyDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoDisegyWhere(DaoWhereBuilderOption whereOption, String tableName, DisegyInfo recordInfo) {
+	public DisegyDaoWhere(DaoWhereBuilderOption whereOption, String tableName, DisegyInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ final class DaoDisegyWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoDisegyDbTableColumn.COL_COD_DISCOUNT_STRATEGY :
+				case DisegyDaoDbTableColumn.COL_COD_DISCOUNT_STRATEGY :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codDiscountStrategy));
 					break;
 					
-				case DaoDisegyDbTableColumn.COL_COD_LANGUAGE :
+				case DisegyDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
