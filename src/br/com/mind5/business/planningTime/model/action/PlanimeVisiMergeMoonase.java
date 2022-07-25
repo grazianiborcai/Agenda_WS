@@ -6,7 +6,7 @@ import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.planningTime.info.PlanimeMerger;
 import br.com.mind5.masterData.moonPhase.info.MoonaseCopier;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
-import br.com.mind5.masterData.moonPhase.model.decisionTree.RootMoonaseSelect;
+import br.com.mind5.masterData.moonPhase.model.decisionTree.MoonaseRootSelect;
 
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -21,7 +21,7 @@ public final class PlanimeVisiMergeMoonase extends ActionVisitorTemplateMerge<Pl
 	
 	
 	@Override protected Class<? extends DeciTree<MoonaseInfo>> getTreeClassHook() {
-		return RootMoonaseSelect.class;
+		return MoonaseRootSelect.class;
 	}
 	
 	

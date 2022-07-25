@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.calendarMoon.info.MooncalInfo;
 import br.com.mind5.business.calendarMoon.info.MooncalMerger;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
-import br.com.mind5.masterData.moonPhase.model.decisionTree.RootMoonaseSelect;
+import br.com.mind5.masterData.moonPhase.model.decisionTree.MoonaseRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class MooncalVisiMergeMoonase extends ActionVisitorTemplateMerge<Mo
 	
 	
 	@Override protected Class<? extends DeciTree<MoonaseInfo>> getTreeClassHook() {
-		return RootMoonaseSelect.class;
+		return MoonaseRootSelect.class;
 	}
 	
 	

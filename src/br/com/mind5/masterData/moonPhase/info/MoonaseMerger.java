@@ -12,7 +12,7 @@ public final class MoonaseMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MoonaseVisiMergeMoonasarch());
+		builder.addVisitor(new MoonaseMergerVisiMoonasarch());
 		InfoMerger<MoonaseInfo, MoonasarchInfo> merger = builder.build();		
 	
 		return merger.merge();

@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMoonaseMergeMoonasarch extends ActionVisitorTemplateMerge<MoonaseInfo, MoonasarchInfo> {
+public final class MoonaseVisiMergeMoonasarch extends ActionVisitorTemplateMerge<MoonaseInfo, MoonasarchInfo> {
 	
-	public VisiMoonaseMergeMoonasarch(DeciTreeOption<MoonaseInfo> option) {
+	public MoonaseVisiMergeMoonasarch(DeciTreeOption<MoonaseInfo> option) {
 		super(option, MoonasarchInfo.class);
 	}
 	

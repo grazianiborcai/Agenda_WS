@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 
-public final class DaoMoonaseSelect implements DaoStmtExec<MoonaseInfo> {
+public final class MoonaseDaoSelect implements DaoStmtExec<MoonaseInfo> {
 	private DaoStmtExec<MoonaseInfo> helper;
 	
 	
-	public DaoMoonaseSelect(List<DaoStmtExecOption<MoonaseInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoMoonaseSelectSingle.class, MoonaseInfo.class);
+	public MoonaseDaoSelect(List<DaoStmtExecOption<MoonaseInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, MoonaseDaoSelectSingle.class, MoonaseInfo.class);
 	}
 	
 	
