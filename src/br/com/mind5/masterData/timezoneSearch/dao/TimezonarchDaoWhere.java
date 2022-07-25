@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.timezoneSearch.info.TimezonarchInfo;
 
-final class DaoTimezonarchWhere implements DaoStmtWhere {
+final class TimezonarchDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoTimezonarchWhere(DaoWhereBuilderOption whereOption, String tableName, TimezonarchInfo recordInfo) {
+	public TimezonarchDaoWhere(DaoWhereBuilderOption whereOption, String tableName, TimezonarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -25,11 +25,11 @@ final class DaoTimezonarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoTimezonarchDbTableColumn.COL_COD_TIMEZONE :
+				case TimezonarchDaoDbTableColumn.COL_COD_TIMEZONE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codTimezone);
 					break;
 					
-				case DaoTimezonarchDbTableColumn.COL_COD_LANGUAGE :
+				case TimezonarchDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

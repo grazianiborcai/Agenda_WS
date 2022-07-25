@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.timezoneSearch.info.TimezonarchInfo;
-import br.com.mind5.masterData.timezoneSearch.model.action.StdTimezonarchDaoSelect;
+import br.com.mind5.masterData.timezoneSearch.model.action.TimezonarchVisiDaoSelect;
 import br.com.mind5.masterData.timezoneSearch.model.checker.TimezonarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootTimezonarchSelect extends DeciTreeTemplateRead<TimezonarchInfo> {
+public final class TimezonarchRootSelect extends DeciTreeTemplateRead<TimezonarchInfo> {
 	
-	public RootTimezonarchSelect(DeciTreeOption<TimezonarchInfo> option) {
+	public TimezonarchRootSelect(DeciTreeOption<TimezonarchInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootTimezonarchSelect extends DeciTreeTemplateRead<Timezonarc
 	@Override protected List<ActionStd<TimezonarchInfo>> buildActionsOnPassedHook(DeciTreeOption<TimezonarchInfo> option) {
 		List<ActionStd<TimezonarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<TimezonarchInfo> select = new StdTimezonarchDaoSelect(option);
+		ActionStd<TimezonarchInfo> select = new ActionStdCommom<TimezonarchInfo>(option, TimezonarchVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

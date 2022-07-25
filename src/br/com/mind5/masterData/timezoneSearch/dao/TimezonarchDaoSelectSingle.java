@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.timezoneSearch.info.TimezonarchInfo;
 
-public final class DaoTimezonarchSelectSingle extends DaoStmtTemplate<TimezonarchInfo> {
+public final class TimezonarchDaoSelectSingle extends DaoStmtTemplate<TimezonarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.TIMEZONE_TABLE;
 	
 	
-	public DaoTimezonarchSelectSingle(Connection conn, TimezonarchInfo recordInfo, String schemaName) {
+	public TimezonarchDaoSelectSingle(Connection conn, TimezonarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,14 +52,14 @@ public final class DaoTimezonarchSelectSingle extends DaoStmtTemplate<Timezonarc
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new DaoTimezonarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new TimezonarchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(TimezonarchInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoTimezonarchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new TimezonarchDaoJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -76,9 +76,9 @@ public final class DaoTimezonarchSelectSingle extends DaoStmtTemplate<Timezonarc
 				do {				
 					TimezonarchInfo dataInfo = new TimezonarchInfo();
 					
-					dataInfo.codTimezone = stmtResult.getString(DaoTimezonarchDbTableColumn.COL_COD_TIMEZONE);
-					dataInfo.txtTimezone = stmtResult.getString(DaoTimezonarchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoTimezonarchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codTimezone = stmtResult.getString(TimezonarchDaoDbTableColumn.COL_COD_TIMEZONE);
+					dataInfo.txtTimezone = stmtResult.getString(TimezonarchDaoDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(TimezonarchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());
