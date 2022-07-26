@@ -8,16 +8,16 @@ import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class VisiSchedauthMergeToSelect extends ActionVisitorTemplateMerge<SchedauthInfo, SchedauthInfo> {
+public final class SchedauthVisiMergeToSelect extends ActionVisitorTemplateMerge<SchedauthInfo, SchedauthInfo> {
 	
-	public VisiSchedauthMergeToSelect(DeciTreeOption<SchedauthInfo> option) {
+	public SchedauthVisiMergeToSelect(DeciTreeOption<SchedauthInfo> option) {
 		super(option, SchedauthInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends ActionVisitor<SchedauthInfo>> getVisitorClassHook() {
-		return VisiSchedauthDaoSelect.class;
+		return SchedauthVisiDaoSelect.class;
 	}
 	
 	

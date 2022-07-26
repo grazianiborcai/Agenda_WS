@@ -1,8 +1,8 @@
 package br.com.mind5.authorization.scheduleAuthorization.model.checker;
 
 import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
-import br.com.mind5.authorization.scheduleAuthorization.model.action.VisiSchedauthDaoSelect;
-import br.com.mind5.authorization.scheduleAuthorization.model.action.VisiSchedauthMergeUsername;
+import br.com.mind5.authorization.scheduleAuthorization.model.action.SchedauthVisiDaoSelect;
+import br.com.mind5.authorization.scheduleAuthorization.model.action.SchedauthVisiMergeUsername;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -21,8 +21,8 @@ public final class SchedauthCheckExist extends ModelCheckerTemplateAction<Scheda
 
 	
 	@Override protected ActionStd<SchedauthInfo> buildActionHook(DeciTreeOption<SchedauthInfo> option) {
-		ActionStd<SchedauthInfo> mergeUsername = new ActionStdCommom<SchedauthInfo>(option, VisiSchedauthMergeUsername.class);
-		ActionLazy<SchedauthInfo> select = new ActionLazyCommom<SchedauthInfo>(option, VisiSchedauthDaoSelect.class);
+		ActionStd<SchedauthInfo> mergeUsername = new ActionStdCommom<SchedauthInfo>(option, SchedauthVisiMergeUsername.class);
+		ActionLazy<SchedauthInfo> select = new ActionLazyCommom<SchedauthInfo>(option, SchedauthVisiDaoSelect.class);
 		
 		mergeUsername.addPostAction(select);
 		return mergeUsername;

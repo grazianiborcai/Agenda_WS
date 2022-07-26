@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class VisiSchedauthMergeSotarch extends ActionVisitorTemplateMerge<SchedauthInfo, SotarchInfo> {
+public final class SchedauthVisiMergeSotarch extends ActionVisitorTemplateMerge<SchedauthInfo, SotarchInfo> {
 	
-	public VisiSchedauthMergeSotarch(DeciTreeOption<SchedauthInfo> option) {
+	public SchedauthVisiMergeSotarch(DeciTreeOption<SchedauthInfo> option) {
 		super(option, SotarchInfo.class);
 	}
 	

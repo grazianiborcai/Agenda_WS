@@ -9,9 +9,9 @@ import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class VisiSchedauthDaoSelect extends ActionVisitorTemplateStmt<SchedauthInfo> {
+public final class SchedauthVisiDaoSelect extends ActionVisitorTemplateStmt<SchedauthInfo> {
 
-	public VisiSchedauthDaoSelect(DeciTreeOption<SchedauthInfo> option) {
+	public SchedauthVisiDaoSelect(DeciTreeOption<SchedauthInfo> option) {
 		super(option);
 	}
 	

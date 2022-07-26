@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
-import br.com.mind5.authorization.scheduleAuthorization.model.action.VisiSchedauthMergeSotarch;
-import br.com.mind5.authorization.scheduleAuthorization.model.action.VisiSchedauthMergeUsername;
-import br.com.mind5.authorization.scheduleAuthorization.model.action.VisiSchedauthObfuscateUser;
+import br.com.mind5.authorization.scheduleAuthorization.model.action.SchedauthVisiMergeSotarch;
+import br.com.mind5.authorization.scheduleAuthorization.model.action.SchedauthVisiMergeUsername;
+import br.com.mind5.authorization.scheduleAuthorization.model.action.SchedauthVisiObfuscateUser;
 import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckAuthManager;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -46,9 +46,9 @@ public final class SchedauthNodeSearchL2 extends DeciTreeTemplateWrite<Schedauth
 	@Override protected List<ActionStd<SchedauthInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedauthInfo> option) {
 		List<ActionStd<SchedauthInfo>> actions = new ArrayList<>();		
 
-		ActionStd<SchedauthInfo> mergeUsername = new ActionStdCommom<SchedauthInfo>(option, VisiSchedauthMergeUsername.class);
-		ActionLazy<SchedauthInfo> mergeSotarch = new ActionLazyCommom<SchedauthInfo>(option, VisiSchedauthMergeSotarch.class);
-		ActionLazy<SchedauthInfo> obfuscateUser = new ActionLazyCommom<SchedauthInfo>(option, VisiSchedauthObfuscateUser.class);
+		ActionStd<SchedauthInfo> mergeUsername = new ActionStdCommom<SchedauthInfo>(option, SchedauthVisiMergeUsername.class);
+		ActionLazy<SchedauthInfo> mergeSotarch = new ActionLazyCommom<SchedauthInfo>(option, SchedauthVisiMergeSotarch.class);
+		ActionLazy<SchedauthInfo> obfuscateUser = new ActionLazyCommom<SchedauthInfo>(option, SchedauthVisiObfuscateUser.class);
 		
 		mergeUsername.addPostAction(mergeSotarch);
 		mergeSotarch.addPostAction(obfuscateUser);
