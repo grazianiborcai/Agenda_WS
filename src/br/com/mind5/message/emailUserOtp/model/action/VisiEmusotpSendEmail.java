@@ -3,7 +3,7 @@ package br.com.mind5.message.emailUserOtp.model.action;
 import java.util.List;
 
 import br.com.mind5.message.email.info.EmailInfo;
-import br.com.mind5.message.email.model.decisionTree.RootEmailUserOtp;
+import br.com.mind5.message.email.model.decisionTree.EmailRootUserOtp;
 import br.com.mind5.message.emailUserOtp.info.EmusotpInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -18,7 +18,7 @@ final class VisiEmusotpSendEmail extends ActionVisitorTemplateAction<EmusotpInfo
 	
 	
 	@Override protected Class<? extends DeciTree<EmailInfo>> getTreeClassHook() {
-		return RootEmailUserOtp.class;
+		return EmailRootUserOtp.class;
 	}
 	
 	

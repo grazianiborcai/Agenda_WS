@@ -3,7 +3,7 @@ package br.com.mind5.message.emailScheduleConfirmation.model.action;
 import java.util.List;
 
 import br.com.mind5.message.email.info.EmailInfo;
-import br.com.mind5.message.email.model.decisionTree.RootEmailScheduleConfirmation;
+import br.com.mind5.message.email.model.decisionTree.EmailRootScheduleConfirmation;
 import br.com.mind5.message.emailScheduleConfirmation.info.EmulonInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -18,7 +18,7 @@ final class VisiEmulonSendEmail extends ActionVisitorTemplateAction<EmulonInfo, 
 	
 	
 	@Override protected Class<? extends DeciTree<EmailInfo>> getTreeClassHook() {
-		return RootEmailScheduleConfirmation.class;
+		return EmailRootScheduleConfirmation.class;
 	}
 	
 	

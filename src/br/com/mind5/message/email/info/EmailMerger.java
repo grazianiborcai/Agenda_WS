@@ -12,7 +12,7 @@ public final class EmailMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmailVisiMergeEmabody());
+		builder.addVisitor(new EmailMergerVisiEmabody());
 		InfoMerger<EmailInfo, EmabodyInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class EmailMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmailVisiMergeToSelect());
+		builder.addVisitor(new EmailMergerVisiToSelect());
 		InfoMerger<EmailInfo, EmailInfo> merger = builder.build();		
 	
 		return merger.merge();

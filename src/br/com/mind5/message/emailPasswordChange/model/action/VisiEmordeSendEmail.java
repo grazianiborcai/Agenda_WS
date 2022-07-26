@@ -3,7 +3,7 @@ package br.com.mind5.message.emailPasswordChange.model.action;
 import java.util.List;
 
 import br.com.mind5.message.email.info.EmailInfo;
-import br.com.mind5.message.email.model.decisionTree.RootEmailPasswordChange;
+import br.com.mind5.message.email.model.decisionTree.EmailRootPasswordChange;
 import br.com.mind5.message.emailPasswordChange.info.EmordeInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -18,7 +18,7 @@ final class VisiEmordeSendEmail extends ActionVisitorTemplateAction<EmordeInfo, 
 	
 	
 	@Override protected Class<? extends DeciTree<EmailInfo>> getTreeClassHook() {
-		return RootEmailPasswordChange.class;
+		return EmailRootPasswordChange.class;
 	}
 	
 	

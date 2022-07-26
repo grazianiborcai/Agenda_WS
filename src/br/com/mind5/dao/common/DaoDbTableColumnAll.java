@@ -230,7 +230,7 @@ import br.com.mind5.masterData.timezoneSearch.dao.TimezonarchDaoDbTableColumn;
 import br.com.mind5.masterData.userCategory.dao.UseregDaoDbTableColumn;
 import br.com.mind5.masterData.weekday.dao.WeekdayDaoDbTableColumn;
 import br.com.mind5.masterData.weekdaySearch.dao.WeekdarchDaoDbTableColumn;
-import br.com.mind5.message.email.dao.DaoEmailDbTableColumn;
+import br.com.mind5.message.email.dao.EmailDaoDbTableColumn;
 import br.com.mind5.message.emailBody.dao.DaoEmabodyDbTableColumn;
 import br.com.mind5.message.sysMessage.dao.DaoSymsgDbTableColumn;
 import br.com.mind5.payment.countryPartner.dao.CounparDaoDbTableColumn;
@@ -359,7 +359,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new MatextsnapDaoDbTableColumn());
 		addTable(new CartemDaoDbTableColumn());
 		addTable(new OrderveDaoDbTableColumn());
-		addTable(new DaoEmailDbTableColumn());
+		addTable(new EmailDaoDbTableColumn());
 		addTable(new DaoEmabodyDbTableColumn());
 		addTable(new OwnparDaoDbTableColumn());
 		addTable(new StoparnapDaoDbTableColumn());

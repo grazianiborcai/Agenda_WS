@@ -3,7 +3,7 @@ package br.com.mind5.message.emailProspectStore.model.action;
 import java.util.List;
 
 import br.com.mind5.message.email.info.EmailInfo;
-import br.com.mind5.message.email.model.decisionTree.RootEmailProspectStore;
+import br.com.mind5.message.email.model.decisionTree.EmailRootProspectStore;
 import br.com.mind5.message.emailProspectStore.info.EmaproreInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -18,7 +18,7 @@ final class VisiEmaproreSendEmail extends ActionVisitorTemplateAction<EmaproreIn
 	
 	
 	@Override protected Class<? extends DeciTree<EmailInfo>> getTreeClassHook() {
-		return RootEmailProspectStore.class;
+		return EmailRootProspectStore.class;
 	}
 	
 	

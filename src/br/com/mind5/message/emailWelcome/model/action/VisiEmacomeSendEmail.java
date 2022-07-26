@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.message.email.info.EmailCopier;
 import br.com.mind5.message.email.info.EmailInfo;
-import br.com.mind5.message.email.model.decisionTree.RootEmailWelcome;
+import br.com.mind5.message.email.model.decisionTree.EmailRootWelcome;
 import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -19,7 +19,7 @@ final class VisiEmacomeSendEmail extends ActionVisitorTemplateAction<EmacomeInfo
 	
 	
 	@Override protected Class<? extends DeciTree<EmailInfo>> getTreeClassHook() {
-		return RootEmailWelcome.class;
+		return EmailRootWelcome.class;
 	}
 	
 	
