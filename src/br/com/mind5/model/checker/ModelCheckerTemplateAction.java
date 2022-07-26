@@ -11,7 +11,7 @@ import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
-import br.com.mind5.message.sysMessage.model.decisionTree.RootSymsgSelect;
+import br.com.mind5.message.sysMessage.model.decisionTree.SymsgRootSelect;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -262,7 +262,7 @@ public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends
 	
 	
 	private SymsgInfo readSymsg(DeciTreeOption<SymsgInfo> option) {
-		ActionStd<SymsgInfo> select = new RootSymsgSelect(option).toAction();
+		ActionStd<SymsgInfo> select = new SymsgRootSelect(option).toAction();
 		select.executeAction();		
 		
 		return select.getDecisionResult().getResultset().get(0);

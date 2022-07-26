@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 
-public final class DaoSymsgSelect implements DaoStmtExec<SymsgInfo> {
+public final class SymsgDaoSelect implements DaoStmtExec<SymsgInfo> {
 	private DaoStmtExec<SymsgInfo> helper;
 	
 	
-	public DaoSymsgSelect(List<DaoStmtExecOption<SymsgInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoSymsgSelectSingle.class, SymsgInfo.class);
+	public SymsgDaoSelect(List<DaoStmtExecOption<SymsgInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, SymsgDaoSelectSingle.class, SymsgInfo.class);
 	}
 	
 	

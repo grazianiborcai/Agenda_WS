@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class SymsgVisiMergeToSelect extends InfoMergerVisitorTemplate<SymsgInfo, SymsgInfo> {
+final class SymsgMergerVisiToSelect extends InfoMergerVisitorTemplate<SymsgInfo, SymsgInfo> {
 
 	@Override public boolean shouldMerge(SymsgInfo baseInfo, SymsgInfo selectedInfo) {
 		return (baseInfo.codMsg == selectedInfo.codMsg &&

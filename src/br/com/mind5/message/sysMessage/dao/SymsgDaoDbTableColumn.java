@@ -9,13 +9,13 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoSymsgDbTableColumn extends DaoDbTableColumnTemplate {
+public final class SymsgDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_COD_MESSAGE = DaoDbField.COL_COD_MESSAGE;
 	public static final String COL_MESSAGE = DaoDbField.COL_MESSAGE;
 	
 	
-	public DaoSymsgDbTableColumn() {
+	public SymsgDaoDbTableColumn() {
 		super();
 	}
 	

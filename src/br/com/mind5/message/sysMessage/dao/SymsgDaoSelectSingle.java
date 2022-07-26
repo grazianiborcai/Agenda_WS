@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 
-public final class DaoSymsgSelectSingle extends DaoStmtTemplate<SymsgInfo> {
+public final class SymsgDaoSelectSingle extends DaoStmtTemplate<SymsgInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SYS_MESSAGE_TABLE;	
 	
 	
-	public DaoSymsgSelectSingle(Connection conn, SymsgInfo recordInfo, String schemaName) {
+	public SymsgDaoSelectSingle(Connection conn, SymsgInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoSymsgSelectSingle extends DaoStmtTemplate<SymsgInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoSymsgWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new SymsgDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -61,9 +61,9 @@ public final class DaoSymsgSelectSingle extends DaoStmtTemplate<SymsgInfo> {
 				do {
 					SymsgInfo dataInfo = new SymsgInfo();
 					
-					dataInfo.codMsg = DaoFormatter.sqlToInt(stmtResult, DaoSymsgDbTableColumn.COL_COD_MESSAGE);
-					dataInfo.txtMsg = stmtResult.getString(DaoSymsgDbTableColumn.COL_MESSAGE);
-					dataInfo.codLanguage = stmtResult.getString(DaoSymsgDbTableColumn.COL_COD_LANGUAGE);
+					dataInfo.codMsg = DaoFormatter.sqlToInt(stmtResult, SymsgDaoDbTableColumn.COL_COD_MESSAGE);
+					dataInfo.txtMsg = stmtResult.getString(SymsgDaoDbTableColumn.COL_MESSAGE);
+					dataInfo.codLanguage = stmtResult.getString(SymsgDaoDbTableColumn.COL_COD_LANGUAGE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

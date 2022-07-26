@@ -11,7 +11,7 @@ public final class SymsgMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SymsgVisiMergeToSelect());
+		builder.addVisitor(new SymsgMergerVisiToSelect());
 		InfoMerger<SymsgInfo, SymsgInfo> merger = builder.build();		
 	
 		return merger.merge();

@@ -232,7 +232,7 @@ import br.com.mind5.masterData.weekday.dao.WeekdayDaoDbTableColumn;
 import br.com.mind5.masterData.weekdaySearch.dao.WeekdarchDaoDbTableColumn;
 import br.com.mind5.message.email.dao.EmailDaoDbTableColumn;
 import br.com.mind5.message.emailBody.dao.EmabodyDaoDbTableColumn;
-import br.com.mind5.message.sysMessage.dao.DaoSymsgDbTableColumn;
+import br.com.mind5.message.sysMessage.dao.SymsgDaoDbTableColumn;
 import br.com.mind5.payment.countryPartner.dao.CounparDaoDbTableColumn;
 import br.com.mind5.payment.countryPartnerSearch.dao.CounparchDaoDbTableColumn;
 import br.com.mind5.payment.creditCard.dao.CrecardDaoDbTableColumn;
@@ -393,7 +393,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new SchedeekdatDaoDbTableColumn());
 		addTable(new FimgDaoDbTableColumn());
 		addTable(new FathDaoDbTableColumn());
-		addTable(new DaoSymsgDbTableColumn());
+		addTable(new SymsgDaoDbTableColumn());
 		addTable(new OwnerapDaoDbTableColumn());
 		addTable(new ComplisDaoDbTableColumn());
 		addTable(new AddarchDaoDbTableColumn());

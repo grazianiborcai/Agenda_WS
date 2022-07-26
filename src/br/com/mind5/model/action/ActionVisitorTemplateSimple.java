@@ -10,7 +10,7 @@ import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
-import br.com.mind5.message.sysMessage.model.decisionTree.RootSymsgSelect;
+import br.com.mind5.message.sysMessage.model.decisionTree.SymsgRootSelect;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -127,7 +127,7 @@ public abstract class ActionVisitorTemplateSimple<T extends InfoRecord> implemen
 	
 	
 	private SymsgInfo readSymsg(DeciTreeOption<SymsgInfo> option) {
-		DeciTree<SymsgInfo> select = new RootSymsgSelect(option);
+		DeciTree<SymsgInfo> select = new SymsgRootSelect(option);
 		select.makeDecision();	
 		
 		SymsgInfo result = select.getDecisionResult().getResultset().get(0);

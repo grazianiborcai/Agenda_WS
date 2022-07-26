@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 
-final class DaoSymsgWhere implements DaoStmtWhere {	
+final class SymsgDaoWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public DaoSymsgWhere(DaoWhereBuilderOption whereOption, String tableName, SymsgInfo recordInfo) {
+	public SymsgDaoWhere(DaoWhereBuilderOption whereOption, String tableName, SymsgInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,12 +27,12 @@ final class DaoSymsgWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoSymsgDbTableColumn.COL_COD_MESSAGE :
+				case SymsgDaoDbTableColumn.COL_COD_MESSAGE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMsg));
 					break;
 					
 					
-				case DaoSymsgDbTableColumn.COL_COD_LANGUAGE :
+				case SymsgDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
