@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.form.formAddressSearch.info.FormesarchInfo;
 
-public final class DaoFormesarchSelect implements DaoStmtExec<FormesarchInfo> {
+public final class FormesarchDaoSelect implements DaoStmtExec<FormesarchInfo> {
 	private DaoStmtExec<FormesarchInfo> helper;
 	
 	
-	public DaoFormesarchSelect(List<DaoStmtExecOption<FormesarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoFormesarchSelectSingle.class, FormesarchInfo.class);
+	public FormesarchDaoSelect(List<DaoStmtExecOption<FormesarchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, FormesarchDaoSelectSingle.class, FormesarchInfo.class);
 	}
 	
 	

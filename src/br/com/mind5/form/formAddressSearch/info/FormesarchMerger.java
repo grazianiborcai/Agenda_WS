@@ -11,7 +11,7 @@ public final class FormesarchMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FormesarchVisiMergeToSelect());
+		builder.addVisitor(new FormesarchMergerVisiToSelect());
 		InfoMerger<FormesarchInfo, FormesarchInfo> merger = builder.build();		
 	
 		return merger.merge();

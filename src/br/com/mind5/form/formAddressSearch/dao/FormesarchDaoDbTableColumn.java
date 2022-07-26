@@ -9,12 +9,12 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoFormesarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class FormesarchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_COUNTRY = DaoDbField.COL_COD_COUNTRY;
 	public static final String COL_COD_FORM = DaoDbField.COL_COD_FORM;
 	
 	
-	public DaoFormesarchDbTableColumn() {
+	public FormesarchDaoDbTableColumn() {
 		super();
 	}
 	

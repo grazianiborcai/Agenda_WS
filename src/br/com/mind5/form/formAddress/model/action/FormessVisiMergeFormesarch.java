@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.form.formAddress.info.FormessInfo;
 import br.com.mind5.form.formAddress.info.FormessMerger;
 import br.com.mind5.form.formAddressSearch.info.FormesarchInfo;
-import br.com.mind5.form.formAddressSearch.model.decisionTree.RootFormesarchSelect;
+import br.com.mind5.form.formAddressSearch.model.decisionTree.FormesarchRootSelect;
 
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -20,7 +20,7 @@ public final class FormessVisiMergeFormesarch extends ActionVisitorTemplateMerge
 	
 	
 	@Override protected Class<? extends DeciTree<FormesarchInfo>> getTreeClassHook() {
-		return RootFormesarchSelect.class;
+		return FormesarchRootSelect.class;
 	}
 	
 	
