@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetterTemplate;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFormoneEnforceDefault extends ActionVisitorTemplateEnforce<FormoneInfo> {
+public final class FormoneVisiEnforceDefault extends ActionVisitorTemplateEnforce<FormoneInfo> {
 	
-	public VisiFormoneEnforceDefault(DeciTreeOption<FormoneInfo> option) {
+	public FormoneVisiEnforceDefault(DeciTreeOption<FormoneInfo> option) {
 		super(option);
 	}
 	

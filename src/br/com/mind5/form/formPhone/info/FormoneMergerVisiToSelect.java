@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class FormoneVisiMergeToSelect extends InfoMergerVisitorTemplate<FormoneInfo, FormoneInfo> {
+final class FormoneMergerVisiToSelect extends InfoMergerVisitorTemplate<FormoneInfo, FormoneInfo> {
 
 	@Override public boolean shouldMerge(FormoneInfo baseInfo, FormoneInfo selectedInfo) {
 		return true;

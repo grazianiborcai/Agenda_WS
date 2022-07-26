@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapMerger;
 import br.com.mind5.form.formPhone.info.FormoneInfo;
-import br.com.mind5.form.formPhone.model.decisionTree.RootFormoneSelect;
+import br.com.mind5.form.formPhone.model.decisionTree.FormoneRootSelect;
 
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -20,7 +20,7 @@ public final class PhonapVisiMergeFormone extends ActionVisitorTemplateMerge<Pho
 	
 	
 	@Override protected Class<? extends DeciTree<FormoneInfo>> getTreeClassHook() {
-		return RootFormoneSelect.class;
+		return FormoneRootSelect.class;
 	}
 	
 	

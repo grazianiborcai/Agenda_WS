@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.form.formPhone.info.FormoneInfo;
 
-public final class DaoFormoneSelect implements DaoStmtExec<FormoneInfo> {
+public final class FormoneDaoSelect implements DaoStmtExec<FormoneInfo> {
 	private DaoStmtExec<FormoneInfo> helper;
 	
 	
-	public DaoFormoneSelect(List<DaoStmtExecOption<FormoneInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoFormoneSelectSingle.class, FormoneInfo.class);
+	public FormoneDaoSelect(List<DaoStmtExecOption<FormoneInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, FormoneDaoSelectSingle.class, FormoneInfo.class);
 	}
 	
 	

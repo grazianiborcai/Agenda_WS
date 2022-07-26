@@ -12,7 +12,7 @@ public final class FormoneMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FormoneVisiMergeToSelect());
+		builder.addVisitor(new FormoneMergerVisiToSelect());
 		InfoMerger<FormoneInfo, FormoneInfo> merger = builder.build();		
 	
 		return merger.merge();

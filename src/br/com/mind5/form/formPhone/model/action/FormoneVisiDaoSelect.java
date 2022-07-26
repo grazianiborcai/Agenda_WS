@@ -2,22 +2,22 @@ package br.com.mind5.form.formPhone.model.action;
 
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.form.formPhone.dao.DaoFormoneSelect;
+import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.form.formPhone.dao.FormoneDaoSelect;
 import br.com.mind5.form.formPhone.info.FormoneInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFormoneDaoSelect extends ActionVisitorTemplateStmt<FormoneInfo> {
+public final class FormoneVisiDaoSelect extends ActionVisitorTemplateStmt<FormoneInfo> {
 
-	public VisiFormoneDaoSelect(DeciTreeOption<FormoneInfo> option) {
+	public FormoneVisiDaoSelect(DeciTreeOption<FormoneInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected DaoStmtExec<FormoneInfo> buildStmtExecHook(List<DaoStmtExecOption<FormoneInfo>> stmtOptions) {
-		return new DaoFormoneSelect(stmtOptions);
+		return new FormoneDaoSelect(stmtOptions);
 	}
 }

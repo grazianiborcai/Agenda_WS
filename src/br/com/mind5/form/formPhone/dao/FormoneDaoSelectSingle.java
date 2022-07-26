@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.form.formPhone.info.FormoneInfo;
 
-public final class DaoFormoneSelectSingle extends DaoStmtTemplate<FormoneInfo> {
+public final class FormoneDaoSelectSingle extends DaoStmtTemplate<FormoneInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PHONE_FORM_TABLE;
 	
 	
-	public DaoFormoneSelectSingle(Connection conn, FormoneInfo recordInfo, String schemaName) {
+	public FormoneDaoSelectSingle(Connection conn, FormoneInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -43,7 +43,7 @@ public final class DaoFormoneSelectSingle extends DaoStmtTemplate<FormoneInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoFormoneWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new FormoneDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -60,8 +60,8 @@ public final class DaoFormoneSelectSingle extends DaoStmtTemplate<FormoneInfo> {
 				do {				
 					FormoneInfo dataInfo = new FormoneInfo();
 					
-					dataInfo.codCountry = stmtResult.getString(DaoFormoneDbTableColumn.COL_COD_COUNTRY);
-					dataInfo.codForm = stmtResult.getString(DaoFormoneDbTableColumn.COL_COD_FORM);
+					dataInfo.codCountry = stmtResult.getString(FormoneDaoDbTableColumn.COL_COD_COUNTRY);
+					dataInfo.codForm = stmtResult.getString(FormoneDaoDbTableColumn.COL_COD_FORM);
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());
