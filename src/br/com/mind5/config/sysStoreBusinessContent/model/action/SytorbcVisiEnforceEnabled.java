@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSytorbcEnforceEnabled extends ActionVisitorTemplateEnforce<SytorbcInfo> {
+public final class SytorbcVisiEnforceEnabled extends ActionVisitorTemplateEnforce<SytorbcInfo> {
 	
-	public VisiSytorbcEnforceEnabled(DeciTreeOption<SytorbcInfo> option) {
+	public SytorbcVisiEnforceEnabled(DeciTreeOption<SytorbcInfo> option) {
 		super(option);
 	}
 

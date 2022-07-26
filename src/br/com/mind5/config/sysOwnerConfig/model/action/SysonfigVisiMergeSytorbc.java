@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.config.sysOwnerConfig.info.SysonfigInfo;
 import br.com.mind5.config.sysOwnerConfig.info.SysonfigMerger;
 import br.com.mind5.config.sysStoreBusinessContent.info.SytorbcInfo;
-import br.com.mind5.config.sysStoreBusinessContent.model.decisionTree.RootSytorbcSelectDefault;
+import br.com.mind5.config.sysStoreBusinessContent.model.decisionTree.SytorbcRootSelectDefault;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class SysonfigVisiMergeSytorbc extends ActionVisitorTemplateMerge<S
 	
 	
 	@Override protected Class<? extends DeciTree<SytorbcInfo>> getTreeClassHook() {
-		return RootSytorbcSelectDefault.class;
+		return SytorbcRootSelectDefault.class;
 	}
 	
 	

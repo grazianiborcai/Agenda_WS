@@ -142,7 +142,7 @@ import br.com.mind5.common.SystemMessage;
 import br.com.mind5.config.sysDistrictSearch.dao.SysdistrDaoDbTableColumn;
 import br.com.mind5.config.sysOwnerConfig.dao.SysonfigDaoDbTableColumn;
 import br.com.mind5.config.sysOwnerSignup.dao.SysonupDaoDbTableColumn;
-import br.com.mind5.config.sysStoreBusinessContent.dao.DaoSytorbcDbTableColumn;
+import br.com.mind5.config.sysStoreBusinessContent.dao.SytorbcDaoDbTableColumn;
 import br.com.mind5.config.sysStorePartitioning.dao.DaoSytotinDbTableColumn;
 import br.com.mind5.config.sysStoreSignup.dao.DaoSysotupDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
@@ -528,7 +528,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new StorextarchDaoDbTableColumn());
 		addTable(new StorextsnapDaoDbTableColumn());
 		addTable(new DaoSysotupDbTableColumn());
-		addTable(new DaoSytorbcDbTableColumn());
+		addTable(new SytorbcDaoDbTableColumn());
 		addTable(new CountralDaoDbTableColumn());
 		addTable(new CountrarchDaoDbTableColumn());
 		addTable(new CaritegarchDaoDbTableColumn());

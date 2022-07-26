@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoSytorbcSelectSingle extends DaoStmtTemplate<SytorbcInfo> {
+public final class SytorbcDaoSelectSingle extends DaoStmtTemplate<SytorbcInfo> {
 	private final String MAIN_TABLE = DaoDbTable.OWNER_CONFIG_TABLE;
 	
 	
-	public DaoSytorbcSelectSingle(Connection conn, SytorbcInfo recordInfo, String schemaName) {
+	public SytorbcDaoSelectSingle(Connection conn, SytorbcInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoSytorbcSelectSingle extends DaoStmtTemplate<SytorbcInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		
-		DaoStmtWhere whereClause = new DaoSytorbcWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new SytorbcDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,8 +67,8 @@ public final class DaoSytorbcSelectSingle extends DaoStmtTemplate<SytorbcInfo> {
 				do {				
 					SytorbcInfo dataInfo = new SytorbcInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSytorbcDbTableColumn.COL_COD_OWNER);
-					dataInfo.storeBusinessContent = stmtResult.getString(DaoSytorbcDbTableColumn.COL_STORE_BUSINESS_CONTENT);	
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, SytorbcDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.storeBusinessContent = stmtResult.getString(SytorbcDaoDbTableColumn.COL_STORE_BUSINESS_CONTENT);	
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

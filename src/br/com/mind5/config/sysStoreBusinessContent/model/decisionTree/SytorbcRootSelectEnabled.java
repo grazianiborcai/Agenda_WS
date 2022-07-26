@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.config.sysStoreBusinessContent.info.SytorbcInfo;
-import br.com.mind5.config.sysStoreBusinessContent.model.action.LazySytorbcRootSelect;
-import br.com.mind5.config.sysStoreBusinessContent.model.action.StdSytorbcEnforceEnabled;
+import br.com.mind5.config.sysStoreBusinessContent.model.action.SytorbcVisiRootSelect;
+import br.com.mind5.config.sysStoreBusinessContent.model.action.SytorbcVisiEnforceEnabled;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootSytorbcSelectEnabled extends DeciTreeTemplateRead<SytorbcInfo> {
+public final class SytorbcRootSelectEnabled extends DeciTreeTemplateRead<SytorbcInfo> {
 	
-	public RootSytorbcSelectEnabled(DeciTreeOption<SytorbcInfo> option) {
+	public SytorbcRootSelectEnabled(DeciTreeOption<SytorbcInfo> option) {
 		super(option);
 	}
 	
@@ -37,8 +39,8 @@ public final class RootSytorbcSelectEnabled extends DeciTreeTemplateRead<Sytorbc
 	@Override protected List<ActionStd<SytorbcInfo>> buildActionsOnPassedHook(DeciTreeOption<SytorbcInfo> option) {
 		List<ActionStd<SytorbcInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SytorbcInfo> enforceEnabled = new StdSytorbcEnforceEnabled(option);
-		ActionLazy<SytorbcInfo> select = new LazySytorbcRootSelect(option.conn, option.schemaName);
+		ActionStd<SytorbcInfo> enforceEnabled = new ActionStdCommom<SytorbcInfo>(option, SytorbcVisiEnforceEnabled.class);
+		ActionLazy<SytorbcInfo> select = new ActionLazyCommom<SytorbcInfo>(option, SytorbcVisiRootSelect.class);
 		
 		enforceEnabled.addPostAction(select);
 		

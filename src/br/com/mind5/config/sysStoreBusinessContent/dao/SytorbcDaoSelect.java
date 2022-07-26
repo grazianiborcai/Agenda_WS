@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.config.sysStoreBusinessContent.info.SytorbcInfo;
 
-public final class DaoSytorbcSelect implements DaoStmtExec<SytorbcInfo> {
+public final class SytorbcDaoSelect implements DaoStmtExec<SytorbcInfo> {
 	private DaoStmtExec<SytorbcInfo> helper;
 	
 	
-	public DaoSytorbcSelect(List<DaoStmtExecOption<SytorbcInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoSytorbcSelectSingle.class, SytorbcInfo.class);
+	public SytorbcDaoSelect(List<DaoStmtExecOption<SytorbcInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, SytorbcDaoSelectSingle.class, SytorbcInfo.class);
 	}
 	
 	
