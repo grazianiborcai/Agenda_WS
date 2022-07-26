@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.message.emailUserOtp.info.EmusotpCopier;
 import br.com.mind5.message.emailUserOtp.info.EmusotpInfo;
-import br.com.mind5.message.emailUserOtp.model.decisionTree.RootEmusotpSend;
+import br.com.mind5.message.emailUserOtp.model.decisionTree.EmusotpRootSend;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class OtperasVisiSendEmail extends ActionVisitorTemplateAction<Otpe
 	
 	
 	@Override protected Class<? extends DeciTree<EmusotpInfo>> getTreeClassHook() {
-		return RootEmusotpSend.class;
+		return EmusotpRootSend.class;
 	}
 	
 	

@@ -6,9 +6,9 @@ import br.com.mind5.message.emailUserOtp.info.EmusotpSetterEmabody;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmusotpEnforceEmabody extends ActionVisitorTemplateEnforce<EmusotpInfo> {
+public final class EmusotpVisiEnforceEmabody extends ActionVisitorTemplateEnforce<EmusotpInfo> {
 	
-	public VisiEmusotpEnforceEmabody(DeciTreeOption<EmusotpInfo> option) {
+	public EmusotpVisiEnforceEmabody(DeciTreeOption<EmusotpInfo> option) {
 		super(option);
 	}
 	

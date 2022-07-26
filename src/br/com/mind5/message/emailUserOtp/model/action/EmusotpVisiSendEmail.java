@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmusotpSendEmail extends ActionVisitorTemplateAction<EmusotpInfo, EmailInfo> {
+public final class EmusotpVisiSendEmail extends ActionVisitorTemplateAction<EmusotpInfo, EmailInfo> {
 	
-	public VisiEmusotpSendEmail(DeciTreeOption<EmusotpInfo> option) {
+	public EmusotpVisiSendEmail(DeciTreeOption<EmusotpInfo> option) {
 		super(option, EmusotpInfo.class, EmailInfo.class);
 	}
 	
