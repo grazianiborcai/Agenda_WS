@@ -4,24 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.message.emailScheduleCancellation.info.EmulelInfo;
-import br.com.mind5.message.emailScheduleCancellation.model.action.LazyEmulelEnforceEmabody;
-import br.com.mind5.message.emailScheduleCancellation.model.action.LazyEmulelMergeCuslis;
-import br.com.mind5.message.emailScheduleCancellation.model.action.LazyEmulelMergeEmplis;
-import br.com.mind5.message.emailScheduleCancellation.model.action.LazyEmulelMergeMatlis;
-import br.com.mind5.message.emailScheduleCancellation.model.action.LazyEmulelSendEmail;
-import br.com.mind5.message.emailScheduleCancellation.model.action.StdEmulelMergeStolis;
+import br.com.mind5.message.emailScheduleCancellation.model.action.EmulelVisiEnforceEmabody;
+import br.com.mind5.message.emailScheduleCancellation.model.action.EmulelVisiMergeCuslis;
+import br.com.mind5.message.emailScheduleCancellation.model.action.EmulelVisiMergeEmplis;
+import br.com.mind5.message.emailScheduleCancellation.model.action.EmulelVisiMergeMatlis;
+import br.com.mind5.message.emailScheduleCancellation.model.action.EmulelVisiMergeStolis;
+import br.com.mind5.message.emailScheduleCancellation.model.action.EmulelVisiSendEmail;
 import br.com.mind5.message.emailScheduleCancellation.model.checker.EmulelCheckSend;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmulelSend extends DeciTreeTemplateWrite<EmulelInfo> {
+public final class EmulelRootSend extends DeciTreeTemplateWrite<EmulelInfo> {
 	
-	public RootEmulelSend(DeciTreeOption<EmulelInfo> option) {
+	public EmulelRootSend(DeciTreeOption<EmulelInfo> option) {
 		super(option);
 	}
 	
@@ -47,12 +49,12 @@ public final class RootEmulelSend extends DeciTreeTemplateWrite<EmulelInfo> {
 	@Override protected List<ActionStd<EmulelInfo>> buildActionsOnPassedHook(DeciTreeOption<EmulelInfo> option) {
 		List<ActionStd<EmulelInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<EmulelInfo> mergeStolis = new StdEmulelMergeStolis(option);
-		ActionLazy<EmulelInfo> mergeCuslis = new LazyEmulelMergeCuslis(option.conn, option.schemaName);	
-		ActionLazy<EmulelInfo> mergeMatlis = new LazyEmulelMergeMatlis(option.conn, option.schemaName);	
-		ActionLazy<EmulelInfo> mergeEmplis = new LazyEmulelMergeEmplis(option.conn, option.schemaName);	
-		ActionLazy<EmulelInfo> enforceEmabody = new LazyEmulelEnforceEmabody(option.conn, option.schemaName);		
-		ActionLazy<EmulelInfo> send = new LazyEmulelSendEmail(option.conn, option.schemaName);
+		ActionStd<EmulelInfo> mergeStolis = new ActionStdCommom<EmulelInfo>(option, EmulelVisiMergeStolis.class);
+		ActionLazy<EmulelInfo> mergeCuslis = new ActionLazyCommom<EmulelInfo>(option, EmulelVisiMergeCuslis.class);	
+		ActionLazy<EmulelInfo> mergeMatlis = new ActionLazyCommom<EmulelInfo>(option, EmulelVisiMergeMatlis.class);	
+		ActionLazy<EmulelInfo> mergeEmplis = new ActionLazyCommom<EmulelInfo>(option, EmulelVisiMergeEmplis.class);	
+		ActionLazy<EmulelInfo> enforceEmabody = new ActionLazyCommom<EmulelInfo>(option, EmulelVisiEnforceEmabody.class);		
+		ActionLazy<EmulelInfo> send = new ActionLazyCommom<EmulelInfo>(option, EmulelVisiSendEmail.class);
 		
 		mergeStolis.addPostAction(mergeCuslis);
 		mergeCuslis.addPostAction(mergeMatlis);
