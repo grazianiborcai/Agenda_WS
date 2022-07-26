@@ -218,7 +218,7 @@ import br.com.mind5.masterData.prospectStatus.dao.ProstusDaoDbTableColumn;
 import br.com.mind5.masterData.prospectStatusSearch.dao.ProstarchDaoDbTableColumn;
 import br.com.mind5.masterData.refundPolicy.dao.RefupoDaoDbTableColumn;
 import br.com.mind5.masterData.refundPolicyGroup.dao.RefugroupDaoDbTableColumn;
-import br.com.mind5.masterData.refundPolicyGroupItem.dao.DaoRefugritemDbTableColumn;
+import br.com.mind5.masterData.refundPolicyGroupItem.dao.RefugritemDaoDbTableColumn;
 import br.com.mind5.masterData.refundPolicyGroupItemSearch.dao.RefugritarchDaoDbTableColumn;
 import br.com.mind5.masterData.refundPolicyGroupSearch.dao.RefugrarchDaoDbTableColumn;
 import br.com.mind5.masterData.scheduleStatus.dao.SchedatusDaoDbTableColumn;
@@ -480,7 +480,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new RefupownDaoDbTableColumn());
 		addTable(new RefuporeDaoDbTableColumn());
 		addTable(new RefugroupDaoDbTableColumn());
-		addTable(new DaoRefugritemDbTableColumn());
+		addTable(new RefugritemDaoDbTableColumn());
 		addTable(new RefugritarchDaoDbTableColumn());
 		addTable(new PaymenusDaoDbTableColumn());
 		addTable(new PaymenusarchDaoDbTableColumn());

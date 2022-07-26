@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.refundPolicyGroupItem.info.RefugritemInfo;
 
-final class DaoRefugritemWhere implements DaoStmtWhere {
+final class RefugritemDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoRefugritemWhere(DaoWhereBuilderOption whereOption, String tableName, RefugritemInfo recordInfo) {
+	public RefugritemDaoWhere(DaoWhereBuilderOption whereOption, String tableName, RefugritemInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ final class DaoRefugritemWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {			
-				case DaoRefugritemDbTableColumn.COL_COD_REFUND_POLICY_GROUP :
+				case RefugritemDaoDbTableColumn.COL_COD_REFUND_POLICY_GROUP :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codRefundPolicyGroup));
 					break;
 				
-				case DaoRefugritemDbTableColumn.COL_COD_REFUND_POLICY :
+				case RefugritemDaoDbTableColumn.COL_COD_REFUND_POLICY :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codRefundPolicy));
 					break;
 			}

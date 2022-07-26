@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.refundPolicyGroupItem.info.RefugritemInfo;
 
-public final class DaoRefugritemSelectSingle extends DaoStmtTemplate<RefugritemInfo> {
+public final class RefugritemDaoSelectSingle extends DaoStmtTemplate<RefugritemInfo> {
 	private final String MAIN_TABLE = DaoDbTable.REFUND_POLICY_GROUP_ITEM_TABLE;
 	
 	
-	public DaoRefugritemSelectSingle(Connection conn, RefugritemInfo recordInfo, String schemaName) {
+	public RefugritemDaoSelectSingle(Connection conn, RefugritemInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoRefugritemSelectSingle extends DaoStmtTemplate<RefugritemI
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoRefugritemWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new RefugritemDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,8 +61,8 @@ public final class DaoRefugritemSelectSingle extends DaoStmtTemplate<RefugritemI
 				do {				
 					RefugritemInfo dataInfo = new RefugritemInfo();
 					
-					dataInfo.codRefundPolicyGroup = DaoFormatter.sqlToInt(stmtResult, DaoRefugritemDbTableColumn.COL_COD_REFUND_POLICY_GROUP);
-					dataInfo.codRefundPolicy = DaoFormatter.sqlToInt(stmtResult, DaoRefugritemDbTableColumn.COL_COD_REFUND_POLICY);					
+					dataInfo.codRefundPolicyGroup = DaoFormatter.sqlToInt(stmtResult, RefugritemDaoDbTableColumn.COL_COD_REFUND_POLICY_GROUP);
+					dataInfo.codRefundPolicy = DaoFormatter.sqlToInt(stmtResult, RefugritemDaoDbTableColumn.COL_COD_REFUND_POLICY);					
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

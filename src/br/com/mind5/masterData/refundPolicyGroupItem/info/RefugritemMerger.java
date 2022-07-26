@@ -13,7 +13,7 @@ public final class RefugritemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefugritemVisiMergeRefupo());
+		builder.addVisitor(new RefugritemMergerVisiRefupo());
 		InfoMerger<RefugritemInfo, RefupoInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class RefugritemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefugritemVisiMergeRefugritarch());
+		builder.addVisitor(new RefugritemMergerVisiRefugritarch());
 		InfoMerger<RefugritemInfo, RefugritarchInfo> merger = builder.build();		
 	
 		return merger.merge();

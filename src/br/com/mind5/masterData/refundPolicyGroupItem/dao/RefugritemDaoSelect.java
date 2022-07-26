@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.refundPolicyGroupItem.info.RefugritemInfo;
 
-public final class DaoRefugritemSelect implements DaoStmtExec<RefugritemInfo> {
+public final class RefugritemDaoSelect implements DaoStmtExec<RefugritemInfo> {
 	private DaoStmtExec<RefugritemInfo> helper;
 	
 	
-	public DaoRefugritemSelect(List<DaoStmtExecOption<RefugritemInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoRefugritemSelectSingle.class, RefugritemInfo.class);
+	public RefugritemDaoSelect(List<DaoStmtExecOption<RefugritemInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, RefugritemDaoSelectSingle.class, RefugritemInfo.class);
 	}
 	
 	

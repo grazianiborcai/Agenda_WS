@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.refundPolicy.info.RefupoInfo;
 
-final class RefugritemVisiMergeRefupo extends InfoMergerVisitorTemplate<RefugritemInfo, RefupoInfo> {
+final class RefugritemMergerVisiRefupo extends InfoMergerVisitorTemplate<RefugritemInfo, RefupoInfo> {
 
 	@Override public boolean shouldMerge(RefugritemInfo baseInfo, RefupoInfo selectedInfo) {
 		return baseInfo.codRefundPolicy == selectedInfo.codRefundPolicy;

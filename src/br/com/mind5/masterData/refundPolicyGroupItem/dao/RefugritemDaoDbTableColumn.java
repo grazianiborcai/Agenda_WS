@@ -9,12 +9,12 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoRefugritemDbTableColumn extends DaoDbTableColumnTemplate {
+public final class RefugritemDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_REFUND_POLICY = DaoDbField.COL_COD_REFUND_POLICY;
 	public static final String COL_COD_REFUND_POLICY_GROUP = DaoDbField.COL_COD_REFUND_POLICY_GROUP;
 	
 	
-	public DaoRefugritemDbTableColumn() {
+	public RefugritemDaoDbTableColumn() {
 		super();
 	}
 	
