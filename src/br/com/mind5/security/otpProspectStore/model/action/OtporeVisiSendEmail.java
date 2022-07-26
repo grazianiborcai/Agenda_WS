@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.message.emailProspectStore.info.EmaproreCopier;
 import br.com.mind5.message.emailProspectStore.info.EmaproreInfo;
-import br.com.mind5.message.emailProspectStore.model.decisionTree.RootEmaproreSend;
+import br.com.mind5.message.emailProspectStore.model.decisionTree.EmaproreRootSend;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class OtporeVisiSendEmail extends ActionVisitorTemplateAction<Otpor
 	
 	
 	@Override protected Class<? extends DeciTree<EmaproreInfo>> getTreeClassHook() {
-		return RootEmaproreSend.class;
+		return EmaproreRootSend.class;
 	}
 	
 	

@@ -6,9 +6,9 @@ import br.com.mind5.message.emailProspectStore.info.EmaproreSetterEmabody;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmaproreEnforceEmabody extends ActionVisitorTemplateEnforce<EmaproreInfo> {
+public final class EmaproreVisiEnforceEmabody extends ActionVisitorTemplateEnforce<EmaproreInfo> {
 	
-	public VisiEmaproreEnforceEmabody(DeciTreeOption<EmaproreInfo> option) {
+	public EmaproreVisiEnforceEmabody(DeciTreeOption<EmaproreInfo> option) {
 		super(option);
 	}
 	

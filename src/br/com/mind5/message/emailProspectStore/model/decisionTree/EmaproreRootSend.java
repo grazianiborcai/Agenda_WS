@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.message.emailProspectStore.info.EmaproreInfo;
-import br.com.mind5.message.emailProspectStore.model.action.LazyEmaproreSendEmail;
-import br.com.mind5.message.emailProspectStore.model.action.StdEmaproreEnforceEmabody;
+import br.com.mind5.message.emailProspectStore.model.action.EmaproreVisiEnforceEmabody;
+import br.com.mind5.message.emailProspectStore.model.action.EmaproreVisiSendEmail;
 import br.com.mind5.message.emailProspectStore.model.checker.EmaproreCheckSend;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmaproreSend extends DeciTreeTemplateWrite<EmaproreInfo> {
+public final class EmaproreRootSend extends DeciTreeTemplateWrite<EmaproreInfo> {
 	
-	public RootEmaproreSend(DeciTreeOption<EmaproreInfo> option) {
+	public EmaproreRootSend(DeciTreeOption<EmaproreInfo> option) {
 		super(option);
 	}
 	
@@ -43,8 +45,8 @@ public final class RootEmaproreSend extends DeciTreeTemplateWrite<EmaproreInfo> 
 	@Override protected List<ActionStd<EmaproreInfo>> buildActionsOnPassedHook(DeciTreeOption<EmaproreInfo> option) {
 		List<ActionStd<EmaproreInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<EmaproreInfo> enforceEmabody = new StdEmaproreEnforceEmabody(option);
-		ActionLazy<EmaproreInfo> send = new LazyEmaproreSendEmail(option.conn, option.schemaName);
+		ActionStd<EmaproreInfo> enforceEmabody = new ActionStdCommom<EmaproreInfo>(option, EmaproreVisiEnforceEmabody.class);
+		ActionLazy<EmaproreInfo> send = new ActionLazyCommom<EmaproreInfo>(option, EmaproreVisiSendEmail.class);
 		
 		enforceEmabody.addPostAction(send);
 		
