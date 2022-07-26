@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
 import br.com.mind5.message.emailBody.info.EmabodyMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmabodyMergeToSelect extends ActionVisitorTemplateMerge<EmabodyInfo, EmabodyInfo> {
+public final class EmabodyVisiMergeToSelect extends ActionVisitorTemplateMerge<EmabodyInfo, EmabodyInfo> {
 	
-	public VisiEmabodyMergeToSelect(DeciTreeOption<EmabodyInfo> option) {
+	public EmabodyVisiMergeToSelect(DeciTreeOption<EmabodyInfo> option) {
 		super(option, EmabodyInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<EmabodyInfo>> getActionClassHook() {
-		return StdEmabodyDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<EmabodyInfo>> getVisitorClassHook() {
+		return EmabodyVisiDaoSelect.class;
 	}
 	
 	

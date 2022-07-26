@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
 
-public final class DaoEmabodySelect implements DaoStmtExec<EmabodyInfo> {
+public final class EmabodyDaoSelect implements DaoStmtExec<EmabodyInfo> {
 	private DaoStmtExec<EmabodyInfo> helper;
 	
 	
-	public DaoEmabodySelect(List<DaoStmtExecOption<EmabodyInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoEmabodySelectSingle.class, EmabodyInfo.class);
+	public EmabodyDaoSelect(List<DaoStmtExecOption<EmabodyInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, EmabodyDaoSelectSingle.class, EmabodyInfo.class);
 	}
 	
 	

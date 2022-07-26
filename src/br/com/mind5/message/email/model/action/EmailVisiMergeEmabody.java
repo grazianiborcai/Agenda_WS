@@ -6,7 +6,7 @@ import br.com.mind5.message.email.info.EmailInfo;
 import br.com.mind5.message.email.info.EmailMerger;
 import br.com.mind5.message.emailBody.info.EmabodyCopier;
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
-import br.com.mind5.message.emailBody.model.decisionTree.RootEmabodySelect;
+import br.com.mind5.message.emailBody.model.decisionTree.EmabodyRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class EmailVisiMergeEmabody extends ActionVisitorTemplateMerge<Emai
 	
 	
 	@Override protected Class<? extends DeciTree<EmabodyInfo>> getTreeClassHook() {
-		return RootEmabodySelect.class;
+		return EmabodyRootSelect.class;
 	}
 	
 	

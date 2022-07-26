@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class EmabodyVisiMergeToSelect extends InfoMergerVisitorTemplate<EmabodyInfo, EmabodyInfo> {
+final class EmabodyMergerVisiToSelect extends InfoMergerVisitorTemplate<EmabodyInfo, EmabodyInfo> {
 
 	@Override public boolean shouldMerge(EmabodyInfo baseInfo, EmabodyInfo selectedInfo) {
 		return (baseInfo.codBody.equals(selectedInfo.codBody));

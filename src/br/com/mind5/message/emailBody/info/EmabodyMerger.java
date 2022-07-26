@@ -11,7 +11,7 @@ public final class EmabodyMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmabodyVisiMergeToSelect());
+		builder.addVisitor(new EmabodyMergerVisiToSelect());
 		InfoMerger<EmabodyInfo, EmabodyInfo> merger = builder.build();		
 	
 		return merger.merge();
