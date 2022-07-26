@@ -2,7 +2,7 @@ package br.com.mind5.config.sysOwnerSignup.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.config.sysOwnerSignup.info.SysonupInfo;
-import br.com.mind5.config.sysOwnerSignup.model.decisionTree.RootSysonupSelectEnabled;
+import br.com.mind5.config.sysOwnerSignup.model.decisionTree.SysonupRootSelectEnabled;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
@@ -17,7 +17,7 @@ public final class SysonupCheckEnabled extends ModelCheckerTemplateAction<Sysonu
 	
 	
 	@Override protected ActionStd<SysonupInfo> buildActionHook(DeciTreeOption<SysonupInfo> option) {
-		ActionStd<SysonupInfo> select = new RootSysonupSelectEnabled(option).toAction();
+		ActionStd<SysonupInfo> select = new SysonupRootSelectEnabled(option).toAction();
 		
 		return select;
 	}

@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.config.sysOwnerSignup.dao.DaoSysonupSelect;
+import br.com.mind5.config.sysOwnerSignup.dao.SysonupDaoSelect;
 import br.com.mind5.config.sysOwnerSignup.info.SysonupInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSysonupDaoSelect extends ActionVisitorTemplateStmt<SysonupInfo> {
+public final class SysonupVisiDaoSelect extends ActionVisitorTemplateStmt<SysonupInfo> {
 
-	public VisiSysonupDaoSelect(DeciTreeOption<SysonupInfo> option) {
+	public SysonupVisiDaoSelect(DeciTreeOption<SysonupInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected DaoStmtExec<SysonupInfo> buildStmtExecHook(List<DaoStmtExecOption<SysonupInfo>> stmtOptions) {
-		return new DaoSysonupSelect(stmtOptions);
+		return new SysonupDaoSelect(stmtOptions);
 	}
 }

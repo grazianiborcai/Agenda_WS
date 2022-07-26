@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class DaoSysonupWhere implements DaoStmtWhere {
+final class SysonupDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoSysonupWhere(DaoWhereBuilderOption whereOption, String tableName, SysonupInfo recordInfo) {
+	public SysonupDaoWhere(DaoWhereBuilderOption whereOption, String tableName, SysonupInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -25,7 +25,7 @@ final class DaoSysonupWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoSysonupDbTableColumn.COL_OWNER_SIGNUP :
+				case SysonupDaoDbTableColumn.COL_OWNER_SIGNUP :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.ownerSignup);
 					break;
 			}

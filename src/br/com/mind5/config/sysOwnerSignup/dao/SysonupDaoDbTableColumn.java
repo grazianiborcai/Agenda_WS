@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoSysonupDbTableColumn extends DaoDbTableColumnTemplate {
+public final class SysonupDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_OWNER_SIGNUP = DaoDbField.COL_OWNER_SIGNUP;
 	
 	
-	public DaoSysonupDbTableColumn() {
+	public SysonupDaoDbTableColumn() {
 		super();
 	}
 	

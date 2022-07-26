@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.config.sysOwnerSignup.info.SysonupInfo;
 
-public final class DaoSysonupSelect implements DaoStmtExec<SysonupInfo> {
+public final class SysonupDaoSelect implements DaoStmtExec<SysonupInfo> {
 	private DaoStmtExec<SysonupInfo> helper;
 	
 	
-	public DaoSysonupSelect(List<DaoStmtExecOption<SysonupInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoSysonupSelectSingle.class, SysonupInfo.class);
+	public SysonupDaoSelect(List<DaoStmtExecOption<SysonupInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, SysonupDaoSelectSingle.class, SysonupInfo.class);
 	}
 	
 	

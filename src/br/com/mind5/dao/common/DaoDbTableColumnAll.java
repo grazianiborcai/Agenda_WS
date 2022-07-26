@@ -141,7 +141,7 @@ import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.config.sysDistrictSearch.dao.SysdistrDaoDbTableColumn;
 import br.com.mind5.config.sysOwnerConfig.dao.SysonfigDaoDbTableColumn;
-import br.com.mind5.config.sysOwnerSignup.dao.DaoSysonupDbTableColumn;
+import br.com.mind5.config.sysOwnerSignup.dao.SysonupDaoDbTableColumn;
 import br.com.mind5.config.sysStoreBusinessContent.dao.DaoSytorbcDbTableColumn;
 import br.com.mind5.config.sysStorePartitioning.dao.DaoSytotinDbTableColumn;
 import br.com.mind5.config.sysStoreSignup.dao.DaoSysotupDbTableColumn;
@@ -501,7 +501,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CalatarchDaoDbTableColumn());
 		addTable(new MontharchDaoDbTableColumn());
 		addTable(new CaleekyDaoDbTableColumn());
-		addTable(new DaoSysonupDbTableColumn());
+		addTable(new SysonupDaoDbTableColumn());
 		addTable(new OwnarchDaoDbTableColumn());
 		addTable(new FidoceDaoDbTableColumn());
 		addTable(new FidocarchDaoDbTableColumn());

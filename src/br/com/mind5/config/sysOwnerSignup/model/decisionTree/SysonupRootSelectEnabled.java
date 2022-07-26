@@ -4,17 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.config.sysOwnerSignup.info.SysonupInfo;
-import br.com.mind5.config.sysOwnerSignup.model.action.StdSysonupDaoSelect;
+import br.com.mind5.config.sysOwnerSignup.model.action.SysonupVisiRootSelect;
+import br.com.mind5.config.sysOwnerSignup.model.action.SysonupVisiEnforceEnabled;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootSysonupSelect extends DeciTreeTemplateRead<SysonupInfo> {
+public final class SysonupRootSelectEnabled extends DeciTreeTemplateRead<SysonupInfo> {
 	
-	public RootSysonupSelect(DeciTreeOption<SysonupInfo> option) {
+	public SysonupRootSelectEnabled(DeciTreeOption<SysonupInfo> option) {
 		super(option);
 	}
 	
@@ -35,9 +39,12 @@ public final class RootSysonupSelect extends DeciTreeTemplateRead<SysonupInfo> {
 	@Override protected List<ActionStd<SysonupInfo>> buildActionsOnPassedHook(DeciTreeOption<SysonupInfo> option) {
 		List<ActionStd<SysonupInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SysonupInfo> select = new StdSysonupDaoSelect(option);
+		ActionStd<SysonupInfo> enforceEnabled = new ActionStdCommom<SysonupInfo>(option, SysonupVisiEnforceEnabled.class);
+		ActionLazy<SysonupInfo> select = new ActionLazyCommom<SysonupInfo>(option, SysonupVisiRootSelect.class);
 		
-		actions.add(select);
+		enforceEnabled.addPostAction(select);
+		
+		actions.add(enforceEnabled);
 		return actions;
 	}
 }

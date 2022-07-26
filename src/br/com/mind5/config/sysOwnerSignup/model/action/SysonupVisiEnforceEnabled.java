@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSysonupEnforceEnabled extends ActionVisitorTemplateEnforce<SysonupInfo> {
+public final class SysonupVisiEnforceEnabled extends ActionVisitorTemplateEnforce<SysonupInfo> {
 	
-	public VisiSysonupEnforceEnabled(DeciTreeOption<SysonupInfo> option) {
+	public SysonupVisiEnforceEnabled(DeciTreeOption<SysonupInfo> option) {
 		super(option);
 	}
 
