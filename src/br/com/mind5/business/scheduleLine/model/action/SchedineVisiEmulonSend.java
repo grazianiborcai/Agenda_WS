@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.message.emailScheduleConfirmation.info.EmulonInfo;
-import br.com.mind5.message.emailScheduleConfirmation.model.decisionTree.RootEmulonSend;
+import br.com.mind5.message.emailScheduleConfirmation.model.decisionTree.EmulonRootSend;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -18,7 +18,7 @@ public final class SchedineVisiEmulonSend extends ActionVisitorTemplateAction<Sc
 	
 	
 	@Override protected Class<? extends DeciTree<EmulonInfo>> getTreeClassHook() {
-		return RootEmulonSend.class;
+		return EmulonRootSend.class;
 	}
 	
 	

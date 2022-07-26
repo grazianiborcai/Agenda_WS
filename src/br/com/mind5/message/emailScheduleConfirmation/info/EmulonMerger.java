@@ -15,7 +15,7 @@ public final class EmulonMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmulonVisiMergeEmplis());
+		builder.addVisitor(new EmulonMergerVisiEmplis());
 		InfoMerger<EmulonInfo, EmplisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -28,7 +28,7 @@ public final class EmulonMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmulonVisiMergeMatlis());
+		builder.addVisitor(new EmulonMergerVisiMatlis());
 		InfoMerger<EmulonInfo, MatlisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -41,7 +41,7 @@ public final class EmulonMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmulonVisiMergeCuslis());
+		builder.addVisitor(new EmulonMergerVisiCuslis());
 		InfoMerger<EmulonInfo, CuslisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -54,7 +54,7 @@ public final class EmulonMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmulonVisiMergeStolis());
+		builder.addVisitor(new EmulonMergerVisiStolis());
 		InfoMerger<EmulonInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();

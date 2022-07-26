@@ -6,9 +6,9 @@ import br.com.mind5.message.emailScheduleConfirmation.info.EmulonSetterEmabody;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmulonEnforceEmabody extends ActionVisitorTemplateEnforce<EmulonInfo> {
+public final class EmulonVisiEnforceEmabody extends ActionVisitorTemplateEnforce<EmulonInfo> {
 	
-	public VisiEmulonEnforceEmabody(DeciTreeOption<EmulonInfo> option) {
+	public EmulonVisiEnforceEmabody(DeciTreeOption<EmulonInfo> option) {
 		super(option);
 	}
 	

@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmulonMergeStolis extends ActionVisitorTemplateMerge<EmulonInfo, StolisInfo> {
+public final class EmulonVisiMergeStolis extends ActionVisitorTemplateMerge<EmulonInfo, StolisInfo> {
 	
-	public VisiEmulonMergeStolis(DeciTreeOption<EmulonInfo> option) {
+	public EmulonVisiMergeStolis(DeciTreeOption<EmulonInfo> option) {
 		super(option, StolisInfo.class);
 	}
 	
