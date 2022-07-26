@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoSysotupSelectSingle extends DaoStmtTemplate<SysotupInfo> {
+public final class SysotupDaoSelectSingle extends DaoStmtTemplate<SysotupInfo> {
 	private final String MAIN_TABLE = DaoDbTable.OWNER_CONFIG_TABLE;
 	
 	
-	public DaoSysotupSelectSingle(Connection conn, SysotupInfo recordInfo, String schemaName) {
+	public SysotupDaoSelectSingle(Connection conn, SysotupInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoSysotupSelectSingle extends DaoStmtTemplate<SysotupInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoSysotupWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new SysotupDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,8 +67,8 @@ public final class DaoSysotupSelectSingle extends DaoStmtTemplate<SysotupInfo> {
 				do {				
 					SysotupInfo dataInfo = new SysotupInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSysotupDbTableColumn.COL_COD_OWNER);
-					dataInfo.storeSignup = stmtResult.getString(DaoSysotupDbTableColumn.COL_STORE_SIGNUP);	
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, SysotupDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.storeSignup = stmtResult.getString(SysotupDaoDbTableColumn.COL_STORE_SIGNUP);	
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

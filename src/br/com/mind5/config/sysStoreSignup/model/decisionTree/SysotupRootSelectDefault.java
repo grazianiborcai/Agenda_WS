@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.config.sysStoreSignup.info.SysotupInfo;
-import br.com.mind5.config.sysStoreSignup.model.action.StdSysotupDaoSelect;
+import br.com.mind5.config.sysStoreSignup.model.action.SysotupVisiEnforceEnabled;
 import br.com.mind5.config.sysStoreSignup.model.checker.SysotupCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootSysotupSelect extends DeciTreeTemplateRead<SysotupInfo> {
+public final class SysotupRootSelectDefault extends DeciTreeTemplateRead<SysotupInfo> {
 	
-	public RootSysotupSelect(DeciTreeOption<SysotupInfo> option) {
+	public SysotupRootSelectDefault(DeciTreeOption<SysotupInfo> option) {
 		super(option);
 	}
 	
@@ -41,9 +42,9 @@ public final class RootSysotupSelect extends DeciTreeTemplateRead<SysotupInfo> {
 	@Override protected List<ActionStd<SysotupInfo>> buildActionsOnPassedHook(DeciTreeOption<SysotupInfo> option) {
 		List<ActionStd<SysotupInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SysotupInfo> select = new StdSysotupDaoSelect(option);
+		ActionStd<SysotupInfo> enforceEnabled = new ActionStdCommom<SysotupInfo>(option, SysotupVisiEnforceEnabled.class);
 		
-		actions.add(select);
+		actions.add(enforceEnabled);
 		return actions;
 	}
 }

@@ -144,7 +144,7 @@ import br.com.mind5.config.sysOwnerConfig.dao.SysonfigDaoDbTableColumn;
 import br.com.mind5.config.sysOwnerSignup.dao.SysonupDaoDbTableColumn;
 import br.com.mind5.config.sysStoreBusinessContent.dao.SytorbcDaoDbTableColumn;
 import br.com.mind5.config.sysStorePartitioning.dao.SytotinDaoDbTableColumn;
-import br.com.mind5.config.sysStoreSignup.dao.DaoSysotupDbTableColumn;
+import br.com.mind5.config.sysStoreSignup.dao.SysotupDaoDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumn;
 import br.com.mind5.discount.discountCouponItem.dao.DisoupemDaoDbTableColumn;
@@ -527,7 +527,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new StorextaultDaoDbTableColumn());
 		addTable(new StorextarchDaoDbTableColumn());
 		addTable(new StorextsnapDaoDbTableColumn());
-		addTable(new DaoSysotupDbTableColumn());
+		addTable(new SysotupDaoDbTableColumn());
 		addTable(new SytorbcDaoDbTableColumn());
 		addTable(new CountralDaoDbTableColumn());
 		addTable(new CountrarchDaoDbTableColumn());
