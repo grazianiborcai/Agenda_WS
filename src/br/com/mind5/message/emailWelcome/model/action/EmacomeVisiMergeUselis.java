@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.model.decisionTree.UselisRootSelect;
 
-final class VisiEmacomeMergeUselis extends ActionVisitorTemplateMerge<EmacomeInfo, UselisInfo> {
+public final class EmacomeVisiMergeUselis extends ActionVisitorTemplateMerge<EmacomeInfo, UselisInfo> {
 	
-	public VisiEmacomeMergeUselis(DeciTreeOption<EmacomeInfo> option) {
+	public EmacomeVisiMergeUselis(DeciTreeOption<EmacomeInfo> option) {
 		super(option, UselisInfo.class);
 	}
 	

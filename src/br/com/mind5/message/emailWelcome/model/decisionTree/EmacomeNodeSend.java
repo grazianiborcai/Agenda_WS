@@ -4,21 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
-import br.com.mind5.message.emailWelcome.model.action.LazyEmacomeNodeSend;
-import br.com.mind5.message.emailWelcome.model.action.LazyEmacomeMergeUselis;
-import br.com.mind5.message.emailWelcome.model.action.StdEmacomeMergeOwnelis;
-import br.com.mind5.message.emailWelcome.model.checker.EmacomeCheckSend;
+import br.com.mind5.message.emailWelcome.model.action.EmacomeVisiEnforceEmabody;
+import br.com.mind5.message.emailWelcome.model.action.EmacomeVisiSendEmail;
+import br.com.mind5.message.emailWelcome.model.checker.EmacomeCheckHasOwnelis;
+import br.com.mind5.message.emailWelcome.model.checker.EmacomeCheckHasPersolis;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmacomeSend extends DeciTreeTemplateWrite<EmacomeInfo> {
+public final class EmacomeNodeSend extends DeciTreeTemplateWrite<EmacomeInfo> {
 	
-	public RootEmacomeSend(DeciTreeOption<EmacomeInfo> option) {
+	public EmacomeNodeSend(DeciTreeOption<EmacomeInfo> option) {
 		super(option);
 	}
 	
@@ -33,7 +35,14 @@ public final class RootEmacomeSend extends DeciTreeTemplateWrite<EmacomeInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new EmacomeCheckSend(checkerOption);
+		checker = new EmacomeCheckHasPersolis(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new EmacomeCheckHasOwnelis(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -44,14 +53,12 @@ public final class RootEmacomeSend extends DeciTreeTemplateWrite<EmacomeInfo> {
 	@Override protected List<ActionStd<EmacomeInfo>> buildActionsOnPassedHook(DeciTreeOption<EmacomeInfo> option) {
 		List<ActionStd<EmacomeInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<EmacomeInfo> mergeOwnelis = new StdEmacomeMergeOwnelis(option);
-		ActionLazy<EmacomeInfo> mergeUselis = new LazyEmacomeMergeUselis(option.conn, option.schemaName);
-		ActionLazy<EmacomeInfo> nodeL1 = new LazyEmacomeNodeSend(option.conn, option.schemaName);	
+		ActionStd<EmacomeInfo> enforceEmabody = new ActionStdCommom<EmacomeInfo>(option, EmacomeVisiEnforceEmabody.class);	
+		ActionLazy<EmacomeInfo> send = new ActionLazyCommom<EmacomeInfo>(option, EmacomeVisiSendEmail.class);
 		
-		mergeOwnelis.addPostAction(mergeUselis);
-		mergeUselis.addPostAction(nodeL1);
+		enforceEmabody.addPostAction(send);
 		
-		actions.add(mergeOwnelis);		
+		actions.add(enforceEmabody);		
 		return actions;
 	}
 }

@@ -13,7 +13,7 @@ public final class EmacomeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmacomeVisiMergeOwnelis());
+		builder.addVisitor(new EmacomeMergerVisiOwnelis());
 		InfoMerger<EmacomeInfo, OwnelisInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -26,7 +26,7 @@ public final class EmacomeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmacomeVisiMergeUselis());
+		builder.addVisitor(new EmacomeMergerVisiUselis());
 		InfoMerger<EmacomeInfo, UselisInfo> merger = builder.build();		
 	
 		return merger.merge();

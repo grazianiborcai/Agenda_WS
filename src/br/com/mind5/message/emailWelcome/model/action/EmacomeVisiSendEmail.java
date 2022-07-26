@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmacomeSendEmail extends ActionVisitorTemplateAction<EmacomeInfo, EmailInfo> {
+public final class EmacomeVisiSendEmail extends ActionVisitorTemplateAction<EmacomeInfo, EmailInfo> {
 	
-	public VisiEmacomeSendEmail(DeciTreeOption<EmacomeInfo> option) {
+	public EmacomeVisiSendEmail(DeciTreeOption<EmacomeInfo> option) {
 		super(option, EmacomeInfo.class, EmailInfo.class);
 	}
 	

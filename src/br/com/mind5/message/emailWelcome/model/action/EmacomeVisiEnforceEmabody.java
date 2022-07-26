@@ -6,9 +6,9 @@ import br.com.mind5.message.emailWelcome.info.EmacomeSetterEmabody;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmacomeEnforceEmabody extends ActionVisitorTemplateEnforce<EmacomeInfo> {
+public final class EmacomeVisiEnforceEmabody extends ActionVisitorTemplateEnforce<EmacomeInfo> {
 	
-	public VisiEmacomeEnforceEmabody(DeciTreeOption<EmacomeInfo> option) {
+	public EmacomeVisiEnforceEmabody(DeciTreeOption<EmacomeInfo> option) {
 		super(option);
 	}
 	

@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.message.emailWelcome.info.EmacomeCopier;
 import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
-import br.com.mind5.message.emailWelcome.model.decisionTree.RootEmacomeSend;
+import br.com.mind5.message.emailWelcome.model.decisionTree.EmacomeRootSend;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class UpswdVisiEmacomeSend extends ActionVisitorTemplateAction<Upsw
 	
 	
 	@Override protected Class<? extends DeciTree<EmacomeInfo>> getTreeClassHook() {
-		return RootEmacomeSend.class;
+		return EmacomeRootSend.class;
 	}
 	
 	

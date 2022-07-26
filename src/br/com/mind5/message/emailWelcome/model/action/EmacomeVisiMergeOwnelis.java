@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmacomeMergeOwnelis extends ActionVisitorTemplateMerge<EmacomeInfo, OwnelisInfo> {
+public final class EmacomeVisiMergeOwnelis extends ActionVisitorTemplateMerge<EmacomeInfo, OwnelisInfo> {
 	
-	public VisiEmacomeMergeOwnelis(DeciTreeOption<EmacomeInfo> option) {
+	public EmacomeVisiMergeOwnelis(DeciTreeOption<EmacomeInfo> option) {
 		super(option, OwnelisInfo.class);
 	}
 	
