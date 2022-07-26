@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
-import br.com.mind5.config.sysStorePartitioning.model.action.StdSytotinDaoSelect;
+import br.com.mind5.config.sysStorePartitioning.model.action.SytotinVisiDaoSelect;
 import br.com.mind5.config.sysStorePartitioning.model.checker.SytotinCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootSytotinSelect extends DeciTreeTemplateRead<SytotinInfo> {
+public final class SytotinRootSelect extends DeciTreeTemplateRead<SytotinInfo> {
 	
-	public RootSytotinSelect(DeciTreeOption<SytotinInfo> option) {
+	public SytotinRootSelect(DeciTreeOption<SytotinInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootSytotinSelect extends DeciTreeTemplateRead<SytotinInfo> {
 	@Override protected List<ActionStd<SytotinInfo>> buildActionsOnPassedHook(DeciTreeOption<SytotinInfo> option) {
 		List<ActionStd<SytotinInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SytotinInfo> select = new StdSytotinDaoSelect(option);
+		ActionStd<SytotinInfo> select = new ActionStdCommom<SytotinInfo>(option, SytotinVisiDaoSelect.class);
 		
 		actions.add(select);
 		return actions;

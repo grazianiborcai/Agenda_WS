@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoSytotinSelectSingle extends DaoStmtTemplate<SytotinInfo> {
+public final class SytotinDaoSelectSingle extends DaoStmtTemplate<SytotinInfo> {
 	private final String MAIN_TABLE = DaoDbTable.OWNER_CONFIG_TABLE;
 	
 	
-	public DaoSytotinSelectSingle(Connection conn, SytotinInfo recordInfo, String schemaName) {
+	public SytotinDaoSelectSingle(Connection conn, SytotinInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoSytotinSelectSingle extends DaoStmtTemplate<SytotinInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		
-		DaoStmtWhere whereClause = new DaoSytotinWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new SytotinDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,8 +67,8 @@ public final class DaoSytotinSelectSingle extends DaoStmtTemplate<SytotinInfo> {
 				do {				
 					SytotinInfo dataInfo = new SytotinInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSytotinDbTableColumn.COL_COD_OWNER);
-					dataInfo.storePartitioning = stmtResult.getString(DaoSytotinDbTableColumn.COL_STORE_PARTITIONING);	
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, SytotinDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.storePartitioning = stmtResult.getString(SytotinDaoDbTableColumn.COL_STORE_PARTITIONING);	
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

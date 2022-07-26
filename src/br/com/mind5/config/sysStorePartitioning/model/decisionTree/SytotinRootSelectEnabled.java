@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
-import br.com.mind5.config.sysStorePartitioning.model.action.LazySytotinRootSelect;
-import br.com.mind5.config.sysStorePartitioning.model.action.StdSytotinEnforceEnabled;
+import br.com.mind5.config.sysStorePartitioning.model.action.SytotinVisiRootSelect;
+import br.com.mind5.config.sysStorePartitioning.model.action.SytotinVisiEnforceEnabled;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootSytotinSelectEnabled extends DeciTreeTemplateRead<SytotinInfo> {
+public final class SytotinRootSelectEnabled extends DeciTreeTemplateRead<SytotinInfo> {
 	
-	public RootSytotinSelectEnabled(DeciTreeOption<SytotinInfo> option) {
+	public SytotinRootSelectEnabled(DeciTreeOption<SytotinInfo> option) {
 		super(option);
 	}
 	
@@ -37,8 +39,8 @@ public final class RootSytotinSelectEnabled extends DeciTreeTemplateRead<Sytotin
 	@Override protected List<ActionStd<SytotinInfo>> buildActionsOnPassedHook(DeciTreeOption<SytotinInfo> option) {
 		List<ActionStd<SytotinInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SytotinInfo> enforceEnabled = new StdSytotinEnforceEnabled(option);
-		ActionLazy<SytotinInfo> select = new LazySytotinRootSelect(option.conn, option.schemaName);
+		ActionStd<SytotinInfo> enforceEnabled = new ActionStdCommom<SytotinInfo>(option, SytotinVisiEnforceEnabled.class);
+		ActionLazy<SytotinInfo> select = new ActionLazyCommom<SytotinInfo>(option, SytotinVisiRootSelect.class);
 		
 		enforceEnabled.addPostAction(select);
 		

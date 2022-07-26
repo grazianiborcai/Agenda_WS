@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.config.sysOwnerConfig.info.SysonfigInfo;
 import br.com.mind5.config.sysOwnerConfig.info.SysonfigMerger;
 import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
-import br.com.mind5.config.sysStorePartitioning.model.decisionTree.RootSytotinSelectDefault;
+import br.com.mind5.config.sysStorePartitioning.model.decisionTree.SytotinRootSelectDefault;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class SysonfigVisiMergeSytotin extends ActionVisitorTemplateMerge<S
 	
 	
 	@Override protected Class<? extends DeciTree<SytotinInfo>> getTreeClassHook() {
-		return RootSytotinSelectDefault.class;
+		return SytotinRootSelectDefault.class;
 	}
 	
 	

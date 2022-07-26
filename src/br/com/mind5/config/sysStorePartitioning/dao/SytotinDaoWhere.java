@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class DaoSytotinWhere implements DaoStmtWhere {
+final class SytotinDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoSytotinWhere(DaoWhereBuilderOption whereOption, String tableName, SytotinInfo recordInfo) {
+	public SytotinDaoWhere(DaoWhereBuilderOption whereOption, String tableName, SytotinInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ final class DaoSytotinWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoSytotinDbTableColumn.COL_COD_OWNER :
+				case SytotinDaoDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 				
-				case DaoSytotinDbTableColumn.COL_STORE_PARTITIONING :
+				case SytotinDaoDbTableColumn.COL_STORE_PARTITIONING :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.storePartitioning);
 					break;
 			}

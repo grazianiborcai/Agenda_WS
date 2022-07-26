@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSytotinEnforceEnabled extends ActionVisitorTemplateEnforce<SytotinInfo> {
+public final class SytotinVisiEnforceEnabled extends ActionVisitorTemplateEnforce<SytotinInfo> {
 	
-	public VisiSytotinEnforceEnabled(DeciTreeOption<SytotinInfo> option) {
+	public SytotinVisiEnforceEnabled(DeciTreeOption<SytotinInfo> option) {
 		super(option);
 	}
 

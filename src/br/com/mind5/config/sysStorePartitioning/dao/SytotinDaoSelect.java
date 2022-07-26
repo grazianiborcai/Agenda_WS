@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
 
-public final class DaoSytotinSelect implements DaoStmtExec<SytotinInfo> {
+public final class SytotinDaoSelect implements DaoStmtExec<SytotinInfo> {
 	private DaoStmtExec<SytotinInfo> helper;
 	
 	
-	public DaoSytotinSelect(List<DaoStmtExecOption<SytotinInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoSytotinSelectSingle.class, SytotinInfo.class);
+	public SytotinDaoSelect(List<DaoStmtExecOption<SytotinInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, SytotinDaoSelectSingle.class, SytotinInfo.class);
 	}
 	
 	
