@@ -3,7 +3,7 @@ package br.com.mind5.security.userPassword.model.action;
 import java.util.List;
 
 import br.com.mind5.message.emailPasswordChange.info.EmordeInfo;
-import br.com.mind5.message.emailPasswordChange.model.decisionTree.RootEmordeSend;
+import br.com.mind5.message.emailPasswordChange.model.decisionTree.EmordeRootSend;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -18,7 +18,7 @@ public final class UpswdVisiEmordeSend extends ActionVisitorTemplateAction<Upswd
 	
 	
 	@Override protected Class<? extends DeciTree<EmordeInfo>> getTreeClassHook() {
-		return RootEmordeSend.class;
+		return EmordeRootSend.class;
 	}
 	
 	

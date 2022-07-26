@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmordeSendEmail extends ActionVisitorTemplateAction<EmordeInfo, EmailInfo> {
+public final class EmordeVisiSendEmail extends ActionVisitorTemplateAction<EmordeInfo, EmailInfo> {
 	
-	public VisiEmordeSendEmail(DeciTreeOption<EmordeInfo> option) {
+	public EmordeVisiSendEmail(DeciTreeOption<EmordeInfo> option) {
 		super(option, EmordeInfo.class, EmailInfo.class);
 	}
 	

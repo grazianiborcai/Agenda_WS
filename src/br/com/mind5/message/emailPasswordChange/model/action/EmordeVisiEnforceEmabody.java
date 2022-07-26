@@ -6,9 +6,9 @@ import br.com.mind5.message.emailPasswordChange.info.EmordeSetterEmabody;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmordeEnforceEmabody extends ActionVisitorTemplateEnforce<EmordeInfo> {
+public final class EmordeVisiEnforceEmabody extends ActionVisitorTemplateEnforce<EmordeInfo> {
 	
-	public VisiEmordeEnforceEmabody(DeciTreeOption<EmordeInfo> option) {
+	public EmordeVisiEnforceEmabody(DeciTreeOption<EmordeInfo> option) {
 		super(option);
 	}
 	

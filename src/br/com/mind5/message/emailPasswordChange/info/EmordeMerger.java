@@ -12,7 +12,7 @@ public final class EmordeMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmordeVisiMergeUselis());
+		builder.addVisitor(new EmordeMergerVisiUselis());
 		InfoMerger<EmordeInfo, UselisInfo> merger = builder.build();		
 	
 		return merger.merge();
