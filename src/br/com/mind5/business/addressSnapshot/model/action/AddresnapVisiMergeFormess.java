@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.info.AddresnapMerger;
 import br.com.mind5.form.formAddress.info.FormessInfo;
-import br.com.mind5.form.formAddress.model.decisionTree.RootFormessSelect;
+import br.com.mind5.form.formAddress.model.decisionTree.FormessRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class AddresnapVisiMergeFormess extends ActionVisitorTemplateMerge<
 	
 	
 	@Override protected Class<? extends DeciTree<FormessInfo>> getTreeClassHook() {
-		return RootFormessSelect.class;
+		return FormessRootSelect.class;
 	}
 	
 	

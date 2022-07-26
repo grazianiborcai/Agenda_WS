@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootFormessSelect extends DeciTreeTemplateWrite<FormessInfo> {
+public final class FormessRootSelect extends DeciTreeTemplateWrite<FormessInfo> {
 	
-	public RootFormessSelect(DeciTreeOption<FormessInfo> option) {
+	public FormessRootSelect(DeciTreeOption<FormessInfo> option) {
 		super(option);
 	}
 	
@@ -48,7 +48,7 @@ public final class RootFormessSelect extends DeciTreeTemplateWrite<FormessInfo> 
 	@Override protected List<ActionStd<FormessInfo>> buildActionsOnPassedHook(DeciTreeOption<FormessInfo> option) {
 		List<ActionStd<FormessInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FormessInfo> nodeSelect = new NodeFormessSelect(option).toAction();
+		ActionStd<FormessInfo> nodeSelect = new FormessNodeSelect(option).toAction();
 		
 		actions.add(nodeSelect);
 		return actions;

@@ -12,7 +12,7 @@ public final class FormessMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FormessVisiMergeFormesarch());
+		builder.addVisitor(new FormessMergerVisiFormesarch());
 		InfoMerger<FormessInfo, FormesarchInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -25,7 +25,7 @@ public final class FormessMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new FormessVisiMergeToSelect());
+		builder.addVisitor(new FormessMergerVisiToSelect());
 		InfoMerger<FormessInfo, FormessInfo> merger = builder.build();		
 	
 		return merger.merge();

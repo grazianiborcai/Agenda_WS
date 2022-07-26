@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFormessMergeFormesarch extends ActionVisitorTemplateMerge<FormessInfo, FormesarchInfo> {
+public final class FormessVisiMergeFormesarch extends ActionVisitorTemplateMerge<FormessInfo, FormesarchInfo> {
 	
-	public VisiFormessMergeFormesarch(DeciTreeOption<FormessInfo> option) {
+	public FormessVisiMergeFormesarch(DeciTreeOption<FormessInfo> option) {
 		super(option, FormesarchInfo.class);
 	}
 	

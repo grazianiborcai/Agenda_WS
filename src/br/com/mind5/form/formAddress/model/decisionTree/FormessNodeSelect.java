@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.form.formAddress.info.FormessInfo;
-import br.com.mind5.form.formAddress.model.action.StdFormessEnforceDefault;
-import br.com.mind5.form.formAddress.model.action.StdFormessMergeToSelect;
+import br.com.mind5.form.formAddress.model.action.FormessVisiEnforceDefault;
+import br.com.mind5.form.formAddress.model.action.FormessVisiMergeToSelect;
 import br.com.mind5.form.formAddress.model.checker.FormessCheckExist;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeFormessSelect extends DeciTreeTemplateWrite<FormessInfo> {
+public final class FormessNodeSelect extends DeciTreeTemplateWrite<FormessInfo> {
 	
-	public NodeFormessSelect(DeciTreeOption<FormessInfo> option) {
+	public FormessNodeSelect(DeciTreeOption<FormessInfo> option) {
 		super(option);
 	}
 	
@@ -42,7 +43,7 @@ public final class NodeFormessSelect extends DeciTreeTemplateWrite<FormessInfo> 
 	@Override protected List<ActionStd<FormessInfo>> buildActionsOnPassedHook(DeciTreeOption<FormessInfo> option) {
 		List<ActionStd<FormessInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FormessInfo> select = new StdFormessMergeToSelect(option);
+		ActionStd<FormessInfo> select = new ActionStdCommom<FormessInfo>(option, FormessVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;
@@ -53,7 +54,7 @@ public final class NodeFormessSelect extends DeciTreeTemplateWrite<FormessInfo> 
 	@Override protected List<ActionStd<FormessInfo>> buildActionsOnFailedHook(DeciTreeOption<FormessInfo> option) {
 		List<ActionStd<FormessInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FormessInfo> enforceDefault = new StdFormessEnforceDefault(option);
+		ActionStd<FormessInfo> enforceDefault = new ActionStdCommom<FormessInfo>(option, FormessVisiEnforceDefault.class);
 		
 		actions.add(enforceDefault);
 		return actions;

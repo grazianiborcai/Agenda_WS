@@ -2,8 +2,9 @@ package br.com.mind5.form.formAddress.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.form.formAddress.info.FormessInfo;
-import br.com.mind5.form.formAddress.model.action.StdFormessDaoSelect;
+import br.com.mind5.form.formAddress.model.action.FormessVisiDaoSelect;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +18,7 @@ public final class FormessCheckExist extends ModelCheckerTemplateAction<FormessI
 	
 	
 	@Override protected ActionStd<FormessInfo> buildActionHook(DeciTreeOption<FormessInfo> option) {
-		ActionStd<FormessInfo> select = new StdFormessDaoSelect(option);
+		ActionStd<FormessInfo> select = new ActionStdCommom<FormessInfo>(option, FormessVisiDaoSelect.class);
 		return select;
 	}
 	

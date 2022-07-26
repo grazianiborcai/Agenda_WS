@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.form.formAddress.info.FormessInfo;
 
-final class DaoFormessWhere implements DaoStmtWhere {
+final class FormessDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoFormessWhere(DaoWhereBuilderOption whereOption, String tableName, FormessInfo recordInfo) {
+	public FormessDaoWhere(DaoWhereBuilderOption whereOption, String tableName, FormessInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -25,7 +25,7 @@ final class DaoFormessWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case DaoFormessDbTableColumn.COL_COD_COUNTRY :
+				case FormessDaoDbTableColumn.COL_COD_COUNTRY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codCountry);
 					break;
 			}

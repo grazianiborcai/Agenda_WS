@@ -4,21 +4,20 @@ import java.util.List;
 
 import br.com.mind5.form.formAddress.info.FormessInfo;
 import br.com.mind5.form.formAddress.info.FormessMerger;
-import br.com.mind5.model.action.ActionStd;
-
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFormessMergeToSelect extends ActionVisitorTemplateMerge<FormessInfo, FormessInfo> {
+public final class FormessVisiMergeToSelect extends ActionVisitorTemplateMerge<FormessInfo, FormessInfo> {
 	
-	public VisiFormessMergeToSelect(DeciTreeOption<FormessInfo> option) {
+	public FormessVisiMergeToSelect(DeciTreeOption<FormessInfo> option) {
 		super(option, FormessInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<FormessInfo>> getActionClassHook() {
-		return StdFormessDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<FormessInfo>> getVisitorClassHook() {
+		return FormessVisiDaoSelect.class;
 	}
 	
 	
