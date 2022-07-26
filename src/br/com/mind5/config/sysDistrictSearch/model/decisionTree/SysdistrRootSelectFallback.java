@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.config.sysDistrictSearch.info.SysdistrInfo;
-import br.com.mind5.config.sysDistrictSearch.model.action.StdSysdistrEnforceDefault;
-import br.com.mind5.config.sysDistrictSearch.model.checker.SysdistrCheckRead;
+import br.com.mind5.config.sysDistrictSearch.model.action.SysdistrVisiNodeSelectFallback;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
-import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootSysdistrSelectDefault extends DeciTreeTemplateRead<SysdistrInfo> {
+public final class SysdistrRootSelectFallback extends DeciTreeTemplateRead<SysdistrInfo> {
 	
-	public RootSysdistrSelectDefault(DeciTreeOption<SysdistrInfo> option) {
+	public SysdistrRootSelectFallback(DeciTreeOption<SysdistrInfo> option) {
 		super(option);
 	}
 	
@@ -24,13 +25,8 @@ public final class RootSysdistrSelectDefault extends DeciTreeTemplateRead<Sysdis
 	@Override protected ModelChecker<SysdistrInfo> buildCheckerHook(DeciTreeOption<SysdistrInfo> option) {
 		List<ModelChecker<SysdistrInfo>> queue = new ArrayList<>();		
 		ModelChecker<SysdistrInfo> checker;	
-		ModelCheckerOption checkerOption;
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new SysdistrCheckRead(checkerOption);
+
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -41,9 +37,12 @@ public final class RootSysdistrSelectDefault extends DeciTreeTemplateRead<Sysdis
 	@Override protected List<ActionStd<SysdistrInfo>> buildActionsOnPassedHook(DeciTreeOption<SysdistrInfo> option) {
 		List<ActionStd<SysdistrInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SysdistrInfo> enforceDefault = new StdSysdistrEnforceDefault(option);
+		ActionStd<SysdistrInfo> select = new SysdistrRootSelect(option).toAction();
+		ActionLazy<SysdistrInfo> nodeL1 = new ActionLazyCommom<SysdistrInfo>(option, SysdistrVisiNodeSelectFallback.class);
 		
-		actions.add(enforceDefault);
+		select.addPostAction(nodeL1);
+		
+		actions.add(select);
 		return actions;
 	}
 }

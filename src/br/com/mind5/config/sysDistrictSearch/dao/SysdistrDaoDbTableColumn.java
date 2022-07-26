@@ -9,12 +9,12 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoSysdistrDbTableColumn extends DaoDbTableColumnTemplate {
+public final class SysdistrDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_DISTRICT_SEARCH_DEFAULT = DaoDbField.COL_DISTRICT_SEARCH_DEFAULT;
 	
 	
-	public DaoSysdistrDbTableColumn() {
+	public SysdistrDaoDbTableColumn() {
 		super();
 	}
 	

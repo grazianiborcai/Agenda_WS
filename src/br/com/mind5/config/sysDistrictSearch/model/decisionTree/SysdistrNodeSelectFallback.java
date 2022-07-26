@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.config.sysDistrictSearch.info.SysdistrInfo;
-import br.com.mind5.config.sysDistrictSearch.model.action.StdSysdistrDaoSelect;
-import br.com.mind5.config.sysDistrictSearch.model.checker.SysdistrCheckRead;
+import br.com.mind5.config.sysDistrictSearch.model.checker.SysdistrCheckIsNull;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootSysdistrSelect extends DeciTreeTemplateRead<SysdistrInfo> {
+public final class SysdistrNodeSelectFallback extends DeciTreeTemplateRead<SysdistrInfo> {
 	
-	public RootSysdistrSelect(DeciTreeOption<SysdistrInfo> option) {
+	public SysdistrNodeSelectFallback(DeciTreeOption<SysdistrInfo> option) {
 		super(option);
 	}
 	
@@ -29,8 +29,8 @@ public final class RootSysdistrSelect extends DeciTreeTemplateRead<SysdistrInfo>
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new SysdistrCheckRead(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.FAILED;	
+		checker = new SysdistrCheckIsNull(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -41,9 +41,20 @@ public final class RootSysdistrSelect extends DeciTreeTemplateRead<SysdistrInfo>
 	@Override protected List<ActionStd<SysdistrInfo>> buildActionsOnPassedHook(DeciTreeOption<SysdistrInfo> option) {
 		List<ActionStd<SysdistrInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SysdistrInfo> select = new StdSysdistrDaoSelect(option);
+		ActionStd<SysdistrInfo> success = new ActionStdSuccessCommom<SysdistrInfo>(option);
 		
-		actions.add(select);
+		actions.add(success);
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<SysdistrInfo>> buildActionsOnFailedHook(DeciTreeOption<SysdistrInfo> option) {
+		List<ActionStd<SysdistrInfo>> actions = new ArrayList<>();
+		
+		ActionStd<SysdistrInfo> selectDefault = new SysdistrRootSelectDefault(option).toAction();
+		
+		actions.add(selectDefault);
 		return actions;
 	}
 }

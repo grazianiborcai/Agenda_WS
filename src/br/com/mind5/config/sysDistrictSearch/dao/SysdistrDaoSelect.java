@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.config.sysDistrictSearch.info.SysdistrInfo;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoSysdistrSelect implements DaoStmtExec<SysdistrInfo> {
+public final class SysdistrDaoSelect implements DaoStmtExec<SysdistrInfo> {
 	private DaoStmtExec<SysdistrInfo> helper;
 	
 	
-	public DaoSysdistrSelect(List<DaoStmtExecOption<SysdistrInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoSysdistrSelectSingle.class, SysdistrInfo.class);
+	public SysdistrDaoSelect(List<DaoStmtExecOption<SysdistrInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, SysdistrDaoSelectSingle.class, SysdistrInfo.class);
 	}
 	
 	

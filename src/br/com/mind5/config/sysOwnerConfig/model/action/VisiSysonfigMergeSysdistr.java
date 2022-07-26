@@ -3,7 +3,7 @@ package br.com.mind5.config.sysOwnerConfig.model.action;
 import java.util.List;
 
 import br.com.mind5.config.sysDistrictSearch.info.SysdistrInfo;
-import br.com.mind5.config.sysDistrictSearch.model.decisionTree.RootSysdistrSelectDefault;
+import br.com.mind5.config.sysDistrictSearch.model.decisionTree.SysdistrRootSelectDefault;
 import br.com.mind5.config.sysOwnerConfig.info.SysonfigInfo;
 import br.com.mind5.config.sysOwnerConfig.info.SysonfigMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -19,7 +19,7 @@ final class VisiSysonfigMergeSysdistr extends ActionVisitorTemplateMerge<Sysonfi
 	
 	
 	@Override protected Class<? extends DeciTree<SysdistrInfo>> getTreeClassHook() {
-		return RootSysdistrSelectDefault.class;
+		return SysdistrRootSelectDefault.class;
 	}
 	
 	

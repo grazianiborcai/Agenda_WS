@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.business.storeNearby.info.StorbyMerger;
 import br.com.mind5.config.sysDistrictSearch.info.SysdistrInfo;
-import br.com.mind5.config.sysDistrictSearch.model.decisionTree.RootSysdistrSelectFallback;
+import br.com.mind5.config.sysDistrictSearch.model.decisionTree.SysdistrRootSelectFallback;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class StorbyVisiMergeSysdistr extends ActionVisitorTemplateMerge<St
 	
 	
 	@Override protected Class<? extends DeciTree<SysdistrInfo>> getTreeClassHook() {
-		return RootSysdistrSelectFallback.class;
+		return SysdistrRootSelectFallback.class;
 	}
 	
 	

@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSysdistrEnforceDefault extends ActionVisitorTemplateEnforce<SysdistrInfo> {
+public final class SysdistrVisiEnforceDefault extends ActionVisitorTemplateEnforce<SysdistrInfo> {
 	
-	public VisiSysdistrEnforceDefault(DeciTreeOption<SysdistrInfo> option) {
+	public SysdistrVisiEnforceDefault(DeciTreeOption<SysdistrInfo> option) {
 		super(option);
 	}
 

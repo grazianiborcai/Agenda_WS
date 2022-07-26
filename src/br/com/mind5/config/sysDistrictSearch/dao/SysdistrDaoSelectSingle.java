@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoSysdistrSelectSingle extends DaoStmtTemplate<SysdistrInfo> {
+public final class SysdistrDaoSelectSingle extends DaoStmtTemplate<SysdistrInfo> {
 	private final String MAIN_TABLE = DaoDbTable.OWNER_CONFIG_TABLE;
 	
 	
-	public DaoSysdistrSelectSingle(Connection conn, SysdistrInfo recordInfo, String schemaName) {
+	public SysdistrDaoSelectSingle(Connection conn, SysdistrInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class DaoSysdistrSelectSingle extends DaoStmtTemplate<SysdistrInfo>
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		
-		DaoStmtWhere whereClause = new DaoSysdistrWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new SysdistrDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,8 +67,8 @@ public final class DaoSysdistrSelectSingle extends DaoStmtTemplate<SysdistrInfo>
 				do {				
 					SysdistrInfo dataInfo = new SysdistrInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSysdistrDbTableColumn.COL_COD_OWNER);
-					dataInfo.districtSearchDefault = stmtResult.getString(DaoSysdistrDbTableColumn.COL_DISTRICT_SEARCH_DEFAULT);	
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, SysdistrDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.districtSearchDefault = stmtResult.getString(SysdistrDaoDbTableColumn.COL_DISTRICT_SEARCH_DEFAULT);	
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());
