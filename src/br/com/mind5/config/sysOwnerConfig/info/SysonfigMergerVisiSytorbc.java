@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.config.sysStoreBusinessContent.info.SytorbcInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class SysonfigVisiMergeSytorbc extends InfoMergerVisitorTemplate<SysonfigInfo, SytorbcInfo> {
+final class SysonfigMergerVisiSytorbc extends InfoMergerVisitorTemplate<SysonfigInfo, SytorbcInfo> {
 
 	@Override public boolean shouldMerge(SysonfigInfo baseInfo, SytorbcInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);

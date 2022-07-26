@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSysonfigMergeSytotin extends ActionVisitorTemplateMerge<SysonfigInfo, SytotinInfo> {
+public final class SysonfigVisiMergeSytotin extends ActionVisitorTemplateMerge<SysonfigInfo, SytotinInfo> {
 	
-	public VisiSysonfigMergeSytotin(DeciTreeOption<SysonfigInfo> option) {
+	public SysonfigVisiMergeSytotin(DeciTreeOption<SysonfigInfo> option) {
 		super(option, SytotinInfo.class);
 	}
 	

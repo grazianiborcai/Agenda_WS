@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoSysonfigInsertSingle extends DaoStmtTemplate<SysonfigInfo> {
+public final class SysonfigDaoInsertSingle extends DaoStmtTemplate<SysonfigInfo> {
 	private final String MAIN_TABLE = DaoDbTable.OWNER_CONFIG_TABLE;		
 	
 	
-	public DaoSysonfigInsertSingle(Connection conn, SysonfigInfo recordInfo, String schemaName) {
+	public SysonfigDaoInsertSingle(Connection conn, SysonfigInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);		
 	}
 	

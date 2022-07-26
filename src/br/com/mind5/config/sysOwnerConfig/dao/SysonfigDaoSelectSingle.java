@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoSysonfigSelectSingle extends DaoStmtTemplate<SysonfigInfo> {
+public final class SysonfigDaoSelectSingle extends DaoStmtTemplate<SysonfigInfo> {
 	private final String MAIN_TABLE = DaoDbTable.OWNER_CONFIG_TABLE;
 	
 	
-	public DaoSysonfigSelectSingle(Connection conn, SysonfigInfo recordInfo, String schemaName) {
+	public SysonfigDaoSelectSingle(Connection conn, SysonfigInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoSysonfigSelectSingle extends DaoStmtTemplate<SysonfigInfo>
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		
-		DaoStmtWhere whereClause = new DaoSysonfigWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new SysonfigDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,11 +61,11 @@ public final class DaoSysonfigSelectSingle extends DaoStmtTemplate<SysonfigInfo>
 				do {				
 					SysonfigInfo dataInfo = new SysonfigInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSysonfigDbTableColumn.COL_COD_OWNER);
-					dataInfo.storePartitioning = stmtResult.getString(DaoSysonfigDbTableColumn.COL_STORE_PARTITIONING);	
-					dataInfo.storeBusinessContent = stmtResult.getString(DaoSysonfigDbTableColumn.COL_STORE_BUSINESS_CONTENT);	
-					dataInfo.storeSignup = stmtResult.getString(DaoSysonfigDbTableColumn.COL_STORE_SIGNUP);
-					dataInfo.districtSearchDefault = stmtResult.getString(DaoSysonfigDbTableColumn.COL_DISTRICT_SEARCH_DEFAULT);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, SysonfigDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.storePartitioning = stmtResult.getString(SysonfigDaoDbTableColumn.COL_STORE_PARTITIONING);	
+					dataInfo.storeBusinessContent = stmtResult.getString(SysonfigDaoDbTableColumn.COL_STORE_BUSINESS_CONTENT);	
+					dataInfo.storeSignup = stmtResult.getString(SysonfigDaoDbTableColumn.COL_STORE_SIGNUP);
+					dataInfo.districtSearchDefault = stmtResult.getString(SysonfigDaoDbTableColumn.COL_DISTRICT_SEARCH_DEFAULT);
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

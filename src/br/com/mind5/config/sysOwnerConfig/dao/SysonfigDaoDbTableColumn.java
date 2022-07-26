@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoSysonfigDbTableColumn extends DaoDbTableColumnTemplate {
+public final class SysonfigDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_DISTRICT_SEARCH_DEFAULT = DaoDbField.COL_DISTRICT_SEARCH_DEFAULT;
 	public static final String COL_STORE_BUSINESS_CONTENT = DaoDbField.COL_STORE_BUSINESS_CONTENT;
@@ -17,7 +17,7 @@ public final class DaoSysonfigDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_STORE_SIGNUP = DaoDbField.COL_STORE_SIGNUP;
 	
 	
-	public DaoSysonfigDbTableColumn() {
+	public SysonfigDaoDbTableColumn() {
 		super();
 	}
 	

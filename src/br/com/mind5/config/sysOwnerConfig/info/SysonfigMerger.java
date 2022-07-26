@@ -15,7 +15,7 @@ public final class SysonfigMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SysonfigVisiMergeSysdistr());
+		builder.addVisitor(new SysonfigMergerVisiSysdistr());
 		InfoMerger<SysonfigInfo, SysdistrInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -28,7 +28,7 @@ public final class SysonfigMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SysonfigVisiMergeSytorbc());
+		builder.addVisitor(new SysonfigMergerVisiSytorbc());
 		InfoMerger<SysonfigInfo, SytorbcInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -41,7 +41,7 @@ public final class SysonfigMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SysonfigVisiMergeSysotup());
+		builder.addVisitor(new SysonfigMergerVisiSysotup());
 		InfoMerger<SysonfigInfo, SysotupInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -54,7 +54,7 @@ public final class SysonfigMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SysonfigVisiMergeSytotin());
+		builder.addVisitor(new SysonfigMergerVisiSytotin());
 		InfoMerger<SysonfigInfo, SytotinInfo> merger = builder.build();		
 	
 		return merger.merge();
@@ -67,7 +67,7 @@ public final class SysonfigMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SysonfigVisiMergeToSelect());
+		builder.addVisitor(new SysonfigMergerVisiToSelect());
 		InfoMerger<SysonfigInfo, SysonfigInfo> merger = builder.build();		
 	
 		return merger.merge();

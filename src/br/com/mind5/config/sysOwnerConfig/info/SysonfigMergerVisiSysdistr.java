@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.config.sysDistrictSearch.info.SysdistrInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class SysonfigVisiMergeSysdistr extends InfoMergerVisitorTemplate<SysonfigInfo, SysdistrInfo> {
+final class SysonfigMergerVisiSysdistr extends InfoMergerVisitorTemplate<SysonfigInfo, SysdistrInfo> {
 
 	@Override public boolean shouldMerge(SysonfigInfo baseInfo, SysdistrInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);

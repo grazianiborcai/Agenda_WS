@@ -4,20 +4,20 @@ import java.util.List;
 
 import br.com.mind5.config.sysOwnerConfig.info.SysonfigInfo;
 import br.com.mind5.config.sysOwnerConfig.info.SysonfigMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSysonfigMergeToSelect extends ActionVisitorTemplateMerge<SysonfigInfo, SysonfigInfo> {
+public final class SysonfigVisiMergeToSelect extends ActionVisitorTemplateMerge<SysonfigInfo, SysonfigInfo> {
 	
-	public VisiSysonfigMergeToSelect(DeciTreeOption<SysonfigInfo> option) {
+	public SysonfigVisiMergeToSelect(DeciTreeOption<SysonfigInfo> option) {
 		super(option, SysonfigInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<SysonfigInfo>> getActionClassHook() {
-		return StdSysonfigDaoSelect.class;
+	@Override protected Class<? extends ActionVisitor<SysonfigInfo>> getVisitorClassHook() {
+		return SysonfigVisiDaoSelect.class;
 	}
 	
 	

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class SysonfigVisiMergeToSelect extends InfoMergerVisitorTemplate<SysonfigInfo, SysonfigInfo> {
+final class SysonfigMergerVisiToSelect extends InfoMergerVisitorTemplate<SysonfigInfo, SysonfigInfo> {
 
 	@Override public boolean shouldMerge(SysonfigInfo baseInfo, SysonfigInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);

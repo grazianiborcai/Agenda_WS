@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.config.sysOwnerConfig.info.SysonfigInfo;
-import br.com.mind5.config.sysOwnerConfig.model.action.StdSysonfigMergeToSelect;
+import br.com.mind5.config.sysOwnerConfig.model.action.SysonfigVisiMergeToSelect;
 import br.com.mind5.config.sysOwnerConfig.model.checker.SysonfigCheckRead;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootSysonfigSelect extends DeciTreeTemplateRead<SysonfigInfo> {
+public final class SysonfigRootSelect extends DeciTreeTemplateRead<SysonfigInfo> {
 	
-	public RootSysonfigSelect(DeciTreeOption<SysonfigInfo> option) {
+	public SysonfigRootSelect(DeciTreeOption<SysonfigInfo> option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public final class RootSysonfigSelect extends DeciTreeTemplateRead<SysonfigInfo>
 	@Override protected List<ActionStd<SysonfigInfo>> buildActionsOnPassedHook(DeciTreeOption<SysonfigInfo> option) {
 		List<ActionStd<SysonfigInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SysonfigInfo> select = new StdSysonfigMergeToSelect(option);
+		ActionStd<SysonfigInfo> select = new ActionStdCommom<SysonfigInfo>(option, SysonfigVisiMergeToSelect.class);
 		
 		actions.add(select);
 		return actions;

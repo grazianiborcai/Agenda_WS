@@ -140,7 +140,7 @@ import br.com.mind5.business.storeWorkTimeSnapshot.dao.StowotmapDaoDbTableColumn
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.config.sysDistrictSearch.dao.SysdistrDaoDbTableColumn;
-import br.com.mind5.config.sysOwnerConfig.dao.DaoSysonfigDbTableColumn;
+import br.com.mind5.config.sysOwnerConfig.dao.SysonfigDaoDbTableColumn;
 import br.com.mind5.config.sysOwnerSignup.dao.DaoSysonupDbTableColumn;
 import br.com.mind5.config.sysStoreBusinessContent.dao.DaoSytorbcDbTableColumn;
 import br.com.mind5.config.sysStorePartitioning.dao.DaoSytotinDbTableColumn;
@@ -515,7 +515,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new StorbyDaoDbTableColumn());
 		addTable(new NotesDaoDbTableColumn());
 		addTable(new DaoSytotinDbTableColumn());
-		addTable(new DaoSysonfigDbTableColumn());
+		addTable(new SysonfigDaoDbTableColumn());
 		addTable(new UpswdarchDaoDbTableColumn());
 		addTable(new MatubupDaoDbTableColumn());
 		addTable(new MatubuparchDaoDbTableColumn());

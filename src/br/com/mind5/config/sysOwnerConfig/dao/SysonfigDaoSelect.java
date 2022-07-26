@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoSysonfigSelect implements DaoStmtExec<SysonfigInfo> {
+public final class SysonfigDaoSelect implements DaoStmtExec<SysonfigInfo> {
 	private DaoStmtExec<SysonfigInfo> helper;
 	
 	
-	public DaoSysonfigSelect(List<DaoStmtExecOption<SysonfigInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, DaoSysonfigSelectSingle.class, SysonfigInfo.class);
+	public SysonfigDaoSelect(List<DaoStmtExecOption<SysonfigInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, SysonfigDaoSelectSingle.class, SysonfigInfo.class);
 	}
 	
 	

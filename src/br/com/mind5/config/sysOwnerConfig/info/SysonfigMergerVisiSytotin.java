@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class SysonfigVisiMergeSytotin extends InfoMergerVisitorTemplate<SysonfigInfo, SytotinInfo> {
+final class SysonfigMergerVisiSytotin extends InfoMergerVisitorTemplate<SysonfigInfo, SytotinInfo> {
 
 	@Override public boolean shouldMerge(SysonfigInfo baseInfo, SytotinInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner);
