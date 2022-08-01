@@ -27,6 +27,7 @@ final class CountralDaoWhere implements DaoStmtWhere {
 			switch(eachColumn.columnName) {
 				case CountralDaoDbTableColumn.COL_COD_COUNTRY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codCountry);
+					break;
 					
 				case CountralDaoDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
