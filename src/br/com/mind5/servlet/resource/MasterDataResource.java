@@ -33,7 +33,7 @@ import br.com.mind5.masterData.fileDocTypeSearch.model.FidocarchModelSelect;
 import br.com.mind5.masterData.genderSearch.info.GendarchInfo;
 import br.com.mind5.masterData.genderSearch.model.GendarchModelSelect;
 import br.com.mind5.masterData.languageSearch.info.LangarchInfo;
-import br.com.mind5.masterData.languageSearch.model.LangarchModelSelectAll;
+import br.com.mind5.masterData.languageSearch.model.LangarchModelSelect;
 import br.com.mind5.masterData.materialCategorySearch.info.MategarchInfo;
 import br.com.mind5.masterData.materialCategorySearch.model.MategarchModelSelect;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
@@ -282,12 +282,12 @@ public final class MasterDataResource {
 	@GET
 	@Path(SELECT_LANGUAGE)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectLangu(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage){
+	public Response selectLangu(@HeaderParam("codLanguage") String codLanguage){
 		
 		LangarchInfo recordInfo = new LangarchInfo();
 		recordInfo.codLanguage = codLanguage;
 		
-		Model model = new LangarchModelSelectAll(recordInfo);
+		Model model = new LangarchModelSelect(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();
