@@ -28,6 +28,10 @@ final class LangarchDaoWhere implements DaoStmtWhere {
 				case LangarchDaoDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
+					
+				case LangarchDaoDbTableColumn.COL_RECORD_MODE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
+					break;
 			}
 		}		
 			

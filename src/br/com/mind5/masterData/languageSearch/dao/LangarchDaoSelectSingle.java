@@ -47,7 +47,7 @@ public final class LangarchDaoSelectSingle extends DaoStmtTemplate<LangarchInfo>
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
+		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
 		DaoStmtWhere whereClause = new LangarchDaoWhere(whereOption, tableName, recordInfo);
@@ -68,7 +68,8 @@ public final class LangarchDaoSelectSingle extends DaoStmtTemplate<LangarchInfo>
 					LangarchInfo dataInfo = new LangarchInfo();
 					
 					dataInfo.codLanguage = stmtResult.getString(LangarchDaoDbTableColumn.COL_COD_LANGUAGE);
-					dataInfo.txtLanguage = stmtResult.getString(LangarchDaoDbTableColumn.COL_NAME);	
+					dataInfo.txtLanguage = stmtResult.getString(LangarchDaoDbTableColumn.COL_NAME);
+					dataInfo.recordMode  = stmtResult.getString(LangarchDaoDbTableColumn.COL_RECORD_MODE);
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

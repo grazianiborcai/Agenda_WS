@@ -2,14 +2,18 @@ package br.com.mind5.masterData.languageSearch.info;
 
 import java.util.List;
 
+import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
 public final class LangarchInfo extends InfoRecord implements Cloneable {
 	public String txtLanguage;
+	public String recordMode;
 	
 	
 	public LangarchInfo() {
 		super();
+		
+		recordMode = DefaultValue.recordMode();
 	}
 	
 	
