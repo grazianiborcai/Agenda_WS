@@ -11,7 +11,8 @@ import br.com.mind5.dao.common.DaoDbTable;
 
 public final class LanguDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
-	public static final String COL_NAME = DaoDbField.COL_NAME;	
+	public static final String COL_NAME = DaoDbField.COL_NAME;
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
 	public LanguDaoDbTableColumn() {
@@ -40,7 +41,15 @@ public final class LanguDaoDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);	
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_RECORD_MODE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
 		
 		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
 		results.put(TABLE_NAME, columns);
