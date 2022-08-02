@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
@@ -75,6 +76,7 @@ public final class ScheduleResource {
 	
 	@POST
 	@Path(INSERT_SCHEDULE_LINE)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertSchedine(@Context HttpServletRequest request, String incomingData) {
 		
@@ -90,6 +92,7 @@ public final class ScheduleResource {
 	
 	@POST
 	@Path(UPDATE_SCHEDULE_LINE)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateSchedine(@Context HttpServletRequest request, String incomingData) {
 		
@@ -105,6 +108,7 @@ public final class ScheduleResource {
 	
 	@POST
 	@Path(MOVE_SCHEDULE_LINE)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response moveSchedine(@Context HttpServletRequest request, String incomingData) {
 		
@@ -120,6 +124,7 @@ public final class ScheduleResource {
 	
 	@POST
 	@Path(SEARCH_SCHEDULE_LINE)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response searchSchedine(@Context HttpServletRequest request, String incomingData) {
 		

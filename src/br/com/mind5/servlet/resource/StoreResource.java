@@ -313,6 +313,7 @@ public class StoreResource {
 	@POST
 	@Path(INSERT_STORE_WTIME)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertStoreWTime(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new StowotmModelInsert(incomingData, request);
@@ -412,6 +413,7 @@ public class StoreResource {
 	@POST
 	@Path(INSERT_STORE_LTIME)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertStoreLTime(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new StuntmModelInsertAuth(incomingData, request);

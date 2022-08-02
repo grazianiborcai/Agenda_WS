@@ -37,6 +37,7 @@ public class UserResource {
 	@POST
 	@Path(INSERT_OTP_USER_PASSWORD)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertOtperas(@Context HttpServletRequest request, String incomingData) {		
 		
 		Model model = new OtperasModelInsert(incomingData, request);
@@ -52,6 +53,7 @@ public class UserResource {
 	@POST
 	@Path(INSERT_USER)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertUser(@Context HttpServletRequest request, String incomingData) {		
 		
 		Model model = new UserModelInsert(incomingData, request);
@@ -67,6 +69,7 @@ public class UserResource {
 	@POST
 	@Path(UPDATE_USER)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateUser(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new UserModelUpdateAuth(incomingData, request);
@@ -81,6 +84,7 @@ public class UserResource {
 	
 	@DELETE
 	@Path(DELETE_USER)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteUser(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
 							   @HeaderParam("TOKEN_USERNAME") String username,
 							   @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {

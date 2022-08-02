@@ -1,6 +1,7 @@
 package br.com.mind5.servlet.resource;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
@@ -79,6 +80,7 @@ public final class OrderResource {
 	
 	@POST
 	@Path(SEARCH_ORDER)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response searchOrdist(@Context HttpServletRequest request, String incomingData) {
 		
@@ -94,6 +96,7 @@ public final class OrderResource {
 	
 	@POST
 	@Path(SEARCH_HISTORY_ORDER)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response searchOrdory(@Context HttpServletRequest request, String incomingData) {
 		

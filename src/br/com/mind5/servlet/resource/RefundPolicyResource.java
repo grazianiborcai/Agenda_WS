@@ -1,6 +1,7 @@
 package br.com.mind5.servlet.resource;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -81,6 +82,7 @@ public final class RefundPolicyResource {
 	
 	@POST
 	@Path(UPSERT_REFUPOL_OWNER)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response upsertRefupown(@Context HttpServletRequest request, String incomingData) {
 		
@@ -120,6 +122,7 @@ public final class RefundPolicyResource {
 	
 	@POST
 	@Path(SEARCH_REFUPOL_STORE)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response searchRefupore(@Context HttpServletRequest request, String incomingData) {
 		
@@ -159,6 +162,7 @@ public final class RefundPolicyResource {
 	
 	@POST
 	@Path(UPSERT_REFUPOL_STORE)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response upsertRefupore(@Context HttpServletRequest request, String incomingData) {
 		

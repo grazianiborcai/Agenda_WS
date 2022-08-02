@@ -1,6 +1,7 @@
 package br.com.mind5.servlet.resource;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -29,6 +30,7 @@ public final class CartResource {
 	
 	@POST
 	@Path(UPSERT_CART)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertCart(@Context HttpServletRequest request, String incomingData) {
 		

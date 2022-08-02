@@ -1,6 +1,7 @@
 package br.com.mind5.servlet.resource;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -18,6 +19,7 @@ public final class CalendarResource {
 	
 	@POST
 	@Path(SELECT_CALENDAR_CATALOGUE)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectCalgue(@Context HttpServletRequest request, String incomingData) {
 		

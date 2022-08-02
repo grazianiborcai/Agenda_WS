@@ -1,6 +1,7 @@
 package br.com.mind5.servlet.resource;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -44,6 +45,7 @@ public final class PaymentResource {
 	
 	@POST
 	@Path(PAY_ORDER)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response payOrder(@Context HttpServletRequest request, String incomingData) {
 		
@@ -162,6 +164,7 @@ public final class PaymentResource {
 	
 	@POST
 	@Path(INSERT_CREDIT_CARD)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response crecardInsert(@Context HttpServletRequest request, String incomingData) {
 		
@@ -177,6 +180,7 @@ public final class PaymentResource {
 	
 	@DELETE
 	@Path(DELETE_CREDIT_CARD)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response crecardDelete(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
 			                      @HeaderParam("codCreditCard")  	@DefaultValue("-1") long codCreditCard,
 			                      @HeaderParam("TOKEN_USERNAME") 	String username,
@@ -226,6 +230,7 @@ public final class PaymentResource {
 	
 	@POST
 	@Path(SEARCH_CREDIT_CARD)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response crecardSearch(@Context HttpServletRequest request, String incomingData) {
 		

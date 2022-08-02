@@ -51,7 +51,6 @@ public class OwnerResource {
 	
 	@GET
 	@Path(SELECT_OWNER)
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectOwner(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner, 
 							    @HeaderParam("TOKEN_USERNAME")                  	String username,
@@ -74,7 +73,6 @@ public class OwnerResource {
 
 	@DELETE
 	@Path(DELETE_OWNER)
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteOwner(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long   codOwner,
 								@HeaderParam("TOKEN_USERNAME")                     String username,

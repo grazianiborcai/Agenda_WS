@@ -35,6 +35,7 @@ public class ProspectResource {
 	@POST
 	@Path(INSERT_OTP_PROSPECT_STORE)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertOtpProspectStore(@Context HttpServletRequest request, String incomingData) {		
 		
 		Model model = new OtporeModelInsert(incomingData, request);

@@ -156,6 +156,7 @@ public class EmployeeResource {
 	
 	@POST
 	@Path(SEARCH_LUNCH_TIME)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response searchEmplutm(@Context HttpServletRequest request, String incomingData) {
 		
@@ -275,6 +276,7 @@ public class EmployeeResource {
 	
 	@POST
 	@Path(SEARCH_WORK_TIME)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response searchWorkTime(@Context HttpServletRequest request, String incomingData) {
 		
@@ -624,6 +626,7 @@ public class EmployeeResource {
 	
 	@POST
 	@Path(SEARCH_EMP_POSITION)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response searchEmpos(@Context HttpServletRequest request, String incomingData) {
 		

@@ -34,6 +34,7 @@ public class CustomerResource {
 	@POST
 	@Path(INSERT_CUSTOMER)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertCustomer(@Context HttpServletRequest request, String incomingData) {		
 		
 		Model model = new CusModelInsertUser(incomingData, request);
@@ -49,6 +50,7 @@ public class CustomerResource {
 	@POST
 	@Path(UPDATE_CUSTOMER)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateCustomer(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new CusModelUpdate(incomingData, request);
@@ -63,6 +65,7 @@ public class CustomerResource {
 	
 	@DELETE
 	@Path(DELETE_CUSTOMER)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteCustomer(@HeaderParam("TOKEN_OWNER") 		@DefaultValue("-1") long codOwner,
 								   @HeaderParam("codCustomer") 		@DefaultValue("-1") long codCustomer,
 								   @HeaderParam("TOKEN_USERNAME")	String username,
@@ -110,6 +113,7 @@ public class CustomerResource {
 	
 	@POST
 	@Path(SEARCH_CUSTOMER)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response searchCustomer(@Context HttpServletRequest request, String incomingData) {
 
