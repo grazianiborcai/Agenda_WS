@@ -2,6 +2,7 @@ package br.com.mind5.model.action;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -247,8 +248,51 @@ public abstract class ActionVisitorTemplateAction<T extends InfoRecord, S extend
 	
 	
 	
-	@SuppressWarnings("unchecked")
 	private List<S> toActionClassDefault(List<T> recordInfos, Class<S> actionClazz) {
+		if (isSameClass(recordInfos, actionClazz))
+			return toActionClassDefaultClone(recordInfos, actionClazz);		
+
+		return toActionClassDefaultCopy(recordInfos, actionClazz);
+	}
+	
+	
+	
+	private boolean isSameClass(List<T> recordInfos, Class<S> actionClazz) {
+		if (recordInfos.isEmpty())
+			return false;
+		
+		T tRecord = recordInfos.get(0);
+		
+		if(tRecord.getClass() == actionClazz)
+			return true;
+		
+		return false;
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	private List<S> toActionClassDefaultClone(List<T> recordInfos, Class<S> actionClazz) {
+		try {
+			List<S> copies = new ArrayList<>();
+			
+			for(T eachRecord : recordInfos) {
+				S eachCopy = (S) eachRecord.clone();
+				copies.add(eachCopy);
+			}
+			
+			return copies;
+				
+		} catch (CloneNotSupportedException e) {
+			logException(e);
+			throw new IllegalArgumentException(e);
+		}
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	private List<S> toActionClassDefaultCopy(List<T> recordInfos, Class<S> actionClazz) {
 		try {
 			S sInstance = actionClazz.getConstructor().newInstance();
 			
