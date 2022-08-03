@@ -45,6 +45,7 @@ public final class SystemMessage {
 	public static final String NO_ERROR_MESSAGE = "An error ocurred but there is no detail on this";
 	public static final String NO_IMPLEMENTATION = "There is no implementation for this method";	
 	public static final String NO_KEEPER_IMPLEMENTATION = "No Keeper implementation";
+	public static final String NO_MSG_FOUND = "Not possible to find messager number on DB";	
 	public static final String NO_RESPONSE = "Main operation was not executed";
 	public static final String NULL_ARGUMENT = " argument is null";	
 	public static final String NO_TEMPLATE_IMPLEMENTATION = "Template method not overwritten by subclass";
@@ -54,8 +55,9 @@ public final class SystemMessage {
 	public static final String NULL_SCHEMA = "Schema name is null";	
 	public static final String NULL_SQL_BUILDER_OPTION = "option argument is null";
 	public static final String NULL_TABLE_NAME = "Table name is null";
-	public static final String NULL_WHERE_CLAUSE = "where clause is null";	
+	public static final String NULL_WHERE_CLAUSE = "where clause is null";
 	public static final String OBJ_NOT_INITIALIED = "Object was not initialized or operartion not applicable for current state";
+	public static final String OBJECT_IS_CLOSED = "Object has been closed";	
 	public static final String PRUNE_NOT_ALLOWED = "Prune operation not allowed";
 	public static final String POSITIVE_NUM_EXPECTED = " should be positive and greater than zero";	
 	public static final String REQUEST_FAILED = "It was not possible to complete your request";
@@ -64,7 +66,7 @@ public final class SystemMessage {
 	public static final String SUCCESS = "Success";			
 	public static final String TABLE_NOT_FOUND = "table was not found";	
 	public static final String WRONG_DATA_TYPE = "Wrong data type";	
-	public static final String OBJECT_IS_CLOSED = "Object has been closed";	
+	
 
 	
 	
