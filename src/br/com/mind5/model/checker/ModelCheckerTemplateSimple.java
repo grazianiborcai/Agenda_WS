@@ -72,7 +72,7 @@ public abstract class ModelCheckerTemplateSimple<T extends InfoRecord> implement
 		boolean evaluResult = evaluateResult(checkResult, expectedResult);
 		setFinalResult(evaluResult);		
 		
-		symsgData = buildMsg(evaluResult, checkResult, recordInfo, conn, schemaName);
+		symsgData = getMsg(evaluResult, checkResult, recordInfo, conn, schemaName);
 		
 		return getResult();
 	}
@@ -106,11 +106,26 @@ public abstract class ModelCheckerTemplateSimple<T extends InfoRecord> implement
 	
 	
 	
-	private SymsgInfo buildMsg(boolean evaluResult, boolean checkResult, T recordInfo, Connection dbConn, String dbSchema) {
+	private SymsgInfo getMsg(boolean evaluResult, boolean checkResult, T recordInfo, Connection dbConn, String dbSchema) {
 		if (evaluResult == SUCCESS)
 			return null;
 		
-		String codLangu = getLanguage(recordInfo);		
+		String codLangu = getLanguage(recordInfo);
+		SymsgInfo result = getSymsg(checkResult, codLangu, dbConn, dbSchema);
+		
+		if (result == null)
+			result = buildMsg(evaluResult, checkResult, codLangu, dbConn, dbSchema);
+		
+		return result;	
+	}
+	
+	
+	
+	private SymsgInfo buildMsg(boolean evaluResult, boolean checkResult, String codLangu, Connection dbConn, String dbSchema) {
+		if (evaluResult == SUCCESS)
+			return null;
+		
+				
 		int codMsg = getCodMsg(checkResult);		
 		SymsgInfo msgToRead = buildMsgToRead(codMsg, codLangu);
 		DeciTreeOption<SymsgInfo> option = buildOption(msgToRead, dbConn, dbSchema);
@@ -125,6 +140,15 @@ public abstract class ModelCheckerTemplateSimple<T extends InfoRecord> implement
 			return getCodMsgOnResultTrueHook();
 		
 		return getCodMsgOnResultFalseHook();
+	}
+	
+	
+	
+	private SymsgInfo getSymsg(boolean checkResult, String codLangu, Connection dbConn, String dbSchema) {
+		if (checkResult == true)
+			return getSymsgOnResultTrueHook(dbConn, dbSchema, codLangu);
+		
+		return getSymsgOnResultFalseHook(dbConn, dbSchema, codLangu);
 	}
 	
 	
@@ -232,6 +256,20 @@ public abstract class ModelCheckerTemplateSimple<T extends InfoRecord> implement
 		//Template method: to be overwritten by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
+	}
+	
+	
+	
+	protected SymsgInfo getSymsgOnResultTrueHook(Connection dbConn, String dbSchema, String codLangu) {
+		//Template method: to be overwritten by subclasses
+		return getSymsgOnResultFalseHook(dbConn, dbSchema, codLangu);
+	}
+	
+	
+	
+	protected SymsgInfo getSymsgOnResultFalseHook(Connection dbConn, String dbSchema, String codLangu) {
+		//Template method: to be overwritten by subclasses
+		return null;
 	}
 	
 	
