@@ -4,6 +4,8 @@ import java.sql.Connection;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.common.SystemMessageBuilder;
+import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
@@ -24,13 +26,21 @@ public final class StoreCheckHasAddress extends ModelCheckerTemplateSimple<Store
 	
 	
 	
-	@Override protected int getCodMsgOnResultTrueHook(){
-		return SystemCode.STORE_ADDRESS_IS_FILLED;
+	@Override protected SymsgInfo getSymsgOnResultTrueHook(Connection dbConn, String dbSchema, String codLangu) {
+		SystemMessageBuilder builder = new SystemMessageBuilder(dbConn, dbSchema, codLangu, SystemCode.GEN_P1_P2_IS_FILLED_M);
+		builder.addParam01(SystemCode.STORE);
+		builder.addParam02(SystemCode.ADDRESS);
+
+		return builder.build();
 	}
 	
 	
 	
-	@Override protected int getCodMsgOnResultFalseHook(){
-		return SystemCode.STORE_ADDRESS_IS_EMPTY;
+	@Override protected SymsgInfo getSymsgOnResultFalseHook(Connection dbConn, String dbSchema, String codLangu) {
+		SystemMessageBuilder builder = new SystemMessageBuilder(dbConn, dbSchema, codLangu, SystemCode.GEN_P1_P2_IS_EMPTY_M);
+		builder.addParam01(SystemCode.STORE);
+		builder.addParam02(SystemCode.ADDRESS);
+
+		return builder.build();
 	}
 }
