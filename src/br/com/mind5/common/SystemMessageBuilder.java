@@ -224,9 +224,7 @@ public final class SystemMessageBuilder {
 			return msgMainTxt;
 		
 		String msgParamTxt = msgParam.txtMsg;
-		msgMainTxt.replace(placeholder, msgParamTxt);
-		
-		return msgMainTxt;
+		return msgMainTxt.replace(placeholder, msgParamTxt);
 	}
 	
 	

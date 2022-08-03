@@ -1,7 +1,7 @@
 package br.com.mind5.common;
 
 public final class SystemCode {
-	// General
+	// System
 	public static final int MANDATORY_FIELD_EMPTY 						= 1;
 	public static final int NO_ERROR_FOUND 								= 2;
 	public static final int KEY_FIELD_NOT_NULL							= 5;
@@ -53,24 +53,9 @@ public final class SystemCode {
 	public static final int EMP_PHONE_NUMBER_IS_NULL					= 1067;
 	
 	// Store
-	public static final int STORE_CNPJ_ALREADY_EXIST					= 1100;
-	public static final int STORE_CNPJ_NOT_FOUND						= 1101;
 	public static final int STORE_ALREADY_EXIST 						= 1102;
 	public static final int STORE_NOT_FOUND 							= 1103;
-	public static final int STORE_TECH_FIELD_SHOULD_BE_EMPTY			= 1125;
-	public static final int STORE_HAS_ITEM 								= 1132;
-	public static final int STORE_NO_ITEM_FOUND 						= 1133;
-	public static final int STORE_MANDATORY_FIELD_EMPTY					= 1134;
-	public static final int STORE_PHONE_IS_EMPTY						= 1135;
-	public static final int STORE_ADDRESS_IS_EMPTY						= 1136;
-	public static final int STORE_PERSON_IS_EMPTY						= 1137;
-	public static final int STORE_PERSON_IS_FILLED						= 1138;
-	public static final int STORE_COMPANY_IS_EMPTY						= 1139;
-	public static final int STORE_COMPANY_IS_FILLED						= 1140;
-	public static final int STORE_ADDRESS_IS_FILLED						= 1141;
-	public static final int STORE_PHONE_IS_FILLED						= 1142;
-	public static final int STORE_USER_IS_EMPTY							= 1143;
-	public static final int STORE_USER_IS_FILLED						= 1144;
+	public static final int STORE										= 1145;
 	
 	// Master Data
 	public static final int EMP_POS_ALREADY_EXIST						= 1150;
@@ -336,6 +321,7 @@ public final class SystemCode {
 	public static final int PHONE_FORM_INVALID							= 1577;
 	public static final int PHONE_FORM_OK								= 1578;
 	public static final int PHONE_NOT_DEFAULT							= 1579;
+	public static final int PHONE										= 1580;
 	
 	// Address
 	public static final int ADDRESS_IS_NULL								= 1600;
@@ -357,6 +343,7 @@ public final class SystemCode {
 	public static final int ADDRESS_HAS_STATE							= 1616;
 	public static final int ADDRESS_HAS_NO_STATE						= 1617;
 	public static final int ADDRESS_NOT_DEFAULT							= 1618;
+	public static final int ADDRESS										= 1619;
 	
 	// Form Address
 	public static final int FORM_ADDRESS_ALREADY_EXIST					= 1700;
@@ -394,6 +381,7 @@ public final class SystemCode {
 	public static final int PERSON_MISMATCH								= 1775;
 	public static final int PERSON_MANDATORY_FIELD_EMPTY				= 1776;
 	public static final int PERSON_INVALID_BIRTHDATE					= 1777;
+	public static final int PERSON										= 1778;
 	
 	// User
 	public static final int USER_COD_IS_FILLED							= 1800;
@@ -535,6 +523,7 @@ public final class SystemCode {
 	public static final int COMPANY_MISMATCH							= 2516;
 	public static final int COMPANY_MANDATORY_FIELD_EMPTY 				= 2517;
 	public static final int COMPANY_MANDATORY_MAX_LENGTH_EXCEEDED		= 2518;
+	public static final int COMPANY										= 2519;
 	
 	// Pay Partner-Owner
 	public static final int PAY_PARTNER_OWNER_COUNTRY_IS_NULL			= 2550;
@@ -1937,4 +1926,13 @@ public final class SystemCode {
 	
 	// Store Prospect Counter
 	public static final int STORE_PROSPECT_COUNT_MANDATORY_FIELD_EMPTY	= 19601;
+	
+	// General -- 19654
+	public static final int GEN_P1_ALREADY_EXIST_F 						= 19654;
+	public static final int GEN_P1_ALREADY_EXIST_M 						= 19651;	
+	public static final int GEN_P1_MANDATORY_FIELD_EMPTY_M 				= 19650;
+	public static final int GEN_P1_P2_IS_EMPTY_M						= 19653;
+	public static final int GEN_P1_P2_IS_FILLED_M						= 19652;
+	
+	
 }
