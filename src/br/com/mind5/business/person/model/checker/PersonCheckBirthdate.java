@@ -1,12 +1,12 @@
 package br.com.mind5.business.person.model.checker;
 
 import java.sql.Connection;
-import java.time.LocalDate;
-import java.time.Period;
 
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.common.DefaultValue;
+import br.com.mind5.common.DateValidator;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.common.SystemMessageBuilder;
+import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
@@ -18,26 +18,8 @@ public final class PersonCheckBirthdate extends ModelCheckerTemplateSimple<Perso
 	
 	
 	
-	@Override protected boolean checkHook(PersonInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.birthDate == null )			
-			return super.SUCCESS;		
-		
-		
-		if ( checkFuture(recordInfo.birthDate)  == super.FAILED ||
-			 check120Year(recordInfo.birthDate) == super.FAILED	)			
-			return super.FAILED;	
-		
-		return super.SUCCESS;
-	}
-	
-	
-	
-	
-	private boolean checkFuture(LocalDate birthDate) {
-		LocalDate now = DefaultValue.localDateNow();
-		
-		if (birthDate.isAfter(now) ||
-			birthDate.isEqual(now)		)
+	@Override protected boolean checkHook(PersonInfo recordInfo, Connection conn, String schemaName) {
+		if (DateValidator.validateBirthdate(recordInfo.birthDate) == super.FAILED)
 			return super.FAILED;
 		
 		return super.SUCCESS;
@@ -45,21 +27,11 @@ public final class PersonCheckBirthdate extends ModelCheckerTemplateSimple<Perso
 	
 	
 	
-	private boolean check120Year(LocalDate birthDate) {
-		LocalDate now = DefaultValue.localDateNow();
-		
-		Period period = Period.between(now, birthDate);
-	    int diff = Math.abs(period.getYears());
-	    
-	    if (diff > 120)
-	    	return super.FAILED;
-		
-		return super.SUCCESS;
-	}
-	
-	
-	
-	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.PERSON_INVALID_BIRTHDATE;
+	@Override protected SymsgInfo getSymsgOnResultFalseHook(Connection dbConn, String dbSchema, String codLangu) {
+		SystemMessageBuilder builder = new SystemMessageBuilder(dbConn, dbSchema, codLangu, SystemCode.GEN_P1_P2_INVALID_F);
+		builder.addParam01(SystemCode.PERSON);
+		builder.addParam02(SystemCode.PERSON_BIRTHDATE);
+
+		return builder.build();
 	}
 }

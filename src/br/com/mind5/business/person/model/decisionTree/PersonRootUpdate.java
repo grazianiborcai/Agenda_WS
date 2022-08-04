@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
+import br.com.mind5.business.person.model.action.PersonVisiEnforceBirthdate;
+import br.com.mind5.business.person.model.action.PersonVisiEnforceLChanged;
+import br.com.mind5.business.person.model.action.PersonVisiMergeToUpdate;
+import br.com.mind5.business.person.model.action.PersonVisiMergeUsername;
 import br.com.mind5.business.person.model.action.PersonVisiNodeCpfL1;
 import br.com.mind5.business.person.model.action.PersonVisiNodeEmailL1;
 import br.com.mind5.business.person.model.action.PersonVisiNodeName;
 import br.com.mind5.business.person.model.action.PersonVisiNodePerbioUpsertdel;
 import br.com.mind5.business.person.model.action.PersonVisiNodeSnapshot;
-import br.com.mind5.business.person.model.action.PersonVisiEnforceBirthdate;
-import br.com.mind5.business.person.model.action.PersonVisiEnforceLChanged;
-import br.com.mind5.business.person.model.action.PersonVisiMergeToUpdate;
-import br.com.mind5.business.person.model.action.PersonVisiMergeUsername;
 import br.com.mind5.business.person.model.checker.PersonCheckBirthdate;
 import br.com.mind5.business.person.model.checker.PersonCheckExist;
 import br.com.mind5.business.person.model.checker.PersonCheckGender;
 import br.com.mind5.business.person.model.checker.PersonCheckLangu;
+import br.com.mind5.business.person.model.checker.PersonCheckName;
 import br.com.mind5.business.person.model.checker.PersonCheckOwner;
 import br.com.mind5.business.person.model.checker.PersonCheckUpdate;
 import br.com.mind5.model.action.ActionLazy;
@@ -61,7 +62,14 @@ public final class PersonRootUpdate extends DeciTreeTemplateWrite<PersonInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new PersonCheckOwner(checkerOption);
-		queue.add(checker);	
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new PersonCheckName(checkerOption);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;

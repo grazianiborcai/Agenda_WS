@@ -4,6 +4,8 @@ import java.sql.Connection;
 
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.common.SystemMessageBuilder;
+import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
@@ -91,7 +93,11 @@ public final class PersonCheckCpfNumber extends ModelCheckerTemplateSimple<Perso
 	
 	
 	
-	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.PERSON_CPF_INVALID;
+	@Override protected SymsgInfo getSymsgOnResultFalseHook(Connection dbConn, String dbSchema, String codLangu) {
+		SystemMessageBuilder builder = new SystemMessageBuilder(dbConn, dbSchema, codLangu, SystemCode.GEN_P1_P2_INVALID_M);
+		builder.addParam01(SystemCode.PERSON);
+		builder.addParam02(SystemCode.PERSON_CPF);
+
+		return builder.build();
 	}
 }

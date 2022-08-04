@@ -354,9 +354,7 @@ public final class SystemCode {
 	// Person
 	public static final int PERSON_CPF_BLANK							= 1750;
 	public static final int PERSON_CPF_INVALID_NUMBER					= 1751;
-	public static final int PERSON_CPF_INVALID_LENGTH					= 1752;
 	public static final int PERSON_CPF_INVALID_SEQUENCE					= 1753;
-	public static final int PERSON_CPF_INVALID							= 1754;
 	public static final int PERSON_CPF_ALREADY_EXIST					= 1755;
 	public static final int PERSON_CPF_NOT_FOUND						= 1756;
 	public static final int PERSON_EMAIL_BLANK							= 1757;
@@ -379,8 +377,10 @@ public final class SystemCode {
 	public static final int PERSON_IS_FILLED							= 1774;
 	public static final int PERSON_MISMATCH								= 1775;
 	public static final int PERSON_MANDATORY_FIELD_EMPTY				= 1776;
-	public static final int PERSON_INVALID_BIRTHDATE					= 1777;
 	public static final int PERSON										= 1778;
+	public static final int PERSON_BIRTHDATE							= 1779;
+	public static final int PERSON_NAME									= 1780;
+	public static final int PERSON_CPF									= 1781;
 	
 	// User
 	public static final int USER_COD_IS_FILLED							= 1800;
@@ -1926,14 +1926,16 @@ public final class SystemCode {
 	// Store Prospect Counter
 	public static final int STORE_PROSPECT_COUNT_MANDATORY_FIELD_EMPTY	= 19601;
 	
-	// General -- 19656
+	// General -- 19660
 	public static final int GEN_P1_ALREADY_EXIST_F 						= 19654;
 	public static final int GEN_P1_ALREADY_EXIST_M 						= 19651;	
+	public static final int GEN_P1_INVALID_P2_LENGTH_M					= 19660;
 	public static final int GEN_P1_MANDATORY_FIELD_EMPTY_M 				= 19650;
 	public static final int GEN_P1_NOT_FOUND_F 							= 19655;
-	public static final int GEN_P1_NOT_FOUND_M 							= 19656;
+	public static final int GEN_P1_NOT_FOUND_M 							= 19656;	
+	public static final int GEN_P1_P2_CONTAIN_INVALID_CHAR				= 19659;	
+	public static final int GEN_P1_P2_INVALID_F							= 19657;
+	public static final int GEN_P1_P2_INVALID_M							= 19658;
 	public static final int GEN_P1_P2_IS_EMPTY_M						= 19653;
 	public static final int GEN_P1_P2_IS_FILLED_M						= 19652;
-	
-	
 }
