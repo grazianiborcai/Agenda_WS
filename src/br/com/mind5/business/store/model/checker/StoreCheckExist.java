@@ -1,8 +1,12 @@
 package br.com.mind5.business.store.model.checker;
 
+import java.sql.Connection;
+
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.StoreVisiDaoSelect;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.common.SystemMessageBuilder;
+import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -24,13 +28,19 @@ public final class StoreCheckExist extends ModelCheckerTemplateAction<StoreInfo,
 	
 	
 	
-	@Override protected int getCodMsgOnResultTrueHook() {
-		return SystemCode.STORE_ALREADY_EXIST;
-	}	
+	@Override protected SymsgInfo getSymsgOnResultTrueHook(Connection dbConn, String dbSchema, String codLangu) {
+		SystemMessageBuilder builder = new SystemMessageBuilder(dbConn, dbSchema, codLangu, SystemCode.GEN_P1_ALREADY_EXIST_F);
+		builder.addParam01(SystemCode.STORE);
+
+		return builder.build();
+	}
 	
 	
 	
-	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.STORE_NOT_FOUND;
+	@Override protected SymsgInfo getSymsgOnResultFalseHook(Connection dbConn, String dbSchema, String codLangu) {
+		SystemMessageBuilder builder = new SystemMessageBuilder(dbConn, dbSchema, codLangu, SystemCode.GEN_P1_NOT_FOUND_F);
+		builder.addParam01(SystemCode.STORE);
+
+		return builder.build();
 	}
 }

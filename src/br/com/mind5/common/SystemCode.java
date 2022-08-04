@@ -53,7 +53,6 @@ public final class SystemCode {
 	public static final int EMP_PHONE_NUMBER_IS_NULL					= 1067;
 	
 	// Store
-	public static final int STORE_ALREADY_EXIST 						= 1102;
 	public static final int STORE_NOT_FOUND 							= 1103;
 	public static final int STORE										= 1145;
 	
@@ -1927,10 +1926,12 @@ public final class SystemCode {
 	// Store Prospect Counter
 	public static final int STORE_PROSPECT_COUNT_MANDATORY_FIELD_EMPTY	= 19601;
 	
-	// General -- 19654
+	// General -- 19656
 	public static final int GEN_P1_ALREADY_EXIST_F 						= 19654;
 	public static final int GEN_P1_ALREADY_EXIST_M 						= 19651;	
 	public static final int GEN_P1_MANDATORY_FIELD_EMPTY_M 				= 19650;
+	public static final int GEN_P1_NOT_FOUND_F 							= 19655;
+	public static final int GEN_P1_NOT_FOUND_M 							= 19656;
 	public static final int GEN_P1_P2_IS_EMPTY_M						= 19653;
 	public static final int GEN_P1_P2_IS_FILLED_M						= 19652;
 	
