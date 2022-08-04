@@ -73,7 +73,7 @@ public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends
 		finalResult = hasPassed(actionResult, expectedResult);
 		
 		if (finalResult == FAILED) 
-			symsgData = buildMsg(actionResult, codLanguage, conn, schemaName);
+			symsgData = getMsg(actionResult, codLanguage, conn, schemaName);
 		
 		return getResult();
 	}
@@ -196,6 +196,40 @@ public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends
 		}
 		
 		return finalResult;
+	}
+	
+	
+	
+	private SymsgInfo getMsg(boolean checkResult, String codLangu, Connection dbConn, String dbSchema) {
+		SymsgInfo result = getSymsg(checkResult, codLangu, dbConn, dbSchema);
+		
+		if (result == null)
+			result = buildMsg(checkResult, codLangu, dbConn, dbSchema);
+		
+		return result;	
+	}
+	
+	
+	
+	private SymsgInfo getSymsg(boolean checkResult, String codLangu, Connection dbConn, String dbSchema) {
+		if (checkResult == true)
+			return getSymsgOnResultTrueHook(dbConn, dbSchema, codLangu);
+		
+		return getSymsgOnResultFalseHook(dbConn, dbSchema, codLangu);
+	}
+	
+	
+	
+	protected SymsgInfo getSymsgOnResultTrueHook(Connection dbConn, String dbSchema, String codLangu) {
+		//Template method: to be overwritten by subclasses
+		return getSymsgOnResultFalseHook(dbConn, dbSchema, codLangu);
+	}
+	
+	
+	
+	protected SymsgInfo getSymsgOnResultFalseHook(Connection dbConn, String dbSchema, String codLangu) {
+		//Template method: to be overwritten by subclasses
+		return null;
 	}
 	
 	
