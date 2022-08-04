@@ -16,7 +16,7 @@
 	
 	
 	<!-- Free of authentication -->
-	<security:http create-session="stateless" pattern="/**/Owner/listOwner" use-expressions="true">
+  	<security:http create-session="stateless" pattern="/Signup/user" use-expressions="true">
     	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
     	<security:anonymous enabled="true"/>   
     	<security:http-basic />
@@ -24,8 +24,8 @@
     	<cors configuration-source-ref="corsSource"/>
     	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
     </security:http>
-    
-	<security:http create-session="stateless" pattern="**/Signup/**" use-expressions="true">
+	
+	<security:http create-session="stateless" pattern="/**/Owner/listOwner" use-expressions="true">
     	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
     	<security:anonymous enabled="true"/>   
     	<security:http-basic />
