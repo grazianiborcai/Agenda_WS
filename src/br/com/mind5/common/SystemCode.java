@@ -1451,6 +1451,7 @@ public final class SystemCode {
 	public static final int STORE_TEXT_NOT_FLAGGED_AS_DELETED 			= 14104;
 	public static final int STORE_TEXT_ALREADY_EXIST					= 14105;
 	public static final int STORE_TEXT_NOT_FOUND						= 14106;
+	public static final int STORE_TEXT									= 14107;
 	
 	// Store Text Default
 	public static final int STORE_TEXT_DEFAULT_MANDATORY_FIELD_EMPTY	= 14150;
@@ -1926,7 +1927,8 @@ public final class SystemCode {
 	// Store Prospect Counter
 	public static final int STORE_PROSPECT_COUNT_MANDATORY_FIELD_EMPTY	= 19601;
 	
-	// General -- 19660
+	// General -- 19661
+	public static final int GEN_DESCRIPTION								= 19661;	
 	public static final int GEN_P1_ALREADY_EXIST_F 						= 19654;
 	public static final int GEN_P1_ALREADY_EXIST_M 						= 19651;	
 	public static final int GEN_P1_INVALID_P2_LENGTH_M					= 19660;
