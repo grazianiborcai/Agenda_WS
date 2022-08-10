@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeText.info.StorextInfo;
-import br.com.mind5.business.storeText.model.action.StorextVisiNodeInsert;
-import br.com.mind5.business.storeText.model.action.StorextVisiRootSelect;
 import br.com.mind5.business.storeText.model.action.StorextVisiEnforceCreatedBy;
 import br.com.mind5.business.storeText.model.action.StorextVisiEnforceCreatedOn;
 import br.com.mind5.business.storeText.model.action.StorextVisiEnforceLChanged;
 import br.com.mind5.business.storeText.model.action.StorextVisiMergeUsername;
+import br.com.mind5.business.storeText.model.action.StorextVisiNodeInsert;
+import br.com.mind5.business.storeText.model.action.StorextVisiRootSelect;
+import br.com.mind5.business.storeText.model.checker.StorextCheckDescription;
 import br.com.mind5.business.storeText.model.checker.StorextCheckExist;
 import br.com.mind5.business.storeText.model.checker.StorextCheckLangu;
 import br.com.mind5.business.storeText.model.checker.StorextCheckOwner;
@@ -56,6 +57,13 @@ public final class StorextRootInsert extends DeciTreeTemplateWrite<StorextInfo> 
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new StorextCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new StorextCheckDescription(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
