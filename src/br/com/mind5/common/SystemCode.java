@@ -1927,8 +1927,10 @@ public final class SystemCode {
 	// Store Prospect Counter
 	public static final int STORE_PROSPECT_COUNT_MANDATORY_FIELD_EMPTY	= 19601;
 	
-	// General -- 19661
-	public static final int GEN_DESCRIPTION								= 19661;	
+	// General -- 19663
+	public static final int GEN_DESCRIPTION								= 19661;
+	public static final int GEN_NAME									= 19662;
+	public static final int GEN_RAZAO_SOCIAL							= 19663;
 	public static final int GEN_P1_ALREADY_EXIST_F 						= 19654;
 	public static final int GEN_P1_ALREADY_EXIST_M 						= 19651;	
 	public static final int GEN_P1_INVALID_P2_LENGTH_M					= 19660;

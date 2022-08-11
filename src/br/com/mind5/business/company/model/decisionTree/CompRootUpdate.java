@@ -4,17 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.company.info.CompInfo;
-import br.com.mind5.business.company.model.action.CompVisiNodeCnpjL1;
-import br.com.mind5.business.company.model.action.CompVisiNodeSnapshot;
 import br.com.mind5.business.company.model.action.CompVisiEnforceLChanged;
 import br.com.mind5.business.company.model.action.CompVisiEnforceNameSearch;
 import br.com.mind5.business.company.model.action.CompVisiMergeToUpdate;
 import br.com.mind5.business.company.model.action.CompVisiMergeUsername;
+import br.com.mind5.business.company.model.action.CompVisiNodeCnpjL1;
+import br.com.mind5.business.company.model.action.CompVisiNodeSnapshot;
 import br.com.mind5.business.company.model.checker.CompCheckCountry;
 import br.com.mind5.business.company.model.checker.CompCheckExist;
 import br.com.mind5.business.company.model.checker.CompCheckLangu;
+import br.com.mind5.business.company.model.checker.CompCheckName;
 import br.com.mind5.business.company.model.checker.CompCheckNameLength;
 import br.com.mind5.business.company.model.checker.CompCheckOwner;
+import br.com.mind5.business.company.model.checker.CompCheckRazaoSocial;
 import br.com.mind5.business.company.model.checker.CompCheckUpdate;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -65,7 +67,21 @@ public final class CompRootUpdate extends DeciTreeTemplateWrite<CompInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new CompCheckLangu(checkerOption);
-		queue.add(checker);	
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new CompCheckName(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new CompCheckRazaoSocial(checkerOption);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;

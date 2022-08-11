@@ -10,8 +10,10 @@ import br.com.mind5.business.company.model.checker.CompCheckCountry;
 import br.com.mind5.business.company.model.checker.CompCheckEntiteg;
 import br.com.mind5.business.company.model.checker.CompCheckInsert;
 import br.com.mind5.business.company.model.checker.CompCheckLangu;
+import br.com.mind5.business.company.model.checker.CompCheckName;
 import br.com.mind5.business.company.model.checker.CompCheckNameLength;
 import br.com.mind5.business.company.model.checker.CompCheckOwner;
+import br.com.mind5.business.company.model.checker.CompCheckRazaoSocial;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -60,7 +62,21 @@ public final class CompRootInsert extends DeciTreeTemplateWrite<CompInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new CompCheckLangu(checkerOption);
-		queue.add(checker);	
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new CompCheckName(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new CompCheckRazaoSocial(checkerOption);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
