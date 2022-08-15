@@ -17,7 +17,7 @@ import br.com.mind5.business.person.model.checker.PersonCheckBirthdate;
 import br.com.mind5.business.person.model.checker.PersonCheckExist;
 import br.com.mind5.business.person.model.checker.PersonCheckGender;
 import br.com.mind5.business.person.model.checker.PersonCheckLangu;
-import br.com.mind5.business.person.model.checker.PersonCheckName;
+import br.com.mind5.business.person.model.checker.PersonCheckSafeName;
 import br.com.mind5.business.person.model.checker.PersonCheckOwner;
 import br.com.mind5.business.person.model.checker.PersonCheckUpdate;
 import br.com.mind5.model.action.ActionLazy;
@@ -68,7 +68,7 @@ public final class PersonRootUpdate extends DeciTreeTemplateWrite<PersonInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new PersonCheckName(checkerOption);
+		checker = new PersonCheckSafeName(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

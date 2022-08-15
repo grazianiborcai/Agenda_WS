@@ -10,9 +10,9 @@ import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class PersonCheckName extends ModelCheckerTemplateSimple<PersonInfo> {
+public final class PersonCheckSafeName extends ModelCheckerTemplateSimple<PersonInfo> {
 
-	public PersonCheckName(ModelCheckerOption option) {
+	public PersonCheckSafeName(ModelCheckerOption option) {
 		super(option);
 	}
 	
