@@ -10,7 +10,7 @@ import br.com.mind5.business.company.model.checker.CompCheckCountry;
 import br.com.mind5.business.company.model.checker.CompCheckEntiteg;
 import br.com.mind5.business.company.model.checker.CompCheckInsert;
 import br.com.mind5.business.company.model.checker.CompCheckLangu;
-import br.com.mind5.business.company.model.checker.CompCheckName;
+import br.com.mind5.business.company.model.checker.CompCheckSafeName;
 import br.com.mind5.business.company.model.checker.CompCheckNameLength;
 import br.com.mind5.business.company.model.checker.CompCheckOwner;
 import br.com.mind5.business.company.model.checker.CompCheckRazaoSocial;
@@ -68,7 +68,7 @@ public final class CompRootInsert extends DeciTreeTemplateWrite<CompInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new CompCheckName(checkerOption);
+		checker = new CompCheckSafeName(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

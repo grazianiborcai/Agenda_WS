@@ -10,9 +10,9 @@ import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class CompCheckName extends ModelCheckerTemplateSimple<CompInfo> {
+public final class CompCheckSafeName extends ModelCheckerTemplateSimple<CompInfo> {
 
-	public CompCheckName(ModelCheckerOption option) {
+	public CompCheckSafeName(ModelCheckerOption option) {
 		super(option);
 	}
 	
