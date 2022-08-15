@@ -13,10 +13,8 @@ import br.com.mind5.business.company.model.action.CompVisiNodeSnapshot;
 import br.com.mind5.business.company.model.checker.CompCheckCountry;
 import br.com.mind5.business.company.model.checker.CompCheckExist;
 import br.com.mind5.business.company.model.checker.CompCheckLangu;
-import br.com.mind5.business.company.model.checker.CompCheckSafeName;
 import br.com.mind5.business.company.model.checker.CompCheckNameLength;
 import br.com.mind5.business.company.model.checker.CompCheckOwner;
-import br.com.mind5.business.company.model.checker.CompCheckRazaoSocial;
 import br.com.mind5.business.company.model.checker.CompCheckUpdate;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -73,20 +71,6 @@ public final class CompRootUpdate extends DeciTreeTemplateWrite<CompInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new CompCheckSafeName(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new CompCheckRazaoSocial(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new CompCheckCountry(checkerOption);
 		queue.add(checker);	
 		
@@ -105,6 +89,7 @@ public final class CompRootUpdate extends DeciTreeTemplateWrite<CompInfo> {
 	@Override protected List<ActionStd<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
 		List<ActionStd<CompInfo>> actions = new ArrayList<>();
 		
+		ActionStd<CompInfo> nodeSafe = new CompNodeSafe(option).toAction();
 		ActionStd<CompInfo> mergeToUpdate = new ActionStdCommom<CompInfo>(option, CompVisiMergeToUpdate.class);	
 		ActionLazy<CompInfo> cnpj = new ActionLazyCommom<CompInfo>(option, CompVisiNodeCnpjL1.class);	
 		ActionLazy<CompInfo> enforceLChanged = new ActionLazyCommom<CompInfo>(option, CompVisiEnforceLChanged.class);
@@ -118,7 +103,9 @@ public final class CompRootUpdate extends DeciTreeTemplateWrite<CompInfo> {
 		enforceLChangedBy.addPostAction(enforceNameSearch);
 		enforceNameSearch.addPostAction(snapshot);
 		
+		actions.add(nodeSafe);
 		actions.add(mergeToUpdate);
+		
 		return actions;
 	}
 }

@@ -536,6 +536,9 @@ public final class SystemCode {
 	public static final int COMPANY_MANDATORY_FIELD_EMPTY 				= 2517;
 	public static final int COMPANY_MANDATORY_MAX_LENGTH_EXCEEDED		= 2518;
 	public static final int COMPANY										= 2519;
+	public static final int COMPANY_CNPJ								= 2520;
+	public static final int COMPANY_INSCRICAO_MUNICIPAL					= 2521;
+	public static final int COMPANY_INSCRICAO_ESTADUAL					= 2522;
 	
 	// Pay Partner-Owner
 	public static final int PAY_PARTNER_OWNER_COUNTRY_IS_NULL			= 2550;
@@ -1940,8 +1943,9 @@ public final class SystemCode {
 	// Store Prospect Counter
 	public static final int STORE_PROSPECT_COUNT_MANDATORY_FIELD_EMPTY	= 19601;
 	
-	// General -- 19663
+	// General -- 19664
 	public static final int GEN_DESCRIPTION								= 19661;
+	public static final int GEN_EMAIL									= 19664;
 	public static final int GEN_NAME									= 19662;
 	public static final int GEN_RAZAO_SOCIAL							= 19663;
 	public static final int GEN_P1_ALREADY_EXIST_F 						= 19654;
