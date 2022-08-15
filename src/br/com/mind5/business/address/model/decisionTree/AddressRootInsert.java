@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.action.AddressVisiNodeDefaultL1;
-import br.com.mind5.business.address.model.action.AddressVisiNodeGeoL1;
-import br.com.mind5.business.address.model.action.AddressVisiNodeInsert;
-import br.com.mind5.business.address.model.action.AddressVisiNodeSnapshot;
-import br.com.mind5.business.address.model.action.AddressVisiRootSelect;
 import br.com.mind5.business.address.model.action.AddressVisiEnforceCreatedBy;
 import br.com.mind5.business.address.model.action.AddressVisiEnforceCreatedOn;
 import br.com.mind5.business.address.model.action.AddressVisiEnforceDistrictSearch;
 import br.com.mind5.business.address.model.action.AddressVisiEnforceLChanged;
 import br.com.mind5.business.address.model.action.AddressVisiMergeFormess;
 import br.com.mind5.business.address.model.action.AddressVisiMergeUsername;
+import br.com.mind5.business.address.model.action.AddressVisiNodeDefaultL1;
+import br.com.mind5.business.address.model.action.AddressVisiNodeGeoL1;
+import br.com.mind5.business.address.model.action.AddressVisiNodeInsert;
+import br.com.mind5.business.address.model.action.AddressVisiNodeSnapshot;
+import br.com.mind5.business.address.model.action.AddressVisiRootSelect;
 import br.com.mind5.business.address.model.checker.AddressCheckCountry;
 import br.com.mind5.business.address.model.checker.AddressCheckInsert;
 import br.com.mind5.business.address.model.checker.AddressCheckLangu;
@@ -102,6 +102,7 @@ public final class AddressRootInsert extends DeciTreeTemplateWrite<AddressInfo> 
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();	
 		
+		ActionStd<AddressInfo> nodeSafeString = new AddressNodeSafeString(option).toAction();
 		ActionStd<AddressInfo> mergeForm = new ActionStdCommom<AddressInfo>(option, AddressVisiMergeFormess.class);		
 		ActionLazy<AddressInfo> mergeUsername = new  ActionLazyCommom<AddressInfo>(option, AddressVisiMergeUsername.class);
 		ActionLazy<AddressInfo> enforceLChanged = new  ActionLazyCommom<AddressInfo>(option, AddressVisiEnforceLChanged.class);
@@ -125,7 +126,9 @@ public final class AddressRootInsert extends DeciTreeTemplateWrite<AddressInfo> 
 		nodeDefault.addPostAction(snapshot);
 		snapshot.addPostAction(select);
 		
-		actions.add(mergeForm);		
+		actions.add(nodeSafeString);
+		actions.add(mergeForm);
+		
 		return actions;
 	}
 }

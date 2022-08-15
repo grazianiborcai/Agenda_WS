@@ -343,6 +343,19 @@ public final class SystemCode {
 	public static final int ADDRESS_HAS_NO_STATE						= 1617;
 	public static final int ADDRESS_NOT_DEFAULT							= 1618;
 	public static final int ADDRESS										= 1619;
+	public static final int ADDRESS_CITY								= 1620;
+	public static final int ADDRESS_DISTRICT							= 1621;
+	public static final int ADDRESS_STREET								= 1622;
+	public static final int ADDRESS_STREET_NUMBER						= 1623;
+	public static final int ADDRESS_COMPLEMENT							= 1624;
+	public static final int ADDRESS_POSTAL_CODE							= 1625;	
+	public static final int ADDRESS_LINE_1								= 1626;	
+	public static final int ADDRESS_LINE_2								= 1627;
+	public static final int ADDRESS_LINE_3								= 1628;
+	public static final int ADDRESS_LINE_4								= 1629;
+	public static final int ADDRESS_LINE_5								= 1630;
+	public static final int ADDRESS_LINE_6								= 1631;
+	public static final int ADDRESS_LINE_7								= 1632;
 	
 	// Form Address
 	public static final int FORM_ADDRESS_ALREADY_EXIST					= 1700;
