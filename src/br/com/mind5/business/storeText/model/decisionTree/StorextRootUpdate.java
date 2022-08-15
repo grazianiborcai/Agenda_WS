@@ -11,7 +11,7 @@ import br.com.mind5.business.storeText.model.action.StorextVisiMergeUsername;
 import br.com.mind5.business.storeText.model.action.StorextVisiNodeDefaultL1;
 import br.com.mind5.business.storeText.model.action.StorextVisiNodePostUpdate;
 import br.com.mind5.business.storeText.model.action.StorextVisiRootSelect;
-import br.com.mind5.business.storeText.model.checker.StorextCheckDescription;
+import br.com.mind5.business.storeText.model.checker.StorextCheckSafeDescription;
 import br.com.mind5.business.storeText.model.checker.StorextCheckExist;
 import br.com.mind5.business.storeText.model.checker.StorextCheckLangu;
 import br.com.mind5.business.storeText.model.checker.StorextCheckOwner;
@@ -65,7 +65,7 @@ public final class StorextRootUpdate extends DeciTreeTemplateWrite<StorextInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new StorextCheckDescription(checkerOption);
+		checker = new StorextCheckSafeDescription(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
