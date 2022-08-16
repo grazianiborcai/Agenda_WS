@@ -1411,8 +1411,9 @@ public final class SystemCode {
 
 	// Notes
 	public static final int NOTES_MANDATORY_FIELD_EMPTY					= 13500;
-	public static final int NOTES_NOT_FOUND								= 13051;
-	public static final int NOTES_ALREADY_EXIST							= 13052;
+	public static final int NOTES_NOT_FOUND								= 13501;
+	public static final int NOTES_ALREADY_EXIST							= 13502;
+	public static final int NOTES										= 13503;
 	
 	// Sys Store Partitioning
 	public static final int SYS_STORE_PARTITION_DISABLED				= 13550;
@@ -1944,10 +1945,11 @@ public final class SystemCode {
 	// Store Prospect Counter
 	public static final int STORE_PROSPECT_COUNT_MANDATORY_FIELD_EMPTY	= 19601;
 	
-	// General -- 19665
+	// General -- 19666
 	public static final int GEN_DESCRIPTION								= 19661;
 	public static final int GEN_EMAIL									= 19664;
 	public static final int GEN_NAME									= 19662;
+	public static final int GEN_NOTE									= 19666;	
 	public static final int GEN_RAZAO_SOCIAL							= 19663;
 	public static final int GEN_TEXT									= 19665;	
 	public static final int GEN_P1_ALREADY_EXIST_F 						= 19654;

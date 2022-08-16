@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.notes.info.NotesInfo;
-import br.com.mind5.business.notes.model.action.NotesVisiRootSelect;
 import br.com.mind5.business.notes.model.action.NotesVisiDaoUpdate;
 import br.com.mind5.business.notes.model.action.NotesVisiEnforceLChanged;
 import br.com.mind5.business.notes.model.action.NotesVisiMergeToUpdate;
 import br.com.mind5.business.notes.model.action.NotesVisiMergeUsername;
+import br.com.mind5.business.notes.model.action.NotesVisiRootSelect;
 import br.com.mind5.business.notes.model.checker.NotesCheckExist;
 import br.com.mind5.business.notes.model.checker.NotesCheckLangu;
 import br.com.mind5.business.notes.model.checker.NotesCheckOwner;
@@ -72,6 +72,7 @@ public final class NotesRootUpdate extends DeciTreeTemplateWrite<NotesInfo> {
 	@Override protected List<ActionStd<NotesInfo>> buildActionsOnPassedHook(DeciTreeOption<NotesInfo> option) {
 		List<ActionStd<NotesInfo>> actions = new ArrayList<>();
 
+		ActionStd<NotesInfo> nodeSafe = new NotesNodeSafe(option).toAction();
 		ActionStd<NotesInfo> mergeToUpdate = new ActionStdCommom<NotesInfo>(option, NotesVisiMergeToUpdate.class);
 		ActionLazy<NotesInfo> enforceLChanged = new ActionLazyCommom<NotesInfo>(option, NotesVisiEnforceLChanged.class);	
 		ActionLazy<NotesInfo> enforceLChangedBy = new ActionLazyCommom<NotesInfo>(option, NotesVisiMergeUsername.class);
@@ -83,7 +84,9 @@ public final class NotesRootUpdate extends DeciTreeTemplateWrite<NotesInfo> {
 		enforceLChangedBy.addPostAction(update);
 		update.addPostAction(select);
 		
+		actions.add(nodeSafe);
 		actions.add(mergeToUpdate);
+		
 		return actions;
 	}
 }

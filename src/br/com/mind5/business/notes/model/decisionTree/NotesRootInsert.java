@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.notes.info.NotesInfo;
-import br.com.mind5.business.notes.model.action.NotesVisiRootSelect;
 import br.com.mind5.business.notes.model.action.NotesVisiDaoInsert;
 import br.com.mind5.business.notes.model.action.NotesVisiEnforceCreatedBy;
 import br.com.mind5.business.notes.model.action.NotesVisiEnforceCreatedOn;
 import br.com.mind5.business.notes.model.action.NotesVisiEnforceLChanged;
 import br.com.mind5.business.notes.model.action.NotesVisiMergeUsername;
+import br.com.mind5.business.notes.model.action.NotesVisiRootSelect;
 import br.com.mind5.business.notes.model.checker.NotesCheckLangu;
 import br.com.mind5.business.notes.model.checker.NotesCheckOwner;
 import br.com.mind5.business.notes.model.checker.NotesCheckWrite;
@@ -65,6 +65,7 @@ public final class NotesRootInsert extends DeciTreeTemplateWrite<NotesInfo> {
 	@Override protected List<ActionStd<NotesInfo>> buildActionsOnPassedHook(DeciTreeOption<NotesInfo> option) {
 		List<ActionStd<NotesInfo>> actions = new ArrayList<>();		
 		
+		ActionStd<NotesInfo> nodeSafe = new NotesNodeSafe(option).toAction();
 		ActionStd<NotesInfo> nodeCustomer = new NotesNodeCustomerL1(option).toAction();
 		ActionStd<NotesInfo> enforceLChanged = new ActionStdCommom<NotesInfo>(option, NotesVisiEnforceLChanged.class);	
 		ActionLazy<NotesInfo> enforceLChangedBy = new ActionLazyCommom<NotesInfo>(option, NotesVisiMergeUsername.class);		
@@ -79,8 +80,10 @@ public final class NotesRootInsert extends DeciTreeTemplateWrite<NotesInfo> {
 		enforceCreatedOn.addPostAction(insert);
 		insert.addPostAction(select);
 		
+		actions.add(nodeSafe);
 		actions.add(nodeCustomer);
 		actions.add(enforceLChanged);
+		
 		return actions;
 	}
 }
