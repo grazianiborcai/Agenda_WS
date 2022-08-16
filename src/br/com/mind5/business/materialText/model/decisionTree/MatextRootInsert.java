@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.business.materialText.model.action.MatextVisiNodeInsert;
-import br.com.mind5.business.materialText.model.action.MatextVisiRootSelect;
 import br.com.mind5.business.materialText.model.action.MatextVisiEnforceCreatedBy;
 import br.com.mind5.business.materialText.model.action.MatextVisiEnforceCreatedOn;
 import br.com.mind5.business.materialText.model.action.MatextVisiEnforceLChanged;
 import br.com.mind5.business.materialText.model.action.MatextVisiEnforceTxtSearch;
 import br.com.mind5.business.materialText.model.action.MatextVisiMergeUsername;
+import br.com.mind5.business.materialText.model.action.MatextVisiNodeInsert;
+import br.com.mind5.business.materialText.model.action.MatextVisiRootSelect;
 import br.com.mind5.business.materialText.model.checker.MatextCheckExist;
 import br.com.mind5.business.materialText.model.checker.MatextCheckLangu;
 import br.com.mind5.business.materialText.model.checker.MatextCheckLength;
@@ -89,6 +89,7 @@ public final class MatextRootInsert extends DeciTreeTemplateWrite<MatextInfo> {
 	@Override protected List<ActionStd<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
 		List<ActionStd<MatextInfo>> actions = new ArrayList<>();		
 		
+		ActionStd<MatextInfo> nodeSafe = new MatextNodeSafe(option).toAction();
 		ActionStd<MatextInfo> nodeDefault = new MatextNodeDefaultL1(option).toAction();	
 		ActionLazy<MatextInfo> enforceLChanged = new ActionLazyCommom<MatextInfo>(option, MatextVisiEnforceLChanged.class);	
 		ActionLazy<MatextInfo> enforceLChangedBy = new ActionLazyCommom<MatextInfo>(option, MatextVisiMergeUsername.class);		
@@ -106,7 +107,9 @@ public final class MatextRootInsert extends DeciTreeTemplateWrite<MatextInfo> {
 		enforceTxtSearch.addPostAction(insert);
 		insert.addPostAction(select);
 		
+		actions.add(nodeSafe);
 		actions.add(nodeDefault);
+		
 		return actions;
 	}
 }

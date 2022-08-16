@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.business.materialText.model.action.MatextVisiNodeDefaultL1;
-import br.com.mind5.business.materialText.model.action.MatextVisiNodePostUpdate;
-import br.com.mind5.business.materialText.model.action.MatextVisiRootSelect;
 import br.com.mind5.business.materialText.model.action.MatextVisiDaoUpdate;
 import br.com.mind5.business.materialText.model.action.MatextVisiEnforceLChanged;
 import br.com.mind5.business.materialText.model.action.MatextVisiEnforceTxtSearch;
 import br.com.mind5.business.materialText.model.action.MatextVisiMergeToUpdate;
 import br.com.mind5.business.materialText.model.action.MatextVisiMergeUsername;
+import br.com.mind5.business.materialText.model.action.MatextVisiNodeDefaultL1;
+import br.com.mind5.business.materialText.model.action.MatextVisiNodePostUpdate;
+import br.com.mind5.business.materialText.model.action.MatextVisiRootSelect;
 import br.com.mind5.business.materialText.model.checker.MatextCheckExist;
 import br.com.mind5.business.materialText.model.checker.MatextCheckLangu;
 import br.com.mind5.business.materialText.model.checker.MatextCheckLength;
@@ -91,6 +91,7 @@ public final class MatextRootUpdate extends DeciTreeTemplateWrite<MatextInfo> {
 	@Override protected List<ActionStd<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
 		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
 
+		ActionStd<MatextInfo> nodeSafe = new MatextNodeSafe(option).toAction();
 		ActionStd<MatextInfo> mergeToUpdate = new ActionStdCommom<MatextInfo>(option, MatextVisiMergeToUpdate.class);
 		ActionLazy<MatextInfo> nodeDefault = new ActionLazyCommom<MatextInfo>(option, MatextVisiNodeDefaultL1.class);
 		ActionLazy<MatextInfo> enforceLChanged = new ActionLazyCommom<MatextInfo>(option, MatextVisiEnforceLChanged.class);	
@@ -108,7 +109,9 @@ public final class MatextRootUpdate extends DeciTreeTemplateWrite<MatextInfo> {
 		update.addPostAction(postUpdate);
 		postUpdate.addPostAction(select);
 		
+		actions.add(nodeSafe);
 		actions.add(mergeToUpdate);
+		
 		return actions;
 	}
 }
