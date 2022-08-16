@@ -13,7 +13,6 @@ import br.com.mind5.business.person.model.checker.PersonCheckEntiteg;
 import br.com.mind5.business.person.model.checker.PersonCheckGender;
 import br.com.mind5.business.person.model.checker.PersonCheckInsert;
 import br.com.mind5.business.person.model.checker.PersonCheckLangu;
-import br.com.mind5.business.person.model.checker.PersonCheckSafeName;
 import br.com.mind5.business.person.model.checker.PersonCheckOwner;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -62,13 +61,6 @@ public final class PersonRootInsert extends DeciTreeTemplateWrite<PersonInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new PersonCheckSafeName(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new PersonCheckBirthdate(checkerOption);
 		queue.add(checker);
 		
@@ -94,6 +86,7 @@ public final class PersonRootInsert extends DeciTreeTemplateWrite<PersonInfo> {
 	@Override protected List<ActionStd<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
 		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
+		ActionStd<PersonInfo> nodeSafe = new PersonNodeSafe(option).toAction();
 		ActionStd<PersonInfo> cpf = new PersonNodeCpfL1(option).toAction();	
 		ActionLazy<PersonInfo> email = new ActionLazyCommom<PersonInfo>(option, PersonVisiNodeEmailL1.class);	
 		ActionLazy<PersonInfo> insert = new ActionLazyCommom<PersonInfo>(option, PersonVisiNodeInsert.class);		
@@ -105,7 +98,9 @@ public final class PersonRootInsert extends DeciTreeTemplateWrite<PersonInfo> {
 		insert.addPostAction(snapshot);
 		snapshot.addPostAction(upsertdelPerbio);
 		
+		actions.add(nodeSafe);
 		actions.add(cpf);
+		
 		return actions;
 	}
 }

@@ -394,6 +394,7 @@ public final class SystemCode {
 	public static final int PERSON_BIRTHDATE							= 1779;
 	public static final int PERSON_NAME									= 1780;
 	public static final int PERSON_CPF									= 1781;
+	public static final int PERSON_NAME_DISPLAY							= 1783;
 	
 	// User
 	public static final int USER_COD_IS_FILLED							= 1800;

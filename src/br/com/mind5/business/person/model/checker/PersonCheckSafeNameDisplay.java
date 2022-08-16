@@ -10,19 +10,19 @@ import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class PersonCheckSafeName extends ModelCheckerTemplateSimple<PersonInfo> {
+public final class PersonCheckSafeNameDisplay extends ModelCheckerTemplateSimple<PersonInfo> {
 
-	public PersonCheckSafeName(ModelCheckerOption option) {
+	public PersonCheckSafeNameDisplay(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(PersonInfo recordInfo, Connection conn, String schemaName) {
-		if (recordInfo.name == null)
+		if (recordInfo.nameDisplay == null)
 			return super.SUCCESS;
 		
-		if (StringValidator.validatePersonName(recordInfo.name) == super.SUCCESS)
+		if (StringValidator.validatePersonName(recordInfo.nameDisplay) == super.SUCCESS)
 			return super.SUCCESS;
 		
 		return super.FAILED;
@@ -33,7 +33,7 @@ public final class PersonCheckSafeName extends ModelCheckerTemplateSimple<Person
 	@Override protected SymsgInfo getSymsgOnResultFalseHook(Connection dbConn, String dbSchema, String codLangu) {
 		SystemMessageBuilder builder = new SystemMessageBuilder(dbConn, dbSchema, codLangu, SystemCode.GEN_P1_P2_CONTAIN_INVALID_CHAR);
 		builder.addParam01(SystemCode.PERSON);
-		builder.addParam02(SystemCode.PERSON_NAME);
+		builder.addParam02(SystemCode.PERSON_NAME_DISPLAY);
 
 		return builder.build();
 	}
