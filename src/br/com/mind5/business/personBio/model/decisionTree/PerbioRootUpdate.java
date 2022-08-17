@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.personBio.info.PerbioInfo;
-import br.com.mind5.business.personBio.model.action.PerbioVisiNodeSnapshot;
-import br.com.mind5.business.personBio.model.action.PerbioVisiRootSelect;
 import br.com.mind5.business.personBio.model.action.PerbioVisiEnforceLChanged;
 import br.com.mind5.business.personBio.model.action.PerbioVisiMergeToUpdate;
 import br.com.mind5.business.personBio.model.action.PerbioVisiMergeUsername;
+import br.com.mind5.business.personBio.model.action.PerbioVisiNodeSnapshot;
+import br.com.mind5.business.personBio.model.action.PerbioVisiRootSelect;
 import br.com.mind5.business.personBio.model.checker.PerbioCheckExist;
 import br.com.mind5.business.personBio.model.checker.PerbioCheckLangu;
 import br.com.mind5.business.personBio.model.checker.PerbioCheckOwner;
@@ -72,6 +72,7 @@ public final class PerbioRootUpdate extends DeciTreeTemplateWrite<PerbioInfo> {
 	@Override protected List<ActionStd<PerbioInfo>> buildActionsOnPassedHook(DeciTreeOption<PerbioInfo> option) {
 		List<ActionStd<PerbioInfo>> actions = new ArrayList<>();
 
+		ActionStd<PerbioInfo> nodeSafe = new PerbioNodeSafe(option).toAction();
 		ActionStd<PerbioInfo> mergeToUpdate = new ActionStdCommom<PerbioInfo>(option, PerbioVisiMergeToUpdate.class);
 		ActionLazy<PerbioInfo> enforceLChanged = new ActionLazyCommom<PerbioInfo>(option, PerbioVisiEnforceLChanged.class);	
 		ActionLazy<PerbioInfo> enforceLChangedBy = new ActionLazyCommom<PerbioInfo>(option, PerbioVisiMergeUsername.class);
@@ -83,7 +84,9 @@ public final class PerbioRootUpdate extends DeciTreeTemplateWrite<PerbioInfo> {
 		enforceLChangedBy.addPostAction(snapshot);
 		snapshot.addPostAction(select);
 		
+		actions.add(nodeSafe);
 		actions.add(mergeToUpdate);
+		
 		return actions;
 	}
 }
