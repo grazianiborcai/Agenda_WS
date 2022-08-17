@@ -22,7 +22,7 @@ public final class AddressCheckSafeName extends ModelCheckerTemplateSimple<Addre
 		if (recordInfo.addressName == null)
 			return super.SUCCESS;
 		
-		if (StringValidator.validatePersonName(recordInfo.addressName) == super.SUCCESS)
+		if (StringValidator.validateSafe(recordInfo.addressName) == super.SUCCESS)
 			return super.SUCCESS;
 		
 		return super.FAILED;

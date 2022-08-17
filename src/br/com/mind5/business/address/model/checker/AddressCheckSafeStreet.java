@@ -22,7 +22,7 @@ public final class AddressCheckSafeStreet extends ModelCheckerTemplateSimple<Add
 		if (recordInfo.street == null)
 			return super.SUCCESS;
 		
-		if (StringValidator.validatePersonName(recordInfo.street) == super.SUCCESS)
+		if (StringValidator.validateSafe(recordInfo.street) == super.SUCCESS)
 			return super.SUCCESS;
 		
 		return super.FAILED;

@@ -22,7 +22,7 @@ public final class AddressCheckSafePostalCode extends ModelCheckerTemplateSimple
 		if (recordInfo.postalCode == null)
 			return super.SUCCESS;
 		
-		if (StringValidator.validatePersonName(recordInfo.postalCode) == super.SUCCESS)
+		if (StringValidator.validateSafe(recordInfo.postalCode) == super.SUCCESS)
 			return super.SUCCESS;
 		
 		return super.FAILED;

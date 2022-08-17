@@ -22,7 +22,7 @@ public final class AddressCheckSafeDistrict extends ModelCheckerTemplateSimple<A
 		if (recordInfo.district == null)
 			return super.SUCCESS;
 		
-		if (StringValidator.validatePersonName(recordInfo.district) == super.SUCCESS)
+		if (StringValidator.validateSafe(recordInfo.district) == super.SUCCESS)
 			return super.SUCCESS;
 		
 		return super.FAILED;

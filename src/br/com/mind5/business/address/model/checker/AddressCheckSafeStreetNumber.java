@@ -22,7 +22,7 @@ public final class AddressCheckSafeStreetNumber extends ModelCheckerTemplateSimp
 		if (recordInfo.streetNumber == null)
 			return super.SUCCESS;
 		
-		if (StringValidator.validatePersonName(recordInfo.streetNumber) == super.SUCCESS)
+		if (StringValidator.validateSafe(recordInfo.streetNumber) == super.SUCCESS)
 			return super.SUCCESS;
 		
 		return super.FAILED;

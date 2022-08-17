@@ -9,7 +9,7 @@ public final class StringValidator {
 	static private final boolean SUCCESS = ModelCheckerOption.SUCCESS;
 	static private final boolean FAILED = ModelCheckerOption.FAILED;
 	
-	static private final String REGEX_CODE_NUMBER          	= "[0-9.\\/-]";
+	static private final String REGEX_CODE_NUMBER          	= "[0-9.\\/-]{1,}";
 	static private final String REGEX_EMAIL           		= "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
 	static private final String REGEX_PERSON_NAME           = "[A-Z]*[a-zA-z ']*";
 	static private final String REGEX_UNSAFE_STRING_WWW     = "^(?!.*(?:w\\s*w\\s*w)).*$";

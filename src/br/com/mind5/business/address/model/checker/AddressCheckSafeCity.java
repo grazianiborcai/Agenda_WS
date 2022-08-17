@@ -22,7 +22,7 @@ public final class AddressCheckSafeCity extends ModelCheckerTemplateSimple<Addre
 		if (recordInfo.city == null)
 			return super.SUCCESS;
 		
-		if (StringValidator.validatePersonName(recordInfo.city) == super.SUCCESS)
+		if (StringValidator.validateSafe(recordInfo.city) == super.SUCCESS)
 			return super.SUCCESS;
 		
 		return super.FAILED;

@@ -22,7 +22,7 @@ public final class AddressCheckSafeLine2 extends ModelCheckerTemplateSimple<Addr
 		if (recordInfo.line2 == null)
 			return super.SUCCESS;
 		
-		if (StringValidator.validatePersonName(recordInfo.line2) == super.SUCCESS)
+		if (StringValidator.validateSafe(recordInfo.line2) == super.SUCCESS)
 			return super.SUCCESS;
 		
 		return super.FAILED;
