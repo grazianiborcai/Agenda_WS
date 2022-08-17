@@ -1656,6 +1656,7 @@ public final class SystemCode {
 	public static final int PET_INVALID_BIRTHDATE						= 16203;
 	public static final int PET_NOT_AUTHORIZED							= 16204;
 	public static final int PET_EMPTY_CUSTOMER							= 16205;
+	public static final int PET											= 16206;
 	
 	// Pet Snapshot
 	public static final int PET_SNAP_MANDATORY_FIELD_EMPTY				= 16250;

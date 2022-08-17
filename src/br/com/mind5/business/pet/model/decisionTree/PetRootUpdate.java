@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.pet.info.PetInfo;
-import br.com.mind5.business.pet.model.action.PetVisiNodeDefaultAfterL1;
-import br.com.mind5.business.pet.model.action.PetVisiNodeSnapshot;
-import br.com.mind5.business.pet.model.action.PetVisiRootSelect;
 import br.com.mind5.business.pet.model.action.PetVisiDaoUpdate;
 import br.com.mind5.business.pet.model.action.PetVisiEnforceLChanged;
 import br.com.mind5.business.pet.model.action.PetVisiMergeToUpdate;
 import br.com.mind5.business.pet.model.action.PetVisiMergeUsername;
+import br.com.mind5.business.pet.model.action.PetVisiNodeDefaultAfterL1;
+import br.com.mind5.business.pet.model.action.PetVisiNodeSnapshot;
+import br.com.mind5.business.pet.model.action.PetVisiRootSelect;
 import br.com.mind5.business.pet.model.checker.PetCheckBirthdate;
 import br.com.mind5.business.pet.model.checker.PetCheckExist;
 import br.com.mind5.business.pet.model.checker.PetCheckLangu;
@@ -97,6 +97,7 @@ public final class PetRootUpdate extends DeciTreeTemplateWrite<PetInfo> {
 	@Override protected List<ActionStd<PetInfo>> buildActionsOnPassedHook(DeciTreeOption<PetInfo> option) {
 		List<ActionStd<PetInfo>> actions = new ArrayList<>();
 
+		ActionStd<PetInfo> nodeSafe = new PetNodeSafe(option).toAction();
 		ActionStd<PetInfo> nodeDefaultBefore = new PetNodeDefaultBeforeL1(option).toAction();
 		ActionLazy<PetInfo> mergeToUpdate = new ActionLazyCommom<PetInfo>(option, PetVisiMergeToUpdate.class);
 		ActionLazy<PetInfo> enforceLChanged = new ActionLazyCommom<PetInfo>(option, PetVisiEnforceLChanged.class);	
@@ -114,7 +115,9 @@ public final class PetRootUpdate extends DeciTreeTemplateWrite<PetInfo> {
 		nodeDefaultAfter.addPostAction(snapshot);
 		snapshot.addPostAction(select);
 		
+		actions.add(nodeSafe);
 		actions.add(nodeDefaultBefore);
+		
 		return actions;
 	}
 }
