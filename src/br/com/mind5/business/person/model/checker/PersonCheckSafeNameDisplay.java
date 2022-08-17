@@ -22,7 +22,7 @@ public final class PersonCheckSafeNameDisplay extends ModelCheckerTemplateSimple
 		if (recordInfo.nameDisplay == null)
 			return super.SUCCESS;
 		
-		if (StringValidator.validatePersonName(recordInfo.nameDisplay) == super.SUCCESS)
+		if (StringValidator.validateSafe(recordInfo.nameDisplay) == super.SUCCESS)
 			return super.SUCCESS;
 		
 		return super.FAILED;
