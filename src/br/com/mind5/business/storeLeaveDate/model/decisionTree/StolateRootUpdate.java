@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
-import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiRootSelect;
 import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiDaoUpdate;
 import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiEnforceLChanged;
 import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiEnforceValidFrom;
 import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiEnforceValidTo;
 import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiMergeToUpdate;
 import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiMergeUsername;
+import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiRootSelect;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckExist;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckLangu;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckOwner;
@@ -106,11 +106,12 @@ public final class StolateRootUpdate extends DeciTreeTemplateWrite<StolateInfo> 
 	@Override protected List<ActionStd<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
 		List<ActionStd<StolateInfo>> actions = new ArrayList<>();
 		
+		ActionStd<StolateInfo> nodeSafe = new StolateNodeSafe(option).toAction();
 		ActionStd<StolateInfo> mergeToUpdate = new ActionStdCommom<StolateInfo>(option, StolateVisiMergeToUpdate.class);
 		ActionLazy<StolateInfo> enforceLChanged = new ActionLazyCommom<StolateInfo>(option, StolateVisiEnforceLChanged.class);
 		ActionLazy<StolateInfo> enforceLChangedBy = new ActionLazyCommom<StolateInfo>(option, StolateVisiMergeUsername.class);
 		ActionLazy<StolateInfo> enforceValidFrom = new ActionLazyCommom<StolateInfo>(option, StolateVisiEnforceValidFrom.class);
-		ActionLazy<StolateInfo> enforceValidTo = new ActionLazyCommom<StolateInfo>(option, StolateVisiEnforceValidTo.class);	
+		ActionLazy<StolateInfo> enforceValidTo = new ActionLazyCommom<StolateInfo>(option, StolateVisiEnforceValidTo.class);
 		ActionLazy<StolateInfo> update = new ActionLazyCommom<StolateInfo>(option, StolateVisiDaoUpdate.class);
 		ActionLazy<StolateInfo> select = new ActionLazyCommom<StolateInfo>(option, StolateVisiRootSelect.class);
 		
@@ -121,7 +122,9 @@ public final class StolateRootUpdate extends DeciTreeTemplateWrite<StolateInfo> 
 		enforceValidTo.addPostAction(update);
 		update.addPostAction(select);
 		
-		actions.add(mergeToUpdate);				
+		actions.add(nodeSafe);
+		actions.add(mergeToUpdate);
+		
 		return actions;
 	}
 }

@@ -945,6 +945,7 @@ public final class SystemCode {
 	public static final int STORE_LDATE_IS_EMPTY 						= 6955; //1131;
 	public static final int STORE_LDATE_BAD_TIME_RANGE 					= 6956;
 	public static final int STORE_LDATE_SCHEDULE_CONFLICT 				= 6957;
+	public static final int STORE_LDATE 								= 6958;
 	
 	// Store Leave Date - Search
 	public static final int STORE_LDATE_SEARCH_MANDATORY_FIELD_EMPTY 	= 7000;

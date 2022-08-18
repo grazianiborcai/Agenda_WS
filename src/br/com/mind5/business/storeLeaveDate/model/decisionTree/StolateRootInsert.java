@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
-import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiNodeUpsert;
-import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiRootSelect;
 import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiEnforceCreatedBy;
 import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiEnforceCreatedOn;
 import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiEnforceLChanged;
@@ -14,6 +12,8 @@ import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiEnforceValid
 import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiEnforceValidTo;
 import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiEnforceYear;
 import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiMergeUsername;
+import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiNodeUpsert;
+import br.com.mind5.business.storeLeaveDate.model.action.StolateVisiRootSelect;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckExist;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckLangu;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckOwner;
@@ -109,6 +109,7 @@ public final class StolateRootInsert extends DeciTreeTemplateWrite<StolateInfo> 
 	@Override protected List<ActionStd<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
 		List<ActionStd<StolateInfo>> actions = new ArrayList<>();	
 		
+		ActionStd<StolateInfo> nodeSafe = new StolateNodeSafe(option).toAction();
 		ActionStd<StolateInfo> enforceLChanged = new ActionStdCommom<StolateInfo>(option, StolateVisiEnforceLChanged.class);
 		ActionLazy<StolateInfo> enforceLChangedBy = new ActionLazyCommom<StolateInfo>(option, StolateVisiMergeUsername.class);
 		ActionLazy<StolateInfo> enforceCreatedOn = new ActionLazyCommom<StolateInfo>(option, StolateVisiEnforceCreatedOn.class);
@@ -130,7 +131,9 @@ public final class StolateRootInsert extends DeciTreeTemplateWrite<StolateInfo> 
 		enforceMonth.addPostAction(nodeUpsert);
 		nodeUpsert.addPostAction(select);
 		
+		actions.add(nodeSafe);
 		actions.add(enforceLChanged);
+		
 		return actions;
 	}
 }
