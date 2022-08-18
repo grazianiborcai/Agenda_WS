@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeProspect.info.StoprosInfo;
-import br.com.mind5.business.storeProspect.model.action.StoprosVisiRootSelect;
 import br.com.mind5.business.storeProspect.model.action.StoprosVisiDaoUpdate;
 import br.com.mind5.business.storeProspect.model.action.StoprosVisiEnforceLChanged;
 import br.com.mind5.business.storeProspect.model.action.StoprosVisiMergeToUpdate;
+import br.com.mind5.business.storeProspect.model.action.StoprosVisiRootSelect;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckExist;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckLangu;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckOwner;
@@ -87,16 +87,19 @@ public final class StoprosRootUpdate extends DeciTreeTemplateWrite<StoprosInfo> 
 	@Override protected List<ActionStd<StoprosInfo>> buildActionsOnPassedHook(DeciTreeOption<StoprosInfo> option) {
 		List<ActionStd<StoprosInfo>> actions = new ArrayList<>();
 
+		ActionStd<StoprosInfo> nodeSafe = new StoprosNodeSafe(option).toAction();
 		ActionStd<StoprosInfo> mergeToUpdate = new ActionStdCommom<StoprosInfo>(option, StoprosVisiMergeToUpdate.class);
 		ActionLazy<StoprosInfo> enforceLChanged = new ActionLazyCommom<StoprosInfo>(option, StoprosVisiEnforceLChanged.class);
 		ActionLazy<StoprosInfo> update = new ActionLazyCommom<StoprosInfo>(option, StoprosVisiDaoUpdate.class);
-		ActionLazy<StoprosInfo> select = new ActionLazyCommom<StoprosInfo>(option, StoprosVisiRootSelect.class);		
+		ActionLazy<StoprosInfo> select = new ActionLazyCommom<StoprosInfo>(option, StoprosVisiRootSelect.class);
 			
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(update);
 		update.addPostAction(select);
 		
+		actions.add(nodeSafe);
 		actions.add(mergeToUpdate);
+		
 		return actions;
 	}
 }

@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeProspect.info.StoprosInfo;
-import br.com.mind5.business.storeProspect.model.action.StoprosVisiRootSelect;
 import br.com.mind5.business.storeProspect.model.action.StoprosVisiDaoInsert;
 import br.com.mind5.business.storeProspect.model.action.StoprosVisiEnforceCreated;
 import br.com.mind5.business.storeProspect.model.action.StoprosVisiEnforceCreatedOn;
 import br.com.mind5.business.storeProspect.model.action.StoprosVisiEnforceLChanged;
 import br.com.mind5.business.storeProspect.model.action.StoprosVisiOtporeAuthenticate;
+import br.com.mind5.business.storeProspect.model.action.StoprosVisiRootSelect;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckInsert;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckLangu;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckOwner;
@@ -73,6 +73,7 @@ public final class StoprosRootInsert extends DeciTreeTemplateWrite<StoprosInfo> 
 	@Override protected List<ActionStd<StoprosInfo>> buildActionsOnPassedHook(DeciTreeOption<StoprosInfo> option) {
 		List<ActionStd<StoprosInfo>> actions = new ArrayList<>();
 		
+		ActionStd<StoprosInfo> nodeSafe = new StoprosNodeSafe(option).toAction();
 		ActionStd<StoprosInfo> otporeAuthenticate = new ActionStdCommom<StoprosInfo>(option, StoprosVisiOtporeAuthenticate.class);
 		ActionLazy<StoprosInfo> enforceCreated = new ActionLazyCommom<StoprosInfo>(option, StoprosVisiEnforceCreated.class);
 		ActionLazy<StoprosInfo> enforceCreatedOn = new ActionLazyCommom<StoprosInfo>(option, StoprosVisiEnforceCreatedOn.class);
@@ -86,7 +87,9 @@ public final class StoprosRootInsert extends DeciTreeTemplateWrite<StoprosInfo> 
 		enforceLChanged.addPostAction(insert);
 		insert.addPostAction(select);
 		
+		actions.add(nodeSafe);
 		actions.add(otporeAuthenticate);
+		
 		return actions;
 	}
 }
