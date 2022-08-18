@@ -10,7 +10,6 @@ import br.com.mind5.business.storeText.model.action.StorextVisiEnforceLChanged;
 import br.com.mind5.business.storeText.model.action.StorextVisiMergeUsername;
 import br.com.mind5.business.storeText.model.action.StorextVisiNodeInsert;
 import br.com.mind5.business.storeText.model.action.StorextVisiRootSelect;
-import br.com.mind5.business.storeText.model.checker.StorextCheckSafeDescription;
 import br.com.mind5.business.storeText.model.checker.StorextCheckExist;
 import br.com.mind5.business.storeText.model.checker.StorextCheckLangu;
 import br.com.mind5.business.storeText.model.checker.StorextCheckOwner;
@@ -63,13 +62,6 @@ public final class StorextRootInsert extends DeciTreeTemplateWrite<StorextInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new StorextCheckSafeDescription(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new StorextCheckStore(checkerOption);
 		queue.add(checker);
 		
@@ -88,6 +80,7 @@ public final class StorextRootInsert extends DeciTreeTemplateWrite<StorextInfo> 
 	@Override protected List<ActionStd<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
 		List<ActionStd<StorextInfo>> actions = new ArrayList<>();		
 		
+		ActionStd<StorextInfo> nodeSafe = new StorextNodeSafe(option).toAction();	
 		ActionStd<StorextInfo> nodeDefault = new StorextNodeDefaultL1(option).toAction();	
 		ActionLazy<StorextInfo> enforceLChanged = new ActionLazyCommom<StorextInfo>(option, StorextVisiEnforceLChanged.class);	
 		ActionLazy<StorextInfo> enforceLChangedBy = new ActionLazyCommom<StorextInfo>(option, StorextVisiMergeUsername.class);		
@@ -103,7 +96,9 @@ public final class StorextRootInsert extends DeciTreeTemplateWrite<StorextInfo> 
 		enforceCreatedOn.addPostAction(insert);
 		insert.addPostAction(select);
 		
+		actions.add(nodeSafe);
 		actions.add(nodeDefault);
+		
 		return actions;
 	}
 }

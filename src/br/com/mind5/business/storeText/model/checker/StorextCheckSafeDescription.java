@@ -18,7 +18,10 @@ public final class StorextCheckSafeDescription extends ModelCheckerTemplateSimpl
 	
 	
 	
-	@Override protected boolean checkHook(StorextInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(StorextInfo recordInfo, Connection conn, String schemaName) {
+		if (recordInfo.description == null)
+			return super.SUCCESS;
+		
 		if (StringValidator.validateSafe(recordInfo.description) == super.SUCCESS)
 			return super.SUCCESS;
 		

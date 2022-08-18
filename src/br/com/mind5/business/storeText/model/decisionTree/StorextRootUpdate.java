@@ -11,7 +11,6 @@ import br.com.mind5.business.storeText.model.action.StorextVisiMergeUsername;
 import br.com.mind5.business.storeText.model.action.StorextVisiNodeDefaultL1;
 import br.com.mind5.business.storeText.model.action.StorextVisiNodePostUpdate;
 import br.com.mind5.business.storeText.model.action.StorextVisiRootSelect;
-import br.com.mind5.business.storeText.model.checker.StorextCheckSafeDescription;
 import br.com.mind5.business.storeText.model.checker.StorextCheckExist;
 import br.com.mind5.business.storeText.model.checker.StorextCheckLangu;
 import br.com.mind5.business.storeText.model.checker.StorextCheckOwner;
@@ -65,13 +64,6 @@ public final class StorextRootUpdate extends DeciTreeTemplateWrite<StorextInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new StorextCheckSafeDescription(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new StorextCheckStore(checkerOption);
 		queue.add(checker);
 		
@@ -90,6 +82,7 @@ public final class StorextRootUpdate extends DeciTreeTemplateWrite<StorextInfo> 
 	@Override protected List<ActionStd<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
 		List<ActionStd<StorextInfo>> actions = new ArrayList<>();
 
+		ActionStd<StorextInfo> nodeSafe = new StorextNodeSafe(option).toAction();
 		ActionStd<StorextInfo> mergeToUpdate = new ActionStdCommom<StorextInfo>(option, StorextVisiMergeToUpdate.class);
 		ActionLazy<StorextInfo> nodeDefault = new ActionLazyCommom<StorextInfo>(option, StorextVisiNodeDefaultL1.class);
 		ActionLazy<StorextInfo> enforceLChanged = new ActionLazyCommom<StorextInfo>(option, StorextVisiEnforceLChanged.class);	
@@ -105,7 +98,9 @@ public final class StorextRootUpdate extends DeciTreeTemplateWrite<StorextInfo> 
 		update.addPostAction(postUpdate);
 		postUpdate.addPostAction(select);
 		
+		actions.add(nodeSafe);
 		actions.add(mergeToUpdate);
+		
 		return actions;
 	}
 }
