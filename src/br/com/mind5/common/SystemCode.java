@@ -1948,10 +1948,12 @@ public final class SystemCode {
 	// Store Prospect Counter
 	public static final int STORE_PROSPECT_COUNT_MANDATORY_FIELD_EMPTY	= 19601;
 	
-	// General -- 19666
+	// General -- 19668
+	public static final int GEN_COMPLEMENT								= 19668;
 	public static final int GEN_DESCRIPTION								= 19661;
 	public static final int GEN_EMAIL									= 19664;
 	public static final int GEN_NAME									= 19662;
+	public static final int GEN_NUMBER									= 19667;	
 	public static final int GEN_NOTE									= 19666;	
 	public static final int GEN_RAZAO_SOCIAL							= 19663;
 	public static final int GEN_TEXT									= 19665;	

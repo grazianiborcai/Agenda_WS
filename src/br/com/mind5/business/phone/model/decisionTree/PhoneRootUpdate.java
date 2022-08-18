@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.business.phone.model.action.PhoneVisiNodeDefaultL1;
-import br.com.mind5.business.phone.model.action.PhoneVisiNodeSnapshot;
-import br.com.mind5.business.phone.model.action.PhoneVisiNodeUpdate;
 import br.com.mind5.business.phone.model.action.PhoneVisiEnforceLChanged;
 import br.com.mind5.business.phone.model.action.PhoneVisiMergeCountrone;
 import br.com.mind5.business.phone.model.action.PhoneVisiMergeFormone;
 import br.com.mind5.business.phone.model.action.PhoneVisiMergeToUpdate;
 import br.com.mind5.business.phone.model.action.PhoneVisiMergeUsername;
+import br.com.mind5.business.phone.model.action.PhoneVisiNodeDefaultL1;
+import br.com.mind5.business.phone.model.action.PhoneVisiNodeSnapshot;
+import br.com.mind5.business.phone.model.action.PhoneVisiNodeUpdate;
 import br.com.mind5.business.phone.model.checker.PhoneCheckCountrone;
 import br.com.mind5.business.phone.model.checker.PhoneCheckExist;
 import br.com.mind5.business.phone.model.checker.PhoneCheckLangu;
@@ -107,14 +107,15 @@ public final class PhoneRootUpdate extends DeciTreeTemplateWrite<PhoneInfo> {
 	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhoneInfo> mergeToUpdate = new ActionStdCommom<PhoneInfo>(option, PhoneVisiMergeToUpdate.class);	
-		ActionLazy<PhoneInfo> mergeCountrone = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeCountrone.class);	
-		ActionLazy<PhoneInfo> mergeFormone = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeFormone.class);	
-		ActionLazy<PhoneInfo> mergeUsername = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeUsername.class);	
+		ActionStd<PhoneInfo> nodeSafe = new PhoneNodeSafe(option).toAction();
+		ActionStd<PhoneInfo> mergeToUpdate = new ActionStdCommom<PhoneInfo>(option, PhoneVisiMergeToUpdate.class);
+		ActionLazy<PhoneInfo> mergeCountrone = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeCountrone.class);
+		ActionLazy<PhoneInfo> mergeFormone = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeFormone.class);
+		ActionLazy<PhoneInfo> mergeUsername = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeUsername.class);
 		ActionLazy<PhoneInfo> enforceLChanged = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiEnforceLChanged.class);	
-		ActionLazy<PhoneInfo> nodeUpdate = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiNodeUpdate.class);	
+		ActionLazy<PhoneInfo> nodeUpdate = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiNodeUpdate.class);
 		ActionLazy<PhoneInfo> nodeDefault = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiNodeDefaultL1.class);
-		ActionLazy<PhoneInfo> nodeSnapshot = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiNodeSnapshot.class);	
+		ActionLazy<PhoneInfo> nodeSnapshot = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiNodeSnapshot.class);
 		
 		mergeToUpdate.addPostAction(mergeCountrone);
 		mergeCountrone.addPostAction(mergeFormone);
@@ -124,7 +125,9 @@ public final class PhoneRootUpdate extends DeciTreeTemplateWrite<PhoneInfo> {
 		nodeUpdate.addPostAction(nodeDefault);
 		nodeDefault.addPostAction(nodeSnapshot);
 		
-		actions.add(mergeToUpdate);		
+		actions.add(nodeSafe);
+		actions.add(mergeToUpdate);
+		
 		return actions;
 	}
 }
