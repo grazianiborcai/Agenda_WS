@@ -40,7 +40,7 @@ public final class StowotmRootUpsertdel extends DeciTreeTemplateWrite<StowotmInf
 	@Override protected List<ActionStd<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
 		List<ActionStd<StowotmInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<StowotmInfo> delete = new StowotmRootDelete(option).toAction();
+		ActionStd<StowotmInfo> delete = new StowotmRootDeleteIfExist(option).toAction();
 		
 		actions.add(delete);	
 		return actions;

@@ -64,6 +64,19 @@ public final class StowotmMerger {
 	
 	
 	
+	public static List<StowotmInfo> mergeWithWeekdayFallback(List<StowotmInfo> baseInfos, List<WeekdayInfo> selectedInfos) {
+		InfoMergerBuilder<StowotmInfo, WeekdayInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StowotmMergerVisiWeekdayFallback());
+		InfoMerger<StowotmInfo, WeekdayInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<StowotmInfo> mergeWithStolis(List<StowotmInfo> baseInfos, List<StolisInfo> selectedInfos) {
 		InfoMergerBuilder<StowotmInfo, StolisInfo> builder = new InfoMergerBuilder<>();
 		
