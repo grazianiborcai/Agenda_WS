@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
-import br.com.mind5.business.storeWorkTime.model.decisionTree.StowotmRootSearchStore;
+import br.com.mind5.business.storeWorkTime.model.decisionTree.StowotmRootSearchStoreFallback;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class StoreVisiMergeStowotm extends ActionVisitorTemplateMerge<Stor
 	
 	
 	@Override protected Class<? extends DeciTree<StowotmInfo>> getTreeClassHook() {
-		return StowotmRootSearchStore.class;
+		return StowotmRootSearchStoreFallback.class;
 	}
 	
 	
