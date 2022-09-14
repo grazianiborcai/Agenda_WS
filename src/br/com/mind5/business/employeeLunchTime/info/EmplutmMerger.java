@@ -76,6 +76,19 @@ public final class EmplutmMerger {
 	
 	
 	
+	public static List<EmplutmInfo> mergeWithWeekdayFallback(List<EmplutmInfo> baseInfos, List<WeekdayInfo> selectedInfos) {
+		InfoMergerBuilder<EmplutmInfo, WeekdayInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmplutmMergerVisiWeekdayFallback());
+		InfoMerger<EmplutmInfo, WeekdayInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<EmplutmInfo> mergeToDelete(List<EmplutmInfo> baseInfos, List<EmplutmInfo> selectedInfos) {
 		InfoMergerBuilder<EmplutmInfo, EmplutmInfo> builder = new InfoMergerBuilder<>();
 		
