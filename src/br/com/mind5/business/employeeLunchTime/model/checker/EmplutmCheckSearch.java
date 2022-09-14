@@ -18,6 +18,7 @@ public final class EmplutmCheckSearch extends ModelCheckerTemplateSimple<Emplutm
 	@Override protected boolean checkHook(EmplutmInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
 			recordInfo.codStore 	<= 0 	||
+			recordInfo.codEmployee 	<= 0 	||
 			recordInfo.username 	== null ||
 			recordInfo.codLanguage 	== null 	)			
 			
