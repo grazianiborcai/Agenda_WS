@@ -64,6 +64,19 @@ public final class StuntmMerger {
 	
 	
 	
+	public static List<StuntmInfo> mergeWithWeekdayFallback(List<StuntmInfo> baseInfos, List<WeekdayInfo> selectedInfos) {
+		InfoMergerBuilder<StuntmInfo, WeekdayInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StuntmMergerVisiWeekdayFallback());
+		InfoMerger<StuntmInfo, WeekdayInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<StuntmInfo> mergeWithStolis(List<StuntmInfo> baseInfos, List<StolisInfo> selectedInfos) {
 		InfoMergerBuilder<StuntmInfo, StolisInfo> builder = new InfoMergerBuilder<>();
 		

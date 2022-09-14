@@ -1,10 +1,11 @@
-package br.com.mind5.business.storeLunchTime.model.checker;
+package br.com.mind5.business.storeLunchTime.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeLunchTime.info.StuntmInfo;
-import br.com.mind5.business.storeLunchTime.model.decisionTree.StuntmRootDelete;
+import br.com.mind5.business.storeLunchTime.model.checker.StuntmCheckFlagDel;
+import br.com.mind5.business.storeLunchTime.model.checker.StuntmNodeUpsert;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -40,7 +41,7 @@ public final class StuntmRootUpsertdel extends DeciTreeTemplateWrite<StuntmInfo>
 	@Override protected List<ActionStd<StuntmInfo>> buildActionsOnPassedHook(DeciTreeOption<StuntmInfo> option) {
 		List<ActionStd<StuntmInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<StuntmInfo> delete = new StuntmRootDelete(option).toAction();
+		ActionStd<StuntmInfo> delete = new StuntmRootDeleteIfExist(option).toAction();
 		
 		actions.add(delete);	
 		return actions;
