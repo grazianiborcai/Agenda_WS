@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.info.EmpMerger;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.business.employeeWorkTime.model.decisionTree.EmpwotmRootSearchEmpos;
+import br.com.mind5.business.employeeWorkTime.model.decisionTree.EmpwotmRootSearchEmposFallback;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class EmpVisiMergeEmpwotm extends ActionVisitorTemplateMerge<EmpInf
 	
 	
 	@Override protected Class<? extends DeciTree<EmpwotmInfo>> getTreeClassHook() {
-		return EmpwotmRootSearchEmpos.class;
+		return EmpwotmRootSearchEmposFallback.class;
 	}
 	
 	
