@@ -40,7 +40,7 @@ public final class EmpwotmRootUpsertdel extends DeciTreeTemplateWrite<EmpwotmInf
 	@Override protected List<ActionStd<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
 		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<EmpwotmInfo> delete = new EmpwotmRootDelete(option).toAction();
+		ActionStd<EmpwotmInfo> delete = new EmpwotmRootDeleteIfExist(option).toAction();
 		
 		actions.add(delete);	
 		return actions;
