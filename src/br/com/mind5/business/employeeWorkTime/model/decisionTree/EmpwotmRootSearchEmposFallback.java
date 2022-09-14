@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiEnforceIsDeletedOn;
-import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiEnforceStoreKey;
+import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiEnforceEmposKey;
 import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiMergeStolis;
 import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiMergeWeekdayFallback;
 import br.com.mind5.business.employeeWorkTime.model.action.EmpwotmVisiNodeSearchStoreFallback;
@@ -21,9 +21,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class EmpwotmRootSearchStoreFallback extends DeciTreeTemplateWrite<EmpwotmInfo> {
+public final class EmpwotmRootSearchEmposFallback extends DeciTreeTemplateWrite<EmpwotmInfo> {
 	
-	public EmpwotmRootSearchStoreFallback(DeciTreeOption<EmpwotmInfo> option) {
+	public EmpwotmRootSearchEmposFallback(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);
 	}
 	
@@ -56,18 +56,18 @@ public final class EmpwotmRootSearchStoreFallback extends DeciTreeTemplateWrite<
 	@Override protected List<ActionStd<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
 		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpwotmInfo> enforceStoreKey = new ActionStdCommom<EmpwotmInfo>(option, EmpwotmVisiEnforceStoreKey.class);
+		ActionStd<EmpwotmInfo> enforceEmposKey = new ActionStdCommom<EmpwotmInfo>(option, EmpwotmVisiEnforceEmposKey.class);
 		ActionLazy<EmpwotmInfo> mergeStolis = new ActionLazyCommom<EmpwotmInfo>(option, EmpwotmVisiMergeStolis.class);
 		ActionLazy<EmpwotmInfo> enforceIsDeletedOn = new ActionLazyCommom<EmpwotmInfo>(option, EmpwotmVisiEnforceIsDeletedOn.class);
 		ActionLazy<EmpwotmInfo> mergeWeekday = new ActionLazyCommom<EmpwotmInfo>(option, EmpwotmVisiMergeWeekdayFallback.class);
 		ActionLazy<EmpwotmInfo> nodeL1 = new ActionLazyCommom<EmpwotmInfo>(option, EmpwotmVisiNodeSearchStoreFallback.class);
 		
-		enforceStoreKey.addPostAction(mergeStolis);
+		enforceEmposKey.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(enforceIsDeletedOn);
 		enforceIsDeletedOn.addPostAction(mergeWeekday);
 		mergeWeekday.addPostAction(nodeL1);
 		
-		actions.add(enforceStoreKey);		
+		actions.add(enforceEmposKey);		
 		return actions; 
 	}
 }
