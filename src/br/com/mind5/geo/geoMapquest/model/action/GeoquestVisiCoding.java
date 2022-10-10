@@ -35,10 +35,11 @@ public final class GeoquestVisiCoding extends ActionVisitorTemplateSimple<Geoque
 				return null;
 			}
 			
-			for(String eachContent : contents) {
-				GeoquestInfo eachResponse = mergeResponse(eachRecod, parseResponse(eachContent));
-				results.add(eachResponse);
-			}		
+			GeoquestInfo parsedResponse = parseResponse(contents.get(0));
+			GeoquestInfo mergedResponse = mergeResponse(eachRecod, parsedResponse);
+			
+			results.add(mergedResponse);
+
 		}
 			
 		
