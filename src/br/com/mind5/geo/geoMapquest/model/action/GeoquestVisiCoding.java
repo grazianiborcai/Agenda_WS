@@ -36,7 +36,8 @@ public final class GeoquestVisiCoding extends ActionVisitorTemplateSimple<Geoque
 			}
 			
 			for(String eachContent : contents) {
-				results.add(parseResponse(eachContent));
+				GeoquestInfo eachResponse = mergeResponse(eachRecod, parseResponse(eachContent));
+				results.add(eachResponse);
 			}		
 		}
 			
@@ -93,7 +94,7 @@ public final class GeoquestVisiCoding extends ActionVisitorTemplateSimple<Geoque
 	private Map<String, String> getQueryParams(GeoquestInfo recordInfo) throws UnsupportedEncodingException, IOException {
 		Map<String, String> parameters = new HashMap<>();
 		parameters.put("key", "msn2373R5hOmncv0YhGgu9VrU40Gbqi7");
-		parameters.put("outFormat", "csv");
+		parameters.put("outFormat", "json");
 		parameters.put("location", recordInfo.location);
 		
 		return parameters;
@@ -152,6 +153,19 @@ public final class GeoquestVisiCoding extends ActionVisitorTemplateSimple<Geoque
 		}
 		
 		return results.get(0);
+	}
+	
+	
+	
+	private GeoquestInfo mergeResponse(GeoquestInfo record, GeoquestInfo response) {
+		if (response == null) {
+			return null;
+		}
+		
+		response.codLanguage = record.codLanguage;
+		response.location = record.location;
+		
+		return response;
 	}
 	
 	
