@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.geo.geoCode.info.GeodeInfo;
-import br.com.mind5.geo.geoCode.model.action.GeodeVisiCoding;
 import br.com.mind5.geo.geoCode.model.action.GeodeVisiEnforceLocation;
+import br.com.mind5.geo.geoCode.model.action.GeodeVisiGeoquestCoding;
 import br.com.mind5.geo.geoCode.model.action.GeodeVisiMergeCountry;
 import br.com.mind5.geo.geoCode.model.action.GeodeVisiMergeState;
 import br.com.mind5.geo.geoCode.model.checker.GeodeCheckCoding;
@@ -82,7 +82,7 @@ public final class GeodeRootCoding extends DeciTreeTemplateWrite<GeodeInfo> {
 		ActionStd<GeodeInfo> mergeState = new ActionStdCommom<GeodeInfo>(option, GeodeVisiMergeState.class);		
 		ActionLazy<GeodeInfo> mergeCountry = new ActionLazyCommom<GeodeInfo>(option, GeodeVisiMergeCountry.class);
 		ActionLazy<GeodeInfo> enforceLocation = new ActionLazyCommom<GeodeInfo>(option, GeodeVisiEnforceLocation.class);
-		ActionLazy<GeodeInfo> coding = new ActionLazyCommom<GeodeInfo>(option, GeodeVisiCoding.class);	
+		ActionLazy<GeodeInfo> coding = new ActionLazyCommom<GeodeInfo>(option, GeodeVisiGeoquestCoding.class);	
 		
 		mergeState.addPostAction(mergeCountry);
 		mergeCountry.addPostAction(enforceLocation);
