@@ -1950,6 +1950,9 @@ public final class SystemCode {
 	// Store Prospect Counter
 	public static final int STORE_PROSPECT_COUNT_MANDATORY_FIELD_EMPTY	= 19601;
 	
+	// Geo Mapquest
+	public static final int GEO_MAP_QUEST								= 19700;
+	
 	// General -- 19669
 	public static final int GEN_COMPLEMENT								= 19668;
 	public static final int GEN_DESCRIPTION								= 19661;
