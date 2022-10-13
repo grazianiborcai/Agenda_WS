@@ -13,6 +13,7 @@ public final class UserSetterAddressKey extends InfoSetterTemplate<UserInfo> {
 			eachAddress.username = recordInfo.username;
 			eachAddress.codLanguage = recordInfo.codLanguage;
 			
+			eachAddress.codLegalPerson = DefaultValue.number();
 			eachAddress.codCustomer = DefaultValue.number();
 			eachAddress.codStore = DefaultValue.number();
 			eachAddress.codEmployee = DefaultValue.number();
