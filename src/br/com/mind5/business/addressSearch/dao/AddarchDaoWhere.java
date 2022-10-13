@@ -51,6 +51,10 @@ final class AddarchDaoWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 					
+				case AddarchDaoDbTableColumn.COL_COD_LEGAL_PERSON :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codLegalPerson));
+					break;
+					
 				case AddarchDaoDbTableColumn.COL_COD_OWNER_REF :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwnerRef));
 					break;

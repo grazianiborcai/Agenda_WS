@@ -25,7 +25,8 @@ public final class AddarchCheckRead extends ModelCheckerTemplateSimple<AddarchIn
 		if ( recordInfo.codAddress 		<= 0	&&
 			 recordInfo.codCustomer 	<= 0	&&
 			 recordInfo.codStore 		<= 0	&& 
-			 recordInfo.codUser 		<= 0	&& 
+			 recordInfo.codUser 		<= 0	&&
+			 recordInfo.codLegalPerson 	<= 0	&&
 			 recordInfo.codOwnerRef 	<= 0	&&
 			 recordInfo.codEmployee 	<= 0		)			
 			

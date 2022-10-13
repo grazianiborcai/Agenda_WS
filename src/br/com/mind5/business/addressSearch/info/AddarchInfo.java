@@ -13,6 +13,7 @@ public final class AddarchInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codEmployee;
 	public long codUser;
+	public long codLegalPerson;
 	public long codOwnerRef;
 	public String codCountry;
 	public String codCountryAlpha3;
@@ -34,6 +35,7 @@ public final class AddarchInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codUser = DefaultValue.number();
+		codLegalPerson = DefaultValue.number();
 		codOwnerRef = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 	}
@@ -67,6 +69,7 @@ public final class AddarchInfo extends InfoRecord implements Cloneable {
 		result = result * 31 + (int) (codStore 			^ (codStore 		>>> 32));
 		result = result * 31 + (int) (codEmployee 		^ (codEmployee 		>>> 32));
 		result = result * 31 + (int) (codUser 			^ (codUser 			>>> 32));
+		result = result * 31 + (int) (codLegalPerson 	^ (codLegalPerson 	>>> 32));
 		result = result * 31 + (int) (codOwnerRef 		^ (codOwnerRef 		>>> 32));
 		
 		if (codCountry != null)
@@ -101,6 +104,7 @@ public final class AddarchInfo extends InfoRecord implements Cloneable {
 				codEmployee		== obj.codEmployee					&&
 				codUser			== obj.codUser						&&
 				codOwnerRef		== obj.codOwnerRef					&&
+				codLegalPerson	== obj.codLegalPerson				&&
 				super.isStringEqual(codCountry, obj.codCountry)		&&				
 				super.isStringEqual(codState, obj.codState)			&&
 				super.isStringEqual(city, obj.city)						);

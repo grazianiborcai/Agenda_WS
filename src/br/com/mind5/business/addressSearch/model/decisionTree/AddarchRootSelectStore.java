@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.business.addressSearch.model.action.AddarchVisiRootSelect;
-import br.com.mind5.business.addressSearch.model.action.AddarchVisiEnforceStore;
+import br.com.mind5.business.addressSearch.model.action.AddarchVisiEnforceStoreKey;
 import br.com.mind5.business.addressSearch.model.checker.AddarchCheckLangu;
 import br.com.mind5.business.addressSearch.model.checker.AddarchCheckReadStore;
 import br.com.mind5.model.action.ActionLazy;
@@ -53,12 +53,12 @@ public final class AddarchRootSelectStore extends DeciTreeTemplateWrite<AddarchI
 	@Override protected List<ActionStd<AddarchInfo>> buildActionsOnPassedHook(DeciTreeOption<AddarchInfo> option) {
 		List<ActionStd<AddarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<AddarchInfo> enforceStore = new ActionStdCommom<AddarchInfo>(option, AddarchVisiEnforceStore.class);
+		ActionStd<AddarchInfo> enforceStoreKey = new ActionStdCommom<AddarchInfo>(option, AddarchVisiEnforceStoreKey.class);
 		ActionLazy<AddarchInfo> select = new ActionLazyCommom<AddarchInfo>(option, AddarchVisiRootSelect.class);
 		
-		enforceStore.addPostAction(select);
+		enforceStoreKey.addPostAction(select);
 		
-		actions.add(enforceStore);
+		actions.add(enforceStoreKey);
 		return actions;
 	}
 }
