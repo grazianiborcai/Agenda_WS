@@ -65,8 +65,8 @@ public final class StoreDaoSelectSingle extends DaoStmtTemplate<StoreInfo> {
 					dataInfo.codStore = stmtResult.getLong(StoreDaoDbTableColumn.COL_COD_STORE);
 					dataInfo.codCurr = stmtResult.getString(StoreDaoDbTableColumn.COL_COD_CURRENCY);
 					dataInfo.codTimezone = stmtResult.getString(StoreDaoDbTableColumn.COL_COD_TIMEZONE);
-					dataInfo.recordMode = stmtResult.getString(StoreDaoDbTableColumn.COL_RECORD_MODE);	
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_COD_PERSON);
+					dataInfo.recordMode = stmtResult.getString(StoreDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codLegalPerson = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_COD_LEGAL_PERSON);					
 					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_COD_COMPANY);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_COD_USER);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StoreDaoDbTableColumn.COL_LAST_CHANGED);

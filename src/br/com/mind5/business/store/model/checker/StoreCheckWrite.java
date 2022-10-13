@@ -19,7 +19,7 @@ public final class StoreCheckWrite extends ModelCheckerTemplateSimple<StoreInfo>
 	
 	@Override protected boolean checkHook(StoreInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	||
-			 recordInfo.personData 	== null ||
+			 recordInfo.peregData 	== null ||
 			 recordInfo.companyData == null	||
 			 recordInfo.codLanguage == null	||
 			 recordInfo.codCurr 	== null	||

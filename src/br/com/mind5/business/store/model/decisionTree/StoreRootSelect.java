@@ -9,7 +9,6 @@ import br.com.mind5.business.store.model.action.StoreVisiMergeComp;
 import br.com.mind5.business.store.model.action.StoreVisiMergeCurrency;
 import br.com.mind5.business.store.model.action.StoreVisiMergeFimeco;
 import br.com.mind5.business.store.model.action.StoreVisiMergeMatore;
-import br.com.mind5.business.store.model.action.StoreVisiMergePerson;
 import br.com.mind5.business.store.model.action.StoreVisiMergePhone;
 import br.com.mind5.business.store.model.action.StoreVisiMergeStefilon;
 import br.com.mind5.business.store.model.action.StoreVisiMergeStorac;
@@ -18,6 +17,7 @@ import br.com.mind5.business.store.model.action.StoreVisiMergeStowotm;
 import br.com.mind5.business.store.model.action.StoreVisiMergeStuntm;
 import br.com.mind5.business.store.model.action.StoreVisiMergeTimezone;
 import br.com.mind5.business.store.model.action.StoreVisiMergeToSelect;
+import br.com.mind5.business.store.model.action.StoreVisiNodePereg;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.business.store.model.checker.StoreCheckLangu;
 import br.com.mind5.business.store.model.checker.StoreCheckRead;
@@ -85,7 +85,6 @@ public final class StoreRootSelect extends DeciTreeTemplateRead<StoreInfo> {
 		ActionStd<StoreInfo> select = new ActionStdCommom<StoreInfo>(option, StoreVisiMergeToSelect.class);
 		ActionLazy<StoreInfo> mergeCurrency = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeCurrency.class);
 		ActionLazy<StoreInfo> mergeTimezone = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeTimezone.class);
-		ActionLazy<StoreInfo> mergePerson = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergePerson.class);
 		ActionLazy<StoreInfo> mergeComp = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeComp.class);
 		ActionLazy<StoreInfo> mergeAddress = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeAddress.class);
 		ActionLazy<StoreInfo> mergePhone = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergePhone.class);
@@ -96,11 +95,11 @@ public final class StoreRootSelect extends DeciTreeTemplateRead<StoreInfo> {
 		ActionLazy<StoreInfo> mergeStowotm = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeStowotm.class);
 		ActionLazy<StoreInfo> mergeStuntm = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeStuntm.class);
 		ActionLazy<StoreInfo> mergeMatore = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeMatore.class);
+		ActionLazy<StoreInfo> nodePereg = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodePereg.class);
 		
 		select.addPostAction(mergeCurrency);
 		mergeCurrency.addPostAction(mergeTimezone);
-		mergeTimezone.addPostAction(mergePerson);
-		mergePerson.addPostAction(mergeComp);
+		mergeTimezone.addPostAction(mergeComp);
 		mergeComp.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(mergePhone);
 		mergePhone.addPostAction(mergeFimeco);
@@ -110,6 +109,7 @@ public final class StoreRootSelect extends DeciTreeTemplateRead<StoreInfo> {
 		mergeStefilon.addPostAction(mergeStowotm);
 		mergeStowotm.addPostAction(mergeStuntm);
 		mergeStuntm.addPostAction(mergeMatore);
+		mergeMatore.addPostAction(nodePereg);
 		
 		actions.add(select);
 		return actions;

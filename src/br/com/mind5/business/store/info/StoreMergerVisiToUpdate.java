@@ -19,7 +19,6 @@ final class StoreMergerVisiToUpdate extends InfoMergerVisitorTemplate<StoreInfo,
 		List<StoreInfo> results = new ArrayList<>();
 		
 		baseInfo.codUser = selectedInfo.codUser;
-		baseInfo.codPerson = selectedInfo.codPerson;
 		baseInfo.codCompany = selectedInfo.codCompany;
 		baseInfo.createdOn = selectedInfo.createdOn;
 		baseInfo.createdBy = selectedInfo.createdBy;

@@ -1,0 +1,46 @@
+package br.com.mind5.business.store.model.checker;
+
+import java.sql.Connection;
+
+import br.com.mind5.business.store.info.StoreInfo;
+import br.com.mind5.common.SystemCode;
+import br.com.mind5.common.SystemMessageBuilder;
+import br.com.mind5.message.sysMessage.info.SymsgInfo;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+
+public final class StoreCheckHasLegalPerson extends ModelCheckerTemplateSimple<StoreInfo> {
+	
+	public StoreCheckHasLegalPerson(ModelCheckerOption option) {
+		super(option);
+	}
+	
+	
+	
+	@Override protected boolean checkHook(StoreInfo recordInfo, Connection conn, String schemaName) {	
+		if (recordInfo.codLegalPerson <= 0)			
+			return super.FAILED;
+		
+		return super.SUCCESS;
+	}
+	
+	
+	
+	@Override protected SymsgInfo getSymsgOnResultTrueHook(Connection dbConn, String dbSchema, String codLangu) {
+		SystemMessageBuilder builder = new SystemMessageBuilder(dbConn, dbSchema, codLangu, SystemCode.GEN_P1_P2_IS_FILLED_M);
+		builder.addParam01(SystemCode.STORE);
+		builder.addParam02(SystemCode.LEGAL_PERSON);
+
+		return builder.build();
+	}
+	
+	
+	
+	@Override protected SymsgInfo getSymsgOnResultFalseHook(Connection dbConn, String dbSchema, String codLangu) {
+		SystemMessageBuilder builder = new SystemMessageBuilder(dbConn, dbSchema, codLangu, SystemCode.GEN_P1_P2_IS_EMPTY_M);
+		builder.addParam01(SystemCode.STORE);
+		builder.addParam02(SystemCode.LEGAL_PERSON);
+
+		return builder.build();
+	}
+}

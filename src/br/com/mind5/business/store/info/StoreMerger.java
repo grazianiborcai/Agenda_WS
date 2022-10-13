@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.business.person.info.PersonInfo;
+import br.com.mind5.business.personLegal.info.PeregInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.storeAccount.info.StoracInfo;
 import br.com.mind5.business.storeLunchTime.info.StuntmInfo;
@@ -23,6 +23,19 @@ import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.stats.statsStoreProfile.storeProfileMonth.info.StefilonInfo;
 
 public final class StoreMerger {
+	public static List<StoreInfo> mergeWithPereg(List<StoreInfo> baseInfos, List<PeregInfo> selectedInfos) {
+		InfoMergerBuilder<StoreInfo, PeregInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StoreMergerVisiPereg());
+		InfoMerger<StoreInfo, PeregInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<StoreInfo> mergeWithMatore(List<StoreInfo> baseInfos, List<MatoreInfo> selectedInfos) {
 		InfoMergerBuilder<StoreInfo, MatoreInfo> builder = new InfoMergerBuilder<>();
 		
@@ -173,19 +186,6 @@ public final class StoreMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new StoreMergerVisiCurrency());
 		InfoMerger<StoreInfo, CurrencyInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
-	public static List<StoreInfo> mergeWithPerson(List<StoreInfo> baseInfos, List<PersonInfo> selectedInfos) {
-		InfoMergerBuilder<StoreInfo, PersonInfo> builder = new InfoMergerBuilder<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoreMergerVisiPerson());
-		InfoMerger<StoreInfo, PersonInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

@@ -54,7 +54,6 @@ public final class StoreDaoUpdateSingle extends DaoStmtTemplate<StoreInfo> {
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoreInfo recordInfo) throws SQLException {				
 				int i = 1;	
 				
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPerson);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCompany);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt.setString(i++, recordInfo.codCurr);
@@ -66,6 +65,7 @@ public final class StoreDaoUpdateSingle extends DaoStmtTemplate<StoreInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
 				stmt.setBoolean(i++, recordInfo.isLocked);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codLegalPerson);
 				
 				return stmt;
 			}		
