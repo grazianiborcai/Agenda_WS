@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.personLegal.info.PeregInfo;
+import br.com.mind5.business.personLegal.model.action.PeregVisiMergeToUpdate;
 import br.com.mind5.business.personLegal.model.action.PeregVisiNodeAddressUpdate;
 import br.com.mind5.business.personLegal.model.action.PeregVisiNodePersonUpdate;
 import br.com.mind5.business.personLegal.model.action.PeregVisiNodePhoneUpdate;
@@ -70,16 +71,19 @@ public final class PeregRootUpdate extends DeciTreeTemplateWrite<PeregInfo> {
 	@Override protected List<ActionStd<PeregInfo>> buildActionsOnPassedHook(DeciTreeOption<PeregInfo> option) {
 		List<ActionStd<PeregInfo>> actions = new ArrayList<>();
 
-		ActionStd<PeregInfo> updatePerson = new ActionStdCommom<PeregInfo>(option, PeregVisiNodePersonUpdate.class);	
+		ActionStd<PeregInfo> mergeToUpdate = new ActionStdCommom<PeregInfo>(option, PeregVisiMergeToUpdate.class);	
+		ActionLazy<PeregInfo> updatePerson = new ActionLazyCommom<PeregInfo>(option, PeregVisiNodePersonUpdate.class);	
 		ActionLazy<PeregInfo> updateAddress = new ActionLazyCommom<PeregInfo>(option, PeregVisiNodeAddressUpdate.class);	
 		ActionLazy<PeregInfo> updatePhone = new ActionLazyCommom<PeregInfo>(option, PeregVisiNodePhoneUpdate.class);		
 		ActionStd<PeregInfo> select = new PeregRootSelect(option).toAction();	
 		
+		mergeToUpdate.addPostAction(updatePerson);
 		updatePerson.addPostAction(updateAddress);
 		updateAddress.addPostAction(updatePhone);
 		
-		actions.add(updatePerson);
-		actions.add(select);	
+		actions.add(mergeToUpdate);
+		actions.add(select);
+		
 		return actions;
 	}
 }

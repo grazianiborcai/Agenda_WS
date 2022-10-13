@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.personLegal.info.PeregInfo;
+import br.com.mind5.business.personLegal.model.action.PeregVisiAddressInsert;
 import br.com.mind5.business.personLegal.model.action.PeregVisiEnforceAddressKey;
-import br.com.mind5.business.personLegal.model.action.PeregVisiNodeAddressInsert;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -40,7 +40,7 @@ public final class PeregNodeAddressInsert extends DeciTreeTemplateWrite<PeregInf
 		List<ActionStd<PeregInfo>> actions = new ArrayList<>();
 		
 		ActionStd<PeregInfo> enforceAddressKey = new ActionStdCommom<PeregInfo>(option, PeregVisiEnforceAddressKey.class);
-		ActionLazy<PeregInfo> insertAddress = new ActionLazyCommom<PeregInfo>(option, PeregVisiNodeAddressInsert.class);
+		ActionLazy<PeregInfo> insertAddress = new ActionLazyCommom<PeregInfo>(option, PeregVisiAddressInsert.class);
 		
 		enforceAddressKey.addPostAction(insertAddress);
 		

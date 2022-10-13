@@ -76,6 +76,19 @@ public final class PeregMerger {
 	
 	
 	
+	public static List<PeregInfo> mergeToUpdate(List<PeregInfo> baseInfos, List<PeregInfo> selectedInfos) {
+		InfoMergerBuilder<PeregInfo, PeregInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PeregMergerVisiToUpdate());
+		InfoMerger<PeregInfo, PeregInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<PeregInfo> mergeToSelect(List<PeregInfo> baseInfos, List<PeregInfo> selectedInfos) {
 		InfoMergerBuilder<PeregInfo, PeregInfo> builder = new InfoMergerBuilder<>();
 		

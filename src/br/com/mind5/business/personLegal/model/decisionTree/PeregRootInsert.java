@@ -5,9 +5,10 @@ import java.util.List;
 
 import br.com.mind5.business.personLegal.info.PeregInfo;
 import br.com.mind5.business.personLegal.model.action.PeregVisiNodeAddressInsert;
+import br.com.mind5.business.personLegal.model.action.PeregVisiNodeInsert;
+import br.com.mind5.business.personLegal.model.action.PeregVisiNodePersonInsert;
 import br.com.mind5.business.personLegal.model.action.PeregVisiNodePhoneInsert;
 import br.com.mind5.business.personLegal.model.action.PeregVisiRootSelect;
-import br.com.mind5.business.personLegal.model.action.PeregVisiNodePersonInsert;
 import br.com.mind5.business.personLegal.model.checker.PeregCheckInsert;
 import br.com.mind5.business.personLegal.model.checker.PeregCheckLangu;
 import br.com.mind5.business.personLegal.model.checker.PeregCheckOwner;
@@ -15,6 +16,7 @@ import br.com.mind5.business.personLegal.model.checker.PeregCheckStore;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -69,19 +71,19 @@ public final class PeregRootInsert extends DeciTreeTemplateWrite<PeregInfo> {
 	
 	@Override protected List<ActionStd<PeregInfo>> buildActionsOnPassedHook(DeciTreeOption<PeregInfo> option) {
 		List<ActionStd<PeregInfo>> actions = new ArrayList<>();
-
-		ActionStd<PeregInfo> insertPersonLegal = new PeregNodeInsert(option).toAction();		
+	
+		ActionStd<PeregInfo> insertLegalPerson = new ActionStdCommom<PeregInfo>(option, PeregVisiNodeInsert.class);
 		ActionLazy<PeregInfo> insertPerson = new ActionLazyCommom<PeregInfo>(option, PeregVisiNodePersonInsert.class);
 		ActionLazy<PeregInfo> insertAddress = new ActionLazyCommom<PeregInfo>(option, PeregVisiNodeAddressInsert.class);
 		ActionLazy<PeregInfo> insertPhone = new ActionLazyCommom<PeregInfo>(option, PeregVisiNodePhoneInsert.class);
 		ActionLazy<PeregInfo> select = new ActionLazyCommom<PeregInfo>(option, PeregVisiRootSelect.class);	
 		
-		insertPersonLegal.addPostAction(insertPerson);
+		insertLegalPerson.addPostAction(insertPerson);
 		insertPerson.addPostAction(insertAddress);
 		insertAddress.addPostAction(insertPhone);
 		insertPhone.addPostAction(select);
 		
-		actions.add(insertPersonLegal);	
+		actions.add(insertLegalPerson);	
 		return actions;
 	}
 }

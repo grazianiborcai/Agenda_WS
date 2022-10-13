@@ -86,6 +86,7 @@ import br.com.mind5.business.person.dao.PersonDaoDbTableColumn;
 import br.com.mind5.business.personBio.dao.PerbioDaoDbTableColumn;
 import br.com.mind5.business.personBioSearch.dao.PerbiorchDaoDbTableColumn;
 import br.com.mind5.business.personBioSnapshot.dao.PerbionapDaoDbTableColumn;
+import br.com.mind5.business.personLegal.dao.PeregDaoDbTableColumn;
 import br.com.mind5.business.personList.dao.PersolisDaoDbTableColumn;
 import br.com.mind5.business.personSearch.dao.PerarchDaoDbTableColumn;
 import br.com.mind5.business.personSnapshot.dao.PersonapDaoDbTableColumn;
@@ -605,6 +606,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new EmpulranDaoDbTableColumn());
 		addTable(new EmplutmDaoDbTableColumn());
 		addTable(new StomanDaoDbTableColumn());
+		addTable(new PeregDaoDbTableColumn());
 	}
 	
 	
