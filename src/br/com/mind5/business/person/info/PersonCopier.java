@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.owner.info.OwnerInfo;
+import br.com.mind5.business.personLegal.info.PeregInfo;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.security.user.info.UserInfo;
@@ -90,6 +91,20 @@ public final class PersonCopier {
 	
 	public static List<PersonInfo> copyFromCus(List<CusInfo> sources) {
 		InfoCopier<PersonInfo, CusInfo> copier = new PersonCopyCus();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static PersonInfo copyFromPereg(PeregInfo source) {
+		InfoCopier<PersonInfo, PeregInfo> copier = new PersonCopyPereg();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<PersonInfo> copyFromPereg(List<PeregInfo> sources) {
+		InfoCopier<PersonInfo, PeregInfo> copier = new PersonCopyPereg();
 		return copier.makeCopy(sources);
 	}
 }
