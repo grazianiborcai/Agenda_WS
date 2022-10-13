@@ -78,6 +78,7 @@ public final class PhonapDaoSelectSingle extends DaoStmtTemplate<PhonapInfo> {
 					dataInfo.codEmployeeSnapshot = DaoFormatter.sqlToLong(stmtResult, PhonapDaoDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, PhonapDaoDbTableColumn.COL_COD_USER);
 					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, PhonapDaoDbTableColumn.COL_COD_USER_SNAPSHOT);
+					dataInfo.codLegalPerson = DaoFormatter.sqlToLong(stmtResult, PhonapDaoDbTableColumn.COL_COD_LEGAL_PERSON);
 					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, PhonapDaoDbTableColumn.COL_COD_OWNER_REF);
 					dataInfo.codOwnerRefSnapshot = DaoFormatter.sqlToLong(stmtResult, PhonapDaoDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, PhonapDaoDbTableColumn.COL_LAST_CHANGED_BY);

@@ -20,6 +20,7 @@ public final class PhonapInfo extends InfoRecord implements Cloneable {
 	public long codEmployeeSnapshot;
 	public long codUser;
 	public long codUserSnapshot;
+	public long codLegalPerson;
 	public String phoneName;
 	public boolean isDefault;
 	public String codCountry;
@@ -53,6 +54,7 @@ public final class PhonapInfo extends InfoRecord implements Cloneable {
 		codEmployeeSnapshot = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codUserSnapshot = DefaultValue.number();
+		codLegalPerson = DefaultValue.number();
 		isDefault = DefaultValue.boole();
 		codCountryPhone = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
@@ -83,12 +85,15 @@ public final class PhonapInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner 		^ (codOwner 	>>> 32));
-		result = result * 31 + (int) (codSnapshot	^ (codSnapshot 	>>> 32));
-		result = result * 31 + (int) (codPhone 		^ (codPhone 	>>> 32));		
-		result = result * 31 + (int) (codCustomer 	^ (codCustomer 	>>> 32));
-		result = result * 31 + (int) (codStore 		^ (codStore 	>>> 32));
-		result = result * 31 + (int) (codEmployee 	^ (codEmployee 	>>> 32));		
+		result = result * 31 + (int) (codOwner 			^ (codOwner 		>>> 32));
+		result = result * 31 + (int) (codSnapshot		^ (codSnapshot 		>>> 32));
+		result = result * 31 + (int) (codPhone 			^ (codPhone 		>>> 32));		
+		result = result * 31 + (int) (codCustomer 		^ (codCustomer 		>>> 32));
+		result = result * 31 + (int) (codStore 			^ (codStore 		>>> 32));
+		result = result * 31 + (int) (codEmployee 		^ (codEmployee 		>>> 32));		
+		result = result * 31 + (int) (codUser 			^ (codUser 			>>> 32));
+		result = result * 31 + (int) (codLegalPerson 	^ (codLegalPerson 	>>> 32));
+		result = result * 31 + (int) (codOwnerRef		^ (codOwnerRef 		>>> 32));
 		result = result * 31 + codCountryPhone;
 		
 		if (fullNumber != null)
@@ -116,6 +121,9 @@ public final class PhonapInfo extends InfoRecord implements Cloneable {
 				codStore		== obj.codStore			&&
 				codEmployee		== obj.codEmployee		&&
 				codCountryPhone == obj.codCountryPhone	&&
+				codUser 		== obj.codUser 			&&
+				codLegalPerson 	== obj.codLegalPerson 	&&
+				codOwnerRef 	== obj.codOwnerRef 		&& 
 				super.isStringEqual(fullNumber, obj.fullNumber));
 	}	
 }
