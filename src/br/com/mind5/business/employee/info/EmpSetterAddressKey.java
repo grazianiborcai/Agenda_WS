@@ -1,6 +1,7 @@
 package br.com.mind5.business.employee.info;
 
 import br.com.mind5.business.address.info.AddressInfo;
+import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoSetterTemplate;
 
 public final class EmpSetterAddressKey extends InfoSetterTemplate<EmpInfo> {
@@ -11,7 +12,12 @@ public final class EmpSetterAddressKey extends InfoSetterTemplate<EmpInfo> {
 			eachAddress.codEmployee = recordInfo.codEmployee;
 			eachAddress.username = recordInfo.username;
 			eachAddress.codLanguage = recordInfo.codLanguage;
-		//	eachAddress.lastChangedBy = recordInfo.lastChangedBy;	//TODO: remover
+
+			eachAddress.codCustomer = DefaultValue.number();
+			eachAddress.codStore = DefaultValue.number();
+			eachAddress.codUser = DefaultValue.number();
+			eachAddress.codLegalPerson = DefaultValue.number();
+			eachAddress.codOwnerRef = DefaultValue.number();
 		}
 		
 		return recordInfo;
