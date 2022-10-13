@@ -89,6 +89,7 @@ public final class AddresnapDaoSelectSingle extends DaoStmtTemplate<AddresnapInf
 					dataInfo.codEmployeeSnapshot = DaoFormatter.sqlToLong(stmtResult, AddresnapDaoDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, AddresnapDaoDbTableColumn.COL_COD_USER);
 					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, AddresnapDaoDbTableColumn.COL_COD_USER_SNAPSHOT);
+					dataInfo.codLegalPerson = DaoFormatter.sqlToLong(stmtResult, AddresnapDaoDbTableColumn.COL_COD_LEGAL_PERSON);					
 					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, AddresnapDaoDbTableColumn.COL_COD_OWNER_REF);
 					dataInfo.codOwnerRefSnapshot = DaoFormatter.sqlToLong(stmtResult, AddresnapDaoDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
 					dataInfo.latitude = DaoFormatter.sqlToFloat(stmtResult, AddresnapDaoDbTableColumn.COL_LATITUDE);

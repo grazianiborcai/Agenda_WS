@@ -18,6 +18,7 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 	public long codEmployeeSnapshot;
 	public long codUser;
 	public long codUserSnapshot;
+	public long codLegalPerson;
 	public long codOwnerRef;
 	public long codOwnerRefSnapshot;
 	public String addressName;
@@ -75,6 +76,7 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 		codUser = DefaultValue.number();
 		isDefault = DefaultValue.boole();
 		codUserSnapshot = DefaultValue.number();
+		codLegalPerson = DefaultValue.number();
 		longitude = DefaultValue.geo();
 		latitude = DefaultValue.geo();		
 		recordMode = DefaultValue.recordMode();
@@ -105,12 +107,14 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner 	 	^ (codOwner   	>>> 32));
-		result = result * 31 + (int) (codSnapshot 	^ (codSnapshot  >>> 32));
-		result = result * 31 + (int) (codAddress 	^ (codAddress 	>>> 32));		
-		result = result * 31 + (int) (codCustomer 	^ (codCustomer 	>>> 32));
-		result = result * 31 + (int) (codStore 		^ (codStore 	>>> 32));
-		result = result * 31 + (int) (codEmployee 	^ (codEmployee 	>>> 32));
+		result = result * 31 + (int) (codOwner 	 		^ (codOwner   		>>> 32));
+		result = result * 31 + (int) (codAddress 		^ (codAddress 		>>> 32));		
+		result = result * 31 + (int) (codCustomer 		^ (codCustomer 		>>> 32));
+		result = result * 31 + (int) (codStore 			^ (codStore 		>>> 32));
+		result = result * 31 + (int) (codEmployee 		^ (codEmployee 		>>> 32));
+		result = result * 31 + (int) (codUser 			^ (codUser 			>>> 32));
+		result = result * 31 + (int) (codLegalPerson 	^ (codLegalPerson 	>>> 32));
+		result = result * 31 + (int) (codOwnerRef 		^ (codOwnerRef 		>>> 32));
 		
 		if (codCountry != null)
 			result = result * 31 + codCountry.hashCode();
@@ -173,12 +177,14 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 		
 		
 		AddresnapInfo obj = (AddresnapInfo) o;		
-		return (codOwner 	== obj.codOwner 						&& 
-				codSnapshot == obj.codSnapshot 						&& 
-				codAddress 	== obj.codAddress						&&
-				codCustomer	== obj.codCustomer						&&
-				codStore	== obj.codStore							&&
-				codEmployee	== obj.codEmployee						&&
+		return (codOwner 		== obj.codOwner 					&& 
+				codAddress 		== obj.codAddress					&&
+				codCustomer		== obj.codCustomer					&&
+				codStore		== obj.codStore						&&
+				codEmployee		== obj.codEmployee					&&
+				codUser			== obj.codUser						&&
+				codOwnerRef		== obj.codOwnerRef					&&
+				codLegalPerson	== obj.codLegalPerson				&&
 				super.isStringEqual(codCountry, obj.codCountry)		&&				
 				super.isStringEqual(codState, obj.codState)			&&
 				super.isStringEqual(city, obj.city)					&&

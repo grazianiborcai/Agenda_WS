@@ -19,6 +19,7 @@ public final class AddresnapDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CUSTOMER_SNAPSHOT = DaoDbField.COL_COD_CUSTOMER_SNAPSHOT;
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
 	public static final String COL_COD_EMPLOYEE_SNAPSHOT = DaoDbField.COL_COD_EMPLOYEE_SNAPSHOT;
+	public static final String COL_COD_LEGAL_PERSON = DaoDbField.COL_COD_LEGAL_PERSON;
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
 	public static final String COL_COD_STORE_SNAPSHOT = DaoDbField.COL_COD_STORE_SNAPSHOT;
@@ -415,6 +416,14 @@ public final class AddresnapDaoDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_IS_DEFAULT;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_LEGAL_PERSON;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
