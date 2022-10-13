@@ -13,6 +13,7 @@ public final class CusSetterAddressKey extends InfoSetterTemplate<CusInfo> {
 			eachRecord.codStore = DefaultValue.number();
 			eachRecord.codEmployee = DefaultValue.number();
 			eachRecord.codUser = DefaultValue.number();
+			eachRecord.codLegalPerson = DefaultValue.number();
 			eachRecord.codOwnerRef = DefaultValue.number();
 			eachRecord.codLanguage = recordInfo.codLanguage;
 			eachRecord.username = recordInfo.username;
