@@ -25,7 +25,8 @@ public final class PhonarchCheckRead extends ModelCheckerTemplateSimple<Phonarch
 		if ( recordInfo.codPhone 		<= 0	&&
 			 recordInfo.codCustomer 	<= 0	&&
 			 recordInfo.codStore 		<= 0	&& 
-			 recordInfo.codUser 		<= 0	&& 
+			 recordInfo.codUser 		<= 0	&&
+			 recordInfo.codLegalPerson 	<= 0	&&
 			 recordInfo.codOwnerRef 	<= 0	&&
 			 recordInfo.codEmployee 	<= 0		)			
 			
