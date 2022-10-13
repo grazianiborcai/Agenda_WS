@@ -16,8 +16,7 @@ final class UserCopyStore extends InfoCopierTemplate<UserInfo, StoreInfo> {
 	@Override protected UserInfo makeCopyHook(StoreInfo source) {
 		UserInfo result = new UserInfo();
 		
-		result.codOwner = source.codOwner;	
-		result.codPerson = source.codPerson;	
+		result.codOwner = source.codOwner;
 		result.codUser = source.codUser;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
