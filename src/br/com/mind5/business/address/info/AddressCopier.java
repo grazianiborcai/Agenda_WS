@@ -210,4 +210,18 @@ public final class AddressCopier {
 		InfoCopier<AddressInfo, PeregInfo> copier = new AddressCopyPereg();
 		return copier.makeCopy(sources);
 	}
+	
+	
+	
+	public static AddressInfo copyFromPeregKey(PeregInfo source) {
+		InfoCopier<AddressInfo, PeregInfo> copier = new AddressCopyPeregKey();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<AddressInfo> copyFromPeregKey(List<PeregInfo> sources) {
+		InfoCopier<AddressInfo, PeregInfo> copier = new AddressCopyPeregKey();
+		return copier.makeCopy(sources);
+	}
 }
