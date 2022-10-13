@@ -108,6 +108,7 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 		int result = 17;
 		
 		result = result * 31 + (int) (codOwner 	 		^ (codOwner   		>>> 32));
+		result = result * 31 + (int) (codSnapshot	 	^ (codSnapshot   	>>> 32));
 		result = result * 31 + (int) (codAddress 		^ (codAddress 		>>> 32));		
 		result = result * 31 + (int) (codCustomer 		^ (codCustomer 		>>> 32));
 		result = result * 31 + (int) (codStore 			^ (codStore 		>>> 32));
@@ -178,6 +179,7 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 		
 		AddresnapInfo obj = (AddresnapInfo) o;		
 		return (codOwner 		== obj.codOwner 					&& 
+				codSnapshot		== obj.codSnapshot					&&
 				codAddress 		== obj.codAddress					&&
 				codCustomer		== obj.codCustomer					&&
 				codStore		== obj.codStore						&&
