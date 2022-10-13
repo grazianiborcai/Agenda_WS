@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
-import br.com.mind5.business.storeSnapshot.model.action.StorapVisiMergePersonap;
-import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckHasPersonap;
+import br.com.mind5.business.storeSnapshot.model.action.StorapVisiMergePereg;
+import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckHasPereg;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class StorapNodePersonap extends DeciTreeTemplateWrite<StorapInfo> {
+public final class StorapNodePereg extends DeciTreeTemplateWrite<StorapInfo> {
 	
-	public StorapNodePersonap(DeciTreeOption<StorapInfo> option) {
+	public StorapNodePereg(DeciTreeOption<StorapInfo> option) {
 		super(option);
 	}
 	
@@ -32,7 +32,7 @@ public final class StorapNodePersonap extends DeciTreeTemplateWrite<StorapInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new StorapCheckHasPersonap(checkerOption);
+		checker = new StorapCheckHasPereg(checkerOption);
 		queue.add(checker);		
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -43,9 +43,9 @@ public final class StorapNodePersonap extends DeciTreeTemplateWrite<StorapInfo> 
 	@Override protected List<ActionStd<StorapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorapInfo> option) {
 		List<ActionStd<StorapInfo>> actions = new ArrayList<>();
 
-		ActionStd<StorapInfo> mergePersonap = new ActionStdCommom<StorapInfo>(option, StorapVisiMergePersonap.class);
+		ActionStd<StorapInfo> mergePereg = new ActionStdCommom<StorapInfo>(option, StorapVisiMergePereg.class);
 		
-		actions.add(mergePersonap);	
+		actions.add(mergePereg);	
 		return actions;
 	}
 	

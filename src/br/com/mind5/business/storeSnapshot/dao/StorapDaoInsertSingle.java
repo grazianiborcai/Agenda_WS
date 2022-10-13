@@ -44,7 +44,6 @@ public final class StorapDaoInsertSingle extends DaoStmtTemplate<StorapInfo> {
 				
 				stmt.setLong(i++, recordInfo.codOwner);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPerson);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCompany);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt.setString(i++, recordInfo.codCurr);
@@ -53,11 +52,11 @@ public final class StorapDaoInsertSingle extends DaoStmtTemplate<StorapInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCompanySnapshot);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPersonSnapshot);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
 				stmt.setBoolean(i++, recordInfo.isLocked);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codLegalPerson);
 				
 				return stmt;
 			}	

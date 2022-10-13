@@ -7,16 +7,16 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class StorapCheckHasPersonap extends ModelCheckerTemplateSimple<StorapInfo> {
+public final class StorapCheckHasPereg extends ModelCheckerTemplateSimple<StorapInfo> {
 
-	public StorapCheckHasPersonap(ModelCheckerOption option) {
+	public StorapCheckHasPereg(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(StorapInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codPersonSnapshot <= 0)				
+		if (recordInfo.codLegalPerson <= 0)				
 			return super.FAILED;		
 		
 		return super.SUCCESS;

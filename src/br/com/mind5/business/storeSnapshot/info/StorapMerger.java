@@ -4,12 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
-import br.com.mind5.business.personList.info.PersolisInfo;
-import br.com.mind5.business.personSnapshot.info.PersonapInfo;
+import br.com.mind5.business.personLegal.info.PeregInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.storeText.info.StorextInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 import br.com.mind5.security.userList.info.UselisInfo;
@@ -67,26 +66,13 @@ public final class StorapMerger {
 	
 	
 	
-	public static List<StorapInfo> mergeWithPersolis(List<StorapInfo> baseInfos, List<PersolisInfo> selectedInfos) {
-		InfoMergerBuilder<StorapInfo, PersolisInfo> builder = new InfoMergerBuilder<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorapMergerVisiPersolis());
-		InfoMerger<StorapInfo, PersolisInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
-	public static List<StorapInfo> mergeWithPersonap(List<StorapInfo> baseInfos, List<PersonapInfo> selectedInfos) {
-		InfoMergerBuilder<StorapInfo, PersonapInfo> builder = new InfoMergerBuilder<>();
+	public static List<StorapInfo> mergeWithPereg(List<StorapInfo> baseInfos, List<PeregInfo> selectedInfos) {
+		InfoMergerBuilder<StorapInfo, PeregInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new StorapMergerVisiPersonap());
-		InfoMerger<StorapInfo, PersonapInfo> merger = builder.build();		
+		InfoMerger<StorapInfo, PeregInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

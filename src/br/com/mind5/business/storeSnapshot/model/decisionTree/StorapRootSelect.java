@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.model.action.StorapVisiNodeCompnap;
-import br.com.mind5.business.storeSnapshot.model.action.StorapVisiNodePersonap;
+import br.com.mind5.business.storeSnapshot.model.action.StorapVisiNodePereg;
 import br.com.mind5.business.storeSnapshot.model.action.StorapVisiMergeCurrency;
 import br.com.mind5.business.storeSnapshot.model.action.StorapVisiMergePhonap;
 import br.com.mind5.business.storeSnapshot.model.action.StorapVisiMergeTimezone;
@@ -70,14 +70,14 @@ public final class StorapRootSelect extends DeciTreeTemplateRead<StorapInfo> {
 		ActionLazy<StorapInfo> mergeCurrency = new  ActionLazyCommom<StorapInfo>(option, StorapVisiMergeCurrency.class);
 		ActionLazy<StorapInfo> mergeTimezone = new ActionLazyCommom<StorapInfo>(option, StorapVisiMergeTimezone.class); 
 		ActionLazy<StorapInfo> mergePhonap = new ActionLazyCommom<StorapInfo>(option, StorapVisiMergePhonap.class);
-		ActionLazy<StorapInfo> nodePersonap = new ActionLazyCommom<StorapInfo>(option, StorapVisiNodePersonap.class);
+		ActionLazy<StorapInfo> nodePereg = new ActionLazyCommom<StorapInfo>(option, StorapVisiNodePereg.class);
 		ActionLazy<StorapInfo> nodeCompnap = new ActionLazyCommom<StorapInfo>(option, StorapVisiNodeCompnap.class);
 		
 		select.addPostAction(mergeCurrency);
 		mergeCurrency.addPostAction(mergeTimezone); 
 		mergeTimezone.addPostAction(mergePhonap);
-		mergePhonap.addPostAction(nodePersonap);
-		nodePersonap.addPostAction(nodeCompnap);
+		mergePhonap.addPostAction(nodePereg);
+		nodePereg.addPostAction(nodeCompnap);
 		
 		actions.add(select);
 		return actions;

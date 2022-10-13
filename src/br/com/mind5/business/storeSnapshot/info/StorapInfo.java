@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.company.info.CompInfo;
-import br.com.mind5.business.person.info.PersonInfo;
+import br.com.mind5.business.personLegal.info.PeregInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.storeTextSnapshot.info.StorextsnapInfo;
 import br.com.mind5.common.CloneUtil;
@@ -18,8 +18,7 @@ public final class StorapInfo extends InfoRecord implements Cloneable {
 	public long codSnapshot;	
 	public long codUser;
 	public long codUserSnapshot;
-	public long codPerson;
-	public long codPersonSnapshot;
+	public long codLegalPerson;
 	public long codCompany;
 	public long codCompanySnapshot;	
 	public String codCurr;
@@ -31,7 +30,7 @@ public final class StorapInfo extends InfoRecord implements Cloneable {
 	public AddressInfo addressData;
 	public List<PhoneInfo> phones;
 	public CompInfo companyData;
-	public PersonInfo personData;
+	public PeregInfo peregData;
 	public LocalDateTime createdOn;
 	public long createdBy;
 	public LocalDateTime lastChanged;
@@ -48,15 +47,14 @@ public final class StorapInfo extends InfoRecord implements Cloneable {
 		codSnapshot = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codUserSnapshot = DefaultValue.number();
-		codPerson = DefaultValue.number();
-		codPersonSnapshot = DefaultValue.number();
+		codLegalPerson = DefaultValue.number();
 		codCompany = DefaultValue.number();
 		codCompanySnapshot = DefaultValue.number();		
 		recordMode = DefaultValue.recordMode();
 		isLocked = DefaultValue.boole();
 		storextsnapes = DefaultValue.list();
 		companyData = DefaultValue.object();
-		personData = DefaultValue.object();
+		peregData = DefaultValue.object();
 		addressData = DefaultValue.object();
 		phones = DefaultValue.list();
 		lastChangedBy = DefaultValue.number();
@@ -83,7 +81,7 @@ public final class StorapInfo extends InfoRecord implements Cloneable {
 		deepCopy.storextsnapes = CloneUtil.cloneRecords(deepCopy.storextsnapes, this.getClass());
 		deepCopy.addressData = CloneUtil.cloneRecord(deepCopy.addressData, this.getClass());
 		deepCopy.phones = CloneUtil.cloneRecords(deepCopy.phones, this.getClass());
-		deepCopy.personData = CloneUtil.cloneRecord(deepCopy.personData, this.getClass());
+		deepCopy.peregData = CloneUtil.cloneRecord(deepCopy.peregData, this.getClass());
 		deepCopy.companyData = CloneUtil.cloneRecord(deepCopy.companyData, this.getClass());
 		
 		return deepCopy;
