@@ -60,6 +60,7 @@ public final class DaoDbTable {
 	public static final String GENDER_TABLE = "gender";
 	public static final String GENDER_TEXT_TABLE = "gender_text";
 	public static final String LANGUAGE_TABLE = "language";
+	public static final String LEGAL_PERSON_TABLE = "legal_person";
 	public static final String MAT_CATEG_TABLE = "material_category";
 	public static final String MAT_CATEG_TEXT_TABLE = "material_category_text";
 	public static final String MAT_GROUP_TABLE = "material_group";

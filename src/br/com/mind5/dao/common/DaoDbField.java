@@ -121,6 +121,7 @@ public final class DaoDbField {
 	public static final String COL_COD_GROUP = "cod_group";
 	public static final String COL_COD_ITEM_CATEG = "cod_shop_categ";
 	public static final String COL_COD_LANGUAGE = "language";
+	public static final String COL_COD_LEGAL_PERSON = "cod_legal_person";
 	public static final String COL_COD_MAT_CATEG = "cod_category";
 	public static final String COL_COD_MAT_GROUP = "cod_group";
 	public static final String COL_COD_MAT_MOV = "cod_mat_mov";

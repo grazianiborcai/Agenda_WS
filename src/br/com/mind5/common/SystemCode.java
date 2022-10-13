@@ -1953,6 +1953,9 @@ public final class SystemCode {
 	// Geo Mapquest
 	public static final int GEO_MAP_QUEST								= 19700;
 	
+	// Legal Person
+	public static final int LEGAL_PERSON								= 19750;
+	
 	// General -- 19669
 	public static final int GEN_COMPLEMENT								= 19668;
 	public static final int GEN_DESCRIPTION								= 19661;
