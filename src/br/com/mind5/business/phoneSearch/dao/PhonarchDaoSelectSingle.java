@@ -77,6 +77,7 @@ public final class PhonarchDaoSelectSingle extends DaoStmtTemplate<PhonarchInfo>
 					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, PhonarchDaoDbTableColumn.COL_COD_CUSTOMER);
 					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, PhonarchDaoDbTableColumn.COL_COD_EMPLOYEE);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, PhonarchDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codLegalPerson = DaoFormatter.sqlToLong(stmtResult, PhonarchDaoDbTableColumn.COL_COD_LEGAL_PERSON);
 					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, PhonarchDaoDbTableColumn.COL_COD_OWNER_REF);
 					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, PhonarchDaoDbTableColumn.COL_COD_SNAPSHOT);
 					

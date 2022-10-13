@@ -13,6 +13,7 @@ public final class PhonarchInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codEmployee;
 	public long codUser;
+	public long codLegalPerson;
 	public long codOwnerRef;
 	public String codCountry;
 	public String fullNumber;
@@ -32,6 +33,7 @@ public final class PhonarchInfo extends InfoRecord implements Cloneable {
 		codCustomer = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codUser = DefaultValue.number();
+		codLegalPerson = DefaultValue.number();
 		codCountryPhone = DefaultValue.number();
 		codOwnerRef = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
@@ -66,6 +68,7 @@ public final class PhonarchInfo extends InfoRecord implements Cloneable {
 		result = result * 31 + (int) (codStore 			^ (codStore 		>>> 32));
 		result = result * 31 + (int) (codEmployee 		^ (codEmployee 		>>> 32));		
 		result = result * 31 + (int) (codUser 			^ (codUser 			>>> 32));
+		result = result * 31 + (int) (codLegalPerson 	^ (codLegalPerson 	>>> 32));
 		result = result * 31 + (int) (codOwnerRef		^ (codOwnerRef 		>>> 32));
 		result = result * 31 + codCountryPhone;
 		
@@ -94,6 +97,7 @@ public final class PhonarchInfo extends InfoRecord implements Cloneable {
 				codEmployee		== obj.codEmployee		&&
 				codCountryPhone == obj.codCountryPhone	&&
 				codUser 		== obj.codUser 			&&
+				codLegalPerson 	== obj.codLegalPerson 	&&
 				codOwnerRef 	== obj.codOwnerRef 		&& 
 				super.isStringEqual(fullNumber, obj.fullNumber));
 	}	
