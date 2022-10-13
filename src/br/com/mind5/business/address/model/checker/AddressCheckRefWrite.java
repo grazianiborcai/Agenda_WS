@@ -18,7 +18,8 @@ public final class AddressCheckRefWrite extends ModelCheckerTemplateSimple<Addre
 	@Override protected boolean checkHook(AddressInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codCustomer 	<= 0	&&
 			 recordInfo.codStore 		<= 0	&& 
-			 recordInfo.codUser 		<= 0	&& 
+			 recordInfo.codUser 		<= 0	&&
+			 recordInfo.codLegalPerson 	<= 0	&&
 			 recordInfo.codOwnerRef 	<= 0	&&
 			 recordInfo.codEmployee 	<= 0		)			
 			

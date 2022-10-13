@@ -84,6 +84,7 @@ public final class AddressDaoSelectSingle extends DaoStmtTemplate<AddressInfo> {
 					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, AddressDaoDbTableColumn.COL_COD_CUSTOMER);
 					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, AddressDaoDbTableColumn.COL_COD_EMPLOYEE);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, AddressDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codLegalPerson = DaoFormatter.sqlToLong(stmtResult, AddressDaoDbTableColumn.COL_COD_LEGAL_PERSON);					
 					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, AddressDaoDbTableColumn.COL_COD_OWNER_REF);
 					dataInfo.latitude = DaoFormatter.sqlToFloat(stmtResult, AddressDaoDbTableColumn.COL_LATITUDE);
 					dataInfo.longitude = DaoFormatter.sqlToFloat(stmtResult, AddressDaoDbTableColumn.COL_LONGITUDE);

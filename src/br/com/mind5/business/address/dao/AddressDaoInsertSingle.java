@@ -80,6 +80,7 @@ public final class AddressDaoInsertSingle extends DaoStmtTemplate<AddressInfo> {
 				stmt.setString(i++, recordInfo.districtSearch);
 				stmt.setString(i++, recordInfo.addressName);
 				stmt.setBoolean(i++, recordInfo.isDefault);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codLegalPerson);	
 	
 				return stmt;
 			}		

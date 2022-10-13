@@ -18,19 +18,22 @@ public final class AddressCheckRefMulti extends ModelCheckerTemplateSimple<Addre
 	@Override protected boolean checkHook(AddressInfo recordInfo, Connection conn, String schemaName) {	
 		int totRef = 0;
 		
-		if ( recordInfo.codCustomer >= 0 )
+		if ( recordInfo.codCustomer 	>= 0 )
 			totRef = totRef + 1;
 		
-		if ( recordInfo.codStore 	>= 0 )
+		if ( recordInfo.codStore 		>= 0 )
 			totRef = totRef + 1;
 		
-		if ( recordInfo.codEmployee >= 0 )
+		if ( recordInfo.codEmployee 	>= 0 )
 			totRef = totRef + 1;
 		
-		if ( recordInfo.codUser 	>= 0 )
+		if ( recordInfo.codUser 		>= 0 )
 			totRef = totRef + 1;
 		
-		if ( recordInfo.codOwnerRef >= 0 )
+		if ( recordInfo.codLegalPerson 	>= 0 )
+			totRef = totRef + 1;
+		
+		if ( recordInfo.codOwnerRef 	>= 0 )
 			totRef = totRef + 1;
 				
 		if ( totRef != 1 )			
