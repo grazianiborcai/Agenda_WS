@@ -7,7 +7,6 @@ import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.personLegal.info.PeregInfo;
-import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.security.user.info.UserInfo;
 
@@ -21,20 +20,6 @@ public final class PersonCopier {
 	
 	public static List<PersonInfo> copyFromOwner(List<OwnerInfo> sources) {
 		InfoCopier<PersonInfo, OwnerInfo> copier = new PersonCopyOwner();
-		return copier.makeCopy(sources);
-	}
-	
-	
-	
-	public static PersonInfo copyFromStore(StoreInfo source) {
-		InfoCopier<PersonInfo, StoreInfo> copier = new PersonCopyStore();
-		return copier.makeCopy(source);
-	}
-	
-	
-	
-	public static List<PersonInfo> copyFromStore(List<StoreInfo> sources) {
-		InfoCopier<PersonInfo, StoreInfo> copier = new PersonCopyStore();
 		return copier.makeCopy(sources);
 	}
 	
