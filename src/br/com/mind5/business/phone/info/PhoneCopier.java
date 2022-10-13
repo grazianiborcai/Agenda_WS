@@ -164,5 +164,19 @@ public final class PhoneCopier {
 	public static List<PhoneInfo> copyFromPereg(List<PeregInfo> sources) {
 		InfoCopier<PhoneInfo, PeregInfo> copier = new PhoneCopyPereg();
 		return copier.makeCopy(sources);
-	}	
+	}
+	
+	
+	
+	public static PhoneInfo copyFromPeregKey(PeregInfo source) {
+		InfoCopier<PhoneInfo, PeregInfo> copier = new PhoneCopyPeregKey();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<PhoneInfo> copyFromPeregKey(List<PeregInfo> sources) {
+		InfoCopier<PhoneInfo, PeregInfo> copier = new PhoneCopyPeregKey();
+		return copier.makeCopy(sources);
+	}
 }
