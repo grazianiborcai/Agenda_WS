@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.owner.info.OwnerInfo;
+import br.com.mind5.business.personLegal.info.PeregInfo;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoCopier;
@@ -150,4 +151,18 @@ public final class PhoneCopier {
 		InfoCopierOneToMany<PhoneInfo, CusInfo> copier = new PhoneCopyCus();
 		return copier.makeCopy(sources);
 	}
+	
+	
+	
+	public static PhoneInfo copyFromPereg(PeregInfo source) {
+		InfoCopier<PhoneInfo, PeregInfo> copier = new PhoneCopyPereg();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<PhoneInfo> copyFromPereg(List<PeregInfo> sources) {
+		InfoCopier<PhoneInfo, PeregInfo> copier = new PhoneCopyPereg();
+		return copier.makeCopy(sources);
+	}	
 }

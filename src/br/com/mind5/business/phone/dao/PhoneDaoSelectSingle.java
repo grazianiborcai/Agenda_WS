@@ -73,6 +73,7 @@ public final class PhoneDaoSelectSingle extends DaoStmtTemplate<PhoneInfo> {
 					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_CUSTOMER);
 					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_EMPLOYEE);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codLegalPerson = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_LEGAL_PERSON);
 					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_OWNER_REF);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PhoneDaoDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_LAST_CHANGED_BY);

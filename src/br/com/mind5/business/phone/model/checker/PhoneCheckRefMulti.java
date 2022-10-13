@@ -18,20 +18,12 @@ public final class PhoneCheckRefMulti extends ModelCheckerTemplateSimple<PhoneIn
 	@Override protected boolean checkHook(PhoneInfo recordInfo, Connection conn, String schemaName) {	
 		int totRef = 0;
 		
-		if ( recordInfo.codCustomer >= 0 )
-			totRef = totRef + 1;
-		
-		if ( recordInfo.codStore >= 0 )
-			totRef = totRef + 1;
-		
-		if ( recordInfo.codEmployee >= 0 )
-			totRef = totRef + 1;
-		
-		if ( recordInfo.codUser >= 0 )
-			totRef = totRef + 1;
-		
-		if ( recordInfo.codOwnerRef >= 0 )
-			totRef = totRef + 1;
+		if ( recordInfo.codCustomer 	>= 0 ) totRef = totRef + 1;		
+		if ( recordInfo.codStore 		>= 0 ) totRef = totRef + 1;		
+		if ( recordInfo.codEmployee 	>= 0 ) totRef = totRef + 1;		
+		if ( recordInfo.codUser 		>= 0 ) totRef = totRef + 1;		
+		if ( recordInfo.codOwnerRef 	>= 0 ) totRef = totRef + 1;		
+		if ( recordInfo.codLegalPerson 	>= 0 ) totRef = totRef + 1;
 				
 		if ( totRef != 1 )			
 			return super.FAILED;

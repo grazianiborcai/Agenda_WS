@@ -12,7 +12,8 @@ import br.com.mind5.dao.common.DaoDbTable;
 public final class PhoneDaoDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_AREA = DaoDbField.COL_COD_AREA;
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
-	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;	
+	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
+	public static final String COL_COD_LEGAL_PERSON = DaoDbField.COL_COD_LEGAL_PERSON;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_OWNER_REF = DaoDbField.COL_COD_OWNER_REF;
 	public static final String COL_COD_PHONE = DaoDbField.COL_COD_PHONE;
@@ -202,7 +203,15 @@ public final class PhoneDaoDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);		
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_LEGAL_PERSON;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
 		
 		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
 		results.put(TABLE_NAME, columns);
