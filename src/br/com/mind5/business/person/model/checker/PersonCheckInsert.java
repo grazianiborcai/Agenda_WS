@@ -16,8 +16,7 @@ public final class PersonCheckInsert extends ModelCheckerTemplateSimple<PersonIn
 	
 	
 	@Override protected boolean checkHook(PersonInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 		<= 0	||  					
-			 recordInfo.codGender 		<= 0	||
+		if ( recordInfo.codOwner 		<= 0	||
 			 recordInfo.username		== null	||
 			 recordInfo.name 			== null	||
 			 recordInfo.codLanguage		== null	||
