@@ -12,7 +12,7 @@ public final class DateValidator {
 	
 	static public boolean validateBirthdate(LocalDate birthDate) {
 		if (birthDate == null)
-			return FAILED;
+			return SUCCESS;
 		
 		if (checkDate(birthDate) == FAILED)
 			return FAILED;
@@ -20,7 +20,7 @@ public final class DateValidator {
 		if (checkFuture(birthDate) == FAILED)
 			return FAILED;		
 		
-		if (check120Year(birthDate) == FAILED)			
+		if (check120Year(birthDate) == FAILED)
 			return FAILED;
 		
 		
