@@ -10,12 +10,12 @@ import br.com.mind5.business.person.model.action.PersonVisiMergeToUpdate;
 import br.com.mind5.business.person.model.action.PersonVisiMergeUsername;
 import br.com.mind5.business.person.model.action.PersonVisiNodeCpfL1;
 import br.com.mind5.business.person.model.action.PersonVisiNodeEmailL1;
+import br.com.mind5.business.person.model.action.PersonVisiNodeGenderL1;
 import br.com.mind5.business.person.model.action.PersonVisiNodeName;
 import br.com.mind5.business.person.model.action.PersonVisiNodePerbioUpsertdel;
 import br.com.mind5.business.person.model.action.PersonVisiNodeSnapshot;
 import br.com.mind5.business.person.model.checker.PersonCheckBirthdate;
 import br.com.mind5.business.person.model.checker.PersonCheckExist;
-import br.com.mind5.business.person.model.checker.PersonCheckGender;
 import br.com.mind5.business.person.model.checker.PersonCheckLangu;
 import br.com.mind5.business.person.model.checker.PersonCheckOwner;
 import br.com.mind5.business.person.model.checker.PersonCheckUpdate;
@@ -74,13 +74,6 @@ public final class PersonRootUpdate extends DeciTreeTemplateWrite<PersonInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new PersonCheckGender(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new PersonCheckExist(checkerOption);
 		queue.add(checker);	
 			
@@ -95,7 +88,8 @@ public final class PersonRootUpdate extends DeciTreeTemplateWrite<PersonInfo> {
 		ActionStd<PersonInfo> nodeSafe = new PersonNodeSafe(option).toAction();
 		ActionStd<PersonInfo> mergeToUpdate = new ActionStdCommom<PersonInfo>(option, PersonVisiMergeToUpdate.class);	
 		ActionLazy<PersonInfo> cpf = new ActionLazyCommom<PersonInfo>(option, PersonVisiNodeCpfL1.class);	
-		ActionLazy<PersonInfo> email = new ActionLazyCommom<PersonInfo>(option, PersonVisiNodeEmailL1.class);	
+		ActionLazy<PersonInfo> email = new ActionLazyCommom<PersonInfo>(option, PersonVisiNodeEmailL1.class);
+		ActionLazy<PersonInfo> gender = new ActionLazyCommom<PersonInfo>(option, PersonVisiNodeGenderL1.class);
 		ActionLazy<PersonInfo> enforceLChanged = new ActionLazyCommom<PersonInfo>(option, PersonVisiEnforceLChanged.class);
 		ActionLazy<PersonInfo> enforceLChangedBy = new ActionLazyCommom<PersonInfo>(option, PersonVisiMergeUsername.class);
 		ActionLazy<PersonInfo> nodeName = new ActionLazyCommom<PersonInfo>(option, PersonVisiNodeName.class);	
@@ -105,7 +99,8 @@ public final class PersonRootUpdate extends DeciTreeTemplateWrite<PersonInfo> {
 		
 		mergeToUpdate.addPostAction(cpf);
 		cpf.addPostAction(email);
-		email.addPostAction(enforceLChanged);
+		email.addPostAction(gender);
+		gender.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(nodeName);
 		nodeName.addPostAction(enforceBirthdate);

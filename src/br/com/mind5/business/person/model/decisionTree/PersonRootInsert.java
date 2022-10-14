@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.action.PersonVisiNodeEmailL1;
+import br.com.mind5.business.person.model.action.PersonVisiNodeGenderL1;
 import br.com.mind5.business.person.model.action.PersonVisiNodeInsert;
 import br.com.mind5.business.person.model.action.PersonVisiNodePerbioUpsertdel;
 import br.com.mind5.business.person.model.action.PersonVisiNodeSnapshot;
 import br.com.mind5.business.person.model.checker.PersonCheckBirthdate;
 import br.com.mind5.business.person.model.checker.PersonCheckEntiteg;
-import br.com.mind5.business.person.model.checker.PersonCheckGender;
 import br.com.mind5.business.person.model.checker.PersonCheckInsert;
 import br.com.mind5.business.person.model.checker.PersonCheckLangu;
 import br.com.mind5.business.person.model.checker.PersonCheckOwner;
@@ -68,13 +68,6 @@ public final class PersonRootInsert extends DeciTreeTemplateWrite<PersonInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new PersonCheckGender(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new PersonCheckEntiteg(checkerOption);
 		queue.add(checker);	
 			
@@ -88,13 +81,15 @@ public final class PersonRootInsert extends DeciTreeTemplateWrite<PersonInfo> {
 		
 		ActionStd<PersonInfo> nodeSafe = new PersonNodeSafe(option).toAction();
 		ActionStd<PersonInfo> cpf = new PersonNodeCpfL1(option).toAction();	
-		ActionLazy<PersonInfo> email = new ActionLazyCommom<PersonInfo>(option, PersonVisiNodeEmailL1.class);	
+		ActionLazy<PersonInfo> email = new ActionLazyCommom<PersonInfo>(option, PersonVisiNodeEmailL1.class);
+		ActionLazy<PersonInfo> gender = new ActionLazyCommom<PersonInfo>(option, PersonVisiNodeGenderL1.class);		
 		ActionLazy<PersonInfo> insert = new ActionLazyCommom<PersonInfo>(option, PersonVisiNodeInsert.class);		
 		ActionLazy<PersonInfo> snapshot = new ActionLazyCommom<PersonInfo>(option, PersonVisiNodeSnapshot.class);
 		ActionLazy<PersonInfo> upsertdelPerbio = new ActionLazyCommom<PersonInfo>(option, PersonVisiNodePerbioUpsertdel.class);
 		
 		cpf.addPostAction(email);
-		email.addPostAction(insert);
+		email.addPostAction(gender);
+		gender.addPostAction(insert);
 		insert.addPostAction(snapshot);
 		snapshot.addPostAction(upsertdelPerbio);
 		
