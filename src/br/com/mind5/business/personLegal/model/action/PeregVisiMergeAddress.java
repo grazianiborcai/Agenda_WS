@@ -2,9 +2,8 @@ package br.com.mind5.business.personLegal.model.action;
 
 import java.util.List;
 
-import br.com.mind5.business.address.info.AddressCopier;
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.decisionTree.AddressRootSearchLegalPerson;
+import br.com.mind5.business.address.model.decisionTree.AddressRootSearchPereg;
 import br.com.mind5.business.personLegal.info.PeregInfo;
 import br.com.mind5.business.personLegal.info.PeregMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -20,13 +19,13 @@ public final class PeregVisiMergeAddress extends ActionVisitorTemplateMerge<Pere
 	
 	
 	@Override protected Class<? extends DeciTree<AddressInfo>> getTreeClassHook() {
-		return AddressRootSearchLegalPerson.class;
+		return AddressRootSearchPereg.class;
 	}
 	
 	
 	
 	@Override protected List<AddressInfo> toActionClassHook(List<PeregInfo> baseInfos) {
-		return AddressCopier.copyFromPeregKey(baseInfos);	
+		return AddressInfo.copyFrom(baseInfos);	
 	}
 	
 	

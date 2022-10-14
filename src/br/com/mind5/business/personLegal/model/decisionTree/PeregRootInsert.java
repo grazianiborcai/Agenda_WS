@@ -68,7 +68,7 @@ public final class PeregRootInsert extends DeciTreeTemplateWrite<PeregInfo> {
 	}
 	
 	
-	
+	//TODO: falta o Snapshot
 	@Override protected List<ActionStd<PeregInfo>> buildActionsOnPassedHook(DeciTreeOption<PeregInfo> option) {
 		List<ActionStd<PeregInfo>> actions = new ArrayList<>();
 	

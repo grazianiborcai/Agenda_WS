@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressCopier;
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.decisionTree.AddressRootUpdateLegalPerson;
+import br.com.mind5.business.address.model.decisionTree.AddressRootUpdatePereg;
 import br.com.mind5.business.personLegal.info.PeregInfo;
 import br.com.mind5.business.personLegal.info.PeregMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
@@ -20,7 +20,7 @@ public final class PeregVisiAddressUpdate extends ActionVisitorTemplateAction<Pe
 	
 	
 	@Override protected Class<? extends DeciTree<AddressInfo>> getTreeClassHook() {
-		return AddressRootUpdateLegalPerson.class;
+		return AddressRootUpdatePereg.class;
 	}
 	
 	

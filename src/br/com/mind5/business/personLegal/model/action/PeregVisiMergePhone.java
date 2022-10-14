@@ -6,7 +6,7 @@ import br.com.mind5.business.personLegal.info.PeregInfo;
 import br.com.mind5.business.personLegal.info.PeregMerger;
 import br.com.mind5.business.phone.info.PhoneCopier;
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.business.phone.model.decisionTree.PhoneRootSearchLegalPerson;
+import br.com.mind5.business.phone.model.decisionTree.PhoneRootSearchPereg;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class PeregVisiMergePhone extends ActionVisitorTemplateMerge<PeregI
 	
 	
 	@Override protected Class<? extends DeciTree<PhoneInfo>> getTreeClassHook() {
-		return PhoneRootSearchLegalPerson.class;
+		return PhoneRootSearchPereg.class;
 	}
 	
 	
