@@ -23,6 +23,7 @@ final class AddressMergerVisiToUpdate extends InfoMergerVisitorTemplate<AddressI
 		baseInfo.codCustomer = selectedInfo.codCustomer;
 		baseInfo.codEmployee = selectedInfo.codEmployee;
 		baseInfo.codOwnerRef = selectedInfo.codOwnerRef;
+		baseInfo.codLegalPerson = selectedInfo.codLegalPerson;
 		baseInfo.createdOn = selectedInfo.createdOn;
 		baseInfo.createdBy = selectedInfo.createdBy;
 		
