@@ -7,9 +7,9 @@ import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.action.PersonVisiDaoDelete;
 import br.com.mind5.business.person.model.action.PersonVisiDaoUpdate;
 import br.com.mind5.business.person.model.action.PersonVisiEnforceLChanged;
-import br.com.mind5.business.person.model.action.PersonVisiMergeToSelect;
 import br.com.mind5.business.person.model.action.PersonVisiMergeUsername;
-import br.com.mind5.business.person.model.action.PersonVisiPerbioDelete;
+import br.com.mind5.business.person.model.action.PersonVisiNodePerbioDelete;
+import br.com.mind5.business.person.model.action.PersonVisiRootSelect;
 import br.com.mind5.business.person.model.checker.PersonCheckDelete;
 import br.com.mind5.business.person.model.checker.PersonCheckExist;
 import br.com.mind5.business.person.model.checker.PersonCheckLangu;
@@ -65,11 +65,11 @@ public final class PersonRootDelete extends DeciTreeTemplateWrite<PersonInfo> {
 	@Override protected List<ActionStd<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
 		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> select = new ActionStdCommom<PersonInfo>(option, PersonVisiMergeToSelect.class);	
+		ActionStd<PersonInfo> select = new ActionStdCommom<PersonInfo>(option, PersonVisiRootSelect.class);	
 		ActionLazy<PersonInfo> enforceLChanged = new ActionLazyCommom<PersonInfo>(option, PersonVisiEnforceLChanged.class);
 		ActionLazy<PersonInfo> enforceLChangedBy = new ActionLazyCommom<PersonInfo>(option, PersonVisiMergeUsername.class);
 		ActionLazy<PersonInfo> updatePerson = new ActionLazyCommom<PersonInfo>(option, PersonVisiDaoUpdate.class);
-		ActionLazy<PersonInfo> deletePerbio = new ActionLazyCommom<PersonInfo>(option, PersonVisiPerbioDelete.class);
+		ActionLazy<PersonInfo> deletePerbio = new ActionLazyCommom<PersonInfo>(option, PersonVisiNodePerbioDelete.class);
 		ActionLazy<PersonInfo> deletePerson = new ActionLazyCommom<PersonInfo>(option, PersonVisiDaoDelete.class);
 		
 		select.addPostAction(enforceLChanged);

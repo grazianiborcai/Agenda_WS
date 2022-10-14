@@ -46,12 +46,12 @@ public final class PersonNodePerbioUpsertdel extends DeciTreeTemplateWrite<Perso
 	@Override protected List<ActionStd<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
 		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> enforcePerbioKe = new ActionStdCommom<PersonInfo>(option, PersonVisiEnforcePerbioKey.class);
+		ActionStd<PersonInfo> enforcePerbioKey = new ActionStdCommom<PersonInfo>(option, PersonVisiEnforcePerbioKey.class);
 		ActionLazy<PersonInfo> perbioUpsertdel = new ActionLazyCommom<PersonInfo>(option, PersonVisiPerbioUpsertdel.class);
 		
-		enforcePerbioKe.addPostAction(perbioUpsertdel);
+		enforcePerbioKey.addPostAction(perbioUpsertdel);
 		
-		actions.add(enforcePerbioKe);	
+		actions.add(enforcePerbioKey);	
 		return actions;
 	}
 	
