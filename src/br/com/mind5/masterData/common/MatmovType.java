@@ -4,7 +4,8 @@ import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
 public enum MatmovType {
-	INCOME('I', 1), OUTCOME('O', -1);
+	INCOME('I', 1), 
+	OUTCOME('O', -1);
 	
 	
 	private char codMatmovType;

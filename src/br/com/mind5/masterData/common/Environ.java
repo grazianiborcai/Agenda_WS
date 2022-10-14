@@ -1,7 +1,8 @@
 package br.com.mind5.masterData.common;
 
 public enum Environ {
-	PRODUCTIVE("PRODUCTIVE"), SANDBOX("SANDBOX");
+	PRODUCTIVE("PRODUCTIVE"), 
+	SANDBOX("SANDBOX");
 	
 	private final String codEnviron;
 	
