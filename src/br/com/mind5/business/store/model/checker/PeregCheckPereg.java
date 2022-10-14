@@ -7,9 +7,9 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
 
-public final class PeregCheckPerson extends ModelCheckerTemplateForward<StoreInfo, PeregInfo> {
+public final class PeregCheckPereg extends ModelCheckerTemplateForward<StoreInfo, PeregInfo> {
 	
-	public PeregCheckPerson(ModelCheckerOption option) {
+	public PeregCheckPereg(ModelCheckerOption option) {
 		super(option);
 	}
 

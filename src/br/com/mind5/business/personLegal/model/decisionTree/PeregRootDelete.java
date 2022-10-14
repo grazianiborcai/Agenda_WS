@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.personLegal.info.PeregInfo;
-import br.com.mind5.business.personLegal.model.action.PeregVisiPersonDelete;
+import br.com.mind5.business.personLegal.model.action.PeregVisiDaoDelete;
 import br.com.mind5.business.personLegal.model.action.PeregVisiDaoUpdate;
 import br.com.mind5.business.personLegal.model.action.PeregVisiEnforceLChanged;
 import br.com.mind5.business.personLegal.model.action.PeregVisiMergeToDelete;
 import br.com.mind5.business.personLegal.model.action.PeregVisiMergeUsername;
 import br.com.mind5.business.personLegal.model.action.PeregVisiNodeAddressDelete;
 import br.com.mind5.business.personLegal.model.action.PeregVisiNodePhoneDelete;
+import br.com.mind5.business.personLegal.model.action.PeregVisiPersonDelete;
 import br.com.mind5.business.personLegal.model.checker.PeregCheckDelete;
 import br.com.mind5.business.personLegal.model.checker.PeregCheckExist;
 import br.com.mind5.business.personLegal.model.checker.PeregCheckLangu;
@@ -81,6 +82,7 @@ public final class PeregRootDelete extends DeciTreeTemplateWrite<PeregInfo> {
 		ActionLazy<PeregInfo> deleteAddress = new ActionLazyCommom<PeregInfo>(option, PeregVisiNodeAddressDelete.class);
 		ActionLazy<PeregInfo> deletePhone = new ActionLazyCommom<PeregInfo>(option, PeregVisiNodePhoneDelete.class);
 		ActionLazy<PeregInfo> deletePerson = new ActionLazyCommom<PeregInfo>(option, PeregVisiPersonDelete.class);
+		ActionLazy<PeregInfo> deletePereg = new ActionLazyCommom<PeregInfo>(option, PeregVisiDaoDelete.class);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
@@ -88,6 +90,7 @@ public final class PeregRootDelete extends DeciTreeTemplateWrite<PeregInfo> {
 		update.addPostAction(deleteAddress);
 		update.addPostAction(deletePhone);
 		update.addPostAction(deletePerson);
+		update.addPostAction(deletePereg);
 		
 		actions.add(mergeToDelete);		
 		return actions;
