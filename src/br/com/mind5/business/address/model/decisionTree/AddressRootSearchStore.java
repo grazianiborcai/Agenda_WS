@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.action.AddressVisiEnforceLegalPersonKey;
-import br.com.mind5.business.address.model.action.AddressVisiRootSearch;
+import br.com.mind5.business.address.model.action.AddressVisiMergeAddarchStore;
+import br.com.mind5.business.address.model.action.AddressVisiRootSelect;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -16,9 +16,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class AddressRootSearchLegalPerson extends DeciTreeTemplateWrite<AddressInfo> {
+public final class AddressRootSearchStore extends DeciTreeTemplateWrite<AddressInfo> {
 	
-	public AddressRootSearchLegalPerson(DeciTreeOption<AddressInfo> option) {
+	public AddressRootSearchStore(DeciTreeOption<AddressInfo> option) {
 		super(option);
 	}
 	
@@ -39,12 +39,12 @@ public final class AddressRootSearchLegalPerson extends DeciTreeTemplateWrite<Ad
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<AddressInfo> enforceLegalPersonKey = new ActionStdCommom<AddressInfo>(option, AddressVisiEnforceLegalPersonKey.class);		
-		ActionLazy<AddressInfo> search = new  ActionLazyCommom<AddressInfo>(option, AddressVisiRootSearch.class);
+		ActionStd<AddressInfo> mergeAddarch = new ActionStdCommom<AddressInfo>(option, AddressVisiMergeAddarchStore.class);		
+		ActionLazy<AddressInfo> select = new  ActionLazyCommom<AddressInfo>(option, AddressVisiRootSelect.class);
 		
-		enforceLegalPersonKey.addPostAction(search);
+		mergeAddarch.addPostAction(select);
 		
-		actions.add(enforceLegalPersonKey);		
+		actions.add(mergeAddarch);		
 		return actions;
 	}
 }
