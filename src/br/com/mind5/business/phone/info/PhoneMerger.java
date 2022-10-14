@@ -6,8 +6,8 @@ import br.com.mind5.business.phoneDefault.info.PhonaultInfo;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.form.formPhone.info.FormoneInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.countryPhone.info.CountroneInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
@@ -31,6 +31,45 @@ public final class PhoneMerger {
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new PhoneMergerVisiPhonarch());
+		InfoMerger<PhoneInfo, PhonarchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<PhoneInfo> mergeWithPhonarchPereg(List<PhoneInfo> baseInfos, List<PhonarchInfo> selectedInfos) {
+		InfoMergerBuilder<PhoneInfo, PhonarchInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PhoneMergerVisiPhonarchPereg());
+		InfoMerger<PhoneInfo, PhonarchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<PhoneInfo> mergeWithPhonarchStore(List<PhoneInfo> baseInfos, List<PhonarchInfo> selectedInfos) {
+		InfoMergerBuilder<PhoneInfo, PhonarchInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PhoneMergerVisiPhonarchStore());
+		InfoMerger<PhoneInfo, PhonarchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<PhoneInfo> mergeWithPhonarchUser(List<PhoneInfo> baseInfos, List<PhonarchInfo> selectedInfos) {
+		InfoMergerBuilder<PhoneInfo, PhonarchInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PhoneMergerVisiPhonarchUser());
 		InfoMerger<PhoneInfo, PhonarchInfo> merger = builder.build();		
 	
 		return merger.merge();

@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.info.PhoneMerger;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
-import br.com.mind5.business.phoneSearch.model.decisionTree.PhonarchRootSelectUser;
+import br.com.mind5.business.phoneSearch.model.decisionTree.PhonarchRootSelectPereg;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,13 +19,13 @@ public final class PhoneVisiMergePhonarchPereg extends ActionVisitorTemplateMerg
 	
 	
 	@Override protected Class<? extends DeciTree<PhonarchInfo>> getTreeClassHook() {
-		return PhonarchRootSelectUser.class;
+		return PhonarchRootSelectPereg.class;
 	}
 	
 	
 	
 	@Override protected List<PhoneInfo> mergeHook(List<PhoneInfo> baseInfos, List<PhonarchInfo> selectedInfos) {	
-		return PhoneMerger.mergeWithPhonarch(baseInfos, selectedInfos);
+		return PhoneMerger.mergeWithPhonarchPereg(baseInfos, selectedInfos);
 	}
 	
 	

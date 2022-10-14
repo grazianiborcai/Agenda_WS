@@ -25,7 +25,7 @@ public final class PhoneVisiMergePhonarchStore extends ActionVisitorTemplateMerg
 	
 	
 	@Override protected List<PhoneInfo> mergeHook(List<PhoneInfo> baseInfos, List<PhonarchInfo> selectedInfos) {	
-		return PhoneMerger.mergeWithPhonarch(baseInfos, selectedInfos);
+		return PhoneMerger.mergeWithPhonarchStore(baseInfos, selectedInfos);
 	}
 	
 	
