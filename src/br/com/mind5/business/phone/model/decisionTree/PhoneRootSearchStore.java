@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.business.phone.model.action.PhoneVisiMergePhonarchLegalPerson;
+import br.com.mind5.business.phone.model.action.PhoneVisiMergePhonarchStore;
 import br.com.mind5.business.phone.model.action.PhoneVisiRootSelect;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -16,9 +16,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class PhoneRootSearchLegalPerson extends DeciTreeTemplateWrite<PhoneInfo> {
+public final class PhoneRootSearchStore extends DeciTreeTemplateWrite<PhoneInfo> {
 	
-	public PhoneRootSearchLegalPerson(DeciTreeOption<PhoneInfo> option) {
+	public PhoneRootSearchStore(DeciTreeOption<PhoneInfo> option) {
 		super(option);
 	}
 	
@@ -39,7 +39,7 @@ public final class PhoneRootSearchLegalPerson extends DeciTreeTemplateWrite<Phon
 	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<PhoneInfo> mergePhonarch = new ActionStdCommom<PhoneInfo>(option, PhoneVisiMergePhonarchLegalPerson.class);	
+		ActionStd<PhoneInfo> mergePhonarch = new ActionStdCommom<PhoneInfo>(option, PhoneVisiMergePhonarchStore.class);	
 		ActionLazy<PhoneInfo> select = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiRootSelect.class);
 		
 		mergePhonarch.addPostAction(select);		
