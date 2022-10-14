@@ -1,7 +1,5 @@
 package br.com.mind5.security.user.info;
 
-import java.util.ArrayList;
-
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
@@ -17,13 +15,10 @@ final class UserCopyStore extends InfoCopierTemplate<UserInfo, StoreInfo> {
 		UserInfo result = new UserInfo();
 		
 		result.codOwner = source.codOwner;
-		result.codUser = source.codUser;
+		result.codUser = source.codUser;		
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
-		result.phones = source.phones;
-		
-		result.addresses = new ArrayList<>();
-		result.addresses.add(source.addressData);		
+		result.personData = source.userPersonData;
 		
 		return result;
 	}

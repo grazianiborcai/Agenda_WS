@@ -17,7 +17,7 @@ public final class UserCheckInsertStore extends ModelCheckerTemplateSimple<UserI
 	
 	@Override protected boolean checkHook(UserInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner    <= 0 	||
-			 recordInfo.codPerson   <= 0  	||
+			 recordInfo.personData  == null ||
 			 recordInfo.codLanguage == null	||
 			 recordInfo.username 	== null		)
 			

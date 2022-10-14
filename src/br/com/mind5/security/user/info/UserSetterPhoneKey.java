@@ -13,6 +13,7 @@ public final class UserSetterPhoneKey extends InfoSetterTemplate<UserInfo> {
 			eachPhone.username = recordInfo.username;
 			eachPhone.codLanguage = recordInfo.codLanguage;
 			
+			eachPhone.codLegalPerson = DefaultValue.number();
 			eachPhone.codCustomer = DefaultValue.number();
 			eachPhone.codStore = DefaultValue.number();
 			eachPhone.codEmployee = DefaultValue.number();
