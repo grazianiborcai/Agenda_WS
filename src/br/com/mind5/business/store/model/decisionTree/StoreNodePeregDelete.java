@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.StoreVisiPeregDelete;
-import br.com.mind5.business.store.model.checker.PeregCheckPerson;
+import br.com.mind5.business.store.model.checker.PeregCheckPereg;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
@@ -32,7 +32,7 @@ public final class StoreNodePeregDelete extends DeciTreeTemplateWrite<StoreInfo>
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new PeregCheckPerson(checkerOption);
+		checker = new PeregCheckPereg(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueue<>(queue);

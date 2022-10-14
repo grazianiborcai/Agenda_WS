@@ -19,6 +19,7 @@ final class StoreMergerVisiUser extends InfoMergerVisitorTemplate<StoreInfo, Use
 		List<StoreInfo> results = new ArrayList<>();
 		
 		baseInfo.codUser = selectedInfo.codUser;
+		baseInfo.userPersonData = selectedInfo.personData;
 		
 		results.add(baseInfo);
 		return results;

@@ -20,7 +20,7 @@ import br.com.mind5.business.store.model.checker.StoreCheckHasAddress;
 import br.com.mind5.business.store.model.checker.StoreCheckLangu;
 import br.com.mind5.business.store.model.checker.StoreCheckOwner;
 import br.com.mind5.business.store.model.checker.StoreCheckTimezone;
-import br.com.mind5.business.store.model.checker.StoreCheckWrite;
+import br.com.mind5.business.store.model.checker.StoreCheckInsert;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -47,7 +47,7 @@ public final class StoreRootInsert extends DeciTreeTemplateWrite<StoreInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new StoreCheckWrite(checkerOption);
+		checker = new StoreCheckInsert(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -96,8 +96,8 @@ public final class StoreRootInsert extends DeciTreeTemplateWrite<StoreInfo> {
 		//TODO: O que fazer se o CPF/e-mail ja tiver associado a um customer/owner/store manager ?
 		ActionStd<StoreInfo> insertStore = new StoreNodeInsert(option).toAction();
 		ActionLazy<StoreInfo> insertComp = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeCompInsert.class);
-		ActionLazy<StoreInfo> insertUser = new ActionLazyCommom<StoreInfo>(option, StoreVisiUserInsert.class);
 		ActionLazy<StoreInfo> insertPereg = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodePeregInsert.class);
+		ActionLazy<StoreInfo> insertUser = new ActionLazyCommom<StoreInfo>(option, StoreVisiUserInsert.class);
 		ActionLazy<StoreInfo> snapshot = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeSnapshot.class);
 		ActionLazy<StoreInfo> upsertAddress = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeAddressUpsert.class);		
 		ActionLazy<StoreInfo> insertPhone = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodePhoneInsert.class);
@@ -108,9 +108,9 @@ public final class StoreRootInsert extends DeciTreeTemplateWrite<StoreInfo> {
 		ActionLazy<StoreInfo> selectStore = new ActionLazyCommom<StoreInfo>(option, StoreVisiRootSelect.class);	
 		
 		insertStore.addPostAction(insertComp);
-		insertComp.addPostAction(insertUser);
-		insertUser.addPostAction(insertPereg);
-		insertPereg.addPostAction(snapshot);
+		insertComp.addPostAction(insertPereg);		
+		insertPereg.addPostAction(insertUser);		
+		insertUser.addPostAction(snapshot);
 		snapshot.addPostAction(upsertAddress);			
 		snapshot.addPostAction(insertPhone);
 		snapshot.addPostAction(insertStorext);

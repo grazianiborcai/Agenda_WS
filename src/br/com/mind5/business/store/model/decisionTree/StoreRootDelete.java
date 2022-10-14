@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.StoreVisiNodeDeleteCascade;
 import br.com.mind5.business.store.model.action.StoreVisiDaoUpdate;
 import br.com.mind5.business.store.model.action.StoreVisiEnforceLChanged;
 import br.com.mind5.business.store.model.action.StoreVisiMergeToDelete;
 import br.com.mind5.business.store.model.action.StoreVisiMergeUsername;
+import br.com.mind5.business.store.model.action.StoreVisiNodeDeleteCascade;
 import br.com.mind5.business.store.model.checker.StoreCheckDelete;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.business.store.model.checker.StoreCheckLangu;

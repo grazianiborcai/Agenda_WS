@@ -42,7 +42,7 @@ public final class StoreNodeDeleteCascade extends DeciTreeTemplateWrite<StoreInf
 		ActionStd<StoreInfo> deleteMatore = new StoreNodeMatoreDelete(option).toAction();
 		ActionStd<StoreInfo> deleteAddress = new StoreNodeAddressDelete(option).toAction();
 		ActionStd<StoreInfo> deletePhone = new StoreNodePhoneDelete(option).toAction();
-		ActionStd<StoreInfo> deletePerson = new StoreNodePeregDelete(option).toAction();
+		ActionStd<StoreInfo> deletePereg = new StoreNodePeregDelete(option).toAction();
 		ActionStd<StoreInfo> deleteCompany = new StoreNodeCompDelete(option).toAction();
 		ActionStd<StoreInfo> deleteUser = new StoreNodeUserDelete(option).toAction();
 		ActionStd<StoreInfo> deleteStore = new ActionStdCommom<StoreInfo>(option, StoreVisiDaoDelete.class);
@@ -53,7 +53,7 @@ public final class StoreNodeDeleteCascade extends DeciTreeTemplateWrite<StoreInf
 		actions.add(deleteMatore);	
 		actions.add(deleteAddress);	
 		actions.add(deletePhone);	
-		actions.add(deletePerson);	
+		actions.add(deletePereg);	
 		actions.add(deleteCompany);	
 		actions.add(deleteUser);	
 		actions.add(deleteStore);			

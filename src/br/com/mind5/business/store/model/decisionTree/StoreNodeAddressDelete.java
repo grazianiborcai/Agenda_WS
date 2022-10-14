@@ -5,8 +5,11 @@ import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.StoreVisiAddressDelete;
-import br.com.mind5.business.store.model.checker.StoreCheckAddress;
+import br.com.mind5.business.store.model.action.StoreVisiMergeAddress;
+import br.com.mind5.business.store.model.checker.StoreCheckAddarch;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
 import br.com.mind5.model.checker.ModelChecker;
@@ -32,7 +35,7 @@ public final class StoreNodeAddressDelete extends DeciTreeTemplateWrite<StoreInf
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new StoreCheckAddress(checkerOption);
+		checker = new StoreCheckAddarch(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -43,9 +46,12 @@ public final class StoreNodeAddressDelete extends DeciTreeTemplateWrite<StoreInf
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> deleteAddress = new ActionStdCommom<StoreInfo>(option, StoreVisiAddressDelete.class);
+		ActionStd<StoreInfo> mergeAddress = new ActionStdCommom<StoreInfo>(option, StoreVisiMergeAddress.class);
+		ActionLazy<StoreInfo> deleteAddress = new ActionLazyCommom<StoreInfo>(option, StoreVisiAddressDelete.class);
 		
-		actions.add(deleteAddress);		
+		mergeAddress.addPostAction(deleteAddress);
+		
+		actions.add(mergeAddress);		
 		return actions;
 	}
 	

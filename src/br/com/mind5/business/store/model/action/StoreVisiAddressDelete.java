@@ -2,6 +2,7 @@ package br.com.mind5.business.store.model.action;
 
 import java.util.List;
 
+import br.com.mind5.business.address.info.AddressCopier;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.AddressRootDelete;
 import br.com.mind5.business.store.info.StoreInfo;
@@ -19,6 +20,12 @@ public final class StoreVisiAddressDelete extends ActionVisitorTemplateAction<St
 	
 	@Override protected Class<? extends DeciTree<AddressInfo>> getTreeClassHook() {
 		return AddressRootDelete.class;
+	}
+	
+	
+	
+	@Override protected List<AddressInfo> toActionClassHook(List<StoreInfo> recordInfos) {		
+		return AddressCopier.copyFromStore(recordInfos);
 	}
 	
 	
