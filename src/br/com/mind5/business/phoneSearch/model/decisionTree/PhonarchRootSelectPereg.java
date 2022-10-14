@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
-import br.com.mind5.business.phoneSearch.model.action.PhonarchVisiEnforceLegalPersonKey;
+import br.com.mind5.business.phoneSearch.model.action.PhonarchVisiEnforcePeregKey;
 import br.com.mind5.business.phoneSearch.model.action.PhonarchVisiRootSelect;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -16,9 +16,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class PhonarchRootSelectLegalPerson extends DeciTreeTemplateWrite<PhonarchInfo> {
+public final class PhonarchRootSelectPereg extends DeciTreeTemplateWrite<PhonarchInfo> {
 	
-	public PhonarchRootSelectLegalPerson(DeciTreeOption<PhonarchInfo> option) {
+	public PhonarchRootSelectPereg(DeciTreeOption<PhonarchInfo> option) {
 		super(option);
 	}
 	
@@ -39,12 +39,12 @@ public final class PhonarchRootSelectLegalPerson extends DeciTreeTemplateWrite<P
 	@Override protected List<ActionStd<PhonarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonarchInfo> option) {
 		List<ActionStd<PhonarchInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhonarchInfo> enforceLegalPersonKey = new ActionStdCommom<PhonarchInfo>(option, PhonarchVisiEnforceLegalPersonKey.class);
+		ActionStd<PhonarchInfo> enforcePeregKey = new ActionStdCommom<PhonarchInfo>(option, PhonarchVisiEnforcePeregKey.class);
 		ActionLazy<PhonarchInfo> select = new ActionLazyCommom<PhonarchInfo>(option, PhonarchVisiRootSelect.class);
 		
-		enforceLegalPersonKey.addPostAction(select);
+		enforcePeregKey.addPostAction(select);
 		
-		actions.add(enforceLegalPersonKey);		
+		actions.add(enforcePeregKey);		
 		return actions;
 	}
 }

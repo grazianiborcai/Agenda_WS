@@ -2,7 +2,7 @@ package br.com.mind5.business.phoneSearch.info;
 
 import br.com.mind5.info.InfoSetterTemplate;
 
-public final class PhonarchSetterLegalPersonKey extends InfoSetterTemplate<PhonarchInfo> {
+public final class PhonarchSetterPeregKey extends InfoSetterTemplate<PhonarchInfo> {
 	
 	@Override protected PhonarchInfo setAttrHook(PhonarchInfo recordInfo) {
 		PhonarchInfo result = new PhonarchInfo();
