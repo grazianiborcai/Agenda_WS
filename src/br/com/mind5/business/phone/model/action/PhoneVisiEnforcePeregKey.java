@@ -1,14 +1,14 @@
 package br.com.mind5.business.phone.model.action;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.business.phone.info.PhoneSetterLegalPersonKey;
+import br.com.mind5.business.phone.info.PhoneSetterPeregKey;
 import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PhoneVisiEnforceLegalPersonKey extends ActionVisitorTemplateEnforce<PhoneInfo> {
+public final class PhoneVisiEnforcePeregKey extends ActionVisitorTemplateEnforce<PhoneInfo> {
 	
-	public PhoneVisiEnforceLegalPersonKey(DeciTreeOption<PhoneInfo> option) {
+	public PhoneVisiEnforcePeregKey(DeciTreeOption<PhoneInfo> option) {
 		super(option);
 	}
 	
@@ -16,7 +16,7 @@ public final class PhoneVisiEnforceLegalPersonKey extends ActionVisitorTemplateE
 	
 	
 	@Override protected PhoneInfo enforceHook(PhoneInfo recordInfo) {
-		InfoSetter<PhoneInfo> attrSetter = new PhoneSetterLegalPersonKey();
+		InfoSetter<PhoneInfo> attrSetter = new PhoneSetterPeregKey();
 		return attrSetter.setAttr(recordInfo);
 	}
 }

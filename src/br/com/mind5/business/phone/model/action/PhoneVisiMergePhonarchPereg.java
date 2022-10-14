@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PhoneVisiMergePhonarchLegalPerson extends ActionVisitorTemplateMerge<PhoneInfo, PhonarchInfo> {
+public final class PhoneVisiMergePhonarchPereg extends ActionVisitorTemplateMerge<PhoneInfo, PhonarchInfo> {
 	
-	public PhoneVisiMergePhonarchLegalPerson(DeciTreeOption<PhoneInfo> option) {
+	public PhoneVisiMergePhonarchPereg(DeciTreeOption<PhoneInfo> option) {
 		super(option, PhonarchInfo.class);
 	}
 	
