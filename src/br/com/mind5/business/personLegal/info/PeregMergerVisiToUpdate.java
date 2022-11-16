@@ -22,7 +22,7 @@ final class PeregMergerVisiToUpdate extends InfoMergerVisitorTemplate<PeregInfo,
 		baseInfo.createdOn = selectedInfo.createdOn;
 		baseInfo.createdBy = selectedInfo.createdBy;
 		
-		results.add(selectedInfo);
+		results.add(baseInfo);
 		return results;
 	}
 }
