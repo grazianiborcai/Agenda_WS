@@ -191,6 +191,7 @@ public final class SystemCode {
 	public static final int DISCOUNT_STRATEGY_MANDATORY_FIELD_EMPTY 	= 11681;
 	public static final int DISCOUNT_STRATEGY_ALREADY_EXIST				= 11682;
 	public static final int DISCOUNT_STRATEGY_NOT_FOUND					= 11683;
+	public static final int MAT_GROUP_OWNER								= 11684;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;

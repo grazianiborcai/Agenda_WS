@@ -38,6 +38,8 @@ import br.com.mind5.masterData.materialCategorySearch.info.MategarchInfo;
 import br.com.mind5.masterData.materialCategorySearch.model.MategarchModelSelect;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.masterData.materialGroup.model.MatoupModelSearch;
+import br.com.mind5.masterData.materialGroupOwner.info.MatoupowInfo;
+import br.com.mind5.masterData.materialGroupOwner.model.MatoupowModelSearch;
 import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
 import br.com.mind5.masterData.materialSubgroup.model.MatubupModelSearch;
 import br.com.mind5.masterData.materialTypeSearch.info.MatyparchInfo;
@@ -84,6 +86,7 @@ public final class MasterDataResource {
 	private static final String SELECT_MATERIAL_TYPE = "/selectMatType";
 	private static final String SELECT_MATERIAL_CATEG = "/selectMatCategory";
 	private static final String SELECT_MATERIAL_GROUP = "/selectMatGroup";
+	private static final String SELECT_MATERIAL_GROUP_OWNER = "/selectMatGroupOwner";
 	private static final String SELECT_MATERIAL_SUBGROUP = "/selectMatSubgroup";	
 	private static final String SELECT_BUSINESS_AREA = "/selectBusinessArea";
 	private static final String SELECT_CURRENCY = "/selectCurrency";
@@ -208,6 +211,28 @@ public final class MasterDataResource {
 		recordInfo.codBusiness = codBusiness;
 		
 		Model model = new MatoupModelSearch(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_MATERIAL_GROUP_OWNER)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectMatoupow(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
+			                       @HeaderParam("codGroup")    @DefaultValue("-1") int codGroup,
+								   @HeaderParam("codBusiness") @DefaultValue("-1") int codBusiness){
+		
+		MatoupowInfo recordInfo = new MatoupowInfo();
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.codGroup = codGroup;
+		recordInfo.codBusiness = codBusiness;
+		
+		Model model = new MatoupowModelSearch(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();
