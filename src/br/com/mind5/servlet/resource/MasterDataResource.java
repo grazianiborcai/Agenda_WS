@@ -39,7 +39,7 @@ import br.com.mind5.masterData.materialCategorySearch.model.MategarchModelSelect
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.masterData.materialGroup.model.MatoupModelSearch;
 import br.com.mind5.masterData.materialGroupOwner.info.MatoupowInfo;
-import br.com.mind5.masterData.materialGroupOwner.model.MatoupowModelSearchBusiness;
+import br.com.mind5.masterData.materialGroupOwner.model.MatoupowModelSearch;
 import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
 import br.com.mind5.masterData.materialSubgroup.model.MatubupModelSearch;
 import br.com.mind5.masterData.materialTypeSearch.info.MatyparchInfo;
@@ -236,7 +236,7 @@ public final class MasterDataResource {
 		recordInfo.codBusiness = codBusiness;
 		recordInfo.username = username;
 		
-		Model model = new MatoupowModelSearchBusiness(recordInfo);
+		Model model = new MatoupowModelSearch(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();

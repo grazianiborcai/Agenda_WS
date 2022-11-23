@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.materialGroupOwner.info.MatoupowInfo;
 import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiMergeOwnelis;
 import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiMergeMatoup;
-import br.com.mind5.masterData.materialGroupOwner.model.checker.MatoupowCheckReadBusiness;
+import br.com.mind5.masterData.materialGroupOwner.model.checker.MatoupowCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -17,9 +17,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class MatoupowRootSearchBusiness extends DeciTreeTemplateRead<MatoupowInfo> {
+public final class MatoupowRootSearch extends DeciTreeTemplateRead<MatoupowInfo> {
 	
-	public MatoupowRootSearchBusiness(DeciTreeOption<MatoupowInfo> option) {
+	public MatoupowRootSearch(DeciTreeOption<MatoupowInfo> option) {
 		super(option);
 	}
 	
@@ -34,7 +34,7 @@ public final class MatoupowRootSearchBusiness extends DeciTreeTemplateRead<Matou
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new MatoupowCheckReadBusiness(checkerOption);
+		checker = new MatoupowCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);

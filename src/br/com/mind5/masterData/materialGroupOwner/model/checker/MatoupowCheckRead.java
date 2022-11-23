@@ -9,9 +9,9 @@ import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class MatoupowCheckReadBusiness extends ModelCheckerTemplateSimple<MatoupowInfo> {
+public final class MatoupowCheckRead extends ModelCheckerTemplateSimple<MatoupowInfo> {
 
-	public MatoupowCheckReadBusiness(ModelCheckerOption option) {
+	public MatoupowCheckRead(ModelCheckerOption option) {
 		super(option);
 	}
 	
