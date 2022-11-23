@@ -39,7 +39,7 @@ import br.com.mind5.masterData.materialCategorySearch.model.MategarchModelSelect
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.masterData.materialGroup.model.MatoupModelSearch;
 import br.com.mind5.masterData.materialGroupOwner.info.MatoupowInfo;
-import br.com.mind5.masterData.materialGroupOwner.model.MatoupowModelSearch;
+import br.com.mind5.masterData.materialGroupOwner.model.MatoupowModelSearchBusiness;
 import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
 import br.com.mind5.masterData.materialSubgroup.model.MatubupModelSearch;
 import br.com.mind5.masterData.materialTypeSearch.info.MatyparchInfo;
@@ -223,16 +223,20 @@ public final class MasterDataResource {
 	@GET
 	@Path(SELECT_MATERIAL_GROUP_OWNER)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectMatoupow(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
-			                       @HeaderParam("codGroup")    @DefaultValue("-1") int codGroup,
-								   @HeaderParam("codBusiness") @DefaultValue("-1") int codBusiness){
+	public Response selectMatoupow(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner,
+								   @HeaderParam("codLanguage") 	  @DefaultValue("EN") String codLanguage,
+			                       @HeaderParam("codGroup")    	  @DefaultValue("-1") int codGroup,
+								   @HeaderParam("codBusiness") 	  @DefaultValue("-1") int codBusiness,
+								   @HeaderParam("TOKEN_USERNAME") String username){
 		
 		MatoupowInfo recordInfo = new MatoupowInfo();
+		recordInfo.codOwner = codOwner;
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.codGroup = codGroup;
 		recordInfo.codBusiness = codBusiness;
+		recordInfo.username = username;
 		
-		Model model = new MatoupowModelSearch(recordInfo);
+		Model model = new MatoupowModelSearchBusiness(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();

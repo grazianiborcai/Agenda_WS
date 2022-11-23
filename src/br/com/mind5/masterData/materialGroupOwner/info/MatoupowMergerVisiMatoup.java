@@ -3,6 +3,7 @@ package br.com.mind5.masterData.materialGroupOwner.info;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.info.InfoMergerCardinality;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 
@@ -25,5 +26,11 @@ final class MatoupowMergerVisiMatoup extends InfoMergerVisitorTemplate<MatoupowI
 		
 		results.add(baseInfo);
 		return results;
+	}
+	
+	
+	
+	@Override protected InfoMergerCardinality getCardinalityHook() {
+		return InfoMergerCardinality.ONE_TO_MANY;
 	}
 }

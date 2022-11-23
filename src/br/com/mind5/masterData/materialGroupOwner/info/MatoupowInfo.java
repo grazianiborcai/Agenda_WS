@@ -14,6 +14,7 @@ public class MatoupowInfo extends InfoRecord implements Cloneable {
 	public int codBusiness;
 	public String txtBusiness;
 	public FimgysInfo fimgysData;
+	public String username;
 	
 	
 	public MatoupowInfo() {
