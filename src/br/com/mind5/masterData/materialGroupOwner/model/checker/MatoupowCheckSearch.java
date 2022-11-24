@@ -9,9 +9,9 @@ import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class MatoupowCheckRead extends ModelCheckerTemplateSimple<MatoupowInfo> {
+public final class MatoupowCheckSearch extends ModelCheckerTemplateSimple<MatoupowInfo> {
 
-	public MatoupowCheckRead(ModelCheckerOption option) {
+	public MatoupowCheckSearch(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -19,9 +19,7 @@ public final class MatoupowCheckRead extends ModelCheckerTemplateSimple<Matoupow
 	
 	@Override protected boolean checkHook(MatoupowInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	||
-			 recordInfo.codGroup 	<= 0 	||
-			 recordInfo.codLanguage == null	||
-			 recordInfo.username 	== null)
+			 recordInfo.codLanguage == null		)
 			
 			return super.FAILED;
 		

@@ -64,6 +64,7 @@ public final class DaoDbTable {
 	public static final String MAT_CATEG_TABLE = "material_category";
 	public static final String MAT_CATEG_TEXT_TABLE = "material_category_text";
 	public static final String MAT_GROUP_TABLE = "material_group";
+	public static final String MAT_GROUP_OWNER_TABLE = "material_group_owner";
 	public static final String MAT_GROUP_TEXT_TABLE = "material_group_text";
 	public static final String MAT_MOV_TYPE_TABLE = "material_movement_type";
 	public static final String MAT_MOV_TYPE_TEXT_TABLE = "material_movement_type_text";

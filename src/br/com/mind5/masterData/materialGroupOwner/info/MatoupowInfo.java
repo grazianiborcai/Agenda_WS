@@ -1,5 +1,6 @@
 package br.com.mind5.masterData.materialGroupOwner.info;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.mind5.common.CloneUtil;
@@ -13,7 +14,17 @@ public class MatoupowInfo extends InfoRecord implements Cloneable {
 	public String txtGroup;
 	public int codBusiness;
 	public String txtBusiness;
+	public boolean isLocked;
+	public String rgbHex;
+	public int rgbDecRed;
+	public int rgbDecGreen;
+	public int rgbDecBlue;
 	public FimgysInfo fimgysData;
+	public String recordMode;
+	public LocalDateTime lastChanged;
+	public long lastChangedBy;
+	public LocalDateTime createdOn;
+	public long createdBy;
 	public String username;
 	
 	
@@ -23,6 +34,15 @@ public class MatoupowInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codGroup = DefaultValue.number();
 		codBusiness = DefaultValue.number();
+		isLocked = DefaultValue.boole();
+		fimgysData = DefaultValue.object();
+		recordMode = DefaultValue.recordMode();
+		lastChangedBy = DefaultValue.number();
+		createdBy = DefaultValue.number();
+		rgbHex = "FFFFFF";
+		rgbDecRed = 255;
+		rgbDecGreen = 255;
+		rgbDecBlue = 255;
 	}
 	
 	

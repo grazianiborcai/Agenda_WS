@@ -314,6 +314,10 @@ public final class DaoDbField {
 	public static final String COL_RAZAO_SOCIAL = "razao_social";
 	public static final String COL_RECORD_MODE = "record_mode";
 	public static final String COL_REFRESH_TOKEN = "refresh_token";
+	public static final String COL_RGB_HEX = "rgb_hex";
+	public static final String COL_RGB_DEC_RED = "rgb_dec_red";
+	public static final String COL_RGB_DEC_GREEN = "rgb_dec_green";
+	public static final String COL_RGB_DEC_BLUE = "rgb_dec_blue";
 	public static final String COL_SALT = "hash2";
 	public static final String COL_SCOPE = "scope";
 	public static final String COL_SECRET = "secret";

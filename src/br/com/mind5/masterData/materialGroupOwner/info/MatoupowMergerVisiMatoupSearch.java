@@ -7,10 +7,10 @@ import br.com.mind5.info.InfoMergerCardinality;
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 
-final class MatoupowMergerVisiMatoup extends InfoMergerVisitorTemplate<MatoupowInfo, MatoupInfo> {
+final class MatoupowMergerVisiMatoupSearch extends InfoMergerVisitorTemplate<MatoupowInfo, MatoupInfo> {
 
 	@Override public boolean shouldMerge(MatoupowInfo baseInfo, MatoupInfo selectedInfo) {
-		return (baseInfo.codGroup == selectedInfo.codGroup &&
+		return (baseInfo.codBusiness == selectedInfo.codBusiness &&
 				baseInfo.codLanguage.equals(selectedInfo.codLanguage));
 	}
 	
