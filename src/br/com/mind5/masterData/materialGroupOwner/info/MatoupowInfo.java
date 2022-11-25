@@ -39,10 +39,9 @@ public class MatoupowInfo extends InfoRecord implements Cloneable {
 		recordMode = DefaultValue.recordMode();
 		lastChangedBy = DefaultValue.number();
 		createdBy = DefaultValue.number();
-		rgbHex = "FFFFFF";
-		rgbDecRed = 255;
-		rgbDecGreen = 255;
-		rgbDecBlue = 255;
+		rgbDecRed = DefaultValue.number();
+		rgbDecGreen = DefaultValue.number();
+		rgbDecBlue = DefaultValue.number();
 	}
 	
 	
