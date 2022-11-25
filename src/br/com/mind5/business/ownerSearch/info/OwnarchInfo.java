@@ -7,6 +7,8 @@ import br.com.mind5.info.InfoRecord;
 
 public final class OwnarchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
+	public int codBusiness;
+	public String txtBusiness; 
 	public long codCompany;
 	public String name;
 	public String username;
@@ -18,6 +20,7 @@ public final class OwnarchInfo extends InfoRecord implements Cloneable {
 		super();
 		
 		codOwner = DefaultValue.number();
+		codBusiness = DefaultValue.number();
 		codCompany = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();	
 	}

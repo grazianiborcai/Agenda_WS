@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.ownerSearch.info.OwnarchInfo;
+import br.com.mind5.business.ownerSearch.model.action.OwnarchVisiMergeBusarea;
 import br.com.mind5.business.ownerSearch.model.action.OwnarchVisiMergeToSelect;
 import br.com.mind5.business.ownerSearch.model.checker.OwnarchCheckRead;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -43,6 +46,9 @@ public final class OwnarchRootSelect extends DeciTreeTemplateRead<OwnarchInfo> {
 		List<ActionStd<OwnarchInfo>> actions = new ArrayList<>();
 
 		ActionStd<OwnarchInfo> select = new ActionStdCommom<OwnarchInfo>(option, OwnarchVisiMergeToSelect.class);
+		ActionLazy<OwnarchInfo> mergeBusarea = new ActionLazyCommom<OwnarchInfo>(option, OwnarchVisiMergeBusarea.class);
+		
+		select.addPostAction(mergeBusarea);
 		
 		actions.add(select);
 		return actions;

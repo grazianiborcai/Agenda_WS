@@ -80,6 +80,7 @@ public final class OwnarchDaoSelectSingle extends DaoStmtTemplate<OwnarchInfo> {
 					dataInfo.recordMode = stmtResult.getString(OwnarchDaoDbTableColumn.COL_RECORD_MODE);
 					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, OwnarchDaoDbTableColumn.COL_COD_COMPANY);		
 					dataInfo.name = stmtResult.getString(OwnarchDaoDbTableColumn.COL_NAME);
+					dataInfo.codBusiness = DaoFormatter.sqlToInt(stmtResult, OwnarchDaoDbTableColumn.COL_COD_BUSINESS);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
