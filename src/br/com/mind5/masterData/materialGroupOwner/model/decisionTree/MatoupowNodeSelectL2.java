@@ -4,20 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.materialGroupOwner.info.MatoupowInfo;
-import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiEnforceRgbWrite;
-import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiMergeToSelect;
-import br.com.mind5.masterData.materialGroupOwner.model.checker.MatoupowCheckExist;
+import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiEnforceRgbWhite;
+import br.com.mind5.masterData.materialGroupOwner.model.checker.MatoupowCheckOwnarch;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class MatoupowNodeSelect extends DeciTreeTemplateRead<MatoupowInfo> {
+public final class MatoupowNodeSelectL2 extends DeciTreeTemplateWrite<MatoupowInfo> {
 	
-	public MatoupowNodeSelect(DeciTreeOption<MatoupowInfo> option) {
+	public MatoupowNodeSelectL2(DeciTreeOption<MatoupowInfo> option) {
 		super(option);
 	}
 	
@@ -26,13 +25,14 @@ public final class MatoupowNodeSelect extends DeciTreeTemplateRead<MatoupowInfo>
 	@Override protected ModelChecker<MatoupowInfo> buildCheckerHook(DeciTreeOption<MatoupowInfo> option) {
 		List<ModelChecker<MatoupowInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatoupowInfo> checker;
-		ModelCheckerOption checkerOption;	
+		ModelCheckerOption checkerOption;
+		
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new MatoupowCheckExist(checkerOption);
+		checker = new MatoupowCheckOwnarch(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -41,22 +41,11 @@ public final class MatoupowNodeSelect extends DeciTreeTemplateRead<MatoupowInfo>
 	
 	
 	@Override protected List<ActionStd<MatoupowInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoupowInfo> option) {
-		List<ActionStd<MatoupowInfo>> actions = new ArrayList<>();
-		
-		ActionStd<MatoupowInfo> mergeToSelect = new ActionStdCommom<MatoupowInfo>(option, MatoupowVisiMergeToSelect.class);
-		
-		actions.add(mergeToSelect);
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<MatoupowInfo>> buildActionsOnFailedHook(DeciTreeOption<MatoupowInfo> option) {
 		List<ActionStd<MatoupowInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<MatoupowInfo> enforceRgbWrite = new ActionStdCommom<MatoupowInfo>(option, MatoupowVisiEnforceRgbWrite.class);
+		ActionStd<MatoupowInfo> enforceRgbWhite = new ActionStdCommom<MatoupowInfo>(option, MatoupowVisiEnforceRgbWhite.class);
 		
-		actions.add(enforceRgbWrite);		
+		actions.add(enforceRgbWhite);		
 		return actions;
 	}
 }

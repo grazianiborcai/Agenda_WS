@@ -4,17 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.materialGroupOwner.info.MatoupowInfo;
-import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiEnforceCreatedBy;
-import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiEnforceCreatedOn;
-import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiEnforceLChanged;
-import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiEnforceLockedOff;
-import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiMergeMatoup;
-import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiMergeUsername;
-import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiNodeInsert;
-import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiNodeRgbL1;
+import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiMergeToUpdate;
+import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiNodeUpdate;
+import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiRootSelect;
 import br.com.mind5.masterData.materialGroupOwner.model.checker.MatoupowCheckExist;
 import br.com.mind5.masterData.materialGroupOwner.model.checker.MatoupowCheckLangu;
-import br.com.mind5.masterData.materialGroupOwner.model.checker.MatoupowCheckMatoup;
 import br.com.mind5.masterData.materialGroupOwner.model.checker.MatoupowCheckOwner;
 import br.com.mind5.masterData.materialGroupOwner.model.checker.MatoupowCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
@@ -27,9 +21,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class MatoupowRootInsert extends DeciTreeTemplateWrite<MatoupowInfo> {
+public final class MatoupowRootUpdate extends DeciTreeTemplateWrite<MatoupowInfo> {
 	
-	public MatoupowRootInsert(DeciTreeOption<MatoupowInfo> option) {
+	public MatoupowRootUpdate(DeciTreeOption<MatoupowInfo> option) {
 		super(option);
 	}
 	
@@ -65,13 +59,6 @@ public final class MatoupowRootInsert extends DeciTreeTemplateWrite<MatoupowInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new MatoupowCheckMatoup(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
 		checker = new MatoupowCheckExist(checkerOption);
 		queue.add(checker);
 		
@@ -83,24 +70,14 @@ public final class MatoupowRootInsert extends DeciTreeTemplateWrite<MatoupowInfo
 	@Override protected List<ActionStd<MatoupowInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoupowInfo> option) {
 		List<ActionStd<MatoupowInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<MatoupowInfo> mergeMatoup 		= new ActionStdCommom<MatoupowInfo>(option, MatoupowVisiMergeMatoup.class);
-		ActionLazy<MatoupowInfo> enforceLChanged 	= new ActionLazyCommom<MatoupowInfo>(option, MatoupowVisiEnforceLChanged.class);
-		ActionLazy<MatoupowInfo> enforceLChangedBy 	= new ActionLazyCommom<MatoupowInfo>(option, MatoupowVisiMergeUsername.class);
-		ActionLazy<MatoupowInfo> enforceCreatedOn 	= new ActionLazyCommom<MatoupowInfo>(option, MatoupowVisiEnforceCreatedOn.class);
-		ActionLazy<MatoupowInfo> enforceCreatedBy 	= new ActionLazyCommom<MatoupowInfo>(option, MatoupowVisiEnforceCreatedBy.class);
-		ActionLazy<MatoupowInfo> enforceLockedOff 	= new ActionLazyCommom<MatoupowInfo>(option, MatoupowVisiEnforceLockedOff.class);
-		ActionLazy<MatoupowInfo> nodeRgb 			= new ActionLazyCommom<MatoupowInfo>(option, MatoupowVisiNodeRgbL1.class);
-		ActionLazy<MatoupowInfo> nodeL1 			= new ActionLazyCommom<MatoupowInfo>(option, MatoupowVisiNodeInsert.class);
+		ActionStd<MatoupowInfo> mergeToUpdate	= new ActionStdCommom<MatoupowInfo>(option, MatoupowVisiMergeToUpdate.class);
+		ActionLazy<MatoupowInfo> nodeL1 		= new ActionLazyCommom<MatoupowInfo>(option, MatoupowVisiNodeUpdate.class);
+		ActionLazy<MatoupowInfo> select 		= new ActionLazyCommom<MatoupowInfo>(option, MatoupowVisiRootSelect.class);
 		
-		mergeMatoup.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(enforceLChangedBy);	
-		enforceLChangedBy.addPostAction(enforceCreatedOn);
-		enforceCreatedOn.addPostAction(enforceCreatedBy);
-		enforceCreatedBy.addPostAction(enforceLockedOff);
-		enforceLockedOff.addPostAction(nodeRgb);
-		nodeRgb.addPostAction(nodeL1);
+		mergeToUpdate.addPostAction(nodeL1);
+		nodeL1.addPostAction(select);
 		
-		actions.add(mergeMatoup);		
+		actions.add(mergeToUpdate);		
 		return actions;
 	}
 }

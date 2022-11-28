@@ -1,10 +1,14 @@
 package br.com.mind5.servlet.resource;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -39,7 +43,10 @@ import br.com.mind5.masterData.materialCategorySearch.model.MategarchModelSelect
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.masterData.materialGroup.model.MatoupModelSearch;
 import br.com.mind5.masterData.materialGroupOwner.info.MatoupowInfo;
+import br.com.mind5.masterData.materialGroupOwner.model.MatoupowModelActivate;
+import br.com.mind5.masterData.materialGroupOwner.model.MatoupowModelInactivate;
 import br.com.mind5.masterData.materialGroupOwner.model.MatoupowModelSearch;
+import br.com.mind5.masterData.materialGroupOwner.model.MatoupowModelUpsert;
 import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
 import br.com.mind5.masterData.materialSubgroup.model.MatubupModelSearch;
 import br.com.mind5.masterData.materialTypeSearch.info.MatyparchInfo;
@@ -86,7 +93,10 @@ public final class MasterDataResource {
 	private static final String SELECT_MATERIAL_TYPE = "/selectMatType";
 	private static final String SELECT_MATERIAL_CATEG = "/selectMatCategory";
 	private static final String SELECT_MATERIAL_GROUP = "/selectMatGroup";
+	private static final String ACTIVATE_MATERIAL_GROUP_OWNER = "/activateMatGroupOwner";
+	private static final String INACTIVATE_MATERIAL_GROUP_OWNER = "/inactivateMatGroupOwner";	
 	private static final String SELECT_MATERIAL_GROUP_OWNER = "/selectMatGroupOwner";
+	private static final String UPSERT_MATERIAL_GROUP_OWNER = "/upsertMatGroupOwner";
 	private static final String SELECT_MATERIAL_SUBGROUP = "/selectMatSubgroup";	
 	private static final String SELECT_BUSINESS_AREA = "/selectBusinessArea";
 	private static final String SELECT_CURRENCY = "/selectCurrency";
@@ -221,6 +231,58 @@ public final class MasterDataResource {
 	
 	
 	@GET
+	@Path(ACTIVATE_MATERIAL_GROUP_OWNER)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response activateMatoupow(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner,
+								     @HeaderParam("codGroup") 		@DefaultValue("-1") int codGroup, 
+								     @HeaderParam("TOKEN_USERNAME") String username,
+								     @HeaderParam("codLanguage") 	@DefaultValue("EN") String codLanguage) {
+
+
+		MatoupowInfo recordInfo = new MatoupowInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codGroup = codGroup;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		
+		Model model = new MatoupowModelActivate(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
+	@Path(INACTIVATE_MATERIAL_GROUP_OWNER)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response inactivateMatoupow(@HeaderParam("TOKEN_OWNER") 	  @DefaultValue("-1") long codOwner,
+								       @HeaderParam("codGroup") 	  @DefaultValue("-1") int codGroup, 
+								       @HeaderParam("TOKEN_USERNAME") String username,
+								       @HeaderParam("codLanguage") 	  @DefaultValue("EN") String codLanguage) {
+
+
+		MatoupowInfo recordInfo = new MatoupowInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codGroup = codGroup;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		
+		Model model = new MatoupowModelInactivate(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
 	@Path(SELECT_MATERIAL_GROUP_OWNER)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectMatoupow(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner,
@@ -239,6 +301,22 @@ public final class MasterDataResource {
 		Model model = new MatoupowModelSearch(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@POST
+	@Path(UPSERT_MATERIAL_GROUP_OWNER)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response upsertMatoupow(@Context HttpServletRequest request, String incomingData) {
+
+		Model model = new MatoupowModelUpsert(incomingData, request);
+		model.executeRequest();
+		Response result = model.getResponse();	
 		model.close();
 		
 		return result;

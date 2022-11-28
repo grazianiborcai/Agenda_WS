@@ -3,21 +3,21 @@ package br.com.mind5.masterData.materialGroupOwner.model.action;
 import java.util.List;
 
 import br.com.mind5.masterData.materialGroupOwner.info.MatoupowInfo;
-import br.com.mind5.masterData.materialGroupOwner.model.decisionTree.MatoupowNodeSelect;
+import br.com.mind5.masterData.materialGroupOwner.model.decisionTree.MatoupowNodeSelectL1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MatoupowVisiNodeSelect extends ActionVisitorTemplateAction<MatoupowInfo, MatoupowInfo> {
+public final class MatoupowVisiNodeSelectL1 extends ActionVisitorTemplateAction<MatoupowInfo, MatoupowInfo> {
 
-	public MatoupowVisiNodeSelect(DeciTreeOption<MatoupowInfo> option) {
+	public MatoupowVisiNodeSelectL1(DeciTreeOption<MatoupowInfo> option) {
 		super(option, MatoupowInfo.class, MatoupowInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<MatoupowInfo>> getTreeClassHook() {
-		return MatoupowNodeSelect.class;
+		return MatoupowNodeSelectL1.class;
 	}
 	
 	
