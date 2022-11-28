@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.masterData.materialGroupOwner.info.MatoupowInfo;
 import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiEnforceRgbHexHashtag;
+import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiEnforceRgbHexUpper;
 import br.com.mind5.masterData.materialGroupOwner.model.action.MatoupowVisiNodeRgbL2;
 import br.com.mind5.masterData.materialGroupOwner.model.checker.MatoupowCheckHasRbgHex;
 import br.com.mind5.model.action.ActionLazy;
@@ -45,10 +46,12 @@ public final class MatoupowNodeRgbL1 extends DeciTreeTemplateWrite<MatoupowInfo>
 	@Override protected List<ActionStd<MatoupowInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoupowInfo> option) {
 		List<ActionStd<MatoupowInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatoupowInfo> enforceRgbHexHashtag = new ActionStdCommom<MatoupowInfo>(option, MatoupowVisiEnforceRgbHexHashtag.class);
-		ActionLazy<MatoupowInfo> nodeL2 = new ActionLazyCommom<MatoupowInfo>(option, MatoupowVisiNodeRgbL2.class);
+		ActionStd<MatoupowInfo> enforceRgbHexHashtag 	= new ActionStdCommom<MatoupowInfo>(option, MatoupowVisiEnforceRgbHexHashtag.class);
+		ActionLazy<MatoupowInfo> enforceRgbHexUpper 	= new ActionLazyCommom<MatoupowInfo>(option, MatoupowVisiEnforceRgbHexUpper.class);
+		ActionLazy<MatoupowInfo> nodeL2 				= new ActionLazyCommom<MatoupowInfo>(option, MatoupowVisiNodeRgbL2.class);
 		
-		enforceRgbHexHashtag.addPostAction(nodeL2);
+		enforceRgbHexHashtag.addPostAction(enforceRgbHexUpper);
+		enforceRgbHexUpper.addPostAction(nodeL2);
 		
 		actions.add(enforceRgbHexHashtag);
 		return actions;
