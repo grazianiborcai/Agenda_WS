@@ -24,6 +24,15 @@
     	<cors configuration-source-ref="corsSource"/>
     	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
     </security:http>
+    
+  	<security:http create-session="stateless" pattern="/Signup/owner" use-expressions="true">
+    	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
+    	<security:anonymous enabled="true"/>   
+    	<security:http-basic />
+    	<csrf disabled="true"/>
+    	<cors configuration-source-ref="corsSource"/>
+    	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
+    </security:http>
 	
 	<security:http create-session="stateless" pattern="/**/Owner/listOwner" use-expressions="true">
     	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
