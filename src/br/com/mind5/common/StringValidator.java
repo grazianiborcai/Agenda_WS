@@ -11,7 +11,7 @@ public final class StringValidator {
 	
 	static private final String REGEX_CODE_NUMBER          	= "[0-9.\\/-]{1,}";
 	static private final String REGEX_EMAIL           		= "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-	static private final String REGEX_PERSON_NAME           = "[A-ZÁÃÂÉÊÍÎÓÔÔÚÛ]*[a-zA-zÁÃÂÉÊÍÎÓÔÔÚÛáãâéêíîóôõúû ']*";
+	static private final String REGEX_PERSON_NAME           = "[A-ZÁÃÂÉÊÍÎÓÔÔÚÛÇ]*[a-zA-zÁÃÂÉÊÍÎÓÔÔÚÛÇáãâéêíîóôõúûç ']*";
 	static private final String REGEX_UNSAFE_STRING_WWW     = "^(?!.*(?:w\\s*w\\s*w)).*$";
 	static private final String REGEX_UNSAFE_STRING_FTP     = "^(?!.*(?:f\\s*t\\s*p)).*$";
 	static private final String REGEX_UNSAFE_STRING_HTTP    = "^(?!.*(?:h\\s*t\\s*t\\s*p)).*$";
