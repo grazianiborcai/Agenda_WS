@@ -1,4 +1,4 @@
-package br.com.mind5.payment.systemPartnerSearch.dao;
+package br.com.mind5.payment.marketplacePartnerSearch.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,13 +13,13 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.payment.systemPartnerSearch.info.SysparchInfo;
+import br.com.mind5.payment.marketplacePartnerSearch.info.MktpararchInfo;
 
-public final class SysparchDaoSelectSingle extends DaoStmtTemplate<SysparchInfo> {
+public final class MktpararchDaoSelectSingle extends DaoStmtTemplate<MktpararchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_PARTNER_MARKETPLACE_TABLE;
 	
 	
-	public SysparchDaoSelectSingle(Connection conn, SysparchInfo recordInfo, String schemaName) {
+	public MktpararchDaoSelectSingle(Connection conn, MktpararchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -32,7 +32,7 @@ public final class SysparchDaoSelectSingle extends DaoStmtTemplate<SysparchInfo>
 	
 	
 	@Override protected String getLookupTableHook() {
-		return DaoDbTable.SYS_PAY_PARTNER_SEARCH_VIEW;
+		return DaoDbTable.PAY_PARTNER_MARKETPLACE_SEARCH_VIEW;
 	}	
 	
 	
@@ -43,32 +43,32 @@ public final class SysparchDaoSelectSingle extends DaoStmtTemplate<SysparchInfo>
 	
 	
 	
-	@Override protected String buildWhereClauseHook(String tableName, SysparchInfo recordInfo) {
+	@Override protected String buildWhereClauseHook(String tableName, MktpararchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new SysparchDaoWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new MktpararchDaoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
 	
 	
-	@Override protected DaoResultParser<SysparchInfo> getResultParserHook() {
-		return new DaoResultParser<SysparchInfo>() {
-			@Override public List<SysparchInfo> parseResult(SysparchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
-				List<SysparchInfo> finalResult = new ArrayList<>();
+	@Override protected DaoResultParser<MktpararchInfo> getResultParserHook() {
+		return new DaoResultParser<MktpararchInfo>() {
+			@Override public List<MktpararchInfo> parseResult(MktpararchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<MktpararchInfo> finalResult = new ArrayList<>();
 				
 				if (stmtResult.next() == false)				
 					return finalResult;
 				
 				do {
-					SysparchInfo dataInfo = new SysparchInfo();
+					MktpararchInfo dataInfo = new MktpararchInfo();
 					
-					dataInfo.idPayPartnerSystem = stmtResult.getString(SysparchDaoDbTableColumn.COL_ID_PAY_PARTNER_SYSTEM);
-					dataInfo.idPayPartnerApp = stmtResult.getString(SysparchDaoDbTableColumn.COL_ID_PAY_PARTNER_APP);
-					dataInfo.codPayPartner = stmtResult.getInt(SysparchDaoDbTableColumn.COL_COD_PAY_PARTNER);		
+					dataInfo.idPayPartnerSystem = stmtResult.getString(MktpararchDaoDbTableColumn.COL_ID_PAY_PARTNER_SYSTEM);
+					dataInfo.idPayPartnerApp = stmtResult.getString(MktpararchDaoDbTableColumn.COL_ID_PAY_PARTNER_APP);
+					dataInfo.codPayPartner = stmtResult.getInt(MktpararchDaoDbTableColumn.COL_COD_PAY_PARTNER);		
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

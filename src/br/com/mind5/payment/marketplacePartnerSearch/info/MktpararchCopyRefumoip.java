@@ -1,18 +1,18 @@
-package br.com.mind5.payment.systemPartnerSearch.info;
+package br.com.mind5.payment.marketplacePartnerSearch.info;
 
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 
-final class SysparchCopyRefumoip extends InfoCopierTemplate<SysparchInfo, RefumoipInfo> {
+final class MktpararchCopyRefumoip extends InfoCopierTemplate<MktpararchInfo, RefumoipInfo> {
 	
-	public SysparchCopyRefumoip() {
+	public MktpararchCopyRefumoip() {
 		super();
 	}
 	
 	
 	
-	@Override protected SysparchInfo makeCopyHook(RefumoipInfo source) {
-		SysparchInfo result = new SysparchInfo();
+	@Override protected MktpararchInfo makeCopyHook(RefumoipInfo source) {
+		MktpararchInfo result = new MktpararchInfo();
 		
 		result.idPayPartnerSystem = source.itemReceiver;
 		result.codPayPartner = source.codPayPartner;

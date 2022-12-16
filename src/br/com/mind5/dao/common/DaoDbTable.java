@@ -279,6 +279,7 @@ public final class DaoDbTable {
 	public static final String PAY_ORDER_ITM_LIST_VIEW = "view_pay_order_item_list";
 	public static final String PAY_ORDER_ITM_SEARCH_VIEW = "view_pay_order_item_search";
 	public static final String PAY_PARTNER_COUNTRY_SEARCH_VIEW = "view_pay_partner_country_search";
+	public static final String PAY_PARTNER_MARKETPLACE_SEARCH_VIEW = "view_pay_partner_marketplace_search";
 	public static final String PAY_PARTNER_STORE_VIEW = "view_pay_partner_store";
 	public static final String PAY_PARTNER_STORE_SEARCH_VIEW = "view_pay_partner_store_search";
 	public static final String PAYMENT_VIEW = "view_payment";
@@ -329,8 +330,7 @@ public final class DaoDbTable {
 	public static final String STORE_WTIME_SEARCH_VIEW = "view_store_wtime_search";
 	public static final String SYS_DISTRICT_SEARCH_DEFAULT_VIEW = "view_owner_district_search";
 	public static final String SYS_FILE_IMG_SEARCH_VIEW = "view_sys_file_image_search";
-	public static final String SYS_OWNER_SIGNUP_VIEW = "view_sys_owner_signup";
-	public static final String SYS_PAY_PARTNER_SEARCH_VIEW = "view_sys_pay_partner_search";
+	public static final String SYS_OWNER_SIGNUP_VIEW = "view_sys_owner_signup";	
 	public static final String SYS_STORE_BUSINESS_CONTENT_VIEW = "view_sys_store_business_content";
 	public static final String SYS_STORE_PARTITIONING_VIEW = "view_sys_store_partitioning";
 	public static final String SYS_STORE_SIGNUP_VIEW = "view_sys_store_signup";

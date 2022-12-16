@@ -1,11 +1,11 @@
-package br.com.mind5.payment.systemPartnerSearch.info;
+package br.com.mind5.payment.marketplacePartnerSearch.info;
 
 import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
-public final class SysparchInfo extends InfoRecord implements Cloneable {
+public final class MktpararchInfo extends InfoRecord implements Cloneable {
 	public int codPayPartner;
 	public String idPayPartnerSystem;
 	public String idPayPartnerApp;
@@ -14,7 +14,7 @@ public final class SysparchInfo extends InfoRecord implements Cloneable {
 	public String username;
 	
 	
-	public SysparchInfo() {
+	public MktpararchInfo() {
 		super();
 		
 		codPayPartner = DefaultValue.number();
@@ -22,14 +22,14 @@ public final class SysparchInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	public static SysparchInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, SysparchInfo.class);
+	public static MktpararchInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, MktpararchInfo.class);
 	}
 	
 	
 	
-	public static List<SysparchInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, SysparchInfo.class);
+	public static List<MktpararchInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, MktpararchInfo.class);
 	}
 	
 	
@@ -53,11 +53,11 @@ public final class SysparchInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof SysparchInfo))
+		if (!(o instanceof MktpararchInfo))
 			return false;
 		
 		
-		SysparchInfo obj = (SysparchInfo) o;		
+		MktpararchInfo obj = (MktpararchInfo) o;		
 		return (codPayPartner == obj.codPayPartner);
 	}
 }

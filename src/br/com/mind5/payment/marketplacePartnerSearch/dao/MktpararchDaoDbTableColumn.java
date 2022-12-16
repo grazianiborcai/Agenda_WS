@@ -1,4 +1,4 @@
-package br.com.mind5.payment.systemPartnerSearch.dao;
+package br.com.mind5.payment.marketplacePartnerSearch.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -9,13 +9,13 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class SysparchDaoDbTableColumn extends DaoDbTableColumnTemplate {
+public final class MktpararchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;
 	public static final String COL_ID_PAY_PARTNER_APP = DaoDbField.COL_ID_PAY_PARTNER_APP;	
 	public static final String COL_ID_PAY_PARTNER_SYSTEM = DaoDbField.COL_ID_PAY_PARTNER_SYSTEM;
 	
 	
-	public SysparchDaoDbTableColumn() {
+	public MktpararchDaoDbTableColumn() {
 		super();
 	}
 	
@@ -52,7 +52,7 @@ public final class SysparchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);
 
 		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
-		results.put(DaoDbTable.SYS_PAY_PARTNER_SEARCH_VIEW, columns);
+		results.put(DaoDbTable.PAY_PARTNER_MARKETPLACE_SEARCH_VIEW, columns);
 		return results;
 	}
 }

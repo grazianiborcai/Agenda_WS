@@ -1,21 +1,21 @@
-package br.com.mind5.payment.systemPartnerSearch.model.checker;
+package br.com.mind5.payment.marketplacePartnerSearch.model.checker;
 
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
-import br.com.mind5.payment.systemPartnerSearch.info.SysparchInfo;
+import br.com.mind5.payment.marketplacePartnerSearch.info.MktpararchInfo;
 
-public final class SysparchCheckRead extends ModelCheckerTemplateSimple<SysparchInfo> {
+public final class MktpararchCheckRead extends ModelCheckerTemplateSimple<MktpararchInfo> {
 
-	public SysparchCheckRead(ModelCheckerOption option) {
+	public MktpararchCheckRead(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected boolean checkHook(SysparchInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(MktpararchInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.username			== null ||
 			 recordInfo.codLanguage 		== null		)			
 			return super.FAILED;
