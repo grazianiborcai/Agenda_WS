@@ -103,6 +103,7 @@ public final class DaoDbTable {
 	public static final String PAY_ORDER_HDR_TABLE = "pay_order_header";
 	public static final String PAY_ORDER_ITM_TABLE = "pay_order_item";
 	public static final String PAY_PARTNER_TABLE = "pay_partner";
+	public static final String PAY_PARTNER_CONFIG_TABLE = "pay_partner_config";
 	public static final String PAY_PARTNER_COUNTRY_TABLE = "pay_partner_country";
 	public static final String PAY_PARTNER_MARKETPLACE_TABLE = "pay_partner_marketplace";
 	public static final String PAY_PARTNER_OWNER_TABLE = "pay_partner_owner";

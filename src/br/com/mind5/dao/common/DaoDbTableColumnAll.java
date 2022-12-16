@@ -140,6 +140,7 @@ import br.com.mind5.business.storeWorkTimeSearch.dao.StowotarchDaoDbTableColumn;
 import br.com.mind5.business.storeWorkTimeSnapshot.dao.StowotmapDaoDbTableColumn;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.config.payPartnerConfig.dao.PayrconfDaoDbTableColumn;
 import br.com.mind5.config.sysDistrictSearch.dao.SysdistrDaoDbTableColumn;
 import br.com.mind5.config.sysOwnerConfig.dao.SysonfigDaoDbTableColumn;
 import br.com.mind5.config.sysOwnerSignup.dao.SysonupDaoDbTableColumn;
@@ -609,6 +610,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new StomanDaoDbTableColumn());
 		addTable(new PeregDaoDbTableColumn());
 		addTable(new MatoupowDaoDbTableColumn());
+		addTable(new PayrconfDaoDbTableColumn());
 	}
 	
 	
