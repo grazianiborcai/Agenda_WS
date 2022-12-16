@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.CusModelDelete;
-import br.com.mind5.business.customer.model.CusModelInsertUser;
+import br.com.mind5.business.customer.model.CusModelUserInsert;
 import br.com.mind5.business.customer.model.CusModelSelect;
 import br.com.mind5.business.customer.model.CusModelUpdate;
 import br.com.mind5.business.customerList.model.CuslisModelSearchAuth;
@@ -37,7 +37,7 @@ public class CustomerResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertCustomer(@Context HttpServletRequest request, String incomingData) {		
 		
-		Model model = new CusModelInsertUser(incomingData, request);
+		Model model = new CusModelUserInsert(incomingData, request);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();

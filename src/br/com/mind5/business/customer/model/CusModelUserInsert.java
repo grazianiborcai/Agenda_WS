@@ -8,9 +8,9 @@ import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class CusModelInsertUser extends ModelTemplate<CusInfo> {
+public final class CusModelUserInsert extends ModelTemplate<CusInfo> {
 
-	public CusModelInsertUser(String incomingData, HttpServletRequest request) {
+	public CusModelUserInsert(String incomingData, HttpServletRequest request) {
 		super(incomingData, request, CusInfo.class);
 	}
 	
