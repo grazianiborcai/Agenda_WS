@@ -1,4 +1,4 @@
-package br.com.mind5.payment.systemPartner.dao;
+package br.com.mind5.payment.marketplacePartner.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class SysparDaoDbTableColumn extends DaoDbTableColumnTemplate {
+public final class MktparDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;
 	public static final String COL_ID_PAY_PARTNER_APP = DaoDbField.COL_ID_PAY_PARTNER_APP;	
 	public static final String COL_ID_PAY_PARTNER_SYSTEM = DaoDbField.COL_ID_PAY_PARTNER_SYSTEM;	
@@ -17,14 +17,14 @@ public final class SysparDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_URL_RETURN = DaoDbField.COL_URL_RETURN;
 	
 	
-	public SysparDaoDbTableColumn() {
+	public MktparDaoDbTableColumn() {
 		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		final String TABLE_NAME = DaoDbTable.SYS_PAY_PARTNER_TABLE;
+		final String TABLE_NAME = DaoDbTable.PAY_PARTNER_MARKETPLACE_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();	

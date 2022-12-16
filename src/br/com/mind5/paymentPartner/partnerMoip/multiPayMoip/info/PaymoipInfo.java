@@ -7,8 +7,8 @@ import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
+import br.com.mind5.payment.marketplacePartner.info.MktparInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
-import br.com.mind5.payment.systemPartner.info.SysparInfo;
 import br.com.moip.models.Setup;
 
 public final class PaymoipInfo extends InfoRecord implements Cloneable {
@@ -20,7 +20,7 @@ public final class PaymoipInfo extends InfoRecord implements Cloneable {
 	public String idPaymentPartner;
 	public String statusPaymentPartner;
 	public CrecardInfo crecardData;
-	public SysparInfo sysparData;
+	public MktparInfo sysparData;
 	public SetuparInfo setuparData;
 	public Map<String, Object> creditCard;
 	public Map<String, Object> fundingInstrument;

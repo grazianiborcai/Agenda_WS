@@ -1,4 +1,4 @@
-package br.com.mind5.payment.systemPartner.dao;
+package br.com.mind5.payment.marketplacePartner.dao;
 
 import java.util.List;
 
@@ -8,26 +8,26 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
-import br.com.mind5.payment.systemPartner.info.SysparInfo;
+import br.com.mind5.payment.marketplacePartner.info.MktparInfo;
 
-final class SysparDaoWhere implements DaoStmtWhere {
+final class MktparDaoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public SysparDaoWhere(DaoWhereBuilderOption whereOption, String tableName, SysparInfo recordInfo) {
+	public MktparDaoWhere(DaoWhereBuilderOption whereOption, String tableName, MktparInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, SysparInfo recordInfo) {
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, MktparInfo recordInfo) {
 		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);
 		
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case SysparDaoDbTableColumn.COL_COD_PAY_PARTNER:
+				case MktparDaoDbTableColumn.COL_COD_PAY_PARTNER:
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayPartner));
 					break;
 			}

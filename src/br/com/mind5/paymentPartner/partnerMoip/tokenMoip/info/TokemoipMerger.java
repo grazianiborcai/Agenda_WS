@@ -5,8 +5,8 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
+import br.com.mind5.payment.marketplacePartner.info.MktparInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
-import br.com.mind5.payment.systemPartner.info.SysparInfo;
 
 public final class TokemoipMerger {	
 	public static List<TokemoipInfo> mergeWithSysenv(List<TokemoipInfo> baseInfos, List<SysenvInfo> selectedInfos) {
@@ -35,13 +35,13 @@ public final class TokemoipMerger {
 	
 	
 	
-	public static List<TokemoipInfo> mergeWithSyspar(List<TokemoipInfo> baseInfos, List<SysparInfo> selectedInfos) {
-		InfoMergerBuilder<TokemoipInfo, SysparInfo> builder = new InfoMergerBuilder<>();
+	public static List<TokemoipInfo> mergeWithSyspar(List<TokemoipInfo> baseInfos, List<MktparInfo> selectedInfos) {
+		InfoMergerBuilder<TokemoipInfo, MktparInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new TokemoipMergerVisiSyspar());
-		InfoMerger<TokemoipInfo, SysparInfo> merger = builder.build();		
+		InfoMerger<TokemoipInfo, MktparInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

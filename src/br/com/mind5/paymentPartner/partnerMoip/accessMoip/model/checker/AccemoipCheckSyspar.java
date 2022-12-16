@@ -2,12 +2,12 @@ package br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker;
 
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.payment.marketplacePartner.info.MktparInfo;
+import br.com.mind5.payment.marketplacePartner.model.checker.MktparCheckExist;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.payment.systemPartner.info.SysparInfo;
-import br.com.mind5.payment.systemPartner.model.checker.SysparCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 
-public final class AccemoipCheckSyspar extends ModelCheckerTemplateForward<AccemoipInfo, SysparInfo> {
+public final class AccemoipCheckSyspar extends ModelCheckerTemplateForward<AccemoipInfo, MktparInfo> {
 	
 	public AccemoipCheckSyspar(ModelCheckerOption option) {
 		super(option);
@@ -15,13 +15,13 @@ public final class AccemoipCheckSyspar extends ModelCheckerTemplateForward<Accem
 
 
 	
-	@Override protected ModelChecker<SysparInfo> getCheckerHook(ModelCheckerOption option) {
-		return new SysparCheckExist(option);
+	@Override protected ModelChecker<MktparInfo> getCheckerHook(ModelCheckerOption option) {
+		return new MktparCheckExist(option);
 	}
 	
 	
 	
-	@Override protected SysparInfo toForwardClass(AccemoipInfo baseRecord) {
-		return SysparInfo.copyFrom(baseRecord);
+	@Override protected MktparInfo toForwardClass(AccemoipInfo baseRecord) {
+		return MktparInfo.copyFrom(baseRecord);
 	}
 }

@@ -1,4 +1,4 @@
-package br.com.mind5.payment.systemPartner.model.checker;
+package br.com.mind5.payment.marketplacePartner.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
@@ -6,19 +6,19 @@ import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.payment.systemPartner.info.SysparInfo;
-import br.com.mind5.payment.systemPartner.model.action.SysparVisiDaoSelect;
+import br.com.mind5.payment.marketplacePartner.info.MktparInfo;
+import br.com.mind5.payment.marketplacePartner.model.action.MktparVisiDaoSelect;
 
-public final class SysparCheckExist extends ModelCheckerTemplateAction<SysparInfo, SysparInfo> {
+public final class MktparCheckExist extends ModelCheckerTemplateAction<MktparInfo, MktparInfo> {
 	
-	public SysparCheckExist(ModelCheckerOption option) {
-		super(option, SysparInfo.class);
+	public MktparCheckExist(ModelCheckerOption option) {
+		super(option, MktparInfo.class);
 	}
 	
 
 	
-	@Override protected ActionStd<SysparInfo> buildActionHook(DeciTreeOption<SysparInfo> option) {
-		ActionStd<SysparInfo> select = new ActionStdCommom<SysparInfo>(option, SysparVisiDaoSelect.class);
+	@Override protected ActionStd<MktparInfo> buildActionHook(DeciTreeOption<MktparInfo> option) {
+		ActionStd<MktparInfo> select = new ActionStdCommom<MktparInfo>(option, MktparVisiDaoSelect.class);
 		return select;
 	}
 	

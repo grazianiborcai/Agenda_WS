@@ -6,11 +6,11 @@ import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
+import br.com.mind5.payment.marketplacePartner.info.MktparInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderList.info.PayordistInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
-import br.com.mind5.payment.systemPartner.info.SysparInfo;
 
 public final class OrdmoipMerger {
 	public static List<OrdmoipInfo> mergeWithStopar(List<OrdmoipInfo> baseInfos, List<StoparInfo> selectedInfos) {
@@ -26,13 +26,13 @@ public final class OrdmoipMerger {
 	
 	
 	
-	public static List<OrdmoipInfo> mergeWithSyspar(List<OrdmoipInfo> baseInfos, List<SysparInfo> selectedInfos) {
-		InfoMergerBuilder<OrdmoipInfo, SysparInfo> builder = new InfoMergerBuilder<>();
+	public static List<OrdmoipInfo> mergeWithSyspar(List<OrdmoipInfo> baseInfos, List<MktparInfo> selectedInfos) {
+		InfoMergerBuilder<OrdmoipInfo, MktparInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new OrdmoipMergerVisiSyspar());
-		InfoMerger<OrdmoipInfo, SysparInfo> merger = builder.build();		
+		InfoMerger<OrdmoipInfo, MktparInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

@@ -1,18 +1,18 @@
-package br.com.mind5.payment.systemPartner.info;
+package br.com.mind5.payment.marketplacePartner.info;
 
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-final class SysparCopyOrdmoip extends InfoCopierTemplate<SysparInfo, OrdmoipInfo> {
+final class MktparCopyOrdmoip extends InfoCopierTemplate<MktparInfo, OrdmoipInfo> {
 	
-	public SysparCopyOrdmoip() {
+	public MktparCopyOrdmoip() {
 		super();
 	}
 	
 	
 	
-	@Override protected SysparInfo makeCopyHook(OrdmoipInfo source) {
-		SysparInfo result = new SysparInfo();
+	@Override protected MktparInfo makeCopyHook(OrdmoipInfo source) {
+		MktparInfo result = new MktparInfo();
 		
 		result.codPayPartner = source.cusparData.codPayPartner;
 		result.codLanguage = source.codLanguage;

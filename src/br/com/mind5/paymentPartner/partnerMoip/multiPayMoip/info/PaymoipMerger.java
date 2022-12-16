@@ -6,17 +6,17 @@ import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
+import br.com.mind5.payment.marketplacePartner.info.MktparInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
-import br.com.mind5.payment.systemPartner.info.SysparInfo;
 
 public final class PaymoipMerger {
-	public static List<PaymoipInfo> mergeWithSyspar(List<PaymoipInfo> baseInfos, List<SysparInfo> selectedInfos) {
-		InfoMergerBuilder<PaymoipInfo, SysparInfo> builder = new InfoMergerBuilder<>();
+	public static List<PaymoipInfo> mergeWithSyspar(List<PaymoipInfo> baseInfos, List<MktparInfo> selectedInfos) {
+		InfoMergerBuilder<PaymoipInfo, MktparInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new PaymoipMergerVisiSyspar());
-		InfoMerger<PaymoipInfo, SysparInfo> merger = builder.build();		
+		InfoMerger<PaymoipInfo, MktparInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

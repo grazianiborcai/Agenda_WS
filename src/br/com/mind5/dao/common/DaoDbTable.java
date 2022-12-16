@@ -104,6 +104,7 @@ public final class DaoDbTable {
 	public static final String PAY_ORDER_ITM_TABLE = "pay_order_item";
 	public static final String PAY_PARTNER_TABLE = "pay_partner";
 	public static final String PAY_PARTNER_COUNTRY_TABLE = "pay_partner_country";
+	public static final String PAY_PARTNER_MARKETPLACE_TABLE = "pay_partner_marketplace";
 	public static final String PAY_PARTNER_OWNER_TABLE = "pay_partner_owner";
 	public static final String PAY_PARTNER_SETUP_TABLE = "pay_partner_setup";
 	public static final String PAY_PARTNER_STORE_TABLE = "pay_partner_store";
@@ -192,8 +193,7 @@ public final class DaoDbTable {
 	public static final String SYS_FILE_IMG_TABLE = "sys_file_image";
 	public static final String SYS_FILE_IMG_SNAPSHOT_TABLE = "sys_file_image_snapshot";
 	public static final String SYS_MESSAGE_TABLE = "sys_message";
-	public static final String SYS_CONFIG_TABLE = "sys_config";
-	public static final String SYS_PAY_PARTNER_TABLE = "sys_pay_partner";
+	public static final String SYS_CONFIG_TABLE = "sys_config";	
 	public static final String SYS_ENVIRONMENT_TABLE = "sys_environment";
 	public static final String UNIT_TABLE = "measure_unit";
 	public static final String UNIT_TEXT_TABLE = "measure_unit_text";

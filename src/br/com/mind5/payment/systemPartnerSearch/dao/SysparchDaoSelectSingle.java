@@ -16,7 +16,7 @@ import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.systemPartnerSearch.info.SysparchInfo;
 
 public final class SysparchDaoSelectSingle extends DaoStmtTemplate<SysparchInfo> {
-	private final String MAIN_TABLE = DaoDbTable.SYS_PAY_PARTNER_TABLE;
+	private final String MAIN_TABLE = DaoDbTable.PAY_PARTNER_MARKETPLACE_TABLE;
 	
 	
 	public SysparchDaoSelectSingle(Connection conn, SysparchInfo recordInfo, String schemaName) {

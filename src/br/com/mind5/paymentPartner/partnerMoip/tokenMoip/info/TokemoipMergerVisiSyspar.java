@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
-import br.com.mind5.payment.systemPartner.info.SysparInfo;
+import br.com.mind5.payment.marketplacePartner.info.MktparInfo;
 
-final class TokemoipMergerVisiSyspar extends InfoMergerVisitorTemplate<TokemoipInfo, SysparInfo> {
+final class TokemoipMergerVisiSyspar extends InfoMergerVisitorTemplate<TokemoipInfo, MktparInfo> {
 
-	@Override public boolean shouldMerge(TokemoipInfo baseInfo, SysparInfo selectedInfo) {
+	@Override public boolean shouldMerge(TokemoipInfo baseInfo, MktparInfo selectedInfo) {
 		return (baseInfo.codPayPartner == selectedInfo.codPayPartner);
 	}
 	
 	
 	
-	@Override public List<TokemoipInfo> merge(TokemoipInfo baseInfo, SysparInfo selectedInfo) {
+	@Override public List<TokemoipInfo> merge(TokemoipInfo baseInfo, MktparInfo selectedInfo) {
 		List<TokemoipInfo> results = new ArrayList<>();
 		
 		baseInfo.sysparData = selectedInfo;

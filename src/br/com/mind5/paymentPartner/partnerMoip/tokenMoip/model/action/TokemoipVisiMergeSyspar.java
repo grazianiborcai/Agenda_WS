@@ -5,26 +5,26 @@ import java.util.List;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.payment.systemPartner.info.SysparInfo;
-import br.com.mind5.payment.systemPartner.model.decisionTree.SysparRootSelect;
+import br.com.mind5.payment.marketplacePartner.info.MktparInfo;
+import br.com.mind5.payment.marketplacePartner.model.decisionTree.MktparRootSelect;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipMerger;
 
-public final class TokemoipVisiMergeSyspar extends ActionVisitorTemplateMerge<TokemoipInfo, SysparInfo> {
+public final class TokemoipVisiMergeSyspar extends ActionVisitorTemplateMerge<TokemoipInfo, MktparInfo> {
 	
 	public TokemoipVisiMergeSyspar(DeciTreeOption<TokemoipInfo> option) {
-		super(option, SysparInfo.class);
+		super(option, MktparInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends DeciTree<SysparInfo>> getTreeClassHook() {
-		return SysparRootSelect.class;
+	@Override protected Class<? extends DeciTree<MktparInfo>> getTreeClassHook() {
+		return MktparRootSelect.class;
 	}
 	
 	
 	
-	@Override protected List<TokemoipInfo> mergeHook(List<TokemoipInfo> baseInfos, List<SysparInfo> selectedInfos) {	
+	@Override protected List<TokemoipInfo> mergeHook(List<TokemoipInfo> baseInfos, List<MktparInfo> selectedInfos) {	
 		return TokemoipMerger.mergeWithSyspar(baseInfos, selectedInfos);
 	}
 	

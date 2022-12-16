@@ -22,7 +22,7 @@ public final class SysparchDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		final String TABLE_NAME = DaoDbTable.SYS_PAY_PARTNER_TABLE;
+		final String TABLE_NAME = DaoDbTable.PAY_PARTNER_MARKETPLACE_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();	

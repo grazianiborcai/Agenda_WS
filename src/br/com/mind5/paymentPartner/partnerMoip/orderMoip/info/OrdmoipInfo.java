@@ -6,11 +6,11 @@ import java.util.Map;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
+import br.com.mind5.payment.marketplacePartner.info.MktparInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderList.info.PayordistInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
-import br.com.mind5.payment.systemPartner.info.SysparInfo;
 import br.com.moip.models.Setup;
 
 public final class OrdmoipInfo extends InfoRecord implements Cloneable {
@@ -32,7 +32,7 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	public PayordistInfo payordistData;
 	public PayordemInfo payordemData;
 	public CusparInfo cusparData;		
-	public SysparInfo sysparData;
+	public MktparInfo sysparData;
 	public SetuparInfo setuparData;
 	public StoparInfo stoparData;
 	public Map<String, Object> subtotal;
@@ -123,11 +123,11 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private SysparInfo cloneSyspar(SysparInfo recordInfo) throws CloneNotSupportedException {
+	private MktparInfo cloneSyspar(MktparInfo recordInfo) throws CloneNotSupportedException {
 		if (recordInfo == null)
 			return null;
 		
-		return (SysparInfo) recordInfo.clone();
+		return (MktparInfo) recordInfo.clone();
 	}
 	
 	

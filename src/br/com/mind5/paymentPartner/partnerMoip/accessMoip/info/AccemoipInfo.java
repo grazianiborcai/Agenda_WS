@@ -5,8 +5,8 @@ import java.util.List;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.payment.marketplacePartner.info.MktparInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
-import br.com.mind5.payment.systemPartner.info.SysparInfo;
 import br.com.moip.models.Setup;
 
 public final class AccemoipInfo extends InfoRecord implements Cloneable {
@@ -14,7 +14,7 @@ public final class AccemoipInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public int codPayPartner;
 	public String url;
-	public SysparInfo sysparData;
+	public MktparInfo sysparData;
 	public SetuparInfo setuparData;
 	public Setup setup;
 	public String[] scopes;
