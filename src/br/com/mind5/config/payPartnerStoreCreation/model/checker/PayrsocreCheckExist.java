@@ -12,9 +12,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PayrconfCheckExist extends ModelCheckerTemplateAction<PayrsocreInfo, PayrsocreInfo> {
+public final class PayrsocreCheckExist extends ModelCheckerTemplateAction<PayrsocreInfo, PayrsocreInfo> {
 	
-	public PayrconfCheckExist(ModelCheckerOption option) {
+	public PayrsocreCheckExist(ModelCheckerOption option) {
 		super(option, PayrsocreInfo.class);
 	}
 	
