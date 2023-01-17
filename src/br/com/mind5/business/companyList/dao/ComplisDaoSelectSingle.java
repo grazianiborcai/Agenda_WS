@@ -75,6 +75,7 @@ public final class ComplisDaoSelectSingle extends DaoStmtTemplate<ComplisInfo> {
 					dataInfo.recordMode = stmtResult.getString(ComplisDaoDbTableColumn.COL_RECORD_MODE);
 					dataInfo.razaoSocial = stmtResult.getString(ComplisDaoDbTableColumn.COL_RAZAO_SOCIAL);
 					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, ComplisDaoDbTableColumn.COL_COD_SNAPSHOT);				
+					dataInfo.cnpj = stmtResult.getString(ComplisDaoDbTableColumn.COL_CNPJ);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

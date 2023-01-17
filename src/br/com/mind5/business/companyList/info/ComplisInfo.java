@@ -9,6 +9,7 @@ public final class ComplisInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codCompany;
 	public long codSnapshot;
+	public String cnpj;
 	public String razaoSocial;	
 	public String name;
 	public String nameSearch;
