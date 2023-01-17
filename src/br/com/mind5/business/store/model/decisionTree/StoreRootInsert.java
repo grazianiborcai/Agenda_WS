@@ -14,13 +14,14 @@ import br.com.mind5.business.store.model.action.StoreVisiNodeStorextInsert;
 import br.com.mind5.business.store.model.action.StoreVisiNodeStowotmInsert;
 import br.com.mind5.business.store.model.action.StoreVisiNodeStuntmInsert;
 import br.com.mind5.business.store.model.action.StoreVisiRootSelect;
+import br.com.mind5.business.store.model.action.StoreVisiStoparCreate;
 import br.com.mind5.business.store.model.action.StoreVisiUserInsert;
 import br.com.mind5.business.store.model.checker.StoreCheckCurrency;
 import br.com.mind5.business.store.model.checker.StoreCheckHasAddress;
+import br.com.mind5.business.store.model.checker.StoreCheckInsert;
 import br.com.mind5.business.store.model.checker.StoreCheckLangu;
 import br.com.mind5.business.store.model.checker.StoreCheckOwner;
 import br.com.mind5.business.store.model.checker.StoreCheckTimezone;
-import br.com.mind5.business.store.model.checker.StoreCheckInsert;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -105,6 +106,7 @@ public final class StoreRootInsert extends DeciTreeTemplateWrite<StoreInfo> {
 		ActionLazy<StoreInfo> insertMatbcin = new ActionLazyCommom<StoreInfo>(option, StoreVisiMatbcinInsert.class);
 		ActionLazy<StoreInfo> insertStowotm = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeStowotmInsert.class);
 		ActionLazy<StoreInfo> insertStuntm = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeStuntmInsert.class);
+		ActionLazy<StoreInfo> createStopar = new ActionLazyCommom<StoreInfo>(option, StoreVisiStoparCreate.class);
 		ActionLazy<StoreInfo> selectStore = new ActionLazyCommom<StoreInfo>(option, StoreVisiRootSelect.class);	
 		
 		insertStore.addPostAction(insertComp);
@@ -117,7 +119,8 @@ public final class StoreRootInsert extends DeciTreeTemplateWrite<StoreInfo> {
 		snapshot.addPostAction(insertMatbcin);
 		snapshot.addPostAction(insertStowotm);
 		snapshot.addPostAction(insertStuntm);
-		insertStuntm.addPostAction(selectStore);
+		snapshot.addPostAction(createStopar);
+		createStopar.addPostAction(selectStore);
 		
 		actions.add(insertStore);	
 		return actions;
