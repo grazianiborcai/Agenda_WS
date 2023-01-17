@@ -62,7 +62,8 @@ public final class PayparDaoSelectSingle extends DaoStmtTemplate<PayparInfo> {
 					
 					dataInfo.codPayPartner = stmtResult.getInt(PayparDaoDbTableColumn.COL_COD_PAY_PARTNER);
 					dataInfo.txtPayPartner = stmtResult.getString(PayparDaoDbTableColumn.COL_NAME);
-					dataInfo.description = stmtResult.getString(PayparDaoDbTableColumn.COL_DESCRIPTION);	
+					dataInfo.description = stmtResult.getString(PayparDaoDbTableColumn.COL_DESCRIPTION);
+					dataInfo.isDefault = stmtResult.getBoolean(PayparDaoDbTableColumn.COL_IS_DEFAULT);
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

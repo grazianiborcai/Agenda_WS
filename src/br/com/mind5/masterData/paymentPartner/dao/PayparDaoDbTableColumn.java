@@ -12,6 +12,7 @@ import br.com.mind5.dao.common.DaoDbTable;
 public final class PayparDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;
 	public static final String COL_DESCRIPTION = DaoDbField.COL_DESCRIPTION;
+	public static final String COL_IS_DEFAULT = DaoDbField.COL_IS_DEFAULT;
 	public static final String COL_NAME = DaoDbField.COL_NAME;
 	
 	
@@ -46,6 +47,14 @@ public final class PayparDaoDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_DESCRIPTION;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_IS_DEFAULT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
