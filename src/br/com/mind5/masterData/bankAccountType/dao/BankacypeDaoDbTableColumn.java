@@ -36,7 +36,7 @@ public final class BankacypeDaoDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);		
 		
 		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.AREA_PHONE_TEXT_TABLE;
+		oneColumn.tableName = DaoDbTable.BANK_ACCOUNT_TYPE_TEXT_TABLE;
 		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -44,7 +44,7 @@ public final class BankacypeDaoDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.AREA_PHONE_TEXT_TABLE;
+		oneColumn.tableName = DaoDbTable.BANK_ACCOUNT_TYPE_TEXT_TABLE;
 		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
