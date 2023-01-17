@@ -6,6 +6,7 @@ import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
+import br.com.mind5.paymentPartner.partnerPagarme.recipientPagarme.info.RecipaInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class StoparMerger {
@@ -16,6 +17,19 @@ public final class StoparMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new StoparMergerVisiPaypar());
 		InfoMerger<StoparInfo, PayparInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<StoparInfo> mergeWithRecipa(List<StoparInfo> baseInfos, List<RecipaInfo> selectedInfos) {
+		InfoMergerBuilder<StoparInfo, RecipaInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StoparMergerVisiRecipa());
+		InfoMerger<StoparInfo, RecipaInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
