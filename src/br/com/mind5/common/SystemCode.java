@@ -195,6 +195,7 @@ public final class SystemCode {
 	public static final int MAT_GROUP_OWNER_HEX_COLOR					= 11685;
 	public static final int MAT_GROUP_OWNER_DEC_COLOR					= 11686;	
 	public static final int PAY_PARTNER_DEFAULT							= 11687;
+	public static final int BANK_ACCOUNT_TYPE							= 11688;
 
 	
 	// Material
