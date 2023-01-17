@@ -64,6 +64,7 @@ public final class SetuparDaoSelectSingle extends DaoStmtTemplate<SetuparInfo> {
 					dataInfo.basicKey = stmtResult.getString(SetuparDaoDbTableColumn.COL_BASIC_KEY);
 					dataInfo.basicToken = stmtResult.getString(SetuparDaoDbTableColumn.COL_BASIC_TOKEN);		
 					dataInfo.secret = stmtResult.getString(SetuparDaoDbTableColumn.COL_SECRET);
+					dataInfo.secretKey = stmtResult.getString(SetuparDaoDbTableColumn.COL_SECRET_KEY);
 					dataInfo.oauthToken = stmtResult.getString(SetuparDaoDbTableColumn.COL_OAUTH_TOKEN);
 					
 					finalResult.add(dataInfo);

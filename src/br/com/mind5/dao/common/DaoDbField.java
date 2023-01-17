@@ -321,6 +321,7 @@ public final class DaoDbField {
 	public static final String COL_SALT = "hash2";
 	public static final String COL_SCOPE = "scope";
 	public static final String COL_SECRET = "secret";
+	public static final String COL_SECRET_KEY = "secret_key";
 	public static final String COL_SENDER_PASSWORD = "sender_password";
 	public static final String COL_SORT = "sort";
 	public static final String COL_STORE_SIGNUP = "store_signup";

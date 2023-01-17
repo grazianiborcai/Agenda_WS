@@ -14,7 +14,8 @@ public final class SetuparDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BASIC_TOKEN = DaoDbField.COL_BASIC_TOKEN;	
 	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;	
 	public static final String COL_OAUTH_TOKEN = DaoDbField.COL_OAUTH_TOKEN;
-	public static final String COL_SECRET = DaoDbField.COL_SECRET;	
+	public static final String COL_SECRET = DaoDbField.COL_SECRET;
+	public static final String COL_SECRET_KEY = DaoDbField.COL_SECRET_KEY;
 	
 	
 	public SetuparDaoDbTableColumn() {
@@ -64,6 +65,14 @@ public final class SetuparDaoDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_OAUTH_TOKEN;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_SECRET_KEY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

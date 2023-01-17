@@ -12,6 +12,7 @@ public final class SetuparInfo extends InfoRecord implements Cloneable {
 	public String basicKey;
 	public String oauthToken;
 	public String secret;
+	public String secretKey;
 	public String description;
 	
 	
