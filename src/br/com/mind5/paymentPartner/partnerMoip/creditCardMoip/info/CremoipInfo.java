@@ -6,6 +6,7 @@ import java.util.Map;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
@@ -80,49 +81,13 @@ public final class CremoipInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		CremoipInfo deepCopy = (CremoipInfo) super.clone();
 		
-		deepCopy.setuparData = cloneSetup(deepCopy.setuparData);
-		deepCopy.addresnapData = cloneAddresnap(deepCopy.addresnapData);
-		deepCopy.phonapData = clonePhonap(deepCopy.phonapData);
-		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
+		deepCopy.setuparData   = CloneUtil.cloneRecord(deepCopy.setuparData  , this.getClass());
+		deepCopy.addresnapData = CloneUtil.cloneRecord(deepCopy.addresnapData, this.getClass());
+		deepCopy.phonapData    = CloneUtil.cloneRecord(deepCopy.phonapData   , this.getClass());
+		deepCopy.cusparData    = CloneUtil.cloneRecord(deepCopy.cusparData   , this.getClass());
 		
 		return deepCopy;
 	}
-	
-	
-	
-	private SetuparInfo cloneSetup(SetuparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (SetuparInfo) recordInfo.clone();
-	}	
-	
-	
-	
-	private AddresnapInfo cloneAddresnap(AddresnapInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (AddresnapInfo) recordInfo.clone();
-	}
-	
-	
-	
-	private PhonapInfo clonePhonap(PhonapInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (PhonapInfo) recordInfo.clone();
-	}
-	
-	
-	
-	private CusparInfo cloneCuspar(CusparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (CusparInfo) recordInfo.clone();
-	}	
 	
 	
 	
