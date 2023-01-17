@@ -3,19 +3,15 @@ package br.com.mind5.payment.storePartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.commom.ActionLazyCommom;
-import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
-import br.com.mind5.payment.storePartner.model.action.StoparVisiRootInsert;
-import br.com.mind5.payment.storePartner.model.action.StoparVisiRecipaCreate;
-import br.com.mind5.payment.storePartner.model.checker.StoparCheckIsPagarme;
+import br.com.mind5.payment.storePartner.model.checker.StoparCheckPayrsocre;
 
 public final class StoparNodeCreateL2 extends DeciTreeTemplateWrite<StoparInfo> {
 	
@@ -33,8 +29,8 @@ public final class StoparNodeCreateL2 extends DeciTreeTemplateWrite<StoparInfo> 
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new StoparCheckIsPagarme(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new StoparCheckPayrsocre(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -44,13 +40,21 @@ public final class StoparNodeCreateL2 extends DeciTreeTemplateWrite<StoparInfo> 
 	
 	@Override protected List<ActionStd<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
 		List<ActionStd<StoparInfo>> actions = new ArrayList<>();		
+		
+		ActionStd<StoparInfo> nodeL3 = new StoparNodeCreateL3(option).toAction();	
+		
+		actions.add(nodeL3);		
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<StoparInfo>> buildActionsOnFailedHook(DeciTreeOption<StoparInfo> option) {
+		List<ActionStd<StoparInfo>> actions = new ArrayList<>();		
 
-		ActionStd<StoparInfo> recipaCreate = new ActionStdCommom<StoparInfo>(option, StoparVisiRecipaCreate.class);	
-		ActionLazy<StoparInfo> insert = new ActionLazyCommom<StoparInfo>(option, StoparVisiRootInsert.class);
+		ActionStd<StoparInfo> success = new ActionStdSuccessCommom<StoparInfo>(option);	
 		
-		recipaCreate.addPostAction(insert);
-		
-		actions.add(recipaCreate);		
+		actions.add(success);		
 		return actions;
 	}
 }
