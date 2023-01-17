@@ -14,6 +14,8 @@ import javax.ws.rs.core.Response;
 
 import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
 import br.com.mind5.masterData.areaPhoneSearch.model.AreanarchModelSelect;
+import br.com.mind5.masterData.bankAccountTypeSearch.info.BankacyperchInfo;
+import br.com.mind5.masterData.bankAccountTypeSearch.model.BankacyperchModelSelect;
 import br.com.mind5.masterData.businessAreaSearch.info.BusarearchInfo;
 import br.com.mind5.masterData.businessAreaSearch.model.BusarearchModelSelect;
 import br.com.mind5.masterData.cartItemCategorySearch.info.CaritegarchInfo;
@@ -125,6 +127,7 @@ public final class MasterDataResource {
 	private static final String SELECT_PROSPECT_STATUS = "/selectProspectStatus";
 	private static final String SELECT_PET_TYPE = "/selectPetType";
 	private static final String SELECT_PET_WEIGHT = "/selectPetWeight";
+	private static final String SELECT_BANK_ACCOUNT_TYPE = "/selectBankAccountType";
 	
 	
 	
@@ -907,6 +910,27 @@ public final class MasterDataResource {
 		
 		
 		Model model = new PeteightarchModelSelect(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_BANK_ACCOUNT_TYPE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectBankacyperch(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
+			                           @HeaderParam("codBankAccount") @DefaultValue("-1") int codBankAccount) {
+		
+		BankacyperchInfo recordInfo = new BankacyperchInfo();
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.codBankAccount = codBankAccount;
+		
+		
+		Model model = new BankacyperchModelSelect(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();
