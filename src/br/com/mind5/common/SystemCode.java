@@ -193,7 +193,9 @@ public final class SystemCode {
 	public static final int DISCOUNT_STRATEGY_NOT_FOUND					= 11683;
 	public static final int MAT_GROUP_OWNER								= 11684;
 	public static final int MAT_GROUP_OWNER_HEX_COLOR					= 11685;
-	public static final int MAT_GROUP_OWNER_DEC_COLOR					= 11686;
+	public static final int MAT_GROUP_OWNER_DEC_COLOR					= 11686;	
+	public static final int PAY_PARTNER_DEFAULT							= 11687;
+
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;
