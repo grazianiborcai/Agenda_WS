@@ -20,6 +20,7 @@ public final class RecipaInfo extends InfoRecord implements Cloneable {
 	public String code;
 	public String authorization;
 	public SetuparInfo setuparData;
+	public String username;
 	
 	
 	public RecipaInfo() {

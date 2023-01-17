@@ -41,8 +41,9 @@ public final class RecipaVisiCreate extends ActionVisitorTemplateSimple<RecipaIn
 	
 	private HttpResponse<String> createRecipient(RecipaInfo recordInfo) {
 		String body = makeBody(recordInfo);
+		String authorization = makeAuthorization(recordInfo);
 		
-		HttpResponse<String> response = tryToCreateRecipient(body);
+		HttpResponse<String> response = tryToCreateRecipient(body, authorization);
 		
 		if (hasError(response) == true)
 			writeLogOnError(response);
@@ -57,11 +58,11 @@ public final class RecipaVisiCreate extends ActionVisitorTemplateSimple<RecipaIn
 		
 		body.append("{");
 		
-		body.append("\"name\":").append(recordInfo.name).append(",");
-		body.append("\"email\":").append(recordInfo.email).append(",");
-		body.append("\"document\":").append(recordInfo.document).append(",");
-		body.append("\"type\":").append(recordInfo.type).append(",");
-		body.append("\"code\":").append(recordInfo.code);
+		body.append("\"name\":")    .append("\"").append(recordInfo.name)    .append("\"").append(",");
+		body.append("\"email\":")   .append("\"").append(recordInfo.email)   .append("\"").append(",");
+		body.append("\"document\":").append("\"").append(recordInfo.document).append("\"").append(",");
+		body.append("\"type\":")    .append("\"").append(recordInfo.type)    .append("\"").append(",");
+		body.append("\"code\":")    .append("\"").append(recordInfo.code)    .append("\"");
 		
 		body.append("}");
 		return body.toString();
@@ -69,12 +70,18 @@ public final class RecipaVisiCreate extends ActionVisitorTemplateSimple<RecipaIn
 	
 	
 	
-	private HttpResponse<String> tryToCreateRecipient(String body) {
+	private String makeAuthorization(RecipaInfo recordInfo) {
+		return recordInfo.authorization;
+	}
+	
+	
+	
+	private HttpResponse<String> tryToCreateRecipient(String body, String authorization) {
 		try {
 			return Unirest.post("https://api.pagar.me/core/v5/recipients")
 					  	  .header("accept", "application/json")
 						  .header("content-type", "application/json")
-						  .header("authorization", "Basic bXl1c2VybmFtZTpteXBhc3N3b3Jk")
+						  .header("authorization", authorization)
 						  .body(body)
 						  .asString();
 			
