@@ -1966,6 +1966,10 @@ public final class SystemCode {
 	// Pay Partner Config: Store Creation
 	public static final int PAY_PARTNER_CONFIG_STORE_CREATION 			= 19850;
 	
+	// Pay Partner Pagarme: Recipient Creation
+	public static final int PAGARME_RECIPIENT_CREATION 					= 19900;
+	public static final int PAGARME_RECIPIENT_CREATION_ERROR			= 19901;
+	
 	// General -- 19669
 	public static final int GEN_COMPLEMENT								= 19668;
 	public static final int GEN_DESCRIPTION								= 19661;
