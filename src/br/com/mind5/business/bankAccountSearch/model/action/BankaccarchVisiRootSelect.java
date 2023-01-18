@@ -3,7 +3,7 @@ package br.com.mind5.business.bankAccountSearch.model.action;
 import java.util.List;
 
 import br.com.mind5.business.bankAccountSearch.info.BankaccarchInfo;
-import br.com.mind5.business.bankAccountSearch.model.decisionTree.BankaccnapRootSelect;
+import br.com.mind5.business.bankAccountSearch.model.decisionTree.BankaccarchRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +17,7 @@ public final class BankaccarchVisiRootSelect extends ActionVisitorTemplateAction
 	
 	
 	@Override protected Class<? extends DeciTree<BankaccarchInfo>> getTreeClassHook() {
-		return BankaccnapRootSelect.class;
+		return BankaccarchRootSelect.class;
 	}
 	
 	
