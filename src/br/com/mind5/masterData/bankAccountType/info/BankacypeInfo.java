@@ -6,14 +6,14 @@ import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
 public final class BankacypeInfo extends InfoRecord implements Cloneable {
-	public int codBankAccount;
-	public String txtBankAccount;
+	public int codBankAccountType;
+	public String txtBankAccountType;
 	
 	
 	public BankacypeInfo() {
 		super();
 		
-		codBankAccount = DefaultValue.number();
+		codBankAccountType = DefaultValue.number();
 	}
 	
 	
@@ -39,7 +39,7 @@ public final class BankacypeInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codBankAccount ^ (codBankAccount >>> 32));
+		result = result * 31 + (int) (codBankAccountType ^ (codBankAccountType >>> 32));
 		
 		return result;
 	}
@@ -56,6 +56,6 @@ public final class BankacypeInfo extends InfoRecord implements Cloneable {
 		
 		
 		BankacypeInfo obj = (BankacypeInfo) o;		
-		return (codBankAccount == obj.codBankAccount);
+		return (codBankAccountType == obj.codBankAccountType);
 	}
 }

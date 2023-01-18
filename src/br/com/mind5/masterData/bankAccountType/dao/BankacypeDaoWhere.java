@@ -27,7 +27,7 @@ final class BankacypeDaoWhere implements DaoStmtWhere {
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case BankacypeDaoDbTableColumn.COL_COD_BANK_ACCOUNT_TYPE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codBankAccount));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codBankAccountType));
 					break;
 					
 				case BankacypeDaoDbTableColumn.COL_COD_LANGUAGE :

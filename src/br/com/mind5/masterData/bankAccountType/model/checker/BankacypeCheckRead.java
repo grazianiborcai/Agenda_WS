@@ -18,7 +18,7 @@ public final class BankacypeCheckRead extends ModelCheckerTemplateSimple<Bankacy
 	
 	
 	@Override protected boolean checkHook(BankacypeInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codBankAccount <= 0 	||
+		if ( recordInfo.codBankAccountType <= 0 	||
 			 recordInfo.codLanguage    == null 	)		
 			
 			return super.FAILED;

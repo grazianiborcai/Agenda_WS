@@ -69,8 +69,8 @@ public final class BankacypeDaoSelectSingle extends DaoStmtTemplate<BankacypeInf
 				do {				
 					BankacypeInfo dataInfo = new BankacypeInfo();
 					
-					dataInfo.codBankAccount = stmtResult.getInt(BankacypeDaoDbTableColumn.COL_COD_BANK_ACCOUNT_TYPE);
-					dataInfo.txtBankAccount = stmtResult.getString(BankacypeDaoDbTableColumn.COL_NAME);
+					dataInfo.codBankAccountType = stmtResult.getInt(BankacypeDaoDbTableColumn.COL_COD_BANK_ACCOUNT_TYPE);
+					dataInfo.txtBankAccountType = stmtResult.getString(BankacypeDaoDbTableColumn.COL_NAME);
 					dataInfo.codLanguage = stmtResult.getString(BankacypeDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
