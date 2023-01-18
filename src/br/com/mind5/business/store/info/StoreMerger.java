@@ -3,6 +3,7 @@ package br.com.mind5.business.store.info;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
+import br.com.mind5.business.bankAccount.info.BankaccInfo;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.personLegal.info.PeregInfo;
@@ -23,6 +24,19 @@ import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.stats.statsStoreProfile.storeProfileMonth.info.StefilonInfo;
 
 public final class StoreMerger {
+	public static List<StoreInfo> mergeWithBankacc(List<StoreInfo> baseInfos, List<BankaccInfo> selectedInfos) {
+		InfoMergerBuilder<StoreInfo, BankaccInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StoreMergerVisiBankacc());
+		InfoMerger<StoreInfo, BankaccInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<StoreInfo> mergeWithPereg(List<StoreInfo> baseInfos, List<PeregInfo> selectedInfos) {
 		InfoMergerBuilder<StoreInfo, PeregInfo> builder = new InfoMergerBuilder<>();
 		
