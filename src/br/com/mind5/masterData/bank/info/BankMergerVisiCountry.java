@@ -16,11 +16,10 @@ final class BankMergerVisiCountry extends InfoMergerVisitorTemplate<BankInfo, Co
 	
 	@Override public List<BankInfo> merge(BankInfo baseInfo, CountryInfo selectedInfo) {
 		List<BankInfo> results = new ArrayList<>();
-		BankInfo result = new BankInfo();
 		
-		result = BankInfo.copyFrom(selectedInfo);
+		baseInfo.codCountry = selectedInfo.codCountry;
 		
-		results.add(result);
+		results.add(baseInfo);
 		return results;
 	}
 }
