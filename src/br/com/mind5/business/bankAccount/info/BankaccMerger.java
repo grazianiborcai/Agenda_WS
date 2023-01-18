@@ -2,7 +2,7 @@ package br.com.mind5.business.bankAccount.info;
 
 import java.util.List;
 
-import br.com.mind5.business.petSnapshot.info.PetsnapInfo;
+import br.com.mind5.business.bankAccountSnapshot.info.BankaccnapInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.bank.info.BankInfo;
@@ -63,13 +63,13 @@ public final class BankaccMerger {
 	
 	
 	
-	public static List<BankaccInfo> mergeWithPetsnap(List<BankaccInfo> baseInfos, List<PetsnapInfo> selectedInfos) {
-		InfoMergerBuilder<BankaccInfo, PetsnapInfo> builder = new InfoMergerBuilder<>();
+	public static List<BankaccInfo> mergeWithBankaccnap(List<BankaccInfo> baseInfos, List<BankaccnapInfo> selectedInfos) {
+		InfoMergerBuilder<BankaccInfo, BankaccnapInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new BankaccMergerVisiPetsnap());
-		InfoMerger<BankaccInfo, PetsnapInfo> merger = builder.build();		
+		builder.addVisitor(new BankaccMergerVisiBankaccnap());
+		InfoMerger<BankaccInfo, BankaccnapInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
