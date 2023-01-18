@@ -21,7 +21,6 @@ public final class BankacyperchDaoJoinTxt implements DaoJoinBuilder {
 		DaoJoinBuilderHelper helper = new DaoJoinBuilderHelper(this.getClass());
 		
 		helper.addColumn(DaoDbField.COL_COD_BANK_ACCOUNT_TYPE);
-		helper.addColumn(DaoDbField.COL_COD_BANK_ACCOUNT_TYPE);	
 		helper.addJoinType(DaoJoinType.LEFT_OUTER_JOIN);		
 		helper.addLeftTable(leftTable);
 		helper.addRightTable(DaoDbTable.BANK_ACCOUNT_TYPE_TEXT_TABLE);
