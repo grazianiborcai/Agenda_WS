@@ -16,6 +16,8 @@ import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
 import br.com.mind5.masterData.areaPhoneSearch.model.AreanarchModelSelect;
 import br.com.mind5.masterData.bankAccountTypeSearch.info.BankacyperchInfo;
 import br.com.mind5.masterData.bankAccountTypeSearch.model.BankacyperchModelSelect;
+import br.com.mind5.masterData.bankHolderTypeSearch.info.BankoldyperchInfo;
+import br.com.mind5.masterData.bankHolderTypeSearch.model.BankoldyperchModelSelect;
 import br.com.mind5.masterData.businessAreaSearch.info.BusarearchInfo;
 import br.com.mind5.masterData.businessAreaSearch.model.BusarearchModelSelect;
 import br.com.mind5.masterData.cartItemCategorySearch.info.CaritegarchInfo;
@@ -128,6 +130,7 @@ public final class MasterDataResource {
 	private static final String SELECT_PET_TYPE = "/selectPetType";
 	private static final String SELECT_PET_WEIGHT = "/selectPetWeight";
 	private static final String SELECT_BANK_ACCOUNT_TYPE = "/selectBankAccountType";
+	private static final String SELECT_BANK_HOLDER_TYPE = "/selectBankHolderType";
 	
 	
 	
@@ -931,6 +934,27 @@ public final class MasterDataResource {
 		
 		
 		Model model = new BankacyperchModelSelect(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_BANK_HOLDER_TYPE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectBankoldyperch(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
+			                            @HeaderParam("codBankHolder") @DefaultValue("-1") int codBankHolder) {
+		
+		BankoldyperchInfo recordInfo = new BankoldyperchInfo();
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.codBankHolder = codBankHolder;
+		
+		
+		Model model = new BankoldyperchModelSelect(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();

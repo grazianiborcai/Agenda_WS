@@ -170,6 +170,7 @@ import br.com.mind5.masterData.authorizationGroupRole.dao.AuthgroleDaoDbTableCol
 import br.com.mind5.masterData.bankAccountType.dao.BankacypeDaoDbTableColumn;
 import br.com.mind5.masterData.bankAccountTypeSearch.dao.BankacyperchDaoDbTableColumn;
 import br.com.mind5.masterData.bankHolderType.dao.BankoldypeDaoDbTableColumn;
+import br.com.mind5.masterData.bankHolderTypeSearch.dao.BankoldyperchDaoDbTableColumn;
 import br.com.mind5.masterData.businessArea.dao.BusareaDaoDaoDbTableColumn;
 import br.com.mind5.masterData.businessAreaSearch.dao.BusarearchDaoDbTableColumn;
 import br.com.mind5.masterData.cartItemCategory.dao.CaritegDaoDbTableColumn;
@@ -619,6 +620,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new BankacypeDaoDbTableColumn());
 		addTable(new BankacyperchDaoDbTableColumn());
 		addTable(new BankoldypeDaoDbTableColumn());
+		addTable(new BankoldyperchDaoDbTableColumn());
 	}
 	
 	

@@ -219,7 +219,8 @@ public final class DaoDbTable {
 	public static final String ADDRESS_SEARCH_VIEW = "view_address_search";
 	public static final String ADDRESS_SNAPSHOT_SEARCH_VIEW = "view_address_snapshot_search";
 	public static final String AREA_PHONE_SEARCH_VIEW = "view_area_phone_search";	
-	public static final String BANK_ACCOUNT_TYPE_SEARCH_VIEW = "view_bank_account_type_search";	
+	public static final String BANK_ACCOUNT_TYPE_SEARCH_VIEW = "view_bank_account_type_search";
+	public static final String BANK_HOLDER_TYPE_SEARCH_VIEW = "view_bank_holder_type_search";
 	public static final String BUSINESS_AREA_SEARCH_VIEW = "view_business_area_search";
 	public static final String CALENDAR_DATE_SEARCH_VIEW = "view_calendar_date_search";
 	public static final String CALENDAR_MONTH_SEARCH_VIEW = "view_calendar_month_search";
