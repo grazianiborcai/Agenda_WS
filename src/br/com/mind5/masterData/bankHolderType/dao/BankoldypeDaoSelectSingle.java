@@ -70,7 +70,7 @@ public final class BankoldypeDaoSelectSingle extends DaoStmtTemplate<BankoldypeI
 					BankoldypeInfo dataInfo = new BankoldypeInfo();
 					
 					dataInfo.codBankHolder = stmtResult.getInt(BankoldypeDaoDbTableColumn.COL_COD_BANK_HOLDER_TYPE);
-					dataInfo.txtBankAccount = stmtResult.getString(BankoldypeDaoDbTableColumn.COL_NAME);
+					dataInfo.txtBankHolder = stmtResult.getString(BankoldypeDaoDbTableColumn.COL_NAME);
 					dataInfo.codLanguage = stmtResult.getString(BankoldypeDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				

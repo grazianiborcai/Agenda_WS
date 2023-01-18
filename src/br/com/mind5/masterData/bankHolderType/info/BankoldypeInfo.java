@@ -7,7 +7,7 @@ import br.com.mind5.info.InfoRecord;
 
 public final class BankoldypeInfo extends InfoRecord implements Cloneable {
 	public int codBankHolder;
-	public String txtBankAccount;
+	public String txtBankHolder;
 	
 	
 	public BankoldypeInfo() {
