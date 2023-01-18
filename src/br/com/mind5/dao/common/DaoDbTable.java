@@ -10,6 +10,7 @@ public final class DaoDbTable {
 	public static final String AUTH_GROUP_TABLE = "auth_group";
 	public static final String AUTH_GROUP_ROLE_TABLE = "auth_group_role";
 	public static final String BANK_ACCOUNT_TABLE = "bank_account";
+	public static final String BANK_ACCOUNT_SNAPSHOT_TABLE = "bank_account_snapshot";
 	public static final String BANK_TABLE = "bank";
 	public static final String BANK_TEXT_TABLE = "bank_text";
 	public static final String BANK_ACCOUNT_TYPE_TABLE = "bank_account_type";
