@@ -18,6 +18,8 @@ import br.com.mind5.masterData.bankAccountTypeSearch.info.BankacyperchInfo;
 import br.com.mind5.masterData.bankAccountTypeSearch.model.BankacyperchModelSelect;
 import br.com.mind5.masterData.bankHolderTypeSearch.info.BankoldyperchInfo;
 import br.com.mind5.masterData.bankHolderTypeSearch.model.BankoldyperchModelSelect;
+import br.com.mind5.masterData.bankSearch.info.BankarchInfo;
+import br.com.mind5.masterData.bankSearch.model.BankarchModelSelect;
 import br.com.mind5.masterData.businessAreaSearch.info.BusarearchInfo;
 import br.com.mind5.masterData.businessAreaSearch.model.BusarearchModelSelect;
 import br.com.mind5.masterData.cartItemCategorySearch.info.CaritegarchInfo;
@@ -131,6 +133,7 @@ public final class MasterDataResource {
 	private static final String SELECT_PET_WEIGHT = "/selectPetWeight";
 	private static final String SELECT_BANK_ACCOUNT_TYPE = "/selectBankAccountType";
 	private static final String SELECT_BANK_HOLDER_TYPE = "/selectBankHolderType";
+	private static final String SELECT_BANK = "/selectBank";
 	
 	
 	
@@ -955,6 +958,31 @@ public final class MasterDataResource {
 		
 		
 		Model model = new BankoldyperchModelSelect(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_BANK)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectBankarch(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
+			                       @HeaderParam("codBank")     @DefaultValue("-1") int codBank,
+			                       @HeaderParam("codCompe")    String codCompe,
+			                       @HeaderParam("codCountry")  String codCountry) {
+		
+		BankarchInfo recordInfo = new BankarchInfo();
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.codBank = codBank;
+		recordInfo.codCompe = codCompe;
+		recordInfo.codCountry = codCountry;
+		
+		
+		Model model = new BankarchModelSelect(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();
