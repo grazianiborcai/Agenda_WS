@@ -18,7 +18,7 @@ public final class BankoldypeCheckRead extends ModelCheckerTemplateSimple<Bankol
 	
 	
 	@Override protected boolean checkHook(BankoldypeInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codBankHolder <= 0 	||
+		if ( recordInfo.codBankHolderType <= 0 	||
 			 recordInfo.codLanguage    == null 	)		
 			
 			return super.FAILED;
