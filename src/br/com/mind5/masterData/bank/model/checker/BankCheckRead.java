@@ -18,9 +18,8 @@ public final class BankCheckRead extends ModelCheckerTemplateSimple<BankInfo> {
 	
 	
 	@Override protected boolean checkHook(BankInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codBank <= 0 	||
-			 recordInfo.codCountry 		== null ||
-			 recordInfo.codLanguage 	== null 	)		
+		if ( recordInfo.codBank 	<= 0 	||
+			 recordInfo.codLanguage == null 	)		
 			
 			return super.FAILED;
 		
