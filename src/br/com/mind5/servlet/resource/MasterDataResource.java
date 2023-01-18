@@ -929,11 +929,11 @@ public final class MasterDataResource {
 	@Path(SELECT_BANK_ACCOUNT_TYPE)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectBankacyperch(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
-			                           @HeaderParam("codBankAccount") @DefaultValue("-1") int codBankAccount) {
+			                           @HeaderParam("codBankAccountType") @DefaultValue("-1") int codBankAccountType) {
 		
 		BankacyperchInfo recordInfo = new BankacyperchInfo();
 		recordInfo.codLanguage = codLanguage;
-		recordInfo.codBankAccount = codBankAccount;
+		recordInfo.codBankAccountType = codBankAccountType;
 		
 		
 		Model model = new BankacyperchModelSelect(recordInfo);
