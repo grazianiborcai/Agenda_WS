@@ -76,8 +76,8 @@ public final class BankoldyperchDaoSelectSingle extends DaoStmtTemplate<Bankoldy
 				do {				
 					BankoldyperchInfo dataInfo = new BankoldyperchInfo();
 					
-					dataInfo.codBankHolder = stmtResult.getInt(BankoldyperchDaoDbTableColumn.COL_COD_BANK_HOLDER_TYPE);
-					dataInfo.txtBankHolder = stmtResult.getString(BankoldyperchDaoDbTableColumn.COL_NAME);
+					dataInfo.codBankHolderType = stmtResult.getInt(BankoldyperchDaoDbTableColumn.COL_COD_BANK_HOLDER_TYPE);
+					dataInfo.txtBankHolderType = stmtResult.getString(BankoldyperchDaoDbTableColumn.COL_NAME);
 					dataInfo.codLanguage = stmtResult.getString(BankoldyperchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				

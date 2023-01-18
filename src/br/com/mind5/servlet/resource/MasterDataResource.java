@@ -950,11 +950,11 @@ public final class MasterDataResource {
 	@Path(SELECT_BANK_HOLDER_TYPE)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectBankoldyperch(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
-			                            @HeaderParam("codBankHolder") @DefaultValue("-1") int codBankHolder) {
+			                            @HeaderParam("codBankHolderType") @DefaultValue("-1") int codBankHolderType) {
 		
 		BankoldyperchInfo recordInfo = new BankoldyperchInfo();
 		recordInfo.codLanguage = codLanguage;
-		recordInfo.codBankHolder = codBankHolder;
+		recordInfo.codBankHolderType = codBankHolderType;
 		
 		
 		Model model = new BankoldyperchModelSelect(recordInfo);

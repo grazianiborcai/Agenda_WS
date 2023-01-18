@@ -27,7 +27,7 @@ final class BankoldyperchDaoWhere implements DaoStmtWhere {
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case BankoldyperchDaoDbTableColumn.COL_COD_BANK_HOLDER_TYPE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codBankHolder));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codBankHolderType));
 					break;
 					
 				case BankoldyperchDaoDbTableColumn.COL_COD_LANGUAGE :
