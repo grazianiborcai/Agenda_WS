@@ -92,7 +92,8 @@ public final class DaoDbField {
 	public static final String COL_COD_AREA_PHONE = "cod_area_phone";
 	public static final String COL_COD_AUTH_GROUP = "cod_auth_group";
 	public static final String COL_COD_AUTH_ROLE = "cod_auth_role";	
-	public static final String COL_COD_BANK_ACCOUNT_TYPE = "cod_bank_account_type";	
+	public static final String COL_COD_BANK_ACCOUNT_TYPE = "cod_bank_account_type";
+	public static final String COL_COD_BANK_HOLDER_TYPE = "cod_bank_holder_type";
 	public static final String COL_COD_BODY = "cod_email_body";
 	public static final String COL_COD_BUSINESS = "cod_business";
 	public static final String COL_COD_CATEGORY = "cod_category";

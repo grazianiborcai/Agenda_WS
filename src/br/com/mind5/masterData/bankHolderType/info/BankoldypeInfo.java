@@ -1,0 +1,61 @@
+package br.com.mind5.masterData.bankHolderType.info;
+
+import java.util.List;
+
+import br.com.mind5.common.DefaultValue;
+import br.com.mind5.info.InfoRecord;
+
+public final class BankoldypeInfo extends InfoRecord implements Cloneable {
+	public int codBankHolder;
+	public String txtBankAccount;
+	
+	
+	public BankoldypeInfo() {
+		super();
+		
+		codBankHolder = DefaultValue.number();
+	}
+	
+	
+	
+	public static BankoldypeInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, BankoldypeInfo.class);
+	}
+	
+	
+	
+	public static List<BankoldypeInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, BankoldypeInfo.class);
+	}
+	
+	
+	
+	@Override public Object clone()throws CloneNotSupportedException {
+		return super.clone();
+	}
+	
+	
+	
+	@Override public int hashCode() {
+		int result = 17;
+		
+		result = result * 31 + (int) (codBankHolder ^ (codBankHolder >>> 32));
+		
+		return result;
+	}
+	
+	
+	
+	@Override public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		
+		
+		if (!(o instanceof BankoldypeInfo))
+			return false;
+		
+		
+		BankoldypeInfo obj = (BankoldypeInfo) o;		
+		return (codBankHolder == obj.codBankHolder);
+	}
+}
