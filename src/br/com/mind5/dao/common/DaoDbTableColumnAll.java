@@ -167,6 +167,7 @@ import br.com.mind5.masterData.areaPhone.dao.AreaneDaoDbTableColumn;
 import br.com.mind5.masterData.areaPhoneSearch.dao.AreanarchDaoDbTableColumn;
 import br.com.mind5.masterData.authorizationGroup.dao.AuthgroupDaoDbTableColumn;
 import br.com.mind5.masterData.authorizationGroupRole.dao.AuthgroleDaoDbTableColumn;
+import br.com.mind5.masterData.bank.dao.BankDaoDbTableColumn;
 import br.com.mind5.masterData.bankAccountType.dao.BankacypeDaoDbTableColumn;
 import br.com.mind5.masterData.bankAccountTypeSearch.dao.BankacyperchDaoDbTableColumn;
 import br.com.mind5.masterData.bankHolderType.dao.BankoldypeDaoDbTableColumn;
@@ -621,6 +622,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new BankacyperchDaoDbTableColumn());
 		addTable(new BankoldypeDaoDbTableColumn());
 		addTable(new BankoldyperchDaoDbTableColumn());
+		addTable(new BankDaoDbTableColumn());
 	}
 	
 	

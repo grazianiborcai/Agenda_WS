@@ -9,8 +9,10 @@ public final class DaoDbTable {
 	public static final String AREA_PHONE_TEXT_TABLE = "area_phone_text";
 	public static final String AUTH_GROUP_TABLE = "auth_group";
 	public static final String AUTH_GROUP_ROLE_TABLE = "auth_group_role";	
+	public static final String BANK_TABLE = "bank";
+	public static final String BANK_TEXT_TABLE = "bank_text";
 	public static final String BANK_ACCOUNT_TYPE_TABLE = "bank_account_type";
-	public static final String BANK_ACCOUNT_TYPE_TEXT_TABLE = "bank_account_type_text";	
+	public static final String BANK_ACCOUNT_TYPE_TEXT_TABLE = "bank_account_type_text";
 	public static final String BANK_HOLDER_TYPE_TABLE = "bank_holder_type";
 	public static final String BANK_HOLDER_TYPE_TEXT_TABLE = "bank_holder_type_text";
 	public static final String BUSINESS_AREA_TABLE = "business_area";
