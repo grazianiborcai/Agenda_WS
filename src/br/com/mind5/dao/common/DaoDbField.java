@@ -3,6 +3,8 @@ package br.com.mind5.dao.common;
 public final class DaoDbField {	
 	public static final String COL_ACCESS_TOKEN = "access_token";
 	public static final String COL_ACCOUNT_LINK = "account_link";
+	public static final String COL_ACCOUNT_NUMBER = "account_number";
+	public static final String COL_ACCOUNT_CHECK_DIGIT = "account_check_digit";
 	public static final String COL_ADDRESS_NAME = "address_name";
 	public static final String COL_AMOUNT_CURRENCY_PARTNER = "amount_currency_partner";
 	public static final String COL_AMOUNT_TOTAL_PARTNER = "amount_total_partner";
@@ -14,6 +16,8 @@ public final class DaoDbField {
 	public static final String COL_BIRTH_DAY = "birth_day";
 	public static final String COL_BIRTH_MONTH = "birth_month";
 	public static final String COL_BIRTH_YEAR = "birth_year";
+	public static final String COL_BRANCH_CHECK_DIGIT = "branch_check_digit";
+	public static final String COL_BRANCH_NUMBER = "branch_number";
 	public static final String COL_CALMONTH = "calmonth";
 	public static final String COL_CITY = "city";
 	public static final String COL_COUNT_CUSTOMER = "count_customer";
@@ -93,6 +97,7 @@ public final class DaoDbField {
 	public static final String COL_COD_AUTH_GROUP = "cod_auth_group";
 	public static final String COL_COD_AUTH_ROLE = "cod_auth_role";
 	public static final String COL_COD_BANK = "cod_bank";
+	public static final String COL_COD_BANK_ACCOUNT = "cod_bank_account";
 	public static final String COL_COD_BANK_ACCOUNT_TYPE = "cod_bank_account_type";
 	public static final String COL_COD_BANK_HOLDER_TYPE = "cod_bank_holder_type";
 	public static final String COL_COD_BODY = "cod_email_body";
@@ -240,6 +245,8 @@ public final class DaoDbField {
 	public static final String COL_GEO_HASH_05 = "geo_hash_05";
 	public static final String COL_GEO_HASH_12 = "geo_hash_12";
 	public static final String COL_GRAND_TOTAL = "grand_total";
+	public static final String COL_HOLDER_DOCUMENT = "holder_document";
+	public static final String COL_HOLDER_NAME = "holder_name";
 	public static final String COL_HOUR_BEFORE = "hour_before";
 	public static final String COL_ID_ORDER_PARTNER = "id_order_partner";
 	public static final String COL_ID_PAY_PARTNER_APP = "id_pay_partner_app";

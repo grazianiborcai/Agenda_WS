@@ -11,6 +11,7 @@ import br.com.mind5.business.addressDefault.dao.AddaultDaoDbTableColumn;
 import br.com.mind5.business.addressSearch.dao.AddarchDaoDbTableColumn;
 import br.com.mind5.business.addressSnapshot.dao.AddresnapDaoDbTableColumn;
 import br.com.mind5.business.addressSnapshotSearch.dao.AddresnaparchDaoDbTableColumn;
+import br.com.mind5.business.bankAccount.dao.BankaccDaoDbTableColumn;
 import br.com.mind5.business.calendarDate.dao.CalateDaoDbTableColumn;
 import br.com.mind5.business.calendarDateSearch.dao.CalatarchDaoDbTableColumn;
 import br.com.mind5.business.calendarMonth.dao.CalonthDaoDbTableColumn;
@@ -625,6 +626,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new BankoldyperchDaoDbTableColumn());
 		addTable(new BankDaoDbTableColumn());
 		addTable(new BankarchDaoDbTableColumn());
+		addTable(new BankaccDaoDbTableColumn());
 	}
 	
 	
