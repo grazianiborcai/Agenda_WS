@@ -32,6 +32,7 @@ final class RecipaMergerVisiBankacc extends InfoMergerVisitorTemplate<RecipaInfo
 		bankAccount = addBankType(bankAccount, selectedInfo);
 		
 		baseInfo.bankAccountData = bankAccount;
+		baseInfo.codBankAccount = selectedInfo.codBankAccount;
 		
 		results.add(baseInfo);
 		return results;
@@ -58,8 +59,10 @@ final class RecipaMergerVisiBankacc extends InfoMergerVisitorTemplate<RecipaInfo
 	
 	
 	private Map<String, String> addBranchNumber(Map<String, String> bankAccountData, BankaccInfo selectedInfo) {
+		String branchNumber = "0000" + selectedInfo.branchNumber;
+		
 		if(selectedInfo.branchNumber != null)
-			bankAccountData.put("branch_number", selectedInfo.branchNumber);
+			bankAccountData.put("branch_number", branchNumber.substring(branchNumber.length() - 4));
 		
 		return bankAccountData;
 	}

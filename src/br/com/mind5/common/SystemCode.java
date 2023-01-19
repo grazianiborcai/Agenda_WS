@@ -1977,6 +1977,7 @@ public final class SystemCode {
 	
 	// Bank Account
 	public static final int BANK_ACCOUNT 								= 19950;
+	public static final int HOLDER_DOC_IS_DIFFERENT 					= 19951;
 	
 	// Bank Account - Snapshot
 	public static final int BANK_ACCOUNT_SNAPSHOT 						= 20000;
@@ -1984,7 +1985,7 @@ public final class SystemCode {
 	// Bank Account - Search
 	public static final int BANK_ACCOUNT_SEARCH 						= 20050;
 	
-	// General -- 19669
+	// General -- 19670
 	public static final int GEN_COMPLEMENT								= 19668;
 	public static final int GEN_DESCRIPTION								= 19661;
 	public static final int GEN_EMAIL									= 19664;
@@ -1999,7 +2000,8 @@ public final class SystemCode {
 	public static final int GEN_P1_INVALID_P2_LENGTH_M					= 19660;
 	public static final int GEN_P1_MANDATORY_FIELD_EMPTY_M 				= 19650;
 	public static final int GEN_P1_NOT_FOUND_F 							= 19655;
-	public static final int GEN_P1_NOT_FOUND_M 							= 19656;
+	public static final int GEN_P1_NOT_FOUND_M 							= 19656;	
+	public static final int GEN_P1_P2									= 19670;	
 	public static final int GEN_P1_P2_CONTAIN_INVALID_CHAR				= 19659;
 	public static final int GEN_P1_P2_INVALID_F							= 19657;
 	public static final int GEN_P1_P2_INVALID_M							= 19658;

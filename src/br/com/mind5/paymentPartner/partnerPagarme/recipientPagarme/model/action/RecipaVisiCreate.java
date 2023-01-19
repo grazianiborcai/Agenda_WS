@@ -153,6 +153,7 @@ public final class RecipaVisiCreate extends ActionVisitorTemplateSimple<RecipaIn
 		RecipaInfo parsedResponse = parseResponse(response);	
 		
 		recordInfo.id = parsedResponse.id;
+		recordInfo.codPayBankAccount = parsedResponse.default_bank_account.id;
 		
 		return recordInfo;
 	}

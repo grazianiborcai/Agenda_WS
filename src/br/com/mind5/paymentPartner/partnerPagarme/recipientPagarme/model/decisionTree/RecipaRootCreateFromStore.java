@@ -13,6 +13,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerPagarme.recipientPagarme.info.RecipaInfo;
+import br.com.mind5.paymentPartner.partnerPagarme.recipientPagarme.model.action.RecipaVisiBankaccUpdatePartner;
 import br.com.mind5.paymentPartner.partnerPagarme.recipientPagarme.model.action.RecipaVisiMergeBankacc;
 import br.com.mind5.paymentPartner.partnerPagarme.recipientPagarme.model.action.RecipaVisiMergeStolis;
 import br.com.mind5.paymentPartner.partnerPagarme.recipientPagarme.model.action.RecipaVisiRootCreate;
@@ -65,9 +66,11 @@ public final class RecipaRootCreateFromStore extends DeciTreeTemplateWrite<Recip
 		ActionStd<RecipaInfo> mergeStolis = new ActionStdCommom<RecipaInfo>(option, RecipaVisiMergeStolis.class);
 		ActionLazy<RecipaInfo> mergeBankacc = new ActionLazyCommom<RecipaInfo>(option, RecipaVisiMergeBankacc.class);
 		ActionLazy<RecipaInfo> create = new ActionLazyCommom<RecipaInfo>(option, RecipaVisiRootCreate.class);
+		ActionLazy<RecipaInfo> bankaccUpdatePartner = new ActionLazyCommom<RecipaInfo>(option, RecipaVisiBankaccUpdatePartner.class);
 		
 		mergeStolis.addPostAction(mergeBankacc);
 		mergeBankacc.addPostAction(create);
+		create.addPostAction(bankaccUpdatePartner);
 		
 		actions.add(mergeStolis);
 		return actions;

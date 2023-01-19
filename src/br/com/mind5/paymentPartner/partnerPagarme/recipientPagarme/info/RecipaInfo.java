@@ -11,6 +11,8 @@ import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 public final class RecipaInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
+	public long codBankAccount;
+	public String codPayBankAccount;
 	public int codPayPartner;
 	public String id;
 	public String name;
@@ -22,7 +24,12 @@ public final class RecipaInfo extends InfoRecord implements Cloneable {
 	public String authorization;
 	public SetuparInfo setuparData;
 	public Map<String, String> bankAccountData;
+	public default_bank_account default_bank_account;
 	public String username;
+	
+	public class default_bank_account {
+		public String id;
+  	}
 	
 	
 	public RecipaInfo() {
@@ -30,6 +37,7 @@ public final class RecipaInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
+		codBankAccount = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
 		setuparData = DefaultValue.object();
 		bankAccountData = DefaultValue.object();
