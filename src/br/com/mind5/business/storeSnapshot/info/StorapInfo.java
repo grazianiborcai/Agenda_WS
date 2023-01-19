@@ -21,6 +21,8 @@ public final class StorapInfo extends InfoRecord implements Cloneable {
 	public long codLegalPerson;
 	public long codCompany;
 	public long codCompanySnapshot;	
+	public long codBankAccount;
+	public long codBankAccountSnapshot;
 	public String codCurr;
 	public String txtCurr;
 	public String codTimezone;
@@ -49,7 +51,9 @@ public final class StorapInfo extends InfoRecord implements Cloneable {
 		codUserSnapshot = DefaultValue.number();
 		codLegalPerson = DefaultValue.number();
 		codCompany = DefaultValue.number();
-		codCompanySnapshot = DefaultValue.number();		
+		codCompanySnapshot = DefaultValue.number();
+		codBankAccount = DefaultValue.number();
+		codBankAccountSnapshot = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		isLocked = DefaultValue.boole();
 		storextsnapes = DefaultValue.list();

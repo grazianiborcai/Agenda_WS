@@ -77,6 +77,8 @@ public final class StorapDaoSelectSingle extends DaoStmtTemplate<StorapInfo> {
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, StorapDaoDbTableColumn.COL_CREATED_ON);
 					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, StorapDaoDbTableColumn.COL_CREATED_BY);
 					dataInfo.isLocked = DaoFormatter.sqlToBoole(stmtResult, StorapDaoDbTableColumn.COL_IS_LOCKED);
+					dataInfo.codBankAccount = stmtResult.getLong(StorapDaoDbTableColumn.COL_COD_BANK_ACCOUNT);
+					dataInfo.codBankAccountSnapshot = stmtResult.getLong(StorapDaoDbTableColumn.COL_COD_BANK_ACCOUNT_SNAPSHOT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
+import br.com.mind5.business.storeSnapshot.model.action.StorapVisiDaoInsert;
+import br.com.mind5.business.storeSnapshot.model.action.StorapVisiNodeBankacc;
 import br.com.mind5.business.storeSnapshot.model.action.StorapVisiNodeComp;
 import br.com.mind5.business.storeSnapshot.model.action.StorapVisiNodeStorextsnap;
 import br.com.mind5.business.storeSnapshot.model.action.StorapVisiNodeUser;
-import br.com.mind5.business.storeSnapshot.model.action.StorapVisiDaoInsert;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckOwner;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckStore;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckWrite;
@@ -65,12 +66,14 @@ public final class StorapRootInsert extends DeciTreeTemplateWrite<StorapInfo> {
 		ActionStd<StorapInfo> nodePereg = new StorapNodePereg(option).toAction();
 		ActionLazy<StorapInfo> nodeComp = new ActionLazyCommom<StorapInfo>(option, StorapVisiNodeComp.class);
 		ActionLazy<StorapInfo> nodeUser = new ActionLazyCommom<StorapInfo>(option, StorapVisiNodeUser.class);
+		ActionLazy<StorapInfo> nodeBankacc = new ActionLazyCommom<StorapInfo>(option, StorapVisiNodeBankacc.class);
 		ActionLazy<StorapInfo> insert = new ActionLazyCommom<StorapInfo>(option, StorapVisiDaoInsert.class);
 		ActionLazy<StorapInfo> nodeStorextsnap = new ActionLazyCommom<StorapInfo>(option, StorapVisiNodeStorextsnap.class);
 		
 		nodePereg.addPostAction(nodeComp);
 		nodeComp.addPostAction(nodeUser);
-		nodeUser.addPostAction(insert);
+		nodeUser.addPostAction(nodeBankacc);
+		nodeBankacc.addPostAction(insert);
 		insert.addPostAction(nodeStorextsnap);
 		
 		actions.add(nodePereg);	

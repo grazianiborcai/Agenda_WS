@@ -2,6 +2,7 @@ package br.com.mind5.business.storeSnapshot.info;
 
 import java.util.List;
 
+import br.com.mind5.business.bankAccount.info.BankaccInfo;
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
 import br.com.mind5.business.personLegal.info.PeregInfo;
@@ -14,6 +15,19 @@ import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 import br.com.mind5.security.userList.info.UselisInfo;
 
 public final class StorapMerger {	
+	public static List<StorapInfo> mergeWithBankacc(List<StorapInfo> baseInfos, List<BankaccInfo> selectedInfos) {
+		InfoMergerBuilder<StorapInfo, BankaccInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StorapMergerVisiBankacc());
+		InfoMerger<StorapInfo, BankaccInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<StorapInfo> mergeWithStorext(List<StorapInfo> baseInfos, List<StorextInfo> selectedInfos) {
 		InfoMergerBuilder<StorapInfo, StorextInfo> builder = new InfoMergerBuilder<>();
 		

@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
-import br.com.mind5.business.storeSnapshot.model.action.StorapVisiNodeCompnap;
-import br.com.mind5.business.storeSnapshot.model.action.StorapVisiNodePereg;
 import br.com.mind5.business.storeSnapshot.model.action.StorapVisiMergeCurrency;
 import br.com.mind5.business.storeSnapshot.model.action.StorapVisiMergePhonap;
 import br.com.mind5.business.storeSnapshot.model.action.StorapVisiMergeTimezone;
 import br.com.mind5.business.storeSnapshot.model.action.StorapVisiMergeToSelect;
+import br.com.mind5.business.storeSnapshot.model.action.StorapVisiNodeCompnap;
+import br.com.mind5.business.storeSnapshot.model.action.StorapVisiNodePereg;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckLangu;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckOwner;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckRead;
