@@ -47,7 +47,7 @@ public final class BankaccnapDaoDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_COD_SNAPSHOT;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
+		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
@@ -63,7 +63,7 @@ public final class BankaccnapDaoDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_COD_BANK_ACCOUNT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
+		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
