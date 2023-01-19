@@ -31,6 +31,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public String txtCurr;
 	public String codTimezone;
 	public String txtTimezone;
+	public long codBankAccount;
 	public boolean isLocked;
 	public AddressInfo addressData;
 	public List<PhoneInfo> phones;
@@ -62,6 +63,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		codUser = DefaultValue.number();
 		codCompany = DefaultValue.number();
 		codLegalPerson = DefaultValue.number();
+		codBankAccount = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		storextes = DefaultValue.list();
 		companyData = DefaultValue.object();

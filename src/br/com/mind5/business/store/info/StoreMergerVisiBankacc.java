@@ -19,6 +19,7 @@ final class StoreMergerVisiBankacc extends InfoMergerVisitorTemplate<StoreInfo, 
 	@Override public List<StoreInfo> merge(StoreInfo baseInfo, BankaccInfo selectedInfo) {
 		List<StoreInfo> results = new ArrayList<>();
 		
+		baseInfo.codBankAccount = selectedInfo.codBankAccount;
 		baseInfo.bankaccData = selectedInfo;
 		
 		results.add(baseInfo);

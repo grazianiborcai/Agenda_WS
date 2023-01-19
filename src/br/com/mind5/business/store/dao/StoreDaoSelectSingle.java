@@ -63,6 +63,7 @@ public final class StoreDaoSelectSingle extends DaoStmtTemplate<StoreInfo> {
 					
 					dataInfo.codOwner = stmtResult.getLong(StoreDaoDbTableColumn.COL_COD_OWNER);
 					dataInfo.codStore = stmtResult.getLong(StoreDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codBankAccount = stmtResult.getLong(StoreDaoDbTableColumn.COL_COD_BANK_ACCOUNT);
 					dataInfo.codCurr = stmtResult.getString(StoreDaoDbTableColumn.COL_COD_CURRENCY);
 					dataInfo.codTimezone = stmtResult.getString(StoreDaoDbTableColumn.COL_COD_TIMEZONE);
 					dataInfo.recordMode = stmtResult.getString(StoreDaoDbTableColumn.COL_RECORD_MODE);

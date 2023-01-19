@@ -55,6 +55,7 @@ public final class StoreDaoInsertSingle extends DaoStmtTemplate<StoreInfo> {
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
 				stmt.setBoolean(i++, recordInfo.isLocked);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codLegalPerson);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codBankAccount);
 				
 				return stmt;
 			}	
