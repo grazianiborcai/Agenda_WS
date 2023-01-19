@@ -25,7 +25,23 @@ public final class RecipaCheckCreate extends ModelCheckerTemplateSimple<RecipaIn
 			recordInfo.codLanguage	== null		)
 			
 			return super.FAILED;
+		
+		
+		if (checkBankAccountData(recordInfo) == super.FAILED)
+			return super.FAILED;
 
+		
+		return super.SUCCESS;
+	}
+	
+	
+	
+	private boolean checkBankAccountData(RecipaInfo recordInfo) {
+		if (recordInfo.bankAccountData == null)
+			return super.FAILED;
+		
+		if (recordInfo.bankAccountData.size() == 0)
+			return super.FAILED;
 		
 		return super.SUCCESS;
 	}

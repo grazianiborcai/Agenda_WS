@@ -2,6 +2,7 @@ package br.com.mind5.paymentPartner.partnerPagarme.recipientPagarme.model.action
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.json.standard.JstdBodyParser;
@@ -58,15 +59,48 @@ public final class RecipaVisiCreate extends ActionVisitorTemplateSimple<RecipaIn
 		
 		body.append("{");
 		
+		body.append(makeBodyRecipient(recordInfo)).append(",");
+		body.append(makeBodyBankAccount(recordInfo));
+		
+		body.append("}");
+		return body.toString();
+	}
+	
+	
+	
+	private String makeBodyRecipient(RecipaInfo recordInfo) {
+		StringBuilder body = new StringBuilder();
+		
 		body.append("\"name\":")    .append("\"").append(recordInfo.name)    .append("\"").append(",");
 		body.append("\"email\":")   .append("\"").append(recordInfo.email)   .append("\"").append(",");
 		body.append("\"document\":").append("\"").append(recordInfo.document).append("\"").append(",");
 		body.append("\"type\":")    .append("\"").append(recordInfo.type)    .append("\"").append(",");
 		body.append("\"code\":")    .append("\"").append(recordInfo.code)    .append("\"");
 		
-		body.append("}");
 		return body.toString();
 	}
+	
+	
+	
+	private String makeBodyBankAccount(RecipaInfo recordInfo) {
+		StringBuilder body = new StringBuilder();
+		int semaphore = 0;		
+		
+		body.append("\"default_bank_account\":");
+		body.append("{");
+		
+		for (Map.Entry<String, String> entry : recordInfo.bankAccountData.entrySet()) {
+			if (semaphore != 0)
+				body.append(",");
+			
+			body.append("\"").append(entry.getKey()).append("\":").append("\"").append(entry.getValue()).append("\"");			
+			semaphore = 1;
+		}
+		
+		body.append("}");
+		
+		return body.toString();
+	}	
 	
 	
 	

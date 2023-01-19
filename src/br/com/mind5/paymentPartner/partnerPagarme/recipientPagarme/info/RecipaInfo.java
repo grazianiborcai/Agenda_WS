@@ -1,6 +1,7 @@
 package br.com.mind5.paymentPartner.partnerPagarme.recipientPagarme.info;
 
 import java.util.List;
+import java.util.Map;
 
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
@@ -20,6 +21,7 @@ public final class RecipaInfo extends InfoRecord implements Cloneable {
 	public String code;
 	public String authorization;
 	public SetuparInfo setuparData;
+	public Map<String, String> bankAccountData;
 	public String username;
 	
 	
@@ -30,6 +32,7 @@ public final class RecipaInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
 		setuparData = DefaultValue.object();
+		bankAccountData = DefaultValue.object();
 	}
 	
 	
