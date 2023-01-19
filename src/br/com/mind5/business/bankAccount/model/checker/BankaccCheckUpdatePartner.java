@@ -9,9 +9,9 @@ import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class BankaccCheckUpdateAuth extends ModelCheckerTemplateSimple<BankaccInfo> {
+public final class BankaccCheckUpdatePartner extends ModelCheckerTemplateSimple<BankaccInfo> {
 
-	public BankaccCheckUpdateAuth(ModelCheckerOption option) {
+	public BankaccCheckUpdatePartner(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -20,15 +20,7 @@ public final class BankaccCheckUpdateAuth extends ModelCheckerTemplateSimple<Ban
 	@Override protected boolean checkHook(BankaccInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 			<= 0 	||
 			 recordInfo.codBankAccount 		<= 0 	||
-			 recordInfo.codStore			<= 0	||
-			 recordInfo.codBank				<= 0	||
-			 recordInfo.codBankHolderType	<= 0	||
-			 recordInfo.codBankAccountType	<= 0	||
-			 recordInfo.holderName			== null	||
-			 recordInfo.branchNumber		== null	||
-			 recordInfo.accountNumber		== null	||
-			 recordInfo.accountCheckDigit	== null	||
-			 recordInfo.holderDocument		== null	||
+			 recordInfo.codPayBankAccount	== null	||
 			 recordInfo.codLanguage			== null	||
 			 recordInfo.username			== null		)
 			

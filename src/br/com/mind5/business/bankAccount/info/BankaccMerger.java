@@ -113,4 +113,17 @@ public final class BankaccMerger {
 	
 		return merger.merge();
 	}
+	
+	
+	
+	public static List<BankaccInfo> mergeToUpdatePartner(List<BankaccInfo> baseInfos, List<BankaccInfo> selectedInfos) {
+		InfoMergerBuilder<BankaccInfo, BankaccInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new BankaccMergerVisiToUpdatePartner());
+		InfoMerger<BankaccInfo, BankaccInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
 }

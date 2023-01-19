@@ -5,11 +5,10 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 
-final class BankaccMergerVisiToUpdate extends InfoMergerVisitorTemplate<BankaccInfo, BankaccInfo> {
+final class BankaccMergerVisiToUpdatePartner extends InfoMergerVisitorTemplate<BankaccInfo, BankaccInfo> {
 
 	@Override public boolean shouldMerge(BankaccInfo baseInfo, BankaccInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner &&
-				baseInfo.codBankAccount == selectedInfo.codBankAccount);
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
@@ -17,11 +16,10 @@ final class BankaccMergerVisiToUpdate extends InfoMergerVisitorTemplate<BankaccI
 	@Override public List<BankaccInfo> merge(BankaccInfo baseInfo, BankaccInfo selectedInfo) {
 		List<BankaccInfo> results = new ArrayList<>();
 		
-		baseInfo.createdOn = selectedInfo.createdOn;
-		baseInfo.createdBy = selectedInfo.createdBy;
-		baseInfo.codStore  = selectedInfo.codStore;
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codPayBankAccount = baseInfo.codPayBankAccount;
 		
-		results.add(baseInfo);
+		results.add(selectedInfo);
 		return results;
 	}
 }

@@ -70,6 +70,7 @@ public final class BankaccDaoUpdateSingle extends DaoStmtTemplate<BankaccInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
 				stmt.setString(i++, recordInfo.holderName);
 				stmt.setString(i++, recordInfo.holderDocument);
+				stmt.setString(i++, recordInfo.codPayBankAccount);
 				
 				return stmt;
 			}		

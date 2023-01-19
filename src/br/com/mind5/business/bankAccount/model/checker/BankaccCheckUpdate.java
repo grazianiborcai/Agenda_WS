@@ -19,7 +19,7 @@ public final class BankaccCheckUpdate extends ModelCheckerTemplateSimple<Bankacc
 	
 	@Override protected boolean checkHook(BankaccInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 			<= 0 	||
-			 recordInfo.codStore			<= 0	|| //
+			 recordInfo.codBankAccount 		<= 0 	||
 			 recordInfo.codBank				<= 0	||
 			 recordInfo.codBankHolderType	<= 0	||
 			 recordInfo.codBankAccountType	<= 0	||

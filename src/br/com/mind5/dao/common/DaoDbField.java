@@ -146,6 +146,7 @@ public final class DaoDbField {
 	public static final String COL_COD_ORDER_EXTERNAL = "cod_order_external";
 	public static final String COL_COD_ORDER_ITEM = "cod_order_item";
 	public static final String COL_COD_ORDER_STATUS = "cod_order_status";
+	public static final String COL_COD_PAY_BANK_ACCOUNT = "cod_pay_bank_account";
 	public static final String COL_COD_PAY_CUSTOMER = "cod_pay_customer";
 	public static final String COL_COD_PAY_ORDER = "cod_pay_order";
 	public static final String COL_COD_PAY_ORDER_ITEM = "cod_pay_order_item";

@@ -79,6 +79,7 @@ public final class BankaccDaoSelectSingle extends DaoStmtTemplate<BankaccInfo> {
 					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, BankaccDaoDbTableColumn.COL_COD_STORE);
 					dataInfo.holderName = stmtResult.getString(BankaccDaoDbTableColumn.COL_HOLDER_NAME);
 					dataInfo.holderDocument = stmtResult.getString(BankaccDaoDbTableColumn.COL_HOLDER_DOCUMENT);
+					dataInfo.codPayBankAccount = stmtResult.getString(BankaccDaoDbTableColumn.COL_COD_PAY_BANK_ACCOUNT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
