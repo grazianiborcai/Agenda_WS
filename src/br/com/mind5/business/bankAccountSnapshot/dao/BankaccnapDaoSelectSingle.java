@@ -79,6 +79,7 @@ public final class BankaccnapDaoSelectSingle extends DaoStmtTemplate<BankaccnapI
 					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, BankaccnapDaoDbTableColumn.COL_COD_STORE);
 					dataInfo.holderName = stmtResult.getString(BankaccnapDaoDbTableColumn.COL_HOLDER_NAME);
 					dataInfo.holderDocument = stmtResult.getString(BankaccnapDaoDbTableColumn.COL_HOLDER_DOCUMENT);
+					dataInfo.codPayBankAccount = stmtResult.getString(BankaccnapDaoDbTableColumn.COL_COD_PAY_BANK_ACCOUNT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

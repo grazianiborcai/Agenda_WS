@@ -26,6 +26,7 @@ public final class BankaccnapInfo extends InfoRecord implements Cloneable {
 	public String accountCheckDigit;
 	public String holderName;
 	public String holderDocument;
+	public String codPayBankAccount;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
