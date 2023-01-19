@@ -4,13 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.StoreVisiBankaccInsert;
-import br.com.mind5.business.store.model.action.StoreVisiEnforceBankaccKey;
 import br.com.mind5.business.store.model.checker.StoreCheckHasBankacc;
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.commom.ActionLazyCommom;
-import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -18,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class StoreNodeBankaccInsert extends DeciTreeTemplateWrite<StoreInfo> {
+public final class StoreNodeBankaccInsertL1 extends DeciTreeTemplateWrite<StoreInfo> {
 	
-	public StoreNodeBankaccInsert(DeciTreeOption<StoreInfo> option) {
+	public StoreNodeBankaccInsertL1(DeciTreeOption<StoreInfo> option) {
 		super(option);
 	}
 	
@@ -46,12 +41,9 @@ public final class StoreNodeBankaccInsert extends DeciTreeTemplateWrite<StoreInf
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> enforceBankaccKey = new ActionStdCommom<StoreInfo>(option, StoreVisiEnforceBankaccKey.class);
-		ActionLazy<StoreInfo> insertBankacc = new  ActionLazyCommom<StoreInfo>(option, StoreVisiBankaccInsert.class);	
+		ActionStd<StoreInfo> nodeL2 = new StoreNodeBankaccInsertL2(option).toAction();
 		
-		enforceBankaccKey.addPostAction(insertBankacc);
-		
-		actions.add(enforceBankaccKey);		
+		actions.add(nodeL2);		
 		return actions;
 	}
 	

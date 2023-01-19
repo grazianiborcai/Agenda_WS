@@ -100,28 +100,28 @@ public final class StoreRootInsert extends DeciTreeTemplateWrite<StoreInfo> {
 		ActionLazy<StoreInfo> insertComp = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeCompInsert.class);
 		ActionLazy<StoreInfo> insertPereg = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodePeregInsert.class);
 		ActionLazy<StoreInfo> insertUser = new ActionLazyCommom<StoreInfo>(option, StoreVisiUserInsert.class);
+		ActionLazy<StoreInfo> insertBankacc = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeBankaccInsert.class);
 		ActionLazy<StoreInfo> snapshot = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeSnapshot.class);
 		ActionLazy<StoreInfo> upsertAddress = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeAddressUpsert.class);		
 		ActionLazy<StoreInfo> insertPhone = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodePhoneInsert.class);
 		ActionLazy<StoreInfo> insertStorext = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeStorextInsert.class);			
 		ActionLazy<StoreInfo> insertMatbcin = new ActionLazyCommom<StoreInfo>(option, StoreVisiMatbcinInsert.class);
 		ActionLazy<StoreInfo> insertStowotm = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeStowotmInsert.class);
-		ActionLazy<StoreInfo> insertStuntm = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeStuntmInsert.class);
-		ActionLazy<StoreInfo> insertBankacc = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeBankaccInsert.class);
+		ActionLazy<StoreInfo> insertStuntm = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeStuntmInsert.class);		
 		ActionLazy<StoreInfo> createStopar = new ActionLazyCommom<StoreInfo>(option, StoreVisiStoparCreate.class);
 		ActionLazy<StoreInfo> selectStore = new ActionLazyCommom<StoreInfo>(option, StoreVisiRootSelect.class);	
 		
 		insertStore.addPostAction(insertComp);
 		insertComp.addPostAction(insertPereg);		
 		insertPereg.addPostAction(insertUser);		
-		insertUser.addPostAction(snapshot);
+		insertUser.addPostAction(insertBankacc);
+		insertBankacc.addPostAction(snapshot);
 		snapshot.addPostAction(upsertAddress);			
 		snapshot.addPostAction(insertPhone);
 		snapshot.addPostAction(insertStorext);
 		snapshot.addPostAction(insertMatbcin);
 		snapshot.addPostAction(insertStowotm);
 		snapshot.addPostAction(insertStuntm);
-		snapshot.addPostAction(insertBankacc);
 		snapshot.addPostAction(createStopar);
 		createStopar.addPostAction(selectStore);
 		
