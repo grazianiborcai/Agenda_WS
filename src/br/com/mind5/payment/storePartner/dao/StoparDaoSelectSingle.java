@@ -61,10 +61,10 @@ public final class StoparDaoSelectSingle extends DaoStmtTemplate<StoparInfo> {
 				do {
 					StoparInfo dataInfo = new StoparInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(StoparDaoDbTableColumn.COL_COD_OWNER);
-					dataInfo.codSnapshot = stmtResult.getLong(StoparDaoDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codStore = stmtResult.getLong(StoparDaoDbTableColumn.COL_COD_STORE);
-					dataInfo.codPayPartner = stmtResult.getInt(StoparDaoDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, StoparDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, StoparDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, StoparDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codPayPartner = DaoFormatter.sqlToInt(stmtResult, StoparDaoDbTableColumn.COL_COD_PAY_PARTNER);
 					dataInfo.recordMode = stmtResult.getString(StoparDaoDbTableColumn.COL_RECORD_MODE);
 					dataInfo.codePayPartnerStore = stmtResult.getString(StoparDaoDbTableColumn.COL_CODE_PAY_PARTNER_STORE);
 					dataInfo.idPayPartnerStore = stmtResult.getString(StoparDaoDbTableColumn.COL_ID_PAY_PARTNER_STORE);				
