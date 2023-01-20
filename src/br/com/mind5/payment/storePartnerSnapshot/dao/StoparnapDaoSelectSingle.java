@@ -61,12 +61,12 @@ public final class StoparnapDaoSelectSingle extends DaoStmtTemplate<StoparnapInf
 				do {
 					StoparnapInfo dataInfo = new StoparnapInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(StoparnapDaoDbTableColumn.COL_COD_OWNER);
-					dataInfo.codSnapshot = stmtResult.getLong(StoparnapDaoDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codStore = stmtResult.getLong(StoparnapDaoDbTableColumn.COL_COD_STORE);
-					dataInfo.codPayPartner = stmtResult.getInt(StoparnapDaoDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, StoparnapDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, StoparnapDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, StoparnapDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codPayPartner = DaoFormatter.sqlToInt(stmtResult, StoparnapDaoDbTableColumn.COL_COD_PAY_PARTNER);
 					dataInfo.recordMode = stmtResult.getString(StoparnapDaoDbTableColumn.COL_RECORD_MODE);
-					dataInfo.lastChangedBy = stmtResult.getLong(StoparnapDaoDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StoparnapDaoDbTableColumn.COL_LAST_CHANGED);					
 					dataInfo.idPayPartnerStore = stmtResult.getString(StoparnapDaoDbTableColumn.COL_ID_PAY_PARTNER_STORE);
 					dataInfo.codePayPartnerStore = stmtResult.getString(StoparnapDaoDbTableColumn.COL_CODE_PAY_PARTNER_STORE);
 					dataInfo.accessToken = stmtResult.getString(StoparnapDaoDbTableColumn.COL_ACCESS_TOKEN);
