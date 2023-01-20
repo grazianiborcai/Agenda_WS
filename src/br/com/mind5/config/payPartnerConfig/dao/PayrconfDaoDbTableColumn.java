@@ -12,6 +12,7 @@ import br.com.mind5.dao.common.DaoDbTable;
 public final class PayrconfDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;	
 	public static final String COL_STORE_PARTNER_CREATION = DaoDbField.COL_STORE_PARTNER_CREATION;
+	public static final String COL_CUSTOMER_PARTNER_CREATION = DaoDbField.COL_CUSTOMER_PARTNER_CREATION;
 	
 	
 	public PayrconfDaoDbTableColumn() {
@@ -37,6 +38,14 @@ public final class PayrconfDaoDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_STORE_PARTNER_CREATION;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_CUSTOMER_PARTNER_CREATION;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

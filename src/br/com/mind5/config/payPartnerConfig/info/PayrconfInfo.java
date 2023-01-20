@@ -8,6 +8,7 @@ import br.com.mind5.info.InfoRecord;
 public final class PayrconfInfo extends InfoRecord implements Cloneable {
 	public int codPayPartner;
 	public String stoparCreation;
+	public String cusparCreation;
 	
 	
 	public PayrconfInfo() {

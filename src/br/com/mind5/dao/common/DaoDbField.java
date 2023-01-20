@@ -212,6 +212,7 @@ public final class DaoDbField {
 	public static final String COL_CREDIT_CARD_ID = "credit_card_id";
 	public static final String COL_CREDIT_CARD_LAST4 = "credit_card_last4";
 	public static final String COL_CURRENCY_SYMBOL = "symbol";
+	public static final String COL_CUSTOMER_PARTNER_CREATION = "customer_partner_creation";	
 	public static final String COL_DATE = "date";
 	public static final String COL_DATE_TIME_VALID_FROM = "datetime_valid_from";
 	public static final String COL_DATE_TIME_VALID_TO = "datetime_valid_to";

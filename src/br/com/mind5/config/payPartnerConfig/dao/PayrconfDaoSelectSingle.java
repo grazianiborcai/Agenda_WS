@@ -62,6 +62,7 @@ public final class PayrconfDaoSelectSingle extends DaoStmtTemplate<PayrconfInfo>
 					
 					dataInfo.codPayPartner = stmtResult.getInt(PayrconfDaoDbTableColumn.COL_COD_PAY_PARTNER);
 					dataInfo.stoparCreation = stmtResult.getString(PayrconfDaoDbTableColumn.COL_STORE_PARTNER_CREATION);
+					dataInfo.cusparCreation = stmtResult.getString(PayrconfDaoDbTableColumn.COL_CUSTOMER_PARTNER_CREATION);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
