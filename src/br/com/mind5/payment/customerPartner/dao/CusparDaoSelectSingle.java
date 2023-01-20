@@ -62,9 +62,9 @@ public final class CusparDaoSelectSingle extends DaoStmtTemplate<CusparInfo> {
 				do {
 					CusparInfo dataInfo = new CusparInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(CusparDaoDbTableColumn.COL_COD_OWNER);	
-					dataInfo.codPayCustomer = stmtResult.getLong(CusparDaoDbTableColumn.COL_COD_PAYCUS);
-					dataInfo.codUser = stmtResult.getLong(CusparDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_OWNER);	
+					dataInfo.codPayCustomer = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_PAYCUS);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_USER);
 					dataInfo.recordMode = stmtResult.getString(CusparDaoDbTableColumn.COL_RECORD_MODE);				
 					dataInfo.compoundId = stmtResult.getString(CusparDaoDbTableColumn.COL_COMPOUND_ID);
 					dataInfo.customerId = stmtResult.getString(CusparDaoDbTableColumn.COL_CUSTOMER_ID);
