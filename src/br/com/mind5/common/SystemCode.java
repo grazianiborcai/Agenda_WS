@@ -1988,6 +1988,10 @@ public final class SystemCode {
 	// Pay Partner Config: Customer Creation
 	public static final int PAY_PARTNER_CONFIG_CUSTOMER_CREATION 		= 20100;
 	
+	// Pay Partner Pagarme: Customer
+	public static final int PAGARME_CUSTOMER 							= 20150;
+	public static final int PAGARME_CUSTOMER_CREATION_ERROR				= 20151;
+	
 	// General -- 19670
 	public static final int GEN_COMPLEMENT								= 19668;
 	public static final int GEN_DESCRIPTION								= 19661;
