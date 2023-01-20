@@ -60,7 +60,8 @@ public final class RecipaVisiCreate extends ActionVisitorTemplateSimple<RecipaIn
 		body.append("{");
 		
 		body.append(makeBodyRecipient(recordInfo)).append(",");
-		body.append(makeBodyBankAccount(recordInfo));
+		body.append(makeBodyBankAccount(recordInfo)).append(",");
+		body.append(makeBodyMetadata(recordInfo));
 		
 		body.append("}");
 		return body.toString();
@@ -100,7 +101,24 @@ public final class RecipaVisiCreate extends ActionVisitorTemplateSimple<RecipaIn
 		body.append("}");
 		
 		return body.toString();
-	}	
+	}
+	
+	
+	
+	private String makeBodyMetadata(RecipaInfo recordInfo) {
+		String key = "codStore";
+		String value = recordInfo.codOwner + "-" + recordInfo.codStore;
+		StringBuilder body = new StringBuilder();
+		
+		body.append("\"metadata\":");
+		body.append("{");
+		
+		body.append("\"").append(key).append("\":");
+		body.append("\"").append(value).append("\"");
+		
+		body.append("}");		
+		return body.toString();
+	}
 	
 	
 	
