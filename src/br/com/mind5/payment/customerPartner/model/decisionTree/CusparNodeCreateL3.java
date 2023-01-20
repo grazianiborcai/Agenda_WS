@@ -13,7 +13,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.action.CusparVisiRecipaCreate;
+import br.com.mind5.payment.customerPartner.model.action.CusparVisiCustopaCreate;
 import br.com.mind5.payment.customerPartner.model.action.CusparVisiRootInsert;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckIsPagarme;
 
@@ -45,12 +45,12 @@ public final class CusparNodeCreateL3 extends DeciTreeTemplateWrite<CusparInfo> 
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CusparInfo> recipaCreate = new ActionStdCommom<CusparInfo>(option, CusparVisiRecipaCreate.class);	
+		ActionStd<CusparInfo> createCustopa = new ActionStdCommom<CusparInfo>(option, CusparVisiCustopaCreate.class);	
 		ActionLazy<CusparInfo> insert = new ActionLazyCommom<CusparInfo>(option, CusparVisiRootInsert.class);
 		
-		recipaCreate.addPostAction(insert);
+		createCustopa.addPostAction(insert);
 		
-		actions.add(recipaCreate);		
+		actions.add(createCustopa);		
 		return actions;
 	}
 }

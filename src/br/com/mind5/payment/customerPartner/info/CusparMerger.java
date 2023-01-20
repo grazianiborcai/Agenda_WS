@@ -9,10 +9,24 @@ import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.paymentPartnerDefault.info.PayparultInfo;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
+import br.com.mind5.paymentPartner.partnerPagarme.customerPagarme.info.CustopaInfo;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CusparMerger {	
+	public static List<CusparInfo> mergeWithCustopa(List<CusparInfo> baseInfos, List<CustopaInfo> selectedInfos) {
+		InfoMergerBuilder<CusparInfo, CustopaInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusparMergerVisiCustopa());
+		InfoMerger<CusparInfo, CustopaInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<CusparInfo> mergeWithPayparult(List<CusparInfo> baseInfos, List<PayparultInfo> selectedInfos) {
 		InfoMergerBuilder<CusparInfo, PayparultInfo> builder = new InfoMergerBuilder<>();
 		
