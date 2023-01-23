@@ -48,7 +48,7 @@ public final class CusparNodeCreateL2 extends DeciTreeTemplateWrite<CusparInfo> 
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CusparInfo> insert = new ActionStdCommom<CusparInfo>(option, CusparVisiRootInsert.class);
-		ActionLazy<CusparInfo> enforceCompoundId = new ActionLazyCommom<CusparInfo>(option, CusparVisiEnforceCompoundId.class);	
+		ActionLazy<CusparInfo> enforceCompoundId = new ActionLazyCommom<CusparInfo>(option, CusparVisiEnforceCompoundId.class);
 		ActionLazy<CusparInfo> createMoip = new ActionLazyCommom<CusparInfo>(option, CusparVisiCusmoipCreate.class);
 		ActionLazy<CusparInfo> update = new ActionLazyCommom<CusparInfo>(option, CusparVisiDaoUpdate.class);
 		

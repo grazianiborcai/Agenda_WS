@@ -14,6 +14,8 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.action.CusparVisiCustopaCreate;
+import br.com.mind5.payment.customerPartner.model.action.CusparVisiDaoUpdate;
+import br.com.mind5.payment.customerPartner.model.action.CusparVisiEnforceCompoundId;
 import br.com.mind5.payment.customerPartner.model.action.CusparVisiRootInsert;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckIsPagarme;
 
@@ -43,14 +45,18 @@ public final class CusparNodeCreateL1 extends DeciTreeTemplateWrite<CusparInfo> 
 	
 	
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
-		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
-
-		ActionStd<CusparInfo> createCustopa = new ActionStdCommom<CusparInfo>(option, CusparVisiCustopaCreate.class);	
-		ActionLazy<CusparInfo> insert = new ActionLazyCommom<CusparInfo>(option, CusparVisiRootInsert.class);
+		List<ActionStd<CusparInfo>> actions = new ArrayList<>();
 		
-		createCustopa.addPostAction(insert);
+		ActionStd<CusparInfo> insert = new ActionStdCommom<CusparInfo>(option, CusparVisiRootInsert.class);
+		ActionLazy<CusparInfo> enforceCompoundId = new ActionLazyCommom<CusparInfo>(option, CusparVisiEnforceCompoundId.class);
+		ActionLazy<CusparInfo> createCustopa = new ActionLazyCommom<CusparInfo>(option, CusparVisiCustopaCreate.class);
+		ActionLazy<CusparInfo> update = new ActionLazyCommom<CusparInfo>(option, CusparVisiDaoUpdate.class);
 		
-		actions.add(createCustopa);		
+		insert.addPostAction(enforceCompoundId);
+		enforceCompoundId.addPostAction(createCustopa);
+		createCustopa.addPostAction(update);
+		
+		actions.add(insert);
 		return actions;
 	}
 	
