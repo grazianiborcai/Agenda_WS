@@ -61,9 +61,9 @@ public final class CrecardDaoSelectSingle extends DaoStmtTemplate<CrecardInfo> {
 				do {
 					CrecardInfo dataInfo = new CrecardInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(CrecardDaoDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCreditCard = stmtResult.getLong(CrecardDaoDbTableColumn.COL_COD_CREDIT_CARD);
-					dataInfo.codPayCustomer = stmtResult.getLong(CrecardDaoDbTableColumn.COL_COD_PAY_CUSTOMER);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, CrecardDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCreditCard = DaoFormatter.sqlToLong(stmtResult, CrecardDaoDbTableColumn.COL_COD_CREDIT_CARD);
+					dataInfo.codPayCustomer = DaoFormatter.sqlToLong(stmtResult, CrecardDaoDbTableColumn.COL_COD_PAY_CUSTOMER);
 					dataInfo.creditCardId = stmtResult.getString(CrecardDaoDbTableColumn.COL_CREDIT_CARD_ID);	
 					dataInfo.creditCardBrand = stmtResult.getString(CrecardDaoDbTableColumn.COL_CREDIT_CARD_BRAND);	
 					dataInfo.creditCardLast4 = stmtResult.getString(CrecardDaoDbTableColumn.COL_CREDIT_CARD_LAST4);

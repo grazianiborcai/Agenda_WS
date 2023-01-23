@@ -42,8 +42,8 @@ public final class CrecardDaoInsertSingle extends DaoStmtTemplate<CrecardInfo> {
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CrecardInfo recordInfo) throws SQLException {					
 				int i = 1;
 				
-				stmt.setLong(i++, recordInfo.codOwner);
-				stmt.setLong(i++, recordInfo.codPayCustomer);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwner);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayCustomer);
 				stmt.setString(i++, recordInfo.creditCardId);
 				stmt.setString(i++, recordInfo.creditCardBrand);
 				stmt.setString(i++, recordInfo.creditCardLast4);

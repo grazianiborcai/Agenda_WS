@@ -11,7 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.action.CrecardVisiCusparInsert;
+import br.com.mind5.payment.creditCard.model.action.CrecardVisiCusparCreate;
 import br.com.mind5.payment.creditCard.model.action.CrecardVisiMergeCusparch;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckCusparch;
 
@@ -54,9 +54,9 @@ public final class CrecardNodeCuspar extends DeciTreeTemplateWrite<CrecardInfo> 
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnFailedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CrecardInfo> insertCuspar = new ActionStdCommom<CrecardInfo>(option, CrecardVisiCusparInsert.class);
+		ActionStd<CrecardInfo> createCuspar = new ActionStdCommom<CrecardInfo>(option, CrecardVisiCusparCreate.class);
 		
-		actions.add(insertCuspar);		
+		actions.add(createCuspar);		
 		return actions;
 	}
 }
