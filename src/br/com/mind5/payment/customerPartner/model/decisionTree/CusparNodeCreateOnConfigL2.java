@@ -3,23 +3,21 @@ package br.com.mind5.payment.customerPartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.action.CusparVisiCustopaCreate;
-import br.com.mind5.payment.customerPartner.model.action.CusparVisiRootInsert;
-import br.com.mind5.payment.customerPartner.model.checker.CusparCheckIsPagarme;
+import br.com.mind5.payment.customerPartner.model.action.CusparVisiRootCreate;
+import br.com.mind5.payment.customerPartner.model.checker.CusparCheckPayrsocre;
 
-public final class CusparNodeCreateL1 extends DeciTreeTemplateWrite<CusparInfo> {
+public final class CusparNodeCreateOnConfigL2 extends DeciTreeTemplateWrite<CusparInfo> {
 	
-	public CusparNodeCreateL1(DeciTreeOption<CusparInfo> option) {
+	public CusparNodeCreateOnConfigL2(DeciTreeOption<CusparInfo> option) {
 		super(option);
 	}
 	
@@ -33,8 +31,8 @@ public final class CusparNodeCreateL1 extends DeciTreeTemplateWrite<CusparInfo> 
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CusparCheckIsPagarme(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CusparCheckPayrsocre(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -44,13 +42,10 @@ public final class CusparNodeCreateL1 extends DeciTreeTemplateWrite<CusparInfo> 
 	
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
-
-		ActionStd<CusparInfo> createCustopa = new ActionStdCommom<CusparInfo>(option, CusparVisiCustopaCreate.class);	
-		ActionLazy<CusparInfo> insert = new ActionLazyCommom<CusparInfo>(option, CusparVisiRootInsert.class);
 		
-		createCustopa.addPostAction(insert);
+		ActionStd<CusparInfo> create = new ActionStdCommom<CusparInfo>(option, CusparVisiRootCreate.class);;	
 		
-		actions.add(createCustopa);		
+		actions.add(create);		
 		return actions;
 	}
 	
@@ -59,9 +54,9 @@ public final class CusparNodeCreateL1 extends DeciTreeTemplateWrite<CusparInfo> 
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnFailedHook(DeciTreeOption<CusparInfo> option) {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CusparInfo> nodeL2 = new CusparNodeCreateL2(option).toAction();	
+		ActionStd<CusparInfo> success = new ActionStdSuccessCommom<CusparInfo>(option);	
 		
-		actions.add(nodeL2);		
+		actions.add(success);		
 		return actions;
 	}
 }

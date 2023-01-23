@@ -7,7 +7,6 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.info.CusparMerger;
-import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.UsernameRootSelect;
 
@@ -21,12 +20,6 @@ public final class CusparVisiMergeUsername extends ActionVisitorTemplateMerge<Cu
 	
 	@Override protected Class<? extends DeciTree<UsernameInfo>> getTreeClassHook() {
 		return UsernameRootSelect.class;
-	}
-	
-	
-	
-	@Override protected List<UsernameInfo> toActionClassHook(List<CusparInfo> baseInfos) {
-		return UsernameCopier.copyFromCuspar(baseInfos);	
 	}
 	
 	
