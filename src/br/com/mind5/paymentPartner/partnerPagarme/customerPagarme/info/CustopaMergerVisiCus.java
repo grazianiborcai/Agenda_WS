@@ -38,6 +38,9 @@ final class CustopaMergerVisiCus extends InfoMergerVisitorTemplate<CustopaInfo, 
 		if (selectedInfo.personData == null)
 			return null;
 		
+		if (selectedInfo.personData.name == null)
+			return null;
+		
 		return selectedInfo.personData.name;
 	}
 	
@@ -45,6 +48,9 @@ final class CustopaMergerVisiCus extends InfoMergerVisitorTemplate<CustopaInfo, 
 	
 	private String getCustomerEmail(CusInfo selectedInfo) {
 		if (selectedInfo.personData == null)
+			return null;
+		
+		if (selectedInfo.personData.email == null)
 			return null;
 		
 		return selectedInfo.personData.email;
@@ -60,6 +66,9 @@ final class CustopaMergerVisiCus extends InfoMergerVisitorTemplate<CustopaInfo, 
 	
 	private String getCustomerDocument(CusInfo selectedInfo) {
 		if (selectedInfo.personData == null)
+			return null;
+		
+		if (selectedInfo.personData.cpf == null)
 			return null;
 		
 		return selectedInfo.personData.cpf;

@@ -1,7 +1,9 @@
 package br.com.mind5.paymentPartner.partnerPagarme.customerPagarme.model.action;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.json.standard.JstdBodyParser;
@@ -57,7 +59,7 @@ public final class CustopaVisiCreate extends ActionVisitorTemplateSimple<Custopa
 		StringBuilder body = new StringBuilder();
 		
 		body.append("{");		
-		body.append(makeBodyCustomer(recordInfo)).append(",");		
+		body.append(makeBodyCustomer(recordInfo));
 		body.append("}");
 		
 		return body.toString();
@@ -66,16 +68,52 @@ public final class CustopaVisiCreate extends ActionVisitorTemplateSimple<Custopa
 	
 	
 	private String makeBodyCustomer(CustopaInfo recordInfo) {
-		StringBuilder body = new StringBuilder();
+		Map<String, String> bodyAttr = makeBodyAttr(recordInfo);
+		return bodyAttToString(bodyAttr);
+	}
+	
+	
+	
+	private Map<String, String> makeBodyAttr(CustopaInfo recordInfo) {
+		Map<String, String> bodyAttr = new HashMap<>();
 		
-		body.append("\"name\":")    	 .append("\"").append(recordInfo.name)    	  .append("\"").append(",");
-		body.append("\"email\":")   	 .append("\"").append(recordInfo.email)   	  .append("\"").append(",");		
-		body.append("\"document\":")	 .append("\"").append(recordInfo.document)	  .append("\"").append(",");
-		body.append("\"document_type\":").append("\"").append(recordInfo.documentType).append("\"").append(",");		
-		body.append("\"type\":")    	 .append("\"").append(recordInfo.type)    	  .append("\"").append(",");
-		body.append("\"gender\":")    	 .append("\"").append(recordInfo.gender)      .append("\"").append(",");
-		body.append("\"birthdate\":")    .append("\"").append(recordInfo.birthdate)   .append("\"").append(",");		
-		body.append("\"code\":")    	 .append("\"").append(recordInfo.code)    	  .append("\"");
+		bodyAttr = bodyAppendAttr(bodyAttr, "name"         , recordInfo.name);
+		bodyAttr = bodyAppendAttr(bodyAttr, "email"        , recordInfo.email);
+		bodyAttr = bodyAppendAttr(bodyAttr, "document"     , recordInfo.document);
+		bodyAttr = bodyAppendAttr(bodyAttr, "document_type", recordInfo.documentType);
+		bodyAttr = bodyAppendAttr(bodyAttr, "type"         , recordInfo.type);
+		bodyAttr = bodyAppendAttr(bodyAttr, "gender"       , recordInfo.gender);
+		bodyAttr = bodyAppendAttr(bodyAttr, "birthdate"    , recordInfo.birthdate);
+		bodyAttr = bodyAppendAttr(bodyAttr, "code"         , recordInfo.code);
+		
+		return bodyAttr;
+	}
+	
+	
+	
+	private Map<String, String> bodyAppendAttr(Map<String, String> bodyAttr, String key, String value) {
+		if (value == null)
+			return bodyAttr;
+		
+		if (bodyAttr != null)
+			bodyAttr.put(key, value);
+		
+		return bodyAttr;
+	}
+	
+	
+	
+	private String bodyAttToString(Map<String, String> bodyAttr) {
+		StringBuilder body = new StringBuilder();
+		int semaphore = 0;
+		
+		for (Map.Entry<String, String> entry : bodyAttr.entrySet()) {
+			if (semaphore != 0)
+				body.append(",");
+			
+			body.append("\"").append(entry.getKey()).append("\":").append("\"").append(entry.getValue()).append("\"");			
+			semaphore = 1;
+		}
 		
 		return body.toString();
 	}
