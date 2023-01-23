@@ -59,7 +59,8 @@ public final class CustopaVisiCreate extends ActionVisitorTemplateSimple<Custopa
 		StringBuilder body = new StringBuilder();
 		
 		body.append("{");		
-		body.append(makeBodyCustomer(recordInfo));
+		body.append(makeBodyCustomer(recordInfo)).append(",");
+		body.append(makeBodyMetadata(recordInfo));
 		body.append("}");
 		
 		return body.toString();
@@ -115,6 +116,23 @@ public final class CustopaVisiCreate extends ActionVisitorTemplateSimple<Custopa
 			semaphore = 1;
 		}
 		
+		return body.toString();
+	}
+	
+	
+	
+	private String makeBodyMetadata(CustopaInfo recordInfo) {
+		String key = "codPayCustomer";
+		String value = recordInfo.compoundId;
+		StringBuilder body = new StringBuilder();
+		
+		body.append("\"metadata\":");
+		body.append("{");
+		
+		body.append("\"").append(key).append("\":");
+		body.append("\"").append(value).append("\"");
+		
+		body.append("}");		
 		return body.toString();
 	}
 	

@@ -21,6 +21,7 @@ public final class CustopaInfo extends InfoRecord implements Cloneable {
 	public String birthdate;
 	public String code;
 	public String authorization;
+	public String compoundId;
 	public SetuparInfo setuparData;
 	public String username;
 	
