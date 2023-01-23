@@ -7,7 +7,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.decisionTree.CusparRootCreateOnConfigAuth;
+import br.com.mind5.payment.customerPartner.model.decisionTree.CusparRootCreateOnConfig;
 
 public final class CusVisiCusparCreateOnConfig extends ActionVisitorTemplateAction<CusInfo, CusparInfo> {
 	
@@ -18,7 +18,7 @@ public final class CusVisiCusparCreateOnConfig extends ActionVisitorTemplateActi
 	
 	
 	@Override protected Class<? extends DeciTree<CusparInfo>> getTreeClassHook() {
-		return CusparRootCreateOnConfigAuth.class;
+		return CusparRootCreateOnConfig.class;
 	}
 	
 	
