@@ -13,7 +13,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.action.CusparVisiRootCreate;
-import br.com.mind5.payment.customerPartner.model.checker.CusparCheckPayrsocre;
+import br.com.mind5.payment.customerPartner.model.checker.CusparCheckPayrcucre;
 
 public final class CusparNodeCreateOnConfigL2 extends DeciTreeTemplateWrite<CusparInfo> {
 	
@@ -32,7 +32,7 @@ public final class CusparNodeCreateOnConfigL2 extends DeciTreeTemplateWrite<Cusp
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CusparCheckPayrsocre(checkerOption);
+		checker = new CusparCheckPayrcucre(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
