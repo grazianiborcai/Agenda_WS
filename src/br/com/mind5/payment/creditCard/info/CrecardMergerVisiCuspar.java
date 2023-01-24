@@ -18,7 +18,8 @@ final class CrecardMergerVisiCuspar extends InfoMergerVisitorTemplate<CrecardInf
 	@Override public List<CrecardInfo> merge(CrecardInfo baseInfo, CusparInfo selectedInfo) {
 		List<CrecardInfo> results = new ArrayList<>();
 		
-		baseInfo.codPayPartner = selectedInfo.codPayPartner;		
+		baseInfo.codPayPartner = selectedInfo.codPayPartner;
+		baseInfo.customerId = selectedInfo.customerId;
 		
 		results.add(baseInfo);
 		return results;

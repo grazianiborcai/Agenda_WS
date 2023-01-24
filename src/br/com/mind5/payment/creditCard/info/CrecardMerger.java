@@ -4,15 +4,43 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.masterData.paymentPartnerDefault.info.PayparultInfo;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
+import br.com.mind5.paymentPartner.partnerPagarme.creditCardPagarme.info.CrecapaInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CrecardMerger {
+	public static List<CrecardInfo> mergeWithPayparult(List<CrecardInfo> baseInfos, List<PayparultInfo> selectedInfos) {
+		InfoMergerBuilder<CrecardInfo, PayparultInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CrecardMergerVisiPayparult());
+		InfoMerger<CrecardInfo, PayparultInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<CrecardInfo> mergeWithCrecapa(List<CrecardInfo> baseInfos, List<CrecapaInfo> selectedInfos) {
+		InfoMergerBuilder<CrecardInfo, CrecapaInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CrecardMergerVisiCrecapa());
+		InfoMerger<CrecardInfo, CrecapaInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<CrecardInfo> mergeWithCusparch(List<CrecardInfo> baseInfos, List<CusparchInfo> selectedInfos) {
 		InfoMergerBuilder<CrecardInfo, CusparchInfo> builder = new InfoMergerBuilder<>();
 		

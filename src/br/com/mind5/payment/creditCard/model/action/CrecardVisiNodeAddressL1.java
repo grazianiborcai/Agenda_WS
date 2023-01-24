@@ -6,18 +6,18 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.decisionTree.CrecardNodeAddress;
+import br.com.mind5.payment.creditCard.model.decisionTree.CrecardNodeAddressL1;
 
-public final class CrecardVisiNodeAddress extends ActionVisitorTemplateAction<CrecardInfo, CrecardInfo> {
+public final class CrecardVisiNodeAddressL1 extends ActionVisitorTemplateAction<CrecardInfo, CrecardInfo> {
 
-	public CrecardVisiNodeAddress(DeciTreeOption<CrecardInfo> option) {
+	public CrecardVisiNodeAddressL1(DeciTreeOption<CrecardInfo> option) {
 		super(option, CrecardInfo.class, CrecardInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<CrecardInfo>> getTreeClassHook() {
-		return CrecardNodeAddress.class;
+		return CrecardNodeAddressL1.class;
 	}
 	
 	

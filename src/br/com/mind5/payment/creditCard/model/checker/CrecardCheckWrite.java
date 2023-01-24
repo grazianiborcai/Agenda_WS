@@ -17,9 +17,8 @@ public final class CrecardCheckWrite extends ModelCheckerTemplateSimple<CrecardI
 	
 	@Override protected boolean checkHook(CrecardInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 			<= 0 	||	
-			 recordInfo.codPayPartner		<= 0	||	
-			 recordInfo.codAddressHolder	<= 0 	||
-			 recordInfo.codPhoneHolder		<= 0 	||
+//		     recordInfo.codAddressHolder	<= 0 	||
+//			 recordInfo.codPhoneHolder		<= 0 	||
 			 recordInfo.expirationMonth		== null ||			 
 			 recordInfo.expirationYear		== null ||
 			 recordInfo.cardNumber			== null ||
