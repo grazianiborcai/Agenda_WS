@@ -125,7 +125,7 @@ public final class CrecapaVisiCreate extends ActionVisitorTemplateSimple<Crecapa
 	
 	private String makeBodyMetadata(CrecapaInfo recordInfo) {
 		String key = "codCreditCard";
-		String value = recordInfo.metadata;
+		String value = recordInfo.metadataId;
 		StringBuilder body = new StringBuilder();
 		
 		body.append("\"metadata\":");
@@ -195,6 +195,8 @@ public final class CrecapaVisiCreate extends ActionVisitorTemplateSimple<Crecapa
 		CrecapaInfo parsedResponse = parseResponse(response);	
 		
 		recordInfo.id = parsedResponse.id;
+		recordInfo.last_four_digits = parsedResponse.last_four_digits;
+		recordInfo.brand = parsedResponse.brand;
 		
 		return recordInfo;
 	}
@@ -202,8 +204,7 @@ public final class CrecapaVisiCreate extends ActionVisitorTemplateSimple<Crecapa
 	
 	
 	private CrecapaInfo parseResponse(HttpResponse<String> response) {
-		JstdBodyParser<CrecapaInfo> parser = new JstdBodyParser<>(CrecapaInfo.class);
-		
+		JstdBodyParser<CrecapaInfo> parser = new JstdBodyParser<>(CrecapaInfo.class);		
 		List<CrecapaInfo> results = parser.parse(response.getBody());
 		
 		if(results == null) {

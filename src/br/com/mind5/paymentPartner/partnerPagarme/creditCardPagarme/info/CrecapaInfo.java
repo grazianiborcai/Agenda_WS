@@ -23,8 +23,10 @@ public final class CrecapaInfo extends InfoRecord implements Cloneable {
 	public String creditCardBrand;
 	public String label;
 	public String options;
+	public String last_four_digits;
+	public String brand;
 //	billing_address
-	public String metadata;
+	public String metadataId;
 	public String authorization;
 	public SetuparInfo setuparData;
 	public String username;

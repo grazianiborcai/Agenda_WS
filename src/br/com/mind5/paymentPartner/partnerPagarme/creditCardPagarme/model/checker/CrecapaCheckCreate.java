@@ -18,8 +18,9 @@ public final class CrecapaCheckCreate extends ModelCheckerTemplateSimple<Crecapa
 	
 	
 	@Override protected boolean checkHook(CrecapaInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codCreditCard 	<= 0	||
-			recordInfo.customerId 		== null	||
+		if (recordInfo.codOwner 		<= 0	||
+			recordInfo.codCreditCard 	<= 0	||
+			recordInfo.codPayCustomer 	<= 0	||
 			recordInfo.cardNumber 		== null	||
 			recordInfo.expirationMonth 	== null	||
 			recordInfo.expirationYear 	== null	||
