@@ -21,6 +21,7 @@ final class PayordMergerVisiCrecard extends InfoMergerVisitorTemplate<PayordInfo
 		
 		baseInfo.codPayCustomer = selectedInfo.codPayCustomer;
 		baseInfo.codPayPartner = selectedInfo.codPayPartner;
+		baseInfo.crecardData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;
