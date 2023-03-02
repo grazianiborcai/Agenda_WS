@@ -1,12 +1,13 @@
 package br.com.mind5.payment.payOrder.info;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 
 public final class PayordInfo extends InfoRecord implements Cloneable {
@@ -27,6 +28,7 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public String statusPaymentPartner;
 	public String amountTotalPartner;
 	public String amountCurrencyPartner;
+	public CusparInfo cusparData;
 	public OrderInfo orderData;
 	public List<PayordemInfo> payordems;
 	public LocalDateTime createdOn;
@@ -44,6 +46,7 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		codPayPartner = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codOrder = DefaultValue.number();
+		cusparData = DefaultValue.object();
 		orderData = DefaultValue.object();
 		payordems = DefaultValue.list();
 	}
@@ -65,36 +68,12 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		PayordInfo deepCopy = (PayordInfo) super.clone();
 		
-		deepCopy.orderData = cloneOrder(deepCopy.orderData);
-		deepCopy.payordems = clonePayordems(deepCopy.payordems);
+		deepCopy.cusparData = CloneUtil.cloneRecord(cusparData, this.getClass());
+		deepCopy.orderData  = CloneUtil.cloneRecord(orderData , this.getClass());
+		deepCopy.payordems  = CloneUtil.cloneRecords(payordems, this.getClass());
 		
 		return deepCopy;
 	}
-	
-	
-	
-	private OrderInfo cloneOrder(OrderInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (OrderInfo) recordInfo.clone();
-	}	
-	
-	
-	
-	private List<PayordemInfo> clonePayordems(List<PayordemInfo> recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		List<PayordemInfo> results = new ArrayList<>();
-		
-		for (PayordemInfo eachRecord : recordInfos) {
-			PayordemInfo cloned = (PayordemInfo) eachRecord.clone();
-			results.add(cloned);
-		}
-		
-		return results;
-	}	
 	
 	
 	

@@ -14,6 +14,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiMergeCrecard;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiMergeCuspar;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiMergePayordem;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiMergePaypar;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiMergeToSelect;
@@ -63,14 +64,16 @@ public final class PayordRootSelect extends DeciTreeTemplateRead<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PayordInfo> mergeToSelect = new ActionStdCommom<PayordInfo>(option, PayordVisiMergeToSelect.class);
-		ActionLazy<PayordInfo> mergeCrecard = new ActionLazyCommom<PayordInfo>(option, PayordVisiMergeCrecard.class);
-		ActionLazy<PayordInfo> mergePaypar = new ActionLazyCommom<PayordInfo>(option, PayordVisiMergePaypar.class);
+		ActionStd<PayordInfo>  mergeToSelect = new ActionStdCommom <PayordInfo>(option, PayordVisiMergeToSelect.class);
+		ActionLazy<PayordInfo> mergeCrecard  = new ActionLazyCommom<PayordInfo>(option, PayordVisiMergeCrecard.class);
+		ActionLazy<PayordInfo> mergePaypar   = new ActionLazyCommom<PayordInfo>(option, PayordVisiMergePaypar.class);
+		ActionLazy<PayordInfo> mergeCuspar   = new ActionLazyCommom<PayordInfo>(option, PayordVisiMergeCuspar.class);
 		ActionLazy<PayordInfo> mergePayordem = new ActionLazyCommom<PayordInfo>(option, PayordVisiMergePayordem.class);
 		
 		mergeToSelect.addPostAction(mergeCrecard);
 		mergeCrecard.addPostAction(mergePaypar);
-		mergePaypar.addPostAction(mergePayordem);
+		mergePaypar.addPostAction(mergeCuspar);
+		mergeCuspar.addPostAction(mergePayordem);
 		
 		actions.add(mergeToSelect);		
 		return actions;

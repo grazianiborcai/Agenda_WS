@@ -3,15 +3,29 @@ package br.com.mind5.payment.payOrder.info;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
+import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class PayordMerger {	
+	public static List<PayordInfo> mergeWithCuspar(List<PayordInfo> baseInfos, List<CusparInfo> selectedInfos) {
+		InfoMergerBuilder<PayordInfo, CusparInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordMergerVisiCuspar());
+		InfoMerger<PayordInfo, CusparInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<PayordInfo> mergeWithMultmoip(List<PayordInfo> baseInfos, List<MultmoipInfo> selectedInfos) {
 		InfoMergerBuilder<PayordInfo, MultmoipInfo> builder = new InfoMergerBuilder<>();
 		
@@ -21,7 +35,7 @@ public final class PayordMerger {
 		InfoMerger<PayordInfo, MultmoipInfo> merger = builder.build();		
 	
 		return merger.merge();
-	}	
+	}
 	
 	
 	
