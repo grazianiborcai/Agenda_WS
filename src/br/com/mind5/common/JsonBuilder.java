@@ -139,7 +139,7 @@ public final class JsonBuilder {
 	
 	
 	public void reset() {
-		jsonBuilder = new StringBuilder();
+		jsonBuilder = null;
 	}
 	
 	
