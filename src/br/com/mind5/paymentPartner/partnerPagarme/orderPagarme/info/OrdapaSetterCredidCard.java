@@ -7,7 +7,7 @@ import br.com.mind5.info.InfoSetterTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
 
-public final class OrdapaSetterPayments extends InfoSetterTemplate<OrdapaInfo> {
+public final class OrdapaSetterCredidCard extends InfoSetterTemplate<OrdapaInfo> {
 	
 	@Override protected OrdapaInfo setAttrHook(OrdapaInfo recordInfo) {	
 		CrecardInfo crecard = getCrecard(recordInfo);
@@ -16,7 +16,7 @@ public final class OrdapaSetterPayments extends InfoSetterTemplate<OrdapaInfo> {
 			return recordInfo;
 		
 		recordInfo.paymentMethod = "credit_card";
-		recordInfo.payments = getPayments(crecard) ;
+		recordInfo.creditCard = getPayments(crecard) ;
 		return recordInfo;
 	}
 	

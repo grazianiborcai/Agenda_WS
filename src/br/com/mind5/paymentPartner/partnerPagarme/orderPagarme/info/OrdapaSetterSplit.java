@@ -17,10 +17,7 @@ public final class OrdapaSetterSplit extends InfoSetterTemplate<OrdapaInfo> {
 		if (payOrdemItems == null)
 			return recordInfo;
 		
-		
-		recordInfo.paymentMethod = "credit_card";
-		recordInfo.split = getSplit(payOrdemItems);
-		
+		recordInfo.split = getSplit(payOrdemItems);		
 		return recordInfo;
 	}
 	

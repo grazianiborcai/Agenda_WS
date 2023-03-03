@@ -2,6 +2,7 @@ package br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import br.com.mind5.common.JsonBuilder;
 import br.com.mind5.common.SystemCode;
@@ -99,23 +100,25 @@ public final class OrdapaVisiCreate extends ActionVisitorTemplateSimple<OrdapaIn
 		JsonBuilder builder    = new JsonBuilder();
 		
 		builderTemp.addObjToJson("payment_method", recordInfo.paymentMethod);
-		builderTemp.addNestedObjToJson("credit_card", recordInfo.payments);
+		builderTemp.addNestedObjToJson("credit_card", recordInfo.creditCard);
+		builderTemp.addArrayToJson("split", makeBodySplit(recordInfo).buildWithoutBraces());
 		
-		builder.addArrayToJson("payments", builderTemp.buildWithoutBraces());
-		
+		builder.addArrayToJson("payments", builderTemp.buildWithoutBraces());		
 		return builder;
 	}
 	
 	
 	
 	private JsonBuilder makeBodySplit(OrdapaInfo recordInfo) {
-		JsonBuilder builderTemp = new JsonBuilder();
-		JsonBuilder builder    = new JsonBuilder();
+		JsonBuilder builder = new JsonBuilder();		
 		
-		builderTemp.addObjToJson("payment_method", recordInfo.paymentMethod);
-		builderTemp.addNestedObjToJson("credit_card", recordInfo.payments);
-		
-		builder.addArrayToJson("payments", builderTemp.buildWithoutBraces());
+		for (Map.Entry<Map<String,String>,Map<String,String>> eachSplit : recordInfo.split.entrySet()) {
+			JsonBuilder builderTemp = new JsonBuilder();
+
+			builderTemp.addObjToJson(eachSplit.getKey());
+			builderTemp.addNestedObjToJson("options", eachSplit.getValue());
+			builder.addBuilderToJson(builderTemp);
+		}		
 		
 		return builder;
 	}
@@ -130,7 +133,7 @@ public final class OrdapaVisiCreate extends ActionVisitorTemplateSimple<OrdapaIn
 	
 	private HttpResponse<String> tryToCreateCustomer(String body, String authorization) {
 		try {
-			return Unirest.post("https://api.pagar.me/core/v5/customers")
+			return Unirest.post("https://api.pagar.me/core/v5/orders")
 					  	  .header("accept", "application/json")
 						  .header("content-type", "application/json")
 						  .header("authorization", authorization)

@@ -4,18 +4,18 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.info.OrdapaInfo;
-import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.info.OrdapaSetterPayments;
+import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.info.OrdapaSetterCredidCard;
 
-public final class OrdapaVisiEnforcePayments extends ActionVisitorTemplateEnforce<OrdapaInfo> {
+public final class OrdapaVisiEnforceCredidCard extends ActionVisitorTemplateEnforce<OrdapaInfo> {
 	
-	public OrdapaVisiEnforcePayments(DeciTreeOption<OrdapaInfo> option) {
+	public OrdapaVisiEnforceCredidCard(DeciTreeOption<OrdapaInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected OrdapaInfo enforceHook(OrdapaInfo recordInfo) {
-		InfoSetter<OrdapaInfo> setter = new OrdapaSetterPayments();
+		InfoSetter<OrdapaInfo> setter = new OrdapaSetterCredidCard();
 		return setter.setAttr(recordInfo);
 	}
 }

@@ -13,9 +13,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.info.OrdapaInfo;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiEnforceCode;
+import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiEnforceCredidCard;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiEnforceCustomerId;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiEnforceItems;
-import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiEnforcePayments;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiEnforceSplit;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiMergePayord;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiNodeCreate;
@@ -62,7 +62,7 @@ public final class OrdapaRootCreate extends DeciTreeTemplateWrite<OrdapaInfo> {
 		ActionLazy<OrdapaInfo> enforceCustomerId = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiEnforceCode.class);
 		ActionLazy<OrdapaInfo> enforceCode 		 = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiEnforceCustomerId.class);
 		ActionLazy<OrdapaInfo> enforceItems 	 = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiEnforceItems.class);
-		ActionLazy<OrdapaInfo> enforcePayments 	 = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiEnforcePayments.class);
+		ActionLazy<OrdapaInfo> enforceCredidCard = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiEnforceCredidCard.class);
 		ActionLazy<OrdapaInfo> enforceSplit 	 = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiEnforceSplit.class);
 		ActionLazy<OrdapaInfo> nodeL1 			 = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiNodeCreate.class);
 		
@@ -70,8 +70,8 @@ public final class OrdapaRootCreate extends DeciTreeTemplateWrite<OrdapaInfo> {
 		mergePayord.addPostAction(enforceCustomerId);
 		enforceCustomerId.addPostAction(enforceCode);
 		enforceCode.addPostAction(enforceItems);
-		enforceItems.addPostAction(enforcePayments);
-		enforcePayments.addPostAction(enforceSplit);
+		enforceItems.addPostAction(enforceCredidCard);
+		enforceCredidCard.addPostAction(enforceSplit);
 		enforceSplit.addPostAction(nodeL1);
 		
 		actions.add(nodeSetupar);

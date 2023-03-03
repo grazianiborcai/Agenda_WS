@@ -18,7 +18,7 @@ public final class OrdapaInfo extends InfoRecord implements Cloneable {
 	public String customerId;
 	public String paymentMethod;
 	public List<Map<String,String>> items;
-	public Map<String,String> payments;
+	public Map<String,String> creditCard;
 	public Map<Map<String,String>,Map<String,String>> split;
 	
 	public int codPayPartner;
@@ -45,7 +45,7 @@ public final class OrdapaInfo extends InfoRecord implements Cloneable {
 		payordData = DefaultValue.object();
 		setuparData = DefaultValue.object();
 		items = DefaultValue.list();
-		payments = DefaultValue.object();
+		creditCard = DefaultValue.object();
 		split = DefaultValue.object();
 		
 		codCustomer = DefaultValue.number();
