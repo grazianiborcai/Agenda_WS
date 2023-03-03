@@ -1996,6 +1996,10 @@ public final class SystemCode {
 	public static final int PAGARME_CREDIT_CARD 						= 20200;
 	public static final int PAGARME_CREDIT_CARD_CREATION_ERROR			= 20201;
 	
+	// Pay Partner Pagarme: Order
+	public static final int PAGARME_ORDER 								= 20250;
+	public static final int PAGARME_ORDER_CREATION_ERROR				= 20251;
+	
 	// General -- 19670
 	public static final int GEN_COMPLEMENT								= 19668;
 	public static final int GEN_DESCRIPTION								= 19661;
