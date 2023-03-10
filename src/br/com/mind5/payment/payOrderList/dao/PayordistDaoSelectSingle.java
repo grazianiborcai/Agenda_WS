@@ -78,6 +78,7 @@ public final class PayordistDaoSelectSingle extends DaoStmtTemplate<PayordistInf
 					dataInfo.codOrder = DaoFormatter.sqlToLong(stmtResult, PayordistDaoDbTableColumn.COL_COD_ORDER);
 					dataInfo.codCreditCard = DaoFormatter.sqlToLong(stmtResult, PayordistDaoDbTableColumn.COL_COD_CREDIT_CARD);
 					dataInfo.codPayCustomer = DaoFormatter.sqlToLong(stmtResult, PayordistDaoDbTableColumn.COL_COD_PAY_CUSTOMER);
+					dataInfo.codPayPartner= DaoFormatter.sqlToInt(stmtResult, PayordistDaoDbTableColumn.COL_COD_PAY_PARTNER);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
