@@ -16,6 +16,7 @@ public final class PayordSetterFee extends InfoSetterTemplate<PayordInfo> {
 		feeItem.codPayOrderItem = 1;
 		feeItem.codOrder = recordInfo.codOrder; 
 		feeItem.codFeeCateg = recordInfo.orderData.codFeeCateg;
+		feeItem.codPayPartner = recordInfo.codPayPartner;
 		feeItem.quantity = 1;		
 		feeItem.price = recordInfo.orderData.feeService;
 		feeItem.totitem = recordInfo.orderData.feeService;

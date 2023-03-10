@@ -54,7 +54,8 @@ public final class PayordDaoInsertSingle extends DaoStmtTemplate<PayordInfo> {
 				stmt.setString(i++, recordInfo.amountCurrencyPartner);
 				stmt.setString(i++, recordInfo.idPaymentPartner);
 				stmt.setString(i++, recordInfo.statusPaymentPartner);		
-				stmt.setString(i++, recordInfo.ownId);	
+				stmt.setString(i++, recordInfo.ownId);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayPartner);
 				
 				return stmt;
 			}		

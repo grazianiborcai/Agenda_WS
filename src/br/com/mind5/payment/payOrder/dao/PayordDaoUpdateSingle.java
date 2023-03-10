@@ -3,6 +3,7 @@ package br.com.mind5.payment.payOrder.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoStmtParamTranslator;
@@ -63,8 +64,9 @@ public final class PayordDaoUpdateSingle extends DaoStmtTemplate<PayordInfo> {
 				stmt.setString(i++, recordInfo.amountTotalPartner);
 				stmt.setString(i++, recordInfo.amountCurrencyPartner);
 				stmt.setString(i++, recordInfo.idPaymentPartner);
-				stmt.setString(i++, recordInfo.statusPaymentPartner);	
-				stmt.setString(i++, recordInfo.ownId);	
+				stmt.setString(i++, recordInfo.statusPaymentPartner);
+				stmt.setString(i++, recordInfo.ownId);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayPartner);
 				
 				return stmt;
 			}		

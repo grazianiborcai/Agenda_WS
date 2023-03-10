@@ -13,15 +13,12 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiDaoInsert;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiEnforceFee;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiEnforceItem;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiPayordemInsert;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiMergeCrecardAuth;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiNodeInsertL2;
 
-public final class PayordNodeInsert extends DeciTreeTemplateWrite<PayordInfo> {
+public final class PayordNodeInsertL1 extends DeciTreeTemplateWrite<PayordInfo> {
 	
-	public PayordNodeInsert(DeciTreeOption<PayordInfo> option) {
+	public PayordNodeInsertL1(DeciTreeOption<PayordInfo> option) {
 		super(option);
 	}
 	
@@ -42,16 +39,10 @@ public final class PayordNodeInsert extends DeciTreeTemplateWrite<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PayordInfo> mergeCrecard = new ActionStdCommom<PayordInfo>(option, PayordVisiMergeCrecardAuth.class);
-		ActionLazy<PayordInfo> insertPayord = new ActionLazyCommom<PayordInfo>(option, PayordVisiDaoInsert.class);	
-		ActionLazy<PayordInfo> enforceFee = new ActionLazyCommom<PayordInfo>(option, PayordVisiEnforceFee.class);
-		ActionLazy<PayordInfo> enforceItem = new ActionLazyCommom<PayordInfo>(option, PayordVisiEnforceItem.class);		
-		ActionLazy<PayordInfo> insertPayordem = new ActionLazyCommom<PayordInfo>(option, PayordVisiPayordemInsert.class);
+		ActionStd<PayordInfo> mergeCrecard = new ActionStdCommom<PayordInfo> (option, PayordVisiMergeCrecardAuth.class);
+		ActionLazy<PayordInfo> nodeL2 	   = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodeInsertL2.class);
 		
-		mergeCrecard.addPostAction(insertPayord);
-		insertPayord.addPostAction(enforceFee);
-		enforceFee.addPostAction(enforceItem);
-		enforceItem.addPostAction(insertPayordem);
+		mergeCrecard.addPostAction(nodeL2);
 		
 		actions.add(mergeCrecard);		
 		return actions;

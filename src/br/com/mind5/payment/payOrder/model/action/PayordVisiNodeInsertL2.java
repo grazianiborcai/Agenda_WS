@@ -6,18 +6,18 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
-import br.com.mind5.payment.payOrder.model.decisionTree.PayordNodeInsert;
+import br.com.mind5.payment.payOrder.model.decisionTree.PayordNodeInsertL2;
 
-public final class PayordVisiNodeInsert extends ActionVisitorTemplateAction<PayordInfo, PayordInfo> {
+public final class PayordVisiNodeInsertL2 extends ActionVisitorTemplateAction<PayordInfo, PayordInfo> {
 
-	public PayordVisiNodeInsert(DeciTreeOption<PayordInfo> option) {
+	public PayordVisiNodeInsertL2(DeciTreeOption<PayordInfo> option) {
 		super(option, PayordInfo.class, PayordInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<PayordInfo>> getTreeClassHook() {
-		return PayordNodeInsert.class;
+		return PayordNodeInsertL2.class;
 	}
 	
 	
