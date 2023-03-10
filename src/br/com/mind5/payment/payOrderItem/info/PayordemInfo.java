@@ -19,6 +19,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	public int codPayOrderItem;
 	public char codFeeCateg;
 	public String txtFeeCateg;
+	public int codPayPartner;
 	public long codOrder;
 	public int codOrderItem;
 	public long codStore;
@@ -53,6 +54,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 		codOrder = DefaultValue.number();	
 		codOrderItem = DefaultValue.number();
 		codFeeCateg = DefaultValue.character();
+		codPayPartner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();

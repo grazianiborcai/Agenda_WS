@@ -15,9 +15,9 @@ import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiOrderemPay;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckHasOrderem;
 
-public final class PayordemNodePay extends DeciTreeTemplateWrite<PayordemInfo> {
+public final class PayordemNodeStatusPay extends DeciTreeTemplateWrite<PayordemInfo> {
 	
-	public PayordemNodePay(DeciTreeOption<PayordemInfo> option) {
+	public PayordemNodeStatusPay(DeciTreeOption<PayordemInfo> option) {
 		super(option);
 	}
 	

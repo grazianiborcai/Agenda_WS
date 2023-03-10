@@ -3,10 +3,12 @@ package br.com.mind5.payment.payOrderItem.info;
 import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.feeCategory.info.FeecatInfo;
+import br.com.mind5.payment.marketplacePartner.info.MktparInfo;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
+import br.com.mind5.payment.storePartner.info.StoparInfo;
 
 public final class PayordemMerger {
 	public static List<PayordemInfo> mergeWithPayormarch(List<PayordemInfo> baseInfos, List<PayormarchInfo> selectedInfos) {
@@ -18,7 +20,33 @@ public final class PayordemMerger {
 		InfoMerger<PayordemInfo, PayormarchInfo> merger = builder.build();		
 	
 		return merger.merge();
-	}	
+	}
+	
+	
+	
+	public static List<PayordemInfo> mergeWithMktpar(List<PayordemInfo> baseInfos, List<MktparInfo> selectedInfos) {
+		InfoMergerBuilder<PayordemInfo, MktparInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordemMergerVisiMktpar());
+		InfoMerger<PayordemInfo, MktparInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<PayordemInfo> mergeWithStopar(List<PayordemInfo> baseInfos, List<StoparInfo> selectedInfos) {
+		InfoMergerBuilder<PayordemInfo, StoparInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordemMergerVisiStopar());
+		InfoMerger<PayordemInfo, StoparInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
 	
 	
 	

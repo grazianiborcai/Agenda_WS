@@ -16,14 +16,15 @@ public final class PayordemCheckInsert extends ModelCheckerTemplateSimple<Payord
 	
 	
 	@Override protected boolean checkHook(PayordemInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 			<= 0 	
-			|| recordInfo.codPayOrder		<= 0 
-			|| recordInfo.codPayOrderItem	<= 0
-			|| recordInfo.quantity			<= 0
-			|| recordInfo.price				<= 0
-			|| recordInfo.totitem			<= 0
-			|| recordInfo.username			== null 
-			|| recordInfo.codLanguage		== null	)
+		if ( recordInfo.codOwner 		<= 0 	||	
+			 recordInfo.codPayOrder		<= 0 	||
+			 recordInfo.codPayOrderItem	<= 0 	||
+			 recordInfo.codPayPartner	<= 0 	||
+			 recordInfo.quantity		<= 0 	||
+			 recordInfo.price			<= 0 	||
+			 recordInfo.totitem			<= 0 	||
+			 recordInfo.username		== null ||
+			 recordInfo.codLanguage		== null	)
 			
 			return super.FAILED;
 		

@@ -4,6 +4,7 @@ import java.sql.Connection;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.feeCategory.info.Feecat;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
@@ -18,6 +19,9 @@ public final class PayordemCheckIsFee extends ModelCheckerTemplateSimple<Payorde
 	
 	@Override protected boolean checkHook(PayordemInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codFeeCateg == DefaultValue.character())			
+			return super.FAILED;
+		
+		if (recordInfo.codFeeCateg == Feecat.SERVICE.getCodCateg())			
 			return super.FAILED;
 		
 		
