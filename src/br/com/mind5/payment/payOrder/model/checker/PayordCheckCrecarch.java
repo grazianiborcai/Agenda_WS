@@ -1,8 +1,11 @@
 package br.com.mind5.payment.payOrder.model.checker;
 
+import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.common.SystemMessageBuilder;
+import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
@@ -33,7 +36,11 @@ public final class PayordCheckCrecarch extends ModelCheckerTemplateAction<Payord
 	
 	
 	
-	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.PAY_ORDER_HEADER_CRECARD_DIF_USER;
+	@Override protected SymsgInfo getSymsgOnResultFalseHook(Connection dbConn, String dbSchema, String codLangu) {
+		SystemMessageBuilder builder = new SystemMessageBuilder(dbConn, dbSchema, codLangu, SystemCode.GEN_P1_P2_NOT_FOUND_M);
+		builder.addParam01(SystemCode.PAY_ORDER_HEADER);
+		builder.addParam02(SystemCode.CREDIT_CARD);
+
+		return builder.build();
 	}
 }

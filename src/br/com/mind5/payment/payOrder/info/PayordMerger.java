@@ -10,9 +10,23 @@ import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
+import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.info.OrdapaInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class PayordMerger {	
+	public static List<PayordInfo> mergeWithOrdapa(List<PayordInfo> baseInfos, List<OrdapaInfo> selectedInfos) {
+		InfoMergerBuilder<PayordInfo, OrdapaInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordMergerVisiOrdapa());
+		InfoMerger<PayordInfo, OrdapaInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<PayordInfo> mergeWithCuspar(List<PayordInfo> baseInfos, List<CusparInfo> selectedInfos) {
 		InfoMergerBuilder<PayordInfo, CusparInfo> builder = new InfoMergerBuilder<>();
 		
