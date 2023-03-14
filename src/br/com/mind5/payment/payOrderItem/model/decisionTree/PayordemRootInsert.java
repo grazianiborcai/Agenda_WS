@@ -15,8 +15,8 @@ import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiDaoInsert;
 import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiEnforceLChanged;
-import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiNodeStatusPay;
 import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiNodeReceiver;
+import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiNodeStatusPay;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckInsert;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckLangu;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckOwner;
@@ -79,10 +79,10 @@ public final class PayordemRootInsert extends DeciTreeTemplateWrite<PayordemInfo
 	@Override protected List<ActionStd<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
 		List<ActionStd<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayordemInfo> enforceLChanged = new ActionStdCommom<PayordemInfo>(option, PayordemVisiEnforceLChanged.class);
-		ActionLazy<PayordemInfo> nodeReceiver = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiNodeReceiver.class);
-		ActionLazy<PayordemInfo> insert = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiDaoInsert.class);
-		ActionLazy<PayordemInfo> nodeStatusPay = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiNodeStatusPay.class);
+		ActionStd<PayordemInfo> enforceLChanged = new ActionStdCommom <PayordemInfo>(option, PayordemVisiEnforceLChanged.class);
+		ActionLazy<PayordemInfo> nodeReceiver   = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiNodeReceiver.class);
+		ActionLazy<PayordemInfo> insert         = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiDaoInsert.class);
+		ActionLazy<PayordemInfo> nodeStatusPay  = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiNodeStatusPay.class);
 		
 		enforceLChanged.addPostAction(nodeReceiver);
 		nodeReceiver.addPostAction(insert);

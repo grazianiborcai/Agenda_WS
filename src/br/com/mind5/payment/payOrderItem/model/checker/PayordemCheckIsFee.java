@@ -22,10 +22,10 @@ public final class PayordemCheckIsFee extends ModelCheckerTemplateSimple<Payorde
 			return super.FAILED;
 		
 		if (recordInfo.codFeeCateg == Feecat.SERVICE.getCodCateg())			
-			return super.FAILED;
+			return super.SUCCESS;
 		
 		
-		return super.SUCCESS;
+		return super.FAILED;
 	}
 	
 	
