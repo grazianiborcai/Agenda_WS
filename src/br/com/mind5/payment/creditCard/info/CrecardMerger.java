@@ -6,6 +6,7 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 import br.com.mind5.masterData.paymentPartnerDefault.info.PayparultInfo;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
@@ -22,6 +23,19 @@ public final class CrecardMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CrecardMergerVisiPayparult());
 		InfoMerger<CrecardInfo, PayparultInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<CrecardInfo> mergeWithPaypar(List<CrecardInfo> baseInfos, List<PayparInfo> selectedInfos) {
+		InfoMergerBuilder<CrecardInfo, PayparInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CrecardMergerVisiPaypar());
+		InfoMerger<CrecardInfo, PayparInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

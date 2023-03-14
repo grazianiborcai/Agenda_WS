@@ -12,6 +12,7 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 	public long codPayCustomer;
 	public String customerId;
 	public int codPayPartner;
+	public String txtPayPartner;
 	public long codUser;
 	public String creditCardId;
 	public String creditCardBrand;

@@ -15,6 +15,7 @@ import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.CrecardVisiEnforceExpired;
 import br.com.mind5.payment.creditCard.model.action.CrecardVisiMergeCuspar;
+import br.com.mind5.payment.creditCard.model.action.CrecardVisiMergePaypar;
 import br.com.mind5.payment.creditCard.model.action.CrecardVisiMergeToSelect;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckOwner;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckRead;
@@ -65,9 +66,11 @@ public final class CrecardRootSelect extends DeciTreeTemplateRead<CrecardInfo> {
 		ActionStd<CrecardInfo> mergeToSelect = new ActionStdCommom<CrecardInfo>(option, CrecardVisiMergeToSelect.class);
 		ActionLazy<CrecardInfo> enforceExpired = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiEnforceExpired.class);
 		ActionLazy<CrecardInfo> mergeCuspar = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiMergeCuspar.class);
+		ActionLazy<CrecardInfo> mergePaypar = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiMergePaypar.class);
 		
 		mergeToSelect.addPostAction(enforceExpired);
 		enforceExpired.addPostAction(mergeCuspar);
+		mergeCuspar.addPostAction(mergePaypar);
 		
 		actions.add(mergeToSelect);
 		return actions;

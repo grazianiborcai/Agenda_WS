@@ -647,6 +647,7 @@ public final class SystemCode {
 	public static final int PAY_ORDER_HEADER_ALREADY_EXIST 				= 4061;
 	public static final int PAY_ORDER_HEADER_NOT_FOUND 					= 4062;
 	public static final int PAY_ORDER_HEADER_CRECARD_DIF_USER			= 4065;
+	public static final int PAY_ORDER_HEADER							= 4066;
 	
 	// Pay-Customer-Moip
 	public static final int PAY_CUS_MOIP_CREATION_ERROR 				= 4100;
@@ -669,6 +670,7 @@ public final class SystemCode {
 	public static final int CREDIT_CARD_INVALID_ADDRESS					= 4156;
 	public static final int CREDIT_CARD_INVALID_PHONE					= 4157;
 	public static final int CREDIT_CARD_INVALID_EXPIRY_DATE 			= 4158;
+	public static final int CREDIT_CARD 								= 4159;
 	
 	// Credit Card-Moip
 	public static final int CREDIT_CARD_MOIP_ADDRESS_BR					= 4200;
@@ -2000,7 +2002,7 @@ public final class SystemCode {
 	public static final int PAGARME_ORDER 								= 20250;
 	public static final int PAGARME_ORDER_CREATION_ERROR				= 20251;
 	
-	// General -- 19670
+	// General -- 19672
 	public static final int GEN_COMPLEMENT								= 19668;
 	public static final int GEN_DESCRIPTION								= 19661;
 	public static final int GEN_EMAIL									= 19664;
@@ -2021,5 +2023,7 @@ public final class SystemCode {
 	public static final int GEN_P1_P2_INVALID_F							= 19657;
 	public static final int GEN_P1_P2_INVALID_M							= 19658;
 	public static final int GEN_P1_P2_IS_EMPTY_M						= 19653;
-	public static final int GEN_P1_P2_IS_FILLED_M						= 19652;
+	public static final int GEN_P1_P2_IS_FILLED_M						= 19652;	
+	public static final int GEN_P1_P2_NOT_FOUND_F 						= 19671;
+	public static final int GEN_P1_P2_NOT_FOUND_M 						= 19672;
 }
