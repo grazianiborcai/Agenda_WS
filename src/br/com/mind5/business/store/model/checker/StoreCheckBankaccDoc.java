@@ -31,16 +31,6 @@ public final class StoreCheckBankaccDoc extends ModelCheckerTemplateSimple<Store
 	}
 	
 	
-	/*
-	@Override protected SymsgInfo getSymsgOnResultTrueHook(Connection dbConn, String dbSchema, String codLangu) {
-		SystemMessageBuilder builder = new SystemMessageBuilder(dbConn, dbSchema, codLangu, SystemCode.GEN_P1_P2);
-		builder.addParam01(SystemCode.STORE);
-		builder.addParam02(SystemCode.HOLDER_DOC_IS_DIFFERENT);
-
-		return builder.build();
-	}*/
-	
-	
 	
 	@Override protected SymsgInfo getSymsgOnResultFalseHook(Connection dbConn, String dbSchema, String codLangu) {
 		SystemMessageBuilder builder = new SystemMessageBuilder(dbConn, dbSchema, codLangu, SystemCode.GEN_P1_P2);
