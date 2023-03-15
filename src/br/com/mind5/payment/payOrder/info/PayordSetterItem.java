@@ -12,6 +12,7 @@ public final class PayordSetterItem extends InfoSetterTemplate<PayordInfo> {
 		for(OrderemInfo eachItem : recordInfo.orderData.orderms) {
 			PayordemInfo oneItem = PayordemInfo.copyFrom(eachItem);
 			
+			oneItem.codPayPartner = recordInfo.codPayPartner;
 			oneItem.codPayOrder = recordInfo.codPayOrder;
 			oneItem.codPayOrderItem = itemNum++;
 			
