@@ -9,6 +9,7 @@ public final class StoparchSetterStoreKey extends InfoSetterTemplate<StoparchInf
 		
 		result.codOwner = recordInfo.codOwner;
 		result.codStore = recordInfo.codStore;
+		result.codPayPartner = recordInfo.codPayPartner;
 		result.codLanguage = recordInfo.codLanguage;
 		result.username = recordInfo.username;
 		

@@ -18,6 +18,7 @@ public final class StoparchCheckReadStore extends ModelCheckerTemplateSimple<Sto
 	@Override protected boolean checkHook(StoparchInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner    	<= 0	||
 			   recordInfo.codStore    	<= 0  	||
+			   recordInfo.codPayPartner <= 0  	||
 			   recordInfo.codLanguage 	== null	||
 			   recordInfo.username    	== null		)			
 			
