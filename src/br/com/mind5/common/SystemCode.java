@@ -31,6 +31,7 @@ public final class SystemCode {
 	public static final int EMP_WTIME_RANGE_OK 							= 1010;
 	public static final int EMP_WTIME_CONFLICT_FOUND 					= 1011;
 	public static final int EMP_WTIME_CONFLICT_FREE 					= 1012;
+	public static final int EMP_WTIME 									= 1013;
 	
 	// Employee
 	public static final int EMP_ALREADY_EXIST 							= 1050;
@@ -51,6 +52,8 @@ public final class SystemCode {
 	public static final int EMP_USER_IS_FILLED							= 1065;
 	public static final int EMP_ADDRESS_NUMBER_IS_NULL					= 1066;
 	public static final int EMP_PHONE_NUMBER_IS_NULL					= 1067;
+	public static final int EMP											= 1068;
+	public static final int EMP_PLURAL									= 1069;
 	
 	// Store
 	public static final int STORE_NOT_FOUND 							= 1103;
@@ -939,6 +942,7 @@ public final class SystemCode {
 	public static final int STORE_WTIME_BAD_TIME_RANGE 					= 6862;
 	public static final int STORE_WTIME_HAS_EMPLOYEE 					= 6863;
 	public static final int STORE_WTIME_EMPLOYEE_NOT_FOUND 				= 6864;
+	public static final int STORE_WTIME 								= 6865;
 	
 	
 	// Employee Work Time Outlier
@@ -985,8 +989,8 @@ public final class SystemCode {
 	
 	// Employee Worktime Search
 	public static final int EMP_WTIME_SEARCH_MANDATORY_FIELD_EMPTY 		= 7300;
-	public static final int EMP_WTIME_SEARCH_ALREADY_EXIST 				= 7301;
-	public static final int EMP_WTIME_SEARCH_NOT_FOUND 					= 7302;
+	public static final int EMP_WTIME_SEARCH_NOT_FOUND 					= 7301;
+	public static final int EMP_WTIME_SEARCH_ALREADY_EXIST 				= 7302;
 	
 	// Employee Worktime Conflict
 	public static final int EMP_WTIME_CONFLICT_MANDATORY_FIELD_EMPTY 	= 7350;
@@ -1212,6 +1216,8 @@ public final class SystemCode {
 	public static final int PAY_ORDER_ITEM_NOT_FOUND 					= 11004; // 4056;
 	public static final int PAY_ORDER_HAVE_ITEM 						= 4057;
 	public static final int PAY_ORDER_IS_EMPTY 							= 4058;
+	public static final int PAY_ORDER 									= 11005;
+	public static final int PAY_ORDER_STORE_IS_NOT_PAYPARTNER 			= 11006;
 	
 	// Pay-Order Item Search
 	public static final int PAY_ORDER_ITEM_SEARCH_MANDATORY_FIELD_EMPTY	= 11050;
@@ -2002,7 +2008,7 @@ public final class SystemCode {
 	public static final int PAGARME_ORDER 								= 20250;
 	public static final int PAGARME_ORDER_CREATION_ERROR				= 20251;
 	
-	// General -- 19672
+	// General -- 19675
 	public static final int GEN_COMPLEMENT								= 19668;
 	public static final int GEN_DESCRIPTION								= 19661;
 	public static final int GEN_EMAIL									= 19664;
@@ -2013,8 +2019,10 @@ public final class SystemCode {
 	public static final int GEN_PHONE_NUMBER							= 19669;	
 	public static final int GEN_TEXT									= 19665;
 	public static final int GEN_P1_ALREADY_EXIST_F 						= 19654;
-	public static final int GEN_P1_ALREADY_EXIST_M 						= 19651;
+	public static final int GEN_P1_ALREADY_EXIST_M 						= 19651;	
 	public static final int GEN_P1_INVALID_P2_LENGTH_M					= 19660;
+	public static final int GEN_P1_MANDATORY_DELETE_P2_FIRST_F			= 19674;
+	public static final int GEN_P1_MANDATORY_DELETE_P2_FIRST_M			= 19675;
 	public static final int GEN_P1_MANDATORY_FIELD_EMPTY_M 				= 19650;
 	public static final int GEN_P1_NOT_FOUND_F 							= 19655;
 	public static final int GEN_P1_NOT_FOUND_M 							= 19656;	
@@ -2026,4 +2034,7 @@ public final class SystemCode {
 	public static final int GEN_P1_P2_IS_FILLED_M						= 19652;	
 	public static final int GEN_P1_P2_NOT_FOUND_F 						= 19671;
 	public static final int GEN_P1_P2_NOT_FOUND_M 						= 19672;
+	public static final int GEN_P1_P2_P3								= 19673;
+	
+
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmMerger;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.business.storeList.model.decisionTree.StolisRootSelect;
+import br.com.mind5.business.storeList.model.decisionTree.StolisRootSelectSimple;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ public final class EmpwotmVisiMergeStolis extends ActionVisitorTemplateMerge<Emp
 	
 	
 	@Override protected Class<? extends DeciTree<StolisInfo>> getTreeClassHook() {
-		return StolisRootSelect.class;
+		return StolisRootSelectSimple.class;
 	}
 	
 	
