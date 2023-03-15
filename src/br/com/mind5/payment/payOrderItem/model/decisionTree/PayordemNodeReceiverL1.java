@@ -4,20 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiMergeMktpar;
-import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiMergeStopar;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckIsFee;
 
-public final class PayordemNodeReceiver extends DeciTreeTemplateWrite<PayordemInfo> {
+public final class PayordemNodeReceiverL1 extends DeciTreeTemplateWrite<PayordemInfo> {
 	
-	public PayordemNodeReceiver(DeciTreeOption<PayordemInfo> option) {
+	public PayordemNodeReceiverL1(DeciTreeOption<PayordemInfo> option) {
 		super(option);
 	}
 	
@@ -43,9 +40,9 @@ public final class PayordemNodeReceiver extends DeciTreeTemplateWrite<PayordemIn
 	@Override protected List<ActionStd<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
 		List<ActionStd<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayordemInfo> mergeMktpar = new ActionStdCommom<PayordemInfo>(option, PayordemVisiMergeMktpar.class);
+		ActionStd<PayordemInfo> nodeL2 = new PayordemNodeReceiverL2(option).toAction();
 		
-		actions.add(mergeMktpar);
+		actions.add(nodeL2);
 		return actions;
 	}
 	
@@ -54,9 +51,9 @@ public final class PayordemNodeReceiver extends DeciTreeTemplateWrite<PayordemIn
 	@Override protected List<ActionStd<PayordemInfo>> buildActionsOnFailedHook(DeciTreeOption<PayordemInfo> option) {
 		List<ActionStd<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayordemInfo> mergeStopar = new ActionStdCommom<PayordemInfo>(option, PayordemVisiMergeStopar.class);
+		ActionStd<PayordemInfo> nodeL3 = new PayordemNodeReceiverL3(option).toAction();
 		
-		actions.add(mergeStopar);
+		actions.add(nodeL3);
 		return actions;
 	}
 }

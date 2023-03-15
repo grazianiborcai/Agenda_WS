@@ -6,18 +6,18 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.payment.payOrderItem.model.decisionTree.PayordemNodeReceiver;
+import br.com.mind5.payment.payOrderItem.model.decisionTree.PayordemNodeReceiverL1;
 
-public final class PayordemVisiNodeReceiver extends ActionVisitorTemplateAction<PayordemInfo, PayordemInfo> {
+public final class PayordemVisiNodeReceiverL1 extends ActionVisitorTemplateAction<PayordemInfo, PayordemInfo> {
 
-	public PayordemVisiNodeReceiver(DeciTreeOption<PayordemInfo> option) {
+	public PayordemVisiNodeReceiverL1(DeciTreeOption<PayordemInfo> option) {
 		super(option, PayordemInfo.class, PayordemInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<PayordemInfo>> getTreeClassHook() {
-		return PayordemNodeReceiver.class;
+		return PayordemNodeReceiverL1.class;
 	}
 	
 	

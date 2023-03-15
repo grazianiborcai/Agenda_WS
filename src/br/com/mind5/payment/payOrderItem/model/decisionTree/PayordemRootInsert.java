@@ -15,7 +15,7 @@ import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiDaoInsert;
 import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiEnforceLChanged;
-import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiNodeReceiver;
+import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiNodeReceiverL1;
 import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiNodeStatusPay;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckInsert;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckLangu;
@@ -80,7 +80,7 @@ public final class PayordemRootInsert extends DeciTreeTemplateWrite<PayordemInfo
 		List<ActionStd<PayordemInfo>> actions = new ArrayList<>();
 		
 		ActionStd<PayordemInfo> enforceLChanged = new ActionStdCommom <PayordemInfo>(option, PayordemVisiEnforceLChanged.class);
-		ActionLazy<PayordemInfo> nodeReceiver   = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiNodeReceiver.class);
+		ActionLazy<PayordemInfo> nodeReceiver   = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiNodeReceiverL1.class);
 		ActionLazy<PayordemInfo> insert         = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiDaoInsert.class);
 		ActionLazy<PayordemInfo> nodeStatusPay  = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiNodeStatusPay.class);
 		

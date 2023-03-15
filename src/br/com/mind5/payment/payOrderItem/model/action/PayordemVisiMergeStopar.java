@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemMerger;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
-import br.com.mind5.payment.storePartner.model.decisionTree.StoparRootSelect;
+import br.com.mind5.payment.storePartner.model.decisionTree.StoparRootSearchStore;
 
 public final class PayordemVisiMergeStopar extends ActionVisitorTemplateMerge<PayordemInfo, StoparInfo> {
 	
@@ -19,7 +19,7 @@ public final class PayordemVisiMergeStopar extends ActionVisitorTemplateMerge<Pa
 	
 	
 	@Override protected Class<? extends DeciTree<StoparInfo>> getTreeClassHook() {
-		return StoparRootSelect.class;
+		return StoparRootSearchStore.class;
 	}
 	
 	
