@@ -39,12 +39,13 @@ public final class OrdapaSetterSplit extends InfoSetterTemplate<OrdapaInfo> {
 	
 	
 	private Map<Map<String,String>,Map<String,String>> getSplit(List<PayordemInfo> payOrdemItems) {
-		Map<String,String> splitData = new HashMap<>();
-		Map<String,String> splitOption = new HashMap<>();
 		Map<Map<String,String>,Map<String,String>> split = new HashMap<>();
 		
 		
-		for (PayordemInfo eachPayordem : payOrdemItems) {			
+		for (PayordemInfo eachPayordem : payOrdemItems) {
+			Map<String,String> splitData = new HashMap<>();
+			Map<String,String> splitOption = new HashMap<>();
+			
 			splitData   = getSplitData  (splitData  , eachPayordem);
 			splitOption = getSplitOption(splitOption, eachPayordem);
 			

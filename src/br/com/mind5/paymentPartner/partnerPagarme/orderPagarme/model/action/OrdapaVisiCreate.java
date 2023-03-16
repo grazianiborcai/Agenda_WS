@@ -102,8 +102,8 @@ public final class OrdapaVisiCreate extends ActionVisitorTemplateSimple<OrdapaIn
 		builderTemp.addObjToJson("payment_method", recordInfo.paymentMethod);
 		builderTemp.addNestedObjToJson("credit_card", recordInfo.creditCard);
 		builderTemp.addArrayToJson("split", makeBodySplit(recordInfo).buildWithoutBraces());
-		
-		builder.addArrayToJson("payments", builderTemp.buildWithoutBraces());		
+
+		builder.addArrayToJson("payments", builderTemp.build());		
 		return builder;
 	}
 	
@@ -117,7 +117,8 @@ public final class OrdapaVisiCreate extends ActionVisitorTemplateSimple<OrdapaIn
 
 			builderTemp.addObjToJson(eachSplit.getKey());
 			builderTemp.addNestedObjToJson("options", eachSplit.getValue());
-			builder.addBuilderToJson(builderTemp);
+			builder.addStrToJson(builderTemp.build());
+//			builder.addBuilderToJson(builderTemp);
 		}		
 		
 		return builder;

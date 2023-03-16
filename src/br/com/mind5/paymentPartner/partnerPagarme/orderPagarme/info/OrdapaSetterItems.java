@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.mind5.info.InfoSetterTemplate;
+import br.com.mind5.masterData.feeCategory.info.Feecat;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 
 
@@ -73,14 +74,47 @@ public final class OrdapaSetterItems extends InfoSetterTemplate<OrdapaInfo> {
 	
 	
 	private Map<String,String> addItemDescription(Map<String, String> item, PayordemInfo payordem) {
-		if(payordem.matlisData == null)
-			return item;
+		item = addItemDescriptionFee(item, payordem);
+		item = addItemDescriptionMat(item, payordem);
+	
+		return item;
+	}
+	
+	
+	
+	private Map<String,String> addItemDescriptionFee(Map<String, String> item, PayordemInfo payordem) {				
+		if(isFee(payordem) == false) return item;		
 		
-		if(payordem.matlisData.txtMat == null)
-			return item;
+		String description = null;
+			
+		if(payordem.txtFeeCateg == null) {
+			description = getDefaultDescription(payordem);			
+		} else {
+			description = payordem.txtFeeCateg;	
+		}		
 		
+		item.put("description", description);		
+		return item;
+	}
+	
+	
+	
+	private Map<String,String> addItemDescriptionMat(Map<String, String> item, PayordemInfo payordem) {
+		if(isFee(payordem) == true) return item;		
 		
-		item.put("description", payordem.matlisData.txtMat);		
+		String description = null;
+			
+		if(payordem.matlisData == null) {
+			description = getDefaultDescription(payordem);
+			
+		} else if(payordem.matlisData.txtMat == null) {
+			description = getDefaultDescription(payordem);	
+			
+		} else {
+			description = payordem.matlisData.txtMat;
+		}
+		
+		item.put("description", description);		
 		return item;
 	}
 	
@@ -94,7 +128,7 @@ public final class OrdapaSetterItems extends InfoSetterTemplate<OrdapaInfo> {
 		
 		item.put("quantity", quantity);		
 		return item;
-	}
+	}	
 	
 	
 	
@@ -105,5 +139,17 @@ public final class OrdapaSetterItems extends InfoSetterTemplate<OrdapaInfo> {
 		
 		item.put("code", code);		
 		return item;
+	}
+	
+	
+	
+	private boolean isFee(PayordemInfo payordem) {
+		return payordem.codFeeCateg == Feecat.SERVICE.getCodCateg();
+	}
+	
+	
+	
+	private String getDefaultDescription(PayordemInfo payordem) {
+		return payordem.codOwner + "-" + payordem.codPayOrder + "-" + payordem.codPayOrderItem;
 	}
 }
