@@ -36,7 +36,7 @@ public final class JsonBuilder {
 		StringBuilder jsonTemp = new StringBuilder();
 		
 		jsonTemp.append("\"").append(ojbNameStr).append("\":");
-		jsonTemp.append("[").append(ojbArray).append("]");	
+		jsonTemp.append("[").append(ojbArray).append("]");
 		
 		return add(jsonTemp.toString());
 	}
@@ -156,7 +156,9 @@ public final class JsonBuilder {
 			if (semaphore != 0)
 				jsonTemp.append(",");
 			
+			jsonTemp.append("{");
 			jsonTemp.append(mapToJson(eachObj));
+			jsonTemp.append("}");
 			semaphore = 1;
 		}
 
