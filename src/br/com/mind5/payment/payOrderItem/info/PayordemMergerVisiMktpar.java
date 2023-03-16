@@ -17,7 +17,7 @@ final class PayordemMergerVisiMktpar extends InfoMergerVisitorTemplate<PayordemI
 	@Override public List<PayordemInfo> merge(PayordemInfo baseInfo, MktparInfo selectedInfo) {
 		List<PayordemInfo> results = new ArrayList<>();
 		
-		baseInfo.itemReceiver = selectedInfo.idPayPartnerSystem;
+		baseInfo.itemReceiver = selectedInfo.idPayPartnerApp; // TODO: Criar um campo chamado receiver
 		
 		results.add(baseInfo);
 		return results;
