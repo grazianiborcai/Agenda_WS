@@ -59,7 +59,7 @@ public final class PayordNodePayL1 extends DeciTreeTemplateWrite<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnFailedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 	
-		ActionStd<PayordInfo> nodeL2 = new PayordNodePayL1(option).toAction();
+		ActionStd<PayordInfo> nodeL2 = new PayordNodePayL2(option).toAction();
 		
 		actions.add(nodeL2);		
 		return actions;
