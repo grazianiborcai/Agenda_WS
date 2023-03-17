@@ -12,27 +12,20 @@ import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 public final class OrdapaInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
+	public int codPayPartner;
 	public PayordInfo payordData;
-	
 	public String code;
 	public String customerId;
 	public String paymentMethod;
 	public List<Map<String,String>> items;
 	public Map<String,String> creditCard;
 	public Map<Map<String,String>,Map<String,String>> split;
-	
-	public int codPayPartner;
-	public long codCustomer;
-	public String id;
-	public String name;
-	public String email;
-	public String document;
-	public String documentType;
-	public String type;
-	public String gender;
-	public String birthdate;
+	public String responseBody;
+	public String responseId;
+	public String responseStatus;
+	public List<Map<String,String>> responseItems;
+	public List<Map<String,String>> responseCharges;
 	public String authorization;
-	public String compoundId;
 	public SetuparInfo setuparData;
 	public String username;
 	
@@ -47,8 +40,8 @@ public final class OrdapaInfo extends InfoRecord implements Cloneable {
 		items = DefaultValue.list();
 		creditCard = DefaultValue.object();
 		split = DefaultValue.object();
-		
-		codCustomer = DefaultValue.number();
+		responseItems = DefaultValue.list();
+		responseCharges = DefaultValue.list();
 		codPayPartner = DefaultValue.number();		
 	}
 	

@@ -6,7 +6,6 @@ import java.util.Map;
 
 import br.com.mind5.common.JsonBuilder;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.json.standard.JstdBodyParser;
 import br.com.mind5.model.action.ActionVisitorTemplateSimple;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.info.OrdapaInfo;
@@ -31,7 +30,7 @@ public final class OrdapaVisiCreate extends ActionVisitorTemplateSimple<OrdapaIn
 			if (hasError(response) == true)
 				return null;
 			
-			eachRecod = setAttribute(eachRecod, response);
+			eachRecod.responseBody = response.getBody();
 			results.add(eachRecod);
 		}
 		
@@ -118,7 +117,6 @@ public final class OrdapaVisiCreate extends ActionVisitorTemplateSimple<OrdapaIn
 			builderTemp.addObjToJson(eachSplit.getKey());
 			builderTemp.addNestedObjToJson("options", eachSplit.getValue());
 			builder.addStrToJson(builderTemp.build());
-//			builder.addBuilderToJson(builderTemp);
 		}		
 		
 		return builder;
@@ -167,34 +165,6 @@ public final class OrdapaVisiCreate extends ActionVisitorTemplateSimple<OrdapaIn
 			return;
 		
 		System.out.println(response.getBody());
-	}
-	
-	
-	
-	private OrdapaInfo setAttribute(OrdapaInfo recordInfo, HttpResponse<String> response) {
-		OrdapaInfo parsedResponse = parseResponse(response);	
-		
-		recordInfo.id = parsedResponse.id;
-		
-		return recordInfo;
-	}
-	
-	
-	
-	private OrdapaInfo parseResponse(HttpResponse<String> response) {
-		JstdBodyParser<OrdapaInfo> parser = new JstdBodyParser<>(OrdapaInfo.class);
-		
-		List<OrdapaInfo> results = parser.parse(response.getBody());
-		
-		if(results == null) {
-			return null;
-		}
-			
-		if(results.isEmpty()) {
-			return null;
-		}
-		
-		return results.get(0);
 	}
 	
 	

@@ -3,7 +3,9 @@ package br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.decisionTr
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -12,6 +14,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.info.OrdapaInfo;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiCreate;
+import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiEnforceResponseAttr;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckHasCustomer;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckHasItems;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckHasPayments;
@@ -66,7 +69,10 @@ public final class OrdapaNodeCreate extends DeciTreeTemplateWrite<OrdapaInfo> {
 	@Override protected List<ActionStd<OrdapaInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdapaInfo> option) {
 		List<ActionStd<OrdapaInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrdapaInfo> create = new ActionStdCommom<OrdapaInfo>(option, OrdapaVisiCreate.class);
+		ActionStd<OrdapaInfo>  create              = new ActionStdCommom<OrdapaInfo>(option, OrdapaVisiCreate.class);
+		ActionLazy<OrdapaInfo> enforceResponseAttr = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiEnforceResponseAttr.class);
+		
+		create.addPostAction(enforceResponseAttr);
 		
 		actions.add(create);
 		return actions;
