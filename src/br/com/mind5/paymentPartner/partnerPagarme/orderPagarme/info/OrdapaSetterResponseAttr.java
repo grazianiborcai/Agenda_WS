@@ -26,10 +26,17 @@ public final class OrdapaSetterResponseAttr extends InfoSetterTemplate<OrdapaInf
 	
 	
 	
-	private OrdapaInfo setRootAttr(OrdapaInfo recordInfo, JsonElement json) {		
-		recordInfo.responseId     = json.getAsJsonObject().get("id").getAsString();
-		recordInfo.responseStatus = json.getAsJsonObject().get("status").getAsString();
+	private OrdapaInfo setRootAttr(OrdapaInfo recordInfo, JsonElement json) {
+		Map<String, String> root = new HashMap<>();
 		
+		root.put("id"      , json.getAsJsonObject().get("id").getAsString());
+		root.put("code"    , json.getAsJsonObject().get("code").getAsString());
+		root.put("status"  , json.getAsJsonObject().get("status").getAsString());
+		root.put("amount"  , json.getAsJsonObject().get("amount").getAsString());		
+		root.put("closed"  , json.getAsJsonObject().get("closed").getAsString());
+		root.put("currency", json.getAsJsonObject().get("currency").getAsString());
+
+		recordInfo.responseRoot = root;		
 		return recordInfo;
 	}
 	
@@ -57,8 +64,7 @@ public final class OrdapaSetterResponseAttr extends InfoSetterTemplate<OrdapaInf
 	
 	
 	private OrdapaInfo setCharges(OrdapaInfo recordInfo, JsonElement json) {
-		JsonArray jarray = json.getAsJsonObject().get("charges").getAsJsonArray();
-		
+		JsonArray jarray = json.getAsJsonObject().get("charges").getAsJsonArray();		
 		
 		for (int i = 0; i < jarray.size(); i++) {
 			Map<String, String> eachItem = new HashMap<>();
@@ -68,10 +74,13 @@ public final class OrdapaSetterResponseAttr extends InfoSetterTemplate<OrdapaInf
 				if (eachEntry.getKey().equals("id"))
 					eachItem.put("charge_id", eachEntry.getValue().getAsString());
 				
-				if (eachEntry.getKey().equals("last_transaction")) 
-					eachItem.put("transaction_id", eachEntry.getValue().getAsJsonObject().get("id").getAsString());
+				if (eachEntry.getKey().equals("last_transaction")) {
+					JsonObject jtran = eachEntry.getValue().getAsJsonObject();					
+					eachItem.put("transaction_id"     , jtran.get("id").getAsString());
+					eachItem.put("transaction_status" , jtran.get("status").getAsString());
+					eachItem.put("transaction_success", jtran.get("success").getAsString());
+				}
 			}			
-			
 			recordInfo.responseCharges.add(eachItem);
 		}
 		
