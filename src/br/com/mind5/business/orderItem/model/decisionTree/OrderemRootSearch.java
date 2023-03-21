@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.business.orderItem.model.action.OrderemVisiRootSelect;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiMergeOrdemarch;
+import br.com.mind5.business.orderItem.model.action.OrderemVisiRootSelect;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -39,8 +39,8 @@ public final class OrderemRootSearch extends DeciTreeTemplateWrite<OrderemInfo> 
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderemInfo> mergeOrdemarch = new ActionStdCommom<OrderemInfo>(option, OrderemVisiMergeOrdemarch.class);
-		ActionLazy<OrderemInfo> select = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiRootSelect.class);
+		ActionStd<OrderemInfo>  mergeOrdemarch = new ActionStdCommom<OrderemInfo> (option, OrderemVisiMergeOrdemarch.class);
+		ActionLazy<OrderemInfo> select         = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiRootSelect.class);
 		
 		mergeOrdemarch.addPostAction(select);
 		

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.business.orderItem.model.action.OrderemVisiNodeSelect;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiMergeMatlis;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiMergeToSelect;
+import br.com.mind5.business.orderItem.model.action.OrderemVisiNodeSelect;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -46,9 +46,9 @@ public final class OrderemRootSelect extends DeciTreeTemplateWrite<OrderemInfo> 
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderemInfo> select = new ActionStdCommom<OrderemInfo>(option, OrderemVisiMergeToSelect.class);
+		ActionStd<OrderemInfo>  select      = new ActionStdCommom<OrderemInfo> (option, OrderemVisiMergeToSelect.class);
 		ActionLazy<OrderemInfo> mergeMatlis = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiMergeMatlis.class);
-		ActionLazy<OrderemInfo> nodeSelect = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeSelect.class);		
+		ActionLazy<OrderemInfo> nodeSelect  = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeSelect.class);		
 		
 		select.addPostAction(mergeMatlis);
 		mergeMatlis.addPostAction(nodeSelect);

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.business.orderItem.model.action.OrderemVisiNodeUpdate;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiMergeOrdugeRefunding;
+import br.com.mind5.business.orderItem.model.action.OrderemVisiNodeUpdate;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiRefupolEvaluate;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiSchedineRefresh;
 import br.com.mind5.model.action.ActionLazy;
@@ -41,9 +41,9 @@ public final class OrderemNodeRefunding extends DeciTreeTemplateWrite<OrderemInf
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderemInfo> enforceStatus = new ActionStdCommom<OrderemInfo>(option, OrderemVisiMergeOrdugeRefunding.class);
+		ActionStd<OrderemInfo>  enforceStatus   = new ActionStdCommom<OrderemInfo> (option, OrderemVisiMergeOrdugeRefunding.class);
 		ActionLazy<OrderemInfo> refupolEvaluate = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiRefupolEvaluate.class);			
-		ActionLazy<OrderemInfo> update = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeUpdate.class);	
+		ActionLazy<OrderemInfo> update          = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeUpdate.class);	
 		ActionLazy<OrderemInfo> schedineRefresh = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiSchedineRefresh.class);	
 		
 		enforceStatus.addPostAction(refupolEvaluate);

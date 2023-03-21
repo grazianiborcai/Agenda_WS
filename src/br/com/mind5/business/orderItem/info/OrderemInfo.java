@@ -24,6 +24,7 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 	public String statusPaymentPartner;	
 	public long codPayOrder;
 	public int codPayOrderItem;
+	public int codPayPartner;
 	public long codUser;
 	public long codCustomer;
 	public long codStore;
@@ -58,6 +59,7 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 		codSnapshot = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
 		codPayOrderItem = DefaultValue.number();
+		codPayPartner = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		codStore = DefaultValue.number();

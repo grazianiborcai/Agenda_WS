@@ -21,8 +21,8 @@ final class OrderemMergerVisiPayordem extends InfoMergerVisitorTemplate<OrderemI
 	@Override public List<OrderemInfo> merge(OrderemInfo baseInfo, PayordemInfo selectedInfo) {
 		List<OrderemInfo> results = new ArrayList<>();
 		
-		//baseInfo.codPayPartner = selectedInfo.codPayPartner;
-		baseInfo.statusOrderPartner = selectedInfo.statusOrderPartner;
+	    baseInfo.codPayPartner        = selectedInfo.codPayPartner;
+		baseInfo.statusOrderPartner   = selectedInfo.statusOrderPartner;
 		baseInfo.statusPaymentPartner = selectedInfo.statusPaymentPartner;
 		
 		results.add(baseInfo);

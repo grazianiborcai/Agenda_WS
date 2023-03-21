@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
+import br.com.mind5.business.orderItem.model.action.OrderemVisiMergeToSelect;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiNodeRefunding;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiRootSelect;
-import br.com.mind5.business.orderItem.model.action.OrderemVisiMergeToSelect;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckExist;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckLangu;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckOwner;
@@ -70,9 +70,9 @@ public final class OrderemRootRefunding extends DeciTreeTemplateWrite<OrderemInf
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderemInfo> select = new ActionStdCommom<OrderemInfo>(option, OrderemVisiMergeToSelect.class);
+		ActionStd<OrderemInfo>  select        = new ActionStdCommom<OrderemInfo> (option, OrderemVisiMergeToSelect.class);
 		ActionLazy<OrderemInfo> nodeRefunding = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeRefunding.class);
-		ActionLazy<OrderemInfo> rootSelect = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiRootSelect.class);	
+		ActionLazy<OrderemInfo> rootSelect    = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiRootSelect.class);	
 		
 		select.addPostAction(nodeRefunding);
 		nodeRefunding.addPostAction(rootSelect);
