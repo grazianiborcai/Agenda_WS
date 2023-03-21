@@ -13,8 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiNodeSelectL1;
+import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiMergePayordist;
 import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiMergeToSelect;
+import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiNodeSelectL1;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckRead;
 
 public final class PayordemRootSelect extends DeciTreeTemplateWrite<PayordemInfo> {
@@ -45,10 +46,12 @@ public final class PayordemRootSelect extends DeciTreeTemplateWrite<PayordemInfo
 	@Override protected List<ActionStd<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
 		List<ActionStd<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayordemInfo> select = new ActionStdCommom<PayordemInfo>(option, PayordemVisiMergeToSelect.class);
-		ActionLazy<PayordemInfo> nodeL1 = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiNodeSelectL1.class);
+		ActionStd<PayordemInfo>  select         = new ActionStdCommom<PayordemInfo> (option, PayordemVisiMergeToSelect.class);
+		ActionLazy<PayordemInfo> mergePayordist = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiMergePayordist.class);
+		ActionLazy<PayordemInfo> nodeL1         = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiNodeSelectL1.class);
 		
-		select.addPostAction(nodeL1);
+		select.addPostAction(mergePayordist);
+		mergePayordist.addPostAction(nodeL1);
 		
 		actions.add(select);
 		return actions;

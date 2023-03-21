@@ -8,6 +8,7 @@ import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.feeCategory.info.FeecatInfo;
 import br.com.mind5.payment.marketplacePartner.info.MktparInfo;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
+import br.com.mind5.payment.payOrderList.info.PayordistInfo;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
 public final class PayordemMerger {
@@ -18,6 +19,19 @@ public final class PayordemMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new PayordemMergerVisiPayormarch());
 		InfoMerger<PayordemInfo, PayormarchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<PayordemInfo> mergeWithPayordist(List<PayordemInfo> baseInfos, List<PayordistInfo> selectedInfos) {
+		InfoMergerBuilder<PayordemInfo, PayordistInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordemMergerVisiPayordist());
+		InfoMerger<PayordemInfo, PayordistInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
