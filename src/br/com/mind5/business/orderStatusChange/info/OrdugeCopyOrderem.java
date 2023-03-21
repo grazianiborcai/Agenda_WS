@@ -14,11 +14,12 @@ final class OrdugeCopyOrderem extends InfoCopierTemplate<OrdugeInfo, OrderemInfo
 	@Override protected OrdugeInfo makeCopyHook(OrderemInfo source) {		
 		OrdugeInfo result = new OrdugeInfo();
 		
-		result.codOrderStatusOld = source.codOrderStatus;
-		result.codPayOrder = source.codPayOrder;
+		result.codOwner           = source.codOwner;
+		result.username           = source.username;
+		result.codPayOrder        = source.codPayOrder;
+		result.codLanguage        = source.codLanguage;
+		result.codOrderStatusOld  = source.codOrderStatus;
 		result.statusOrderPartner = source.statusOrderPartner;
-		result.codLanguage = source.codLanguage;
-		result.username = source.username;
 		
 		return result;
 	}

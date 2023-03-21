@@ -8,7 +8,9 @@ import br.com.mind5.info.InfoRecord;
 public final class OrdugeInfo extends InfoRecord implements Cloneable {
 	public String codOrderStatusOld;
 	public String codOrderStatusNew;
+	public long codOwner;
 	public long codPayOrder;
+	public int codPayPartner;
 	public String statusOrderPartner;
 	public String username;
 	
@@ -16,7 +18,9 @@ public final class OrdugeInfo extends InfoRecord implements Cloneable {
 	public OrdugeInfo() {
 		super();
 		
-		codPayOrder = DefaultValue.number();
+		codOwner      = DefaultValue.number();
+		codPayOrder   = DefaultValue.number();
+		codPayPartner = DefaultValue.number();
 	}
 	
 	

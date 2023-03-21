@@ -16,7 +16,8 @@ public final class OrdugeCheckPartner extends ModelCheckerTemplateSimple<OrdugeI
 	
 	
 	@Override protected boolean checkHook(OrdugeInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.statusOrderPartner 	== null || 
+		if ( recordInfo.codPayOrder 	    <= 0    ||
+			 recordInfo.statusOrderPartner 	== null ||
 			 recordInfo.username			== null	||
 			 recordInfo.codLanguage			== null		)
 			

@@ -48,7 +48,7 @@ public final class OrdugeRootCancel extends DeciTreeTemplateRead<OrdugeInfo> {
 	@Override protected List<ActionStd<OrdugeInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdugeInfo> option) {
 		List<ActionStd<OrdugeInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrdugeInfo> nodeCancel = new NodeOrdugeCancel(option).toAction();
+		ActionStd<OrdugeInfo> nodeCancel = new OrdugeNodeCancel(option).toAction();
 		
 		actions.add(nodeCancel);			
 		return actions;

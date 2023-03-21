@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderStatusChange.info.OrdugeInfo;
-import br.com.mind5.business.orderStatusChange.model.action.OrdugeVisiEnforceMoip;
+import br.com.mind5.business.orderStatusChange.model.action.OrdugeVisiMergePayordist;
+import br.com.mind5.business.orderStatusChange.model.action.OrdugeVisiNodePartnerL1;
 import br.com.mind5.business.orderStatusChange.model.checker.OrdugeCheckPartner;
+import br.com.mind5.business.orderStatusChange.model.checker.OrdugeCheckPayord;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -34,6 +38,13 @@ public final class OrdugeRootPartner extends DeciTreeTemplateRead<OrdugeInfo> {
 		checker = new OrdugeCheckPartner(checkerOption);
 		queue.add(checker);
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new OrdugeCheckPayord(checkerOption);
+		queue.add(checker);
+		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
@@ -42,9 +53,12 @@ public final class OrdugeRootPartner extends DeciTreeTemplateRead<OrdugeInfo> {
 	@Override protected List<ActionStd<OrdugeInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdugeInfo> option) {
 		List<ActionStd<OrdugeInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrdugeInfo> enforceStatus = new ActionStdCommom<OrdugeInfo>(option, OrdugeVisiEnforceMoip.class);
+		ActionStd<OrdugeInfo>  mergePayordist = new ActionStdCommom<OrdugeInfo> (option, OrdugeVisiMergePayordist.class);
+		ActionLazy<OrdugeInfo> nodeL1         = new ActionLazyCommom<OrdugeInfo>(option, OrdugeVisiNodePartnerL1.class);
+
+		mergePayordist.addPostAction(nodeL1);
 		
-		actions.add(enforceStatus);			
+		actions.add(mergePayordist);			
 		return actions;
 	}
 }
