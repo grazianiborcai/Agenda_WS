@@ -2,11 +2,11 @@ package br.com.mind5.payment.payOrder.info;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import br.com.mind5.info.InfoMergerVisitorTemplate;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.info.OrdapaInfo;
 
 final class PayordMergerVisiOrdapa extends InfoMergerVisitorTemplate<PayordInfo, OrdapaInfo> {
@@ -20,36 +20,103 @@ final class PayordMergerVisiOrdapa extends InfoMergerVisitorTemplate<PayordInfo,
 	
 	@Override public List<PayordInfo> merge(PayordInfo baseInfo, OrdapaInfo selectedInfo) {
 		List<PayordInfo> results = new ArrayList<>();
-/*		
-		baseInfo.idOrderPartner = selectedInfo.idOrderPartner;
-		baseInfo.statusOrderPartner = selectedInfo.statusOrderPartner;
-		baseInfo.idPaymentPartner = selectedInfo.idPaymentPartner;
-		baseInfo.statusPaymentPartner = selectedInfo.statusPaymentPartner;
-		baseInfo.amountTotalPartner = selectedInfo.amountTotalPartner;
-		baseInfo.amountCurrencyPartner = selectedInfo.amountCurrencyPartner;
-		baseInfo.ownId = selectedInfo.ownId;
 		
-		baseInfo = mergePayordem(baseInfo, selectedInfo.ordmoips);
-*/		
+		baseInfo = setHeaderAttr(baseInfo, selectedInfo);
+		baseInfo = setItemAttr(baseInfo, selectedInfo);
+		
 		results.add(baseInfo);
 		return results;
 	}
 	
 	
 	
-	private PayordInfo mergePayordem(PayordInfo baseInfo, List<OrdmoipInfo> ordmoips) {
-		for (OrdmoipInfo eachMoip : ordmoips) {
+	private PayordInfo setHeaderAttr(PayordInfo baseInfo, OrdapaInfo selectedInfo) {		
+		baseInfo = setHeaderAttrRoot(baseInfo, selectedInfo);
+		baseInfo = setHeaderAttrCharges(baseInfo, selectedInfo);
+		
+		return baseInfo;
+	}
+	
+	
+	
+	private PayordInfo setHeaderAttrRoot(PayordInfo baseInfo, OrdapaInfo selectedInfo) {
+		if (selectedInfo.responseRoot == null)
+			return baseInfo;
+		
+		baseInfo.ownId 				   = selectedInfo.responseRoot.get("code");
+		baseInfo.idOrderPartner        = selectedInfo.responseRoot.get("id");
+		baseInfo.statusOrderPartner    = selectedInfo.responseRoot.get("status");
+		baseInfo.amountTotalPartner    = selectedInfo.responseRoot.get("amount");
+		baseInfo.amountCurrencyPartner = selectedInfo.responseRoot.get("currency");
+		
+		return baseInfo;
+	}
+	
+	
+	
+	private PayordInfo setHeaderAttrCharges(PayordInfo baseInfo, OrdapaInfo selectedInfo) {
+		if (selectedInfo.responseCharges == null)
+			return baseInfo;
+		
+		if (selectedInfo.responseCharges.isEmpty())
+			return baseInfo;
+		
+		Map<String, String> charge = selectedInfo.responseCharges.get(0);
+		
+		baseInfo.idPaymentPartner     = charge.get("charge_id");
+		baseInfo.statusPaymentPartner = charge.get("transaction_status");		
+		baseInfo.idTransactionPartner = charge.get("transaction_id");
+		
+		return baseInfo;
+	}
+	
+	
+	
+	private PayordInfo setItemAttr(PayordInfo baseInfo, OrdapaInfo selectedInfo) {
+		baseInfo = setItemAttrRoot(baseInfo, selectedInfo);
+		baseInfo = setItemAttrItems(baseInfo, selectedInfo);
+		
+		return baseInfo;
+	}
+	
+	
+	
+	private PayordInfo setItemAttrRoot(PayordInfo baseInfo, OrdapaInfo selectedInfo) {
+		if (selectedInfo.responseRoot == null)
+			return baseInfo;
+		
+		for (PayordemInfo eachPayordem : baseInfo.payordems) {
+			eachPayordem.statusOrderPartner = selectedInfo.responseRoot.get("status");
+		}
+		
+		return baseInfo;
+	}
+	
+	
+	
+	private PayordInfo setItemAttrItems(PayordInfo baseInfo, OrdapaInfo selectedInfo) {
+		if (selectedInfo.items == null)
+			return baseInfo;
+		
+		if (selectedInfo.items.isEmpty())
+			return baseInfo;
+		
+		
+		for(Map<String,String> eachItem : selectedInfo.responseItems) {
+			String payItemCode = eachItem.get("code");
+			
+			if (payItemCode == null)
+				payItemCode = "null";
+			
+			
 			for (PayordemInfo eachPayordem : baseInfo.payordems) {
-				if (eachMoip.codOwner 		 == eachPayordem.codOwner 		&&
-					eachMoip.codPayOrder 	 == eachPayordem.codPayOrder 	&&
-					eachMoip.codPayOrderItem == eachPayordem.codPayOrderItem	) {
-					
-					eachPayordem.idOrderPartner = eachMoip.idOrderPartner;
-					eachPayordem.statusOrderPartner = eachMoip.statusOrderPartner;	
-					eachPayordem.idPaymentPartner = eachMoip.idPaymentPartner;
-					eachPayordem.statusPaymentPartner = eachMoip.statusPaymentPartner;	
-					eachPayordem.itemReceiver = eachMoip.itemReceiver;
-					eachPayordem.ownId = eachMoip.ownId;					
+				String itemCode = eachPayordem.codOwner + "-" + eachPayordem.codPayOrder + "-" + eachPayordem.codPayOrderItem;
+				
+				if (payItemCode.equals(itemCode)) {
+					eachPayordem.ownId                = eachItem.get("code");
+					eachPayordem.idOrderPartner       = eachItem.get("id");
+					eachPayordem.idPaymentPartner     = null;
+					eachPayordem.statusPaymentPartner = null;
 				}
 			}
 		}

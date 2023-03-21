@@ -25,7 +25,7 @@ public final class PayordVisiOrderRefresh extends ActionVisitorTemplateAction<Pa
 	
 	
 	@Override protected List<OrderInfo> toActionClassHook(List<PayordInfo> recordInfos) {
-		return OrderCopier.copyFromPayord(recordInfos);
+		return OrderCopier.copyFromPayord(recordInfos); // Remover ?
 	}
 	
 	

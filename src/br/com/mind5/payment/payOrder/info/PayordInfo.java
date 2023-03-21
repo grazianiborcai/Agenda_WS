@@ -26,6 +26,7 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public String idOrderPartner;
 	public String statusOrderPartner;
 	public String idPaymentPartner;
+	public String idTransactionPartner;
 	public String statusPaymentPartner;
 	public String amountTotalPartner;
 	public String amountCurrencyPartner;
