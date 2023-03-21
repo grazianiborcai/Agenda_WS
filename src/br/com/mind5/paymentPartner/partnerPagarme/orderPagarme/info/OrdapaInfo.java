@@ -32,17 +32,17 @@ public final class OrdapaInfo extends InfoRecord implements Cloneable {
 	public OrdapaInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();
-		codPayOrder = DefaultValue.number();
-		payordData = DefaultValue.object();
-		setuparData = DefaultValue.object();
-		items = DefaultValue.list();
-		creditCard = DefaultValue.object();
-		split = DefaultValue.object();
-		responseRoot = DefaultValue.object();
-		responseItems = DefaultValue.list();
+		split           = DefaultValue.object();
+		items           = DefaultValue.list();
+		codOwner        = DefaultValue.number();
+		creditCard      = DefaultValue.object();
+		payordData      = DefaultValue.object();
+		setuparData     = DefaultValue.object();
+		codPayOrder     = DefaultValue.number();
+		responseRoot    = DefaultValue.object();
+		responseItems   = DefaultValue.list();		
+		codPayPartner   = DefaultValue.number();
 		responseCharges = DefaultValue.list();
-		codPayPartner = DefaultValue.number();		
 	}
 	
 	
