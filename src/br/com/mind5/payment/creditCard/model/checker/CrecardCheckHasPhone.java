@@ -3,6 +3,8 @@ package br.com.mind5.payment.creditCard.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.common.SystemMessageBuilder;
+import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
@@ -25,7 +27,11 @@ public final class CrecardCheckHasPhone extends ModelCheckerTemplateSimple<Creca
 	
 	
 	
-	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.CREDIT_CARD_MANDATORY_FIELD_EMPTY;
+	@Override protected SymsgInfo getSymsgOnResultFalseHook(Connection dbConn, String dbSchema, String codLangu) {
+		SystemMessageBuilder builder = new SystemMessageBuilder(dbConn, dbSchema, codLangu, SystemCode.GEN_P1_P2_IS_EMPTY_M);
+		builder.addParam01(SystemCode.CREDIT_CARD);
+		builder.addParam02(SystemCode.GEN_PHONE_NUMBER);
+
+		return builder.build();
 	}
 }

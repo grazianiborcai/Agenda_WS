@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.phoneSearch.info.PhonarchCopier;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
-import br.com.mind5.business.phoneSearch.model.decisionTree.PhonarchRootSelect;
+import br.com.mind5.business.phoneSearch.model.decisionTree.PhonarchRootSelectUserPhone;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -21,7 +21,7 @@ public final class CrecardCheckPhonarch extends ModelCheckerTemplateAction<Creca
 	
 	
 	@Override protected ActionStd<PhonarchInfo> buildActionHook(DeciTreeOption<PhonarchInfo> option) {
-		ActionStd<PhonarchInfo> select = new PhonarchRootSelect(option).toAction();
+		ActionStd<PhonarchInfo> select = new PhonarchRootSelectUserPhone(option).toAction();
 		return select;
 	}
 	

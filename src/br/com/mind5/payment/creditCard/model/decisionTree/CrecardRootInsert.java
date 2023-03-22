@@ -84,21 +84,21 @@ public final class CrecardRootInsert extends DeciTreeTemplateWrite<CrecardInfo> 
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();
 
-		ActionStd<CrecardInfo> nodeUser = new CrecardNodeUser(option).toAction();
-		ActionLazy<CrecardInfo> nodeAddress = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeAddressL1.class);
-		ActionLazy<CrecardInfo> nodePhone = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodePhoneL1.class);
-		ActionLazy<CrecardInfo> nodePayPartner = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodePayPartnerL1.class);
-		ActionLazy<CrecardInfo> nodeCuspar = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeCuspar.class);
+		ActionStd<CrecardInfo>  nodeUser         = new CrecardNodeUser(option).toAction();
+		ActionLazy<CrecardInfo> nodePayPartner   = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodePayPartnerL1.class);
+		ActionLazy<CrecardInfo> nodeAddress      = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeAddressL1.class);
+		ActionLazy<CrecardInfo> nodePhone        = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodePhoneL1.class);		
+		ActionLazy<CrecardInfo> nodeCuspar       = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeCuspar.class);
 		ActionLazy<CrecardInfo> enforceUpperCase = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiEnforceUpperCase.class);
-		ActionLazy<CrecardInfo> insertCrecard = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiDaoInsert.class);
-		ActionLazy<CrecardInfo> nodeL1 = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeInsertL1.class);
-		ActionLazy<CrecardInfo> updateCrecard = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiDaoUpdate.class);
-		ActionLazy<CrecardInfo> select = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiRootSelect.class);
+		ActionLazy<CrecardInfo> insertCrecard    = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiDaoInsert.class);
+		ActionLazy<CrecardInfo> nodeL1           = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeInsertL1.class);
+		ActionLazy<CrecardInfo> updateCrecard    = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiDaoUpdate.class);
+		ActionLazy<CrecardInfo> select           = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiRootSelect.class);
 		
-		nodeUser.addPostAction(nodeAddress);
+		nodeUser.addPostAction(nodePayPartner);
+		nodePayPartner.addPostAction(nodeAddress);
 		nodeAddress.addPostAction(nodePhone);
-		nodePhone.addPostAction(nodePayPartner);
-		nodePayPartner.addPostAction(nodeCuspar);
+		nodePhone.addPostAction(nodeCuspar);
 		nodeCuspar.addPostAction(enforceUpperCase);
 		enforceUpperCase.addPostAction(insertCrecard);
 		insertCrecard.addPostAction(nodeL1);
