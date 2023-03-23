@@ -7,19 +7,20 @@ import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.action.CrecardVisiCrecapaCreate;
-import br.com.mind5.payment.creditCard.model.action.CrecardVisiEnforceUpperCase;
-import br.com.mind5.payment.creditCard.model.checker.CrecardCheckIsPagarme;
+import br.com.mind5.payment.creditCard.model.action.CrecardVisiDaoDelete;
+import br.com.mind5.payment.creditCard.model.action.CrecardVisiMergeCrecarchCusparId;
+import br.com.mind5.payment.creditCard.model.checker.CrecardCheckCrecarchCusparId;
 
-public final class CrecardNodeInsertL2 extends DeciTreeTemplateWrite<CrecardInfo> {
+public final class CrecardNodeReplace extends DeciTreeTemplateWrite<CrecardInfo> {
 	
-	public CrecardNodeInsertL2(DeciTreeOption<CrecardInfo> option) {
+	public CrecardNodeReplace(DeciTreeOption<CrecardInfo> option) {
 		super(option);
 	}
 	
@@ -33,8 +34,8 @@ public final class CrecardNodeInsertL2 extends DeciTreeTemplateWrite<CrecardInfo
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CrecardCheckIsPagarme(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CrecardCheckCrecarchCusparId(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerHelperQueue<>(queue);
@@ -45,12 +46,23 @@ public final class CrecardNodeInsertL2 extends DeciTreeTemplateWrite<CrecardInfo
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CrecardInfo>  createCrecapa    = new ActionStdCommom<CrecardInfo>(option, CrecardVisiCrecapaCreate.class);
-		ActionLazy<CrecardInfo> enforceUpperCase = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiEnforceUpperCase.class);
+		ActionStd<CrecardInfo>  mergeCrecarch = new ActionStdCommom <CrecardInfo>(option, CrecardVisiMergeCrecarchCusparId.class);
+		ActionLazy<CrecardInfo> delete        = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiDaoDelete.class);
+
+		mergeCrecarch.addPostAction(delete);
 		
-		createCrecapa.addPostAction(enforceUpperCase);
+		actions.add(mergeCrecarch);
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnFailedHook(DeciTreeOption<CrecardInfo> option) {
+		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
+
+		ActionStd<CrecardInfo> success = new ActionStdSuccessCommom<CrecardInfo>(option);
 		
-		actions.add(createCrecapa);		
+		actions.add(success);		
 		return actions;
 	}
 }

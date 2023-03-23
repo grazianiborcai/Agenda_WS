@@ -1,11 +1,14 @@
 package br.com.mind5.payment.creditCard.model.checker;
 
+import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.phoneSearch.info.PhonarchCopier;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.business.phoneSearch.model.decisionTree.PhonarchRootSelectUserPhone;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.common.SystemMessageBuilder;
+import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
@@ -33,7 +36,11 @@ public final class CrecardCheckPhonarch extends ModelCheckerTemplateAction<Creca
 	
 	
 	
-	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.CREDIT_CARD_INVALID_PHONE;
+	@Override protected SymsgInfo getSymsgOnResultFalseHook(Connection dbConn, String dbSchema, String codLangu) {
+		SystemMessageBuilder builder = new SystemMessageBuilder(dbConn, dbSchema, codLangu, SystemCode.GEN_P1_P2_NOT_FOUND_M);
+		builder.addParam01(SystemCode.CREDIT_CARD);
+		builder.addParam02(SystemCode.PHONE);
+
+		return builder.build();
 	}
 }

@@ -20,6 +20,7 @@ import br.com.mind5.payment.creditCard.model.action.CrecardVisiNodeCuspar;
 import br.com.mind5.payment.creditCard.model.action.CrecardVisiNodeInsertL1;
 import br.com.mind5.payment.creditCard.model.action.CrecardVisiNodePayPartnerL1;
 import br.com.mind5.payment.creditCard.model.action.CrecardVisiNodePhoneL1;
+import br.com.mind5.payment.creditCard.model.action.CrecardVisiNodeReplace;
 import br.com.mind5.payment.creditCard.model.action.CrecardVisiRootSelect;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckExpiration;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckLangu;
@@ -87,11 +88,12 @@ public final class CrecardRootInsert extends DeciTreeTemplateWrite<CrecardInfo> 
 		ActionStd<CrecardInfo>  nodeUser         = new CrecardNodeUser(option).toAction();
 		ActionLazy<CrecardInfo> nodePayPartner   = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodePayPartnerL1.class);
 		ActionLazy<CrecardInfo> nodeAddress      = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeAddressL1.class);
-		ActionLazy<CrecardInfo> nodePhone        = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodePhoneL1.class);		
+		ActionLazy<CrecardInfo> nodePhone        = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodePhoneL1.class);
 		ActionLazy<CrecardInfo> nodeCuspar       = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeCuspar.class);
 		ActionLazy<CrecardInfo> enforceUpperCase = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiEnforceUpperCase.class);
 		ActionLazy<CrecardInfo> insertCrecard    = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiDaoInsert.class);
 		ActionLazy<CrecardInfo> nodeL1           = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeInsertL1.class);
+		ActionLazy<CrecardInfo> nodeReplace      = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeReplace.class);
 		ActionLazy<CrecardInfo> updateCrecard    = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiDaoUpdate.class);
 		ActionLazy<CrecardInfo> select           = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiRootSelect.class);
 		
@@ -102,6 +104,7 @@ public final class CrecardRootInsert extends DeciTreeTemplateWrite<CrecardInfo> 
 		nodeCuspar.addPostAction(enforceUpperCase);
 		enforceUpperCase.addPostAction(insertCrecard);
 		insertCrecard.addPostAction(nodeL1);
+		nodeL1.addPostAction(nodeReplace);
 		nodeL1.addPostAction(updateCrecard);
 		updateCrecard.addPostAction(select);
 		

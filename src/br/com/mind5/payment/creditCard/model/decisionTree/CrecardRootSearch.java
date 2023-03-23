@@ -12,9 +12,8 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.action.CrecardVisiRootSelect;
-import br.com.mind5.payment.creditCard.model.action.CrecardVisiEnforceUserKey;
-import br.com.mind5.payment.creditCard.model.action.CrecardVisiMergeCrecarch;
+import br.com.mind5.payment.creditCard.model.action.CrecardVisiNodePayPartnerL1;
+import br.com.mind5.payment.creditCard.model.action.CrecardVisiNodeSearchL1;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckSearch;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckUsername;
 
@@ -53,14 +52,12 @@ public final class CrecardRootSearch extends DeciTreeTemplateRead<CrecardInfo> {
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CrecardInfo> nodeUser = new CrecardNodeUser(option).toAction();
-		ActionLazy<CrecardInfo> enforceUserKey = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiEnforceUserKey.class);
-		ActionLazy<CrecardInfo> mergeCrecarch = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiMergeCrecarch.class);
-		ActionLazy<CrecardInfo> user = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiRootSelect.class);
+		ActionStd<CrecardInfo>  nodeUser       = new CrecardNodeUser(option).toAction();
+		ActionLazy<CrecardInfo> nodePayPartner = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodePayPartnerL1.class);
+		ActionLazy<CrecardInfo> nodeL1         = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeSearchL1.class);		
 		
-		nodeUser.addPostAction(enforceUserKey);
-		enforceUserKey.addPostAction(mergeCrecarch);
-		mergeCrecarch.addPostAction(user);
+		nodeUser.addPostAction(nodePayPartner);
+		nodePayPartner.addPostAction(nodeL1);
 		
 		actions.add(nodeUser);
 		return actions;

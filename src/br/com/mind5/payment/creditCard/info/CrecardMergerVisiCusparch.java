@@ -9,8 +9,9 @@ import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 final class CrecardMergerVisiCusparch extends InfoMergerVisitorTemplate<CrecardInfo, CusparchInfo> {
 
 	@Override public boolean shouldMerge(CrecardInfo baseInfo, CusparchInfo selectedInfo) {
-		return (baseInfo.codOwner 	== selectedInfo.codOwner &&
-				baseInfo.codUser 	== selectedInfo.codUser	);
+		return (baseInfo.codOwner 	   == selectedInfo.codOwner &&
+				baseInfo.codUser 	   == selectedInfo.codUser	&&
+				baseInfo.codPayPartner == selectedInfo.codPayPartner);
 	}
 	
 	
