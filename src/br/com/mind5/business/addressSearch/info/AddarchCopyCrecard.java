@@ -14,11 +14,11 @@ final class AddarchCopyCrecard extends InfoCopierTemplate<AddarchInfo, CrecardIn
 	@Override protected AddarchInfo makeCopyHook(CrecardInfo source) {
 		AddarchInfo result = new AddarchInfo();
 		
-		result.codOwner = source.codOwner;
-		result.codAddress = source.codAddressHolder;
-		result.codUser = source.codUser;
-		result.codLanguage = source.codLanguage;
-		result.username = source.username;
+		result.codUser     = source.codUser;
+		result.codOwner    = source.codOwner;
+		result.username    = source.username;
+		result.codAddress  = source.codAddressHolder;		
+		result.codLanguage = source.codLanguage;		
 		
 		return result;
 	}
