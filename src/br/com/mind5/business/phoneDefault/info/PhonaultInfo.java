@@ -22,16 +22,16 @@ public final class PhonaultInfo extends InfoRecord implements Cloneable {
 	public PhonaultInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();
-		codPhone = DefaultValue.number();
+		codUser     = DefaultValue.number();
+		codOwner    = DefaultValue.number();
+		codPhone    = DefaultValue.number();
+		codStore    = DefaultValue.number();
+		isDefault   = DefaultValue.boole();
+		recordMode  = DefaultValue.recordMode();
 		codSnapshot = DefaultValue.number();
 		codCustomer = DefaultValue.number();
-		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
-		codUser = DefaultValue.number();
 		codOwnerRef = DefaultValue.number();
-		isDefault = DefaultValue.boole();
-		recordMode = DefaultValue.recordMode();
 	}
 	
 	
