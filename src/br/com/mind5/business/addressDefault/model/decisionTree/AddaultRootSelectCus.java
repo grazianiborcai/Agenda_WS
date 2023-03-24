@@ -45,8 +45,8 @@ public final class AddaultRootSelectCus extends DeciTreeTemplateWrite<AddaultInf
 	@Override protected List<ActionStd<AddaultInfo>> buildActionsOnPassedHook(DeciTreeOption<AddaultInfo> option) {
 		List<ActionStd<AddaultInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddaultInfo> enforceCustomerKey = new ActionStdCommom<AddaultInfo>(option, AddaultVisiEnforceCustomerKey.class);
-		ActionLazy<AddaultInfo> select = new ActionLazyCommom<AddaultInfo>(option, AddaultVisiRootSelect.class);
+		ActionStd <AddaultInfo> enforceCustomerKey = new ActionStdCommom <AddaultInfo>(option, AddaultVisiEnforceCustomerKey.class);
+		ActionLazy<AddaultInfo> select             = new ActionLazyCommom<AddaultInfo>(option, AddaultVisiRootSelect.class);
 		
 		enforceCustomerKey.addPostAction(select);
 		

@@ -7,9 +7,9 @@ public final class AddaultSetterCustomerKey extends InfoSetterTemplate<AddaultIn
 	@Override protected AddaultInfo setAttrHook(AddaultInfo recordInfo) {
 		AddaultInfo result = new AddaultInfo();
 		
-		result.codOwner = recordInfo.codOwner;
+		result.codOwner    = recordInfo.codOwner;		
+		result.username    = recordInfo.username;
 		result.codCustomer = recordInfo.codCustomer;
-		result.username = recordInfo.username;
 		result.codLanguage = recordInfo.codLanguage;
 		
 		return result;
