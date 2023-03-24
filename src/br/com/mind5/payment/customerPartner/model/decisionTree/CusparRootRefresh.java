@@ -13,19 +13,16 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.action.CusparVisiDaoUpdate;
-import br.com.mind5.payment.customerPartner.model.action.CusparVisiEnforceLChanged;
-import br.com.mind5.payment.customerPartner.model.action.CusparVisiMergeToUpdate;
-import br.com.mind5.payment.customerPartner.model.action.CusparVisiNodeAddressL1;
-import br.com.mind5.payment.customerPartner.model.action.CusparVisiNodePhoneL1;
-import br.com.mind5.payment.customerPartner.model.action.CusparVisiNodeUpdateL1;
+import br.com.mind5.payment.customerPartner.model.action.CusparVisiMergeToSelect;
+import br.com.mind5.payment.customerPartner.model.action.CusparVisiNodeRefreshPhone;
+import br.com.mind5.payment.customerPartner.model.action.CusparVisiRootUpdate;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckExist;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckLangu;
-import br.com.mind5.payment.customerPartner.model.checker.CusparCheckUpdate;
+import br.com.mind5.payment.customerPartner.model.checker.CusparCheckRead;
 
-public final class CusparRootUpdate extends DeciTreeTemplateRead<CusparInfo> {
+public final class CusparRootRefresh extends DeciTreeTemplateRead<CusparInfo> {
 	
-	public CusparRootUpdate(DeciTreeOption<CusparInfo> option) {
+	public CusparRootRefresh(DeciTreeOption<CusparInfo> option) {
 		super(option);
 	}
 	
@@ -40,7 +37,7 @@ public final class CusparRootUpdate extends DeciTreeTemplateRead<CusparInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CusparCheckUpdate(checkerOption);
+		checker = new CusparCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -65,21 +62,15 @@ public final class CusparRootUpdate extends DeciTreeTemplateRead<CusparInfo> {
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
 		
-		ActionStd <CusparInfo> mergeToUpdate   = new ActionStdCommom <CusparInfo>(option, CusparVisiMergeToUpdate.class);
-		ActionLazy<CusparInfo> nodePhone       = new ActionLazyCommom<CusparInfo>(option, CusparVisiNodePhoneL1.class);
-		ActionLazy<CusparInfo> nodeAddress     = new ActionLazyCommom<CusparInfo>(option, CusparVisiNodeAddressL1.class);
-		ActionLazy<CusparInfo> enforceLChanged = new ActionLazyCommom<CusparInfo>(option, CusparVisiEnforceLChanged.class);
-		ActionLazy<CusparInfo> update          = new ActionLazyCommom<CusparInfo>(option, CusparVisiDaoUpdate.class);
-		ActionLazy<CusparInfo> nodeL1          = new ActionLazyCommom<CusparInfo>(option, CusparVisiNodeUpdateL1.class);
+		ActionStd <CusparInfo> select   	= new ActionStdCommom <CusparInfo>(option, CusparVisiMergeToSelect.class);
+		ActionLazy<CusparInfo> refreshPhone = new ActionLazyCommom<CusparInfo>(option, CusparVisiNodeRefreshPhone.class);		
+		ActionLazy<CusparInfo> update       = new ActionLazyCommom<CusparInfo>(option, CusparVisiRootUpdate.class);
 		
 		
-		mergeToUpdate.addPostAction(nodePhone);
-		nodePhone.addPostAction(nodeAddress);
-		nodeAddress.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(update);
-		update.addPostAction(nodeL1);
+		select.addPostAction(refreshPhone);
+		refreshPhone.addPostAction(update);
 		
-		actions.add(mergeToUpdate);			
+		actions.add(select);			
 		return actions;
 	}
 }

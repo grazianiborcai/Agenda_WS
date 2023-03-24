@@ -14,9 +14,9 @@ import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.action.CusparVisiMergePhonault;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckPhonault;
 
-public final class CusparNodeUpdatePhoneL2 extends DeciTreeTemplateRead<CusparInfo> {
+public final class CusparNodeRefreshPhone extends DeciTreeTemplateRead<CusparInfo> {
 	
-	public CusparNodeUpdatePhoneL2(DeciTreeOption<CusparInfo> option) {
+	public CusparNodeRefreshPhone(DeciTreeOption<CusparInfo> option) {
 		super(option);
 	}
 	
