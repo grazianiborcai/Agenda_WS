@@ -13,7 +13,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiNodePayL3;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiNodePayL4;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiOrdapaPay;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckIsPagarme;
 
@@ -41,14 +41,14 @@ public final class PayordNodePayL2 extends DeciTreeTemplateWrite<PayordInfo> {
 	}
 	
 	
-	//TODO: Ciclo de pagamento dever ser: 1) pre-autorizacao; 2) pagamento
+
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 	
 		ActionStd <PayordInfo> ordapaPay = new ActionStdCommom <PayordInfo>(option, PayordVisiOrdapaPay.class);
-		ActionLazy<PayordInfo> nodeL3    = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodePayL3.class);
+		ActionLazy<PayordInfo> nodeL4    = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodePayL4.class);
 		
-		ordapaPay.addPostAction(nodeL3);
+		ordapaPay.addPostAction(nodeL4);
 		
 		actions.add(ordapaPay);		
 		return actions;

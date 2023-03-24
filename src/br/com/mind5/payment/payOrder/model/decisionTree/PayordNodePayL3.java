@@ -9,13 +9,14 @@ import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
-import br.com.mind5.model.checker.common.ModelCheckerDummy;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiDaoUpdate;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiOrderRefresh;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiPayordemUpdate;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiCusparRefresh;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiNodePayL4;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiOrdapaPay;
+import br.com.mind5.payment.payOrder.model.checker.PayordCheckHasPhone;
 
 public final class PayordNodePayL3 extends DeciTreeTemplateWrite<PayordInfo> {
 	
@@ -28,8 +29,13 @@ public final class PayordNodePayL3 extends DeciTreeTemplateWrite<PayordInfo> {
 	@Override protected ModelChecker<PayordInfo> buildCheckerHook(DeciTreeOption<PayordInfo> option) {
 		List<ModelChecker<PayordInfo>> queue = new ArrayList<>();		
 		ModelChecker<PayordInfo> checker;	
-
-		checker = new ModelCheckerDummy<>();
+		ModelCheckerOption checkerOption;
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PayordCheckHasPhone(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerHelperQueue<>(queue);
@@ -40,14 +46,28 @@ public final class PayordNodePayL3 extends DeciTreeTemplateWrite<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 	
-		ActionStd <PayordInfo> updatePayord   = new ActionStdCommom<PayordInfo> (option, PayordVisiDaoUpdate.class);
-		ActionLazy<PayordInfo> updatePayordem = new ActionLazyCommom<PayordInfo>(option, PayordVisiPayordemUpdate.class);
-		ActionLazy<PayordInfo> orderRefresh   = new ActionLazyCommom<PayordInfo>(option, PayordVisiOrderRefresh.class);
+		ActionStd <PayordInfo> ordapaPay = new ActionStdCommom <PayordInfo>(option, PayordVisiOrdapaPay.class);
+		ActionLazy<PayordInfo> nodeL4    = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodePayL4.class);
 		
-		updatePayord.addPostAction(updatePayordem);
-		updatePayordem.addPostAction(orderRefresh);
+		ordapaPay.addPostAction(nodeL4);
 		
-		actions.add(updatePayord);		
+		actions.add(ordapaPay);		
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<PayordInfo>> buildActionsOnFailedHook(DeciTreeOption<PayordInfo> option) {
+		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
+	
+		ActionStd <PayordInfo> cusparRefresh = new ActionStdCommom <PayordInfo>(option, PayordVisiCusparRefresh.class);
+		ActionLazy<PayordInfo> ordapaPay     = new ActionLazyCommom<PayordInfo>(option, PayordVisiOrdapaPay.class);
+		ActionLazy<PayordInfo> nodeL4        = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodePayL4.class);
+		
+		cusparRefresh.addPostAction(ordapaPay);
+		ordapaPay.addPostAction(nodeL4);
+		
+		actions.add(cusparRefresh);		
 		return actions;
 	}
 }

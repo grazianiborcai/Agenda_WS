@@ -14,7 +14,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiMultmoipPay;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiNodePayL3;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiNodePayL4;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckIsMoip;
 
 public final class PayordNodePayL1 extends DeciTreeTemplateWrite<PayordInfo> {
@@ -46,7 +46,7 @@ public final class PayordNodePayL1 extends DeciTreeTemplateWrite<PayordInfo> {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 	
 		ActionStd <PayordInfo> multmoipPay = new ActionStdCommom <PayordInfo>(option, PayordVisiMultmoipPay.class);
-		ActionLazy<PayordInfo> nodeL3      = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodePayL3.class);
+		ActionLazy<PayordInfo> nodeL3      = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodePayL4.class);
 		
 		multmoipPay.addPostAction(nodeL3);
 		

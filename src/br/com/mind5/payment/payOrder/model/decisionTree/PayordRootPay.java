@@ -12,7 +12,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiNodeInsertL1;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiNodeInsert;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiNodeOrder;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiNodePayL1;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiObfuscate;
@@ -89,7 +89,7 @@ public final class PayordRootPay extends DeciTreeTemplateWrite<PayordInfo> {
 		ActionStd <PayordInfo> nodeAuth  = new PayordNodeAuthL1(option).toAction();
 		ActionStd <PayordInfo> nodeUser  = new PayordNodeUser(option).toAction();
 		ActionLazy<PayordInfo> nodeOrder = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodeOrder.class);
-		ActionLazy<PayordInfo> nodeL1    = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodeInsertL1.class);
+		ActionLazy<PayordInfo> nodeL1    = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodeInsert.class);
 		ActionLazy<PayordInfo> nodePay   = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodePayL1.class);
 		ActionLazy<PayordInfo> obfuscate = new ActionLazyCommom<PayordInfo>(option, PayordVisiObfuscate.class);
 		
