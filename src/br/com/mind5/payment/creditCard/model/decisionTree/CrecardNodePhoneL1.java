@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -51,9 +52,9 @@ public final class CrecardNodePhoneL1 extends DeciTreeTemplateWrite<CrecardInfo>
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnFailedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CrecardInfo> nodeL3 = new CrecardNodePhoneL3(option).toAction();
+		ActionStd<CrecardInfo> success = new ActionStdSuccessCommom<CrecardInfo>(option);
 		
-		actions.add(nodeL3);		
+		actions.add(success);		
 		return actions;
 	}
 }
