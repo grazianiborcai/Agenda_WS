@@ -14,11 +14,11 @@ final class PhonarchCopyCrecard extends InfoCopierTemplate<PhonarchInfo, Crecard
 	@Override protected PhonarchInfo makeCopyHook(CrecardInfo source) {
 		PhonarchInfo result = new PhonarchInfo();
 		
-		result.codOwner = source.codOwner;
-		result.codPhone = source.codPhoneHolder;
-		result.codUser = source.codUser;
+		result.codUser     = source.codUser;
+		result.codOwner    = source.codOwner;
+		result.codPhone    = source.codPhoneHolder;		
+		result.username    = source.username;
 		result.codLanguage = source.codLanguage;
-		result.username = source.username;
 		
 		return result;
 	}

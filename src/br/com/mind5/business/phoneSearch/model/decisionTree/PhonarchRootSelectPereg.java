@@ -45,8 +45,8 @@ public final class PhonarchRootSelectPereg extends DeciTreeTemplateWrite<Phonarc
 	@Override protected List<ActionStd<PhonarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonarchInfo> option) {
 		List<ActionStd<PhonarchInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhonarchInfo> enforcePeregKey = new ActionStdCommom<PhonarchInfo>(option, PhonarchVisiEnforcePeregKey.class);
-		ActionLazy<PhonarchInfo> select = new ActionLazyCommom<PhonarchInfo>(option, PhonarchVisiRootSelect.class);
+		ActionStd <PhonarchInfo> enforcePeregKey = new ActionStdCommom <PhonarchInfo>(option, PhonarchVisiEnforcePeregKey.class);
+		ActionLazy<PhonarchInfo> select          = new ActionLazyCommom<PhonarchInfo>(option, PhonarchVisiRootSelect.class);
 		
 		enforcePeregKey.addPostAction(select);
 		

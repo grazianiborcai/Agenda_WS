@@ -45,8 +45,8 @@ public final class PhonarchRootSelectStore extends DeciTreeTemplateWrite<Phonarc
 	@Override protected List<ActionStd<PhonarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonarchInfo> option) {
 		List<ActionStd<PhonarchInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhonarchInfo> enforceStoreKey = new ActionStdCommom<PhonarchInfo>(option, PhonarchVisiEnforceStoreKey.class);
-		ActionLazy<PhonarchInfo> select = new ActionLazyCommom<PhonarchInfo>(option, PhonarchVisiRootSelect.class);
+		ActionStd <PhonarchInfo> enforceStoreKey = new ActionStdCommom <PhonarchInfo>(option, PhonarchVisiEnforceStoreKey.class);
+		ActionLazy<PhonarchInfo> select          = new ActionLazyCommom<PhonarchInfo>(option, PhonarchVisiRootSelect.class);
 		
 		enforceStoreKey.addPostAction(select);
 		

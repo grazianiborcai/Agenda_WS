@@ -26,17 +26,17 @@ public final class PhonarchInfo extends InfoRecord implements Cloneable {
 	public PhonarchInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();
-		codPhone = DefaultValue.number();
-		codSnapshot = DefaultValue.number();
-		codStore = DefaultValue.number();
-		codCustomer = DefaultValue.number();
-		codEmployee = DefaultValue.number();
-		codUser = DefaultValue.number();
-		codLegalPerson = DefaultValue.number();
+		codUser         = DefaultValue.number();
+		codOwner        = DefaultValue.number();
+		codPhone        = DefaultValue.number();		
+		codStore        = DefaultValue.number();		
+		codSnapshot     = DefaultValue.number();
+		codOwnerRef     = DefaultValue.number();
+		recordMode      = DefaultValue.recordMode();
+		codCustomer     = DefaultValue.number();
+		codEmployee     = DefaultValue.number();
+		codLegalPerson  = DefaultValue.number();
 		codCountryPhone = DefaultValue.number();
-		codOwnerRef = DefaultValue.number();
-		recordMode = DefaultValue.recordMode();
 	}
 	
 	
