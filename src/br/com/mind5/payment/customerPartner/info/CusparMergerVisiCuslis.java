@@ -9,7 +9,7 @@ import br.com.mind5.info.InfoMergerVisitorTemplate;
 final class CusparMergerVisiCuslis extends InfoMergerVisitorTemplate<CusparInfo, CuslisInfo> {
 
 	@Override public boolean shouldMerge(CusparInfo baseInfo, CuslisInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner &&
+		return (baseInfo.codOwner    == selectedInfo.codOwner &&
 				baseInfo.codCustomer == selectedInfo.codCustomer);
 	}
 	
@@ -18,7 +18,8 @@ final class CusparMergerVisiCuslis extends InfoMergerVisitorTemplate<CusparInfo,
 	@Override public List<CusparInfo> merge(CusparInfo baseInfo, CuslisInfo selectedInfo) {
 		List<CusparInfo> results = new ArrayList<>();
 		
-		baseInfo.codUser = selectedInfo.codUser;
+		baseInfo.codUser             = selectedInfo.codUser;
+		baseInfo.codCustomerSnapshot = selectedInfo.codSnapshot;
 		
 		results.add(baseInfo);
 		return results;

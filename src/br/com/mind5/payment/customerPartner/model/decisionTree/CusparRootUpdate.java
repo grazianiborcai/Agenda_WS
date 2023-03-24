@@ -11,18 +11,20 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.action.CusparVisiMergeUsername;
-import br.com.mind5.payment.customerPartner.model.action.CusparVisiRootCreate;
+import br.com.mind5.payment.customerPartner.model.action.CusparVisiDaoUpdate;
+import br.com.mind5.payment.customerPartner.model.action.CusparVisiEnforceLChanged;
+import br.com.mind5.payment.customerPartner.model.action.CusparVisiMergeToUpdate;
+import br.com.mind5.payment.customerPartner.model.action.CusparVisiNodeUpdateL1;
+import br.com.mind5.payment.customerPartner.model.action.CusparVisiNodeUpdatePhoneL1;
+import br.com.mind5.payment.customerPartner.model.checker.CusparCheckExist;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckLangu;
-import br.com.mind5.payment.customerPartner.model.checker.CusparCheckOwner;
-import br.com.mind5.payment.customerPartner.model.checker.CusparCheckUsername;
-import br.com.mind5.payment.customerPartner.model.checker.CusparCheckWriteAuth;
+import br.com.mind5.payment.customerPartner.model.checker.CusparCheckRead;
 
-public final class CusparRootCreateAuth extends DeciTreeTemplateWrite<CusparInfo> {
+public final class CusparRootUpdate extends DeciTreeTemplateRead<CusparInfo> {
 	
-	public CusparRootCreateAuth(DeciTreeOption<CusparInfo> option) {
+	public CusparRootUpdate(DeciTreeOption<CusparInfo> option) {
 		super(option);
 	}
 	
@@ -37,14 +39,7 @@ public final class CusparRootCreateAuth extends DeciTreeTemplateWrite<CusparInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CusparCheckWriteAuth(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CusparCheckOwner(checkerOption);
+		checker = new CusparCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -58,7 +53,7 @@ public final class CusparRootCreateAuth extends DeciTreeTemplateWrite<CusparInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CusparCheckUsername(checkerOption);
+		checker = new CusparCheckExist(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -67,14 +62,21 @@ public final class CusparRootCreateAuth extends DeciTreeTemplateWrite<CusparInfo
 	
 	
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
-		List<ActionStd<CusparInfo>> actions = new ArrayList<>();
+		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
 		
-		ActionStd <CusparInfo> mergeUsername = new ActionStdCommom <CusparInfo>(option, CusparVisiMergeUsername.class);
-		ActionLazy<CusparInfo> create        = new ActionLazyCommom<CusparInfo>(option, CusparVisiRootCreate.class);
+		ActionStd <CusparInfo> mergeToUpdate   = new ActionStdCommom <CusparInfo>(option, CusparVisiMergeToUpdate.class);
+		ActionLazy<CusparInfo> nodeUpdatePhone = new ActionLazyCommom<CusparInfo>(option, CusparVisiNodeUpdatePhoneL1.class);		
+		ActionLazy<CusparInfo> enforceLChanged = new ActionLazyCommom<CusparInfo>(option, CusparVisiEnforceLChanged.class);
+		ActionLazy<CusparInfo> update          = new ActionLazyCommom<CusparInfo>(option, CusparVisiDaoUpdate.class);
+		ActionLazy<CusparInfo> nodeL1          = new ActionLazyCommom<CusparInfo>(option, CusparVisiNodeUpdateL1.class);
 		
-		mergeUsername.addPostAction(create);
 		
-		actions.add(mergeUsername);
+		mergeToUpdate.addPostAction(nodeUpdatePhone);
+		nodeUpdatePhone.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(update);
+		update.addPostAction(nodeL1);
+		
+		actions.add(mergeToUpdate);			
 		return actions;
 	}
 }

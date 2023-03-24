@@ -40,7 +40,7 @@ public final class CusparNodeCus extends DeciTreeTemplateWrite<CusparInfo> {
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CusparInfo> mergeCuslis = new ActionStdCommom<CusparInfo>(option, CusparVisiMergeCuslis.class);
+		ActionStd <CusparInfo> mergeCuslis = new ActionStdCommom <CusparInfo>(option, CusparVisiMergeCuslis.class);
 		ActionLazy<CusparInfo> mergeUselis = new ActionLazyCommom<CusparInfo>(option, CusparVisiMergeUselis.class);
 		
 		mergeCuslis.addPostAction(mergeUselis);

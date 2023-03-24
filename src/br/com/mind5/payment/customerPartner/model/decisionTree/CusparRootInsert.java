@@ -87,12 +87,12 @@ public final class CusparRootInsert extends DeciTreeTemplateWrite<CusparInfo> {
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusparInfo> nodeCus = new CusparNodeCus(option).toAction();
-		ActionLazy<CusparInfo> nodeAddress = new ActionLazyCommom<CusparInfo>(option, CusparVisiNodeAddressL1.class);
-		ActionLazy<CusparInfo> nodePhone = new ActionLazyCommom<CusparInfo>(option, CusparVisiNodePhoneL1.class);
+		ActionStd <CusparInfo> nodeCus         = new CusparNodeCus(option).toAction();
+		ActionLazy<CusparInfo> nodeAddress     = new ActionLazyCommom<CusparInfo>(option, CusparVisiNodeAddressL1.class);
+		ActionLazy<CusparInfo> nodePhone       = new ActionLazyCommom<CusparInfo>(option, CusparVisiNodePhoneL1.class);
 		ActionLazy<CusparInfo> enforceLChanged = new ActionLazyCommom<CusparInfo>(option, CusparVisiEnforceLChanged.class);			
-		ActionLazy<CusparInfo> insert = new ActionLazyCommom<CusparInfo>(option, CusparVisiDaoInsert.class);
-		ActionLazy<CusparInfo> select = new ActionLazyCommom<CusparInfo>(option, CusparVisiRootSelect.class);
+		ActionLazy<CusparInfo> insert          = new ActionLazyCommom<CusparInfo>(option, CusparVisiDaoInsert.class);
+		ActionLazy<CusparInfo> select          = new ActionLazyCommom<CusparInfo>(option, CusparVisiRootSelect.class);
 		
 		nodeCus.addPostAction(nodeAddress);		
 		nodeAddress.addPostAction(nodePhone);	

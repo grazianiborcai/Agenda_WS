@@ -13,8 +13,8 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.action.CusparVisiRootSelect;
 import br.com.mind5.payment.customerPartner.model.action.CusparVisiMergeCusparch;
+import br.com.mind5.payment.customerPartner.model.action.CusparVisiRootSelect;
 
 public final class CusparRootSearch extends DeciTreeTemplateRead<CusparInfo> {
 	
@@ -39,8 +39,8 @@ public final class CusparRootSearch extends DeciTreeTemplateRead<CusparInfo> {
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CusparInfo> mergeCusparch = new ActionStdCommom<CusparInfo>(option, CusparVisiMergeCusparch.class);
-		ActionLazy<CusparInfo> select = new ActionLazyCommom<CusparInfo>(option, CusparVisiRootSelect.class);
+		ActionStd <CusparInfo> mergeCusparch = new ActionStdCommom <CusparInfo>(option, CusparVisiMergeCusparch.class);
+		ActionLazy<CusparInfo> select        = new ActionLazyCommom<CusparInfo>(option, CusparVisiRootSelect.class);
 		
 		mergeCusparch.addPostAction(select);
 		

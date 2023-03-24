@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.business.phoneDefault.info.PhonaultInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.paymentPartnerDefault.info.PayparultInfo;
@@ -22,6 +23,19 @@ public final class CusparMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CusparMergerVisiCuslis());
 		InfoMerger<CusparInfo, CuslisInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<CusparInfo> mergeWithPhonault(List<CusparInfo> baseInfos, List<PhonaultInfo> selectedInfos) {
+		InfoMergerBuilder<CusparInfo, PhonaultInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusparMergerVisiPhonault());
+		InfoMerger<CusparInfo, PhonaultInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -76,7 +90,7 @@ public final class CusparMerger {
 		InfoMerger<CusparInfo, CusparchInfo> merger = builder.build();		
 	
 		return merger.merge();
-	}	
+	}
 	
 	
 	
@@ -89,7 +103,7 @@ public final class CusparMerger {
 		InfoMerger<CusparInfo, AddressInfo> merger = builder.build();		
 	
 		return merger.merge();
-	}	
+	}
 	
 	
 	
@@ -102,7 +116,7 @@ public final class CusparMerger {
 		InfoMerger<CusparInfo, CusmoipInfo> merger = builder.build();		
 	
 		return merger.merge();
-	}	
+	}
 	
 	
 	
@@ -115,7 +129,7 @@ public final class CusparMerger {
 		InfoMerger<CusparInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
-	}	
+	}
 	
 	
 	
@@ -128,7 +142,7 @@ public final class CusparMerger {
 		InfoMerger<CusparInfo, UselisInfo> merger = builder.build();		
 	
 		return merger.merge();
-	}	
+	}
 	
 	
 	
@@ -141,5 +155,18 @@ public final class CusparMerger {
 		InfoMerger<CusparInfo, CusparInfo> merger = builder.build();		
 	
 		return merger.merge();
-	}		
+	}
+	
+	
+	
+	public static List<CusparInfo> mergeToUpdate(List<CusparInfo> baseInfos, List<CusparInfo> selectedInfos) {
+		InfoMergerBuilder<CusparInfo, CusparInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusparMergerVisiToUpdate());
+		InfoMerger<CusparInfo, CusparInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
 }

@@ -30,18 +30,18 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 	public CusparInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();	
-		codPayPartner = DefaultValue.number();
-		codPayCustomer = DefaultValue.number();	
-		codCustomer = DefaultValue.number();
+		codUser             = DefaultValue.number();
+		codOwner            = DefaultValue.number();
+		codPhone            = DefaultValue.number();
+		recordMode          = DefaultValue.recordMode();
+		codAddress          = DefaultValue.number();
+		codCustomer         = DefaultValue.number();
+		codPayPartner       = DefaultValue.number();
+		codPayCustomer      = DefaultValue.number();
+		codUserSnapshot     = DefaultValue.number();
+		codPhoneSnapshot    = DefaultValue.number();
+		codAddressSnapshot  = DefaultValue.number();
 		codCustomerSnapshot = DefaultValue.number();
-		codUser = DefaultValue.number();
-		codUserSnapshot = DefaultValue.number();
-		recordMode = DefaultValue.recordMode();
-		codAddress = DefaultValue.number();
-		codAddressSnapshot = DefaultValue.number();
-		codPhone = DefaultValue.number();
-		codPhoneSnapshot = DefaultValue.number();
 	}
 	
 	

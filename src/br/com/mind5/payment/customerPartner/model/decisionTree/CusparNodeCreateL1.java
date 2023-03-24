@@ -47,10 +47,10 @@ public final class CusparNodeCreateL1 extends DeciTreeTemplateWrite<CusparInfo> 
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusparInfo> insert = new ActionStdCommom<CusparInfo>(option, CusparVisiRootInsert.class);
+		ActionStd <CusparInfo> insert            = new ActionStdCommom <CusparInfo>(option, CusparVisiRootInsert.class);
 		ActionLazy<CusparInfo> enforceCompoundId = new ActionLazyCommom<CusparInfo>(option, CusparVisiEnforceCompoundId.class);
-		ActionLazy<CusparInfo> createCustopa = new ActionLazyCommom<CusparInfo>(option, CusparVisiCustopaCreate.class);
-		ActionLazy<CusparInfo> update = new ActionLazyCommom<CusparInfo>(option, CusparVisiDaoUpdate.class);
+		ActionLazy<CusparInfo> createCustopa     = new ActionLazyCommom<CusparInfo>(option, CusparVisiCustopaCreate.class);
+		ActionLazy<CusparInfo> update            = new ActionLazyCommom<CusparInfo>(option, CusparVisiDaoUpdate.class);
 		
 		insert.addPostAction(enforceCompoundId);
 		enforceCompoundId.addPostAction(createCustopa);

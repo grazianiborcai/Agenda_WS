@@ -2035,6 +2035,5 @@ public final class SystemCode {
 	public static final int GEN_P1_P2_NOT_FOUND_F 						= 19671;
 	public static final int GEN_P1_P2_NOT_FOUND_M 						= 19672;
 	public static final int GEN_P1_P2_P3								= 19673;
-	
-
+	public static final int GEN_P1_REQUIRED_COMPLETE_USER_ACCOUNT		= 19676;	
 }
