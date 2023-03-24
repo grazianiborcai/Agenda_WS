@@ -13,13 +13,14 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiDaoUpdate;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiOrderRefresh;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiPayordemUpdate;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiDaoInsert;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiEnforceFee;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiEnforceItem;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiPayordemInsert;
 
-public final class PayordNodePayL3 extends DeciTreeTemplateWrite<PayordInfo> {
+public final class PayordNodeInsertL4 extends DeciTreeTemplateWrite<PayordInfo> {
 	
-	public PayordNodePayL3(DeciTreeOption<PayordInfo> option) {
+	public PayordNodeInsertL4(DeciTreeOption<PayordInfo> option) {
 		super(option);
 	}
 	
@@ -27,8 +28,8 @@ public final class PayordNodePayL3 extends DeciTreeTemplateWrite<PayordInfo> {
 	
 	@Override protected ModelChecker<PayordInfo> buildCheckerHook(DeciTreeOption<PayordInfo> option) {
 		List<ModelChecker<PayordInfo>> queue = new ArrayList<>();		
-		ModelChecker<PayordInfo> checker;	
-
+		ModelChecker<PayordInfo> checker;
+		
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 
@@ -39,15 +40,17 @@ public final class PayordNodePayL3 extends DeciTreeTemplateWrite<PayordInfo> {
 
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
-	
-		ActionStd <PayordInfo> updatePayord   = new ActionStdCommom<PayordInfo> (option, PayordVisiDaoUpdate.class);
-		ActionLazy<PayordInfo> updatePayordem = new ActionLazyCommom<PayordInfo>(option, PayordVisiPayordemUpdate.class);
-		ActionLazy<PayordInfo> orderRefresh   = new ActionLazyCommom<PayordInfo>(option, PayordVisiOrderRefresh.class);
 		
-		updatePayord.addPostAction(updatePayordem);
-		updatePayordem.addPostAction(orderRefresh);
+		ActionStd <PayordInfo> insertPayord   = new ActionStdCommom <PayordInfo>(option, PayordVisiDaoInsert.class);
+		ActionLazy<PayordInfo> enforceFee     = new ActionLazyCommom<PayordInfo>(option, PayordVisiEnforceFee.class);
+		ActionLazy<PayordInfo> enforceItem    = new ActionLazyCommom<PayordInfo>(option, PayordVisiEnforceItem.class);
+		ActionLazy<PayordInfo> insertPayordem = new ActionLazyCommom<PayordInfo>(option, PayordVisiPayordemInsert.class);
 		
-		actions.add(updatePayord);		
+		insertPayord.addPostAction(enforceFee);
+		enforceFee.addPostAction(enforceItem);
+		enforceItem.addPostAction(insertPayordem);
+		
+		actions.add(insertPayord);		
 		return actions;
 	}
 }

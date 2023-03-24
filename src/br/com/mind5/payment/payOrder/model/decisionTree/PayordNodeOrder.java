@@ -39,7 +39,7 @@ public final class PayordNodeOrder extends DeciTreeTemplateWrite<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PayordInfo> orderPay = new ActionStdCommom<PayordInfo>(option, PayordVisiOrderPay.class);
+		ActionStd <PayordInfo> orderPay   = new ActionStdCommom <PayordInfo>(option, PayordVisiOrderPay.class);
 		ActionLazy<PayordInfo> mergeOrder = new ActionLazyCommom<PayordInfo>(option, PayordVisiMergeOrder.class);
 			
 		orderPay.addPostAction(mergeOrder);

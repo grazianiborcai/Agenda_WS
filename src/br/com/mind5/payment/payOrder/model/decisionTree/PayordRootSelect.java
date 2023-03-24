@@ -64,7 +64,7 @@ public final class PayordRootSelect extends DeciTreeTemplateRead<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PayordInfo>  mergeToSelect = new ActionStdCommom <PayordInfo>(option, PayordVisiMergeToSelect.class);
+		ActionStd <PayordInfo> mergeToSelect = new ActionStdCommom <PayordInfo>(option, PayordVisiMergeToSelect.class);
 		ActionLazy<PayordInfo> mergeCrecard  = new ActionLazyCommom<PayordInfo>(option, PayordVisiMergeCrecard.class);
 		ActionLazy<PayordInfo> mergePaypar   = new ActionLazyCommom<PayordInfo>(option, PayordVisiMergePaypar.class);
 		ActionLazy<PayordInfo> mergeCuspar   = new ActionLazyCommom<PayordInfo>(option, PayordVisiMergeCuspar.class);

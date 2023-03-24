@@ -42,17 +42,17 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public PayordInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();
-		codCreditCard = DefaultValue.number();
-		codPayOrder = DefaultValue.number();
+		codUser        = DefaultValue.number();
+		codOwner       = DefaultValue.number();
+		codOrder       = DefaultValue.number();
+		orderData      = DefaultValue.object();
+		payordems      = DefaultValue.list();
+		cusparData     = DefaultValue.object();
+		crecardData    = DefaultValue.object();
+		codPayOrder    = DefaultValue.number();
+		codPayPartner  = DefaultValue.number();
+		codCreditCard  = DefaultValue.number();
 		codPayCustomer = DefaultValue.number();
-		codPayPartner = DefaultValue.number();
-		codUser = DefaultValue.number();
-		codOrder = DefaultValue.number();
-		cusparData = DefaultValue.object();
-		orderData = DefaultValue.object();
-		crecardData = DefaultValue.object();
-		payordems = DefaultValue.list();
 	}
 	
 	

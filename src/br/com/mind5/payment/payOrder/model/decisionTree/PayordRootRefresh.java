@@ -55,10 +55,10 @@ public final class PayordRootRefresh extends DeciTreeTemplateWrite<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayordInfo> select = new ActionStdCommom<PayordInfo>(option, PayordVisiMergeToUpdate.class);
+		ActionStd <PayordInfo> select          = new ActionStdCommom <PayordInfo>(option, PayordVisiMergeToUpdate.class);
 		ActionLazy<PayordInfo> enforceLChanged = new ActionLazyCommom<PayordInfo>(option, PayordVisiEnforceLChanged.class);
-		ActionLazy<PayordInfo> updatePayord = new ActionLazyCommom<PayordInfo>(option, PayordVisiDaoUpdate.class);
-		ActionLazy<PayordInfo> refreshOrder = new ActionLazyCommom<PayordInfo>(option, PayordVisiOrderRefresh.class);
+		ActionLazy<PayordInfo> updatePayord    = new ActionLazyCommom<PayordInfo>(option, PayordVisiDaoUpdate.class);
+		ActionLazy<PayordInfo> refreshOrder    = new ActionLazyCommom<PayordInfo>(option, PayordVisiOrderRefresh.class);
 		
 		select.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(updatePayord);

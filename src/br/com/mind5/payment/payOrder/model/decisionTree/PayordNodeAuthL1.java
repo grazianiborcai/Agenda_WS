@@ -13,8 +13,8 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiNodeAuthL2;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiMergeUsername;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiNodeAuthL2;
 
 public final class PayordNodeAuthL1 extends DeciTreeTemplateWrite<PayordInfo> {
 	
@@ -39,8 +39,8 @@ public final class PayordNodeAuthL1 extends DeciTreeTemplateWrite<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PayordInfo> mergeUsername = new ActionStdCommom<PayordInfo>(option, PayordVisiMergeUsername.class);
-		ActionLazy<PayordInfo> nodeL2 = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodeAuthL2.class);
+		ActionStd <PayordInfo> mergeUsername = new ActionStdCommom <PayordInfo>(option, PayordVisiMergeUsername.class);
+		ActionLazy<PayordInfo> nodeL2        = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodeAuthL2.class);
 		
 		mergeUsername.addPostAction(nodeL2);
 		

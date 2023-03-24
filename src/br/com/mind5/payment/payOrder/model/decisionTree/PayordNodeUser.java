@@ -40,9 +40,9 @@ public final class PayordNodeUser extends DeciTreeTemplateWrite<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PayordInfo> enforceCreatedOn = new ActionStdCommom<PayordInfo>(option, PayordVisiEnforceCreatedOn.class);	
-		ActionLazy<PayordInfo> enforceLChanged = new ActionLazyCommom<PayordInfo>(option, PayordVisiEnforceLChanged.class);
-		ActionLazy<PayordInfo> mergeUsername = new ActionLazyCommom<PayordInfo>(option, PayordVisiMergeUsername.class);
+		ActionStd <PayordInfo> enforceCreatedOn = new ActionStdCommom <PayordInfo>(option, PayordVisiEnforceCreatedOn.class);	
+		ActionLazy<PayordInfo> enforceLChanged  = new ActionLazyCommom<PayordInfo>(option, PayordVisiEnforceLChanged.class);
+		ActionLazy<PayordInfo> mergeUsername    = new ActionLazyCommom<PayordInfo>(option, PayordVisiMergeUsername.class);
 		
 		enforceCreatedOn.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeUsername);

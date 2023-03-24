@@ -45,8 +45,8 @@ public final class PayordNodePayL2 extends DeciTreeTemplateWrite<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 	
-		ActionStd<PayordInfo> ordapaPay = new ActionStdCommom<PayordInfo>(option, PayordVisiOrdapaPay.class);
-		ActionLazy<PayordInfo> nodeL3 = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodePayL3.class);
+		ActionStd <PayordInfo> ordapaPay = new ActionStdCommom <PayordInfo>(option, PayordVisiOrdapaPay.class);
+		ActionLazy<PayordInfo> nodeL3    = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodePayL3.class);
 		
 		ordapaPay.addPostAction(nodeL3);
 		

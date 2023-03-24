@@ -14,6 +14,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiMergeCrecardAuth;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiMergeCuspar;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiNodeInsertL2;
 
 public final class PayordNodeInsertL1 extends DeciTreeTemplateWrite<PayordInfo> {
@@ -39,10 +40,13 @@ public final class PayordNodeInsertL1 extends DeciTreeTemplateWrite<PayordInfo> 
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PayordInfo> mergeCrecard = new ActionStdCommom<PayordInfo> (option, PayordVisiMergeCrecardAuth.class);
-		ActionLazy<PayordInfo> nodeL2 	   = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodeInsertL2.class);
+		ActionStd <PayordInfo> mergeCrecard = new ActionStdCommom <PayordInfo>(option, PayordVisiMergeCrecardAuth.class);
+		ActionLazy<PayordInfo> mergeCuspar  = new ActionLazyCommom<PayordInfo>(option, PayordVisiMergeCuspar.class);
+		ActionLazy<PayordInfo> nodeL2 	    = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodeInsertL2.class);
 		
-		mergeCrecard.addPostAction(nodeL2);
+		mergeCrecard.addPostAction(mergeCuspar);
+		mergeCuspar.addPostAction(nodeL2);
+	
 		
 		actions.add(mergeCrecard);		
 		return actions;

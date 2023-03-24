@@ -53,7 +53,7 @@ public final class PayordRootUpdate extends DeciTreeTemplateWrite<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayordInfo> select = new ActionStdCommom<PayordInfo>(option, PayordVisiMergeToUpdate.class);
+		ActionStd <PayordInfo> select       = new ActionStdCommom <PayordInfo>(option, PayordVisiMergeToUpdate.class);
 		ActionLazy<PayordInfo> updatePayord = new ActionLazyCommom<PayordInfo>(option, PayordVisiDaoUpdate.class);
 		
 		select.addPostAction(updatePayord);
