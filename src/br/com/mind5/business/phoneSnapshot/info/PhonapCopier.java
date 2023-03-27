@@ -7,12 +7,27 @@ import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.info.InfoCopierOneToMany;
+import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
 public final class PhonapCopier {	
+	public static PhonapInfo copyFromCrecard(CrecardInfo source) {
+		InfoCopier<PhonapInfo, CrecardInfo> copier = new PhonapCopyCrecard();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<PhonapInfo> copyFromCrecard(List<CrecardInfo> sources) {
+		InfoCopier<PhonapInfo, CrecardInfo> copier = new PhonapCopyCrecard();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static PhonapInfo copyFromCremoip(CremoipInfo source) {
 		InfoCopier<PhonapInfo, CremoipInfo> copier = new PhonapCopyCremoip();
 		return copier.makeCopy(source);
@@ -23,7 +38,7 @@ public final class PhonapCopier {
 	public static List<PhonapInfo> copyFromCremoip(List<CremoipInfo> sources) {
 		InfoCopier<PhonapInfo, CremoipInfo> copier = new PhonapCopyCremoip();
 		return copier.makeCopy(sources);
-	}	
+	}
 	
 	
 	
