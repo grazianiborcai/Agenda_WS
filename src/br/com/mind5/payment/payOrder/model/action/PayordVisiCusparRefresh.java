@@ -6,7 +6,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.decisionTree.CusparRootRefresh;
+import br.com.mind5.payment.customerPartner.model.decisionTree.CusparRootRefreshOnEmptyPhone;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
 public final class PayordVisiCusparRefresh extends ActionVisitorTemplateAction<PayordInfo, CusparInfo> {
@@ -18,7 +18,7 @@ public final class PayordVisiCusparRefresh extends ActionVisitorTemplateAction<P
 	
 	
 	@Override protected Class<? extends DeciTree<CusparInfo>> getTreeClassHook() {
-		return CusparRootRefresh.class;
+		return CusparRootRefreshOnEmptyPhone.class;
 	}
 	
 	

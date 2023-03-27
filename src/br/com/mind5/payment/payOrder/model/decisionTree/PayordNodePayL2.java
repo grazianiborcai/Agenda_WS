@@ -13,7 +13,8 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiNodePayL4;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiCusparRefresh;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiNodePayL3;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiOrdapaPay;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckIsPagarme;
 
@@ -45,12 +46,14 @@ public final class PayordNodePayL2 extends DeciTreeTemplateWrite<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 	
-		ActionStd <PayordInfo> ordapaPay = new ActionStdCommom <PayordInfo>(option, PayordVisiOrdapaPay.class);
-		ActionLazy<PayordInfo> nodeL4    = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodePayL4.class);
+		ActionStd <PayordInfo> cusparRefresh = new ActionStdCommom <PayordInfo>(option, PayordVisiCusparRefresh.class);
+		ActionLazy<PayordInfo> ordapaPay     = new ActionLazyCommom<PayordInfo>(option, PayordVisiOrdapaPay.class);
+		ActionLazy<PayordInfo> nodeL3        = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodePayL3.class);
 		
-		ordapaPay.addPostAction(nodeL4);
+		cusparRefresh.addPostAction(ordapaPay);
+		ordapaPay.addPostAction(nodeL3);
 		
-		actions.add(ordapaPay);		
+		actions.add(cusparRefresh);		
 		return actions;
 	}
 }
