@@ -21,17 +21,17 @@ public final class AddaultInfo extends InfoRecord implements Cloneable {
 	
 	public AddaultInfo() {
 		super();
-		
-		codOwner = DefaultValue.number();
-		codAddress = DefaultValue.number();
-		codSnapshot = DefaultValue.number();
-		codCustomer = DefaultValue.number();
-		codStore = DefaultValue.number();
-		codEmployee = DefaultValue.number();
-		codUser = DefaultValue.number();
+
+		codUser     = DefaultValue.number();
+		codOwner    = DefaultValue.number();
+		codStore    = DefaultValue.number();
+		isDefault   = DefaultValue.boole();
+		recordMode  = DefaultValue.recordMode();
+		codAddress  = DefaultValue.number();
 		codOwnerRef = DefaultValue.number();
-		isDefault = DefaultValue.boole();
-		recordMode = DefaultValue.recordMode();
+		codEmployee = DefaultValue.number();
+		codCustomer = DefaultValue.number();
+		codSnapshot = DefaultValue.number();
 	}
 	
 	
