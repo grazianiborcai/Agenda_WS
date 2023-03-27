@@ -28,16 +28,16 @@ public final class AddarchInfo extends InfoRecord implements Cloneable {
 	public AddarchInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();
-		codAddress = DefaultValue.number();
-		codSnapshot = DefaultValue.number();
-		codCustomer = DefaultValue.number();
-		codStore = DefaultValue.number();
-		codEmployee = DefaultValue.number();
-		codUser = DefaultValue.number();
+		codUser        = DefaultValue.number();
+		codOwner 	   = DefaultValue.number();
+		codStore       = DefaultValue.number();
+		recordMode     = DefaultValue.recordMode();
+		codAddress     = DefaultValue.number();
+		codSnapshot    = DefaultValue.number();
+		codCustomer    = DefaultValue.number();
+		codOwnerRef    = DefaultValue.number();
+		codEmployee    = DefaultValue.number();
 		codLegalPerson = DefaultValue.number();
-		codOwnerRef = DefaultValue.number();
-		recordMode = DefaultValue.recordMode();
 	}
 	
 	

@@ -65,21 +65,22 @@ public final class AddarchDaoSelectSingle extends DaoStmtTemplate<AddarchInfo> {
 					return finalResult;
 				
 				do {
-					AddarchInfo dataInfo = new AddarchInfo();
+					AddarchInfo dataInfo = new AddarchInfo();					
 					
-					dataInfo.codAddress = stmtResult.getLong(AddarchDaoDbTableColumn.COL_COD_ADDRESS);
-					dataInfo.codOwner = stmtResult.getLong(AddarchDaoDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCountry = stmtResult.getString(AddarchDaoDbTableColumn.COL_COUNTRY);
-					dataInfo.codState = stmtResult.getString(AddarchDaoDbTableColumn.COL_STATE_PROVINCE);
-					dataInfo.city = stmtResult.getString(AddarchDaoDbTableColumn.COL_CITY);
-					dataInfo.recordMode = stmtResult.getString(AddarchDaoDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_STORE);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_USER);
-					dataInfo.codLegalPerson = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_LEGAL_PERSON);					
-					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_OWNER_REF);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_SNAPSHOT);				
+					dataInfo.city           = stmtResult.getString(AddarchDaoDbTableColumn.COL_CITY);
+					dataInfo.codUser        = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codOwner       = stmtResult.getLong(AddarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codState       = stmtResult.getString(AddarchDaoDbTableColumn.COL_STATE_PROVINCE);
+					dataInfo.codStore       = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codAddress     = stmtResult.getLong(AddarchDaoDbTableColumn.COL_COD_ADDRESS);
+					dataInfo.codCountry     = stmtResult.getString(AddarchDaoDbTableColumn.COL_COUNTRY);
+					dataInfo.recordMode     = stmtResult.getString(AddarchDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codCustomer    = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codEmployee    = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codOwnerRef    = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_OWNER_REF);
+					dataInfo.codSnapshot    = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codAddress     = stmtResult.getLong(AddarchDaoDbTableColumn.COL_COD_ADDRESS);
+					dataInfo.codLegalPerson = DaoFormatter.sqlToLong(stmtResult, AddarchDaoDbTableColumn.COL_COD_LEGAL_PERSON);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
