@@ -62,21 +62,21 @@ public final class CusparDaoSelectSingle extends DaoStmtTemplate<CusparInfo> {
 				do {
 					CusparInfo dataInfo = new CusparInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_OWNER);	
-					dataInfo.codPayCustomer = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_PAYCUS);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_USER);
-					dataInfo.recordMode = stmtResult.getString(CusparDaoDbTableColumn.COL_RECORD_MODE);				
-					dataInfo.compoundId = stmtResult.getString(CusparDaoDbTableColumn.COL_COMPOUND_ID);
-					dataInfo.customerId = stmtResult.getString(CusparDaoDbTableColumn.COL_CUSTOMER_ID);
-					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_USER_SNAPSHOT);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codUser             = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codOwner            = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codPhone            = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_PHONE);
+					dataInfo.codAddress          = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_ADDRESS);
+					dataInfo.recordMode          = stmtResult.getString(CusparDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.compoundId          = stmtResult.getString(CusparDaoDbTableColumn.COL_COMPOUND_ID);
+					dataInfo.customerId          = stmtResult.getString(CusparDaoDbTableColumn.COL_CUSTOMER_ID);
+					dataInfo.codCustomer         = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.lastChanged         = DaoFormatter.sqlToLocalDateTime(stmtResult, CusparDaoDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.codPayPartner       = DaoFormatter.sqlToInt(stmtResult, CusparDaoDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.codPayCustomer      = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_PAYCUS);
+					dataInfo.codUserSnapshot     = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_USER_SNAPSHOT);
+					dataInfo.codPhoneSnapshot    = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_PHONE_SNAPSHOT);
+					dataInfo.codAddressSnapshot  = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_ADDRESS_SNAPSHOT);
 					dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
-					dataInfo.codPayPartner = DaoFormatter.sqlToInt(stmtResult, CusparDaoDbTableColumn.COL_COD_PAY_PARTNER);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CusparDaoDbTableColumn.COL_LAST_CHANGED);						
-					dataInfo.codAddress = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_ADDRESS);
-					dataInfo.codAddressSnapshot = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_ADDRESS_SNAPSHOT);
-					dataInfo.codPhone = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_PHONE);
-					dataInfo.codPhoneSnapshot = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_PHONE_SNAPSHOT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

@@ -56,8 +56,8 @@ public final class CusparRootCreateOnConfig extends DeciTreeTemplateWrite<Cuspar
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnFailedHook(DeciTreeOption<CusparInfo> option) {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CusparInfo> mergePayparult = new ActionStdCommom<CusparInfo>(option, CusparVisiMergePayparult.class);
-		ActionLazy<CusparInfo> nodeL1 = new ActionLazyCommom<CusparInfo>(option, CusparVisiNodeCreateOnConfigL1.class);
+		ActionStd <CusparInfo> mergePayparult = new ActionStdCommom <CusparInfo>(option, CusparVisiMergePayparult.class);
+		ActionLazy<CusparInfo> nodeL1         = new ActionLazyCommom<CusparInfo>(option, CusparVisiNodeCreateOnConfigL1.class);
 		
 		mergePayparult.addPostAction(nodeL1);
 		

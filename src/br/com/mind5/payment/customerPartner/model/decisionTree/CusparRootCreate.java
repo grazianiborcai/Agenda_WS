@@ -70,9 +70,9 @@ public final class CusparRootCreate extends DeciTreeTemplateWrite<CusparInfo> {
 	
 	
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
-		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
-
-		ActionStd<CusparInfo> nodeL1 = new CusparNodeCreateL1(option).toAction();	
+		List<ActionStd<CusparInfo>> actions = new ArrayList<>();
+		
+		ActionStd <CusparInfo> nodeL1 = new CusparNodeCreateL1(option).toAction();
 		
 		actions.add(nodeL1);		
 		return actions;

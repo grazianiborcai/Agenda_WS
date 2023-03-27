@@ -3,22 +3,24 @@ package br.com.mind5.payment.customerPartner.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
 public final class CusparInfo extends InfoRecord implements Cloneable {
-	public long codOwner;	
-	public long codPayCustomer;	
+	public long codOwner;
+	public long codPayCustomer;
 	public int codPayPartner;		
 	public long codCustomer;
-	public long codCustomerSnapshot;	
+	public long codCustomerSnapshot;
 	public String compoundId;
 	public long codUser;
-	public long codUserSnapshot;		
+	public long codUserSnapshot;
 	public long codAddress;
-	public long codAddressSnapshot;	
+	public long codAddressSnapshot;
 	public long codPhone;
-	public long codPhoneSnapshot;	
+	public long codPhoneSnapshot;
+	public PhonapInfo phonapData;
 	public String customerId;
 	public String customerLink;
 	public String accountLink;
@@ -34,6 +36,7 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 		codOwner            = DefaultValue.number();
 		codPhone            = DefaultValue.number();
 		recordMode          = DefaultValue.recordMode();
+		phonapData			= DefaultValue.object();
 		codAddress          = DefaultValue.number();
 		codCustomer         = DefaultValue.number();
 		codPayPartner       = DefaultValue.number();
