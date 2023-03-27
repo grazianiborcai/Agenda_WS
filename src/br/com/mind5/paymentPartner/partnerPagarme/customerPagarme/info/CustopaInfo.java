@@ -26,6 +26,7 @@ public final class CustopaInfo extends InfoRecord implements Cloneable {
 	public String compoundId;
 	public Map<String,String> homePhone;
 	public Map<String,String> mobilePhone;
+	public Map<String,String> address;
 	public String authorization;
 	public String responseBody;
 	public SetuparInfo setuparData;
@@ -36,6 +37,7 @@ public final class CustopaInfo extends InfoRecord implements Cloneable {
 		super();
 		
 		codUser        = DefaultValue.number();
+		address	   	   = DefaultValue.object();
 		homePhone	   = DefaultValue.object();
 		codOwner       = DefaultValue.number();
 		mobilePhone	   = DefaultValue.object();

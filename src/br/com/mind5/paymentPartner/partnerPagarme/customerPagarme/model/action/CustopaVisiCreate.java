@@ -60,6 +60,7 @@ public final class CustopaVisiCreate extends ActionVisitorTemplateSimple<Custopa
 		builder.addBuilderToJson(makeBodyRoot(recordInfo));
 		builder.addBuilderToJson(makeBodyMetadata(recordInfo));
 		builder.addBuilderToJson(makeBodyPhone(recordInfo));
+		builder.addBuilderToJson(makeBodyAddress(recordInfo));
 		
 		return builder.build();
 	}
@@ -117,6 +118,19 @@ public final class CustopaVisiCreate extends ActionVisitorTemplateSimple<Custopa
 			return builder;
 		
 		builder.addNestedObjToJson("mobile_phone", recordInfo.homePhone);		
+		
+		return builder;
+	}
+	
+	
+	
+	private JsonBuilder makeBodyAddress(CustopaInfo recordInfo) {
+		JsonBuilder builder = new JsonBuilder();
+		
+		if (recordInfo.address == null)
+			return builder;
+		
+		builder.addNestedObjToJson("address", recordInfo.address);		
 		
 		return builder;
 	}
