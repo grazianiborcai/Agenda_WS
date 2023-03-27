@@ -43,7 +43,7 @@ final class CustopaMergerVisiCuspar extends InfoMergerVisitorTemplate<CustopaInf
 		address.put("city"    , selectedInfo.addresnapData.city);
 		address.put("zip_code", selectedInfo.addresnapData.postalCode);
 		address.put("line_1"  , getAddressLine1(selectedInfo));
-		address.put("line_2"  , selectedInfo.addresnapData.complement);
+		address.put("line_2"  , getAddressLine2(selectedInfo));
 		
 		return address;
 	}
@@ -54,6 +54,16 @@ final class CustopaMergerVisiCuspar extends InfoMergerVisitorTemplate<CustopaInf
 		return selectedInfo.addresnapData.streetNumber + ',' + 
 			   selectedInfo.addresnapData.street       + ',' +
 			   selectedInfo.addresnapData.district;
+	}
+	
+	
+	
+	private String getAddressLine2(CusparInfo selectedInfo) {
+		String complement = selectedInfo.addresnapData.complement;
+		
+		if (complement == null) complement = "";
+		
+		return complement;
 	}
 	
 	
