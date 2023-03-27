@@ -44,7 +44,7 @@ public final class OrdapaVisiCreate extends ActionVisitorTemplateSimple<OrdapaIn
 		String body = makeBody(recordInfo);
 		String authorization = makeAuthorization(recordInfo);
 		
-		HttpResponse<String> response = tryToCreateCustomer(body, authorization);
+		HttpResponse<String> response = tryToCreateOrder(body, authorization);
 		
 		if (hasError(response) == true)
 			writeLogOnError(response);
@@ -130,7 +130,7 @@ public final class OrdapaVisiCreate extends ActionVisitorTemplateSimple<OrdapaIn
 	
 	
 	
-	private HttpResponse<String> tryToCreateCustomer(String body, String authorization) {
+	private HttpResponse<String> tryToCreateOrder(String body, String authorization) {
 		try {
 			return Unirest.post("https://api.pagar.me/core/v5/orders")
 					  	  .header("accept", "application/json")
