@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -65,7 +66,12 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();	
+		CusparInfo deepCopy = (CusparInfo) super.clone();		
+
+		deepCopy.phonapData    = CloneUtil.cloneRecord (deepCopy.phonapData	  , this.getClass());
+		deepCopy.addresnapData = CloneUtil.cloneRecord (deepCopy.addresnapData, this.getClass());
+
+		return deepCopy;	
 	}
 	
 	
