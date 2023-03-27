@@ -14,11 +14,11 @@ final class AddresnapCopyCuspar extends InfoCopierTemplate<AddresnapInfo, Cuspar
 	@Override protected AddresnapInfo makeCopyHook(CusparInfo source) {
 		AddresnapInfo result = new AddresnapInfo();
 		
-		result.codOwner = source.codOwner;
-		result.codAddress = source.codAddress;
-		result.codUserSnapshot = source.codAddressSnapshot;
-		result.codLanguage = source.codLanguage;
-		result.username = source.username;
+		result.codOwner    = source.codOwner;
+		result.username    = source.username;
+		result.codAddress  = source.codAddress;
+		result.codSnapshot = source.codAddressSnapshot;
+		result.codLanguage = source.codLanguage;		
 		
 		return result;
 	}
