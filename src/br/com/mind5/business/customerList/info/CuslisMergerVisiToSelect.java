@@ -16,7 +16,7 @@ final class CuslisMergerVisiToSelect extends InfoMergerVisitorTemplate<CuslisInf
 	@Override public List<CuslisInfo> merge(CuslisInfo baseInfo, CuslisInfo selectedInfo) {
 		List<CuslisInfo> results = new ArrayList<>();
 		
-		selectedInfo.username = baseInfo.username;
+		selectedInfo.username    = baseInfo.username;
 		selectedInfo.codLanguage = baseInfo.codLanguage;
 		
 		results.add(selectedInfo);

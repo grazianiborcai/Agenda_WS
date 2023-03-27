@@ -62,9 +62,9 @@ public final class CuslisRootSelect extends DeciTreeTemplateRead<CuslisInfo> {
 	@Override protected List<ActionStd<CuslisInfo>> buildActionsOnPassedHook(DeciTreeOption<CuslisInfo> option) {
 		List<ActionStd<CuslisInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CuslisInfo> select = new ActionStdCommom<CuslisInfo>(option, CuslisVisiMergeToSelect.class);
+		ActionStd <CuslisInfo> select        = new ActionStdCommom <CuslisInfo>(option, CuslisVisiMergeToSelect.class);
 		ActionLazy<CuslisInfo> mergePersolis = new ActionLazyCommom<CuslisInfo>(option, CuslisVisiMergePersolis.class);
-		ActionLazy<CuslisInfo> mergeFimist = new ActionLazyCommom<CuslisInfo>(option, CuslisVisiMergeFimist.class);
+		ActionLazy<CuslisInfo> mergeFimist   = new ActionLazyCommom<CuslisInfo>(option, CuslisVisiMergeFimist.class);
 		
 		select.addPostAction(mergePersolis);
 		mergePersolis.addPostAction(mergeFimist);

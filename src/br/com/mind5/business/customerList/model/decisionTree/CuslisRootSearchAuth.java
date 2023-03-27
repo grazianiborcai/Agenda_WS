@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.business.customerList.model.action.CuslisVisiRootSelect;
 import br.com.mind5.business.customerList.model.action.CuslisVisiMergeCusarchAuth;
+import br.com.mind5.business.customerList.model.action.CuslisVisiRootSelect;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -39,8 +39,8 @@ public final class CuslisRootSearchAuth extends DeciTreeTemplateRead<CuslisInfo>
 	@Override protected List<ActionStd<CuslisInfo>> buildActionsOnPassedHook(DeciTreeOption<CuslisInfo> option) {
 		List<ActionStd<CuslisInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CuslisInfo> mergeCusarch = new ActionStdCommom<CuslisInfo>(option, CuslisVisiMergeCusarchAuth.class);
-		ActionLazy<CuslisInfo> select = new ActionLazyCommom<CuslisInfo>(option, CuslisVisiRootSelect.class);
+		ActionStd <CuslisInfo> mergeCusarch = new ActionStdCommom <CuslisInfo>(option, CuslisVisiMergeCusarchAuth.class);
+		ActionLazy<CuslisInfo> select       = new ActionLazyCommom<CuslisInfo>(option, CuslisVisiRootSelect.class);
 		
 		mergeCusarch.addPostAction(select);
 		

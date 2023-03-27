@@ -24,15 +24,15 @@ public final class CuslisInfo extends InfoRecord implements Cloneable {
 	public CuslisInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();
-		codCustomer = DefaultValue.number();
-		codStore = DefaultValue.number();
-		codSnapshot = DefaultValue.number();
-		codPerson = DefaultValue.number();
-		codUser = DefaultValue.number();
-		recordMode = DefaultValue.recordMode();	
+		codUser      = DefaultValue.number();
+		codOwner     = DefaultValue.number();		
+		codStore     = DefaultValue.number();		
+		codPerson    = DefaultValue.number();		
+		recordMode   = DefaultValue.recordMode();		
+		fimistData   = DefaultValue.object();
+		codCustomer  = DefaultValue.number();
+		codSnapshot  = DefaultValue.number();
 		persolisData = DefaultValue.object();
-		fimistData = DefaultValue.object();
 	}
 	
 	
