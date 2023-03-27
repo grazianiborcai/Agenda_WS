@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.business.phone.model.action.PhoneVisiNodeUpdateT00;
-import br.com.mind5.business.phone.model.action.PhoneVisiNodeUpdateT01;
 import br.com.mind5.business.phone.model.action.PhoneVisiEnforceAreaT01;
 import br.com.mind5.business.phone.model.action.PhoneVisiEnforceNumberT00;
 import br.com.mind5.business.phone.model.action.PhoneVisiEnforceNumberT01;
+import br.com.mind5.business.phone.model.action.PhoneVisiNodeUpdateT00;
+import br.com.mind5.business.phone.model.action.PhoneVisiNodeUpdateT01;
 import br.com.mind5.business.phone.model.checker.PhoneCheckFormT01;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -48,9 +48,9 @@ public final class PhoneNodeUpdate extends DeciTreeTemplateWrite<PhoneInfo> {
 	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PhoneInfo> enforceNumberT01 = new ActionStdCommom<PhoneInfo>(option, PhoneVisiEnforceNumberT01.class);
-		ActionLazy<PhoneInfo> enforceAreaT01 = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiEnforceAreaT01.class);
-		ActionLazy<PhoneInfo> nodeUpdateT01 = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiNodeUpdateT01.class);
+		ActionStd <PhoneInfo> enforceNumberT01 = new ActionStdCommom <PhoneInfo>(option, PhoneVisiEnforceNumberT01.class);
+		ActionLazy<PhoneInfo> enforceAreaT01   = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiEnforceAreaT01.class);
+		ActionLazy<PhoneInfo> nodeUpdateT01    = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiNodeUpdateT01.class);
 		
 		enforceNumberT01.addPostAction(enforceAreaT01);
 		enforceAreaT01.addPostAction(nodeUpdateT01);
@@ -64,8 +64,8 @@ public final class PhoneNodeUpdate extends DeciTreeTemplateWrite<PhoneInfo> {
 	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnFailedHook(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
 
-		ActionStd<PhoneInfo> enforceNumberT00 = new ActionStdCommom<PhoneInfo>(option, PhoneVisiEnforceNumberT00.class);
-		ActionLazy<PhoneInfo> nodeUpdateT00 = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiNodeUpdateT00.class);
+		ActionStd <PhoneInfo> enforceNumberT00 = new ActionStdCommom <PhoneInfo>(option, PhoneVisiEnforceNumberT00.class);
+		ActionLazy<PhoneInfo> nodeUpdateT00    = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiNodeUpdateT00.class);
 		
 		enforceNumberT00.addPostAction(nodeUpdateT00);
 

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.business.phone.model.action.PhoneVisiEnforcePeregKey;
-import br.com.mind5.business.phone.model.action.PhoneVisiRootInsert;
+import br.com.mind5.business.phone.model.action.PhoneVisiMergePhonaultUser;
+import br.com.mind5.business.phone.model.action.PhoneVisiRootSelect;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -16,9 +16,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class PhoneRootInsertPereg extends DeciTreeTemplateWrite<PhoneInfo> {
+public final class PhoneRootSelectUserDefault extends DeciTreeTemplateWrite<PhoneInfo> {
 	
-	public PhoneRootInsertPereg(DeciTreeOption<PhoneInfo> option) {
+	public PhoneRootSelectUserDefault(DeciTreeOption<PhoneInfo> option) {
 		super(option);
 	}
 	
@@ -37,14 +37,14 @@ public final class PhoneRootInsertPereg extends DeciTreeTemplateWrite<PhoneInfo>
 	
 	
 	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
-		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();	
+		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
 		
-		ActionStd <PhoneInfo> enforcePeregKey = new ActionStdCommom <PhoneInfo>(option, PhoneVisiEnforcePeregKey.class);	
-		ActionLazy<PhoneInfo> insert          = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiRootInsert.class);
-		
-		enforcePeregKey.addPostAction(insert);		
+		ActionStd <PhoneInfo> mergePhonaultUser = new ActionStdCommom <PhoneInfo>(option, PhoneVisiMergePhonaultUser.class);	
+		ActionLazy<PhoneInfo> select            = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiRootSelect.class);
 
-		actions.add(enforcePeregKey);
+		mergePhonaultUser.addPostAction(select);
+		
+		actions.add(mergePhonaultUser);		
 		return actions;
 	}
 }

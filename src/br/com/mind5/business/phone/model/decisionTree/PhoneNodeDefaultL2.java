@@ -50,13 +50,13 @@ public final class PhoneNodeDefaultL2 extends DeciTreeTemplateWrite<PhoneInfo> {
 	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PhoneInfo> mergePhonault = new ActionStdCommom<PhoneInfo>(option, PhoneVisiMergePhonault.class);
-		ActionLazy<PhoneInfo> mergeToSelect = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeToSelect.class);
-		ActionLazy<PhoneInfo> enforceLChanged = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiEnforceLChanged.class);	
+		ActionStd <PhoneInfo> mergePhonault     = new ActionStdCommom <PhoneInfo>(option, PhoneVisiMergePhonault.class);
+		ActionLazy<PhoneInfo> mergeToSelect     = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeToSelect.class);
+		ActionLazy<PhoneInfo> enforceLChanged   = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiEnforceLChanged.class);	
 		ActionLazy<PhoneInfo> enforceLChangedBy = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeUsername.class);
 		ActionLazy<PhoneInfo> enforceDefaultOff = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiEnforceDefaultOff.class);
-		ActionLazy<PhoneInfo> update = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiDaoUpdate.class);
-		ActionStd<PhoneInfo> success = new ActionStdSuccessCommom<PhoneInfo>(option);
+		ActionLazy<PhoneInfo> update            = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiDaoUpdate.class);
+		ActionStd <PhoneInfo> success           = new ActionStdSuccessCommom<PhoneInfo>(option);
 		
 		mergePhonault.addPostAction(mergeToSelect);
 		mergeToSelect.addPostAction(enforceLChanged);

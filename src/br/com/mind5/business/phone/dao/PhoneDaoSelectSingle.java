@@ -60,28 +60,28 @@ public final class PhoneDaoSelectSingle extends DaoStmtTemplate<PhoneInfo> {
 				
 				do {
 					PhoneInfo dataInfo = new PhoneInfo();
-					
-					dataInfo.codPhone = stmtResult.getLong(PhoneDaoDbTableColumn.COL_COD_PHONE);
-					dataInfo.codOwner = stmtResult.getLong(PhoneDaoDbTableColumn.COL_COD_OWNER);
+
+					dataInfo.number          = stmtResult.getString(PhoneDaoDbTableColumn.COL_NUMBER);		
+					dataInfo.codUser         = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_USER);								
+					dataInfo.codArea         = stmtResult.getString(PhoneDaoDbTableColumn.COL_COD_AREA);
+					dataInfo.codStore        = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codPhone        = stmtResult.getLong(PhoneDaoDbTableColumn.COL_COD_PHONE);
+					dataInfo.codOwner        = stmtResult.getLong(PhoneDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.createdOn       = DaoFormatter.sqlToLocalDateTime(stmtResult, PhoneDaoDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy       = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_CREATED_BY);					
+					dataInfo.isDefault       = stmtResult.getBoolean(PhoneDaoDbTableColumn.COL_IS_DEFAULT);
+					dataInfo.phoneName       = stmtResult.getString(PhoneDaoDbTableColumn.COL_PHONE_NAME);
+					dataInfo.fullNumber      = stmtResult.getString(PhoneDaoDbTableColumn.COL_FULL_NUMBER);
+					dataInfo.recordMode      = stmtResult.getString(PhoneDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.complement      = stmtResult.getString(PhoneDaoDbTableColumn.COL_COMPLEMENT);
+					dataInfo.codOwnerRef     = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_OWNER_REF);
+					dataInfo.lastChanged     = DaoFormatter.sqlToLocalDateTime(stmtResult, PhoneDaoDbTableColumn.COL_LAST_CHANGED);					
+					dataInfo.codSnapshot     = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codCustomer     = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codEmployee     = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.lastChangedBy   = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.codLegalPerson  = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_LEGAL_PERSON);
 					dataInfo.codCountryPhone = stmtResult.getInt(PhoneDaoDbTableColumn.COL_COUNTRY_PHONE);
-					dataInfo.fullNumber = stmtResult.getString(PhoneDaoDbTableColumn.COL_FULL_NUMBER);
-					dataInfo.recordMode = stmtResult.getString(PhoneDaoDbTableColumn.COL_RECORD_MODE);
-					dataInfo.complement = stmtResult.getString(PhoneDaoDbTableColumn.COL_COMPLEMENT);
-					dataInfo.number = stmtResult.getString(PhoneDaoDbTableColumn.COL_NUMBER);
-					dataInfo.codArea = stmtResult.getString(PhoneDaoDbTableColumn.COL_COD_AREA);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_STORE);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_USER);
-					dataInfo.codLegalPerson = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_LEGAL_PERSON);
-					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_OWNER_REF);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PhoneDaoDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, PhoneDaoDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, PhoneDaoDbTableColumn.COL_CREATED_BY);					
-					dataInfo.isDefault = stmtResult.getBoolean(PhoneDaoDbTableColumn.COL_IS_DEFAULT);
-					dataInfo.phoneName = stmtResult.getString(PhoneDaoDbTableColumn.COL_PHONE_NAME);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

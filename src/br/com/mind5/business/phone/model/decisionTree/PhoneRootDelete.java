@@ -56,11 +56,11 @@ public final class PhoneRootDelete extends DeciTreeTemplateWrite<PhoneInfo> {
 	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhoneInfo> mergeToDelete = new ActionStdCommom<PhoneInfo>(option, PhoneVisiMergeToDelete.class);	
+		ActionStd <PhoneInfo> mergeToDelete   = new ActionStdCommom <PhoneInfo>(option, PhoneVisiMergeToDelete.class);	
 		ActionLazy<PhoneInfo> enforceLChanged = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiEnforceLChanged.class);
-		ActionLazy<PhoneInfo> mergeUsername = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeUsername.class);
-		ActionLazy<PhoneInfo> update = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiDaoUpdate.class);
-		ActionLazy<PhoneInfo> delete = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiDaoDelete.class);
+		ActionLazy<PhoneInfo> mergeUsername   = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeUsername.class);
+		ActionLazy<PhoneInfo> update          = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiDaoUpdate.class);
+		ActionLazy<PhoneInfo> delete          = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiDaoDelete.class);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeUsername);

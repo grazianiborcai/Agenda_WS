@@ -62,9 +62,9 @@ public final class PhoneRootSelect extends DeciTreeTemplateWrite<PhoneInfo> {
 	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhoneInfo> select = new ActionStdCommom<PhoneInfo>(option, PhoneVisiMergeToSelect.class);	
+		ActionStd <PhoneInfo> select         = new ActionStdCommom <PhoneInfo>(option, PhoneVisiMergeToSelect.class);	
 		ActionLazy<PhoneInfo> mergeCountrone = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeCountrone.class);
-		ActionLazy<PhoneInfo> mergeFormone = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeFormone.class);
+		ActionLazy<PhoneInfo> mergeFormone   = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeFormone.class);
 
 		select.addPostAction(mergeCountrone);	
 		mergeCountrone.addPostAction(mergeFormone);

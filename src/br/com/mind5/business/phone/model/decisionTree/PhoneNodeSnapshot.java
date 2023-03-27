@@ -39,8 +39,8 @@ public final class PhoneNodeSnapshot extends DeciTreeTemplateWrite<PhoneInfo> {
 	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
 
-		ActionStd<PhoneInfo> insertPhonap = new ActionStdCommom<PhoneInfo>(option, PhoneVisiPhonapInsert.class);
-		ActionLazy<PhoneInfo> update = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiDaoUpdate.class);
+		ActionStd <PhoneInfo> insertPhonap = new ActionStdCommom <PhoneInfo>(option, PhoneVisiPhonapInsert.class);
+		ActionLazy<PhoneInfo> update       = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiDaoUpdate.class);
 		
 		insertPhonap.addPostAction(update);
 

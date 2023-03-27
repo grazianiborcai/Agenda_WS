@@ -36,22 +36,22 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 	
 	public PhoneInfo() {
 		super();
-		
-		codOwner = DefaultValue.number();
-		codPhone = DefaultValue.number();
-		codSnapshot = DefaultValue.number();
-		codStore = DefaultValue.number();
-		codCustomer = DefaultValue.number();
-		codEmployee = DefaultValue.number();
-		codUser = DefaultValue.number();
-		codLegalPerson = DefaultValue.number();		
-		isDefault = DefaultValue.boole();
+				
+		codUser         = DefaultValue.number();
+		codOwner        = DefaultValue.number();
+		codPhone        = DefaultValue.number();
+		codStore        = DefaultValue.number();
+		isDefault       = DefaultValue.boole();
+		createdBy       = DefaultValue.number();
+		isDeleted       = DefaultValue.boole();
+		recordMode      = DefaultValue.recordMode();
+		codCustomer     = DefaultValue.number();
+		codEmployee     = DefaultValue.number();
+		codSnapshot     = DefaultValue.number();
+		codOwnerRef     = DefaultValue.number();
+		lastChangedBy   = DefaultValue.number();
+		codLegalPerson  = DefaultValue.number();	
 		codCountryPhone = DefaultValue.number();
-		codOwnerRef = DefaultValue.number();
-		recordMode = DefaultValue.recordMode();
-		lastChangedBy = DefaultValue.number();
-		createdBy = DefaultValue.number();
-		isDeleted = DefaultValue.boole();
 	}
 	
 	

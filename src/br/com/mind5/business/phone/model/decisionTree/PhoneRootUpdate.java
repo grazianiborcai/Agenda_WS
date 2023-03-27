@@ -107,15 +107,15 @@ public final class PhoneRootUpdate extends DeciTreeTemplateWrite<PhoneInfo> {
 	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhoneInfo> nodeSafe = new PhoneNodeSafe(option).toAction();
-		ActionStd<PhoneInfo> mergeToUpdate = new ActionStdCommom<PhoneInfo>(option, PhoneVisiMergeToUpdate.class);
-		ActionLazy<PhoneInfo> mergeCountrone = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeCountrone.class);
-		ActionLazy<PhoneInfo> mergeFormone = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeFormone.class);
-		ActionLazy<PhoneInfo> mergeUsername = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeUsername.class);
+		ActionStd <PhoneInfo> nodeSafe        = new PhoneNodeSafe(option).toAction();
+		ActionStd <PhoneInfo> mergeToUpdate   = new ActionStdCommom<PhoneInfo>(option, PhoneVisiMergeToUpdate.class);
+		ActionLazy<PhoneInfo> mergeCountrone  = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeCountrone.class);
+		ActionLazy<PhoneInfo> mergeFormone    = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeFormone.class);
+		ActionLazy<PhoneInfo> mergeUsername   = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiMergeUsername.class);
 		ActionLazy<PhoneInfo> enforceLChanged = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiEnforceLChanged.class);	
-		ActionLazy<PhoneInfo> nodeUpdate = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiNodeUpdate.class);
-		ActionLazy<PhoneInfo> nodeDefault = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiNodeDefaultL1.class);
-		ActionLazy<PhoneInfo> nodeSnapshot = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiNodeSnapshot.class);
+		ActionLazy<PhoneInfo> nodeUpdate      = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiNodeUpdate.class);
+		ActionLazy<PhoneInfo> nodeDefault     = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiNodeDefaultL1.class);
+		ActionLazy<PhoneInfo> nodeSnapshot    = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiNodeSnapshot.class);
 		
 		mergeToUpdate.addPostAction(mergeCountrone);
 		mergeCountrone.addPostAction(mergeFormone);

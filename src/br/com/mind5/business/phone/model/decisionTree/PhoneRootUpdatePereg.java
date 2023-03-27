@@ -39,8 +39,8 @@ public final class PhoneRootUpdatePereg extends DeciTreeTemplateWrite<PhoneInfo>
 	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<PhoneInfo> enforcePeregKey = new ActionStdCommom<PhoneInfo>(option, PhoneVisiEnforcePeregKey.class);	
-		ActionLazy<PhoneInfo> update = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiRootUpdate.class);
+		ActionStd <PhoneInfo> enforcePeregKey = new ActionStdCommom <PhoneInfo>(option, PhoneVisiEnforcePeregKey.class);	
+		ActionLazy<PhoneInfo> update          = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiRootUpdate.class);
 		
 		enforcePeregKey.addPostAction(update);		
 
