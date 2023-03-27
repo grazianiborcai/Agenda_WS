@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import br.com.mind5.common.JsonBuilder;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.json.standard.JstdBodyParser;
 import br.com.mind5.model.action.ActionVisitorTemplateSimple;
@@ -26,7 +27,7 @@ public final class CrecapaVisiCreate extends ActionVisitorTemplateSimple<Crecapa
 		
 		
 		for(CrecapaInfo eachRecod : baseInfos) {
-			HttpResponse<String> response = createCustomer(eachRecod);
+			HttpResponse<String> response = createCard(eachRecod);
 			
 			if (hasError(response) == true)
 				return null;
@@ -41,12 +42,12 @@ public final class CrecapaVisiCreate extends ActionVisitorTemplateSimple<Crecapa
 	
 	
 	
-	private HttpResponse<String> createCustomer(CrecapaInfo recordInfo) {
+	private HttpResponse<String> createCard(CrecapaInfo recordInfo) {
 		String body = makeBody(recordInfo);
 		String authorization = makeAuthorization(recordInfo);
 		String url = makeUrl(recordInfo);
 		
-		HttpResponse<String> response = tryToCreateCreditCard(body, authorization, url);
+		HttpResponse<String> response = tryToCreateCard(body, authorization, url);
 		
 		if (hasError(response) == true)
 			writeLogOnError(response);
@@ -57,85 +58,57 @@ public final class CrecapaVisiCreate extends ActionVisitorTemplateSimple<Crecapa
 	
 	
 	private String makeBody(CrecapaInfo recordInfo) {
-		StringBuilder body = new StringBuilder();
+		JsonBuilder builder = new JsonBuilder();
+
+		builder.addBuilderToJson(makeBodyCreditCard(recordInfo));
+		builder.addBuilderToJson(makeBodyMetadata(recordInfo));
+		builder.addBuilderToJson(makeBodyBillingAddress(recordInfo));
 		
-		body.append("{");		
-		body.append(makeBodyCreditCard(recordInfo)).append(",");
-		body.append(makeBodyMetadata(recordInfo));
-		body.append("}");
-		
-		return body.toString();
+		return builder.build();
 	}
 	
 	
 	
-	private String makeBodyCreditCard(CrecapaInfo recordInfo) {
-		Map<String, String> bodyAttr = makeBodyAttr(recordInfo);
-		return bodyAttToString(bodyAttr);
+	private JsonBuilder makeBodyCreditCard(CrecapaInfo recordInfo) {
+		JsonBuilder builder = new JsonBuilder();
+		
+		builder.addObjToJson("customer_id"    , recordInfo.customerId);
+		builder.addObjToJson("number"         , recordInfo.cardNumber);
+		builder.addObjToJson("holder_name"    , recordInfo.nameHolder);
+		builder.addObjToJson("holder_document", recordInfo.cpfHolder);
+		builder.addObjToJson("exp_month"      , recordInfo.expirationMonth);
+		builder.addObjToJson("exp_year"       , recordInfo.expirationYear);
+		builder.addObjToJson("cvv"    		  , recordInfo.cardCvc);
+		builder.addObjToJson("brand"          , recordInfo.creditCardBrand);		
+		builder.addObjToJson("label"          , recordInfo.label);
+		builder.addObjToJson("options"        , recordInfo.options);
+		
+		return builder;
 	}
 	
 	
 	
-	private Map<String, String> makeBodyAttr(CrecapaInfo recordInfo) {
-		Map<String, String> bodyAttr = new HashMap<>();
+	private JsonBuilder makeBodyMetadata(CrecapaInfo recordInfo) {
+		JsonBuilder builder = new JsonBuilder();
+		Map<String,String> meta = new HashMap<>();
 		
-		bodyAttr = bodyAppendAttr(bodyAttr, "customer_id"    , recordInfo.customerId);
-		bodyAttr = bodyAppendAttr(bodyAttr, "number"         , recordInfo.cardNumber);
-		bodyAttr = bodyAppendAttr(bodyAttr, "holder_name"    , recordInfo.nameHolder);
-		bodyAttr = bodyAppendAttr(bodyAttr, "holder_document", recordInfo.cpfHolder);
-		bodyAttr = bodyAppendAttr(bodyAttr, "exp_month"      , recordInfo.expirationMonth);
-		bodyAttr = bodyAppendAttr(bodyAttr, "exp_year"       , recordInfo.expirationYear);
-		bodyAttr = bodyAppendAttr(bodyAttr, "cvv"    		 , recordInfo.cardCvc);
-		bodyAttr = bodyAppendAttr(bodyAttr, "brand"          , recordInfo.creditCardBrand);		
-		bodyAttr = bodyAppendAttr(bodyAttr, "label"          , recordInfo.label);
-		bodyAttr = bodyAppendAttr(bodyAttr, "options"        , recordInfo.options);
+		meta.put("codCreditCard", recordInfo.metadataId);
+		builder.addNestedObjToJson("metadata", meta);		
 		
-		return bodyAttr;
+		return builder;
 	}
 	
 	
 	
-	private Map<String, String> bodyAppendAttr(Map<String, String> bodyAttr, String key, String value) {
-		if (value == null)
-			return bodyAttr;
+	private JsonBuilder makeBodyBillingAddress(CrecapaInfo recordInfo) {
+		JsonBuilder builder = new JsonBuilder();
 		
-		if (bodyAttr != null)
-			bodyAttr.put(key, value);
+		if (recordInfo.billingAddress == null)
+			return builder;
 		
-		return bodyAttr;
-	}
-	
-	
-	
-	private String bodyAttToString(Map<String, String> bodyAttr) {
-		StringBuilder body = new StringBuilder();
-		int semaphore = 0;
+		builder.addNestedObjToJson("billing_address", recordInfo.billingAddress);		
 		
-		for (Map.Entry<String, String> entry : bodyAttr.entrySet()) {
-			if (semaphore != 0)
-				body.append(",");
-			
-			body.append("\"").append(entry.getKey()).append("\":").append("\"").append(entry.getValue()).append("\"");			
-			semaphore = 1;
-		}
-		
-		return body.toString();
-	}
-	
-	
-	private String makeBodyMetadata(CrecapaInfo recordInfo) {
-		String key = "codCreditCard";
-		String value = recordInfo.metadataId;
-		StringBuilder body = new StringBuilder();
-		
-		body.append("\"metadata\":");
-		body.append("{");
-		
-		body.append("\"").append(key).append("\":");
-		body.append("\"").append(value).append("\"");
-		
-		body.append("}");		
-		return body.toString();
+		return builder;
 	}
 	
 	
@@ -152,7 +125,7 @@ public final class CrecapaVisiCreate extends ActionVisitorTemplateSimple<Crecapa
 	
 	
 	
-	private HttpResponse<String> tryToCreateCreditCard(String body, String authorization, String url) {
+	private HttpResponse<String> tryToCreateCard(String body, String authorization, String url) {
 		try {
 			return Unirest.post(url)
 					  	  .header("accept", "application/json")

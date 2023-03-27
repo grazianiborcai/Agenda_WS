@@ -1,6 +1,7 @@
 package br.com.mind5.paymentPartner.partnerPagarme.creditCardPagarme.info;
 
 import java.util.List;
+import java.util.Map;
 
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
@@ -25,7 +26,7 @@ public final class CrecapaInfo extends InfoRecord implements Cloneable {
 	public String options;
 	public String last_four_digits;
 	public String brand;
-//	billing_address
+	public Map<String,String> billingAddress;
 	public String metadataId;
 	public String authorization;
 	public SetuparInfo setuparData;
@@ -35,11 +36,12 @@ public final class CrecapaInfo extends InfoRecord implements Cloneable {
 	public CrecapaInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();
-		codPayPartner = DefaultValue.number();
+		codOwner       = DefaultValue.number();
+		setuparData    = DefaultValue.object();
+		codPayPartner  = DefaultValue.number();
+		codCreditCard  = DefaultValue.number();
 		codPayCustomer = DefaultValue.number();
-		codCreditCard = DefaultValue.number();
-		setuparData = DefaultValue.object();
+		billingAddress = DefaultValue.object();
 	}
 	
 	

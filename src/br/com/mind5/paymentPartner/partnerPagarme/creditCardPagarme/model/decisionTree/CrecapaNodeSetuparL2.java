@@ -45,7 +45,7 @@ public final class CrecapaNodeSetuparL2 extends DeciTreeTemplateWrite<CrecapaInf
 	@Override protected List<ActionStd<CrecapaInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecapaInfo> option) {
 		List<ActionStd<CrecapaInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CrecapaInfo> mergeSetupar = new ActionStdCommom<CrecapaInfo>(option, CrecapaVisiMergeSetupar.class);
+		ActionStd <CrecapaInfo> mergeSetupar         = new ActionStdCommom <CrecapaInfo>(option, CrecapaVisiMergeSetupar.class);
 		ActionLazy<CrecapaInfo> enforceAuthorization = new ActionLazyCommom<CrecapaInfo>(option, CrecapaVisiEnforceAuthorization.class);
 		
 		mergeSetupar.addPostAction(enforceAuthorization);
