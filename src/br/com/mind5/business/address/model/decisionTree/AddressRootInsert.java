@@ -102,18 +102,18 @@ public final class AddressRootInsert extends DeciTreeTemplateWrite<AddressInfo> 
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<AddressInfo> nodeSafeString = new AddressNodeSafeString(option).toAction();
-		ActionStd<AddressInfo> mergeForm = new ActionStdCommom<AddressInfo>(option, AddressVisiMergeFormess.class);		
-		ActionLazy<AddressInfo> mergeUsername = new  ActionLazyCommom<AddressInfo>(option, AddressVisiMergeUsername.class);
-		ActionLazy<AddressInfo> enforceLChanged = new  ActionLazyCommom<AddressInfo>(option, AddressVisiEnforceLChanged.class);
-		ActionLazy<AddressInfo> enforceCreatedOn = new  ActionLazyCommom<AddressInfo>(option, AddressVisiEnforceCreatedOn.class);	
-		ActionLazy<AddressInfo> enforceCreatedBy = new  ActionLazyCommom<AddressInfo>(option, AddressVisiEnforceCreatedBy.class);
-		ActionLazy<AddressInfo> enforceDistrictSearch = new  ActionLazyCommom<AddressInfo>(option, AddressVisiEnforceDistrictSearch.class);
-		ActionLazy<AddressInfo> nodeGeo = new  ActionLazyCommom<AddressInfo>(option, AddressVisiNodeGeoL1.class);	
-		ActionLazy<AddressInfo> nodeInsert = new  ActionLazyCommom<AddressInfo>(option, AddressVisiNodeInsert.class);	
-		ActionLazy<AddressInfo> nodeDefault = new  ActionLazyCommom<AddressInfo>(option, AddressVisiNodeDefaultL1.class);
-		ActionLazy<AddressInfo> snapshot = new  ActionLazyCommom<AddressInfo>(option, AddressVisiNodeSnapshot.class);
-		ActionLazy<AddressInfo> select = new  ActionLazyCommom<AddressInfo>(option, AddressVisiRootSelect.class);
+		ActionStd <AddressInfo> nodeSafeString        = new AddressNodeSafeString(option).toAction();
+		ActionStd <AddressInfo> mergeForm             = new ActionStdCommom<AddressInfo>(option, AddressVisiMergeFormess.class);		
+		ActionLazy<AddressInfo> mergeUsername         = new ActionLazyCommom<AddressInfo>(option, AddressVisiMergeUsername.class);
+		ActionLazy<AddressInfo> enforceLChanged       = new ActionLazyCommom<AddressInfo>(option, AddressVisiEnforceLChanged.class);
+		ActionLazy<AddressInfo> enforceCreatedOn      = new ActionLazyCommom<AddressInfo>(option, AddressVisiEnforceCreatedOn.class);	
+		ActionLazy<AddressInfo> enforceCreatedBy      = new ActionLazyCommom<AddressInfo>(option, AddressVisiEnforceCreatedBy.class);
+		ActionLazy<AddressInfo> enforceDistrictSearch = new ActionLazyCommom<AddressInfo>(option, AddressVisiEnforceDistrictSearch.class);
+		ActionLazy<AddressInfo> nodeGeo               = new ActionLazyCommom<AddressInfo>(option, AddressVisiNodeGeoL1.class);	
+		ActionLazy<AddressInfo> nodeInsert            = new ActionLazyCommom<AddressInfo>(option, AddressVisiNodeInsert.class);	
+		ActionLazy<AddressInfo> nodeDefault           = new ActionLazyCommom<AddressInfo>(option, AddressVisiNodeDefaultL1.class);
+		ActionLazy<AddressInfo> snapshot              = new ActionLazyCommom<AddressInfo>(option, AddressVisiNodeSnapshot.class);
+		ActionLazy<AddressInfo> select                = new ActionLazyCommom<AddressInfo>(option, AddressVisiRootSelect.class);
 		
 		mergeForm.addPostAction(mergeUsername);
 		mergeUsername.addPostAction(enforceLChanged);

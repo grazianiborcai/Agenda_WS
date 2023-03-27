@@ -39,8 +39,8 @@ public final class AddressRootSearchStore extends DeciTreeTemplateWrite<AddressI
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<AddressInfo> mergeAddarch = new ActionStdCommom<AddressInfo>(option, AddressVisiMergeAddarchStore.class);		
-		ActionLazy<AddressInfo> select = new  ActionLazyCommom<AddressInfo>(option, AddressVisiRootSelect.class);
+		ActionStd <AddressInfo> mergeAddarch = new ActionStdCommom <AddressInfo>(option, AddressVisiMergeAddarchStore.class);		
+		ActionLazy<AddressInfo> select       = new ActionLazyCommom<AddressInfo>(option, AddressVisiRootSelect.class);
 		
 		mergeAddarch.addPostAction(select);
 		

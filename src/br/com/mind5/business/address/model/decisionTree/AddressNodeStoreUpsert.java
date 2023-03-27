@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.action.AddressVisiRootUpdate;
 import br.com.mind5.business.address.model.action.AddressVisiMergeAddarchStore;
+import br.com.mind5.business.address.model.action.AddressVisiRootUpdate;
 import br.com.mind5.business.address.model.checker.AddressCheckExistStore;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -45,8 +45,8 @@ public final class AddressNodeStoreUpsert extends DeciTreeTemplateWrite<AddressI
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<AddressInfo> mergeAddarchStore = new ActionStdCommom<AddressInfo>(option, AddressVisiMergeAddarchStore.class);		
-		ActionLazy<AddressInfo> update = new  ActionLazyCommom<AddressInfo>(option, AddressVisiRootUpdate.class);
+		ActionStd <AddressInfo> mergeAddarchStore = new ActionStdCommom <AddressInfo>(option, AddressVisiMergeAddarchStore.class);		
+		ActionLazy<AddressInfo> update            = new ActionLazyCommom<AddressInfo>(option, AddressVisiRootUpdate.class);
 		
 		mergeAddarchStore.addPostAction(update);
 		

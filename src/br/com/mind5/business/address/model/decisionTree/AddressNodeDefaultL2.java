@@ -50,13 +50,13 @@ public final class AddressNodeDefaultL2 extends DeciTreeTemplateWrite<AddressInf
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();
 		
-		ActionStd<AddressInfo> mergeAddault = new ActionStdCommom<AddressInfo>(option, AddressVisiMergeAddault.class);
-		ActionLazy<AddressInfo> mergeToSelect = new ActionLazyCommom<AddressInfo>(option, AddressVisiMergeToSelect.class);
-		ActionLazy<AddressInfo> enforceLChanged = new ActionLazyCommom<AddressInfo>(option, AddressVisiEnforceLChanged.class);	
+		ActionStd <AddressInfo> mergeAddault      = new ActionStdCommom <AddressInfo>(option, AddressVisiMergeAddault.class);
+		ActionLazy<AddressInfo> mergeToSelect     = new ActionLazyCommom<AddressInfo>(option, AddressVisiMergeToSelect.class);
+		ActionLazy<AddressInfo> enforceLChanged   = new ActionLazyCommom<AddressInfo>(option, AddressVisiEnforceLChanged.class);	
 		ActionLazy<AddressInfo> enforceLChangedBy = new ActionLazyCommom<AddressInfo>(option, AddressVisiMergeUsername.class);
 		ActionLazy<AddressInfo> enforceDefaultOff = new ActionLazyCommom<AddressInfo>(option, AddressVisiEnforceDefaultOff.class);
-		ActionLazy<AddressInfo> update = new ActionLazyCommom<AddressInfo>(option, AddressVisiDaoUpdate.class);
-		ActionStd<AddressInfo> success = new ActionStdSuccessCommom<AddressInfo>(option);	
+		ActionLazy<AddressInfo> update            = new ActionLazyCommom<AddressInfo>(option, AddressVisiDaoUpdate.class);
+		ActionStd <AddressInfo> success           = new ActionStdSuccessCommom<AddressInfo>(option);	
 		
 		mergeAddault.addPostAction(mergeToSelect);
 		mergeToSelect.addPostAction(enforceLChanged);

@@ -39,8 +39,8 @@ public final class AddressRootSelectCusDefault extends DeciTreeTemplateWrite<Add
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddressInfo> mergeAddaultCus = new ActionStdCommom<AddressInfo>(option, AddressVisiMergeAddaultCus.class);		
-		ActionLazy<AddressInfo> select = new  ActionLazyCommom<AddressInfo>(option, AddressVisiRootSelect.class);
+		ActionStd <AddressInfo> mergeAddaultCus = new ActionStdCommom <AddressInfo>(option, AddressVisiMergeAddaultCus.class);		
+		ActionLazy<AddressInfo> select          = new ActionLazyCommom<AddressInfo>(option, AddressVisiRootSelect.class);
 		
 		mergeAddaultCus.addPostAction(select);
 		

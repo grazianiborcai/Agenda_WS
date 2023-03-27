@@ -58,24 +58,25 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	public AddressInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();
-		codAddress = DefaultValue.number();
-		codSnapshot = DefaultValue.number();
-		codCustomer = DefaultValue.number();
-		codStore = DefaultValue.number();
-		codEmployee = DefaultValue.number();
-		codUser = DefaultValue.number();
+		codUser        = DefaultValue.number();
+		codOwner       = DefaultValue.number();
+		latitude       = DefaultValue.geo();
+		codStore       = DefaultValue.number();
+		isDefault      = DefaultValue.boole();
+		longitude      = DefaultValue.geo();
+		createdOn      = DefaultValue.object();
+		createdBy      = DefaultValue.number();
+		isDeleted      = DefaultValue.boole();
+		codAddress     = DefaultValue.number();
+		recordMode     = DefaultValue.recordMode();
+		codSnapshot    = DefaultValue.number();
+		codCustomer    = DefaultValue.number();
+		codOwnerRef    = DefaultValue.number();
+		lastChanged    = DefaultValue.object();
+		codEmployee    = DefaultValue.number();
+		codCustomer    = DefaultValue.number();
+		lastChangedBy  = DefaultValue.number();
 		codLegalPerson = DefaultValue.number();
-		codOwnerRef = DefaultValue.number();
-		isDefault = DefaultValue.boole();
-		longitude = DefaultValue.geo();
-		latitude = DefaultValue.geo();
-		recordMode = DefaultValue.recordMode();
-		createdOn = DefaultValue.object();
-		lastChanged = DefaultValue.object();
-		lastChangedBy = DefaultValue.number();
-		createdBy = DefaultValue.number();
-		isDeleted = DefaultValue.boole();		
 	}
 	
 	

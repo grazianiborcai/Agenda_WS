@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.action.AddressVisiNodeState;
 import br.com.mind5.business.address.model.action.AddressVisiMergeCountry;
 import br.com.mind5.business.address.model.action.AddressVisiMergeFormess;
 import br.com.mind5.business.address.model.action.AddressVisiMergeToSelect;
+import br.com.mind5.business.address.model.action.AddressVisiNodeState;
 import br.com.mind5.business.address.model.checker.AddressCheckLangu;
 import br.com.mind5.business.address.model.checker.AddressCheckOwner;
 import br.com.mind5.business.address.model.checker.AddressCheckRead;
@@ -63,10 +63,10 @@ public final class AddressRootSelect extends DeciTreeTemplateWrite<AddressInfo> 
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddressInfo> select = new ActionStdCommom<AddressInfo>(option, AddressVisiMergeToSelect.class);		
-		ActionLazy<AddressInfo> mergeFormess = new  ActionLazyCommom<AddressInfo>(option, AddressVisiMergeFormess.class);
-		ActionLazy<AddressInfo> mergeCountry = new  ActionLazyCommom<AddressInfo>(option, AddressVisiMergeCountry.class);
-		ActionLazy<AddressInfo> nodeState = new  ActionLazyCommom<AddressInfo>(option, AddressVisiNodeState.class);
+		ActionStd <AddressInfo> select       = new ActionStdCommom <AddressInfo>(option, AddressVisiMergeToSelect.class);		
+		ActionLazy<AddressInfo> mergeFormess = new ActionLazyCommom<AddressInfo>(option, AddressVisiMergeFormess.class);
+		ActionLazy<AddressInfo> mergeCountry = new ActionLazyCommom<AddressInfo>(option, AddressVisiMergeCountry.class);
+		ActionLazy<AddressInfo> nodeState    = new ActionLazyCommom<AddressInfo>(option, AddressVisiNodeState.class);
 		
 		select.addPostAction(mergeFormess);	
 		mergeFormess.addPostAction(mergeCountry);

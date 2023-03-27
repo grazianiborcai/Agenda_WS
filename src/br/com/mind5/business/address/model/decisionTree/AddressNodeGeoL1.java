@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.action.AddressVisiNodeGeoL2;
 import br.com.mind5.business.address.model.action.AddressVisiGeodeCoding;
+import br.com.mind5.business.address.model.action.AddressVisiNodeGeoL2;
 import br.com.mind5.business.address.model.checker.AddressCheckHasGeode;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -45,8 +45,8 @@ public final class AddressNodeGeoL1 extends DeciTreeTemplateWrite<AddressInfo> {
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();
 		
-		ActionStd<AddressInfo> geodeCoding = new ActionStdCommom<AddressInfo>(option, AddressVisiGeodeCoding.class);	
-		ActionLazy<AddressInfo> nodeL2 = new ActionLazyCommom<AddressInfo>(option, AddressVisiNodeGeoL2.class);	
+		ActionStd <AddressInfo> geodeCoding = new ActionStdCommom <AddressInfo>(option, AddressVisiGeodeCoding.class);	
+		ActionLazy<AddressInfo> nodeL2      = new ActionLazyCommom<AddressInfo>(option, AddressVisiNodeGeoL2.class);	
 		
 		geodeCoding.addPostAction(nodeL2);
 

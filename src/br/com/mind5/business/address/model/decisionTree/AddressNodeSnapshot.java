@@ -40,8 +40,8 @@ public final class AddressNodeSnapshot extends DeciTreeTemplateWrite<AddressInfo
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();
 		
-		ActionStd<AddressInfo> insertAddresnap = new ActionStdCommom<AddressInfo>(option, AddressVisiAddresnapInsert.class);
-		ActionLazy<AddressInfo> update = new ActionLazyCommom<AddressInfo>(option, AddressVisiDaoUpdate.class);
+		ActionStd <AddressInfo> insertAddresnap = new ActionStdCommom <AddressInfo>(option, AddressVisiAddresnapInsert.class);
+		ActionLazy<AddressInfo> update          = new ActionLazyCommom<AddressInfo>(option, AddressVisiDaoUpdate.class);
 
 		insertAddresnap.addPostAction(update);
 		

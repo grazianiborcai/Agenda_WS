@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.action.AddressVisiRootSelect;
 import br.com.mind5.business.address.model.action.AddressVisiMergeAddarch;
+import br.com.mind5.business.address.model.action.AddressVisiRootSelect;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -39,8 +39,8 @@ public final class AddressRootSearch extends DeciTreeTemplateWrite<AddressInfo> 
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddressInfo> mergeAddarch = new ActionStdCommom<AddressInfo>(option, AddressVisiMergeAddarch.class);		
-		ActionLazy<AddressInfo> select = new  ActionLazyCommom<AddressInfo>(option, AddressVisiRootSelect.class);
+		ActionStd <AddressInfo> mergeAddarch = new ActionStdCommom <AddressInfo>(option, AddressVisiMergeAddarch.class);		
+		ActionLazy<AddressInfo> select       = new ActionLazyCommom<AddressInfo>(option, AddressVisiRootSelect.class);
 		
 		mergeAddarch.addPostAction(select);
 		

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.action.AddressVisiEnforcePeregKey;
-import br.com.mind5.business.address.model.action.AddressVisiRootInsert;
+import br.com.mind5.business.address.model.action.AddressVisiMergeAddaultUser;
+import br.com.mind5.business.address.model.action.AddressVisiRootSelect;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -16,9 +16,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class AddressRootInsertPereg extends DeciTreeTemplateWrite<AddressInfo> {
+public final class AddressRootSelectUserDefault extends DeciTreeTemplateWrite<AddressInfo> {
 	
-	public AddressRootInsertPereg(DeciTreeOption<AddressInfo> option) {
+	public AddressRootSelectUserDefault(DeciTreeOption<AddressInfo> option) {
 		super(option);
 	}
 	
@@ -28,7 +28,7 @@ public final class AddressRootInsertPereg extends DeciTreeTemplateWrite<AddressI
 		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddressInfo> checker;	
 
-		checker = new ModelCheckerDummy<>();
+		checker = new ModelCheckerDummy<AddressInfo>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -37,14 +37,14 @@ public final class AddressRootInsertPereg extends DeciTreeTemplateWrite<AddressI
 	
 	
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
-		List<ActionStd<AddressInfo>> actions = new ArrayList<>();	
+		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStd <AddressInfo> enforcePeregKey = new ActionStdCommom <AddressInfo>(option, AddressVisiEnforcePeregKey.class);		
-		ActionLazy<AddressInfo> insert          = new ActionLazyCommom<AddressInfo>(option, AddressVisiRootInsert.class);
+		ActionStd <AddressInfo> mergeAddaultUser = new ActionStdCommom <AddressInfo>(option, AddressVisiMergeAddaultUser.class);		
+		ActionLazy<AddressInfo> select           = new ActionLazyCommom<AddressInfo>(option, AddressVisiRootSelect.class);
 		
-		enforcePeregKey.addPostAction(insert);
+		mergeAddaultUser.addPostAction(select);
 		
-		actions.add(enforcePeregKey);		
+		actions.add(mergeAddaultUser);			
 		return actions;
 	}
 }

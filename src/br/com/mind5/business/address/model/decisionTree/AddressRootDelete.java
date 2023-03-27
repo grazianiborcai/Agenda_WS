@@ -72,11 +72,11 @@ public final class AddressRootDelete extends DeciTreeTemplateWrite<AddressInfo> 
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddressInfo> mergeToDelete = new ActionStdCommom<AddressInfo>(option, AddressVisiMergeToDelete.class);	
-		ActionLazy<AddressInfo> enforceLChanged = new  ActionLazyCommom<AddressInfo>(option, AddressVisiEnforceLChanged.class);
-		ActionLazy<AddressInfo> enforceChangedBy = new  ActionLazyCommom<AddressInfo>(option, AddressVisiMergeUsername.class);
-		ActionLazy<AddressInfo> update = new  ActionLazyCommom<AddressInfo>(option, AddressVisiDaoUpdate.class);
-		ActionLazy<AddressInfo> delete = new  ActionLazyCommom<AddressInfo>(option, AddressVisiDaoDelete.class);
+		ActionStd <AddressInfo> mergeToDelete    = new ActionStdCommom <AddressInfo>(option, AddressVisiMergeToDelete.class);	
+		ActionLazy<AddressInfo> enforceLChanged  = new ActionLazyCommom<AddressInfo>(option, AddressVisiEnforceLChanged.class);
+		ActionLazy<AddressInfo> enforceChangedBy = new ActionLazyCommom<AddressInfo>(option, AddressVisiMergeUsername.class);
+		ActionLazy<AddressInfo> update           = new ActionLazyCommom<AddressInfo>(option, AddressVisiDaoUpdate.class);
+		ActionLazy<AddressInfo> delete           = new ActionLazyCommom<AddressInfo>(option, AddressVisiDaoDelete.class);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceChangedBy);

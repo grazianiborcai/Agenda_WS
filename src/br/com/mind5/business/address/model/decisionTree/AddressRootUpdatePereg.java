@@ -39,8 +39,8 @@ public final class AddressRootUpdatePereg extends DeciTreeTemplateWrite<AddressI
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<AddressInfo> enforcePeregKey = new ActionStdCommom<AddressInfo>(option, AddressVisiEnforcePeregKey.class);		
-		ActionLazy<AddressInfo> update = new  ActionLazyCommom<AddressInfo>(option, AddressVisiRootUpdate.class);
+		ActionStd <AddressInfo> enforcePeregKey = new ActionStdCommom <AddressInfo>(option, AddressVisiEnforcePeregKey.class);		
+		ActionLazy<AddressInfo> update          = new ActionLazyCommom<AddressInfo>(option, AddressVisiRootUpdate.class);
 		
 		enforcePeregKey.addPostAction(update);
 		
