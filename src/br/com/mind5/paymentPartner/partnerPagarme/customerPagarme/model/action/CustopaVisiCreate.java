@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import br.com.mind5.common.JsonBuilder;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.json.standard.JstdBodyParser;
 import br.com.mind5.model.action.ActionVisitorTemplateSimple;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerPagarme.customerPagarme.info.CustopaInfo;
@@ -22,8 +22,7 @@ public final class CustopaVisiCreate extends ActionVisitorTemplateSimple<Custopa
 	
 	
 	@Override protected List<CustopaInfo> executeTransformationHook(List<CustopaInfo> baseInfos) {	
-		List<CustopaInfo> results = new ArrayList<>();
-		
+		List<CustopaInfo> results = new ArrayList<>();		
 		
 		for(CustopaInfo eachRecod : baseInfos) {
 			HttpResponse<String> response = createCustomer(eachRecod);
@@ -31,7 +30,7 @@ public final class CustopaVisiCreate extends ActionVisitorTemplateSimple<Custopa
 			if (hasError(response) == true)
 				return null;
 			
-			eachRecod = setAttribute(eachRecod, response);
+			eachRecod.responseBody = response.getBody();
 			results.add(eachRecod);
 		}
 		
@@ -56,85 +55,83 @@ public final class CustopaVisiCreate extends ActionVisitorTemplateSimple<Custopa
 	
 	
 	private String makeBody(CustopaInfo recordInfo) {
-		StringBuilder body = new StringBuilder();
+		JsonBuilder builder = new JsonBuilder();
+
+		builder.addBuilderToJson(makeBodyRoot(recordInfo));
+		builder.addBuilderToJson(makeBodyMetadata(recordInfo));
+		builder.addBuilderToJson(makeBodyPhone(recordInfo));
 		
-		body.append("{");		
-		body.append(makeBodyCustomer(recordInfo)).append(",");
-		body.append(makeBodyMetadata(recordInfo));
-		body.append("}");
-		
-		return body.toString();
+		return builder.build();
 	}
 	
 	
 	
-	private String makeBodyCustomer(CustopaInfo recordInfo) {
-		Map<String, String> bodyAttr = makeBodyAttr(recordInfo);
-		return bodyAttToString(bodyAttr);
+	private JsonBuilder makeBodyRoot(CustopaInfo recordInfo) {
+		JsonBuilder builder = new JsonBuilder();
+		
+		builder.addObjToJson("name"         , recordInfo.name);
+		builder.addObjToJson("email"        , recordInfo.email);
+		builder.addObjToJson("code"         , recordInfo.code);
+		builder.addObjToJson("type"         , recordInfo.type);
+		builder.addObjToJson("gender"       , recordInfo.gender);
+		builder.addObjToJson("document"     , recordInfo.document);
+		builder.addObjToJson("birthdate"    , recordInfo.birthdate);
+		builder.addObjToJson("document_type", recordInfo.documentType);
+		
+		return builder;
 	}
 	
 	
 	
-	private Map<String, String> makeBodyAttr(CustopaInfo recordInfo) {
-		Map<String, String> bodyAttr = new HashMap<>();
+	private JsonBuilder makeBodyPhone(CustopaInfo recordInfo) {
+		JsonBuilder builder = new JsonBuilder();
+		JsonBuilder temp    = new JsonBuilder();
 		
-		bodyAttr = bodyAppendAttr(bodyAttr, "name"         , recordInfo.name);
-		bodyAttr = bodyAppendAttr(bodyAttr, "email"        , recordInfo.email);
-		bodyAttr = bodyAppendAttr(bodyAttr, "document"     , recordInfo.document);
-		bodyAttr = bodyAppendAttr(bodyAttr, "document_type", recordInfo.documentType);
-		bodyAttr = bodyAppendAttr(bodyAttr, "type"         , recordInfo.type);
-		bodyAttr = bodyAppendAttr(bodyAttr, "gender"       , recordInfo.gender);
-		bodyAttr = bodyAppendAttr(bodyAttr, "birthdate"    , recordInfo.birthdate);
-		bodyAttr = bodyAppendAttr(bodyAttr, "code"         , recordInfo.code);
+		temp.addBuilderToJson(makeBodyPhoneHome(recordInfo));
+		temp.addBuilderToJson(makeBodyPhoneMobile(recordInfo));
 		
-		return bodyAttr;
+		builder.addBuilderToJson("phones", temp);
+		
+		return builder;
 	}
 	
 	
 	
-	private Map<String, String> bodyAppendAttr(Map<String, String> bodyAttr, String key, String value) {
-		if (value == null)
-			return bodyAttr;
+	private JsonBuilder makeBodyPhoneMobile(CustopaInfo recordInfo) {
+		JsonBuilder builder = new JsonBuilder();
 		
-		if (bodyAttr != null)
-			bodyAttr.put(key, value);
+		if (recordInfo.mobilePhone == null)
+			return builder;
 		
-		return bodyAttr;
+		builder.addNestedObjToJson("mobile_phone", recordInfo.mobilePhone);		
+		
+		return builder;
 	}
 	
 	
 	
-	private String bodyAttToString(Map<String, String> bodyAttr) {
-		StringBuilder body = new StringBuilder();
-		int semaphore = 0;
+	private JsonBuilder makeBodyPhoneHome(CustopaInfo recordInfo) {
+		JsonBuilder builder = new JsonBuilder();
 		
-		for (Map.Entry<String, String> entry : bodyAttr.entrySet()) {
-			if (semaphore != 0)
-				body.append(",");
-			
-			body.append("\"").append(entry.getKey()).append("\":").append("\"").append(entry.getValue()).append("\"");			
-			semaphore = 1;
-		}
+		if (recordInfo.homePhone == null)
+			return builder;
 		
-		return body.toString();
+		builder.addNestedObjToJson("mobile_phone", recordInfo.homePhone);		
+		
+		return builder;
 	}
 	
 	
 	
-	private String makeBodyMetadata(CustopaInfo recordInfo) {
-		String key = "codPayCustomer";
-		String value = recordInfo.compoundId;
-		StringBuilder body = new StringBuilder();
+	private JsonBuilder makeBodyMetadata(CustopaInfo recordInfo) {
+		JsonBuilder builder = new JsonBuilder();
+		Map<String,String> meta = new HashMap<>();
 		
-		body.append("\"metadata\":");
-		body.append("{");
+		meta.put("codPayCustomer", recordInfo.compoundId);
+		builder.addNestedObjToJson("metadata", meta);		
 		
-		body.append("\"").append(key).append("\":");
-		body.append("\"").append(value).append("\"");
-		
-		body.append("}");		
-		return body.toString();
-	}
+		return builder;
+	}	
 	
 	
 	
@@ -179,34 +176,6 @@ public final class CustopaVisiCreate extends ActionVisitorTemplateSimple<Custopa
 			return;
 		
 		System.out.println(response.getBody());
-	}
-	
-	
-	
-	private CustopaInfo setAttribute(CustopaInfo recordInfo, HttpResponse<String> response) {
-		CustopaInfo parsedResponse = parseResponse(response);	
-		
-		recordInfo.id = parsedResponse.id;
-		
-		return recordInfo;
-	}
-	
-	
-	
-	private CustopaInfo parseResponse(HttpResponse<String> response) {
-		JstdBodyParser<CustopaInfo> parser = new JstdBodyParser<>(CustopaInfo.class);
-		
-		List<CustopaInfo> results = parser.parse(response.getBody());
-		
-		if(results == null) {
-			return null;
-		}
-			
-		if(results.isEmpty()) {
-			return null;
-		}
-		
-		return results.get(0);
 	}
 	
 	

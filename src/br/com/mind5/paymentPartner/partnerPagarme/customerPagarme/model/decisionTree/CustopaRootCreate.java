@@ -13,6 +13,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerPagarme.customerPagarme.info.CustopaInfo;
 import br.com.mind5.paymentPartner.partnerPagarme.customerPagarme.model.action.CustopaVisiCreate;
+import br.com.mind5.paymentPartner.partnerPagarme.customerPagarme.model.action.CustopaVisiEnforceResponseAttr;
 import br.com.mind5.paymentPartner.partnerPagarme.customerPagarme.model.checker.CustopaCheckCreate;
 
 public final class CustopaRootCreate extends DeciTreeTemplateWrite<CustopaInfo> {
@@ -43,10 +44,12 @@ public final class CustopaRootCreate extends DeciTreeTemplateWrite<CustopaInfo> 
 	@Override protected List<ActionStd<CustopaInfo>> buildActionsOnPassedHook(DeciTreeOption<CustopaInfo> option) {
 		List<ActionStd<CustopaInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CustopaInfo> mergeSetupar = new CustopaNodeSetuparL1(option).toAction();
-		ActionLazy<CustopaInfo> create = new ActionLazyCommom<CustopaInfo>(option, CustopaVisiCreate.class);
+		ActionStd <CustopaInfo> mergeSetupar        = new CustopaNodeSetuparL1(option).toAction();
+		ActionLazy<CustopaInfo> create              = new ActionLazyCommom<CustopaInfo>(option, CustopaVisiCreate.class);
+		ActionLazy<CustopaInfo> enforceResponseAttr = new ActionLazyCommom<CustopaInfo>(option, CustopaVisiEnforceResponseAttr.class);
 		
 		mergeSetupar.addPostAction(create);
+		create.addPostAction(enforceResponseAttr);
 		
 		actions.add(mergeSetupar);
 		return actions;

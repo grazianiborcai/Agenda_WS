@@ -1,6 +1,7 @@
 package br.com.mind5.paymentPartner.partnerPagarme.customerPagarme.info;
 
 import java.util.List;
+import java.util.Map;
 
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
@@ -10,6 +11,8 @@ import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 public final class CustopaInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public int codPayPartner;
+	public long codUser;
+	public long codPayCustomer;
 	public long codCustomer;
 	public String id;
 	public String name;
@@ -20,8 +23,11 @@ public final class CustopaInfo extends InfoRecord implements Cloneable {
 	public String gender;
 	public String birthdate;
 	public String code;
-	public String authorization;
 	public String compoundId;
+	public Map<String,String> homePhone;
+	public Map<String,String> mobilePhone;
+	public String authorization;
+	public String responseBody;
 	public SetuparInfo setuparData;
 	public String username;
 	
@@ -29,10 +35,14 @@ public final class CustopaInfo extends InfoRecord implements Cloneable {
 	public CustopaInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();
-		codCustomer = DefaultValue.number();
-		codPayPartner = DefaultValue.number();
-		setuparData = DefaultValue.object();
+		codUser        = DefaultValue.number();
+		homePhone	   = DefaultValue.object();
+		codOwner       = DefaultValue.number();
+		mobilePhone	   = DefaultValue.object();
+		codCustomer    = DefaultValue.number();		
+		setuparData    = DefaultValue.object();
+		codPayPartner  = DefaultValue.number();
+		codPayCustomer = DefaultValue.number();
 	}
 	
 	

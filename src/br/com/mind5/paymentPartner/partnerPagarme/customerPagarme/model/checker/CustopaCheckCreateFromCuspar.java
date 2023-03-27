@@ -9,18 +9,18 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.paymentPartner.partnerPagarme.customerPagarme.info.CustopaInfo;
 
-public final class CustopaCheckCreateFromCus extends ModelCheckerTemplateSimple<CustopaInfo> {
+public final class CustopaCheckCreateFromCuspar extends ModelCheckerTemplateSimple<CustopaInfo> {
 
-	public CustopaCheckCreateFromCus(ModelCheckerOption option) {
+	public CustopaCheckCreateFromCuspar(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CustopaInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner 	<= 0	||
-			recordInfo.codCustomer 	<= 0	||
-			recordInfo.codLanguage	== null		)
+		if (recordInfo.codOwner 		<= 0	||
+			recordInfo.codPayCustomer 	<= 0	||
+			recordInfo.codLanguage		== null		)
 			
 			return super.FAILED;
 

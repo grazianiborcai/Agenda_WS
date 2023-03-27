@@ -19,14 +19,14 @@ final class CustopaMergerVisiCus extends InfoMergerVisitorTemplate<CustopaInfo, 
 	@Override public List<CustopaInfo> merge(CustopaInfo baseInfo, CusInfo selectedInfo) {
 		List<CustopaInfo> results = new ArrayList<>();
 		
-		baseInfo.name     		= getCustomerName(selectedInfo);
-		baseInfo.email    		= getCustomerEmail(selectedInfo);
-		baseInfo.code     		= getCustomerCode(selectedInfo);
-		baseInfo.document 		= getCustomerDocument(selectedInfo);
-		baseInfo.documentType 	= getCustomerDocumentType(selectedInfo);
-		baseInfo.type 			= getCustomerType(selectedInfo);
-		baseInfo.gender 		= getCustomerGender(selectedInfo);
-		baseInfo.birthdate 		= getCustomerBirthdate(selectedInfo);
+		baseInfo.name     		= getCustomerName(baseInfo, selectedInfo);
+		baseInfo.email    		= getCustomerEmail(baseInfo, selectedInfo);
+		baseInfo.code     		= getCustomerCode(baseInfo, selectedInfo);
+		baseInfo.document 		= getCustomerDocument(baseInfo, selectedInfo);
+		baseInfo.documentType 	= getCustomerDocumentType(baseInfo, selectedInfo);
+		baseInfo.type 			= getCustomerType(baseInfo, selectedInfo);
+		baseInfo.gender 		= getCustomerGender(baseInfo, selectedInfo);
+		baseInfo.birthdate 		= getCustomerBirthdate(baseInfo, selectedInfo);
 		
 		results.add(baseInfo);
 		return results;
@@ -34,7 +34,10 @@ final class CustopaMergerVisiCus extends InfoMergerVisitorTemplate<CustopaInfo, 
 	
 	
 	
-	private String getCustomerName(CusInfo selectedInfo) {
+	private String getCustomerName(CustopaInfo baseInfo, CusInfo selectedInfo) {
+		if (baseInfo.name != null)
+			return baseInfo.name;
+		
 		if (selectedInfo.personData == null)
 			return null;
 		
@@ -46,7 +49,10 @@ final class CustopaMergerVisiCus extends InfoMergerVisitorTemplate<CustopaInfo, 
 	
 	
 	
-	private String getCustomerEmail(CusInfo selectedInfo) {
+	private String getCustomerEmail(CustopaInfo baseInfo, CusInfo selectedInfo) {
+		if (baseInfo.email != null)
+			return baseInfo.email;
+		
 		if (selectedInfo.personData == null)
 			return null;
 		
@@ -58,13 +64,28 @@ final class CustopaMergerVisiCus extends InfoMergerVisitorTemplate<CustopaInfo, 
 	
 	
 	
-	private String getCustomerCode(CusInfo selectedInfo) {
+	private String getCustomerCode(CustopaInfo baseInfo, CusInfo selectedInfo) {
 		return selectedInfo.codOwner + "-" + selectedInfo.codCustomer;
 	}
 	
 	
 	
-	private String getCustomerDocument(CusInfo selectedInfo) {
+	private String getCustomerDocumentType(CustopaInfo baseInfo, CusInfo selectedInfo) {
+		if (baseInfo.documentType != null)
+			return baseInfo.documentType;
+		
+		if (getCustomerDocument(baseInfo, selectedInfo) == null)
+			return null;
+		
+		return "CPF";
+	}
+	
+	
+	
+	private String getCustomerDocument(CustopaInfo baseInfo, CusInfo selectedInfo) {
+		if (baseInfo.document != null)
+			return baseInfo.document;
+		
 		if (selectedInfo.personData == null)
 			return null;
 		
@@ -76,22 +97,19 @@ final class CustopaMergerVisiCus extends InfoMergerVisitorTemplate<CustopaInfo, 
 	
 	
 	
-	private String getCustomerDocumentType(CusInfo selectedInfo) {
-		if (getCustomerDocument(selectedInfo) == null)
-			return null;
+	private String getCustomerType(CustopaInfo baseInfo, CusInfo selectedInfo) {
+		if (baseInfo.type != null)
+			return baseInfo.type;
 		
-		return "CPF";
-	}
-	
-	
-	
-	private String getCustomerType(CusInfo selectedInfo) {
 		return "individual";
 	}
 	
 	
 	
-	private String getCustomerGender(CusInfo selectedInfo) {
+	private String getCustomerGender(CustopaInfo baseInfo, CusInfo selectedInfo) {
+		if (baseInfo.gender != null)
+			return baseInfo.gender;
+		
 		if (selectedInfo.personData == null)
 			return null;
 		
@@ -106,7 +124,10 @@ final class CustopaMergerVisiCus extends InfoMergerVisitorTemplate<CustopaInfo, 
 	
 	
 	
-	private String getCustomerBirthdate(CusInfo selectedInfo) {
+	private String getCustomerBirthdate(CustopaInfo baseInfo, CusInfo selectedInfo) {
+		if (baseInfo.birthdate != null)
+			return baseInfo.birthdate;
+		
 		if (selectedInfo.personData == null)
 			return null;
 		

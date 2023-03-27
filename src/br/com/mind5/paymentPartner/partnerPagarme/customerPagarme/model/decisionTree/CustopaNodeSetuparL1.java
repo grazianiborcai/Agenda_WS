@@ -39,8 +39,8 @@ public final class CustopaNodeSetuparL1 extends DeciTreeTemplateWrite<CustopaInf
 	@Override protected List<ActionStd<CustopaInfo>> buildActionsOnPassedHook(DeciTreeOption<CustopaInfo> option) {
 		List<ActionStd<CustopaInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CustopaInfo> enforcePaypar = new ActionStdCommom<CustopaInfo>(option, CustopaVisiEnforcePaypar.class);
-		ActionLazy<CustopaInfo> nodeL2 = new ActionLazyCommom<CustopaInfo>(option, CustopaVisiNodeSetuparL2.class);
+		ActionStd <CustopaInfo> enforcePaypar = new ActionStdCommom <CustopaInfo>(option, CustopaVisiEnforcePaypar.class);
+		ActionLazy<CustopaInfo> nodeL2        = new ActionLazyCommom<CustopaInfo>(option, CustopaVisiNodeSetuparL2.class);
 		
 		enforcePaypar.addPostAction(nodeL2);
 		
