@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.info.CusparMerger;
 import br.com.mind5.paymentPartner.partnerPagarme.customerPagarme.info.CustopaInfo;
-import br.com.mind5.paymentPartner.partnerPagarme.customerPagarme.model.decisionTree.CustopaRootCreateFromCus;
+import br.com.mind5.paymentPartner.partnerPagarme.customerPagarme.model.decisionTree.CustopaRootCreateFromCuspar;
 
 public final class CusparVisiCustopaCreate extends ActionVisitorTemplateAction<CusparInfo, CustopaInfo> {
 	public CusparVisiCustopaCreate(DeciTreeOption<CusparInfo> option) {
@@ -18,7 +18,7 @@ public final class CusparVisiCustopaCreate extends ActionVisitorTemplateAction<C
 	
 	
 	@Override protected Class<? extends DeciTree<CustopaInfo>> getTreeClassHook() {
-		return CustopaRootCreateFromCus.class;
+		return CustopaRootCreateFromCuspar.class;
 	}
 	
 	
