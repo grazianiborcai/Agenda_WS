@@ -10,19 +10,19 @@ import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class PhonarchDaoDbTableColumn extends DaoDbTableColumnTemplate {	
-	public static final String COL_COD_AREA = DaoDbField.COL_COD_AREA;
-	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
-	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
+	public static final String COL_COD_AREA         = DaoDbField.COL_COD_AREA;
+	public static final String COL_COD_CUSTOMER     = DaoDbField.COL_COD_CUSTOMER;
+	public static final String COL_COD_EMPLOYEE     = DaoDbField.COL_COD_EMPLOYEE;
 	public static final String COL_COD_LEGAL_PERSON = DaoDbField.COL_COD_LEGAL_PERSON;
-	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
-	public static final String COL_COD_OWNER_REF = DaoDbField.COL_COD_OWNER_REF;
-	public static final String COL_COD_PHONE = DaoDbField.COL_COD_PHONE;
-	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
-	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
-	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
-	public static final String COL_COUNTRY_PHONE = DaoDbField.COL_COUNTRY_PHONE;
-	public static final String COL_FULL_NUMBER = DaoDbField.COL_FULL_NUMBER;
-	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
+	public static final String COL_COD_OWNER        = DaoDbField.COL_COD_OWNER;
+	public static final String COL_COD_OWNER_REF    = DaoDbField.COL_COD_OWNER_REF;
+	public static final String COL_COD_PHONE        = DaoDbField.COL_COD_PHONE;
+	public static final String COL_COD_SNAPSHOT     = DaoDbField.COL_COD_SNAPSHOT;
+	public static final String COL_COD_STORE        = DaoDbField.COL_COD_STORE;
+	public static final String COL_COD_USER         = DaoDbField.COL_COD_USER;
+	public static final String COL_COUNTRY_PHONE    = DaoDbField.COL_COUNTRY_PHONE;
+	public static final String COL_FULL_NUMBER      = DaoDbField.COL_FULL_NUMBER;
+	public static final String COL_RECORD_MODE      = DaoDbField.COL_RECORD_MODE;
 	
 	
 	public PhonarchDaoDbTableColumn() {
