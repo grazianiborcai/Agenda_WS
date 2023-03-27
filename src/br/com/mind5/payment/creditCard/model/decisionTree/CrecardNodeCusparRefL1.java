@@ -13,8 +13,8 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.action.CrecardVisiNodeCusparRefL2;
 import br.com.mind5.payment.creditCard.model.action.CrecardVisiMergeCuspar;
+import br.com.mind5.payment.creditCard.model.action.CrecardVisiNodeCusparRefL2;
 
 public final class CrecardNodeCusparRefL1 extends DeciTreeTemplateWrite<CrecardInfo> {
 	
@@ -39,8 +39,8 @@ public final class CrecardNodeCusparRefL1 extends DeciTreeTemplateWrite<CrecardI
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CrecardInfo> mergeCuspar = new ActionStdCommom<CrecardInfo>(option, CrecardVisiMergeCuspar.class);
-		ActionLazy<CrecardInfo> nodeL2 = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeCusparRefL2.class);
+		ActionStd <CrecardInfo> mergeCuspar = new ActionStdCommom <CrecardInfo>(option, CrecardVisiMergeCuspar.class);
+		ActionLazy<CrecardInfo> nodeL2      = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeCusparRefL2.class);
 		
 		mergeCuspar.addPostAction(nodeL2);
 		

@@ -56,8 +56,8 @@ public final class CrecardNodePayPartnerL1 extends DeciTreeTemplateWrite<Crecard
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnFailedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<CrecardInfo> mergerPayparult = new ActionStdCommom<CrecardInfo>(option, CrecardVisiMergePayparult.class);
-		ActionLazy<CrecardInfo> nodeL2 = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodePayPartnerL2.class);
+		ActionStd <CrecardInfo> mergerPayparult = new ActionStdCommom <CrecardInfo>(option, CrecardVisiMergePayparult.class);
+		ActionLazy<CrecardInfo> nodeL2          = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodePayPartnerL2.class);
 		
 		mergerPayparult.addPostAction(nodeL2);
 		

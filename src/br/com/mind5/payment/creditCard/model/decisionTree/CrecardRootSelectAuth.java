@@ -37,7 +37,7 @@ public final class CrecardRootSelectAuth extends DeciTreeTemplateRead<CrecardInf
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CrecardInfo> select = new CrecardRootSelect(option).toAction();
+		ActionStd <CrecardInfo> select   = new CrecardRootSelect(option).toAction();
 		ActionLazy<CrecardInfo> nodeAuth = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeAuth.class);
 		
 		select.addPostAction(nodeAuth);

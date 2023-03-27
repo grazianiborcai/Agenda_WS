@@ -37,7 +37,7 @@ public final class CrecardNodeAuth extends DeciTreeTemplateWrite<CrecardInfo> {
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CrecardInfo> nodeUser = new CrecardNodeUser(option).toAction();	
+		ActionStd <CrecardInfo> nodeUser      = new CrecardNodeUser(option).toAction();	
 		ActionLazy<CrecardInfo> nodeCusparRef = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeCusparRefL1.class);
 		
 		nodeUser.addPostAction(nodeCusparRef);

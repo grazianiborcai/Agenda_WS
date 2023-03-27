@@ -3,6 +3,9 @@ package br.com.mind5.payment.creditCard.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
+import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -29,6 +32,8 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 	public long codPhoneSnapshotHolder;
 	public long codAddressHolder;	
 	public long codAddressSnapshotHolder;
+	public AddresnapInfo addresnapData;
+	public PhonapInfo phonapData;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -37,19 +42,22 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 	
 	public CrecardInfo() {
 		super();
-		
-		codOwner = DefaultValue.number();
-		codPayCustomer = DefaultValue.number();
-		codUser = DefaultValue.number();
-		isExpired = DefaultValue.boole();
-		codPayPartner = DefaultValue.number();
-		recordMode = DefaultValue.recordMode();	
-		lastChangedBy = DefaultValue.number();
-		codPhoneHolder = DefaultValue.number();
-		codPhoneSnapshotHolder = DefaultValue.number();
-		codAddressHolder = DefaultValue.number();
+
+		codUser 				 = DefaultValue.number();
+		codOwner 				 = DefaultValue.number();
+		isExpired 				 = DefaultValue.boole();		
+		recordMode 				 = DefaultValue.recordMode();
+		phonapData				 = DefaultValue.object();
+		codPayPartner 			 = DefaultValue.number();
+		codCreditCard            = DefaultValue.number();
+		lastChangedBy            = DefaultValue.number();
+		addresnapData 			 = DefaultValue.object();
+		codPayCustomer 			 = DefaultValue.number();
+		codPhoneHolder           = DefaultValue.number();
+		codAddressHolder         = DefaultValue.number();
+		codPhoneSnapshotHolder   = DefaultValue.number();
 		codAddressSnapshotHolder = DefaultValue.number();
-		codCreditCard = DefaultValue.number();
+		
 	}
 	
 	
@@ -67,7 +75,12 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		CrecardInfo deepCopy = (CrecardInfo) super.clone();		
+
+		deepCopy.phonapData    = CloneUtil.cloneRecord (deepCopy.phonapData	  , this.getClass());
+		deepCopy.addresnapData = CloneUtil.cloneRecord (deepCopy.addresnapData, this.getClass());
+
+		return deepCopy;	
 	}
 	
 	

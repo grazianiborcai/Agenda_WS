@@ -17,6 +17,7 @@ import br.com.mind5.payment.creditCard.model.action.CrecardVisiEnforceExpired;
 import br.com.mind5.payment.creditCard.model.action.CrecardVisiMergeCuspar;
 import br.com.mind5.payment.creditCard.model.action.CrecardVisiMergePaypar;
 import br.com.mind5.payment.creditCard.model.action.CrecardVisiMergeToSelect;
+import br.com.mind5.payment.creditCard.model.action.CrecardVisiNodeSelectL1;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckOwner;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckRead;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckUsername;
@@ -63,14 +64,16 @@ public final class CrecardRootSelect extends DeciTreeTemplateRead<CrecardInfo> {
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CrecardInfo> mergeToSelect = new ActionStdCommom<CrecardInfo>(option, CrecardVisiMergeToSelect.class);
+		ActionStd <CrecardInfo> mergeToSelect  = new ActionStdCommom <CrecardInfo>(option, CrecardVisiMergeToSelect.class);
 		ActionLazy<CrecardInfo> enforceExpired = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiEnforceExpired.class);
-		ActionLazy<CrecardInfo> mergeCuspar = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiMergeCuspar.class);
-		ActionLazy<CrecardInfo> mergePaypar = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiMergePaypar.class);
+		ActionLazy<CrecardInfo> mergeCuspar    = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiMergeCuspar.class);
+		ActionLazy<CrecardInfo> mergePaypar    = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiMergePaypar.class);
+		ActionLazy<CrecardInfo> nodeL1         = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeSelectL1.class);
 		
 		mergeToSelect.addPostAction(enforceExpired);
 		enforceExpired.addPostAction(mergeCuspar);
 		mergeCuspar.addPostAction(mergePaypar);
+		mergePaypar.addPostAction(nodeL1);
 		
 		actions.add(mergeToSelect);
 		return actions;

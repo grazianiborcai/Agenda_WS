@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
+import br.com.mind5.payment.creditCard.model.action.CrecardVisiMergeToDelete;
 import br.com.mind5.payment.creditCard.model.action.CrecardVisiNodeAuth;
 import br.com.mind5.payment.creditCard.model.action.CrecardVisiNodeDelete;
-import br.com.mind5.payment.creditCard.model.action.CrecardVisiMergeToDelete;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckDelete;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckExist;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckUsername;
@@ -62,9 +62,9 @@ public final class CrecardRootDelete extends DeciTreeTemplateWrite<CrecardInfo> 
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CrecardInfo> mergeToDelete = new ActionStdCommom<CrecardInfo>(option, CrecardVisiMergeToDelete.class);
-		ActionLazy<CrecardInfo> nodeAuth = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeAuth.class);
-		ActionLazy<CrecardInfo> nodeDelete = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeDelete.class);
+		ActionStd <CrecardInfo> mergeToDelete = new ActionStdCommom <CrecardInfo>(option, CrecardVisiMergeToDelete.class);
+		ActionLazy<CrecardInfo> nodeAuth      = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeAuth.class);
+		ActionLazy<CrecardInfo> nodeDelete    = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiNodeDelete.class);
 		
 		mergeToDelete.addPostAction(nodeAuth);
 		nodeAuth.addPostAction(nodeDelete);

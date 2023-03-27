@@ -3,7 +3,9 @@ package br.com.mind5.payment.creditCard.info;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
+import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
@@ -16,6 +18,32 @@ import br.com.mind5.paymentPartner.partnerPagarme.creditCardPagarme.info.Crecapa
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CrecardMerger {
+	public static List<CrecardInfo> mergeWithAddresnap(List<CrecardInfo> baseInfos, List<AddresnapInfo> selectedInfos) {
+		InfoMergerBuilder<CrecardInfo, AddresnapInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CrecardMergerVisiAddresnap());
+		InfoMerger<CrecardInfo, AddresnapInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<CrecardInfo> mergeWithPhonap(List<CrecardInfo> baseInfos, List<PhonapInfo> selectedInfos) {
+		InfoMergerBuilder<CrecardInfo, PhonapInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CrecardMergerVisiPhonap());
+		InfoMerger<CrecardInfo, PhonapInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<CrecardInfo> mergeWithPayparult(List<CrecardInfo> baseInfos, List<PayparultInfo> selectedInfos) {
 		InfoMergerBuilder<CrecardInfo, PayparultInfo> builder = new InfoMergerBuilder<>();
 		

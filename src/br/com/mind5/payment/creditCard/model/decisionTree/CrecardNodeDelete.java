@@ -39,9 +39,9 @@ public final class CrecardNodeDelete extends DeciTreeTemplateWrite<CrecardInfo> 
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CrecardInfo> deleteMoip = new CrecardNodeMoipDelete(option).toAction();
-		ActionStd<CrecardInfo> update = new ActionStdCommom<CrecardInfo>(option, CrecardVisiDaoUpdate.class);
-		ActionLazy<CrecardInfo> delete = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiDaoDelete.class);
+		ActionStd <CrecardInfo> deleteMoip = new CrecardNodeMoipDelete(option).toAction();
+		ActionStd <CrecardInfo> update     = new ActionStdCommom <CrecardInfo>(option, CrecardVisiDaoUpdate.class);
+		ActionLazy<CrecardInfo> delete     = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiDaoDelete.class);
 		
 		update.addPostAction(delete);
 		

@@ -39,8 +39,8 @@ public final class CrecardNodeUser extends DeciTreeTemplateWrite<CrecardInfo> {
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CrecardInfo> enforceLChanged = new ActionStdCommom<CrecardInfo>(option, CrecardVisiEnforceLChanged.class);	
-		ActionLazy<CrecardInfo> mergeUsername = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiMergeUsername.class);
+		ActionStd <CrecardInfo> enforceLChanged = new ActionStdCommom <CrecardInfo>(option, CrecardVisiEnforceLChanged.class);	
+		ActionLazy<CrecardInfo> mergeUsername   = new ActionLazyCommom<CrecardInfo>(option, CrecardVisiMergeUsername.class);
 		
 		enforceLChanged.addPostAction(mergeUsername);
 		
