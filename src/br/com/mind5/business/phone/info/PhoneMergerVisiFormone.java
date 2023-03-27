@@ -9,7 +9,7 @@ import br.com.mind5.info.InfoMergerVisitorTemplate;
 final class PhoneMergerVisiFormone extends InfoMergerVisitorTemplate<PhoneInfo, FormoneInfo> {
 
 	@Override public boolean shouldMerge(PhoneInfo baseInfo, FormoneInfo selectedInfo) {
-		return (baseInfo.codCountry == selectedInfo.codCountry);
+		return (baseInfo.codCountry.equals(selectedInfo.codCountry));
 	}
 	
 	

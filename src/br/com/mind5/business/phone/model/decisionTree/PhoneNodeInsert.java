@@ -48,14 +48,14 @@ public final class PhoneNodeInsert extends DeciTreeTemplateWrite<PhoneInfo> {
 	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
 
-		ActionStd <PhoneInfo> enforceNumberT01 = new ActionStdCommom <PhoneInfo>(option, PhoneVisiEnforceNumberT01.class);
-		ActionLazy<PhoneInfo> enforceAreaT01   = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiEnforceAreaT01.class);
+		ActionStd <PhoneInfo> enforceAreaT01   = new ActionStdCommom <PhoneInfo>(option, PhoneVisiEnforceAreaT01.class);
+		ActionLazy<PhoneInfo> enforceNumberT01 = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiEnforceNumberT01.class);		
 		ActionLazy<PhoneInfo> nodeInsertT01    = new ActionLazyCommom<PhoneInfo>(option, PhoneVisiNodeInsertT01.class);
 		
-		enforceNumberT01.addPostAction(enforceAreaT01);
-		enforceAreaT01.addPostAction(nodeInsertT01);
+		enforceAreaT01.addPostAction(enforceNumberT01);
+		enforceNumberT01.addPostAction(nodeInsertT01);
 
-		actions.add(enforceNumberT01);		
+		actions.add(enforceAreaT01);		
 		return actions;
 	}
 	
