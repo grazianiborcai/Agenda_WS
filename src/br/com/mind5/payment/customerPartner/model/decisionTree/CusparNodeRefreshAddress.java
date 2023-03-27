@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.checker.CusparCheckHasPhone;
+import br.com.mind5.payment.customerPartner.model.action.CusparVisiMergeAddault;
+import br.com.mind5.payment.customerPartner.model.checker.CusparCheckAddault;
 
-public final class CusparNodeRefreshOnEmptyPhone extends DeciTreeTemplateRead<CusparInfo> {
+public final class CusparNodeRefreshAddress extends DeciTreeTemplateRead<CusparInfo> {
 	
-	public CusparNodeRefreshOnEmptyPhone(DeciTreeOption<CusparInfo> option) {
+	public CusparNodeRefreshAddress(DeciTreeOption<CusparInfo> option) {
 		super(option);
 	}
 	
@@ -29,8 +30,8 @@ public final class CusparNodeRefreshOnEmptyPhone extends DeciTreeTemplateRead<Cu
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CusparCheckHasPhone(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CusparCheckAddault(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -40,21 +41,10 @@ public final class CusparNodeRefreshOnEmptyPhone extends DeciTreeTemplateRead<Cu
 	
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
-
-		ActionStd<CusparInfo> success = new ActionStdSuccessCommom<CusparInfo>(option);	
 		
-		actions.add(success);		
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<CusparInfo>> buildActionsOnFailedHook(DeciTreeOption<CusparInfo> option) {
-		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
+		ActionStd <CusparInfo> mergeAddault = new ActionStdCommom <CusparInfo>(option, CusparVisiMergeAddault.class);
 		
-		ActionStd <CusparInfo> refresh = new CusparRootRefresh(option).toAction();
-		
-		actions.add(refresh);			
+		actions.add(mergeAddault);			
 		return actions;
 	}
 }

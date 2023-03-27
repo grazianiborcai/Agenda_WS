@@ -10,7 +10,7 @@ final class CusparMergerVisiPhonault extends InfoMergerVisitorTemplate<CusparInf
 
 	@Override public boolean shouldMerge(CusparInfo baseInfo, PhonaultInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner &&
-				baseInfo.codUser == selectedInfo.codUser	);
+				baseInfo.codUser  == selectedInfo.codUser	);
 	}
 	
 	

@@ -3,6 +3,8 @@ package br.com.mind5.payment.customerPartner.info;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
+import br.com.mind5.business.addressDefault.info.AddaultInfo;
+import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phoneDefault.info.PhonaultInfo;
@@ -24,6 +26,32 @@ public final class CusparMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CusparMergerVisiPhonap());
 		InfoMerger<CusparInfo, PhonapInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<CusparInfo> mergeWithAddresnap(List<CusparInfo> baseInfos, List<AddresnapInfo> selectedInfos) {
+		InfoMergerBuilder<CusparInfo, AddresnapInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusparMergerVisiAddresnap());
+		InfoMerger<CusparInfo, AddresnapInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<CusparInfo> mergeWithAddault(List<CusparInfo> baseInfos, List<AddaultInfo> selectedInfos) {
+		InfoMergerBuilder<CusparInfo, AddaultInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusparMergerVisiAddault());
+		InfoMerger<CusparInfo, AddaultInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

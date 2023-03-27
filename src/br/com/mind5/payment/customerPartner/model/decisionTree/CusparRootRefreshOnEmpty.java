@@ -14,14 +14,14 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.action.CusparVisiMergeToSelect;
-import br.com.mind5.payment.customerPartner.model.action.CusparVisiNodeRefreshOnEmptyPhone;
+import br.com.mind5.payment.customerPartner.model.action.CusparVisiNodeRefreshOnEmpty;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckExist;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckLangu;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckRead;
 
-public final class CusparRootRefreshOnEmptyPhone extends DeciTreeTemplateRead<CusparInfo> {
+public final class CusparRootRefreshOnEmpty extends DeciTreeTemplateRead<CusparInfo> {
 	
-	public CusparRootRefreshOnEmptyPhone(DeciTreeOption<CusparInfo> option) {
+	public CusparRootRefreshOnEmpty(DeciTreeOption<CusparInfo> option) {
 		super(option);
 	}
 	
@@ -62,7 +62,7 @@ public final class CusparRootRefreshOnEmptyPhone extends DeciTreeTemplateRead<Cu
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
 		
 		ActionStd <CusparInfo> select = new ActionStdCommom <CusparInfo>(option, CusparVisiMergeToSelect.class);
-		ActionLazy<CusparInfo> nodeL1 = new ActionLazyCommom<CusparInfo>(option, CusparVisiNodeRefreshOnEmptyPhone.class);		
+		ActionLazy<CusparInfo> nodeL1 = new ActionLazyCommom<CusparInfo>(option, CusparVisiNodeRefreshOnEmpty.class);		
 		
 		select.addPostAction(nodeL1);
 		
