@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
-import br.com.mind5.business.phoneSnapshot.model.action.PhonapVisiRootSelect;
 import br.com.mind5.business.phoneSnapshot.model.action.PhonapVisiDaoInsert;
+import br.com.mind5.business.phoneSnapshot.model.action.PhonapVisiRootSelect;
 import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckOwner;
 import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
@@ -52,9 +52,9 @@ public final class PhonapRootInsert extends DeciTreeTemplateWrite<PhonapInfo> {
 	@Override protected List<ActionStd<PhonapInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonapInfo> option) {
 		List<ActionStd<PhonapInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<PhonapInfo> nodeUser = new PhonapNodeUselis(option).toAction();	
-		ActionLazy<PhonapInfo> insert = new ActionLazyCommom<PhonapInfo>(option, PhonapVisiDaoInsert.class);		
-		ActionLazy<PhonapInfo> select = new ActionLazyCommom<PhonapInfo>(option, PhonapVisiRootSelect.class);	
+		ActionStd <PhonapInfo> nodeUser = new PhonapNodeUselis(option).toAction();	
+		ActionLazy<PhonapInfo> insert   = new ActionLazyCommom<PhonapInfo>(option, PhonapVisiDaoInsert.class);		
+		ActionLazy<PhonapInfo> select   = new ActionLazyCommom<PhonapInfo>(option, PhonapVisiRootSelect.class);	
 		
 		nodeUser.addPostAction(insert);
 		insert.addPostAction(select);

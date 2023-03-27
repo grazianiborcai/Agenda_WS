@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
-import br.com.mind5.business.phoneSnapshot.model.action.PhonapVisiRootSelect;
 import br.com.mind5.business.phoneSnapshot.model.action.PhonapVisiMergePhonaparch;
+import br.com.mind5.business.phoneSnapshot.model.action.PhonapVisiRootSelect;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -39,8 +39,8 @@ public final class PhonapRootSearch extends DeciTreeTemplateRead<PhonapInfo> {
 	@Override protected List<ActionStd<PhonapInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonapInfo> option) {
 		List<ActionStd<PhonapInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhonapInfo> mergePhonaparch = new ActionStdCommom<PhonapInfo>(option, PhonapVisiMergePhonaparch.class);	
-		ActionLazy<PhonapInfo> select = new ActionLazyCommom<PhonapInfo>(option, PhonapVisiRootSelect.class);
+		ActionStd <PhonapInfo> mergePhonaparch = new ActionStdCommom <PhonapInfo>(option, PhonapVisiMergePhonaparch.class);	
+		ActionLazy<PhonapInfo> select          = new ActionLazyCommom<PhonapInfo>(option, PhonapVisiRootSelect.class);
 
 		mergePhonaparch.addPostAction(select);
 		

@@ -41,25 +41,25 @@ public final class PhonapInfo extends InfoRecord implements Cloneable {
 	public PhonapInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();
-		codSnapshot = DefaultValue.number();
-		codPhone = DefaultValue.number();
-		codOwnerRef = DefaultValue.number();
-		codOwnerRefSnapshot = DefaultValue.number();
-		codStore = DefaultValue.number();
-		codStoreSnapshot = DefaultValue.number();
-		codCustomer = DefaultValue.number();
-		codCustomerSnapshot = DefaultValue.number();
-		codEmployee = DefaultValue.number();
+		codUser             = DefaultValue.number();
+		codOwner            = DefaultValue.number();
+		codPhone            = DefaultValue.number();
+		codStore            = DefaultValue.number();
+		isDefault           = DefaultValue.boole();			
+		createdBy           = DefaultValue.number();	
+		recordMode          = DefaultValue.recordMode();
+		codCustomer         = DefaultValue.number();
+		codEmployee         = DefaultValue.number();
+		codOwnerRef         = DefaultValue.number();
+		codSnapshot         = DefaultValue.number();
+		lastChangedBy       = DefaultValue.number();
+		codLegalPerson      = DefaultValue.number();		
+		codUserSnapshot     = DefaultValue.number();
+		codCountryPhone     = DefaultValue.number();
+		codStoreSnapshot    = DefaultValue.number();
 		codEmployeeSnapshot = DefaultValue.number();
-		codUser = DefaultValue.number();
-		codUserSnapshot = DefaultValue.number();
-		codLegalPerson = DefaultValue.number();
-		isDefault = DefaultValue.boole();
-		codCountryPhone = DefaultValue.number();
-		recordMode = DefaultValue.recordMode();
-		createdBy = DefaultValue.number(); 
-		lastChangedBy = DefaultValue.number(); 
+		codCustomerSnapshot = DefaultValue.number();
+		codOwnerRefSnapshot = DefaultValue.number();
 	}
 	
 	

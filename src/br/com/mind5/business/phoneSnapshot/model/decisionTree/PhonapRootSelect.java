@@ -62,9 +62,9 @@ public final class PhonapRootSelect extends DeciTreeTemplateRead<PhonapInfo> {
 	@Override protected List<ActionStd<PhonapInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonapInfo> option) {
 		List<ActionStd<PhonapInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhonapInfo> select = new ActionStdCommom<PhonapInfo>(option, PhonapVisiMergeToSelect.class);	
+		ActionStd <PhonapInfo> select         = new ActionStdCommom <PhonapInfo>(option, PhonapVisiMergeToSelect.class);	
 		ActionLazy<PhonapInfo> mergeCountrone = new ActionLazyCommom<PhonapInfo>(option, PhonapVisiMergeCountrone.class);
-		ActionLazy<PhonapInfo> mergeFormone = new ActionLazyCommom<PhonapInfo>(option, PhonapVisiMergeFormone.class);
+		ActionLazy<PhonapInfo> mergeFormone   = new ActionLazyCommom<PhonapInfo>(option, PhonapVisiMergeFormone.class);
 
 		select.addPostAction(mergeCountrone);	
 		mergeCountrone.addPostAction(mergeFormone);
