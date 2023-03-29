@@ -27,12 +27,12 @@ public final class PayormarchInfo extends InfoRecord implements Cloneable, Compa
 	public PayormarchInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();	
-		codPayOrder = DefaultValue.number();
-		codPayOrderItem = DefaultValue.number();			
-		codOrder = DefaultValue.number();	
-		codOrderItem = DefaultValue.number();
-		codPayPartner = DefaultValue.number();
+		codOwner        = DefaultValue.number();
+		codOrder        = DefaultValue.number();
+		codPayOrder     = DefaultValue.number();
+		codOrderItem    = DefaultValue.number();
+		codPayPartner   = DefaultValue.number();
+		codPayOrderItem = DefaultValue.number();
 	}
 	
 	
