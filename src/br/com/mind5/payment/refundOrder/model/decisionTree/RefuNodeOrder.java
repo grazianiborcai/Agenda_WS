@@ -39,7 +39,7 @@ public final class RefuNodeOrder extends DeciTreeTemplateWrite<RefuInfo> {
 	@Override protected List<ActionStd<RefuInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuInfo> option) {
 		List<ActionStd<RefuInfo>> actions = new ArrayList<>();		
 
-		ActionStd<RefuInfo> orderRefund = new ActionStdCommom<RefuInfo>(option, RefuVisiOrderRefunding.class);
+		ActionStd <RefuInfo> orderRefund = new ActionStdCommom <RefuInfo>(option, RefuVisiOrderRefunding.class);
 		ActionLazy<RefuInfo> mergeOrdist = new ActionLazyCommom<RefuInfo>(option, RefuVisiMergeOrdist.class);
 		
 		orderRefund.addPostAction(mergeOrdist);

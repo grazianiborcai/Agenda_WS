@@ -75,7 +75,7 @@ public final class RefuRootRefund extends DeciTreeTemplateWrite<RefuInfo> {
 	@Override protected List<ActionStd<RefuInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuInfo> option) {
 		List<ActionStd<RefuInfo>> actions = new ArrayList<>();		
 
-		ActionStd<RefuInfo> nodeOrder = new RefuNodeOrder(option).toAction();
+		ActionStd <RefuInfo> nodeOrder  = new RefuNodeOrder(option).toAction();
 		ActionLazy<RefuInfo> nodeRefund = new ActionLazyCommom<RefuInfo>(option, RefuVisiNodeRefund.class);
 		
 		nodeOrder.addPostAction(nodeRefund);
