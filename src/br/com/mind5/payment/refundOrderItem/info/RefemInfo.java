@@ -23,17 +23,17 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 	
 	
 	public RefemInfo() {
-		super();
+		super();		
 		
-		codOwner = DefaultValue.number();
-		codPayOrder = DefaultValue.number();
+		codUser         = DefaultValue.number();
+		codOwner		= DefaultValue.number();
+		codStore        = DefaultValue.number();
+		codOrder 	    = DefaultValue.number();
+		codPayOrder 	= DefaultValue.number();
+		codOrderItem    = DefaultValue.number();
+		codPayPartner   = DefaultValue.number();
+		codPayCustomer  = DefaultValue.number();
 		codPayOrderItem = DefaultValue.number();
-		codOrder = DefaultValue.number();	
-		codOrderItem = DefaultValue.number();
-		codStore = DefaultValue.number();
-		codPayCustomer = DefaultValue.number();
-		codPayPartner = DefaultValue.number();
-		codUser = DefaultValue.number();
 	} 
 	
 	
@@ -80,6 +80,6 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 		RefemInfo obj = (RefemInfo) o;		
 		return (codOwner    	== obj.codOwner    	&& 
 				codPayOrder 	== obj.codPayOrder	&&
-				codPayOrderItem	== obj.codPayOrderItem			);
+				codPayOrderItem	== obj.codPayOrderItem	);
 	}
 }

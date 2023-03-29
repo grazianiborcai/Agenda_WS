@@ -2007,6 +2007,7 @@ public final class SystemCode {
 	// Pay Partner Pagarme: Order
 	public static final int PAGARME_ORDER 								= 20250;
 	public static final int PAGARME_ORDER_CREATION_ERROR				= 20251;
+	public static final int PAGARME_ORDER_CANCEL_ERROR					= 20252;
 	
 	// General -- 19675
 	public static final int GEN_COMPLEMENT								= 19668;

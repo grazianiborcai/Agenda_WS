@@ -2,16 +2,30 @@ package br.com.mind5.payment.refundOrderItem.info;
 
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.business.orderItemList.info.OrdemistInfo;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
+import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.info.OrdapaInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class RefemMerger {
+	public static List<RefemInfo> mergeWithOrdapa(List<RefemInfo> baseInfos, List<OrdapaInfo> selectedInfos) {
+		InfoMergerBuilder<RefemInfo, OrdapaInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new RefemMergerVisiOrdapa());
+		InfoMerger<RefemInfo, OrdapaInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<RefemInfo> mergeWithUsername(List<RefemInfo> baseInfos, List<UsernameInfo> selectedInfos) {
 		InfoMergerBuilder<RefemInfo, UsernameInfo> builder = new InfoMergerBuilder<>();
 		
@@ -21,17 +35,17 @@ public final class RefemMerger {
 		InfoMerger<RefemInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
-	}	
+	}
 	
 	
 	
-	public static List<RefemInfo> mergeWithPayormarch(List<RefemInfo> baseInfos, List<PayormarchInfo> selectedInfos) {
-		InfoMergerBuilder<RefemInfo, PayormarchInfo> builder = new InfoMergerBuilder<>();
+	public static List<RefemInfo> mergeWithOrdemist(List<RefemInfo> baseInfos, List<OrdemistInfo> selectedInfos) {
+		InfoMergerBuilder<RefemInfo, OrdemistInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefemMergerVisiPayormarch());
-		InfoMerger<RefemInfo, PayormarchInfo> merger = builder.build();		
+		builder.addVisitor(new RefemMergerVisiOrdemist());
+		InfoMerger<RefemInfo, OrdemistInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

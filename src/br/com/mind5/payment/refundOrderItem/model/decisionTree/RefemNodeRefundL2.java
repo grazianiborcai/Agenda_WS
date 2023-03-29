@@ -13,8 +13,8 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
+import br.com.mind5.payment.refundOrderItem.model.action.RefemVisiNodeRefundL3;
 import br.com.mind5.payment.refundOrderItem.model.action.RefemVisiOrderemRefunding;
-import br.com.mind5.payment.refundOrderItem.model.action.RefemVisiRefumoipRefund;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckHasOrderem;
 
 public final class RefemNodeRefundL2 extends DeciTreeTemplateWrite<RefemInfo> {
@@ -45,10 +45,10 @@ public final class RefemNodeRefundL2 extends DeciTreeTemplateWrite<RefemInfo> {
 	@Override protected List<ActionStd<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
 		List<ActionStd<RefemInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<RefemInfo> orderemRefunding = new ActionStdCommom<RefemInfo>(option, RefemVisiOrderemRefunding.class);
-		ActionLazy<RefemInfo> refund = new ActionLazyCommom<RefemInfo>(option, RefemVisiRefumoipRefund.class);
+		ActionStd <RefemInfo> orderemRefunding = new ActionStdCommom <RefemInfo>(option, RefemVisiOrderemRefunding.class);
+		ActionLazy<RefemInfo> nodeL3           = new ActionLazyCommom<RefemInfo>(option, RefemVisiNodeRefundL3.class);
 		
-		orderemRefunding.addPostAction(refund);
+		orderemRefunding.addPostAction(nodeL3);
 		
 		actions.add(orderemRefunding);		
 		return actions;
@@ -59,9 +59,9 @@ public final class RefemNodeRefundL2 extends DeciTreeTemplateWrite<RefemInfo> {
 	@Override protected List<ActionStd<RefemInfo>> buildActionsOnFailedHook(DeciTreeOption<RefemInfo> option) {
 		List<ActionStd<RefemInfo>> actions = new ArrayList<>();		
 
-		ActionStd<RefemInfo> refund = new ActionStdCommom<RefemInfo>(option, RefemVisiRefumoipRefund.class);
+		ActionStd<RefemInfo> nodeL3 = new ActionStdCommom<RefemInfo>(option, RefemVisiNodeRefundL3.class);
 		
-		actions.add(refund);		
+		actions.add(nodeL3);		
 		return actions;
 	}
 }

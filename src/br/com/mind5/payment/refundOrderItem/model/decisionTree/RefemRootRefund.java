@@ -13,10 +13,10 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
-import br.com.mind5.payment.refundOrderItem.model.action.RefemVisiNodeRefundL1;
 import br.com.mind5.payment.refundOrderItem.model.action.RefemVisiMergeCuspar;
 import br.com.mind5.payment.refundOrderItem.model.action.RefemVisiMergePayord;
 import br.com.mind5.payment.refundOrderItem.model.action.RefemVisiMergePayordem;
+import br.com.mind5.payment.refundOrderItem.model.action.RefemVisiNodeRefundL1;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckLangu;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckOwner;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckPayord;
@@ -87,10 +87,10 @@ public final class RefemRootRefund extends DeciTreeTemplateWrite<RefemInfo> {
 	@Override protected List<ActionStd<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
 		List<ActionStd<RefemInfo>> actions = new ArrayList<>();		
 
-		ActionStd<RefemInfo> mergePayordem = new ActionStdCommom<RefemInfo>(option, RefemVisiMergePayordem.class);	
-		ActionLazy<RefemInfo> mergePayord = new ActionLazyCommom<RefemInfo>(option, RefemVisiMergePayord.class);
-		ActionLazy<RefemInfo> mergeCuspar = new ActionLazyCommom<RefemInfo>(option, RefemVisiMergeCuspar.class);
-		ActionLazy<RefemInfo> refund = new ActionLazyCommom<RefemInfo>(option, RefemVisiNodeRefundL1.class);
+		ActionStd <RefemInfo> mergePayordem = new ActionStdCommom<RefemInfo> (option, RefemVisiMergePayordem.class);
+		ActionLazy<RefemInfo> mergePayord   = new ActionLazyCommom<RefemInfo>(option, RefemVisiMergePayord.class);
+		ActionLazy<RefemInfo> mergeCuspar   = new ActionLazyCommom<RefemInfo>(option, RefemVisiMergeCuspar.class);
+		ActionLazy<RefemInfo> refund        = new ActionLazyCommom<RefemInfo>(option, RefemVisiNodeRefundL1.class);
 		
 		mergePayordem.addPostAction(mergePayord);
 		mergePayord.addPostAction(mergeCuspar);	

@@ -19,13 +19,13 @@ final class RefemMergerVisiPayordem extends InfoMergerVisitorTemplate<RefemInfo,
 	@Override public List<RefemInfo> merge(RefemInfo baseInfo, PayordemInfo selectedInfo) {
 		List<RefemInfo> results = new ArrayList<>();
 		
-		baseInfo.codOrder = selectedInfo.codOrder;
-		baseInfo.codOrderItem = selectedInfo.codOrderItem;
-		baseInfo.codStore = selectedInfo.codStore;
-		baseInfo.idOrderPartner = selectedInfo.idOrderPartner;
-		baseInfo.idRefundPartner = selectedInfo.idRefundPartner;
+		baseInfo.codOrder            = selectedInfo.codOrder;
+		baseInfo.codStore            = selectedInfo.codStore;
+		baseInfo.itemReceiver        = selectedInfo.itemReceiver;
+		baseInfo.codOrderItem        = selectedInfo.codOrderItem;
+		baseInfo.idOrderPartner      = selectedInfo.idOrderPartner;
+		baseInfo.idRefundPartner     = selectedInfo.idRefundPartner;
 		baseInfo.statusRefundPartner = selectedInfo.statusRefundPartner;	
-		baseInfo.itemReceiver = selectedInfo.itemReceiver;
 		
 		results.add(baseInfo);
 		return results;

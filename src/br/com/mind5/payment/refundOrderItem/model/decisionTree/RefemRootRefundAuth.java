@@ -13,10 +13,10 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
+import br.com.mind5.payment.refundOrderItem.model.action.RefemVisiMergeOrdemist;
+import br.com.mind5.payment.refundOrderItem.model.action.RefemVisiMergeUsername;
 import br.com.mind5.payment.refundOrderItem.model.action.RefemVisiNodeAuthL1;
 import br.com.mind5.payment.refundOrderItem.model.action.RefemVisiRootRefund;
-import br.com.mind5.payment.refundOrderItem.model.action.RefemVisiMergePayormarch;
-import br.com.mind5.payment.refundOrderItem.model.action.RefemVisiMergeUsername;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckLangu;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckOrder;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckOrderem;
@@ -87,16 +87,16 @@ public final class RefemRootRefundAuth extends DeciTreeTemplateWrite<RefemInfo> 
 	@Override protected List<ActionStd<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
 		List<ActionStd<RefemInfo>> actions = new ArrayList<>();		
 
-		ActionStd<RefemInfo> mergePayormarch = new ActionStdCommom<RefemInfo>(option, RefemVisiMergePayormarch.class);	
+		ActionStd <RefemInfo> mergeOrdemist = new ActionStdCommom <RefemInfo>(option, RefemVisiMergeOrdemist.class);
 		ActionLazy<RefemInfo> mergeUsername = new ActionLazyCommom<RefemInfo>(option, RefemVisiMergeUsername.class);
-		ActionLazy<RefemInfo> nodeAuth = new ActionLazyCommom<RefemInfo>(option, RefemVisiNodeAuthL1.class);
-		ActionLazy<RefemInfo> refund = new ActionLazyCommom<RefemInfo>(option, RefemVisiRootRefund.class);
+		ActionLazy<RefemInfo> nodeAuth      = new ActionLazyCommom<RefemInfo>(option, RefemVisiNodeAuthL1.class);
+		ActionLazy<RefemInfo> refund        = new ActionLazyCommom<RefemInfo>(option, RefemVisiRootRefund.class);
 		
-		mergePayormarch.addPostAction(mergeUsername);
+		mergeOrdemist.addPostAction(mergeUsername);
 		mergeUsername.addPostAction(nodeAuth);	
 		nodeAuth.addPostAction(refund);
 		
-		actions.add(mergePayormarch);		
+		actions.add(mergeOrdemist);		
 		return actions;
 	}
 }
