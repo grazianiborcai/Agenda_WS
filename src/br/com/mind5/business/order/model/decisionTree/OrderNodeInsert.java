@@ -45,14 +45,14 @@ public final class OrderNodeInsert extends DeciTreeTemplateWrite<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 		//TODO: zerar Address e Phone - Somente aceitar no Place
-		ActionStd<OrderInfo> mergeUsername = new ActionStdCommom<OrderInfo>(option, OrderVisiMergeUsername.class);			
-		ActionLazy<OrderInfo> enforceCreatedOn = new ActionLazyCommom<OrderInfo>(option, OrderVisiEnforceCreatedOn.class);			
-		ActionLazy<OrderInfo> enforceCreatedBy = new ActionLazyCommom<OrderInfo>(option, OrderVisiEnforceCreatedBy.class);	
+		ActionStd <OrderInfo> mergeUsername      = new ActionStdCommom <OrderInfo>(option, OrderVisiMergeUsername.class);			
+		ActionLazy<OrderInfo> enforceCreatedOn   = new ActionLazyCommom<OrderInfo>(option, OrderVisiEnforceCreatedOn.class);			
+		ActionLazy<OrderInfo> enforceCreatedBy   = new ActionLazyCommom<OrderInfo>(option, OrderVisiEnforceCreatedBy.class);	
 		ActionLazy<OrderInfo> enforcePostingDate = new ActionLazyCommom<OrderInfo>(option, OrderVisiEnforcePostingDate.class);	
-		ActionLazy<OrderInfo> enforceExtid = new ActionLazyCommom<OrderInfo>(option, OrderVisiEnforceExtid.class);
-		ActionLazy<OrderInfo> statusChange = new ActionLazyCommom<OrderInfo>(option, OrderVisiMergeOrdugeCreate.class);
-		ActionLazy<OrderInfo> mergeRefupown = new ActionLazyCommom<OrderInfo>(option, OrderVisiMergeRefupown.class);
-		ActionLazy<OrderInfo> insert = new ActionLazyCommom<OrderInfo>(option, OrderVisiDaoInsert.class);
+		ActionLazy<OrderInfo> enforceExtid       = new ActionLazyCommom<OrderInfo>(option, OrderVisiEnforceExtid.class);
+		ActionLazy<OrderInfo> statusChange       = new ActionLazyCommom<OrderInfo>(option, OrderVisiMergeOrdugeCreate.class);
+		ActionLazy<OrderInfo> mergeRefupown      = new ActionLazyCommom<OrderInfo>(option, OrderVisiMergeRefupown.class);
+		ActionLazy<OrderInfo> insert             = new ActionLazyCommom<OrderInfo>(option, OrderVisiDaoInsert.class);
 		
 		mergeUsername.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(enforceCreatedBy);		

@@ -37,7 +37,7 @@ public final class OrderNodeRefresh extends DeciTreeTemplateWrite<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 
-		ActionStd<OrderInfo> nodePayord = new OrderNodePayord(option).toAction();
+		ActionStd <OrderInfo> nodePayord = new OrderNodePayord(option).toAction();
 		ActionLazy<OrderInfo> nodeUpdate = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeUpdate.class);
 		
 		nodePayord.addPostAction(nodeUpdate);

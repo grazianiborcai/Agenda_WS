@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
+import br.com.mind5.business.order.model.action.OrderVisiMergeToUpdate;
 import br.com.mind5.business.order.model.action.OrderVisiNodeRefresh;
 import br.com.mind5.business.order.model.action.OrderVisiRootSelect;
-import br.com.mind5.business.order.model.action.OrderVisiMergeToUpdate;
 import br.com.mind5.business.order.model.checker.OrderCheckExist;
 import br.com.mind5.business.order.model.checker.OrderCheckLangu;
 import br.com.mind5.business.order.model.checker.OrderCheckOwner;
@@ -78,9 +78,9 @@ public final class OrderRootRefresh extends DeciTreeTemplateWrite<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 
-		ActionStd<OrderInfo> mergeToUpdate = new ActionStdCommom<OrderInfo>(option, OrderVisiMergeToUpdate.class);
-		ActionLazy<OrderInfo> nodeRefresh = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeRefresh.class);
-		ActionLazy<OrderInfo> select = new ActionLazyCommom<OrderInfo>(option, OrderVisiRootSelect.class);	
+		ActionStd <OrderInfo> mergeToUpdate = new ActionStdCommom <OrderInfo>(option, OrderVisiMergeToUpdate.class);
+		ActionLazy<OrderInfo> nodeRefresh   = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeRefresh.class);
+		ActionLazy<OrderInfo> select        = new ActionLazyCommom<OrderInfo>(option, OrderVisiRootSelect.class);	
 		
 		mergeToUpdate.addPostAction(nodeRefresh);
 		nodeRefresh.addPostAction(select);

@@ -46,7 +46,7 @@ public final class OrderNodePayord extends DeciTreeTemplateWrite<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();		
 
-		ActionStd<OrderInfo> mergePayord = new ActionStdCommom<OrderInfo>(option, OrderVisiMergePayord.class);
+		ActionStd <OrderInfo> mergePayord  = new ActionStdCommom <OrderInfo>(option, OrderVisiMergePayord.class);
 		ActionLazy<OrderInfo> statusChange = new ActionLazyCommom<OrderInfo>(option, OrderVisiMergeOrdugePartner.class);
 		
 		mergePayord.addPostAction(statusChange);

@@ -45,8 +45,8 @@ public final class OrderNodeSnapshot extends DeciTreeTemplateWrite<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderInfo> insertOrdnap = new ActionStdCommom<OrderInfo>(option, OrderVisiOrdnapInsert.class);
-		ActionLazy<OrderInfo> update = new ActionLazyCommom<OrderInfo>(option, OrderVisiDaoUpdate.class);
+		ActionStd <OrderInfo> insertOrdnap = new ActionStdCommom <OrderInfo>(option, OrderVisiOrdnapInsert.class);
+		ActionLazy<OrderInfo> update       = new ActionLazyCommom<OrderInfo>(option, OrderVisiDaoUpdate.class);
 		
 		insertOrdnap.addPostAction(update);
 		

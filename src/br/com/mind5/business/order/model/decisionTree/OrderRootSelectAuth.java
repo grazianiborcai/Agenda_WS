@@ -7,8 +7,8 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.checker.OrderCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
@@ -40,7 +40,7 @@ public final class OrderRootSelectAuth extends DeciTreeTemplateRead<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrderInfo> auth = new OrderNodeAuthL1(option).toAction();
+		ActionStd<OrderInfo> auth   = new OrderNodeAuthL1(option).toAction();
 		ActionStd<OrderInfo> select = new OrderRootSelect(option).toAction();
 		
 		actions.add(auth);		

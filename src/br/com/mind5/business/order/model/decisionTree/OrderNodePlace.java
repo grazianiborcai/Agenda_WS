@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.action.OrderVisiNodeUpdate;
 import br.com.mind5.business.order.model.action.OrderVisiMergeOrderem;
 import br.com.mind5.business.order.model.action.OrderVisiMergeOrdugePlace;
+import br.com.mind5.business.order.model.action.OrderVisiNodeUpdate;
 import br.com.mind5.business.order.model.action.OrderVisiOrderemPlace;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -41,10 +41,10 @@ public final class OrderNodePlace extends DeciTreeTemplateWrite<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderInfo> enforceStatus = new ActionStdCommom<OrderInfo>(option, OrderVisiMergeOrdugePlace.class);
-		ActionLazy<OrderInfo> update = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeUpdate.class);
-		ActionLazy<OrderInfo> mergeOrderem = new ActionLazyCommom<OrderInfo>(option, OrderVisiMergeOrderem.class);
-		ActionLazy<OrderInfo> placeOrderem = new ActionLazyCommom<OrderInfo>(option, OrderVisiOrderemPlace.class);
+		ActionStd <OrderInfo> enforceStatus = new ActionStdCommom <OrderInfo>(option, OrderVisiMergeOrdugePlace.class);
+		ActionLazy<OrderInfo> update        = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeUpdate.class);
+		ActionLazy<OrderInfo> mergeOrderem  = new ActionLazyCommom<OrderInfo>(option, OrderVisiMergeOrderem.class);
+		ActionLazy<OrderInfo> placeOrderem  = new ActionLazyCommom<OrderInfo>(option, OrderVisiOrderemPlace.class);
 		
 		enforceStatus.addPostAction(update);
 		update.addPostAction(mergeOrderem);

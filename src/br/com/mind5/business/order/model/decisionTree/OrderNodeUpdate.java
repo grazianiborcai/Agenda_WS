@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.action.OrderVisiNodeSnapshot;
 import br.com.mind5.business.order.model.action.OrderVisiEnforceLChanged;
 import br.com.mind5.business.order.model.action.OrderVisiMergeUsername;
+import br.com.mind5.business.order.model.action.OrderVisiNodeSnapshot;
 import br.com.mind5.business.order.model.checker.OrderCheckUpdate;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -46,9 +46,9 @@ public final class OrderNodeUpdate extends DeciTreeTemplateWrite<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 
-		ActionStd<OrderInfo> mergeUsername = new ActionStdCommom<OrderInfo>(option, OrderVisiMergeUsername.class);
+		ActionStd <OrderInfo> mergeUsername   = new ActionStdCommom <OrderInfo>(option, OrderVisiMergeUsername.class);
 		ActionLazy<OrderInfo> enforceLChanged = new ActionLazyCommom<OrderInfo>(option, OrderVisiEnforceLChanged.class);
-		ActionLazy<OrderInfo> snapshot = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeSnapshot.class);
+		ActionLazy<OrderInfo> snapshot        = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeSnapshot.class);
 		
 		mergeUsername.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(snapshot);

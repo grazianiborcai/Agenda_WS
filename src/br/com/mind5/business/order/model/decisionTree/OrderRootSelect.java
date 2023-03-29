@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.action.OrderVisiNodePayord;
-import br.com.mind5.business.order.model.action.OrderVisiNodeRefugroupL1;
 import br.com.mind5.business.order.model.action.OrderVisiEnforceCurrency;
 import br.com.mind5.business.order.model.action.OrderVisiEnforceFeecat;
 import br.com.mind5.business.order.model.action.OrderVisiMergeCurrency;
@@ -13,6 +11,8 @@ import br.com.mind5.business.order.model.action.OrderVisiMergeFeecat;
 import br.com.mind5.business.order.model.action.OrderVisiMergeOrderatus;
 import br.com.mind5.business.order.model.action.OrderVisiMergeOrderem;
 import br.com.mind5.business.order.model.action.OrderVisiMergeToSelect;
+import br.com.mind5.business.order.model.action.OrderVisiNodePayord;
+import br.com.mind5.business.order.model.action.OrderVisiNodeRefugroupL1;
 import br.com.mind5.business.order.model.checker.OrderCheckLangu;
 import br.com.mind5.business.order.model.checker.OrderCheckRead;
 import br.com.mind5.model.action.ActionLazy;
@@ -60,15 +60,15 @@ public final class OrderRootSelect extends DeciTreeTemplateRead<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrderInfo> select = new ActionStdCommom<OrderInfo>(option, OrderVisiMergeToSelect.class);
-		ActionLazy<OrderInfo> mergeItem = new ActionLazyCommom<OrderInfo>(option, OrderVisiMergeOrderem.class);
+		ActionStd <OrderInfo> select          = new ActionStdCommom <OrderInfo>(option, OrderVisiMergeToSelect.class);
+		ActionLazy<OrderInfo> mergeItem       = new ActionLazyCommom<OrderInfo>(option, OrderVisiMergeOrderem.class);
 		ActionLazy<OrderInfo> enforceCurrency = new ActionLazyCommom<OrderInfo>(option, OrderVisiEnforceCurrency.class);
-		ActionLazy<OrderInfo> mergeCurrency = new ActionLazyCommom<OrderInfo>(option, OrderVisiMergeCurrency.class);
-		ActionLazy<OrderInfo> mergeOrderatus = new ActionLazyCommom<OrderInfo>(option, OrderVisiMergeOrderatus.class);
-		ActionLazy<OrderInfo> enforceFeecat = new ActionLazyCommom<OrderInfo>(option, OrderVisiEnforceFeecat.class);
-		ActionLazy<OrderInfo> mergeFeecat = new ActionLazyCommom<OrderInfo>(option, OrderVisiMergeFeecat.class);
-		ActionLazy<OrderInfo> nodePayord = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodePayord.class);
-		ActionLazy<OrderInfo> nodeRefugroup = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeRefugroupL1.class);
+		ActionLazy<OrderInfo> mergeCurrency   = new ActionLazyCommom<OrderInfo>(option, OrderVisiMergeCurrency.class);
+		ActionLazy<OrderInfo> mergeOrderatus  = new ActionLazyCommom<OrderInfo>(option, OrderVisiMergeOrderatus.class);
+		ActionLazy<OrderInfo> enforceFeecat   = new ActionLazyCommom<OrderInfo>(option, OrderVisiEnforceFeecat.class);
+		ActionLazy<OrderInfo> mergeFeecat     = new ActionLazyCommom<OrderInfo>(option, OrderVisiMergeFeecat.class);
+		ActionLazy<OrderInfo> nodePayord      = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodePayord.class);
+		ActionLazy<OrderInfo> nodeRefugroup   = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeRefugroupL1.class);
 		
 		select.addPostAction(mergeItem);
 		mergeItem.addPostAction(enforceCurrency);

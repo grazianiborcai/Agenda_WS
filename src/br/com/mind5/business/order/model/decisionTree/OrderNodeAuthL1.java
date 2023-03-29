@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.action.OrderVisiNodeAuthL2;
 import br.com.mind5.business.order.model.action.OrderVisiEnforceKey;
 import br.com.mind5.business.order.model.action.OrderVisiEnforceUser;
 import br.com.mind5.business.order.model.action.OrderVisiMergeUsername;
+import br.com.mind5.business.order.model.action.OrderVisiNodeAuthL2;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -41,10 +41,10 @@ public final class OrderNodeAuthL1 extends DeciTreeTemplateWrite<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderInfo> enforceKey = new ActionStdCommom<OrderInfo>(option, OrderVisiEnforceKey.class);
+		ActionStd <OrderInfo> enforceKey    = new ActionStdCommom <OrderInfo>(option, OrderVisiEnforceKey.class);
 		ActionLazy<OrderInfo> mergeUsername = new ActionLazyCommom<OrderInfo>(option, OrderVisiMergeUsername.class);
-		ActionLazy<OrderInfo> enforceUser = new ActionLazyCommom<OrderInfo>(option, OrderVisiEnforceUser.class);
-		ActionLazy<OrderInfo> nodeL2 = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeAuthL2.class);
+		ActionLazy<OrderInfo> enforceUser   = new ActionLazyCommom<OrderInfo>(option, OrderVisiEnforceUser.class);
+		ActionLazy<OrderInfo> nodeL2        = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeAuthL2.class);
 		
 		enforceKey.addPostAction(mergeUsername);
 		mergeUsername.addPostAction(enforceUser);

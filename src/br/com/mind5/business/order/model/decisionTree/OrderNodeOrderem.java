@@ -45,8 +45,8 @@ public final class OrderNodeOrderem extends DeciTreeTemplateWrite<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();		
 
-		ActionStd<OrderInfo> enforceOrderemKey = new ActionStdCommom<OrderInfo>(option, OrderVisiEnforceOrderemKey.class);
-		ActionLazy<OrderInfo> insertOrderem = new ActionLazyCommom<OrderInfo>(option, OrderVisiOrderemInsert.class);
+		ActionStd <OrderInfo> enforceOrderemKey = new ActionStdCommom <OrderInfo>(option, OrderVisiEnforceOrderemKey.class);
+		ActionLazy<OrderInfo> insertOrderem     = new ActionLazyCommom<OrderInfo>(option, OrderVisiOrderemInsert.class);
 		
 		enforceOrderemKey.addPostAction(insertOrderem);
 		

@@ -68,9 +68,9 @@ public final class OrderRootInsert extends DeciTreeTemplateWrite<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 
-		ActionStd<OrderInfo> insertOrder = new OrderNodeInsert(option).toAction();
+		ActionStd <OrderInfo> insertOrder   = new OrderNodeInsert(option).toAction();
 		ActionLazy<OrderInfo> insertOrderem = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeOrderem.class);
-		ActionLazy<OrderInfo> snapshot = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeSnapshot.class);
+		ActionLazy<OrderInfo> snapshot      = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeSnapshot.class);
 		
 		insertOrder.addPostAction(insertOrderem);
 		insertOrderem.addPostAction(snapshot);

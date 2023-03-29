@@ -48,26 +48,27 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public OrderInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();	
-		codOrder = DefaultValue.number();			
-		codSnapshot = DefaultValue.number();
-		codUser = DefaultValue.number();
-		codAddressShip = DefaultValue.number();
-		codAddressInvoice = DefaultValue.number();
-		codPhoneShip = DefaultValue.number();
-		codPhoneInvoice = DefaultValue.number();
-		itemTotal = DefaultValue.number();
-		feeService = 0;
-		codFeeCateg = DefaultValue.character();
-		grandTotal = DefaultValue.number();
-		codPayOrder = DefaultValue.number();
-		codPayPartner = DefaultValue.number();
-		postingYear = DefaultValue.number();
-		postingYearMonth = DefaultValue.number();
+
+		codUser 			 = DefaultValue.number();
+		orderms              = DefaultValue.list();
+		codOwner 			 = DefaultValue.number();	
+		codOrder 			 = DefaultValue.number();	
+		itemTotal 			 = DefaultValue.number();
+		createdBy            = DefaultValue.number();
+		grandTotal 			 = DefaultValue.number();
+		feeService 			 = 0;
+		codSnapshot 		 = DefaultValue.number();
+		codFeeCateg 		 = DefaultValue.character();
+		codPayOrder 		 = DefaultValue.number();
+		postingYear          = DefaultValue.number();
+		codPhoneShip 		 = DefaultValue.number();
+		lastChangedBy        = DefaultValue.number();
+		codPayPartner        = DefaultValue.number();
+		codAddressShip 	     = DefaultValue.number();		
+		codPhoneInvoice 	 = DefaultValue.number();
+		postingYearMonth     = DefaultValue.number();
+		codAddressInvoice 	 = DefaultValue.number();
 		codRefundPolicyGroup = DefaultValue.number();
-		lastChangedBy = DefaultValue.number();
-		createdBy = DefaultValue.number();
-		orderms = DefaultValue.list();
 	}
 	
 	
