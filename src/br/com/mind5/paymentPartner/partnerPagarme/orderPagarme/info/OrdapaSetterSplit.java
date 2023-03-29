@@ -47,7 +47,7 @@ public final class OrdapaSetterSplit extends InfoSetterTemplate<OrdapaInfo> {
 			Map<String,String> splitOption = new HashMap<>();
 			
 			splitData   = getSplitData  (splitData  , eachPayordem);
-			splitOption = getSplitOption(splitOption, eachPayordem);
+			splitOption = getSplitOption(splitOption, eachPayordem, payOrdemItems.size());
 			
 			split.put(splitData, splitOption);
 		}
@@ -68,10 +68,10 @@ public final class OrdapaSetterSplit extends InfoSetterTemplate<OrdapaInfo> {
 	
 	
 	
-	private Map<String,String> getSplitOption(Map<String, String> splitOption, PayordemInfo payordem) {
-		splitOption = addSplitOptionProcessingFee(splitOption, payordem);
-		splitOption = addSplitOptionRemainderFee(splitOption, payordem);
-		splitOption = addSplitOptionLiable(splitOption, payordem);
+	private Map<String,String> getSplitOption(Map<String, String> splitOption, PayordemInfo payordem, int splitSize) {
+		splitOption = addSplitOptionProcessingFee(splitOption, payordem, splitSize);
+		splitOption = addSplitOptionRemainderFee(splitOption, payordem, splitSize);
+		splitOption = addSplitOptionLiable(splitOption, payordem, splitSize);
 		
 		return splitOption;
 	}
@@ -105,11 +105,14 @@ public final class OrdapaSetterSplit extends InfoSetterTemplate<OrdapaInfo> {
 	
 	
 	
-	private Map<String,String> addSplitOptionProcessingFee(Map<String, String> splitData, PayordemInfo payordem) {
+	private Map<String,String> addSplitOptionProcessingFee(Map<String, String> splitData, PayordemInfo payordem, int splitSize) {
 		String chargeProcessingFee = "true";
 		
 		if (isServiceFee(payordem) == true)
 			chargeProcessingFee = "false";
+		
+		if (splitSize == 1)
+			chargeProcessingFee = "true";
 		
 		splitData.put("charge_processing_fee", chargeProcessingFee);		
 		return splitData;
@@ -117,11 +120,14 @@ public final class OrdapaSetterSplit extends InfoSetterTemplate<OrdapaInfo> {
 	
 	
 	
-	private Map<String,String> addSplitOptionRemainderFee(Map<String, String> splitData, PayordemInfo payordem) {
+	private Map<String,String> addSplitOptionRemainderFee(Map<String, String> splitData, PayordemInfo payordem, int splitSize) {
 		String chargeRemainderFee = "true";
 		
 		if (isServiceFee(payordem) == true)
 			chargeRemainderFee = "false";
+		
+		if (splitSize == 1)
+			chargeRemainderFee = "true";
 		
 		splitData.put("charge_remainder_fee", chargeRemainderFee);		
 		return splitData;
@@ -129,11 +135,14 @@ public final class OrdapaSetterSplit extends InfoSetterTemplate<OrdapaInfo> {
 	
 	
 	
-	private Map<String,String> addSplitOptionLiable(Map<String, String> splitData, PayordemInfo payordem) {
+	private Map<String,String> addSplitOptionLiable(Map<String, String> splitData, PayordemInfo payordem, int splitSize) {
 		String liable = "true";
 		
 		if (isServiceFee(payordem) == true)
 			liable = "false";
+		
+		if (splitSize == 1)
+			liable = "true";
 		
 		splitData.put("liable", liable);		
 		return splitData;

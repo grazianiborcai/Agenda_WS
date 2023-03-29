@@ -12,11 +12,13 @@ import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 public final class OrdapaInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
+	public long codPayOrderItem;
 	public int codPayPartner;
 	public PayordInfo payordData;
 	public String code;
 	public String customerId;
 	public String paymentMethod;
+	public String amount;
 	public List<Map<String,String>> items;
 	public Map<String,String> creditCard;
 	public Map<Map<String,String>,Map<String,String>> split;
@@ -24,6 +26,7 @@ public final class OrdapaInfo extends InfoRecord implements Cloneable {
 	public Map<String,String> responseRoot;
 	public List<Map<String,String>> responseItems;
 	public List<Map<String,String>> responseCharges;
+	public Map<String,String> responseTransaction;
 	public String authorization;
 	public SetuparInfo setuparData;
 	public String username;
@@ -32,17 +35,19 @@ public final class OrdapaInfo extends InfoRecord implements Cloneable {
 	public OrdapaInfo() {
 		super();
 		
-		split           = DefaultValue.object();
-		items           = DefaultValue.list();
-		codOwner        = DefaultValue.number();
-		creditCard      = DefaultValue.object();
-		payordData      = DefaultValue.object();
-		setuparData     = DefaultValue.object();
-		codPayOrder     = DefaultValue.number();
-		responseRoot    = DefaultValue.object();
-		responseItems   = DefaultValue.list();		
-		codPayPartner   = DefaultValue.number();
-		responseCharges = DefaultValue.list();
+		split               = DefaultValue.object();
+		items               = DefaultValue.list();
+		codOwner            = DefaultValue.number();
+		creditCard          = DefaultValue.object();
+		payordData          = DefaultValue.object();
+		setuparData         = DefaultValue.object();
+		codPayOrder         = DefaultValue.number();
+		responseRoot        = DefaultValue.object();
+		responseItems       = DefaultValue.list();		
+		codPayPartner       = DefaultValue.number();
+		codPayOrderItem     = DefaultValue.number();
+		responseCharges     = DefaultValue.list();
+		responseTransaction = DefaultValue.object();
 	}
 	
 	
