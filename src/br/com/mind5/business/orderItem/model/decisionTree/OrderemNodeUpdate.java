@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.business.orderItem.model.action.OrderemVisiNodeSnapshot;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiEnforceLChanged;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiMergeUsername;
+import br.com.mind5.business.orderItem.model.action.OrderemVisiNodeSnapshot;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiStusorageUpsert;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiStusorygeUpsert;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckWrite;
@@ -48,9 +48,9 @@ public final class OrderemNodeUpdate extends DeciTreeTemplateWrite<OrderemInfo> 
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 
-		ActionStd<OrderemInfo> mergeUsername = new ActionStdCommom<OrderemInfo>(option, OrderemVisiMergeUsername.class);
+		ActionStd <OrderemInfo> mergeUsername   = new ActionStdCommom <OrderemInfo>(option, OrderemVisiMergeUsername.class);
 		ActionLazy<OrderemInfo> enforceLChanged = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiEnforceLChanged.class);
-		ActionLazy<OrderemInfo> snapshot = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeSnapshot.class);
+		ActionLazy<OrderemInfo> snapshot        = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeSnapshot.class);
 		ActionLazy<OrderemInfo> stusorageUpsert = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiStusorageUpsert.class);
 		ActionLazy<OrderemInfo> stusorygeUpsert = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiStusorygeUpsert.class);
 		

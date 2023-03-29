@@ -43,11 +43,11 @@ public final class OrderemNodeServiceSelect extends DeciTreeTemplateWrite<Ordere
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderemInfo> mergeStolis = new ActionStdCommom<OrderemInfo>(option, OrderemVisiMergeStolis.class);
-		ActionLazy<OrderemInfo> mergeEmplres = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiMergeEmplres.class);
+		ActionStd <OrderemInfo> mergeStolis    = new ActionStdCommom <OrderemInfo>(option, OrderemVisiMergeStolis.class);
+		ActionLazy<OrderemInfo> mergeEmplres   = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiMergeEmplres.class);
 		ActionLazy<OrderemInfo> enforceWeekday = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiEnforceWeekday.class);
-		ActionLazy<OrderemInfo> mergeWeekday = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiMergeWeekday.class);
-		ActionLazy<OrderemInfo> mergeMatore = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiMergeMatore.class);
+		ActionLazy<OrderemInfo> mergeWeekday   = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiMergeWeekday.class);
+		ActionLazy<OrderemInfo> mergeMatore    = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiMergeMatore.class);
 		ActionLazy<OrderemInfo> mergeRefugroup = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiMergeRefugroup.class);
 		
 		mergeStolis.addPostAction(mergeEmplres);

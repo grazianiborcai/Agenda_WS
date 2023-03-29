@@ -70,7 +70,7 @@ public final class OrderemRootRefunding extends DeciTreeTemplateWrite<OrderemInf
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderemInfo>  select        = new ActionStdCommom<OrderemInfo> (option, OrderemVisiMergeToSelect.class);
+		ActionStd <OrderemInfo> select        = new ActionStdCommom <OrderemInfo>(option, OrderemVisiMergeToSelect.class);
 		ActionLazy<OrderemInfo> nodeRefunding = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeRefunding.class);
 		ActionLazy<OrderemInfo> rootSelect    = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiRootSelect.class);	
 		

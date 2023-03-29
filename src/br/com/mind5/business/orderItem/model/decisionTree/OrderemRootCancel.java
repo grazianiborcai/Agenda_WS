@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
+import br.com.mind5.business.orderItem.model.action.OrderemVisiMergeToSelect;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiNodeCancel;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiRootSelect;
-import br.com.mind5.business.orderItem.model.action.OrderemVisiMergeToSelect;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckExist;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckLangu;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckOwner;
@@ -70,9 +70,9 @@ public final class OrderemRootCancel extends DeciTreeTemplateRead<OrderemInfo> {
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderemInfo> mergeToSelect = new ActionStdCommom<OrderemInfo>(option, OrderemVisiMergeToSelect.class);
-		ActionLazy<OrderemInfo> cancel = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeCancel.class);
-		ActionLazy<OrderemInfo> select = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiRootSelect.class);		
+		ActionStd <OrderemInfo> mergeToSelect = new ActionStdCommom <OrderemInfo>(option, OrderemVisiMergeToSelect.class);
+		ActionLazy<OrderemInfo> cancel        = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeCancel.class);
+		ActionLazy<OrderemInfo> select        = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiRootSelect.class);		
 		
 		mergeToSelect.addPostAction(cancel);
 		cancel.addPostAction(select);

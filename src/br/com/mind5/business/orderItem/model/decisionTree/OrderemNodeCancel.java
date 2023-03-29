@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.business.orderItem.model.action.OrderemVisiNodeUpdate;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiMergeOrdugeCancel;
+import br.com.mind5.business.orderItem.model.action.OrderemVisiNodeUpdate;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiSchedineRefresh;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckIsCancelled;
 import br.com.mind5.model.action.ActionLazy;
@@ -58,8 +58,8 @@ public final class OrderemNodeCancel extends DeciTreeTemplateWrite<OrderemInfo> 
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnFailedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderemInfo> statusChange = new ActionStdCommom<OrderemInfo>(option, OrderemVisiMergeOrdugeCancel.class);
-		ActionLazy<OrderemInfo> update = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeUpdate.class);	
+		ActionStd <OrderemInfo> statusChange    = new ActionStdCommom <OrderemInfo>(option, OrderemVisiMergeOrdugeCancel.class);
+		ActionLazy<OrderemInfo> update          = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeUpdate.class);	
 		ActionLazy<OrderemInfo> refreshSchedine = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiSchedineRefresh.class);			
 		
 		statusChange.addPostAction(update);		

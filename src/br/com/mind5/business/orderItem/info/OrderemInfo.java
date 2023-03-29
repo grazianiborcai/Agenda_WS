@@ -51,29 +51,29 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 	
 	
 	public OrderemInfo() {
-		super();
+		super();		
 		
-		codOwner = DefaultValue.number();	
-		codOrder = DefaultValue.number();
-		codOrderItem = DefaultValue.number();
-		codSnapshot = DefaultValue.number();
-		codPayOrder = DefaultValue.number();
-		codPayOrderItem = DefaultValue.number();
-		codPayPartner = DefaultValue.number();
-		codUser = DefaultValue.number();
-		codCustomer = DefaultValue.number();
-		codStore = DefaultValue.number();
-		codEmployee = DefaultValue.number();
-		codMat = DefaultValue.number();
-		price = DefaultValue.number();
-		quantity = DefaultValue.number();
-		totitem = DefaultValue.number();
-		codWeekday = DefaultValue.number();
-		lastChangedBy = DefaultValue.number();	
+		price 				 = DefaultValue.number();
+		codMat 				 = DefaultValue.number();
+		codUser 			 = DefaultValue.number();
+		totitem 			 = DefaultValue.number();
+		codStore 			 = DefaultValue.number();
+		quantity             = DefaultValue.number();
+		codOwner 			 = DefaultValue.number();	
+		codOrder 			 = DefaultValue.number();
+		stolisData           = DefaultValue.object();		
+		matlisData           = DefaultValue.object();
+		codWeekday           = DefaultValue.number();
+		codSnapshot 		 = DefaultValue.number();
+		codPayOrder 		 = DefaultValue.number();
+		emplresData          = DefaultValue.object();
+		codEmployee 		 = DefaultValue.number();
+		codCustomer 		 = DefaultValue.number();
+		codOrderItem 		 = DefaultValue.number();
+		codPayPartner 		 = DefaultValue.number();
+		lastChangedBy        = DefaultValue.number();
+		codPayOrderItem 	 = DefaultValue.number();
 		codRefundPolicyGroup = DefaultValue.number();
-		stolisData = DefaultValue.object();
-		emplresData = DefaultValue.object();
-		matlisData = DefaultValue.object();
 	}
 	
 	
@@ -93,9 +93,9 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 	@Override public Object clone() throws CloneNotSupportedException {
 		OrderemInfo deepCopy = (OrderemInfo) super.clone();
 		
-		deepCopy.stolisData = CloneUtil.cloneRecord(stolisData, this.getClass());
+		deepCopy.stolisData  = CloneUtil.cloneRecord(stolisData , this.getClass());		
+		deepCopy.matlisData  = CloneUtil.cloneRecord(matlisData , this.getClass());
 		deepCopy.emplresData = CloneUtil.cloneRecord(emplresData, this.getClass());
-		deepCopy.matlisData = CloneUtil.cloneRecord(matlisData, this.getClass());
 		
 		return deepCopy;
 	}

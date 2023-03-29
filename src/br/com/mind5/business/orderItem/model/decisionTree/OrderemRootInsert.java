@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.business.orderItem.model.action.OrderemVisiNodeInsert;
-import br.com.mind5.business.orderItem.model.action.OrderemVisiNodeSnapshot;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiEnforceLChanged;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiMergeOrdist;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiMergeOrdugeCreate;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiMergeUsername;
+import br.com.mind5.business.orderItem.model.action.OrderemVisiNodeInsert;
+import br.com.mind5.business.orderItem.model.action.OrderemVisiNodeSnapshot;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckExist;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckInsert;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckLangu;
@@ -89,12 +89,12 @@ public final class OrderemRootInsert extends DeciTreeTemplateWrite<OrderemInfo> 
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderemInfo> enforceLChanged = new ActionStdCommom<OrderemInfo>(option, OrderemVisiEnforceLChanged.class);
-		ActionLazy<OrderemInfo> mergeUsername = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiMergeUsername.class);
-		ActionLazy<OrderemInfo> mergeOrdist = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiMergeOrdist.class);
-		ActionLazy<OrderemInfo> statusChange = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiMergeOrdugeCreate.class);
-		ActionLazy<OrderemInfo> nodeInsert = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeInsert.class);
-		ActionLazy<OrderemInfo> nodeSnapshot = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeSnapshot.class);
+		ActionStd <OrderemInfo> enforceLChanged = new ActionStdCommom <OrderemInfo>(option, OrderemVisiEnforceLChanged.class);
+		ActionLazy<OrderemInfo> mergeUsername   = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiMergeUsername.class);
+		ActionLazy<OrderemInfo> mergeOrdist     = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiMergeOrdist.class);
+		ActionLazy<OrderemInfo> statusChange    = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiMergeOrdugeCreate.class);
+		ActionLazy<OrderemInfo> nodeInsert      = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeInsert.class);
+		ActionLazy<OrderemInfo> nodeSnapshot    = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeSnapshot.class);
 		
 		enforceLChanged.addPostAction(mergeUsername);
 		mergeUsername.addPostAction(mergeOrdist);

@@ -46,8 +46,8 @@ public final class OrderemNodeCus extends DeciTreeTemplateWrite<OrderemInfo> {
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 
-		ActionStd<OrderemInfo> mergeCusarch = new ActionStdCommom<OrderemInfo>(option, OrderemVisiMergeCusarch.class);
-		ActionLazy<OrderemInfo> update = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiDaoUpdate.class);
+		ActionStd <OrderemInfo> mergeCusarch = new ActionStdCommom <OrderemInfo>(option, OrderemVisiMergeCusarch.class);
+		ActionLazy<OrderemInfo> update       = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiDaoUpdate.class);
 		
 		mergeCusarch.addPostAction(update);
 		
@@ -60,8 +60,8 @@ public final class OrderemNodeCus extends DeciTreeTemplateWrite<OrderemInfo> {
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnFailedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 
-		ActionStd<OrderemInfo> insertCus = new ActionStdCommom<OrderemInfo>(option, OrderemVisiCusInsert.class);
-		ActionLazy<OrderemInfo> update = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiDaoUpdate.class);
+		ActionStd <OrderemInfo> insertCus = new ActionStdCommom <OrderemInfo>(option, OrderemVisiCusInsert.class);
+		ActionLazy<OrderemInfo> update    = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiDaoUpdate.class);
 		
 		insertCus.addPostAction(update);
 		

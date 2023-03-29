@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.business.orderItem.model.action.OrderemVisiNodeCus;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiDaoInsert;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiMergeRefupore;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiMergeStolis;
+import br.com.mind5.business.orderItem.model.action.OrderemVisiNodeCus;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiSchedineInsert;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckEmp;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckEmpmat;
@@ -88,10 +88,10 @@ public final class OrderemNodeServiceInsert extends DeciTreeTemplateWrite<Ordere
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderemInfo> mergeStolis = new ActionStdCommom<OrderemInfo>(option, OrderemVisiMergeStolis.class);	
-		ActionLazy<OrderemInfo> mergeRefupore = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiMergeRefupore.class);
-		ActionLazy<OrderemInfo> insert = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiDaoInsert.class);
-		ActionLazy<OrderemInfo> nodeCus = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeCus.class);
+		ActionStd <OrderemInfo> mergeStolis    = new ActionStdCommom <OrderemInfo>(option, OrderemVisiMergeStolis.class);	
+		ActionLazy<OrderemInfo> mergeRefupore  = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiMergeRefupore.class);
+		ActionLazy<OrderemInfo> insert         = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiDaoInsert.class);
+		ActionLazy<OrderemInfo> nodeCus        = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeCus.class);
 		ActionLazy<OrderemInfo> schedineInsert = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiSchedineInsert.class);
 		
 		mergeStolis.addPostAction(mergeRefupore);

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
+import br.com.mind5.business.orderItem.model.action.OrderemVisiMergeToUpdate;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiNodePay;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiRootSelect;
-import br.com.mind5.business.orderItem.model.action.OrderemVisiMergeToUpdate;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckExist;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckLangu;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckOwner;
@@ -78,9 +78,9 @@ public final class OrderemRootPay extends DeciTreeTemplateWrite<OrderemInfo> {
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderemInfo> mergeToUpdate = new ActionStdCommom<OrderemInfo>(option, OrderemVisiMergeToUpdate.class);
-		ActionLazy<OrderemInfo> nodePay = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodePay.class);		
-		ActionLazy<OrderemInfo> select = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiRootSelect.class);	
+		ActionStd <OrderemInfo> mergeToUpdate = new ActionStdCommom <OrderemInfo>(option, OrderemVisiMergeToUpdate.class);
+		ActionLazy<OrderemInfo> nodePay       = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodePay.class);		
+		ActionLazy<OrderemInfo> select        = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiRootSelect.class);	
 		
 		mergeToUpdate.addPostAction(nodePay);
 		nodePay.addPostAction(select);

@@ -39,7 +39,7 @@ public final class OrderemRootSearch extends DeciTreeTemplateWrite<OrderemInfo> 
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderemInfo>  mergeOrdemarch = new ActionStdCommom<OrderemInfo> (option, OrderemVisiMergeOrdemarch.class);
+		ActionStd <OrderemInfo> mergeOrdemarch = new ActionStdCommom <OrderemInfo>(option, OrderemVisiMergeOrdemarch.class);
 		ActionLazy<OrderemInfo> select         = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiRootSelect.class);
 		
 		mergeOrdemarch.addPostAction(select);

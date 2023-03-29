@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.business.orderItem.model.action.OrderemVisiNodeUpdate;
 import br.com.mind5.business.orderItem.model.action.OrderemVisiMergeOrdugePay;
+import br.com.mind5.business.orderItem.model.action.OrderemVisiNodeUpdate;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -39,8 +39,8 @@ public final class OrderemNodePay extends DeciTreeTemplateWrite<OrderemInfo> {
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderemInfo> statusChange = new ActionStdCommom<OrderemInfo>(option, OrderemVisiMergeOrdugePay.class);
-		ActionLazy<OrderemInfo> update = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeUpdate.class);	
+		ActionStd <OrderemInfo> statusChange = new ActionStdCommom <OrderemInfo>(option, OrderemVisiMergeOrdugePay.class);
+		ActionLazy<OrderemInfo> update       = new ActionLazyCommom<OrderemInfo>(option, OrderemVisiNodeUpdate.class);	
 		
 		statusChange.addPostAction(update);
 		
