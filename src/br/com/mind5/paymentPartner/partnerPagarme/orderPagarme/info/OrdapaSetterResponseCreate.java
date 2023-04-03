@@ -12,7 +12,7 @@ import com.google.gson.JsonParser;
 import br.com.mind5.info.InfoSetterTemplate;
 
 
-public final class OrdapaSetterResponseAttr extends InfoSetterTemplate<OrdapaInfo> {
+public final class OrdapaSetterResponseCreate extends InfoSetterTemplate<OrdapaInfo> {
 	
 	@Override protected OrdapaInfo setAttrHook(OrdapaInfo recordInfo) {
 		JsonElement json = toJson(recordInfo.responseBody);

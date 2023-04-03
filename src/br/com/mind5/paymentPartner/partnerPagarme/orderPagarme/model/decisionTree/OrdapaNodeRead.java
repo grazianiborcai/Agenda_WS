@@ -13,14 +13,13 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.info.OrdapaInfo;
-import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiCancel;
-import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiEnforceResponseCancel;
-import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckHasChargeId;
-import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckHasSplit;
+import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiEnforceResponseCreate;
+import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiRead;
+import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckHasOrderId;
 
-public final class OrdapaNodeCancel extends DeciTreeTemplateWrite<OrdapaInfo> {
+public final class OrdapaNodeRead extends DeciTreeTemplateWrite<OrdapaInfo> {
 	
-	public OrdapaNodeCancel(DeciTreeOption<OrdapaInfo> option) {
+	public OrdapaNodeRead(DeciTreeOption<OrdapaInfo> option) {
 		super(option);
 	}
 	
@@ -35,14 +34,7 @@ public final class OrdapaNodeCancel extends DeciTreeTemplateWrite<OrdapaInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new OrdapaCheckHasChargeId(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new OrdapaCheckHasSplit(checkerOption);
+		checker = new OrdapaCheckHasOrderId(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -53,12 +45,12 @@ public final class OrdapaNodeCancel extends DeciTreeTemplateWrite<OrdapaInfo> {
 	@Override protected List<ActionStd<OrdapaInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdapaInfo> option) {
 		List<ActionStd<OrdapaInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrdapaInfo>  cancel                = new ActionStdCommom <OrdapaInfo>(option, OrdapaVisiCancel.class);
-		ActionLazy<OrdapaInfo> enforceResponseCancel = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiEnforceResponseCancel.class);
+		ActionStd<OrdapaInfo>  read                  = new ActionStdCommom <OrdapaInfo>(option, OrdapaVisiRead.class);
+		ActionLazy<OrdapaInfo> enforceResponseCreate = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiEnforceResponseCreate.class);
 		
-		cancel.addPostAction(enforceResponseCancel);
+		read.addPostAction(enforceResponseCreate);
 		
-		actions.add(cancel);
+		actions.add(read);
 		return actions;
 	}
 }

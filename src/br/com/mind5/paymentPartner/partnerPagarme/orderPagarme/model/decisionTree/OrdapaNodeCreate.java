@@ -14,7 +14,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.info.OrdapaInfo;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiCreate;
-import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiEnforceResponseAttr;
+import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiEnforceResponseCreate;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckHasCustomer;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckHasItems;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckHasPayments;
@@ -69,10 +69,10 @@ public final class OrdapaNodeCreate extends DeciTreeTemplateWrite<OrdapaInfo> {
 	@Override protected List<ActionStd<OrdapaInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdapaInfo> option) {
 		List<ActionStd<OrdapaInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrdapaInfo>  create              = new ActionStdCommom<OrdapaInfo>(option, OrdapaVisiCreate.class);
-		ActionLazy<OrdapaInfo> enforceResponseAttr = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiEnforceResponseAttr.class);
+		ActionStd <OrdapaInfo> create                = new ActionStdCommom<OrdapaInfo> (option, OrdapaVisiCreate.class);
+		ActionLazy<OrdapaInfo> enforceResponseCreate = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiEnforceResponseCreate.class);
 		
-		create.addPostAction(enforceResponseAttr);
+		create.addPostAction(enforceResponseCreate);
 		
 		actions.add(create);
 		return actions;
