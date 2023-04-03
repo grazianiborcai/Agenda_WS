@@ -13,8 +13,8 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiRootSelect;
 import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiMergePayormarch;
+import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiRootSelect;
 
 public final class PayordemRootSearch extends DeciTreeTemplateWrite<PayordemInfo> {
 	
@@ -39,8 +39,8 @@ public final class PayordemRootSearch extends DeciTreeTemplateWrite<PayordemInfo
 	@Override protected List<ActionStd<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
 		List<ActionStd<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayordemInfo> mergePayormarch = new ActionStdCommom<PayordemInfo>(option, PayordemVisiMergePayormarch.class);
-		ActionLazy<PayordemInfo> select = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiRootSelect.class);
+		ActionStd <PayordemInfo> mergePayormarch = new ActionStdCommom <PayordemInfo>(option, PayordemVisiMergePayormarch.class);
+		ActionLazy<PayordemInfo> select          = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiRootSelect.class);
 		
 		mergePayormarch.addPostAction(select);
 		

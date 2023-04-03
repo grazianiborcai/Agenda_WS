@@ -13,8 +13,8 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiNodeUpdate;
 import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiMergeToUpdateStatus;
+import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiNodeUpdate;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckExist;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckUpdate;
 
@@ -53,7 +53,7 @@ public final class PayordemRootUpdateStatus extends DeciTreeTemplateWrite<Payord
 	@Override protected List<ActionStd<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
 		List<ActionStd<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayordemInfo> select = new ActionStdCommom<PayordemInfo>(option, PayordemVisiMergeToUpdateStatus.class);
+		ActionStd <PayordemInfo> select = new ActionStdCommom <PayordemInfo>(option, PayordemVisiMergeToUpdateStatus.class);
 		ActionLazy<PayordemInfo> update = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiNodeUpdate.class);
 		
 		select.addPostAction(update);

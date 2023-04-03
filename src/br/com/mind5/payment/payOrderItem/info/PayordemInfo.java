@@ -32,6 +32,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	public LocalDate date;
 	public LocalTime beginTime;
 	public String ownId;
+	public String idItemPartner;
 	public String idOrderPartner;
 	public String statusOrderPartner;	
 	public String idPaymentPartner;	
@@ -49,22 +50,22 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	public PayordemInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();	
+		price           = DefaultValue.number();
+		codMat          = DefaultValue.number();
+		totitem         = DefaultValue.number();
+		codOwner        = DefaultValue.number();
+		quantity        = DefaultValue.number();
+		codStore        = DefaultValue.number();
+		codOrder        = DefaultValue.number();
+		stolisData      = DefaultValue.object();		
+		matlisData      = DefaultValue.object();
+		codPayOrder     = DefaultValue.number();
+		emplresData     = DefaultValue.object();
+		codEmployee     = DefaultValue.number();
+		codFeeCateg     = DefaultValue.character();
+		codOrderItem    = DefaultValue.number();
+		codPayPartner   = DefaultValue.number();
 		codPayOrderItem = DefaultValue.number();	
-		codOrder = DefaultValue.number();	
-		codOrderItem = DefaultValue.number();
-		codFeeCateg = DefaultValue.character();
-		codPayPartner = DefaultValue.number();
-		codPayOrder = DefaultValue.number();
-		codStore = DefaultValue.number();
-		codEmployee = DefaultValue.number();
-		codMat = DefaultValue.number();
-		price = DefaultValue.number();
-		quantity = DefaultValue.number();
-		totitem = DefaultValue.number();
-		stolisData = DefaultValue.object();
-		emplresData = DefaultValue.object();
-		matlisData = DefaultValue.object();
 	}
 	
 	

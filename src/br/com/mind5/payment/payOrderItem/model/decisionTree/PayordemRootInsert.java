@@ -79,10 +79,10 @@ public final class PayordemRootInsert extends DeciTreeTemplateWrite<PayordemInfo
 	@Override protected List<ActionStd<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
 		List<ActionStd<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayordemInfo> enforceLChanged = new ActionStdCommom <PayordemInfo>(option, PayordemVisiEnforceLChanged.class);
-		ActionLazy<PayordemInfo> nodeReceiver   = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiNodeReceiverL1.class);
-		ActionLazy<PayordemInfo> insert         = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiDaoInsert.class);
-		ActionLazy<PayordemInfo> nodeStatusPay  = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiNodeStatusPay.class);
+		ActionStd <PayordemInfo> enforceLChanged = new ActionStdCommom <PayordemInfo>(option, PayordemVisiEnforceLChanged.class);
+		ActionLazy<PayordemInfo> nodeReceiver    = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiNodeReceiverL1.class);
+		ActionLazy<PayordemInfo> insert          = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiDaoInsert.class);
+		ActionLazy<PayordemInfo> nodeStatusPay   = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiNodeStatusPay.class);
 		
 		enforceLChanged.addPostAction(nodeReceiver);
 		nodeReceiver.addPostAction(insert);

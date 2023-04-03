@@ -13,9 +13,10 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiNodeRefresh;
 import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiDaoUpdate;
 import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiEnforceLChanged;
+import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiEnforceUpperCase;
+import br.com.mind5.payment.payOrderItem.model.action.PayordemVisiNodeRefresh;
 
 public final class PayordemNodeUpdate extends DeciTreeTemplateWrite<PayordemInfo> {
 	
@@ -40,11 +41,13 @@ public final class PayordemNodeUpdate extends DeciTreeTemplateWrite<PayordemInfo
 	@Override protected List<ActionStd<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
 		List<ActionStd<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayordemInfo> enforceLChanged = new ActionStdCommom<PayordemInfo>(option, PayordemVisiEnforceLChanged.class);
-		ActionLazy<PayordemInfo> update = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiDaoUpdate.class);
-		ActionLazy<PayordemInfo> refresh = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiNodeRefresh.class);
+		ActionStd <PayordemInfo> enforceLChanged  = new ActionStdCommom <PayordemInfo>(option, PayordemVisiEnforceLChanged.class);
+		ActionLazy<PayordemInfo> enforceUpperCase = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiEnforceUpperCase.class);
+		ActionLazy<PayordemInfo> update           = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiDaoUpdate.class);
+		ActionLazy<PayordemInfo> refresh          = new ActionLazyCommom<PayordemInfo>(option, PayordemVisiNodeRefresh.class);
 		
-		enforceLChanged.addPostAction(update);
+		enforceLChanged.addPostAction(enforceUpperCase);
+		enforceUpperCase.addPostAction(update);
 		update.addPostAction(refresh);
 		
 		actions.add(enforceLChanged);

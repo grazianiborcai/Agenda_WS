@@ -62,6 +62,7 @@ public class PayordemDaoInsertSingle extends DaoStmtTemplate<PayordemInfo> {
 				stmt.setString(i++, recordInfo.statusRefundPartner);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOrder);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOrderItem);
+				stmt.setString(i++, recordInfo.idItemPartner);
 				
 				return stmt;
 			}		
