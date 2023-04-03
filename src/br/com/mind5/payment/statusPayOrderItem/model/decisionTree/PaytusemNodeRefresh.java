@@ -57,7 +57,7 @@ public final class PaytusemNodeRefresh extends DeciTreeTemplateWrite<PaytusemInf
 	@Override protected List<ActionStd<PaytusemInfo>> buildActionsOnFailedHook(DeciTreeOption<PaytusemInfo> option) {
 		List<ActionStd<PaytusemInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusemInfo> mergeOrdmoip = new ActionStdCommom<PaytusemInfo>(option, PaytusemVisiMergeOrdmoip.class);	
+		ActionStd <PaytusemInfo> mergeOrdmoip   = new ActionStdCommom <PaytusemInfo>(option, PaytusemVisiMergeOrdmoip.class);
 		ActionLazy<PaytusemInfo> payordemUpdate = new ActionLazyCommom<PaytusemInfo>(option, PaytusemVisiPayordemUpdate.class);
 		
 		mergeOrdmoip.addPostAction(payordemUpdate);

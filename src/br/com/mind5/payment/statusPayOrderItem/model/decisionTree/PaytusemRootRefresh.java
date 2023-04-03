@@ -51,7 +51,7 @@ public final class PaytusemRootRefresh extends DeciTreeTemplateWrite<PaytusemInf
 	@Override protected List<ActionStd<PaytusemInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusemInfo> option) {
 		List<ActionStd<PaytusemInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusemInfo> select = new PaytusemRootSelect(option).toAction();	
+		ActionStd <PaytusemInfo> select      = new PaytusemRootSelect(option).toAction();	
 		ActionLazy<PaytusemInfo> nodeRefresh = new ActionLazyCommom<PaytusemInfo>(option, PaytusemVisiNodeRefresh.class);
 		
 		select.addPostAction(nodeRefresh);
