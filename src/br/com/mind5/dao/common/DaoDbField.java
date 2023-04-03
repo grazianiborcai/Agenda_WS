@@ -251,6 +251,7 @@ public final class DaoDbField {
 	public static final String COL_HOLDER_DOCUMENT = "holder_document";
 	public static final String COL_HOLDER_NAME = "holder_name";
 	public static final String COL_HOUR_BEFORE = "hour_before";
+	public static final String COL_ID_ITEM_PARTNER = "id_item_partner";	
 	public static final String COL_ID_ORDER_PARTNER = "id_order_partner";
 	public static final String COL_ID_PAY_PARTNER_APP = "id_pay_partner_app";
 	public static final String COL_ID_PAY_PARTNER_STORE = "id_pay_partner_store";

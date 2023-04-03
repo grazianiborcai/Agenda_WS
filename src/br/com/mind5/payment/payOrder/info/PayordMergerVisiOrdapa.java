@@ -114,7 +114,8 @@ final class PayordMergerVisiOrdapa extends InfoMergerVisitorTemplate<PayordInfo,
 				
 				if (payItemCode.equals(itemCode)) {
 					eachPayordem.ownId                = eachItem.get("code");
-					eachPayordem.idOrderPartner       = eachItem.get("id");
+					eachPayordem.idItemPartner        = eachItem.get("id");
+					eachPayordem.idOrderPartner       = null;
 					eachPayordem.idPaymentPartner     = null;
 					eachPayordem.statusPaymentPartner = null;
 				}
