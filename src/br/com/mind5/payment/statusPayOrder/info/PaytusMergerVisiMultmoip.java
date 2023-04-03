@@ -16,10 +16,10 @@ final class PaytusMergerVisiMultmoip extends InfoMergerVisitorTemplate<PaytusInf
 	
 	
 	@Override public List<PaytusInfo> merge(PaytusInfo baseInfo, MultmoipInfo selectedInfo) {
-		List<PaytusInfo> results = new ArrayList<>();
+		List<PaytusInfo> results = new ArrayList<>();		
 		
-		baseInfo.statusOrderPartner = selectedInfo.statusOrderPartner;	
-		baseInfo.idPaymentPartner = selectedInfo.idPaymentPartner;
+		baseInfo.idPaymentPartner     = selectedInfo.idPaymentPartner;
+		baseInfo.statusOrderPartner   = selectedInfo.statusOrderPartner;
 		baseInfo.statusPaymentPartner = selectedInfo.statusPaymentPartner;
 		
 		results.add(baseInfo);

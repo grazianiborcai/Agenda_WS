@@ -6,18 +6,18 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
-import br.com.mind5.payment.statusPayOrder.model.decisionTree.PaytusNodeRefresh;
+import br.com.mind5.payment.statusPayOrder.model.decisionTree.PaytusNodeRefreshL1;
 
-public final class PaytusVisiNodeRefresh extends ActionVisitorTemplateAction<PaytusInfo, PaytusInfo> {
+public final class PaytusVisiNodeRefreshL1 extends ActionVisitorTemplateAction<PaytusInfo, PaytusInfo> {
 
-	public PaytusVisiNodeRefresh(DeciTreeOption<PaytusInfo> option) {
+	public PaytusVisiNodeRefreshL1(DeciTreeOption<PaytusInfo> option) {
 		super(option, PaytusInfo.class, PaytusInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<PaytusInfo>> getTreeClassHook() {
-		return PaytusNodeRefresh.class;
+		return PaytusNodeRefreshL1.class;
 	}
 	
 	

@@ -201,6 +201,7 @@ public final class SystemCode {
 	public static final int BANK_ACCOUNT_TYPE							= 11688;
 	public static final int BANK_HOLDER_TYPE							= 11689;
 	public static final int BANK										= 11690;
+	public static final int PAY_PARTNER 								= 11691;
 
 	
 	// Material
@@ -726,6 +727,7 @@ public final class SystemCode {
 	// Pay-Order Status Header
 	public static final int PAY_STATUS_HEADER_NOT_CHANGEABLE			= 4601;
 	public static final int PAY_STATUS_HEADER_MANDATORY_FIELD_EMPTY		= 4602;
+	public static final int PAY_STATUS_HEADER							= 4603;
 	
 	// Refund Moip
 	public static final int REFUND_MOIP_REFUND_ERROR 					= 4650;
@@ -2008,6 +2010,7 @@ public final class SystemCode {
 	public static final int PAGARME_ORDER 								= 20250;
 	public static final int PAGARME_ORDER_CREATION_ERROR				= 20251;
 	public static final int PAGARME_ORDER_CANCEL_ERROR					= 20252;
+	public static final int PAGARME_ORDER_READ_ERROR					= 20253;
 	
 	// General -- 19675
 	public static final int GEN_COMPLEMENT								= 19668;

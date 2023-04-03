@@ -67,7 +67,7 @@ public final class PaytusRootRefreshAuth extends DeciTreeTemplateWrite<PaytusInf
 	@Override protected List<ActionStd<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
 		List<ActionStd<PaytusInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusInfo> nodeAuth = new PaytusNodeAuthL1(option).toAction();
+		ActionStd <PaytusInfo> nodeAuth    = new PaytusNodeAuthL1(option).toAction();
 		ActionLazy<PaytusInfo> nodeRefresh = new ActionLazyCommom<PaytusInfo>(option, PaytusVisiRootRefresh.class);	
 		
 		nodeAuth.addPostAction(nodeRefresh);

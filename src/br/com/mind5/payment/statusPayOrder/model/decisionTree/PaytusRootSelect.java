@@ -53,7 +53,7 @@ public final class PaytusRootSelect extends DeciTreeTemplateRead<PaytusInfo> {
 	@Override protected List<ActionStd<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
 		List<ActionStd<PaytusInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusInfo> mergePayord = new ActionStdCommom<PaytusInfo>(option, PaytusVisiMergePayord.class);	
+		ActionStd <PaytusInfo> mergePayord   = new ActionStdCommom <PaytusInfo>(option, PaytusVisiMergePayord.class);	
 		ActionLazy<PaytusInfo> mergePaytusem = new ActionLazyCommom<PaytusInfo>(option, PaytusVisiMergePaytusem.class);	
 		
 		mergePayord.addPostAction(mergePaytusem);

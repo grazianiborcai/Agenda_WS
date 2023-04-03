@@ -13,8 +13,8 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
-import br.com.mind5.payment.statusPayOrder.model.action.PaytusVisiNodeAuthL2;
 import br.com.mind5.payment.statusPayOrder.model.action.PaytusVisiMergeUsername;
+import br.com.mind5.payment.statusPayOrder.model.action.PaytusVisiNodeAuthL2;
 
 public final class PaytusNodeAuthL1 extends DeciTreeTemplateWrite<PaytusInfo> {
 	
@@ -39,8 +39,8 @@ public final class PaytusNodeAuthL1 extends DeciTreeTemplateWrite<PaytusInfo> {
 	@Override protected List<ActionStd<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
 		List<ActionStd<PaytusInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusInfo> mergeUsername = new ActionStdCommom<PaytusInfo>(option, PaytusVisiMergeUsername.class);
-		ActionLazy<PaytusInfo> nodeL2 = new ActionLazyCommom<PaytusInfo>(option, PaytusVisiNodeAuthL2.class);
+		ActionStd <PaytusInfo> mergeUsername = new ActionStdCommom <PaytusInfo>(option, PaytusVisiMergeUsername.class);
+		ActionLazy<PaytusInfo> nodeL2        = new ActionLazyCommom<PaytusInfo>(option, PaytusVisiNodeAuthL2.class);
 		
 		mergeUsername.addPostAction(nodeL2);
 		

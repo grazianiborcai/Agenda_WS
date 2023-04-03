@@ -11,7 +11,8 @@ public final class PaytusInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;	
 	public long codOrder;
-	public long codPayCustomer;	
+	public long codPayCustomer;
+	public int codPayPartner;
 	public long codUser;	
 	public String amountTotalPartner;
 	public String amountCurrencyPartner;
@@ -26,12 +27,13 @@ public final class PaytusInfo extends InfoRecord implements Cloneable {
 	public PaytusInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();	
-		codPayOrder = DefaultValue.number();
-		codOrder = DefaultValue.number();
+		codUser 	   = DefaultValue.number();
+		codOwner       = DefaultValue.number();		
+		codOrder       = DefaultValue.number();
+		paytusems      = DefaultValue.list();
+		codPayOrder    = DefaultValue.number();
+		codPayPartner  = DefaultValue.number();	
 		codPayCustomer = DefaultValue.number();	
-		codUser = DefaultValue.number();	
-		paytusems = DefaultValue.list();
 	}
 	
 	

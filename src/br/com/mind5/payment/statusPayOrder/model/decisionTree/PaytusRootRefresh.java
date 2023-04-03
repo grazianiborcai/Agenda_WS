@@ -12,7 +12,8 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
-import br.com.mind5.payment.statusPayOrder.model.action.PaytusVisiNodeRefresh;
+import br.com.mind5.payment.statusPayOrder.model.action.PaytusVisiNodeRefreshL1;
+import br.com.mind5.payment.statusPayOrder.model.action.PaytusVisiPayordRefresh;
 import br.com.mind5.payment.statusPayOrder.model.action.PaytusVisiPaytusemRefresh;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckOwner;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckPayord;
@@ -60,15 +61,17 @@ public final class PaytusRootRefresh extends DeciTreeTemplateWrite<PaytusInfo> {
 	@Override protected List<ActionStd<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
 		List<ActionStd<PaytusInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusInfo> selectToRefresh = new PaytusRootSelect(option).toAction();
-		ActionLazy<PaytusInfo> nodeRefresh = new ActionLazyCommom<PaytusInfo>(option, PaytusVisiNodeRefresh.class);	
-		ActionLazy<PaytusInfo> paytusemRefresh = new ActionLazyCommom<PaytusInfo>(option, PaytusVisiPaytusemRefresh.class);		
-		ActionStd<PaytusInfo> selectOutput = new PaytusRootSelect(option).toAction();	
+		ActionStd <PaytusInfo> select 		   = new PaytusRootSelect(option).toAction();
+		ActionLazy<PaytusInfo> nodeL1          = new ActionLazyCommom<PaytusInfo>(option, PaytusVisiNodeRefreshL1.class);
+		ActionLazy<PaytusInfo> payordRefresh   = new ActionLazyCommom<PaytusInfo>(option, PaytusVisiPayordRefresh.class);
+		ActionLazy<PaytusInfo> paytusemRefresh = new ActionLazyCommom<PaytusInfo>(option, PaytusVisiPaytusemRefresh.class);
+		ActionStd <PaytusInfo> selectOutput    = new PaytusRootSelect(option).toAction();
 		
-		selectToRefresh.addPostAction(nodeRefresh);
-		nodeRefresh.addPostAction(paytusemRefresh);
+		select.addPostAction(nodeL1);
+		nodeL1.addPostAction(payordRefresh);
+		payordRefresh.addPostAction(paytusemRefresh);
 		
-		actions.add(selectToRefresh);		
+		actions.add(select);		
 		actions.add(selectOutput);
 		return actions;
 	}
