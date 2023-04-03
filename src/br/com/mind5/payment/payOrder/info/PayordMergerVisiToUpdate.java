@@ -18,11 +18,11 @@ final class PayordMergerVisiToUpdate extends InfoMergerVisitorTemplate<PayordInf
 	@Override public List<PayordInfo> merge(PayordInfo baseInfo, PayordInfo selectedInfo) {
 		List<PayordInfo> results = new ArrayList<>();
 		
-		selectedInfo.statusOrderPartner = baseInfo.statusOrderPartner;	
-		selectedInfo.idPaymentPartner = baseInfo.idPaymentPartner;
+		selectedInfo.username             = baseInfo.username;
+		selectedInfo.codLanguage          = baseInfo.codLanguage;
+		selectedInfo.idPaymentPartner     = baseInfo.idPaymentPartner;
+		selectedInfo.statusOrderPartner   = baseInfo.statusOrderPartner;
 		selectedInfo.statusPaymentPartner = baseInfo.statusPaymentPartner;
-		selectedInfo.username = baseInfo.username;
-		selectedInfo.codLanguage = baseInfo.codLanguage;
 		
 		results.add(selectedInfo);
 		return results;
