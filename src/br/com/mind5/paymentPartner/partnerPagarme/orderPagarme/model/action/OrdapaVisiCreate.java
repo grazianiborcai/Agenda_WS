@@ -2,7 +2,6 @@ package br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import br.com.mind5.common.JsonBuilder;
 import br.com.mind5.common.SystemCode;
@@ -96,11 +95,10 @@ public final class OrdapaVisiCreate extends ActionVisitorTemplateSimple<OrdapaIn
 	
 	private JsonBuilder makeBodyPayments(OrdapaInfo recordInfo) {
 		JsonBuilder builderTemp = new JsonBuilder();
-		JsonBuilder builder    = new JsonBuilder();
+		JsonBuilder builder     = new JsonBuilder();
 		
 		builderTemp.addObjToJson("payment_method", recordInfo.paymentMethod);
-		builderTemp.addNestedObjToJson("credit_card", recordInfo.creditCard);
-		builderTemp.addArrayToJson("split", makeBodySplit(recordInfo).buildWithoutBraces());
+		builderTemp.addObjToJson("credit_card", makeBodyCreditcard(recordInfo).build());
 
 		builder.addArrayToJson("payments", builderTemp.build());		
 		return builder;
@@ -108,16 +106,11 @@ public final class OrdapaVisiCreate extends ActionVisitorTemplateSimple<OrdapaIn
 	
 	
 	
-	private JsonBuilder makeBodySplit(OrdapaInfo recordInfo) {
+	private JsonBuilder makeBodyCreditcard(OrdapaInfo recordInfo) {
 		JsonBuilder builder = new JsonBuilder();		
-		
-		for (Map.Entry<Map<String,String>,Map<String,String>> eachSplit : recordInfo.split.entrySet()) {
-			JsonBuilder builderTemp = new JsonBuilder();
 
-			builderTemp.addObjToJson(eachSplit.getKey());
-			builderTemp.addNestedObjToJson("options", eachSplit.getValue());
-			builder.addStrToJson(builderTemp.build());
-		}		
+		builder.addNestedObjToJson("card", recordInfo.card);
+		builder.addObjToJson(recordInfo.payments);
 		
 		return builder;
 	}

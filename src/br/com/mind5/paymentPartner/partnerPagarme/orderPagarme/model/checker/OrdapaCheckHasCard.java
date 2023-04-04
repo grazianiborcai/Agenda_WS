@@ -9,20 +9,16 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.info.OrdapaInfo;
 
-public final class OrdapaCheckHasAmount extends ModelCheckerTemplateSimple<OrdapaInfo> {
+public final class OrdapaCheckHasCard extends ModelCheckerTemplateSimple<OrdapaInfo> {
 
-	public OrdapaCheckHasAmount(ModelCheckerOption option) {
+	public OrdapaCheckHasCard(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected boolean checkHook(OrdapaInfo recordInfo, Connection conn, String schemaName) {
-		if (recordInfo.amount == null)			
-			return super.FAILED;
-		
-		
-		if (recordInfo.amount.equals("0"))			
+	@Override protected boolean checkHook(OrdapaInfo recordInfo, Connection conn, String schemaName) {	
+		if (recordInfo.card == null)			
 			return super.FAILED;
 
 		

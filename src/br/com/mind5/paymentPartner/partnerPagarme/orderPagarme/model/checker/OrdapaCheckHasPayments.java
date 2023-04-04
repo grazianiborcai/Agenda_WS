@@ -18,7 +18,7 @@ public final class OrdapaCheckHasPayments extends ModelCheckerTemplateSimple<Ord
 	
 	
 	@Override protected boolean checkHook(OrdapaInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.creditCard == null)			
+		if (recordInfo.payments == null)			
 			return super.FAILED;
 
 		

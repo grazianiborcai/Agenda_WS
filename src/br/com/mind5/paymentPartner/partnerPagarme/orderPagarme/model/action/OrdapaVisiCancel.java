@@ -2,9 +2,7 @@ package br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import br.com.mind5.common.JsonBuilder;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionVisitorTemplateSimple;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -40,43 +38,15 @@ public final class OrdapaVisiCancel extends ActionVisitorTemplateSimple<OrdapaIn
 	
 	
 	private HttpResponse<String> cancelOrder(OrdapaInfo recordInfo) {
-		String body = makeBody(recordInfo);
 		String authorization = makeAuthorization(recordInfo);
 		String url = makeUrl(recordInfo);
 		
-		HttpResponse<String> response = tryToCancelOrder(body, authorization, url);
+		HttpResponse<String> response = tryToCancelOrder(authorization, url);
 		
 		if (hasError(response) == true)
 			writeLogOnError(response);
 		
 		return response;
-	}
-	
-	
-	
-	private String makeBody(OrdapaInfo recordInfo) {
-		JsonBuilder builder = new JsonBuilder();
-		
-		builder.addObjToJson("amount", recordInfo.amount);	
-		builder.addArrayToJson("split", makeBodySplit(recordInfo).buildWithoutBraces());
-		
-		return builder.build();
-	}
-	
-	
-	
-	private JsonBuilder makeBodySplit(OrdapaInfo recordInfo) {
-		JsonBuilder builder = new JsonBuilder();		
-		
-		for (Map.Entry<Map<String,String>,Map<String,String>> eachSplit : recordInfo.split.entrySet()) {
-			JsonBuilder builderTemp = new JsonBuilder();
-
-			builderTemp.addObjToJson(eachSplit.getKey());
-			builderTemp.addNestedObjToJson("options", eachSplit.getValue());
-			builder.addStrToJson(builderTemp.build());
-		}		
-		
-		return builder;
 	}
 	
 	
@@ -93,13 +63,12 @@ public final class OrdapaVisiCancel extends ActionVisitorTemplateSimple<OrdapaIn
 	
 	
 	
-	private HttpResponse<String> tryToCancelOrder(String body, String authorization, String url) {
+	private HttpResponse<String> tryToCancelOrder(String authorization, String url) {
 		try {
 			return Unirest.delete(url)
 					  	  .header("accept", "application/json")
 						  .header("content-type", "application/json")
 						  .header("authorization", authorization)
-						  .body(body)
 						  .asString();
 			
 			

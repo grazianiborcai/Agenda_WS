@@ -7,7 +7,7 @@ import br.com.mind5.info.InfoSetterTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
 
-public final class OrdapaSetterCredidCard extends InfoSetterTemplate<OrdapaInfo> {
+public final class OrdapaSetterPayments extends InfoSetterTemplate<OrdapaInfo> {
 	
 	@Override protected OrdapaInfo setAttrHook(OrdapaInfo recordInfo) {	
 		CrecardInfo crecard = getCrecard(recordInfo);
@@ -16,7 +16,9 @@ public final class OrdapaSetterCredidCard extends InfoSetterTemplate<OrdapaInfo>
 			return recordInfo;
 		
 		recordInfo.paymentMethod = "credit_card";
-		recordInfo.creditCard = getPayments(crecard) ;
+		recordInfo.payments      = getPayments(crecard);
+		recordInfo.card          = getCard(recordInfo);
+		
 		return recordInfo;
 	}
 	
@@ -72,5 +74,14 @@ public final class OrdapaSetterCredidCard extends InfoSetterTemplate<OrdapaInfo>
 	private Map<String,String> addCardId(Map<String, String> payment, CrecardInfo crecard) {
 		payment.put("card_id", crecard.creditCardId);		
 		return payment;
+	}
+	
+	
+	
+	private Map<String,String> getCard(OrdapaInfo recordInfo) {
+		Map<String,String> card = new HashMap<>();		
+			
+		card.put("cvv", recordInfo.cardCvc);		
+		return card;
 	}
 }

@@ -18,9 +18,11 @@ public final class OrdapaCheckCreate extends ModelCheckerTemplateSimple<OrdapaIn
 	
 	
 	@Override protected boolean checkHook(OrdapaInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner 	<= 0	||
-			recordInfo.codPayOrder 	<= 0	||
-			recordInfo.codLanguage	== null		)
+		if (recordInfo.codOwner 		<= 0	||
+			recordInfo.codPayOrder 		<= 0	||
+			recordInfo.codPayOrderItem 	<= 0	||
+			recordInfo.cardCvc 			== null ||
+			recordInfo.codLanguage		== null		)
 			
 			return super.FAILED;
 

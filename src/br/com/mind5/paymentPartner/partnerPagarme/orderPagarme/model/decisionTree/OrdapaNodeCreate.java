@@ -18,7 +18,7 @@ import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.Orda
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckHasCustomer;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckHasItems;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckHasPayments;
-import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckHasSplit;
+import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckHasCard;
 
 public final class OrdapaNodeCreate extends DeciTreeTemplateWrite<OrdapaInfo> {
 	
@@ -58,7 +58,7 @@ public final class OrdapaNodeCreate extends DeciTreeTemplateWrite<OrdapaInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new OrdapaCheckHasSplit(checkerOption);
+		checker = new OrdapaCheckHasCard(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
