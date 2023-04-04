@@ -2012,6 +2012,12 @@ public final class SystemCode {
 	public static final int PAGARME_ORDER_CANCEL_ERROR					= 20252;
 	public static final int PAGARME_ORDER_READ_ERROR					= 20253;
 	
+	// Pay Partner Pagarme: Order Split
+	public static final int PAGARME_ORDER_SPLIT 						= 20300;
+	public static final int PAGARME_ORDER_SPLIT_CREATION_ERROR			= 20301;
+	public static final int PAGARME_ORDER_SPLIT_CANCEL_ERROR			= 20302;
+	public static final int PAGARME_ORDER_SPLIT_READ_ERROR				= 20303;
+	
 	// General -- 19675
 	public static final int GEN_COMPLEMENT								= 19668;
 	public static final int GEN_DESCRIPTION								= 19661;
