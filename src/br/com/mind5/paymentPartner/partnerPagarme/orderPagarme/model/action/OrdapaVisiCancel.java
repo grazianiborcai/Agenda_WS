@@ -58,7 +58,7 @@ public final class OrdapaVisiCancel extends ActionVisitorTemplateSimple<OrdapaIn
 	
 	
 	private String makeUrl(OrdapaInfo recordInfo) {
-		return "https://api.pagar.me/core/v5/charges/" + recordInfo.payordData.idPaymentPartner;
+		return "https://api.pagar.me/core/v5/charges/" + recordInfo.payordemData.idPaymentPartner;
 	}
 	
 	

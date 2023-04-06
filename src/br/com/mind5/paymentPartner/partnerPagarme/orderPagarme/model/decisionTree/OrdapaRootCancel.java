@@ -12,8 +12,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.info.OrdapaInfo;
-import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiEnforcePayordem;
-import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiMergePayord;
+import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiMergePayordem;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiNodeCancel;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckCancel;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckPayord;
@@ -61,14 +60,12 @@ public final class OrdapaRootCancel extends DeciTreeTemplateWrite<OrdapaInfo> {
 	@Override protected List<ActionStd<OrdapaInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdapaInfo> option) {
 		List<ActionStd<OrdapaInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrdapaInfo>  nodeSetupar 	   = new OrdapaNodeSetuparL1(option).toAction();
-		ActionLazy<OrdapaInfo> mergePayord 	   = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiMergePayord.class);		
-		ActionLazy<OrdapaInfo> enforcePayordem = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiEnforcePayordem.class);
-		ActionLazy<OrdapaInfo> nodeL1 		   = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiNodeCancel.class);
+		ActionStd<OrdapaInfo>  nodeSetupar = new OrdapaNodeSetuparL1(option).toAction();
+		ActionLazy<OrdapaInfo> mergePayord = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiMergePayordem.class);
+		ActionLazy<OrdapaInfo> nodeL1 	   = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiNodeCancel.class);
 		
 		nodeSetupar.addPostAction(mergePayord);
-		mergePayord.addPostAction(enforcePayordem);
-		enforcePayordem.addPostAction(nodeL1);
+		mergePayord.addPostAction(nodeL1);
 		
 		actions.add(nodeSetupar);
 		return actions;

@@ -24,14 +24,11 @@ public final class OrdapaSetterPayments extends InfoSetterTemplate<OrdapaInfo> {
 	
 	
 	
-	private CrecardInfo getCrecard(OrdapaInfo recordInfo) {
-		if (recordInfo.payordData == null)
+	private CrecardInfo getCrecard(OrdapaInfo recordInfo) {		
+		if (recordInfo.crecardData == null)
 			return null;
 		
-		if (recordInfo.payordData.crecardData == null)
-			return null;
-		
-		return recordInfo.payordData.crecardData;
+		return recordInfo.crecardData;
 	}
 	
 	

@@ -39,8 +39,8 @@ public final class OrdapaNodeSetuparL1 extends DeciTreeTemplateWrite<OrdapaInfo>
 	@Override protected List<ActionStd<OrdapaInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdapaInfo> option) {
 		List<ActionStd<OrdapaInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrdapaInfo> enforcePaypar = new ActionStdCommom<OrdapaInfo>(option, OrdapaVisiEnforcePaypar.class);
-		ActionLazy<OrdapaInfo> nodeL2 = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiNodeSetuparL2.class);
+		ActionStd <OrdapaInfo> enforcePaypar = new ActionStdCommom <OrdapaInfo>(option, OrdapaVisiEnforcePaypar.class);
+		ActionLazy<OrdapaInfo> nodeL2        = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiNodeSetuparL2.class);
 		
 		enforcePaypar.addPostAction(nodeL2);
 		

@@ -6,7 +6,8 @@ import java.util.Map;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.payment.payOrder.info.PayordInfo;
+import br.com.mind5.payment.creditCard.info.CrecardInfo;
+import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 
 public final class OrdapaInfo extends InfoRecord implements Cloneable {
@@ -14,8 +15,11 @@ public final class OrdapaInfo extends InfoRecord implements Cloneable {
 	public long codPayOrder;
 	public long codPayOrderItem;
 	public int codPayPartner;
+	public long codPayCustomer;
+	public long codCreditCard;
 	public String cardCvc;
-	public PayordInfo payordData;
+	public PayordemInfo payordemData;
+	public CrecardInfo crecardData;
 	public String code;
 	public String customerId;
 	public String paymentMethod;
@@ -38,13 +42,16 @@ public final class OrdapaInfo extends InfoRecord implements Cloneable {
 		card                = DefaultValue.object();
 		items               = DefaultValue.list();
 		codOwner            = DefaultValue.number();
-		payments            = DefaultValue.object();	
-		payordData          = DefaultValue.object();			
+		payments            = DefaultValue.object();
+		crecardData         = DefaultValue.object();
 		setuparData         = DefaultValue.object();
 		codPayOrder         = DefaultValue.number();
-		responseRoot        = DefaultValue.object();		
+		payordemData        = DefaultValue.object();
+		responseRoot        = DefaultValue.object();
+		codCreditCard       = DefaultValue.number();
 		responseItems       = DefaultValue.list();		
-		codPayPartner       = DefaultValue.number();		
+		codPayPartner       = DefaultValue.number();
+		codPayCustomer		= DefaultValue.number();
 		codPayOrderItem     = DefaultValue.number();
 		responseCharges     = DefaultValue.list();
 		responseTransaction = DefaultValue.object();
@@ -68,7 +75,7 @@ public final class OrdapaInfo extends InfoRecord implements Cloneable {
 		OrdapaInfo deepCopy = (OrdapaInfo) super.clone();
 		
 		deepCopy.setuparData = CloneUtil.cloneRecord(setuparData, this.getClass());
-		deepCopy.payordData  = CloneUtil.cloneRecord(payordData , this.getClass());
+		deepCopy.payordemData  = CloneUtil.cloneRecord(payordemData , this.getClass());
 		
 		return deepCopy;
 	}
@@ -77,9 +84,10 @@ public final class OrdapaInfo extends InfoRecord implements Cloneable {
 	
 	@Override public int hashCode() {
 		int result = 17;
-		
-		result = result * 31 + (int) (codOwner 	  ^ (codOwner 	 >>> 32));
-		result = result * 31 + (int) (codPayOrder ^ (codPayOrder >>> 32));
+
+		result = result * 31 + (int) (codOwner 	  	  ^ (codOwner 	     >>> 32));
+		result = result * 31 + (int) (codPayOrder     ^ (codPayOrder     >>> 32));
+		result = result * 31 + (int) (codPayOrderItem ^ (codPayOrderItem >>> 32));
 		
 		return result;
 	}
@@ -96,7 +104,8 @@ public final class OrdapaInfo extends InfoRecord implements Cloneable {
 		
 		
 		OrdapaInfo obj = (OrdapaInfo) o;
-		return (codOwner	== obj.codOwner 	&&
-				codPayOrder == obj.codPayOrder		);
+		return (codOwner	    == obj.codOwner 	&&
+				codPayOrder     == obj.codPayOrder	&&
+				codPayOrderItem == obj.codPayOrderItem);
 	}
 }

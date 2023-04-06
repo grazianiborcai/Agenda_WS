@@ -12,49 +12,23 @@ import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 
 public final class OrdapaSetterItems extends InfoSetterTemplate<OrdapaInfo> {
 	
-	@Override protected OrdapaInfo setAttrHook(OrdapaInfo recordInfo) {	
-		List<PayordemInfo> payOrdemItems = getPayOrdemItems(recordInfo);
-		
-		if (payOrdemItems == null)
-			return recordInfo;
-		
-		
-		recordInfo.items = getItems(payOrdemItems) ;
+	@Override protected OrdapaInfo setAttrHook(OrdapaInfo recordInfo) {			
+		recordInfo.items = getItems(recordInfo.payordemData) ;
 		return recordInfo;
 	}
 	
 	
 	
-	private List<PayordemInfo> getPayOrdemItems(OrdapaInfo recordInfo) {
-		if (recordInfo.payordData == null)
-			return null;
-		
-		if (recordInfo.payordData.payordems == null)
-			return null;
-		
-		if (recordInfo.payordData.payordems.isEmpty())
-			return null;
-		
-		return recordInfo.payordData.payordems;
-	}
-	
-	
-	
-	private List<Map<String,String>> getItems(List<PayordemInfo> payOrdemItems) {
+	private List<Map<String,String>> getItems(PayordemInfo payordemData) {
 		List<Map<String,String>> items = new ArrayList<>();
+		Map<String, String> eachItem = new HashMap<>();
 		
+		eachItem = addItemAmount     (eachItem, payordemData);
+		eachItem = addItemDescription(eachItem, payordemData);
+		eachItem = addItemQuantity   (eachItem, payordemData);
+		eachItem = addItemCode       (eachItem, payordemData);
 		
-		for (PayordemInfo eachPayordem : payOrdemItems) {
-			Map<String, String> eachItem = new HashMap<>();
-			
-			eachItem = addItemAmount(eachItem, eachPayordem);
-			eachItem = addItemDescription(eachItem, eachPayordem);
-			eachItem = addItemQuantity(eachItem, eachPayordem);
-			eachItem = addItemCode(eachItem, eachPayordem);
-			
-			items.add(eachItem);			
-		}
-		
+		items.add(eachItem);		
 		return items;
 	}
 	

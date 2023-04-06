@@ -12,7 +12,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.info.OrdapaInfo;
-import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiMergePayord;
+import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiMergePayordem;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiNodeRead;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckPayord;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckRead;
@@ -53,7 +53,7 @@ public final class OrdapaRootRead extends DeciTreeTemplateWrite<OrdapaInfo> {
 		List<ActionStd<OrdapaInfo>> actions = new ArrayList<>();
 		
 		ActionStd<OrdapaInfo>  nodeSetupar = new OrdapaNodeSetuparL1(option).toAction();
-		ActionLazy<OrdapaInfo> mergePayord = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiMergePayord.class);
+		ActionLazy<OrdapaInfo> mergePayord = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiMergePayordem.class);
 		ActionLazy<OrdapaInfo> nodeL1 	   = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiNodeRead.class);
 		
 		nodeSetupar.addPostAction(mergePayord);

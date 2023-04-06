@@ -18,11 +18,11 @@ public final class OrdapaCheckHasChargeId extends ModelCheckerTemplateSimple<Ord
 	
 	
 	@Override protected boolean checkHook(OrdapaInfo recordInfo, Connection conn, String schemaName) {
-		if (recordInfo.payordData == null)			
+		if (recordInfo.payordemData == null)			
 			return super.FAILED;
 		
 		
-		if (recordInfo.payordData.idPaymentPartner == null)			
+		if (recordInfo.payordemData.idPaymentPartner == null)			
 			return super.FAILED;
 
 		
