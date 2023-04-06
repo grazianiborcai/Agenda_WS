@@ -21,13 +21,13 @@ final class PayordMergerVisiMultmoip extends InfoMergerVisitorTemplate<PayordInf
 	@Override public List<PayordInfo> merge(PayordInfo baseInfo, MultmoipInfo selectedInfo) {
 		List<PayordInfo> results = new ArrayList<>();
 		
-		baseInfo.idOrderPartner = selectedInfo.idOrderPartner;
-		baseInfo.statusOrderPartner = selectedInfo.statusOrderPartner;
-		baseInfo.idPaymentPartner = selectedInfo.idPaymentPartner;
-		baseInfo.statusPaymentPartner = selectedInfo.statusPaymentPartner;
-		baseInfo.amountTotalPartner = selectedInfo.amountTotalPartner;
-		baseInfo.amountCurrencyPartner = selectedInfo.amountCurrencyPartner;
-		baseInfo.ownId = selectedInfo.ownId;
+		baseInfo.ownId                 = selectedInfo.ownId;
+		baseInfo.idOrderPartner        = selectedInfo.idOrderPartner;		
+		baseInfo.idPaymentPartner      = selectedInfo.idPaymentPartner;
+		baseInfo.statusOrderPartner    = selectedInfo.statusOrderPartner;
+		baseInfo.amountTotalPartner    = selectedInfo.amountTotalPartner;
+		baseInfo.statusPaymentPartner  = selectedInfo.statusPaymentPartner;
+		baseInfo.amountCurrencyPartner = selectedInfo.amountCurrencyPartner;		
 		
 		baseInfo = mergePayordem(baseInfo, selectedInfo.ordmoips);
 		

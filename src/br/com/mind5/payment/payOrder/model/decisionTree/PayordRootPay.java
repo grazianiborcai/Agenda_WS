@@ -86,16 +86,16 @@ public final class PayordRootPay extends DeciTreeTemplateWrite<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 		//TODO: Refresh Latest ???
-		ActionStd <PayordInfo> nodeAuth  = new PayordNodeAuthL1(option).toAction();
-		ActionStd <PayordInfo> nodeUser  = new PayordNodeUser(option).toAction();
-		ActionLazy<PayordInfo> nodeOrder = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodeOrder.class);
-		ActionLazy<PayordInfo> nodeL1    = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodeInsert.class);
-		ActionLazy<PayordInfo> nodePay   = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodePayL1.class);
-		ActionLazy<PayordInfo> obfuscate = new ActionLazyCommom<PayordInfo>(option, PayordVisiObfuscate.class);
+		ActionStd <PayordInfo> nodeAuth   = new PayordNodeAuthL1(option).toAction();
+		ActionStd <PayordInfo> nodeUser   = new PayordNodeUser(option).toAction();
+		ActionLazy<PayordInfo> nodeOrder  = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodeOrder.class);
+		ActionLazy<PayordInfo> nodeInsert = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodeInsert.class);
+		ActionLazy<PayordInfo> nodePay    = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodePayL1.class);
+		ActionLazy<PayordInfo> obfuscate  = new ActionLazyCommom<PayordInfo>(option, PayordVisiObfuscate.class);
 		
 		nodeUser.addPostAction(nodeOrder);
-		nodeOrder.addPostAction(nodeL1);
-		nodeL1.addPostAction(nodePay);
+		nodeOrder.addPostAction(nodeInsert);
+		nodeInsert.addPostAction(nodePay);
 		nodePay.addPostAction(obfuscate);
 		
 		actions.add(nodeAuth);

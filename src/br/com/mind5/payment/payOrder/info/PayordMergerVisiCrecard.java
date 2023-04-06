@@ -19,9 +19,9 @@ final class PayordMergerVisiCrecard extends InfoMergerVisitorTemplate<PayordInfo
 	@Override public List<PayordInfo> merge(PayordInfo baseInfo, CrecardInfo selectedInfo) {
 		List<PayordInfo> results = new ArrayList<>();
 		
+		baseInfo.crecardData    = selectedInfo;
+		baseInfo.codPayPartner  = selectedInfo.codPayPartner;		
 		baseInfo.codPayCustomer = selectedInfo.codPayCustomer;
-		baseInfo.codPayPartner = selectedInfo.codPayPartner;
-		baseInfo.crecardData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;
