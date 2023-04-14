@@ -13,10 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiDaoUpdate;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiEnforceLChanged;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiMergeToUpdate;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiOrderRefresh;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiNodeRefreshL1;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiRootSelect;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckExist;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckRefresh;
 
@@ -55,14 +54,12 @@ public final class PayordRootRefresh extends DeciTreeTemplateWrite<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();
 		
-		ActionStd <PayordInfo> select          = new ActionStdCommom <PayordInfo>(option, PayordVisiMergeToUpdate.class);
+		ActionStd <PayordInfo> select          = new ActionStdCommom <PayordInfo>(option, PayordVisiRootSelect.class);
+		ActionLazy<PayordInfo> nodeRefresh     = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodeRefreshL1.class);
 		ActionLazy<PayordInfo> enforceLChanged = new ActionLazyCommom<PayordInfo>(option, PayordVisiEnforceLChanged.class);
-		ActionLazy<PayordInfo> updatePayord    = new ActionLazyCommom<PayordInfo>(option, PayordVisiDaoUpdate.class);
-		ActionLazy<PayordInfo> refreshOrder    = new ActionLazyCommom<PayordInfo>(option, PayordVisiOrderRefresh.class);
 		
-		select.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(updatePayord);
-		updatePayord.addPostAction(refreshOrder);
+		select.addPostAction(nodeRefresh);
+		nodeRefresh.addPostAction(enforceLChanged);
 		
 		actions.add(select);
 		return actions;

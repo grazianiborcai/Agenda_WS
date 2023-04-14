@@ -20,13 +20,13 @@ import br.com.mind5.payment.creditCard.model.CrecardModelDelete;
 import br.com.mind5.payment.creditCard.model.CrecardModelInsert;
 import br.com.mind5.payment.creditCard.model.CrecardModelSearch;
 import br.com.mind5.payment.creditCard.model.CrecardModelSelect;
+import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.PayordModelPay;
+import br.com.mind5.payment.payOrder.model.PayordModelRefreshAuth;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 import br.com.mind5.payment.refundOrder.model.RefuModelRefund;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.model.RefemModelRefundAuth;
-import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
-import br.com.mind5.payment.statusPayOrder.model.PaytusModelRefreshAuth;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.PeresmoipModelCode;
 
@@ -119,14 +119,14 @@ public final class PaymentResource {
 								     @HeaderParam("TOKEN_USERNAME") String username,
 								     @HeaderParam("codLanguage") 	@DefaultValue("EN") String codLanguage) {
 
-		PaytusInfo recordInfo = new PaytusInfo();
+		PayordInfo recordInfo = new PayordInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codPayOrder = codPayOrder;
 		recordInfo.username = username;
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model model = new PaytusModelRefreshAuth(recordInfo);
+		Model model = new PayordModelRefreshAuth(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();
