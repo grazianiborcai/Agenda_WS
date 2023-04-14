@@ -20,10 +20,11 @@ final class PayordemMergerVisiToUpdate extends InfoMergerVisitorTemplate<Payorde
 		selectedInfo.username             = baseInfo.username;
 		selectedInfo.codLanguage          = baseInfo.codLanguage;
 //		selectedInfo.itemReceiver         = baseInfo.itemReceiver;
+		selectedInfo.idItemPartner        = baseInfo.idItemPartner;
 		selectedInfo.idOrderPartner       = baseInfo.idOrderPartner;
 		selectedInfo.idPaymentPartner     = baseInfo.idPaymentPartner;
-		selectedInfo.statusOrderPartner   = baseInfo.statusOrderPartner;		
-		selectedInfo.statusPaymentPartner = baseInfo.statusPaymentPartner;
+		selectedInfo.statusOrderPartner   = baseInfo.statusOrderPartner;
+		selectedInfo.statusPaymentPartner = baseInfo.statusPaymentPartner;		
 		
 		results.add(selectedInfo);
 		return results;
