@@ -124,17 +124,17 @@ final class PayordMergerVisiOrdapa extends InfoMergerVisitorTemplate<PayordInfo,
 		
 		
 		if (hasCaptured) {
-			baseInfo.statusOrderPartner = "CAPTURED";
+			baseInfo.statusPaymentPartner = "CAPTURED";
 			return baseInfo;
 		}
 		
 		
 		if (hasFailed) {
-			baseInfo.statusOrderPartner = "FAILED";
+			baseInfo.statusPaymentPartner = "FAILED";
 			return baseInfo;
 		}
 		
-		baseInfo.statusOrderPartner = "PENDING";
+		baseInfo.statusPaymentPartner = "PENDING";
 		return baseInfo;
 	}
 	

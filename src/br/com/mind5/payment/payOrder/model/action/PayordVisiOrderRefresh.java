@@ -2,7 +2,6 @@ package br.com.mind5.payment.payOrder.model.action;
 
 import java.util.List;
 
-import br.com.mind5.business.order.info.OrderCopier;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.decisionTree.OrderRootRefresh;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
@@ -20,12 +19,6 @@ public final class PayordVisiOrderRefresh extends ActionVisitorTemplateAction<Pa
 	
 	@Override protected Class<? extends DeciTree<OrderInfo>> getTreeClassHook() {
 		return OrderRootRefresh.class;
-	}
-	
-	
-	
-	@Override protected List<OrderInfo> toActionClassHook(List<PayordInfo> recordInfos) {
-		return OrderCopier.copyFromPayord(recordInfos); // Remover ?
 	}
 	
 	

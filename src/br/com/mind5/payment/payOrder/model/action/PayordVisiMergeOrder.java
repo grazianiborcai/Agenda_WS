@@ -2,7 +2,6 @@ package br.com.mind5.payment.payOrder.model.action;
 
 import java.util.List;
 
-import br.com.mind5.business.order.info.OrderCopier;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.decisionTree.OrderRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
@@ -21,12 +20,6 @@ public final class PayordVisiMergeOrder extends ActionVisitorTemplateMerge<Payor
 	
 	@Override protected Class<? extends DeciTree<OrderInfo>> getTreeClassHook() {
 		return OrderRootSelect.class;
-	}
-	
-	
-	
-	@Override protected List<OrderInfo> toActionClassHook(List<PayordInfo> baseInfos) {
-		return OrderCopier.copyFromPayord(baseInfos);	
 	}
 	
 	
