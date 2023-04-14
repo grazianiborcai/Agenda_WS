@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.OrderModelCancelAuth;
 import br.com.mind5.business.order.model.OrderModelPlaceAuth;
+import br.com.mind5.business.order.model.OrderModelRefreshAuth;
 import br.com.mind5.business.order.model.OrderModelSelectAuth;
 import br.com.mind5.business.orderHistoryDecorated.model.OrdorycoModelSearchAuth;
 import br.com.mind5.business.orderList.model.OrdistModelSearchAuth;
@@ -22,11 +23,12 @@ import br.com.mind5.model.Model;
 
 @Path("/Order")
 public final class OrderResource {
-	private static final String CANCEL_ORDER = "/cancelOrder";
-	private static final String PLACE_ORDER = "/placeOrder";
-	private static final String SEARCH_ORDER = "/searchOrder";
+	private static final String CANCEL_ORDER         = "/cancelOrder";
+	private static final String PLACE_ORDER          = "/placeOrder";
+	private static final String SEARCH_ORDER         = "/searchOrder";
 	private static final String SEARCH_HISTORY_ORDER = "/searchHistoryOrder";
-	private static final String SELECT_ORDER = "/selectOrder";	
+	private static final String SELECT_ORDER         = "/selectOrder";
+	private static final String REFRESH_ORDER        = "/refreshOrder";
 	
 	
 	
@@ -132,5 +134,30 @@ public final class OrderResource {
 		model.close();
 		
 		return result;
-	} 
+	}
+	
+	
+	
+	@GET
+	@Path(REFRESH_ORDER)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response refreshOrder(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner, 
+						  	     @HeaderParam("TOKEN_USERNAME") String username,
+							     @HeaderParam("codOrder")    	@DefaultValue("-1") long codOrder,
+							     @HeaderParam("codLanguage") 	@DefaultValue("EN") String codLanguage) {
+		
+		OrderInfo recordInfo = new OrderInfo();
+		recordInfo.codOwner    = codOwner;
+		recordInfo.username    = username;
+		recordInfo.codOrder    = codOrder;
+		recordInfo.codLanguage = codLanguage;		
+		
+		Model model = new OrderModelRefreshAuth(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
+		
 }

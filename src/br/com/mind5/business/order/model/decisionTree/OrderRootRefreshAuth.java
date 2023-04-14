@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class OrderRootRefresh extends DeciTreeTemplateWrite<OrderInfo> {
+public final class OrderRootRefreshAuth extends DeciTreeTemplateWrite<OrderInfo> {
 	
-	public OrderRootRefresh(DeciTreeOption<OrderInfo> option) {
+	public OrderRootRefreshAuth(DeciTreeOption<OrderInfo> option) {
 		super(option);
 	}
 	
@@ -37,7 +37,7 @@ public final class OrderRootRefresh extends DeciTreeTemplateWrite<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 
-		ActionStd <OrderInfo> select      = new OrderRootSelect(option).toAction();
+		ActionStd <OrderInfo> select      = new OrderRootSelectAuth(option).toAction();
 		ActionLazy<OrderInfo> nodeRefresh = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeRefresh.class);
 		
 		select.addPostAction(nodeRefresh);
