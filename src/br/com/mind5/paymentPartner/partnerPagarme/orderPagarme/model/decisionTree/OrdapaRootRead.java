@@ -14,7 +14,7 @@ import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.info.OrdapaInfo;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiMergePayordem;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.action.OrdapaVisiNodeRead;
-import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckPayord;
+import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckPayordem;
 import br.com.mind5.paymentPartner.partnerPagarme.orderPagarme.model.checker.OrdapaCheckRead;
 
 public final class OrdapaRootRead extends DeciTreeTemplateWrite<OrdapaInfo> {
@@ -41,7 +41,7 @@ public final class OrdapaRootRead extends DeciTreeTemplateWrite<OrdapaInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new OrdapaCheckPayord(checkerOption);
+		checker = new OrdapaCheckPayordem(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -52,12 +52,12 @@ public final class OrdapaRootRead extends DeciTreeTemplateWrite<OrdapaInfo> {
 	@Override protected List<ActionStd<OrdapaInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdapaInfo> option) {
 		List<ActionStd<OrdapaInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrdapaInfo>  nodeSetupar = new OrdapaNodeSetuparL1(option).toAction();
-		ActionLazy<OrdapaInfo> mergePayord = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiMergePayordem.class);
-		ActionLazy<OrdapaInfo> nodeL1 	   = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiNodeRead.class);
+		ActionStd<OrdapaInfo>  nodeSetupar   = new OrdapaNodeSetuparL1(option).toAction();
+		ActionLazy<OrdapaInfo> mergePayordem = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiMergePayordem.class);
+		ActionLazy<OrdapaInfo> nodeL1 	     = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiNodeRead.class);
 		
-		nodeSetupar.addPostAction(mergePayord);
-		mergePayord.addPostAction(nodeL1);
+		nodeSetupar.addPostAction(mergePayordem);
+		mergePayordem.addPostAction(nodeL1);
 		
 		actions.add(nodeSetupar);
 		return actions;

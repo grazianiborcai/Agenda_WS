@@ -20,6 +20,7 @@ public final class OrdapaCheckRead extends ModelCheckerTemplateSimple<OrdapaInfo
 	@Override protected boolean checkHook(OrdapaInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 		<= 0	||
 			recordInfo.codPayOrder 		<= 0	||
+			recordInfo.codPayOrderItem 	<= 0	||
 			recordInfo.codLanguage		== null		)
 			
 			return super.FAILED;

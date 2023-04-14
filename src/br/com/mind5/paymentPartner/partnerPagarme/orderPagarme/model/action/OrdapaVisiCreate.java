@@ -98,7 +98,7 @@ public final class OrdapaVisiCreate extends ActionVisitorTemplateSimple<OrdapaIn
 		JsonBuilder builder     = new JsonBuilder();
 		
 		builderTemp.addObjToJson("payment_method", recordInfo.paymentMethod);
-		builderTemp.addObjToJson("credit_card", makeBodyCreditcard(recordInfo).build());
+		builderTemp.addBuilderToJson("credit_card", makeBodyCreditcard(recordInfo));
 
 		builder.addArrayToJson("payments", builderTemp.build());		
 		return builder;

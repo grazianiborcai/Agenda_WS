@@ -60,12 +60,12 @@ public final class OrdapaRootCancel extends DeciTreeTemplateWrite<OrdapaInfo> {
 	@Override protected List<ActionStd<OrdapaInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdapaInfo> option) {
 		List<ActionStd<OrdapaInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrdapaInfo>  nodeSetupar = new OrdapaNodeSetuparL1(option).toAction();
-		ActionLazy<OrdapaInfo> mergePayord = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiMergePayordem.class);
-		ActionLazy<OrdapaInfo> nodeL1 	   = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiNodeCancel.class);
+		ActionStd <OrdapaInfo> nodeSetupar   = new OrdapaNodeSetuparL1(option).toAction();
+		ActionLazy<OrdapaInfo> mergePayordem = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiMergePayordem.class);
+		ActionLazy<OrdapaInfo> nodeL1 	     = new ActionLazyCommom<OrdapaInfo>(option, OrdapaVisiNodeCancel.class);
 		
-		nodeSetupar.addPostAction(mergePayord);
-		mergePayord.addPostAction(nodeL1);
+		nodeSetupar.addPostAction(mergePayordem);
+		mergePayordem.addPostAction(nodeL1);
 		
 		actions.add(nodeSetupar);
 		return actions;

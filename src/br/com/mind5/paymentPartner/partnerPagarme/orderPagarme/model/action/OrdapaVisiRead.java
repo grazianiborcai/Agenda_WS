@@ -58,7 +58,7 @@ public final class OrdapaVisiRead extends ActionVisitorTemplateSimple<OrdapaInfo
 	
 	
 	private String makeUrl(OrdapaInfo recordInfo) {
-		return "https://api.pagar.me/core/v5/orders/" + recordInfo.payordemData.idPaymentPartner;
+		return "https://api.pagar.me/core/v5/orders/" + recordInfo.payordemData.idOrderPartner;
 	}
 	
 	
