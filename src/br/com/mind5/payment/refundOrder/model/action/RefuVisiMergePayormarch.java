@@ -5,9 +5,8 @@ import java.util.List;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.payment.payOrderItemSearch.info.PayormarchCopier;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
-import br.com.mind5.payment.payOrderItemSearch.model.decisionTree.PayormarchRootSelect;
+import br.com.mind5.payment.payOrderItemSearch.model.decisionTree.PayormarchRootSelectPayord;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 import br.com.mind5.payment.refundOrder.info.RefuMerger;
 
@@ -20,13 +19,7 @@ public final class RefuVisiMergePayormarch extends ActionVisitorTemplateMerge<Re
 	
 	
 	@Override protected Class<? extends DeciTree<PayormarchInfo>> getTreeClassHook() {
-		return PayormarchRootSelect.class;
-	}
-	
-	
-	
-	@Override protected List<PayormarchInfo> toActionClassHook(List<RefuInfo> recordInfos) {
-		return PayormarchCopier.copyFromRefu(recordInfos);
+		return PayormarchRootSelectPayord.class;
 	}
 	
 	
