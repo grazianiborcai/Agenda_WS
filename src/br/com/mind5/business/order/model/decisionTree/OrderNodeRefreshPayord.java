@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
+import br.com.mind5.business.order.model.action.OrderVisiMergeOrdugePartner;
+import br.com.mind5.business.order.model.action.OrderVisiMergePayord;
 import br.com.mind5.business.order.model.action.OrderVisiNodeUpdate;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
@@ -37,12 +40,14 @@ public final class OrderNodeRefreshPayord extends DeciTreeTemplateWrite<OrderInf
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 
-		ActionStd <OrderInfo> nodePayord = new OrderNodePayord(option).toAction();
-		ActionLazy<OrderInfo> nodeUpdate = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeUpdate.class);
+		ActionStd <OrderInfo> mergePayord  = new ActionStdCommom <OrderInfo>(option, OrderVisiMergePayord.class);
+		ActionLazy<OrderInfo> statusChange = new ActionLazyCommom<OrderInfo>(option, OrderVisiMergeOrdugePartner.class);
+		ActionLazy<OrderInfo> nodeUpdate   = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeUpdate.class);
 		
-		nodePayord.addPostAction(nodeUpdate);
+		mergePayord.addPostAction(statusChange);
+		statusChange.addPostAction(nodeUpdate);
 		
-		actions.add(nodePayord);
+		actions.add(mergePayord);
 		return actions;
 	}
 }

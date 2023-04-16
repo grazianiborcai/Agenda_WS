@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
+import br.com.mind5.business.order.model.action.OrderVisiMergeOrdugeCancel;
 import br.com.mind5.business.order.model.action.OrderVisiMergeToSelect;
 import br.com.mind5.business.order.model.action.OrderVisiNodeCancel;
 import br.com.mind5.business.order.model.action.OrderVisiRootSelect;
@@ -71,11 +72,13 @@ public final class OrderRootCancel extends DeciTreeTemplateWrite<OrderInfo> {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 		
 		ActionStd <OrderInfo> mergeToSelect = new ActionStdCommom <OrderInfo>(option, OrderVisiMergeToSelect.class);
-		ActionLazy<OrderInfo> cancel        = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeCancel.class);
+		ActionLazy<OrderInfo> statusChange  = new ActionLazyCommom<OrderInfo>(option, OrderVisiMergeOrdugeCancel.class);
+		ActionLazy<OrderInfo> nodeL1        = new ActionLazyCommom<OrderInfo>(option, OrderVisiNodeCancel.class);
 		ActionLazy<OrderInfo> select        = new ActionLazyCommom<OrderInfo>(option, OrderVisiRootSelect.class);		
 		
-		mergeToSelect.addPostAction(cancel);		
-		cancel.addPostAction(select);
+		mergeToSelect.addPostAction(statusChange);
+		statusChange.addPostAction(nodeL1);
+		nodeL1.addPostAction(select);
 		
 		actions.add(mergeToSelect);
 		return actions;
