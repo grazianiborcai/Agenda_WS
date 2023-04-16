@@ -17,7 +17,7 @@ final class RefemMergerVisiRefumoip extends InfoMergerVisitorTemplate<RefemInfo,
 	@Override public List<RefemInfo> merge(RefemInfo baseInfo, RefumoipInfo selectedInfo) {
 		List<RefemInfo> results = new ArrayList<>();
 		
-		baseInfo.idRefundPartner = selectedInfo.idRefundPartner;
+		baseInfo.idRefundPartner     = selectedInfo.idRefundPartner;
 		baseInfo.statusRefundPartner = selectedInfo.statusRefundPartner;
 		
 		results.add(baseInfo);

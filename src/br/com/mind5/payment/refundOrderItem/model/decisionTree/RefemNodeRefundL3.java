@@ -40,22 +40,22 @@ public final class RefemNodeRefundL3 extends DeciTreeTemplateWrite<RefemInfo> {
 	
 	
 	@Override protected List<ActionStd<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
-		List<ActionStd<RefemInfo>> actions = new ArrayList<>();		
+		List<ActionStd<RefemInfo>> actions = new ArrayList<>();
 		
 		ActionStd <RefemInfo> cancel = new ActionStdCommom <RefemInfo>(option, RefemVisiOrdapaCancel.class);
 		
-		actions.add(cancel);		
+		actions.add(cancel);
 		return actions;
 	}
 	
 	
 	
 	@Override protected List<ActionStd<RefemInfo>> buildActionsOnFailedHook(DeciTreeOption<RefemInfo> option) {
-		List<ActionStd<RefemInfo>> actions = new ArrayList<>();		
+		List<ActionStd<RefemInfo>> actions = new ArrayList<>();
 
 		ActionStd<RefemInfo> nodeL4 = new RefemNodeRefundL4(option).toAction();
 		
-		actions.add(nodeL4);		
+		actions.add(nodeL4);
 		return actions;
 	}
 }

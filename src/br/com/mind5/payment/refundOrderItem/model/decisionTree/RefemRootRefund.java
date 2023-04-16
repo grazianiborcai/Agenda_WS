@@ -88,7 +88,7 @@ public final class RefemRootRefund extends DeciTreeTemplateWrite<RefemInfo> {
 		List<ActionStd<RefemInfo>> actions = new ArrayList<>();		
 
 		ActionStd <RefemInfo> mergePayordem = new ActionStdCommom<RefemInfo> (option, RefemVisiMergePayordem.class);
-		ActionLazy<RefemInfo> mergePayord   = new ActionLazyCommom<RefemInfo>(option, RefemVisiMergePayord.class);
+		ActionLazy<RefemInfo> mergePayord   = new ActionLazyCommom<RefemInfo>(option, RefemVisiMergePayord.class);//TODO: mudar pra Ordist
 		ActionLazy<RefemInfo> mergeCuspar   = new ActionLazyCommom<RefemInfo>(option, RefemVisiMergeCuspar.class);
 		ActionLazy<RefemInfo> refund        = new ActionLazyCommom<RefemInfo>(option, RefemVisiNodeRefundL1.class);
 		
