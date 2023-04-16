@@ -108,9 +108,10 @@ final class PayordMergerVisiOrdapa extends InfoMergerVisitorTemplate<PayordInfo,
 	
 	
 	
-	private PayordInfo setStatusPayment(PayordInfo baseInfo) {		
+	private PayordInfo setStatusPayment(PayordInfo baseInfo) {	
 		boolean hasFailed   = false;
 		boolean hasCaptured = false;
+		boolean hasRefunded = false;
 		
 		
 		for (PayordemInfo eachPayordem : baseInfo.payordems) {
@@ -119,7 +120,20 @@ final class PayordMergerVisiOrdapa extends InfoMergerVisitorTemplate<PayordInfo,
 			switch(status) {			
 				case "FAILED"  : hasFailed   = true; break;
 				case "CAPTURED": hasCaptured = true; break;
+				case "REFUNDED": hasRefunded = true; break;
 			}
+		}
+		
+		
+		if (hasFailed) {
+			baseInfo.statusPaymentPartner = "FAILED";
+			return baseInfo;
+		}
+		
+		
+		if (hasRefunded) {
+			baseInfo.statusPaymentPartner = "REFUNDED";
+			return baseInfo;
 		}
 		
 		
@@ -128,11 +142,6 @@ final class PayordMergerVisiOrdapa extends InfoMergerVisitorTemplate<PayordInfo,
 			return baseInfo;
 		}
 		
-		
-		if (hasFailed) {
-			baseInfo.statusPaymentPartner = "FAILED";
-			return baseInfo;
-		}
 		
 		baseInfo.statusPaymentPartner = "PENDING";
 		return baseInfo;

@@ -13,7 +13,6 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiEnforceLChanged;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiNodeRefreshL1;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiRootSelect;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckExist;
@@ -54,12 +53,10 @@ public final class PayordRootRefresh extends DeciTreeTemplateWrite<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();
 		
-		ActionStd <PayordInfo> select          = new ActionStdCommom <PayordInfo>(option, PayordVisiRootSelect.class);
-		ActionLazy<PayordInfo> nodeRefresh     = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodeRefreshL1.class);
-		ActionLazy<PayordInfo> enforceLChanged = new ActionLazyCommom<PayordInfo>(option, PayordVisiEnforceLChanged.class);
+		ActionStd <PayordInfo> select      = new ActionStdCommom <PayordInfo>(option, PayordVisiRootSelect.class);
+		ActionLazy<PayordInfo> nodeRefresh = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodeRefreshL1.class);
 		
 		select.addPostAction(nodeRefresh);
-		nodeRefresh.addPostAction(enforceLChanged);
 		
 		actions.add(select);
 		return actions;

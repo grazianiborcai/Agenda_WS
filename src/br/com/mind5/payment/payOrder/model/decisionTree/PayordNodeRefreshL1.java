@@ -13,7 +13,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
-import br.com.mind5.payment.payOrder.model.action.PayordVisiNodePayL3;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiNodeRefreshL2;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiOrdapaRead;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckIsPagarme;
 
@@ -46,9 +46,9 @@ public final class PayordNodeRefreshL1 extends DeciTreeTemplateWrite<PayordInfo>
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 	
 		ActionStd <PayordInfo> ordapaRead = new ActionStdCommom <PayordInfo>(option, PayordVisiOrdapaRead.class);
-		ActionLazy<PayordInfo> nodeL3      = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodePayL3.class);
+		ActionLazy<PayordInfo> nodeL2     = new ActionLazyCommom<PayordInfo>(option, PayordVisiNodeRefreshL2.class);
 		
-		ordapaRead.addPostAction(nodeL3);
+		ordapaRead.addPostAction(nodeL2);
 		
 		actions.add(ordapaRead);		
 		return actions;
