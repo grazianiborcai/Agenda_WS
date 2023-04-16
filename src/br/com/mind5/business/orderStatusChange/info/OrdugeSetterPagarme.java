@@ -78,7 +78,7 @@ public final class OrdugeSetterPagarme extends InfoSetterTemplate<OrdugeInfo> {
 		if (status == null)
 			return recordInfo;
 		
-		if(status == OrderStatusPagarme.REVERTED)
+		if(status == OrderStatusPagarme.CANCELED)
 			recordInfo.codOrderStatusNew = Orderatus.CANCELLED.getCodStatus();
 		
 		return recordInfo;
