@@ -56,21 +56,13 @@ public final class OrderResource {
 	
 	
 	
-	@GET
+	@POST
 	@Path(PLACE_ORDER)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response placeOrder(@HeaderParam("TOKEN_OWNER") 		@DefaultValue("-1") long codOwner, 
-						  	   @HeaderParam("TOKEN_USERNAME")  	String username,
-							   @HeaderParam("codOrder")    		@DefaultValue("-1") long codOrder,
-							   @HeaderParam("codLanguage") 		@DefaultValue("EN") String codLanguage) {
+	public Response placeOrder(@Context HttpServletRequest request, String incomingData) {
 		
-		OrderInfo recordInfo = new OrderInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.username = username;
-		recordInfo.codOrder = codOrder;
-		recordInfo.codLanguage = codLanguage;		
-		
-		Model model = new OrderModelPlaceAuth(recordInfo);
+		Model model = new OrderModelPlaceAuth(incomingData, request);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();
