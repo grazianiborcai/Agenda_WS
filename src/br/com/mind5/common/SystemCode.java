@@ -2018,6 +2018,9 @@ public final class SystemCode {
 	public static final int PAGARME_ORDER_SPLIT_CANCEL_ERROR			= 20302;
 	public static final int PAGARME_ORDER_SPLIT_READ_ERROR				= 20303;
 	
+	// Webhook - Pagarme
+	public static final int WHOOK_PAGARME 								= 20350;
+	
 	// General -- 19675
 	public static final int GEN_COMPLEMENT								= 19668;
 	public static final int GEN_DESCRIPTION								= 19661;

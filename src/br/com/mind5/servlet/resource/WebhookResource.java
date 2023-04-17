@@ -12,11 +12,13 @@ import javax.ws.rs.core.Response;
 import br.com.mind5.model.Model;
 import br.com.mind5.webhook.moipMultipayment.model.WokaymoipModelInsert;
 import br.com.mind5.webhook.moipRefund.model.WokefumoipModelInsert;
+import br.com.mind5.webhook.pagarmeHook.model.PagookModelInsert;
 
 @Path("/Webhook")
 public final class WebhookResource {
 	private static final String INSERT_MULTIPAYMENT_MOIP = "/insertMultipaymentMoip";
-	private static final String INSERT_REFUND_MOIP = "/insertRefundMoip";
+	private static final String INSERT_REFUND_MOIP       = "/insertRefundMoip";
+	private static final String INSERT_PAGARME           = "/insertPagarme";
 	
 	
 	@POST
@@ -47,6 +49,22 @@ public final class WebhookResource {
 		model.close();
 		
 		return result;
-	}	
-
+	}
+	
+	
+	
+	@POST
+	@Path(INSERT_PAGARME)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response insertPagarme(@Context HttpServletRequest request, String incomingData) {
+		
+		
+		Model model = new PagookModelInsert(incomingData, request);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}
 }

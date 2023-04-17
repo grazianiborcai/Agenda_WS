@@ -229,6 +229,7 @@ public final class DaoDbField {
 	public static final String COL_EMAIL = "email";
 	public static final String COL_EMAIL_SENDER = "email_sender";
 	public static final String COL_END_TIME = "end_time";
+	public static final String COL_EVENT_WEBHOOK = "event_webhook";
 	public static final String COL_EXPIRATION_MONTH = "expiration_month";
 	public static final String COL_EXPIRATION_YEAR = "expiration_year";
 	public static final String COL_EXPIRY_ON = "expiry_on";
@@ -258,15 +259,17 @@ public final class DaoDbField {
 	public static final String COL_ID_PAY_PARTNER_SYSTEM = "id_pay_partner_system";
 	public static final String COL_ID_PAYMENT_PARTNER = "id_payment_partner";
 	public static final String COL_ID_REFUND_PARTNER = "id_refund_partner";
+	public static final String COL_ID_WEBHOOK = "id_webhook";
 	public static final String COL_IMG_FILE_PATH = "file_img_path";
 	public static final String COL_IMG_FILE_PATH_EXTERNAL = "file_img_path_external";
 	public static final String COL_INSC_MUNICIPAL = "inscricao_municipal";
-	public static final String COL_INSC_ESTATUAL = "inscricao_estadual";
+	public static final String COL_INSC_ESTATUAL = "inscricao_estadual";	
 	public static final String COL_IS_ACTIVE = "is_active";
 	public static final String COL_IS_COVER = "is_cover";
 	public static final String COL_IS_DEFAULT = "is_default";
 	public static final String COL_IS_EXPECTED = "is_expected";
 	public static final String COL_IS_LOCKED = "is_locked";
+	public static final String COL_IS_REFRESHED = "is_refreshed";
 	public static final String COL_IS_WEEKEND = "is_weekend";
 	public static final String COL_ITEM_RECEIVER = "item_receiver";
 	public static final String COL_ITEM_TOTAL = "item_total";

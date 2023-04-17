@@ -211,6 +211,7 @@ public final class DaoDbTable {
 	public static final String USER_CATEG_TEXT_TABLE = "user_categ_text";
 	public static final String USER_PASSWORD_TABLE = "user_password";
 	public static final String USER_SNAPSHOT_TABLE = "user_snapshot";
+	public static final String WEBHOOK_PAGARME_TABLE = "webhook_pagarme";
 	public static final String WEEKDAY_TABLE = "weekday";
 	public static final String WEEKDAY_TEXT_TABLE = "weekday_text";
 	
