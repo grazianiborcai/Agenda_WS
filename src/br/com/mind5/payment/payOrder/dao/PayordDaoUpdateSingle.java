@@ -67,6 +67,7 @@ public final class PayordDaoUpdateSingle extends DaoStmtTemplate<PayordInfo> {
 				stmt.setString(i++, recordInfo.statusPaymentPartner);
 				stmt.setString(i++, recordInfo.ownId);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayPartner);
+				stmt.setBoolean(i++, recordInfo.hasWebhookEvent);
 				
 				return stmt;
 			}		

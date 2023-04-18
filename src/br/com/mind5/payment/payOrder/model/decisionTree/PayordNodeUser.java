@@ -14,6 +14,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiEnforceCreatedOn;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiEnforceHasWebhookEventOff;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiEnforceLChanged;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiMergeUsername;
 
@@ -40,12 +41,14 @@ public final class PayordNodeUser extends DeciTreeTemplateWrite<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 
-		ActionStd <PayordInfo> enforceCreatedOn = new ActionStdCommom <PayordInfo>(option, PayordVisiEnforceCreatedOn.class);	
-		ActionLazy<PayordInfo> enforceLChanged  = new ActionLazyCommom<PayordInfo>(option, PayordVisiEnforceLChanged.class);
-		ActionLazy<PayordInfo> mergeUsername    = new ActionLazyCommom<PayordInfo>(option, PayordVisiMergeUsername.class);
+		ActionStd <PayordInfo> enforceCreatedOn 		 = new ActionStdCommom <PayordInfo>(option, PayordVisiEnforceCreatedOn.class);	
+		ActionLazy<PayordInfo> enforceLChanged  		 = new ActionLazyCommom<PayordInfo>(option, PayordVisiEnforceLChanged.class);
+		ActionLazy<PayordInfo> mergeUsername    		 = new ActionLazyCommom<PayordInfo>(option, PayordVisiMergeUsername.class);
+		ActionLazy<PayordInfo> enforceHasWebhookEventOff = new ActionLazyCommom<PayordInfo>(option, PayordVisiEnforceHasWebhookEventOff.class);
 		
 		enforceCreatedOn.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeUsername);
+		mergeUsername.addPostAction(enforceHasWebhookEventOff);
 		
 		actions.add(enforceCreatedOn);		
 		return actions;

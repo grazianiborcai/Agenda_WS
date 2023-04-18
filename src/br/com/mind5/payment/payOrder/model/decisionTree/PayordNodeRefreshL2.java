@@ -14,6 +14,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiDaoUpdate;
+import br.com.mind5.payment.payOrder.model.action.PayordVisiEnforceHasWebhookEventOff;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiEnforceLChanged;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiEnforceUpperCase;
 import br.com.mind5.payment.payOrder.model.action.PayordVisiOrderRefresh;
@@ -42,14 +43,16 @@ public final class PayordNodeRefreshL2 extends DeciTreeTemplateWrite<PayordInfo>
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 		
-		ActionStd <PayordInfo> enforceUpperCase = new ActionStdCommom<PayordInfo> (option, PayordVisiEnforceUpperCase.class);
-		ActionLazy<PayordInfo> enforceLChanged  = new ActionLazyCommom<PayordInfo>(option, PayordVisiEnforceLChanged.class);
-		ActionLazy<PayordInfo> updatePayord     = new ActionLazyCommom<PayordInfo>(option, PayordVisiDaoUpdate.class);
-		ActionLazy<PayordInfo> updatePayordem   = new ActionLazyCommom<PayordInfo>(option, PayordVisiPayordemUpdate.class);
-		ActionLazy<PayordInfo> orderRefresh     = new ActionLazyCommom<PayordInfo>(option, PayordVisiOrderRefresh.class);
+		ActionStd <PayordInfo> enforceUpperCase 		 = new ActionStdCommom<PayordInfo> (option, PayordVisiEnforceUpperCase.class);
+		ActionLazy<PayordInfo> enforceLChanged  		 = new ActionLazyCommom<PayordInfo>(option, PayordVisiEnforceLChanged.class);
+		ActionLazy<PayordInfo> enforceHasWebhookEventOff = new ActionLazyCommom<PayordInfo>(option, PayordVisiEnforceHasWebhookEventOff.class);
+		ActionLazy<PayordInfo> updatePayord     		 = new ActionLazyCommom<PayordInfo>(option, PayordVisiDaoUpdate.class);
+		ActionLazy<PayordInfo> updatePayordem   		 = new ActionLazyCommom<PayordInfo>(option, PayordVisiPayordemUpdate.class);
+		ActionLazy<PayordInfo> orderRefresh     		 = new ActionLazyCommom<PayordInfo>(option, PayordVisiOrderRefresh.class);
 		
 		enforceUpperCase.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(updatePayord);
+		enforceLChanged.addPostAction(enforceHasWebhookEventOff);
+		enforceHasWebhookEventOff.addPostAction(updatePayord);
 		updatePayord.addPostAction(updatePayordem);
 		updatePayordem.addPostAction(orderRefresh);
 		
