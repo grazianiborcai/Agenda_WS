@@ -315,6 +315,7 @@ import br.com.mind5.stats.statsUserStore.userStoreLive.dao.StusoreveDaoDbTableCo
 import br.com.mind5.stats.statsUserStore.userStoreStgn.dao.StusorageDaoDbTableColumn;
 import br.com.mind5.webhook.moipMultipayment.dao.WokaymoipDaoDbTableColumn;
 import br.com.mind5.webhook.moipRefund.dao.WokefumoipDaoDbTableColumn;
+import br.com.mind5.webhook.pagarmeHook.dao.PagookDaoDbTableColumn;
 
 public final class DaoDbTableColumnAll {
 	private static Hashtable<String, List<DaoColumn>> tableColumns;	
@@ -631,6 +632,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new BankaccDaoDbTableColumn());
 		addTable(new BankaccnapDaoDbTableColumn());
 		addTable(new BankaccarchDaoDbTableColumn());
+		addTable(new PagookDaoDbTableColumn());
 	}
 	
 	

@@ -16,7 +16,6 @@ public final class PagookDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CREATED_ON         = DaoDbField.COL_CREATED_ON;
 	public static final String COL_EVENT_WEBHOOK	  = DaoDbField.COL_EVENT_WEBHOOK;
 	public static final String COL_ID_WEBHOOK         = DaoDbField.COL_ID_WEBHOOK;
-	public static final String COL_IS_REFRESHED       = DaoDbField.COL_IS_REFRESHED;
 	public static final String COL_LAST_CHANGED       = DaoDbField.COL_LAST_CHANGED;	
 	
 	
@@ -67,14 +66,6 @@ public final class PagookDaoDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_PAY_ORDER_ITEM;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_IS_REFRESHED;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

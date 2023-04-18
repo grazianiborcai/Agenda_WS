@@ -18,7 +18,7 @@ public final class PagookSetterIdPayment extends InfoSetterTemplate<PagookInfo> 
 	private long getOwner(PagookInfo recordInfo) {
 		String[] parts = getParts(recordInfo);
 		
-		if (parts.length >= 1)
+		if (parts.length < 1)
 			return DefaultValue.number();
 		
 		return Long.valueOf(parts[0]);
@@ -29,7 +29,7 @@ public final class PagookSetterIdPayment extends InfoSetterTemplate<PagookInfo> 
 	private long getPayord(PagookInfo recordInfo) {
 		String[] parts = getParts(recordInfo);
 		
-		if (parts.length >= 2)
+		if (parts.length < 2)
 			return DefaultValue.number();
 		
 		return Long.valueOf(parts[1]);
@@ -40,7 +40,7 @@ public final class PagookSetterIdPayment extends InfoSetterTemplate<PagookInfo> 
 	private long getPayordem(PagookInfo recordInfo) {
 		String[] parts = getParts(recordInfo);
 		
-		if (parts.length >= 3)
+		if (parts.length < 3)
 			return DefaultValue.number();
 		
 		return Long.valueOf(parts[2]);

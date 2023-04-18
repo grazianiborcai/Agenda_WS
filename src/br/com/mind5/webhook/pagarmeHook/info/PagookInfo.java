@@ -13,7 +13,6 @@ public final class PagookInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
 	public long codPayOrderItem;
-	public boolean isRefreshed;
 	public String username;
 	public LocalDateTime createdOn;
 	public LocalDateTime lastChanged;
@@ -31,8 +30,7 @@ public final class PagookInfo extends InfoRecord implements Cloneable {
 		
 		data        	= DefaultValue.object();
 		codOwner        = DefaultValue.number();
-		createdOn		= DefaultValue.object();
-		isRefreshed		= DefaultValue.boole();
+		createdOn		= DefaultValue.object();		
 		lastChanged		= DefaultValue.object();
 		codPayOrder     = DefaultValue.number();
 		codPayOrderItem = DefaultValue.number();

@@ -249,6 +249,7 @@ public final class DaoDbField {
 	public static final String COL_GEO_HASH_05 = "geo_hash_05";
 	public static final String COL_GEO_HASH_12 = "geo_hash_12";
 	public static final String COL_GRAND_TOTAL = "grand_total";
+	public static final String COL_HAS_WEBHOOK_EVENT = "has_webhook_event";
 	public static final String COL_HOLDER_DOCUMENT = "holder_document";
 	public static final String COL_HOLDER_NAME = "holder_name";
 	public static final String COL_HOUR_BEFORE = "hour_before";

@@ -58,7 +58,6 @@ public final class PagookDaoUpdateSingle extends DaoStmtTemplate<PagookInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwner);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrder);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrderItem);
-				stmt.setBoolean(i++, recordInfo.isRefreshed);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				

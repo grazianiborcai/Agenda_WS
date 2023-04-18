@@ -34,7 +34,7 @@
     	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
     </security:http>
 	
-	<security:http create-session="stateless" pattern="/**/Owner/listOwner" use-expressions="true">
+	<security:http create-session="stateless" pattern="/Owner/listOwner" use-expressions="true">
     	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
     	<security:anonymous enabled="true"/>   
     	<security:http-basic />
@@ -43,7 +43,7 @@
     	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
     </security:http>
     
-	<security:http create-session="stateless" pattern="**/Webhook/**" use-expressions="true">
+	<security:http create-session="stateless" pattern="/Webhook/insertPagarme" use-expressions="true">
     	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
     	<security:anonymous enabled="true"/>   
     	<security:http-basic />
@@ -51,7 +51,7 @@
     	<cors configuration-source-ref="corsSource"/>
     	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
     </security:http>
-    
+<!--
     <security:http create-session="stateless" pattern="/**/Payment/permissionCodeMoip" use-expressions="true">
     	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
     	<security:anonymous enabled="true"/>   
@@ -60,8 +60,8 @@
     	<cors configuration-source-ref="corsSource"/>
     	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
     </security:http>
-    
-    <security:http create-session="stateless" pattern="/**/Prospect/insertProspectStore" use-expressions="true">
+-->
+    <security:http create-session="stateless" pattern="/Prospect/insertProspectStore" use-expressions="true">
     	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
     	<security:anonymous enabled="true"/>   
     	<security:http-basic />
@@ -70,7 +70,7 @@
     	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
     </security:http>
     
-    <security:http create-session="stateless" pattern="/**/Prospect/insertOtpProspectStore" use-expressions="true">
+    <security:http create-session="stateless" pattern="/Prospect/insertOtpProspectStore" use-expressions="true">
     	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
     	<security:anonymous enabled="true"/>   
     	<security:http-basic />
@@ -79,7 +79,7 @@
     	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
     </security:http>
     
-    <security:http create-session="stateless" pattern="/**/insertOtpUserPassword" use-expressions="true">
+    <security:http create-session="stateless" pattern="/insertOtpUserPassword" use-expressions="true">
     	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
     	<security:anonymous enabled="true"/>   
     	<security:http-basic />
@@ -88,7 +88,7 @@
     	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
     </security:http>
     
-    <security:http create-session="stateless" pattern="/**/updateUserPassword" use-expressions="true">
+    <security:http create-session="stateless" pattern="/updateUserPassword" use-expressions="true">
     	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
     	<security:anonymous enabled="true"/>   
     	<security:http-basic />
@@ -99,8 +99,9 @@
 	
 	
 	
-	<!-- Teste -->
-	<http pattern="/**/MoipApp/**" security="none"/>	<!-- TODO: Somente para teste -->
+<!-- Teste 
+	<http pattern="/**/MoipApp/**" security="none"/>
+-->
 	
 
 

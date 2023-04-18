@@ -3,7 +3,9 @@ package br.com.mind5.webhook.pagarmeHook.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -12,6 +14,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.webhook.pagarmeHook.info.PagookInfo;
 import br.com.mind5.webhook.pagarmeHook.model.action.PagookVisiDaoInsert;
+import br.com.mind5.webhook.pagarmeHook.model.action.PagookVisiPayordWebhook;
 import br.com.mind5.webhook.pagarmeHook.model.checker.PagookCheckPayord;
 import br.com.mind5.webhook.pagarmeHook.model.checker.PagookCheckPayordem;
 
@@ -51,7 +54,10 @@ public final class PagookNodeInsertL2 extends DeciTreeTemplateWrite<PagookInfo> 
 	@Override protected List<ActionStd<PagookInfo>> buildActionsOnPassedHook(DeciTreeOption<PagookInfo> option) {
 		List<ActionStd<PagookInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<PagookInfo> insert = new ActionStdCommom<PagookInfo> (option, PagookVisiDaoInsert.class);
+		ActionStd <PagookInfo> insert        = new ActionStdCommom <PagookInfo> (option, PagookVisiDaoInsert.class);
+		ActionLazy<PagookInfo> payordWebhook = new ActionLazyCommom<PagookInfo> (option, PagookVisiPayordWebhook.class);
+		
+		insert.addPostAction(payordWebhook);
 		
 		actions.add(insert);		
 		return actions;
