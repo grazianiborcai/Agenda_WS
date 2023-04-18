@@ -49,7 +49,7 @@ public final class PayordarchDaoSelectSingle extends DaoStmtTemplate<PayordarchI
 	@Override protected String buildWhereClauseHook(String tableName, PayordarchInfo recordInfo) {	
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull       = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new PayordarchDaoWhere(whereOption, tableName, recordInfo);
@@ -76,21 +76,22 @@ public final class PayordarchDaoSelectSingle extends DaoStmtTemplate<PayordarchI
 				do {
 					PayordarchInfo dataInfo = new PayordarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(PayordarchDaoDbTableColumn.COL_COD_OWNER);
-					dataInfo.codPayOrder = stmtResult.getLong(PayordarchDaoDbTableColumn.COL_COD_PAY_ORDER);				
-					dataInfo.idOrderPartner = stmtResult.getString(PayordarchDaoDbTableColumn.COL_ID_ORDER_PARTNER);
-					dataInfo.statusOrderPartner = stmtResult.getString(PayordarchDaoDbTableColumn.COL_STATUS_ORDER_PARTNER);
-					dataInfo.amountTotalPartner = stmtResult.getString(PayordarchDaoDbTableColumn.COL_AMOUNT_TOTAL_PARTNER);
-					dataInfo.amountCurrencyPartner = stmtResult.getString(PayordarchDaoDbTableColumn.COL_AMOUNT_CURRENCY_PARTNER);
-					dataInfo.idPaymentPartner = stmtResult.getString(PayordarchDaoDbTableColumn.COL_ID_PAYMENT_PARTNER);
-					dataInfo.statusPaymentPartner = stmtResult.getString(PayordarchDaoDbTableColumn.COL_STATUS_PAYMENT_PARTNER);
-					dataInfo.codOrder = DaoFormatter.sqlToLong(stmtResult, PayordarchDaoDbTableColumn.COL_COD_ORDER);
-					dataInfo.codCreditCard = DaoFormatter.sqlToLong(stmtResult, PayordarchDaoDbTableColumn.COL_COD_CREDIT_CARD);
-					dataInfo.codPayCustomer = DaoFormatter.sqlToLong(stmtResult, PayordarchDaoDbTableColumn.COL_COD_PAY_CUSTOMER);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PayordarchDaoDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, PayordarchDaoDbTableColumn.COL_CREATED_ON);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, PayordarchDaoDbTableColumn.COL_COD_USER);
-					dataInfo.codPayPartner = DaoFormatter.sqlToInt(stmtResult, PayordarchDaoDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.codOwner 				= stmtResult.getLong(PayordarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codPayOrder 			= stmtResult.getLong(PayordarchDaoDbTableColumn.COL_COD_PAY_ORDER);				
+					dataInfo.idOrderPartner 		= stmtResult.getString(PayordarchDaoDbTableColumn.COL_ID_ORDER_PARTNER);
+					dataInfo.statusOrderPartner 	= stmtResult.getString(PayordarchDaoDbTableColumn.COL_STATUS_ORDER_PARTNER);
+					dataInfo.amountTotalPartner 	= stmtResult.getString(PayordarchDaoDbTableColumn.COL_AMOUNT_TOTAL_PARTNER);
+					dataInfo.amountCurrencyPartner 	= stmtResult.getString(PayordarchDaoDbTableColumn.COL_AMOUNT_CURRENCY_PARTNER);
+					dataInfo.idPaymentPartner 		= stmtResult.getString(PayordarchDaoDbTableColumn.COL_ID_PAYMENT_PARTNER);
+					dataInfo.statusPaymentPartner	= stmtResult.getString(PayordarchDaoDbTableColumn.COL_STATUS_PAYMENT_PARTNER);
+					dataInfo.codOrder 				= DaoFormatter.sqlToLong(stmtResult, PayordarchDaoDbTableColumn.COL_COD_ORDER);
+					dataInfo.codCreditCard 			= DaoFormatter.sqlToLong(stmtResult, PayordarchDaoDbTableColumn.COL_COD_CREDIT_CARD);
+					dataInfo.codPayCustomer 		= DaoFormatter.sqlToLong(stmtResult, PayordarchDaoDbTableColumn.COL_COD_PAY_CUSTOMER);
+					dataInfo.lastChanged 			= DaoFormatter.sqlToLocalDateTime(stmtResult, PayordarchDaoDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.createdOn 				= DaoFormatter.sqlToLocalDateTime(stmtResult, PayordarchDaoDbTableColumn.COL_CREATED_ON);
+					dataInfo.codUser 				= DaoFormatter.sqlToLong(stmtResult, PayordarchDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codPayPartner 			= DaoFormatter.sqlToInt(stmtResult, PayordarchDaoDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.hasWebhookEvent       	= stmtResult.getBoolean(PayordarchDaoDbTableColumn.COL_HAS_WEBHOOK_EVENT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
