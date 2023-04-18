@@ -163,6 +163,15 @@ public final class DaoFormatter {
 	
 	
 	
+	public static String booleanBoxToString(Boolean boole) {
+		if (boole == null)
+			return null;
+		
+		return booleanToString(boole);
+	}
+	
+	
+	
 	public static String booleanToString(boolean boole) {
 		if (boole == false)
 			return "0";
