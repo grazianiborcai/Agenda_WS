@@ -11,17 +11,18 @@ import br.com.mind5.dao.common.DaoDbTable;
 
 public final class PayordistDaoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_AMOUNT_CURRENCY_PARTNER = DaoDbField.COL_AMOUNT_CURRENCY_PARTNER;
-	public static final String COL_AMOUNT_TOTAL_PARTNER = DaoDbField.COL_AMOUNT_TOTAL_PARTNER;
-	public static final String COL_COD_CREDIT_CARD = DaoDbField.COL_COD_CREDIT_CARD;
-	public static final String COL_COD_ORDER = DaoDbField.COL_COD_ORDER;
-	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
-	public static final String COL_COD_PAY_CUSTOMER = DaoDbField.COL_COD_PAY_CUSTOMER;
-	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;
-	public static final String COL_COD_PAY_ORDER = DaoDbField.COL_COD_PAY_ORDER;
-	public static final String COL_ID_ORDER_PARTNER = DaoDbField.COL_ID_ORDER_PARTNER;
-	public static final String COL_ID_PAYMENT_PARTNER = DaoDbField.COL_ID_PAYMENT_PARTNER;
-	public static final String COL_STATUS_ORDER_PARTNER = DaoDbField.COL_STATUS_ORDER_PARTNER;
-	public static final String COL_STATUS_PAYMENT_PARTNER = DaoDbField.COL_STATUS_PAYMENT_PARTNER;
+	public static final String COL_AMOUNT_TOTAL_PARTNER    = DaoDbField.COL_AMOUNT_TOTAL_PARTNER;
+	public static final String COL_COD_CREDIT_CARD 		   = DaoDbField.COL_COD_CREDIT_CARD;
+	public static final String COL_COD_ORDER 			   = DaoDbField.COL_COD_ORDER;
+	public static final String COL_COD_OWNER 			   = DaoDbField.COL_COD_OWNER;	
+	public static final String COL_COD_PAY_CUSTOMER 	   = DaoDbField.COL_COD_PAY_CUSTOMER;
+	public static final String COL_COD_PAY_PARTNER 	 	   = DaoDbField.COL_COD_PAY_PARTNER;
+	public static final String COL_COD_PAY_ORDER 		   = DaoDbField.COL_COD_PAY_ORDER;
+	public static final String COL_HAS_WEBHOOK_EVENT 	   = DaoDbField.COL_HAS_WEBHOOK_EVENT;	
+	public static final String COL_ID_ORDER_PARTNER 	   = DaoDbField.COL_ID_ORDER_PARTNER;
+	public static final String COL_ID_PAYMENT_PARTNER      = DaoDbField.COL_ID_PAYMENT_PARTNER;
+	public static final String COL_STATUS_ORDER_PARTNER    = DaoDbField.COL_STATUS_ORDER_PARTNER;
+	public static final String COL_STATUS_PAYMENT_PARTNER  = DaoDbField.COL_STATUS_PAYMENT_PARTNER;
 	
 	
 	public PayordistDaoDbTableColumn() {
@@ -127,6 +128,14 @@ public final class PayordistDaoDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_PAY_PARTNER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_HAS_WEBHOOK_EVENT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

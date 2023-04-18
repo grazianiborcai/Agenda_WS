@@ -13,6 +13,7 @@ public final class PayordistInfo extends InfoRecord implements Cloneable {
 	public long codUser;
 	public long codOrder;
 	public int codPayPartner;
+	public boolean hasWebhookEvent;
 	public String idOrderPartner;
 	public String statusOrderPartner;
 	public String idPaymentPartner;
@@ -23,15 +24,16 @@ public final class PayordistInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PayordistInfo() {
-		super();
+		super();		
 		
-		codOwner = DefaultValue.number();
-		codCreditCard = DefaultValue.number();
-		codPayOrder = DefaultValue.number();
-		codPayCustomer = DefaultValue.number();
-		codPayPartner = DefaultValue.number();
-		codUser = DefaultValue.number();
-		codOrder = DefaultValue.number();
+		codUser         = DefaultValue.number();
+		codOwner        = DefaultValue.number();
+		codOrder        = DefaultValue.number();
+		codPayOrder     = DefaultValue.number();
+		codCreditCard   = DefaultValue.number();
+		codPayPartner   = DefaultValue.number();
+		codPayCustomer  = DefaultValue.number();
+		hasWebhookEvent = DefaultValue.boole();
 	}
 	
 	
