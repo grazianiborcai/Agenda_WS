@@ -7,7 +7,7 @@ public final class CusparSetterCompoundId extends InfoSetterTemplate<CusparInfo>
 	@Override protected CusparInfo setAttrHook(CusparInfo recordInfo) {
 		recordInfo.compoundId = String.valueOf(recordInfo.codOwner) 
 				              + "-" 
-				              + String.valueOf(recordInfo.codPayCustomer);
+				              + String.valueOf(recordInfo.codUser);
 		
 		return recordInfo;
 	}	

@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
+import br.com.mind5.payment.customerPartner.model.action.CusparVisiMergeAddress;
+import br.com.mind5.payment.customerPartner.model.checker.CusparCheckAddarchUser;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckAddress;
 
 public final class CusparNodeAddressL2 extends DeciTreeTemplateWrite<CusparInfo> {
@@ -32,6 +35,13 @@ public final class CusparNodeAddressL2 extends DeciTreeTemplateWrite<CusparInfo>
 		checker = new CusparCheckAddress(checkerOption);
 		queue.add(checker);
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CusparCheckAddarchUser(checkerOption);
+		queue.add(checker);
+		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
@@ -40,9 +50,9 @@ public final class CusparNodeAddressL2 extends DeciTreeTemplateWrite<CusparInfo>
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CusparInfo> nodeL3 = new CusparNodeAddressL3(option).toAction();
+		ActionStd<CusparInfo> mergeAddress = new ActionStdCommom<CusparInfo>(option, CusparVisiMergeAddress.class);
 		
-		actions.add(nodeL3);		
+		actions.add(mergeAddress);		
 		return actions;
 	}
 }

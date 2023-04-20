@@ -11,7 +11,6 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckCreate;
-import br.com.mind5.payment.customerPartner.model.checker.CusparCheckCus;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckLangu;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckOwner;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckPaypar;
@@ -48,13 +47,6 @@ public final class CusparRootCreate extends DeciTreeTemplateWrite<CusparInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new CusparCheckLangu(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CusparCheckCus(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

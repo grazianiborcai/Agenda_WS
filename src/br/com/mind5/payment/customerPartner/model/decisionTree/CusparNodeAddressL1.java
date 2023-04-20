@@ -51,9 +51,9 @@ public final class CusparNodeAddressL1 extends DeciTreeTemplateWrite<CusparInfo>
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnFailedHook(DeciTreeOption<CusparInfo> option) {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CusparInfo> nodeL5 = new CusparNodeAddressL5(option).toAction();
+		ActionStd<CusparInfo> nodeL3 = new CusparNodeAddressL3(option).toAction();
 		
-		actions.add(nodeL5);		
+		actions.add(nodeL3);		
 		return actions;
 	}
 }

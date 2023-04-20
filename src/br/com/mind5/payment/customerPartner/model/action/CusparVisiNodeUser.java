@@ -6,18 +6,18 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.decisionTree.CusparRootCreateOnConfig;
+import br.com.mind5.payment.customerPartner.model.decisionTree.CusparNodeUser;
 
-public final class CusparVisiRootCreateOnConfig extends ActionVisitorTemplateAction<CusparInfo, CusparInfo> {
+public final class CusparVisiNodeUser extends ActionVisitorTemplateAction<CusparInfo, CusparInfo> {
 
-	public CusparVisiRootCreateOnConfig(DeciTreeOption<CusparInfo> option) {
+	public CusparVisiNodeUser(DeciTreeOption<CusparInfo> option) {
 		super(option, CusparInfo.class, CusparInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<CusparInfo>> getTreeClassHook() {
-		return CusparRootCreateOnConfig.class;
+		return CusparNodeUser.class;
 	}
 	
 	

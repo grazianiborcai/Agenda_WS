@@ -5,14 +5,15 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.action.CusparVisiMergeAddress;
-import br.com.mind5.payment.customerPartner.model.checker.CusparCheckAddarchCus;
+import br.com.mind5.payment.customerPartner.model.action.CusparVisiMergeAddressDefault;
+import br.com.mind5.payment.customerPartner.model.checker.CusparCheckAddault;
 
 public final class CusparNodeAddressL3 extends DeciTreeTemplateWrite<CusparInfo> {
 	
@@ -31,7 +32,7 @@ public final class CusparNodeAddressL3 extends DeciTreeTemplateWrite<CusparInfo>
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CusparCheckAddarchCus(checkerOption);
+		checker = new CusparCheckAddault(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -42,9 +43,9 @@ public final class CusparNodeAddressL3 extends DeciTreeTemplateWrite<CusparInfo>
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CusparInfo> mergeAddress = new ActionStdCommom<CusparInfo>(option, CusparVisiMergeAddress.class);
+		ActionStd<CusparInfo> mergeAddressDefault = new ActionStdCommom<CusparInfo>(option, CusparVisiMergeAddressDefault.class);
 		
-		actions.add(mergeAddress);		
+		actions.add(mergeAddressDefault);		
 		return actions;
 	}
 	
@@ -52,10 +53,10 @@ public final class CusparNodeAddressL3 extends DeciTreeTemplateWrite<CusparInfo>
 	
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnFailedHook(DeciTreeOption<CusparInfo> option) {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
+
+		ActionStd<CusparInfo> success = new ActionStdSuccessCommom<CusparInfo>(option);	
 		
-		ActionStd<CusparInfo> nodeL4 = new CusparNodeAddressL4(option).toAction();
-		
-		actions.add(nodeL4);		
+		actions.add(success);		
 		return actions;
 	}
 }

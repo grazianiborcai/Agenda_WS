@@ -5,14 +5,15 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionStdCommom;
+import br.com.mind5.model.action.commom.ActionStdSuccessCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.action.CusparVisiMergePhone;
-import br.com.mind5.payment.customerPartner.model.checker.CusparCheckPhonarchCus;
+import br.com.mind5.payment.customerPartner.model.action.CusparVisiMergePhoneDefault;
+import br.com.mind5.payment.customerPartner.model.checker.CusparCheckPhonault;
 
 public final class CusparNodePhoneL3 extends DeciTreeTemplateWrite<CusparInfo> {
 	
@@ -31,7 +32,7 @@ public final class CusparNodePhoneL3 extends DeciTreeTemplateWrite<CusparInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CusparCheckPhonarchCus(checkerOption);
+		checker = new CusparCheckPhonault(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -42,9 +43,9 @@ public final class CusparNodePhoneL3 extends DeciTreeTemplateWrite<CusparInfo> {
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CusparInfo> mergePhone = new ActionStdCommom<CusparInfo>(option, CusparVisiMergePhone.class);
+		ActionStd<CusparInfo> mergePhoneDefault = new ActionStdCommom<CusparInfo>(option, CusparVisiMergePhoneDefault.class);
 		
-		actions.add(mergePhone);		
+		actions.add(mergePhoneDefault);		
 		return actions;
 	}
 	
@@ -52,10 +53,10 @@ public final class CusparNodePhoneL3 extends DeciTreeTemplateWrite<CusparInfo> {
 	
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnFailedHook(DeciTreeOption<CusparInfo> option) {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
+
+		ActionStd<CusparInfo> success = new ActionStdSuccessCommom<CusparInfo>(option);	
 		
-		ActionStd<CusparInfo> nodeL4 = new CusparNodePhoneL4(option).toAction();
-		
-		actions.add(nodeL4);		
+		actions.add(success);		
 		return actions;
 	}
 }
