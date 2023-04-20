@@ -21,13 +21,19 @@ final class CustopaMergerVisiCuspar extends InfoMergerVisitorTemplate<CustopaInf
 		List<CustopaInfo> results = new ArrayList<>();
 		
 		baseInfo.codUser     	= selectedInfo.codUser;
-		baseInfo.codCustomer    = selectedInfo.codCustomer;
+		baseInfo.code     		= getCode(baseInfo, selectedInfo);
 		baseInfo.homePhone     	= getHomePhone(selectedInfo);
 		baseInfo.mobilePhone    = getMobilePhone(selectedInfo);
 		baseInfo.address        = getAddress(selectedInfo);
 		
 		results.add(baseInfo);
 		return results;
+	}
+	
+	
+	
+	private String getCode(CustopaInfo baseInfo, CusparInfo selectedInfo) {
+		return selectedInfo.codOwner + "-" + selectedInfo.codPayCustomer;
 	}
 	
 	

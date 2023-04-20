@@ -2,7 +2,6 @@ package br.com.mind5.paymentPartner.partnerPagarme.customerPagarme.info;
 
 import java.util.List;
 
-import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
@@ -30,19 +29,6 @@ public final class CustopaMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CustopaMergerVisiSetupar());
 		InfoMerger<CustopaInfo, SetuparInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
-	public static List<CustopaInfo> mergeWithCus(List<CustopaInfo> baseInfos, List<CusInfo> selectedInfos) {
-		InfoMergerBuilder<CustopaInfo, CusInfo> builder = new InfoMergerBuilder<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CustopaMergerVisiCus());
-		InfoMerger<CustopaInfo, CusInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

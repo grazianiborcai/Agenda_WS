@@ -13,7 +13,6 @@ public final class CustopaInfo extends InfoRecord implements Cloneable {
 	public int codPayPartner;
 	public long codUser;
 	public long codPayCustomer;
-	public long codCustomer;
 	public String id;
 	public String name;
 	public String email;
@@ -41,7 +40,6 @@ public final class CustopaInfo extends InfoRecord implements Cloneable {
 		homePhone	   = DefaultValue.object();
 		codOwner       = DefaultValue.number();
 		mobilePhone	   = DefaultValue.object();
-		codCustomer    = DefaultValue.number();		
 		setuparData    = DefaultValue.object();
 		codPayPartner  = DefaultValue.number();
 		codPayCustomer = DefaultValue.number();

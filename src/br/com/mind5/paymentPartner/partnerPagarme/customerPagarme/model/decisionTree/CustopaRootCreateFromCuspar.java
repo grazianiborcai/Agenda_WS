@@ -13,7 +13,6 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerPagarme.customerPagarme.info.CustopaInfo;
-import br.com.mind5.paymentPartner.partnerPagarme.customerPagarme.model.action.CustopaVisiMergeCus;
 import br.com.mind5.paymentPartner.partnerPagarme.customerPagarme.model.action.CustopaVisiMergeCuspar;
 import br.com.mind5.paymentPartner.partnerPagarme.customerPagarme.model.action.CustopaVisiMergeUser;
 import br.com.mind5.paymentPartner.partnerPagarme.customerPagarme.model.action.CustopaVisiRootCreate;
@@ -57,12 +56,10 @@ public final class CustopaRootCreateFromCuspar extends DeciTreeTemplateWrite<Cus
 		
 		ActionStd <CustopaInfo> mergeCuspar = new ActionStdCommom <CustopaInfo>(option, CustopaVisiMergeCuspar.class);
 		ActionLazy<CustopaInfo> mergeUser   = new ActionLazyCommom<CustopaInfo>(option, CustopaVisiMergeUser.class);
-		ActionLazy<CustopaInfo> mergeCus    = new ActionLazyCommom<CustopaInfo>(option, CustopaVisiMergeCus.class);
 		ActionLazy<CustopaInfo> create      = new ActionLazyCommom<CustopaInfo>(option, CustopaVisiRootCreate.class);
 		
 		mergeCuspar.addPostAction(mergeUser);
-		mergeUser.addPostAction(mergeCus);
-		mergeCus.addPostAction(create);
+		mergeUser.addPostAction(create);
 		
 		actions.add(mergeCuspar);
 		return actions;
