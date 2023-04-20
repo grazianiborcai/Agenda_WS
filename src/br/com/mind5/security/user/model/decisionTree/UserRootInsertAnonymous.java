@@ -13,14 +13,14 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.UserVisiNodeInsert;
-import br.com.mind5.security.user.model.action.UserVisiNodeSnapshot;
-import br.com.mind5.security.user.model.action.UserVisiRootSelect;
 import br.com.mind5.security.user.model.action.UserVisiEnforceAuthAnonymous;
 import br.com.mind5.security.user.model.action.UserVisiEnforceCategAnonymous;
 import br.com.mind5.security.user.model.action.UserVisiEnforceUsernameAnonymous;
 import br.com.mind5.security.user.model.action.UserVisiEnforceUsernameDaemon;
 import br.com.mind5.security.user.model.action.UserVisiMergeUsername;
+import br.com.mind5.security.user.model.action.UserVisiNodeInsert;
+import br.com.mind5.security.user.model.action.UserVisiNodeSnapshot;
+import br.com.mind5.security.user.model.action.UserVisiRootSelect;
 import br.com.mind5.security.user.model.action.UserVisiUpswdInsertAnonymous;
 import br.com.mind5.security.user.model.checker.UserCheckInsertAnonymous;
 import br.com.mind5.security.user.model.checker.UserCheckOwner;
@@ -60,15 +60,15 @@ public final class UserRootInsertAnonymous extends DeciTreeTemplateWrite<UserInf
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 
-		ActionStd<UserInfo> enforceDaemon = new ActionStdCommom<UserInfo>(option, UserVisiEnforceUsernameDaemon.class);
+		ActionStd <UserInfo> enforceDaemon     = new ActionStdCommom <UserInfo>(option, UserVisiEnforceUsernameDaemon.class);
 		ActionLazy<UserInfo> enforceLChangedBy = new ActionLazyCommom<UserInfo>(option, UserVisiMergeUsername.class);
-		ActionLazy<UserInfo> enforceUsername = new ActionLazyCommom<UserInfo>(option, UserVisiEnforceUsernameAnonymous.class);
-		ActionLazy<UserInfo> enforceCateg = new ActionLazyCommom<UserInfo>(option, UserVisiEnforceCategAnonymous.class);
-		ActionLazy<UserInfo> enforceAuthGroup = new ActionLazyCommom<UserInfo>(option, UserVisiEnforceAuthAnonymous.class);
-		ActionLazy<UserInfo> insertUser = new ActionLazyCommom<UserInfo>(option, UserVisiNodeInsert.class);
-		ActionLazy<UserInfo> snapshot = new ActionLazyCommom<UserInfo>(option, UserVisiNodeSnapshot.class);		
-		ActionLazy<UserInfo> insertPassword = new ActionLazyCommom<UserInfo>(option, UserVisiUpswdInsertAnonymous.class);
-		ActionLazy<UserInfo> select = new ActionLazyCommom<UserInfo>(option, UserVisiRootSelect.class);	
+		ActionLazy<UserInfo> enforceUsername   = new ActionLazyCommom<UserInfo>(option, UserVisiEnforceUsernameAnonymous.class);
+		ActionLazy<UserInfo> enforceCateg      = new ActionLazyCommom<UserInfo>(option, UserVisiEnforceCategAnonymous.class);
+		ActionLazy<UserInfo> enforceAuthGroup  = new ActionLazyCommom<UserInfo>(option, UserVisiEnforceAuthAnonymous.class);
+		ActionLazy<UserInfo> insertUser        = new ActionLazyCommom<UserInfo>(option, UserVisiNodeInsert.class);
+		ActionLazy<UserInfo> snapshot          = new ActionLazyCommom<UserInfo>(option, UserVisiNodeSnapshot.class);		
+		ActionLazy<UserInfo> insertPassword    = new ActionLazyCommom<UserInfo>(option, UserVisiUpswdInsertAnonymous.class);
+		ActionLazy<UserInfo> select            = new ActionLazyCommom<UserInfo>(option, UserVisiRootSelect.class);	
 		
 		enforceDaemon.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceUsername);

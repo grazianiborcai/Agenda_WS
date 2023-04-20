@@ -45,7 +45,7 @@ public final class UserNodePhoneDelete extends DeciTreeTemplateWrite<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> mergePhone = new ActionStdCommom<UserInfo>(option, UserVisiMergePhone.class);
+		ActionStd <UserInfo> mergePhone  = new ActionStdCommom <UserInfo>(option, UserVisiMergePhone.class);
 		ActionLazy<UserInfo> deletePhone = new ActionLazyCommom<UserInfo>(option, UserVisiPhoneDelete.class);
 		
 		mergePhone.addPostAction(deletePhone);

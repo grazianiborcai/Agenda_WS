@@ -39,8 +39,8 @@ public final class UserNodeSnapshot extends DeciTreeTemplateWrite<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 
-		ActionStd<UserInfo> insertSnapshot = new ActionStdCommom<UserInfo>(option, UserVisiUserapInsert.class);		
-		ActionLazy<UserInfo> updateUser = new ActionLazyCommom<UserInfo>(option, UserVisiDaoUpdate.class);
+		ActionStd <UserInfo> insertSnapshot = new ActionStdCommom <UserInfo>(option, UserVisiUserapInsert.class);		
+		ActionLazy<UserInfo> updateUser     = new ActionLazyCommom<UserInfo>(option, UserVisiDaoUpdate.class);
 		
 		insertSnapshot.addPostAction(updateUser);
 		

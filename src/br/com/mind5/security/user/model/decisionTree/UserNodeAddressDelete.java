@@ -46,7 +46,7 @@ public final class UserNodeAddressDelete extends DeciTreeTemplateWrite<UserInfo>
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> mergeAddress = new ActionStdCommom<UserInfo>(option, UserVisiMergeAddress.class);
+		ActionStd <UserInfo> mergeAddress  = new ActionStdCommom <UserInfo>(option, UserVisiMergeAddress.class);
 		ActionLazy<UserInfo> deleteAddress = new ActionLazyCommom<UserInfo>(option, UserVisiAddressDelete.class);
 		
 		mergeAddress.addPostAction(deleteAddress);

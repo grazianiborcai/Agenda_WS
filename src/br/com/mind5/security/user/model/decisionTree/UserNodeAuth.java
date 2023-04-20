@@ -45,7 +45,7 @@ public final class UserNodeAuth extends DeciTreeTemplateRead<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> mergeUsername = new ActionStdCommom<UserInfo>(option, UserVisiMergeUsername.class);
+		ActionStd <UserInfo> mergeUsername  = new ActionStdCommom <UserInfo>(option, UserVisiMergeUsername.class);
 		ActionLazy<UserInfo> enforceCodUser = new ActionLazyCommom<UserInfo>(option, UserVisiEnforceCodUser.class);
 		
 		mergeUsername.addPostAction(enforceCodUser);

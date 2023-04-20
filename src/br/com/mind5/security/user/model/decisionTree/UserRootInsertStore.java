@@ -62,9 +62,9 @@ public final class UserRootInsertStore extends DeciTreeTemplateWrite<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 
-		ActionStd<UserInfo> enforceCateg = new ActionStdCommom<UserInfo>(option, UserVisiEnforceCategStore.class);
+		ActionStd <UserInfo> enforceCateg     = new ActionStdCommom <UserInfo>(option, UserVisiEnforceCategStore.class);
 		ActionLazy<UserInfo> enforceAuthGroup = new ActionLazyCommom<UserInfo>(option, UserVisiEnforceAuthStore.class);
-		ActionLazy<UserInfo> insertUser = new ActionLazyCommom<UserInfo>(option, UserVisiRootInsert.class);
+		ActionLazy<UserInfo> insertUser       = new ActionLazyCommom<UserInfo>(option, UserVisiRootInsert.class);
 		
 		enforceCateg.addPostAction(enforceAuthGroup);			
 		enforceAuthGroup.addPostAction(insertUser);

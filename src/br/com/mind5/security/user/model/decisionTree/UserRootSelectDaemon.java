@@ -13,10 +13,10 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.UserVisiRootSelect;
 import br.com.mind5.security.user.model.action.UserVisiEnforceCategDaemon;
 import br.com.mind5.security.user.model.action.UserVisiEnforceUsernameDaemon;
 import br.com.mind5.security.user.model.action.UserVisiMergeUserarch;
+import br.com.mind5.security.user.model.action.UserVisiRootSelect;
 import br.com.mind5.security.user.model.checker.UserCheckReadDaemon;
 
 public final class UserRootSelectDaemon extends DeciTreeTemplateRead<UserInfo> {
@@ -47,10 +47,10 @@ public final class UserRootSelectDaemon extends DeciTreeTemplateRead<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> enforceUsername = new ActionStdCommom<UserInfo>(option, UserVisiEnforceUsernameDaemon.class);
-		ActionLazy<UserInfo> enforceCateg = new ActionLazyCommom<UserInfo>(option, UserVisiEnforceCategDaemon.class);		
-		ActionLazy<UserInfo> mergeUserarch = new ActionLazyCommom<UserInfo>(option, UserVisiMergeUserarch.class);
-		ActionLazy<UserInfo> select = new ActionLazyCommom<UserInfo>(option, UserVisiRootSelect.class);
+		ActionStd <UserInfo> enforceUsername = new ActionStdCommom <UserInfo>(option, UserVisiEnforceUsernameDaemon.class);
+		ActionLazy<UserInfo> enforceCateg    = new ActionLazyCommom<UserInfo>(option, UserVisiEnforceCategDaemon.class);		
+		ActionLazy<UserInfo> mergeUserarch   = new ActionLazyCommom<UserInfo>(option, UserVisiMergeUserarch.class);
+		ActionLazy<UserInfo> select          = new ActionLazyCommom<UserInfo>(option, UserVisiRootSelect.class);
 		
 		enforceUsername.addPostAction(enforceCateg);
 		enforceCateg.addPostAction(mergeUserarch);

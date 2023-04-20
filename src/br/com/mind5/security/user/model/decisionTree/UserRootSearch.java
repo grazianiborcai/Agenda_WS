@@ -13,8 +13,8 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.UserVisiRootSelect;
 import br.com.mind5.security.user.model.action.UserVisiMergeUserarch;
+import br.com.mind5.security.user.model.action.UserVisiRootSelect;
 
 public final class UserRootSearch extends DeciTreeTemplateRead<UserInfo> {
 	
@@ -39,8 +39,8 @@ public final class UserRootSearch extends DeciTreeTemplateRead<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> mergeUserarch = new ActionStdCommom<UserInfo>(option, UserVisiMergeUserarch.class);
-		ActionLazy<UserInfo> select = new ActionLazyCommom<UserInfo>(option, UserVisiRootSelect.class);
+		ActionStd <UserInfo> mergeUserarch = new ActionStdCommom <UserInfo>(option, UserVisiMergeUserarch.class);
+		ActionLazy<UserInfo> select        = new ActionLazyCommom<UserInfo>(option, UserVisiRootSelect.class);
 		
 		mergeUserarch.addPostAction(select);
 		

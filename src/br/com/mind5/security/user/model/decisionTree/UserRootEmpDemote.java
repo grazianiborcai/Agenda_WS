@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.UserVisiNodeEmpDemote;
 import br.com.mind5.security.user.model.action.UserVisiMergePerson;
 import br.com.mind5.security.user.model.action.UserVisiMergeToSelect;
+import br.com.mind5.security.user.model.action.UserVisiNodeEmpDemote;
 import br.com.mind5.security.user.model.checker.UserCheckExist;
 import br.com.mind5.security.user.model.checker.UserCheckLangu;
 import br.com.mind5.security.user.model.checker.UserCheckOwner;
@@ -70,9 +70,9 @@ public final class UserRootEmpDemote extends DeciTreeTemplateWrite<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 
-		ActionStd<UserInfo> select = new ActionStdCommom<UserInfo>(option, UserVisiMergeToSelect.class);
+		ActionStd <UserInfo> select      = new ActionStdCommom <UserInfo>(option, UserVisiMergeToSelect.class);
 		ActionLazy<UserInfo> mergePerson = new ActionLazyCommom<UserInfo>(option, UserVisiMergePerson.class);
-		ActionLazy<UserInfo> nodeL1 = new ActionLazyCommom<UserInfo>(option, UserVisiNodeEmpDemote.class);
+		ActionLazy<UserInfo> nodeL1      = new ActionLazyCommom<UserInfo>(option, UserVisiNodeEmpDemote.class);
 		
 		select.addPostAction(mergePerson);
 		mergePerson.addPostAction(nodeL1);

@@ -13,8 +13,8 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.UserVisiNodeUpdate;
 import br.com.mind5.security.user.model.action.UserVisiMergeToUpdate;
+import br.com.mind5.security.user.model.action.UserVisiNodeUpdate;
 
 public final class UserNodeUpdateAuth extends DeciTreeTemplateWrite<UserInfo> {
 	
@@ -39,8 +39,8 @@ public final class UserNodeUpdateAuth extends DeciTreeTemplateWrite<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> mergeToUpdate = new ActionStdCommom<UserInfo>(option, UserVisiMergeToUpdate.class);
-		ActionLazy<UserInfo> update = new ActionLazyCommom<UserInfo>(option, UserVisiNodeUpdate.class);
+		ActionStd <UserInfo> mergeToUpdate = new ActionStdCommom <UserInfo>(option, UserVisiMergeToUpdate.class);
+		ActionLazy<UserInfo> update        = new ActionLazyCommom<UserInfo>(option, UserVisiNodeUpdate.class);
 		
 		mergeToUpdate.addPostAction(update);
 		

@@ -46,8 +46,8 @@ public final class UserNodeAddressUpsert extends DeciTreeTemplateWrite<UserInfo>
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> enforceAddressKey = new ActionStdCommom<UserInfo>(option, UserVisiEnforceAddressKey.class);
-		ActionLazy<UserInfo> upsertAddress = new ActionLazyCommom<UserInfo>(option, UserVisiAddressUpsert.class);	
+		ActionStd <UserInfo> enforceAddressKey = new ActionStdCommom <UserInfo>(option, UserVisiEnforceAddressKey.class);
+		ActionLazy<UserInfo> upsertAddress     = new ActionLazyCommom<UserInfo>(option, UserVisiAddressUpsert.class);	
 		
 		enforceAddressKey.addPostAction(upsertAddress);
 		

@@ -40,9 +40,9 @@ public final class UserNodePersonInsert extends DeciTreeTemplateWrite<UserInfo> 
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> enforcePersonKey = new ActionStdCommom<UserInfo>(option, UserVisiEnforcePersonKey.class);	
-		ActionLazy<UserInfo> insertPerson = new ActionLazyCommom<UserInfo>(option, UserVisiPersonInsert.class);
-		ActionLazy<UserInfo> updateUser = new ActionLazyCommom<UserInfo>(option, UserVisiDaoUpdate.class);
+		ActionStd <UserInfo> enforcePersonKey = new ActionStdCommom <UserInfo>(option, UserVisiEnforcePersonKey.class);	
+		ActionLazy<UserInfo> insertPerson     = new ActionLazyCommom<UserInfo>(option, UserVisiPersonInsert.class);
+		ActionLazy<UserInfo> updateUser       = new ActionLazyCommom<UserInfo>(option, UserVisiDaoUpdate.class);
 		
 		enforcePersonKey.addPostAction(insertPerson);
 		insertPerson.addPostAction(updateUser);

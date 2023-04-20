@@ -61,18 +61,18 @@ public final class UserDaoSelectSingle extends DaoStmtTemplate<UserInfo> {
 				do {
 					UserInfo dataInfo = new UserInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(UserDaoDbTableColumn.COL_COD_OWNER);
-					dataInfo.codUser = stmtResult.getLong(UserDaoDbTableColumn.COL_COD_USER);									
-					dataInfo.recordMode = stmtResult.getString(UserDaoDbTableColumn.COL_RECORD_MODE);
-					dataInfo.username = stmtResult.getString(UserDaoDbTableColumn.COL_USERNAME);
-					dataInfo.codAuthGroup = stmtResult.getString(UserDaoDbTableColumn.COL_COD_AUTH_GROUP);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, UserDaoDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, UserDaoDbTableColumn.COL_COD_PERSON);
+					dataInfo.codUser         = DaoFormatter.sqlToLong(stmtResult, UserDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codOwner        = DaoFormatter.sqlToLong(stmtResult, UserDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.username        = stmtResult.getString(UserDaoDbTableColumn.COL_USERNAME);
+					dataInfo.createdOn       = DaoFormatter.sqlToLocalDateTime(stmtResult, UserDaoDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy       = DaoFormatter.sqlToLong(stmtResult, UserDaoDbTableColumn.COL_CREATED_BY);
+					dataInfo.codPerson       = DaoFormatter.sqlToLong(stmtResult, UserDaoDbTableColumn.COL_COD_PERSON);
+					dataInfo.recordMode      = stmtResult.getString(UserDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codSnapshot     = DaoFormatter.sqlToLong(stmtResult, UserDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.lastChanged     = DaoFormatter.sqlToLocalDateTime(stmtResult, UserDaoDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.codAuthGroup    = stmtResult.getString(UserDaoDbTableColumn.COL_COD_AUTH_GROUP);
+					dataInfo.lastChangedBy   = DaoFormatter.sqlToLong(stmtResult, UserDaoDbTableColumn.COL_LAST_CHANGED_BY);
 					dataInfo.codUserCategory = DaoFormatter.sqlToChar(stmtResult, UserDaoDbTableColumn.COL_COD_USER_CATEG);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, UserDaoDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, UserDaoDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, UserDaoDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, UserDaoDbTableColumn.COL_CREATED_BY);	
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

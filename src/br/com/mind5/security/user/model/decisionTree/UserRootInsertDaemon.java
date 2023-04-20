@@ -13,12 +13,12 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.UserVisiNodeInsert;
-import br.com.mind5.security.user.model.action.UserVisiNodeSnapshot;
-import br.com.mind5.security.user.model.action.UserVisiRootSelect;
 import br.com.mind5.security.user.model.action.UserVisiEnforceAuthDaemon;
 import br.com.mind5.security.user.model.action.UserVisiEnforceCategDaemon;
 import br.com.mind5.security.user.model.action.UserVisiEnforceUsernameDaemon;
+import br.com.mind5.security.user.model.action.UserVisiNodeInsert;
+import br.com.mind5.security.user.model.action.UserVisiNodeSnapshot;
+import br.com.mind5.security.user.model.action.UserVisiRootSelect;
 import br.com.mind5.security.user.model.checker.UserCheckInsertDaemon;
 import br.com.mind5.security.user.model.checker.UserCheckOwner;
 
@@ -57,12 +57,12 @@ public final class UserRootInsertDaemon extends DeciTreeTemplateWrite<UserInfo> 
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 
-		ActionStd<UserInfo> enforceUsername = new ActionStdCommom<UserInfo>(option, UserVisiEnforceUsernameDaemon.class);
-		ActionLazy<UserInfo> enforceCateg = new ActionLazyCommom<UserInfo>(option, UserVisiEnforceCategDaemon.class);
+		ActionStd <UserInfo> enforceUsername  = new ActionStdCommom <UserInfo>(option, UserVisiEnforceUsernameDaemon.class);
+		ActionLazy<UserInfo> enforceCateg     = new ActionLazyCommom<UserInfo>(option, UserVisiEnforceCategDaemon.class);
 		ActionLazy<UserInfo> enforceAuthGroup = new ActionLazyCommom<UserInfo>(option, UserVisiEnforceAuthDaemon.class);
-		ActionLazy<UserInfo> insertUser = new ActionLazyCommom<UserInfo>(option, UserVisiNodeInsert.class);
-		ActionLazy<UserInfo> snapshot = new ActionLazyCommom<UserInfo>(option, UserVisiNodeSnapshot.class);		
-		ActionLazy<UserInfo> select = new ActionLazyCommom<UserInfo>(option, UserVisiRootSelect.class);	
+		ActionLazy<UserInfo> insertUser       = new ActionLazyCommom<UserInfo>(option, UserVisiNodeInsert.class);
+		ActionLazy<UserInfo> snapshot         = new ActionLazyCommom<UserInfo>(option, UserVisiNodeSnapshot.class);		
+		ActionLazy<UserInfo> select           = new ActionLazyCommom<UserInfo>(option, UserVisiRootSelect.class);	
 		
 		enforceUsername.addPostAction(enforceCateg);
 		enforceCateg.addPostAction(enforceAuthGroup);			

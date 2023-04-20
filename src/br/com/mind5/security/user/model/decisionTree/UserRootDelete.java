@@ -13,13 +13,13 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.UserVisiNodeAddressDelete;
-import br.com.mind5.security.user.model.action.UserVisiNodePhoneDelete;
 import br.com.mind5.security.user.model.action.UserVisiDaoDelete;
 import br.com.mind5.security.user.model.action.UserVisiDaoUpdate;
 import br.com.mind5.security.user.model.action.UserVisiEnforceLChanged;
 import br.com.mind5.security.user.model.action.UserVisiMergeToDelete;
 import br.com.mind5.security.user.model.action.UserVisiMergeUsername;
+import br.com.mind5.security.user.model.action.UserVisiNodeAddressDelete;
+import br.com.mind5.security.user.model.action.UserVisiNodePhoneDelete;
 import br.com.mind5.security.user.model.action.UserVisiPersonDelete;
 import br.com.mind5.security.user.model.action.UserVisiUpswdDelete;
 import br.com.mind5.security.user.model.checker.UserCheckDelete;
@@ -68,15 +68,15 @@ public final class UserRootDelete extends DeciTreeTemplateWrite<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> enforceLChangedBy = new ActionStdCommom<UserInfo>(option, UserVisiMergeUsername.class);	
-		ActionLazy<UserInfo> mergeToDelete = new ActionLazyCommom<UserInfo>(option, UserVisiMergeToDelete.class);	
-		ActionLazy<UserInfo> enforceLChanged = new ActionLazyCommom<UserInfo>(option, UserVisiEnforceLChanged.class);		
-		ActionLazy<UserInfo> updateUser = new ActionLazyCommom<UserInfo>(option, UserVisiDaoUpdate.class);
-		ActionLazy<UserInfo> deleteAddress = new ActionLazyCommom<UserInfo>(option, UserVisiNodeAddressDelete.class);
-		ActionLazy<UserInfo> deletePhone = new ActionLazyCommom<UserInfo>(option, UserVisiNodePhoneDelete.class);
-		ActionLazy<UserInfo> deleteUser = new ActionLazyCommom<UserInfo>(option, UserVisiDaoDelete.class);	
-		ActionLazy<UserInfo> deletePassword = new ActionLazyCommom<UserInfo>(option, UserVisiUpswdDelete.class);	
-		ActionLazy<UserInfo> deletePerson = new ActionLazyCommom<UserInfo>(option, UserVisiPersonDelete.class);
+		ActionStd <UserInfo> enforceLChangedBy = new ActionStdCommom <UserInfo>(option, UserVisiMergeUsername.class);	
+		ActionLazy<UserInfo> mergeToDelete     = new ActionLazyCommom<UserInfo>(option, UserVisiMergeToDelete.class);	
+		ActionLazy<UserInfo> enforceLChanged   = new ActionLazyCommom<UserInfo>(option, UserVisiEnforceLChanged.class);		
+		ActionLazy<UserInfo> updateUser        = new ActionLazyCommom<UserInfo>(option, UserVisiDaoUpdate.class);
+		ActionLazy<UserInfo> deleteAddress     = new ActionLazyCommom<UserInfo>(option, UserVisiNodeAddressDelete.class);
+		ActionLazy<UserInfo> deletePhone       = new ActionLazyCommom<UserInfo>(option, UserVisiNodePhoneDelete.class);
+		ActionLazy<UserInfo> deleteUser        = new ActionLazyCommom<UserInfo>(option, UserVisiDaoDelete.class);	
+		ActionLazy<UserInfo> deletePassword    = new ActionLazyCommom<UserInfo>(option, UserVisiUpswdDelete.class);	
+		ActionLazy<UserInfo> deletePerson      = new ActionLazyCommom<UserInfo>(option, UserVisiPersonDelete.class);
 		
 		enforceLChangedBy.addPostAction(mergeToDelete);
 		mergeToDelete.addPostAction(enforceLChanged);		

@@ -13,8 +13,8 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.UserVisiRootInsertCus;
 import br.com.mind5.security.user.model.action.UserVisiEnforceUsernameDaemon;
+import br.com.mind5.security.user.model.action.UserVisiRootInsertCus;
 
 public final class UserRootSignup extends DeciTreeTemplateWrite<UserInfo> {
 	
@@ -39,8 +39,8 @@ public final class UserRootSignup extends DeciTreeTemplateWrite<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 
-		ActionStd<UserInfo> enforceDaemon = new ActionStdCommom<UserInfo>(option, UserVisiEnforceUsernameDaemon.class);
-		ActionLazy<UserInfo> insertUser = new ActionLazyCommom<UserInfo>(option, UserVisiRootInsertCus.class);
+		ActionStd <UserInfo> enforceDaemon = new ActionStdCommom <UserInfo>(option, UserVisiEnforceUsernameDaemon.class);
+		ActionLazy<UserInfo> insertUser    = new ActionLazyCommom<UserInfo>(option, UserVisiRootInsertCus.class);
 				
 		enforceDaemon.addPostAction(insertUser);
 		

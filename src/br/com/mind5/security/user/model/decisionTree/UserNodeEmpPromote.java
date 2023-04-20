@@ -14,11 +14,11 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.user.info.UserInfo;
+import br.com.mind5.security.user.model.action.UserVisiEnforceAuthEmp;
+import br.com.mind5.security.user.model.action.UserVisiEnforceCategEmp;
 import br.com.mind5.security.user.model.action.UserVisiNodeSnapshot;
 import br.com.mind5.security.user.model.action.UserVisiNodeUpdate;
 import br.com.mind5.security.user.model.action.UserVisiRootSelect;
-import br.com.mind5.security.user.model.action.UserVisiEnforceAuthEmp;
-import br.com.mind5.security.user.model.action.UserVisiEnforceCategEmp;
 import br.com.mind5.security.user.model.checker.UserCheckAuthCustomer;
 
 public final class UserNodeEmpPromote extends DeciTreeTemplateWrite<UserInfo> {
@@ -49,11 +49,11 @@ public final class UserNodeEmpPromote extends DeciTreeTemplateWrite<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 
-		ActionStd<UserInfo> enforceCateg = new ActionStdCommom<UserInfo>(option, UserVisiEnforceCategEmp.class);
+		ActionStd <UserInfo> enforceCateg     = new ActionStdCommom <UserInfo>(option, UserVisiEnforceCategEmp.class);
 		ActionLazy<UserInfo> enforceAuthGroup = new ActionLazyCommom<UserInfo>(option, UserVisiEnforceAuthEmp.class);
-		ActionLazy<UserInfo> update = new ActionLazyCommom<UserInfo>(option, UserVisiNodeUpdate.class);
-		ActionLazy<UserInfo> snapshot = new ActionLazyCommom<UserInfo>(option, UserVisiNodeSnapshot.class);
-		ActionLazy<UserInfo> select = new ActionLazyCommom<UserInfo>(option, UserVisiRootSelect.class);
+		ActionLazy<UserInfo> update           = new ActionLazyCommom<UserInfo>(option, UserVisiNodeUpdate.class);
+		ActionLazy<UserInfo> snapshot         = new ActionLazyCommom<UserInfo>(option, UserVisiNodeSnapshot.class);
+		ActionLazy<UserInfo> select           = new ActionLazyCommom<UserInfo>(option, UserVisiRootSelect.class);
 		
 		enforceCateg.addPostAction(enforceAuthGroup);			
 		enforceAuthGroup.addPostAction(update);

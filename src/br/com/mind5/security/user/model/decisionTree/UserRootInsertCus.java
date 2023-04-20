@@ -13,9 +13,10 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.UserVisiRootInsert;
+import br.com.mind5.security.user.model.action.UserVisiCusparCreateOnConfig;
 import br.com.mind5.security.user.model.action.UserVisiEnforceAuthCus;
 import br.com.mind5.security.user.model.action.UserVisiEnforceCategCus;
+import br.com.mind5.security.user.model.action.UserVisiRootInsert;
 
 public final class UserRootInsertCus extends DeciTreeTemplateWrite<UserInfo> {
 	
@@ -40,12 +41,14 @@ public final class UserRootInsertCus extends DeciTreeTemplateWrite<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 
-		ActionStd<UserInfo> enforceCateg = new ActionStdCommom<UserInfo>(option, UserVisiEnforceCategCus.class);
+		ActionStd <UserInfo> enforceCateg     = new ActionStdCommom <UserInfo>(option, UserVisiEnforceCategCus.class);
 		ActionLazy<UserInfo> enforceAuthGroup = new ActionLazyCommom<UserInfo>(option, UserVisiEnforceAuthCus.class);
-		ActionLazy<UserInfo> insertUser = new ActionLazyCommom<UserInfo>(option, UserVisiRootInsert.class);
+		ActionLazy<UserInfo> insertUser       = new ActionLazyCommom<UserInfo>(option, UserVisiRootInsert.class);
+		ActionLazy<UserInfo> createCuspar     = new ActionLazyCommom<UserInfo>(option, UserVisiCusparCreateOnConfig.class);
 		
-		enforceCateg.addPostAction(enforceAuthGroup);			
+		enforceCateg.addPostAction(enforceAuthGroup);
 		enforceAuthGroup.addPostAction(insertUser);
+		insertUser.addPostAction(createCuspar);
 		
 		actions.add(enforceCateg);	
 		return actions;

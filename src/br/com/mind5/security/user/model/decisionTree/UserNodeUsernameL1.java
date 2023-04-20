@@ -13,8 +13,8 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.UserVisiNodeUsernameL2;
 import br.com.mind5.security.user.model.action.UserVisiEnforceUsername;
+import br.com.mind5.security.user.model.action.UserVisiNodeUsernameL2;
 
 public final class UserNodeUsernameL1 extends DeciTreeTemplateWrite<UserInfo> {
 	
@@ -39,8 +39,8 @@ public final class UserNodeUsernameL1 extends DeciTreeTemplateWrite<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 
-		ActionStd<UserInfo> enforceUsername = new ActionStdCommom<UserInfo>(option, UserVisiEnforceUsername.class);
-		ActionLazy<UserInfo> nodeL2 = new ActionLazyCommom<UserInfo>(option, UserVisiNodeUsernameL2.class);
+		ActionStd <UserInfo> enforceUsername = new ActionStdCommom <UserInfo>(option, UserVisiEnforceUsername.class);
+		ActionLazy<UserInfo> nodeL2          = new ActionLazyCommom<UserInfo>(option, UserVisiNodeUsernameL2.class);
 		
 		enforceUsername.addPostAction(nodeL2);
 		
