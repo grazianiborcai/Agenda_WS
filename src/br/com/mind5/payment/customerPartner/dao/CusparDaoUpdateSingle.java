@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
+
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoStmtParamTranslator;
@@ -39,8 +40,8 @@ public final class CusparDaoUpdateSingle extends DaoStmtTemplate<CusparInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, CusparInfo recordInfo) {	
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
+		whereOption.ignoreNull          = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode    = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
 		
 		DaoStmtWhere whereClause = new CusparDaoWhere(whereOption, tableName, recordInfo);
@@ -54,10 +55,8 @@ public final class CusparDaoUpdateSingle extends DaoStmtTemplate<CusparInfo> {
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CusparInfo recordInfo) throws SQLException {					
 				int i = 1;
 				
-				stmt.setLong(i++, recordInfo.codUser);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomerSnapshot);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt.setString(i++, recordInfo.recordMode);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayPartner);

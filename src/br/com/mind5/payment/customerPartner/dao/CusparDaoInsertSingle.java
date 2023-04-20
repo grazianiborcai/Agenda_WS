@@ -43,11 +43,9 @@ public final class CusparDaoInsertSingle extends DaoStmtTemplate<CusparInfo> {
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CusparInfo recordInfo) throws SQLException {	
 				int i = 1;
 				
-				stmt.setLong(i++, recordInfo.codOwner);
-				stmt.setLong(i++, recordInfo.codUser);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwner);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomerSnapshot);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt.setString(i++, recordInfo.recordMode);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayPartner);

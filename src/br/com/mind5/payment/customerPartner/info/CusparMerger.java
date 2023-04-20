@@ -5,7 +5,6 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.addressDefault.info.AddaultInfo;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
-import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phoneDefault.info.PhonaultInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
@@ -52,19 +51,6 @@ public final class CusparMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CusparMergerVisiAddault());
 		InfoMerger<CusparInfo, AddaultInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
-	public static List<CusparInfo> mergeWithCuslis(List<CusparInfo> baseInfos, List<CuslisInfo> selectedInfos) {
-		InfoMergerBuilder<CusparInfo, CuslisInfo> builder = new InfoMergerBuilder<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusparMergerVisiCuslis());
-		InfoMerger<CusparInfo, CuslisInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

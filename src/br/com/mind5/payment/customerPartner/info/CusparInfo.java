@@ -12,9 +12,7 @@ import br.com.mind5.info.InfoRecord;
 public final class CusparInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayCustomer;
-	public int codPayPartner;		
-	public long codCustomer;
-	public long codCustomerSnapshot;
+	public int codPayPartner;
 	public String compoundId;
 	public long codUser;
 	public long codUserSnapshot;
@@ -41,14 +39,12 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 		recordMode          = DefaultValue.recordMode();
 		phonapData			= DefaultValue.object();
 		codAddress          = DefaultValue.number();
-		codCustomer         = DefaultValue.number();
 		addresnapData	    = DefaultValue.object();
 		codPayPartner       = DefaultValue.number();
 		codPayCustomer      = DefaultValue.number();
 		codUserSnapshot     = DefaultValue.number();
 		codPhoneSnapshot    = DefaultValue.number();
 		codAddressSnapshot  = DefaultValue.number();
-		codCustomerSnapshot = DefaultValue.number();
 	}
 	
 	

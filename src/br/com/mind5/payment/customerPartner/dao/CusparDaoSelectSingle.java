@@ -42,7 +42,7 @@ public final class CusparDaoSelectSingle extends DaoStmtTemplate<CusparInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, CusparInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreNull       = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new CusparDaoWhere(whereOption, tableName, recordInfo);
@@ -69,14 +69,12 @@ public final class CusparDaoSelectSingle extends DaoStmtTemplate<CusparInfo> {
 					dataInfo.recordMode          = stmtResult.getString(CusparDaoDbTableColumn.COL_RECORD_MODE);
 					dataInfo.compoundId          = stmtResult.getString(CusparDaoDbTableColumn.COL_COMPOUND_ID);
 					dataInfo.customerId          = stmtResult.getString(CusparDaoDbTableColumn.COL_CUSTOMER_ID);
-					dataInfo.codCustomer         = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_CUSTOMER);
 					dataInfo.lastChanged         = DaoFormatter.sqlToLocalDateTime(stmtResult, CusparDaoDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.codPayPartner       = DaoFormatter.sqlToInt(stmtResult, CusparDaoDbTableColumn.COL_COD_PAY_PARTNER);
 					dataInfo.codPayCustomer      = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_PAYCUS);
 					dataInfo.codUserSnapshot     = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_USER_SNAPSHOT);
 					dataInfo.codPhoneSnapshot    = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_PHONE_SNAPSHOT);
 					dataInfo.codAddressSnapshot  = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_ADDRESS_SNAPSHOT);
-					dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, CusparDaoDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
