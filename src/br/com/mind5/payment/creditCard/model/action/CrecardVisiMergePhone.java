@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneCopier;
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.business.phone.model.decisionTree.PhoneRootSearch;
+import br.com.mind5.business.phone.model.decisionTree.PhoneRootSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ public final class CrecardVisiMergePhone extends ActionVisitorTemplateMerge<Crec
 	
 	
 	@Override protected Class<? extends DeciTree<PhoneInfo>> getTreeClassHook() {
-		return PhoneRootSearch.class;
+		return PhoneRootSelect.class;
 	}
 	
 	
