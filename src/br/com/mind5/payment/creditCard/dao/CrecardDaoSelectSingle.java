@@ -41,7 +41,7 @@ public final class CrecardDaoSelectSingle extends DaoStmtTemplate<CrecardInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, CrecardInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreNull       = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new CrecardDaoWhere(whereOption, tableName, recordInfo);
@@ -61,22 +61,22 @@ public final class CrecardDaoSelectSingle extends DaoStmtTemplate<CrecardInfo> {
 				do {
 					CrecardInfo dataInfo = new CrecardInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, CrecardDaoDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCreditCard = DaoFormatter.sqlToLong(stmtResult, CrecardDaoDbTableColumn.COL_COD_CREDIT_CARD);
-					dataInfo.codPayCustomer = DaoFormatter.sqlToLong(stmtResult, CrecardDaoDbTableColumn.COL_COD_PAY_CUSTOMER);
-					dataInfo.creditCardId = stmtResult.getString(CrecardDaoDbTableColumn.COL_CREDIT_CARD_ID);	
-					dataInfo.creditCardBrand = stmtResult.getString(CrecardDaoDbTableColumn.COL_CREDIT_CARD_BRAND);	
-					dataInfo.creditCardLast4 = stmtResult.getString(CrecardDaoDbTableColumn.COL_CREDIT_CARD_LAST4);
-					dataInfo.recordMode = stmtResult.getString(CrecardDaoDbTableColumn.COL_RECORD_MODE);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CrecardDaoDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, CrecardDaoDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.codAddressHolder = DaoFormatter.sqlToLong(stmtResult, CrecardDaoDbTableColumn.COL_COD_ADDRESS);
+					dataInfo.codOwner                 = DaoFormatter.sqlToLong(stmtResult, CrecardDaoDbTableColumn.COL_COD_OWNER);					
+					dataInfo.nameHolder               = stmtResult.getString(CrecardDaoDbTableColumn.COL_NAME_HOLDER);
+					dataInfo.recordMode               = stmtResult.getString(CrecardDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.lastChanged              = DaoFormatter.sqlToLocalDateTime(stmtResult, CrecardDaoDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.creditCardId             = stmtResult.getString(CrecardDaoDbTableColumn.COL_CREDIT_CARD_ID);					
+					dataInfo.lastChangedBy            = DaoFormatter.sqlToLong(stmtResult, CrecardDaoDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.codCreditCard            = DaoFormatter.sqlToLong(stmtResult, CrecardDaoDbTableColumn.COL_COD_CREDIT_CARD);
+					dataInfo.codPayCustomer           = DaoFormatter.sqlToLong(stmtResult, CrecardDaoDbTableColumn.COL_COD_PAY_CUSTOMER);
+					dataInfo.expirationYear           = stmtResult.getString(CrecardDaoDbTableColumn.COL_EXPIRATION_YEAR);
+					dataInfo.codPhoneHolder           = DaoFormatter.sqlToLong(stmtResult, CrecardDaoDbTableColumn.COL_COD_PHONE);
+					dataInfo.expirationMonth          = stmtResult.getString(CrecardDaoDbTableColumn.COL_EXPIRATION_MONTH);
+					dataInfo.creditCardBrand          = stmtResult.getString(CrecardDaoDbTableColumn.COL_CREDIT_CARD_BRAND);	
+					dataInfo.creditCardLast4          = stmtResult.getString(CrecardDaoDbTableColumn.COL_CREDIT_CARD_LAST4);
+					dataInfo.codAddressHolder         = DaoFormatter.sqlToLong(stmtResult, CrecardDaoDbTableColumn.COL_COD_ADDRESS);
+					dataInfo.codPhoneSnapshotHolder   = DaoFormatter.sqlToLong(stmtResult, CrecardDaoDbTableColumn.COL_COD_PHONE_SNAPSHOT);	
 					dataInfo.codAddressSnapshotHolder = DaoFormatter.sqlToLong(stmtResult, CrecardDaoDbTableColumn.COL_COD_ADDRESS_SNAPSHOT);
-					dataInfo.codPhoneHolder = DaoFormatter.sqlToLong(stmtResult, CrecardDaoDbTableColumn.COL_COD_PHONE);
-					dataInfo.codPhoneSnapshotHolder = DaoFormatter.sqlToLong(stmtResult, CrecardDaoDbTableColumn.COL_COD_PHONE_SNAPSHOT);	
-					dataInfo.expirationMonth = stmtResult.getString(CrecardDaoDbTableColumn.COL_EXPIRATION_MONTH);
-					dataInfo.expirationYear = stmtResult.getString(CrecardDaoDbTableColumn.COL_EXPIRATION_YEAR);
-					dataInfo.nameHolder = stmtResult.getString(CrecardDaoDbTableColumn.COL_NAME_HOLDER);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

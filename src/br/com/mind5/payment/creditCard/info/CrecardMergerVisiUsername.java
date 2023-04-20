@@ -18,7 +18,7 @@ final class CrecardMergerVisiUsername extends InfoMergerVisitorTemplate<CrecardI
 	@Override public List<CrecardInfo> merge(CrecardInfo baseInfo, UsernameInfo selectedInfo) {
 		List<CrecardInfo> results = new ArrayList<>();
 		
-		baseInfo.codUser = selectedInfo.codUser;
+		baseInfo.codUser       = selectedInfo.codUser;
 		baseInfo.lastChangedBy = selectedInfo.codUser;
 		
 		results.add(baseInfo);
