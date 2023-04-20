@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.business.customer.model.action.CusVisiCusparCreateOnConfig;
 import br.com.mind5.business.customer.model.action.CusVisiNodeAddressInsert;
 import br.com.mind5.business.customer.model.action.CusVisiNodePersonInsert;
 import br.com.mind5.business.customer.model.action.CusVisiNodePhoneInsert;
@@ -72,20 +71,18 @@ public final class CusRootInsert extends DeciTreeTemplateWrite<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 
-		ActionStd<CusInfo> insertCustomer = new CusNodeInsert(option).toAction();		
-		ActionLazy<CusInfo> insertPerson = new ActionLazyCommom<CusInfo>(option, CusVisiNodePersonInsert.class);
-		ActionLazy<CusInfo> snapshot = new ActionLazyCommom<CusInfo>(option, CusVisiNodeSnapshot.class);
-		ActionLazy<CusInfo> insertAddress = new ActionLazyCommom<CusInfo>(option, CusVisiNodeAddressInsert.class);
-		ActionLazy<CusInfo> insertPhone = new ActionLazyCommom<CusInfo>(option, CusVisiNodePhoneInsert.class);
-		ActionLazy<CusInfo> insertCuspar = new ActionLazyCommom<CusInfo>(option, CusVisiCusparCreateOnConfig.class);
-		ActionLazy<CusInfo> select = new ActionLazyCommom<CusInfo>(option, CusVisiRootSelect.class);	
+		ActionStd <CusInfo> insertCustomer = new CusNodeInsert(option).toAction();		
+		ActionLazy<CusInfo> insertPerson   = new ActionLazyCommom<CusInfo>(option, CusVisiNodePersonInsert.class);
+		ActionLazy<CusInfo> snapshot       = new ActionLazyCommom<CusInfo>(option, CusVisiNodeSnapshot.class);
+		ActionLazy<CusInfo> insertAddress  = new ActionLazyCommom<CusInfo>(option, CusVisiNodeAddressInsert.class);
+		ActionLazy<CusInfo> insertPhone    = new ActionLazyCommom<CusInfo>(option, CusVisiNodePhoneInsert.class);
+		ActionLazy<CusInfo> select         = new ActionLazyCommom<CusInfo>(option, CusVisiRootSelect.class);	
 		
 		insertCustomer.addPostAction(insertPerson);
 		insertPerson.addPostAction(snapshot);
 		snapshot.addPostAction(insertAddress);
 		insertAddress.addPostAction(insertPhone);
-		insertPhone.addPostAction(insertCuspar);
-		insertCuspar.addPostAction(select);
+		insertPhone.addPostAction(select);
 		
 		actions.add(insertCustomer);	
 		return actions;

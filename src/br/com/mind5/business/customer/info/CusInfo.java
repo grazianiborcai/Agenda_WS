@@ -42,28 +42,28 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	
 	public CusInfo() {
 		super();
-		
-		codOwner = DefaultValue.number();
-		codCustomer = DefaultValue.number();
-		codSnapshot = DefaultValue.number();
-		codStore = DefaultValue.number();
-		codPerson = DefaultValue.number();
-		codUser = DefaultValue.number();
-		codOrder = DefaultValue.number();
-		codOrderItem = DefaultValue.number();
-		addresses = DefaultValue.list();
-		addressesUser = DefaultValue.list();
-		phones = DefaultValue.list();
-		phonesUser = DefaultValue.list();
-		recordMode = DefaultValue.recordMode();		
-		lastChangedBy = DefaultValue.number();
-		personData = DefaultValue.object();
+
+		pets           = DefaultValue.list();
+		phones         = DefaultValue.list();		
+		codUser        = DefaultValue.number();
+		codStore 	   = DefaultValue.number();
+		codOrder       = DefaultValue.number();
+		codOwner 	   = DefaultValue.number();
+		codPerson 	   = DefaultValue.number();
+		addresses      = DefaultValue.list();
+		createdBy      = DefaultValue.number();
+		phonesUser 	   = DefaultValue.list();
+		recordMode 	   = DefaultValue.recordMode();
+		personData     = DefaultValue.object();
+		fimistData     = DefaultValue.object();
+		codCustomer    = DefaultValue.number();
+		codSnapshot    = DefaultValue.number();
+		codOrderItem   = DefaultValue.number();
+		addressesUser  = DefaultValue.list();
+		lastChangedBy  = DefaultValue.number();
+		cutefilonData  = DefaultValue.object();
 		personDataUser = DefaultValue.object();
-		cutefilonData = DefaultValue.object();
-		fimistData = DefaultValue.object();
 		fimistDataUser = DefaultValue.object();
-		pets = DefaultValue.list();
-		createdBy = DefaultValue.number();
 	}
 	
 	

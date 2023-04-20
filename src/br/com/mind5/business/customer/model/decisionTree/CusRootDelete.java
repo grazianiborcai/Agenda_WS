@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.business.customer.model.action.CusVisiNodeAddressDelete;
-import br.com.mind5.business.customer.model.action.CusVisiNodePhoneDelete;
-import br.com.mind5.business.customer.model.action.CusVisiNodeSytotauh;
 import br.com.mind5.business.customer.model.action.CusVisiDaoDelete;
 import br.com.mind5.business.customer.model.action.CusVisiDaoUpdate;
 import br.com.mind5.business.customer.model.action.CusVisiEnforceLChanged;
 import br.com.mind5.business.customer.model.action.CusVisiMergeToDelete;
 import br.com.mind5.business.customer.model.action.CusVisiMergeUsername;
+import br.com.mind5.business.customer.model.action.CusVisiNodeAddressDelete;
+import br.com.mind5.business.customer.model.action.CusVisiNodePhoneDelete;
+import br.com.mind5.business.customer.model.action.CusVisiNodeSytotauh;
 import br.com.mind5.business.customer.model.action.CusVisiPersonDelete;
 import br.com.mind5.business.customer.model.checker.CusCheckDelete;
 import br.com.mind5.business.customer.model.checker.CusCheckExist;
@@ -76,15 +76,15 @@ public final class CusRootDelete extends DeciTreeTemplateWrite<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> mergeToDelete = new ActionStdCommom<CusInfo>(option, CusVisiMergeToDelete.class);
-		ActionLazy<CusInfo> nodeSytotauh = new ActionLazyCommom<CusInfo>(option, CusVisiNodeSytotauh.class);
-		ActionLazy<CusInfo> enforceLChanged = new ActionLazyCommom<CusInfo>(option, CusVisiEnforceLChanged.class);
+		ActionStd <CusInfo> mergeToDelete     = new ActionStdCommom <CusInfo>(option, CusVisiMergeToDelete.class);
+		ActionLazy<CusInfo> nodeSytotauh      = new ActionLazyCommom<CusInfo>(option, CusVisiNodeSytotauh.class);
+		ActionLazy<CusInfo> enforceLChanged   = new ActionLazyCommom<CusInfo>(option, CusVisiEnforceLChanged.class);
 		ActionLazy<CusInfo> enforceLChangedBy = new ActionLazyCommom<CusInfo>(option, CusVisiMergeUsername.class);
-		ActionLazy<CusInfo> update = new ActionLazyCommom<CusInfo>(option, CusVisiDaoUpdate.class);
-		ActionLazy<CusInfo> deleteAddress = new ActionLazyCommom<CusInfo>(option, CusVisiNodeAddressDelete.class);
-		ActionLazy<CusInfo> deletePhone = new ActionLazyCommom<CusInfo>(option, CusVisiNodePhoneDelete.class);
-		ActionLazy<CusInfo> deletePerson = new ActionLazyCommom<CusInfo>(option, CusVisiPersonDelete.class);
-		ActionLazy<CusInfo> deleteCustomer = new ActionLazyCommom<CusInfo>(option, CusVisiDaoDelete.class);	
+		ActionLazy<CusInfo> update            = new ActionLazyCommom<CusInfo>(option, CusVisiDaoUpdate.class);
+		ActionLazy<CusInfo> deleteAddress     = new ActionLazyCommom<CusInfo>(option, CusVisiNodeAddressDelete.class);
+		ActionLazy<CusInfo> deletePhone       = new ActionLazyCommom<CusInfo>(option, CusVisiNodePhoneDelete.class);
+		ActionLazy<CusInfo> deletePerson      = new ActionLazyCommom<CusInfo>(option, CusVisiPersonDelete.class);
+		ActionLazy<CusInfo> deleteCustomer    = new ActionLazyCommom<CusInfo>(option, CusVisiDaoDelete.class);	
 		
 		mergeToDelete.addPostAction(nodeSytotauh);
 		nodeSytotauh.addPostAction(enforceLChanged);

@@ -40,7 +40,7 @@ public final class CusDaoSelectSingle extends DaoStmtTemplate<CusInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, CusInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreNull       = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new CusDaoWhere(whereOption, tableName, recordInfo);
@@ -60,17 +60,17 @@ public final class CusDaoSelectSingle extends DaoStmtTemplate<CusInfo> {
 				do {
 					CusInfo dataInfo = new CusInfo();
 					
-					dataInfo.codOwner =  DaoFormatter.sqlToLong(stmtResult, CusDaoDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCustomer =  DaoFormatter.sqlToLong(stmtResult, CusDaoDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codStore =  DaoFormatter.sqlToLong(stmtResult, CusDaoDbTableColumn.COL_COD_STORE);
-					dataInfo.recordMode = stmtResult.getString(CusDaoDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, CusDaoDbTableColumn.COL_COD_PERSON);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, CusDaoDbTableColumn.COL_COD_USER);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CusDaoDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.codUser       = DaoFormatter.sqlToLong(stmtResult, CusDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codOwner      = DaoFormatter.sqlToLong(stmtResult, CusDaoDbTableColumn.COL_COD_OWNER);					
+					dataInfo.codStore      = DaoFormatter.sqlToLong(stmtResult, CusDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codPerson     = DaoFormatter.sqlToLong(stmtResult, CusDaoDbTableColumn.COL_COD_PERSON);
+					dataInfo.createdOn     = DaoFormatter.sqlToLocalDateTime(stmtResult, CusDaoDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy     = DaoFormatter.sqlToLong(stmtResult, CusDaoDbTableColumn.COL_CREATED_BY);
+					dataInfo.recordMode    = stmtResult.getString(CusDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codCustomer   = DaoFormatter.sqlToLong(stmtResult, CusDaoDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codSnapshot   = DaoFormatter.sqlToLong(stmtResult, CusDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.lastChanged   = DaoFormatter.sqlToLocalDateTime(stmtResult, CusDaoDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, CusDaoDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, CusDaoDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, CusDaoDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, CusDaoDbTableColumn.COL_CREATED_BY);
 	
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

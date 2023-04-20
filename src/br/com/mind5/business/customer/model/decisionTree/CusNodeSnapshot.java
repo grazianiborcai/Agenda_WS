@@ -39,8 +39,8 @@ public final class CusNodeSnapshot extends DeciTreeTemplateWrite<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> insertSnapshot = new ActionStdCommom<CusInfo>(option, CusVisiCusnapInsert.class);		
-		ActionLazy<CusInfo> update = new ActionLazyCommom<CusInfo>(option, CusVisiDaoUpdate.class);	
+		ActionStd <CusInfo> insertSnapshot = new ActionStdCommom <CusInfo>(option, CusVisiCusnapInsert.class);		
+		ActionLazy<CusInfo> update         = new ActionLazyCommom<CusInfo>(option, CusVisiDaoUpdate.class);	
 		
 		insertSnapshot.addPostAction(update);
 		

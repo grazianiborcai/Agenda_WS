@@ -41,12 +41,12 @@ public final class CusNodeInsert extends DeciTreeTemplateWrite<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 
-		ActionStd<CusInfo> nodeSytotin = new CusNodeSytotinL1(option).toAction();
-		ActionLazy<CusInfo> enforceLChanged = new ActionLazyCommom<CusInfo>(option, CusVisiEnforceLChanged.class);
-		ActionLazy<CusInfo> mergeLChangedBy = new ActionLazyCommom<CusInfo>(option, CusVisiMergeUsername.class);	
+		ActionStd <CusInfo> nodeSytotin      = new CusNodeSytotinL1(option).toAction();
+		ActionLazy<CusInfo> enforceLChanged  = new ActionLazyCommom<CusInfo>(option, CusVisiEnforceLChanged.class);
+		ActionLazy<CusInfo> mergeLChangedBy  = new ActionLazyCommom<CusInfo>(option, CusVisiMergeUsername.class);	
 		ActionLazy<CusInfo> enforceCreatedBy = new ActionLazyCommom<CusInfo>(option, CusVisiEnforceCreatedBy.class);
 		ActionLazy<CusInfo> enforceCreatedOn = new ActionLazyCommom<CusInfo>(option, CusVisiEnforceCreatedOn.class);
-		ActionLazy<CusInfo> insertCustomer = new ActionLazyCommom<CusInfo>(option, CusVisiDaoInsert.class);
+		ActionLazy<CusInfo> insertCustomer   = new ActionLazyCommom<CusInfo>(option, CusVisiDaoInsert.class);
 		
 		nodeSytotin.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeLChangedBy);

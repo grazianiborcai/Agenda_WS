@@ -46,8 +46,8 @@ public final class CusNodeAddressUpsert extends DeciTreeTemplateWrite<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> enforceAddressKey = new ActionStdCommom<CusInfo>(option, CusVisiEnforceAddressKey.class);
-		ActionLazy<CusInfo> upsertAddress = new ActionLazyCommom<CusInfo>(option, CusVisiAddressUpsert.class);
+		ActionStd <CusInfo> enforceAddressKey = new ActionStdCommom <CusInfo>(option, CusVisiEnforceAddressKey.class);
+		ActionLazy<CusInfo> upsertAddress     = new ActionLazyCommom<CusInfo>(option, CusVisiAddressUpsert.class);
 		
 		enforceAddressKey.addPostAction(upsertAddress);
 		

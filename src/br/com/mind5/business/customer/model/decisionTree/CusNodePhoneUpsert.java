@@ -46,8 +46,8 @@ public final class CusNodePhoneUpsert extends DeciTreeTemplateWrite<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> enforcePhoneKey = new ActionStdCommom<CusInfo>(option, CusVisiEnforcePhoneKey.class);
-		ActionLazy<CusInfo> upsertPhone = new ActionLazyCommom<CusInfo>(option, CusVisiPhoneUpsert.class);	
+		ActionStd <CusInfo> enforcePhoneKey = new ActionStdCommom <CusInfo>(option, CusVisiEnforcePhoneKey.class);
+		ActionLazy<CusInfo> upsertPhone     = new ActionLazyCommom<CusInfo>(option, CusVisiPhoneUpsert.class);	
 		
 		enforcePhoneKey.addPostAction(upsertPhone);
 		

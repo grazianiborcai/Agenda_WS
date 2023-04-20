@@ -46,8 +46,8 @@ public final class CusNodePersonUpdate extends DeciTreeTemplateWrite<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> enforcePersonKey = new ActionStdCommom<CusInfo>(option, CusVisiEnforcePersonKey.class);
-		ActionLazy<CusInfo> updatePerson = new ActionLazyCommom<CusInfo>(option, CusVisiPersonUpdate.class);
+		ActionStd <CusInfo> enforcePersonKey = new ActionStdCommom <CusInfo>(option, CusVisiEnforcePersonKey.class);
+		ActionLazy<CusInfo> updatePerson     = new ActionLazyCommom<CusInfo>(option, CusVisiPersonUpdate.class);
 		
 		enforcePersonKey.addPostAction(updatePerson);
 		

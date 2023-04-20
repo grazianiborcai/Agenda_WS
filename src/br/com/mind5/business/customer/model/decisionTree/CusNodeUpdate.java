@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.business.customer.model.action.CusVisiNodeSytotauh;
 import br.com.mind5.business.customer.model.action.CusVisiDaoUpdate;
 import br.com.mind5.business.customer.model.action.CusVisiEnforceLChanged;
 import br.com.mind5.business.customer.model.action.CusVisiMergeToUpdate;
 import br.com.mind5.business.customer.model.action.CusVisiMergeUsername;
+import br.com.mind5.business.customer.model.action.CusVisiNodeSytotauh;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -42,11 +42,11 @@ public final class CusNodeUpdate extends DeciTreeTemplateWrite<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 
-		ActionStd<CusInfo> mergeToUpdate = new ActionStdCommom<CusInfo>(option, CusVisiMergeToUpdate.class);
-		ActionLazy<CusInfo> nodeSytotauh = new ActionLazyCommom<CusInfo>(option, CusVisiNodeSytotauh.class);
-		ActionLazy<CusInfo> enforceLChanged = new ActionLazyCommom<CusInfo>(option,CusVisiEnforceLChanged.class);
+		ActionStd <CusInfo> mergeToUpdate     = new ActionStdCommom <CusInfo>(option, CusVisiMergeToUpdate.class);
+		ActionLazy<CusInfo> nodeSytotauh      = new ActionLazyCommom<CusInfo>(option, CusVisiNodeSytotauh.class);
+		ActionLazy<CusInfo> enforceLChanged   = new ActionLazyCommom<CusInfo>(option,CusVisiEnforceLChanged.class);
 		ActionLazy<CusInfo> enforceLChangedBy = new ActionLazyCommom<CusInfo>(option, CusVisiMergeUsername.class);
-		ActionLazy<CusInfo> updateCustomer = new ActionLazyCommom<CusInfo>(option, CusVisiDaoUpdate.class);		
+		ActionLazy<CusInfo> updateCustomer    = new ActionLazyCommom<CusInfo>(option, CusVisiDaoUpdate.class);		
 		
 		mergeToUpdate.addPostAction(nodeSytotauh);
 		nodeSytotauh.addPostAction(enforceLChanged);

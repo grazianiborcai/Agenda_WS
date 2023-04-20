@@ -68,14 +68,14 @@ public final class CusRootSelect extends DeciTreeTemplateRead<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> select = new ActionStdCommom<CusInfo>(option, CusVisiMergeToSelect.class);
-		ActionLazy<CusInfo> nodeSytotauh = new ActionLazyCommom<CusInfo>(option, CusVisiNodeSytotauh.class);
-		ActionLazy<CusInfo> mergePerson = new ActionLazyCommom<CusInfo>(option, CusVisiMergePerson.class);
-		ActionLazy<CusInfo> mergeAddress = new ActionLazyCommom<CusInfo>(option, CusVisiMergeAddress.class);
-		ActionLazy<CusInfo> mergePhone = new ActionLazyCommom<CusInfo>(option, CusVisiMergePhone.class);
-		ActionLazy<CusInfo> nodeUser = new ActionLazyCommom<CusInfo>(option, CusVisiNodeUser.class);
-		ActionLazy<CusInfo> mergeFimist = new ActionLazyCommom<CusInfo>(option, CusVisiMergeFimist.class);
-		ActionLazy<CusInfo> mergePet = new ActionLazyCommom<CusInfo>(option, CusVisiMergePet.class);
+		ActionStd <CusInfo> select         = new ActionStdCommom <CusInfo>(option, CusVisiMergeToSelect.class);
+		ActionLazy<CusInfo> nodeSytotauh   = new ActionLazyCommom<CusInfo>(option, CusVisiNodeSytotauh.class);
+		ActionLazy<CusInfo> mergePerson    = new ActionLazyCommom<CusInfo>(option, CusVisiMergePerson.class);
+		ActionLazy<CusInfo> mergeAddress   = new ActionLazyCommom<CusInfo>(option, CusVisiMergeAddress.class);
+		ActionLazy<CusInfo> mergePhone     = new ActionLazyCommom<CusInfo>(option, CusVisiMergePhone.class);
+		ActionLazy<CusInfo> nodeUser       = new ActionLazyCommom<CusInfo>(option, CusVisiNodeUser.class);
+		ActionLazy<CusInfo> mergeFimist    = new ActionLazyCommom<CusInfo>(option, CusVisiMergeFimist.class);
+		ActionLazy<CusInfo> mergePet       = new ActionLazyCommom<CusInfo>(option, CusVisiMergePet.class);
 		ActionLazy<CusInfo> mergeCutefilon = new ActionLazyCommom<CusInfo>(option, CusVisiMergeCutefilon.class);
 		
 		select.addPostAction(nodeSytotauh);

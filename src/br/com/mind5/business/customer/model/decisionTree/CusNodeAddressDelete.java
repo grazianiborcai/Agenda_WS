@@ -46,7 +46,7 @@ public final class CusNodeAddressDelete extends DeciTreeTemplateWrite<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> mergeAddress = new ActionStdCommom<CusInfo>(option, CusVisiMergeAddress.class);
+		ActionStd <CusInfo> mergeAddress  = new ActionStdCommom <CusInfo>(option, CusVisiMergeAddress.class);
 		ActionLazy<CusInfo> deleteAddress = new ActionLazyCommom<CusInfo>(option, CusVisiAddressDelete.class);
 		
 		mergeAddress.addPostAction(deleteAddress);

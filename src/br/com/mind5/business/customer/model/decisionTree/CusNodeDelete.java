@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.business.customer.model.action.CusVisiNodeAddressDelete;
-import br.com.mind5.business.customer.model.action.CusVisiNodePhoneDelete;
 import br.com.mind5.business.customer.model.action.CusVisiDaoDelete;
 import br.com.mind5.business.customer.model.action.CusVisiDaoUpdate;
 import br.com.mind5.business.customer.model.action.CusVisiEnforceLChanged;
 import br.com.mind5.business.customer.model.action.CusVisiMergeUsername;
+import br.com.mind5.business.customer.model.action.CusVisiNodeAddressDelete;
+import br.com.mind5.business.customer.model.action.CusVisiNodePhoneDelete;
 import br.com.mind5.business.customer.model.action.CusVisiPersonDelete;
 import br.com.mind5.business.customer.model.checker.CusCheckSytotauh;
 import br.com.mind5.model.action.ActionLazy;
@@ -50,13 +50,13 @@ public final class CusNodeDelete extends DeciTreeTemplateWrite<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 
-		ActionStd<CusInfo> enforceLChanged = new ActionStdCommom<CusInfo>(option, CusVisiEnforceLChanged.class);
+		ActionStd <CusInfo> enforceLChanged   = new ActionStdCommom<CusInfo>(option, CusVisiEnforceLChanged.class);
 		ActionLazy<CusInfo> enforceLChangedBy = new ActionLazyCommom<CusInfo>(option, CusVisiMergeUsername.class);
-		ActionLazy<CusInfo> update = new ActionLazyCommom<CusInfo>(option, CusVisiDaoUpdate.class);
-		ActionLazy<CusInfo> deleteAddress = new ActionLazyCommom<CusInfo>(option, CusVisiNodeAddressDelete.class);
-		ActionLazy<CusInfo> deletePhone = new ActionLazyCommom<CusInfo>(option, CusVisiNodePhoneDelete.class);
-		ActionLazy<CusInfo> deletePerson = new ActionLazyCommom<CusInfo>(option, CusVisiPersonDelete.class);
-		ActionLazy<CusInfo> deleteCustomer = new ActionLazyCommom<CusInfo>(option, CusVisiDaoDelete.class);	
+		ActionLazy<CusInfo> update            = new ActionLazyCommom<CusInfo>(option, CusVisiDaoUpdate.class);
+		ActionLazy<CusInfo> deleteAddress     = new ActionLazyCommom<CusInfo>(option, CusVisiNodeAddressDelete.class);
+		ActionLazy<CusInfo> deletePhone       = new ActionLazyCommom<CusInfo>(option, CusVisiNodePhoneDelete.class);
+		ActionLazy<CusInfo> deletePerson      = new ActionLazyCommom<CusInfo>(option, CusVisiPersonDelete.class);
+		ActionLazy<CusInfo> deleteCustomer    = new ActionLazyCommom<CusInfo>(option, CusVisiDaoDelete.class);	
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);

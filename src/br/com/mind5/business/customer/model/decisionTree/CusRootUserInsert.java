@@ -37,7 +37,7 @@ public final class CusRootUserInsert extends DeciTreeTemplateWrite<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> insertUser = new CusNodeUserInsertL1(option).toAction();		
+		ActionStd <CusInfo> insertUser     = new CusNodeUserInsertL1(option).toAction();		
 		ActionLazy<CusInfo> insertCustomer = new ActionLazyCommom<CusInfo>(option, CusVisiRootInsert.class);
 		
 		insertUser.addPostAction(insertCustomer);

@@ -46,7 +46,7 @@ public final class CusNodePhoneDelete extends DeciTreeTemplateWrite<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> mergePhone = new ActionStdCommom<CusInfo>(option, CusVisiMergePhone.class);
+		ActionStd <CusInfo> mergePhone  = new ActionStdCommom <CusInfo>(option, CusVisiMergePhone.class);
 		ActionLazy<CusInfo> deletePhone = new ActionLazyCommom<CusInfo>(option, CusVisiPhoneDelete.class);
 		
 		mergePhone.addPostAction(deletePhone);

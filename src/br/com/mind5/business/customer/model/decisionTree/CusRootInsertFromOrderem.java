@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.business.customer.model.action.CusVisiRootInsert;
 import br.com.mind5.business.customer.model.action.CusVisiEnforceOrderemKey;
 import br.com.mind5.business.customer.model.action.CusVisiEnforceUserData;
 import br.com.mind5.business.customer.model.action.CusVisiMergeOrdemist;
 import br.com.mind5.business.customer.model.action.CusVisiMergeUser;
+import br.com.mind5.business.customer.model.action.CusVisiRootInsert;
 import br.com.mind5.business.customer.model.checker.CusCheckInsertFromOrderem;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
 import br.com.mind5.business.customer.model.checker.CusCheckOrderem;
@@ -72,11 +72,11 @@ public final class CusRootInsertFromOrderem extends DeciTreeTemplateWrite<CusInf
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CusInfo> enforceOrderemKey = new ActionStdCommom<CusInfo>(option, CusVisiEnforceOrderemKey.class);
-		ActionLazy<CusInfo> mergeOrdemist = new ActionLazyCommom<CusInfo>(option, CusVisiMergeOrdemist.class);
-		ActionLazy<CusInfo> mergeUser = new ActionLazyCommom<CusInfo>(option, CusVisiMergeUser.class);
-		ActionLazy<CusInfo> copyUserData = new ActionLazyCommom<CusInfo>(option, CusVisiEnforceUserData.class);		
-		ActionLazy<CusInfo> insert = new ActionLazyCommom<CusInfo>(option, CusVisiRootInsert.class);
+		ActionStd <CusInfo> enforceOrderemKey = new ActionStdCommom <CusInfo>(option, CusVisiEnforceOrderemKey.class);
+		ActionLazy<CusInfo> mergeOrdemist     = new ActionLazyCommom<CusInfo>(option, CusVisiMergeOrdemist.class);
+		ActionLazy<CusInfo> mergeUser         = new ActionLazyCommom<CusInfo>(option, CusVisiMergeUser.class);
+		ActionLazy<CusInfo> copyUserData      = new ActionLazyCommom<CusInfo>(option, CusVisiEnforceUserData.class);		
+		ActionLazy<CusInfo> insert            = new ActionLazyCommom<CusInfo>(option, CusVisiRootInsert.class);
 		
 		enforceOrderemKey.addPostAction(mergeOrdemist);
 		mergeOrdemist.addPostAction(mergeUser);

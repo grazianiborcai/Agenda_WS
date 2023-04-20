@@ -70,12 +70,12 @@ public final class CusRootUpdate extends DeciTreeTemplateWrite<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 
-		ActionStd<CusInfo> updateCustomer = new CusNodeUpdate(option).toAction();	
-		ActionLazy<CusInfo> updatePerson = new ActionLazyCommom<CusInfo>(option, CusVisiNodePersonUpdate.class);		
-		ActionLazy<CusInfo> snapshot = new ActionLazyCommom<CusInfo>(option, CusVisiNodeSnapshot.class);	
-		ActionLazy<CusInfo> upsertAddress = new ActionLazyCommom<CusInfo>(option, CusVisiNodeAddressUpsert.class);	
-		ActionLazy<CusInfo> upsertPhone = new ActionLazyCommom<CusInfo>(option, CusVisiNodePhoneUpsert.class);		
-		ActionStd<CusInfo> select = new CusRootSelect(option).toAction();	
+		ActionStd <CusInfo> updateCustomer = new CusNodeUpdate(option).toAction();	
+		ActionLazy<CusInfo> updatePerson   = new ActionLazyCommom<CusInfo>(option, CusVisiNodePersonUpdate.class);		
+		ActionLazy<CusInfo> snapshot       = new ActionLazyCommom<CusInfo>(option, CusVisiNodeSnapshot.class);	
+		ActionLazy<CusInfo> upsertAddress  = new ActionLazyCommom<CusInfo>(option, CusVisiNodeAddressUpsert.class);	
+		ActionLazy<CusInfo> upsertPhone    = new ActionLazyCommom<CusInfo>(option, CusVisiNodePhoneUpsert.class);		
+		ActionStd <CusInfo> select         = new CusRootSelect(option).toAction();	
 		
 		updateCustomer.addPostAction(updatePerson);	
 		updatePerson.addPostAction(snapshot);
