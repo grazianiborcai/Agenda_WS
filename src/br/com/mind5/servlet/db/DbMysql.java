@@ -51,7 +51,7 @@ public final class DbMysql {
 		p.setDefaultTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
 		p.setFairQueue(true);
 		p.setUrl(dburl);
-		p.setDriverClassName("com.mysql.jdbc.Driver");
+		p.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		p.setUsername(dbUser);
 		p.setPassword(dbPassword);
 		p.setJmxEnabled(true);
