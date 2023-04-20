@@ -48,7 +48,7 @@ public final class CusparchDaoSelectSingle extends DaoStmtTemplate<CusparchInfo>
 	@Override protected String buildWhereClauseHook(String tableName, CusparchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull       = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new CusparchDaoWhere(whereOption, tableName, recordInfo);
@@ -68,14 +68,14 @@ public final class CusparchDaoSelectSingle extends DaoStmtTemplate<CusparchInfo>
 				do {
 					CusparchInfo dataInfo = new CusparchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(CusparchDaoDbTableColumn.COL_COD_OWNER);	
-					dataInfo.codPayCustomer = stmtResult.getLong(CusparchDaoDbTableColumn.COL_COD_PAYCUS);
-					dataInfo.codUser = stmtResult.getLong(CusparchDaoDbTableColumn.COL_COD_USER);
-					dataInfo.recordMode = stmtResult.getString(CusparchDaoDbTableColumn.COL_RECORD_MODE);				
-					dataInfo.compoundId = stmtResult.getString(CusparchDaoDbTableColumn.COL_COMPOUND_ID);
-					dataInfo.customerId = stmtResult.getString(CusparchDaoDbTableColumn.COL_CUSTOMER_ID);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, CusparchDaoDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codPayPartner = DaoFormatter.sqlToInt(stmtResult, CusparchDaoDbTableColumn.COL_COD_PAY_PARTNER);				
+					dataInfo.codUser        = DaoFormatter.sqlToLong(stmtResult, CusparchDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codOwner       = DaoFormatter.sqlToLong(stmtResult, CusparchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.recordMode     = stmtResult.getString(CusparchDaoDbTableColumn.COL_RECORD_MODE);				
+					dataInfo.compoundId     = stmtResult.getString(CusparchDaoDbTableColumn.COL_COMPOUND_ID);
+					dataInfo.customerId     = stmtResult.getString(CusparchDaoDbTableColumn.COL_CUSTOMER_ID);
+					dataInfo.codCustomer    = DaoFormatter.sqlToLong(stmtResult, CusparchDaoDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codPayPartner  = DaoFormatter.sqlToInt(stmtResult, CusparchDaoDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.codPayCustomer = DaoFormatter.sqlToLong(stmtResult, CusparchDaoDbTableColumn.COL_COD_PAYCUS);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

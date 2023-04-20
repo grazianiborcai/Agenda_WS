@@ -13,8 +13,8 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
-import br.com.mind5.payment.customerPartnerSearch.model.action.CusparchVisiRootSelect;
 import br.com.mind5.payment.customerPartnerSearch.model.action.CusparchVisiEnforceUserCustomerKey;
+import br.com.mind5.payment.customerPartnerSearch.model.action.CusparchVisiRootSelect;
 
 public final class CusparchRootSelectUserCustomer extends DeciTreeTemplateRead<CusparchInfo> {
 	
@@ -40,8 +40,8 @@ public final class CusparchRootSelectUserCustomer extends DeciTreeTemplateRead<C
 	@Override protected List<ActionStd<CusparchInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparchInfo> option) {
 		List<ActionStd<CusparchInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CusparchInfo> enforceKey = new ActionStdCommom<CusparchInfo>(option, CusparchVisiEnforceUserCustomerKey.class);
-		ActionLazy<CusparchInfo> select = new ActionLazyCommom<CusparchInfo>(option, CusparchVisiRootSelect.class);
+		ActionStd <CusparchInfo> enforceKey = new ActionStdCommom <CusparchInfo>(option, CusparchVisiEnforceUserCustomerKey.class);
+		ActionLazy<CusparchInfo> select     = new ActionLazyCommom<CusparchInfo>(option, CusparchVisiRootSelect.class);
 		
 		enforceKey.addPostAction(select);
 		
