@@ -4,11 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeAccount.info.StoracInfo;
+import br.com.mind5.business.storeAccount.model.action.StoracVisiMergePayparult;
+import br.com.mind5.business.storeAccount.model.action.StoracVisiNodeSelectL1;
 import br.com.mind5.business.storeAccount.model.checker.StoracCheckLangu;
 import br.com.mind5.business.storeAccount.model.checker.StoracCheckOwner;
 import br.com.mind5.business.storeAccount.model.checker.StoracCheckRead;
 import br.com.mind5.business.storeAccount.model.checker.StoracCheckStore;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.commom.ActionLazyCommom;
+import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -65,9 +70,12 @@ public final class StoracRootSelect extends DeciTreeTemplateWrite<StoracInfo> {
 	@Override protected List<ActionStd<StoracInfo>> buildActionsOnPassedHook(DeciTreeOption<StoracInfo> option) {
 		List<ActionStd<StoracInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoracInfo> nodeL1 = new StoracNodeSelectL1(option).toAction();
+		ActionStd <StoracInfo> mergePayparult = new ActionStdCommom <StoracInfo>(option, StoracVisiMergePayparult.class);
+		ActionLazy<StoracInfo> nodeL1         = new ActionLazyCommom<StoracInfo>(option, StoracVisiNodeSelectL1.class);
 		
-		actions.add(nodeL1);
+		mergePayparult.addPostAction(nodeL1);
+		
+		actions.add(mergePayparult);
 		return actions;
 	}
 }

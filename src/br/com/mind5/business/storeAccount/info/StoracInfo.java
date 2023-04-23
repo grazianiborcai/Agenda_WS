@@ -8,6 +8,7 @@ import br.com.mind5.info.InfoRecord;
 public final class StoracInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
+	public int codPayPartner;
 	public boolean hasPayPartner;
 	public boolean isAccountCompleted;
 	public String username;
@@ -17,11 +18,12 @@ public final class StoracInfo extends InfoRecord implements Cloneable {
 	public StoracInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();
-		codStore = DefaultValue.number();
-		hasPayPartner = DefaultValue.boole();
-		isAccountCompleted = DefaultValue.boole();
-		recordMode = DefaultValue.recordMode();
+		codOwner           = DefaultValue.number();
+		codStore           = DefaultValue.number();
+		recordMode         = DefaultValue.recordMode();
+		hasPayPartner      = DefaultValue.boole();
+		codPayPartner	   = DefaultValue.number();
+		isAccountCompleted = DefaultValue.boole();		
 	}
 	
 	

@@ -47,12 +47,12 @@ public final class StoracNodeSelectL1 extends DeciTreeTemplateWrite<StoracInfo> 
 	@Override protected List<ActionStd<StoracInfo>> buildActionsOnPassedHook(DeciTreeOption<StoracInfo> option) {
 		List<ActionStd<StoracInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoracInfo> enforceHasPartner = new ActionStdCommom<StoracInfo>(option, StoracVisiEnforceHasPartner.class);
-		ActionLazy<StoracInfo> enforceAccountCompleted = new ActionLazyCommom<StoracInfo>(option, StoracVisiEnforceAccountCompleted.class);
+		ActionStd <StoracInfo> enforceHasPartner       = new ActionStdCommom <StoracInfo>(option, StoracVisiEnforceHasPartner.class);
+		ActionLazy<StoracInfo> enforceAccountCompleted = new ActionLazyCommom<StoracInfo>(option, StoracVisiEnforceAccountCompleted.class);		
 		
-		actions.add(enforceHasPartner);
 		enforceHasPartner.addPostAction(enforceAccountCompleted);
 		
+		actions.add(enforceHasPartner);
 		return actions;
 	}
 	
