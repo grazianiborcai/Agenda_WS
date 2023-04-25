@@ -10,11 +10,11 @@ import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class UpswdDaoDbTableColumn extends DaoDbTableColumnTemplate {	
-	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
-	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
+	public static final String COL_COD_OWNER    = DaoDbField.COL_COD_OWNER;	
+	public static final String COL_COD_USER     = DaoDbField.COL_COD_USER;
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
-	public static final String COL_PASSWORD = DaoDbField.COL_PASSWORD;
-	public static final String COL_SALT = DaoDbField.COL_SALT;
+	public static final String COL_PASSWORD     = DaoDbField.COL_PASSWORD;
+	public static final String COL_SALT         = DaoDbField.COL_SALT;
 	
 	
 	public UpswdDaoDbTableColumn() {

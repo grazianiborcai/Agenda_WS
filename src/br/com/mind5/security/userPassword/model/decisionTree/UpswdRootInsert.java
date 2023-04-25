@@ -38,9 +38,9 @@ public final class UpswdRootInsert extends DeciTreeTemplateWrite<UpswdInfo> {
 	@Override protected List<ActionStd<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UpswdInfo> insertUpswd = new UpswdRootInsertSilent(option).toAction();
-		ActionLazy<UpswdInfo> sendEmail = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiEmacomeSend.class);
-		ActionStd<UpswdInfo> success = new ActionStdSuccessCommom<UpswdInfo>(option);
+		ActionStd <UpswdInfo> insertUpswd = new UpswdRootInsertSilent(option).toAction();
+		ActionLazy<UpswdInfo> sendEmail   = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiEmacomeSend.class);
+		ActionStd <UpswdInfo> success     = new ActionStdSuccessCommom<UpswdInfo>(option);
 		
 		insertUpswd.addPostAction(sendEmail);
 		

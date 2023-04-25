@@ -14,8 +14,8 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.action.UpswdVisiRootInsert;
 import br.com.mind5.security.userPassword.model.action.UpswdVisiEnforcePasswordRandom;
+import br.com.mind5.security.userPassword.model.action.UpswdVisiRootInsert;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckWriteRandom;
 
 public final class UpswdRootInsertRandom extends DeciTreeTemplateWrite<UpswdInfo> {
@@ -46,9 +46,9 @@ public final class UpswdRootInsertRandom extends DeciTreeTemplateWrite<UpswdInfo
 	@Override protected List<ActionStd<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UpswdInfo> enforcePassword = new ActionStdCommom<UpswdInfo>(option, UpswdVisiEnforcePasswordRandom.class);
-		ActionLazy<UpswdInfo> insert = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiRootInsert.class);
-		ActionStd<UpswdInfo> success = new ActionStdSuccessCommom<UpswdInfo>(option);
+		ActionStd <UpswdInfo> enforcePassword = new ActionStdCommom <UpswdInfo>(option, UpswdVisiEnforcePasswordRandom.class);
+		ActionLazy<UpswdInfo> insert          = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiRootInsert.class);
+		ActionStd <UpswdInfo> success         = new ActionStdSuccessCommom<UpswdInfo>(option);
 		
 		enforcePassword.addPostAction(insert);
 		

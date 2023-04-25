@@ -13,8 +13,8 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.action.UpswdVisiNodeAuth;
 import br.com.mind5.security.userPassword.model.action.UpswdVisiMergeUselis;
+import br.com.mind5.security.userPassword.model.action.UpswdVisiNodeAuth;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckAuth;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckUser;
 
@@ -53,8 +53,8 @@ public final class UpswdRootAuth extends DeciTreeTemplateWrite<UpswdInfo> {
 	@Override protected List<ActionStd<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UpswdInfo> mergeUselis = new ActionStdCommom<UpswdInfo>(option, UpswdVisiMergeUselis.class);
-		ActionLazy<UpswdInfo> nodeAuth = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiNodeAuth.class);
+		ActionStd <UpswdInfo> mergeUselis = new ActionStdCommom <UpswdInfo>(option, UpswdVisiMergeUselis.class);
+		ActionLazy<UpswdInfo> nodeAuth    = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiNodeAuth.class);
 		
 		mergeUselis.addPostAction(nodeAuth);
 		

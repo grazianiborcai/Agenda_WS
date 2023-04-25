@@ -13,8 +13,8 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.action.UpswdVisiRootAuth;
 import br.com.mind5.security.userPassword.model.action.UpswdVisiMergeUsername;
+import br.com.mind5.security.userPassword.model.action.UpswdVisiRootAuth;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckAuthUsername;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckUsername;
 
@@ -53,8 +53,8 @@ public final class UpswdRootAuthUsername extends DeciTreeTemplateWrite<UpswdInfo
 	@Override protected List<ActionStd<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
 
-		ActionStd<UpswdInfo> mergeUsername = new ActionStdCommom<UpswdInfo>(option, UpswdVisiMergeUsername.class);
-		ActionLazy<UpswdInfo> authenticate = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiRootAuth.class);		
+		ActionStd <UpswdInfo> mergeUsername = new ActionStdCommom <UpswdInfo>(option, UpswdVisiMergeUsername.class);
+		ActionLazy<UpswdInfo> authenticate  = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiRootAuth.class);		
 		
 		mergeUsername.addPostAction(authenticate);
 		

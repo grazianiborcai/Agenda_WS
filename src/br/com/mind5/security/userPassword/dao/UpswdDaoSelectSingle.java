@@ -41,7 +41,7 @@ public final class UpswdDaoSelectSingle extends DaoStmtTemplate<UpswdInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, UpswdInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreNull       = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new UpswdDaoWhere(whereOption, tableName, recordInfo);
@@ -59,12 +59,12 @@ public final class UpswdDaoSelectSingle extends DaoStmtTemplate<UpswdInfo> {
 					return finalResult;
 				
 				do {
-					UpswdInfo dataInfo = new UpswdInfo();
+					UpswdInfo dataInfo = new UpswdInfo();					
 					
-					dataInfo.codOwner = stmtResult.getLong(UpswdDaoDbTableColumn.COL_COD_OWNER);
-					dataInfo.codUser = stmtResult.getLong(UpswdDaoDbTableColumn.COL_COD_USER);
-					dataInfo.hash = DaoFormatter.sqlToBase64(stmtResult, UpswdDaoDbTableColumn.COL_PASSWORD);	
-					dataInfo.salt = DaoFormatter.sqlToBase64(stmtResult, UpswdDaoDbTableColumn.COL_SALT);	
+					dataInfo.hash        = DaoFormatter.sqlToBase64(stmtResult, UpswdDaoDbTableColumn.COL_PASSWORD);
+					dataInfo.salt        = DaoFormatter.sqlToBase64(stmtResult, UpswdDaoDbTableColumn.COL_SALT);
+					dataInfo.codUser     = DaoFormatter.sqlToLong(stmtResult, UpswdDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codOwner    = DaoFormatter.sqlToLong(stmtResult, UpswdDaoDbTableColumn.COL_COD_OWNER);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, UpswdDaoDbTableColumn.COL_LAST_CHANGED);
 					
 					finalResult.add(dataInfo);

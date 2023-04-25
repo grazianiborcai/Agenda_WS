@@ -72,11 +72,11 @@ public final class UpswdRootInsertSilent extends DeciTreeTemplateWrite<UpswdInfo
 	@Override protected List<ActionStd<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UpswdInfo> enforceLChanged = new ActionStdCommom<UpswdInfo>(option, UpswdVisiEnforceLChanged.class);
-		ActionLazy<UpswdInfo> enforceLength = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiEnforceLength.class);
-		ActionLazy<UpswdInfo> enforceSalt = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiEnforceSalt.class);
-		ActionLazy<UpswdInfo> enforceHash = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiEnforceHash.class);
-		ActionLazy<UpswdInfo> insert = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiDaoInsert.class);
+		ActionStd <UpswdInfo> enforceLChanged = new ActionStdCommom <UpswdInfo>(option, UpswdVisiEnforceLChanged.class);
+		ActionLazy<UpswdInfo> enforceLength   = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiEnforceLength.class);
+		ActionLazy<UpswdInfo> enforceSalt     = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiEnforceSalt.class);
+		ActionLazy<UpswdInfo> enforceHash     = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiEnforceHash.class);
+		ActionLazy<UpswdInfo> insert          = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiDaoInsert.class);
 		
 		enforceLChanged.addPostAction(enforceLength);
 		enforceLength.addPostAction(enforceSalt);

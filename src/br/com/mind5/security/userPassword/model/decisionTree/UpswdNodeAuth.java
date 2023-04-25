@@ -13,10 +13,10 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.action.UpswdVisiNodeMatch;
 import br.com.mind5.security.userPassword.model.action.UpswdVisiEnforceHashToMatch;
 import br.com.mind5.security.userPassword.model.action.UpswdVisiEnforceLength;
 import br.com.mind5.security.userPassword.model.action.UpswdVisiMergeToAuth;
+import br.com.mind5.security.userPassword.model.action.UpswdVisiNodeMatch;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckExist;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckIsPasswordEnabled;
 
@@ -55,10 +55,10 @@ public final class UpswdNodeAuth extends DeciTreeTemplateWrite<UpswdInfo> {
 	@Override protected List<ActionStd<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
 
-		ActionStd<UpswdInfo> mergeToAuth = new ActionStdCommom<UpswdInfo>(option, UpswdVisiMergeToAuth.class);
-		ActionLazy<UpswdInfo> enforceLength = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiEnforceLength.class);
+		ActionStd <UpswdInfo> mergeToAuth        = new ActionStdCommom <UpswdInfo>(option, UpswdVisiMergeToAuth.class);
+		ActionLazy<UpswdInfo> enforceLength      = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiEnforceLength.class);
 		ActionLazy<UpswdInfo> enforceHashToMatch = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiEnforceHashToMatch.class);		
-		ActionLazy<UpswdInfo> nodeMatch = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiNodeMatch.class);
+		ActionLazy<UpswdInfo> nodeMatch          = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiNodeMatch.class);
 		
 		mergeToAuth.addPostAction(enforceLength);		
 		enforceLength.addPostAction(enforceHashToMatch);

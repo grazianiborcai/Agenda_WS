@@ -14,10 +14,10 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.action.UpswdVisiNodeUpdateL2;
 import br.com.mind5.security.userPassword.model.action.UpswdVisiEmordeSend;
 import br.com.mind5.security.userPassword.model.action.UpswdVisiJwtokenGenerate;
 import br.com.mind5.security.userPassword.model.action.UpswdVisiMergeUsername;
+import br.com.mind5.security.userPassword.model.action.UpswdVisiNodeUpdateL2;
 import br.com.mind5.security.userPassword.model.action.UpswdVisiObfuscate;
 import br.com.mind5.security.userPassword.model.action.UpswdVisiOtperasAuthenticate;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckUsername;
@@ -50,12 +50,12 @@ public final class UpswdNodeUpdateL1 extends DeciTreeTemplateWrite<UpswdInfo> {
 	@Override protected List<ActionStd<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UpswdInfo> mergeUsername = new ActionStdCommom<UpswdInfo>(option, UpswdVisiMergeUsername.class);
+		ActionStd <UpswdInfo> mergeUsername       = new ActionStdCommom<UpswdInfo>(option, UpswdVisiMergeUsername.class);
 		ActionLazy<UpswdInfo> otperasAuthenticate = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiOtperasAuthenticate.class);
-		ActionLazy<UpswdInfo> nodeL2 = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiNodeUpdateL2.class);
-		ActionLazy<UpswdInfo> sendEmail = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiEmordeSend.class);
-		ActionLazy<UpswdInfo> obfuscate = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiObfuscate.class);
-		ActionLazy<UpswdInfo> jwtokenGenerate = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiJwtokenGenerate.class);
+		ActionLazy<UpswdInfo> nodeL2              = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiNodeUpdateL2.class);
+		ActionLazy<UpswdInfo> sendEmail           = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiEmordeSend.class);
+		ActionLazy<UpswdInfo> obfuscate           = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiObfuscate.class);
+		ActionLazy<UpswdInfo> jwtokenGenerate     = new ActionLazyCommom<UpswdInfo>(option, UpswdVisiJwtokenGenerate.class);
 		
 		mergeUsername.addPostAction(otperasAuthenticate);
 		otperasAuthenticate.addPostAction(nodeL2);
