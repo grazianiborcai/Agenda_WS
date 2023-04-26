@@ -79,7 +79,7 @@
     	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
     </security:http>
     
-    <security:http create-session="stateless" pattern="/insertOtpUserPassword" use-expressions="true">
+    <security:http create-session="stateless" pattern="/User/insertOtpUserPassword" use-expressions="true">
     	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
     	<security:anonymous enabled="true"/>   
     	<security:http-basic />
@@ -88,7 +88,7 @@
     	<custom-filter after="ANONYMOUS_FILTER" ref="authFilterAnonymous" />
     </security:http>
     
-    <security:http create-session="stateless" pattern="/updateUserPassword" use-expressions="true">
+    <security:http create-session="stateless" pattern="/User/updateUserPassword" use-expressions="true">
     	<security:intercept-url pattern="/**" access="hasAuthority('ROLE_ANONYMOUS')" />
     	<security:anonymous enabled="true"/>   
     	<security:http-basic />

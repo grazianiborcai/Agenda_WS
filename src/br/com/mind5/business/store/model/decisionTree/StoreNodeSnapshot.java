@@ -39,8 +39,8 @@ public final class StoreNodeSnapshot extends DeciTreeTemplateWrite<StoreInfo> {
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> insertSnapshot = new ActionStdCommom<StoreInfo>(option, StoreVisiStorapInsert.class);		
-		ActionLazy<StoreInfo> update = new  ActionLazyCommom<StoreInfo>(option, StoreVisiDaoUpdate.class);	
+		ActionStd <StoreInfo> insertSnapshot = new ActionStdCommom <StoreInfo>(option, StoreVisiStorapInsert.class);		
+		ActionLazy<StoreInfo> update         = new ActionLazyCommom<StoreInfo>(option, StoreVisiDaoUpdate.class);	
 		
 		insertSnapshot.addPostAction(update);
 		

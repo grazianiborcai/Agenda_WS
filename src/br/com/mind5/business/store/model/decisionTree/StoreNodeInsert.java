@@ -43,12 +43,12 @@ public final class StoreNodeInsert extends DeciTreeTemplateWrite<StoreInfo> {
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoreInfo> enforceLChanged = new ActionStdCommom<StoreInfo>(option, StoreVisiEnforceLChanged.class);
-		ActionLazy<StoreInfo> enforceLChangedBy = new  ActionLazyCommom<StoreInfo>(option, StoreVisiMergeUsername.class);
-		ActionLazy<StoreInfo> enforceCreatedBy = new  ActionLazyCommom<StoreInfo>(option, StoreVisiEnforceCreatedBy.class);
-		ActionLazy<StoreInfo> enforceCreatedOn = new  ActionLazyCommom<StoreInfo>(option, StoreVisiEnforceCreatedOn.class);
-		ActionLazy<StoreInfo> enforceLockedOff = new  ActionLazyCommom<StoreInfo>(option, StoreVisiEnforceLockedOff.class);
-		ActionLazy<StoreInfo> insertStore = new  ActionLazyCommom<StoreInfo>(option, StoreVisiDaoInsert.class);		
+		ActionStd <StoreInfo> enforceLChanged   = new ActionStdCommom <StoreInfo>(option, StoreVisiEnforceLChanged.class);
+		ActionLazy<StoreInfo> enforceLChangedBy = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeUsername.class);
+		ActionLazy<StoreInfo> enforceCreatedBy  = new ActionLazyCommom<StoreInfo>(option, StoreVisiEnforceCreatedBy.class);
+		ActionLazy<StoreInfo> enforceCreatedOn  = new ActionLazyCommom<StoreInfo>(option, StoreVisiEnforceCreatedOn.class);
+		ActionLazy<StoreInfo> enforceLockedOff  = new ActionLazyCommom<StoreInfo>(option, StoreVisiEnforceLockedOff.class);
+		ActionLazy<StoreInfo> insertStore       = new ActionLazyCommom<StoreInfo>(option, StoreVisiDaoInsert.class);		
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);

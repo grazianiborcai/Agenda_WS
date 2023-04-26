@@ -4,22 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.StoreVisiEnforcePeregKey;
-import br.com.mind5.business.store.model.action.StoreVisiPeregInsert;
-import br.com.mind5.business.store.model.checker.StoreCheckHasPereg;
+import br.com.mind5.business.store.model.action.StoreVisiMergeStorac;
+import br.com.mind5.business.store.model.action.StoreVisiNodeStoparL2;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
-import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class StoreNodePeregInsert extends DeciTreeTemplateWrite<StoreInfo> {
+public final class StoreNodeStoparL1 extends DeciTreeTemplateWrite<StoreInfo> {
 	
-	public StoreNodePeregInsert(DeciTreeOption<StoreInfo> option) {
+	public StoreNodeStoparL1(DeciTreeOption<StoreInfo> option) {
 		super(option);
 	}
 	
@@ -28,13 +27,8 @@ public final class StoreNodePeregInsert extends DeciTreeTemplateWrite<StoreInfo>
 	@Override protected ModelChecker<StoreInfo> buildCheckerHook(DeciTreeOption<StoreInfo> option) {
 		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
-		ModelCheckerOption checkerOption;	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StoreCheckHasPereg(checkerOption);
+
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueue<>(queue);
@@ -45,12 +39,12 @@ public final class StoreNodePeregInsert extends DeciTreeTemplateWrite<StoreInfo>
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd <StoreInfo> enforcePeregKey = new ActionStdCommom<StoreInfo>(option, StoreVisiEnforcePeregKey.class);
-		ActionLazy<StoreInfo> insertPereg     = new ActionLazyCommom<StoreInfo>(option, StoreVisiPeregInsert.class);	
-
-		enforcePeregKey.addPostAction(insertPereg);
+		ActionStd <StoreInfo> mergeStorac = new ActionStdCommom <StoreInfo>(option, StoreVisiMergeStorac.class);
+		ActionLazy<StoreInfo> nodeL2      = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeStoparL2.class);
 		
-		actions.add(enforcePeregKey);	
+		mergeStorac.addPostAction(nodeL2);
+		
+		actions.add(mergeStorac);		
 		return actions;
 	}
 }

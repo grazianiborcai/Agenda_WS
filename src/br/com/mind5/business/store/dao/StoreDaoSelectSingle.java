@@ -41,7 +41,7 @@ public final class StoreDaoSelectSingle extends DaoStmtTemplate<StoreInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, StoreInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreNull       = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new StoreDaoWhere(whereOption, tableName, recordInfo);
@@ -61,21 +61,21 @@ public final class StoreDaoSelectSingle extends DaoStmtTemplate<StoreInfo> {
 				do {
 					StoreInfo dataInfo = new StoreInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(StoreDaoDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(StoreDaoDbTableColumn.COL_COD_STORE);
-					dataInfo.codBankAccount = stmtResult.getLong(StoreDaoDbTableColumn.COL_COD_BANK_ACCOUNT);
-					dataInfo.codCurr = stmtResult.getString(StoreDaoDbTableColumn.COL_COD_CURRENCY);
-					dataInfo.codTimezone = stmtResult.getString(StoreDaoDbTableColumn.COL_COD_TIMEZONE);
-					dataInfo.recordMode = stmtResult.getString(StoreDaoDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codLegalPerson = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_COD_LEGAL_PERSON);					
-					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_COD_COMPANY);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_COD_USER);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StoreDaoDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, StoreDaoDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_CREATED_BY);
-					dataInfo.isLocked = DaoFormatter.sqlToBoole(stmtResult, StoreDaoDbTableColumn.COL_IS_LOCKED);
+					dataInfo.codUser        = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_COD_USER);
+					dataInfo.codCurr 	    = stmtResult.getString(StoreDaoDbTableColumn.COL_COD_CURRENCY);
+					dataInfo.isLocked       = DaoFormatter.sqlToBoole(stmtResult, StoreDaoDbTableColumn.COL_IS_LOCKED);
+					dataInfo.codOwner       = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore       = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.createdOn      = DaoFormatter.sqlToLocalDateTime(stmtResult, StoreDaoDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy      = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_CREATED_BY);
+					dataInfo.codCompany 	= DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_COD_COMPANY);
+					dataInfo.recordMode     = stmtResult.getString(StoreDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codSnapshot    = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codTimezone    = stmtResult.getString(StoreDaoDbTableColumn.COL_COD_TIMEZONE);
+					dataInfo.lastChanged    = DaoFormatter.sqlToLocalDateTime(stmtResult, StoreDaoDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChangedBy  = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.codLegalPerson = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_COD_LEGAL_PERSON);
+					dataInfo.codBankAccount = DaoFormatter.sqlToLong(stmtResult, StoreDaoDbTableColumn.COL_COD_BANK_ACCOUNT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

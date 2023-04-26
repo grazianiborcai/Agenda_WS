@@ -8,9 +8,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StoreVisiNodeBankaccInsert extends ActionVisitorTemplateAction<StoreInfo, StoreInfo> {
+public final class StoreVisiNodeBankaccInsertL1 extends ActionVisitorTemplateAction<StoreInfo, StoreInfo> {
 
-	public StoreVisiNodeBankaccInsert(DeciTreeOption<StoreInfo> option) {
+	public StoreVisiNodeBankaccInsertL1(DeciTreeOption<StoreInfo> option) {
 		super(option, StoreInfo.class, StoreInfo.class);
 	}
 	

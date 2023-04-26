@@ -78,9 +78,9 @@ public final class StoreRootInactivate extends DeciTreeTemplateWrite<StoreInfo> 
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoreInfo> mergeToSelect = new ActionStdCommom<StoreInfo>(option, StoreVisiMergeToSelect.class);
+		ActionStd <StoreInfo> mergeToSelect   = new ActionStdCommom <StoreInfo>(option, StoreVisiMergeToSelect.class);
 		ActionLazy<StoreInfo> enforceLockedOn = new ActionLazyCommom<StoreInfo>(option, StoreVisiEnforceLockedOn.class);
-		ActionLazy<StoreInfo> update = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeLockUpdate.class);
+		ActionLazy<StoreInfo> update          = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeLockUpdate.class);
 			
 		mergeToSelect.addPostAction(enforceLockedOn);
 		enforceLockedOn.addPostAction(update);

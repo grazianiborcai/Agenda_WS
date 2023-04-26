@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.StoreVisiEnforcePeregKey;
-import br.com.mind5.business.store.model.action.StoreVisiPeregInsert;
-import br.com.mind5.business.store.model.checker.StoreCheckHasPereg;
-import br.com.mind5.model.action.ActionLazy;
+import br.com.mind5.business.store.model.action.StoreVisiNodeBankaccInsertL1;
+import br.com.mind5.business.store.model.checker.StoreCheckHasBankacc;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.commom.ActionLazyCommom;
 import br.com.mind5.model.action.commom.ActionStdCommom;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerHelperQueue;
@@ -17,9 +14,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class StoreNodePeregInsert extends DeciTreeTemplateWrite<StoreInfo> {
+public final class StoreNodeBankaccL2 extends DeciTreeTemplateWrite<StoreInfo> {
 	
-	public StoreNodePeregInsert(DeciTreeOption<StoreInfo> option) {
+	public StoreNodeBankaccL2(DeciTreeOption<StoreInfo> option) {
 		super(option);
 	}
 	
@@ -34,8 +31,8 @@ public final class StoreNodePeregInsert extends DeciTreeTemplateWrite<StoreInfo>
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StoreCheckHasPereg(checkerOption);
-		queue.add(checker);
+		checker = new StoreCheckHasBankacc(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueue<>(queue);
 	}
@@ -45,12 +42,9 @@ public final class StoreNodePeregInsert extends DeciTreeTemplateWrite<StoreInfo>
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd <StoreInfo> enforcePeregKey = new ActionStdCommom<StoreInfo>(option, StoreVisiEnforcePeregKey.class);
-		ActionLazy<StoreInfo> insertPereg     = new ActionLazyCommom<StoreInfo>(option, StoreVisiPeregInsert.class);	
-
-		enforcePeregKey.addPostAction(insertPereg);
+		ActionStd<StoreInfo> bankaccInsert = new ActionStdCommom<StoreInfo>(option, StoreVisiNodeBankaccInsertL1.class);
 		
-		actions.add(enforcePeregKey);	
+		actions.add(bankaccInsert);		
 		return actions;
 	}
 }

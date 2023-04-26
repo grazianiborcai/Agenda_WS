@@ -61,8 +61,8 @@ public final class StoreNodeBankaccInsertL2 extends DeciTreeTemplateWrite<StoreI
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> enforceBankaccKey = new ActionStdCommom<StoreInfo>(option, StoreVisiEnforceBankaccKey.class);
-		ActionLazy<StoreInfo> insertBankacc = new  ActionLazyCommom<StoreInfo>(option, StoreVisiBankaccInsert.class);	
+		ActionStd <StoreInfo> enforceBankaccKey = new ActionStdCommom <StoreInfo>(option, StoreVisiEnforceBankaccKey.class);
+		ActionLazy<StoreInfo> insertBankacc     = new ActionLazyCommom<StoreInfo>(option, StoreVisiBankaccInsert.class);	
 		
 		enforceBankaccKey.addPostAction(insertBankacc);
 		

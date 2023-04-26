@@ -46,8 +46,8 @@ public final class StoreNodeCompUpdate extends DeciTreeTemplateWrite<StoreInfo> 
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> enforceCompKey = new ActionStdCommom<StoreInfo>(option, StoreVisiEnforceCompKey.class);
-		ActionLazy<StoreInfo> updateCompany = new  ActionLazyCommom<StoreInfo>(option, StoreVisiCompUpdate.class);
+		ActionStd <StoreInfo> enforceCompKey = new ActionStdCommom <StoreInfo>(option, StoreVisiEnforceCompKey.class);
+		ActionLazy<StoreInfo> updateCompany  = new ActionLazyCommom<StoreInfo>(option, StoreVisiCompUpdate.class);
 		
 		enforceCompKey.addPostAction(updateCompany);
 		

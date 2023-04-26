@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.StoreVisiRootSelect;
 import br.com.mind5.business.store.model.action.StoreVisiMergeSotarch;
+import br.com.mind5.business.store.model.action.StoreVisiRootSelect;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.commom.ActionLazyCommom;
@@ -40,8 +40,8 @@ public final class StoreRootSearch extends DeciTreeTemplateRead<StoreInfo> {
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoreInfo> mergeSotarch = new ActionStdCommom<StoreInfo>(option, StoreVisiMergeSotarch.class);
-		ActionLazy<StoreInfo> select = new ActionLazyCommom<StoreInfo>(option, StoreVisiRootSelect.class);
+		ActionStd <StoreInfo> mergeSotarch = new ActionStdCommom <StoreInfo>(option, StoreVisiMergeSotarch.class);
+		ActionLazy<StoreInfo> select       = new ActionLazyCommom<StoreInfo>(option, StoreVisiRootSelect.class);
 		
 		mergeSotarch.addPostAction(select);
 		

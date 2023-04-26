@@ -84,22 +84,22 @@ public final class StoreRootSelect extends DeciTreeTemplateRead<StoreInfo> {
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoreInfo> select = new ActionStdCommom<StoreInfo>(option, StoreVisiMergeToSelect.class);
+		ActionStd <StoreInfo> select        = new ActionStdCommom <StoreInfo>(option, StoreVisiMergeToSelect.class);
 		ActionLazy<StoreInfo> mergeCurrency = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeCurrency.class);
 		ActionLazy<StoreInfo> mergeTimezone = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeTimezone.class);
-		ActionLazy<StoreInfo> mergeComp = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeComp.class);
-		ActionLazy<StoreInfo> mergeAddress = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeAddress.class);
-		ActionLazy<StoreInfo> mergePhone = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergePhone.class);
-		ActionLazy<StoreInfo> mergeFimeco = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeFimeco.class);
-		ActionLazy<StoreInfo> mergeStorext = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeStorext.class);
-		ActionLazy<StoreInfo> mergeStorac = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeStorac.class);
+		ActionLazy<StoreInfo> mergeComp     = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeComp.class);
+		ActionLazy<StoreInfo> mergeAddress  = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeAddress.class);
+		ActionLazy<StoreInfo> mergePhone    = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergePhone.class);
+		ActionLazy<StoreInfo> mergeFimeco   = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeFimeco.class);
+		ActionLazy<StoreInfo> mergeStorext  = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeStorext.class);
+		ActionLazy<StoreInfo> mergeStorac   = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeStorac.class);
 		ActionLazy<StoreInfo> mergeStefilon = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeStefilon.class);
-		ActionLazy<StoreInfo> mergeStowotm = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeStowotm.class);
-		ActionLazy<StoreInfo> mergeStuntm = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeStuntm.class);
-		ActionLazy<StoreInfo> mergeMatore = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeMatore.class);
-		ActionLazy<StoreInfo> nodePereg = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodePereg.class);
-		ActionLazy<StoreInfo> mergeUser = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeUser.class);
-		ActionLazy<StoreInfo> mergeBankacc = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeBankacc.class);
+		ActionLazy<StoreInfo> mergeStowotm  = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeStowotm.class);
+		ActionLazy<StoreInfo> mergeStuntm   = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeStuntm.class);
+		ActionLazy<StoreInfo> mergeMatore   = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeMatore.class);
+		ActionLazy<StoreInfo> nodePereg     = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodePereg.class);
+		ActionLazy<StoreInfo> mergeUser     = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeUser.class);
+		ActionLazy<StoreInfo> mergeBankacc  = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeBankacc.class);
 		
 		select.addPostAction(mergeCurrency);
 		mergeCurrency.addPostAction(mergeTimezone);

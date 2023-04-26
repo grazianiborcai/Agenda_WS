@@ -46,7 +46,7 @@ public final class StoreNodeAddressDelete extends DeciTreeTemplateWrite<StoreInf
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> mergeAddress = new ActionStdCommom<StoreInfo>(option, StoreVisiMergeAddress.class);
+		ActionStd <StoreInfo> mergeAddress  = new ActionStdCommom <StoreInfo>(option, StoreVisiMergeAddress.class);
 		ActionLazy<StoreInfo> deleteAddress = new ActionLazyCommom<StoreInfo>(option, StoreVisiAddressDelete.class);
 		
 		mergeAddress.addPostAction(deleteAddress);

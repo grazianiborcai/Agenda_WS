@@ -46,8 +46,8 @@ public final class StoreNodePeregUpdate extends DeciTreeTemplateWrite<StoreInfo>
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> enforcePeregKey = new ActionStdCommom<StoreInfo>(option, StoreVisiEnforcePeregKey.class);
-		ActionLazy<StoreInfo> updatePerson = new  ActionLazyCommom<StoreInfo>(option, StoreVisiPeregUpdate.class);	
+		ActionStd <StoreInfo> enforcePeregKey = new ActionStdCommom <StoreInfo>(option, StoreVisiEnforcePeregKey.class);
+		ActionLazy<StoreInfo> updatePerson    = new ActionLazyCommom<StoreInfo>(option, StoreVisiPeregUpdate.class);	
 
 		enforcePeregKey.addPostAction(updatePerson);
 		

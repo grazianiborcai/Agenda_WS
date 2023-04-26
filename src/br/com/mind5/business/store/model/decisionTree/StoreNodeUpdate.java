@@ -41,10 +41,10 @@ public final class StoreNodeUpdate extends DeciTreeTemplateWrite<StoreInfo> {
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoreInfo> mergeToUpdate = new ActionStdCommom<StoreInfo>(option, StoreVisiMergeToUpdate.class);
-		ActionLazy<StoreInfo> enforceLChanged = new  ActionLazyCommom<StoreInfo>(option, StoreVisiEnforceLChanged.class);
-		ActionLazy<StoreInfo> enforceLChangedBy = new  ActionLazyCommom<StoreInfo>(option, StoreVisiMergeUsername.class);
-		ActionLazy<StoreInfo> snapshot = new  ActionLazyCommom<StoreInfo>(option, StoreVisiNodeSnapshot.class);	
+		ActionStd <StoreInfo> mergeToUpdate     = new ActionStdCommom <StoreInfo>(option, StoreVisiMergeToUpdate.class);
+		ActionLazy<StoreInfo> enforceLChanged   = new ActionLazyCommom<StoreInfo>(option, StoreVisiEnforceLChanged.class);
+		ActionLazy<StoreInfo> enforceLChangedBy = new ActionLazyCommom<StoreInfo>(option, StoreVisiMergeUsername.class);
+		ActionLazy<StoreInfo> snapshot          = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeSnapshot.class);	
 
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

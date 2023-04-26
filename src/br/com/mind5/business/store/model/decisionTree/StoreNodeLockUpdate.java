@@ -40,9 +40,9 @@ public final class StoreNodeLockUpdate extends DeciTreeTemplateWrite<StoreInfo> 
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoreInfo> enforceLChanged = new  ActionStdCommom<StoreInfo>(option, StoreVisiEnforceLChanged.class);
+		ActionStd <StoreInfo> enforceLChanged   = new  ActionStdCommom <StoreInfo>(option, StoreVisiEnforceLChanged.class);
 		ActionLazy<StoreInfo> enforceLChangedBy = new  ActionLazyCommom<StoreInfo>(option, StoreVisiMergeUsername.class);
-		ActionLazy<StoreInfo> snapshot = new  ActionLazyCommom<StoreInfo>(option, StoreVisiNodeSnapshot.class);	
+		ActionLazy<StoreInfo> snapshot          = new  ActionLazyCommom<StoreInfo>(option, StoreVisiNodeSnapshot.class);	
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(snapshot);

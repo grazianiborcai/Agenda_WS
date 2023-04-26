@@ -57,30 +57,30 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public StoreInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();
-		codStore = DefaultValue.number();
-		codSnapshot = DefaultValue.number();
-		codUser = DefaultValue.number();
-		codCompany = DefaultValue.number();
+		phones         = DefaultValue.list();
+		codUser 	   = DefaultValue.number();
+		matores        = DefaultValue.list();
+		stuntmes       = DefaultValue.list();
+		isLocked       = DefaultValue.boole();
+		codOwner 	   = DefaultValue.number();
+		codStore 	   = DefaultValue.number();
+		createdBy      = DefaultValue.number();
+		stowotmes      = DefaultValue.list();
+		peregData 	   = DefaultValue.object();
+		storextes 	   = DefaultValue.list();
+		recordMode 	   = DefaultValue.recordMode();
+		storacData     = DefaultValue.object();
+		fimecoData     = DefaultValue.object();
+		codCompany 	   = DefaultValue.number();
+		codSnapshot    = DefaultValue.number();
+		bankaccData    = DefaultValue.object();
+		addressData    = DefaultValue.object();
+		companyData    = DefaultValue.object();
+		stefilonData   = DefaultValue.object();		
+		lastChangedBy  = DefaultValue.number();
 		codLegalPerson = DefaultValue.number();
 		codBankAccount = DefaultValue.number();
-		recordMode = DefaultValue.recordMode();
-		storextes = DefaultValue.list();
-		companyData = DefaultValue.object();
 		userPersonData = DefaultValue.object();
-		peregData = DefaultValue.object();
-		storacData = DefaultValue.object();		
-		stefilonData = DefaultValue.object();
-		bankaccData = DefaultValue.object();
-		stowotmes = DefaultValue.list();
-		stuntmes = DefaultValue.list();
-		matores = DefaultValue.list();
-		isLocked = DefaultValue.boole();
-		addressData = DefaultValue.object();
-		phones = DefaultValue.list();
-		fimecoData = DefaultValue.object();
-		lastChangedBy = DefaultValue.number();
-		createdBy = DefaultValue.number();
 	}
 	
 	

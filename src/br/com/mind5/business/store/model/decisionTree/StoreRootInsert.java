@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.StoreVisiMatbcinInsert;
 import br.com.mind5.business.store.model.action.StoreVisiNodeAddressUpsert;
-import br.com.mind5.business.store.model.action.StoreVisiNodeBankaccInsert;
+import br.com.mind5.business.store.model.action.StoreVisiNodeBankaccInsertL1;
 import br.com.mind5.business.store.model.action.StoreVisiNodeCompInsert;
 import br.com.mind5.business.store.model.action.StoreVisiNodePeregInsert;
 import br.com.mind5.business.store.model.action.StoreVisiNodePhoneInsert;
@@ -96,20 +96,20 @@ public final class StoreRootInsert extends DeciTreeTemplateWrite<StoreInfo> {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		//TODO: permitir que outro usuario seja associado ou inves de sempre criar um novo ?
 		//TODO: O que fazer se o CPF/e-mail ja tiver associado a um customer/owner/store manager ?
-		ActionStd<StoreInfo> insertStore = new StoreNodeInsert(option).toAction();
-		ActionLazy<StoreInfo> insertComp = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeCompInsert.class);
-		ActionLazy<StoreInfo> insertPereg = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodePeregInsert.class);
-		ActionLazy<StoreInfo> insertUser = new ActionLazyCommom<StoreInfo>(option, StoreVisiUserInsert.class);
-		ActionLazy<StoreInfo> insertBankacc = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeBankaccInsert.class);
-		ActionLazy<StoreInfo> snapshot = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeSnapshot.class);
+		ActionStd <StoreInfo> insertStore   = new StoreNodeInsert(option).toAction();
+		ActionLazy<StoreInfo> insertComp    = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeCompInsert.class);
+		ActionLazy<StoreInfo> insertPereg   = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodePeregInsert.class);
+		ActionLazy<StoreInfo> insertUser    = new ActionLazyCommom<StoreInfo>(option, StoreVisiUserInsert.class);
+		ActionLazy<StoreInfo> insertBankacc = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeBankaccInsertL1.class);
+		ActionLazy<StoreInfo> snapshot      = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeSnapshot.class);
 		ActionLazy<StoreInfo> upsertAddress = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeAddressUpsert.class);		
-		ActionLazy<StoreInfo> insertPhone = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodePhoneInsert.class);
+		ActionLazy<StoreInfo> insertPhone   = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodePhoneInsert.class);
 		ActionLazy<StoreInfo> insertStorext = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeStorextInsert.class);			
 		ActionLazy<StoreInfo> insertMatbcin = new ActionLazyCommom<StoreInfo>(option, StoreVisiMatbcinInsert.class);
 		ActionLazy<StoreInfo> insertStowotm = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeStowotmInsert.class);
-		ActionLazy<StoreInfo> insertStuntm = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeStuntmInsert.class);		
-		ActionLazy<StoreInfo> createStopar = new ActionLazyCommom<StoreInfo>(option, StoreVisiStoparCreate.class);
-		ActionLazy<StoreInfo> selectStore = new ActionLazyCommom<StoreInfo>(option, StoreVisiRootSelect.class);	
+		ActionLazy<StoreInfo> insertStuntm  = new ActionLazyCommom<StoreInfo>(option, StoreVisiNodeStuntmInsert.class);		
+		ActionLazy<StoreInfo> createStopar  = new ActionLazyCommom<StoreInfo>(option, StoreVisiStoparCreate.class);
+		ActionLazy<StoreInfo> selectStore   = new ActionLazyCommom<StoreInfo>(option, StoreVisiRootSelect.class);	
 		
 		insertStore.addPostAction(insertComp);
 		insertComp.addPostAction(insertPereg);		

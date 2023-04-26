@@ -46,8 +46,8 @@ public final class StoreNodeStowotmUpsertdel extends DeciTreeTemplateWrite<Store
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> enforceStowotmKey = new ActionStdCommom<StoreInfo>(option, StoreVisiEnforceStowotmKey.class);
-		ActionLazy<StoreInfo> upsertdelStowotm = new  ActionLazyCommom<StoreInfo>(option, StoreVisiStowotmUpsertdel.class);	
+		ActionStd <StoreInfo> enforceStowotmKey = new ActionStdCommom <StoreInfo>(option, StoreVisiEnforceStowotmKey.class);
+		ActionLazy<StoreInfo> upsertdelStowotm  = new ActionLazyCommom<StoreInfo>(option, StoreVisiStowotmUpsertdel.class);	
 		
 		enforceStowotmKey.addPostAction(upsertdelStowotm);
 		
