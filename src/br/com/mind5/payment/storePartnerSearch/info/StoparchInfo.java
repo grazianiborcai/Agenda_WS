@@ -19,10 +19,10 @@ public final class StoparchInfo extends InfoRecord implements Cloneable {
 	public StoparchInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();
-		codStore = DefaultValue.number();
+		codOwner      = DefaultValue.number();
+		codStore      = DefaultValue.number();		
+		recordMode    = DefaultValue.recordMode();
 		codPayPartner = DefaultValue.number();
-		recordMode = DefaultValue.recordMode();
 	}
 	
 	

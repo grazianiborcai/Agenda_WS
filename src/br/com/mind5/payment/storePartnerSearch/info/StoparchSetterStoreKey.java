@@ -7,11 +7,11 @@ public final class StoparchSetterStoreKey extends InfoSetterTemplate<StoparchInf
 	@Override protected StoparchInfo setAttrHook(StoparchInfo recordInfo) {
 		StoparchInfo result = new StoparchInfo();
 		
-		result.codOwner = recordInfo.codOwner;
-		result.codStore = recordInfo.codStore;
+		result.codOwner      = recordInfo.codOwner;
+		result.codStore      = recordInfo.codStore;
+		result.username      = recordInfo.username;
+		result.codLanguage   = recordInfo.codLanguage;
 		result.codPayPartner = recordInfo.codPayPartner;
-		result.codLanguage = recordInfo.codLanguage;
-		result.username = recordInfo.username;
 		
 		return result;
 	}

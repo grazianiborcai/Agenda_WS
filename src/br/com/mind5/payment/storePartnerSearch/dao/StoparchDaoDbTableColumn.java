@@ -10,12 +10,12 @@ import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class StoparchDaoDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
-	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;
-	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
+	public static final String COL_COD_OWNER              = DaoDbField.COL_COD_OWNER;	
+	public static final String COL_COD_PAY_PARTNER        = DaoDbField.COL_COD_PAY_PARTNER;
+	public static final String COL_COD_STORE              = DaoDbField.COL_COD_STORE;
 	public static final String COL_CODE_PAY_PARTNER_STORE = DaoDbField.COL_CODE_PAY_PARTNER_STORE;
-	public static final String COL_ID_PAY_PARTNER_STORE = DaoDbField.COL_ID_PAY_PARTNER_STORE;
-	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
+	public static final String COL_ID_PAY_PARTNER_STORE   = DaoDbField.COL_ID_PAY_PARTNER_STORE;
+	public static final String COL_RECORD_MODE            = DaoDbField.COL_RECORD_MODE;
 	
 	
 	public StoparchDaoDbTableColumn() {

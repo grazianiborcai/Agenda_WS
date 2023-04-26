@@ -53,8 +53,8 @@ public final class StoparchRootSelectStore extends DeciTreeTemplateRead<Stoparch
 	@Override protected List<ActionStd<StoparchInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparchInfo> option) {
 		List<ActionStd<StoparchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoparchInfo> enforceStoreKey = new ActionStdCommom<StoparchInfo>(option, StoparchVisiEnforceStoreKey.class);
-		ActionLazy<StoparchInfo> select = new ActionLazyCommom<StoparchInfo>(option.conn, option.schemaName, StoparchVisiRootSelect.class);
+		ActionStd <StoparchInfo> enforceStoreKey = new ActionStdCommom <StoparchInfo>(option, StoparchVisiEnforceStoreKey.class);
+		ActionLazy<StoparchInfo> select          = new ActionLazyCommom<StoparchInfo>(option.conn, option.schemaName, StoparchVisiRootSelect.class);
 		
 		enforceStoreKey.addPostAction(select);
 		
