@@ -7,9 +7,9 @@ public final class BankaccarchSetterStoreKey extends InfoSetterTemplate<Bankacca
 	@Override protected BankaccarchInfo setAttrHook(BankaccarchInfo recordInfo) {
 		BankaccarchInfo result = new BankaccarchInfo();
 		
-		result.codOwner = recordInfo.codOwner;
-		result.codStore = recordInfo.codStore;
-		result.username = recordInfo.username;
+		result.codOwner    = recordInfo.codOwner;
+		result.codStore    = recordInfo.codStore;
+		result.username    = recordInfo.username;
 		result.codLanguage = recordInfo.codLanguage;
 		
 		return result;

@@ -46,7 +46,7 @@ public final class BankaccarchDaoSelectSingle extends DaoStmtTemplate<Bankaccarc
 	@Override protected String buildWhereClauseHook(String tableName, BankaccarchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull       = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;			
 		
 		DaoStmtWhere whereClause = new BankaccarchDaoWhere(whereOption, tableName, recordInfo);
@@ -66,24 +66,24 @@ public final class BankaccarchDaoSelectSingle extends DaoStmtTemplate<Bankaccarc
 				do {
 					BankaccarchInfo dataInfo = new BankaccarchInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, BankaccarchDaoDbTableColumn.COL_COD_OWNER);
-					dataInfo.codBankAccount = DaoFormatter.sqlToLong(stmtResult, BankaccarchDaoDbTableColumn.COL_COD_BANK_ACCOUNT);
-					dataInfo.accountNumber = stmtResult.getString(BankaccarchDaoDbTableColumn.COL_ACCOUNT_NUMBER);
-					dataInfo.codBankHolderType = DaoFormatter.sqlToInt(stmtResult, BankaccarchDaoDbTableColumn.COL_COD_BANK_HOLDER_TYPE);
+					dataInfo.codBank            = DaoFormatter.sqlToLong(stmtResult, BankaccarchDaoDbTableColumn.COL_COD_BANK);
+					dataInfo.codStore           = DaoFormatter.sqlToLong(stmtResult, BankaccarchDaoDbTableColumn.COL_COD_STORE);
+					dataInfo.codOwner           = DaoFormatter.sqlToLong(stmtResult, BankaccarchDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.createdOn          = DaoFormatter.sqlToLocalDateTime(stmtResult, BankaccarchDaoDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy          = DaoFormatter.sqlToLong(stmtResult, BankaccarchDaoDbTableColumn.COL_CREATED_BY);
+					dataInfo.holderName         = stmtResult.getString(BankaccarchDaoDbTableColumn.COL_HOLDER_NAME);
+					dataInfo.recordMode         = stmtResult.getString(BankaccarchDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.lastChanged        = DaoFormatter.sqlToLocalDateTime(stmtResult, BankaccarchDaoDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.codSnapshot        = DaoFormatter.sqlToLong(stmtResult, BankaccarchDaoDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.branchNumber       = stmtResult.getString(BankaccarchDaoDbTableColumn.COL_BRANCH_NUMBER);
+					dataInfo.accountNumber      = stmtResult.getString(BankaccarchDaoDbTableColumn.COL_ACCOUNT_NUMBER);
+					dataInfo.lastChangedBy      = DaoFormatter.sqlToLong(stmtResult, BankaccarchDaoDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.codBankAccount     = DaoFormatter.sqlToLong(stmtResult, BankaccarchDaoDbTableColumn.COL_COD_BANK_ACCOUNT);
+					dataInfo.holderDocument     = stmtResult.getString(BankaccarchDaoDbTableColumn.COL_HOLDER_DOCUMENT);
+					dataInfo.branchCheckDigit   = stmtResult.getString(BankaccarchDaoDbTableColumn.COL_BRANCH_CHECK_DIGIT);
+					dataInfo.codBankHolderType  = DaoFormatter.sqlToInt(stmtResult, BankaccarchDaoDbTableColumn.COL_COD_BANK_HOLDER_TYPE);
+					dataInfo.accountCheckDigit  = stmtResult.getString(BankaccarchDaoDbTableColumn.COL_ACCOUNT_CHECK_DIGIT);
 					dataInfo.codBankAccountType = DaoFormatter.sqlToInt(stmtResult, BankaccarchDaoDbTableColumn.COL_COD_BANK_ACCOUNT_TYPE);
-					dataInfo.branchCheckDigit = stmtResult.getString(BankaccarchDaoDbTableColumn.COL_BRANCH_CHECK_DIGIT);
-					dataInfo.branchNumber = stmtResult.getString(BankaccarchDaoDbTableColumn.COL_BRANCH_NUMBER);
-					dataInfo.recordMode = stmtResult.getString(BankaccarchDaoDbTableColumn.COL_RECORD_MODE);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, BankaccarchDaoDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, BankaccarchDaoDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, BankaccarchDaoDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, BankaccarchDaoDbTableColumn.COL_CREATED_BY);
-					dataInfo.accountCheckDigit = stmtResult.getString(BankaccarchDaoDbTableColumn.COL_ACCOUNT_CHECK_DIGIT);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, BankaccarchDaoDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codBank = DaoFormatter.sqlToLong(stmtResult, BankaccarchDaoDbTableColumn.COL_COD_BANK);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, BankaccarchDaoDbTableColumn.COL_COD_STORE);
-					dataInfo.holderName = stmtResult.getString(BankaccarchDaoDbTableColumn.COL_HOLDER_NAME);
-					dataInfo.holderDocument = stmtResult.getString(BankaccarchDaoDbTableColumn.COL_HOLDER_DOCUMENT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
