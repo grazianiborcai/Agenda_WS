@@ -29,12 +29,12 @@ public final class StoparInfo extends InfoRecord implements Cloneable {
 	public StoparInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();
-		codStore = DefaultValue.number();
+		codOwner      = DefaultValue.number();
+		codStore      = DefaultValue.number();		
+		recordMode    = DefaultValue.recordMode();
+		codSnapshot   = DefaultValue.number();
+		lastChangedBy = DefaultValue.number();		
 		codPayPartner = DefaultValue.number();
-		recordMode = DefaultValue.recordMode();
-		lastChangedBy = DefaultValue.number();
-		codSnapshot = DefaultValue.number();
 	}
 	
 	

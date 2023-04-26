@@ -45,8 +45,8 @@ public final class StoparNodeSnapshot extends DeciTreeTemplateWrite<StoparInfo> 
 	@Override protected List<ActionStd<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
 		List<ActionStd<StoparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoparInfo> InsertStoparnap = new ActionStdCommom<StoparInfo>(option, StoparVisiStoparnapInsert.class); 
-		ActionLazy<StoparInfo> updateStopar = new ActionLazyCommom<StoparInfo>(option, StoparVisiDaoUpdate.class); 
+		ActionStd <StoparInfo> InsertStoparnap = new ActionStdCommom <StoparInfo>(option, StoparVisiStoparnapInsert.class); 
+		ActionLazy<StoparInfo> updateStopar    = new ActionLazyCommom<StoparInfo>(option, StoparVisiDaoUpdate.class); 
 		
 		InsertStoparnap.addPostAction(updateStopar);
 		

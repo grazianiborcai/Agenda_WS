@@ -10,19 +10,19 @@ import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class StoparDaoDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_ACCESS_TOKEN = DaoDbField.COL_ACCESS_TOKEN;	
-	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
-	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;	
-	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
-	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
+	public static final String COL_ACCESS_TOKEN           = DaoDbField.COL_ACCESS_TOKEN;	
+	public static final String COL_COD_OWNER              = DaoDbField.COL_COD_OWNER;	
+	public static final String COL_COD_PAY_PARTNER        = DaoDbField.COL_COD_PAY_PARTNER;	
+	public static final String COL_COD_SNAPSHOT           = DaoDbField.COL_COD_SNAPSHOT;
+	public static final String COL_COD_STORE              = DaoDbField.COL_COD_STORE;
 	public static final String COL_CODE_PAY_PARTNER_STORE = DaoDbField.COL_CODE_PAY_PARTNER_STORE;
-	public static final String COL_ID_PAY_PARTNER_STORE = DaoDbField.COL_ID_PAY_PARTNER_STORE;
-	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
-	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
-	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
-	public static final String COL_REFRESH_TOKEN = DaoDbField.COL_REFRESH_TOKEN;	
-	public static final String COL_SCOPE = DaoDbField.COL_SCOPE;	
-	public static final String COL_TOKEN_EXPIRES_IN = DaoDbField.COL_TOKEN_EXPIRES_IN;	
+	public static final String COL_ID_PAY_PARTNER_STORE   = DaoDbField.COL_ID_PAY_PARTNER_STORE;
+	public static final String COL_LAST_CHANGED           = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_LAST_CHANGED_BY        = DaoDbField.COL_LAST_CHANGED_BY;
+	public static final String COL_RECORD_MODE            = DaoDbField.COL_RECORD_MODE;
+	public static final String COL_REFRESH_TOKEN          = DaoDbField.COL_REFRESH_TOKEN;	
+	public static final String COL_SCOPE                  = DaoDbField.COL_SCOPE;	
+	public static final String COL_TOKEN_EXPIRES_IN       = DaoDbField.COL_TOKEN_EXPIRES_IN;	
 	
 	
 	public StoparDaoDbTableColumn() {

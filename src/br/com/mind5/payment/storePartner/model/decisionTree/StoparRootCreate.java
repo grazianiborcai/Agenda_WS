@@ -39,8 +39,8 @@ public final class StoparRootCreate extends DeciTreeTemplateWrite<StoparInfo> {
 	@Override protected List<ActionStd<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
 		List<ActionStd<StoparInfo>> actions = new ArrayList<>();		
 
-		ActionStd<StoparInfo> mergePayparult = new ActionStdCommom<StoparInfo>(option, StoparVisiMergePayparult.class);
-		ActionLazy<StoparInfo> nodeL1 = new ActionLazyCommom<StoparInfo>(option, StoparVisiNodeCreateL1.class);
+		ActionStd <StoparInfo> mergePayparult = new ActionStdCommom <StoparInfo>(option, StoparVisiMergePayparult.class);
+		ActionLazy<StoparInfo> nodeL1         = new ActionLazyCommom<StoparInfo>(option, StoparVisiNodeCreateL1.class);
 		
 		mergePayparult.addPostAction(nodeL1);
 		

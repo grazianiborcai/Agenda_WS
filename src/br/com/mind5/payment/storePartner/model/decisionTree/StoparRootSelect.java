@@ -61,7 +61,7 @@ public final class StoparRootSelect extends DeciTreeTemplateRead<StoparInfo> {
 	@Override protected List<ActionStd<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
 		List<ActionStd<StoparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoparInfo> select = new  ActionStdCommom<StoparInfo>(option, StoparVisiMergeToSelect.class);
+		ActionStd <StoparInfo> select          = new ActionStdCommom <StoparInfo>(option, StoparVisiMergeToSelect.class);
 		ActionLazy<StoparInfo> mergePayPartner = new ActionLazyCommom<StoparInfo>(option, StoparVisiMergePaypar.class);
 		
 		select.addPostAction(mergePayPartner);

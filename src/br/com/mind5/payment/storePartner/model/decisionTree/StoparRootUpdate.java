@@ -103,11 +103,11 @@ public final class StoparRootUpdate extends DeciTreeTemplateWrite<StoparInfo> {
 	@Override protected List<ActionStd<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
 		List<ActionStd<StoparInfo>> actions = new ArrayList<>();
 		//TODO: ID obrigatorio ?		
-		ActionStd<StoparInfo> enforceLChanged = new ActionStdCommom<StoparInfo>(option, StoparVisiEnforceLChanged.class);
+		ActionStd <StoparInfo> enforceLChanged   = new ActionStdCommom <StoparInfo>(option, StoparVisiEnforceLChanged.class);
 		ActionLazy<StoparInfo> enforceLChangedBy = new ActionLazyCommom<StoparInfo>(option, StoparVisiMergeUsername.class);
-		ActionLazy<StoparInfo> update = new ActionLazyCommom<StoparInfo>(option, StoparVisiDaoUpdate.class);
-		ActionLazy<StoparInfo> snapshot = new ActionLazyCommom<StoparInfo>(option, StoparVisiNodeSnapshot.class);
-		ActionLazy<StoparInfo> select = new ActionLazyCommom<StoparInfo>(option, StoparVisiRootSelect.class);
+		ActionLazy<StoparInfo> update            = new ActionLazyCommom<StoparInfo>(option, StoparVisiDaoUpdate.class);
+		ActionLazy<StoparInfo> snapshot          = new ActionLazyCommom<StoparInfo>(option, StoparVisiNodeSnapshot.class);
+		ActionLazy<StoparInfo> select            = new ActionLazyCommom<StoparInfo>(option, StoparVisiRootSelect.class);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);

@@ -39,8 +39,8 @@ public final class StoparRootSearchStore extends DeciTreeTemplateRead<StoparInfo
 	@Override protected List<ActionStd<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
 		List<ActionStd<StoparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoparInfo> mergeStoparchStore = new  ActionStdCommom<StoparInfo>(option, StoparVisiMergeStoparchStore.class);
-		ActionLazy<StoparInfo> select = new ActionLazyCommom<StoparInfo>(option, StoparVisiRootSelect.class);
+		ActionStd <StoparInfo> mergeStoparchStore = new ActionStdCommom <StoparInfo>(option, StoparVisiMergeStoparchStore.class);
+		ActionLazy<StoparInfo> select             = new ActionLazyCommom<StoparInfo>(option, StoparVisiRootSelect.class);
 		
 		mergeStoparchStore.addPostAction(select);
 		

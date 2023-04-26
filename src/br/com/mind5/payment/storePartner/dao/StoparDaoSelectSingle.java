@@ -41,7 +41,7 @@ public final class StoparDaoSelectSingle extends DaoStmtTemplate<StoparInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, StoparInfo recordInfo) {	
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreNull       = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new StoparDaoWhere(whereOption, tableName, recordInfo);
@@ -61,19 +61,19 @@ public final class StoparDaoSelectSingle extends DaoStmtTemplate<StoparInfo> {
 				do {
 					StoparInfo dataInfo = new StoparInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, StoparDaoDbTableColumn.COL_COD_OWNER);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, StoparDaoDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, StoparDaoDbTableColumn.COL_COD_STORE);
-					dataInfo.codPayPartner = DaoFormatter.sqlToInt(stmtResult, StoparDaoDbTableColumn.COL_COD_PAY_PARTNER);
-					dataInfo.recordMode = stmtResult.getString(StoparDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.scope               = stmtResult.getString(StoparDaoDbTableColumn.COL_SCOPE);
+					dataInfo.codOwner            = DaoFormatter.sqlToLong(stmtResult, StoparDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore            = DaoFormatter.sqlToLong(stmtResult, StoparDaoDbTableColumn.COL_COD_STORE);					
+					dataInfo.recordMode          = stmtResult.getString(StoparDaoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codSnapshot         = DaoFormatter.sqlToLong(stmtResult, StoparDaoDbTableColumn.COL_COD_SNAPSHOT);	
+					dataInfo.accessToken         = stmtResult.getString(StoparDaoDbTableColumn.COL_ACCESS_TOKEN);
+					dataInfo.lastChanged         = DaoFormatter.sqlToLocalDateTime(stmtResult, StoparDaoDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.refreshToken        = stmtResult.getString(StoparDaoDbTableColumn.COL_REFRESH_TOKEN);					
+					dataInfo.lastChangedBy       = DaoFormatter.sqlToLong(stmtResult, StoparDaoDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.codPayPartner       = DaoFormatter.sqlToInt(stmtResult, StoparDaoDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.tokenExpiresIn      = DaoFormatter.sqlToLocalDate(stmtResult, StoparDaoDbTableColumn.COL_TOKEN_EXPIRES_IN);
+					dataInfo.idPayPartnerStore   = stmtResult.getString(StoparDaoDbTableColumn.COL_ID_PAY_PARTNER_STORE);
 					dataInfo.codePayPartnerStore = stmtResult.getString(StoparDaoDbTableColumn.COL_CODE_PAY_PARTNER_STORE);
-					dataInfo.idPayPartnerStore = stmtResult.getString(StoparDaoDbTableColumn.COL_ID_PAY_PARTNER_STORE);				
-					dataInfo.accessToken = stmtResult.getString(StoparDaoDbTableColumn.COL_ACCESS_TOKEN);
-					dataInfo.refreshToken = stmtResult.getString(StoparDaoDbTableColumn.COL_REFRESH_TOKEN);
-					dataInfo.scope = stmtResult.getString(StoparDaoDbTableColumn.COL_SCOPE);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, StoparDaoDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StoparDaoDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.tokenExpiresIn = DaoFormatter.sqlToLocalDate(stmtResult, StoparDaoDbTableColumn.COL_TOKEN_EXPIRES_IN);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

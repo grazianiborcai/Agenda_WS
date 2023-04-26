@@ -13,8 +13,8 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
-import br.com.mind5.payment.storePartner.model.action.StoparVisiRootInsert;
 import br.com.mind5.payment.storePartner.model.action.StoparVisiRecipaCreate;
+import br.com.mind5.payment.storePartner.model.action.StoparVisiRootInsert;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckIsPagarme;
 
 public final class StoparNodeCreateL3 extends DeciTreeTemplateWrite<StoparInfo> {
@@ -45,8 +45,8 @@ public final class StoparNodeCreateL3 extends DeciTreeTemplateWrite<StoparInfo> 
 	@Override protected List<ActionStd<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
 		List<ActionStd<StoparInfo>> actions = new ArrayList<>();		
 
-		ActionStd<StoparInfo> recipaCreate = new ActionStdCommom<StoparInfo>(option, StoparVisiRecipaCreate.class);	
-		ActionLazy<StoparInfo> insert = new ActionLazyCommom<StoparInfo>(option, StoparVisiRootInsert.class);
+		ActionStd <StoparInfo> recipaCreate = new ActionStdCommom <StoparInfo>(option, StoparVisiRecipaCreate.class);	
+		ActionLazy<StoparInfo> insert       = new ActionLazyCommom<StoparInfo>(option, StoparVisiRootInsert.class);
 		
 		recipaCreate.addPostAction(insert);
 		
