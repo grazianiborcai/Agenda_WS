@@ -16,7 +16,7 @@ final class SowusagrMergerVisiToSelect extends InfoMergerVisitorTemplate<Sowusag
 	@Override public List<SowusagrInfo> merge(SowusagrInfo baseInfo, SowusagrInfo selectedInfo) {
 		List<SowusagrInfo> results = new ArrayList<>();
 		
-		selectedInfo.username = baseInfo.username;
+		selectedInfo.username    = baseInfo.username;
 		selectedInfo.codLanguage = baseInfo.codLanguage;
 		
 		results.add(selectedInfo);

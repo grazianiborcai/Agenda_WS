@@ -63,8 +63,8 @@ public final class SowusagrRootSelect extends DeciTreeTemplateWrite<SowusagrInfo
 	@Override protected List<ActionStd<SowusagrInfo>> buildActionsOnPassedHook(DeciTreeOption<SowusagrInfo> option) {
 		List<ActionStd<SowusagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowusagrInfo> select = new ActionStdCommom<SowusagrInfo>(option, SowusagrVisiMergeToSelect.class);
-		ActionLazy<SowusagrInfo> mergeState = new ActionLazyCommom<SowusagrInfo>(option, SowusagrVisiMergeState.class);
+		ActionStd <SowusagrInfo> select       = new ActionStdCommom <SowusagrInfo>(option, SowusagrVisiMergeToSelect.class);
+		ActionLazy<SowusagrInfo> mergeState   = new ActionLazyCommom<SowusagrInfo>(option, SowusagrVisiMergeState.class);
 		ActionLazy<SowusagrInfo> mergeCalonth = new ActionLazyCommom<SowusagrInfo>(option, SowusagrVisiMergeCalonth.class);
 		
 		select.addPostAction(mergeState);
