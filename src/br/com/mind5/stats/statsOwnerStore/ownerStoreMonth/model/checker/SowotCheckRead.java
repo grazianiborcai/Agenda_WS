@@ -20,7 +20,7 @@ public final class SowotCheckRead extends ModelCheckerTemplateSimple<SowotInfo> 
 			recordInfo.calmonth 	== null ||
 			recordInfo.codCountry 	== null ||
 			recordInfo.codState 	== null ||
-			recordInfo.city 		== null ||
+//			recordInfo.city 		== null ||
 			recordInfo.username 	== null ||
 			recordInfo.codLanguage 	== null		)
 			

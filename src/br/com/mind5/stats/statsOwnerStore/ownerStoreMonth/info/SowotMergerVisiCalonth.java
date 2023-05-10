@@ -16,11 +16,11 @@ final class SowotMergerVisiCalonth extends InfoMergerVisitorTemplate<SowotInfo, 
 	
 	
 	@Override public List<SowotInfo> merge(SowotInfo baseInfo, CalonthInfo selectedInfo) {
-		List<SowotInfo> results = new ArrayList<>();
+		List<SowotInfo> results = new ArrayList<>();		
 		
+		baseInfo.year     = selectedInfo.year;
+		baseInfo.month    = selectedInfo.month;
 		baseInfo.calmonth = selectedInfo.calmonth;
-		baseInfo.year = selectedInfo.year;
-		baseInfo.month = selectedInfo.month;
 		baseInfo.txtMonth = selectedInfo.txtMonth;
 		
 		results.add(baseInfo);

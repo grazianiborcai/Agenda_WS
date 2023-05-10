@@ -47,7 +47,7 @@ public final class SowotNodeUpsertL2 extends DeciTreeTemplateWrite<SowotInfo> {
 	@Override protected List<ActionStd<SowotInfo>> buildActionsOnPassedHook(DeciTreeOption<SowotInfo> option) {
 		List<ActionStd<SowotInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowotInfo> mergeSowedulive = new ActionStdCommom<SowotInfo>(option, SowotVisiMergeSowotive.class);
+		ActionStd <SowotInfo> mergeSowedulive  = new ActionStdCommom <SowotInfo>(option, SowotVisiMergeSowotive.class);
 		ActionLazy<SowotInfo> upsertSowedulagr = new ActionLazyCommom<SowotInfo>(option, SowotVisiSowotagrUpsert.class);
 		
 		mergeSowedulive.addPostAction(upsertSowedulagr);
