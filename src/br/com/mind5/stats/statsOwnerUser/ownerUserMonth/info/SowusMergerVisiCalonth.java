@@ -16,11 +16,11 @@ final class SowusMergerVisiCalonth extends InfoMergerVisitorTemplate<SowusInfo, 
 	
 	
 	@Override public List<SowusInfo> merge(SowusInfo baseInfo, CalonthInfo selectedInfo) {
-		List<SowusInfo> results = new ArrayList<>();
+		List<SowusInfo> results = new ArrayList<>();		
 		
+		baseInfo.year     = selectedInfo.year;
+		baseInfo.month    = selectedInfo.month;
 		baseInfo.calmonth = selectedInfo.calmonth;
-		baseInfo.year = selectedInfo.year;
-		baseInfo.month = selectedInfo.month;
 		baseInfo.txtMonth = selectedInfo.txtMonth;
 		
 		results.add(baseInfo);
