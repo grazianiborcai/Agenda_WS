@@ -48,8 +48,8 @@ public final class StatarchDaoSelectSingle extends DaoStmtTemplate<StatarchInfo>
 	@Override protected String buildWhereClauseHook(String tableName, StatarchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
+		whereOption.ignoreNull           = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreRecordMode     = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
 		DaoStmtWhere whereClause = new StatarchDaoWhere(whereOption, tableName, recordInfo);
@@ -74,11 +74,11 @@ public final class StatarchDaoSelectSingle extends DaoStmtTemplate<StatarchInfo>
 					return finalResult;
 			
 				do {				
-					StatarchInfo dataInfo = new StatarchInfo();
+					StatarchInfo dataInfo = new StatarchInfo();					
 					
-					dataInfo.codCountry = stmtResult.getString(StatarchDaoDbTableColumn.COL_COD_COUNTRY);
-					dataInfo.codState = stmtResult.getString(StatarchDaoDbTableColumn.COL_STATE_PROVINCE);
-					dataInfo.txtState = stmtResult.getString(StatarchDaoDbTableColumn.COL_NAME);
+					dataInfo.codState    = stmtResult.getString(StatarchDaoDbTableColumn.COL_STATE_PROVINCE);
+					dataInfo.txtState    = stmtResult.getString(StatarchDaoDbTableColumn.COL_NAME);
+					dataInfo.codCountry  = stmtResult.getString(StatarchDaoDbTableColumn.COL_COD_COUNTRY);
 					dataInfo.codLanguage = stmtResult.getString(StatarchDaoDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				

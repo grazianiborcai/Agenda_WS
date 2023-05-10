@@ -45,7 +45,7 @@ public final class StatarchRootSelect extends DeciTreeTemplateRead<StatarchInfo>
 	@Override protected List<ActionStd<StatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StatarchInfo> option) {
 		List<ActionStd<StatarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StatarchInfo> select = new ActionStdCommom<StatarchInfo>(option, StatarchVisiDaoSelect.class);
+		ActionStd <StatarchInfo> select       = new ActionStdCommom <StatarchInfo>(option, StatarchVisiDaoSelect.class);
 		ActionLazy<StatarchInfo> mergeCountry = new ActionLazyCommom<StatarchInfo>(option, StatarchVisiMergeCountry.class);
 		
 		select.addPostAction(mergeCountry);
