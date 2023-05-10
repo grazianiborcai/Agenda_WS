@@ -50,11 +50,11 @@ public final class SowashRootSelect extends DeciTreeTemplateWrite<SowashInfo> {
 	@Override protected List<ActionStd<SowashInfo>> buildActionsOnPassedHook(DeciTreeOption<SowashInfo> option) {
 		List<ActionStd<SowashInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowashInfo> mergeSowot = new ActionStdCommom<SowashInfo>(option, SowashVisiMergeSowot.class);
-		ActionLazy<SowashInfo> mergeSoword = new ActionLazyCommom<SowashInfo>(option, SowashVisiMergeSoword.class);
-		ActionLazy<SowashInfo> mergeSowus = new ActionLazyCommom<SowashInfo>(option, SowashVisiMergeSowus.class);
-		ActionLazy<SowashInfo> mergeSowedul = new ActionLazyCommom<SowashInfo>(option, SowashVisiMergeSowedul.class);
-		ActionLazy<SowashInfo> mergeSowal = new ActionLazyCommom<SowashInfo>(option, SowashVisiMergeSowal.class);
+		ActionStd <SowashInfo> mergeSowot      = new ActionStdCommom <SowashInfo>(option, SowashVisiMergeSowot.class);
+		ActionLazy<SowashInfo> mergeSoword     = new ActionLazyCommom<SowashInfo>(option, SowashVisiMergeSoword.class);
+		ActionLazy<SowashInfo> mergeSowus      = new ActionLazyCommom<SowashInfo>(option, SowashVisiMergeSowus.class);
+		ActionLazy<SowashInfo> mergeSowedul    = new ActionLazyCommom<SowashInfo>(option, SowashVisiMergeSowedul.class);
+		ActionLazy<SowashInfo> mergeSowal      = new ActionLazyCommom<SowashInfo>(option, SowashVisiMergeSowal.class);
 		ActionLazy<SowashInfo> enforceLChanged = new ActionLazyCommom<SowashInfo>(option, SowashVisiEnforceLChanged.class);
 		
 		mergeSowot.addPostAction(mergeSoword);

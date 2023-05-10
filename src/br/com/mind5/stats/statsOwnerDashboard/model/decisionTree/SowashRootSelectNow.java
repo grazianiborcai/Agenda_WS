@@ -40,8 +40,8 @@ public final class SowashRootSelectNow extends DeciTreeTemplateWrite<SowashInfo>
 	@Override protected List<ActionStd<SowashInfo>> buildActionsOnPassedHook(DeciTreeOption<SowashInfo> option) {
 		List<ActionStd<SowashInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowashInfo> mergeCalonthNow = new ActionStdCommom<SowashInfo>(option, SowashVisiMergeCalonthNow.class);
-		ActionLazy<SowashInfo> select = new ActionLazyCommom<SowashInfo>(option, SowashVisiRootSelect.class);
+		ActionStd <SowashInfo> mergeCalonthNow = new ActionStdCommom <SowashInfo>(option, SowashVisiMergeCalonthNow.class);
+		ActionLazy<SowashInfo> select          = new ActionLazyCommom<SowashInfo>(option, SowashVisiRootSelect.class);
 		
 		
 		mergeCalonthNow.addPostAction(select);
