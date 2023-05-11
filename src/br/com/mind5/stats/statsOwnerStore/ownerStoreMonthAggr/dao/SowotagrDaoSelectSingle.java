@@ -41,7 +41,7 @@ public final class SowotagrDaoSelectSingle extends DaoStmtTemplate<SowotagrInfo>
 	@Override protected String buildWhereClauseHook(String tableName, SowotagrInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreNull       = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new SowotagrDaoWhere(whereOption, tableName, recordInfo);
@@ -61,23 +61,23 @@ public final class SowotagrDaoSelectSingle extends DaoStmtTemplate<SowotagrInfo>
 				do {
 					SowotagrInfo dataInfo = new SowotagrInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, SowotagrDaoDbTableColumn.COL_COD_OWNER);
-					dataInfo.calmonth = stmtResult.getString(SowotagrDaoDbTableColumn.COL_CALMONTH);
-					dataInfo.year = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_YEAR);
-					dataInfo.month = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_MONTH);
-					dataInfo.codCountry = stmtResult.getString(SowotagrDaoDbTableColumn.COL_COD_COUNTRY);
-					dataInfo.codState = stmtResult.getString(SowotagrDaoDbTableColumn.COL_STATE_PROVINCE);
-					dataInfo.city = stmtResult.getString(SowotagrDaoDbTableColumn.COL_CITY);
-					dataInfo.countStoreCreatedMonth = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_COUNT_STORE_CREATED_MONTH);
-					dataInfo.countStoreCreatedLastYear = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_COUNT_STORE_CREATED_MONTH_LAST_YEAR);					
-					dataInfo.countStoreTotalMonth = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_COUNT_STORE_MONTH);
-					dataInfo.countStoreTotalLastYear = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_COUNT_STORE_MONTH_LAST_YEAR);					
-					dataInfo.countStoreCompletedMonth = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_COUNT_STORE_ACCOUNT_COMPLETED_MONTH);
-					dataInfo.countStoreCompletedLastYear = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_COUNT_STORE_ACCOUNT_COMPLETED_MONTH_LAST_YEAR);					
-					dataInfo.countStorePendingMonth = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_COUNT_STORE_ACCOUNT_PENDING_MONTH);
-					dataInfo.countStorePendingLastYear = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_COUNT_STORE_ACCOUNT_PENDING_MONTH_LAST_YEAR);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, SowotagrDaoDbTableColumn.COL_LAST_CHANGED);
-					
+					dataInfo.city                        = stmtResult.getString(SowotagrDaoDbTableColumn.COL_CITY);
+					dataInfo.year                        = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_YEAR);
+					dataInfo.month                       = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_MONTH);
+					dataInfo.codOwner                    = DaoFormatter.sqlToLong(stmtResult, SowotagrDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.calmonth                    = stmtResult.getString(SowotagrDaoDbTableColumn.COL_CALMONTH);
+					dataInfo.codState                    = stmtResult.getString(SowotagrDaoDbTableColumn.COL_STATE_PROVINCE);					
+					dataInfo.codCountry                  = stmtResult.getString(SowotagrDaoDbTableColumn.COL_COD_COUNTRY);
+					dataInfo.lastChanged                 = DaoFormatter.sqlToLocalDateTime(stmtResult, SowotagrDaoDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.countStoreTotalMonth        = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_COUNT_STORE_MONTH);
+					dataInfo.countStorePendingMonth      = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_COUNT_STORE_ACCOUNT_PENDING_MONTH);
+					dataInfo.countStoreCreatedMonth      = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_COUNT_STORE_CREATED_MONTH);
+					dataInfo.countStoreTotalLastYear     = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_COUNT_STORE_MONTH_LAST_YEAR);
+					dataInfo.countStoreCompletedMonth    = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_COUNT_STORE_ACCOUNT_COMPLETED_MONTH);
+					dataInfo.countStorePendingLastYear   = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_COUNT_STORE_ACCOUNT_PENDING_MONTH_LAST_YEAR);
+					dataInfo.countStoreCreatedLastYear   = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_COUNT_STORE_CREATED_MONTH_LAST_YEAR);
+					dataInfo.countStoreCompletedLastYear = DaoFormatter.sqlToInt(stmtResult, SowotagrDaoDbTableColumn.COL_COUNT_STORE_ACCOUNT_COMPLETED_MONTH_LAST_YEAR);
+										
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
 				

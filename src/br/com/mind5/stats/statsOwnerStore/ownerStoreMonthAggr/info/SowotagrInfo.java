@@ -32,18 +32,18 @@ public final class SowotagrInfo extends InfoRecord implements Cloneable {
 	public SowotagrInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();
-		year = DefaultValue.number();
-		month = DefaultValue.number();
-		countStoreTotalMonth = DefaultValue.number();
-		countStoreCreatedMonth = DefaultValue.number();
-		countStoreCompletedMonth = DefaultValue.number();
-		countStorePendingMonth = DefaultValue.number();
-		countStoreTotalLastYear = DefaultValue.number();
-		countStoreCreatedLastYear = DefaultValue.number();
+		year                        = DefaultValue.number();
+		month                       = DefaultValue.number();
+		codOwner                    = DefaultValue.number();
+		lastChanged                 = DefaultValue.object();
+		countStoreTotalMonth        = DefaultValue.number();
+		countStoreCreatedMonth      = DefaultValue.number();
+		countStorePendingMonth      = DefaultValue.number();
+		countStoreTotalLastYear     = DefaultValue.number();
+		countStoreCompletedMonth    = DefaultValue.number();
+		countStoreCreatedLastYear   = DefaultValue.number();
+		countStorePendingLastYear   = DefaultValue.number();
 		countStoreCompletedLastYear = DefaultValue.number();
-		countStorePendingLastYear = DefaultValue.number();
-		lastChanged = DefaultValue.object();
 	}
 	
 	
