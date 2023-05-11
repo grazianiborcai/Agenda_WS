@@ -27,12 +27,12 @@ public final class SowashInfo extends InfoRecord implements Cloneable {
 	public SowashInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();
-		sowotes = DefaultValue.list();
-		sowuses = DefaultValue.list();
-		sowordes = DefaultValue.list();
-		sowedules = DefaultValue.list();
-		sowales = DefaultValue.list();
+		sowales     = DefaultValue.list();
+		sowotes     = DefaultValue.list();
+		sowuses     = DefaultValue.list();
+		codOwner    = DefaultValue.number();
+		sowordes    = DefaultValue.list();
+		sowedules   = DefaultValue.list();		
 		lastChanged = DefaultValue.object();
 	}
 	
