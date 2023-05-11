@@ -39,7 +39,7 @@ public final class PagookDaoInsertSingle extends DaoStmtTemplate<PagookInfo> {
 				int i = 1;
 				
 				stmt.setString(i++, recordInfo.id);
-				stmt.setString(i++, recordInfo.event);
+				stmt.setString(i++, recordInfo.type);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwner);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrder);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrderItem);

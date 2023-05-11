@@ -19,7 +19,7 @@ public final class PagookCheckInsert extends ModelCheckerTemplateSimple<PagookIn
 	
 	@Override protected boolean checkHook(PagookInfo recordInfo, Connection conn, String schemaName) {			
 		if ( recordInfo.id    == null ||
-			 recordInfo.event == null ||
+			 recordInfo.type  == null ||
 			 recordInfo.data  == null)		
 			return super.FAILED;		
 		

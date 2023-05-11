@@ -65,7 +65,7 @@ public final class PagookDaoSelectSingle extends DaoStmtTemplate<PagookInfo> {
 					dataInfo.codPayOrder     = DaoFormatter.sqlToLong(stmtResult, PagookDaoDbTableColumn.COL_COD_PAY_ORDER);
 					dataInfo.codPayOrderItem = DaoFormatter.sqlToLong(stmtResult, PagookDaoDbTableColumn.COL_COD_PAY_ORDER_ITEM);
 					dataInfo.createdOn       = DaoFormatter.sqlToLocalDateTime(stmtResult, PagookDaoDbTableColumn.COL_CREATED_ON);
-					dataInfo.event           = stmtResult.getString(PagookDaoDbTableColumn.COL_EVENT_WEBHOOK);
+					dataInfo.type           = stmtResult.getString(PagookDaoDbTableColumn.COL_EVENT_WEBHOOK);
 					dataInfo.id              = stmtResult.getString(PagookDaoDbTableColumn.COL_ID_WEBHOOK);
 					dataInfo.lastChanged     = DaoFormatter.sqlToLocalDateTime(stmtResult, PagookDaoDbTableColumn.COL_LAST_CHANGED);
 					

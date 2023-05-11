@@ -8,7 +8,7 @@ import br.com.mind5.info.InfoRecord;
 
 public final class PagookInfo extends InfoRecord implements Cloneable {
 	public String id;
-	public String event;
+	public String type;
 	public Data data;
 	public long codOwner;
 	public long codPayOrder;

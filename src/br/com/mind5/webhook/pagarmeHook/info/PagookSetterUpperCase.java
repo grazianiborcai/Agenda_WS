@@ -14,10 +14,10 @@ public final class PagookSetterUpperCase extends InfoSetterTemplate<PagookInfo> 
 	
 	
 	private PagookInfo setEvent(PagookInfo recordInfo) {
-		if(recordInfo.event == null)
+		if(recordInfo.type == null)
 			return recordInfo;
 			
-		recordInfo.event = recordInfo.event.toUpperCase();		
+		recordInfo.type = recordInfo.type.toUpperCase();		
 		return recordInfo;
 	}
 	

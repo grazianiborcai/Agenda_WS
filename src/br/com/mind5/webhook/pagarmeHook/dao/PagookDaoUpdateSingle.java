@@ -54,7 +54,7 @@ public final class PagookDaoUpdateSingle extends DaoStmtTemplate<PagookInfo> {
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PagookInfo recordInfo) throws SQLException {	
 				int i = 1;
 				
-				stmt.setString(i++, recordInfo.event);
+				stmt.setString(i++, recordInfo.type);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwner);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrder);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrderItem);
