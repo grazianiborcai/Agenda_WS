@@ -46,7 +46,7 @@ public final class HomeNodeManager extends DeciTreeTemplateRead<HomeInfo> {
 	@Override protected List<ActionStd<HomeInfo>> buildActionsOnPassedHook(DeciTreeOption<HomeInfo> option) {
 		List<ActionStd<HomeInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<HomeInfo> mergeStoman = new ActionStdCommom<HomeInfo>(option, HomeVisiMergeStoman.class);
+		ActionStd <HomeInfo> mergeStoman  = new ActionStdCommom <HomeInfo>(option, HomeVisiMergeStoman.class);
 		ActionLazy<HomeInfo> mergeStorash = new ActionLazyCommom<HomeInfo>(option, HomeVisiMergeStorash.class);
 		
 		mergeStoman.addPostAction(mergeStorash);

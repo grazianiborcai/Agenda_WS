@@ -27,14 +27,14 @@ public final class HomeInfo extends InfoRecord implements Cloneable {
 	public HomeInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();	
-		codUser = DefaultValue.number();
-		cartouData = DefaultValue.object();
+		codUser       = DefaultValue.number();
+		codOwner      = DefaultValue.number();		
+		stomanes      = DefaultValue.list();			
+		usomeData     = DefaultValue.object();
+		cartouData    = DefaultValue.object();	
+		sowashData    = DefaultValue.object();
+		storashData   = DefaultValue.object();
 		stoprosouData = DefaultValue.object();
-		usomeData = DefaultValue.object();
-		sowashData = DefaultValue.object();
-		storashData = DefaultValue.object();
-		stomanes = DefaultValue.list();
 	}
 	
 	

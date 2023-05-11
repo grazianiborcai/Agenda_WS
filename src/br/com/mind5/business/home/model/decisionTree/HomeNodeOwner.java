@@ -46,8 +46,8 @@ public final class HomeNodeOwner extends DeciTreeTemplateRead<HomeInfo> {
 	@Override protected List<ActionStd<HomeInfo>> buildActionsOnPassedHook(DeciTreeOption<HomeInfo> option) {
 		List<ActionStd<HomeInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<HomeInfo> mergeStoprosou = new ActionStdCommom<HomeInfo>(option, HomeVisiMergeStoprosou.class);
-		ActionLazy<HomeInfo> mergeSowash = new ActionLazyCommom<HomeInfo>(option, HomeVisiMergeSowash.class);
+		ActionStd <HomeInfo> mergeStoprosou = new ActionStdCommom <HomeInfo>(option, HomeVisiMergeStoprosou.class);
+		ActionLazy<HomeInfo> mergeSowash    = new ActionLazyCommom<HomeInfo>(option, HomeVisiMergeSowash.class);
 		
 		mergeStoprosou.addPostAction(mergeSowash);
 		

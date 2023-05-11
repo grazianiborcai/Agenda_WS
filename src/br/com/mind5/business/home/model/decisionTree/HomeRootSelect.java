@@ -64,11 +64,11 @@ public final class HomeRootSelect extends DeciTreeTemplateRead<HomeInfo> {
 	@Override protected List<ActionStd<HomeInfo>> buildActionsOnPassedHook(DeciTreeOption<HomeInfo> option) {
 		List<ActionStd<HomeInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<HomeInfo> mergeUser = new ActionStdCommom<HomeInfo>(option, HomeVisiMergeUsername.class);
+		ActionStd <HomeInfo> mergeUser   = new ActionStdCommom <HomeInfo>(option, HomeVisiMergeUsername.class);
 		ActionLazy<HomeInfo> mergeCartou = new ActionLazyCommom<HomeInfo>(option, HomeVisiMergeCartou.class);
-		ActionLazy<HomeInfo> mergeUsome = new ActionLazyCommom<HomeInfo>(option, HomeVisiMergeUsome.class);
+		ActionLazy<HomeInfo> mergeUsome  = new ActionLazyCommom<HomeInfo>(option, HomeVisiMergeUsome.class);
 		ActionLazy<HomeInfo> nodeManager = new ActionLazyCommom<HomeInfo>(option, HomeVisiNodeManager.class);
-		ActionLazy<HomeInfo> nodeOwner = new ActionLazyCommom<HomeInfo>(option, HomeVisiNodeOwner.class);
+		ActionLazy<HomeInfo> nodeOwner   = new ActionLazyCommom<HomeInfo>(option, HomeVisiNodeOwner.class);
 		
 		mergeUser.addPostAction(mergeCartou);
 		mergeCartou.addPostAction(mergeUsome);
