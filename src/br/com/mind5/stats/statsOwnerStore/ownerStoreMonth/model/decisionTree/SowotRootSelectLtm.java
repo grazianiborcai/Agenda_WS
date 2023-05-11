@@ -14,7 +14,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.info.SowotInfo;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.model.action.SowotVisiMergeCalonthLtm;
-import br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.model.action.SowotVisiMergeStolis;
+import br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.model.action.SowotVisiMergeStatarch;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.model.action.SowotVisiRootSelect;
 import br.com.mind5.stats.statsOwnerStore.ownerStoreMonth.model.checker.SowotCheckReadLtm;
 
@@ -47,14 +47,14 @@ public final class SowotRootSelectLtm extends DeciTreeTemplateWrite<SowotInfo> {
 	@Override protected List<ActionStd<SowotInfo>> buildActionsOnPassedHook(DeciTreeOption<SowotInfo> option) {
 		List<ActionStd<SowotInfo>> actions = new ArrayList<>();
 
-		ActionStd <SowotInfo> mergeStolis     = new ActionStdCommom <SowotInfo>(option, SowotVisiMergeStolis.class);
+		ActionStd <SowotInfo> mergeStatarch   = new ActionStdCommom <SowotInfo>(option, SowotVisiMergeStatarch.class);
 		ActionLazy<SowotInfo> mergeCalonthLtm = new ActionLazyCommom<SowotInfo>(option, SowotVisiMergeCalonthLtm.class);
 		ActionLazy<SowotInfo> select          = new ActionLazyCommom<SowotInfo>(option, SowotVisiRootSelect.class);
 		
-		mergeStolis.addPostAction(mergeCalonthLtm);
+		mergeStatarch.addPostAction(mergeCalonthLtm);
 		mergeCalonthLtm.addPostAction(select);
 		
-		actions.add(mergeStolis);
+		actions.add(mergeStatarch);
 		return actions;
 	}
 }
