@@ -47,7 +47,7 @@ public final class SowusNodeUpsertL2 extends DeciTreeTemplateWrite<SowusInfo> {
 	@Override protected List<ActionStd<SowusInfo>> buildActionsOnPassedHook(DeciTreeOption<SowusInfo> option) {
 		List<ActionStd<SowusInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowusInfo> mergeSowusive = new ActionStdCommom<SowusInfo>(option, SowusVisiMergeSowusive.class);
+		ActionStd <SowusInfo> mergeSowusive  = new ActionStdCommom <SowusInfo>(option, SowusVisiMergeSowusive.class);
 		ActionLazy<SowusInfo> upsertSowusagr = new ActionLazyCommom<SowusInfo>(option, SowusVisiSowusagrUpsert.class);
 		
 		mergeSowusive.addPostAction(upsertSowusagr);
@@ -62,7 +62,7 @@ public final class SowusNodeUpsertL2 extends DeciTreeTemplateWrite<SowusInfo> {
 	@Override protected List<ActionStd<SowusInfo>> buildActionsOnFailedHook(DeciTreeOption<SowusInfo> option) {
 		List<ActionStd<SowusInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowusInfo> zerofy = new ActionStdCommom<SowusInfo>(option, SowusVisiEnforceZerofy.class);
+		ActionStd <SowusInfo> zerofy         = new ActionStdCommom <SowusInfo>(option, SowusVisiEnforceZerofy.class);
 		ActionLazy<SowusInfo> upsertSowusagr = new ActionLazyCommom<SowusInfo>(option, SowusVisiSowusagrUpsert.class);
 		
 		zerofy.addPostAction(upsertSowusagr);

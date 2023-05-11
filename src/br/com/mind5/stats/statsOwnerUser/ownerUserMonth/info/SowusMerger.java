@@ -6,6 +6,7 @@ import br.com.mind5.business.calendarMonth.info.CalonthInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
 import br.com.mind5.stats.statsOwnerUser.ownerUserMonthAggr.info.SowusagrInfo;
 import br.com.mind5.stats.statsOwnerUser.ownerUserMonthLive.info.SowusiveInfo;
 
@@ -17,6 +18,19 @@ public final class SowusMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SowusMergerVisiStolis());
 		InfoMerger<SowusInfo, StolisInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<SowusInfo> mergeWithStatarch(List<SowusInfo> baseInfos, List<StatarchInfo> selectedInfos) {
+		InfoMergerBuilder<SowusInfo, StatarchInfo> builder = new InfoMergerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SowusMergerVisiStatarch());
+		InfoMerger<SowusInfo, StatarchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
