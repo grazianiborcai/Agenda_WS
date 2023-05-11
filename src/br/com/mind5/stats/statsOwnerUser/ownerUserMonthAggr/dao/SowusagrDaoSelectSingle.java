@@ -41,7 +41,7 @@ public final class SowusagrDaoSelectSingle extends DaoStmtTemplate<SowusagrInfo>
 	@Override protected String buildWhereClauseHook(String tableName, SowusagrInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreNull       = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new SowusagrDaoWhere(whereOption, tableName, recordInfo);
@@ -61,20 +61,20 @@ public final class SowusagrDaoSelectSingle extends DaoStmtTemplate<SowusagrInfo>
 				do {
 					SowusagrInfo dataInfo = new SowusagrInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, SowusagrDaoDbTableColumn.COL_COD_OWNER);
-					dataInfo.calmonth = stmtResult.getString(SowusagrDaoDbTableColumn.COL_CALMONTH);
-					dataInfo.year = DaoFormatter.sqlToInt(stmtResult, SowusagrDaoDbTableColumn.COL_YEAR);
-					dataInfo.month = DaoFormatter.sqlToInt(stmtResult, SowusagrDaoDbTableColumn.COL_MONTH);
-					dataInfo.codCountry = stmtResult.getString(SowusagrDaoDbTableColumn.COL_COD_COUNTRY);
-					dataInfo.codState = stmtResult.getString(SowusagrDaoDbTableColumn.COL_STATE_PROVINCE);
-					dataInfo.city = stmtResult.getString(SowusagrDaoDbTableColumn.COL_CITY);
-					dataInfo.countUserCreatedMonth = DaoFormatter.sqlToInt(stmtResult, SowusagrDaoDbTableColumn.COL_COUNT_USER_CREATION_MONTH);
-					dataInfo.countUserCreatedLastYear = DaoFormatter.sqlToInt(stmtResult, SowusagrDaoDbTableColumn.COL_COUNT_USER_CREATION_MONTH_LAST_YEAR);
-					dataInfo.countUserActiveMonth = DaoFormatter.sqlToInt(stmtResult, SowusagrDaoDbTableColumn.COL_COUNT_USER_ACTIVE_MONTH);
-					dataInfo.countUserActiveLastYear = DaoFormatter.sqlToInt(stmtResult, SowusagrDaoDbTableColumn.COL_COUNT_USER_ACTIVE_MONTH_LAST_YEAR);
-					dataInfo.countUserInactiveMonth = DaoFormatter.sqlToInt(stmtResult, SowusagrDaoDbTableColumn.COL_COUNT_USER_INACTIVE_MONTH);
+					dataInfo.city                      = stmtResult.getString(SowusagrDaoDbTableColumn.COL_CITY);
+					dataInfo.year                      = DaoFormatter.sqlToInt(stmtResult, SowusagrDaoDbTableColumn.COL_YEAR);
+					dataInfo.month                     = DaoFormatter.sqlToInt(stmtResult, SowusagrDaoDbTableColumn.COL_MONTH);
+					dataInfo.codOwner                  = DaoFormatter.sqlToLong(stmtResult, SowusagrDaoDbTableColumn.COL_COD_OWNER);
+					dataInfo.calmonth                  = stmtResult.getString(SowusagrDaoDbTableColumn.COL_CALMONTH);
+					dataInfo.codState                  = stmtResult.getString(SowusagrDaoDbTableColumn.COL_STATE_PROVINCE);
+					dataInfo.codCountry                = stmtResult.getString(SowusagrDaoDbTableColumn.COL_COD_COUNTRY);
+					dataInfo.lastChanged               = DaoFormatter.sqlToLocalDateTime(stmtResult, SowusagrDaoDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.countUserActiveMonth      = DaoFormatter.sqlToInt(stmtResult, SowusagrDaoDbTableColumn.COL_COUNT_USER_ACTIVE_MONTH);
+					dataInfo.countUserCreatedMonth     = DaoFormatter.sqlToInt(stmtResult, SowusagrDaoDbTableColumn.COL_COUNT_USER_CREATION_MONTH);
+					dataInfo.countUserInactiveMonth    = DaoFormatter.sqlToInt(stmtResult, SowusagrDaoDbTableColumn.COL_COUNT_USER_INACTIVE_MONTH);
+					dataInfo.countUserActiveLastYear   = DaoFormatter.sqlToInt(stmtResult, SowusagrDaoDbTableColumn.COL_COUNT_USER_ACTIVE_MONTH_LAST_YEAR);
+					dataInfo.countUserCreatedLastYear  = DaoFormatter.sqlToInt(stmtResult, SowusagrDaoDbTableColumn.COL_COUNT_USER_CREATION_MONTH_LAST_YEAR);
 					dataInfo.countUserInactiveLastYear = DaoFormatter.sqlToInt(stmtResult, SowusagrDaoDbTableColumn.COL_COUNT_USER_INACTIVE_MONTH_LAST_YEAR);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, SowusagrDaoDbTableColumn.COL_LAST_CHANGED);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

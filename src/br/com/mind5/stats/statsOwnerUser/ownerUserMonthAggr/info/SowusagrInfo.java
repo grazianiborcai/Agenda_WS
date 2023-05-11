@@ -30,16 +30,16 @@ public final class SowusagrInfo extends InfoRecord implements Cloneable {
 	public SowusagrInfo() {
 		super();
 		
-		codOwner = DefaultValue.number();
-		year = DefaultValue.number();
-		month = DefaultValue.number();
-		countUserCreatedMonth = DefaultValue.number();
-		countUserActiveMonth = DefaultValue.number();
-		countUserInactiveMonth = DefaultValue.number();
-		countUserActiveLastYear = DefaultValue.number();
-		countUserCreatedLastYear = DefaultValue.number();
+		year                      = DefaultValue.number();
+		month                     = DefaultValue.number();
+		codOwner                  = DefaultValue.number();
+		lastChanged               = DefaultValue.object();		
+		countUserActiveMonth      = DefaultValue.number();
+		countUserCreatedMonth     = DefaultValue.number();
+		countUserInactiveMonth    = DefaultValue.number();
+		countUserActiveLastYear   = DefaultValue.number();
+		countUserCreatedLastYear  = DefaultValue.number();
 		countUserInactiveLastYear = DefaultValue.number();
-		lastChanged = DefaultValue.object();
 	}
 	
 	

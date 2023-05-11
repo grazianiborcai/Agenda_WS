@@ -10,20 +10,20 @@ import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class SowusagrDaoDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_CALMONTH = DaoDbField.COL_CALMONTH;
-	public static final String COL_CITY = DaoDbField.COL_CITY;
-	public static final String COL_COD_COUNTRY = DaoDbField.COL_COD_COUNTRY;
-	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
-	public static final String COL_COUNT_USER_ACTIVE_MONTH = DaoDbField.COL_COUNT_USER_ACTIVE_MONTH;
-	public static final String COL_COUNT_USER_ACTIVE_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_USER_ACTIVE_MONTH_LAST_YEAR;
-	public static final String COL_COUNT_USER_CREATION_MONTH = DaoDbField.COL_COUNT_USER_CREATION_MONTH;
+	public static final String COL_CALMONTH                            = DaoDbField.COL_CALMONTH;
+	public static final String COL_CITY                                = DaoDbField.COL_CITY;
+	public static final String COL_COD_COUNTRY                         = DaoDbField.COL_COD_COUNTRY;
+	public static final String COL_COD_OWNER                           = DaoDbField.COL_COD_OWNER;
+	public static final String COL_COUNT_USER_ACTIVE_MONTH             = DaoDbField.COL_COUNT_USER_ACTIVE_MONTH;
+	public static final String COL_COUNT_USER_ACTIVE_MONTH_LAST_YEAR   = DaoDbField.COL_COUNT_USER_ACTIVE_MONTH_LAST_YEAR;
+	public static final String COL_COUNT_USER_CREATION_MONTH           = DaoDbField.COL_COUNT_USER_CREATION_MONTH;
 	public static final String COL_COUNT_USER_CREATION_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_USER_CREATION_MONTH_LAST_YEAR;
-	public static final String COL_COUNT_USER_INACTIVE_MONTH = DaoDbField.COL_COUNT_USER_INACTIVE_MONTH;
+	public static final String COL_COUNT_USER_INACTIVE_MONTH           = DaoDbField.COL_COUNT_USER_INACTIVE_MONTH;
 	public static final String COL_COUNT_USER_INACTIVE_MONTH_LAST_YEAR = DaoDbField.COL_COUNT_USER_INACTIVE_MONTH_LAST_YEAR;
-	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
-	public static final String COL_MONTH = DaoDbField.COL_MONTH;
-	public static final String COL_STATE_PROVINCE = DaoDbField.COL_STATE_PROVINCE;
-	public static final String COL_YEAR = DaoDbField.COL_YEAR;
+	public static final String COL_LAST_CHANGED                        = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_MONTH                               = DaoDbField.COL_MONTH;
+	public static final String COL_STATE_PROVINCE                      = DaoDbField.COL_STATE_PROVINCE;
+	public static final String COL_YEAR                                = DaoDbField.COL_YEAR;
 	
 	
 	

@@ -45,7 +45,7 @@ public final class SowusagrNodeDeleteMonth extends DeciTreeTemplateWrite<Sowusag
 	@Override protected List<ActionStd<SowusagrInfo>> buildActionsOnPassedHook(DeciTreeOption<SowusagrInfo> option) {
 		List<ActionStd<SowusagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowusagrInfo> select = new SowusagrRootSelectMonth(option).toAction();
+		ActionStd <SowusagrInfo> select = new SowusagrRootSelectMonth(option).toAction();
 		ActionLazy<SowusagrInfo> delete = new ActionLazyCommom<SowusagrInfo>(option, SowusagrVisiRootDelete.class);
 		
 		select.addPostAction(delete);

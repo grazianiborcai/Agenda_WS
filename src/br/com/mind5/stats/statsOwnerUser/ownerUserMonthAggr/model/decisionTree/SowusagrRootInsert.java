@@ -70,8 +70,8 @@ public final class SowusagrRootInsert extends DeciTreeTemplateWrite<SowusagrInfo
 	@Override protected List<ActionStd<SowusagrInfo>> buildActionsOnPassedHook(DeciTreeOption<SowusagrInfo> option) {
 		List<ActionStd<SowusagrInfo>> actions = new ArrayList<>();
 
-		ActionStd<SowusagrInfo> enforceLChanged = new ActionStdCommom<SowusagrInfo>(option, SowusagrVisiEnforceLChanged.class);
-		ActionLazy<SowusagrInfo> insert = new ActionLazyCommom<SowusagrInfo>(option, SowusagrVisiDaoInsert.class);
+		ActionStd <SowusagrInfo> enforceLChanged = new ActionStdCommom <SowusagrInfo>(option, SowusagrVisiEnforceLChanged.class);
+		ActionLazy<SowusagrInfo> insert          = new ActionLazyCommom<SowusagrInfo>(option, SowusagrVisiDaoInsert.class);
 		
 		enforceLChanged.addPostAction(insert);
 		
