@@ -83,7 +83,7 @@ public final class EmailSender {
 	
 	
 	
-	public Message tryToBuild() {
+	private Message tryToBuild() {
 		try {		
 			Properties prop = buildProperty(hostname, port);
 			Session session = buildSession(prop, sender, password);		
@@ -108,7 +108,10 @@ public final class EmailSender {
 		//prop.put("mail.smtp.starttls.enable", "true");
 		prop.put("mail.smtp.host", host);
 		prop.put("mail.smtp.port", hostPort);
-		//prop.put("mail.smtp.ssl.trust", host);
+		//prop.put("mail.smtp.ssl.trust", host);		
+		prop.put("mail.smtp.socketFactory.port", hostPort);
+		prop.put("mail.smtp.socketFactory.class",
+				"javax.net.ssl.SSLSocketFactory");
 		
 		return prop;
 	}
